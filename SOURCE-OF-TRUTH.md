@@ -1,0 +1,58 @@
+# SOURCE-OF-TRUTH.md — MotoPass
+
+**Project Name:** MotoPass  
+**Date:** 2026-06-10  
+**BUILD:** 20260610-004
+
+## Project Overview (Simple Pitch)
+MotoPass is the premium Bitcoin-native platform for sovereign passports, citizenship-by-investment (CBI), residency-by-investment (RBI), and jurisdictional stacking. It provides high-net-worth Bitcoiners and freedom-seekers with a verifiable, privacy-first command center to evaluate, compare, acquire, stack, and optimize across programs — with deep Bitcoin integration (legal tender nations, Lightning payments, favorable digital-asset tax regimes, government BTC reserves, and on-chain timestamping).
+
+**Prime Directive:** “Truth You Can Verify.” Every material data point, legal extract, application step, and platform update must be independently verifiable on the Bitcoin blockchain (OpenTimestamps + Satohash). This is our core trust mechanism and competitive moat.
+
+This folder (`/Users/cam/projects/motopass/`) is the **canonical, perpetual single source of truth**. All artifacts, decisions, research, and generated docs live here so Goose (M3), Kimi (M4 HERMES), and any future agent have perfect, unambiguous context at all times.
+
+## Core Files
+- `README.md` — Polished living entry point and quickstart (always read first).
+- `docs/` — **The comprehensive documentation suite** (new in BUILD-004):
+  - `EXECUTIVE-SUMMARY.md` — One-page strategic overview for partners, investors, governments.
+  - `MARKETING.md` — Positioning, audience, value proposition, channels, messaging, launch plan.
+  - `PRODUCT-SCOPE-ROADMAP.md` — Detailed explanation of exactly how much we are building: phases, features, integrations, data requirements, technical ambition.
+  - Supporting: ARCHITECTURE.md, DATA-MODEL.md, BITCOIN-VERIFICATION.md, PAIGE-AI.md, DESIGN-REFERENCE.md, GLOSSARY.md, etc.
+- `research/countries.json` — The living heart: structured program data (16/50 seeded with rich finance + Bitcoin modeling). Target 50 countries at flagship depth.
+- `website/index.html` — The pristine, self-contained single-file premium dashboard (vanilla, zero-build, fully functional reference). Do not edit casually — it is the working demonstration of current scope.
+- `DESIGN.md` — Semantic design system (sovereign black, Bitcoin orange #F7931A, glassmorphic cards, Space Grotesk + Inter typography).
+- `next-prompt.md` — Stitch-optimized prompt capturing the full next UI vision (Portfolio, Stacking Simulator, deep finance modals, advanced filters).
+- `PROJECT-VISION.md` — Complete strategic vision, non-negotiable technical requirements, master country template, and philosophy.
+- `SOURCE-OF-TRUTH.md` — This file (maintained via handoff skill + manual updates).
+- `images/` — Custom premium sovereign assets (hero.jpg, passport.jpg, funding-flow.jpg, sovereignty.jpg, etc.).
+
+## Git & Deployment
+- Git: Not initialized yet on this machine (recommended: `git init && git add . && git commit -m "BUILD-20260610-004: Full documentation package (exec + marketing + detailed scope) + modern Vite/React dev environment"`). No remotes configured. Private GitHub (or sovereign self-hosted) suggested for future.
+- Current deployment path: 
+  - Pristine demo (recommended for first public share): Serve `website/index.html` + `research/` folder together (zero-build, single file + JSON). Ready for GitHub Pages, Netlify, Cloudflare Pages, or sovereign static host (Umbrel/Start9).
+  - Modern frontend: `npm run build` (Vite) produces `dist/` (verified working). Same data layer. Can deploy identically or evolve to full-stack (Nostr + Lightning + timestamp services).
+- Sovereign hosting options: Umbrel, Start9, Citadel, or any Bitcoin/Lightning node with a web server. Long-term goal: fully verifiable, self-hostable by users.
+- Live URL: None yet (static demo + Vite app ready to deploy).
+
+## Mission Alignment (Give A Bit)
+MotoPass directly advances Bitcoin sovereignty, financial privacy, and individual jurisdictional freedom. It embodies Give A Bit’s ethos: tools that are simple on the surface, profoundly powerful underneath, private by default, and joyful to use. Future phases explicitly include Lightning/BOLT12 + Silent Payments for all fees, Nostr as the primary identity + notification + update layer, community-contributed (timestamped) research, and open-source Safe Harbour legal templates for users and advisors.
+
+## Current Gaps & Next Priorities
+- **Git + Distribution**: Initialize git, commit BUILD-004, deploy the pristine demo (website/index.html + research/) to a live URL (GitHub Pages/Netlify/etc.). Prepare Vite app for production deploy from dist/.
+- **Data completeness**: Expand all 50 countries to Uruguay-flagship v2.0 depth (legal extracts, Satohash placeholders, full Bitcoin fields, Paige AI tips). Focus high-Bitcoin-signal jurisdictions first.
+- **Product experience**: Build My Portfolio, interactive jurisdictional Stacking Simulator, Finance Compare, and “Verify on Bitcoin” UI flows (using the new Vite/React dev environment + DESIGN.md + next-prompt.md).
+- **Bitcoin core**: Visible timestamp proofs, Lightning payment rails (for fees and marketplace), Nostr-native updates and alerts.
+- **Paige AI**: Move from simulated chat to real proactive concierge (prompts in docs/, integration via Nostr or local LLM).
+- **Documentation & process**: This BUILD-004 documentation package (including the full PRODUCT-SCOPE-ROADMAP.md) is complete. Maintain it. Run the giveabit-project-handoff skill after every major cycle.
+- **GitHub / Live URL**: Still TBD (high priority for next handoff).
+
+## Hand-off Notes for Kimi (M4 HERMES)
+See the latest `KIMI-HANDOFF-MotoPass-*.md`. Integrate the entire `/motopass/` tree (especially the new `docs/` suite) into MASTER-BRAIN.md, Kanban, and your Obsidian vault. Educate yourself and Hermes on the full vision, the “Truth You Can Verify” prime directive, the 50-country data ambition, and the phased product roadmap in `docs/PRODUCT-SCOPE-ROADMAP.md`.
+
+Use `DESIGN.md` + `next-prompt.md` for all UI generation. The pristine `website/index.html` is the reference implementation — evolve the Vite/React environment alongside it. Always update BUILD numbers, SOURCE-OF-TRUTH, and relevant docs on substantive changes. Run or trigger the handoff skill on major milestones.
+
+**This file + the docs/ folder are the perpetual source of truth. All agents and humans must respect and keep them current.**
+
+**Git snapshot at time of this handoff (2026-06-10):** No repo initialized yet. No commits, no remotes.
+
+— Updated via giveabit-project-handoff skill BUILD-20260610-004 (full docs suite + modern Vite dev environment + build verification)
