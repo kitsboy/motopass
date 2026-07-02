@@ -43,6 +43,7 @@ rm -f "$SCRATCH/.live-json-full.json"
 grep -q '"programs"' "$SCRATCH/live-json-body.log" || fail 'live-json-body first 80B missing "programs"'
 
 # --- Step 5: preview + playwright smoke ---
+rm -f "$SCRATCH"/smoke-*.png
 npx playwright --version >"$SCRATCH/playwright-version.log" 2>&1 || {
   npx playwright --version >"$SCRATCH/playwright-unavailable.log" 2>&1 || true
   fail "playwright unavailable"
