@@ -18,6 +18,16 @@ body {
   background-color: var(--sovereign-black);
   color: var(--white);
   min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+[dir='rtl'] .program-card,
+[dir='rtl'] .card {
+  text-align: right;
 }
 
 /* Premium dark sovereign aesthetic */

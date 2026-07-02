@@ -7,11 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        // MotoPass sovereign design system (see DESIGN.md)
         sovereign: {
           black: '#0a0a0a',
           void: '#111111',
           silver: '#a1a1aa',
+        },
+        freedom: {
           white: '#f4f4f5',
         },
         btc: {
@@ -21,7 +22,7 @@ export default {
           green: '#22c55e',
           amber: '#f59e0b',
           red: '#ef4444',
-        }
+        },
       },
       fontFamily: {
         display: ['Space Grotesk', 'system-ui', 'sans-serif'],
