@@ -48,11 +48,15 @@ npx playwright --version >"$SCRATCH/playwright-version.log" 2>&1 || {
   fail "playwright unavailable"
 }
 
-npm run preview -- --host 127.0.0.1 --port 4173 >"$SCRATCH/preview-serve.log" 2>&1 &
+pkill -f "vite preview" 2>/dev/null || true
+sleep 1
+
+npm run preview -- --host 127.0.0.1 --port 4173 --strictPort >"$SCRATCH/preview-serve.log" 2>&1 &
 PREVIEW_PID=$!
 cleanup_preview() {
   kill "$PREVIEW_PID" 2>/dev/null || true
   wait "$PREVIEW_PID" 2>/dev/null || true
+  pkill -f "vite preview" 2>/dev/null || true
 }
 trap cleanup_preview EXIT
 
@@ -63,6 +67,7 @@ for _ in $(seq 1 60); do
   sleep 1
 done
 curl -sf http://127.0.0.1:4173/ >/dev/null 2>&1 || fail "preview server did not start on 127.0.0.1:4173"
+grep -q '127.0.0.1:4173' "$SCRATCH/preview-serve.log" || fail "preview-serve.log missing 127.0.0.1:4173"
 
 SCRATCH="$SCRATCH" SMOKE_URL=http://127.0.0.1:4173 node scripts/smoke-routes.mjs >"$SCRATCH/smoke-routes.log" 2>&1 || fail "smoke-routes"
 
