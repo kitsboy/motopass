@@ -11,10 +11,12 @@ import { useUser } from '../context/UserContext'
 
 const NAV = [
   { to: '/', key: 'nav.pitch' as const, end: true },
+  { to: '/portfolio', key: 'nav.portfolio' as const },
   { to: '/programs', key: 'nav.programs' as const },
+  { to: '/simulator', key: 'nav.simulator' as const },
+  { to: '/compare', key: 'nav.compare' as const },
+  { to: '/vault', key: 'nav.vault' as const },
   { to: '/blog', key: 'nav.blog' as const },
-  { to: '/verify', key: 'nav.verify' as const },
-  { to: '/apply', key: 'nav.apply' as const },
 ]
 
 export function Layout() {
@@ -101,18 +103,13 @@ export function Layout() {
       </main>
 
       <nav className="lg:hidden fixed bottom-0 inset-x-0 z-50 border-t border-white/10 bg-sovereign-black/98 backdrop-blur-xl safe-bottom">
-        <div className="grid grid-cols-5 gap-0.5 px-1 py-1.5">
-          {NAV.slice(0, 4).map(n => (
-            <NavLink key={n.to} to={n.to} end={n.end}
+        <div className="grid grid-cols-4 gap-0.5 px-1 py-1.5">
+          {[{ to: '/', key: 'nav.pitch' as const, end: true }, { to: '/portfolio', key: 'nav.portfolio' as const }, { to: '/programs', key: 'nav.programs' as const }, { to: isLoggedIn ? '/dashboard' : '/register', key: 'nav.dashboard' as const }].map(n => (
+            <NavLink key={n.to} to={n.to} end={'end' in n ? n.end : false}
               className={({ isActive }) => `flex flex-col items-center justify-center text-[9px] py-1.5 rounded-lg ${isActive ? 'text-btc-orange bg-btc-orange/10' : 'text-sovereign-silver'}`}>
-              <span className="font-medium leading-tight text-center px-0.5">{t(n.key)}</span>
+              <span className="font-medium leading-tight text-center px-0.5">{isLoggedIn && n.key === 'nav.dashboard' ? 'Dash' : t(n.key)}</span>
             </NavLink>
           ))}
-          <NavLink to={isLoggedIn ? '/dashboard' : '/register'}
-            className={({ isActive }) => `flex flex-col items-center justify-center text-[9px] py-1.5 rounded-lg ${isActive ? 'text-purple-300 bg-purple-500/10' : 'text-sovereign-silver'}`}>
-            <User size={14} className="mb-0.5" />
-            <span>{isLoggedIn ? 'Dash' : 'Join'}</span>
-          </NavLink>
         </div>
       </nav>
 

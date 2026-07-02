@@ -12,16 +12,26 @@ import { ApplyPage } from './pages/ApplyPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { ProfilePage } from './pages/ProfilePage'
+import { PortfolioPage } from './pages/PortfolioPage'
+import { StackSimulatorPage } from './pages/StackSimulatorPage'
+import { FinanceComparePage } from './pages/FinanceComparePage'
+import { VaultPage } from './pages/VaultPage'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 export default function App() {
   return (
+    <ErrorBoundary>
     <I18nProvider>
       <UserProvider>
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
               <Route index element={<PitchPage />} />
+              <Route path="portfolio" element={<PortfolioPage />} />
               <Route path="programs" element={<ProgramsPage />} />
+              <Route path="simulator" element={<StackSimulatorPage />} />
+              <Route path="compare" element={<FinanceComparePage />} />
+              <Route path="vault" element={<VaultPage />} />
               <Route path="blog" element={<BlogPage />} />
               <Route path="blog/:slug" element={<BlogPostPage />} />
               <Route path="verify" element={<VerifyPage />} />
@@ -35,5 +45,6 @@ export default function App() {
         </BrowserRouter>
       </UserProvider>
     </I18nProvider>
+    </ErrorBoundary>
   )
 }

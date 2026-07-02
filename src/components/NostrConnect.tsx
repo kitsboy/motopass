@@ -1,21 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Zap } from 'lucide-react'
 import { connectNostr, hasNostrExtension, type NostrSession } from '../lib/nostr'
 import { useI18n } from '../i18n/I18nContext'
 
 export function NostrConnect({ onConnect }: { onConnect?: (s: NostrSession | null) => void }) {
   const { t } = useI18n()
-  const [session, setSession] = useState<NostrSession | null>(null)
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
+  const [session, setSession] = useState<NostrSession | null>(() => {
     const saved = sessionStorage.getItem('motopass-npub')
-    if (saved) {
-      const s = { npub: saved, pubkey: '' }
-      setSession(s)
-      onConnect?.(s)
-    }
-  }, [onConnect])
+    return saved ? { npub: saved, pubkey: '' } : null
+  })
+  const [loading, setLoading] = useState(false)
 
   const connect = async () => {
     if (!hasNostrExtension()) {

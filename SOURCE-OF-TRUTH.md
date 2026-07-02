@@ -2,7 +2,7 @@
 
 **Project Name:** MotoPass  
 **Date:** 2026-06-10  
-**BUILD:** 20260702-008
+**BUILD:** 20260702-009
 
 ## Project Overview (Simple Pitch)
 MotoPass is the premium Bitcoin-native platform for sovereign passports, citizenship-by-investment (CBI), residency-by-investment (RBI), and jurisdictional stacking. It provides high-net-worth Bitcoiners and freedom-seekers with a verifiable, privacy-first command center to evaluate, compare, acquire, stack, and optimize across programs — with deep Bitcoin integration (legal tender nations, Lightning payments, favorable digital-asset tax regimes, government BTC reserves, and on-chain timestamping).

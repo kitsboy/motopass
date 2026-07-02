@@ -1,10 +1,11 @@
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useUser } from '../context/UserContext'
 import { ProgressTracker } from '../components/ProgressTracker'
 import { PaymentMethods } from '../components/PaymentMethods'
 import { AgentCardKimi } from '../components/AgentCardKimi'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import type { PaymentRail, UserPayment } from '../types/user'
+import type { PaymentInvoice } from '../lib/payments'
 export function DashboardPage() {
   const { profile, isLoggedIn, setProfile, logout } = useUser()
 
@@ -17,7 +18,7 @@ export function DashboardPage() {
     )
   }
 
-  const handlePay = (rail: PaymentRail, amountSats: number) => {
+  const handlePay = (rail: PaymentRail, amountSats: number, _invoice: PaymentInvoice) => {
     const payment: UserPayment = {
       id: `pay-${Date.now()}`,
       rail,

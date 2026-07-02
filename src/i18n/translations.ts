@@ -1,7 +1,8 @@
 import type { LangCode } from './languages'
 
 export type TranslationKey =
-  | 'nav.pitch' | 'nav.programs' | 'nav.blog' | 'nav.verify' | 'nav.agents' | 'nav.apply'
+  | 'nav.pitch' | 'nav.portfolio' | 'nav.programs' | 'nav.simulator' | 'nav.compare' | 'nav.vault'
+  | 'nav.blog' | 'nav.verify' | 'nav.agents' | 'nav.apply' | 'nav.dashboard'
   | 'tagline' | 'pitch.hero' | 'pitch.sub' | 'pitch.cta' | 'pitch.evolve'
   | 'blog.title' | 'blog.filter' | 'blog.read' | 'programs.title' | 'programs.search'
   | 'verify.title' | 'verify.sub' | 'verify.stamp' | 'agents.title' | 'agents.sub'
@@ -12,7 +13,12 @@ type Dict = Record<TranslationKey, string>
 
 const en: Dict = {
   'nav.pitch': 'Pitch',
+  'nav.portfolio': 'Portfolio',
   'nav.programs': 'Programs',
+  'nav.simulator': 'Simulator',
+  'nav.compare': 'Compare',
+  'nav.vault': 'Vault',
+  'nav.dashboard': 'Dashboard',
   'nav.blog': 'Insights',
   'nav.verify': 'Verify',
   'nav.agents': 'Agents',

@@ -1877,79 +1877,35 @@ section { position: relative; }
 </div>
 
 <script>
-// ── DATA ──
-const programs = [
-  {id:1, name:"Uruguay", flag:"🇺🇾", region:"South America", status:"Flagship", statusType:"gold", score:9,
-   details:"Mercosur full access, strict territorial taxation, beachfront foreign ownership allowed. 11-year capital gains holiday for new residents. High quality of life, strong rule of law, Bitcoin-friendly banking.",
-   facts:{residency:"3 Years", path:"Citizenship via 3y", tax:"Territorial", btc:"Legal Property", dual:"Allowed"},
-   checks:[{y:true,t:"Live & Work Rights — Full Mercosur zone access"},{y:true,t:"Dual Citizenship — Permitted under Uruguayan law"},{y:true,t:"Foreign Income Tax — Exempt (territorial only)"},{y:true,t:"Bitcoin Property — Recognised as taxable asset, not currency"},{y:false,t:"Legal Tender Status — Not legal tender"}],
-   btcBars:[{l:"Regulatory Clarity",v:90},{l:"BTC Banking",v:80},{l:"Tax Efficiency",v:95},{l:"Stability",v:92}],
-   hash:"a3f8c2e19d7b4a2f1e0c3d8b56f2a1e4c7d9b3f5a2e8c1d4f7b0e3a6c9d2f5",
-   block:"897,441", confs:"6"},
-  {id:2, name:"El Salvador", flag:"🇸🇻", region:"Central America", status:"Legal Tender", statusType:"btc", score:10,
-   details:"Bitcoin is legal tender under Decree 57. Government maintains BTC reserve. Lightning adoption is widespread. Foreign income exempt. The most Bitcoin-sovereign nation on Earth.",
-   facts:{residency:"Fast Track", path:"3 Years", tax:"Territorial", btc:"Legal Tender", dual:"Allowed"},
-   checks:[{y:true,t:"Bitcoin Legal Tender — Decree 57, permanent law"},{y:true,t:"Foreign Income — Fully exempt from taxation"},{y:true,t:"Dual Citizenship — Permitted"},{y:true,t:"Lightning Network — Government Chivo wallet"},{y:true,t:"BTC Reserve — National treasury holds Bitcoin"}],
-   btcBars:[{l:"Regulatory Clarity",v:100},{l:"BTC Banking",v:95},{l:"Tax Efficiency",v:100},{l:"Stability",v:72}],
-   hash:"b72d9f4a1c8e5f3a7d2b9e4c3a1f6d8b5e2c7a4f1d9b6e3c8a5f2d7b4e1c6",
-   block:"897,388", confs:"53"},
-  {id:3, name:"Paraguay", flag:"🇵🇾", region:"South America", status:"Fast Track", statusType:"green", score:8,
-   details:"Low flat taxes, fast-track permanent residency, 3-year path to citizenship. One of the lowest cost-of-living sovereign options. Growing Bitcoin mining presence due to cheap hydropower.",
-   facts:{residency:"90 Days", path:"3 Years", tax:"Territorial 10%", btc:"Legal Property", dual:"Allowed"},
-   checks:[{y:true,t:"Residency Speed — PR in 90 days"},{y:true,t:"Low Tax — 10% flat on local income only"},{y:true,t:"Bitcoin Mining — Legal, cheap hydropower"},{y:true,t:"Dual Citizenship — Permitted"},{y:false,t:"Legal Tender — Not legal tender"}],
-   btcBars:[{l:"Regulatory Clarity",v:75},{l:"BTC Banking",v:70},{l:"Tax Efficiency",v:90},{l:"Stability",v:68}],
-   hash:"c19a6e8d4f2a1b7c3e9d5f8a2b6e1c4d7f3a9b5e2c8d1f4b7e0c3a6d9f2b5",
-   block:"897,201", confs:"240"},
-  {id:4, name:"Switzerland", flag:"🇨🇭", region:"Europe", status:"Crypto Valley", statusType:"gold", score:9,
-   details:"Zug's Crypto Valley is the world's premier blockchain hub. Excellent banking access, clear regulatory framework, world-class quality of life. Lump-sum taxation available for HNW individuals.",
-   facts:{residency:"5 Years", path:"10-12 Years", tax:"Cantonal Lump Sum", btc:"Legal Property", dual:"Restricted"},
-   checks:[{y:true,t:"Crypto Valley — Zug, world-class ecosystem"},{y:true,t:"Clear Regulation — FINMA crypto framework"},{y:true,t:"Banking — Crypto-friendly private banks"},{y:'partial',t:"Dual Citizenship — Case-by-case basis"},{y:true,t:"BTC Property — Recognised wealth asset"}],
-   btcBars:[{l:"Regulatory Clarity",v:95},{l:"BTC Banking",v:92},{l:"Tax Efficiency",v:78},{l:"Stability",v:99}],
-   hash:"d82b5f3a1e9c7d4b6f2a8c1e4d7b3f6a9c2e5b8d1f4a7c0e3b6d9f2a5c8e1",
-   block:"896,990", confs:"451"},
-  {id:5, name:"UAE (Dubai)", flag:"🇦🇪", region:"Middle East", status:"Zero Tax", statusType:"btc", score:10,
-   details:"Zero personal income tax, zero capital gains tax, zero inheritance tax. Dubai is the world's fastest-growing crypto hub. VARA provides clear crypto regulation. Golden Visa program available.",
-   facts:{residency:"Golden Visa 5-10y", path:"N/A (No Citizenship)", tax:"Zero Tax", btc:"VARA Regulated", dual:"N/A"},
-   checks:[{y:true,t:"Zero Income Tax — No personal income tax"},{y:true,t:"Zero Capital Gains — Bitcoin gains untaxed"},{y:true,t:"VARA Framework — Clear crypto regulation"},{y:true,t:"Golden Visa — 5-10 year renewable residency"},{y:false,t:"Citizenship Path — Not available to expats"}],
-   btcBars:[{l:"Regulatory Clarity",v:92},{l:"BTC Banking",v:88},{l:"Tax Efficiency",v:100},{l:"Stability",v:90}],
-   hash:"e93c6d4b2f8a1e7c5b3a9d6f4b2e8c5a3f7b1d5c9e3b7a1f5d9c3b7e1d5a9",
-   block:"897,102", confs:"339"},
-  {id:6, name:"Singapore", flag:"🇸🇬", region:"Asia", status:"Premier Hub", statusType:"green", score:9,
-   details:"No capital gains tax. Clear MAS regulatory framework. World-class financial infrastructure. Strong rule of law. Major exchanges and crypto funds are headquartered here.",
-   facts:{residency:"PR via EP", path:"2+ Years", tax:"0% CGT", btc:"MAS Regulated", dual:"Restricted"},
-   checks:[{y:true,t:"Zero Capital Gains — No CGT on Bitcoin"},{y:true,t:"MAS Regulation — Clear licensing framework"},{y:true,t:"Banking — Crypto-friendly DBS, others"},{y:'partial',t:"Dual Citizenship — Generally not permitted"},{y:true,t:"Rule of Law — World-class legal system"}],
-   btcBars:[{l:"Regulatory Clarity",v:90},{l:"BTC Banking",v:85},{l:"Tax Efficiency",v:95},{l:"Stability",v:97}],
-   hash:"f04d7e5c3a9b2f6d8c1e4b7a3f9d2c6e8b4a1f7c5e9b3d7a5c2f8e6b4a2d9",
-   block:"896,877", confs:"564"},
-  {id:7, name:"Malta", flag:"🇲🇹", region:"Europe", status:"Blockchain Island", statusType:"gold", score:8,
-   details:"EU member with the world's first comprehensive crypto legal framework (VFA Act). Non-dom tax status available. Excellent for operating crypto businesses within the EU regulatory perimeter.",
-   facts:{residency:"MRVP/Citizenship", path:"5 Years", tax:"Non-Dom Available", btc:"VFA Regulated", dual:"Allowed"},
-   checks:[{y:true,t:"EU Membership — Full EU market access"},{y:true,t:"VFA Act — World's first comprehensive crypto law"},{y:true,t:"Non-Dom Status — Foreign income exempt"},{y:true,t:"Dual Citizenship — Permitted"},{y:'partial',t:"Banking — Improving, some restrictions remain"}],
-   btcBars:[{l:"Regulatory Clarity",v:88},{l:"BTC Banking",v:72},{l:"Tax Efficiency",v:80},{l:"Stability",v:85}],
-   hash:"a15e8f6d4c2b0e9a7f5d3c1b9e7f5d3c1b9e7a5c3f1d9b7e5c3a1f9d7b5c3",
-   block:"896,750", confs:"691"},
-  {id:8, name:"Portugal", flag:"🇵🇹", region:"Europe", status:"Lifestyle Hub", statusType:"gold", score:7,
-   details:"High quality of life, beautiful coastline, affordable by EU standards. NHR regime has changed — crypto gains now taxed for most new applicants. Still attractive for specific profiles.",
-   facts:{residency:"D7/Golden Visa", path:"5 Years", tax:"NHR 20%+", btc:"Taxable from 2023", dual:"Allowed"},
-   checks:[{y:true,t:"EU Membership — Full rights"},{y:true,t:"Dual Citizenship — Permitted"},{y:'partial',t:"Bitcoin Tax — NHR changes in 2023, verify current status"},{y:true,t:"Quality of Life — Excellent, affordable EU"},{y:false,t:"Tax Holiday — No longer applies to crypto for most"}],
-   btcBars:[{l:"Regulatory Clarity",v:70},{l:"BTC Banking",v:75},{l:"Tax Efficiency",v:60},{l:"Stability",v:82}],
-   hash:"b26f9a7e5c3d1b9f7e5c3a1d9f7e5c3a1b9f7e5c3d1b9a7f5e3c1b9a7f5e3",
-   block:"896,622", confs:"819"},
-  {id:9, name:"Panama", flag:"🇵🇦", region:"Central America", status:"Territorial Tax", statusType:"btc", score:8,
-   details:"Pure territorial taxation — income earned outside Panama is completely exempt. Fast residency via Friendly Nations Visa. Dollarized economy provides USD stability without Fed risk.",
-   facts:{residency:"Friendly Nations 2yr", path:"5 Years", tax:"Territorial Only", btc:"Legal Property", dual:"Allowed"},
-   checks:[{y:true,t:"Territorial Tax — Foreign income 100% exempt"},{y:true,t:"USD Economy — Dollar without US jurisdiction"},{y:true,t:"Friendly Nations Visa — ~50 qualifying countries"},{y:true,t:"Bitcoin — Legal property"},{y:true,t:"Dual Citizenship — Permitted after 5 years"}],
-   btcBars:[{l:"Regulatory Clarity",v:72},{l:"BTC Banking",v:68},{l:"Tax Efficiency",v:95},{l:"Stability",v:75}],
-   hash:"c37a0b8f6d4e2c0a8f6d4c2e0b8f6d4c2e0a8f6d4c2b0e8f6d4c2a0b8e6d4",
-   block:"897,055", confs:"386"},
-  {id:10, name:"Georgia", flag:"🇬🇪", region:"Europe/Asia", status:"Rising Star", statusType:"green", score:8,
-   details:"Fast, inexpensive residency with one of the most favourable crypto tax regimes globally. Bitcoin held long-term is tax-free. The Tbilisi startup scene is booming. Bridge between Europe and Asia.",
-   facts:{residency:"Remotely (2 weeks)", path:"5 Years", tax:"0% BTC Long-term", btc:"Tax-Free (LT)", dual:"Allowed"},
-   checks:[{y:true,t:"BTC Long-Term — Tax-free if held properly"},{y:true,t:"Speed — Residency possible in 2 weeks"},{y:true,t:"Cost — Extremely low cost of living"},{y:true,t:"Dual Citizenship — Permitted"},{y:'partial',t:"Banking — Growing, some limitations for large crypto"}],
-   btcBars:[{l:"Regulatory Clarity",v:80},{l:"BTC Banking",v:70},{l:"Tax Efficiency",v:92},{l:"Stability",v:72}],
-   hash:"d48b1c9f7e5d3b1c9f7e5d3a1c9f7e5b3d1c9f7e5c3b1a9f7e5d3c1b9f7e5",
-   block:"896,944", confs:"497"}
-];
+// ── DATA (loaded from research/countries.json) ──
+let programs = [];
+
+function jsonToDemoProgram(p) {
+  const score = p.finance?.crypto_friendly_score ?? 5;
+  const statusType = score >= 9 ? 'btc' : score >= 7 ? 'green' : 'gold';
+  const hash = (p.satohash_proofs?.[0]?.proof_url || '').split('/').pop() || ('a'.repeat(64));
+  return {
+    id: p.id, name: p.name, flag: p.flag || '🌍', region: p.region,
+    status: p.status.split(' - ')[0], statusType, score,
+    details: p.details,
+    facts: { residency: p.finance.processing_time_months + ' mo', path: p.category, tax: p.finance.tax_benefits?.slice(0,20), btc: p.finance.bitcoin_specific?.slice(0,20), dual: 'Verify' },
+    checks: [{y:true,t:p.bitcoin_integration?.slice(0,80)},{y:score>=7,t:'Crypto score ' + score + '/10'},{y:!!p.lightning_ready,t:'Lightning ready'}],
+    btcBars: [{l:'Regulatory',v:score*10},{l:'BTC Banking',v:score*9},{l:'Tax',v:(p.sovereignty_score||5)*10},{l:'Stability',v:score*8}],
+    hash, block: String(p.last_verified_block || 897441).replace(/(\d)(?=(\d{3})+$)/g,'$1,'), confs: '6'
+  };
+}
+
+async function loadPrograms() {
+  try {
+    const res = await fetch('../research/countries.json');
+    const data = await res.json();
+    programs = (data.programs || []).map(jsonToDemoProgram);
+    document.getElementById('programs-grid').innerHTML = '';
+    renderPrograms();
+  } catch (e) {
+    console.error('Failed to load countries.json', e);
+  }
+}
 
 // ── RENDER PROGRAMS GRID ──
 function renderPrograms() {
@@ -2345,7 +2301,7 @@ window.addEventListener('scroll', checkReveal, {passive: true});
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
-  renderPrograms();
+  loadPrograms();
   buildTicker();
   buildLiveTimestamps();
   setTimeout(checkReveal, 100);

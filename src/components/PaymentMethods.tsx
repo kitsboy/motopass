@@ -1,15 +1,18 @@
-import { Bitcoin, Zap } from 'lucide-react'
+import { Bitcoin } from 'lucide-react'
 import { PAYMENT_RAILS, type PaymentRail, type UserPayment } from '../types/user'
+import { createInvoicePlaceholder, type PaymentInvoice } from '../lib/payments'
 import { AnimatedBadge } from './beui/AnimatedBadge'
+import { useState } from 'react'
 
 export function PaymentMethods({
   onPay,
   payments,
 }: {
-  onPay: (rail: PaymentRail, amountSats: number) => void
+  onPay: (rail: PaymentRail, amountSats: number, invoice: PaymentInvoice) => void
   payments: UserPayment[]
 }) {
   const DEMO_AMOUNT = 50_000
+  const [lastInvoice, setLastInvoice] = useState<PaymentInvoice | null>(null)
 
   return (
     <div className="space-y-6">
@@ -22,7 +25,11 @@ export function PaymentMethods({
             <button
               key={rail.id}
               type="button"
-              onClick={() => onPay(rail.id, DEMO_AMOUNT)}
+              onClick={() => {
+                const inv = createInvoicePlaceholder(rail.id, DEMO_AMOUNT, 'MotoPass fee')
+                setLastInvoice(inv)
+                onPay(rail.id, DEMO_AMOUNT, inv)
+              }}
               className="card text-left p-3 hover:border-btc-orange/40 transition-colors"
             >
               <div className="text-sm font-semibold">{rail.label}</div>
@@ -34,6 +41,18 @@ export function PaymentMethods({
           Demo: {(DEMO_AMOUNT / 100_000_000).toFixed(4)} BTC equivalent • BOLT12 offers & Silent Payments supported
         </p>
       </div>
+
+      {lastInvoice && (
+        <div className="card text-xs font-mono space-y-1 text-sovereign-silver">
+          <div>Invoice: {lastInvoice.id}</div>
+          {lastInvoice.bolt11 && <div>BOLT11: {lastInvoice.bolt11}</div>}
+          {lastInvoice.bolt12Offer && <div>BOLT12: {lastInvoice.bolt12Offer}</div>}
+          {lastInvoice.liquidAddress && <div>Liquid: {lastInvoice.liquidAddress}</div>}
+          {lastInvoice.onchainAddress && <div>BTC: {lastInvoice.onchainAddress}</div>}
+          {lastInvoice.silentPaymentAddress && <div>Silent: {lastInvoice.silentPaymentAddress}</div>}
+          {lastInvoice.pynymHandle && <div>PYNYM: {lastInvoice.pynymHandle}</div>}
+        </div>
+      )}
 
       {payments.length > 0 && (
         <div>

@@ -1,6 +1,12 @@
 # MotoPass — Bitcoin Sovereign Passports & Residency Programs
 **Single Source of Truth Project Folder**  
-**BUILD-20260610-004** | Last Updated: 2026-06-10
+**BUILD-20260702-009** | Last Updated: 2026-07-02
+
+[![CI](https://github.com/kitsboy/motopass/actions/workflows/ci.yml/badge.svg)](https://github.com/kitsboy/motopass/actions/workflows/ci.yml)
+[![Live](https://img.shields.io/website?url=https%3A%2F%2Fmotopass.giveabit.io&label=motopass.giveabit.io)](https://motopass.giveabit.io)
+[![Programs](https://img.shields.io/badge/programs-25-brightgreen)](https://motopass.giveabit.io/research/countries.json)
+
+**Live:** https://motopass.giveabit.io — **Deploy target:** Cloudflare Pages `motopass` only (`npx wrangler pages deploy dist --project-name=motopass`)
 
 ## What This Is
 MotoPass is the premium Bitcoin-native platform for sovereign passports, residency-by-investment (RBI), citizenship-by-investment (CBI), jurisdictional stacking, and Bitcoin-optimized finance and identity. It empowers high-net-worth individuals and Bitcoiners to evaluate, acquire, stack, and live across programs with radical transparency and verifiability.
@@ -18,7 +24,7 @@ This folder (`/Users/cam/projects/motopass/`) is the **canonical, perpetual sing
 ├── PROJECT-VISION.md                      ← Full strategic vision, requirements, and philosophy.
 ├── docs/                                  ← **Comprehensive documentation hub** (executive, marketing, detailed build scope & roadmap, architecture, data model, etc.).
 ├── research/
-│   ├── countries.json                     ← THE DATA. 16 high-quality seeded entries with rich finance + Bitcoin modeling. Target: 50.
+│   ├── countries.json                     ← THE DATA. 25 programs with sovereignty scores, Satohash proofs. Target: 50.
 │   └── uruguay-flagship.md                ← Official v2.0 deep template (expand all countries to this standard).
 ├── website/
 │   └── index.html                         ← Pristine, self-contained single-file premium dashboard (the current working reference implementation — do not edit lightly).

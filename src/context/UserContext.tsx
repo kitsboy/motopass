@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import { connectNostr } from '../lib/nostr'
 import { clearProfile, loadProfile, saveProfile } from '../lib/userStorage'
 import type { UserProfile } from '../types/user'
@@ -15,13 +15,11 @@ interface UserContextValue {
 const UserContext = createContext<UserContextValue | null>(null)
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
-  const [profile, setProfileState] = useState<UserProfile | null>(null)
+  const [profile, setProfileState] = useState<UserProfile | null>(() => loadProfile())
 
   const refresh = useCallback(() => {
     setProfileState(loadProfile())
   }, [])
-
-  useEffect(() => { refresh() }, [refresh])
 
   const login = useCallback(async () => {
     const session = await connectNostr()
