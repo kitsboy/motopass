@@ -100,7 +100,7 @@ const App: React.FC = () => {
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#F7931A] to-[#c46f0f] flex items-center justify-center text-black font-bold text-xl tracking-[-1px]">₿</div>
             <div>
               <div className="font-semibold tracking-[0.5px] text-lg">MOTOPASS</div>
-              <div className="text-[10px] text-[#a1a1aa] -mt-1">DEV ENVIRONMENT • BUILD-20260610-004</div>
+              <div className="text-[10px] text-[#a1a1aa] -mt-1">LIVE • BUILD-20260702-006</div>
             </div>
           </div>
 
@@ -112,11 +112,12 @@ const App: React.FC = () => {
               <ExternalLink size={14} /> Open Pristine Demo
             </button>
             <a
-              href="https://github.com"
+              href="https://github.com/kitsboy/motopass"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-[#a1a1aa] hover:text-white transition-colors hidden sm:block"
             >
-              GitHub (soon)
+              GitHub
             </a>
           </div>
         </div>
@@ -275,7 +276,7 @@ const App: React.FC = () => {
             </ul>
           </div>
           <div className="md:text-right space-y-1.5">
-            <div>Pr pristine demo (always works): <button onClick={openPristineDemo} className="underline hover:text-white">/website/index.html</button></div>
+            <div>Pristine demo (always works): <button onClick={openPristineDemo} className="underline hover:text-white">/website/index.html</button></div>
             <div>Detailed scope: <button onClick={() => openDocs('PRODUCT-SCOPE-ROADMAP.md')} className="underline hover:text-white">docs/PRODUCT-SCOPE-ROADMAP.md</button></div>
             <div>Design rules: <button onClick={() => openDocs('DESIGN-REFERENCE.md')} className="underline hover:text-white">DESIGN.md</button></div>
             <div className="pt-2 text-[#F7931A]">npm run dev • npm run build • Truth You Can Verify.</div>

@@ -50,9 +50,10 @@
 - `package.json` — Dependencies and scripts
 
 ### Build & Deploy
-- `npm run dev` — Development server
-- `npm run build` → `dist/` — Production build
-- Deploy: `npx wrangler pages deploy dist/ --project-name=motopass`
+- `npm run dev` — Development server (serves `/research`, `/website`, `/images` from project root)
+- `npm run build` → `dist/` — Production build (auto-copies `research/`, `website/`, `images/` into `dist/`)
+- Deploy: `git add -A && git commit -m "..." && git push origin main` → Cloudflare Pages auto-deploy
+- Manual fallback: `npx wrangler pages deploy dist/ --project-name=motopass` (requires `CLOUDFLARE_API_TOKEN`)
 
 ### Data
 - `research/countries.json` — Seeded country program data (16/50)

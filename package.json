@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:verify": "npm run build && echo 'Build OK — commit dist/ and push to origin main for Cloudflare Pages deploy'"
   },
   "dependencies": {
     "lucide-react": "^0.511.0",

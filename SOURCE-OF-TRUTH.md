@@ -2,7 +2,7 @@
 
 **Project Name:** MotoPass  
 **Date:** 2026-06-10  
-**BUILD:** 20260702-005
+**BUILD:** 20260702-006
 
 ## Project Overview (Simple Pitch)
 MotoPass is the premium Bitcoin-native platform for sovereign passports, citizenship-by-investment (CBI), residency-by-investment (RBI), and jurisdictional stacking. It provides high-net-worth Bitcoiners and freedom-seekers with a verifiable, privacy-first command center to evaluate, compare, acquire, stack, and optimize across programs — with deep Bitcoin integration (legal tender nations, Lightning payments, favorable digital-asset tax regimes, government BTC reserves, and on-chain timestamping).
@@ -31,21 +31,22 @@ This folder (`/Users/cam/projects/motopass/`) is the **canonical, perpetual sing
 - Current deployment: 
   - **Live URL:** https://motopass.giveabit.io (Cloudflare Pages custom domain)
   - **Pages.dev fallback:** 77a52b99.motopass.pages.dev
-  - **Build:** `npm run build` (Vite) produces `dist/` — deployed via manual `npx wrangler pages deploy dist/ --project-name=motopass` or Cloudflare Pages Git integration.
-  - **Pristine demo** still available at `website/index.html` + `research/` (zero-build, single file + JSON).
+  - **Build:** `npm run build` (Vite) produces `dist/` with React app + copied `research/`, `website/`, `images/` — commit `dist/` and push to `main` for Cloudflare Pages auto-deploy.
+  - **Pristine demo** live at https://motopass.giveabit.io/website/index.html
+  - **Research data** live at https://motopass.giveabit.io/research/countries.json
 - Sovereign hosting options: Umbrel, Start9, Citadel, or any Bitcoin/Lightning node with a web server. Long-term goal: fully verifiable, self-hostable by users.
 
 ## Mission Alignment (Give A Bit)
 MotoPass directly advances Bitcoin sovereignty, financial privacy, and individual jurisdictional freedom. It embodies Give A Bit’s ethos: tools that are simple on the surface, profoundly powerful underneath, private by default, and joyful to use. Future phases explicitly include Lightning/BOLT12 + Silent Payments for all fees, Nostr as the primary identity + notification + update layer, community-contributed (timestamped) research, and open-source Safe Harbour legal templates for users and advisors.
 
 ## Current Gaps & Next Priorities
-- **Git + Distribution**: Initialize git, commit BUILD-004, deploy the pristine demo (website/index.html + research/) to a live URL (GitHub Pages/Netlify/etc.). Prepare Vite app for production deploy from dist/.
+- **Distribution polish**: Vite build now bundles static assets into `dist/` for full live deployment. Next: CI build step so `dist/` is generated on push rather than committed manually.
 - **Data completeness**: Expand all 50 countries to Uruguay-flagship v2.0 depth (legal extracts, Satohash placeholders, full Bitcoin fields, Paige AI tips). Focus high-Bitcoin-signal jurisdictions first.
 - **Product experience**: Build My Portfolio, interactive jurisdictional Stacking Simulator, Finance Compare, and “Verify on Bitcoin” UI flows (using the new Vite/React dev environment + DESIGN.md + next-prompt.md).
 - **Bitcoin core**: Visible timestamp proofs, Lightning payment rails (for fees and marketplace), Nostr-native updates and alerts.
 - **Paige AI**: Move from simulated chat to real proactive concierge (prompts in docs/, integration via Nostr or local LLM).
 - **Documentation & process**: This BUILD-004 documentation package (including the full PRODUCT-SCOPE-ROADMAP.md) is complete. Maintain it. Run the giveabit-project-handoff skill after every major cycle.
-- **GitHub / Live URL**: Still TBD (high priority for next handoff).
+- **GitHub / Live URL**: Live at https://motopass.giveabit.io — repo at github.com/kitsboy/motopass.
 
 ## Hand-off Notes for Kimi (M4 HERMES)
 See the latest `KIMI-HANDOFF-MotoPass-*.md`. Integrate the entire `/motopass/` tree (especially the new `docs/` suite) into MASTER-BRAIN.md, Kanban, and your Obsidian vault. Educate yourself and Hermes on the full vision, the “Truth You Can Verify” prime directive, the 50-country data ambition, and the phased product roadmap in `docs/PRODUCT-SCOPE-ROADMAP.md`.
@@ -54,6 +55,6 @@ Use `DESIGN.md` + `next-prompt.md` for all UI generation. The pristine `website/
 
 **This file + the docs/ folder are the perpetual source of truth. All agents and humans must respect and keep them current.**
 
-**Git snapshot at time of this handoff (2026-06-10):** No repo initialized yet. No commits, no remotes.
+**Git snapshot (2026-07-02):** Repo live at github.com/kitsboy/motopass, branch `main`, auto-deploys to Cloudflare Pages.
 
 — Updated via giveabit-project-handoff skill BUILD-20260610-004 (full docs suite + modern Vite dev environment + build verification)
