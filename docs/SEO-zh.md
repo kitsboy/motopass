@@ -7,10 +7,10 @@ owner: Kimi / Qwen（每周审核）
 update_frequency: 每周（周一）
 ---
 
-# SEO — MotoPass (motopass.io)
+# SEO — MotoPass (motopass.giveabit.io)
 
 ## 现用网址
-https://motopass.io
+https://motopass.giveabit.io
 
 ## 目标关键词
 | 主要关键词                   | 搜索意图     |

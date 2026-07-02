@@ -7,10 +7,10 @@ owner: Kimi / Qwen (Wöchentliches Audit)
 update_frequency: Wöchentlich (Montag)
 ---
 
-# SEO — MotoPass (motopass.io)
+# SEO — MotoPass (motopass.giveabit.io)
 
 ## Live-URL
-https://motopass.io
+https://motopass.giveabit.io
 
 ## Zielschlüsselwörter
 | Primäres Keyword               | Suchabsicht  |

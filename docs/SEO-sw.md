@@ -7,10 +7,10 @@ owner: Kimi / Qwen (Utafutaji wa Kila Siku)
 update_frequency: Kila Siku (Alhamisi)
 ---
 
-# SEO — MotoPass (motopass.io)
+# SEO — MotoPass (motopass.giveabit.io)
 
 ## URL Yenye Uwezo
-https://motopass.io
+https://motopass.giveabit.io
 
 ## Maneno muhimu ya Kuzungumzwa (Target Keywords)
 | Kiungo Kikuu (Primary Keyword) | Niyi ya Utafutaji (Search Intent) |
