@@ -2,7 +2,7 @@
 
 **Project Name:** MotoPass  
 **Date:** 2026-06-10  
-**BUILD:** 20260610-004
+**BUILD:** 20260702-005
 
 ## Project Overview (Simple Pitch)
 MotoPass is the premium Bitcoin-native platform for sovereign passports, citizenship-by-investment (CBI), residency-by-investment (RBI), and jurisdictional stacking. It provides high-net-worth Bitcoiners and freedom-seekers with a verifiable, privacy-first command center to evaluate, compare, acquire, stack, and optimize across programs — with deep Bitcoin integration (legal tender nations, Lightning payments, favorable digital-asset tax regimes, government BTC reserves, and on-chain timestamping).
@@ -27,12 +27,13 @@ This folder (`/Users/cam/projects/motopass/`) is the **canonical, perpetual sing
 - `images/` — Custom premium sovereign assets (hero.jpg, passport.jpg, funding-flow.jpg, sovereignty.jpg, etc.).
 
 ## Git & Deployment
-- Git: Not initialized yet on this machine (recommended: `git init && git add . && git commit -m "BUILD-20260610-004: Full documentation package (exec + marketing + detailed scope) + modern Vite/React dev environment"`). No remotes configured. Private GitHub (or sovereign self-hosted) suggested for future.
-- Current deployment path: 
-  - Pristine demo (recommended for first public share): Serve `website/index.html` + `research/` folder together (zero-build, single file + JSON). Ready for GitHub Pages, Netlify, Cloudflare Pages, or sovereign static host (Umbrel/Start9).
-  - Modern frontend: `npm run build` (Vite) produces `dist/` (verified working). Same data layer. Can deploy identically or evolve to full-stack (Nostr + Lightning + timestamp services).
+- Git: Initialized at github.com/kitsboy/motopass (origin main). Commits on main include init, template propagation, wrangler deploy config, and URL fix.
+- Current deployment: 
+  - **Live URL:** https://motopass.giveabit.io (Cloudflare Pages custom domain)
+  - **Pages.dev fallback:** 77a52b99.motopass.pages.dev
+  - **Build:** `npm run build` (Vite) produces `dist/` — deployed via manual `npx wrangler pages deploy dist/ --project-name=motopass` or Cloudflare Pages Git integration.
+  - **Pristine demo** still available at `website/index.html` + `research/` (zero-build, single file + JSON).
 - Sovereign hosting options: Umbrel, Start9, Citadel, or any Bitcoin/Lightning node with a web server. Long-term goal: fully verifiable, self-hostable by users.
-- Live URL: None yet (static demo + Vite app ready to deploy).
 
 ## Mission Alignment (Give A Bit)
 MotoPass directly advances Bitcoin sovereignty, financial privacy, and individual jurisdictional freedom. It embodies Give A Bit’s ethos: tools that are simple on the surface, profoundly powerful underneath, private by default, and joyful to use. Future phases explicitly include Lightning/BOLT12 + Silent Payments for all fees, Nostr as the primary identity + notification + update layer, community-contributed (timestamped) research, and open-source Safe Harbour legal templates for users and advisors.

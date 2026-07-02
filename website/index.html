@@ -1508,7 +1508,7 @@ section { position: relative; }
           </div>
         </div>
         <div class="nostr-pill">
-          <i class="fas fa-bolt"></i> NOSTR Relay: wss://relay.motopass.io
+          <i class="fas fa-bolt"></i> NOSTR Relay: wss://relay.motopass.giveabit.io
         </div>
       </div>
     </div>
@@ -1604,7 +1604,7 @@ section { position: relative; }
             <li><i class="fas fa-check-circle"></i>All MotoPass data events broadcast to NOSTR relays — no single point of failure</li>
             <li><i class="fas fa-check-circle"></i>Sovereign identities use NIP-01 keypairs — you own your data, always</li>
             <li><i class="fas fa-check-circle"></i>Policy alerts and updates delivered via NOSTR DMs to your npub</li>
-            <li><i class="fas fa-check-circle"></i>Cross-relay redundancy: wss://relay.motopass.io + 2 public relays</li>
+            <li><i class="fas fa-check-circle"></i>Cross-relay redundancy: wss://relay.motopass.giveabit.io + 2 public relays</li>
             <li><i class="fas fa-check-circle"></i>NOSTR event IDs cross-referenced with Bitcoin block hashes for dual-proof</li>
           </ul>
         </div>
@@ -1805,7 +1805,7 @@ section { position: relative; }
           <i class="fab fa-bitcoin"></i>
           Every claim timestamped on Bitcoin
         </div>
-        <div class="footer-nostr-handle" style="margin-top:12px">⚡ npub1motopass...relay.motopass.io</div>
+        <div class="footer-nostr-handle" style="margin-top:12px">⚡ npub1motopass...relay.motopass.giveabit.io</div>
       </div>
       <div>
         <div class="footer-col-title">Platform</div>
@@ -2065,7 +2065,7 @@ function openProgramModal(id) {
       <div class="modal-hash" style="color:#c4b5fd">${p.hash.split('').reverse().join('').substring(0,64)}</div>
       <div class="modal-hash-meta">
         <span>Kind: 30078</span>
-        <span>Relay: wss://relay.motopass.io</span>
+        <span>Relay: wss://relay.motopass.giveabit.io</span>
         <span style="color:var(--green)">✓ Verified</span>
       </div>
     </div>
@@ -2154,7 +2154,7 @@ const tosContent = {
       <h3>Data Retention</h3>
       <p>Log data is deleted after 30 days. Paige AI conversations are not stored after your session ends unless you explicitly request anchoring to Bitcoin or NOSTR.</p>
       <h3>Your Rights</h3>
-      <p>You have the right to request deletion of any personal data we hold about you. Contact us at privacy@motopass.io. Note that on-chain Bitcoin data cannot be deleted by anyone.</p>
+      <p>You have the right to request deletion of any personal data we hold about you. Contact us at privacy@motopass.giveabit.io. Note that on-chain Bitcoin data cannot be deleted by anyone.</p>
     `
   },
   accuracy: {
@@ -2173,7 +2173,7 @@ const tosContent = {
       <h3>Update Cycle</h3>
       <p>Major jurisdictions (Uruguay, El Salvador, UAE, Singapore) are reviewed monthly. Other jurisdictions are reviewed quarterly. Significant law changes trigger immediate review and re-anchoring.</p>
       <h3>Dispute Process</h3>
-      <p>If you believe any data on this Platform is inaccurate, contact accuracy@motopass.io with supporting official documentation. Verified corrections will be re-anchored to Bitcoin with a correction notice.</p>
+      <p>If you believe any data on this Platform is inaccurate, contact accuracy@motopass.giveabit.io with supporting official documentation. Verified corrections will be re-anchored to Bitcoin with a correction notice.</p>
     `
   },
   bitcoin: {
