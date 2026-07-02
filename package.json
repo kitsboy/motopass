@@ -16,6 +16,7 @@
     "format": "prettier --check src",
     "validate:data": "node scripts/validate-data.mjs",
     "health-check": "bash scripts/health-check.sh",
+    "verify:goal": "bash scripts/verify-goal.sh",
     "deploy:verify": "npm run build && echo 'Build OK — commit dist/ and push to origin main for Cloudflare Pages deploy'",
     "deploy": "npm run build && wrangler pages deploy dist --project-name=motopass --branch=main",
     "deploy:safe": "npm run build && echo 'Deploying ONLY to motopass (motopass.giveabit.io)' && wrangler pages deploy dist --project-name=motopass --branch=main",
