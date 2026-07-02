@@ -9,11 +9,13 @@
     "build": "vite build",
     "preview": "vite preview",
     "deploy:verify": "npm run build && echo 'Build OK — commit dist/ and push to origin main for Cloudflare Pages deploy'",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name=motopass",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=motopass --branch=main",
+    "deploy:safe": "npm run build && echo 'Deploying ONLY to motopass (motopass.giveabit.io)' && wrangler pages deploy dist --project-name=motopass --branch=main",
     "deploy:check": "test -n \"$CLOUDFLARE_API_TOKEN\" && echo 'CF token set' || echo 'Set CLOUDFLARE_API_TOKEN in .env.local for manual wrangler deploy'"
   },
   "dependencies": {
     "lucide-react": "^0.511.0",
+    "motion": "^12.42.2",
     "nostr-tools": "^2.23.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

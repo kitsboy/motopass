@@ -11,6 +11,8 @@ const AGENTS = [
   { country: 'Georgia', region: 'Europe', npub: 'npub1motopass…ge', status: 'Coming', focus: 'Low-cost residency, crypto business setup' },
 ]
 
+import { AgentCardKimi } from '../components/AgentCardKimi'
+
 export function AgentsPage() {
   const { t } = useI18n()
 
@@ -20,9 +22,14 @@ export function AgentsPage() {
       <h1 className="text-2xl sm:text-3xl font-display font-semibold mb-2">{t('agents.title')}</h1>
       <p className="text-sm text-sovereign-silver mb-6 max-w-2xl">{t('agents.sub')}</p>
 
-      <div className="mb-8 flex flex-wrap items-center gap-3">
+      <div className="mb-8 max-w-xl">
+        <AgentCardKimi />
+      </div>
+
+      <h2 className="text-lg font-semibold mb-4">Country liaison agents (via Kimi)</h2>
+      <div className="mb-6 flex flex-wrap items-center gap-3">
         <NostrConnect />
-        <span className="text-xs text-sovereign-silver">Connect Nostr to message agents directly</span>
+        <span className="text-xs text-sovereign-silver">Connect Nostr — Kimi routes you to the right country agent</span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

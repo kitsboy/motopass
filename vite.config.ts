@@ -5,6 +5,7 @@ import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 
 const STATIC_DIRS = ['research', 'website', 'images'] as const
+// public/ is served automatically by Vite (logo.png, images/kimi.jpg, sitemap, robots)
 
 const MIME: Record<string, string> = {
   '.html': 'text/html; charset=utf-8',
