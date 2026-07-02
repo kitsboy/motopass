@@ -37,7 +37,9 @@ git push --dry-run origin main >"$SCRATCH/git-push-dry-after.log" 2>&1 || fail "
 # --- Step 4: live JSON ---
 curl -sI https://motopass.giveabit.io/research/countries.json >"$SCRATCH/live-json.log" 2>&1 || fail "curl -sI live-json"
 grep -qi 'application/json' "$SCRATCH/live-json.log" || fail "live-json content-type not application/json"
-curl -s https://motopass.giveabit.io/research/countries.json | head -c 80 >"$SCRATCH/live-json-body.log" 2>&1 || fail "curl live-json body"
+curl -sf https://motopass.giveabit.io/research/countries.json -o "$SCRATCH/.live-json-full.json" || fail "curl live-json body"
+head -c 80 "$SCRATCH/.live-json-full.json" >"$SCRATCH/live-json-body.log"
+rm -f "$SCRATCH/.live-json-full.json"
 grep -q '"programs"' "$SCRATCH/live-json-body.log" || fail 'live-json-body first 80B missing "programs"'
 
 # --- Step 5: preview + playwright smoke ---
