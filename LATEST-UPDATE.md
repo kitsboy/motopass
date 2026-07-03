@@ -1,4 +1,4 @@
 # motopass — Last Updated 2026-07-02 by Grok
 
 Brief: 55 upgrades shipped; verify:goal orchestrator added
-Commit: cff2703
+Commit: bd12eb2

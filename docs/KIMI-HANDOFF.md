@@ -33,9 +33,9 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - CF git-hook deploy can lag; manual `npm run deploy:safe` if live site stale after push
 
 ### Git State
-- Last commit SHA: `cff2703fc3f4de6c32e14f8be5c75bce18696316`
+- Last commit SHA: `bd12eb2` (handoff + protocol committed and pushed)
 - Branch: `main`
-- Unpushed: none (after handoff commit below)
+- Unpushed: none
 
 ---
 
