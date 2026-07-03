@@ -3,6 +3,7 @@ import { Server, Zap, Bitcoin } from 'lucide-react'
 import { ClassyModal } from '../ui/ClassyModal'
 import { ModalTabs } from '../ui/ModalTabs'
 import { CopyField } from '../ui/CopyField'
+import { PaymentQrCode } from '../ui/PaymentQrCode'
 import { SERVER_COSTS } from '../../data/serverCosts'
 
 type Tab = 'layer1' | 'layer2'
@@ -33,12 +34,25 @@ export function ServerCostsModal({ open, onClose }: Props) {
       <div className="flex items-center gap-2 mb-4">
         {tab === 'layer1' ? <Bitcoin size={18} className="text-btc-orange" /> : <Zap size={18} className="text-btc-orange" />}
         <span className="font-display font-semibold text-ink">{active.label}</span>
+        {'temp' in active && active.temp && (
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+            TEMP
+          </span>
+        )}
       </div>
 
-      <p className="text-sm text-ink-secondary mb-5 leading-relaxed">{active.description}</p>
+      <p className="text-sm text-ink-secondary mb-6 leading-relaxed">{active.description}</p>
+
+      <div className="mb-6">
+        <PaymentQrCode
+          value={active.qrPayload}
+          label={tab === 'layer1' ? 'Layer 1 · Bitcoin' : 'Layer 2 · Lightning'}
+          temp={'temp' in active && active.temp}
+        />
+      </div>
 
       <CopyField
-        label={tab === 'layer1' ? 'On-chain address (bech32)' : 'Lightning invoice / offer'}
+        label={tab === 'layer1' ? 'On-chain address (bech32)' : 'Lightning address (TEMP)'}
         value={active.address}
       />
 

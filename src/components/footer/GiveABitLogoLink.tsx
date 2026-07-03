@@ -1,24 +1,18 @@
-/** Small, subtle Give A Bit mark in copyright row */
+/** Horizontal giveaBit.io logo — small, subtle, links to giveabit.io */
 export function GiveABitLogoLink() {
   return (
     <a
       href="https://giveabit.io"
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1.5 group opacity-70 hover:opacity-100 transition-opacity"
-      title="Give A Bit"
+      className="inline-flex items-center group opacity-75 hover:opacity-100 transition-opacity"
+      title="giveabit.io"
     >
-      <span className="relative">
-        <img
-          src="/images/giveabit-logo.png"
-          alt=""
-          width={18}
-          height={18}
-          className="w-[18px] h-[18px] object-contain rounded-sm group-hover:scale-105 transition-transform"
-        />
-        <span className="absolute inset-0 rounded-sm ring-1 ring-mp/0 group-hover:ring-btc-orange/25 transition-all" />
-      </span>
-      <span className="sr-only">Give A Bit</span>
+      <img
+        src="/images/giveabit-logo.png"
+        alt="giveaBit.io"
+        className="h-5 sm:h-[22px] w-auto max-w-[108px] object-contain object-left group-hover:scale-[1.02] transition-transform"
+      />
     </a>
   )
 }
