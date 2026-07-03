@@ -64,4 +64,27 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-02 (BUILD-011)
+
+**Machine:** M3 (Grok)  
+**Project:** motopass
+
+### Done
+- [x] **Dark mode toggle** — `ThemeContext`, `ThemeToggle` in header, Sovereign Night palette via RGB CSS tokens
+- [x] **50 jurisdictions** — `research/countries.json` expanded 25 → 50 (Brazil through Andorra)
+- [x] **Legacy demo aligned** — `website/index.html` patched to Luminous Sovereign light theme
+- [x] Design docs updated for dark mode tokens
+- [x] Deployed to https://motopass.giveabit.io
+
+### What's Next
+- Kimi: verify dark mode contrast on mobile; spot-check new 25 program entries for accuracy
+- Optional: deepen flagship research per country (Uruguay template depth)
+
+### Git State
+- Last commit SHA: `4fe1bb9`
+- Branch: `main`
+- Unpushed: none
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
