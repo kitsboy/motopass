@@ -142,8 +142,26 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Kimi: sync UPDATES-MAP into Obsidian vault
 
 ### Git State
-- Last commit SHA: `c5a5019`
+- Last commit SHA: `4287d6c`
 - Branch: `main`
+- Unpushed: none
+
+---
+
+## Latest Session Summary (from 2026-07-02 goodbye)
+
+**Chat topic:** Shipped Warm Sovereign Cinematic merge; clarified Antigravity / GitHub / deploy workflow.
+
+**Finished in this session:**
+- Cinematic Landing + Programs live (BUILD `2026.07.02-02`)
+- GitHub pushed; Cloudflare deployed; `claude files/` removed
+- User happy with look; workflow advice documented in `docs/SESSION-SUMMARY-2026-07-02.md`
+
+**Still to do:**
+- Portfolio cinematic pass
+- Optional design experiments on a git branch (Antigravity)
+
+**Next for Kimi:** Integrate `docs/UPDATES-MAP.md` + this summary into Obsidian vault. Do not sync M4 until Cam/Kimi says so.
 
 ---
 
