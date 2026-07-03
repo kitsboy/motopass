@@ -142,7 +142,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Kimi: sync UPDATES-MAP into Obsidian vault
 
 ### Git State
-- Last commit SHA: `9c3144c`
+- Last commit SHA: `c5a5019`
 - Branch: `main`
 
 ---
