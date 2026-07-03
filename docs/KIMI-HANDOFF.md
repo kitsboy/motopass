@@ -115,4 +115,36 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-02 (BUILD 2026.07.02-02)
+
+**Machine:** M3 (Grok)  
+**Project:** motopass
+
+### Done
+- [x] Ingested Claude Warm Sovereign Cinematic batch (`motopass-warm-sovereign-cinematic_1`) — Landing + Programs
+- [x] Added `src/styles/tokens.css` + merged Tailwind cinematic tokens with legacy Luminous aliases
+- [x] New `src/components/programs/*` (ProgramCard, ProgramsTable, ProgramModal, Chip, ProofBadge)
+- [x] `src/lib/programAdapter.ts` maps live `countries.json` → cinematic program shape
+- [x] PitchPage: cinematic hero + live metrics from `computePitchStats`; SavingsGraphs from real data
+- [x] ProgramsPage: sticky filter rail, table/card density shift, export/import preserved
+- [x] Kept shipped Footer + full Legal/Careers/ServerCosts modals (no FooterActionBar duplicate)
+- [x] PortfolioPage still uses legacy ProgramCard/ProgramModal (deferred cinematic pass)
+- [x] BUILD_ID bumped to `2026.07.02-02`; deployed to motopass.giveabit.io
+- [x] Removed `claude files/` after ingest
+
+### Decisions
+- Cinematic `Program` type (string id, score 0–100) lives in `components/programs/types.ts`; adapter bridges from `types/program.ts`
+- Flagship visual weight = sovereignty_score × 10 ≥ 85
+- `PageHeader` accepts both `subtitle` and `description`; `StatCard` supports legacy + cinematic APIs
+
+### What's Next
+- Portfolio page cinematic pass (ProgramCard/ProgramModal in `components/programs/`)
+- Kimi: sync UPDATES-MAP into Obsidian vault
+
+### Git State
+- Last commit SHA: `9c3144c`
+- Branch: `main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

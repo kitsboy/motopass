@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 20260702-013 · **Last updated:** 2026-07-02
+**BUILD:** 2026.07.02-02 · **Last updated:** 2026-07-02
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,8 +11,8 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ BUILD-011 | Vite + React 18 + TS + Tailwind |
-| **Design system** | ✅ Luminous Sovereign | Light default + Sovereign Night dark mode |
+| **React app** | ✅ 2026.07.02-02 | Vite + React 18 + TS + Tailwind |
+| **Design system** | ✅ Warm Sovereign Cinematic | Fraunces/Source Serif tokens + Luminous legacy aliases |
 | **Programs data** | ✅ 50 / 50 | `research/countries.json` |
 | **Static demo** | ✅ Light-aligned | `website/index.html` |
 | **CI** | ✅ Green | GitHub Actions on `main` |
@@ -24,7 +24,9 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
-| **013** | 2026-07-02 | (this pass) | Self-evolving pitch: live savings graphs, motion backgrounds @ 35% |
+| **2026.07.02-02** | 2026-07-02 | (this pass) | Warm Sovereign Cinematic: Landing + Programs batch, live countries.json adapter |
+| **016** | 2026-07-02 | `1c0867f` | giveaBit wordmark in copyright; real BTC + LN QR codes |
+| **013** | 2026-07-02 | — | Self-evolving pitch: live savings graphs, motion backgrounds @ 35% |
 | **012** | 2026-07-02 | `562f9b2` | Docs reorganized into `docs/`; UPDATES-MAP + WORK-TREE created |
 | **011** | 2026-07-02 | `4fe1bb9` | Dark mode toggle, 50 jurisdictions, light demo alignment |
 | **010** | 2026-07-02 | `9348111` | Luminous Sovereign light UI — 55+ design upgrades, motion hero |

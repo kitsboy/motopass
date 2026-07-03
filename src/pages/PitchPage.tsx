@@ -1,64 +1,93 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, Shield, Zap, Globe, Clock, Users, Sparkles, Bitcoin } from 'lucide-react'
 import { useMemo } from 'react'
+import { motion } from 'motion/react'
 import { useI18n } from '../i18n/I18nContext'
 import { BlockHeight } from '../components/BlockHeight'
-import { HeroMotionBackground } from '../components/ui/HeroMotionBackground'
+import { HeroMotionBackground } from '../components/pitch/HeroMotionBackground'
 import { EvolvingPitchRotator } from '../components/pitch/EvolvingPitchRotator'
 import { SavingsGraphs } from '../components/pitch/SavingsGraphs'
 import { usePrograms } from '../hooks/usePrograms'
-import { computePitchStats } from '../lib/pitchStats'
-import { BUILD_LABEL, BUILD_DATE } from '../lib/buildInfo'
+import {
+  computePitchStats,
+  pitchStatsToMetrics,
+  pitchStatsToSavingsRows,
+  latestProofTimestamp,
+} from '../lib/pitchStats'
+import { BUILD_ID, BUILD_DATE } from '../lib/buildInfo'
 
-const PITCH_VERSION = `${BUILD_DATE} • ${BUILD_LABEL}`
+const PITCH_VERSION = `${BUILD_DATE} • ${BUILD_ID}`
+
+const ROTATING_TAGLINES = [
+  'Bitcoin is the speed.',
+  'Bitcoin is the value.',
+  'Bitcoin is the sovereignty.',
+  'Verify every claim on-chain.',
+  'Stack jurisdictions with proof.',
+]
 
 export function PitchPage() {
   const { t } = useI18n()
   const { programs, loading } = usePrograms()
   const stats = useMemo(() => (programs.length ? computePitchStats(programs) : null), [programs])
+  const metrics = useMemo(() => (stats ? pitchStatsToMetrics(stats) : []), [stats])
+  const savingsRows = useMemo(() => (stats ? pitchStatsToSavingsRows(stats) : []), [stats])
+  const proofTs = useMemo(() => latestProofTimestamp(programs), [programs])
 
   return (
-    <div>
-      <section className="relative overflow-hidden px-4 sm:px-6 pt-10 sm:pt-16 pb-14 sm:pb-20 min-h-[min(92vh,780px)] flex items-center">
+    <div className="bg-mp-canvas">
+      <section className="relative isolate overflow-hidden">
         <HeroMotionBackground />
-        <div className="relative max-w-7xl mx-auto w-full animate-fade-up">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card border border-btc-orange/25 text-btc-orange text-[10px] tracking-[0.18em] uppercase mb-5 shadow-card">
-                <Shield size={12} /> {t('tagline')}
-              </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-semibold tracking-tight leading-[0.95] mb-4 max-w-xl text-ink">
-                {t('pitch.hero')}
-              </h1>
-              <p className="text-base sm:text-lg text-ink-secondary max-w-lg mb-6 leading-relaxed">{t('pitch.sub')}</p>
-              <div className="flex flex-col sm:flex-row gap-3 mb-6">
-                <Link to="/programs" className="btn-primary text-base px-7 py-3">
-                  {t('pitch.cta')} <ArrowRight size={18} />
-                </Link>
-                <Link to="/simulator" className="btn-secondary text-base px-7 py-3">
-                  Stack simulator <Zap size={16} />
-                </Link>
-              </div>
-              <div className="flex flex-wrap items-center gap-4 text-xs text-ink-muted">
-                <BlockHeight />
-                <span className="font-mono text-btc-orange/90 flex items-center gap-1">
-                  <Bitcoin size={12} /> {t('pitch.evolve')}
-                </span>
-                <span className="font-mono bg-card-muted px-2 py-1 rounded-mp-sm border border-mp">{PITCH_VERSION}</span>
-              </div>
-            </div>
 
-            <div className="card-elevated bg-card/90 backdrop-blur-sm border-btc-orange/20">
-              <div className="section-label mb-3 flex items-center gap-2">
-                <Sparkles size={12} /> SELF-EVOLVING PITCH
-              </div>
-              <EvolvingPitchRotator stats={stats} loading={loading} />
+        <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 py-16 sm:py-32 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:py-40">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-xl"
+          >
+            <span className="font-mono text-eyebrow uppercase tracking-[0.2em] text-mp-btc">
+              {t('tagline')}
+            </span>
+            <h1 className="mt-4 font-display text-hero text-mp-ink-inverse">
+              {t('pitch.hero')}
+            </h1>
+            <p className="mt-6 max-w-md font-body text-lg2 text-mp-ink-inverse/75">
+              {t('pitch.sub')}
+            </p>
+            <div className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <Link
+                to="/programs"
+                className="inline-flex items-center gap-2 rounded-full bg-mp-btc px-7 py-3.5 font-chrome text-sm font-semibold text-mp-ink-inverse shadow-mp-glow transition-transform duration-fast ease-spring-snappy hover:-translate-y-0.5"
+              >
+                {t('pitch.cta')} <ArrowRight size={18} />
+              </Link>
+              <Link
+                to="/simulator"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-chrome text-sm text-mp-ink-inverse/80 hover:border-mp-btc/40 hover:text-mp-ink-inverse transition-colors"
+              >
+                Stack simulator <Zap size={16} />
+              </Link>
             </div>
-          </div>
+            <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-mp-ink-inverse/50">
+              <BlockHeight />
+              <span className="font-mono text-mp-btc/90 flex items-center gap-1">
+                <Bitcoin size={12} /> {t('pitch.evolve')}
+              </span>
+              <span className="font-mono bg-white/10 px-2 py-1 rounded-chip border border-white/10">{PITCH_VERSION}</span>
+            </div>
+          </motion.div>
+
+          {!loading && metrics.length > 0 && (
+            <EvolvingPitchRotator metrics={metrics} taglines={ROTATING_TAGLINES} proofTimestamp={proofTs} />
+          )}
+          {loading && (
+            <div className="w-full max-w-md h-64 rounded-panel bg-mp-modal/50 animate-pulse" aria-hidden />
+          )}
         </div>
       </section>
 
-      {stats && <SavingsGraphs stats={stats} loading={loading} />}
+      <SavingsGraphs rows={savingsRows} loading={loading} />
 
       <section className="surface-band px-4 sm:px-6 py-12 sm:py-14">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">

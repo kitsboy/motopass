@@ -1,0 +1,168 @@
+/* ==========================================================================
+   MotoPass — Warm Sovereign Cinematic
+   Design Tokens — extends existing --mp-* namespace from Luminous Sovereign
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---------------------------------------------------------------------
+     SURFACES — warm parchment ladder (light) — canvas → section → card → elevated
+     --------------------------------------------------------------------- */
+  --mp-surface-canvas: #F5F2EC;      /* warm parchment */
+  --mp-surface-section: #EDE9E3;     /* toasted linen */
+  --mp-surface-card: #FFFFFF;
+  --mp-surface-card-aged: #FBF9F5;   /* aged vellum — used for finance/legal cards */
+  --mp-surface-elevated: #FFFFFF;
+  --mp-surface-modal: #FDFBF7;
+
+  --mp-border-subtle: #E4E0D8;
+  --mp-border-default: #D6D3D1;
+  --mp-border-strong: #B9B3A8;
+  --mp-border-focus: #F7931A;
+
+  /* ---------------------------------------------------------------------
+     INK — hierarchy
+     --------------------------------------------------------------------- */
+  --mp-ink-primary: #18181B;
+  --mp-ink-secondary: #3F3F46;
+  --mp-ink-tertiary: #71717A;
+  --mp-ink-inverse: #FBF9F5;
+
+  /* ---------------------------------------------------------------------
+     ACCENTS — earthy premium sovereign
+     --------------------------------------------------------------------- */
+  --mp-accent-btc: #F7931A;          /* Bitcoin amber — CTAs, proof only */
+  --mp-accent-btc-deep: #E07B0F;
+  --mp-accent-btc-soft: #FFF7ED;
+  --mp-accent-ochre: #B5651D;        /* burnt ochre — secondary emphasis */
+  --mp-accent-copper: #A6693B;       /* oxidized copper — hover/border shift */
+  --mp-accent-wax: #8B2E1F;          /* passport seal wax — rare, high-stakes only */
+
+  --mp-proof-green: #16A34A;
+  --mp-proof-green-soft: #EFFAF3;
+  --mp-nostr-violet: #7C3AED;        /* identity dot ONLY — never a surface */
+
+  /* ---------------------------------------------------------------------
+     SHADOWS — elevation ladder (4 levels), warm-hued not pure black
+     --------------------------------------------------------------------- */
+  --mp-shadow-1: 0 1px 2px hsla(28, 30%, 15%, 0.06);
+  --mp-shadow-2: 0 2px 8px hsla(28, 30%, 15%, 0.08), 0 1px 2px hsla(28, 30%, 15%, 0.06);
+  --mp-shadow-3: 0 8px 24px hsla(28, 30%, 15%, 0.10), 0 2px 6px hsla(28, 30%, 15%, 0.06);
+  --mp-shadow-4: 0 24px 48px hsla(28, 30%, 15%, 0.16), 0 8px 16px hsla(28, 30%, 15%, 0.08);
+  --mp-shadow-glow-btc: 0 0 0 1px hsla(30, 90%, 52%, 0.25), 0 4px 16px hsla(30, 90%, 52%, 0.20);
+
+  /* ---------------------------------------------------------------------
+     TYPOGRAPHY
+     --------------------------------------------------------------------- */
+  --mp-font-display: 'Fraunces', 'Iowan Old Style', ui-serif, serif;
+  --mp-font-body: 'Source Serif 4', 'Charter', Georgia, serif;
+  --mp-font-chrome: 'IBM Plex Sans', -apple-system, sans-serif; /* nav/filters/dense UI only */
+  --mp-font-mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
+
+  --mp-tracking-eyebrow: 0.2em;
+  --mp-tracking-display: -0.02em;
+
+  /* fluid type scale — magazine-grade, display:body ratio ≥ 3:1 */
+  --mp-text-eyebrow: 0.6875rem;                                   /* 11px, mono, uppercase */
+  --mp-text-body: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);        /* 16–17px */
+  --mp-text-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.375rem);
+  --mp-text-h3: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
+  --mp-text-h2: clamp(2rem, 1.6rem + 1.8vw, 3rem);
+  --mp-text-h1: clamp(2.75rem, 2rem + 3.2vw, 4.5rem);
+  --mp-text-hero: clamp(3rem, 1.8rem + 5.2vw, 5.5rem);            /* 72px+ desktop hero */
+
+  --mp-leading-body: 1.65;
+  --mp-leading-display: 1.02;
+
+  /* ---------------------------------------------------------------------
+     MOTION TOKENS
+     --------------------------------------------------------------------- */
+  --spring-snappy: cubic-bezier(0.34, 1.56, 0.64, 1);   /* stiffness ~380, damping ~28 */
+  --spring-gentle: cubic-bezier(0.22, 1, 0.36, 1);       /* stiffness ~300, damping ~32 */
+  --spring-settle: cubic-bezier(0.16, 1, 0.3, 1);
+  --stagger-base: 60ms;
+  --stagger-fast: 40ms;
+  --stagger-slow: 80ms;
+  --hero-opacity: 0.35;
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 520ms;
+
+  /* ---------------------------------------------------------------------
+     TEXTURE UTILITIES
+     --------------------------------------------------------------------- */
+  --grain-opacity: 0.035;
+  --grid-pattern-opacity: 0.04;
+
+  /* fine linen crosshatch, 3% opacity */
+  --grid-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M0 12h24M12 0v24' stroke='%23000' stroke-width='0.5' opacity='0.4'/%3E%3C/svg%3E");
+
+  /* passport guilloche-inspired interlocking meridian arcs, 4-8% opacity */
+  --guilloche-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='none' stroke='%23B5651D' stroke-width='0.6' opacity='0.5'%3E%3Ccircle cx='90' cy='90' r='40'/%3E%3Ccircle cx='90' cy='90' r='60'/%3E%3Ccircle cx='90' cy='90' r='80'/%3E%3Ccircle cx='0' cy='0' r='60'/%3E%3Ccircle cx='180' cy='180' r='60'/%3E%3Ccircle cx='180' cy='0' r='50'/%3E%3Ccircle cx='0' cy='180' r='50'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* paper grain — feTurbulence, applied via ::after pseudo-element */
+  --grain-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* ---------------------------------------------------------------------
+     GRADIENTS
+     --------------------------------------------------------------------- */
+  --gradient-hero: radial-gradient(120% 90% at 78% 12%, hsla(30, 92%, 52%, 0.22) 0%, hsla(30, 60%, 30%, 0.10) 32%, hsla(240, 8%, 8%, 0.88) 78%);
+  --gradient-radial-warm: radial-gradient(70% 70% at 50% 30%, hsla(30, 90%, 55%, 0.16), transparent 70%);
+  --gradient-scrim-bottom: linear-gradient(180deg, transparent 0%, hsla(28, 40%, 8%, 0.55) 100%);
+  --gradient-seal: linear-gradient(135deg, #F7931A 0%, #B5651D 60%, #8B2E1F 100%);
+
+  --mp-radius-chip: 2px;
+  --mp-radius-card: 8px;
+  --mp-radius-panel: 20px;
+  --mp-radius-full: 999px;
+}
+
+/* ==========================================================================
+   DARK MODE — "Sovereign Night" → Obsidian Slate, warm undertones
+   ========================================================================== */
+.dark {
+  --mp-surface-canvas: #121214;
+  --mp-surface-section: #1C1C1F;
+  --mp-surface-card: #27272A;
+  --mp-surface-card-aged: #262421;
+  --mp-surface-elevated: #2E2C29;
+  --mp-surface-modal: #201E1B;
+
+  --mp-border-subtle: #2E2B27;
+  --mp-border-default: #3D3934;
+  --mp-border-strong: #55504A;
+  --mp-border-focus: #F7931A;
+
+  --mp-ink-primary: #F5F2EC;
+  --mp-ink-secondary: #C7C2B8;
+  --mp-ink-tertiary: #8B8579;
+  --mp-ink-inverse: #18181B;
+
+  --mp-accent-btc-soft: #2A1C0E;
+  --mp-proof-green-soft: #0F2318;
+
+  /* warm-hued shadows, not pure black */
+  --mp-shadow-1: 0 1px 2px hsla(28, 40%, 4%, 0.5);
+  --mp-shadow-2: 0 2px 10px hsla(28, 40%, 4%, 0.55), 0 1px 2px hsla(28, 40%, 4%, 0.4);
+  --mp-shadow-3: 0 10px 28px hsla(28, 40%, 4%, 0.6), 0 2px 8px hsla(28, 40%, 4%, 0.4);
+  --mp-shadow-4: 0 28px 56px hsla(28, 40%, 3%, 0.7), 0 10px 20px hsla(28, 40%, 3%, 0.5);
+  --mp-shadow-glow-btc: 0 0 0 1px hsla(30, 90%, 55%, 0.35), 0 0 24px hsla(30, 90%, 52%, 0.28);
+
+  --gradient-hero: radial-gradient(120% 90% at 78% 12%, hsla(30, 92%, 52%, 0.16) 0%, hsla(30, 60%, 24%, 0.10) 34%, hsla(240, 10%, 5%, 0.94) 80%);
+  --gradient-radial-warm: radial-gradient(70% 70% at 50% 30%, hsla(30, 90%, 50%, 0.12), transparent 70%);
+  --gradient-scrim-bottom: linear-gradient(180deg, transparent 0%, hsla(0, 0%, 0%, 0.65) 100%);
+
+  --grain-opacity: 0.05;
+  --guilloche-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='none' stroke='%23F7931A' stroke-width='0.6' opacity='0.35'%3E%3Ccircle cx='90' cy='90' r='40'/%3E%3Ccircle cx='90' cy='90' r='60'/%3E%3Ccircle cx='90' cy='90' r='80'/%3E%3Ccircle cx='0' cy='0' r='60'/%3E%3Ccircle cx='180' cy='180' r='60'/%3E%3Ccircle cx='180' cy='0' r='50'/%3E%3Ccircle cx='0' cy='180' r='50'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Respect reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+    --stagger-base: 0ms;
+  }
+}

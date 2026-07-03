@@ -72,3 +72,56 @@ export function formatUsd(n: number): string {
   if (n >= 1000) return `$${Math.round(n / 1000)}k`
   return `$${n}`
 }
+
+export type PitchMetric = {
+  label: string
+  value: number
+  suffix?: string
+  prefix?: string
+}
+
+export type SavingsRow = {
+  label: string
+  traditional: number
+  motopass: number
+  unit: string
+}
+
+export function pitchStatsToMetrics(stats: PitchStats): PitchMetric[] {
+  return [
+    { label: 'Jurisdictions tracked', value: stats.programCount },
+    { label: 'Avg. stack savings', value: stats.costSavingsUsd, prefix: '$' },
+    { label: 'Avg. days to residency', value: Math.round(stats.avgProcessingMonths * 30), suffix: 'd' },
+  ]
+}
+
+export function pitchStatsToSavingsRows(stats: PitchStats): SavingsRow[] {
+  return [
+    {
+      label: 'Legal & advisory fees',
+      traditional: stats.traditionalAdvisoryUsd,
+      motopass: stats.motopassAdvisoryUsd,
+      unit: '$',
+    },
+    {
+      label: 'Time to approval',
+      traditional: Math.round(stats.avgProcessingMonths * 30),
+      motopass: Math.round(stats.fastTrackMonths * 30),
+      unit: 'days',
+    },
+    {
+      label: 'Jurisdictions evaluated',
+      traditional: 3,
+      motopass: stats.programCount,
+      unit: 'programs',
+    },
+  ]
+}
+
+export function latestProofTimestamp(programs: import('../types/program').Program[]): string | undefined {
+  const dates = programs
+    .map(p => p.last_checked)
+    .filter(Boolean)
+    .sort()
+  return dates.at(-1) ? `${dates.at(-1)}T12:00:00Z` : undefined
+}

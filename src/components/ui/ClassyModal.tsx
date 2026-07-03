@@ -7,6 +7,7 @@ type Props = {
   onClose: () => void
   title: string
   subtitle?: string
+  eyebrow?: string
   icon?: ReactNode
   children: ReactNode
   maxWidth?: 'md' | 'lg' | 'xl'
@@ -14,7 +15,7 @@ type Props = {
 
 const MAX = { md: 'max-w-lg', lg: 'max-w-2xl', xl: 'max-w-3xl' }
 
-export function ClassyModal({ open, onClose, title, subtitle, icon, children, maxWidth = 'lg' }: Props) {
+export function ClassyModal({ open, onClose, title, subtitle, eyebrow, icon, children, maxWidth = 'lg' }: Props) {
   useEffect(() => {
     if (!open) return
     const prev = document.body.style.overflow
@@ -60,6 +61,11 @@ export function ClassyModal({ open, onClose, title, subtitle, icon, children, ma
                     </div>
                   )}
                   <div className="min-w-0">
+                    {eyebrow && (
+                      <span className="font-mono text-eyebrow uppercase tracking-[0.2em] text-mp-btc block mb-1">
+                        {eyebrow}
+                      </span>
+                    )}
                     <h2 id="classy-modal-title" className="font-display font-semibold text-lg sm:text-xl text-ink tracking-tight">
                       {title}
                     </h2>

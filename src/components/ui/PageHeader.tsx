@@ -1,24 +1,38 @@
 import type { ReactNode } from 'react'
+import { motion } from 'motion/react'
 
 export function PageHeader({
   eyebrow,
   title,
   subtitle,
+  description,
   actions,
 }: {
   eyebrow?: string
   title: string
   subtitle?: string
+  description?: string
   actions?: ReactNode
 }) {
+  const body = description ?? subtitle
+
   return (
-    <div className="flex flex-wrap justify-between items-end gap-4 mb-8">
+    <motion.header
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="flex flex-col gap-6 border-b border-mp-border-subtle pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between"
+    >
       <div className="max-w-2xl">
-        {eyebrow && <div className="section-label mb-2">{eyebrow}</div>}
-        <h1 className="page-title">{title}</h1>
-        {subtitle && <p className="text-sm text-ink-muted mt-2 leading-relaxed">{subtitle}</p>}
+        {eyebrow && (
+          <span className="font-mono text-eyebrow uppercase tracking-[0.2em] text-mp-btc block mb-2">
+            {eyebrow}
+          </span>
+        )}
+        <h1 className="font-display text-h1 text-mp-ink sm:text-2xl sm:font-semibold sm:tracking-tight">{title}</h1>
+        {body && <p className="mt-3 max-w-xl font-body text-body text-mp-ink-secondary text-sm leading-relaxed">{body}</p>}
       </div>
-      {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
-    </div>
+      {actions && <div className="flex shrink-0 flex-wrap items-center gap-2 sm:gap-3">{actions}</div>}
+    </motion.header>
   )
 }

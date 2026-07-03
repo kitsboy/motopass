@@ -1,3 +1,5 @@
+@import './styles/tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,9 +51,9 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: rgb(var(--mp-canvas-rgb));
-  color: rgb(var(--mp-ink-rgb));
+  font-family: var(--mp-font-body), Georgia, serif;
+  background-color: var(--mp-surface-canvas, rgb(var(--mp-canvas-rgb)));
+  color: var(--mp-ink-primary, rgb(var(--mp-ink-rgb)));
   min-height: 100vh;
   -webkit-tap-highlight-color: transparent;
   @apply antialiased;
