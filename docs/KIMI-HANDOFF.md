@@ -109,7 +109,9 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Deepen 50 countries to Uruguay flagship depth
 
 ### Git State
-- See `git log -1` after push
+- Last commit SHA: `562f9b2`
+- Branch: `main`
+- Unpushed: none
 
 ---
 
