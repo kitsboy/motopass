@@ -2,7 +2,7 @@
 ## The Complete Answer to “How Much Are We Going to Build Here?”
 
 **BUILD-20260610-004** | 2026-06-10  
-**Status:** Authoritative reference. Update only with corresponding changes to vision, data model, or architecture. Cross-reference with root `PROJECT-VISION.md`, `DESIGN.md`, `next-prompt.md`, and `SOURCE-OF-TRUTH.md`.
+**Status:** Authoritative reference. Update only with corresponding changes to vision, data model, or architecture. Cross-reference with `docs/PROJECT-VISION.md`, `docs/DESIGN-CONTEXT.md`, `docs/NEXT-PROMPT.md`, and `docs/SOURCE-OF-TRUTH.md`.
 
 ---
 
@@ -366,6 +366,6 @@ Now we execute — phase by phase, with precision, beauty, and uncompromising Bi
 BUILD-20260610-004
 
 **Cross-references**  
-- Root: `PROJECT-VISION.md`, `DESIGN.md`, `next-prompt.md`, `SOURCE-OF-TRUTH.md`, `README.md`  
+- Docs: `docs/PROJECT-VISION.md`, `docs/DESIGN-CONTEXT.md`, `docs/NEXT-PROMPT.md`, `docs/SOURCE-OF-TRUTH.md`, `docs/UPDATES-MAP.md`, `README.md`  
 - Research: `research/uruguay-flagship.md` + `countries.json`  
 - This docs/ suite: EXECUTIVE-SUMMARY, MARKETING, DATA-MODEL (future), BITCOIN-VERIFICATION (future), PAIGE-AI (future), etc.

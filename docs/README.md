@@ -1,49 +1,79 @@
 # MotoPass Documentation Hub
 
-**BUILD-20260610-004** | Last Updated: 2026-06-10
+**BUILD:** 20260702-012 · **Last updated:** 2026-07-02
 
-This directory is the official, long-form documentation home for the MotoPass project. It contains the complete strategic, marketing, product, and technical record required to align all humans and agents (Goose, Kimi/HERMES, future contributors) and to make the full scope of what we are building unmistakably clear.
+Official documentation for MotoPass. All long-form docs live here unless required at repo root (see [WORK-TREE.md](./WORK-TREE.md)).
 
-## Core Documents (Read in This Order)
+---
 
-1. **[EXECUTIVE-SUMMARY.md](./EXECUTIVE-SUMMARY.md)**  
-   One-page strategic overview. Problem, solution, moat, market, traction, vision, and call to action. Suitable for investors, government partners, advisors, and high-level briefings.
+## Quick navigation
 
-2. **[MARKETING.md](./MARKETING.md)**  
-   Full positioning, target audiences, value propositions, messaging architecture, taglines, channels, content strategy, pricing philosophy, launch sequencing, and competitive differentiation. “Truth You Can Verify” is the through-line.
+| I need to… | Read |
+|------------|------|
+| See what's shipped & what's next | [UPDATES-MAP.md](./UPDATES-MAP.md) |
+| Find any file in the project | [WORK-TREE.md](./WORK-TREE.md) |
+| Understand the project canon | [SOURCE-OF-TRUTH.md](./SOURCE-OF-TRUTH.md) |
+| Pick up from last Grok session | [KIMI-HANDOFF.md](./KIMI-HANDOFF.md) |
+| Build or style UI | [DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md) + [DESIGN-TOKENS.md](./DESIGN-TOKENS.md) |
+| Understand full scope | [PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md) |
 
-3. **[PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md)**  
-   **The definitive answer to “how much are we going to build here?”**  
-   Detailed, phased breakdown of the entire product ambition — from the current pristine 16-country static dashboard through the full sovereign identity + finance operating system. Includes feature depth, data requirements (the 50-country program), integrations (Bitcoin timestamping, Nostr, Lightning, Paige AI), technical architecture evolution, marketplace, B2G, and success metrics. This is the master reference for scope, sequencing, and what “done” looks like at each stage.
+---
 
-## Supporting Documentation
+## Read order (new agents)
 
-- `ARCHITECTURE.md` — Technical architecture, data flows, deployment models, sovereign self-hosting, security & privacy model (in progress / to be expanded).
-- `DATA-MODEL.md` — Complete schema for `countries.json` (v2.0 master template), future user/portfolio/application/stamp models, and data pipeline requirements.
-- `BITCOIN-VERIFICATION.md` — Deep specification for “Truth You Can Verify”: OpenTimestamps + Satohash flows, what gets stamped when, UI treatment of proofs, verification UX, and long-term on-chain reputation.
-- `PAIGE-AI.md` — The intelligent concierge specification: system prompt principles, capabilities, Nostr integration, personalization, escalation rules, and training sources.
-- `DESIGN-REFERENCE.md` — Promoted/enhanced reference to the root `DESIGN.md`. Visual system, component rules, imagery usage, and evolution notes (current static vs next-gen React).
-- `GLOSSARY.md` — Precise definitions for CBI, RBI, jurisdictional stacking, territorial tax, Lightning readiness, sovereignty score, stacking synergy, Satohash proofs, Paige, etc.
-- `ROADMAP-OVERVIEW.md` or individual phase briefs (future).
+1. **[SOURCE-OF-TRUTH.md](./SOURCE-OF-TRUTH.md)** — Canonical project record
+2. **[UPDATES-MAP.md](./UPDATES-MAP.md)** — Build history & work queue
+3. **[EXECUTIVE-SUMMARY.md](./EXECUTIVE-SUMMARY.md)** — Strategic one-pager
+4. **[PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md)** — Phased ambition
+5. **[DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md)** — Current UI direction
 
-## How This Documentation Is Maintained
+---
 
-- Every substantive change to vision, scope, data model, or strategy must be reflected here.
-- The root `SOURCE-OF-TRUTH.md` and `README.md` contain high-level summaries and point here for depth.
-- After major milestones, run the `giveabit-project-handoff` skill (it will reference and can incorporate updates from `docs/`).
-- Use clear, professional, yet Bitcoin-native language. “Truth You Can Verify” appears explicitly where appropriate.
-- Dates and BUILD numbers are updated on every meaningful revision.
+## Document index
 
-## Relationship to Working Assets
+### Strategy & marketing
+- [EXECUTIVE-SUMMARY.md](./EXECUTIVE-SUMMARY.md)
+- [MARKETING.md](./MARKETING.md)
+- [MISSION.md](./MISSION.md)
+- [PROJECT-VISION.md](./PROJECT-VISION.md)
+- [GLOSSARY.md](./GLOSSARY.md)
 
-- The pristine, self-contained dashboard lives at `website/index.html`. It is the current working, zero-dependency reference implementation. Documentation describes both its current state and the planned evolution.
-- Research data: `research/countries.json` + `research/uruguay-flagship.md` (the v2.0 template).
-- Design system: root `DESIGN.md` + `next-prompt.md`.
-- Modern expansion environment: root Vite + React + TypeScript + Tailwind (run `npm run dev`).
+### Product & technical
+- [PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md)
+- [ARCHITECTURE.md](./ARCHITECTURE.md)
+- [DATA-MODEL.md](./DATA-MODEL.md)
+- [BITCOIN-VERIFICATION.md](./BITCOIN-VERIFICATION.md)
+- [PAIGE-AI.md](./PAIGE-AI.md)
+- [I18N.md](./I18N.md)
 
-This documentation package was created in BUILD-20260610-004 to give the project a complete, professional, and expandable foundation without disturbing any working code or data.
+### Design
+- [DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md) — **Canonical**
+- [DESIGN-TOKENS.md](./DESIGN-TOKENS.md) — **Canonical**
+- [DESIGN-REFERENCE.md](./DESIGN-REFERENCE.md)
+- [DESIGN.md](./DESIGN.md) — Legacy + pointers
+- [NEXT-PROMPT.md](./NEXT-PROMPT.md)
 
-**Prime Directive (repeated for emphasis):**  
-“Truth You Can Verify.” — Every law, cost, requirement, document, user action, and data update must be verifiable on the Bitcoin blockchain via OpenTimestamps + Satohash.io (as of one Bitcoin block ago).
+### SEO (localized)
+- [SEO.md](./SEO.md) · [SEO-de](./SEO-de.md) · [SEO-es](./SEO-es.md) · [SEO-fr](./SEO-fr.md) · [SEO-pt](./SEO-pt.md) · [SEO-sw](./SEO-sw.md) · [SEO-zh](./SEO-zh.md)
 
-Welcome to the full picture. Now we build with precision and ambition.
+### Process
+- [CHANGELOG.md](./CHANGELOG.md)
+- [CONTRIBUTING.md](./CONTRIBUTING.md)
+- [DIRECTORY-MAP.md](./DIRECTORY-MAP.md) — Legacy index
+- [archive/](./archive/) — Superseded docs
+
+---
+
+## Maintenance rules
+
+1. Substantive changes → update relevant doc + `docs/UPDATES-MAP.md`
+2. Every Grok session → append `docs/KIMI-HANDOFF.md`
+3. BUILD increments on meaningful milestones (`BUILD-YYYYMMDD-XXX`)
+4. Design changes → `DESIGN-CONTEXT.md` + `DESIGN-TOKENS.md` first
+5. Data schema changes → `DATA-MODEL.md` + `research/countries.json`
+
+**Prime directive:** “Truth You Can Verify.”
+
+---
+
+*Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

@@ -1,40 +1,37 @@
+# MotoPass — Mission
+
+**BUILD:** 20260702-012 · **Last updated:** 2026-07-02
+
+## Our purpose
+
+To make sovereign citizenship and residency-by-investment accessible, verifiable, and Bitcoin-native — enabling freedom of movement and economic opportunity for every person on Earth.
+
+## Core values
+
+1. **Truth You Can Verify** — Every claim independently verifiable on Bitcoin via OpenTimestamps and Satohash.
+2. **Bitcoin-native** — Investment pathways payable in BTC; Lightning where possible.
+3. **Privacy by design** — Nostr identity; no unnecessary data collection.
+4. **Global intelligence** — Maps visa-free corridors across 50+ jurisdictions.
+
+## The problem we solve
+
+CBI/RBI programs are opaque, lawyer-dependent, and exclude Bitcoin holders. Data is stale, unverifiable, and scattered across jurisdictions.
+
+## Our solution
+
+A passport command center with Bitcoin-verifiable claims, BTC-native investment pathways, portfolio stacking tools, and country liaison agents.
+
+## Who it serves
+
+- High-net-worth individuals seeking jurisdictional optionality
+- Digital nomads and remote workers
+- Bitcoin holders optimizing tax and residency
+- Advisors and family offices managing multi-jurisdiction stacks
+
+## Success looks like
+
+A user can evaluate 50 programs, simulate a stack, verify any cost claim on Bitcoin, and initiate an application — all without trusting MotoPass blindly.
+
 ---
-title: Mission
-project: [Project Name]
-version: 0.1.0
-audience: internal
-tags: [project, mission, purpose, values]
-last_updated: YYYY-MM-DD
-owner: Nova (Product Management & Documentation)
----
 
-# [Project Name] — Mission
-
-## Our Purpose
-[One paragraph — why this project exists. What gap does it fill in the world?]
-
-## Core Values
-1. **Bitcoin Sovereignty First** — [How this project puts Bitcoin self-custody and permissionless access first]
-2. **Privacy by Design** — [Zero-knowledge, client-side, no tracking]
-3. **Open Source** — [License, community model]
-4. **Safe Harbour** — [How it protects users legally and ethically]
-
-## The Problem We Solve
-[What broken system or unmet need does this address?]
-
-## Our Solution
-[How Bitcoin + the specific project architecture solves it]
-
-## Who It Serves
-[Target users, communities, or use cases]
-
----
-
-**Part of the [Give A Bit](https://giveabit.io) family — Bitcoin education, services, and hope.**
-
-```
-Safe Harbour Statement: This project is provided for educational and informational purposes only.
-Nothing herein constitutes legal, financial, or investment advice. Use at your own risk.
-Always consult qualified professionals for legal and financial decisions.
-© Give A Bit — Bitcoin sovereignty first.
-```
+*Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

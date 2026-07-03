@@ -87,4 +87,30 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-02 (BUILD-012 docs)
+
+**Machine:** M3 (Grok)  
+**Project:** motopass
+
+### Done
+- [x] Consolidated all documentation into `docs/` (SOURCE-OF-TRUTH, DESIGN, DIRECTORY-MAP, PROJECT-VISION, NEXT-PROMPT, CHANGELOG, CONTRIBUTING)
+- [x] Created `docs/UPDATES-MAP.md` (build history + work queue) and `docs/WORK-TREE.md` (complete file map)
+- [x] Archived superseded handoffs/templates to `docs/archive/`
+- [x] Root stubs redirect to `docs/`; README slimmed to quickstart + doc index
+- [x] Updated MISSION, CHANGELOG, CONTRIBUTING, DESIGN-REFERENCE, SOURCE-OF-TRUTH
+
+### Decisions
+- Keep at root only: README, AGENTS, GROK-SESSION-PROTOCOL, LATEST-UPDATE (protocol + tooling requirements)
+- Canonical design: `docs/DESIGN-CONTEXT.md` + `docs/DESIGN-TOKENS.md`
+- Single handoff file: `docs/KIMI-HANDOFF.md` (append-only)
+
+### What's Next
+- Kimi: sync `docs/UPDATES-MAP.md` into Obsidian vault index
+- Deepen 50 countries to Uruguay flagship depth
+
+### Git State
+- See `git log -1` after push
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

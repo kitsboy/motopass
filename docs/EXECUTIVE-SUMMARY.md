@@ -32,7 +32,7 @@ It combines:
 - **16 high-quality, Bitcoin-prioritized programs** seeded in `research/countries.json` with rich finance fields (min/typical investment, fees, timelines, tax benefits, crypto-friendly score 0–10, Bitcoin-specific notes). Includes El Salvador, Uruguay, UAE, Switzerland (Crypto Valley), Singapore, St. Kitts & Nevis, Georgia, Panama, Malta, etc. Full 50-country target with clear template.
 - **Pristine working dashboard** (`website/index.html`, ~2,300 lines, zero dependencies): animated hero, live ticker, powerful filters, card + table views, rich program modals with finance + timestamp sections, simulated Paige chat, in-browser add/edit/export, “Verify on Bitcoin” UI stub. Fully functional today; double-click to run.
 - **Complete design system** (`DESIGN.md`): sovereign black (#0a0a0a), deep void (#111), Bitcoin orange (#F7931A), glassmorphic cards, Space Grotesk display + Inter body, premium imagery integration.
-- **Strategic vision artifacts**: `PROJECT-VISION.md`, `next-prompt.md` (portfolio + stacking simulator vision), Uruguay flagship template, master country schema v2.0.
+- **Strategic vision artifacts**: `docs/PROJECT-VISION.md`, `docs/NEXT-PROMPT.md`, Uruguay flagship template, master country schema v2.0.
 - **Full documentation package** (this `docs/` folder): executive summary, marketing strategy, detailed product scope & roadmap, data model, Bitcoin verification spec, etc.
 - **Operational discipline**: single-source-of-truth folder, two-machine M3/M4 handoff protocol via `giveabit-project-handoff` skill, BUILD numbering, perpetual memory in Obsidian + source files.
 

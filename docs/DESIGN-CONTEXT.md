@@ -1,6 +1,6 @@
 # MotoPass Design Context
 
-**BUILD:** 20260702-011 · **Last updated:** 2026-07-02
+**BUILD:** 20260702-012 · **Last updated:** 2026-07-02
 
 ## Why we moved to a lighter palette
 
@@ -48,6 +48,6 @@ The upgraded direction is **Luminous Sovereign**: warm light backgrounds, crisp 
 
 - **Tokens:** `docs/DESIGN-TOKENS.md` + `tailwind.config.js` + `src/index.css`
 - **Components:** `src/components/ui/*`, updated `Layout`, `ProgramCard`, pages
-- **Legacy:** Root `DESIGN.md` remains historical; this doc + tokens are canonical for the React app
+- **Legacy:** `docs/DESIGN.md` records pre-BUILD-010 dark theme; this doc + tokens are canonical for the React app
 
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

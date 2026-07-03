@@ -92,7 +92,7 @@ This is a living high-level architecture document. It will be expanded as implem
 - `src/pages/` or routes — Portfolio, Explorer, Simulator, Compare, Vault, Settings
 - `public/` or served assets — the research/ folder (or symlinked/copied at build for demo parity)
 
-Use the DESIGN.md rules and the `next-prompt.md` structure as the source of truth for layout and interaction.
+Use `docs/DESIGN-CONTEXT.md`, `docs/DESIGN-TOKENS.md`, and `docs/NEXT-PROMPT.md` as the source of truth for layout and interaction.
 
 ## Deployment Models
 
