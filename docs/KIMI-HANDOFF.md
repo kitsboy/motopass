@@ -39,4 +39,29 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-02 (design pass)
+
+**Machine:** M3 (Grok)  
+**Project:** motopass
+
+### Done
+- [x] Full **Luminous Sovereign** light theme — canvas `#F5F2EC`, white cards, `border-mp`, `shadow-card`
+- [x] `docs/DESIGN-CONTEXT.md` + `docs/DESIGN-TOKENS.md` — canonical design docs
+- [x] Landing hero: `HeroMotionBackground` — sovereignty.jpg motion at **35% opacity**
+- [x] 55+ UI upgrades across all 14 routes + shared components
+- [x] BUILD-20260702-010
+
+### What's Next
+- Kimi: review live https://motopass.giveabit.io for contrast/readability feedback
+- Optional: dark mode toggle using same token file
+- Deploy dist after push (CF may auto-deploy from git)
+
+### Git State
+- Last commit SHA: `9348111`
+- Branch: `main`
+- Unpushed: none
+- Live: https://motopass.giveabit.io — theme-color `#F5F2EC`, manual deploy confirmed
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
