@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 20260702-012 · **Last updated:** 2026-07-02 · **Commit:** `c170a35` (feature `4fe1bb9`)
+**BUILD:** 20260702-013 · **Last updated:** 2026-07-02
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -24,7 +24,8 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
-| **012** | 2026-07-02 | (this pass) | Docs reorganized into `docs/`; UPDATES-MAP + WORK-TREE created |
+| **013** | 2026-07-02 | (this pass) | Self-evolving pitch: live savings graphs, motion backgrounds @ 35% |
+| **012** | 2026-07-02 | `562f9b2` | Docs reorganized into `docs/`; UPDATES-MAP + WORK-TREE created |
 | **011** | 2026-07-02 | `4fe1bb9` | Dark mode toggle, 50 jurisdictions, light demo alignment |
 | **010** | 2026-07-02 | `9348111` | Luminous Sovereign light UI — 55+ design upgrades, motion hero |
 | **009** | 2026-07-02 | `0fd1748` | 55-upgrade backlog: routes, Nostr/Satohash stubs, CI, 25 programs |

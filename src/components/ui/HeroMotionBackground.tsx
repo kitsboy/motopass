@@ -1,17 +1,13 @@
-import { motion } from 'motion/react'
+import { MotionImageBackground } from './MotionImageBackground'
 
-/** Slow Ken Burns loop — sovereignty imagery at 35% opacity behind landing hero */
+/** Landing hero — sovereignty imagery at 35% opacity + gradient overlays */
 export function HeroMotionBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
-      <motion.div
-        className="absolute inset-[-8%] bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/sovereignty.jpg')", opacity: 'var(--hero-opacity)' }}
-        animate={{ scale: [1, 1.1], x: ['0%', '-2%'], y: ['0%', '-1.5%'] }}
-        transition={{ duration: 28, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-      />
-      <div className="absolute inset-0 bg-gradient-hero-fade" />
-      <div className="absolute inset-0 bg-gradient-radial-soft" />
-    </div>
+    <>
+      <MotionImageBackground image="/images/sovereignty.jpg" />
+      <MotionImageBackground image="/images/hero.jpg" duration={34} opacity="0.22" className="mix-blend-multiply dark:mix-blend-soft-light" />
+      <div className="absolute inset-0 bg-gradient-hero-fade pointer-events-none" aria-hidden />
+      <div className="absolute inset-0 bg-gradient-radial-soft pointer-events-none" aria-hidden />
+    </>
   )
 }

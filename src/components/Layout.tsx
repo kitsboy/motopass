@@ -41,7 +41,7 @@ export function Layout() {
                 <div className="font-display font-semibold tracking-tight text-sm sm:text-base truncate text-ink group-hover:text-btc-orange transition-colors">
                   MOTOPASS
                 </div>
-                <div className="text-[9px] text-ink-muted -mt-0.5 truncate font-mono">BUILD-011 · {t('tagline')}</div>
+                <div className="text-[9px] text-ink-muted -mt-0.5 truncate font-mono">BUILD-013 · {t('tagline')}</div>
               </div>
             </NavLink>
 
