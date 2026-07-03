@@ -26,10 +26,10 @@ export function NostrConnect({ onConnect }: { onConnect?: (s: NostrSession | nul
 
   if (session) {
     return (
-      <div className="flex items-center gap-2 text-xs text-purple-300 bg-purple-500/10 border border-purple-500/25 rounded-full px-3 py-1.5 max-w-[200px]">
+      <div className="flex items-center gap-2 text-xs text-nostr-violet bg-nostr-violet-soft border border-nostr-violet/20 rounded-full px-3 py-1.5 max-w-[200px]">
         <Zap size={12} className="shrink-0" />
         <span className="truncate font-mono">{session.npub.slice(0, 12)}…</span>
-        <span className="text-purple-400 shrink-0">{t('nostr.connected')}</span>
+        <span className="text-nostr-violet/80 shrink-0">{t('nostr.connected')}</span>
       </div>
     )
   }
@@ -39,7 +39,7 @@ export function NostrConnect({ onConnect }: { onConnect?: (s: NostrSession | nul
       type="button"
       onClick={connect}
       disabled={loading}
-      className="flex items-center gap-2 text-xs border border-purple-500/40 text-purple-300 hover:bg-purple-500/10 rounded-full px-3 py-1.5 transition-colors"
+      className="chip text-xs !text-nostr-violet !border-nostr-violet/30 hover:!bg-nostr-violet-soft"
     >
       <Zap size={12} />
       {loading ? '…' : t('nostr.connect')}

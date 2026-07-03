@@ -14,10 +14,10 @@ export function BlockHeight() {
   }, [])
 
   return (
-    <div className="flex items-center gap-1.5 text-[10px] font-mono text-btc-orange/90">
-      <Bitcoin size={12} />
+    <div className="inline-flex items-center gap-1.5 text-[10px] font-mono bg-card border border-mp rounded-full px-3 py-1.5 text-ink-secondary">
+      <Bitcoin size={12} className="text-btc-orange" />
       <span>{t('block.live')}</span>
-      <span className="text-white font-semibold">{height ? `#${height.toLocaleString()}` : '…'}</span>
+      <span className="text-ink font-semibold">{height ? `#${height.toLocaleString()}` : '…'}</span>
     </div>
   )
 }

@@ -4,12 +4,12 @@ import { cn } from '../../lib/utils'
 type Status = 'neutral' | 'info' | 'success' | 'warning' | 'danger' | 'loading'
 
 const STATUS_CLASS: Record<Status, string> = {
-  neutral: 'border-white/15 bg-sovereign-void text-sovereign-silver',
-  info: 'border-btc-orange/30 bg-btc-orange/10 text-btc-orange',
-  success: 'border-status-green/30 bg-status-green/10 text-status-green',
-  warning: 'border-status-amber/30 bg-status-amber/10 text-status-amber',
-  danger: 'border-status-red/30 bg-status-red/10 text-status-red',
-  loading: 'border-btc-orange/30 bg-btc-orange/10 text-btc-orange',
+  neutral: 'border-mp bg-card-muted text-ink-muted',
+  info: 'border-btc-orange/30 bg-btc-orange-soft text-btc-orange-deep',
+  success: 'border-emerald-200 bg-emerald-50 text-status-green',
+  warning: 'border-amber-200 bg-amber-50 text-status-amber',
+  danger: 'border-red-200 bg-red-50 text-status-red',
+  loading: 'border-btc-orange/30 bg-btc-orange-soft text-btc-orange-deep',
 }
 
 const ICONS = { neutral: Circle, info: Info, success: Check, warning: AlertTriangle, danger: X, loading: LoaderCircle }

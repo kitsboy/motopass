@@ -5,34 +5,35 @@ export function ProgramCard({ program, onClick }: { program: Program; onClick?: 
   const acquired = program.status.toLowerCase().includes('acquired')
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="program-card group text-left w-full"
-    >
+    <button type="button" onClick={onClick} className="program-card group text-left w-full">
       <div className="flex justify-between items-start mb-3 gap-2">
         <div className="min-w-0">
-          <div className="font-semibold text-base sm:text-lg tracking-tight group-hover:text-btc-orange transition-colors truncate">
+          <div className="font-display font-semibold text-base sm:text-lg tracking-tight text-ink group-hover:text-btc-orange transition-colors truncate">
+            {program.flag && <span className="mr-1.5">{program.flag}</span>}
             {program.name}
           </div>
-          <div className="text-[11px] text-sovereign-silver truncate">
-            {program.region} • {program.category.replace(/_/g, ' ')}
+          <div className="text-[11px] text-ink-muted truncate capitalize">
+            {program.region} · {program.category.replace(/_/g, ' ')}
           </div>
         </div>
-        <div className={`text-[10px] px-2 py-0.5 rounded-full border shrink-0 ${acquired ? 'border-status-green text-status-green' : 'border-status-amber text-status-amber'}`}>
+        <div
+          className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full border shrink-0 ${
+            acquired ? 'border-emerald-200 bg-emerald-50 text-status-green' : 'border-amber-200 bg-amber-50 text-status-amber'
+          }`}
+        >
           {program.status.split(' - ')[0]}
         </div>
       </div>
 
-      <p className="text-sm text-sovereign-silver line-clamp-2 mb-3">{program.details}</p>
+      <p className="text-sm text-ink-secondary line-clamp-2 mb-4 leading-relaxed">{program.details}</p>
 
-      <div className="flex items-center justify-between text-xs gap-2">
+      <div className="flex items-center justify-between text-xs gap-2 pt-3 border-t border-mp/80">
         <div className="flex items-center gap-2 min-w-0">
-          <span className="px-2 py-px bg-white/5 rounded whitespace-nowrap">
+          <span className="px-2.5 py-1 bg-section rounded-mp-sm text-ink-secondary font-medium whitespace-nowrap">
             Min ~${(program.finance.min_investment_usd || 0).toLocaleString()}
           </span>
           {program.finance.crypto_friendly_score != null && (
-            <span className="px-2 py-px bg-white/5 rounded flex items-center gap-1">
+            <span className="px-2.5 py-1 bg-btc-orange-soft rounded-mp-sm flex items-center gap-1 text-btc-orange-deep font-medium">
               <Zap size={11} /> {program.finance.crypto_friendly_score}/10
             </span>
           )}

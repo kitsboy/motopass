@@ -12,10 +12,10 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
           type="button"
           onClick={() => setLang(l.code)}
           title={`${l.name} (${l.nativeName})`}
-          className={`${compact ? 'text-base px-1.5 py-1' : 'text-lg px-2 py-1'} rounded-lg border transition-all ${
+          className={`${compact ? 'text-base px-1.5 py-1' : 'text-lg px-2 py-1'} rounded-mp-md border transition-all ${
             lang === l.code
-              ? 'border-btc-orange bg-btc-orange/15 scale-105'
-              : 'border-white/10 hover:border-white/30 opacity-80 hover:opacity-100'
+              ? 'border-btc-orange bg-btc-orange-soft scale-105 shadow-sm'
+              : 'border-mp bg-card hover:border-mp-strong opacity-90 hover:opacity-100'
           }`}
           aria-pressed={lang === l.code}
         >

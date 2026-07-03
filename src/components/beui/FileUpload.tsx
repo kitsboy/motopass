@@ -54,8 +54,7 @@ export function FileUpload({
         progress: 0,
         status: 'uploading',
       }
-      const next = [...items, item]
-      onItemsChange(next)
+      onItemsChange([...items, item])
       await onFileAdded(item)
     }
   }, [items, maxFiles, onItemsChange, onFileAdded])
@@ -64,15 +63,8 @@ export function FileUpload({
 
   return (
     <div className="space-y-3">
-      <input
-        ref={inputRef}
-        id={inputId}
-        type="file"
-        accept={accept}
-        multiple
-        className="sr-only"
-        onChange={e => { addFiles(Array.from(e.target.files ?? [])); e.target.value = '' }}
-      />
+      <input ref={inputRef} id={inputId} type="file" accept={accept} multiple className="sr-only"
+        onChange={e => { addFiles(Array.from(e.target.files ?? [])); e.target.value = '' }} />
       <button
         type="button"
         onClick={() => inputRef.current?.click()}
@@ -80,34 +72,34 @@ export function FileUpload({
         onDragLeave={() => setDragging(false)}
         onDrop={e => { e.preventDefault(); setDragging(false); addFiles(Array.from(e.dataTransfer.files)) }}
         className={cn(
-          'w-full rounded-2xl border border-dashed p-6 text-center transition-colors',
-          dragging ? 'border-btc-orange bg-btc-orange/5' : 'border-white/20 hover:border-btc-orange/50',
+          'w-full rounded-mp-xl border-2 border-dashed p-8 text-center transition-all bg-card',
+          dragging ? 'border-btc-orange bg-btc-orange-soft' : 'border-mp hover:border-btc-orange/50 hover:bg-section/50',
         )}
       >
-        <UploadCloud className="mx-auto mb-2 text-btc-orange" size={28} />
-        <div className="font-semibold text-sm">{title}</div>
-        <div className="text-xs text-sovereign-silver mt-1">{description}</div>
-        <div className="text-[10px] text-sovereign-silver mt-2">Tap to browse or scan with camera</div>
+        <UploadCloud className="mx-auto mb-3 text-btc-orange" size={32} />
+        <div className="font-display font-semibold text-sm text-ink">{title}</div>
+        <div className="text-xs text-ink-muted mt-1">{description}</div>
+        <div className="text-[10px] text-ink-muted mt-2">Tap to browse or scan with camera</div>
       </button>
 
       <ul className="space-y-2">
         {items.map(item => (
-          <li key={item.id} className="flex items-center gap-3 rounded-xl border border-white/10 bg-sovereign-void p-3">
-            <div className="grid h-10 w-10 place-items-center rounded-lg bg-white/5 text-sovereign-silver">
+          <li key={item.id} className="flex items-center gap-3 rounded-mp-lg border border-mp bg-card p-3 shadow-sm">
+            <div className="grid h-10 w-10 place-items-center rounded-mp-md bg-section text-ink-muted">
               {item.status === 'uploading' ? <Loader2 size={18} className="animate-spin text-btc-orange" /> :
                item.status === 'success' ? <CheckCircle2 size={18} className="text-status-green" /> :
                <FileText size={18} />}
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium truncate">{item.name}</div>
-              <div className="text-[10px] text-sovereign-silver">{formatBytes(item.size)}</div>
+              <div className="text-sm font-medium truncate text-ink">{item.name}</div>
+              <div className="text-[10px] text-ink-muted">{formatBytes(item.size)}</div>
               {item.hash && (
                 <a href={item.satohashUrl} target="_blank" rel="noopener noreferrer" className="text-[10px] text-btc-orange hover:underline font-mono truncate block">
                   Satohash → {item.hash.slice(0, 16)}…
                 </a>
               )}
             </div>
-            <button type="button" onClick={() => remove(item.id)} className="p-1.5 text-sovereign-silver hover:text-white">
+            <button type="button" onClick={() => remove(item.id)} className="p-1.5 text-ink-muted hover:text-ink rounded-mp-sm hover:bg-section">
               <X size={14} />
             </button>
           </li>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { usePrograms } from '../hooks/usePrograms'
 import { loadStacks, saveStack, type SavedStack } from '../lib/portfolioStorage'
 import { CardSkeleton } from '../components/LoadingSkeleton'
+import { PageHeader } from '../components/ui/PageHeader'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 
 export function StackSimulatorPage() {
@@ -19,55 +20,60 @@ export function StackSimulatorPage() {
 
   const save = () => {
     if (!stackName.trim() || selected.length === 0) return
-    const item: SavedStack = { id: `stack-${Date.now()}`, name: stackName, programIds: selected, createdAt: new Date().toISOString() }
-    saveStack(item)
+    saveStack({ id: `stack-${Date.now()}`, name: stackName, programIds: selected, createdAt: new Date().toISOString() })
     setSaved(loadStacks())
     setStackName('')
   }
 
   return (
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
-      <div className="section-label mb-1">STACK SIMULATOR</div>
-      <h1 className="text-2xl sm:text-3xl font-display font-semibold mb-6">Jurisdictional stacking</h1>
+      <PageHeader eyebrow="STACK SIMULATOR" title="Jurisdictional stacking" subtitle="Combine programs and model cost, sovereignty, and timeline." />
 
       {loading && <CardSkeleton />}
       {!loading && (
         <div className="grid lg:grid-cols-2 gap-6">
           <div className="card max-h-[60vh] overflow-y-auto">
-            <h3 className="font-semibold mb-3">Select programs</h3>
-            <div className="space-y-2">
+            <h3 className="font-display font-semibold text-ink mb-4">Select programs</h3>
+            <div className="space-y-1">
               {programs.map(p => (
-                <label key={p.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 cursor-pointer">
-                  <input type="checkbox" checked={selected.includes(p.id)} onChange={() => toggle(p.id)} className="accent-btc-orange" />
-                  <span>{p.flag} {p.name}</span>
-                  <span className="text-xs text-sovereign-silver ml-auto">{p.stacking_synergy}</span>
+                <label key={p.id} className="flex items-center gap-3 p-3 rounded-mp-md hover:bg-section cursor-pointer border border-transparent hover:border-mp transition-colors">
+                  <input type="checkbox" checked={selected.includes(p.id)} onChange={() => toggle(p.id)} className="accent-btc-orange w-4 h-4" />
+                  <span className="text-ink font-medium">{p.flag} {p.name}</span>
+                  <span className="text-xs text-ink-muted ml-auto capitalize">{p.stacking_synergy}</span>
                 </label>
               ))}
             </div>
           </div>
 
           <div className="space-y-4">
-            <div className="card">
-              <h3 className="font-semibold mb-4">Combined stack metrics</h3>
-              <div className="grid grid-cols-2 gap-3 text-sm">
-                <div><span className="text-sovereign-silver">Programs</span><div className="text-2xl font-bold text-btc-orange">{stack.length}</div></div>
-                <div><span className="text-sovereign-silver">Total cost</span><div className="text-2xl font-bold">${totalCost.toLocaleString()}</div></div>
-                <div><span className="text-sovereign-silver">Sovereignty</span><div className="text-2xl font-bold">{sovereignty}/10</div></div>
-                <div><span className="text-sovereign-silver">Max timeline</span><div className="text-2xl font-bold">{months}mo</div></div>
+            <div className="card-elevated border-l-4 border-l-btc-orange">
+              <h3 className="font-display font-semibold text-ink mb-4">Combined stack metrics</h3>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                {[
+                  ['Programs', stack.length, true],
+                  ['Total cost', `$${totalCost.toLocaleString()}`, false],
+                  ['Sovereignty', `${sovereignty}/10`, false],
+                  ['Max timeline', `${months}mo`, false],
+                ].map(([label, val, accent]) => (
+                  <div key={String(label)}>
+                    <span className="text-ink-muted text-xs">{label}</span>
+                    <div className={`text-2xl font-display font-semibold ${accent ? 'text-gradient-orange' : 'text-ink'}`}>{val}</div>
+                  </div>
+                ))}
               </div>
-              <div className="flex flex-wrap gap-2 mt-4">
+              <div className="flex flex-wrap gap-2 mt-5">
                 {stack.map(p => <AnimatedBadge key={p.id} status="info">{p.name}</AnimatedBadge>)}
               </div>
             </div>
-            <div className="card flex gap-2">
-              <input value={stackName} onChange={e => setStackName(e.target.value)} placeholder="Stack name…" className="flex-1 bg-sovereign-black border border-white/10 rounded-xl px-3 py-2 text-sm" />
-              <button type="button" onClick={save} disabled={!stackName || selected.length === 0} className="btn-primary">Save stack</button>
+            <div className="card flex flex-col sm:flex-row gap-2">
+              <input value={stackName} onChange={e => setStackName(e.target.value)} placeholder="Stack name…" className="input-field flex-1" />
+              <button type="button" onClick={save} disabled={!stackName || selected.length === 0} className="btn-primary shrink-0">Save stack</button>
             </div>
             {saved.length > 0 && (
-              <div className="card">
-                <h4 className="text-sm font-semibold mb-2">Saved stacks</h4>
+              <div className="card-muted">
+                <h4 className="text-sm font-semibold text-ink mb-3">Saved stacks</h4>
                 {saved.map(s => (
-                  <div key={s.id} className="text-xs text-sovereign-silver py-1">{s.name} — {s.programIds.length} programs</div>
+                  <div key={s.id} className="text-xs text-ink-secondary py-2 border-b border-mp/60 last:border-0">{s.name} — {s.programIds.length} programs</div>
                 ))}
               </div>
             )}

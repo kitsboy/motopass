@@ -14,19 +14,19 @@ export function ProgressTracker({ status }: { status: ApplicationStatus }) {
           <div key={step.key} className="flex gap-3">
             <div className="flex flex-col items-center">
               <div className={cn(
-                'w-7 h-7 rounded-full border flex items-center justify-center text-[10px] font-bold shrink-0',
-                done ? 'border-status-green bg-status-green/20 text-status-green' :
-                active ? 'border-btc-orange bg-btc-orange/20 text-btc-orange' :
-                'border-white/15 text-sovereign-silver',
+                'w-8 h-8 rounded-full border-2 flex items-center justify-center text-[10px] font-bold shrink-0 transition-colors',
+                done ? 'border-emerald-400 bg-emerald-50 text-status-green' :
+                active ? 'border-btc-orange bg-btc-orange-soft text-btc-orange-deep' :
+                'border-mp bg-card-muted text-ink-muted',
               )}>
                 {done ? <Check size={14} /> : i + 1}
               </div>
               {i < STATUS_STEPS.length - 1 && (
-                <div className={cn('w-px flex-1 min-h-[20px]', done ? 'bg-status-green/40' : 'bg-white/10')} />
+                <div className={cn('w-0.5 flex-1 min-h-[24px]', done ? 'bg-emerald-300' : 'bg-mp')} />
               )}
             </div>
-            <div className={cn('pb-4 pt-1', active && 'text-btc-orange')}>
-              <div className="text-sm font-medium">{step.label}</div>
+            <div className={cn('pb-5 pt-1.5', active && 'text-btc-orange-deep')}>
+              <div className={cn('text-sm font-medium', done || active ? 'text-ink' : 'text-ink-muted')}>{step.label}</div>
             </div>
           </div>
         )

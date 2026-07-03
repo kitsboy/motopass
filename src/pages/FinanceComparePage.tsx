@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { usePrograms } from '../hooks/usePrograms'
 import { CardSkeleton } from '../components/LoadingSkeleton'
+import { PageHeader } from '../components/ui/PageHeader'
 
 export function FinanceComparePage() {
   const { programs, loading } = usePrograms()
@@ -28,42 +29,39 @@ export function FinanceComparePage() {
 
   return (
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
-      <div className="section-label mb-1">FINANCE COMPARE</div>
-      <h1 className="text-2xl sm:text-3xl font-display font-semibold mb-2">Side-by-side comparison</h1>
-      <p className="text-sm text-sovereign-silver mb-6">Select up to 4 programs</p>
+      <PageHeader eyebrow="FINANCE COMPARE" title="Side-by-side comparison" subtitle="Select up to 4 programs to compare key metrics." />
 
       {loading && <CardSkeleton count={4} />}
       {!loading && (
         <>
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-8">
             {programs.map(p => (
-              <button key={p.id} type="button" onClick={() => toggle(p.id)}
-                className={`text-xs px-3 py-1.5 rounded-full border ${ids.includes(p.id) ? 'border-btc-orange text-btc-orange bg-btc-orange/10' : 'border-white/15 text-sovereign-silver'}`}>
+              <button key={p.id} type="button" onClick={() => toggle(p.id)} className={ids.includes(p.id) ? 'chip-active' : 'chip'}>
                 {p.flag} {p.name}
               </button>
             ))}
           </div>
           {compare.length > 0 ? (
-            <div className="overflow-x-auto rounded-xl border border-white/10">
+            <div className="overflow-x-auto rounded-mp-lg border border-mp bg-card shadow-card">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="p-3 text-left text-sovereign-silver">Metric</th>
-                    {compare.map(p => <th key={p.id} className="p-3 text-left">{p.name}</th>)}
+                  <tr className="border-b border-mp bg-section/60">
+                    <th className="p-3 text-left text-ink-muted text-xs uppercase">Metric</th>
+                    {compare.map(p => <th key={p.id} className="p-3 text-left font-display text-ink">{p.name}</th>)}
                   </tr>
                 </thead>
                 <tbody>
                   {rows.map(r => (
-                    <tr key={r.label} className="border-b border-white/5">
-                      <td className="p-3 text-sovereign-silver">{r.label}</td>
-                      {compare.map(p => <td key={p.id} className="p-3 font-mono text-xs">{r.key(p)}</td>)}
+                    <tr key={r.label} className="border-b border-mp/60 hover:bg-btc-orange-soft/20">
+                      <td className="p-3 text-ink-muted font-medium">{r.label}</td>
+                      {compare.map(p => <td key={p.id} className="p-3 font-mono text-xs text-ink">{r.key(p)}</td>)}
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           ) : (
-            <p className="text-sovereign-silver text-center py-12">Select programs to compare</p>
+            <div className="text-center py-16 card-muted text-ink-muted">Select programs to compare</div>
           )}
         </>
       )}

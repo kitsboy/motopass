@@ -11,6 +11,13 @@ Kimi (on M4) handles orchestration, docs, automation, and the Obsidian vault.
 
 **DO NOT** touch M4 files (~/MASTER-BRAIN/, Obsidian, .hermes/). Your domain is `~/projects/` only.
 
+**M3 root:** `/Users/cam/projects/` — open this folder as workspace, not `/Users/cam` (home).
+
+**Project selection:** Only work on Finder-tagged **PRODUCTION** projects unless Cam says otherwise.
+- **Green + PRODUCTION** = active now (giveabit, satohash, tadbuy, motopass, sherpacarta, stranded, openstrata, katoa).
+- **Red + PRODUCTION** = queued next month — do not build yet (lindala, camtaylor).
+- See `GiveABit-Goose-Main/PRODUCTION-PROJECTS.md` for the full registry.
+
 ---
 
 ## End-of-Session Handoff (MANDATORY — every session)

@@ -12,11 +12,11 @@ export function TaxonomyChip({ labelId, active, onClick }: { labelId: string; ac
       type={onClick ? 'button' : undefined}
       onClick={onClick}
       className={`inline-flex items-center text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full border transition-colors ${
-        active ? 'text-black font-semibold' : 'text-white/80'
+        active ? 'text-ink font-semibold shadow-sm' : 'text-ink-secondary'
       }`}
       style={{
-        borderColor: `${item.color}55`,
-        backgroundColor: active ? item.color : `${item.color}18`,
+        borderColor: active ? item.color : `${item.color}44`,
+        backgroundColor: active ? `${item.color}22` : `${item.color}12`,
       }}
     >
       {labelName(labelId, lang)}

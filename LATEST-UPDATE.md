@@ -1,4 +1,4 @@
 # motopass — Last Updated 2026-07-02 by Grok
 
-Brief: 55 upgrades shipped; verify:goal orchestrator added
-Commit: 129f9fa
+Brief: Luminous Sovereign light UI — 55+ design upgrades, motion hero
+Commit: (pending push)

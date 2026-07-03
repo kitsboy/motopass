@@ -1,7 +1,7 @@
 # Design System: MotoPass
 
 **Project ID:** motopass-20260610  
-**Last Updated:** 2026-06-10 | BUILD-20260610-004  
+**Last Updated:** 2026-07-02 | BUILD-20260702-010 — **React app uses Luminous Sovereign light theme.** See `docs/DESIGN-CONTEXT.md` and `docs/DESIGN-TOKENS.md` for canonical tokens.  
 **Source of Truth Folder:** /Users/cam/projects/motopass
 
 ## 1. Visual Theme & Atmosphere
