@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { I18nProvider } from './i18n/I18nContext'
 import { UserProvider } from './context/UserContext'
+import { ThemeProvider } from './context/ThemeContext'
 import { Layout } from './components/Layout'
 import { PitchPage } from './pages/PitchPage'
 import { ProgramsPage } from './pages/ProgramsPage'
@@ -21,6 +22,7 @@ import { ErrorBoundary } from './components/ErrorBoundary'
 export default function App() {
   return (
     <ErrorBoundary>
+    <ThemeProvider>
     <I18nProvider>
       <UserProvider>
         <BrowserRouter>
@@ -45,6 +47,7 @@ export default function App() {
         </BrowserRouter>
       </UserProvider>
     </I18nProvider>
+    </ThemeProvider>
     </ErrorBoundary>
   )
 }

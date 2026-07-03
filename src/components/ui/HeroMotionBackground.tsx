@@ -5,8 +5,8 @@ export function HeroMotionBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
       <motion.div
-        className="absolute inset-[-8%] bg-cover bg-center opacity-[0.35]"
-        style={{ backgroundImage: "url('/images/sovereignty.jpg')" }}
+        className="absolute inset-[-8%] bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/sovereignty.jpg')", opacity: 'var(--hero-opacity)' }}
         animate={{ scale: [1, 1.1], x: ['0%', '-2%'], y: ['0%', '-1.5%'] }}
         transition={{ duration: 28, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
       />

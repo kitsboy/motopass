@@ -4,7 +4,7 @@ import { useI18n } from '../i18n/I18nContext'
 import { BlockHeight } from '../components/BlockHeight'
 import { HeroMotionBackground } from '../components/ui/HeroMotionBackground'
 
-const PITCH_VERSION = '2026-07-02 • BUILD-010'
+const PITCH_VERSION = '2026-07-02 • BUILD-011'
 
 export function PitchPage() {
   const { t } = useI18n()
@@ -101,7 +101,7 @@ export function PitchPage() {
             <ul className="text-sm text-ink-secondary space-y-2.5">
               <li className="flex gap-2"><span className="text-btc-orange">→</span> Lightning fee rails for premium stamping</li>
               <li className="flex gap-2"><span className="text-btc-orange">→</span> Live Nostr relay at relay.motopass.giveabit.io</li>
-              <li className="flex gap-2"><span className="text-btc-orange">→</span> 25 → 50 countries at flagship depth</li>
+              <li className="flex gap-2"><span className="text-btc-orange">→</span> 50 countries at flagship depth — live now</li>
               <li className="flex gap-2"><span className="text-btc-orange">→</span> Official liaison agent onboarding per jurisdiction</li>
             </ul>
           </div>

@@ -3,6 +3,7 @@ import { ExternalLink, Menu, X, User } from 'lucide-react'
 import { useState } from 'react'
 import { BlockHeight } from './BlockHeight'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { ThemeToggle } from './ThemeToggle'
 import { NostrConnect } from './NostrConnect'
 import { Logo } from './Logo'
 import { Footer } from './Footer'
@@ -40,13 +41,14 @@ export function Layout() {
                 <div className="font-display font-semibold tracking-tight text-sm sm:text-base truncate text-ink group-hover:text-btc-orange transition-colors">
                   MOTOPASS
                 </div>
-                <div className="text-[9px] text-ink-muted -mt-0.5 truncate font-mono">BUILD-010 · {t('tagline')}</div>
+                <div className="text-[9px] text-ink-muted -mt-0.5 truncate font-mono">BUILD-011 · {t('tagline')}</div>
               </div>
             </NavLink>
 
             <div className="hidden lg:flex items-center gap-3">
               <BlockHeight />
               <NostrConnect />
+              <ThemeToggle compact />
               <LanguageSwitcher compact />
               {isLoggedIn ? (
                 <Link to="/dashboard" className="chip-active text-xs flex items-center gap-1 !py-1.5">
@@ -78,7 +80,10 @@ export function Layout() {
                 <BlockHeight />
                 <NostrConnect />
               </div>
-              <LanguageSwitcher />
+              <div className="flex flex-wrap gap-2">
+                <ThemeToggle />
+                <LanguageSwitcher />
+              </div>
               <Link to={isLoggedIn ? '/dashboard' : '/register'} className="btn-primary w-full text-center text-sm py-2.5" onClick={() => setMenuOpen(false)}>
                 {isLoggedIn ? 'Dashboard' : 'Register with Nostr'}
               </Link>

@@ -3,26 +3,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="theme-color" content="#F5F2EC">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MotoPass • Truth You Can Verify • On Bitcoin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
-  --navy: #060f1e;
-  --navy2: #0b1a30;
-  --navy3: #0f2240;
-  --gold: #c8a84b;
-  --gold2: #e8c97a;
-  --gold3: #8a6f2e;
-  --silver: #a0b0c8;
-  --text: #dce8f5;
-  --muted: #607080;
+  --canvas: #F5F2EC;
+  --section: #EDE9E3;
+  --navy: #F5F2EC;
+  --navy2: #FFFFFF;
+  --navy3: #FAFAF8;
+  --gold: #F7931A;
+  --gold2: #E07B0F;
+  --gold3: #C46A08;
+  --silver: #71717A;
+  --text: #18181B;
+  --muted: #71717A;
   --btc: #f7931a;
-  --green: #22c55e;
-  --red: #ef4444;
-  --border: rgba(200,168,75,0.18);
+  --green: #16A34A;
+  --red: #DC2626;
+  --border: #D6D3D1;
+  --card-shadow: 0 1px 3px rgba(24,24,27,0.08), 0 4px 16px rgba(24,24,27,0.06);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +34,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background: var(--navy);
   color: var(--text);
   overflow-x: hidden;
@@ -49,7 +53,7 @@ body::before {
 }
 
 /* ── TYPOGRAPHY ── */
-.font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
+.font-display { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; font-weight: 600; }
 .font-mono { font-family: 'JetBrains Mono', monospace; }
 .font-serif { font-family: 'Crimson Pro', Georgia, serif; }
 
@@ -66,10 +70,10 @@ body::before {
   transition: all 0.4s ease;
 }
 #site-header.scrolled {
-  background: rgba(6,15,30,0.97);
+  background: rgba(255,255,255,0.92);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 4px 40px rgba(0,0,0,0.6);
+  box-shadow: 0 1px 0 rgba(24,24,27,0.06), 0 4px 24px rgba(24,24,27,0.08);
 }
 .header-inner {
   max-width: 1400px;
@@ -102,7 +106,8 @@ body::before {
   font-family: 'JetBrains Mono', monospace;
 }
 .logo-text-main {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
   font-size: 32px;
   letter-spacing: 0.06em;
   color: var(--gold);
@@ -183,8 +188,8 @@ nav a:hover::after { transform: scaleX(1); }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(200,168,75,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,168,75,0.06) 1px, transparent 1px);
+    linear-gradient(rgba(247,147,26,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(247,147,26,0.08) 1px, transparent 1px);
   background-size: 60px 60px;
   animation: gridMove 20s linear infinite;
 }
@@ -199,7 +204,7 @@ nav a:hover::after { transform: scaleX(1); }
   top: 20%; left: 50%;
   transform: translateX(-50%);
   width: 800px; height: 500px;
-  background: radial-gradient(ellipse, rgba(200,168,75,0.1) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(247,147,26,0.12) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero-glow2 {
@@ -314,19 +319,19 @@ nav a:hover::after { transform: scaleX(1); }
 .btn-secondary:hover {
   border-color: var(--gold);
   color: var(--gold);
-  background: rgba(200,168,75,0.05);
+  background: rgba(247,147,26,0.06);
 }
 
 /* HERO RIGHT — Timestamp Widget */
 .hero-widget {
-  background: rgba(11,26,48,0.9);
+  background: var(--navy2);
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 20px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(200,168,75,0.1);
+  box-shadow: 0 20px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(247,147,26,0.12);
 }
 .widget-header {
-  background: rgba(200,168,75,0.08);
+  background: rgba(247,147,26,0.1);
   border-bottom: 1px solid var(--border);
   padding: 14px 20px;
   display: flex;
@@ -353,7 +358,7 @@ nav a:hover::after { transform: scaleX(1); }
   flex-direction: column;
   gap: 6px;
   padding: 16px;
-  background: rgba(0,0,0,0.3);
+  background: var(--section);
   border-radius: 6px;
   margin-bottom: 12px;
   border-left: 2px solid var(--gold3);
@@ -402,7 +407,7 @@ nav a:hover::after { transform: scaleX(1); }
 
 /* ── TICKER ── */
 .ticker-bar {
-  background: rgba(0,0,0,0.5);
+  background: rgba(24,24,27,0.45);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding: 12px 0;
@@ -437,7 +442,7 @@ nav a:hover::after { transform: scaleX(1); }
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   color: var(--muted);
-  border-right: 1px solid rgba(200,168,75,0.1);
+  border-right: 1px solid rgba(247,147,26,0.12);
 }
 .ticker-item .val { color: var(--gold); }
 .ticker-item .up { color: var(--green); }
@@ -505,7 +510,7 @@ section { position: relative; }
   text-align: center;
   transition: background 0.2s;
 }
-.stat-item:hover { background: rgba(200,168,75,0.05); }
+.stat-item:hover { background: rgba(247,147,26,0.06); }
 .stat-num {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 52px;
@@ -528,7 +533,7 @@ section { position: relative; }
 }
 
 /* ── TIMESTAMP SECTION ── */
-.ts-section { padding: 100px 0; background: rgba(0,0,0,0.3); }
+.ts-section { padding: 100px 0; background: var(--section); }
 .ts-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -545,7 +550,7 @@ section { position: relative; }
 .ts-panel-header {
   padding: 20px 28px;
   border-bottom: 1px solid var(--border);
-  background: rgba(200,168,75,0.05);
+  background: rgba(247,147,26,0.06);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -575,7 +580,7 @@ section { position: relative; }
 }
 .ts-step-num {
   width: 40px; height: 40px;
-  background: rgba(200,168,75,0.1);
+  background: rgba(247,147,26,0.12);
   border: 1px solid var(--gold3);
   border-radius: 50%;
   display: flex;
@@ -666,7 +671,7 @@ section { position: relative; }
 }
 .chat-header {
   padding: 16px 24px;
-  background: rgba(200,168,75,0.06);
+  background: rgba(247,147,26,0.08);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; gap: 14px;
 }
@@ -707,7 +712,7 @@ section { position: relative; }
 .msg-avatar {
   width: 30px; height: 30px;
   border-radius: 50%;
-  background: rgba(200,168,75,0.1);
+  background: rgba(247,147,26,0.12);
   border: 1px solid var(--gold3);
   display: flex; align-items: center; justify-content: center;
   font-size: 12px;
@@ -717,7 +722,7 @@ section { position: relative; }
   max-width: 80%;
   padding: 12px 16px;
   border-radius: 2px 12px 12px 12px;
-  background: rgba(200,168,75,0.08);
+  background: rgba(247,147,26,0.1);
   border: 1px solid var(--border);
   font-size: 14px;
   line-height: 1.6;
@@ -789,7 +794,7 @@ section { position: relative; }
 }
 .paige-feat-icon {
   width: 44px; height: 44px;
-  background: rgba(200,168,75,0.1);
+  background: rgba(247,147,26,0.12);
   border: 1px solid var(--gold3);
   border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
@@ -810,7 +815,7 @@ section { position: relative; }
 }
 
 /* ── PROGRAMS SECTION ── */
-.programs-section { padding: 100px 0; background: rgba(0,0,0,0.2); }
+.programs-section { padding: 100px 0; background: rgba(245,242,236,0.5); }
 .programs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -893,7 +898,7 @@ section { position: relative; }
 }
 .status-btc { background: rgba(247,147,26,0.1); border-color: rgba(247,147,26,0.3); color: var(--btc); }
 .status-green { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: var(--green); }
-.status-gold { background: rgba(200,168,75,0.1); border-color: var(--border); color: var(--gold); }
+.status-gold { background: rgba(247,147,26,0.12); border-color: var(--border); color: var(--gold); }
 .prog-desc {
   font-size: 15px;
   line-height: 1.65;
@@ -928,7 +933,7 @@ section { position: relative; }
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--gold);
-  background: rgba(200,168,75,0.08);
+  background: rgba(247,147,26,0.1);
   border: 1px solid var(--border);
   padding: 7px 16px;
   border-radius: 2px;
@@ -1045,7 +1050,7 @@ section { position: relative; }
 .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
 .modal-fact {
   padding: 18px 20px;
-  background: rgba(0,0,0,0.3);
+  background: var(--section);
   border-radius: 6px;
   border-left: 2px solid var(--gold3);
 }
@@ -1092,7 +1097,7 @@ section { position: relative; }
 .check-icon.no { color: var(--red); }
 .check-icon.partial { color: var(--btc); }
 .modal-hash-section {
-  background: rgba(0,0,0,0.3);
+  background: var(--section);
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 20px;
@@ -1150,7 +1155,7 @@ section { position: relative; }
 .legal-card:hover { background: rgba(200,168,75,0.04); }
 .legal-icon {
   width: 40px; height: 40px;
-  background: rgba(200,168,75,0.08);
+  background: rgba(247,147,26,0.1);
   border: 1px solid var(--gold3);
   border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
@@ -1237,7 +1242,7 @@ section { position: relative; }
   border-top: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
   flex-shrink: 0;
-  background: rgba(0,0,0,0.3);
+  background: var(--section);
 }
 .tos-accept {
   padding: 12px 32px;
@@ -1711,7 +1716,7 @@ section { position: relative; }
             </div>
           </div>
           <div class="chat-msg user">
-            <div class="msg-avatar" style="background:rgba(200,168,75,0.1)">U</div>
+            <div class="msg-avatar" style="background:rgba(247,147,26,0.12)">U</div>
             <div>
               <div class="msg-bubble">What about El Salvador? Any new BTC legal tender developments?</div>
               <div class="msg-time" style="text-align:right">Just now</div>
@@ -2252,7 +2257,7 @@ function sendChat() {
   // User msg
   const userMsg = document.createElement('div');
   userMsg.className = 'chat-msg user';
-  userMsg.innerHTML = `<div class="msg-avatar" style="background:rgba(200,168,75,0.1)">U</div><div><div class="msg-bubble">${val}</div><div class="msg-time" style="text-align:right">Just now</div></div>`;
+  userMsg.innerHTML = `<div class="msg-avatar" style="background:rgba(247,147,26,0.12)">U</div><div><div class="msg-bubble">${val}</div><div class="msg-time" style="text-align:right">Just now</div></div>`;
   msgs.appendChild(userMsg);
   input.value = '';
   msgs.scrollTop = msgs.scrollHeight;

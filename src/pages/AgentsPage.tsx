@@ -14,9 +14,9 @@ const AGENTS = [
 ]
 
 const statusClass = (s: string) =>
-  s === 'Active' ? 'border-emerald-200 bg-emerald-50 text-status-green' :
-  s === 'Beta' ? 'border-amber-200 bg-amber-50 text-status-amber' :
-  'border-mp bg-card-muted text-ink-muted'
+  s === 'Active' ? 'proof-badge' :
+  s === 'Beta' ? 'chip border-status-amber/40 bg-btc-orange-soft text-status-amber' :
+  'chip'
 
 export function AgentsPage() {
   const { t } = useI18n()

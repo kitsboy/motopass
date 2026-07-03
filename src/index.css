@@ -3,20 +3,55 @@
 @tailwind utilities;
 
 :root {
-  --mp-canvas: #f5f2ec;
-  --mp-section: #ede9e3;
-  --mp-card: #ffffff;
-  --mp-ink: #18181b;
-  --mp-ink-muted: #71717a;
-  --btc-orange: #f7931a;
-  --mp-border: #d6d3d1;
+  --mp-canvas-rgb: 245 242 236;
+  --mp-section-rgb: 237 233 227;
+  --mp-card-rgb: 255 255 255;
+  --mp-card-muted-rgb: 250 250 248;
+  --mp-ink-rgb: 24 24 27;
+  --mp-ink-secondary-rgb: 63 63 70;
+  --mp-ink-muted-rgb: 113 113 122;
+  --mp-ink-inverse-rgb: 250 250 250;
+  --mp-btc-soft-rgb: 255 247 237;
+  --mp-nostr-soft-rgb: 245 243 255;
+  --mp-border-rgb: 214 211 209;
+  --mp-border-strong-rgb: 168 162 158;
   --hero-opacity: 0.35;
+  --mp-shadow-card: 0 1px 3px rgba(24, 24, 27, 0.08), 0 1px 2px rgba(24, 24, 27, 0.04);
+  --mp-shadow-card-hover: 0 12px 32px rgba(24, 24, 27, 0.12), 0 4px 8px rgba(247, 147, 26, 0.08);
+  --mp-shadow-header: 0 1px 0 rgba(24, 24, 27, 0.06), 0 4px 24px rgba(24, 24, 27, 0.04);
+  --mp-gradient-radial: radial-gradient(ellipse at top, rgba(247, 147, 26, 0.08) 0%, transparent 55%);
+  --mp-gradient-hero: linear-gradient(180deg, rgba(245, 242, 236, 0.72) 0%, rgba(245, 242, 236, 0.95) 45%, #f5f2ec 100%);
+  --mp-proof-bg: #ecfdf5;
+  --mp-proof-border: #a7f3d0;
+}
+
+.dark {
+  --mp-canvas-rgb: 18 18 20;
+  --mp-section-rgb: 28 28 31;
+  --mp-card-rgb: 39 39 42;
+  --mp-card-muted-rgb: 31 31 35;
+  --mp-ink-rgb: 250 250 250;
+  --mp-ink-secondary-rgb: 212 212 216;
+  --mp-ink-muted-rgb: 161 161 170;
+  --mp-ink-inverse-rgb: 24 24 27;
+  --mp-btc-soft-rgb: 42 31 20;
+  --mp-nostr-soft-rgb: 30 27 46;
+  --mp-border-rgb: 63 63 70;
+  --mp-border-strong-rgb: 82 82 91;
+  --hero-opacity: 0.28;
+  --mp-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.2);
+  --mp-shadow-card-hover: 0 12px 32px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(247, 147, 26, 0.12);
+  --mp-shadow-header: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 24px rgba(0, 0, 0, 0.3);
+  --mp-gradient-radial: radial-gradient(ellipse at top, rgba(247, 147, 26, 0.12) 0%, transparent 55%);
+  --mp-gradient-hero: linear-gradient(180deg, rgba(18, 18, 20, 0.75) 0%, rgba(18, 18, 20, 0.92) 45%, #121214 100%);
+  --mp-proof-bg: #052e16;
+  --mp-proof-border: #166534;
 }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--mp-canvas);
-  color: var(--mp-ink);
+  background-color: rgb(var(--mp-canvas-rgb));
+  color: rgb(var(--mp-ink-rgb));
   min-height: 100vh;
   -webkit-tap-highlight-color: transparent;
   @apply antialiased;
@@ -45,7 +80,7 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-btc-orange text-ink font-semibold px-5 py-2.5 rounded-full
+    @apply inline-flex items-center justify-center gap-2 bg-btc-orange text-ink-inverse font-semibold px-5 py-2.5 rounded-full
       shadow-sm transition-all duration-200 hover:bg-btc-orange-deep hover:shadow-md hover:-translate-y-px
       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-btc-orange;
   }
@@ -70,7 +105,10 @@ body {
   }
 
   .proof-badge {
-    @apply font-mono text-[10px] font-medium bg-emerald-50 border border-emerald-200 text-status-green px-2 py-0.5 rounded-mp-sm;
+    @apply font-mono text-[10px] font-medium px-2 py-0.5 rounded-mp-sm;
+    background-color: var(--mp-proof-bg);
+    border: 1px solid var(--mp-proof-border);
+    color: var(--mp-status-green);
   }
 
   .program-card {
@@ -115,7 +153,6 @@ body {
   }
 }
 
-/* Subtle paper grain — lighter than dark theme */
 body::before {
   content: '';
   position: fixed;
@@ -124,4 +161,8 @@ body::before {
   pointer-events: none;
   z-index: 9999;
   opacity: 0.5;
+}
+
+.dark body::before {
+  opacity: 0.25;
 }

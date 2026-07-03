@@ -1,6 +1,6 @@
 # MotoPass Design Context
 
-**BUILD:** 20260702-010 · **Last updated:** 2026-07-02
+**BUILD:** 20260702-011 · **Last updated:** 2026-07-02
 
 ## Why we moved to a lighter palette
 
@@ -21,6 +21,7 @@ The upgraded direction is **Luminous Sovereign**: warm light backgrounds, crisp 
 3. **Mobile-first:** Bottom nav, touch targets ≥44px, readable 16px body on small screens.
 4. **Orange discipline:** Primary CTAs and active nav only; never flood large backgrounds with orange.
 5. **Data density:** Explorer and modals may be denser; marketing pages stay spacious.
+6. **Dark mode:** Optional Sovereign Night palette — same surface ladder, inverted luminance. User toggle in header; not system-forced.
 
 ## Page patterns
 

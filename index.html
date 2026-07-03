@@ -23,6 +23,15 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Organization","name":"MotoPass","url":"https://motopass.giveabit.io","parentOrganization":{"@type":"Organization","name":"Give A Bit"}}
     </script>
+    <script>
+      (function () {
+        var t = localStorage.getItem('motopass-theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.style.colorScheme = 'dark';
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

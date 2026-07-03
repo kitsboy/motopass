@@ -1,24 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        canvas: '#F5F2EC',
-        section: '#EDE9E3',
-        card: '#FFFFFF',
-        'card-muted': '#FAFAF8',
+        canvas: 'rgb(var(--mp-canvas-rgb) / <alpha-value>)',
+        section: 'rgb(var(--mp-section-rgb) / <alpha-value>)',
+        card: {
+          DEFAULT: 'rgb(var(--mp-card-rgb) / <alpha-value>)',
+          muted: 'rgb(var(--mp-card-muted-rgb) / <alpha-value>)',
+        },
         ink: {
-          DEFAULT: '#18181B',
-          secondary: '#3F3F46',
-          muted: '#71717A',
-          inverse: '#FAFAFA',
+          DEFAULT: 'rgb(var(--mp-ink-rgb) / <alpha-value>)',
+          secondary: 'rgb(var(--mp-ink-secondary-rgb) / <alpha-value>)',
+          muted: 'rgb(var(--mp-ink-muted-rgb) / <alpha-value>)',
+          inverse: 'rgb(var(--mp-ink-inverse-rgb) / <alpha-value>)',
         },
-        btc: {
-          orange: '#F7931A',
-          'orange-deep': '#E07B0F',
-          'orange-soft': '#FFF7ED',
-        },
+        'btc-orange': '#F7931A',
+        'btc-orange-deep': '#E07B0F',
+        'btc-orange-soft': 'rgb(var(--mp-btc-soft-rgb) / <alpha-value>)',
         status: {
           green: '#16A34A',
           amber: '#D97706',
@@ -26,19 +27,18 @@ export default {
         },
         nostr: {
           violet: '#7C3AED',
-          'violet-soft': '#F5F3FF',
+          'violet-soft': 'rgb(var(--mp-nostr-soft-rgb) / <alpha-value>)',
         },
         mp: {
-          DEFAULT: '#D6D3D1',
-          strong: '#A8A29E',
+          DEFAULT: 'rgb(var(--mp-border-rgb) / <alpha-value>)',
+          strong: 'rgb(var(--mp-border-strong-rgb) / <alpha-value>)',
         },
-        /* legacy aliases — migrate to tokens above */
         sovereign: {
-          black: '#18181B',
-          void: '#FFFFFF',
-          silver: '#71717A',
+          black: 'rgb(var(--mp-ink-rgb) / <alpha-value>)',
+          void: 'rgb(var(--mp-card-rgb) / <alpha-value>)',
+          silver: 'rgb(var(--mp-ink-muted-rgb) / <alpha-value>)',
         },
-        freedom: { white: '#18181B' },
+        freedom: { white: 'rgb(var(--mp-ink-rgb) / <alpha-value>)' },
       },
       fontFamily: {
         display: ['Space Grotesk', 'system-ui', 'sans-serif'],
@@ -52,13 +52,13 @@ export default {
         'mp-xl': '20px',
       },
       boxShadow: {
-        card: '0 1px 3px rgba(24,24,27,0.08), 0 1px 2px rgba(24,24,27,0.04)',
-        'card-hover': '0 12px 32px rgba(24,24,27,0.12), 0 4px 8px rgba(247,147,26,0.08)',
-        header: '0 1px 0 rgba(24,24,27,0.06), 0 4px 24px rgba(24,24,27,0.04)',
+        card: 'var(--mp-shadow-card)',
+        'card-hover': 'var(--mp-shadow-card-hover)',
+        header: 'var(--mp-shadow-header)',
       },
       backgroundImage: {
-        'gradient-radial-soft': 'radial-gradient(ellipse at top, rgba(247,147,26,0.08) 0%, transparent 55%)',
-        'gradient-hero-fade': 'linear-gradient(180deg, rgba(245,242,236,0.72) 0%, rgba(245,242,236,0.95) 45%, #F5F2EC 100%)',
+        'gradient-radial-soft': 'var(--mp-gradient-radial)',
+        'gradient-hero-fade': 'var(--mp-gradient-hero)',
       },
       animation: {
         'ken-burns': 'ken-burns 28s ease-in-out infinite alternate',

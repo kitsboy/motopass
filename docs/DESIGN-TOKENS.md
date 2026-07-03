@@ -69,11 +69,25 @@
 | shadow-card-hover | `0 12px 32px rgba(24,24,27,0.12)` | `shadow-card-hover` |
 | shadow-header | `0 1px 0 rgba(24,24,27,0.06)` | `shadow-header` |
 
+## Dark mode (Sovereign Night)
+
+Toggle via `ThemeToggle` in header. Class `.dark` on `<html>` swaps all `--mp-*` variables.
+
+| Token | Light | Dark |
+|-------|-------|------|
+| canvas | `#F5F2EC` | `#121214` |
+| section | `#EDE9E3` | `#1C1C1F` |
+| card | `#FFFFFF` | `#27272A` |
+| ink | `#18181B` | `#FAFAFA` |
+| hero-image-opacity | `0.35` | `0.28` |
+
+Persistence: `localStorage` key `motopass-theme`. Respects `prefers-color-scheme` on first visit.
+
 ## Motion
 
 | Token | Value | Use |
 |-------|-------|-----|
-| hero-image-opacity | `0.35` | Landing background image |
+| hero-image-opacity | `0.35` (light) / `0.28` (dark) | Landing background image |
 | hero-ken-burns-duration | `28s` | Slow pan/zoom loop |
 | transition-fast | `150ms ease` | Hovers |
 | transition-base | `220ms ease` | Cards, nav |

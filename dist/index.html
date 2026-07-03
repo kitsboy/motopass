@@ -23,8 +23,17 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Organization","name":"MotoPass","url":"https://motopass.giveabit.io","parentOrganization":{"@type":"Organization","name":"Give A Bit"}}
     </script>
-    <script type="module" crossorigin src="/assets/index-8thVbJ2a.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Bo1b9aHn.css">
+    <script>
+      (function () {
+        var t = localStorage.getItem('motopass-theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.style.colorScheme = 'dark';
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-CBkX8-9C.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CfB9ic4P.css">
   </head>
   <body>
     <div id="root"></div>
