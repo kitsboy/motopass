@@ -8,8 +8,9 @@ import { EvolvingPitchRotator } from '../components/pitch/EvolvingPitchRotator'
 import { SavingsGraphs } from '../components/pitch/SavingsGraphs'
 import { usePrograms } from '../hooks/usePrograms'
 import { computePitchStats } from '../lib/pitchStats'
+import { BUILD_LABEL, BUILD_DATE } from '../lib/buildInfo'
 
-const PITCH_VERSION = '2026-07-02 • BUILD-013'
+const PITCH_VERSION = `${BUILD_DATE} • ${BUILD_LABEL}`
 
 export function PitchPage() {
   const { t } = useI18n()

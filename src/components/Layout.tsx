@@ -9,6 +9,7 @@ import { Logo } from './Logo'
 import { Footer } from './Footer'
 import { useI18n } from '../i18n/I18nContext'
 import { useUser } from '../context/UserContext'
+import { BUILD_LABEL } from '../lib/buildInfo'
 
 const NAV = [
   { to: '/', key: 'nav.pitch' as const, end: true },
@@ -41,7 +42,7 @@ export function Layout() {
                 <div className="font-display font-semibold tracking-tight text-sm sm:text-base truncate text-ink group-hover:text-btc-orange transition-colors">
                   MOTOPASS
                 </div>
-                <div className="text-[9px] text-ink-muted -mt-0.5 truncate font-mono">BUILD-014 · {t('tagline')}</div>
+                <div className="text-[9px] text-ink-muted -mt-0.5 truncate font-mono">{BUILD_LABEL} · {t('tagline')}</div>
               </div>
             </NavLink>
 

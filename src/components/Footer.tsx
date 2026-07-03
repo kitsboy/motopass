@@ -4,6 +4,7 @@ import { AgentCardKimi } from './AgentCardKimi'
 import { useI18n } from '../i18n/I18nContext'
 import { GiveABitLogoLink } from './footer/GiveABitLogoLink'
 import { FooterActionBar } from './footer/FooterActionBar'
+import { BUILD_LABEL } from '../lib/buildInfo'
 
 export function Footer() {
   const { t } = useI18n()
@@ -52,12 +53,12 @@ export function Footer() {
         <FooterActionBar />
 
         <div className="border-t border-mp pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-[10px] text-ink-muted font-mono">
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <span>© 2026 MotoPass</span>
-            <span className="text-mp-strong">·</span>
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-2">
+            <span className="leading-none">© 2026 MotoPass</span>
+            <span className="text-mp-strong hidden sm:inline" aria-hidden>·</span>
             <GiveABitLogoLink />
-            <span className="text-mp-strong">·</span>
-            <span>BUILD-20260702-014</span>
+            <span className="text-mp-strong" aria-hidden>·</span>
+            <span className="leading-none">{BUILD_LABEL}</span>
           </div>
           <span>{t('footer.truth')}</span>
         </div>

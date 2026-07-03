@@ -1,7 +1,7 @@
 /** EU-focused legal copy — MotoPass is not accepting applications or personal data yet */
 
 export const LEGAL_LAST_UPDATED = '2026-07-02'
-export const LEGAL_VERSION = 'BUILD-014-EU-1.0'
+export const LEGAL_VERSION = 'BUILD-016-EU-1.0'
 
 export const LEGAL_SECTIONS = [
   {
