@@ -1,4 +1,4 @@
 # motopass — Last Updated 2026-07-02 by Grok
 
-Brief: Self-evolving pitch — live savings graphs, motion hero
-Commit: c4306e2
+Brief: Footer modals — EU legal, careers, server costs
+Commit: (pending)

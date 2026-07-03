@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { Logo } from './Logo'
 import { AgentCardKimi } from './AgentCardKimi'
 import { useI18n } from '../i18n/I18nContext'
+import { GiveABitLogoLink } from './footer/GiveABitLogoLink'
+import { FooterActionBar } from './footer/FooterActionBar'
 
 export function Footer() {
   const { t } = useI18n()
@@ -23,7 +25,7 @@ export function Footer() {
               <a href="https://satohash.io" className="text-btc-orange font-medium hover:underline" target="_blank" rel="noopener noreferrer">
                 Satohash.io
               </a>
-              . Nostr identity. No email required.
+              . Nostr identity. Not accepting applications yet.
             </p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
               {[
@@ -47,8 +49,16 @@ export function Footer() {
           <AgentCardKimi />
         </div>
 
-        <div className="border-t border-mp pt-6 flex flex-col sm:flex-row justify-between gap-4 text-[10px] text-ink-muted font-mono">
-          <span>© 2026 MotoPass · Give A Bit · BUILD-20260702-010</span>
+        <FooterActionBar />
+
+        <div className="border-t border-mp pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-[10px] text-ink-muted font-mono">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span>© 2026 MotoPass</span>
+            <span className="text-mp-strong">·</span>
+            <GiveABitLogoLink />
+            <span className="text-mp-strong">·</span>
+            <span>BUILD-20260702-014</span>
+          </div>
           <span>{t('footer.truth')}</span>
         </div>
       </div>
