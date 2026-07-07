@@ -1,6 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { X } from 'lucide-react'
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 
 type Props = {
   open: boolean
@@ -21,6 +21,7 @@ const FOCUSABLE = 'button:not([disabled]), [href], input:not([disabled]), select
 export function ClassyModal({ open, onClose, title, subtitle, eyebrow, icon, children, maxWidth = 'lg', closeLabel = 'Close' }: Props) {
   const panelRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLElement | null>(null)
+  const reduced = useReducedMotion()
 
   useEffect(() => {
     if (!open) return
@@ -71,6 +72,7 @@ export function ClassyModal({ open, onClose, title, subtitle, eyebrow, icon, chi
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={reduced ? { duration: 0 } : undefined}
             onClick={onClose}
           />
           <motion.div
@@ -79,10 +81,10 @@ export function ClassyModal({ open, onClose, title, subtitle, eyebrow, icon, chi
             aria-modal="true"
             aria-labelledby="classy-modal-title"
             className={`relative w-full ${MAX[maxWidth]} max-h-[92vh] sm:max-h-[88vh] flex flex-col bg-card border border-mp sm:rounded-mp-xl rounded-t-mp-xl shadow-card-hover overflow-hidden`}
-            initial={{ opacity: 0, y: 48 }}
+            initial={reduced ? false : { opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 32 }}
-            transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+            exit={reduced ? undefined : { opacity: 0, y: 32 }}
+            transition={reduced ? { duration: 0 } : { type: 'spring', damping: 28, stiffness: 320 }}
             onClick={e => e.stopPropagation()}
           >
             <div className="shrink-0 px-5 sm:px-6 pt-5 pb-4 border-b border-mp bg-card-muted/40">

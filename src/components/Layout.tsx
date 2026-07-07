@@ -10,6 +10,7 @@ import { DesktopNav } from './nav/DesktopNav'
 import { MobileMenuSheet } from './nav/MobileMenuSheet'
 import { MobileBottomNav } from './nav/MobileBottomNav'
 import { MoreNavSheet } from './nav/MoreNavSheet'
+import { Breadcrumbs } from './nav/Breadcrumbs'
 import { useI18n } from '../i18n/I18nContext'
 import { FOOTER_VERSION } from '../lib/buildInfo'
 import { useScrollToTop } from '../hooks/useScrollToTop'
@@ -74,6 +75,9 @@ export function Layout() {
       </header>
 
       <main id="main-content" className="flex-1 relative">
+        <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-3">
+          <Breadcrumbs />
+        </div>
         <Outlet />
       </main>
 

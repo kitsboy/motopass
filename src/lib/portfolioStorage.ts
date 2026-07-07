@@ -23,6 +23,11 @@ export function togglePortfolio(id: number): number[] {
   return next
 }
 
+export function clearPortfolio(): number[] {
+  savePortfolio([])
+  return []
+}
+
 export function loadSavedFilters<T>(): T | null {
   try {
     const raw = localStorage.getItem(FILTERS_KEY)

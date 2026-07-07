@@ -38,7 +38,13 @@ export function ProfilePage() {
         <AnimatedBadge status="neutral">{formatT(t, 'profile.docsCount', { count: profile.documents.length })}</AnimatedBadge>
       </div>
 
-      <FileUpload items={uploadItems} onItemsChange={setUploadItems} onFileAdded={handleFileAdded} />
+      <FileUpload
+        items={uploadItems}
+        onItemsChange={setUploadItems}
+        onFileAdded={handleFileAdded}
+        title={t('upload.dropTitle')}
+        description={t('upload.dropDescription')}
+      />
 
       {profile.documents.length > 0 && (
         <div className="mt-8 card">

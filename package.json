@@ -17,6 +17,8 @@
     "format": "prettier --check src",
     "prettier:check": "prettier --check src",
     "validate:data": "node scripts/validate-data.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "bundle:check": "node scripts/check-bundle-size.mjs",
     "health-check": "bash scripts/health-check.sh",
     "verify:goal": "bash scripts/verify-goal.sh",
     "deploy:verify": "npm run build && echo 'Build OK — commit dist/ and push to origin main for Cloudflare Pages deploy'",

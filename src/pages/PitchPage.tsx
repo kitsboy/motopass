@@ -15,6 +15,7 @@ import {
   latestProofTimestamp,
 } from '../lib/pitchStats'
 import { BUILD_ID, BUILD_DATE } from '../lib/buildInfo'
+import { SeoHead } from '../components/SeoHead'
 import type { TranslationKey } from '../i18n/translations'
 
 const PITCH_VERSION = `${BUILD_DATE} • ${BUILD_ID}`
@@ -53,8 +54,19 @@ export function PitchPage() {
     [t],
   )
 
+  const faqJsonLd = useMemo(() => ({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: t('pitch.faq.q1'), acceptedAnswer: { '@type': 'Answer', text: t('pitch.faq.a1') } },
+      { '@type': 'Question', name: t('pitch.faq.q2'), acceptedAnswer: { '@type': 'Answer', text: t('pitch.faq.a2') } },
+      { '@type': 'Question', name: t('pitch.faq.q3'), acceptedAnswer: { '@type': 'Answer', text: t('pitch.faq.a3') } },
+    ],
+  }), [t])
+
   return (
     <div className="bg-mp-canvas">
+      <SeoHead jsonLdOnly jsonLd={faqJsonLd} />
       <section className="relative isolate overflow-hidden">
         <HeroMotionBackground />
 

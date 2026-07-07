@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Check, Copy } from 'lucide-react'
+import { useI18n } from '../../i18n/I18nContext'
 
 type Props = { label: string; value: string; mono?: boolean }
 
 export function CopyField({ label, value, mono = true }: Props) {
+  const { t } = useI18n()
   const [copied, setCopied] = useState(false)
 
   const copy = async () => {
@@ -32,6 +34,9 @@ export function CopyField({ label, value, mono = true }: Props) {
           {copied ? <Check size={16} className="text-status-green" /> : <Copy size={16} />}
         </button>
       </div>
+      <span className="sr-only" aria-live="polite" aria-atomic="true">
+        {copied ? t('common.copied') : ''}
+      </span>
     </div>
   )
 }

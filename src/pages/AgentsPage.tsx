@@ -3,19 +3,35 @@ import { NostrConnect } from '../components/NostrConnect'
 import { AgentCardKimi } from '../components/AgentCardKimi'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
+import type { TranslationKey } from '../i18n/translations'
 
-const AGENTS = [
-  { country: 'Uruguay', region: 'South America', npub: 'npub1motopass…uy', status: 'Active', focus: 'RBI territorial tax, crypto-friendly residency' },
-  { country: 'El Salvador', region: 'Central America', npub: 'npub1motopass…sv', status: 'Active', focus: 'Bitcoin legal tender pathways, Lightning pilots' },
-  { country: 'UAE', region: 'Middle East', npub: 'npub1motopass…ae', status: 'Beta', focus: 'Golden visa, free zone investor routes' },
-  { country: 'Singapore', region: 'Asia', npub: 'npub1motopass…sg', status: 'Beta', focus: 'Family office, tech investor residency' },
-  { country: 'Portugal', region: 'Europe', npub: 'npub1motopass…pt', status: 'Coming', focus: 'D7/D8 pathways, policy monitoring' },
-  { country: 'Georgia', region: 'Europe', npub: 'npub1motopass…ge', status: 'Coming', focus: 'Low-cost residency, crypto business setup' },
+type AgentStatus = 'active' | 'beta' | 'coming'
+
+const AGENTS: {
+  id: string
+  country: string
+  regionKey: TranslationKey
+  focusKey: TranslationKey
+  npub: string
+  status: AgentStatus
+}[] = [
+  { id: 'uy', country: 'Uruguay', regionKey: 'agents.uy.region', focusKey: 'agents.uy.focus', npub: 'npub1motopass…uy', status: 'active' },
+  { id: 'sv', country: 'El Salvador', regionKey: 'agents.sv.region', focusKey: 'agents.sv.focus', npub: 'npub1motopass…sv', status: 'active' },
+  { id: 'ae', country: 'UAE', regionKey: 'agents.ae.region', focusKey: 'agents.ae.focus', npub: 'npub1motopass…ae', status: 'beta' },
+  { id: 'sg', country: 'Singapore', regionKey: 'agents.sg.region', focusKey: 'agents.sg.focus', npub: 'npub1motopass…sg', status: 'beta' },
+  { id: 'pt', country: 'Portugal', regionKey: 'agents.pt.region', focusKey: 'agents.pt.focus', npub: 'npub1motopass…pt', status: 'coming' },
+  { id: 'ge', country: 'Georgia', regionKey: 'agents.ge.region', focusKey: 'agents.ge.focus', npub: 'npub1motopass…ge', status: 'coming' },
 ]
 
-const statusClass = (s: string) =>
-  s === 'Active' ? 'proof-badge' :
-  s === 'Beta' ? 'chip border-status-amber/40 bg-btc-orange-soft text-status-amber' :
+const STATUS_KEYS: Record<AgentStatus, TranslationKey> = {
+  active: 'agents.statusActive',
+  beta: 'agents.statusBeta',
+  coming: 'agents.statusComing',
+}
+
+const statusClass = (s: AgentStatus) =>
+  s === 'active' ? 'proof-badge' :
+  s === 'beta' ? 'chip border-status-amber/40 bg-btc-orange-soft text-status-amber' :
   'chip'
 
 export function AgentsPage() {
@@ -23,47 +39,49 @@ export function AgentsPage() {
 
   return (
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
-      <PageHeader eyebrow="LIAISON AGENTS" title={t('agents.title')} subtitle={t('agents.sub')} />
+      <PageHeader eyebrow={t('agents.eyebrow')} title={t('agents.title')} subtitle={t('agents.sub')} />
 
       <div className="mb-10 max-w-xl">
         <AgentCardKimi />
       </div>
 
-      <h2 className="font-display font-semibold text-lg text-ink mb-4">Country liaison agents (via Kimi)</h2>
+      <h2 className="font-display font-semibold text-lg text-ink mb-4">{t('agents.gridTitle')}</h2>
       <div className="mb-8 flex flex-wrap items-center gap-3">
         <NostrConnect />
-        <span className="text-xs text-ink-muted">Connect Nostr — Kimi routes you to the right country agent</span>
+        <span className="text-xs text-ink-muted">{t('agents.connectHint')}</span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {AGENTS.map(a => (
-          <div key={a.country} className="card-elevated">
+          <div key={a.id} className="card-elevated">
             <div className="flex justify-between items-start mb-3">
               <div>
                 <h2 className="font-display font-semibold text-lg text-ink">{a.country}</h2>
-                <p className="text-xs text-ink-muted">{a.region}</p>
+                <p className="text-xs text-ink-muted">{t(a.regionKey)}</p>
               </div>
-              <span className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full border ${statusClass(a.status)}`}>{a.status}</span>
+              <span className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full border ${statusClass(a.status)}`}>
+                {t(STATUS_KEYS[a.status])}
+              </span>
             </div>
-            <p className="text-sm text-ink-secondary mb-4 leading-relaxed">{a.focus}</p>
+            <p className="text-sm text-ink-secondary mb-4 leading-relaxed">{t(a.focusKey)}</p>
             <div className="flex items-center gap-2 text-xs font-mono text-nostr-violet bg-nostr-violet-soft rounded-mp-md px-3 py-2 mb-4 border border-nostr-violet/15">
               <Zap size={12} /> {a.npub}
             </div>
             <button
               type="button"
               disabled
-              title="Coming soon"
+              aria-disabled="true"
+              title={t('agents.messageSoon')}
               className="btn-secondary w-full text-sm !py-2 opacity-50 cursor-not-allowed"
             >
-              <MessageCircle size={14} /> Message via Nostr
+              <MessageCircle size={14} /> {t('agents.message')}
             </button>
           </div>
         ))}
       </div>
 
       <p className="text-xs text-ink-muted mt-10 text-center max-w-xl mx-auto leading-relaxed">
-        Liaison agents assist verified Nostr users with official passport office conversations.
-        All agent guidance is informational — not legal advice. Stamped interactions anchor to Satohash.
+        {t('agents.disclaimer')}
       </p>
     </div>
   )

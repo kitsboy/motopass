@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { useUser } from '../context/UserContext'
 import { ProgressTracker } from '../components/ProgressTracker'
 import { PaymentMethods } from '../components/PaymentMethods'
@@ -17,16 +17,20 @@ export function DashboardPage() {
   const { t } = useI18n()
   const { profile, isLoggedIn, setProfile, logout } = useUser()
   const [logoutOpen, setLogoutOpen] = useState(false)
+  const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!isLoggedIn || !profile) return
+    const next = searchParams.get('next')
+    if (next && next.startsWith('/') && next !== '/dashboard') {
+      navigate(next, { replace: true })
+    }
+  }, [isLoggedIn, profile, searchParams, navigate])
 
   if (!isLoggedIn || !profile) {
-    return (
-      <div className="px-4 py-20 text-center max-w-md mx-auto">
-        <div className="card-elevated py-12">
-          <p className="text-ink-secondary mb-6">{t('dashboard.connectPrompt')}</p>
-          <Link to="/register" className="btn-primary">{t('dashboard.registerCta')}</Link>
-        </div>
-      </div>
-    )
+    const next = searchParams.get('next') || '/dashboard'
+    return <Navigate to={`/register?next=${encodeURIComponent(next)}`} replace />
   }
 
   const handlePay = (rail: PaymentRail, amountSats: number, _invoice: PaymentInvoice) => {
@@ -87,6 +91,7 @@ export function DashboardPage() {
       <ClassyModal
         open={logoutOpen}
         onClose={() => setLogoutOpen(false)}
+        closeLabel={t('modal.close')}
         title={t('dashboard.logoutTitle')}
         subtitle={t('dashboard.logoutSubtitle')}
         maxWidth="md"

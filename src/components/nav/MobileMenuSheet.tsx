@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { PrefetchNavLink } from './PrefetchNavLink'
 import { ExternalLink, User, UserPlus, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { BlockHeight } from '../BlockHeight'
@@ -77,9 +78,9 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
           <p className="nav-section-label mb-1.5 px-0.5">{t('nav.explore')}</p>
           <nav className="grid grid-cols-3 gap-1.5">
             {EXPLORE.map(n => (
-              <NavLink key={n.to} to={n.to} end={'end' in n ? n.end : false} onClick={onClose} className={({ isActive }) => gridLink(isActive)}>
+              <PrefetchNavLink key={n.to} to={n.to} end={'end' in n ? n.end : false} onClick={onClose} className={({ isActive }) => gridLink(isActive)}>
                 {t(n.key)}
-              </NavLink>
+              </PrefetchNavLink>
             ))}
           </nav>
         </div>
@@ -88,9 +89,9 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
           <p className="nav-section-label mb-1.5 px-0.5">{t('nav.tools')}</p>
           <nav className="grid grid-cols-3 gap-1.5">
             {TOOLS.map(n => (
-              <NavLink key={n.to} to={n.to} onClick={onClose} className={({ isActive }) => gridLink(isActive)}>
+              <PrefetchNavLink key={n.to} to={n.to} onClick={onClose} className={({ isActive }) => gridLink(isActive)}>
                 {t(n.key)}
-              </NavLink>
+              </PrefetchNavLink>
             ))}
           </nav>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ExternalLink, Shield } from 'lucide-react'
+import { ExternalLink, Shield, Copy, Check } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { toCinematicProgram } from '../lib/programAdapter'
 import { buildProgramUpdateEvent, serializeNostrEvent } from '../lib/nostrEvents'
@@ -17,6 +17,7 @@ export function VaultPage() {
   const { programs, loading, error } = usePrograms()
   const [nostrEvent, setNostrEvent] = useState('')
   const [filter, setFilter] = useState<VaultFilter>('all')
+  const [copied, setCopied] = useState(false)
 
   const stamped = programs
     .filter(p => p.satohash_proofs?.length)
@@ -142,12 +143,28 @@ export function VaultPage() {
 
       {nostrEvent && (
         <div className="rounded-card border border-mp-border bg-mp-card p-6 shadow-mp-1 mt-8">
-          <h3 className="text-sm font-semibold text-ink mb-3 flex items-center gap-2">
-            <Shield size={14} className="text-btc-orange" /> Nostr event stub
-          </h3>
+          <div className="flex items-center justify-between gap-3 mb-3">
+            <h3 className="text-sm font-semibold text-ink flex items-center gap-2">
+              <Shield size={14} className="text-btc-orange" /> {t('vault.nostrStub')}
+            </h3>
+            <button
+              type="button"
+              onClick={async () => {
+                await navigator.clipboard.writeText(nostrEvent)
+                setCopied(true)
+                setTimeout(() => setCopied(false), 2000)
+              }}
+              className="chip text-xs inline-flex items-center gap-1"
+              aria-label={t('vault.copyNostr')}
+            >
+              {copied ? <Check size={12} className="text-status-green" /> : <Copy size={12} />}
+              {t('vault.copyNostr')}
+            </button>
+          </div>
           <pre className="text-[10px] font-mono text-ink-secondary overflow-x-auto whitespace-pre-wrap bg-mp-card-muted rounded-mp-md p-4 border border-mp-border">
             {nostrEvent}
           </pre>
+          <span className="sr-only" aria-live="polite">{copied ? t('vault.copied') : ''}</span>
         </div>
       )}
     </div>

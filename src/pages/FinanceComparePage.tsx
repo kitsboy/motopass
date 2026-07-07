@@ -10,6 +10,9 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import { parseIdList, serializeIdList } from '../lib/urlState'
+import { toCinematicProgram } from '../lib/programAdapter'
+import { ProgramModal } from '../components/programs/ProgramModal'
+import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
 
 function parseNumeric(val: string): number | null {
@@ -35,6 +38,7 @@ export function FinanceComparePage() {
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebouncedValue(search, 150)
   const [listOpen, setListOpen] = useState(false)
+  const [modalProgram, setModalProgram] = useState<CinematicProgram | null>(null)
   const listId = 'compare-program-list'
 
   useEffect(() => {
@@ -190,7 +194,18 @@ export function FinanceComparePage() {
                   <thead>
                     <tr className="border-b border-mp-border bg-mp-card-muted/60">
                       <th scope="col" className="p-3 text-left text-ink-muted text-xs uppercase">{t('compare.metric')}</th>
-                      {compare.map(p => <th key={p.id} scope="col" className="p-3 text-left font-display text-ink">{p.name}</th>)}
+                      {compare.map(p => (
+                        <th key={p.id} scope="col" className="p-3 text-left font-display text-ink">
+                          <button
+                            type="button"
+                            onClick={() => setModalProgram(toCinematicProgram(p))}
+                            className="hover:text-accent text-left transition-colors"
+                            aria-label={formatT(t, 'compare.openProgram', { name: p.name })}
+                          >
+                            {p.name}
+                          </button>
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
@@ -214,7 +229,13 @@ export function FinanceComparePage() {
               <div className="md:hidden grid gap-3">
                 {compare.map(p => (
                   <div key={p.id} className="rounded-card border border-mp-border bg-mp-card p-4">
-                    <h3 className="font-display font-semibold text-ink mb-3">{p.flag} {p.name}</h3>
+                    <button
+                      type="button"
+                      onClick={() => setModalProgram(toCinematicProgram(p))}
+                      className="font-display font-semibold text-ink mb-3 text-left hover:text-accent transition-colors"
+                    >
+                      {p.flag} {p.name}
+                    </button>
                     <dl className="text-xs space-y-2">
                       {rows.map(r => (
                         <div key={r.label} className="flex justify-between gap-2 border-b border-mp/40 pb-1.5">
@@ -234,6 +255,8 @@ export function FinanceComparePage() {
           )}
         </>
       )}
+
+      <ProgramModal program={modalProgram} onClose={() => setModalProgram(null)} />
     </div>
   )
 }

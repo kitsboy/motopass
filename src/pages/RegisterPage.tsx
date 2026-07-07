@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useMemo, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Zap, ArrowRight } from 'lucide-react'
 import { connectNostr, hasNostrExtension } from '../lib/nostr'
 import { useUser } from '../context/UserContext'
@@ -8,17 +8,33 @@ import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
 import { usePrograms } from '../hooks/usePrograms'
 import { useI18n } from '../i18n/I18nContext'
+import { isResearchProgram } from '../lib/programAdapter'
 
 export function RegisterPage() {
   const { t } = useI18n()
   const { programs } = usePrograms()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const { setProfile } = useUser()
   const [step, setStep] = useState(1)
   const [nostr, setNostr] = useState<{ npub: string; pubkey: string } | null>(null)
   const [name, setName] = useState('')
   const [program, setProgram] = useState('')
   const [loading, setLoading] = useState(false)
+
+  const eligible = useMemo(() => programs.filter(p => !isResearchProgram(p)), [programs])
+  const byRegion = useMemo(() => {
+    const map = new Map<string, typeof eligible>()
+    for (const p of eligible) {
+      const list = map.get(p.region) ?? []
+      list.push(p)
+      map.set(p.region, list)
+    }
+    return [...map.entries()].sort(([a], [b]) => a.localeCompare(b))
+  }, [eligible])
+
+  const selectedProgram = programs.find(p => p.name === program)
+  const isStubSelected = selectedProgram ? isResearchProgram(selectedProgram) : false
 
   const connect = async () => {
     if (!hasNostrExtension()) {
@@ -32,13 +48,14 @@ export function RegisterPage() {
   }
 
   const submit = () => {
-    if (!nostr || !name.trim() || !program) return
+    if (!nostr || !name.trim() || !program || isStubSelected) return
     setProfile({
       npub: nostr.npub, pubkey: nostr.pubkey, displayName: name.trim(), program,
       country: program.split(' ')[0], agentId: 'kimi', agentName: 'Kimi',
       status: 'registered', registeredAt: new Date().toISOString(), documents: [], payments: [],
     } satisfies UserProfile)
-    navigate('/dashboard')
+    const next = searchParams.get('next')
+    navigate(next && next.startsWith('/') ? next : '/dashboard')
   }
 
   return (
@@ -75,10 +92,19 @@ export function RegisterPage() {
             <label htmlFor="register-program" className="text-xs font-medium text-ink-muted block mb-1.5">{t('register.targetProgram')}</label>
             <select id="register-program" value={program} onChange={e => setProgram(e.target.value)} className="select-field">
               <option value="">{t('register.select')}</option>
-              {programs.map(p => <option key={p.id} value={p.name}>{p.flag} {p.name}</option>)}
+              {byRegion.map(([region, list]) => (
+                <optgroup key={region} label={region}>
+                  {list.map(p => (
+                    <option key={p.id} value={p.name}>{p.flag} {p.name}</option>
+                  ))}
+                </optgroup>
+              ))}
             </select>
+            {isStubSelected && (
+              <p className="text-xs text-status-amber mt-2" role="alert">{t('register.stubWarning')}</p>
+            )}
           </div>
-          <button type="button" onClick={() => setStep(3)} disabled={!name.trim() || !program} className="btn-primary w-full flex items-center justify-center gap-2">
+          <button type="button" onClick={() => setStep(3)} disabled={!name.trim() || !program || isStubSelected} className="btn-primary w-full flex items-center justify-center gap-2">
             {t('register.continue')} <ArrowRight size={14} />
           </button>
         </div>
@@ -99,7 +125,7 @@ export function RegisterPage() {
               </div>
             ))}
           </dl>
-          <button type="button" onClick={submit} className="btn-primary w-full">{t('register.submit')}</button>
+          <button type="button" onClick={submit} disabled={isStubSelected} className="btn-primary w-full">{t('register.submit')}</button>
         </div>
       )}
     </div>

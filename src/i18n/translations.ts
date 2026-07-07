@@ -15,7 +15,7 @@ import {
 export type TranslationKey =
   | 'nav.pitch' | 'nav.portfolio' | 'nav.programs' | 'nav.simulator' | 'nav.compare' | 'nav.vault'
   | 'nav.blog' | 'nav.verify' | 'nav.agents' | 'nav.apply' | 'nav.dashboard' | 'nav.register' | 'nav.dashboardShort'
-  | 'nav.demo' | 'nav.more' | 'nav.language' | 'nav.menu' | 'nav.close' | 'nav.explore' | 'nav.tools' | 'nav.skip'
+  | 'nav.profile' | 'nav.demo' | 'nav.more' | 'nav.language' | 'nav.menu' | 'nav.close' | 'nav.explore' | 'nav.tools' | 'nav.skip'
   | 'tagline' | 'pitch.hero' | 'pitch.sub' | 'pitch.cta' | 'pitch.evolve' | 'pitch.stackSimulator'
   | 'pitch.feature.jurisdictions.title' | 'pitch.feature.jurisdictions.sub'
   | 'pitch.feature.satohash.title' | 'pitch.feature.satohash.sub'
@@ -60,6 +60,7 @@ const en: Dict = {
   'nav.dashboard': 'Dashboard',
   'nav.register': 'Register',
   'nav.dashboardShort': 'Dash',
+  'nav.profile': 'Profile',
   'nav.blog': 'Insights',
   'nav.verify': 'Verify',
   'nav.agents': 'Agents',

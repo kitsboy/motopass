@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { DEFAULT_OG_IMAGE, SITE_NAME, formatPageTitle, absoluteUrl } from '../lib/seo'
+import { LANGUAGES } from '../i18n/languages'
 
 type JsonLd = Record<string, unknown> | Record<string, unknown>[]
 
@@ -38,6 +39,10 @@ export function SeoHead({
       <title>{pageTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
+      {LANGUAGES.map((lang) => (
+        <link key={lang.code} rel="alternate" hrefLang={lang.code} href={url} />
+      ))}
+      <link rel="alternate" hrefLang="x-default" href={url} />
       {noIndex ? <meta name="robots" content="noindex, nofollow" /> : null}
 
       <meta property="og:title" content={pageTitle} />

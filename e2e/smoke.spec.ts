@@ -101,4 +101,24 @@ test.describe('smoke', () => {
     const text = await code.textContent()
     expect(text?.trim()).toMatch(/^[a-f0-9]{64}$/)
   })
+
+  test('404 page has noindex meta', async ({ page }) => {
+    await page.goto('/this-route-does-not-exist-xyz')
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/)
+  })
+
+  test('Arabic sets RTL document direction', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.goto('/')
+    const langBtn = page.getByRole('button', { name: /language/i }).first()
+    await langBtn.click()
+    await page.getByRole('option').filter({ hasText: 'العربية' }).click()
+    await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
+    await expect(page.locator('html')).toHaveAttribute('lang', 'ar')
+  })
+
+  test('dashboard redirects logged-out users to register with next', async ({ page }) => {
+    await page.goto('/dashboard?next=/profile')
+    await expect(page).toHaveURL(/\/register\?next=%2Fprofile/)
+  })
 })

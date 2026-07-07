@@ -11,20 +11,32 @@ import { CardSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { PageHeader } from '../components/ui/PageHeader'
 import { StatCard } from '../components/ui/StatCard'
+import { ClassyModal } from '../components/ui/ClassyModal'
 import { useI18n } from '../i18n/I18nContext'
+
+type SortKey = 'name' | 'score' | 'invest'
 
 export function PortfolioPage() {
   const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
-  const { portfolio, toggle: togglePortfolio } = usePortfolio()
+  const { portfolio, toggle: togglePortfolio, clearAll } = usePortfolio()
   const [selected, setSelected] = useState<CinematicProgram | null>(null)
   const [tab, setTab] = useState<ProgramModalTab>('Overview')
+  const [sort, setSort] = useState<SortKey>('name')
+  const [removeAllOpen, setRemoveAllOpen] = useState(false)
 
   const acquired = useMemo(
     () => programs.filter((p) => portfolio.includes(p.id)),
     [programs, portfolio],
   )
-  const cinematic = useMemo(() => toCinematicPrograms(acquired), [acquired])
+  const cinematic = useMemo(() => {
+    const list = toCinematicPrograms(acquired)
+    return [...list].sort((a, b) => {
+      if (sort === 'score') return (b.cryptoFriendlyScore ?? 0) - (a.cryptoFriendlyScore ?? 0)
+      if (sort === 'invest') return b.minInvestment - a.minInvestment
+      return a.country.localeCompare(b.country)
+    })
+  }, [acquired, sort])
   const totalInvest = acquired.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
   const avgScore = acquired.length
     ? acquired.reduce((s, p) => s + (p.finance.crypto_friendly_score ?? 0), 0) / acquired.length
@@ -42,9 +54,39 @@ export function PortfolioPage() {
     setSelected(null)
   }
 
+  const confirmRemoveAll = () => {
+    clearAll()
+    setSelected(null)
+    setRemoveAllOpen(false)
+  }
+
   return (
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
-      <PageHeader eyebrow={t('portfolio.eyebrow')} title={t('portfolio.title')} subtitle={t('portfolio.subtitle')} />
+      <PageHeader
+        eyebrow={t('portfolio.eyebrow')}
+        title={t('portfolio.title')}
+        subtitle={t('portfolio.subtitle')}
+        actions={
+          acquired.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <label htmlFor="portfolio-sort" className="text-xs text-ink-muted">{t('portfolio.sortBy')}</label>
+              <select
+                id="portfolio-sort"
+                value={sort}
+                onChange={(e) => setSort(e.target.value as SortKey)}
+                className="select-field !py-1.5 !text-xs !w-auto"
+              >
+                <option value="name">{t('portfolio.sortName')}</option>
+                <option value="score">{t('portfolio.sortScore')}</option>
+                <option value="invest">{t('portfolio.sortInvest')}</option>
+              </select>
+              <button type="button" onClick={() => setRemoveAllOpen(true)} className="chip text-xs hover:!text-status-red">
+                {t('portfolio.removeAll')}
+              </button>
+            </div>
+          ) : undefined
+        }
+      />
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
         <StatCard value={acquired.length} label={t('portfolio.statPrograms')} accent icon={<Layers size={18} />} />
@@ -81,6 +123,24 @@ export function PortfolioPage() {
         onAddToStack={handleAddToStack}
         onClose={() => setSelected(null)}
       />
+
+      <ClassyModal
+        open={removeAllOpen}
+        onClose={() => setRemoveAllOpen(false)}
+        closeLabel={t('modal.close')}
+        title={t('portfolio.removeAllTitle')}
+        subtitle={t('portfolio.removeAllConfirm')}
+        maxWidth="md"
+      >
+        <div className="flex gap-2 justify-end">
+          <button type="button" onClick={() => setRemoveAllOpen(false)} className="btn-secondary text-sm">
+            {t('common.cancel')}
+          </button>
+          <button type="button" onClick={confirmRemoveAll} className="btn-primary text-sm !bg-status-red hover:!bg-status-red/90">
+            {t('portfolio.removeAll')}
+          </button>
+        </div>
+      </ClassyModal>
     </div>
   )
 }

@@ -59,6 +59,11 @@ export function isStubProofUrl(url: string | undefined): boolean {
   return STUB_PROOF_RE.test(url)
 }
 
+/** User-added research placeholders — not valid registration targets. */
+export function isResearchProgram(p: DataProgram): boolean {
+  return p.status === 'Researching' || p.id > 100_000
+}
+
 export function parseMonthsToDays(raw: string | null | undefined): number {
   if (!raw) return 365
   const m = raw.match(/(\d+)(?:\s*-\s*(\d+))?/)

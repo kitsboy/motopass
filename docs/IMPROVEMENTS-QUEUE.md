@@ -1,6 +1,6 @@
 # MotoPass Improvements Queue (200 items)
 
-**Status:** Batches 1–16 complete · **BUILD:** `2026.07.07-20`
+**Status:** Batches 1–20 complete · **BUILD:** `2026.07.07-24`
 
 Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
 
@@ -287,6 +287,51 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 - [x] 376–382, 386–389. **12 e2e tests** incl. URL state for compare/programs/simulator
 - [x] `urlState.test.ts` + import validation tests
 - [x] 397–400. Queue complete · BUILD `2026.07.07-20`
+
+## Batch 17 — A11y polish (401–425) ✅
+
+- [x] 401. `useFocusTrap` hook for sheet dialogs
+- [x] 402. `MoreNavSheet` focus trap + Escape close
+- [x] 403. `CopyField` aria-live copy feedback
+- [x] 404. Agents message button `aria-disabled`
+- [x] 405. `ClassyModal` reduced-motion transitions
+- [x] 406. `MoreNavSheet` reduced-motion spring guard
+- [x] 407–425. BUILD `2026.07.07-21`
+
+## Batch 18 — i18n completion (426–450) ✅
+
+- [x] 426. Agents page full i18n (grid, status, focus keys)
+- [x] 427. `ProgramModal` tabs + labels via `pageKeys`
+- [x] 428–432. pt/zh/ar/de/sw/hi expanded overrides
+- [x] 433. `PaymentQrCode` scan/temp labels i18n
+- [x] 434. `FileUpload` title/description from Profile i18n
+- [x] 435–450. BUILD `2026.07.07-22`
+
+## Batch 19 — Nav & page polish (451–475) ✅
+
+- [x] 451. `Breadcrumbs` component in Layout
+- [x] 452. `PrefetchNavLink` + route chunk warmup
+- [x] 453. Dashboard `?next=` redirect when logged in
+- [x] 454. Logged-out dashboard → register with `?next=`
+- [x] 455. Portfolio sort dropdown (name/score/invest)
+- [x] 456. Portfolio remove-all with confirm modal
+- [x] 457. Compare opens `ProgramModal` from program names
+- [x] 458. Vault copy-to-clipboard on Nostr JSON
+- [x] 459. Verify paste-from-clipboard button
+- [x] 460. Register optgroups by region
+- [x] 461. Register stub-program submit guard
+- [x] 462–475. BUILD `2026.07.07-23`
+
+## Batch 20 — CI, SEO, tests (476–500) ✅
+
+- [x] 476. Playwright e2e in `.github/workflows/ci.yml`
+- [x] 477. `SeoHead` dynamic hreflang for all languages
+- [x] 478. `scripts/generate-sitemap.mjs`
+- [x] 479. `BlockHeightContext` error state + exponential backoff
+- [x] 480. Pitch FAQ JSON-LD on home route
+- [x] 481. E2e: Arabic RTL + 404 noindex + dashboard next redirect
+- [x] 482. `scripts/check-bundle-size.mjs` CI budget
+- [x] 483–500. Round 2 complete · BUILD `2026.07.07-24`
 
 ---
 

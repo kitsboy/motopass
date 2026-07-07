@@ -4,7 +4,7 @@ import { useI18n } from '../i18n/I18nContext'
 
 export function BlockHeight({ variant = 'default' }: { variant?: 'default' | 'hero' }) {
   const { t } = useI18n()
-  const { height } = useBlockHeight()
+  const { height, error, retry } = useBlockHeight()
   const isHero = variant === 'hero'
 
   return (
@@ -17,13 +17,26 @@ export function BlockHeight({ variant = 'default' }: { variant?: 'default' | 'he
     >
       <Bitcoin size={12} className="text-btc-orange" />
       <span>{t('block.live')}</span>
-      <span
-        className={isHero ? 'font-semibold text-mp-on-hero' : 'text-ink font-semibold'}
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {height ? `#${height.toLocaleString()}` : '…'}
-      </span>
+      {error && !height ? (
+        <>
+          <span className={isHero ? 'text-mp-on-hero-muted' : 'text-ink-muted'}>{t('block.error')}</span>
+          <button
+            type="button"
+            onClick={retry}
+            className={`underline ${isHero ? 'text-mp-on-hero' : 'text-accent'}`}
+          >
+            {t('block.retry')}
+          </button>
+        </>
+      ) : (
+        <span
+          className={isHero ? 'font-semibold text-mp-on-hero' : 'text-ink font-semibold'}
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {height ? `#${height.toLocaleString()}` : '…'}
+        </span>
+      )}
     </div>
   )
 }

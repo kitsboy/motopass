@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { PrefetchNavLink } from './PrefetchNavLink'
 import { useI18n } from '../../i18n/I18nContext'
 import { useUser } from '../../context/UserContext'
 
@@ -34,27 +34,27 @@ export function DesktopNav() {
         <span className="nav-section-label shrink-0">{t('nav.explore')}</span>
         <div className="flex items-center gap-0.5 shrink-0">
           {PRIMARY.map(n => (
-            <NavLink key={n.to} to={n.to} end={'end' in n ? n.end : false} className={({ isActive }) => pill(isActive)}>
+            <PrefetchNavLink key={n.to} to={n.to} end={'end' in n ? n.end : false} className={({ isActive }) => pill(isActive)}>
               {t(n.key)}
-            </NavLink>
+            </PrefetchNavLink>
           ))}
         </div>
         <span className="nav-divider" aria-hidden="true" />
         <span className="nav-section-label shrink-0">{t('nav.tools')}</span>
         <div className="flex items-center gap-0.5 min-w-0">
           {TOOLS.map(n => (
-            <NavLink key={n.to} to={n.to} className={({ isActive }) => pill(isActive)}>
+            <PrefetchNavLink key={n.to} to={n.to} className={({ isActive }) => pill(isActive)}>
               {t(n.key)}
-            </NavLink>
+            </PrefetchNavLink>
           ))}
         </div>
         <span className="nav-divider ml-auto shrink-0" aria-hidden="true" />
-        <NavLink
+        <PrefetchNavLink
           to={isLoggedIn ? '/dashboard' : '/register'}
           className={({ isActive }) => (isActive ? 'nav-pill nav-pill-violet' : 'nav-pill nav-pill-violet-muted')}
         >
           {isLoggedIn ? t('nav.dashboard') : t('nav.register')}
-        </NavLink>
+        </PrefetchNavLink>
       </div>
     </nav>
   )

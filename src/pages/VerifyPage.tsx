@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { ExternalLink, Shield, Copy, Check } from 'lucide-react'
+import { ExternalLink, Shield, Copy, Check, ClipboardPaste } from 'lucide-react'
 import { hashApplicationPayload, satohashStampGuideUrl, satohashVerifyUrl } from '../lib/satohash'
 import { BlockHeight } from '../components/BlockHeight'
 import { useI18n } from '../i18n/I18nContext'
@@ -22,6 +22,15 @@ export function VerifyPage() {
     setTimeout(() => setCopied(false), 2000)
   }
 
+  const paste = async () => {
+    try {
+      const text = await navigator.clipboard.readText()
+      if (text.trim()) setInput(text.trim())
+    } catch {
+      /* clipboard blocked */
+    }
+  }
+
   return (
     <div className="px-4 sm:px-6 py-8 max-w-3xl mx-auto">
       <PageHeader eyebrow="SATOHASH.IO" title={t('verify.title')} subtitle={t('verify.sub')} />
@@ -30,9 +39,14 @@ export function VerifyPage() {
       <div className="card-elevated mt-8 space-y-4 border-l-4 border-l-btc-orange">
         <label htmlFor="verify-input" className="block text-sm font-medium text-ink-secondary">{t('verify.dataLabel')}</label>
         <textarea id="verify-input" value={input} onChange={e => setInput(e.target.value)} rows={4} className="input-field font-mono" />
-        <button type="button" onClick={generate} className="btn-primary w-full sm:w-auto">
-          {t('verify.generateHash')}
-        </button>
+        <div className="flex flex-col sm:flex-row gap-2">
+          <button type="button" onClick={paste} className="btn-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2">
+            <ClipboardPaste size={14} /> {t('verify.pasteFromClipboard')}
+          </button>
+          <button type="button" onClick={generate} className="btn-primary w-full sm:w-auto">
+            {t('verify.generateHash')}
+          </button>
+        </div>
 
         {hash && (
           <div className="space-y-3 pt-4 border-t border-mp">

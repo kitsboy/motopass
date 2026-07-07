@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { loadPortfolio, PORTFOLIO_KEY, togglePortfolio } from '../lib/portfolioStorage'
+import { clearPortfolio, loadPortfolio, PORTFOLIO_KEY, togglePortfolio } from '../lib/portfolioStorage'
 
 export function usePortfolio() {
   const [portfolio, setPortfolio] = useState<number[]>(() => loadPortfolio())
@@ -20,5 +20,11 @@ export function usePortfolio() {
     return next
   }, [])
 
-  return { portfolio, setPortfolio, toggle, refresh }
+  const clearAll = useCallback(() => {
+    const next = clearPortfolio()
+    setPortfolio(next)
+    return next
+  }, [])
+
+  return { portfolio, setPortfolio, toggle, clearAll, refresh }
 }
