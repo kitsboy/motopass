@@ -8,7 +8,7 @@ export function ProgramCard({ program, onClick }: { program: Program; onClick?: 
     <button type="button" onClick={onClick} className="program-card group text-left w-full">
       <div className="flex justify-between items-start mb-3 gap-2">
         <div className="min-w-0">
-          <div className="font-display font-semibold text-base sm:text-lg tracking-tight text-ink group-hover:text-btc-orange transition-colors truncate">
+          <div className="font-display font-semibold text-base sm:text-lg tracking-tight text-ink group-hover:text-accent transition-colors truncate">
             {program.flag && <span className="mr-1.5">{program.flag}</span>}
             {program.name}
           </div>
@@ -18,7 +18,7 @@ export function ProgramCard({ program, onClick }: { program: Program; onClick?: 
         </div>
         <div
           className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full border shrink-0 ${
-            acquired ? 'border-emerald-200 bg-emerald-50 text-status-green' : 'border-amber-200 bg-amber-50 text-status-amber'
+            acquired ? 'border-mp-proof/30 bg-mp-proof-soft text-mp-proof' : 'border-mp-ochre/30 bg-mp-btc-soft text-mp-ochre'
           }`}
         >
           {program.status.split(' - ')[0]}

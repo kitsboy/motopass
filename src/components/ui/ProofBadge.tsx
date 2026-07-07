@@ -18,7 +18,7 @@ export function ProofBadge({ status, compact = false, txHint }: ProofBadgeProps)
       ? 'border-mp-proof/30 bg-mp-proof-soft text-mp-proof'
       : status === 'demo'
         ? 'border-mp-border-strong bg-mp-section text-mp-ink-secondary'
-        : 'border-mp-ochre/30 bg-mp-btc-soft text-mp-ochre';
+        : 'border-mp-ochre/40 bg-mp-btc-soft text-mp-btc-text';
 
   const label =
     status === 'verified' ? 'Satohash Verified' : status === 'demo' ? 'Demo Anchor' : 'Anchor Pending';

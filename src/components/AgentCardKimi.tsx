@@ -5,7 +5,7 @@ import { AnimatedBadge } from './beui/AnimatedBadge'
 export function AgentCardKimi() {
   return (
     <TiltCard className="rounded-mp-xl">
-      <div className="card-elevated border-nostr-violet/15 bg-gradient-to-br from-card to-nostr-violet-soft/30 overflow-hidden">
+      <div className="card-elevated border-nostr-violet/20 bg-gradient-to-br from-mp-card to-nostr-violet-soft/40 overflow-hidden">
         <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
           <div className="relative shrink-0">
             <img
@@ -19,9 +19,9 @@ export function AgentCardKimi() {
           </div>
           <div className="flex-1 text-center sm:text-left min-w-0">
             <div className="section-label mb-1">YOUR LIAISON AGENT</div>
-            <h3 className="text-xl font-display font-semibold text-ink">Kimi</h3>
-            <p className="text-xs text-ink-muted mt-1">M4 HERMES · Strategic orchestrator · Give A Bit</p>
-            <p className="text-sm text-ink-secondary mt-3 leading-relaxed">
+            <h3 className="text-xl font-display font-semibold text-mp-ink">Kimi</h3>
+            <p className="text-xs text-mp-ink-secondary mt-1">M4 HERMES · Strategic orchestrator · Give A Bit</p>
+            <p className="text-sm text-mp-ink-secondary mt-3 leading-relaxed">
               Kimi coordinates country liaison agents, tracks your application progress, and connects you with passport offices via Nostr.
             </p>
             <div className="flex flex-wrap gap-2 mt-4 justify-center sm:justify-start">

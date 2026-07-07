@@ -28,11 +28,13 @@
         if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.classList.add('dark');
           document.documentElement.style.colorScheme = 'dark';
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', '#121214');
         }
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DeZXfGGH.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Ci2Q6cF8.css">
+    <script type="module" crossorigin src="/assets/index-DZ_LzLRt.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-STSYiP0c.css">
   </head>
   <body>
     <div id="root"></div>

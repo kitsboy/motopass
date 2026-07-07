@@ -33,6 +33,12 @@ export function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-canvas text-ink pb-20 md:pb-0">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-mp-md focus:bg-card focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-ink focus:shadow-card focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-btc-orange"
+      >
+        Skip to content
+      </a>
       <header className="sticky top-0 z-50 border-b border-mp bg-card/90 backdrop-blur-xl shadow-header">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="h-14 sm:h-16 flex items-center justify-between gap-3">
@@ -42,7 +48,7 @@ export function Layout() {
                 <div className="font-display font-semibold tracking-tight text-sm sm:text-base truncate text-ink group-hover:text-btc-orange transition-colors">
                   MOTOPASS
                 </div>
-                <div className="text-[9px] text-ink-muted -mt-0.5 truncate font-mono">{BUILD_LABEL} · {t('tagline')}</div>
+                <div className="text-[11px] text-ink-muted -mt-0.5 truncate font-mono">{BUILD_LABEL} · {t('tagline')}</div>
               </div>
             </NavLink>
 
@@ -129,7 +135,7 @@ export function Layout() {
         </nav>
       </header>
 
-      <main className="flex-1 relative">
+      <main id="main-content" className="flex-1 relative">
         <Outlet />
       </main>
 
@@ -146,7 +152,7 @@ export function Layout() {
               to={n.to}
               end={'end' in n ? n.end : false}
               className={({ isActive }) =>
-                `flex flex-col items-center justify-center text-[9px] py-2 rounded-mp-md transition-colors ${isActive ? 'text-mp-btc-text bg-btc-orange-soft font-semibold' : 'text-ink-muted'}`
+                `flex flex-col items-center justify-center min-h-[44px] text-[11px] py-2 rounded-mp-md transition-colors ${isActive ? 'text-mp-btc-text bg-btc-orange-soft font-semibold' : 'text-ink-muted'}`
               }
             >
               <span className="leading-tight text-center px-0.5">{isLoggedIn && n.key === 'nav.dashboard' ? 'Dash' : t(n.key)}</span>

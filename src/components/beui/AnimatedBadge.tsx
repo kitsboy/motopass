@@ -6,9 +6,9 @@ type Status = 'neutral' | 'info' | 'success' | 'warning' | 'danger' | 'loading'
 const STATUS_CLASS: Record<Status, string> = {
   neutral: 'border-mp bg-card-muted text-ink-muted',
   info: 'border-btc-orange/30 bg-btc-orange-soft text-btc-orange-deep',
-  success: 'border-emerald-200 bg-emerald-50 text-status-green',
-  warning: 'border-amber-200 bg-amber-50 text-status-amber',
-  danger: 'border-red-200 bg-red-50 text-status-red',
+  success: 'border-mp-proof/30 bg-mp-proof-soft text-mp-proof',
+  warning: 'border-mp-ochre/30 bg-mp-btc-soft text-mp-ochre',
+  danger: 'border-status-red/30 bg-mp-section text-status-red',
   loading: 'border-btc-orange/30 bg-btc-orange-soft text-btc-orange-deep',
 }
 

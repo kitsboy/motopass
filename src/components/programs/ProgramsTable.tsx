@@ -1,3 +1,4 @@
+import type { KeyboardEvent } from 'react';
 import { motion } from 'motion/react';
 import { ProofBadge } from '../ui/ProofBadge';
 import { Program, scoreWeight } from './types';
@@ -31,14 +32,24 @@ export function ProgramsTable({ programs, onSelect }: ProgramsTableProps) {
       <tbody>
         {programs.map((p, i) => {
           const isFlagship = scoreWeight(p.sovereigntyScore) === 'flagship';
+          const activate = () => onSelect(p);
+          const onKeyDown = (e: KeyboardEvent<HTMLTableRowElement>) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              activate();
+            }
+          };
           return (
             <motion.tr
               key={p.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: Math.min(i, 10) * 0.03 }}
-              onClick={() => onSelect(p)}
-              className={`cursor-pointer transition-colors duration-fast hover:bg-mp-section ${
+              tabIndex={0}
+              role="button"
+              onClick={activate}
+              onKeyDown={onKeyDown}
+              className={`cursor-pointer transition-colors duration-fast hover:bg-mp-section focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-mp-btc ${
                 isFlagship ? 'border-l-2 border-l-mp-btc' : 'border-l-2 border-l-transparent'
               }`}
             >

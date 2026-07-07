@@ -84,7 +84,7 @@ export function ProgramModal({ program, tab, onTab, onClose }: {
               <Zap size={14} className="text-btc-orange" /> Score: {program.finance.crypto_friendly_score}/10
             </div>
             {proof && (
-              <a href={proof.proof_url} target="_blank" rel="noopener noreferrer" className="proof-badge inline-flex items-center gap-1 hover:bg-emerald-100">
+              <a href={proof.proof_url} target="_blank" rel="noopener noreferrer" className="proof-badge inline-flex items-center gap-1 hover:opacity-90 hover:border-mp-proof/50">
                 Verify block #{proof.block_height} <ExternalLink size={12} />
               </a>
             )}

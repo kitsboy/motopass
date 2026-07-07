@@ -26,9 +26,12 @@ export function NostrConnect({ onConnect }: { onConnect?: (s: NostrSession | nul
 
   if (session) {
     return (
-      <div className="flex items-center gap-2 text-xs text-nostr-violet bg-nostr-violet-soft border border-nostr-violet/20 rounded-full px-3 py-1.5 max-w-[200px]">
-        <Zap size={12} className="shrink-0" />
-        <span className="truncate font-mono">{session.npub.slice(0, 12)}…</span>
+      <div
+        className="flex items-center gap-2 text-xs text-nostr-violet bg-nostr-violet-soft border border-nostr-violet/20 rounded-full px-3 py-1.5 max-w-[200px]"
+        aria-label={`Nostr connected: ${session.npub}`}
+      >
+        <Zap size={12} className="shrink-0" aria-hidden="true" />
+        <span className="truncate font-mono" aria-hidden="true">{session.npub.slice(0, 12)}…</span>
         <span className="text-nostr-violet/80 shrink-0">{t('nostr.connected')}</span>
       </div>
     )

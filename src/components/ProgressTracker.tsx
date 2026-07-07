@@ -15,14 +15,14 @@ export function ProgressTracker({ status }: { status: ApplicationStatus }) {
             <div className="flex flex-col items-center">
               <div className={cn(
                 'w-8 h-8 rounded-full border-2 flex items-center justify-center text-[10px] font-bold shrink-0 transition-colors',
-                done ? 'border-emerald-400 bg-emerald-50 text-status-green' :
+                done ? 'border-mp-proof/50 bg-mp-proof-soft text-mp-proof' :
                 active ? 'border-btc-orange bg-btc-orange-soft text-btc-orange-deep' :
                 'border-mp bg-card-muted text-ink-muted',
               )}>
                 {done ? <Check size={14} /> : i + 1}
               </div>
               {i < STATUS_STEPS.length - 1 && (
-                <div className={cn('w-0.5 flex-1 min-h-[24px]', done ? 'bg-emerald-300' : 'bg-mp')} />
+                <div className={cn('w-0.5 flex-1 min-h-[24px]', done ? 'bg-mp-proof/40' : 'bg-mp')} />
               )}
             </div>
             <div className={cn('pb-5 pt-1.5', active && 'text-btc-orange-deep')}>

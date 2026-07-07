@@ -72,8 +72,8 @@ export default {
         freedom: { white: 'rgb(var(--mp-ink-rgb) / <alpha-value>)' },
       },
       fontFamily: {
-        display: ['var(--mp-font-display)', 'Space Grotesk', 'system-ui', 'sans-serif'],
-        body: ['var(--mp-font-body)', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['var(--mp-font-display)', 'Fraunces', 'Iowan Old Style', 'ui-serif', 'serif'],
+        body: ['var(--mp-font-body)', 'Source Serif 4', 'Charter', 'Georgia', 'serif'],
         chrome: ['var(--mp-font-chrome)', 'IBM Plex Sans', '-apple-system', 'sans-serif'],
         mono: ['var(--mp-font-mono)', 'JetBrains Mono', 'ui-monospace', 'monospace'],
       },
