@@ -272,4 +272,36 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-07 (BTC Map v2 — all 5 steps)
+
+**Machine:** M3 (Grok)
+**Project:** motopass
+
+### Done
+- [x] Step 1 — Merchant density badges on `ProgramCard` via `public/data/btcmap-density.json` + `BtcMapDensityProvider`
+- [x] Step 2 — Nostr NIP-98 auth (`btcmapAuth.ts`) + save/unsave merchants on `/v4/places/saved`
+- [x] Step 3 — Report venue CTA (`BtcMapReportVenue`) on `/btcmap` and `/agents` → btcmap.org/add-location + btcmap-cli
+- [x] Step 4 — Offline cache: 50 jurisdiction snapshots in `public/data/btcmap/` + cache-first hook with API fallback
+- [x] Step 5 — Native Leaflet map (`BtcMapLeaflet`) with orange pins + search-radius circle (replaces iframe)
+- [x] Scripts: `npm run btcmap:density`, `npm run btcmap:sync`
+- [x] BUILD `2026.07.07-26` — 30 unit + 16 e2e tests passing, deployed
+
+### Decisions
+- `react-leaflet@4.2.1` for React 18 compatibility (v5 requires React 19)
+- Density tiers: sparse (&lt;5), moderate (5–19), dense (20+)
+- Offline snapshots capped at 48 places per jurisdiction to keep JSON lean
+- BTC Map Bearer token stored in `sessionStorage` separate from MotoPass npub session
+
+### What's Next
+- Kimi: verify footer `BUILD 2026.07.07-26`; test Nostr save flow with Alby/extension on `/btcmap`
+- Optional: wire `btcmap:density` + `btcmap:sync` into CI weekly cron
+- P1 backlog unchanged: deepen 50 countries, live Nostr relay, Satohash pipeline
+
+### Git State
+- Last commit SHA: 41238c2
+- Branch: `main`
+- Unpushed: (none)
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
