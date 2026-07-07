@@ -320,4 +320,28 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Latest Session Summary (from 2026-07-07 goodbye)
+
+**Chat topic:** BTC Map v2 (all 5 steps) + full docs refresh for BUILD 26.
+
+**Finished in this session:**
+- BTC Map v2: density badges, Nostr saves, Leaflet map, offline cache, report-venue CTA
+- Scripts `btcmap:density` + `btcmap:sync`; 50 jurisdiction snapshots
+- 30 unit + 16 e2e passing; deployed to motopass.giveabit.io
+- Full docs sweep (34 files) — see `docs/SESSION-SUMMARY-2026-07-07.md`
+
+**Still to do:**
+- Uruguay-flagship depth for all 50 programs
+- Live Nostr relay, Satohash pipeline, Paige backend
+- Optional: weekly btcmap sync in CI; test Nostr save on `/btcmap` with Alby
+
+**Next for Kimi:** Integrate summary into MASTER-BRAIN / Obsidian. Verify footer shows `BUILD 2026.07.07-26` after hard refresh.
+
+### Git State
+- Last commit SHA: `a8c0154`
+- Branch: `main`
+- Unpushed: (none)
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
