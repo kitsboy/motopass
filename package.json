@@ -18,6 +18,8 @@
     "prettier:check": "prettier --check src",
     "validate:data": "node scripts/validate-data.mjs",
     "sitemap": "node scripts/generate-sitemap.mjs",
+    "btcmap:density": "node scripts/fetch-btcmap-density.mjs",
+    "btcmap:sync": "node scripts/sync-btcmap-cache.mjs",
     "bundle:check": "node scripts/check-bundle-size.mjs",
     "health-check": "bash scripts/health-check.sh",
     "verify:goal": "bash scripts/verify-goal.sh",
@@ -27,6 +29,8 @@
     "deploy:check": "test -n \"$CLOUDFLARE_API_TOKEN\" && echo 'CF token set' || echo 'Set CLOUDFLARE_API_TOKEN in .env.local for manual wrangler deploy'"
   },
   "dependencies": {
+    "@types/leaflet": "^1.9.21",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.511.0",
     "motion": "^12.42.2",
     "nostr-tools": "^2.23.9",
@@ -34,11 +38,12 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^3.0.0",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^7.18.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.61.1",
     "@eslint/js": "^9.39.4",
+    "@playwright/test": "^1.61.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

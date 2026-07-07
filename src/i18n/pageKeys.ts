@@ -56,6 +56,9 @@ export const PAGE_KEYS = [
   'btcmap.merchantCount', 'btcmap.loading', 'btcmap.empty', 'btcmap.error', 'btcmap.noCoords',
   'btcmap.unnamed', 'btcmap.verified', 'btcmap.openFullMap', 'btcmap.pickProgram', 'btcmap.viewProgram',
   'btcmap.lightningReady', 'btcmap.attribution', 'btcmap.panelTitle', 'btcmap.panelSub', 'btcmap.explore',
+  'btcmap.densityBadge', 'btcmap.densityTooltip', 'btcmap.save', 'btcmap.unsave', 'btcmap.signInSave',
+  'btcmap.signingIn', 'btcmap.offlineCache', 'btcmap.reportTitle', 'btcmap.reportSub', 'btcmap.reportWeb',
+  'btcmap.reportCli', 'btcmap.reportCliHint',
 ] as const
 
 export type PageKey = (typeof PAGE_KEYS)[number]
@@ -286,6 +289,18 @@ export const pageKeysEn: Record<PageKey, string> = {
   'btcmap.panelTitle': 'BTC Map — nearby merchants',
   'btcmap.panelSub': 'Bitcoin-accepting venues from the BTC Map community',
   'btcmap.explore': 'Explore BTC Map layer',
+  'btcmap.densityBadge': '{count} BTC venues',
+  'btcmap.densityTooltip': '{count} nearby merchants · density score {score}/100',
+  'btcmap.save': 'Save merchant',
+  'btcmap.unsave': 'Remove saved merchant',
+  'btcmap.signInSave': 'Sign in to save favorites',
+  'btcmap.signingIn': 'Signing in with Nostr…',
+  'btcmap.offlineCache': 'Offline snapshot',
+  'btcmap.reportTitle': 'Report a Bitcoin venue',
+  'btcmap.reportSub': 'Know a merchant that accepts Bitcoin? Tag it on btcmap.org or use btcmap-cli for power users.',
+  'btcmap.reportWeb': 'Add on btcmap.org',
+  'btcmap.reportCli': 'btcmap-cli',
+  'btcmap.reportCliHint': 'btcmap-cli signup — then tag venues from your terminal. Open-source at github.com/teambtcmap/btcmap-cli',
 }
 
 /** Spanish overrides for page keys */

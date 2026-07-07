@@ -3,10 +3,13 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { Bitcoin, ExternalLink, Map } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { useBtcMapPlaces } from '../hooks/useBtcMapPlaces'
+import { useBtcMapAuth } from '../context/BtcMapAuthContext'
 import { PageHeader } from '../components/ui/PageHeader'
 import { BtcMapEmbed } from '../components/btcmap/BtcMapEmbed'
 import { BtcMapPlacesList } from '../components/btcmap/BtcMapPlacesList'
 import { BtcMapAreasChips } from '../components/btcmap/BtcMapAreasChips'
+import { BtcMapReportVenue } from '../components/btcmap/BtcMapReportVenue'
+import { NostrConnect } from '../components/NostrConnect'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import { btcMapAttribution, btcMapMapUrl } from '../lib/btcmap'
@@ -30,7 +33,8 @@ export function BtcMapPage() {
   }, [searchParams, programs])
 
   const selected = programs.find((p) => p.id === programId) ?? null
-  const { places, areas, loading, error } = useBtcMapPlaces(selected?.name ?? null)
+  const { places, areas, loading, error, fromCache } = useBtcMapPlaces(selected?.name ?? null)
+  const { signIn, signingIn } = useBtcMapAuth()
   const coord = selected ? getProgramCoord(selected.name) : null
   const attr = btcMapAttribution()
 
@@ -65,9 +69,24 @@ export function BtcMapPage() {
         }
       />
 
-      <p className="text-sm text-ink-secondary mb-6 max-w-3xl leading-relaxed">
+      <p className="text-sm text-ink-secondary mb-4 max-w-3xl leading-relaxed">
         {t('btcmap.intro')}
       </p>
+
+      <div className="flex flex-wrap items-center gap-3 mb-6">
+        <NostrConnect onConnect={(s) => { if (s) void signIn() }} />
+        <button
+          type="button"
+          onClick={() => void signIn()}
+          disabled={signingIn}
+          className="chip text-xs text-accent hover:underline"
+        >
+          {signingIn ? t('btcmap.signingIn') : t('btcmap.signInSave')}
+        </button>
+        {fromCache && (
+          <span className="chip text-[10px] text-ink-muted border-mp-border">{t('btcmap.offlineCache')}</span>
+        )}
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1 space-y-4">
@@ -110,7 +129,9 @@ export function BtcMapPage() {
             <BtcMapAreasChips areas={areas} />
           </div>
 
-          <BtcMapPlacesList places={places} loading={loading} error={error} />
+          <BtcMapPlacesList places={places} loading={loading} error={error} showSave />
+
+          <BtcMapReportVenue lat={coord?.lat} lon={coord?.lon} />
 
           {coord && (
             <a
@@ -126,7 +147,7 @@ export function BtcMapPage() {
 
         <div className="lg:col-span-2 space-y-3">
           {selected ? (
-            <BtcMapEmbed programName={selected.name} areas={areas} />
+            <BtcMapEmbed programName={selected.name} places={places} areas={areas} />
           ) : (
             <div className="rounded-card border border-mp-border bg-mp-card-muted p-12 text-center text-ink-muted">
               {t('btcmap.pickProgram')}

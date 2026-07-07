@@ -1,5 +1,6 @@
 import { Zap, MessageCircle } from 'lucide-react'
 import { NostrConnect } from '../components/NostrConnect'
+import { BtcMapReportVenue } from '../components/btcmap/BtcMapReportVenue'
 import { AgentCardKimi } from '../components/AgentCardKimi'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
@@ -80,7 +81,11 @@ export function AgentsPage() {
         ))}
       </div>
 
-      <p className="text-xs text-ink-muted mt-10 text-center max-w-xl mx-auto leading-relaxed">
+      <div className="mt-10 max-w-xl mx-auto">
+        <BtcMapReportVenue />
+      </div>
+
+      <p className="text-xs text-ink-muted mt-6 text-center max-w-xl mx-auto leading-relaxed">
         {t('agents.disclaimer')}
       </p>
     </div>

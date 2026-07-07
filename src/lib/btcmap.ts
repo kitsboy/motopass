@@ -3,8 +3,11 @@
  * Docs: https://github.com/teambtcmap/btcmap-api/tree/master/docs/rest/v4
  */
 
+import { getBtcMapToken } from './btcmapAuth'
+
 const API_BASE = import.meta.env.VITE_BTCMAP_API_URL || 'https://api.btcmap.org'
 const WEB_BASE = import.meta.env.VITE_BTCMAP_WEB_URL || 'https://btcmap.org'
+const CLI_REPO = 'https://github.com/teambtcmap/btcmap-cli'
 
 export type BtcMapPlace = {
   id: number
@@ -34,8 +37,13 @@ type SearchParams = {
   limit?: number
 }
 
-async function btcmapFetch<T>(path: string): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`)
+async function btcmapFetch<T>(path: string, init?: RequestInit): Promise<T> {
+  const token = getBtcMapToken()
+  const headers = new Headers(init?.headers)
+  if (token && !headers.has('Authorization')) {
+    headers.set('Authorization', `Bearer ${token}`)
+  }
+  const res = await fetch(`${API_BASE}${path}`, { ...init, headers })
   if (!res.ok) {
     const body = await res.text().catch(() => '')
     throw new Error(`BTC Map API ${res.status}: ${body.slice(0, 120)}`)
@@ -97,4 +105,33 @@ export function btcMapAttribution(): { map: string; data: string; api: string } 
     data: 'OpenStreetMap',
     api: 'https://github.com/teambtcmap/btcmap-api',
   }
+}
+
+/** btcmap.org web flow for community-submitted venues. */
+export function btcMapAddVenueUrl(lat?: number, lon?: number): string {
+  if (lat != null && lon != null) {
+    return `${WEB_BASE}/add-location?lat=${lat}&lon=${lon}`
+  }
+  return `${WEB_BASE}/add-location`
+}
+
+export function btcMapCliRepoUrl(): string {
+  return CLI_REPO
+}
+
+/** Saved places — requires Nostr sign-in (Bearer token). */
+export async function getSavedPlaces(): Promise<BtcMapPlace[]> {
+  return btcmapFetch<BtcMapPlace[]>('/v4/places/saved')
+}
+
+export async function addSavedPlace(placeId: number): Promise<number[]> {
+  return btcmapFetch<number[]>('/v4/places/saved', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: String(placeId),
+  })
+}
+
+export async function removeSavedPlace(placeId: number): Promise<number[]> {
+  return btcmapFetch<number[]>(`/v4/places/saved/${placeId}`, { method: 'DELETE' })
 }

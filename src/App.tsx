@@ -5,6 +5,8 @@ import { UserProvider } from './context/UserContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { ProgramsProvider } from './context/ProgramsContext'
 import { BlockHeightProvider } from './context/BlockHeightContext'
+import { BtcMapDensityProvider } from './context/BtcMapDensityContext'
+import { BtcMapAuthProvider } from './context/BtcMapAuthContext'
 import { Layout } from './components/Layout'
 import { RouteSuspense } from './components/RouteSuspense'
 import { ErrorBoundary } from './components/ErrorBoundary'
@@ -32,6 +34,8 @@ export default function App() {
     <ThemeProvider>
     <ProgramsProvider>
     <BlockHeightProvider>
+    <BtcMapDensityProvider>
+    <BtcMapAuthProvider>
     <I18nProvider>
       <UserProvider>
         <BrowserRouter>
@@ -58,6 +62,8 @@ export default function App() {
         </BrowserRouter>
       </UserProvider>
     </I18nProvider>
+    </BtcMapAuthProvider>
+    </BtcMapDensityProvider>
     </BlockHeightProvider>
     </ProgramsProvider>
     </ThemeProvider>

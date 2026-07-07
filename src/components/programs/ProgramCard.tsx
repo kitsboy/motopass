@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
+import { MerchantDensityBadge } from '../btcmap/MerchantDensityBadge';
 import { Program, scoreWeight } from './types';
 
 interface ProgramCardProps {
@@ -107,6 +108,9 @@ function ProgramCardContent({
             <span className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">
               {program.tier} &middot; {program.region}
             </span>
+            <div className="mt-1.5">
+              <MerchantDensityBadge programName={program.country} />
+            </div>
           </div>
         </div>
         <div className="flex items-center gap-2">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getAreasAt, searchPlacesNearby, type BtcMapArea, type BtcMapPlace } from '../lib/btcmap'
+import { loadBtcMapSnapshot } from '../lib/btcmapCache'
 import { getProgramCoord, type ProgramCoord } from '../data/programCoords'
 
 type State = {
@@ -7,10 +8,11 @@ type State = {
   areas: BtcMapArea[]
   loading: boolean
   error: string | null
+  fromCache: boolean
 }
 
-const IDLE: State = { places: [], areas: [], loading: false, error: null }
-const LOADING: State = { places: [], areas: [], loading: true, error: null }
+const IDLE: State = { places: [], areas: [], loading: false, error: null, fromCache: false }
+const LOADING: State = { places: [], areas: [], loading: true, error: null, fromCache: false }
 
 function useBtcMapFetch(programName: string | null, coord: ProgramCoord | null): State {
   const [state, setState] = useState<State>(IDLE)
@@ -19,30 +21,46 @@ function useBtcMapFetch(programName: string | null, coord: ProgramCoord | null):
     if (!programName || !coord) return
 
     let cancelled = false
-    void Promise.resolve().then(() => {
-      if (!cancelled) setState(LOADING)
-    })
 
-    Promise.all([
-      searchPlacesNearby({ lat: coord.lat, lon: coord.lon, radiusKm: coord.radiusKm }),
-      getAreasAt(coord.lat, coord.lon),
-    ])
-      .then(([places, areas]) => {
+    const run = async () => {
+      const snapshot = await loadBtcMapSnapshot(programName)
+      if (cancelled) return
+
+      if (snapshot) {
+        setState({
+          places: snapshot.places,
+          areas: snapshot.areas,
+          loading: false,
+          error: null,
+          fromCache: true,
+        })
+      } else {
+        setState(LOADING)
+      }
+
+      try {
+        const [places, areas] = await Promise.all([
+          searchPlacesNearby({ lat: coord.lat, lon: coord.lon, radiusKm: coord.radiusKm }),
+          getAreasAt(coord.lat, coord.lon),
+        ])
         if (cancelled) return
-        setState({ places, areas, loading: false, error: null })
-      })
-      .catch((err: unknown) => {
+        setState({ places, areas, loading: false, error: null, fromCache: false })
+      } catch (err: unknown) {
         if (cancelled) return
+        if (snapshot) return
         setState({
           places: [],
           areas: [],
           loading: false,
           error: err instanceof Error ? err.message : 'fetch_failed',
+          fromCache: false,
         })
-      })
+      }
+    }
 
+    void run()
     return () => { cancelled = true }
-  }, [programName, coord?.lat, coord?.lon, coord?.radiusKm])
+  }, [programName, coord])
 
   return state
 }
@@ -52,6 +70,6 @@ export function useBtcMapPlaces(programName: string | null): State {
   const fetched = useBtcMapFetch(programName, coord)
 
   if (!programName) return IDLE
-  if (!coord) return { places: [], areas: [], loading: false, error: 'no_coords' }
+  if (!coord) return { places: [], areas: [], loading: false, error: 'no_coords', fromCache: false }
   return fetched
 }
