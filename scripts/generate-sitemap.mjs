@@ -12,6 +12,7 @@ const ROUTES = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/portfolio', priority: '0.9', changefreq: 'weekly' },
   { path: '/programs', priority: '0.9', changefreq: 'weekly' },
+  { path: '/btcmap', priority: '0.85', changefreq: 'weekly' },
   { path: '/simulator', priority: '0.8', changefreq: 'weekly' },
   { path: '/compare', priority: '0.8', changefreq: 'weekly' },
   { path: '/vault', priority: '0.8', changefreq: 'weekly' },

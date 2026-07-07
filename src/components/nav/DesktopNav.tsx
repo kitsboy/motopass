@@ -9,6 +9,7 @@ const PRIMARY = [
 ] as const
 
 const TOOLS = [
+  { to: '/btcmap', key: 'nav.btcmap' as const },
   { to: '/simulator', key: 'nav.simulator' as const },
   { to: '/compare', key: 'nav.compare' as const },
   { to: '/vault', key: 'nav.vault' as const },

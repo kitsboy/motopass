@@ -16,6 +16,12 @@ test.describe('smoke', () => {
     await expect(build).toBeVisible()
   })
 
+  test('btcmap page loads with program selector', async ({ page }) => {
+    await page.goto('/btcmap')
+    await expect(page.locator('main')).toBeVisible()
+    await expect(page.locator('#btcmap-program')).toBeVisible()
+  })
+
   test('programs page loads', async ({ page }) => {
     await page.goto('/programs')
     await expect(page.locator('main')).toBeVisible()

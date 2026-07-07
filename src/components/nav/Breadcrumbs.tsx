@@ -4,6 +4,7 @@ import type { TranslationKey } from '../../i18n/translations'
 
 const ROUTE_LABELS: Record<string, TranslationKey> = {
   portfolio: 'nav.portfolio',
+  btcmap: 'nav.btcmap',
   programs: 'nav.programs',
   simulator: 'nav.simulator',
   compare: 'nav.compare',

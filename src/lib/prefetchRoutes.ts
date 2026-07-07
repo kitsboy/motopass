@@ -3,6 +3,7 @@ const ROUTE_LOADERS: Record<string, () => Promise<unknown>> = {
   '/': () => import('../pages/PitchPage'),
   '/programs': () => import('../pages/ProgramsPage'),
   '/portfolio': () => import('../pages/PortfolioPage'),
+  '/btcmap': () => import('../pages/BtcMapPage'),
   '/simulator': () => import('../pages/StackSimulatorPage'),
   '/compare': () => import('../pages/FinanceComparePage'),
   '/vault': () => import('../pages/VaultPage'),

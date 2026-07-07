@@ -18,6 +18,7 @@ const DashboardPage = lazy(() => import('./pages/DashboardPage').then(m => ({ de
 const RegisterPage = lazy(() => import('./pages/RegisterPage').then(m => ({ default: m.RegisterPage })))
 const ProfilePage = lazy(() => import('./pages/ProfilePage').then(m => ({ default: m.ProfilePage })))
 const ApplyPage = lazy(() => import('./pages/ApplyPage').then(m => ({ default: m.ApplyPage })))
+const BtcMapPage = lazy(() => import('./pages/BtcMapPage').then(m => ({ default: m.BtcMapPage })))
 const VaultPage = lazy(() => import('./pages/VaultPage').then(m => ({ default: m.VaultPage })))
 const VerifyPage = lazy(() => import('./pages/VerifyPage').then(m => ({ default: m.VerifyPage })))
 const AgentsPage = lazy(() => import('./pages/AgentsPage').then(m => ({ default: m.AgentsPage })))
@@ -41,6 +42,7 @@ export default function App() {
               <Route path="programs" element={<RouteSuspense count={3}><ProgramsPage /></RouteSuspense>} />
               <Route path="simulator" element={<RouteSuspense><StackSimulatorPage /></RouteSuspense>} />
               <Route path="compare" element={<RouteSuspense><FinanceComparePage /></RouteSuspense>} />
+              <Route path="btcmap" element={<RouteSuspense><BtcMapPage /></RouteSuspense>} />
               <Route path="vault" element={<RouteSuspense><VaultPage /></RouteSuspense>} />
               <Route path="blog" element={<RouteSuspense><BlogPage /></RouteSuspense>} />
               <Route path="blog/:slug" element={<RouteSuspense><BlogPostPage /></RouteSuspense>} />

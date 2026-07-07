@@ -52,6 +52,10 @@ export const PAGE_KEYS = [
   'payment.scanToPay', 'payment.tempPlaceholder',
   'upload.dropTitle', 'upload.dropDescription',
   'pitch.faq.q1', 'pitch.faq.a1', 'pitch.faq.q2', 'pitch.faq.a2', 'pitch.faq.q3', 'pitch.faq.a3',
+  'btcmap.eyebrow', 'btcmap.title', 'btcmap.subtitle', 'btcmap.intro', 'btcmap.selectProgram',
+  'btcmap.merchantCount', 'btcmap.loading', 'btcmap.empty', 'btcmap.error', 'btcmap.noCoords',
+  'btcmap.unnamed', 'btcmap.verified', 'btcmap.openFullMap', 'btcmap.pickProgram', 'btcmap.viewProgram',
+  'btcmap.lightningReady', 'btcmap.attribution', 'btcmap.panelTitle', 'btcmap.panelSub', 'btcmap.explore',
 ] as const
 
 export type PageKey = (typeof PAGE_KEYS)[number]
@@ -262,6 +266,26 @@ export const pageKeysEn: Record<PageKey, string> = {
   'pitch.faq.a2': 'Material claims are hashed and anchored to Bitcoin via OpenTimestamps. Anyone can independently verify proofs on Satohash.io without trusting a brochure snapshot.',
   'pitch.faq.q3': 'Do I need email to apply?',
   'pitch.faq.a3': 'No. MotoPass uses Nostr npub-native registration — connect your browser extension and your public key becomes your account.',
+  'btcmap.eyebrow': 'BTC MAP',
+  'btcmap.title': 'Bitcoin merchant layer',
+  'btcmap.subtitle': 'Live BTC Map data for every jurisdiction in your sovereign stack.',
+  'btcmap.intro': 'MotoPass cross-references residency programs with BTC Map — the open community map of Bitcoin-accepting merchants, communities, and Lightning-ready venues. Data from api.btcmap.org; map powered by btcmap.org.',
+  'btcmap.selectProgram': 'Jurisdiction',
+  'btcmap.merchantCount': '{count} nearby merchants',
+  'btcmap.loading': 'Loading BTC Map places…',
+  'btcmap.empty': 'No mapped merchants in this radius yet — help tag venues on btcmap.org.',
+  'btcmap.error': 'Could not reach BTC Map API. Try again shortly.',
+  'btcmap.noCoords': 'Coordinates not mapped for this jurisdiction yet.',
+  'btcmap.unnamed': 'Unnamed place',
+  'btcmap.verified': 'Verified',
+  'btcmap.openFullMap': 'Open full map on btcmap.org',
+  'btcmap.pickProgram': 'Select a jurisdiction to load the BTC Map layer.',
+  'btcmap.viewProgram': 'View program details',
+  'btcmap.lightningReady': 'Lightning ready',
+  'btcmap.attribution': 'Map data ©',
+  'btcmap.panelTitle': 'BTC Map — nearby merchants',
+  'btcmap.panelSub': 'Bitcoin-accepting venues from the BTC Map community',
+  'btcmap.explore': 'Explore BTC Map layer',
 }
 
 /** Spanish overrides for page keys */

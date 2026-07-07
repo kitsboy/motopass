@@ -38,6 +38,11 @@ export const ROUTE_SEO: Record<string, SeoMeta> = {
     description:
       'Side-by-side comparison of program investment thresholds, government fees, tax benefits, and Bitcoin integration.',
   },
+  '/btcmap': {
+    title: 'BTC Map — Bitcoin Merchant Layer',
+    description:
+      'Cross-reference MotoPass sovereign jurisdictions with BTC Map — live Bitcoin-accepting merchants, communities, and Lightning venues per country.',
+  },
   '/vault': {
     title: 'Vault — Timestamp Proofs',
     description:

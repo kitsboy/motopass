@@ -5,6 +5,7 @@ import { ModalTabs } from '../ui/ModalTabs';
 import { ProofBadge } from '../ui/ProofBadge';
 import { StatCard } from '../ui/StatCard';
 import { useI18n } from '../../i18n/I18nContext';
+import { BtcMapProgramPanel } from '../btcmap/BtcMapProgramPanel';
 import { Program, ProgramModalTab, scoreWeight } from './types';
 
 interface ProgramModalProps {
@@ -149,6 +150,7 @@ function ProgramModalBody({
               {t('modal.verifyBlock')} #{program.proofBlockHeight ?? '—'} <ExternalLink size={12} />
             </a>
           )}
+          <BtcMapProgramPanel programName={program.country} programId={program.id} />
         </div>
       )}
 

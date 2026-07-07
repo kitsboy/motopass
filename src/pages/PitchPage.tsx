@@ -36,6 +36,7 @@ const FEATURE_KEYS = [
 ]
 
 const ROADMAP_LINKS: { key: TranslationKey; to: string }[] = [
+  { key: 'pitch.roadmap.btcmap', to: '/btcmap' },
   { key: 'pitch.roadmap.lightning', to: '/programs?lightning=1' },
   { key: 'pitch.roadmap.relay', to: '/verify' },
   { key: 'pitch.roadmap.uruguay', to: '/programs?q=Uruguay' },

@@ -15,7 +15,7 @@ import {
 export type TranslationKey =
   | 'nav.pitch' | 'nav.portfolio' | 'nav.programs' | 'nav.simulator' | 'nav.compare' | 'nav.vault'
   | 'nav.blog' | 'nav.verify' | 'nav.agents' | 'nav.apply' | 'nav.dashboard' | 'nav.register' | 'nav.dashboardShort'
-  | 'nav.profile' | 'nav.demo' | 'nav.more' | 'nav.language' | 'nav.menu' | 'nav.close' | 'nav.explore' | 'nav.tools' | 'nav.skip'
+  | 'nav.profile' | 'nav.btcmap' | 'nav.demo' | 'nav.more' | 'nav.language' | 'nav.menu' | 'nav.close' | 'nav.explore' | 'nav.tools' | 'nav.skip'
   | 'tagline' | 'pitch.hero' | 'pitch.sub' | 'pitch.cta' | 'pitch.evolve' | 'pitch.stackSimulator'
   | 'pitch.feature.jurisdictions.title' | 'pitch.feature.jurisdictions.sub'
   | 'pitch.feature.satohash.title' | 'pitch.feature.satohash.sub'
@@ -25,7 +25,7 @@ export type TranslationKey =
   | 'pitch.stack.satohash.title' | 'pitch.stack.satohash.body' | 'pitch.stack.satohash.cta'
   | 'pitch.stack.nostr.title' | 'pitch.stack.nostr.body' | 'pitch.stack.nostr.cta'
   | 'pitch.evolve.eyebrow' | 'pitch.evolve.title' | 'pitch.evolve.body'
-  | 'pitch.roadmap.next' | 'pitch.roadmap.lightning' | 'pitch.roadmap.relay' | 'pitch.roadmap.uruguay' | 'pitch.roadmap.agents'
+  | 'pitch.roadmap.next' | 'pitch.roadmap.btcmap' | 'pitch.roadmap.lightning' | 'pitch.roadmap.relay' | 'pitch.roadmap.uruguay' | 'pitch.roadmap.agents'
   | 'blog.title' | 'blog.filter' | 'blog.read' | 'blog.empty' | 'blog.all'
   | 'programs.title' | 'programs.search' | 'programs.showAdvanced' | 'programs.hideAdvanced'
   | 'programs.lightningOnly' | 'programs.minInvestment' | 'programs.maxInvestment' | 'programs.minCryptoScore'
@@ -61,6 +61,7 @@ const en: Dict = {
   'nav.register': 'Register',
   'nav.dashboardShort': 'Dash',
   'nav.profile': 'Profile',
+  'nav.btcmap': 'BTC Map',
   'nav.blog': 'Insights',
   'nav.verify': 'Verify',
   'nav.agents': 'Agents',
@@ -99,6 +100,7 @@ const en: Dict = {
   'pitch.evolve.title': 'Charts update with every BUILD',
   'pitch.evolve.body': 'Cost and time savings are computed from live countries.json data — not static investor deck numbers. As jurisdictions, Lightning readiness, and Satohash proofs grow, this page evolves automatically.',
   'pitch.roadmap.next': 'Next',
+  'pitch.roadmap.btcmap': 'BTC Map merchant layer per jurisdiction',
   'pitch.roadmap.lightning': 'Lightning fee rails for premium stamping',
   'pitch.roadmap.relay': 'Live Nostr relay at relay.motopass.giveabit.io',
   'pitch.roadmap.uruguay': 'Uruguay flagship depth across all 50 countries',
