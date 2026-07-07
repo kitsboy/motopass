@@ -1,4 +1,16 @@
 import type { LangCode } from './languages'
+import {
+  pageKeysEn,
+  pageKeysEs,
+  pageKeysFr,
+  pageKeysPt,
+  pageKeysZh,
+  pageKeysAr,
+  pageKeysSw,
+  pageKeysDe,
+  pageKeysHi,
+  type PageKey,
+} from './pageKeys'
 
 export type TranslationKey =
   | 'nav.pitch' | 'nav.portfolio' | 'nav.programs' | 'nav.simulator' | 'nav.compare' | 'nav.vault'
@@ -34,6 +46,7 @@ export type TranslationKey =
   | 'verify.title' | 'verify.sub' | 'verify.stamp' | 'agents.title' | 'agents.sub'
   | 'apply.title' | 'apply.sub' | 'apply.submit' | 'nostr.connect' | 'nostr.connected'
   | 'block.live' | 'footer.truth'
+  | PageKey
 
 type Dict = Record<TranslationKey, string>
 
@@ -149,6 +162,7 @@ const en: Dict = {
   'nostr.connected': 'Connected',
   'block.live': 'Bitcoin block',
   'footer.truth': 'Truth You Can Verify — Satohash + OpenTimestamps + Nostr',
+  ...pageKeysEn,
 }
 
 const es: Dict = {
@@ -264,6 +278,8 @@ const es: Dict = {
   'nostr.connected': 'Conectado',
   'block.live': 'Bloque Bitcoin',
   'footer.truth': 'Verdad que puedes comprobar — Satohash + OpenTimestamps + Nostr',
+  ...pageKeysEn,
+  ...pageKeysEs,
 }
 
 const fr: Dict = {
@@ -379,10 +395,13 @@ const fr: Dict = {
   'nostr.connected': 'Connecté',
   'block.live': 'Bloc Bitcoin',
   'footer.truth': 'Une vérité vérifiable — Satohash + OpenTimestamps + Nostr',
+  ...pageKeysEn,
+  ...pageKeysFr,
 }
 
 const pt: Dict = {
   ...en,
+  ...pageKeysPt,
   'nav.pitch': 'Visão',
   'nav.programs': 'Programas',
   'nav.blog': 'Blog',
@@ -394,6 +413,7 @@ const pt: Dict = {
 
 const zh: Dict = {
   ...en,
+  ...pageKeysZh,
   'nav.pitch': '愿景',
   'nav.programs': '项目',
   'nav.blog': '洞察',
@@ -406,6 +426,7 @@ const zh: Dict = {
 
 const ar: Dict = {
   ...en,
+  ...pageKeysAr,
   'nav.pitch': 'الرؤية',
   'nav.programs': 'البرامج',
   'nav.blog': 'مدونة',
@@ -418,6 +439,7 @@ const ar: Dict = {
 
 const sw: Dict = {
   ...en,
+  ...pageKeysSw,
   'nav.pitch': 'Dira',
   'nav.programs': 'Programu',
   'nav.blog': 'Maarifa',
@@ -429,6 +451,7 @@ const sw: Dict = {
 
 const de: Dict = {
   ...en,
+  ...pageKeysDe,
   'nav.pitch': 'Vision',
   'nav.programs': 'Programme',
   'nav.blog': 'Blog',
@@ -440,6 +463,7 @@ const de: Dict = {
 
 const hi: Dict = {
   ...en,
+  ...pageKeysHi,
   'nav.pitch': 'दृष्टि',
   'nav.programs': 'कार्यक्रम',
   'nav.blog': 'ब्लॉग',

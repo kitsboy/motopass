@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
 import { X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 
@@ -11,20 +11,52 @@ type Props = {
   icon?: ReactNode
   children: ReactNode
   maxWidth?: 'md' | 'lg' | 'xl'
+  closeLabel?: string
 }
 
 const MAX = { md: 'max-w-lg', lg: 'max-w-2xl', xl: 'max-w-3xl' }
 
-export function ClassyModal({ open, onClose, title, subtitle, eyebrow, icon, children, maxWidth = 'lg' }: Props) {
+const FOCUSABLE = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+
+export function ClassyModal({ open, onClose, title, subtitle, eyebrow, icon, children, maxWidth = 'lg', closeLabel = 'Close' }: Props) {
+  const panelRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLElement | null>(null)
+
   useEffect(() => {
     if (!open) return
+    triggerRef.current = document.activeElement as HTMLElement | null
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+        return
+      }
+      if (e.key !== 'Tab' || !panelRef.current) return
+      const nodes = Array.from(panelRef.current.querySelectorAll<HTMLElement>(FOCUSABLE))
+      if (!nodes.length) return
+      const first = nodes[0]
+      const last = nodes[nodes.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+
     window.addEventListener('keydown', onKey)
+    requestAnimationFrame(() => {
+      const first = panelRef.current?.querySelector<HTMLElement>(FOCUSABLE)
+      first?.focus()
+    })
+
     return () => {
       document.body.style.overflow = prev
       window.removeEventListener('keydown', onKey)
+      triggerRef.current?.focus()
     }
   }, [open, onClose])
 
@@ -34,7 +66,7 @@ export function ClassyModal({ open, onClose, title, subtitle, eyebrow, icon, chi
         <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4">
           <motion.button
             type="button"
-            aria-label="Close dialog"
+            aria-label={closeLabel}
             className="absolute inset-0 bg-ink/45 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -42,6 +74,7 @@ export function ClassyModal({ open, onClose, title, subtitle, eyebrow, icon, chi
             onClick={onClose}
           />
           <motion.div
+            ref={panelRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby="classy-modal-title"
@@ -76,7 +109,7 @@ export function ClassyModal({ open, onClose, title, subtitle, eyebrow, icon, chi
                   type="button"
                   onClick={onClose}
                   className="shrink-0 p-2.5 rounded-mp-md text-ink-muted hover:bg-section hover:text-ink transition-colors"
-                  aria-label="Close"
+                  aria-label={closeLabel}
                 >
                   <X size={20} />
                 </button>

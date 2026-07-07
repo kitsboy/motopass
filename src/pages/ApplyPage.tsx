@@ -36,31 +36,31 @@ export function ApplyPage() {
       {!result ? (
         <form onSubmit={submit} className="card-elevated space-y-4">
           <div>
-            <label htmlFor="apply-name" className="text-xs font-medium text-ink-muted block mb-1.5">Your name</label>
+            <label htmlFor="apply-name" className="text-xs font-medium text-ink-muted block mb-1.5">{t('apply.yourName')}</label>
             <input id="apply-name" required value={name} onChange={e => setName(e.target.value)} className="input-field" />
           </div>
           <div>
-            <label htmlFor="apply-program" className="text-xs font-medium text-ink-muted block mb-1.5">Target program / country</label>
-            <input id="apply-program" required value={program} onChange={e => setProgram(e.target.value)} placeholder="e.g. Uruguay RBI" className="input-field" />
+            <label htmlFor="apply-program" className="text-xs font-medium text-ink-muted block mb-1.5">{t('apply.targetProgram')}</label>
+            <input id="apply-program" required value={program} onChange={e => setProgram(e.target.value)} placeholder={t('apply.programPlaceholder')} className="input-field" />
           </div>
           <div>
-            <label htmlFor="apply-notes" className="text-xs font-medium text-ink-muted block mb-1.5">Notes (optional)</label>
+            <label htmlFor="apply-notes" className="text-xs font-medium text-ink-muted block mb-1.5">{t('apply.notesOptional')}</label>
             <textarea id="apply-notes" value={notes} onChange={e => setNotes(e.target.value)} rows={3} className="input-field" />
           </div>
           <button type="submit" className="btn-primary w-full">{t('apply.submit')}</button>
         </form>
       ) : (
         <div className="card space-y-4">
-          <p className="text-status-green text-sm font-semibold">Application registered locally</p>
-          <p className="text-xs text-ink-muted">ID: <span className="font-mono text-ink">{result.id}</span></p>
+          <p className="text-status-green text-sm font-semibold">{t('apply.success')}</p>
+          <p className="text-xs text-ink-muted">{t('apply.id')}: <span className="font-mono text-ink">{result.id}</span></p>
           <code className="block text-[10px] font-mono text-btc-orange-deep break-all bg-btc-orange-soft p-3 rounded-mp-md border border-btc-orange/20">{result.hash}</code>
           <a href={satohashStampGuideUrl(result.hash)} target="_blank" rel="noopener noreferrer" className="btn-primary w-full inline-flex items-center justify-center gap-2">
-            Stamp on Satohash.io <ExternalLink size={14} />
+            {t('apply.stampSatohash')} <ExternalLink size={14} />
           </a>
           <p className="text-xs text-ink-muted leading-relaxed">
-            Your liaison agent will be notified when Nostr relay is live. Timestamp this hash on Bitcoin for independent proof.
+            {t('apply.agentNotify')}
           </p>
-          <button type="button" onClick={() => setResult(null)} className="btn-secondary w-full">Register another</button>
+          <button type="button" onClick={() => setResult(null)} className="btn-secondary w-full">{t('apply.registerAnother')}</button>
         </div>
       )}
     </div>

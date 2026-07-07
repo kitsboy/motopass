@@ -14,6 +14,7 @@ export function ThemeToggle({ compact }: Props) {
         onClick={toggleTheme}
         className="nav-btn nav-btn-icon"
         aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+        aria-pressed={isDark}
         title={isDark ? 'Light mode' : 'Dark mode'}
       >
         {isDark ? <Sun size={16} strokeWidth={2.25} /> : <Moon size={16} strokeWidth={2.25} />}

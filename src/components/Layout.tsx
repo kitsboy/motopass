@@ -12,8 +12,10 @@ import { MobileBottomNav } from './nav/MobileBottomNav'
 import { MoreNavSheet } from './nav/MoreNavSheet'
 import { useI18n } from '../i18n/I18nContext'
 import { FOOTER_VERSION } from '../lib/buildInfo'
+import { useScrollToTop } from '../hooks/useScrollToTop'
 
 export function Layout() {
+  useScrollToTop()
   const { t } = useI18n()
   const [menuOpen, setMenuOpen] = useState(false)
   const [moreOpen, setMoreOpen] = useState(false)

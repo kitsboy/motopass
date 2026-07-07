@@ -26,26 +26,26 @@ export function VerifyPage() {
       <BlockHeight />
 
       <div className="card-elevated mt-8 space-y-4 border-l-4 border-l-btc-orange">
-        <label className="block text-sm font-medium text-ink-secondary">Data to hash (application text, JSON, legal extract)</label>
-        <textarea value={input} onChange={e => setInput(e.target.value)} rows={4} className="input-field font-mono" />
+        <label htmlFor="verify-input" className="block text-sm font-medium text-ink-secondary">{t('verify.dataLabel')}</label>
+        <textarea id="verify-input" value={input} onChange={e => setInput(e.target.value)} rows={4} className="input-field font-mono" />
         <button type="button" onClick={generate} className="btn-primary w-full sm:w-auto">
-          Generate SHA-256 hash
+          {t('verify.generateHash')}
         </button>
 
         {hash && (
           <div className="space-y-3 pt-4 border-t border-mp">
             <div className="flex items-start gap-2">
               <code className="flex-1 text-xs font-mono text-btc-orange-deep break-all bg-btc-orange-soft p-3 rounded-mp-md border border-btc-orange/20">{hash}</code>
-              <button type="button" onClick={copy} aria-label="Copy hash to clipboard" className="p-2.5 border border-mp rounded-mp-md shrink-0 hover:bg-section">
+              <button type="button" onClick={copy} aria-label={t('verify.copyHash')} className="p-2.5 border border-mp rounded-mp-md shrink-0 hover:bg-section">
                 {copied ? <Check size={16} className="text-status-green" /> : <Copy size={16} className="text-ink-muted" />}
               </button>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
               <a href={satohashStampGuideUrl(hash)} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center gap-2 flex-1">
-                Stamp on Satohash <ExternalLink size={14} />
+                {t('verify.stampSatohash')} <ExternalLink size={14} />
               </a>
               <a href={satohashVerifyUrl(hash)} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center justify-center gap-2 flex-1">
-                Verify proof <ExternalLink size={14} />
+                {t('verify.verifyProof')} <ExternalLink size={14} />
               </a>
             </div>
           </div>
@@ -53,8 +53,8 @@ export function VerifyPage() {
       </div>
 
       <div className="mt-8 text-xs text-ink-muted space-y-2 leading-relaxed card-muted">
-        <p className="flex gap-2"><Shield size={14} className="text-btc-orange shrink-0 mt-0.5" /> OpenTimestamps anchors your hash to a Bitcoin block. Satohash.io (Give A Bit) provides human-readable verification receipts.</p>
-        <p>Passport applications registered in MotoPass automatically generate a canonical JSON hash for stamping.</p>
+        <p className="flex gap-2"><Shield size={14} className="text-btc-orange shrink-0 mt-0.5" /> {t('verify.explainer1')}</p>
+        <p>{t('verify.explainer2')}</p>
       </div>
     </div>
   )

@@ -44,13 +44,13 @@ export function PortfolioPage() {
 
   return (
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
-      <PageHeader eyebrow="MY PORTFOLIO" title="Acquired programs" subtitle="Programs you've marked as acquired in the explorer." />
+      <PageHeader eyebrow={t('portfolio.eyebrow')} title={t('portfolio.title')} subtitle={t('portfolio.subtitle')} />
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
-        <StatCard value={acquired.length} label="Programs" accent icon={<Layers size={18} />} />
-        <StatCard value={`$${(totalInvest / 1000).toFixed(0)}k`} label="Total invested" icon={<Wallet size={18} />} />
-        <StatCard value={avgScore.toFixed(1)} label="Avg BTC score" icon={<Zap size={18} />} />
-        <StatCard value={acquired.filter((p) => p.lightning_ready).length} label="Lightning ready" icon={<Radio size={18} />} />
+        <StatCard value={acquired.length} label={t('portfolio.statPrograms')} accent icon={<Layers size={18} />} />
+        <StatCard value={`$${(totalInvest / 1000).toFixed(0)}k`} label={t('portfolio.statInvest')} icon={<Wallet size={18} />} />
+        <StatCard value={avgScore.toFixed(1)} label={t('portfolio.statScore')} icon={<Zap size={18} />} />
+        <StatCard value={acquired.filter((p) => p.lightning_ready).length} label={t('portfolio.statLightning')} icon={<Radio size={18} />} />
       </div>
 
       {error && <ProgramsLoadError message={error} />}

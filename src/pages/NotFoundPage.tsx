@@ -1,41 +1,43 @@
 import { Link } from 'react-router-dom'
 import { SeoHead } from '../components/SeoHead'
 import { PageHeader } from '../components/ui/PageHeader'
+import { useI18n } from '../i18n/I18nContext'
 
-const QUICK_LINKS = [
-  { to: '/', label: 'Pitch' },
-  { to: '/programs', label: 'Programs' },
-  { to: '/blog', label: 'Insights' },
-  { to: '/verify', label: 'Verify' },
-  { to: '/register', label: 'Register' },
-]
+const QUICK_LINK_KEYS = [
+  { to: '/', key: 'nav.pitch' as const },
+  { to: '/programs', key: 'nav.programs' as const },
+  { to: '/blog', key: 'nav.blog' as const },
+  { to: '/verify', key: 'nav.verify' as const },
+  { to: '/register', key: 'nav.register' as const },
+] as const
 
 export function NotFoundPage() {
+  const { t } = useI18n()
+
   return (
     <div className="px-4 sm:px-6 py-8 max-w-3xl mx-auto">
       <SeoHead
-        title="Page Not Found"
-        description="The page you requested does not exist on MotoPass. Explore sovereign passport programs, insights, and verification tools."
+        title={t('notFound.title')}
+        description={t('notFound.body')}
         path="/404"
         noIndex
       />
       <PageHeader
-        eyebrow="404"
-        title="Page not found"
-        subtitle="This route is not part of the MotoPass sovereign mobility platform."
+        eyebrow={t('notFound.eyebrow')}
+        title={t('notFound.title')}
+        subtitle={t('notFound.subtitle')}
       />
       <p className="text-sm text-ink-secondary mb-6 leading-relaxed">
-        The URL may be outdated or mistyped. Use the links below to continue exploring Bitcoin-verified
-        passport and residency programs.
+        {t('notFound.body')}
       </p>
       <nav className="flex flex-wrap gap-3" aria-label="Helpful links">
-        {QUICK_LINKS.map((link) => (
+        {QUICK_LINK_KEYS.map((link) => (
           <Link
             key={link.to}
             to={link.to}
             className="rounded-chip border border-mp-border px-3 py-2 text-sm font-medium text-mp-ink-secondary hover:border-mp-border-strong hover:text-accent transition-colors"
           >
-            {link.label}
+            {t(link.key)}
           </Link>
         ))}
       </nav>

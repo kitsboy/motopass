@@ -9,6 +9,7 @@ import type { TranslationKey } from '../i18n/translations'
 
 const FOOTER_LINKS: { to: string; key: TranslationKey }[] = [
   { to: '/programs', key: 'nav.programs' },
+  { to: '/agents', key: 'nav.agents' },
   { to: '/blog', key: 'nav.blog' },
   { to: '/register', key: 'nav.register' },
   { to: '/dashboard', key: 'nav.dashboard' },

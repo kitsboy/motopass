@@ -5,6 +5,9 @@ import {
   togglePortfolio,
   exportProgramsJson,
   importProgramsJson,
+  saveStack,
+  deleteStack,
+  loadStacks,
   PORTFOLIO_KEY,
 } from './portfolioStorage'
 import type { Program } from '../types/program'
@@ -82,5 +85,14 @@ describe('portfolioStorage', () => {
     const imported = importProgramsJson(raw)
     expect(imported).toHaveLength(1)
     expect(imported[0].name).toBe('Uruguay')
+  })
+
+  it('caps saved stacks at 20 and supports delete', () => {
+    for (let i = 0; i < 22; i++) {
+      saveStack({ id: `s-${i}`, name: `Stack ${i}`, programIds: [i], createdAt: new Date().toISOString() })
+    }
+    expect(loadStacks()).toHaveLength(20)
+    deleteStack('s-0')
+    expect(loadStacks().find(s => s.id === 's-0')).toBeUndefined()
   })
 })

@@ -8,7 +8,10 @@ import {
   saveSavedFilters,
   exportProgramsJson,
   importProgramsJson,
+  loadProgramsView,
+  saveProgramsView,
 } from '../lib/portfolioStorage'
+import { useDebouncedValue } from '../hooks/useDebouncedValue'
 import { toCinematicPrograms, cinematicIdToNumber } from '../lib/programAdapter'
 import { PageHeader } from '../components/ui/PageHeader'
 import { Chip } from '../components/ui/Chip'
@@ -21,6 +24,7 @@ import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
 import { useI18n } from '../i18n/I18nContext'
+import { formatT } from '../i18n/format'
 import { SeoHead } from '../components/SeoHead'
 import { absoluteUrl } from '../lib/seo'
 
@@ -36,15 +40,20 @@ export function ProgramsPage() {
   const [addedPrograms, setAddedPrograms] = useState<Program[]>([])
   const programs = useMemo(() => [...basePrograms, ...addedPrograms], [basePrograms, addedPrograms])
   const [filters, setFilters] = useState<ProgramFilters>(() => loadSavedFilters<ProgramFilters>() ?? DEFAULT_FILTERS)
-  const [view, setView] = useState<'table' | 'card'>('table')
+  const [view, setView] = useState<'table' | 'card'>(() => loadProgramsView() ?? 'table')
   const [active, setActive] = useState<CinematicProgram | null>(null)
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [addOpen, setAddOpen] = useState(false)
   const [newName, setNewName] = useState('')
 
   useEffect(() => { saveSavedFilters(filters) }, [filters])
+  useEffect(() => { saveProgramsView(view) }, [view])
 
-  const filtered = useMemo(() => filterPrograms(programs, filters), [programs, filters])
+  const debouncedSearch = useDebouncedValue(filters.search, 150)
+  const filtered = useMemo(
+    () => filterPrograms(programs, { ...filters, search: debouncedSearch }),
+    [programs, filters, debouncedSearch],
+  )
   const cinematic = useMemo(() => toCinematicPrograms(filtered), [filtered])
   const regions = ['All', ...Array.from(new Set(programs.map((p) => p.region)))]
   const categories = ['All', ...Array.from(new Set(programs.map((p) => p.category)))]
@@ -143,26 +152,26 @@ export function ProgramsPage() {
       <SeoHead jsonLd={programsJsonLd} jsonLdOnly />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-16">
         <PageHeader
-          eyebrow={`${programs.length} jurisdictions, tracked`}
-          title="Programs"
-          description="Every figure below is modeled, timestamped, and re-checked on a schedule — not a one-time brochure snapshot."
+          eyebrow={formatT(t, 'programs.eyebrow', { count: programs.length })}
+          title={t('programs.title')}
+          description={t('programs.description')}
           actions={
             <>
               <div className="hidden items-center gap-1 rounded-chip bg-mp-section p-1 sm:flex">
-                <button type="button" onClick={() => setView('table')} className={iconBtn(view === 'table')} aria-label="Table view">
+                <button type="button" onClick={() => setView('table')} className={iconBtn(view === 'table')} aria-label={t('programs.tableView')}>
                   <Table size={14} />
                 </button>
-                <button type="button" onClick={() => setView('card')} className={iconBtn(view === 'card')} aria-label="Card view">
+                <button type="button" onClick={() => setView('card')} className={iconBtn(view === 'card')} aria-label={t('programs.cardView')}>
                   <LayoutGrid size={14} />
                 </button>
               </div>
-              <button type="button" onClick={handleExport} className={iconBtn(false)} title="Export" aria-label="Export">
+              <button type="button" onClick={handleExport} className={iconBtn(false)} title={t('programs.export')} aria-label={t('programs.export')}>
                 <Download size={14} />
               </button>
-              <button type="button" onClick={handleImport} className={iconBtn(false)} title="Import" aria-label="Import">
+              <button type="button" onClick={handleImport} className={iconBtn(false)} title={t('programs.import')} aria-label={t('programs.import')}>
                 <Upload size={14} />
               </button>
-              <button type="button" onClick={() => setAddOpen(true)} className={iconBtn(false)} title="Add new" aria-label="Add new">
+              <button type="button" onClick={() => setAddOpen(true)} className={iconBtn(false)} title={t('programs.addProgram')} aria-label={t('programs.addProgram')}>
                 <Plus size={14} />
               </button>
             </>
@@ -307,27 +316,28 @@ export function ProgramsPage() {
       <ClassyModal
         open={addOpen}
         onClose={() => { setAddOpen(false); setNewName('') }}
-        title="Add program"
-        subtitle="Create a placeholder entry for a jurisdiction you're researching."
+        title={t('programs.addProgramTitle')}
+        subtitle={t('programs.addProgramSubtitle')}
         maxWidth="md"
       >
         <div className="space-y-4">
-          <label className="block text-sm font-medium text-ink-secondary">Program name</label>
+          <label htmlFor="add-program-name" className="block text-sm font-medium text-ink-secondary">{t('programs.addProgramName')}</label>
           <input
+            id="add-program-name"
             type="text"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
-            placeholder="e.g. Costa Rica Investor Residency"
+            placeholder={t('programs.addProgramPlaceholder')}
             className="input-field"
             autoFocus
             onKeyDown={(e) => { if (e.key === 'Enter') submitNewProgram() }}
           />
           <div className="flex gap-2 justify-end pt-2">
             <button type="button" onClick={() => { setAddOpen(false); setNewName('') }} className="btn-secondary text-sm">
-              Cancel
+              {t('common.cancel')}
             </button>
             <button type="button" onClick={submitNewProgram} disabled={!newName.trim()} className="btn-primary text-sm">
-              Add program
+              {t('programs.addProgramSubmit')}
             </button>
           </div>
         </div>

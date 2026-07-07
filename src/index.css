@@ -194,6 +194,15 @@ body {
   @apply sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-[100] focus:rounded-lg focus:bg-card focus:px-3 focus:py-1.5 focus:text-xs focus:font-chrome focus:font-medium focus:text-ink focus:shadow-card focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-btc-orange;
 }
 
+#main-content:focus {
+  outline: none;
+}
+
+#main-content:focus-visible {
+  outline: 2px solid rgba(247, 147, 26, 0.55);
+  outline-offset: 4px;
+}
+
 .nav-header {
   box-shadow: var(--mp-shadow-header), 0 1px 0 rgba(247, 147, 26, 0.06);
 }

@@ -8,6 +8,7 @@ import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { PageHeader } from '../components/ui/PageHeader'
 import { ProofBadge } from '../components/ui/ProofBadge'
 import { useI18n } from '../i18n/I18nContext'
+import { formatT } from '../i18n/format'
 
 export function VaultPage() {
   const { t } = useI18n()
@@ -24,9 +25,9 @@ export function VaultPage() {
   return (
     <div className="px-4 sm:px-6 py-8 max-w-4xl mx-auto">
       <PageHeader
-        eyebrow="RESEARCH VAULT"
-        title="Timestamp proofs"
-        subtitle="Satohash-anchored program data with optional Nostr Kind 30078 stubs."
+        eyebrow={t('vault.eyebrow')}
+        title={t('vault.title')}
+        subtitle={t('vault.subtitle')}
       />
 
       {error && <ProgramsLoadError message={error} />}
@@ -36,16 +37,16 @@ export function VaultPage() {
           {stamped.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-4 text-xs text-mp-ink-secondary">
               <span className="rounded-chip border border-mp-border bg-mp-card-muted px-2.5 py-1">
-                {stamped.length} anchored
+                {formatT(t, 'vault.anchored', { count: stamped.length })}
               </span>
               {verifiedCount > 0 && (
                 <span className="rounded-chip border border-mp-proof/30 bg-mp-proof-soft px-2.5 py-1 text-mp-proof">
-                  {verifiedCount} verified
+                  {formatT(t, 'vault.verified', { count: verifiedCount })}
                 </span>
               )}
               {demoCount > 0 && (
                 <span className="rounded-chip border border-mp-border-strong bg-mp-section px-2.5 py-1">
-                  {demoCount} demo anchors
+                  {formatT(t, 'vault.demoAnchors', { count: demoCount })}
                 </span>
               )}
             </div>

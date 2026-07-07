@@ -15,6 +15,7 @@ const TOOLS = [
   { to: '/verify', key: 'nav.verify' as const },
   { to: '/blog', key: 'nav.blog' as const },
   { to: '/agents', key: 'nav.agents' as const },
+  { to: '/apply', key: 'nav.apply' as const },
 ] as const
 
 export function DesktopNav() {

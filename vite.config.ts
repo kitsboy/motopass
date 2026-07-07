@@ -73,6 +73,17 @@ function motopassStaticAssets(): Plugin {
 }
 
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          motion: ['motion'],
+          nostr: ['nostr-tools'],
+          icons: ['lucide-react'],
+        },
+      },
+    },
+  },
   plugins: [react(), motopassStaticAssets()],
   server: {
     fs: {

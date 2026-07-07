@@ -6,8 +6,11 @@ import { hashApplicationPayload, satohashStampGuideUrl } from '../lib/satohash'
 import type { UserDocument } from '../types/user'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
+import { useI18n } from '../i18n/I18nContext'
+import { formatT } from '../i18n/format'
 
 export function ProfilePage() {
+  const { t } = useI18n()
   const { profile, isLoggedIn, setProfile } = useUser()
   const [uploadItems, setUploadItems] = useState<UploadItem[]>([])
 
@@ -25,28 +28,28 @@ export function ProfilePage() {
   return (
     <div className="px-4 sm:px-6 py-8 max-w-2xl mx-auto">
       <PageHeader
-        eyebrow="PROFILE & DOCUMENTS"
-        title="Your documents"
-        subtitle="Upload passport documents. Each file is SHA-256 hashed and ready for Satohash.io stamping — files never leave your device."
+        eyebrow={t('profile.eyebrow')}
+        title={t('profile.title')}
+        subtitle={t('profile.subtitle')}
       />
 
       <div className="flex gap-2 mb-6">
         <AnimatedBadge status="info">{profile.program}</AnimatedBadge>
-        <AnimatedBadge status="neutral">{profile.documents.length} docs</AnimatedBadge>
+        <AnimatedBadge status="neutral">{formatT(t, 'profile.docsCount', { count: profile.documents.length })}</AnimatedBadge>
       </div>
 
       <FileUpload items={uploadItems} onItemsChange={setUploadItems} onFileAdded={handleFileAdded} />
 
       {profile.documents.length > 0 && (
         <div className="mt-8 card">
-          <h3 className="font-display font-semibold text-ink mb-4">Stamped document hashes</h3>
+          <h3 className="font-display font-semibold text-ink mb-4">{t('profile.stampedHashes')}</h3>
           <ul className="space-y-3">
             {profile.documents.map(d => (
               <li key={d.id} className="text-sm border-b border-mp pb-3 last:border-0">
                 <div className="font-medium text-ink">{d.name}</div>
                 <code className="text-[10px] text-btc-orange-deep font-mono break-all">{d.hash}</code>
                 <a href={d.satohashUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-btc-orange font-medium hover:underline block mt-1">
-                  Stamp on Satohash.io →
+                  {t('profile.stampLink')}
                 </a>
               </li>
             ))}
@@ -54,7 +57,7 @@ export function ProfilePage() {
         </div>
       )}
 
-      <Link to="/dashboard" className="btn-secondary w-full mt-6 text-center block">← Back to dashboard</Link>
+      <Link to="/dashboard" className="btn-secondary w-full mt-6 text-center block">{t('profile.backDashboard')}</Link>
     </div>
   )
 }

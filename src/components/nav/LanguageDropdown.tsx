@@ -6,17 +6,42 @@ import { useI18n } from '../../i18n/I18nContext'
 export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'menu' }) {
   const { lang, setLang, t } = useI18n()
   const [open, setOpen] = useState(false)
+  const [highlight, setHighlight] = useState(0)
   const rootRef = useRef<HTMLDivElement>(null)
   const listId = useId()
   const current = LANGUAGES.find(l => l.code === lang) ?? LANGUAGES[0]
 
+  const pick = (code: LangCode) => {
+    setLang(code)
+    setOpen(false)
+  }
+
   useEffect(() => {
     if (!open) return
+    const activeIdx = LANGUAGES.findIndex(l => l.code === lang)
+    setHighlight(activeIdx >= 0 ? activeIdx : 0)
     const onDoc = (e: MouseEvent) => {
       if (!rootRef.current?.contains(e.target as Node)) setOpen(false)
     }
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false)
+      if (e.key === 'Escape') {
+        setOpen(false)
+        return
+      }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        setHighlight(i => (i + 1) % LANGUAGES.length)
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        setHighlight(i => (i - 1 + LANGUAGES.length) % LANGUAGES.length)
+      } else if (e.key === 'Enter') {
+        e.preventDefault()
+        setHighlight(i => {
+          setLang(LANGUAGES[i].code)
+          setOpen(false)
+          return i
+        })
+      }
     }
     document.addEventListener('mousedown', onDoc)
     document.addEventListener('keydown', onKey)
@@ -24,12 +49,7 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
       document.removeEventListener('mousedown', onDoc)
       document.removeEventListener('keydown', onKey)
     }
-  }, [open])
-
-  const pick = (code: LangCode) => {
-    setLang(code)
-    setOpen(false)
-  }
+  }, [open, lang, setLang])
 
   const triggerClass =
     size === 'menu'
@@ -74,14 +94,16 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
             <Globe size={11} aria-hidden="true" />
             {t('nav.language')}
           </li>
-          {LANGUAGES.map(l => {
+          {LANGUAGES.map((l, idx) => {
             const active = l.code === lang
+            const highlighted = idx === highlight
             return (
               <li key={l.code} role="option" aria-selected={active}>
                 <button
                   type="button"
                   onClick={() => pick(l.code)}
-                  className={`nav-dropdown-item w-full ${active ? 'nav-dropdown-item-active' : ''}`}
+                  onMouseEnter={() => setHighlight(idx)}
+                  className={`nav-dropdown-item w-full ${active ? 'nav-dropdown-item-active' : ''} ${highlighted && !active ? 'bg-section/70' : ''}`}
                 >
                   <span className="text-base leading-none w-6 text-center" aria-hidden="true">{l.flag}</span>
                   <span className="flex-1 text-left min-w-0">

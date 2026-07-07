@@ -43,7 +43,7 @@ export function RegisterPage() {
 
   return (
     <div className="px-4 sm:px-6 py-8 max-w-lg mx-auto">
-      <PageHeader eyebrow="REGISTRATION" title="Register with Nostr" subtitle="No email. Your npub is your account. Documents stamped via Satohash.io." />
+      <PageHeader eyebrow="REGISTRATION" title={t('register.title')} subtitle={t('register.subtitle')} />
 
       <div className="flex gap-2 mb-8">
         {[1, 2, 3].map(s => (
@@ -56,46 +56,50 @@ export function RegisterPage() {
           <div className="w-14 h-14 mx-auto rounded-full bg-nostr-violet-soft flex items-center justify-center">
             <Zap size={28} className="text-nostr-violet" />
           </div>
-          <p className="text-sm text-ink-secondary">Connect your Nostr browser extension to create your MotoPass identity.</p>
+          <p className="text-sm text-ink-secondary">{t('register.connectPrompt')}</p>
           <button type="button" onClick={connect} disabled={loading} className="btn-primary w-full">
-            {loading ? 'Connecting…' : 'Connect Nostr extension'}
+            {loading ? t('register.connecting') : t('register.connectBtn')}
           </button>
         </div>
       )}
 
       {step === 2 && nostr && (
         <div className="card space-y-4">
-          <AnimatedBadge status="success">Nostr connected</AnimatedBadge>
+          <AnimatedBadge status="success">{t('nostr.connected')}</AnimatedBadge>
           <p className="text-xs font-mono text-nostr-violet truncate bg-nostr-violet-soft px-3 py-2 rounded-mp-md">{nostr.npub}</p>
           <div>
-            <label className="text-xs font-medium text-ink-muted block mb-1.5">Display name</label>
-            <input value={name} onChange={e => setName(e.target.value)} className="input-field" />
+            <label htmlFor="register-name" className="text-xs font-medium text-ink-muted block mb-1.5">{t('register.displayName')}</label>
+            <input id="register-name" value={name} onChange={e => setName(e.target.value)} className="input-field" />
           </div>
           <div>
-            <label className="text-xs font-medium text-ink-muted block mb-1.5">Target program / country</label>
-            <select value={program} onChange={e => setProgram(e.target.value)} className="select-field">
-              <option value="">Select…</option>
+            <label htmlFor="register-program" className="text-xs font-medium text-ink-muted block mb-1.5">{t('register.targetProgram')}</label>
+            <select id="register-program" value={program} onChange={e => setProgram(e.target.value)} className="select-field">
+              <option value="">{t('register.select')}</option>
               {programs.map(p => <option key={p.id} value={p.name}>{p.flag} {p.name}</option>)}
             </select>
           </div>
           <button type="button" onClick={() => setStep(3)} disabled={!name.trim() || !program} className="btn-primary w-full flex items-center justify-center gap-2">
-            Continue <ArrowRight size={14} />
+            {t('register.continue')} <ArrowRight size={14} />
           </button>
         </div>
       )}
 
       {step === 3 && (
         <div className="card space-y-4">
-          <h3 className="font-display font-semibold text-ink">Confirm registration</h3>
+          <h3 className="font-display font-semibold text-ink">{t('register.confirmTitle')}</h3>
           <dl className="text-sm space-y-3">
-            {[['Name', name], ['Program', program], ['Agent', 'Kimi']].map(([dt, dd]) => (
+            {[
+              [t('register.confirmName'), name],
+              [t('register.confirmProgram'), program],
+              [t('register.confirmAgent'), 'Kimi'],
+            ].map(([dt, dd]) => (
               <div key={dt} className="flex justify-between border-b border-mp/60 pb-2">
                 <dt className="text-ink-muted">{dt}</dt>
                 <dd className="font-medium text-ink">{dd}</dd>
               </div>
             ))}
           </dl>
-          <button type="button" onClick={submit} className="btn-primary w-full">Create account & go to dashboard</button>
+          <button type="button" onClick={submit} className="btn-primary w-full">{t('register.submit')}</button>
         </div>
       )}
     </div>

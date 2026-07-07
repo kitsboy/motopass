@@ -2,8 +2,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { BookOpen, Briefcase, Compass, LayoutGrid, MoreHorizontal } from 'lucide-react'
 import { useI18n } from '../../i18n/I18nContext'
 import { useUser } from '../../context/UserContext'
-
-const MORE_PATHS = ['/verify', '/blog', '/agents', '/simulator', '/compare', '/vault']
+import { MORE_PATHS } from '../../lib/navRoutes'
 
 type Tab = {
   to: string

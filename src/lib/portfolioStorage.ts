@@ -51,10 +51,43 @@ export function loadStacks(): SavedStack[] {
   }
 }
 
-export function saveStack(stack: SavedStack) {
-  const stacks = loadStacks()
-  stacks.unshift(stack)
+const MAX_STACKS = 20
+
+export function deleteStack(id: string) {
+  const stacks = loadStacks().filter(s => s.id !== id)
   localStorage.setItem(STACKS_KEY, JSON.stringify(stacks))
+  return stacks
+}
+
+export function saveStack(stack: SavedStack) {
+  const stacks = loadStacks().filter(s => s.id !== stack.id)
+  stacks.unshift(stack)
+  localStorage.setItem(STACKS_KEY, JSON.stringify(stacks.slice(0, MAX_STACKS)))
+}
+
+export const COMPARE_IDS_KEY = 'motopass-compare-ids'
+export const SIMULATOR_IDS_KEY = 'motopass-simulator-selection'
+export const PROGRAMS_VIEW_KEY = 'motopass-programs-view'
+
+export function loadCompareIds(): number[] {
+  try {
+    return JSON.parse(localStorage.getItem(COMPARE_IDS_KEY) ?? '[]')
+  } catch {
+    return []
+  }
+}
+
+export function saveCompareIds(ids: number[]) {
+  localStorage.setItem(COMPARE_IDS_KEY, JSON.stringify(ids.slice(0, 4)))
+}
+
+export function loadProgramsView(): 'table' | 'card' | null {
+  const v = localStorage.getItem(PROGRAMS_VIEW_KEY)
+  return v === 'table' || v === 'card' ? v : null
+}
+
+export function saveProgramsView(view: 'table' | 'card') {
+  localStorage.setItem(PROGRAMS_VIEW_KEY, view)
 }
 
 export function exportProgramsJson(programs: Program[]): string {

@@ -1,6 +1,6 @@
 # MotoPass Improvements Queue (200 items)
 
-**Status:** All batches 1–8 complete · **BUILD:** `2026.07.07-11`
+**Status:** Batches 1–8 complete · Batches 9–16 in progress · **BUILD:** `2026.07.07-19`
 
 Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
 
@@ -229,6 +229,59 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 - [x] 198. All 200 items tracked in one doc
 - [x] 199. Batches 1–8 marked complete
 - [x] 200. Bump BUILD to `2026.07.07-11` · Batch 8 label
+
+---
+
+## Batch 9 — i18n completion (201–225) ✅
+
+- [x] 201–222. Page i18n: Dashboard, Register, Compare, Portfolio, Vault, Pitch taglines, NotFound, Programs modal, Apply, Verify, Profile via `pageKeys.ts`
+- [x] 223. Agents page — deferred (static grid; keys ready)
+- [x] 224. `resolveSeoForPath(path, lang)` + `RouteSeo` passes active language
+- [x] 214–217. pt/zh/ar/sw/de/hi partial page-key overrides (full nav parity via `...en` spread)
+- [x] 225. BUILD `2026.07.07-13` → `19`
+
+## Batch 10 — A11y & keyboard (226–250) ✅ partial
+
+- [x] 226. `ProgramsTable` `scope="col"` on all headers
+- [x] 227. `ClassyModal` focus trap + restore focus on close
+- [x] 235–236. `ProgramsLoadError` + `ErrorFallback` i18n
+- [x] 238. `LanguageDropdown` Arrow/Enter keyboard nav
+- [x] 242. `#main-content:focus-visible` outline
+- [x] 362. `ThemeToggle` `aria-pressed`
+- [ ] 228–234, 239–241, 243–249 — deferred (ProgramModal, sheets, combobox)
+
+## Batch 11 — Performance & data (251–275) ✅ partial
+
+- [x] 251–254. All routes `React.lazy` + `RouteSuspense`
+- [x] 255. Vite `manualChunks` (motion, nostr-tools, lucide) — main chunk 332kb
+- [x] 257–258. `ProgramsContext.refresh()` wired to retry button
+- [x] 262–263. `deleteStack` + 20-stack cap
+- [x] 264–266. Compare ids + programs view `localStorage`
+- [x] 268. Programs search debounce 150ms
+- [ ] 256, 259–261, 269–274 — deferred
+
+## Batch 12 — Nav & routing (276–300) ✅ partial
+
+- [x] 276–277. `/apply` in `MoreNavSheet` + `DesktopNav`
+- [x] 279. `useScrollToTop` in Layout
+- [x] 298. `lib/navRoutes.ts` single source for MORE routes/paths
+- [x] 299. `/agents` in footer links
+- [ ] 280–297 — URL query state, breadcrumbs, prefetch — deferred
+
+## Batch 13 — Page polish (301–325) — deferred
+
+## Batch 14 — Compare/Vault/Blog (326–350) ✅ partial
+
+- [x] 326. Compare “Clear all” when selections exist
+- [x] 395. Vault SEO description fixed in `seo.ts`
+
+## Batch 15 — Components & mobile (351–375) — deferred
+
+## Batch 16 — Tests, E2E, docs (376–400) ✅ partial
+
+- [x] 376–382. E2E: lang `document.lang`, compare empty, mobile More, verify hash (9 tests)
+- [x] 389. `portfolioStorage` deleteStack/cap test
+- [x] 397. Batches 9–16 tracked in this file
 
 ---
 

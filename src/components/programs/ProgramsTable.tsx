@@ -33,16 +33,16 @@ export function ProgramsTable({
       <thead>
         <tr className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">
           {onTogglePortfolio && (
-            <th className="border-b border-mp-border-subtle py-3 pr-2 font-medium w-10">
+            <th scope="col" className="border-b border-mp-border-subtle py-3 pr-2 font-medium w-10">
               <span className="sr-only">In portfolio</span>
             </th>
           )}
-          <th className="border-b border-mp-border-subtle py-3 pr-4 font-medium">Jurisdiction</th>
-          <th className="border-b border-mp-border-subtle py-3 pr-4 font-medium">Tier</th>
-          <th className="border-b border-mp-border-subtle py-3 pr-4 text-right font-medium">Min. invest</th>
-          <th className="border-b border-mp-border-subtle py-3 pr-4 text-right font-medium">Timeline</th>
-          <th className="border-b border-mp-border-subtle py-3 pr-4 text-right font-medium">Score</th>
-          <th className="border-b border-mp-border-subtle py-3 pr-4 font-medium">Proof</th>
+          <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 font-medium">Jurisdiction</th>
+          <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 font-medium">Tier</th>
+          <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 text-right font-medium">Min. invest</th>
+          <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 text-right font-medium">Timeline</th>
+          <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 text-right font-medium">Score</th>
+          <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 font-medium">Proof</th>
         </tr>
       </thead>
       <tbody>

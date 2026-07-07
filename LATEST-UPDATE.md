@@ -1,5 +1,4 @@
 # motopass — Last Updated 2026-07-07 by Grok
 
-Brief: Batch 8 — Playwright e2e smoke, lazy Pitch/Programs routes, docs queue
-Commit: (pending commit)
-BUILD: 2026.07.07-11
+Brief: Batches 9–16 i18n, a11y, lazy routes, nav — BUILD 19
+Commit: pending

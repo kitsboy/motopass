@@ -1,4 +1,5 @@
 import { BLOG_POSTS } from '../data/blog'
+import type { LangCode } from '../i18n/languages'
 
 export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://motopass.giveabit.io'
 export const SITE_NAME = 'MotoPass'
@@ -38,9 +39,9 @@ export const ROUTE_SEO: Record<string, SeoMeta> = {
       'Side-by-side comparison of program investment thresholds, government fees, tax benefits, and Bitcoin integration.',
   },
   '/vault': {
-    title: 'Vault — Saved Stacks',
+    title: 'Vault — Timestamp Proofs',
     description:
-      'Store and revisit named sovereign stacks with local-first persistence and exportable program data.',
+      'Satohash-anchored program proofs with OpenTimestamps verification and optional Nostr Kind 30078 stubs.',
   },
   '/blog': {
     title: 'Insights — Sovereign Mobility Blog',
@@ -83,7 +84,7 @@ export function formatPageTitle(title: string): string {
   return `${title} • ${TITLE_SUFFIX}`
 }
 
-export function resolveSeoForPath(pathname: string): SeoMeta & { path: string } {
+export function resolveSeoForPath(pathname: string, lang: LangCode = 'en'): SeoMeta & { path: string } {
   const blogMatch = pathname.match(/^\/blog\/([^/]+)$/)
   if (blogMatch) {
     const slug = blogMatch[1]
@@ -91,8 +92,8 @@ export function resolveSeoForPath(pathname: string): SeoMeta & { path: string } 
     if (post) {
       return {
         path: pathname,
-        title: post.title.en,
-        description: post.excerpt.en,
+        title: post.title[lang] ?? post.title.en,
+        description: post.excerpt[lang] ?? post.excerpt.en,
       }
     }
     return {

@@ -2,14 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { X } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import { useI18n } from '../../i18n/I18nContext'
-const MORE_ROUTES = [
-  { to: '/simulator', key: 'nav.simulator' as const },
-  { to: '/compare', key: 'nav.compare' as const },
-  { to: '/vault', key: 'nav.vault' as const },
-  { to: '/verify', key: 'nav.verify' as const },
-  { to: '/blog', key: 'nav.blog' as const },
-  { to: '/agents', key: 'nav.agents' as const },
-] as const
+import { MORE_ROUTES } from '../../lib/navRoutes'
 
 export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useI18n()

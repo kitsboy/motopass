@@ -19,13 +19,13 @@ import type { TranslationKey } from '../i18n/translations'
 
 const PITCH_VERSION = `${BUILD_DATE} • ${BUILD_ID}`
 
-const ROTATING_TAGLINES = [
-  'Bitcoin is the speed.',
-  'Bitcoin is the value.',
-  'Bitcoin is the sovereignty.',
-  'Verify every claim on-chain.',
-  'Stack jurisdictions with proof.',
-]
+const TAGLINE_KEYS = [
+  'pitch.tagline1',
+  'pitch.tagline2',
+  'pitch.tagline3',
+  'pitch.tagline4',
+  'pitch.tagline5',
+] as const
 
 const FEATURE_KEYS = [
   { icon: Globe, titleKey: 'pitch.feature.jurisdictions.title' as const, subKey: 'pitch.feature.jurisdictions.sub' as const },
@@ -48,6 +48,10 @@ export function PitchPage() {
   const metrics = useMemo(() => (stats ? pitchStatsToMetrics(stats) : []), [stats])
   const savingsRows = useMemo(() => (stats ? pitchStatsToSavingsRows(stats) : []), [stats])
   const proofTs = useMemo(() => latestProofTimestamp(programs), [programs])
+  const taglines = useMemo(
+    () => TAGLINE_KEYS.map(k => t(k)),
+    [t],
+  )
 
   return (
     <div className="bg-mp-canvas">
@@ -94,7 +98,7 @@ export function PitchPage() {
           </motion.div>
 
           {!loading && metrics.length > 0 && (
-            <EvolvingPitchRotator metrics={metrics} taglines={ROTATING_TAGLINES} proofTimestamp={proofTs} />
+            <EvolvingPitchRotator metrics={metrics} taglines={taglines} proofTimestamp={proofTs} />
           )}
           {loading && (
             <div className="w-full max-w-md h-64 rounded-panel bg-mp-modal/50 animate-pulse" aria-hidden />
