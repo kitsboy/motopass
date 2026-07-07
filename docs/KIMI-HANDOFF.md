@@ -245,4 +245,31 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-07 (Batches 17–20)
+
+**Machine:** M3 (Grok)
+**Project:** motopass
+
+### Done
+- [x] Batch 17 a11y — `useFocusTrap`, MoreNavSheet trap, CopyField live region, reduced-motion modals, Agents `aria-disabled`
+- [x] Batch 18 i18n — Agents page keys, ProgramModal tabs/labels, pt/zh/ar/de/sw/hi overrides, PaymentQrCode/FileUpload i18n
+- [x] Batch 19 nav/polish — Breadcrumbs, PrefetchNavLink, dashboard `?next=` redirect, portfolio sort/remove-all, compare modal, vault copy, verify paste, register optgroups/stub guard
+- [x] Batch 20 CI/SEO — Playwright in CI, hreflang in SeoHead, sitemap generator, BlockHeight backoff, FAQ JSON-LD, 15 e2e tests, bundle budget
+- [x] BUILD `2026.07.07-24` — committed `44e7bb1`, pushed, deployed
+
+### Decisions
+- Logged-out `/dashboard` auto-redirects to `/register?next=` (not inline CTA card)
+- Round 2 items 201–500 tracked as batches 9–20 in IMPROVEMENTS-QUEUE.md
+
+### What's Next
+- Kimi: verify footer shows `BUILD 2026.07.07-24` after hard refresh
+- P1 backlog unchanged: deepen 50 countries, live Nostr relay, Satohash pipeline
+
+### Git State
+- Last commit SHA: 44e7bb1
+- Branch: `main`
+- Unpushed: (none)
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

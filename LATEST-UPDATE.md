@@ -1,4 +1,4 @@
 # motopass — Last Updated 2026-07-07 by Grok
 
-Brief: Batches 10–16 + shareable URL query state — BUILD 20
-Commit: pending
+Brief: Batches 17–20 round-2 polish complete — BUILD 24
+Commit: 44e7bb1
