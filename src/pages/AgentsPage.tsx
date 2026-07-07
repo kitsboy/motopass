@@ -1,4 +1,4 @@
-import { Bot, Zap, MessageCircle } from 'lucide-react'
+import { Zap, MessageCircle } from 'lucide-react'
 import { NostrConnect } from '../components/NostrConnect'
 import { AgentCardKimi } from '../components/AgentCardKimi'
 import { useI18n } from '../i18n/I18nContext'
@@ -49,7 +49,12 @@ export function AgentsPage() {
             <div className="flex items-center gap-2 text-xs font-mono text-nostr-violet bg-nostr-violet-soft rounded-mp-md px-3 py-2 mb-4 border border-nostr-violet/15">
               <Zap size={12} /> {a.npub}
             </div>
-            <button type="button" className="btn-secondary w-full text-sm !py-2">
+            <button
+              type="button"
+              disabled
+              title="Coming soon"
+              className="btn-secondary w-full text-sm !py-2 opacity-50 cursor-not-allowed"
+            >
               <MessageCircle size={14} /> Message via Nostr
             </button>
           </div>

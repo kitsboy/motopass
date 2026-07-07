@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Download, Upload, Plus, Table, LayoutGrid } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
+import { usePortfolio } from '../hooks/usePortfolio'
 import { filterPrograms, DEFAULT_FILTERS, type ProgramFilters } from '../lib/programFilter'
 import {
-  loadPortfolio,
-  togglePortfolio,
   loadSavedFilters,
   saveSavedFilters,
   exportProgramsJson,
@@ -13,6 +12,7 @@ import {
 import { toCinematicPrograms, cinematicIdToNumber } from '../lib/programAdapter'
 import { PageHeader } from '../components/ui/PageHeader'
 import { Chip } from '../components/ui/Chip'
+import { ClassyModal } from '../components/ui/ClassyModal'
 import { ProgramCard } from '../components/programs/ProgramCard'
 import { ProgramsTable } from '../components/programs/ProgramsTable'
 import { ProgramModal } from '../components/programs/ProgramModal'
@@ -20,6 +20,9 @@ import { CardSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
+import { useI18n } from '../i18n/I18nContext'
+import { SeoHead } from '../components/SeoHead'
+import { absoluteUrl } from '../lib/seo'
 
 const iconBtn = (active: boolean) =>
   `rounded-chip border px-2.5 py-2 font-chrome text-xs transition-colors duration-fast ${
@@ -27,14 +30,17 @@ const iconBtn = (active: boolean) =>
   }`
 
 export function ProgramsPage() {
+  const { t } = useI18n()
   const { programs: basePrograms, loading, error } = usePrograms()
+  const { portfolio, toggle: togglePortfolio } = usePortfolio()
   const [addedPrograms, setAddedPrograms] = useState<Program[]>([])
   const programs = useMemo(() => [...basePrograms, ...addedPrograms], [basePrograms, addedPrograms])
   const [filters, setFilters] = useState<ProgramFilters>(() => loadSavedFilters<ProgramFilters>() ?? DEFAULT_FILTERS)
   const [view, setView] = useState<'table' | 'card'>('table')
-  const [portfolio, setPortfolio] = useState<number[]>(loadPortfolio)
   const [active, setActive] = useState<CinematicProgram | null>(null)
   const [showAdvanced, setShowAdvanced] = useState(false)
+  const [addOpen, setAddOpen] = useState(false)
+  const [newName, setNewName] = useState('')
 
   useEffect(() => { saveSavedFilters(filters) }, [filters])
 
@@ -71,8 +77,8 @@ export function ProgramsPage() {
     input.click()
   }
 
-  const addNew = () => {
-    const name = prompt('New program name?')
+  const submitNewProgram = () => {
+    const name = newName.trim()
     if (!name) return
     setAddedPrograms((p) => [
       ...p,
@@ -100,16 +106,41 @@ export function ProgramsPage() {
         lightning_ready: false,
       },
     ])
+    setNewName('')
+    setAddOpen(false)
+  }
+
+  const handleTogglePortfolio = (program: CinematicProgram) => {
+    togglePortfolio(cinematicIdToNumber(program.id))
   }
 
   const handleAddToStack = (program: CinematicProgram) => {
-    const id = cinematicIdToNumber(program.id)
-    setPortfolio(togglePortfolio(id))
+    handleTogglePortfolio(program)
     setActive(null)
   }
 
+  const isInPortfolio = (program: CinematicProgram) =>
+    portfolio.includes(cinematicIdToNumber(program.id))
+
+  const programsJsonLd = useMemo(() => {
+    const items = programs.slice(0, 50)
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Sovereign Passport & Residency Programs',
+      numberOfItems: items.length,
+      itemListElement: items.map((program, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: program.name,
+        url: `${absoluteUrl('/programs')}#program-${program.id}`,
+      })),
+    }
+  }, [programs])
+
   return (
     <div className="min-h-screen bg-mp-canvas">
+      <SeoHead jsonLd={programsJsonLd} jsonLdOnly />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-16">
         <PageHeader
           eyebrow={`${programs.length} jurisdictions, tracked`}
@@ -131,7 +162,7 @@ export function ProgramsPage() {
               <button type="button" onClick={handleImport} className={iconBtn(false)} title="Import" aria-label="Import">
                 <Upload size={14} />
               </button>
-              <button type="button" onClick={addNew} className={iconBtn(false)} title="Add new" aria-label="Add new">
+              <button type="button" onClick={() => setAddOpen(true)} className={iconBtn(false)} title="Add new" aria-label="Add new">
                 <Plus size={14} />
               </button>
             </>
@@ -145,7 +176,7 @@ export function ProgramsPage() {
             type="search"
             value={filters.search}
             onChange={(e) => setFilters((f) => ({ ...f, search: e.target.value }))}
-            placeholder="Search programs…"
+            placeholder={t('programs.search')}
             className="input-field mb-3"
           />
           <button
@@ -153,7 +184,7 @@ export function ProgramsPage() {
             onClick={() => setShowAdvanced((s) => !s)}
             className="font-chrome text-xs text-mp-ink-tertiary hover:text-mp-ink"
           >
-            {showAdvanced ? 'Hide' : 'Show'} advanced filters
+            {showAdvanced ? t('programs.hideAdvanced') : t('programs.showAdvanced')}
           </button>
           {showAdvanced && (
             <div className="card-muted mt-3 space-y-4">
@@ -174,17 +205,17 @@ export function ProgramsPage() {
                     onChange={(e) => setFilters((f) => ({ ...f, lightningOnly: e.target.checked }))}
                     className="accent-btc-orange w-4 h-4"
                   />
-                  Lightning ready only
+                  {t('programs.lightningOnly')}
                 </label>
               </div>
               {[
-                { label: 'Min investment', key: 'minInvestment' as const, max: 2000000, step: 25000 },
-                { label: 'Max investment', key: 'maxInvestment' as const, max: 2000000, step: 50000 },
-                { label: 'Min crypto score', key: 'minCryptoScore' as const, max: 10, step: 1 },
-              ].map(({ label, key, max, step }) => (
+                { labelKey: 'programs.minInvestment' as const, key: 'minInvestment' as const, max: 2000000, step: 25000 },
+                { labelKey: 'programs.maxInvestment' as const, key: 'maxInvestment' as const, max: 2000000, step: 50000 },
+                { labelKey: 'programs.minCryptoScore' as const, key: 'minCryptoScore' as const, max: 10, step: 1 },
+              ].map(({ labelKey, key, max, step }) => (
                 <div key={key}>
                   <label className="text-xs font-medium text-ink-muted mb-1 block">
-                    {label}: {key === 'minCryptoScore' ? filters[key] : `$${filters[key].toLocaleString()}`}
+                    {t(labelKey)}: {key === 'minCryptoScore' ? filters[key] : `$${filters[key].toLocaleString()}`}
                   </label>
                   <input
                     type="range"
@@ -207,7 +238,7 @@ export function ProgramsPage() {
           <div className="grid gap-8 lg:grid-cols-[200px_1fr]">
             <aside className="lg:sticky lg:top-24 lg:self-start">
               <span className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary lg:block lg:mb-3">
-                Region
+                {t('programs.region')}
               </span>
               <div className="mt-2 flex gap-2 overflow-x-auto pb-2 lg:mt-0 lg:flex-col lg:overflow-visible lg:pb-0">
                 {regions.map((r) => (
@@ -225,26 +256,32 @@ export function ProgramsPage() {
             <div>
               {cinematic.length === 0 && (
                 <div className="text-center py-16 rounded-card border border-mp-border bg-mp-card">
-                  <p className="text-mp-ink-tertiary">No programs match your filters.</p>
+                  <p className="text-mp-ink-tertiary">{t('programs.noMatch')}</p>
                 </div>
               )}
 
               {cinematic.length > 0 && (
                 <>
-                  <div className="hidden sm:block">
-                    {view === 'table' ? (
-                      <ProgramsTable programs={cinematic} onSelect={setActive} />
-                    ) : (
-                      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                        {cinematic.map((p, i) => (
-                          <ProgramCard key={p.id} program={p} onSelect={setActive} index={i} />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                  <div className="grid gap-4 sm:hidden">
+                  {view === 'table' && (
+                    <div className="hidden sm:block">
+                      <ProgramsTable
+                        programs={cinematic}
+                        onSelect={setActive}
+                        portfolioIds={portfolio}
+                        onTogglePortfolio={handleTogglePortfolio}
+                      />
+                    </div>
+                  )}
+                  <div className={`grid gap-4 sm:grid-cols-2 xl:grid-cols-3 ${view === 'table' ? 'sm:hidden' : ''}`}>
                     {cinematic.map((p, i) => (
-                      <ProgramCard key={p.id} program={p} onSelect={setActive} index={i} />
+                      <ProgramCard
+                        key={p.id}
+                        program={p}
+                        onSelect={setActive}
+                        index={i}
+                        inPortfolio={isInPortfolio(p)}
+                        onTogglePortfolio={handleTogglePortfolio}
+                      />
                     ))}
                   </div>
                 </>
@@ -252,7 +289,7 @@ export function ProgramsPage() {
 
               {portfolio.length > 0 && (
                 <p className="mt-6 font-mono text-[11px] text-mp-ink-tertiary">
-                  {portfolio.length} program{portfolio.length === 1 ? '' : 's'} in your stack
+                  {portfolio.length} {t('programs.inStack')}
                 </p>
               )}
             </div>
@@ -264,7 +301,37 @@ export function ProgramsPage() {
         program={active}
         onClose={() => setActive(null)}
         onAddToStack={handleAddToStack}
+        inPortfolio={active ? isInPortfolio(active) : false}
       />
+
+      <ClassyModal
+        open={addOpen}
+        onClose={() => { setAddOpen(false); setNewName('') }}
+        title="Add program"
+        subtitle="Create a placeholder entry for a jurisdiction you're researching."
+        maxWidth="md"
+      >
+        <div className="space-y-4">
+          <label className="block text-sm font-medium text-ink-secondary">Program name</label>
+          <input
+            type="text"
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            placeholder="e.g. Costa Rica Investor Residency"
+            className="input-field"
+            autoFocus
+            onKeyDown={(e) => { if (e.key === 'Enter') submitNewProgram() }}
+          />
+          <div className="flex gap-2 justify-end pt-2">
+            <button type="button" onClick={() => { setAddOpen(false); setNewName('') }} className="btn-secondary text-sm">
+              Cancel
+            </button>
+            <button type="button" onClick={submitNewProgram} disabled={!newName.trim()} className="btn-primary text-sm">
+              Add program
+            </button>
+          </div>
+        </div>
+      </ClassyModal>
     </div>
   )
 }

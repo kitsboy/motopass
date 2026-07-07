@@ -3,6 +3,7 @@ import { PAYMENT_RAILS, type PaymentRail, type UserPayment } from '../types/user
 import { createInvoicePlaceholder, type PaymentInvoice } from '../lib/payments'
 import { AnimatedBadge } from './beui/AnimatedBadge'
 import { useState } from 'react'
+import { useI18n } from '../i18n/I18nContext'
 
 export function PaymentMethods({
   onPay,
@@ -11,14 +12,16 @@ export function PaymentMethods({
   onPay: (rail: PaymentRail, amountSats: number, invoice: PaymentInvoice) => void
   payments: UserPayment[]
 }) {
+  const { t } = useI18n()
   const DEMO_AMOUNT = 50_000
   const [lastInvoice, setLastInvoice] = useState<PaymentInvoice | null>(null)
+  const demoBtc = (DEMO_AMOUNT / 100_000_000).toFixed(4)
 
   return (
     <div className="space-y-6">
       <div>
         <h3 className="font-display font-semibold text-mp-ink mb-4 flex items-center gap-2">
-          <Bitcoin size={16} className="text-mp-btc" /> Accept payment
+          <Bitcoin size={16} className="text-mp-btc" /> {t('payments.accept')}
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {PAYMENT_RAILS.map(rail => (
@@ -38,7 +41,7 @@ export function PaymentMethods({
           ))}
         </div>
         <p className="text-[10px] text-mp-ink-tertiary mt-3">
-          Demo: {(DEMO_AMOUNT / 100_000_000).toFixed(4)} BTC equivalent · BOLT12 offers & Silent Payments supported
+          {t('payments.demoNote').replace('{btc}', demoBtc)}
         </p>
       </div>
 
@@ -56,7 +59,7 @@ export function PaymentMethods({
 
       {payments.length > 0 && (
         <div>
-          <h3 className="font-display font-semibold text-mp-ink mb-3">Payment history</h3>
+          <h3 className="font-display font-semibold text-mp-ink mb-3">{t('payments.history')}</h3>
           <ul className="space-y-2">
             {payments.map(p => (
               <li key={p.id} className="flex items-center justify-between gap-3 rounded-mp-lg border border-mp-border bg-mp-card px-4 py-3 text-sm shadow-mp-1">

@@ -21,7 +21,7 @@ export function BlogPage() {
 
       <div className="flex flex-wrap gap-2 mb-8">
         <button type="button" onClick={() => setActiveLabel(null)} className={!activeLabel ? 'chip-active' : 'chip'}>
-          All
+          {t('blog.all')}
         </button>
         {TAXONOMY.map(tx => (
           <TaxonomyChip key={tx.id} labelId={tx.id} active={activeLabel === tx.id} onClick={() => setActiveLabel(activeLabel === tx.id ? null : tx.id)} />
@@ -45,7 +45,7 @@ export function BlogPage() {
         ))}
       </div>
 
-      {posts.length === 0 && <div className="text-center py-16 card-muted text-ink-muted">No posts for this language/filter yet.</div>}
+      {posts.length === 0 && <div className="text-center py-16 card-muted text-ink-muted">{t('blog.empty')}</div>}
     </div>
   )
 }

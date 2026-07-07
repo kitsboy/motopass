@@ -12,8 +12,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
+    "test:e2e": "bash scripts/e2e-smoke.sh",
     "lint": "eslint src --max-warnings 50",
     "format": "prettier --check src",
+    "prettier:check": "prettier --check src",
     "validate:data": "node scripts/validate-data.mjs",
     "health-check": "bash scripts/health-check.sh",
     "verify:goal": "bash scripts/verify-goal.sh",
@@ -29,9 +31,11 @@
     "qrcode.react": "^4.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet-async": "^3.0.0",
     "react-router-dom": "^7.18.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@eslint/js": "^9.39.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

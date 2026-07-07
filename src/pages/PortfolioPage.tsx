@@ -1,25 +1,46 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Layers, Wallet, Zap, Radio } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
-import { loadPortfolio } from '../lib/portfolioStorage'
-import { ProgramCard } from '../components/ProgramCard'
-import { ProgramModal, type ProgramModalTab } from '../components/ProgramModal'
+import { usePortfolio } from '../hooks/usePortfolio'
+import { toCinematicPrograms, cinematicIdToNumber } from '../lib/programAdapter'
+import { ProgramCard } from '../components/programs/ProgramCard'
+import { ProgramModal } from '../components/programs/ProgramModal'
+import type { Program as CinematicProgram, ProgramModalTab } from '../components/programs/types'
 import { CardSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { PageHeader } from '../components/ui/PageHeader'
 import { StatCard } from '../components/ui/StatCard'
-import type { Program } from '../types/program'
+import { useI18n } from '../i18n/I18nContext'
 
 export function PortfolioPage() {
+  const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
-  const [portfolio] = useState<number[]>(loadPortfolio)
-  const [selected, setSelected] = useState<Program | null>(null)
+  const { portfolio, toggle: togglePortfolio } = usePortfolio()
+  const [selected, setSelected] = useState<CinematicProgram | null>(null)
   const [tab, setTab] = useState<ProgramModalTab>('Overview')
 
-  const acquired = programs.filter(p => portfolio.includes(p.id))
+  const acquired = useMemo(
+    () => programs.filter((p) => portfolio.includes(p.id)),
+    [programs, portfolio],
+  )
+  const cinematic = useMemo(() => toCinematicPrograms(acquired), [acquired])
   const totalInvest = acquired.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
-  const avgScore = acquired.length ? acquired.reduce((s, p) => s + (p.finance.crypto_friendly_score ?? 0), 0) / acquired.length : 0
+  const avgScore = acquired.length
+    ? acquired.reduce((s, p) => s + (p.finance.crypto_friendly_score ?? 0), 0) / acquired.length
+    : 0
+
+  const handleTogglePortfolio = (program: CinematicProgram) => {
+    togglePortfolio(cinematicIdToNumber(program.id))
+    if (selected?.id === program.id && portfolio.includes(cinematicIdToNumber(program.id))) {
+      setSelected(null)
+    }
+  }
+
+  const handleAddToStack = (program: CinematicProgram) => {
+    togglePortfolio(cinematicIdToNumber(program.id))
+    setSelected(null)
+  }
 
   return (
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
@@ -29,24 +50,37 @@ export function PortfolioPage() {
         <StatCard value={acquired.length} label="Programs" accent icon={<Layers size={18} />} />
         <StatCard value={`$${(totalInvest / 1000).toFixed(0)}k`} label="Total invested" icon={<Wallet size={18} />} />
         <StatCard value={avgScore.toFixed(1)} label="Avg BTC score" icon={<Zap size={18} />} />
-        <StatCard value={acquired.filter(p => p.lightning_ready).length} label="Lightning ready" icon={<Radio size={18} />} />
+        <StatCard value={acquired.filter((p) => p.lightning_ready).length} label="Lightning ready" icon={<Radio size={18} />} />
       </div>
 
       {error && <ProgramsLoadError message={error} />}
       {loading && !error && <CardSkeleton />}
       {!loading && acquired.length === 0 && (
         <div className="text-center py-16 card-elevated max-w-md mx-auto">
-          <p className="text-ink-secondary mb-6">No programs in your portfolio yet.</p>
-          <Link to="/programs" className="btn-primary">Explore programs</Link>
+          <p className="text-ink-secondary mb-6">{t('portfolio.empty')}</p>
+          <Link to="/programs" className="btn-primary">{t('portfolio.explore')}</Link>
         </div>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-        {acquired.map(p => (
-          <ProgramCard key={p.id} program={p} onClick={() => { setSelected(p); setTab('Overview') }} />
+        {cinematic.map((p, i) => (
+          <ProgramCard
+            key={p.id}
+            program={p}
+            index={i}
+            inPortfolio
+            onTogglePortfolio={handleTogglePortfolio}
+            onSelect={(prog) => { setSelected(prog); setTab('Overview') }}
+          />
         ))}
       </div>
 
-      {selected && <ProgramModal program={selected} tab={tab} onTab={setTab} onClose={() => setSelected(null)} />}
+      <ProgramModal
+        program={selected}
+        initialTab={tab}
+        inPortfolio={selected ? portfolio.includes(cinematicIdToNumber(selected.id)) : false}
+        onAddToStack={handleAddToStack}
+        onClose={() => setSelected(null)}
+      />
     </div>
   )
 }

@@ -5,6 +5,14 @@ import { useI18n } from '../i18n/I18nContext'
 import { GiveABitLogoLink } from './footer/GiveABitLogoLink'
 import { FooterActionBar } from './footer/FooterActionBar'
 import { BUILD_LABEL, FOOTER_VERSION } from '../lib/buildInfo'
+import type { TranslationKey } from '../i18n/translations'
+
+const FOOTER_LINKS: { to: string; key: TranslationKey }[] = [
+  { to: '/programs', key: 'nav.programs' },
+  { to: '/blog', key: 'nav.blog' },
+  { to: '/register', key: 'nav.register' },
+  { to: '/dashboard', key: 'nav.dashboard' },
+]
 
 export function Footer() {
   const { t } = useI18n()
@@ -22,28 +30,23 @@ export function Footer() {
               </div>
             </div>
             <p className="text-sm text-ink-secondary leading-relaxed max-w-md mb-6">
-              Bitcoin-native sovereign passports and residency. Every claim verifiable on-chain via{' '}
-              <a href="https://satohash.io" className="text-btc-orange font-medium hover:underline" target="_blank" rel="noopener noreferrer">
+              {t('footer.descriptionBefore')}
+              <a href="https://satohash.io" className="text-accent font-medium hover:underline" target="_blank" rel="noopener noreferrer">
                 Satohash.io
               </a>
-              . Nostr identity. Not accepting applications yet.
+              {t('footer.descriptionAfter')}
             </p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-              {[
-                { to: '/programs', label: 'Programs' },
-                { to: '/blog', label: 'Insights' },
-                { to: '/register', label: 'Register' },
-                { to: '/dashboard', label: 'Dashboard' },
-              ].map(l => (
+              {FOOTER_LINKS.map(l => (
                 <Link key={l.to} to={l.to} className="text-ink-muted hover:text-btc-orange transition-colors">
-                  {l.label}
+                  {t(l.key)}
                 </Link>
               ))}
               <a href="https://github.com/kitsboy/motopass" target="_blank" rel="noopener noreferrer" className="text-ink-muted hover:text-btc-orange transition-colors">
-                GitHub
+                {t('footer.github')}
               </a>
               <a href="/website/index.html" target="_blank" rel="noopener noreferrer" className="text-ink-muted hover:text-btc-orange transition-colors">
-                Pristine Demo
+                {t('footer.pristineDemo')}
               </a>
             </div>
           </div>

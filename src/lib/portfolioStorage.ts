@@ -1,6 +1,6 @@
 import type { Program } from '../types/program'
 
-const PORTFOLIO_KEY = 'motopass-portfolio'
+export const PORTFOLIO_KEY = 'motopass-portfolio'
 const FILTERS_KEY = 'motopass-program-filters'
 const STACKS_KEY = 'motopass-saved-stacks'
 

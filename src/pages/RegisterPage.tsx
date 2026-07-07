@@ -7,8 +7,10 @@ import type { UserProfile } from '../types/user'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
 import { usePrograms } from '../hooks/usePrograms'
+import { useI18n } from '../i18n/I18nContext'
 
 export function RegisterPage() {
+  const { t } = useI18n()
   const { programs } = usePrograms()
   const navigate = useNavigate()
   const { setProfile } = useUser()
@@ -45,7 +47,7 @@ export function RegisterPage() {
 
       <div className="flex gap-2 mb-8">
         {[1, 2, 3].map(s => (
-          <AnimatedBadge key={s} status={step >= s ? 'success' : 'neutral'}>Step {s}</AnimatedBadge>
+          <AnimatedBadge key={s} status={step >= s ? 'success' : 'neutral'}>{t('register.step')} {s}</AnimatedBadge>
         ))}
       </div>
 

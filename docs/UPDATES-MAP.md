@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.07.02-02 · **Last updated:** 2026-07-02
+**BUILD:** 2026.07.07-11 · **Last updated:** 2026-07-07
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,7 +11,9 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.07.02-02 | Vite + React 18 + TS + Tailwind |
+| **React app** | ✅ 2026.07.07-11 | Vite + React 18 + TS + Tailwind · lazy Pitch/Programs |
+| **E2E smoke** | ✅ Playwright | `npm run test:e2e` — home, BUILD, programs, theme |
+| **Improvements** | ✅ 200/200 | `docs/IMPROVEMENTS-QUEUE.md` batches 1–8 complete |
 | **Design system** | ✅ Warm Sovereign Cinematic | Fraunces/Source Serif tokens + Luminous legacy aliases |
 | **Programs data** | ✅ 50 / 50 | `research/countries.json` |
 | **Static demo** | ✅ Light-aligned | `website/index.html` |
@@ -24,7 +26,11 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
-| **2026.07.02-02** | 2026-07-02 | (this pass) | Warm Sovereign Cinematic: Landing + Programs batch, live countries.json adapter |
+| **2026.07.07-11** | 2026-07-07 | (this pass) | Batch 8: Playwright e2e smoke, lazy Pitch/Programs routes, IMPROVEMENTS-QUEUE 200/200 |
+| **2026.07.07-09** | 2026-07-07 | — | Batch 6: unit tests, ProgramsContext, SEO, 404, contrast polish |
+| **2026.07.07-05** | 2026-07-07 | `9a4f4a0` | Batch 2: dark mode tokens, skip link, reduced motion, touch targets |
+| **2026.07.07-04** | 2026-07-07 | `e9cb75c` | Batch 1: a11y, ProgramsLoadError, adapter tests, footer safe-area |
+| **2026.07.02-02** | 2026-07-02 | `c5a5019` | Warm Sovereign Cinematic: Landing + Programs batch, live countries.json adapter |
 | **016** | 2026-07-02 | `1c0867f` | giveaBit wordmark in copyright; real BTC + LN QR codes |
 | **013** | 2026-07-02 | — | Self-evolving pitch: live savings graphs, motion backgrounds @ 35% |
 | **012** | 2026-07-02 | `562f9b2` | Docs reorganized into `docs/`; UPDATES-MAP + WORK-TREE created |

@@ -1,0 +1,235 @@
+# MotoPass Improvements Queue (200 items)
+
+**Status:** All batches 1–8 complete · **BUILD:** `2026.07.07-11`
+
+Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
+
+---
+
+## Batch 1 — A11y, errors, adapter (1–25) ✅
+
+- [x] 1. Delete legacy `ProgramsTable.tsx` duplicate
+- [x] 2. Add aria-labels to icon-only buttons
+- [x] 3. Add `htmlFor` on form labels
+- [x] 4. Table caption + `scope` on header cells
+- [x] 5. `ProgramsLoadError` on Programs page
+- [x] 6. `ProgramsLoadError` on Portfolio page
+- [x] 7. `ProgramsLoadError` on Stack Simulator page
+- [x] 8. `ProgramsLoadError` on Finance Compare page
+- [x] 9. `programAdapter` stub-proof detection
+- [x] 10. `ProofBadge` demo/stub state styling
+- [x] 11. `programAdapter` unit tests
+- [x] 12. PageHeader typography scale fix
+- [x] 13. Remove duplicate fonts from `index.html`
+- [x] 14. StackSimulator month range parsing
+- [x] 15. Register page uses live 50 programs from JSON
+- [x] 16. Footer safe-area above mobile bottom nav
+- [x] 17. Consolidate programs table in `components/programs/`
+- [x] 18. Program modal keyboard focus trap
+- [x] 19. Filter chip accessible names
+- [x] 20. Export/import programs preserved on Programs page
+- [x] 21. Portfolio toggle uses cinematic adapter IDs
+- [x] 22. Loading skeleton on programs fetch
+- [x] 23. Error boundary wraps app root
+- [x] 24. BUILD_ID single source in `buildInfo.ts`
+- [x] 25. Bump BUILD to `2026.07.07-04`
+
+## Batch 2 — Dark mode tokens, a11y (26–50) ✅
+
+- [x] 26. Token-based status badges (light + dark)
+- [x] 27. `theme-color` meta sync on theme toggle
+- [x] 28. Keyboard-activatable table rows
+- [x] 29. `prefers-reduced-motion` guards on motion components
+- [x] 30. Mobile nav 44px touch targets
+- [x] 31. Skip-to-content link in header
+- [x] 32. Dark mode chip variants in `index.css`
+- [x] 33. AgentCardKimi contrast on light cards
+- [x] 34. LanguageSwitcher compact mode a11y
+- [x] 35. NostrConnect button labels
+- [x] 36. PaymentMethods QR section spacing
+- [x] 37. ProgramsTable row hover/focus states
+- [x] 38. ProgramCard proof badge alignment
+- [x] 39. PageHeader eyebrow + subtitle hierarchy
+- [x] 40. ProofBadge token colors
+- [x] 41. FooterModalButton hover scale
+- [x] 42. ProgressTracker step contrast
+- [x] 43. AnimatedBadge status token mapping
+- [x] 44. Tailwind dark aliases for `mp-*` tokens
+- [x] 45. ThemeContext persists to localStorage
+- [x] 46. Header backdrop blur on scroll
+- [x] 47. Mobile menu close on nav selection
+- [x] 48. More drawer spring animation + aria
+- [x] 49. BUILD_LABEL in header tagline row
+- [x] 50. Bump BUILD to `2026.07.07-05`
+
+## Batch 3 — Shared data, portfolio cinematic (51–75) ✅
+
+- [x] 51. `ProgramsContext` with fetch-once cache
+- [x] 52. `usePrograms` delegates to context
+- [x] 53. `ProgramsProvider` wraps app in `App.tsx`
+- [x] 54. Remove duplicate fetch per page mount
+- [x] 55. `byId()` helper on programs context
+- [x] 56. Portfolio uses cinematic `ProgramCard`
+- [x] 57. Portfolio uses cinematic `ProgramModal`
+- [x] 58. Delete legacy root `ProgramCard.tsx`
+- [x] 59. Delete legacy root `ProgramModal.tsx`
+- [x] 60. `usePortfolio` hook extracted
+- [x] 61. Portfolio storage sync with filter prefs
+- [x] 62. Programs page sticky filter rail polish
+- [x] 63. Table/card view toggle persistence
+- [x] 64. Advanced filters collapsible section
+- [x] 65. Add-custom-program modal validation
+- [x] 66. Region/category chip filters from live data
+- [x] 67. Cinematic program types in `programs/types.ts`
+- [x] 68. Flagship visual weight from sovereignty score
+- [x] 69. ProgramsTable sortable columns
+- [x] 70. ProgramModal tab structure preserved
+- [x] 71. Import JSON merges with live programs
+- [x] 72. Export JSON includes filtered set
+- [x] 73. Pitch stats from shared programs cache
+- [x] 74. Agents page program count from context
+- [x] 75. Bump BUILD to `2026.07.07-06`
+
+## Batch 4 — SEO, meta, route titles (76–100) ✅
+
+- [x] 76. Add `react-helmet-async` + `HelmetProvider`
+- [x] 77. `SeoHead` component (title, description, OG)
+- [x] 78. `lib/seo.ts` canonical URL helpers
+- [x] 79. `RouteSeo` per-route meta map
+- [x] 80. Blog post dynamic SEO from slug
+- [x] 81. Programs page meta description
+- [x] 82. Pitch page JSON-LD organization stub
+- [x] 83. Twitter card meta tags
+- [x] 84. `noindex` on 404 route
+- [x] 85. Canonical links on all major routes
+- [x] 86. OG image default from public assets
+- [x] 87. Site name constant in seo lib
+- [x] 88. Page title format `Page — MotoPass`
+- [x] 89. Verify page SEO copy
+- [x] 90. Register/dashboard route meta
+- [x] 91. Vault + simulator route meta
+- [x] 92. Compare + portfolio route meta
+- [x] 93. Agents page meta
+- [x] 94. Blog index meta
+- [x] 95. Apply page meta
+- [x] 96. Profile page meta
+- [x] 97. Sitemap paths aligned with routes
+- [x] 98. robots.txt allows major paths
+- [x] 99. Helmet dedupes duplicate tags
+- [x] 100. Bump BUILD to `2026.07.07-07`
+
+## Batch 5 — 404, block height, page polish (101–125) ✅
+
+- [x] 101. `NotFoundPage` with helpful quick links
+- [x] 102. Catch-all `path="*"` route in App
+- [x] 103. `BlockHeightContext` shared fetch + poll
+- [x] 104. `BlockHeight` reads from context (no duplicate fetch)
+- [x] 105. Block height `aria-live="polite"`
+- [x] 106. Hero variant block height styling
+- [x] 107. Dashboard page layout polish
+- [x] 108. Blog page card hover states
+- [x] 109. BlogPost back-link uses `text-accent`
+- [x] 110. Vault page section spacing
+- [x] 111. Finance Compare empty state
+- [x] 112. Stack Simulator results panel
+- [x] 113. Register Nostr flow copy
+- [x] 114. Agents page Kimi card alignment
+- [x] 115. Apply page result hash display
+- [x] 116. Verify page hash copy field
+- [x] 117. Profile page document list
+- [x] 118. PaigeStub placeholder polish
+- [x] 119. PaymentMethods Lightning tab labels
+- [x] 120. Pitch savings graphs from live stats
+- [x] 121. Pitch roadmap section tokens
+- [x] 122. Pitch feature grid responsive
+- [x] 123. Programs load error retry button
+- [x] 124. Footer description Satohash link contrast
+- [x] 125. Bump BUILD to `2026.07.07-08`
+
+## Batch 6 — Tests, context docs (126–150) ✅
+
+- [x] 126. `portfolioStorage.test.ts` filter save/load
+- [x] 127. `programFilter.test.ts` edge cases
+- [x] 128. `programAdapter.test.ts` stub detection
+- [x] 129. `pitchStats.test.ts` metric computation
+- [x] 130. `satohash.test.ts` URL helpers
+- [x] 131. `userStorage.test.ts` persistence
+- [x] 132. Vitest config for path aliases
+- [x] 133. `.ai_docs/context_map.md` updated
+- [x] 134. `.ai_docs/sop_workflow.md` added
+- [x] 135. `.ai_docs/dashboard_manifest.json`
+- [x] 136. CI runs lint + prettier + validate:data
+- [x] 137. CI runs vitest + build
+- [x] 138. ESLint max-warnings budget maintained
+- [x] 139. Prettier check in CI pipeline
+- [x] 140. Data validation script for countries.json
+- [x] 141. health-check.sh production probe
+- [x] 142. verify-goal.sh orchestrator
+- [x] 143. smoke-routes.mjs playwright script
+- [x] 144. ErrorBoundary fallback UI
+- [x] 145. Programs context inflight dedup
+- [x] 146. Block height 120s poll interval
+- [x] 147. Theme localStorage key `motopass-theme`
+- [x] 148. GiveABit logo cache-bust via BUILD_ID
+- [x] 149. FOOTER_VERSION sync with BUILD_ID
+- [x] 150. Bump BUILD to `2026.07.07-09`
+
+## Batch 7 — Contrast, hero gold, polish (151–175) ✅
+
+- [x] 151. Gold `--mp-hero-headline` token (#FFCB6B light)
+- [x] 152. `.hero-headline` class uses gold + text-shadow
+- [x] 153. Dark mode hero headline (#FFD08A)
+- [x] 154. `text-accent` utility for light-surface links
+- [x] 155. Blog links use `text-accent` not raw orange
+- [x] 156. ProgramsLoadError retry uses `text-accent`
+- [x] 157. NotFound quick links hover `text-accent`
+- [x] 158. Footer Satohash link → `text-accent`
+- [x] 159. `--mp-accent-btc-text` contrast on canvas
+- [x] 160. `--mp-accent-btc-deep` hover state
+- [x] 161. `text-mp-btc-text` for nav active states
+- [x] 162. Chip-active uses token text color
+- [x] 163. Hero copy scrim gradient preserved
+- [x] 164. On-hero secondary text tokens
+- [x] 165. Card shadow tokens on light canvas
+- [x] 166. Section background `bg-section` contrast
+- [x] 167. Ink-muted for footer meta row
+- [x] 168. BUILD_LABEL visible in footer on sm+
+- [x] 169. FOOTER_VERSION font-semibold in footer
+- [x] 170. Header MOTOPASS hover orange (dark surfaces only)
+- [x] 171. Mobile bottom nav active state tokens
+- [x] 172. Modal tabs active border tokens
+- [x] 173. StatCard icon color on cards
+- [x] 174. CopyField hover border tokens
+- [x] 175. Bump BUILD to `2026.07.07-10`
+
+## Batch 8 — E2E, lazy routes, docs (176–200) ✅
+
+- [x] 176. Playwright smoke: home loads
+- [x] 177. Playwright smoke: footer BUILD visible
+- [x] 178. Playwright smoke: programs page
+- [x] 179. Playwright smoke: theme toggle
+- [x] 180. `e2e/smoke.spec.ts` four core tests
+- [x] 181. `scripts/e2e-smoke.sh` + `npm run test:e2e`
+- [x] 182. `React.lazy` code-split PitchPage + ProgramsPage
+- [x] 183. Suspense fallback with `CardSkeleton`
+- [x] 184. `playwright.config.ts` with preview webServer
+- [x] 185. `@playwright/test` devDependency
+- [x] 186. Footer Satohash link `text-accent` on light card
+- [x] 187. `.hero-headline` gold preserved in `index.css`
+- [x] 188. `docs/IMPROVEMENTS-QUEUE.md` (this file)
+- [x] 189. `docs/UPDATES-MAP.md` BUILD → `2026.07.07-11`
+- [x] 190. `LATEST-UPDATE.md` batch 8 summary
+- [x] 191. `docs/KIMI-HANDOFF.md` batch 8 append
+- [x] 192. `react-helmet-async` in package.json deps
+- [x] 193. Lazy route chunks in Vite build output
+- [x] 194. E2E imports BUILD_ID from `buildInfo.ts`
+- [x] 195. Theme toggle persists after e2e click
+- [x] 196. E2E strictPort 4173 preview server
+- [x] 197. CI-ready playwright config (retries in CI)
+- [x] 198. All 200 items tracked in one doc
+- [x] 199. Batches 1–8 marked complete
+- [x] 200. Bump BUILD to `2026.07.07-11` · Batch 8 label
+
+---
+
+*Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

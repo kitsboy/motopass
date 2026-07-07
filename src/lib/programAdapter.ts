@@ -94,6 +94,8 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
   const sovereigntyScore = Math.round((p.sovereignty_score ?? 6) * 10)
   const minInvestment = p.finance.min_investment_usd ?? p.finance.typical_investment_usd ?? 0
 
+  const proof = p.satohash_proofs?.[0]
+
   return {
     id: String(p.id),
     country: p.name,
@@ -104,13 +106,30 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     timelineDays: parseMonthsToDays(p.finance.processing_time_months),
     sovereigntyScore,
     proofStatus: (() => {
-      const url = p.satohash_proofs?.[0]?.proof_url
+      const url = proof?.proof_url
       if (!url) return 'pending' as const
       if (isStubProofUrl(url)) return 'demo' as const
       return 'verified' as const
     })(),
     proofRef: proofRef(p),
     summary: p.details,
+    flag: p.flag,
+    category: p.category,
+    status: p.status,
+    lastChecked: p.last_checked,
+    bitcoinIntegration: p.bitcoin_integration,
+    bitcoinSpecific: p.finance.bitcoin_specific,
+    cryptoFriendlyScore: p.finance.crypto_friendly_score,
+    typicalInvestment: p.finance.typical_investment_usd,
+    govFees: p.finance.gov_fees_usd,
+    processingTimeMonths: p.finance.processing_time_months,
+    taxBenefits: p.finance.tax_benefits,
+    stackingSynergy: p.stacking_synergy,
+    riskLevel: p.risk_level,
+    lightningReady: p.lightning_ready,
+    sources: p.sources,
+    proofUrl: proof?.proof_url,
+    proofBlockHeight: proof?.block_height,
   }
 }
 

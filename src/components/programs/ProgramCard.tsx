@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react';
+import { Check } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
 import { Program, scoreWeight } from './types';
 
@@ -6,6 +7,8 @@ interface ProgramCardProps {
   program: Program;
   onSelect: (program: Program) => void;
   index?: number;
+  inPortfolio?: boolean;
+  onTogglePortfolio?: (program: Program) => void;
 }
 
 /**
@@ -16,7 +19,13 @@ interface ProgramCardProps {
  * and a wax-seal corner mark; standard programs stay quiet.
  * Mobile: full-width stacked card, tap anywhere opens ProgramModal.
  */
-export function ProgramCard({ program, onSelect, index = 0 }: ProgramCardProps) {
+export function ProgramCard({
+  program,
+  onSelect,
+  index = 0,
+  inPortfolio = false,
+  onTogglePortfolio,
+}: ProgramCardProps) {
   const weight = scoreWeight(program.sovereigntyScore);
   const isFlagship = weight === 'flagship';
   const reduceMotion = useReducedMotion();
@@ -25,10 +34,20 @@ export function ProgramCard({ program, onSelect, index = 0 }: ProgramCardProps) 
     isFlagship ? 'border-mp-btc/35 hover:border-mp-btc/55' : 'border-mp-border hover:border-mp-copper/40'
   }`;
 
+  const handleToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onTogglePortfolio?.(program);
+  };
+
   if (reduceMotion) {
     return (
       <button type="button" onClick={() => onSelect(program)} className={cardClassName}>
-        <ProgramCardContent program={program} isFlagship={isFlagship} />
+        <ProgramCardContent
+          program={program}
+          isFlagship={isFlagship}
+          inPortfolio={inPortfolio}
+          onTogglePortfolio={onTogglePortfolio ? handleToggle : undefined}
+        />
       </button>
     );
   }
@@ -44,12 +63,27 @@ export function ProgramCard({ program, onSelect, index = 0 }: ProgramCardProps) 
       whileHover={{ y: -2 }}
       className={cardClassName}
     >
-      <ProgramCardContent program={program} isFlagship={isFlagship} />
+      <ProgramCardContent
+        program={program}
+        isFlagship={isFlagship}
+        inPortfolio={inPortfolio}
+        onTogglePortfolio={onTogglePortfolio ? handleToggle : undefined}
+      />
     </motion.button>
   );
 }
 
-function ProgramCardContent({ program, isFlagship }: { program: Program; isFlagship: boolean }) {
+function ProgramCardContent({
+  program,
+  isFlagship,
+  inPortfolio,
+  onTogglePortfolio,
+}: {
+  program: Program;
+  isFlagship: boolean;
+  inPortfolio: boolean;
+  onTogglePortfolio?: (e: React.MouseEvent) => void;
+}) {
   return (
     <>
       {isFlagship && (
@@ -74,7 +108,23 @@ function ProgramCardContent({ program, isFlagship }: { program: Program; isFlags
             </span>
           </div>
         </div>
-        <ProofBadge status={program.proofStatus} compact />
+        <div className="flex items-center gap-2">
+          {onTogglePortfolio && (
+            <button
+              type="button"
+              onClick={onTogglePortfolio}
+              aria-label={inPortfolio ? 'Remove from portfolio' : 'Add to portfolio'}
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-fast ${
+                inPortfolio
+                  ? 'border-mp-btc/40 bg-mp-btc-soft text-mp-btc-text'
+                  : 'border-mp-border bg-mp-section text-mp-ink-tertiary hover:border-mp-btc/30 hover:text-mp-btc-text'
+              }`}
+            >
+              <Check size={14} strokeWidth={inPortfolio ? 2.5 : 2} />
+            </button>
+          )}
+          <ProofBadge status={program.proofStatus} compact />
+        </div>
       </div>
 
       <p className="mt-3 line-clamp-2 font-body text-sm text-mp-ink-secondary">{program.summary}</p>

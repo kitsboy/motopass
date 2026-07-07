@@ -1,4 +1,5 @@
 # motopass — Last Updated 2026-07-07 by Grok
 
-Brief: Gold hero headline + footer BUILD version, BUILD 2026.07.07-03
+Brief: Batch 8 — Playwright e2e smoke, lazy Pitch/Programs routes, docs queue
 Commit: (pending commit)
+BUILD: 2026.07.07-11

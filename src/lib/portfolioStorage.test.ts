@@ -1,0 +1,86 @@
+import { describe, it, expect, beforeEach } from 'vitest'
+import {
+  loadPortfolio,
+  savePortfolio,
+  togglePortfolio,
+  exportProgramsJson,
+  importProgramsJson,
+  PORTFOLIO_KEY,
+} from './portfolioStorage'
+import type { Program } from '../types/program'
+
+const storage: Record<string, string> = {}
+
+const sampleProgram: Program = {
+  id: 42,
+  name: 'Uruguay',
+  category: 'rbi_cbi',
+  region: 'South America',
+  status: 'Researching',
+  bitcoin_integration: 'Crypto friendly',
+  lightning_ready: false,
+  sovereignty_score: 8,
+  stacking_synergy: 'medium',
+  risk_level: 'low',
+  finance: {
+    min_investment_usd: 100000,
+    typical_investment_usd: 150000,
+    gov_fees_usd: 15000,
+    processing_time_months: '3-8',
+    tax_benefits: 'Territorial',
+    crypto_friendly_score: 8,
+    bitcoin_specific: 'Stable',
+  },
+  details: 'Territorial tax',
+  last_checked: '2026-07-02',
+}
+
+beforeEach(() => {
+  Object.keys(storage).forEach(k => delete storage[k])
+  globalThis.localStorage = {
+    getItem: (k: string) => storage[k] ?? null,
+    setItem: (k: string, v: string) => { storage[k] = v },
+    removeItem: (k: string) => { delete storage[k] },
+    clear: () => Object.keys(storage).forEach(k => delete storage[k]),
+    key: () => null,
+    length: 0,
+  }
+})
+
+describe('portfolioStorage', () => {
+  it('round-trips portfolio toggle add/remove', () => {
+    expect(loadPortfolio()).toEqual([])
+    const afterAdd = togglePortfolio(42)
+    expect(afterAdd).toEqual([42])
+    expect(JSON.parse(storage[PORTFOLIO_KEY]!)).toEqual([42])
+    const afterRemove = togglePortfolio(42)
+    expect(afterRemove).toEqual([])
+    expect(loadPortfolio()).toEqual([])
+  })
+
+  it('persists explicit save and reload', () => {
+    savePortfolio([1, 2, 3])
+    expect(loadPortfolio()).toEqual([1, 2, 3])
+    savePortfolio([2])
+    expect(loadPortfolio()).toEqual([2])
+  })
+
+  it('round-trips export/import programs json', () => {
+    const exported = exportProgramsJson([sampleProgram])
+    const parsed = JSON.parse(exported)
+    expect(parsed.programs).toHaveLength(1)
+    expect(parsed.programs[0].name).toBe('Uruguay')
+    expect(parsed.exported_at).toBeTruthy()
+
+    const imported = importProgramsJson(exported)
+    expect(imported).toHaveLength(1)
+    expect(imported[0].id).toBe(42)
+  })
+
+  it('imports bare array json', () => {
+    const raw = JSON.stringify([sampleProgram])
+    const imported = importProgramsJson(raw)
+    expect(imported).toHaveLength(1)
+    expect(imported[0].name).toBe('Uruguay')
+  })
+})

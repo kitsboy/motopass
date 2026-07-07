@@ -1,19 +1,40 @@
+import { useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { BLOG_POSTS } from '../data/blog'
 import { TaxonomyChip } from '../components/TaxonomyChip'
 import { useI18n } from '../i18n/I18nContext'
+import { PageHeader } from '../components/ui/PageHeader'
+import { SeoHead } from '../components/SeoHead'
+import { SITE_NAME, SITE_URL, absoluteUrl } from '../lib/seo'
 
 export function BlogPostPage() {
   const { slug } = useParams()
   const { lang } = useI18n()
   const post = BLOG_POSTS.find(p => p.slug === slug)
 
+  const articleJsonLd = useMemo(() => {
+    if (!post) return undefined
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.title.en,
+      description: post.excerpt.en,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+      url: absoluteUrl(`/blog/${post.slug}`),
+      keywords: post.seoKeywords.join(', '),
+      inLanguage: post.langs,
+    }
+  }, [post])
+
   if (!post) {
     return (
-      <div className="px-4 py-20 text-center">
-        <div className="card-muted max-w-sm mx-auto py-10">
-          <p className="text-ink-secondary mb-4">Post not found.</p>
-          <Link to="/blog" className="text-accent font-medium hover:underline">← Back</Link>
+      <div className="px-4 sm:px-6 py-8 max-w-3xl mx-auto">
+        <PageHeader title="Post not found" eyebrow="INSIGHTS" />
+        <div className="text-center">
+          <Link to="/blog" className="text-accent font-medium hover:underline">← Back to Insights</Link>
         </div>
       </div>
     )
@@ -21,13 +42,21 @@ export function BlogPostPage() {
 
   return (
     <article className="px-4 sm:px-6 py-8 max-w-3xl mx-auto">
+      <SeoHead
+        title={post.title[lang]}
+        description={post.excerpt[lang]}
+        path={`/blog/${post.slug}`}
+        jsonLd={articleJsonLd}
+      />
       <Link to="/blog" className="text-sm text-ink-secondary hover:text-accent mb-6 inline-block font-medium">← Insights</Link>
-      <div className="flex flex-wrap gap-2 mb-4">
+      <PageHeader
+        eyebrow={post.date}
+        title={post.title[lang]}
+        subtitle={post.excerpt[lang]}
+      />
+      <div className="flex flex-wrap gap-2 mb-8">
         {post.labels.map(l => <TaxonomyChip key={l} labelId={l} />)}
       </div>
-      <time className="text-xs font-mono text-ink-muted">{post.date}</time>
-      <h1 className="text-2xl sm:text-4xl font-display font-semibold mt-2 mb-4 text-ink leading-tight">{post.title[lang]}</h1>
-      <p className="text-base sm:text-lg text-ink-secondary leading-relaxed mb-8">{post.excerpt[lang]}</p>
 
       <div className="card text-sm text-ink-secondary space-y-4 leading-relaxed">
         <p>

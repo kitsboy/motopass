@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { Search } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { loadStacks, saveStack, type SavedStack } from '../lib/portfolioStorage'
 import { CardSkeleton } from '../components/LoadingSkeleton'
@@ -6,12 +7,26 @@ import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { parseMonthsToDays } from '../lib/programAdapter'
 import { PageHeader } from '../components/ui/PageHeader'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
+import { useI18n } from '../i18n/I18nContext'
+import type { TranslationKey } from '../i18n/translations'
 
 export function StackSimulatorPage() {
+  const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
   const [selected, setSelected] = useState<number[]>([])
+  const [search, setSearch] = useState('')
   const [stackName, setStackName] = useState('')
   const [saved, setSaved] = useState<SavedStack[]>(loadStacks())
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase()
+    if (!q) return programs
+    return programs.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.region.toLowerCase().includes(q) ||
+      p.category.toLowerCase().includes(q)
+    )
+  }, [programs, search])
 
   const stack = programs.filter(p => selected.includes(p.id))
   const totalCost = stack.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
@@ -31,16 +46,29 @@ export function StackSimulatorPage() {
 
   return (
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
-      <PageHeader eyebrow="STACK SIMULATOR" title="Jurisdictional stacking" subtitle="Combine programs and model cost, sovereignty, and timeline." />
+      <PageHeader eyebrow={t('simulator.eyebrow')} title={t('simulator.title')} subtitle={t('simulator.subtitle')} />
 
       {error && <ProgramsLoadError message={error} />}
       {loading && !error && <CardSkeleton />}
       {!loading && !error && (
         <div className="grid lg:grid-cols-2 gap-6">
-          <div className="card max-h-[60vh] overflow-y-auto">
-            <h3 className="font-display font-semibold text-ink mb-4">Select programs</h3>
-            <div className="space-y-1">
-              {programs.map(p => (
+          <div className="rounded-card border border-mp-border bg-mp-card p-6 shadow-mp-1 max-h-[60vh] flex flex-col">
+            <h3 className="font-display font-semibold text-ink mb-3">{t('simulator.selectPrograms')}</h3>
+            <div className="relative mb-3">
+              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted pointer-events-none" />
+              <input
+                type="search"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder={t('simulator.filterPrograms')}
+                className="input-field pl-9"
+              />
+            </div>
+            <div className="space-y-1 overflow-y-auto flex-1 -mx-1 px-1">
+              {filtered.length === 0 && (
+                <p className="text-sm text-ink-muted text-center py-8">{t('simulator.noSearchMatch')}</p>
+              )}
+              {filtered.map(p => (
                 <label key={p.id} className="flex items-center gap-3 p-3 rounded-mp-md hover:bg-section cursor-pointer border border-transparent hover:border-mp transition-colors">
                   <input type="checkbox" checked={selected.includes(p.id)} onChange={() => toggle(p.id)} className="accent-btc-orange w-4 h-4" />
                   <span className="text-ink font-medium">{p.flag} {p.name}</span>
@@ -51,17 +79,17 @@ export function StackSimulatorPage() {
           </div>
 
           <div className="space-y-4">
-            <div className="card-elevated border-l-4 border-l-btc-orange">
-              <h3 className="font-display font-semibold text-ink mb-4">Combined stack metrics</h3>
+            <div className="rounded-card border border-mp-border border-l-4 border-l-mp-btc bg-mp-card p-6 shadow-mp-1 transition-[box-shadow,border-color] duration-base hover:border-mp-btc/30 hover:shadow-mp-2">
+              <h3 className="font-display font-semibold text-ink mb-4">{t('simulator.metrics')}</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
-                {[
-                  ['Programs', stack.length, true],
-                  ['Total cost', `$${totalCost.toLocaleString()}`, false],
-                  ['Sovereignty', `${sovereignty}/10`, false],
-                  ['Max timeline', `${months}mo`, false],
-                ].map(([label, val, accent]) => (
-                  <div key={String(label)}>
-                    <span className="text-ink-muted text-xs">{label}</span>
+                {([
+                  ['simulator.stat.programs', stack.length, true],
+                  ['simulator.stat.cost', `$${totalCost.toLocaleString()}`, false],
+                  ['simulator.stat.sovereignty', `${sovereignty}/10`, false],
+                  ['simulator.stat.timeline', `${months}mo`, false],
+                ] as [TranslationKey, string | number, boolean][]).map(([labelKey, val, accent]) => (
+                  <div key={labelKey}>
+                    <span className="text-ink-muted text-xs">{t(labelKey)}</span>
                     <div className={`text-2xl font-display font-semibold ${accent ? 'text-gradient-orange' : 'text-ink'}`}>{val}</div>
                   </div>
                 ))}
@@ -70,15 +98,15 @@ export function StackSimulatorPage() {
                 {stack.map(p => <AnimatedBadge key={p.id} status="info">{p.name}</AnimatedBadge>)}
               </div>
             </div>
-            <div className="card flex flex-col sm:flex-row gap-2">
-              <input value={stackName} onChange={e => setStackName(e.target.value)} placeholder="Stack name…" className="input-field flex-1" />
-              <button type="button" onClick={save} disabled={!stackName || selected.length === 0} className="btn-primary shrink-0">Save stack</button>
+            <div className="rounded-card border border-mp-border bg-mp-card p-6 shadow-mp-1 flex flex-col sm:flex-row gap-2">
+              <input value={stackName} onChange={e => setStackName(e.target.value)} placeholder={t('simulator.stackName')} className="input-field flex-1" />
+              <button type="button" onClick={save} disabled={!stackName || selected.length === 0} className="btn-primary shrink-0">{t('simulator.saveStack')}</button>
             </div>
             {saved.length > 0 && (
-              <div className="card-muted">
-                <h4 className="text-sm font-semibold text-ink mb-3">Saved stacks</h4>
+              <div className="rounded-mp-lg border border-mp-border bg-mp-card-muted p-4">
+                <h4 className="text-sm font-semibold text-ink mb-3">{t('simulator.savedStacks')}</h4>
                 {saved.map(s => (
-                  <div key={s.id} className="text-xs text-ink-secondary py-2 border-b border-mp/60 last:border-0">{s.name} — {s.programIds.length} programs</div>
+                  <div key={s.id} className="text-xs text-ink-secondary py-2 border-b border-mp/60 last:border-0">{s.name} — {s.programIds.length} {t('simulator.savedCount')}</div>
                 ))}
               </div>
             )}

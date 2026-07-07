@@ -39,4 +39,19 @@ describe('programFilter', () => {
     expect(r).toHaveLength(1)
     expect(r[0].name).toBe('El Salvador')
   })
+
+  it('filters by region and min crypto score together', () => {
+    const r = filterPrograms(sample, {
+      ...DEFAULT_FILTERS,
+      region: 'South America',
+      minCryptoScore: 8,
+    })
+    expect(r).toHaveLength(1)
+    expect(r[0].name).toBe('Uruguay')
+  })
+
+  it('returns empty when status substring does not match', () => {
+    const r = filterPrograms(sample, { ...DEFAULT_FILTERS, status: 'Rejected' })
+    expect(r).toHaveLength(0)
+  })
 })

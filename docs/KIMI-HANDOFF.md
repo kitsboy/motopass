@@ -184,4 +184,35 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-07 (Batch 8/8)
+
+**Machine:** M3 (Grok)  
+**Project:** motopass
+
+### Done (improvements 176–200)
+- [x] Playwright smoke tests in `e2e/smoke.spec.ts` — home, footer BUILD, programs, theme toggle
+- [x] `scripts/e2e-smoke.sh` + `npm run test:e2e` with `playwright.config.ts`
+- [x] `React.lazy` code-split `PitchPage` and `ProgramsPage` with `CardSkeleton` Suspense
+- [x] `docs/IMPROVEMENTS-QUEUE.md` — all 200 items, batches 1–8 marked complete
+- [x] `docs/UPDATES-MAP.md` + `LATEST-UPDATE.md` updated to BUILD `2026.07.07-11`
+- [x] Footer Satohash link `text-accent` on light card surface
+- [x] `.hero-headline` gold token preserved in `index.css`
+- [x] `react-helmet-async` + `@playwright/test` declared in `package.json`
+
+### Decisions
+- E2E runs against `vite preview` on port 4173 (strictPort) — matches existing smoke-routes pattern
+- Only Pitch + Programs lazy-loaded (highest bundle weight); other routes stay eager for now
+- Full 200-item queue documented retroactively in IMPROVEMENTS-QUEUE from batch commit messages + shipped work
+
+### What's Next
+- Kimi: sync IMPROVEMENTS-QUEUE + UPDATES-MAP into Obsidian vault
+- Optional: add `npm run test:e2e` to GitHub Actions CI (needs playwright browser install step)
+- P1 backlog unchanged: deepen 50 countries, live Nostr relay, Satohash pipeline
+
+### Git State
+- Branch: `main`
+- BUILD: `2026.07.07-11`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

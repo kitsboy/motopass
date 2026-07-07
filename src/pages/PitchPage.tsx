@@ -15,6 +15,7 @@ import {
   latestProofTimestamp,
 } from '../lib/pitchStats'
 import { BUILD_ID, BUILD_DATE } from '../lib/buildInfo'
+import type { TranslationKey } from '../i18n/translations'
 
 const PITCH_VERSION = `${BUILD_DATE} • ${BUILD_ID}`
 
@@ -24,6 +25,20 @@ const ROTATING_TAGLINES = [
   'Bitcoin is the sovereignty.',
   'Verify every claim on-chain.',
   'Stack jurisdictions with proof.',
+]
+
+const FEATURE_KEYS = [
+  { icon: Globe, titleKey: 'pitch.feature.jurisdictions.title' as const, subKey: 'pitch.feature.jurisdictions.sub' as const },
+  { icon: Shield, titleKey: 'pitch.feature.satohash.title' as const, subKey: 'pitch.feature.satohash.sub' as const },
+  { icon: Zap, titleKey: 'pitch.feature.nostr.title' as const, subKey: 'pitch.feature.nostr.sub' as const },
+  { icon: Users, titleKey: 'pitch.feature.agents.title' as const, subKey: 'pitch.feature.agents.sub' as const },
+]
+
+const ROADMAP_KEYS: TranslationKey[] = [
+  'pitch.roadmap.lightning',
+  'pitch.roadmap.relay',
+  'pitch.roadmap.uruguay',
+  'pitch.roadmap.agents',
 ]
 
 export function PitchPage() {
@@ -66,7 +81,7 @@ export function PitchPage() {
                 to="/simulator"
                 className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 font-chrome text-sm text-mp-on-hero-secondary hover:border-mp-btc/40 hover:text-mp-on-hero transition-colors"
               >
-                Stack simulator <Zap size={16} />
+                {t('pitch.stackSimulator')} <Zap size={16} />
               </Link>
             </div>
             <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-mp-on-hero-muted">
@@ -91,18 +106,13 @@ export function PitchPage() {
 
       <section className="surface-band px-4 sm:px-6 py-12 sm:py-14">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {[
-            { icon: Globe, title: '50 jurisdictions', sub: 'CBI, RBI & Bitcoin-native pathways' },
-            { icon: Shield, title: 'Satohash proofs', sub: 'OpenTimestamps on every material claim' },
-            { icon: Zap, title: 'Nostr identity', sub: 'npub-native applications, no email' },
-            { icon: Users, title: 'Liaison agents', sub: 'Country AI agents for real applicants' },
-          ].map(({ icon: Icon, title, sub }) => (
-            <div key={title} className="card-elevated group">
+          {FEATURE_KEYS.map(({ icon: Icon, titleKey, subKey }) => (
+            <div key={titleKey} className="card-elevated group">
               <div className="w-10 h-10 rounded-mp-md bg-btc-orange-soft flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
                 <Icon size={20} className="text-btc-orange" />
               </div>
-              <div className="font-semibold text-ink mb-1">{title}</div>
-              <div className="text-sm text-ink-muted leading-relaxed">{sub}</div>
+              <div className="font-semibold text-ink mb-1">{t(titleKey)}</div>
+              <div className="text-sm text-ink-muted leading-relaxed">{t(subKey)}</div>
             </div>
           ))}
         </div>
@@ -110,27 +120,26 @@ export function PitchPage() {
 
       <section className="px-4 sm:px-6 py-14 sm:py-16 max-w-7xl mx-auto">
         <div className="section-label mb-2 flex items-center gap-2">
-          <Sparkles size={12} /> THE STACK
+          <Sparkles size={12} /> {t('pitch.stack.eyebrow')}
         </div>
-        <h2 className="text-2xl sm:text-4xl font-display font-semibold mb-10 text-ink">Bitcoin rails for sovereign mobility</h2>
+        <h2 className="text-2xl sm:text-4xl font-display font-semibold mb-10 text-ink">{t('pitch.stack.title')}</h2>
         <div className="grid gap-5 md:grid-cols-3">
           <div className="card-elevated md:col-span-2 border-l-4 border-l-btc-orange">
-            <h3 className="font-display font-semibold text-lg text-btc-orange-deep mb-3">Satohash.io — Truth You Can Verify</h3>
+            <h3 className="font-display font-semibold text-lg text-btc-orange-deep mb-3">{t('pitch.stack.satohash.title')}</h3>
             <p className="text-sm text-ink-secondary mb-5 leading-relaxed">
-              Every program cost, legal extract, and passport milestone anchors to Bitcoin via OpenTimestamps.
-              One click to verify — speed without sacrificing sovereignty.
+              {t('pitch.stack.satohash.body')}
             </p>
             <Link to="/verify" className="text-sm font-medium text-accent inline-flex items-center gap-1">
-              Verify now <ArrowRight size={14} />
+              {t('pitch.stack.satohash.cta')} <ArrowRight size={14} />
             </Link>
           </div>
           <div className="card-elevated bg-nostr-violet-soft/40 border-nostr-violet/20">
-            <h3 className="font-display font-semibold text-lg text-nostr-violet mb-3">Nostr-native</h3>
+            <h3 className="font-display font-semibold text-lg text-nostr-violet mb-3">{t('pitch.stack.nostr.title')}</h3>
             <p className="text-sm text-ink-secondary mb-5 leading-relaxed">
-              Connect your npub. Policy alerts. Liaison agents. Dual-proof with Bitcoin block hashes.
+              {t('pitch.stack.nostr.body')}
             </p>
             <Link to="/agents" className="text-sm font-medium text-nostr-violet hover:underline inline-flex items-center gap-1">
-              Meet agents <ArrowRight size={14} />
+              {t('pitch.stack.nostr.cta')} <ArrowRight size={14} />
             </Link>
           </div>
         </div>
@@ -140,21 +149,21 @@ export function PitchPage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
           <div>
             <div className="section-label mb-2 flex items-center gap-2">
-              <Clock size={12} /> EVOLVING PITCH
+              <Clock size={12} /> {t('pitch.evolve.eyebrow')}
             </div>
-            <h2 className="text-2xl sm:text-3xl font-display font-semibold mb-4 text-ink">Charts update with every BUILD</h2>
+            <h2 className="text-2xl sm:text-3xl font-display font-semibold mb-4 text-ink">{t('pitch.evolve.title')}</h2>
             <p className="text-sm text-ink-secondary leading-relaxed">
-              Cost and time savings are computed from live <code className="text-xs bg-section px-1 py-0.5 rounded">countries.json</code> data —
-              not static investor deck numbers. As jurisdictions, Lightning readiness, and Satohash proofs grow, this page evolves automatically.
+              {t('pitch.evolve.body')}
             </p>
           </div>
           <div className="card-elevated bg-btc-orange-soft border-btc-orange/30">
-            <div className="text-3xl font-display text-gradient-orange mb-4">Next</div>
+            <div className="text-3xl font-display text-gradient-orange mb-4">{t('pitch.roadmap.next')}</div>
             <ul className="text-sm text-ink-secondary space-y-2.5">
-              <li className="flex gap-2"><span className="text-mp-btc-text">→</span> Lightning fee rails for premium stamping</li>
-              <li className="flex gap-2"><span className="text-mp-btc-text">→</span> Live Nostr relay at relay.motopass.giveabit.io</li>
-              <li className="flex gap-2"><span className="text-mp-btc-text">→</span> Uruguay flagship depth across all 50 countries</li>
-              <li className="flex gap-2"><span className="text-mp-btc-text">→</span> Official liaison agent onboarding per jurisdiction</li>
+              {ROADMAP_KEYS.map(key => (
+                <li key={key} className="flex gap-2">
+                  <span className="text-mp-btc-text">→</span> {t(key)}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

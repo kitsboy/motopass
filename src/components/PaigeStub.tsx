@@ -1,5 +1,6 @@
 import { Bot } from 'lucide-react'
-import { Link } from 'react-router-dom'
+
+const PAIGE_DOCS_URL = 'https://github.com/kitsboy/motopass/blob/main/docs/PAIGE-AI.md'
 
 /** Paige AI — UI stub only per plan non-goals */
 export function PaigeStub() {
@@ -12,7 +13,16 @@ export function PaigeStub() {
       </div>
       <p className="text-xs text-ink-secondary mb-3 leading-relaxed">
         Proactive jurisdiction concierge — alerts, stacking tips, policy change detection.
-        See <Link to="/blog" className="text-nostr-violet font-medium hover:underline">docs/PAIGE-AI.md</Link> for spec.
+        See{' '}
+        <a
+          href={PAIGE_DOCS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-nostr-violet font-medium hover:underline"
+        >
+          docs/PAIGE-AI.md
+        </a>{' '}
+        for spec.
       </p>
       <input
         disabled

@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react'
 import { Bitcoin } from 'lucide-react'
-import { fetchBitcoinBlockHeight } from '../lib/satohash'
+import { useBlockHeight } from '../context/BlockHeightContext'
 import { useI18n } from '../i18n/I18nContext'
 
 export function BlockHeight({ variant = 'default' }: { variant?: 'default' | 'hero' }) {
   const { t } = useI18n()
-  const [height, setHeight] = useState<number | null>(null)
+  const { height } = useBlockHeight()
   const isHero = variant === 'hero'
-
-  useEffect(() => {
-    fetchBitcoinBlockHeight().then(setHeight)
-    const id = setInterval(() => fetchBitcoinBlockHeight().then(setHeight), 120_000)
-    return () => clearInterval(id)
-  }, [])
 
   return (
     <div
