@@ -60,7 +60,7 @@ export function ProgramsTable({ programs, onSelect }: ProgramsTableProps) {
               </td>
               <td
                 className={`border-b border-mp-border-subtle py-3 pr-4 text-right font-mono text-sm ${
-                  isFlagship ? 'text-mp-btc' : 'text-mp-ink'
+                  isFlagship ? 'text-mp-btc-text' : 'text-mp-ink'
                 }`}
               >
                 {p.sovereigntyScore}

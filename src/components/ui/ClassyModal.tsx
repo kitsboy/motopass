@@ -62,7 +62,7 @@ export function ClassyModal({ open, onClose, title, subtitle, eyebrow, icon, chi
                   )}
                   <div className="min-w-0">
                     {eyebrow && (
-                      <span className="font-mono text-eyebrow uppercase tracking-[0.2em] text-mp-btc block mb-1">
+                      <span className="font-mono text-eyebrow uppercase tracking-[0.2em] text-mp-btc-text block mb-1">
                         {eyebrow}
                       </span>
                     )}

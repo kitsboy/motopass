@@ -1,4 +1,6 @@
-/** Single source of truth for BUILD label — bump on every ship */
-export const BUILD_ID = '2026.07.02-02'
-export const BUILD_LABEL = `Warm Sovereign Cinematic — Programs`
-export const BUILD_DATE = '2026-07-02'
+/** Single source of truth for BUILD — bump BUILD_ID on every push/ship */
+export const BUILD_ID = '2026.07.07-03'
+export const BUILD_LABEL = `Gold hero headline + footer version`
+export const BUILD_DATE = '2026-07-07'
+/** Shown in site footer — must stay in sync with BUILD_ID */
+export const FOOTER_VERSION = `BUILD ${BUILD_ID}`

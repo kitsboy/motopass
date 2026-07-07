@@ -25,7 +25,7 @@ export function PageHeader({
     >
       <div className="max-w-2xl">
         {eyebrow && (
-          <span className="font-mono text-eyebrow uppercase tracking-[0.2em] text-mp-btc block mb-2">
+          <span className="font-mono text-eyebrow uppercase tracking-[0.2em] text-mp-btc-text block mb-2">
             {eyebrow}
           </span>
         )}

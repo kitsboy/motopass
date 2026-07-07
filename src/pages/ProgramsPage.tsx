@@ -22,7 +22,7 @@ import type { Program } from '../types/program'
 
 const iconBtn = (active: boolean) =>
   `rounded-chip border px-2.5 py-2 font-chrome text-xs transition-colors duration-fast ${
-    active ? 'border-mp-btc/40 bg-mp-btc-soft text-mp-ink shadow-mp-1' : 'border-mp-border text-mp-ink-tertiary hover:border-mp-border-strong'
+    active ? 'border-mp-btc/40 bg-mp-btc-soft text-mp-btc-text shadow-mp-1' : 'border-mp-border text-mp-ink-secondary hover:border-mp-border-strong hover:text-mp-ink'
   }`
 
 export function ProgramsPage() {

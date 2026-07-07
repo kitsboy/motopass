@@ -28,7 +28,7 @@ export function Layout() {
 
   const navClass = (isActive: boolean) =>
     isActive
-      ? 'border-btc-orange text-btc-orange bg-btc-orange-soft font-medium'
+      ? 'border-btc-orange text-mp-btc-text bg-btc-orange-soft font-medium'
       : 'border-transparent text-ink-muted hover:text-ink hover:bg-section/80'
 
   return (
@@ -146,7 +146,7 @@ export function Layout() {
               to={n.to}
               end={'end' in n ? n.end : false}
               className={({ isActive }) =>
-                `flex flex-col items-center justify-center text-[9px] py-2 rounded-mp-md transition-colors ${isActive ? 'text-btc-orange bg-btc-orange-soft font-semibold' : 'text-ink-muted'}`
+                `flex flex-col items-center justify-center text-[9px] py-2 rounded-mp-md transition-colors ${isActive ? 'text-mp-btc-text bg-btc-orange-soft font-semibold' : 'text-ink-muted'}`
               }
             >
               <span className="leading-tight text-center px-0.5">{isLoggedIn && n.key === 'nav.dashboard' ? 'Dash' : t(n.key)}</span>

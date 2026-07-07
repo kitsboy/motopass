@@ -71,7 +71,7 @@ export function ProgramCard({ program, onSelect, index = 0 }: ProgramCardProps) 
         </div>
         <div>
           <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">Score</dt>
-          <dd className={`font-mono text-sm ${isFlagship ? 'text-mp-btc' : 'text-mp-ink'}`}>
+          <dd className={`font-mono text-sm ${isFlagship ? 'text-mp-btc-text' : 'text-mp-ink'}`}>
             {program.sovereigntyScore}
           </dd>
         </div>

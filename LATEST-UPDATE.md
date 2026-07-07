@@ -1,4 +1,4 @@
-# motopass — Last Updated 2026-07-02 by Grok
+# motopass — Last Updated 2026-07-07 by Grok
 
-Brief: Warm Sovereign Cinematic merge — Programs + Landing, BUILD 2026.07.02-02
-Commit: 4287d6c
+Brief: Gold hero headline + footer BUILD version, BUILD 2026.07.07-03
+Commit: (pending commit)

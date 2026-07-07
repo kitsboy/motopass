@@ -21,7 +21,7 @@ export function Chip({ label, active = false, onClick, count }: ChipProps) {
       aria-pressed={active}
       className={`relative shrink-0 rounded-chip border px-3.5 py-1.5 font-chrome text-xs font-medium transition-colors duration-fast ${
         active
-          ? 'border-mp-btc/40 text-mp-ink'
+          ? 'border-mp-btc/40 text-mp-btc-text'
           : 'border-mp-border text-mp-ink-secondary hover:border-mp-border-strong hover:text-mp-ink'
       }`}
     >

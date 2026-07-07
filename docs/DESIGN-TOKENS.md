@@ -16,16 +16,22 @@
 
 | Token | CSS variable | Hex | Tailwind |
 |-------|--------------|-----|----------|
-| ink | `--mp-ink` | `#18181B` | `text-ink` |
+| ink | `--mp-ink-primary` | `#18181B` | `text-ink` / `text-mp-ink` |
 | ink-secondary | `--mp-ink-secondary` | `#3F3F46` | `text-ink-secondary` |
-| ink-muted | `--mp-ink-muted` | `#71717A` | `text-ink-muted` |
-| ink-inverse | `--mp-ink-inverse` | `#FAFAFA` | `text-ink-inverse` |
+| ink-muted / tertiary | `--mp-ink-tertiary` | `#52525B` | `text-ink-muted` / `text-mp-ink-tertiary` |
+| ink-inverse | `--mp-ink-inverse` | `#FBF9F5` | `text-ink-inverse` |
+| ink-on-accent | `--mp-ink-on-accent` | `#1A1208` | `text-mp-ink-on-accent` (on orange fills) |
+| on-hero | `--mp-ink-on-hero` | `#FBF9F5` | `text-mp-on-hero` (cinematic hero) |
+| on-hero-secondary | `--mp-ink-on-hero-secondary` | `rgba(251,249,245,0.9)` | `text-mp-on-hero-secondary` |
+| on-hero-muted | `--mp-ink-on-hero-muted` | `rgba(251,249,245,0.75)` | `text-mp-on-hero-muted` |
+| btc-text | `--mp-accent-btc-text` | `#9A4E12` | `text-mp-btc-text` (accent on light surfaces) |
 
 ## Color — brand & status
 
 | Token | Hex | Tailwind |
 |-------|-----|----------|
-| btc-orange | `#F7931A` | `btc-orange` |
+| btc-orange | `#F7931A` | `btc-orange` (fills, icons on dark — not small body text on light) |
+| btc-orange-text | `#9A4E12` | `text-mp-btc-text` |
 | btc-orange-deep | `#E07B0F` | `btc-orange-deep` |
 | btc-orange-soft | `#FFF7ED` | `btc-orange-soft` |
 | status-green | `#16A34A` | `status-green` |
@@ -78,7 +84,9 @@ Toggle via `ThemeToggle` in header. Class `.dark` on `<html>` swaps all `--mp-*`
 | canvas | `#F5F2EC` | `#121214` |
 | section | `#EDE9E3` | `#1C1C1F` |
 | card | `#FFFFFF` | `#27272A` |
-| ink | `#18181B` | `#FAFAFA` |
+| ink | `#18181B` | `#F5F2EC` |
+| ink-tertiary | `#52525B` | `#A8A29E` |
+| btc-text | `#9A4E12` | `#F0A050` |
 | hero-image-opacity | `0.35` | `0.28` |
 
 Persistence: `localStorage` key `motopass-theme`. Respects `prefers-color-scheme` on first visit.

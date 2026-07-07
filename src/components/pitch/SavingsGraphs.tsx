@@ -30,7 +30,7 @@ function Bar({
     <div ref={ref} className="flex items-center gap-3">
       <div className="h-2.5 w-full overflow-hidden rounded-chip bg-mp-section">
         <motion.div
-          className={`h-full origin-left rounded-chip ${tone === 'btc' ? 'bg-mp-btc' : 'bg-mp-ink-tertiary/50'}`}
+          className={`h-full origin-left rounded-chip ${tone === 'btc' ? 'bg-mp-btc' : 'bg-mp-ink-tertiary/70'}`}
           style={{ width: `${widthPct}%` }}
           initial={{ scaleX: reduceMotion ? 1 : 0 }}
           animate={inView ? { scaleX: 1 } : {}}
@@ -88,7 +88,7 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
                   <Bar value={row.traditional} max={maxByRow[i]} tone="muted" delay={i * 0.08} unit={row.unit} />
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="w-28 shrink-0 font-chrome text-xs uppercase tracking-wide text-mp-btc">
+                  <span className="w-28 shrink-0 font-chrome text-xs uppercase tracking-wide text-mp-btc-text">
                     MotoPass
                   </span>
                   <Bar value={row.motopass} max={maxByRow[i]} tone="btc" delay={i * 0.08 + 0.15} unit={row.unit} />

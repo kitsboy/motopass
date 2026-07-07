@@ -75,7 +75,11 @@ echo "Branch: $(git branch --show-current)"   # confirm branch
 
 If there are unpushed commits, push them: `git push origin main`
 
-### Step 4 — Summary One-Liner
+### Step 4 — Bump BUILD_ID (every push)
+
+In `src/lib/buildInfo.ts`, increment `BUILD_ID` (e.g. `2026.07.07-03` → `-04`) and update `BUILD_LABEL`. The footer reads `FOOTER_VERSION` from this file — users track deploys there.
+
+### Step 5 — Summary One-Liner
 
 Leave a clean one-line summary in the project root at `LATEST-UPDATE.md`:
 

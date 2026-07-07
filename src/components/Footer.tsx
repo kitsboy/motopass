@@ -4,7 +4,7 @@ import { AgentCardKimi } from './AgentCardKimi'
 import { useI18n } from '../i18n/I18nContext'
 import { GiveABitLogoLink } from './footer/GiveABitLogoLink'
 import { FooterActionBar } from './footer/FooterActionBar'
-import { BUILD_LABEL } from '../lib/buildInfo'
+import { BUILD_LABEL, FOOTER_VERSION } from '../lib/buildInfo'
 
 export function Footer() {
   const { t } = useI18n()
@@ -18,7 +18,7 @@ export function Footer() {
               <Logo size="lg" />
               <div>
                 <div className="font-display font-semibold text-xl tracking-tight text-ink">MOTOPASS</div>
-                <div className="text-xs text-btc-orange font-mono">{t('tagline')}</div>
+                <div className="text-xs text-mp-btc-text font-mono">{t('tagline')}</div>
               </div>
             </div>
             <p className="text-sm text-ink-secondary leading-relaxed max-w-md mb-6">
@@ -58,7 +58,9 @@ export function Footer() {
             <span className="text-mp-strong hidden sm:inline" aria-hidden>·</span>
             <GiveABitLogoLink />
             <span className="text-mp-strong" aria-hidden>·</span>
-            <span className="leading-none">{BUILD_LABEL}</span>
+            <span className="leading-none font-semibold text-mp-btc-text">{FOOTER_VERSION}</span>
+            <span className="text-mp-strong hidden sm:inline" aria-hidden>·</span>
+            <span className="leading-none hidden sm:inline">{BUILD_LABEL}</span>
           </div>
           <span>{t('footer.truth')}</span>
         </div>

@@ -40,7 +40,7 @@ export function BlogPage() {
             <div className="flex flex-wrap gap-2 text-[10px] text-ink-muted mb-3">
               {post.seoKeywords.map(k => <span key={k} className="bg-section px-2 py-0.5 rounded-mp-sm border border-mp">#{k.replace(/\s+/g, '')}</span>)}
             </div>
-            <Link to={`/blog/${post.slug}`} className="text-sm font-medium text-btc-orange hover:text-btc-orange-deep">{t('blog.read')} →</Link>
+            <Link to={`/blog/${post.slug}`} className="text-sm font-medium text-accent">{t('blog.read')} →</Link>
           </article>
         ))}
       </div>

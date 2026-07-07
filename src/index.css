@@ -11,7 +11,7 @@
   --mp-card-muted-rgb: 250 250 248;
   --mp-ink-rgb: 24 24 27;
   --mp-ink-secondary-rgb: 63 63 70;
-  --mp-ink-muted-rgb: 113 113 122;
+  --mp-ink-muted-rgb: 82 82 91;
   --mp-ink-inverse-rgb: 250 250 250;
   --mp-btc-soft-rgb: 255 247 237;
   --mp-nostr-soft-rgb: 245 243 255;
@@ -33,8 +33,8 @@
   --mp-card-rgb: 39 39 42;
   --mp-card-muted-rgb: 31 31 35;
   --mp-ink-rgb: 250 250 250;
-  --mp-ink-secondary-rgb: 212 212 216;
-  --mp-ink-muted-rgb: 161 161 170;
+  --mp-ink-secondary-rgb: 212 207 196;
+  --mp-ink-muted-rgb: 168 162 158;
   --mp-ink-inverse-rgb: 24 24 27;
   --mp-btc-soft-rgb: 42 31 20;
   --mp-nostr-soft-rgb: 30 27 46;
@@ -82,9 +82,10 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-btc-orange text-ink-inverse font-semibold px-5 py-2.5 rounded-full
+    @apply inline-flex items-center justify-center gap-2 bg-btc-orange font-semibold px-5 py-2.5 rounded-full
       shadow-sm transition-all duration-200 hover:bg-btc-orange-deep hover:shadow-md hover:-translate-y-px
       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-btc-orange;
+    color: var(--mp-ink-on-accent);
   }
 
   .btn-secondary {
@@ -99,7 +100,8 @@ body {
   }
 
   .section-label {
-    @apply font-mono text-[10px] font-medium tracking-[0.2em] uppercase text-btc-orange;
+    @apply font-mono text-[10px] font-medium tracking-[0.2em] uppercase;
+    color: var(--mp-accent-btc-text);
   }
 
   .page-title {
@@ -110,7 +112,7 @@ body {
     @apply font-mono text-[10px] font-medium px-2 py-0.5 rounded-mp-sm;
     background-color: var(--mp-proof-bg);
     border: 1px solid var(--mp-proof-border);
-    color: var(--mp-status-green);
+    color: var(--mp-proof-green);
   }
 
   .program-card {
@@ -122,7 +124,21 @@ body {
   }
 
   .chip-active {
-    @apply chip border-btc-orange/40 bg-btc-orange-soft text-btc-orange-deep font-medium;
+    @apply chip border-btc-orange/40 bg-btc-orange-soft font-medium;
+    color: var(--mp-accent-btc-text);
+  }
+
+  .text-accent {
+    color: var(--mp-accent-btc-text);
+  }
+
+  .text-accent:hover {
+    color: var(--mp-accent-btc-deep);
+  }
+
+  .hero-glass-panel {
+    background: var(--mp-surface-hero-glass);
+    border-color: rgba(255, 255, 255, 0.14);
   }
 
   .input-field {
@@ -143,7 +159,8 @@ body {
   }
 
   .nav-link-active {
-    @apply border-btc-orange text-btc-orange font-medium;
+    @apply border-btc-orange font-medium;
+    color: var(--mp-accent-btc-text);
   }
 
   .surface-band {
@@ -167,4 +184,28 @@ body::before {
 
 .dark body::before {
   opacity: 0.25;
+}
+
+/* Hero copy — unlayered so color beats body { color: ink } */
+.hero-copy {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-copy::before {
+  content: '';
+  position: absolute;
+  inset: -1.5rem -1.25rem;
+  background: var(--mp-hero-copy-scrim);
+  border-radius: var(--mp-radius-panel);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-headline {
+  color: var(--mp-hero-headline);
+  text-shadow:
+    0 0 32px rgba(247, 147, 26, 0.45),
+    0 2px 24px rgba(0, 0, 0, 0.75),
+    0 1px 2px rgba(0, 0, 0, 0.9);
 }

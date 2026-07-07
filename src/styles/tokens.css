@@ -22,17 +22,36 @@
   --mp-border-focus: #F7931A;
 
   /* ---------------------------------------------------------------------
-     INK — hierarchy
+     INK — hierarchy (WCAG AA on canvas #F5F2EC / card #FFFFFF)
      --------------------------------------------------------------------- */
   --mp-ink-primary: #18181B;
   --mp-ink-secondary: #3F3F46;
-  --mp-ink-tertiary: #71717A;
+  --mp-ink-tertiary: #52525B;        /* was #71717A — 4.6:1 on canvas */
   --mp-ink-inverse: #FBF9F5;
+  --mp-ink-on-accent: #1A1208;       /* dark text on btc-orange fills */
+
+  /* ---------------------------------------------------------------------
+     HERO / DARK SURFACE — cinematic pitch legibility
+     --------------------------------------------------------------------- */
+  --mp-surface-hero-glass: rgba(18, 16, 14, 0.78);
+  --mp-ink-on-hero: #FFFFFF;
+  --mp-hero-headline: #FFCB6B;       /* warm gold — stands out on dark hero scrim */
+  --mp-ink-on-hero-secondary: rgba(255, 255, 255, 0.92);
+  --mp-ink-on-hero-muted: rgba(255, 255, 255, 0.78);
+  --mp-ink-on-hero-subtle: rgba(255, 255, 255, 0.65);
+  --mp-hero-copy-scrim: linear-gradient(
+    105deg,
+    rgba(10, 8, 6, 0.88) 0%,
+    rgba(10, 8, 6, 0.62) 42%,
+    rgba(10, 8, 6, 0.28) 68%,
+    transparent 100%
+  );
 
   /* ---------------------------------------------------------------------
      ACCENTS — earthy premium sovereign
      --------------------------------------------------------------------- */
-  --mp-accent-btc: #F7931A;          /* Bitcoin amber — CTAs, proof only */
+  --mp-accent-btc: #F7931A;          /* fills, icons on dark — not small body text on light */
+  --mp-accent-btc-text: #9A4E12;    /* readable accent on light surfaces */
   --mp-accent-btc-deep: #E07B0F;
   --mp-accent-btc-soft: #FFF7ED;
   --mp-accent-ochre: #B5651D;        /* burnt ochre — secondary emphasis */
@@ -107,7 +126,8 @@
   /* ---------------------------------------------------------------------
      GRADIENTS
      --------------------------------------------------------------------- */
-  --gradient-hero: radial-gradient(120% 90% at 78% 12%, hsla(30, 92%, 52%, 0.22) 0%, hsla(30, 60%, 30%, 0.10) 32%, hsla(240, 8%, 8%, 0.88) 78%);
+  --gradient-hero: radial-gradient(120% 90% at 78% 12%, hsla(30, 92%, 52%, 0.22) 0%, hsla(30, 60%, 30%, 0.10) 32%, hsla(240, 8%, 8%, 0.88) 78%),
+    linear-gradient(90deg, rgba(8, 7, 6, 0.82) 0%, rgba(8, 7, 6, 0.45) 38%, transparent 62%);
   --gradient-radial-warm: radial-gradient(70% 70% at 50% 30%, hsla(30, 90%, 55%, 0.16), transparent 70%);
   --gradient-scrim-bottom: linear-gradient(180deg, transparent 0%, hsla(28, 40%, 8%, 0.55) 100%);
   --gradient-seal: linear-gradient(135deg, #F7931A 0%, #B5651D 60%, #8B2E1F 100%);
@@ -135,9 +155,26 @@
   --mp-border-focus: #F7931A;
 
   --mp-ink-primary: #F5F2EC;
-  --mp-ink-secondary: #C7C2B8;
-  --mp-ink-tertiary: #8B8579;
+  --mp-ink-secondary: #D4CFC4;
+  --mp-ink-tertiary: #A8A29E;        /* was #8B8579 — 4.5:1 on card #27272A */
   --mp-ink-inverse: #18181B;
+  --mp-ink-on-accent: #1A1208;
+
+  --mp-surface-hero-glass: rgba(12, 11, 10, 0.82);
+  --mp-ink-on-hero: #FFFFFF;
+  --mp-hero-headline: #FFD08A;
+  --mp-ink-on-hero-secondary: rgba(255, 255, 255, 0.92);
+  --mp-ink-on-hero-muted: rgba(255, 255, 255, 0.78);
+  --mp-ink-on-hero-subtle: rgba(255, 255, 255, 0.65);
+  --mp-hero-copy-scrim: linear-gradient(
+    105deg,
+    rgba(6, 5, 4, 0.92) 0%,
+    rgba(6, 5, 4, 0.7) 42%,
+    rgba(6, 5, 4, 0.35) 68%,
+    transparent 100%
+  );
+
+  --mp-accent-btc-text: #F0A050;
 
   --mp-accent-btc-soft: #2A1C0E;
   --mp-proof-green-soft: #0F2318;
@@ -149,7 +186,8 @@
   --mp-shadow-4: 0 28px 56px hsla(28, 40%, 3%, 0.7), 0 10px 20px hsla(28, 40%, 3%, 0.5);
   --mp-shadow-glow-btc: 0 0 0 1px hsla(30, 90%, 55%, 0.35), 0 0 24px hsla(30, 90%, 52%, 0.28);
 
-  --gradient-hero: radial-gradient(120% 90% at 78% 12%, hsla(30, 92%, 52%, 0.16) 0%, hsla(30, 60%, 24%, 0.10) 34%, hsla(240, 10%, 5%, 0.94) 80%);
+  --gradient-hero: radial-gradient(120% 90% at 78% 12%, hsla(30, 92%, 52%, 0.16) 0%, hsla(30, 60%, 24%, 0.10) 34%, hsla(240, 10%, 5%, 0.94) 80%),
+    linear-gradient(90deg, rgba(4, 4, 5, 0.88) 0%, rgba(4, 4, 5, 0.5) 38%, transparent 62%);
   --gradient-radial-warm: radial-gradient(70% 70% at 50% 30%, hsla(30, 90%, 50%, 0.12), transparent 70%);
   --gradient-scrim-bottom: linear-gradient(180deg, transparent 0%, hsla(0, 0%, 0%, 0.65) 100%);
 

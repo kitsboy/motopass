@@ -44,33 +44,33 @@ export function PitchPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-xl"
+            className="hero-copy max-w-xl"
           >
-            <span className="font-mono text-eyebrow uppercase tracking-[0.2em] text-mp-btc">
+            <span className="font-mono text-eyebrow uppercase tracking-[0.2em] text-mp-btc drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
               {t('tagline')}
             </span>
-            <h1 className="mt-4 font-display text-hero text-mp-ink-inverse">
+            <h1 className="hero-headline mt-4 font-display text-hero">
               {t('pitch.hero')}
             </h1>
-            <p className="mt-6 max-w-md font-body text-lg2 text-mp-ink-inverse/75">
+            <p className="mt-6 max-w-md font-body text-lg2 text-mp-on-hero-secondary drop-shadow-[0_1px_12px_rgba(0,0,0,0.55)]">
               {t('pitch.sub')}
             </p>
             <div className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <Link
                 to="/programs"
-                className="inline-flex items-center gap-2 rounded-full bg-mp-btc px-7 py-3.5 font-chrome text-sm font-semibold text-mp-ink-inverse shadow-mp-glow transition-transform duration-fast ease-spring-snappy hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-full bg-mp-btc px-7 py-3.5 font-chrome text-sm font-semibold text-mp-ink-on-accent shadow-mp-glow transition-transform duration-fast ease-spring-snappy hover:-translate-y-0.5"
               >
                 {t('pitch.cta')} <ArrowRight size={18} />
               </Link>
               <Link
                 to="/simulator"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-chrome text-sm text-mp-ink-inverse/80 hover:border-mp-btc/40 hover:text-mp-ink-inverse transition-colors"
+                className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 font-chrome text-sm text-mp-on-hero-secondary hover:border-mp-btc/40 hover:text-mp-on-hero transition-colors"
               >
                 Stack simulator <Zap size={16} />
               </Link>
             </div>
-            <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-mp-ink-inverse/50">
-              <BlockHeight />
+            <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-mp-on-hero-muted">
+              <BlockHeight variant="hero" />
               <span className="font-mono text-mp-btc/90 flex items-center gap-1">
                 <Bitcoin size={12} /> {t('pitch.evolve')}
               </span>
@@ -120,7 +120,7 @@ export function PitchPage() {
               Every program cost, legal extract, and passport milestone anchors to Bitcoin via OpenTimestamps.
               One click to verify — speed without sacrificing sovereignty.
             </p>
-            <Link to="/verify" className="text-sm font-medium text-btc-orange hover:text-btc-orange-deep inline-flex items-center gap-1">
+            <Link to="/verify" className="text-sm font-medium text-accent inline-flex items-center gap-1">
               Verify now <ArrowRight size={14} />
             </Link>
           </div>
@@ -151,10 +151,10 @@ export function PitchPage() {
           <div className="card-elevated bg-btc-orange-soft border-btc-orange/30">
             <div className="text-3xl font-display text-gradient-orange mb-4">Next</div>
             <ul className="text-sm text-ink-secondary space-y-2.5">
-              <li className="flex gap-2"><span className="text-btc-orange">→</span> Lightning fee rails for premium stamping</li>
-              <li className="flex gap-2"><span className="text-btc-orange">→</span> Live Nostr relay at relay.motopass.giveabit.io</li>
-              <li className="flex gap-2"><span className="text-btc-orange">→</span> Uruguay flagship depth across all 50 countries</li>
-              <li className="flex gap-2"><span className="text-btc-orange">→</span> Official liaison agent onboarding per jurisdiction</li>
+              <li className="flex gap-2"><span className="text-mp-btc-text">→</span> Lightning fee rails for premium stamping</li>
+              <li className="flex gap-2"><span className="text-mp-btc-text">→</span> Live Nostr relay at relay.motopass.giveabit.io</li>
+              <li className="flex gap-2"><span className="text-mp-btc-text">→</span> Uruguay flagship depth across all 50 countries</li>
+              <li className="flex gap-2"><span className="text-mp-btc-text">→</span> Official liaison agent onboarding per jurisdiction</li>
             </ul>
           </div>
         </div>

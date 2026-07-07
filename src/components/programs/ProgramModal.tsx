@@ -30,7 +30,7 @@ export function ProgramModal({ program, onClose, onAddToStack }: ProgramModalPro
       <div className="mb-4 flex items-center gap-3">
         <ProofBadge status={program.proofStatus} txHint={program.proofRef} />
         {isFlagship && (
-          <span className="font-mono text-[11px] uppercase tracking-wide text-mp-btc">Flagship program</span>
+          <span className="font-mono text-[11px] uppercase tracking-wide text-mp-btc-text">Flagship program</span>
         )}
       </div>
 
