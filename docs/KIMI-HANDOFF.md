@@ -215,4 +215,34 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-07 (Nav upgrade)
+
+**Machine:** M3 (Grok)
+**Project:** motopass
+
+### Done
+- [x] Major nav overhaul — modular `src/components/nav/*` (HeaderToolbar, DesktopNav, LanguageDropdown, MobileMenuSheet, MobileBottomNav, MoreNavSheet)
+- [x] Compact header (`h-12`), unified `.nav-btn` / `.nav-pill` / `.nav-tab` CSS system in `index.css`
+- [x] Language flags as dropdown (desktop + mobile menu) with click-outside, Escape, checkmark, RTL badge
+- [x] Grouped desktop pills: Explore / Tools + account pill; animated mobile hamburger sheet + bottom tab bar
+- [x] Removed legacy `LanguageSwitcher.tsx`; e2e test for language dropdown + footer BUILD scroll fix
+- [x] BUILD `2026.07.07-12` — committed, pushed, deployed to Cloudflare Pages
+
+### Decisions
+- Nav split into focused modules to keep Layout slim and enable independent mobile/desktop patterns
+- Language dropdown replaces inline flag row — tighter toolbar, scales to all languages
+- Desktop toolbar hidden below `lg`; mobile uses bottom nav + More sheet for overflow routes
+
+### What's Next
+- Kimi: verify live site footer shows `BUILD 2026.07.07-12` after hard refresh
+- Optional: document nav batch in IMPROVEMENTS-QUEUE as batch 9 (50+ items)
+- P1 backlog unchanged: Portfolio cinematic pass, deepen 50 countries, live Nostr relay
+
+### Git State
+- Last commit SHA: fd0caa2
+- Branch: `main`
+- Unpushed: (none)
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
