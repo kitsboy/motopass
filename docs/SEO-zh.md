@@ -2,7 +2,7 @@
 title: SEO 策略与审核
 project: motopass
 version: 0.1.0
-last_updated: 2026-06-24
+last_updated: 2026-07-07
 owner: Kimi / Qwen（每周审核）
 update_frequency: 每周（周一）
 ---

@@ -112,4 +112,12 @@ Persistence: `localStorage` key `motopass-theme`. Respects `prefers-color-scheme
 .input-field   → white input, focus ring orange
 ```
 
+## BTC Map (Leaflet)
+
+| Element | Class / token | Use |
+|---------|---------------|-----|
+| Map pin | `.btcmap-pin` | 12px orange circle, white border, soft shadow |
+| Map wrap | `.btcmap-leaflet-wrap` | Rounded card container for Leaflet canvas |
+| Search radius | `#f7931a` at 8% fill | Circle overlay on jurisdiction hub |
+
 *See `src/index.css` and `tailwind.config.js` for source of truth.*

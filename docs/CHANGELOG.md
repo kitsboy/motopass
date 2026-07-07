@@ -4,6 +4,39 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 ---
 
+## [BUILD-2026.07.07-26] — 2026-07-07
+
+### Added
+- BTC Map v2: merchant density badges on `ProgramCard`, Nostr NIP-98 saved merchants, Leaflet pin map, offline per-jurisdiction cache, report-venue CTA
+- `scripts/fetch-btcmap-density.mjs`, `scripts/sync-btcmap-cache.mjs` (`npm run btcmap:density`, `npm run btcmap:sync`)
+- `public/data/btcmap-density.json` + `public/data/btcmap/{slug}.json` (50 jurisdictions)
+- `BtcMapAuthContext`, `BtcMapDensityContext`, `BtcMapLeaflet`, `MerchantDensityBadge`, `BtcMapReportVenue`
+- `leaflet` + `react-leaflet@4.2.1` dependencies
+
+### Changed
+- `BtcMapEmbed` now renders native Leaflet layer (replaces iframe)
+- `useBtcMapPlaces` — cache-first with live API refresh
+- Agents page — report venue CTA for community merchant tagging
+
+---
+
+## [BUILD-2026.07.07-25] — 2026-07-07
+
+### Added
+- `/btcmap` page — jurisdiction selector, v4 API merchant list, area chips, program panel in modal
+- `src/lib/btcmap.ts` client, `src/data/programCoords.ts`, `useBtcMapPlaces` hook
+- Nav links (desktop/mobile/more), pitch roadmap entry, e2e btcmap test
+- Env: `VITE_BTCMAP_API_URL`, `VITE_BTCMAP_WEB_URL`
+
+---
+
+## [BUILD-2026.07.07-24] — 2026-07-07
+
+### Added
+- Batches 17–20 polish: a11y traps, expanded i18n, breadcrumbs, Playwright in CI, sitemap generator, FAQ JSON-LD, bundle budget
+
+---
+
 ## [BUILD-20260702-012] — 2026-07-02
 
 ### Added

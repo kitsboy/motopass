@@ -1,6 +1,6 @@
 # MotoPass Glossary
 
-**BUILD-20260610-004**
+**BUILD-2026.07.07-26**
 
 Precise, shared language is part of the product. This glossary defines key terms as used across MotoPass documentation, UI, Paige responses, marketing, and handoffs.
 
@@ -28,7 +28,16 @@ A tax regime in which a jurisdiction taxes only income sourced within its border
 A jurisdiction where Bitcoin is (or was) granted official legal tender status, meaning it can be used to pay debts, taxes, or must be accepted by merchants (with varying degrees of compulsion). As of 2026, only El Salvador (now voluntary acceptance after 2025 reforms) and the Central African Republic have adopted such frameworks. Strong signaling and practical infrastructure effects even when not mandatory.
 
 **Lightning Ready / Lightning Acceptance**  
-Indicates meaningful real-world ability to pay or be paid in Bitcoin via the Lightning Network (BOLT12 offers preferred for static, reusable invoices). Includes merchants, law firms, real estate agents, government-adjacent services, or program fees that can be settled over Lightning. btcmaps.org is a key reference.
+Indicates meaningful real-world ability to pay or be paid in Bitcoin via the Lightning Network (BOLT12 offers preferred for static, reusable invoices). Includes merchants, law firms, real estate agents, government-adjacent services, or program fees that can be settled over Lightning. [btcmap.org](https://btcmap.org) is the primary merchant reference.
+
+**BTC Map / Merchant Layer**  
+The open community map of Bitcoin-accepting merchants maintained by [teambtcmap](https://github.com/teambtcmap). MotoPass integrates via [btcmap-api](https://github.com/teambtcmap/btcmap-api) v4: nearby search per jurisdiction, area chips, Leaflet pins on `/btcmap`, and density badges on program cards. Data can be refreshed with `npm run btcmap:density` and `npm run btcmap:sync`.
+
+**Merchant Density (MotoPass)**  
+A pre-computed count of BTC Map merchants within each program's search radius. Displayed as a badge on program cards with tiers: sparse (&lt;5), moderate (5–19), dense (20+). Stored in `public/data/btcmap-density.json`.
+
+**btcmap-cli**  
+Command-line tool for power users to sign up and tag venues on BTC Map. MotoPass links to the [btcmap-cli repo](https://github.com/teambtcmap/btcmap-cli) from the report-venue CTA alongside the web flow at btcmap.org/add-location.
 
 **“Truth You Can Verify” (Prime Directive)**  
 The non-negotiable MotoPass principle: every material data point, legal extract, cost, requirement, user action, and platform update that matters must be independently verifiable on the Bitcoin blockchain via OpenTimestamps + Satohash (or equivalent). This is the trust model, the marketing through-line, the UI treatment requirement, and the filter for feature decisions.
@@ -102,4 +111,4 @@ Use these terms consistently in UI labels, Paige responses, docs, and external c
 **Truth You Can Verify.**
 
 — Documentation Layer, MotoPass  
-BUILD-20260610-004
+BUILD-2026.07.07-26

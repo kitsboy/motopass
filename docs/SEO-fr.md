@@ -2,7 +2,7 @@
 title: Stratégie & Audit SEO
 project: motopass
 version: 0.1.0
-last_updated: 2026-06-24
+last_updated: 2026-07-07
 owner: Kimi / Qwen (Audit Hebdomadaire)
 update_frequency: Hebdomadaire (Lundi)
 ---

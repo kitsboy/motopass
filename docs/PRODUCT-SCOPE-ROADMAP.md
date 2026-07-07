@@ -1,7 +1,7 @@
 # MotoPass — Product Scope & Roadmap
 ## The Complete Answer to “How Much Are We Going to Build Here?”
 
-**BUILD-20260610-004** | 2026-06-10  
+**BUILD-2026.07.07-26** | 2026-07-07  
 **Status:** Authoritative reference. Update only with corresponding changes to vision, data model, or architecture. Cross-reference with `docs/PROJECT-VISION.md`, `docs/DESIGN-CONTEXT.md`, `docs/NEXT-PROMPT.md`, and `docs/SOURCE-OF-TRUTH.md`.
 
 ---
@@ -18,15 +18,20 @@ The full vision spans data depth, user experience, Bitcoin protocol integration,
 
 ---
 
-## Current State (BUILD-004 Baseline)
+## Current State (BUILD-26 Baseline)
 
 ### Data
 - 16 programs seeded in `research/countries.json` (El Salvador, Central African Republic, Uruguay, St. Kitts & Nevis, Antigua & Barbuda, Dominica, UAE, Switzerland/Crypto Valley, Singapore, Portugal (policy shift note), Malta, Panama, Georgia, Paraguay, Bolivia placeholder, and one explicit “to be filled”).
 - Rich finance modeling per program: min/typical investment USD, gov/processing fees, processing time months, tax benefits (territorial, crypto treatment, holidays), crypto-friendly score (0–10), Bitcoin-specific narrative.
 - Uruguay documented as official flagship + v2.0 master template in `research/uruguay-flagship.md` (Basic Info, 3 Critical Tests, Investment/Financial, Process/Timeline, Legal & Compliance deep extracts, Lifestyle, Bitcoin-Native Features, Paige AI fields).
-- Target: 50 programs at equivalent flagship depth.
+- **BTC Map layer shipped**: merchant density (`btcmap-density.json`), offline cache (50 snapshots), live btcmap-api v4 on `/btcmap`.
+- Target: all 50 programs at Uruguay flagship depth + real Satohash stamps.
 
-### Experience (Pristine Reference)
+### Experience (React App — primary, BUILD-26)
+- 15 routes: Portfolio, Programs, Simulator, Compare, Vault, **BTC Map**, Blog, Agents, Register/Dashboard.
+- Leaflet merchant pins, density badges on cards, Nostr save merchants, offline cache, 30 unit + 16 e2e tests.
+
+### Experience (Pristine Reference — still maintained)
 - Self-contained single-file `website/index.html` (~2,362 lines of HTML/CSS/JS).
 - Fixed sovereign header (logo with ₿, nav, wallet-style connect).
 - Hero with animated grid, live Bitcoin block height, strong imagery.
@@ -108,7 +113,7 @@ The full vision spans data depth, user experience, Bitcoin protocol integration,
 - **Paige Chat Surface**: Upgrade the simulated chat to a grounded interface (initially prompt + retrieval over the local stamped corpus; later Nostr or backend-mediated).
 
 **Data & Modeling Enhancements**
-- Expand schema (see DATA-MODEL.md) with sovereignty score, stacking synergy matrix, risk flags, Lightning merchant density signals (btcmaps.org integration points), real-time BTC cost calculator (price feed + sats conversion).
+- Expand schema (see DATA-MODEL.md) with sovereignty score, stacking synergy matrix, risk flags. **Lightning merchant density** — partially shipped via BTC Map integration (`/btcmap`, density badges, `programCoords.ts`). Remaining: real-time BTC cost calculator (price feed + sats conversion).
 - User-side models: Portfolio (array of acquired program IDs + personal notes + target dates), Saved Stacks (named combinations + computed metrics + proof), Application Tracker (step checklists per program with local status + optional stamps).
 - In-app “Add / Edit / Export” parity with the pristine demo, plus better validation and history.
 
@@ -363,7 +368,7 @@ That is how much we are going to build.
 Now we execute — phase by phase, with precision, beauty, and uncompromising Bitcoin alignment.
 
 — Product & Scope Layer, MotoPass  
-BUILD-20260610-004
+BUILD-2026.07.07-26
 
 **Cross-references**  
 - Docs: `docs/PROJECT-VISION.md`, `docs/DESIGN-CONTEXT.md`, `docs/NEXT-PROMPT.md`, `docs/SOURCE-OF-TRUTH.md`, `docs/UPDATES-MAP.md`, `README.md`  

@@ -1,9 +1,9 @@
 # SOURCE-OF-TRUTH — MotoPass
 
 **Project:** MotoPass  
-**Date:** 2026-07-02  
-**BUILD:** 20260702-012  
-**Commit:** `4fe1bb9` (feature) / `c170a35` (handoff)
+**Date:** 2026-07-07  
+**BUILD:** 2026.07.07-26  
+**Commit:** `41238c2` (feature) / `aaafb91` (handoff)
 
 ## Project overview
 
@@ -23,13 +23,16 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 | **Deploy** | Cloudflare Pages project `motopass` only |
 | **Demo** | https://motopass.giveabit.io/website/index.html |
 | **Data** | https://motopass.giveabit.io/research/countries.json |
+| **BTC Map** | https://motopass.giveabit.io/btcmap |
 
 ## Core assets
 
 | Asset | Path | Status |
 |-------|------|--------|
-| React app | `src/` + `npm run dev` | BUILD-011 — 14 routes, dark mode |
+| React app | `src/` + `npm run dev` | BUILD-26 — 15 routes, dark mode, BTC Map |
 | Program data | `research/countries.json` | **50 programs** |
+| BTC Map cache | `public/data/btcmap/` | **50 jurisdiction snapshots** |
+| BTC Map density | `public/data/btcmap-density.json` | Merchant counts per program |
 | Static demo | `website/index.html` | Luminous Sovereign light theme |
 | Design system | `docs/DESIGN-CONTEXT.md`, `docs/DESIGN-TOKENS.md` | Canonical |
 | Documentation | `docs/` | Full suite — see `docs/README.md` |
@@ -38,20 +41,25 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 ## Current capabilities (shipped)
 
-- Programs explorer (card + table, filters)
-- Portfolio, Stack Simulator, Finance Compare, Vault
+- Programs explorer (card + table, filters, breadcrumbs)
+- Portfolio, Stack Simulator, Finance Compare, Vault, Blog, Agents
+- **BTC Map layer** (`/btcmap`): Leaflet map, merchant list, area chips, program modal panel
+- **Merchant density badges** on program cards (sparse / moderate / dense)
+- **Nostr NIP-98** sign-in for BTC Map saved merchants (heart toggle)
+- **Offline BTC Map cache** — cache-first, API refresh fallback
+- **Report venue CTA** — btcmap.org/add-location + btcmap-cli bridge
 - Nostr connect stub, Satohash verify UI, payment methods stub
-- i18n (10 locales), SEO meta, Playwright smoke tests
+- i18n (10 locales + page keys), SEO meta + hreflang, FAQ JSON-LD
 - Luminous Sovereign light UI + Sovereign Night dark toggle
-- Landing motion hero (sovereignty.jpg @ 35% opacity)
+- Playwright e2e (16 tests), CI bundle budget, sitemap generator
 
 ## Gaps & next priorities
 
 1. **Data depth** — Expand all 50 countries to Uruguay flagship template
 2. **Bitcoin core** — Real Satohash stamping, Lightning settlement
-3. **Nostr** — Live relay, npub-native applications
+3. **Nostr** — Live MotoPass relay, full npub-native applications
 4. **Paige AI** — Move from simulated to real concierge
-5. **CI** — Generate `dist/` in pipeline vs committing artifacts
+5. **CI** — Generate `dist/` in pipeline; weekly `btcmap:sync` cron
 
 ## Agent instructions
 
@@ -59,6 +67,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 - **Session end:** Append handoff, update `LATEST-UPDATE.md`, push `main`
 - **UI work:** Obey `docs/DESIGN-CONTEXT.md` + `docs/DESIGN-TOKENS.md`
 - **Scope:** `docs/PRODUCT-SCOPE-ROADMAP.md`
+- **BTC Map refresh:** `npm run btcmap:density && npm run btcmap:sync`
 
 ## Give A Bit alignment
 

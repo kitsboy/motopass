@@ -1,6 +1,6 @@
 # MotoPass Technical Architecture (Initial)
 
-**BUILD-20260610-004**
+**BUILD-2026.07.07-26**
 
 This is a living high-level architecture document. It will be expanded as implementation proceeds. For now it codifies the principles, current state, and intended evolution so that the Vite/React work, data pipeline, Nostr/Lightning integration, and self-hosting path all pull in the same direction.
 
@@ -14,19 +14,33 @@ This is a living high-level architecture document. It will be expanded as implem
 6. **Beauty is Non-Negotiable** — DESIGN.md is binding for all customer surfaces.
 7. **Phased, Not Big-Bang** — The pristine static demo is valuable today. The modern app evolves it. Integrations come online when the data and UX are ready to support them.
 
-## Current State (BUILD-004)
+## Current State (BUILD-26)
 
-**Assets (No Build Required)**
-- `website/index.html` — fully functional, self-contained reference dashboard.
-- `research/countries.json` — data, loaded relatively by the demo.
-- Images, DESIGN.md, next-prompt.md, vision docs.
+**React SPA (primary)**
+- Vite + React 18 + TypeScript + Tailwind — 15 routes, lazy-loaded pages.
+- `ProgramsContext` fetch-once cache; local portfolio/stacks via `localStorage`.
+- Playwright e2e (16 tests), Vitest unit tests (30), CI bundle budget.
+
+**BTC Map integration (v2)**
+- External API: [btcmap-api](https://github.com/teambtcmap/btcmap-api) v4 (`api.btcmap.org`).
+- Client: `src/lib/btcmap.ts` — search, areas, saved places (Bearer after NIP-98).
+- Auth: `src/lib/btcmapAuth.ts` — Nostr NIP-98 → `POST /v4/auth/nostr`.
+- Offline: `public/data/btcmap/{slug}.json` — cache-first in `useBtcMapPlaces`.
+- Density: `public/data/btcmap-density.json` — pre-fetched merchant counts for card badges.
+- Map UI: `react-leaflet@4` + OSM tiles (replaces iframe embed).
+- Sync scripts: `npm run btcmap:density`, `npm run btcmap:sync`.
+
+**Static assets**
+- `website/index.html` — zero-build reference dashboard.
+- `research/countries.json` — 50 programs.
+- `public/data/` — BTC Map snapshots copied to `dist/data/` at build.
 
 **Process**
 - Two-machine M3 (dev) / M4 (memory + strategy) with giveabit-project-handoff skill.
-- This `docs/` package now exists.
+- Cloudflare Pages deploy to project `motopass` only.
 
-**No Backend**
-- Everything that can be static or local is. The demo proves the concept with zero server.
+**No MotoPass backend**
+- Program data and BTC Map cache are static JSON. Live merchant data fetched client-side from btcmap.org API.
 
 ## Target High-Level Architecture (Phase 1–2+)
 
@@ -112,10 +126,34 @@ Long-term goal: excellent experience at all three levels, with clear documentati
 - Self-hosting is a first-class, documented path, not an afterthought.
 - Dependencies are kept minimal and auditable (Vite ecosystem, small Nostr/Lightning libs, no heavy analytics).
 
-## Integration Points (to be detailed in future revisions)
+## BTC Map Data Flow
 
+```
+Build time (optional refresh)
+  npm run btcmap:density  → public/data/btcmap-density.json
+  npm run btcmap:sync     → public/data/btcmap/{slug}.json
+
+Runtime (/btcmap page)
+  1. loadBtcMapSnapshot(programName)  — instant from /data/btcmap/{slug}.json
+  2. searchPlacesNearby + getAreasAt    — live API refresh (api.btcmap.org)
+  3. BtcMapLeaflet renders pins + search-radius circle
+
+Auth (optional — save merchants)
+  window.nostr.signEvent → NIP-98 token → POST /v4/auth/nostr
+  Bearer token in sessionStorage → POST/DELETE /v4/places/saved
+
+Program cards
+  BtcMapDensityProvider loads btcmap-density.json once
+  MerchantDensityBadge shows count + tier per jurisdiction
+```
+
+Env vars: `VITE_BTCMAP_API_URL` (default `https://api.btcmap.org`), `VITE_BTCMAP_WEB_URL` (default `https://btcmap.org`).
+
+## Integration Points
+
+- **BTC Map**: v4 REST client, offline cache, NIP-98 saves — see above. Community tagging via btcmap.org/add-location and [btcmap-cli](https://github.com/teambtcmap/btcmap-cli).
 - **Satohash / OTS**: client-side stamping guidance + optional hosted coordination.
-- **Nostr**: ndk or nostr-tools; defined event kinds for program updates, stack shares (sanitized), proof anchors, Paige interactions.
+- **Nostr**: nostr-tools; MotoPass connect stub + BTC Map NIP-98 auth; future event kinds for program updates, Paige.
 - **Lightning**: WebLN, Alby SDK, or BTCPay for invoices; BOLT12 offer support; Silent Payments address generation/display.
 - **Price feeds**: simple BTC/USD (and sats conversion) for the real-time calculators. Self-hostable or user-configurable.
 - **Paige**: retrieval over stamped corpus; Nostr bot interface; optional local LLM path.
@@ -127,19 +165,16 @@ Long-term goal: excellent experience at all three levels, with clear documentati
 - Data update velocity → Nostr + stamping pipeline must be maintainable by a small agent + human team.
 - Scope discipline → this document + the phased roadmap in PRODUCT-SCOPE-ROADMAP.md are the guardrails.
 
-## Next Immediate Architecture Work (Post BUILD-004)
+## Next Immediate Architecture Work
 
-- Vite + React + Tailwind scaffold (this session).
-- Basic data loader + ProgramCard + filter UI that respects DESIGN.md.
-- Local portfolio + stack persistence.
-- Proof badge component wired to the (initially manual) Satohash entries in the data.
-- Documentation of the first Nostr event kinds and stamping helper.
-
-This architecture is deliberately simple at the start and grows only where the product requirements (verifiability, sovereignty, Bitcoin rails, beauty) demand it.
+- Uruguay-flagship depth for all 50 programs + real Satohash stamping pipeline.
+- Live MotoPass Nostr relay (beyond BTC Map NIP-98 saves).
+- Weekly CI cron for `btcmap:sync` + density refresh.
+- Stop committing `dist/` — generate in CI only.
 
 **Truth You Can Verify — in the code, in the data, and in the deployment.**
 
 — Architecture Layer, MotoPass  
-BUILD-20260610-004
+BUILD-2026.07.07-26
 
 Cross-references: `docs/PRODUCT-SCOPE-ROADMAP.md`, root `PROJECT-VISION.md`, `DESIGN.md`, `DATA-MODEL.md`.

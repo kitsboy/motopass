@@ -1,6 +1,6 @@
 # Paige AI — The Sovereign Concierge Specification
 
-**BUILD-20260610-004**
+**BUILD-2026.07.07-26**
 
 ## Role & Philosophy
 Paige is MotoPass’s intelligent, proactive, multilingual AI concierge. She is not a generic chatbot. She is a specialized research and optimization agent whose knowledge is strictly bounded by the verified, timestamped MotoPass corpus (program data, legal extracts, Bitcoin integration notes, stacking models, and officially stamped updates).
@@ -105,6 +105,6 @@ Paige is the intelligence amplifier that makes the extraordinary depth of the 50
 **Truth You Can Verify — even when the answer comes from an AI.**
 
 — Paige Layer, MotoPass  
-BUILD-20260610-004
+BUILD-2026.07.07-26
 
 Cross-references: `docs/PRODUCT-SCOPE-ROADMAP.md` (Phase 3), `research/uruguay-flagship.md` (example Paige fields), root `PROJECT-VISION.md` (Paige requirements), `docs/DATA-MODEL.md`.

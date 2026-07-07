@@ -1,6 +1,6 @@
 # MotoPass Improvements Queue (200 items)
 
-**Status:** Batches 1–20 complete · **BUILD:** `2026.07.07-24`
+**Status:** Batches 1–22 complete · **BUILD:** `2026.07.07-26`
 
 Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
 
@@ -332,6 +332,32 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 - [x] 481. E2e: Arabic RTL + 404 noindex + dashboard next redirect
 - [x] 482. `scripts/check-bundle-size.mjs` CI budget
 - [x] 483–500. Round 2 complete · BUILD `2026.07.07-24`
+
+## Batch 21 — BTC Map v1 (501–515) ✅
+
+- [x] 501. `/btcmap` page with jurisdiction selector
+- [x] 502. `src/lib/btcmap.ts` v4 API client
+- [x] 503. `src/data/programCoords.ts` for all 50 programs
+- [x] 504. `useBtcMapPlaces` hook
+- [x] 505. `BtcMapEmbed` iframe + `BtcMapPlacesList` + area chips
+- [x] 506. `BtcMapProgramPanel` in ProgramModal Bitcoin tab
+- [x] 507. Nav links (desktop/mobile/more) + pitch roadmap
+- [x] 508. `btcmap.test.ts` + e2e btcmap page test
+- [x] 509. Env vars `VITE_BTCMAP_API_URL`, `VITE_BTCMAP_WEB_URL`
+- [x] 510–515. BUILD `2026.07.07-25`
+
+## Batch 22 — BTC Map v2 (516–530) ✅
+
+- [x] 516. Merchant density badges on `ProgramCard`
+- [x] 517. `fetch-btcmap-density.mjs` + `btcmap-density.json`
+- [x] 518. Nostr NIP-98 auth + save/unsave merchants
+- [x] 519. `BtcMapReportVenue` CTA (btcmap.org + btcmap-cli)
+- [x] 520. Offline cache `sync-btcmap-cache.mjs` + 50 snapshots
+- [x] 521. `BtcMapLeaflet` native map (replaces iframe)
+- [x] 522. `BtcMapAuthContext` + `BtcMapDensityContext`
+- [x] 523. i18n keys for density, save, report, offline cache
+- [x] 524. `leaflet` + `react-leaflet@4.2.1`
+- [x] 525–530. BUILD `2026.07.07-26`
 
 ---
 

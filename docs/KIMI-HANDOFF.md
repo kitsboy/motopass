@@ -304,4 +304,19 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-07 (docs sweep)
+
+**Machine:** M3 (Grok)
+**Project:** motopass
+
+### Done
+- [x] Full documentation refresh for BUILD `2026.07.07-26` / BTC Map v2
+- [x] Updated: README, CHANGELOG, UPDATES-MAP, SOURCE-OF-TRUTH, WORK-TREE, ARCHITECTURE, DATA-MODEL, GLOSSARY, IMPROVEMENTS-QUEUE (batches 21–22), EXECUTIVE-SUMMARY, MARKETING, MISSION, PRODUCT-SCOPE-ROADMAP, I18N, SEO (+ locale files), DESIGN-*, NEXT-PROMPT, CONTRIBUTING, BITCOIN-VERIFICATION, PAIGE-AI, PROJECT-VISION
+
+### Git State
+- Last commit SHA: (pending docs commit)
+- Branch: `main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

@@ -1,6 +1,6 @@
 # MotoPass — Mission
 
-**BUILD:** 20260702-012 · **Last updated:** 2026-07-02
+**BUILD:** 2026.07.07-26 · **Last updated:** 2026-07-07
 
 ## Our purpose
 
@@ -19,7 +19,7 @@ CBI/RBI programs are opaque, lawyer-dependent, and exclude Bitcoin holders. Data
 
 ## Our solution
 
-A passport command center with Bitcoin-verifiable claims, BTC-native investment pathways, portfolio stacking tools, and country liaison agents.
+A passport command center with Bitcoin-verifiable claims, BTC-native investment pathways, portfolio stacking tools, **BTC Map merchant layer** per jurisdiction, and country liaison agents.
 
 ## Who it serves
 

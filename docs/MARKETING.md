@@ -1,6 +1,6 @@
 # MotoPass Marketing Strategy & Positioning
 
-**BUILD-20260610-004** | 2026-06-10
+**BUILD-2026.07.07-26** | 2026-07-07
 
 ## Positioning Statement
 For high-net-worth Bitcoiners, digital-asset entrepreneurs, and freedom-minded families who refuse to accept opaque advisors, unverifiable data, or fiat-only pathways, MotoPass is the premium Bitcoin-native sovereign identity platform that delivers the world’s most trusted, verifiable, and Bitcoin-optimized residency, citizenship, and jurisdictional stacking intelligence and execution layer.
@@ -119,7 +119,7 @@ All paid tiers emphasize Bitcoin-only settlement and clear value delivered throu
 ## Launch Sequencing (Tied to Product Phases)
 
 1. **Data + Demo Drop** (current): 16–25 countries at good depth + pristine dashboard live on a simple domain or GitHub Pages. Nostr announcement + “Truth You Can Verify” thread series. Collect early waitlist via Nostr DMs or simple form.
-2. **Modern Frontend + Simulator** (`npm run dev` → production): My Portfolio + Stacking Simulator + Finance Compare. Public beta for waitlist. Begin stamping the dataset.
+2. **Modern Frontend + Simulator + BTC Map** (shipped BUILD-26): Portfolio, Stacking Simulator, Finance Compare, and **BTC Map merchant layer** per jurisdiction (density badges, Leaflet pins, Nostr saves). Public beta at motopass.giveabit.io. Begin stamping the dataset.
 3. **Payments + Paige v1**: Lightning fee payments (even if manual fulfillment at first), real Nostr alerts, Paige answering real user questions grounded in the stamped corpus.
 4. **Marketplace Alpha + Verified Advisors**: Services directory, first real-estate/Bitcoin-business listings, reputation via stamped reviews.
 5. **Government Pilots & B2G**: First jurisdiction partnership (ideally one with existing Bitcoin signal). Anonymized data products + tooling.
@@ -151,4 +151,4 @@ We do not need to convince the world that second residencies matter. We need to 
 This is the message. This is the product. This is the standard.
 
 — Marketing & Narrative Layer, MotoPass  
-BUILD-20260610-004
+BUILD-2026.07.07-26

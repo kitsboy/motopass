@@ -1,6 +1,6 @@
 # MotoPass — Bitcoin Sovereign Passports & Residency
 
-**BUILD-20260702-012** · Last updated: 2026-07-02
+**BUILD 2026.07.07-26** · Last updated: 2026-07-07
 
 [![CI](https://github.com/kitsboy/motopass/actions/workflows/ci.yml/badge.svg)](https://github.com/kitsboy/motopass/actions/workflows/ci.yml)
 [![Live](https://img.shields.io/website?url=https%3A%2F%2Fmotopass.giveabit.io&label=motopass.giveabit.io)](https://motopass.giveabit.io)
@@ -21,8 +21,15 @@ open website/index.html   # Static demo (zero-build reference)
 ```
 
 ```bash
-npm run build && npm test
+npm run build && npm test && npm run test:e2e
 npm run deploy:safe  # Cloudflare Pages → motopass only
+```
+
+### BTC Map data refresh
+
+```bash
+npm run btcmap:density   # Merchant counts → public/data/btcmap-density.json
+npm run btcmap:sync      # Per-jurisdiction snapshots → public/data/btcmap/
 ```
 
 ---
@@ -38,6 +45,7 @@ npm run deploy:safe  # Cloudflare Pages → motopass only
 | [docs/KIMI-HANDOFF.md](docs/KIMI-HANDOFF.md) | Latest agent handoff |
 | [docs/DESIGN-CONTEXT.md](docs/DESIGN-CONTEXT.md) | UI design (canonical) |
 | [docs/PRODUCT-SCOPE-ROADMAP.md](docs/PRODUCT-SCOPE-ROADMAP.md) | Full build scope |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System architecture + BTC Map |
 
 Root stubs (`SOURCE-OF-TRUTH.md`, `DESIGN.md`, etc.) redirect to `docs/`.
 
@@ -49,23 +57,26 @@ Root stubs (`SOURCE-OF-TRUTH.md`, `DESIGN.md`, etc.) redirect to `docs/`.
 motopass/
 ├── README.md              ← You are here
 ├── docs/                  ← All documentation
-├── src/                   ← React app (14 routes, dark mode)
+├── src/                   ← React app (15 routes, dark mode, BTC Map)
+├── public/data/           ← BTC Map density + offline cache JSON
 ├── research/countries.json ← 50 programs
 ├── website/index.html     ← Static demo
 ├── images/                ← Sovereign assets
-└── scripts/               ← verify-goal, data tools
+└── scripts/               ← verify-goal, btcmap sync, sitemap
 ```
 
 ---
 
-## Current state (BUILD-012)
+## Current state (BUILD 26)
 
 - **Luminous Sovereign** light UI + dark mode toggle
 - **50 jurisdictions** in live data
-- Portfolio, Simulator, Compare, Vault, Nostr/Satohash stubs
-- Motion landing hero (sovereignty.jpg @ 35% opacity)
+- Portfolio, Simulator, Compare, Vault, Agents, Blog
+- **BTC Map layer** (`/btcmap`) — Leaflet pins, merchant density on cards, Nostr saves, offline cache
+- Playwright e2e (16 tests), CI bundle budget, hreflang SEO
+- Nostr connect stub, Satohash verify UI, payment methods stub
 
-**Next:** Deepen all 50 to Uruguay flagship template; live Satohash + Nostr.
+**Next:** Deepen all 50 to Uruguay flagship template; live Satohash + Nostr relay.
 
 ---
 

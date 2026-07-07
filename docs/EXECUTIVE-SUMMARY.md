@@ -1,6 +1,6 @@
 # MotoPass — Executive Summary
 
-**BUILD-20260610-004** | 2026-06-10
+**BUILD-2026.07.07-26** | 2026-07-07
 
 ## The Opportunity
 High-net-worth individuals and Bitcoin-native entrepreneurs face an increasingly complex, opaque, and untrustworthy landscape when seeking second residencies, citizenships, and jurisdictional diversification. Traditional advisors, immigration lawyers, and CBI/RBI brokers operate with misaligned incentives, outdated data, and no independent verification layer. For Bitcoiners specifically, the problem is acute: most programs lack native support for digital assets, Lightning payments, or favorable tax treatment of crypto gains; legal extracts are rarely timestamped or independently auditable; and there is no unified, privacy-preserving way to model combined “stacks” of residencies for tax optimization, freedom of movement, and long-term sovereignty.
@@ -28,13 +28,14 @@ It combines:
 - **AI that actually helps.** Paige is trained on the same deep, timestamped corpus and operates transparently with escalation paths to human experts.
 - **Two-sided future.** Once the intelligence layer is trusted, the marketplace and B2G surfaces become natural and defensible.
 
-## Current Traction & Assets (BUILD-004)
-- **16 high-quality, Bitcoin-prioritized programs** seeded in `research/countries.json` with rich finance fields (min/typical investment, fees, timelines, tax benefits, crypto-friendly score 0–10, Bitcoin-specific notes). Includes El Salvador, Uruguay, UAE, Switzerland (Crypto Valley), Singapore, St. Kitts & Nevis, Georgia, Panama, Malta, etc. Full 50-country target with clear template.
-- **Pristine working dashboard** (`website/index.html`, ~2,300 lines, zero dependencies): animated hero, live ticker, powerful filters, card + table views, rich program modals with finance + timestamp sections, simulated Paige chat, in-browser add/edit/export, “Verify on Bitcoin” UI stub. Fully functional today; double-click to run.
-- **Complete design system** (`DESIGN.md`): sovereign black (#0a0a0a), deep void (#111), Bitcoin orange (#F7931A), glassmorphic cards, Space Grotesk display + Inter body, premium imagery integration.
-- **Strategic vision artifacts**: `docs/PROJECT-VISION.md`, `docs/NEXT-PROMPT.md`, Uruguay flagship template, master country schema v2.0.
-- **Full documentation package** (this `docs/` folder): executive summary, marketing strategy, detailed product scope & roadmap, data model, Bitcoin verification spec, etc.
-- **Operational discipline**: single-source-of-truth folder, two-machine M3/M4 handoff protocol via `giveabit-project-handoff` skill, BUILD numbering, perpetual memory in Obsidian + source files.
+## Current Traction & Assets (BUILD-26)
+- **50 Bitcoin-prioritized programs** in `research/countries.json` with finance fields, proof stubs, and cinematic program cards/table.
+- **Production React app** at https://motopass.giveabit.io — Portfolio, Simulator, Compare, Vault, Blog, Agents, Register/Dashboard, and **BTC Map layer** (`/btcmap`).
+- **BTC Map v2 integration**: Leaflet merchant pins per jurisdiction, density badges on program cards, Nostr NIP-98 saved merchants, offline cache (50 snapshots), community report-venue CTA. Powered by [btcmap-api](https://github.com/teambtcmap/btcmap-api) v4.
+- **Pristine reference dashboard** (`website/index.html`, zero dependencies) — still the living specification artifact.
+- **Luminous Sovereign design system** (`docs/DESIGN-CONTEXT.md`, `docs/DESIGN-TOKENS.md`) with dark mode toggle.
+- **Quality gates**: 30 unit tests, 16 Playwright e2e tests, CI bundle budget, hreflang SEO, sitemap generator.
+- **Full documentation package** (this `docs/` folder) + M3/M4 handoff protocol.
 
 ## The Build Ahead (High-Level Scope)
 See `PRODUCT-SCOPE-ROADMAP.md` for the complete phased plan. In short:

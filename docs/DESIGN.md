@@ -1,6 +1,6 @@
 # Design System — MotoPass
 
-**BUILD:** 20260702-012 · **Last updated:** 2026-07-02
+**BUILD:** 2026.07.07-26 · **Last updated:** 2026-07-07
 
 > **Canonical docs for the React app:** [DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md) and [DESIGN-TOKENS.md](./DESIGN-TOKENS.md). Read those first.
 

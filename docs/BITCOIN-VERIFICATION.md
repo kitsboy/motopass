@@ -1,6 +1,6 @@
 # Bitcoin Verification & “Truth You Can Verify” Specification
 
-**BUILD-20260610-004**
+**BUILD-2026.07.07-26**
 
 ## Purpose
 This document defines exactly how MotoPass implements and exposes independent verifiability on the Bitcoin blockchain. It is the technical and UX contract behind the Prime Directive: “Truth You Can Verify.”
@@ -108,6 +108,6 @@ This specification is binding for all future development. Any feature that prese
 **Truth You Can Verify.** This document exists to make that sentence operational.
 
 — Verification Layer, MotoPass  
-BUILD-20260610-004
+BUILD-2026.07.07-26
 
 Cross-references: `docs/PRODUCT-SCOPE-ROADMAP.md` (Phase 2), root `PROJECT-VISION.md` (technical requirements), `website/index.html` (existing timestamp UI section).

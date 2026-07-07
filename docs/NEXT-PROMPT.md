@@ -1,4 +1,4 @@
-> **Note (BUILD-012):** The shipped React app uses **Luminous Sovereign** (light + dark toggle). Apply `docs/DESIGN-CONTEXT.md` + `docs/DESIGN-TOKENS.md` for colors. This prompt describes interaction structure; swap dark palette below for current tokens when generating.
+> **Note (BUILD-26):** The shipped React app uses **Luminous Sovereign** (light + dark toggle) with 15 routes including `/btcmap` (Leaflet merchant layer). Apply `docs/DESIGN-CONTEXT.md` + `docs/DESIGN-TOKENS.md` for colors. BTC Map pins use `.btcmap-pin` (orange dot, white border). This prompt describes interaction structure; swap dark palette below for current tokens when generating.
 
 A premium, immersive sovereign identity and Bitcoin finance dashboard for MotoPass — the ultimate platform for jurisdictional stacking, citizenship/residency programs, and Bitcoin-native passport acquisition. The interface should feel like a private high-net-worth command center: luxurious, trustworthy, empowering, with strong cyber-sovereign and rebellious Bitcoin energy.
 
@@ -20,7 +20,7 @@ A premium, immersive sovereign identity and Bitcoin finance dashboard for MotoPa
 - Imagery: Heavily feature hero.jpg, sovereignty.jpg, passport.jpg, funding-flow.jpg, incubator.jpg, and education.jpg dynamically (hero banners, modal backgrounds, portfolio visuals, section dividers)
 
 **Page Structure:**
-1. **Top Navigation:** Logo (MotoPass with orange passport icon), tabs for "My Portfolio", "All Programs", "Stack Simulator", "Finance Compare", "Research Vault". Right side has user sovereignty score, notification bell, and export button.
+1. **Top Navigation:** Logo (MotoPass with orange passport icon), tabs for "My Portfolio", "All Programs", "BTC Map", "Stack Simulator", "Finance Compare", "Research Vault". Right side has Nostr connect, theme toggle, and language selector.
 2. **Hero Dashboard Header:** Full-width sovereignty background image with overlay. Large headline "Your Sovereign Stack", key metrics (Acquired Programs, Total Invested, Sovereignty Score, Bitcoin Exposure), quick filters.
 3. **My Portfolio Section:** Visual grid of acquired passports (using passport.jpg style cards) with flags, names, Bitcoin integration highlights, tax benefit summaries, and stacking synergy score. Include a "Simulate New Stack" button.
 4. **All Programs Explorer:** Powerful filter bar (region, category, investment range slider, crypto-friendly score, status, Lightning Ready toggle). Toggle between beautiful card grid and sortable data table. Each card shows name, category, Bitcoin signal, min investment, key finance highlights, and "Mark Acquired" button.

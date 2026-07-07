@@ -1,6 +1,6 @@
 # MotoPass Documentation Hub
 
-**BUILD:** 20260702-012 · **Last updated:** 2026-07-02
+**BUILD:** 2026.07.07-26 · **Last updated:** 2026-07-07
 
 Official documentation for MotoPass. All long-form docs live here unless required at repo root (see [WORK-TREE.md](./WORK-TREE.md)).
 
@@ -16,6 +16,7 @@ Official documentation for MotoPass. All long-form docs live here unless require
 | Pick up from last Grok session | [KIMI-HANDOFF.md](./KIMI-HANDOFF.md) |
 | Build or style UI | [DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md) + [DESIGN-TOKENS.md](./DESIGN-TOKENS.md) |
 | Understand full scope | [PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md) |
+| BTC Map integration details | [ARCHITECTURE.md](./ARCHITECTURE.md) · [DATA-MODEL.md](./DATA-MODEL.md) |
 
 ---
 
@@ -23,9 +24,10 @@ Official documentation for MotoPass. All long-form docs live here unless require
 
 1. **[SOURCE-OF-TRUTH.md](./SOURCE-OF-TRUTH.md)** — Canonical project record
 2. **[UPDATES-MAP.md](./UPDATES-MAP.md)** — Build history & work queue
-3. **[EXECUTIVE-SUMMARY.md](./EXECUTIVE-SUMMARY.md)** — Strategic one-pager
-4. **[PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md)** — Phased ambition
-5. **[DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md)** — Current UI direction
+3. **[KIMI-HANDOFF.md](./KIMI-HANDOFF.md)** — Latest M3 session (bottom section)
+4. **[EXECUTIVE-SUMMARY.md](./EXECUTIVE-SUMMARY.md)** — Strategic one-pager
+5. **[PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md)** — Phased ambition
+6. **[DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md)** — Current UI direction
 
 ---
 
@@ -40,8 +42,8 @@ Official documentation for MotoPass. All long-form docs live here unless require
 
 ### Product & technical
 - [PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md)
-- [ARCHITECTURE.md](./ARCHITECTURE.md)
-- [DATA-MODEL.md](./DATA-MODEL.md)
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — includes BTC Map v2 architecture
+- [DATA-MODEL.md](./DATA-MODEL.md) — includes BTC Map cache/density schemas
 - [BITCOIN-VERIFICATION.md](./BITCOIN-VERIFICATION.md)
 - [PAIGE-AI.md](./PAIGE-AI.md)
 - [I18N.md](./I18N.md)
@@ -59,6 +61,7 @@ Official documentation for MotoPass. All long-form docs live here unless require
 ### Process
 - [CHANGELOG.md](./CHANGELOG.md)
 - [CONTRIBUTING.md](./CONTRIBUTING.md)
+- [IMPROVEMENTS-QUEUE.md](./IMPROVEMENTS-QUEUE.md) — 200-item polish + BTC Map batches
 - [DIRECTORY-MAP.md](./DIRECTORY-MAP.md) — Legacy index
 - [archive/](./archive/) — Superseded docs
 
@@ -68,9 +71,10 @@ Official documentation for MotoPass. All long-form docs live here unless require
 
 1. Substantive changes → update relevant doc + `docs/UPDATES-MAP.md`
 2. Every Grok session → append `docs/KIMI-HANDOFF.md`
-3. BUILD increments on meaningful milestones (`BUILD-YYYYMMDD-XXX`)
+3. BUILD increments on meaningful milestones (`BUILD-YYYY.MM.DD-NN`)
 4. Design changes → `DESIGN-CONTEXT.md` + `DESIGN-TOKENS.md` first
 5. Data schema changes → `DATA-MODEL.md` + `research/countries.json`
+6. BTC Map data refresh → `npm run btcmap:density` + `npm run btcmap:sync`
 
 **Prime directive:** “Truth You Can Verify.”
 

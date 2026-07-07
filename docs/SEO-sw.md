@@ -2,7 +2,7 @@
 title: Maelekezo ya SEO na Utafutaji (SEO Audit)
 project: motopass
 version: 0.1.0
-last_updated: 2026-06-24
+last_updated: 2026-07-07
 owner: Kimi / Qwen (Utafutaji wa Kila Siku)
 update_frequency: Kila Siku (Alhamisi)
 ---

@@ -2,7 +2,7 @@
 title: Estrategia SEO y Auditoría
 project: motopass
 version: 0.1.0
-last_updated: 2026-06-24
+last_updated: 2026-07-07
 owner: Kimi / Qwen (Auditoría Semanal)
 update_frequency: Semanal (Lunes)
 ---
@@ -17,6 +17,7 @@ https://motopass.giveabit.io
 |-------------------------------------|-----------------------|
 | Ciudadanía Bitcoin mediante inversión | Comercial |
 | Pasaporte soberano Bitcoin           | Comercial |
+| Comercios Bitcoin por país (BTC Map) | Informacional |
 
 ## Registro de Auditoría Semanal | Auditor | Hallazgos | Recomendaciones |
 |------|--------|-----------|-----------------|

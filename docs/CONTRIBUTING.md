@@ -19,6 +19,13 @@ npm ci
 npm run dev
 ```
 
+Optional — refresh BTC Map static data:
+
+```bash
+npm run btcmap:density   # merchant counts per jurisdiction
+npm run btcmap:sync      # offline place snapshots
+```
+
 ## Workflow
 
 ```bash
@@ -34,6 +41,7 @@ git push origin feature/your-feature
 
 - **Design:** Use tokens from `docs/DESIGN-TOKENS.md` — no hard-coded hex in components
 - **Data:** Edit `research/countries.json`; follow `docs/DATA-MODEL.md`
+- **BTC Map:** Update `src/data/programCoords.ts` when adding jurisdictions; run `btcmap:density` + `btcmap:sync`
 - **Deploy:** Only Cloudflare project `motopass` (`npm run deploy:safe`)
 - **Docs:** Update `docs/` on substantive changes; append `docs/KIMI-HANDOFF.md` if M3 agent
 - **Prime directive:** “Truth You Can Verify” — timestamp claims via Satohash
