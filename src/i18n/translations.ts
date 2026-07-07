@@ -3,6 +3,7 @@ import type { LangCode } from './languages'
 export type TranslationKey =
   | 'nav.pitch' | 'nav.portfolio' | 'nav.programs' | 'nav.simulator' | 'nav.compare' | 'nav.vault'
   | 'nav.blog' | 'nav.verify' | 'nav.agents' | 'nav.apply' | 'nav.dashboard' | 'nav.register' | 'nav.dashboardShort'
+  | 'nav.demo' | 'nav.more' | 'nav.language' | 'nav.menu' | 'nav.close' | 'nav.explore' | 'nav.tools' | 'nav.skip'
   | 'tagline' | 'pitch.hero' | 'pitch.sub' | 'pitch.cta' | 'pitch.evolve' | 'pitch.stackSimulator'
   | 'pitch.feature.jurisdictions.title' | 'pitch.feature.jurisdictions.sub'
   | 'pitch.feature.satohash.title' | 'pitch.feature.satohash.sub'
@@ -50,6 +51,14 @@ const en: Dict = {
   'nav.verify': 'Verify',
   'nav.agents': 'Agents',
   'nav.apply': 'Apply',
+  'nav.demo': 'Demo',
+  'nav.more': 'More',
+  'nav.language': 'Language',
+  'nav.menu': 'Menu',
+  'nav.close': 'Close',
+  'nav.explore': 'Explore',
+  'nav.tools': 'Tools',
+  'nav.skip': 'Skip to content',
   tagline: 'Truth You Can Verify',
   'pitch.hero': 'Sovereign passports on Bitcoin rails',
   'pitch.sub': 'Timestamp applications. Connect via Nostr. Verify every claim on-chain with Satohash.',
@@ -157,6 +166,14 @@ const es: Dict = {
   'nav.verify': 'Verificar',
   'nav.agents': 'Agentes',
   'nav.apply': 'Solicitar',
+  'nav.demo': 'Demo',
+  'nav.more': 'Más',
+  'nav.language': 'Idioma',
+  'nav.menu': 'Menú',
+  'nav.close': 'Cerrar',
+  'nav.explore': 'Explorar',
+  'nav.tools': 'Herramientas',
+  'nav.skip': 'Saltar al contenido',
   tagline: 'Verdad que puedes comprobar',
   'pitch.hero': 'Pasaportes soberanos sobre rieles Bitcoin',
   'pitch.sub': 'Marca solicitudes. Conéctate vía Nostr. Verifica cada dato en cadena con Satohash.',
@@ -264,6 +281,14 @@ const fr: Dict = {
   'nav.verify': 'Vérifier',
   'nav.agents': 'Agents',
   'nav.apply': 'Postuler',
+  'nav.demo': 'Démo',
+  'nav.more': 'Plus',
+  'nav.language': 'Langue',
+  'nav.menu': 'Menu',
+  'nav.close': 'Fermer',
+  'nav.explore': 'Explorer',
+  'nav.tools': 'Outils',
+  'nav.skip': 'Aller au contenu',
   tagline: 'Une vérité vérifiable',
   'pitch.hero': 'Passeports souverains sur rails Bitcoin',
   'pitch.sub': 'Horodatez les demandes. Connectez-vous via Nostr. Vérifiez chaque donnée on-chain.',

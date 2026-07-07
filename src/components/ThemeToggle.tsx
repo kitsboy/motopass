@@ -7,20 +7,29 @@ export function ThemeToggle({ compact }: Props) {
   const { theme, toggleTheme } = useTheme()
   const isDark = theme === 'dark'
 
+  if (compact) {
+    return (
+      <button
+        type="button"
+        onClick={toggleTheme}
+        className="nav-btn nav-btn-icon"
+        aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+        title={isDark ? 'Light mode' : 'Dark mode'}
+      >
+        {isDark ? <Sun size={16} strokeWidth={2.25} /> : <Moon size={16} strokeWidth={2.25} />}
+      </button>
+    )
+  }
+
   return (
     <button
       type="button"
       onClick={toggleTheme}
-      className={
-        compact
-          ? 'p-2 rounded-mp-md text-ink-muted hover:bg-section hover:text-ink transition-colors'
-          : 'chip flex items-center gap-1.5 !py-1.5 hover:!border-btc-orange/40'
-      }
+      className="nav-btn w-full justify-center"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      title={isDark ? 'Light mode' : 'Dark mode'}
     >
-      {isDark ? <Sun size={compact ? 18 : 14} /> : <Moon size={compact ? 18 : 14} />}
-      {!compact && <span>{isDark ? 'Light' : 'Dark'}</span>}
+      {isDark ? <Sun size={14} strokeWidth={2.25} /> : <Moon size={14} strokeWidth={2.25} />}
+      <span>{isDark ? 'Light' : 'Dark'}</span>
     </button>
   )
 }

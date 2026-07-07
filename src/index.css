@@ -179,6 +179,105 @@ body {
   .text-gradient-orange {
     @apply bg-gradient-to-r from-btc-orange-deep to-btc-orange bg-clip-text text-transparent;
   }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Navigation chrome — unlayered for specificity over body color */
+.skip-link {
+  @apply sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-[100] focus:rounded-lg focus:bg-card focus:px-3 focus:py-1.5 focus:text-xs focus:font-chrome focus:font-medium focus:text-ink focus:shadow-card focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-btc-orange;
+}
+
+.nav-header {
+  box-shadow: var(--mp-shadow-header), 0 1px 0 rgba(247, 147, 26, 0.06);
+}
+
+.nav-btn {
+  @apply inline-flex items-center justify-center gap-1.5 h-8 px-2.5 rounded-lg border border-mp/90 bg-card/90 font-chrome text-[11px] font-medium text-ink-secondary whitespace-nowrap transition-all duration-150;
+  @apply hover:border-mp-strong hover:bg-section hover:text-ink;
+  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-btc-orange/60;
+  @apply active:scale-[0.98];
+}
+
+.nav-btn-icon {
+  @apply !px-0 !w-8 shrink-0;
+}
+
+.nav-btn-primary {
+  @apply border-btc-orange/35 bg-btc-orange-soft text-mp-btc-text hover:border-btc-orange/50 hover:bg-btc-orange-soft hover:text-mp-btc-text;
+}
+
+.nav-btn-violet {
+  @apply border-nostr-violet/25 bg-nostr-violet-soft/80 text-nostr-violet hover:border-nostr-violet/40 hover:bg-nostr-violet-soft;
+}
+
+.nav-btn-ghost {
+  @apply border-transparent bg-transparent text-ink-muted hover:bg-section/80 hover:border-mp/60;
+}
+
+.nav-pill {
+  @apply inline-flex items-center h-7 px-2.5 rounded-md font-chrome text-[11px] font-medium text-ink-muted whitespace-nowrap transition-all duration-150;
+  @apply hover:text-ink hover:bg-section/90;
+  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-btc-orange/50;
+}
+
+.nav-pill-active {
+  @apply bg-btc-orange-soft text-mp-btc-text font-semibold shadow-[inset_0_0_0_1px_rgba(247,147,26,0.22)];
+}
+
+.nav-pill-violet {
+  @apply bg-nostr-violet-soft text-nostr-violet font-semibold border border-nostr-violet/20;
+}
+
+.nav-pill-violet-muted {
+  @apply text-nostr-violet/90 hover:bg-nostr-violet-soft/60;
+}
+
+.nav-section-label {
+  @apply font-chrome text-[9px] font-semibold uppercase tracking-[0.14em] text-ink-muted/90 px-0.5;
+}
+
+.nav-divider {
+  @apply w-px h-4 bg-mp/70 shrink-0;
+}
+
+.nav-dropdown-panel {
+  @apply absolute top-[calc(100%+4px)] z-[80] max-h-64 overflow-y-auto rounded-xl border border-mp bg-card py-1 shadow-card-hover;
+  @apply animate-[fade-up_0.18s_ease-out_both];
+}
+
+.nav-dropdown-item {
+  @apply flex items-center gap-2 px-2 py-1.5 mx-1 rounded-lg text-left transition-colors;
+  @apply hover:bg-section focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-btc-orange/40;
+}
+
+.nav-dropdown-item-active {
+  @apply bg-btc-orange-soft/70;
+}
+
+.nav-mobile-tile {
+  @apply flex items-center justify-center min-h-[2.375rem] px-2 py-2 rounded-lg border border-mp/80 bg-card font-chrome text-[11px] font-medium text-ink-secondary text-center transition-all;
+  @apply hover:border-mp-strong hover:bg-section hover:text-ink active:scale-[0.98];
+}
+
+.nav-mobile-tile-active {
+  @apply border-btc-orange/35 bg-btc-orange-soft text-mp-btc-text font-semibold;
+}
+
+.nav-tab {
+  @apply flex flex-col items-center justify-center gap-0.5 min-h-[44px] py-1 rounded-lg font-chrome text-ink-muted transition-colors duration-150;
+  @apply hover:text-ink hover:bg-section/50;
+  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-btc-orange/50;
+}
+
+.nav-tab-active {
+  @apply text-mp-btc-text bg-btc-orange-soft/90 font-semibold;
 }
 
 body::before {

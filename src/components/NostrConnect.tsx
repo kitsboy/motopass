@@ -27,12 +27,11 @@ export function NostrConnect({ onConnect }: { onConnect?: (s: NostrSession | nul
   if (session) {
     return (
       <div
-        className="flex items-center gap-2 text-xs text-nostr-violet bg-nostr-violet-soft border border-nostr-violet/20 rounded-full px-3 py-1.5 max-w-[200px]"
+        className="nav-btn nav-btn-violet !cursor-default max-w-[9.5rem] !px-2"
         aria-label={`Nostr connected: ${session.npub}`}
       >
-        <Zap size={12} className="shrink-0" aria-hidden="true" />
-        <span className="truncate font-mono" aria-hidden="true">{session.npub.slice(0, 12)}…</span>
-        <span className="text-nostr-violet/80 shrink-0">{t('nostr.connected')}</span>
+        <Zap size={12} className="shrink-0 fill-nostr-violet/20" aria-hidden="true" />
+        <span className="truncate font-mono text-[10px]" aria-hidden="true">{session.npub.slice(0, 8)}…</span>
       </div>
     )
   }
@@ -42,10 +41,10 @@ export function NostrConnect({ onConnect }: { onConnect?: (s: NostrSession | nul
       type="button"
       onClick={connect}
       disabled={loading}
-      className="chip text-xs !text-nostr-violet !border-nostr-violet/30 hover:!bg-nostr-violet-soft"
+      className="nav-btn nav-btn-violet"
     >
-      <Zap size={12} />
-      {loading ? '…' : t('nostr.connect')}
+      <Zap size={12} strokeWidth={2.25} aria-hidden="true" />
+      <span>{loading ? '…' : t('nostr.connect')}</span>
     </button>
   )
 }

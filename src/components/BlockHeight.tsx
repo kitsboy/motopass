@@ -12,7 +12,7 @@ export function BlockHeight({ variant = 'default' }: { variant?: 'default' | 'he
       className={
         isHero
           ? 'inline-flex items-center gap-1.5 text-[10px] font-mono rounded-full border border-white/20 bg-black/35 px-3 py-1.5 text-mp-on-hero-secondary backdrop-blur-sm'
-          : 'inline-flex items-center gap-1.5 text-[10px] font-mono bg-card border border-mp rounded-full px-3 py-1.5 text-ink-secondary'
+          : 'nav-btn !font-mono !text-[10px] !gap-1 !px-2 !py-0 text-ink-secondary'
       }
     >
       <Bitcoin size={12} className="text-btc-orange" />
