@@ -26,9 +26,13 @@ export function PaigeStub() {
       </p>
       <input
         disabled
+        aria-disabled="true"
+        aria-describedby="paige-phase2-desc"
+        aria-label="Paige AI concierge — coming in Phase 2"
         placeholder="Ask Paige about your stack…"
         className="w-full rounded-mp-md border border-mp bg-card px-3 py-2 text-sm text-ink-muted placeholder:text-ink-muted"
       />
+      <p id="paige-phase2-desc" className="sr-only">Paige AI is not available yet. See docs for the Phase 2 spec.</p>
     </div>
   )
 }

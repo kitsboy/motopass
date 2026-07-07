@@ -71,6 +71,28 @@ test.describe('smoke', () => {
     await expect(page.getByRole('dialog', { name: /more/i })).toBeVisible()
   })
 
+  test('compare URL preserves selected ids', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.goto('/compare?ids=1,2')
+    await expect(page.locator('main')).toBeVisible()
+    await expect(page.locator('table')).toBeVisible()
+    await expect(page.locator('table thead th')).toHaveCount(3)
+  })
+
+  test('programs URL filter shows in search', async ({ page }) => {
+    await page.goto('/programs?q=Uruguay')
+    await expect(page.locator('main')).toBeVisible()
+    const search = page.locator('input[type="search"]').first()
+    await expect(search).toHaveValue('Uruguay')
+  })
+
+  test('simulator URL restores program selection', async ({ page }) => {
+    await page.goto('/simulator?programs=1,4')
+    await expect(page.locator('main')).toBeVisible()
+    await expect(page.locator('#sim-p-1')).toBeChecked()
+    await expect(page.locator('#sim-p-4')).toBeChecked()
+  })
+
   test('verify generates 64-char hash', async ({ page }) => {
     await page.goto('/verify')
     await page.getByRole('button', { name: /generate sha-256 hash/i }).click()

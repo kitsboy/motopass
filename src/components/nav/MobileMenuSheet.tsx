@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { ExternalLink, User, UserPlus, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
@@ -26,6 +27,13 @@ const TOOLS = [
 export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useI18n()
   const { isLoggedIn } = useUser()
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open, onClose])
 
   const gridLink = (isActive: boolean) =>
     `nav-mobile-tile ${isActive ? 'nav-mobile-tile-active' : ''}`

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { ExternalLink, Shield, Copy, Check } from 'lucide-react'
 import { hashApplicationPayload, satohashStampGuideUrl, satohashVerifyUrl } from '../lib/satohash'
 import { BlockHeight } from '../components/BlockHeight'
@@ -7,8 +8,9 @@ import { PageHeader } from '../components/ui/PageHeader'
 
 export function VerifyPage() {
   const { t } = useI18n()
+  const [searchParams] = useSearchParams()
   const [input, setInput] = useState('MotoPass — Truth You Can Verify')
-  const [hash, setHash] = useState('')
+  const [hash, setHash] = useState(() => searchParams.get('hash') ?? '')
   const [copied, setCopied] = useState(false)
 
   const generate = async () => setHash(await hashApplicationPayload({ text: input, ts: new Date().toISOString() }))

@@ -28,7 +28,7 @@ export function ProgramsTable({
   const portfolioSet = new Set(portfolioIds);
 
   return (
-    <table className="w-full border-separate border-spacing-0 text-left" aria-label="Residency and citizenship programs">
+    <table className="w-full border-separate border-spacing-0 text-left programs-table-sticky" aria-label="Residency and citizenship programs">
       <caption className="sr-only">Residency and citizenship programs by jurisdiction</caption>
       <thead>
         <tr className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">

@@ -1,32 +1,47 @@
-import { useMemo, useState } from 'react'
-import { Search } from 'lucide-react'
+import { useCallback, useMemo, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
+import { Search, Trash2 } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
-import { loadStacks, saveStack, type SavedStack } from '../lib/portfolioStorage'
+import { loadStacks, saveStack, deleteStack, type SavedStack } from '../lib/portfolioStorage'
+import { useDebouncedValue } from '../hooks/useDebouncedValue'
 import { CardSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { parseMonthsToDays } from '../lib/programAdapter'
 import { PageHeader } from '../components/ui/PageHeader'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { useI18n } from '../i18n/I18nContext'
+import { formatT } from '../i18n/format'
+import { parseIdList, serializeIdList } from '../lib/urlState'
 import type { TranslationKey } from '../i18n/translations'
 
 export function StackSimulatorPage() {
   const { t } = useI18n()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { programs, loading, error } = usePrograms()
-  const [selected, setSelected] = useState<number[]>([])
+  const selected = useMemo(() => parseIdList(searchParams.get('programs'), 50), [searchParams])
   const [search, setSearch] = useState('')
+  const debouncedSearch = useDebouncedValue(search, 150)
   const [stackName, setStackName] = useState('')
+  const [saveError, setSaveError] = useState<string | null>(null)
   const [saved, setSaved] = useState<SavedStack[]>(loadStacks())
 
+  const setSelectedSynced = useCallback((next: number[]) => {
+    setSearchParams((p) => {
+      if (next.length) p.set('programs', serializeIdList(next))
+      else p.delete('programs')
+      return p
+    }, { replace: true })
+  }, [setSearchParams])
+
   const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase()
+    const q = debouncedSearch.trim().toLowerCase()
     if (!q) return programs
     return programs.filter(p =>
       p.name.toLowerCase().includes(q) ||
       p.region.toLowerCase().includes(q) ||
       p.category.toLowerCase().includes(q)
     )
-  }, [programs, search])
+  }, [programs, debouncedSearch])
 
   const stack = programs.filter(p => selected.includes(p.id))
   const totalCost = stack.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
@@ -35,11 +50,40 @@ export function StackSimulatorPage() {
     ? Math.max(...stack.map(p => Math.ceil(parseMonthsToDays(p.finance.processing_time_months) / 30)))
     : 0
 
-  const toggle = (id: number) => setSelected(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id])
+  const synergyCounts = (() => {
+    const c = { high: 0, medium: 0, low: 0 }
+    for (const p of stack) {
+      const s = (p.stacking_synergy ?? 'low').toLowerCase()
+      if (s.includes('high')) c.high++
+      else if (s.includes('medium')) c.medium++
+      else c.low++
+    }
+    return c
+  })()
+
+  const toggle = (id: number) =>
+    setSelectedSynced(selected.includes(id) ? selected.filter(x => x !== id) : [...selected, id])
+
+  const restoreStack = (s: SavedStack) => {
+    setSelectedSynced(s.programIds)
+    setStackName(s.name)
+  }
+
+  const removeStack = (id: string) => {
+    if (!window.confirm(t('simulator.deleteStack') + '?')) return
+    deleteStack(id)
+    setSaved(loadStacks())
+  }
 
   const save = () => {
-    if (!stackName.trim() || selected.length === 0) return
-    saveStack({ id: `stack-${Date.now()}`, name: stackName, programIds: selected, createdAt: new Date().toISOString() })
+    const name = stackName.trim()
+    if (!name || selected.length === 0) return
+    if (saved.some(s => s.name.toLowerCase() === name.toLowerCase())) {
+      setSaveError(t('simulator.duplicateName'))
+      return
+    }
+    setSaveError(null)
+    saveStack({ id: `stack-${Date.now()}`, name, programIds: selected, createdAt: new Date().toISOString() })
     setSaved(loadStacks())
     setStackName('')
   }
@@ -69,8 +113,8 @@ export function StackSimulatorPage() {
                 <p className="text-sm text-ink-muted text-center py-8">{t('simulator.noSearchMatch')}</p>
               )}
               {filtered.map(p => (
-                <label key={p.id} className="flex items-center gap-3 p-3 rounded-mp-md hover:bg-section cursor-pointer border border-transparent hover:border-mp transition-colors">
-                  <input type="checkbox" checked={selected.includes(p.id)} onChange={() => toggle(p.id)} className="accent-btc-orange w-4 h-4" />
+                <label key={p.id} htmlFor={`sim-p-${p.id}`} className="flex items-center gap-3 p-3 rounded-mp-md hover:bg-section cursor-pointer border border-transparent hover:border-mp transition-colors">
+                  <input id={`sim-p-${p.id}`} type="checkbox" checked={selected.includes(p.id)} onChange={() => toggle(p.id)} className="accent-btc-orange w-4 h-4" />
                   <span className="text-ink font-medium">{p.flag} {p.name}</span>
                   <span className="text-xs text-ink-muted ml-auto capitalize">{p.stacking_synergy}</span>
                 </label>
@@ -78,8 +122,8 @@ export function StackSimulatorPage() {
             </div>
           </div>
 
-          <div className="space-y-4">
-            <div className="rounded-card border border-mp-border border-l-4 border-l-mp-btc bg-mp-card p-6 shadow-mp-1 transition-[box-shadow,border-color] duration-base hover:border-mp-btc/30 hover:shadow-mp-2">
+          <div className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+            <div className="rounded-card border border-mp-border border-l-4 border-l-mp-btc bg-mp-card p-6 shadow-mp-1">
               <h3 className="font-display font-semibold text-ink mb-4">{t('simulator.metrics')}</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 {([
@@ -94,19 +138,40 @@ export function StackSimulatorPage() {
                   </div>
                 ))}
               </div>
+              {stack.length > 0 && (
+                <p className="mt-4 text-xs text-ink-muted">
+                  {formatT(t, 'simulator.synergySummary', synergyCounts)}
+                </p>
+              )}
               <div className="flex flex-wrap gap-2 mt-5">
                 {stack.map(p => <AnimatedBadge key={p.id} status="info">{p.name}</AnimatedBadge>)}
               </div>
+              {selected.length >= 2 && selected.length <= 4 && (
+                <Link
+                  to={`/compare?ids=${serializeIdList(selected)}`}
+                  className="mt-4 inline-block text-sm font-medium text-accent hover:underline"
+                >
+                  {t('simulator.openCompare')} →
+                </Link>
+              )}
             </div>
             <div className="rounded-card border border-mp-border bg-mp-card p-6 shadow-mp-1 flex flex-col sm:flex-row gap-2">
-              <input value={stackName} onChange={e => setStackName(e.target.value)} placeholder={t('simulator.stackName')} className="input-field flex-1" />
+              <input value={stackName} onChange={e => { setStackName(e.target.value); setSaveError(null) }} placeholder={t('simulator.stackName')} className="input-field flex-1" />
               <button type="button" onClick={save} disabled={!stackName || selected.length === 0} className="btn-primary shrink-0">{t('simulator.saveStack')}</button>
             </div>
+            {saveError && <p className="text-sm text-status-red" role="alert">{saveError}</p>}
             {saved.length > 0 && (
               <div className="rounded-mp-lg border border-mp-border bg-mp-card-muted p-4">
                 <h4 className="text-sm font-semibold text-ink mb-3">{t('simulator.savedStacks')}</h4>
                 {saved.map(s => (
-                  <div key={s.id} className="text-xs text-ink-secondary py-2 border-b border-mp/60 last:border-0">{s.name} — {s.programIds.length} {t('simulator.savedCount')}</div>
+                  <div key={s.id} className="flex items-center justify-between gap-2 text-xs text-ink-secondary py-2 border-b border-mp/60 last:border-0">
+                    <button type="button" onClick={() => restoreStack(s)} className="text-left hover:text-accent flex-1">
+                      {s.name} — {s.programIds.length} {t('simulator.savedCount')}
+                    </button>
+                    <button type="button" onClick={() => removeStack(s.id)} className="p-1 text-ink-muted hover:text-status-red" aria-label={t('simulator.deleteStack')}>
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
                 ))}
               </div>
             )}

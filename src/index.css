@@ -289,6 +289,17 @@ body {
   @apply text-mp-btc-text bg-btc-orange-soft/90 font-semibold;
 }
 
+.programs-table-sticky thead th {
+  position: sticky;
+  top: 3.25rem;
+  z-index: 10;
+  background: var(--mp-card);
+}
+
+.compare-best-cell {
+  @apply bg-btc-orange-soft/50 font-semibold text-mp-btc-text;
+}
+
 body::before {
   content: '';
   position: fixed;

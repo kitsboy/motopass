@@ -1,4 +1,4 @@
 # motopass — Last Updated 2026-07-07 by Grok
 
-Brief: Batches 9–16 i18n, a11y, lazy routes, nav — BUILD 19
+Brief: Batches 10–16 + shareable URL query state — BUILD 20
 Commit: pending

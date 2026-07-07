@@ -10,14 +10,24 @@ import { ProofBadge } from '../components/ui/ProofBadge'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 
+type VaultFilter = 'all' | 'verified' | 'demo'
+
 export function VaultPage() {
   const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
   const [nostrEvent, setNostrEvent] = useState('')
+  const [filter, setFilter] = useState<VaultFilter>('all')
 
   const stamped = programs
     .filter(p => p.satohash_proofs?.length)
     .map(p => ({ program: p, cinematic: toCinematicProgram(p) }))
+    .sort((a, b) => (b.program.last_checked ?? '').localeCompare(a.program.last_checked ?? ''))
+
+  const displayed = stamped.filter(({ cinematic }) => {
+    if (filter === 'verified') return cinematic.proofStatus === 'verified'
+    if (filter === 'demo') return cinematic.proofStatus === 'demo'
+    return true
+  })
 
   const verifiedCount = stamped.filter(s => s.cinematic.proofStatus === 'verified').length
   const demoCount = stamped.filter(s => s.cinematic.proofStatus === 'demo').length
@@ -34,6 +44,22 @@ export function VaultPage() {
       {loading && !error && <CardSkeleton />}
       {!loading && !error && (
         <div className="space-y-3">
+          {stamped.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {(['all', 'verified', 'demo'] as VaultFilter[]).map(f => (
+                <button
+                  key={f}
+                  type="button"
+                  onClick={() => setFilter(f)}
+                  className={`rounded-chip border px-2.5 py-1 text-xs font-chrome transition-colors ${
+                    filter === f ? 'border-btc-orange/35 bg-btc-orange-soft text-mp-btc-text' : 'border-mp-border text-ink-muted hover:border-mp-strong'
+                  }`}
+                >
+                  {f === 'all' ? t('vault.filterAll') : f === 'verified' ? t('vault.filterVerified') : t('vault.filterDemo')}
+                </button>
+              ))}
+            </div>
+          )}
           {stamped.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-4 text-xs text-mp-ink-secondary">
               <span className="rounded-chip border border-mp-border bg-mp-card-muted px-2.5 py-1">
@@ -52,7 +78,7 @@ export function VaultPage() {
             </div>
           )}
 
-          {stamped.map(({ program: p, cinematic }) => {
+          {displayed.map(({ program: p, cinematic }) => {
             const proof = p.satohash_proofs![0]
             const isDemo = cinematic.proofStatus === 'demo'
             return (

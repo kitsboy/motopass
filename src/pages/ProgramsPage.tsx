@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Download, Upload, Plus, Table, LayoutGrid } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
@@ -27,6 +28,7 @@ import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import { SeoHead } from '../components/SeoHead'
 import { absoluteUrl } from '../lib/seo'
+import { countActiveFilters, filtersFromSearchParams, filtersToSearchParams, isDefaultFilters } from '../lib/urlState'
 
 const iconBtn = (active: boolean) =>
   `rounded-chip border px-2.5 py-2 font-chrome text-xs transition-colors duration-fast ${
@@ -35,19 +37,45 @@ const iconBtn = (active: boolean) =>
 
 export function ProgramsPage() {
   const { t } = useI18n()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { programs: basePrograms, loading, error } = usePrograms()
   const { portfolio, toggle: togglePortfolio } = usePortfolio()
   const [addedPrograms, setAddedPrograms] = useState<Program[]>([])
   const programs = useMemo(() => [...basePrograms, ...addedPrograms], [basePrograms, addedPrograms])
-  const [filters, setFilters] = useState<ProgramFilters>(() => loadSavedFilters<ProgramFilters>() ?? DEFAULT_FILTERS)
-  const [view, setView] = useState<'table' | 'card'>(() => loadProgramsView() ?? 'table')
+  const filters = useMemo(() => filtersFromSearchParams(searchParams), [searchParams])
+  const view = (searchParams.get('view') === 'card' ? 'card' : 'table') as 'table' | 'card'
   const [active, setActive] = useState<CinematicProgram | null>(null)
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [addOpen, setAddOpen] = useState(false)
   const [newName, setNewName] = useState('')
+  const [importError, setImportError] = useState<string | null>(null)
+  const advancedId = 'programs-advanced-filters'
+  const activeFilterCount = countActiveFilters(filters)
 
   useEffect(() => { saveSavedFilters(filters) }, [filters])
   useEffect(() => { saveProgramsView(view) }, [view])
+
+  useEffect(() => {
+    if (searchParams.toString()) return
+    const saved = loadSavedFilters<ProgramFilters>()
+    const savedView = loadProgramsView()
+    if (saved || savedView) {
+      setSearchParams(filtersToSearchParams(saved ?? DEFAULT_FILTERS, savedView ?? 'table'), { replace: true })
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps -- hydrate once
+
+  const patchFilters = useCallback((patch: Partial<ProgramFilters>) => {
+    const next = { ...filters, ...patch }
+    setSearchParams(filtersToSearchParams(next, view), { replace: true })
+  }, [filters, view, setSearchParams])
+
+  const setViewMode = useCallback((v: 'table' | 'card') => {
+    setSearchParams(filtersToSearchParams(filters, v), { replace: true })
+  }, [filters, setSearchParams])
+
+  const clearFilters = useCallback(() => {
+    setSearchParams({}, { replace: true })
+  }, [setSearchParams])
 
   const debouncedSearch = useDebouncedValue(filters.search, 150)
   const filtered = useMemo(
@@ -68,10 +96,12 @@ export function ProgramsPage() {
 
   const handleExport = () => {
     const blob = new Blob([exportProgramsJson(programs)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
-    a.href = URL.createObjectURL(blob)
+    a.href = url
     a.download = 'motopass-programs.json'
     a.click()
+    URL.revokeObjectURL(url)
   }
 
   const handleImport = () => {
@@ -81,7 +111,14 @@ export function ProgramsPage() {
     input.onchange = async () => {
       const file = input.files?.[0]
       if (!file) return
-      setAddedPrograms(importProgramsJson(await file.text()))
+      if (!window.confirm(t('programs.importConfirm'))) return
+      const result = importProgramsJson(await file.text())
+      if (result.error) {
+        setImportError(result.error)
+        return
+      }
+      setImportError(null)
+      setAddedPrograms(result.programs)
     }
     input.click()
   }
@@ -158,10 +195,10 @@ export function ProgramsPage() {
           actions={
             <>
               <div className="hidden items-center gap-1 rounded-chip bg-mp-section p-1 sm:flex">
-                <button type="button" onClick={() => setView('table')} className={iconBtn(view === 'table')} aria-label={t('programs.tableView')}>
+                <button type="button" onClick={() => setViewMode('table')} className={iconBtn(view === 'table')} aria-label={t('programs.tableView')}>
                   <Table size={14} />
                 </button>
-                <button type="button" onClick={() => setView('card')} className={iconBtn(view === 'card')} aria-label={t('programs.cardView')}>
+                <button type="button" onClick={() => setViewMode('card')} className={iconBtn(view === 'card')} aria-label={t('programs.cardView')}>
                   <LayoutGrid size={14} />
                 </button>
               </div>
@@ -179,28 +216,45 @@ export function ProgramsPage() {
         />
 
         {error && <ProgramsLoadError message={error} />}
+        {importError && (
+          <p className="mb-4 text-sm text-status-red" role="alert">{t('programs.importError')}: {importError}</p>
+        )}
 
         <div className="mb-6">
           <input
             type="search"
             value={filters.search}
-            onChange={(e) => setFilters((f) => ({ ...f, search: e.target.value }))}
+            onChange={(e) => patchFilters({ search: e.target.value })}
             placeholder={t('programs.search')}
             className="input-field mb-3"
           />
-          <button
-            type="button"
-            onClick={() => setShowAdvanced((s) => !s)}
-            className="font-chrome text-xs text-mp-ink-tertiary hover:text-mp-ink"
-          >
-            {showAdvanced ? t('programs.hideAdvanced') : t('programs.showAdvanced')}
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setShowAdvanced((s) => !s)}
+              aria-expanded={showAdvanced}
+              aria-controls={advancedId}
+              className="font-chrome text-xs text-mp-ink-tertiary hover:text-mp-ink inline-flex items-center gap-1.5"
+            >
+              {showAdvanced ? t('programs.hideAdvanced') : t('programs.showAdvanced')}
+              {activeFilterCount > 0 && (
+                <span className="rounded-full bg-btc-orange-soft px-1.5 py-0.5 text-[10px] font-semibold text-mp-btc-text">
+                  {formatT(t, 'programs.filtersActive', { count: activeFilterCount })}
+                </span>
+              )}
+            </button>
+            {!isDefaultFilters(filters) && (
+              <button type="button" onClick={clearFilters} className="font-chrome text-xs text-accent hover:underline">
+                {t('programs.clearFilters')}
+              </button>
+            )}
+          </div>
           {showAdvanced && (
-            <div className="card-muted mt-3 space-y-4">
+            <div id={advancedId} className="card-muted mt-3 space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 <select
                   value={filters.category}
-                  onChange={(e) => setFilters((f) => ({ ...f, category: e.target.value }))}
+                  onChange={(e) => patchFilters({ category: e.target.value })}
                   className="select-field"
                 >
                   {categories.map((c) => (
@@ -211,7 +265,7 @@ export function ProgramsPage() {
                   <input
                     type="checkbox"
                     checked={filters.lightningOnly}
-                    onChange={(e) => setFilters((f) => ({ ...f, lightningOnly: e.target.checked }))}
+                    onChange={(e) => patchFilters({ lightningOnly: e.target.checked })}
                     className="accent-btc-orange w-4 h-4"
                   />
                   {t('programs.lightningOnly')}
@@ -232,7 +286,7 @@ export function ProgramsPage() {
                     max={max}
                     step={step}
                     value={filters[key]}
-                    onChange={(e) => setFilters((f) => ({ ...f, [key]: Number(e.target.value) }))}
+                    onChange={(e) => patchFilters({ [key]: Number(e.target.value) } as Partial<ProgramFilters>)}
                     className="w-full accent-btc-orange h-2"
                   />
                 </div>
@@ -255,7 +309,7 @@ export function ProgramsPage() {
                     key={r}
                     label={r}
                     active={regionFilter === r}
-                    onClick={() => setFilters((f) => ({ ...f, region: r }))}
+                    onClick={() => patchFilters({ region: r })}
                     count={regionCounts[r] ?? 0}
                   />
                 ))}

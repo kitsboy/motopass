@@ -34,11 +34,11 @@ const FEATURE_KEYS = [
   { icon: Users, titleKey: 'pitch.feature.agents.title' as const, subKey: 'pitch.feature.agents.sub' as const },
 ]
 
-const ROADMAP_KEYS: TranslationKey[] = [
-  'pitch.roadmap.lightning',
-  'pitch.roadmap.relay',
-  'pitch.roadmap.uruguay',
-  'pitch.roadmap.agents',
+const ROADMAP_LINKS: { key: TranslationKey; to: string }[] = [
+  { key: 'pitch.roadmap.lightning', to: '/programs?lightning=1' },
+  { key: 'pitch.roadmap.relay', to: '/verify' },
+  { key: 'pitch.roadmap.uruguay', to: '/programs?q=Uruguay' },
+  { key: 'pitch.roadmap.agents', to: '/agents' },
 ]
 
 export function PitchPage() {
@@ -163,9 +163,11 @@ export function PitchPage() {
           <div className="card-elevated bg-btc-orange-soft border-btc-orange/30">
             <div className="text-3xl font-display text-gradient-orange mb-4">{t('pitch.roadmap.next')}</div>
             <ul className="text-sm text-ink-secondary space-y-2.5">
-              {ROADMAP_KEYS.map(key => (
-                <li key={key} className="flex gap-2">
-                  <span className="text-mp-btc-text">→</span> {t(key)}
+              {ROADMAP_LINKS.map(({ key, to }) => (
+                <li key={key}>
+                  <Link to={to} className="flex gap-2 hover:text-accent transition-colors">
+                    <span className="text-mp-btc-text">→</span> {t(key)}
+                  </Link>
                 </li>
               ))}
             </ul>

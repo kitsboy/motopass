@@ -18,8 +18,6 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
 
   useEffect(() => {
     if (!open) return
-    const activeIdx = LANGUAGES.findIndex(l => l.code === lang)
-    setHighlight(activeIdx >= 0 ? activeIdx : 0)
     const onDoc = (e: MouseEvent) => {
       if (!rootRef.current?.contains(e.target as Node)) setOpen(false)
     }
@@ -64,7 +62,12 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={listId}
-        onClick={() => setOpen(v => !v)}
+        onClick={() => {
+          setOpen(v => {
+            if (!v) setHighlight(Math.max(0, LANGUAGES.findIndex(l => l.code === lang)))
+            return !v
+          })
+        }}
         title={t('nav.language')}
       >
         <span className="flex items-center gap-1.5 min-w-0">

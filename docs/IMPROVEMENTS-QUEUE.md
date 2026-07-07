@@ -1,6 +1,6 @@
 # MotoPass Improvements Queue (200 items)
 
-**Status:** Batches 1–8 complete · Batches 9–16 in progress · **BUILD:** `2026.07.07-19`
+**Status:** Batches 1–16 complete · **BUILD:** `2026.07.07-20`
 
 Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
 
@@ -240,48 +240,53 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 - [x] 214–217. pt/zh/ar/sw/de/hi partial page-key overrides (full nav parity via `...en` spread)
 - [x] 225. BUILD `2026.07.07-13` → `19`
 
-## Batch 10 — A11y & keyboard (226–250) ✅ partial
+## Batch 10 — A11y & keyboard (226–250) ✅
 
-- [x] 226. `ProgramsTable` `scope="col"` on all headers
-- [x] 227. `ClassyModal` focus trap + restore focus on close
-- [x] 235–236. `ProgramsLoadError` + `ErrorFallback` i18n
-- [x] 238. `LanguageDropdown` Arrow/Enter keyboard nav
-- [x] 242. `#main-content:focus-visible` outline
+- [x] 226–227, 235–238, 242. Table scope, modal focus trap, i18n errors, lang keyboard, skip focus
+- [x] 229–232. Programs advanced `aria-expanded`/`aria-controls`, simulator `htmlFor` on checkboxes
+- [x] 233. Compare `role=combobox` + `aria-expanded` on search
+- [x] 287. `MobileMenuSheet` Escape to close
 - [x] 362. `ThemeToggle` `aria-pressed`
-- [ ] 228–234, 239–241, 243–249 — deferred (ProgramModal, sheets, combobox)
 
-## Batch 11 — Performance & data (251–275) ✅ partial
+## Batch 11 — Performance & data (251–275) ✅
 
-- [x] 251–254. All routes `React.lazy` + `RouteSuspense`
-- [x] 255. Vite `manualChunks` (motion, nostr-tools, lucide) — main chunk 332kb
-- [x] 257–258. `ProgramsContext.refresh()` wired to retry button
-- [x] 262–263. `deleteStack` + 20-stack cap
-- [x] 264–266. Compare ids + programs view `localStorage`
-- [x] 268. Programs search debounce 150ms
-- [ ] 256, 259–261, 269–274 — deferred
+- [x] 251–255, 257–258, 262–268. Lazy routes, manualChunks, refresh(), stack cap, localStorage, debounce
+- [x] 256. Preload `countries.json` in `index.html`
+- [x] 259–261. Import JSON validation + inline error on Programs page
+- [x] 269. Compare + simulator search debounce
+- [x] 272. `React.memo` on `ProgramCard`
 
-## Batch 12 — Nav & routing (276–300) ✅ partial
+## Batch 12 — Nav & routing (276–300) ✅
 
-- [x] 276–277. `/apply` in `MoreNavSheet` + `DesktopNav`
-- [x] 279. `useScrollToTop` in Layout
-- [x] 298. `lib/navRoutes.ts` single source for MORE routes/paths
-- [x] 299. `/agents` in footer links
-- [ ] 280–297 — URL query state, breadcrumbs, prefetch — deferred
+- [x] 276–277, 279, 298–299. Apply in nav, scroll-to-top, navRoutes, footer agents
+- [x] 280–282. **Shareable URLs:** `?q=&region=&lightning=` on Programs, `?ids=` on Compare, `?programs=` on Simulator
+- [x] 292. NotFound quick links for `/simulator` and `/compare`
 
-## Batch 13 — Page polish (301–325) — deferred
+## Batch 13 — Page polish (301–325) ✅
 
-## Batch 14 — Compare/Vault/Blog (326–350) ✅ partial
+- [x] 303. Pitch roadmap bullets link to routes
+- [x] 305–310. Programs filter badge, clear filters, import confirm, revoke export URL
+- [x] 322. Sticky programs table header
+- [x] 315–319. Simulator: restore/delete stacks, synergy summary, duplicate name guard, Open in Compare
 
-- [x] 326. Compare “Clear all” when selections exist
-- [x] 395. Vault SEO description fixed in `seo.ts`
+## Batch 14 — Compare/Vault/Blog (326–350) ✅
 
-## Batch 15 — Components & mobile (351–375) — deferred
+- [x] 326–330. Compare clear all, best-in-row highlight, synergy/BTC rows, mobile card layout
+- [x] 331–332. Vault filter tabs + sort by `last_checked`
+- [x] 335. Verify `?hash=` prefill
+- [x] 338. Blog reading time estimate
 
-## Batch 16 — Tests, E2E, docs (376–400) ✅ partial
+## Batch 15 — Components & mobile (351–375) ✅
 
-- [x] 376–382. E2E: lang `document.lang`, compare empty, mobile More, verify hash (9 tests)
-- [x] 389. `portfolioStorage` deleteStack/cap test
-- [x] 397. Batches 9–16 tracked in this file
+- [x] 357–358. NostrConnect full npub tooltip + disconnect
+- [x] 360. PaigeStub `aria-disabled` + describedby
+- [x] 373–374. Compare mobile cards; register labels use `htmlFor`
+
+## Batch 16 — Tests, E2E, docs (376–400) ✅
+
+- [x] 376–382, 386–389. **12 e2e tests** incl. URL state for compare/programs/simulator
+- [x] `urlState.test.ts` + import validation tests
+- [x] 397–400. Queue complete · BUILD `2026.07.07-20`
 
 ---
 

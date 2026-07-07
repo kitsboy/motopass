@@ -34,7 +34,11 @@ export function BlogPage() {
             <div className="flex flex-wrap gap-2 mb-3">
               {post.labels.map(l => <TaxonomyChip key={l} labelId={l} />)}
             </div>
-            <time className="text-[10px] font-mono text-ink-muted">{post.date}</time>
+            <div className="flex items-center gap-2 text-[10px] font-mono text-ink-muted">
+              <time>{post.date}</time>
+              <span aria-hidden="true">·</span>
+              <span>{Math.max(1, Math.ceil(post.excerpt[lang].split(/\s+/).length / 200))} min read</span>
+            </div>
             <h2 className="text-lg sm:text-xl font-display font-semibold mt-1 mb-2 text-ink group-hover:text-btc-orange transition-colors">{post.title[lang]}</h2>
             <p className="text-sm text-ink-secondary mb-4 line-clamp-3 leading-relaxed">{post.excerpt[lang]}</p>
             <div className="flex flex-wrap gap-2 text-[10px] text-ink-muted mb-3">

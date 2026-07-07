@@ -94,7 +94,23 @@ export function exportProgramsJson(programs: Program[]): string {
   return JSON.stringify({ exported_at: new Date().toISOString(), programs }, null, 2)
 }
 
-export function importProgramsJson(raw: string): Program[] {
-  const data = JSON.parse(raw)
-  return Array.isArray(data) ? data : data.programs ?? []
+export function importProgramsJson(raw: string): { programs: Program[]; error?: string } {
+  let data: unknown
+  try {
+    data = JSON.parse(raw)
+  } catch {
+    return { programs: [], error: 'Invalid JSON file' }
+  }
+  const list = Array.isArray(data) ? data : (data as { programs?: Program[] }).programs ?? []
+  if (!Array.isArray(list) || list.length === 0) {
+    return { programs: [], error: 'No programs found in file' }
+  }
+  const valid = list.filter(
+    (p): p is Program =>
+      typeof p === 'object' && p !== null && typeof (p as Program).id === 'number' && typeof (p as Program).name === 'string',
+  )
+  if (valid.length === 0) {
+    return { programs: [], error: 'No valid program entries (need id + name)' }
+  }
+  return { programs: valid }
 }

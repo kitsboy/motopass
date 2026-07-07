@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
@@ -19,7 +20,7 @@ interface ProgramCardProps {
  * and a wax-seal corner mark; standard programs stay quiet.
  * Mobile: full-width stacked card, tap anywhere opens ProgramModal.
  */
-export function ProgramCard({
+export const ProgramCard = memo(function ProgramCard({
   program,
   onSelect,
   index = 0,
@@ -71,7 +72,7 @@ export function ProgramCard({
       />
     </motion.button>
   );
-}
+});
 
 function ProgramCardContent({
   program,

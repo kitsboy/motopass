@@ -76,15 +76,21 @@ describe('portfolioStorage', () => {
     expect(parsed.exported_at).toBeTruthy()
 
     const imported = importProgramsJson(exported)
-    expect(imported).toHaveLength(1)
-    expect(imported[0].id).toBe(42)
+    expect(imported.programs).toHaveLength(1)
+    expect(imported.programs[0].id).toBe(42)
+    expect(imported.error).toBeUndefined()
   })
 
   it('imports bare array json', () => {
     const raw = JSON.stringify([sampleProgram])
     const imported = importProgramsJson(raw)
-    expect(imported).toHaveLength(1)
-    expect(imported[0].name).toBe('Uruguay')
+    expect(imported.programs).toHaveLength(1)
+    expect(imported.programs[0].name).toBe('Uruguay')
+  })
+
+  it('rejects invalid import json', () => {
+    expect(importProgramsJson('not json').error).toBeTruthy()
+    expect(importProgramsJson('[]').error).toBeTruthy()
   })
 
   it('caps saved stacks at 20 and supports delete', () => {

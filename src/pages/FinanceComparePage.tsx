@@ -1,54 +1,95 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { loadCompareIds, saveCompareIds } from '../lib/portfolioStorage'
 import { Search, X } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
+import { useDebouncedValue } from '../hooks/useDebouncedValue'
 import { CardSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { PageHeader } from '../components/ui/PageHeader'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
+import { parseIdList, serializeIdList } from '../lib/urlState'
 import type { Program } from '../types/program'
+
+function parseNumeric(val: string): number | null {
+  const n = parseFloat(val.replace(/[^0-9.-]/g, ''))
+  return Number.isFinite(n) ? n : null
+}
+
+function bestIndex(values: string[], mode: 'min' | 'max'): Set<number> {
+  const nums = values.map(parseNumeric)
+  const valid = nums.filter((n): n is number => n !== null)
+  if (!valid.length) return new Set()
+  const target = mode === 'min' ? Math.min(...valid) : Math.max(...valid)
+  const indices = new Set<number>()
+  nums.forEach((n, i) => { if (n === target) indices.add(i) })
+  return indices
+}
 
 export function FinanceComparePage() {
   const { t } = useI18n()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { programs, loading, error } = usePrograms()
-  const [ids, setIds] = useState<number[]>(() => loadCompareIds())
-  useEffect(() => { saveCompareIds(ids) }, [ids])
+  const ids = useMemo(() => parseIdList(searchParams.get('ids')), [searchParams])
   const [search, setSearch] = useState('')
+  const debouncedSearch = useDebouncedValue(search, 150)
   const [listOpen, setListOpen] = useState(false)
+  const listId = 'compare-program-list'
+
+  useEffect(() => {
+    saveCompareIds(ids)
+  }, [ids])
+
+  useEffect(() => {
+    if (searchParams.get('ids')) return
+    const saved = loadCompareIds()
+    if (saved.length) {
+      setSearchParams((p) => { p.set('ids', serializeIdList(saved)); return p }, { replace: true })
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps -- hydrate once from localStorage
+
+  const setIdsSynced = useCallback((next: number[]) => {
+    saveCompareIds(next)
+    setSearchParams((p) => {
+      if (next.length) p.set('ids', serializeIdList(next))
+      else p.delete('ids')
+      return p
+    }, { replace: true })
+  }, [setSearchParams])
 
   const toggle = (id: number) => {
-    setIds(prev => {
-      if (prev.includes(id)) return prev.filter(x => x !== id)
-      if (prev.length >= 4) return prev
-      return [...prev, id]
-    })
+    setIdsSynced(
+      ids.includes(id) ? ids.filter(x => x !== id) : ids.length >= 4 ? ids : [...ids, id],
+    )
   }
 
-  const remove = (id: number) => setIds(prev => prev.filter(x => x !== id))
+  const remove = (id: number) => setIdsSynced(ids.filter(x => x !== id))
 
   const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase()
+    const q = debouncedSearch.trim().toLowerCase()
     const pool = programs.filter(p => !ids.includes(p.id))
     if (!q) return pool
     return pool.filter(p =>
       p.name.toLowerCase().includes(q) ||
       p.region.toLowerCase().includes(q)
     )
-  }, [programs, search, ids])
+  }, [programs, debouncedSearch, ids])
 
   const selected = programs.filter(p => ids.includes(p.id))
   const compare = selected
 
   const rows = useMemo(() => [
-    { label: t('compare.minInvestment'), key: (p: Program) => `$${(p.finance.min_investment_usd ?? 0).toLocaleString()}` },
-    { label: t('compare.typical'), key: (p: Program) => `$${(p.finance.typical_investment_usd ?? 0).toLocaleString()}` },
-    { label: t('compare.govFees'), key: (p: Program) => `$${(p.finance.gov_fees_usd ?? 0).toLocaleString()}` },
-    { label: t('compare.processing'), key: (p: Program) => `${p.finance.processing_time_months ?? '—'} ${t('compare.months')}` },
-    { label: t('compare.btcScore'), key: (p: Program) => `${p.finance.crypto_friendly_score ?? '—'}/10` },
-    { label: t('compare.sovereignty'), key: (p: Program) => `${p.sovereignty_score ?? '—'}/10` },
-    { label: t('compare.risk'), key: (p: Program) => p.risk_level ?? '—' },
-    { label: t('compare.lightning'), key: (p: Program) => p.lightning_ready ? t('compare.yes') : t('compare.no') },
+    { label: t('compare.minInvestment'), key: (p: Program) => `$${(p.finance.min_investment_usd ?? 0).toLocaleString()}`, best: 'min' as const },
+    { label: t('compare.typical'), key: (p: Program) => `$${(p.finance.typical_investment_usd ?? 0).toLocaleString()}`, best: 'min' as const },
+    { label: t('compare.govFees'), key: (p: Program) => `$${(p.finance.gov_fees_usd ?? 0).toLocaleString()}`, best: 'min' as const },
+    { label: t('compare.processing'), key: (p: Program) => `${p.finance.processing_time_months ?? '—'} ${t('compare.months')}`, best: null },
+    { label: t('compare.btcScore'), key: (p: Program) => `${p.finance.crypto_friendly_score ?? '—'}/10`, best: 'max' as const },
+    { label: t('compare.sovereignty'), key: (p: Program) => `${p.sovereignty_score ?? '—'}/10`, best: 'max' as const },
+    { label: t('compare.synergy'), key: (p: Program) => p.stacking_synergy ?? '—', best: null },
+    { label: t('compare.btcIntegration'), key: (p: Program) => p.bitcoin_integration ?? '—', best: null },
+    { label: t('compare.risk'), key: (p: Program) => p.risk_level ?? '—', best: null },
+    { label: t('compare.lightning'), key: (p: Program) => p.lightning_ready ? t('compare.yes') : t('compare.no'), best: null },
   ], [t])
 
   return (
@@ -60,7 +101,7 @@ export function FinanceComparePage() {
       {!loading && !error && (
         <>
           <div className="mb-8">
-            <label className="text-xs font-medium text-ink-muted mb-2 block">
+            <label htmlFor="compare-search" className="text-xs font-medium text-ink-muted mb-2 block">
               {formatT(t, 'compare.programsLabel', { count: ids.length })}
             </label>
             <p className="sr-only" aria-live="polite" aria-atomic="true">
@@ -83,17 +124,30 @@ export function FinanceComparePage() {
                 ))}
                 <button
                   type="button"
-                  onClick={() => setIds([])}
+                  onClick={() => setIdsSynced([])}
                   className="chip text-xs text-ink-muted hover:text-status-red"
                 >
-                  {t('common.cancel')} all
+                  {t('compare.clearAll')}
                 </button>
+                {ids.length >= 2 && (
+                  <Link
+                    to={`/simulator?programs=${serializeIdList(ids)}`}
+                    className="chip text-xs text-accent hover:underline"
+                  >
+                    {t('compare.openSimulator')}
+                  </Link>
+                )}
               </div>
             )}
             <div className="relative max-w-md">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted pointer-events-none" />
               <input
+                id="compare-search"
                 type="search"
+                role="combobox"
+                aria-expanded={listOpen}
+                aria-controls={listId}
+                aria-autocomplete="list"
                 value={search}
                 onChange={e => { setSearch(e.target.value); setListOpen(true) }}
                 onFocus={() => setListOpen(true)}
@@ -103,9 +157,9 @@ export function FinanceComparePage() {
                 className="input-field pl-9"
               />
               {listOpen && ids.length < 4 && filtered.length > 0 && (
-                <ul className="absolute z-10 mt-1 w-full max-h-56 overflow-y-auto rounded-mp-md border border-mp-border bg-mp-card shadow-mp-1">
+                <ul id={listId} role="listbox" className="absolute z-10 mt-1 w-full max-h-56 overflow-y-auto rounded-mp-md border border-mp-border bg-mp-card shadow-mp-1">
                   {filtered.slice(0, 20).map(p => (
-                    <li key={p.id}>
+                    <li key={p.id} role="option">
                       <button
                         type="button"
                         onMouseDown={e => e.preventDefault()}
@@ -120,7 +174,7 @@ export function FinanceComparePage() {
                   ))}
                 </ul>
               )}
-              {listOpen && search && filtered.length === 0 && (
+              {listOpen && debouncedSearch && filtered.length === 0 && (
                 <div className="absolute z-10 mt-1 w-full rounded-mp-md border border-mp-border bg-mp-card shadow-mp-1 px-3 py-3 text-sm text-ink-muted">
                   {t('compare.noMatch')}
                 </div>
@@ -129,24 +183,50 @@ export function FinanceComparePage() {
           </div>
 
           {compare.length > 0 ? (
-            <div className="overflow-x-auto rounded-card border border-mp-border bg-mp-card shadow-mp-1">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-mp-border bg-mp-card-muted/60">
-                    <th scope="col" className="p-3 text-left text-ink-muted text-xs uppercase">{t('compare.metric')}</th>
-                    {compare.map(p => <th key={p.id} scope="col" className="p-3 text-left font-display text-ink">{p.name}</th>)}
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map(r => (
-                    <tr key={r.label} className="border-b border-mp-border-subtle hover:bg-mp-btc-soft/20">
-                      <th scope="row" className="p-3 text-left text-ink-muted font-medium">{r.label}</th>
-                      {compare.map(p => <td key={p.id} className="p-3 font-mono text-xs text-ink">{r.key(p)}</td>)}
+            <>
+              <div className="hidden md:block overflow-x-auto rounded-card border border-mp-border bg-mp-card shadow-mp-1">
+                <table className="w-full text-sm">
+                  <caption className="sr-only">{t('compare.title')}</caption>
+                  <thead>
+                    <tr className="border-b border-mp-border bg-mp-card-muted/60">
+                      <th scope="col" className="p-3 text-left text-ink-muted text-xs uppercase">{t('compare.metric')}</th>
+                      {compare.map(p => <th key={p.id} scope="col" className="p-3 text-left font-display text-ink">{p.name}</th>)}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {rows.map(r => {
+                      const cells = compare.map(p => r.key(p))
+                      const bests = r.best ? bestIndex(cells, r.best) : new Set<number>()
+                      return (
+                        <tr key={r.label} className="border-b border-mp-border-subtle hover:bg-mp-btc-soft/20">
+                          <th scope="row" className="p-3 text-left text-ink-muted font-medium">{r.label}</th>
+                          {compare.map((p, i) => (
+                            <td key={p.id} className={`p-3 font-mono text-xs text-ink ${bests.has(i) ? 'compare-best-cell' : ''}`}>
+                              {r.key(p)}
+                            </td>
+                          ))}
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <div className="md:hidden grid gap-3">
+                {compare.map(p => (
+                  <div key={p.id} className="rounded-card border border-mp-border bg-mp-card p-4">
+                    <h3 className="font-display font-semibold text-ink mb-3">{p.flag} {p.name}</h3>
+                    <dl className="text-xs space-y-2">
+                      {rows.map(r => (
+                        <div key={r.label} className="flex justify-between gap-2 border-b border-mp/40 pb-1.5">
+                          <dt className="text-ink-muted">{r.label}</dt>
+                          <dd className="font-mono text-ink text-right">{r.key(p)}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                ))}
+              </div>
+            </>
           ) : (
             <div className="text-center py-16 rounded-card border border-mp-border bg-mp-card-muted text-mp-ink-tertiary">
               {t('compare.empty')}

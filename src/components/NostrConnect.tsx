@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Zap } from 'lucide-react'
+import { LogOut, Zap } from 'lucide-react'
 import { connectNostr, hasNostrExtension, type NostrSession } from '../lib/nostr'
 import { useI18n } from '../i18n/I18nContext'
 
@@ -24,14 +24,27 @@ export function NostrConnect({ onConnect }: { onConnect?: (s: NostrSession | nul
     setLoading(false)
   }
 
+  const disconnect = () => {
+    if (!window.confirm('Disconnect Nostr from this session?')) return
+    sessionStorage.removeItem('motopass-npub')
+    setSession(null)
+    onConnect?.(null)
+  }
+
   if (session) {
     return (
-      <div
-        className="nav-btn nav-btn-violet !cursor-default max-w-[9.5rem] !px-2"
-        aria-label={`Nostr connected: ${session.npub}`}
-      >
-        <Zap size={12} className="shrink-0 fill-nostr-violet/20" aria-hidden="true" />
-        <span className="truncate font-mono text-[10px]" aria-hidden="true">{session.npub.slice(0, 8)}…</span>
+      <div className="flex items-center gap-1">
+        <div
+          className="nav-btn nav-btn-violet !cursor-default max-w-[9.5rem] !px-2"
+          title={session.npub}
+          aria-label={`Nostr connected: ${session.npub}`}
+        >
+          <Zap size={12} className="shrink-0 fill-nostr-violet/20" aria-hidden="true" />
+          <span className="truncate font-mono text-[10px]" aria-hidden="true">{session.npub.slice(0, 8)}…</span>
+        </div>
+        <button type="button" onClick={disconnect} className="nav-btn nav-btn-icon" aria-label="Disconnect Nostr" title="Disconnect">
+          <LogOut size={14} />
+        </button>
       </div>
     )
   }
