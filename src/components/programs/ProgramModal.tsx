@@ -47,8 +47,9 @@ export function ProgramModal({ program, onClose, onAddToStack }: ProgramModalPro
           Figures modeled from public program terms &middot; not legal advice
         </p>
         <button
+          type="button"
           onClick={() => onAddToStack(program)}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-mp-btc px-6 py-3 font-chrome text-sm font-semibold text-mp-ink-inverse shadow-mp-glow transition-transform duration-fast ease-spring-snappy hover:-translate-y-0.5"
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-mp-btc px-6 py-3 font-chrome text-sm font-semibold text-mp-ink-on-accent shadow-mp-glow transition-transform duration-fast ease-spring-snappy hover:-translate-y-0.5"
         >
           Add to my stack
         </button>

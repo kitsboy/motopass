@@ -29,7 +29,7 @@ export function PageHeader({
             {eyebrow}
           </span>
         )}
-        <h1 className="font-display text-h1 text-mp-ink sm:text-2xl sm:font-semibold sm:tracking-tight">{title}</h1>
+        <h1 className="font-display text-2xl font-semibold tracking-tight text-mp-ink sm:text-h2 lg:text-h1">{title}</h1>
         {body && <p className="mt-3 max-w-xl font-body text-body text-mp-ink-secondary text-sm leading-relaxed">{body}</p>}
       </div>
       {actions && <div className="flex shrink-0 flex-wrap items-center gap-2 sm:gap-3">{actions}</div>}

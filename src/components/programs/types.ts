@@ -7,7 +7,7 @@ export interface Program {
   minInvestment: number;
   timelineDays: number;
   sovereigntyScore: number; // 0–100, drives visual weight
-  proofStatus: 'verified' | 'pending';
+  proofStatus: 'verified' | 'pending' | 'demo';
   proofRef?: string;
   summary: string;
 }

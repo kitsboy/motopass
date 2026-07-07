@@ -17,6 +17,7 @@ import { ProgramCard } from '../components/programs/ProgramCard'
 import { ProgramsTable } from '../components/programs/ProgramsTable'
 import { ProgramModal } from '../components/programs/ProgramModal'
 import { CardSkeleton } from '../components/LoadingSkeleton'
+import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
 
@@ -26,7 +27,7 @@ const iconBtn = (active: boolean) =>
   }`
 
 export function ProgramsPage() {
-  const { programs: basePrograms, loading } = usePrograms()
+  const { programs: basePrograms, loading, error } = usePrograms()
   const [addedPrograms, setAddedPrograms] = useState<Program[]>([])
   const programs = useMemo(() => [...basePrograms, ...addedPrograms], [basePrograms, addedPrograms])
   const [filters, setFilters] = useState<ProgramFilters>(() => loadSavedFilters<ProgramFilters>() ?? DEFAULT_FILTERS)
@@ -136,6 +137,8 @@ export function ProgramsPage() {
             </>
           }
         />
+
+        {error && <ProgramsLoadError message={error} />}
 
         <div className="mb-6">
           <input

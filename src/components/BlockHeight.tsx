@@ -24,7 +24,11 @@ export function BlockHeight({ variant = 'default' }: { variant?: 'default' | 'he
     >
       <Bitcoin size={12} className="text-btc-orange" />
       <span>{t('block.live')}</span>
-      <span className={isHero ? 'font-semibold text-mp-on-hero' : 'text-ink font-semibold'}>
+      <span
+        className={isHero ? 'font-semibold text-mp-on-hero' : 'text-ink font-semibold'}
+        aria-live="polite"
+        aria-atomic="true"
+      >
         {height ? `#${height.toLocaleString()}` : '…'}
       </span>
     </div>

@@ -10,7 +10,7 @@ export function Footer() {
   const { t } = useI18n()
 
   return (
-    <footer className="border-t border-mp bg-card mt-auto shadow-[0_-4px_24px_rgba(24,24,27,0.04)]">
+    <footer className="border-t border-mp bg-card mt-auto shadow-[0_-4px_24px_rgba(24,24,27,0.04)] safe-bottom mb-20 md:mb-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
           <div>

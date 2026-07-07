@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { usePrograms } from '../hooks/usePrograms'
 import { loadStacks, saveStack, type SavedStack } from '../lib/portfolioStorage'
 import { CardSkeleton } from '../components/LoadingSkeleton'
+import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
+import { parseMonthsToDays } from '../lib/programAdapter'
 import { PageHeader } from '../components/ui/PageHeader'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 
 export function StackSimulatorPage() {
-  const { programs, loading } = usePrograms()
+  const { programs, loading, error } = usePrograms()
   const [selected, setSelected] = useState<number[]>([])
   const [stackName, setStackName] = useState('')
   const [saved, setSaved] = useState<SavedStack[]>(loadStacks())
@@ -14,7 +16,9 @@ export function StackSimulatorPage() {
   const stack = programs.filter(p => selected.includes(p.id))
   const totalCost = stack.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
   const sovereignty = stack.length ? Math.round(stack.reduce((s, p) => s + (p.sovereignty_score ?? 5), 0) / stack.length) : 0
-  const months = stack.length ? Math.max(...stack.map(p => parseInt(p.finance.processing_time_months ?? '12', 10) || 12)) : 0
+  const months = stack.length
+    ? Math.max(...stack.map(p => Math.ceil(parseMonthsToDays(p.finance.processing_time_months) / 30)))
+    : 0
 
   const toggle = (id: number) => setSelected(s => s.includes(id) ? s.filter(x => x !== id) : [...s, id])
 
@@ -29,8 +33,9 @@ export function StackSimulatorPage() {
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
       <PageHeader eyebrow="STACK SIMULATOR" title="Jurisdictional stacking" subtitle="Combine programs and model cost, sovereignty, and timeline." />
 
-      {loading && <CardSkeleton />}
-      {!loading && (
+      {error && <ProgramsLoadError message={error} />}
+      {loading && !error && <CardSkeleton />}
+      {!loading && !error && (
         <div className="grid lg:grid-cols-2 gap-6">
           <div className="card max-h-[60vh] overflow-y-auto">
             <h3 className="font-display font-semibold text-ink mb-4">Select programs</h3>

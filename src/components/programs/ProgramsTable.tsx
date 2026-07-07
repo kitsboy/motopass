@@ -16,7 +16,8 @@ interface ProgramsTableProps {
  */
 export function ProgramsTable({ programs, onSelect }: ProgramsTableProps) {
   return (
-    <table className="w-full border-separate border-spacing-0 text-left">
+    <table className="w-full border-separate border-spacing-0 text-left" aria-label="Residency and citizenship programs">
+      <caption className="sr-only">Residency and citizenship programs by jurisdiction</caption>
       <thead>
         <tr className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">
           <th className="border-b border-mp-border-subtle py-3 pr-4 font-medium">Jurisdiction</th>

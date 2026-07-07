@@ -6,12 +6,13 @@ import { loadPortfolio } from '../lib/portfolioStorage'
 import { ProgramCard } from '../components/ProgramCard'
 import { ProgramModal, type ProgramModalTab } from '../components/ProgramModal'
 import { CardSkeleton } from '../components/LoadingSkeleton'
+import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { PageHeader } from '../components/ui/PageHeader'
 import { StatCard } from '../components/ui/StatCard'
 import type { Program } from '../types/program'
 
 export function PortfolioPage() {
-  const { programs, loading } = usePrograms()
+  const { programs, loading, error } = usePrograms()
   const [portfolio] = useState<number[]>(loadPortfolio)
   const [selected, setSelected] = useState<Program | null>(null)
   const [tab, setTab] = useState<ProgramModalTab>('Overview')
@@ -31,7 +32,8 @@ export function PortfolioPage() {
         <StatCard value={acquired.filter(p => p.lightning_ready).length} label="Lightning ready" icon={<Radio size={18} />} />
       </div>
 
-      {loading && <CardSkeleton />}
+      {error && <ProgramsLoadError message={error} />}
+      {loading && !error && <CardSkeleton />}
       {!loading && acquired.length === 0 && (
         <div className="text-center py-16 card-elevated max-w-md mx-auto">
           <p className="text-ink-secondary mb-6">No programs in your portfolio yet.</p>

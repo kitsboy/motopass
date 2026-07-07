@@ -36,16 +36,16 @@ export function ApplyPage() {
       {!result ? (
         <form onSubmit={submit} className="card-elevated space-y-4">
           <div>
-            <label className="text-xs font-medium text-ink-muted block mb-1.5">Your name</label>
-            <input required value={name} onChange={e => setName(e.target.value)} className="input-field" />
+            <label htmlFor="apply-name" className="text-xs font-medium text-ink-muted block mb-1.5">Your name</label>
+            <input id="apply-name" required value={name} onChange={e => setName(e.target.value)} className="input-field" />
           </div>
           <div>
-            <label className="text-xs font-medium text-ink-muted block mb-1.5">Target program / country</label>
-            <input required value={program} onChange={e => setProgram(e.target.value)} placeholder="e.g. Uruguay RBI" className="input-field" />
+            <label htmlFor="apply-program" className="text-xs font-medium text-ink-muted block mb-1.5">Target program / country</label>
+            <input id="apply-program" required value={program} onChange={e => setProgram(e.target.value)} placeholder="e.g. Uruguay RBI" className="input-field" />
           </div>
           <div>
-            <label className="text-xs font-medium text-ink-muted block mb-1.5">Notes (optional)</label>
-            <textarea value={notes} onChange={e => setNotes(e.target.value)} rows={3} className="input-field" />
+            <label htmlFor="apply-notes" className="text-xs font-medium text-ink-muted block mb-1.5">Notes (optional)</label>
+            <textarea id="apply-notes" value={notes} onChange={e => setNotes(e.target.value)} rows={3} className="input-field" />
           </div>
           <button type="submit" className="btn-primary w-full">{t('apply.submit')}</button>
         </form>

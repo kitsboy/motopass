@@ -29,7 +29,7 @@ export function ProgramCard({ program, onSelect, index = 0 }: ProgramCardProps) 
       viewport={{ once: true, margin: '-8%' }}
       transition={{ duration: 0.45, delay: Math.min(index, 6) * 0.05, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -2 }}
-      className={`group relative w-full overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base ease-spring-gentle hover:shadow-mp-3 ${
+      className={`group relative w-full overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base ease-spring-gentle hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc ${
         isFlagship ? 'border-mp-btc/35 hover:border-mp-btc/55' : 'border-mp-border hover:border-mp-copper/40'
       }`}
     >

@@ -36,7 +36,7 @@ export function VerifyPage() {
           <div className="space-y-3 pt-4 border-t border-mp">
             <div className="flex items-start gap-2">
               <code className="flex-1 text-xs font-mono text-btc-orange-deep break-all bg-btc-orange-soft p-3 rounded-mp-md border border-btc-orange/20">{hash}</code>
-              <button type="button" onClick={copy} className="p-2.5 border border-mp rounded-mp-md shrink-0 hover:bg-section">
+              <button type="button" onClick={copy} aria-label="Copy hash to clipboard" className="p-2.5 border border-mp rounded-mp-md shrink-0 hover:bg-section">
                 {copied ? <Check size={16} className="text-status-green" /> : <Copy size={16} className="text-ink-muted" />}
               </button>
             </div>

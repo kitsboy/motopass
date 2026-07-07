@@ -165,4 +165,23 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-07 (Batch 1/8)
+
+**Machine:** M3 (Grok)  
+**Project:** motopass
+
+### Done (improvements 1–25)
+- [x] Deleted legacy `ProgramsTable.tsx`; a11y fixes (aria-labels, htmlFor, table caption/scope)
+- [x] `ProgramsLoadError` on Programs/Portfolio/Simulator/Compare
+- [x] `programAdapter` stub-proof detection + tests; `ProofBadge` demo state
+- [x] PageHeader scale fix; removed duplicate fonts from index.html
+- [x] StackSimulator month range parsing; Register uses live 50 programs
+- [x] Footer safe-area above mobile nav; BUILD `2026.07.07-04`
+
+### Git State
+- Branch: `main`
+- BUILD: `2026.07.07-04`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

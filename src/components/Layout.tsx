@@ -38,7 +38,7 @@ export function Layout() {
           <div className="h-14 sm:h-16 flex items-center justify-between gap-3">
             <NavLink to="/" className="flex items-center gap-2.5 min-w-0 group" onClick={() => setMenuOpen(false)}>
               <Logo size="sm" />
-              <div className="min-w-0 hidden xs:block">
+              <div className="min-w-0 hidden sm:block">
                 <div className="font-display font-semibold tracking-tight text-sm sm:text-base truncate text-ink group-hover:text-btc-orange transition-colors">
                   MOTOPASS
                 </div>

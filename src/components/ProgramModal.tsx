@@ -21,7 +21,7 @@ export function ProgramModal({ program, tab, onTab, onClose }: {
             <h2 className="text-xl font-display font-semibold inline text-ink">{program.name}</h2>
             <p className="text-xs text-ink-muted capitalize mt-1">{program.region} · {program.category.replace(/_/g, ' ')}</p>
           </div>
-          <button type="button" onClick={onClose} className="p-2 rounded-mp-md text-ink-muted hover:bg-section hover:text-ink">
+          <button type="button" onClick={onClose} aria-label="Close program details" className="p-2 rounded-mp-md text-ink-muted hover:bg-section hover:text-ink">
             <X size={20} />
           </button>
         </div>

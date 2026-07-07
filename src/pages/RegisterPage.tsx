@@ -6,10 +6,10 @@ import { useUser } from '../context/UserContext'
 import type { UserProfile } from '../types/user'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
-
-const PROGRAMS = ['Uruguay RBI', 'El Salvador', 'UAE Golden Visa', 'Singapore', 'Portugal D7', 'Georgia', 'Panama', 'Paraguay']
+import { usePrograms } from '../hooks/usePrograms'
 
 export function RegisterPage() {
+  const { programs } = usePrograms()
   const navigate = useNavigate()
   const { setProfile } = useUser()
   const [step, setStep] = useState(1)
@@ -73,7 +73,7 @@ export function RegisterPage() {
             <label className="text-xs font-medium text-ink-muted block mb-1.5">Target program / country</label>
             <select value={program} onChange={e => setProgram(e.target.value)} className="select-field">
               <option value="">Select…</option>
-              {PROGRAMS.map(p => <option key={p} value={p}>{p}</option>)}
+              {programs.map(p => <option key={p.id} value={p.name}>{p.flag} {p.name}</option>)}
             </select>
           </div>
           <button type="button" onClick={() => setStep(3)} disabled={!name.trim() || !program} className="btn-primary w-full flex items-center justify-center gap-2">

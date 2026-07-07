@@ -52,7 +52,14 @@ const ISO_BY_NAME: Record<string, string> = {
   'New Zealand': 'NZ',
 }
 
-function parseMonthsToDays(raw: string | null | undefined): number {
+const STUB_PROOF_RE = /aaaa|placeholder|stub|demo|0000000/i
+
+export function isStubProofUrl(url: string | undefined): boolean {
+  if (!url) return true
+  return STUB_PROOF_RE.test(url)
+}
+
+export function parseMonthsToDays(raw: string | null | undefined): number {
   if (!raw) return 365
   const m = raw.match(/(\d+)(?:\s*-\s*(\d+))?/)
   if (!m) return 365
@@ -96,7 +103,12 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     minInvestment,
     timelineDays: parseMonthsToDays(p.finance.processing_time_months),
     sovereigntyScore,
-    proofStatus: p.satohash_proofs?.length ? 'verified' : 'pending',
+    proofStatus: (() => {
+      const url = p.satohash_proofs?.[0]?.proof_url
+      if (!url) return 'pending' as const
+      if (isStubProofUrl(url)) return 'demo' as const
+      return 'verified' as const
+    })(),
     proofRef: proofRef(p),
     summary: p.details,
   }
