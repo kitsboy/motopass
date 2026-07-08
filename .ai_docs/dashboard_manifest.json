@@ -1,0 +1,82 @@
+{
+  "projectName": "motopass",
+  "displayName": "MotoPass",
+  "description": "Bitcoin Sovereign Passports and Residency Programs — CBI/RBI evaluation platform with Nostr identity, Satohash OTS verification",
+  "domain": "motopass.giveabit.io",
+  "repository": "https://github.com/kitsboy/motopass",
+  "deploy": {
+    "type": "cloudflare-pages",
+    "provider": "Cloudflare Pages",
+    "buildOutput": "dist/",
+    "branch": "main",
+    "autoDeploy": true,
+    "projectName": "motopass",
+    "configFile": "wrangler.toml",
+    "ciBadge": "https://github.com/kitsboy/motopass/actions/workflows/ci.yml/badge.svg"
+  },
+  "stack": {
+    "frontend": "React 18",
+    "language": "TypeScript",
+    "buildTool": "Vite 5",
+    "cssFramework": "Tailwind CSS 3",
+    "testRunner": "Vitest 3",
+    "linter": "ESLint 9 (flat config)",
+    "formatter": "Prettier",
+    "animation": "motion 12",
+    "icons": "lucide-react",
+    "routing": "react-router-dom 7"
+  },
+  "features": [
+    "CBI/RBI program directory (50 jurisdictions)",
+    "Bitcoin-native document verification (Satohash/OTS)",
+    "Nostr identity protocol integration",
+    "Portfolio tracker with investment simulator",
+    "Program comparison tool",
+    "Document vault",
+    "Multi-language i18n (via React context)",
+    "Dark/light theme toggle",
+    "QR code payment display",
+    "Responsive mobile-first design",
+    "SEO-optimized (sitemap, structured data, multi-lang SEO pages)"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "lint": "eslint src --max-warnings 50",
+    "deploy": "npm run build && wrangler pages deploy dist --project-name=motopass --branch=main",
+    "healthCheck": "bash scripts/health-check.sh"
+  },
+  "envVars": {
+    "CLOUDFLARE_API_TOKEN": {
+      "description": "Cloudflare API token for manual wrangler deploy",
+      "required": false,
+      "source": ".env.local"
+    },
+    "VITE_SITE_URL": {
+      "description": "Deployed site URL",
+      "default": "https://motopass.giveabit.io",
+      "required": true
+    },
+    "VITE_SATOHASH_URL": {
+      "description": "Satohash API base URL",
+      "default": "https://satohash.io"
+    },
+    "VITE_NOSTR_RELAY": {
+      "description": "Nostr relay for identity",
+      "default": "wss://relay.motopass.giveabit.io"
+    }
+  },
+  "ports": {
+    "dev": 5173,
+    "production": 443
+  },
+  "status": "active",
+  "lastAudit": "2026-07-02",
+  "automationReady": true,
+  "entryPoints": ["src/main.tsx", "index.html", "public/"],
+  "testPatterns": ["src/**/*.test.ts", "scripts/**/*.test.ts"],
+  "lintIgnores": ["dist/", "node_modules/", "website/"],
+  "healthCheckEndpoint": "https://motopass.giveabit.io/research/countries.json",
+  "relatedProjects": ["giveabit", "satohash"]
+}
