@@ -14,63 +14,63 @@ tags: [diligence, pitch, mvp, giveabit]
 ---
 # MotoPass — Technical Architecture One-Pager
 
-            **Live:** https://motopass.giveabit.io · **Repo:** https://github.com/kitsboy/motopass · **Version:** `0.1.0`
+**Live:** https://motopass.giveabit.io · **Repo:** https://github.com/kitsboy/motopass · **Version:** `0.1.0`
 
-            ## Stack
-            React/Vite · Cloudflare Pages · OTS/Satohash verification roadmap · country data models
+## Stack
+React/Vite · Cloudflare Pages · OTS/Satohash verification roadmap · country data models
 
-            ## System map (boxes)
-            ```
-            [User browser]
-                 |
-                 v
-            [SPA / static app on Cloudflare Pages]
-                 |
+## System map (boxes)
+```
+[User browser]
+     |
+     v
+[SPA / static app on Cloudflare Pages]
+     |
         +--------+--------+
-        |                 |
+|                 |
         v                 v
-            [Public APIs / LN / Nostr / OTS]   [Optional M3/M4 services]
-            ```
+[Public APIs / LN / Nostr / OTS]   [Optional M3/M4 services]
+```
 
-            ## Architecture notes
-            - SPA intelligence dashboard
+## Architecture notes
+- SPA intelligence dashboard
 - Country program datasets (seeded subset toward 50)
 - Finance/compare modeling layers
 - Verification story: claims → OTS/Bitcoin
 - Docs-heavy product (vision, data model, design tokens)
 
-            ## Deploy path
-            Build on M3 → wrangler pages deploy dist/ --project-name motopass
+## Deploy path
+Build on M3 → wrangler pages deploy dist/ --project-name motopass
 
-            ## Data & privacy posture
-            Prefer client-side and user-held keys. Minimize PII. Bitcoin rails where payments exist. See project privacy/security docs if present.
+## Data & privacy posture
+Prefer client-side and user-held keys. Minimize PII. Bitcoin rails where payments exist. See project privacy/security docs if present.
 
-            ## MVP boundary
-            - **In MVP now:** Live UI + seeded countries + finance modeling + verification architecture.
-            - **Explicitly later:** 50 countries, live Satohash on claims, portfolio simulator, Paige AI.
+## MVP boundary
+- **In MVP now:** Live UI + seeded countries + finance modeling + verification architecture.
+- **Explicitly later:** 50 countries, live Satohash on claims, portfolio simulator, Paige AI.
 
-            ## Dependencies
-            Satohash/OTS; country law sources
+## Dependencies
+Satohash/OTS; country law sources
 
-            ## How a technical helper starts (15 min)
-            ```bash
-            git clone https://github.com/kitsboy/motopass.git
-            cd motopass
-            # typically:
-            npm install
-            npm run dev
-            ```
-            Read `README.md`, `docs/DEPLOYMENT.md` (or `DEPLOY.md`), and this file.
+## How a technical helper starts (15 min)
+```bash
+git clone https://github.com/kitsboy/motopass.git
+cd motopass
+# typically:
+npm install
+npm run dev
+```
+Read `README.md`, `docs/DEPLOYMENT.md` (or `DEPLOY.md`), and this file.
 
-            ## Known gaps (full disclosure)
-            See Investor one-pager risks + project `LATEST-UPDATE.md` / handoffs. Do not claim production hardness without tests/deploy verification.
+## Known gaps (full disclosure)
+See Investor one-pager risks + project `LATEST-UPDATE.md` / handoffs. Do not claim production hardness without tests/deploy verification.
 
-            ## Related
-            - [Investor one-pager](./INVESTOR-ONEPAGER.md)
-            - [Ask sheet](./ASK-SHEET.md)
-            - Deeper docs: `docs/ARCHITECTURE.md` (if present), `SOURCE-OF-TRUTH.md`, `docs/.ai_docs/`
+## Related
+- [Investor one-pager](./INVESTOR-ONEPAGER.md)
+- [Ask sheet](./ASK-SHEET.md)
+- Deeper docs: `docs/ARCHITECTURE.md` (if present), `SOURCE-OF-TRUTH.md`, `docs/.ai_docs/`
 
-            ---
+---
 **Safe Harbour:** Educational / informational only. Not financial, legal, or investment advice.
 Bitcoin involves risk. DYOR. Not your keys, not your cheese.
 Part of the [Give A Bit](https://giveabit.io) family.
