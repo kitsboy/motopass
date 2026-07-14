@@ -1,3 +1,4 @@
+| 2026-07-13 | Kimi (Fallback) | Missing Organization/Website/BreadcrumbList schema (blocker for rich results); H1 strong but subheading hierarchy unclear in features section; Keyword gap: "Bitcoin visa", "crypto golden visa", "sovereign passport" not targeted in meta; BTC Map route (/btcmap) underlinked from hero CTA; Block height display (#957,857) is good real-time signal but lacks structured data wrapper | Add Organization + Website JSON-LD (high priority); Add BreadcrumbList schema for multi-page routes; Target "Bitcoin visa" and "crypto golden visa" in title/meta on relevant pages; Add hero CTA link to /btcmap; Wrap block height in structured data |
 ---
 title: SEO Strategy & Audit
 project: motopass
