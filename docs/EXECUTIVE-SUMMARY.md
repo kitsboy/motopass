@@ -79,3 +79,6 @@ BUILD-20260610-004
 
 **Citations for market context (see web_search results):**  
 Investment citizenship programs generate governments ~$20B annually with forecasts to $100B (Passportivity / industry reports). RBI/Golden Visa programs exist in 100+ countries (Henley & Partners / IMC data). Only El Salvador and Central African Republic have adopted Bitcoin legal tender frameworks (historical record as of 2026).
+
+---
+**Diligence pack:** [docs/diligence/](../diligence/) (investor + architecture + ask)

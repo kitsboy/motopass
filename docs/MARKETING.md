@@ -152,3 +152,6 @@ This is the message. This is the product. This is the standard.
 
 — Marketing & Narrative Layer, MotoPass  
 BUILD-2026.07.07-26
+
+---
+**Diligence pack:** [docs/diligence/](../diligence/) (investor + architecture + ask)

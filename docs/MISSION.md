@@ -35,3 +35,6 @@ A user can evaluate 50 programs, simulate a stack, verify any cost claim on Bitc
 ---
 
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
+
+---
+**Diligence pack:** [docs/diligence/](../diligence/) (investor + architecture + ask)
