@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Zap, MessageCircle, Radio, Bot, Handshake, ArrowRight } from 'lucide-react'
+import { Zap, MessageCircle, Radio, Bot, Handshake, ArrowRight, Clock } from 'lucide-react'
 import { MOTOPASS_RELAYS } from '../lib/nostr'
 import { NostrConnect } from '../components/NostrConnect'
 import { BtcMapReportVenue } from '../components/btcmap/BtcMapReportVenue'
@@ -12,6 +12,17 @@ import { Card } from '../components/ui/Card'
 import type { TranslationKey } from '../i18n/translations'
 
 type AgentStatus = 'active' | 'beta' | 'coming'
+
+const OFFICE_HOURS = 'Mon–Fri 9:00–17:00'
+
+const AGENT_TIMEZONES: Record<string, string> = {
+  uy: 'UYT (UTC−3)',
+  sv: 'CST (UTC−6)',
+  ae: 'GST (UTC+4)',
+  sg: 'SGT (UTC+8)',
+  pt: 'WET (UTC+0)',
+  ge: 'GET (UTC+4)',
+}
 
 const AGENTS: {
   id: string
@@ -127,6 +138,33 @@ export function AgentsPage() {
             >
               <MessageCircle size={14} aria-hidden /> {t('agents.message')}
             </button>
+          </Card>
+        ))}
+      </div>
+
+      <h2 className="font-display font-semibold text-lg text-ink mb-2 mt-10">Agent availability</h2>
+      <p className="text-sm text-ink-muted mb-4 max-w-2xl">
+        Placeholder office hours per liaison region — local time, weekdays only. Live scheduling ships with Nexus club gates.
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-10">
+        {AGENTS.map((a, i) => (
+          <Card key={`hours-${a.id}`} variant="elevated" animate delay={0.04 + i * 0.03} className="!p-5">
+            <div className="flex justify-between items-start mb-3">
+              <div>
+                <h3 className="font-display font-semibold text-lg text-ink">{a.country}</h3>
+                <p className="text-xs text-ink-muted">{t(a.regionKey)}</p>
+              </div>
+              <span className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full border ${statusClass(a.status)}`}>
+                {t(STATUS_KEYS[a.status])}
+              </span>
+            </div>
+            <div className="flex items-start gap-2 text-sm text-ink-secondary mb-2">
+              <Clock size={14} className="text-nostr-violet shrink-0 mt-0.5" aria-hidden />
+              <span>{OFFICE_HOURS}</span>
+            </div>
+            <p className="text-xs font-mono text-ink-muted bg-card-muted/50 rounded-mp-md px-3 py-2 border border-mp/50">
+              {AGENT_TIMEZONES[a.id]} · local time
+            </p>
           </Card>
         ))}
       </div>

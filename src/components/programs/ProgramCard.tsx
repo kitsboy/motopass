@@ -2,6 +2,8 @@ import { memo } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
+import { FreshnessBadge } from '../ui/FreshnessBadge';
+import { useI18n } from '../../i18n/I18nContext';
 import { MerchantDensityBadge } from '../btcmap/MerchantDensityBadge';
 import { BtcDualPrice } from '../BtcDualPrice';
 import { Program, scoreWeight } from './types';
@@ -87,6 +89,15 @@ function ProgramCardContent({
   inPortfolio: boolean;
   onTogglePortfolio?: (e: React.MouseEvent) => void;
 }) {
+  const { t } = useI18n();
+  const freshnessLabels = {
+    fresh: t('programs.freshnessFresh'),
+    recent: t('programs.freshnessRecent'),
+    stale: t('programs.freshnessStale'),
+    proof: t('programs.freshnessProof'),
+    checked: t('programs.freshnessChecked'),
+  };
+
   return (
     <>
       {isFlagship && (
@@ -109,8 +120,14 @@ function ProgramCardContent({
             <span className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">
               {program.tier} &middot; {program.region}
             </span>
-            <div className="mt-1.5">
+            <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
               <MerchantDensityBadge programName={program.country} />
+              <FreshnessBadge
+                lastChecked={program.lastChecked}
+                proofStampedAt={program.proofStampedAt}
+                compact
+                labels={freshnessLabels}
+              />
             </div>
           </div>
         </div>

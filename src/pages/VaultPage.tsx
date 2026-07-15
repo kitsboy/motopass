@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ExternalLink, Shield, Copy, Check, Upload, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
+import { usePortfolio } from '../hooks/usePortfolio'
 import { toCinematicProgram } from '../lib/programAdapter'
 import { buildProgramUpdateEvent, serializeNostrEvent } from '../lib/nostrEvents'
 import { verifyHashPaste, verifyOtsInBrowser, satohashVerifyUrl } from '../lib/seal/vaultVerify'
@@ -16,6 +17,7 @@ import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import type { VerifyResult } from '../types/proof'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
+import { VerifyResultsExplainer } from '../components/verify/VerifyResultsExplainer'
 
 type VaultFilter = 'all' | 'verified' | 'demo'
 
@@ -28,6 +30,7 @@ function proofHash(proof: { content_hash?: string; proof_url?: string }): string
 export function VaultPage() {
   const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
+  const { portfolio } = usePortfolio()
   const [nostrEvent, setNostrEvent] = useState('')
   const [filter, setFilter] = useState<VaultFilter>('all')
   const [copied, setCopied] = useState(false)
@@ -207,6 +210,9 @@ export function VaultPage() {
                 </>
               )}
             </div>
+            <VerifyResultsExplainer
+              messageKey={verifyResult.verified ? 'vault.verify.resultsExplainerOk' : 'vault.verify.resultsExplainerFail'}
+            />
           </div>
         )}
       </Card>
@@ -304,6 +310,11 @@ export function VaultPage() {
                     <a href={otsPath} download className="btn-secondary text-xs !py-1.5 !px-3">
                       .ots
                     </a>
+                  )}
+                  {portfolio.includes(p.id) && (
+                    <Link to="/portfolio" className="btn-secondary text-xs !py-1.5 !px-3">
+                      {t('vault.inPortfolio')}
+                    </Link>
                   )}
                   <Link to={`/apply?program=${encodeURIComponent(p.name)}`} className="btn-secondary text-xs !py-1.5 !px-3">
                     Apply

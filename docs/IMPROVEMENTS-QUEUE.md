@@ -1,6 +1,6 @@
 # MotoPass Improvements Queue (200 items)
 
-**Status:** Batches 1–22 complete · **BUILD:** `2026.07.14-28`
+**Status:** Batches 1–22 complete · Batch 23 in progress · **BUILD:** `2026.07.15-48`
 
 Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
 
@@ -358,6 +358,76 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 - [x] 523. i18n keys for density, save, report, offline cache
 - [x] 524. `leaflet` + `react-leaflet@4.2.1`
 - [x] 525–530. BUILD `2026.07.07-26`
+
+## Batch 23 — Next 50 (531–580)
+
+### Deploy (531–538)
+
+- [ ] 531. Cloudflare zone purge on every deploy (all Give A Bit sites)
+- [x] 532. Wire `purge-live-cache.mjs` into `npm run deploy:safe`
+- [x] 533. Post-deploy `wait-live-app.mjs` gate before marking ship complete
+- [x] 534. `verify-live-app.mjs` in CI after deploy (Playwright poison check)
+- [ ] 535. Grant deploy token `Zone.Cache Purge` permission (Kimi)
+- [ ] 536. Document salted-filename + no-cache policy in `docs/DEPLOYMENT.md`
+- [ ] 537. Boot guard recovery UI copy + retry countdown polish
+- [ ] 538. Bump BUILD sync in `sync-build-version.mjs` on every ship
+
+### Nav (539–546)
+
+- [x] 539. Footer “verify this page” Satohash badge
+- [ ] 540. Section anchor nav on Compare + Simulator pages
+- [ ] 541. Breadcrumb ellipsis on deep paths (>3 segments)
+- [ ] 542. Mobile bottom nav active pill sync with More sheet
+- [ ] 543. Prefetch route chunks on main nav hover (extend `PrefetchNavLink`)
+- [ ] 544. Skip-to-content visible focus ring on Sovereign Night canvas
+- [ ] 545. `MoreNavSheet` reduced-motion spring guard audit
+- [ ] 546. Register/Dashboard CTA prominence in collapsed header
+
+### Programs (547–554)
+
+- [x] 547. Side-by-side program diff view (Compare page extension)
+- [ ] 548. Program modal “Open in Compare” quick action
+- [ ] 549. Export filtered programs as shareable URL + JSON bundle
+- [ ] 550. Flagship visual weight tooltip (sovereignty score breakdown)
+- [ ] 551. Programs table column density toggle (compact/comfortable)
+- [ ] 552. Lightning-ready filter chip persistence across sessions
+- [ ] 553. Custom program import validation error inline codes
+- [ ] 554. `ProgramCard` merchant density click-through to BTC Map
+
+### BTC Map (555–562)
+
+- [x] 555. Apply BTC Map directory-panel pattern to Distressed filters
+- [ ] 556. Merchant directory export CSV per jurisdiction
+- [ ] 557. BTC Map offline cache freshness badge (`fetchedAt` age)
+- [ ] 558. Map pin clustering at high zoom-out density
+- [ ] 559. Saved merchants sync across devices via Nostr event list
+- [ ] 560. `BtcMapProgramPanel` deep-link from Programs modal
+- [ ] 561. Weekly `btcmap:sync` cron in GitHub Actions
+- [ ] 562. Report venue pre-fill program name from selector
+
+### Vault (563–570)
+
+- [ ] 563. Vault filter tabs keyboard arrow navigation
+- [ ] 564. OTS upload drag-and-drop zone on Vault page
+- [ ] 565. Verify page hash history (last 5 local verifications)
+- [ ] 566. Vault proof lineage timeline per program
+- [ ] 567. Copy Satohash verify URL one-click from proof rows
+- [ ] 568. Demo vs verified proof filter badge counts
+- [ ] 569. Nostr kind:30078 publish stub with proof context
+- [ ] 570. Vault education section i18n for pt/zh/ar
+
+### Agents (571–580)
+
+- [ ] 571. Agent card status filter chips (active/beta/coming)
+- [ ] 572. Agent DM stub copy-to-clipboard without modal
+- [ ] 573. Paige chat escalate-to-agent handoff link
+- [ ] 574. Agent region map visual (static SVG by jurisdiction)
+- [ ] 575. Agents page i18n for Paige + deal-room cards
+- [ ] 576. Kimi card office-hours overlap indicator
+- [ ] 577. Agent npub copy field with truncated display
+- [ ] 578. Apply gate banner when agents messaging disabled
+- [ ] 579. Agent response-time SLA placeholder per region
+- [x] 580. Agent availability — static office hours cards per agent (Mon–Fri 9–17 local)
 
 ---
 

@@ -675,4 +675,27 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 48 — Batch 23 parallel agents)
+
+**Done:**
+- **6 parallel agents** shipped Batch 23 subset (531–580): deploy health, nav polish, programs, distressed/apply directories, vault verify, agents
+- **Deploy:** `deploy-health.mjs`, `parse-live-index.mjs`, `useLiveDeployHealth` footer green dot, `verify:live:ci`, purge script error clarity, CI live-health stub
+- **Nav:** `BackToTop`, ⌘L language shortcut, per-route lang memory (`routeLangStorage`), reduced-motion pulse guard
+- **Programs:** Compare side-by-side diff + “Add all to stack”, filter preset chips, `FreshnessBadge` on cards
+- **Distressed/Apply:** `DistressedFilterDirectory`, `DistressedListingsList`, `ApplyLaunchGatesDirectory`
+- **Vault/Verify:** `FooterVerifyLink`, `VerifyResultsExplainer`, `pageVerify.ts`, vault portfolio link
+- **Agents:** Office hours availability cards (item 580)
+- **BUILD:** `2026.07.15-48` · 48 unit tests pass · build OK
+
+**Decisions:**
+- Zone Cache Purge (531/535) still blocked — salted filenames + wait-live remain primary defense
+- Batch 23 queue updated; ~35 items still open (map clustering, vault OTS drag-drop, agent filters, etc.)
+
+**Git State:**
+- SHA: (see commit after push)
+- Message: `feat: BUILD 48 — Batch 23 parallel agent ship`
+- Pushed: `origin/main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

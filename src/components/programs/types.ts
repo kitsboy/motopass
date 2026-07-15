@@ -32,6 +32,7 @@ export interface Program {
   category?: string;
   status?: string;
   lastChecked?: string;
+  proofStampedAt?: string;
   bitcoinIntegration?: string;
   bitcoinSpecific?: string;
   cryptoFriendlyScore?: number | null;

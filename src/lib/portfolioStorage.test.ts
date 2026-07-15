@@ -3,6 +3,7 @@ import {
   loadPortfolio,
   savePortfolio,
   togglePortfolio,
+  addPortfolioIds,
   exportProgramsJson,
   importProgramsJson,
   saveStack,
@@ -59,6 +60,13 @@ describe('portfolioStorage', () => {
     const afterRemove = togglePortfolio(42)
     expect(afterRemove).toEqual([])
     expect(loadPortfolio()).toEqual([])
+  })
+
+  it('adds multiple ids without duplicates', () => {
+    savePortfolio([1])
+    const next = addPortfolioIds([2, 3, 2])
+    expect(next).toEqual([1, 2, 3])
+    expect(loadPortfolio()).toEqual([1, 2, 3])
   })
 
   it('persists explicit save and reload', () => {

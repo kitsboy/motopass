@@ -29,6 +29,17 @@ import { formatT } from '../i18n/format'
 import { SeoHead } from '../components/SeoHead'
 import { absoluteUrl } from '../lib/seo'
 import { countActiveFilters, filtersFromSearchParams, filtersToSearchParams, isDefaultFilters } from '../lib/urlState'
+import {
+  type FilterPresetId,
+  isFilterPresetActive,
+  toggleFilterPreset,
+} from '../lib/programFilterPresets'
+
+const FILTER_PRESETS: { id: FilterPresetId; labelKey: 'programs.presetUnder100k' | 'programs.presetLightning' | 'programs.presetBitcoinFriendly' }[] = [
+  { id: 'under100k', labelKey: 'programs.presetUnder100k' },
+  { id: 'lightning', labelKey: 'programs.presetLightning' },
+  { id: 'bitcoinFriendly', labelKey: 'programs.presetBitcoinFriendly' },
+]
 
 const iconBtn = (active: boolean) =>
   `rounded-xl border px-2.5 py-2 font-chrome text-xs transition-all duration-fast ${
@@ -230,6 +241,22 @@ export function ProgramsPage() {
             placeholder={t('programs.search')}
             className="input-field mb-3"
           />
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            <span className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">
+              {t('programs.filterPresets')}
+            </span>
+            {FILTER_PRESETS.map(({ id, labelKey }) => (
+              <button
+                key={id}
+                type="button"
+                aria-pressed={isFilterPresetActive(id, filters)}
+                onClick={() => patchFilters(toggleFilterPreset(id, filters))}
+                className={isFilterPresetActive(id, filters) ? 'chip-active text-xs' : 'chip text-xs'}
+              >
+                {t(labelKey)}
+              </button>
+            ))}
+          </div>
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"

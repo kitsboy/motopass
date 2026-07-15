@@ -6,13 +6,13 @@ import { usePrograms } from '../hooks/usePrograms'
 import { useBtcPrice } from '../context/BtcPriceContext'
 import { PageHeader } from '../components/ui/PageHeader'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
-import { CardSkeleton } from '../components/LoadingSkeleton'
 import { BtcDualPrice } from '../components/BtcDualPrice'
 import { ProofBadge } from '../components/ui/ProofBadge'
 import { ClassyModal } from '../components/ui/ClassyModal'
 import { Card } from '../components/ui/Card'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { EscrowBuilder } from '../components/distressed/EscrowBuilder'
+import { DistressedFilterDirectory } from '../components/distressed/DistressedFilterDirectory'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import {
   buildDistressedListings,
@@ -31,59 +31,6 @@ function scoreChip(score: number) {
   if (score >= 4) return 'bg-btc-orange-soft/60 text-mp-btc-text border-btc-orange/35'
   if (score >= 3) return 'bg-mp-proof/10 text-mp-proof border-mp-proof/30'
   return 'bg-card-muted/60 text-ink-muted border-mp/60'
-}
-
-function ListingCard({
-  listing,
-  onSelect,
-  index,
-}: {
-  listing: DistressedListing
-  onSelect: () => void
-  index: number
-}) {
-  return (
-    <Card
-      variant="interactive"
-      animate
-      delay={0.04 + index * 0.03}
-      role="button"
-      tabIndex={0}
-      onClick={onSelect}
-      onKeyDown={e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault()
-          onSelect()
-        }
-      }}
-      className="text-left w-full !p-5"
-    >
-      <div className="flex items-start justify-between gap-2 mb-2">
-        <div className="min-w-0">
-          <span className="text-[10px] text-ink-muted font-mono uppercase tracking-wider">{listing.region}</span>
-          <h3 className="font-display font-semibold text-ink mt-0.5 truncate">
-            {listing.program_flag} {listing.program_name}
-          </h3>
-        </div>
-        <span className={`rounded-chip border px-2 py-0.5 text-[10px] font-mono shrink-0 ${scoreChip(listing.distressed_score)}`}>
-          {listing.distressed_score}/5
-        </span>
-      </div>
-      <p className="font-body text-xs text-ink-secondary line-clamp-2 mb-4 leading-relaxed">{listing.pathway_label}</p>
-      <div className="flex items-end justify-between gap-2 pt-2 border-t border-mp/40">
-        <BtcDualPrice usd={listing.ask_usd} size="sm" />
-        <span
-          className={`text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded-chip border ${
-            listing.lane === 'curated'
-              ? 'border-mp-proof/40 text-mp-proof bg-mp-proof/10'
-              : 'border-mp/60 text-ink-muted'
-          }`}
-        >
-          {listing.lane}
-        </span>
-      </div>
-    </Card>
-  )
 }
 
 function ListingModal({
@@ -262,85 +209,25 @@ export function DistressedPage() {
         </div>
       </Card>
 
-      <div className="flex flex-wrap gap-2 mb-5">
-        {(['all', 'curated', 'permissionless'] as DistressedLane[]).map(l => (
-          <button
-            key={l}
-            type="button"
-            onClick={() => setLane(l)}
-            className={`rounded-chip border px-3 py-1.5 text-xs font-chrome capitalize transition-all duration-fast ${
-              lane === l
-                ? 'border-btc-orange/35 bg-btc-orange-soft/60 text-mp-btc-text shadow-mp-1'
-                : 'border-mp/70 text-ink-muted hover:border-btc-orange/25 hover:text-ink'
-            }`}
-          >
-            {l === 'all' ? 'All lanes' : l}
-          </button>
-        ))}
-      </div>
-
-      <div className="flex flex-wrap gap-3 mb-8 font-chrome">
-        <label className="flex items-center gap-2 text-xs text-ink-muted">
-          Region
-          <select
-            value={filters.region}
-            onChange={e => setFilters(f => ({ ...f, region: e.target.value }))}
-            className="select-field !py-1.5 !px-2 text-xs min-w-[6rem]"
-          >
-            {regions.map(r => (
-              <option key={r} value={r}>{r}</option>
-            ))}
-          </select>
-        </label>
-        <label className="flex items-center gap-2 text-xs text-ink-muted">
-          Min score
-          <select
-            value={filters.minScore}
-            onChange={e => setFilters(f => ({ ...f, minScore: Number(e.target.value) }))}
-            className="select-field !py-1.5 !px-2 text-xs"
-          >
-            {[1, 2, 3, 4, 5].map(n => (
-              <option key={n} value={n}>{n}+</option>
-            ))}
-          </select>
-        </label>
-        <label className="flex items-center gap-2 text-xs text-ink-muted">
-          Max ask (USD)
-          <select
-            value={filters.maxBtcUsd}
-            onChange={e => setFilters(f => ({ ...f, maxBtcUsd: Number(e.target.value) }))}
-            className="select-field !py-1.5 !px-2 text-xs"
-          >
-            <option value={0}>Any</option>
-            <option value={50000}>$50k</option>
-            <option value={100000}>$100k</option>
-            <option value={250000}>$250k</option>
-            <option value={500000}>$500k</option>
-          </select>
-        </label>
-      </div>
-
       {error && <ProgramsLoadError message={error} />}
-      {loading && !error && <CardSkeleton count={6} />}
-      {!loading && !error && (
-        <>
-          {filtered.length === 0 ? (
-            <Card className="text-center py-16 text-ink-muted font-body text-sm">
-              No listings match filters — try lowering min score or switching lane.
-            </Card>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filtered.map((listing, i) => (
-                <ListingCard
-                  key={listing.listing_id}
-                  listing={listing}
-                  index={i}
-                  onSelect={() => setActive(listing)}
-                />
-              ))}
-            </div>
-          )}
-        </>
+      {!error && (
+        <Card
+          variant="elevated"
+          className="flex flex-col min-h-[min(420px,55vh)] lg:min-h-[min(640px,72vh)] max-h-[min(640px,72vh)] overflow-hidden !p-0"
+        >
+          <DistressedFilterDirectory
+            listings={filtered}
+            totalCount={allListings.length}
+            regions={regions}
+            lane={lane}
+            onLaneChange={setLane}
+            filters={filters}
+            onFiltersChange={setFilters}
+            loading={loading}
+            error={null}
+            onSelectListing={setActive}
+          />
+        </Card>
       )}
 
       </div>

@@ -1,11 +1,13 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { LANGUAGES, detectBrowserLang, type LangCode, type LangPreference } from './languages'
+import { saveRouteLang } from './routeLangStorage'
 import { t, type TranslationKey } from './translations'
 
 interface I18nContextValue {
   lang: LangCode
   langPreference: LangPreference
   setLang: (pref: LangPreference) => void
+  setRoutePath: (path: string) => void
   t: (key: TranslationKey) => string
   dir: 'ltr' | 'rtl'
 }
@@ -22,14 +24,20 @@ function readPreference(): LangPreference {
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const [langPreference, setLangPreference] = useState<LangPreference>(readPreference)
+  const routePathRef = useRef('/')
 
   const lang: LangCode =
     langPreference === 'system' ? detectBrowserLang() : langPreference
 
-  const setLang = (pref: LangPreference) => {
+  const setRoutePath = useCallback((path: string) => {
+    routePathRef.current = path
+  }, [])
+
+  const setLang = useCallback((pref: LangPreference) => {
     setLangPreference(pref)
     localStorage.setItem(STORAGE_KEY, pref)
-  }
+    saveRouteLang(routePathRef.current, pref)
+  }, [])
 
   const meta = LANGUAGES.find(l => l.code === lang) ?? LANGUAGES[0]
 
@@ -42,9 +50,10 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     lang,
     langPreference,
     setLang,
+    setRoutePath,
     t: (key) => t(lang, key),
     dir: meta.dir,
-  }), [lang, langPreference, meta.dir])
+  }), [lang, langPreference, setLang, setRoutePath, meta.dir])
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
 }

@@ -16,9 +16,14 @@ import { useI18n } from '../i18n/I18nContext'
 import { FOOTER_VERSION } from '../lib/buildInfo'
 import { useScrollToTop } from '../hooks/useScrollToTop'
 import { useHeaderCollapse } from '../hooks/useHeaderCollapse'
+import { useLanguageShortcut } from '../hooks/useLanguageShortcut'
+import { useRouteLangMemory } from '../hooks/useRouteLangMemory'
+import { BackToTop } from './nav/BackToTop'
 
 export function Layout() {
   useScrollToTop()
+  useLanguageShortcut()
+  useRouteLangMemory()
   const { t } = useI18n()
   const headerCollapsed = useHeaderCollapse()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -88,6 +93,7 @@ export function Layout() {
       <MoreNavSheet open={moreOpen} onClose={() => setMoreOpen(false)} />
       <MobileBottomNav moreOpen={moreOpen} onMoreToggle={() => setMoreOpen(v => !v)} />
 
+      <BackToTop />
       <Footer />
     </div>
   )

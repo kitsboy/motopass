@@ -28,6 +28,17 @@ export function clearPortfolio(): number[] {
   return []
 }
 
+/** Add multiple program ids to portfolio (deduped, order preserved). */
+export function addPortfolioIds(ids: number[]): number[] {
+  const current = loadPortfolio()
+  const next = [...current]
+  for (const id of ids) {
+    if (!next.includes(id)) next.push(id)
+  }
+  savePortfolio(next)
+  return next
+}
+
 export function loadSavedFilters<T>(): T | null {
   try {
     const raw = localStorage.getItem(FILTERS_KEY)

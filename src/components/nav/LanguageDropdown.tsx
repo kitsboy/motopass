@@ -178,7 +178,8 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
             return !v
           })
         }}
-        title={t('nav.language')}
+        title={`${t('nav.language')} (${t('nav.languageShortcut')})`}
+        data-language-trigger
       >
         <span className="flex items-center gap-1.5 min-w-0">
           <span className="text-base leading-none shrink-0" aria-hidden="true">

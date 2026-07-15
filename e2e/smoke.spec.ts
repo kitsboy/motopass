@@ -85,8 +85,9 @@ test.describe('smoke', () => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto('/compare?ids=1,2')
     await expect(page.locator('main')).toBeVisible()
-    await expect(page.locator('table')).toBeVisible()
-    await expect(page.locator('table thead th')).toHaveCount(3)
+    const compareTable = page.getByRole('table', { name: 'Side-by-side comparison' })
+    await expect(compareTable).toBeVisible()
+    await expect(compareTable.locator('thead th')).toHaveCount(3)
   })
 
   test('programs URL filter shows in search', async ({ page }) => {

@@ -3,9 +3,11 @@ import { Logo } from './Logo'
 import { AgentCardKimi } from './AgentCardKimi'
 import { useI18n } from '../i18n/I18nContext'
 import { GiveABitLogoLink } from './footer/GiveABitLogoLink'
+import { FooterVerifyLink } from './footer/FooterVerifyLink'
 import { FooterActionBar } from './footer/FooterActionBar'
 import { FooterApplyLink } from './footer/FooterApplyLink'
 import { BUILD_LABEL, FOOTER_VERSION } from '../lib/buildInfo'
+import { useLiveDeployHealth } from '../hooks/useLiveDeployHealth'
 import { MAIN_NAV_ROUTES } from '../lib/navRoutes'
 import type { TranslationKey } from '../i18n/translations'
 
@@ -21,6 +23,7 @@ const footerLinkClass = ({ isActive }: { isActive: boolean }) =>
 
 export function Footer() {
   const { t } = useI18n()
+  const liveHealth = useLiveDeployHealth()
 
   return (
     <footer className="footer-glass relative z-[1] mt-auto safe-bottom mb-20 md:mb-0">
@@ -102,12 +105,27 @@ export function Footer() {
               ·
             </span>
             <span
-              className="leading-none font-semibold text-mp-btc-text shrink-0 px-2 py-0.5 rounded-lg border border-btc-orange/30 bg-btc-orange-soft/50 shadow-[0_0_12px_rgba(255,149,0,0.08)]"
+              className="inline-flex items-center gap-1.5 leading-none font-semibold text-mp-btc-text shrink-0 px-2 py-0.5 rounded-lg border border-btc-orange/30 bg-btc-orange-soft/50 shadow-[0_0_12px_rgba(255,149,0,0.08)]"
               data-build-version
-              title={BUILD_LABEL}
+              title={
+                liveHealth === 'synced'
+                  ? `${BUILD_LABEL} · live deploy matches`
+                  : BUILD_LABEL
+              }
             >
+              {liveHealth === 'synced' && (
+                <span
+                  className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.7)] shrink-0"
+                  aria-hidden
+                  data-live-deploy-synced
+                />
+              )}
               {FOOTER_VERSION}
             </span>
+            <span className="text-mp-strong opacity-50" aria-hidden>
+              ·
+            </span>
+            <FooterVerifyLink />
             <span className="text-mp-strong hidden sm:inline opacity-50" aria-hidden>
               ·
             </span>

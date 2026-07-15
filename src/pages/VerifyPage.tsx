@@ -2,14 +2,23 @@ import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { ExternalLink, Shield, Copy, Check, ClipboardPaste } from 'lucide-react'
 import { hashApplicationPayload, satohashStampGuideUrl, satohashVerifyUrl } from '../lib/satohash'
+import { buildPageVerifyPayload } from '../lib/pageVerify'
 import { BlockHeight } from '../components/BlockHeight'
+import { VerifyResultsExplainer } from '../components/verify/VerifyResultsExplainer'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
 
 export function VerifyPage() {
   const { t } = useI18n()
   const [searchParams] = useSearchParams()
-  const [input, setInput] = useState('MotoPass — Truth You Can Verify')
+  const [input, setInput] = useState(() => {
+    const path = searchParams.get('path')
+    const build = searchParams.get('build')
+    if (path && build) {
+      return JSON.stringify(buildPageVerifyPayload(path, build), null, 2)
+    }
+    return 'MotoPass — Truth You Can Verify'
+  })
   const [hash, setHash] = useState(() => searchParams.get('hash') ?? '')
   const [copied, setCopied] = useState(false)
 
@@ -64,6 +73,7 @@ export function VerifyPage() {
                 {t('verify.verifyProof')} <ExternalLink size={14} />
               </a>
             </div>
+            <VerifyResultsExplainer messageKey="verify.resultsExplainer" />
           </div>
         )}
       </div>

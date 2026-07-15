@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { loadCompareIds, saveCompareIds } from '../lib/portfolioStorage'
+import { addPortfolioIds, loadCompareIds, saveCompareIds } from '../lib/portfolioStorage'
+import { usePortfolio } from '../hooks/usePortfolio'
 import { Search, X } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { useDebouncedValue } from '../hooks/useDebouncedValue'
@@ -29,13 +30,22 @@ type CompareRow = {
   label: string
   best: 'min' | 'max' | null
   numeric: (p: Program) => number | null
+  valueKey: (p: Program) => string
   render: (p: Program) => ReactNode
+}
+
+function rowValuesDiffer(row: CompareRow, programs: Program[]): boolean {
+  if (programs.length < 2) return false
+  const keys = programs.map(p => row.valueKey(p))
+  return new Set(keys).size > 1
 }
 
 export function FinanceComparePage() {
   const { t } = useI18n()
   const [searchParams, setSearchParams] = useSearchParams()
   const { programs, loading, error } = usePrograms()
+  const { portfolio, setPortfolio } = usePortfolio()
+  const [stackAdded, setStackAdded] = useState(false)
   const ids = useMemo(() => parseIdList(searchParams.get('ids')), [searchParams])
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebouncedValue(search, 150)
@@ -85,68 +95,95 @@ export function FinanceComparePage() {
   const selected = programs.filter(p => ids.includes(p.id))
   const compare = selected
 
+  useEffect(() => {
+    setStackAdded(false)
+  }, [ids.join(',')])
+
   const rows = useMemo((): CompareRow[] => [
     {
       label: t('compare.minInvestment'),
       best: 'min',
       numeric: (p) => p.finance.min_investment_usd,
+      valueKey: (p) => String(p.finance.min_investment_usd ?? ''),
       render: (p) => <CompareMoneyCell usd={p.finance.min_investment_usd ?? 0} />,
     },
     {
       label: t('compare.typical'),
       best: 'min',
       numeric: (p) => p.finance.typical_investment_usd,
+      valueKey: (p) => String(p.finance.typical_investment_usd ?? ''),
       render: (p) => <CompareMoneyCell usd={p.finance.typical_investment_usd ?? 0} />,
     },
     {
       label: t('compare.govFees'),
       best: 'min',
       numeric: (p) => p.finance.gov_fees_usd,
+      valueKey: (p) => String(p.finance.gov_fees_usd ?? ''),
       render: (p) => <CompareMoneyCell usd={p.finance.gov_fees_usd ?? 0} />,
     },
     {
       label: t('compare.processing'),
       best: null,
       numeric: () => null,
+      valueKey: (p) => p.finance.processing_time_months ?? '',
       render: (p) => `${p.finance.processing_time_months ?? '—'} ${t('compare.months')}`,
     },
     {
       label: t('compare.btcScore'),
       best: 'max',
       numeric: (p) => p.finance.crypto_friendly_score,
+      valueKey: (p) => String(p.finance.crypto_friendly_score ?? ''),
       render: (p) => `${p.finance.crypto_friendly_score ?? '—'}/10`,
     },
     {
       label: t('compare.sovereignty'),
       best: 'max',
       numeric: (p) => p.sovereignty_score ?? null,
+      valueKey: (p) => String(p.sovereignty_score ?? ''),
       render: (p) => `${p.sovereignty_score ?? '—'}/10`,
     },
     {
       label: t('compare.synergy'),
       best: null,
       numeric: () => null,
+      valueKey: (p) => p.stacking_synergy ?? '',
       render: (p) => p.stacking_synergy ?? '—',
     },
     {
       label: t('compare.btcIntegration'),
       best: null,
       numeric: () => null,
+      valueKey: (p) => p.bitcoin_integration ?? '',
       render: (p) => p.bitcoin_integration ?? '—',
     },
     {
       label: t('compare.risk'),
       best: null,
       numeric: () => null,
+      valueKey: (p) => p.risk_level ?? '',
       render: (p) => p.risk_level ?? '—',
     },
     {
       label: t('compare.lightning'),
       best: null,
       numeric: () => null,
+      valueKey: (p) => (p.lightning_ready ? '1' : '0'),
       render: (p) => (p.lightning_ready ? t('compare.yes') : t('compare.no')),
     },
   ], [t])
+
+  const diffRows = useMemo(
+    () => (compare.length >= 2 && compare.length <= 3 ? rows.filter(r => rowValuesDiffer(r, compare)) : []),
+    [rows, compare],
+  )
+
+  const allInStack = compare.length > 0 && compare.every(p => portfolio.includes(p.id))
+
+  const handleAddAllToStack = () => {
+    const next = addPortfolioIds(compare.map(p => p.id))
+    setPortfolio(next)
+    setStackAdded(true)
+  }
 
   return (
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
@@ -192,6 +229,17 @@ export function FinanceComparePage() {
                   >
                     {t('compare.openSimulator')}
                   </Link>
+                )}
+                <button
+                  type="button"
+                  onClick={handleAddAllToStack}
+                  disabled={allInStack}
+                  className={`chip text-xs ${allInStack ? 'text-ink-muted' : 'text-accent hover:underline'}`}
+                >
+                  {allInStack ? t('compare.addedToStack') : t('compare.addAllToStack')}
+                </button>
+                {stackAdded && !allInStack && (
+                  <span className="sr-only" aria-live="polite">{t('compare.addedToStack')}</span>
                 )}
               </div>
             )}
@@ -299,6 +347,47 @@ export function FinanceComparePage() {
                   </div>
                 ))}
               </div>
+              {compare.length >= 2 && compare.length <= 3 && (
+                <section className="mt-6 rounded-card border border-mp-border bg-mp-card-muted/50 p-4" aria-labelledby="compare-diff-heading">
+                  <h2 id="compare-diff-heading" className="font-display text-sm font-semibold text-ink">
+                    {t('compare.diffTitle')}
+                  </h2>
+                  <p className="mt-1 text-xs text-ink-muted">{t('compare.diffSubtitle')}</p>
+                  {diffRows.length === 0 ? (
+                    <p className="mt-3 text-xs text-ink-muted">{t('compare.diffEmpty')}</p>
+                  ) : (
+                    <div className="mt-3 overflow-x-auto">
+                      <table className="w-full text-xs">
+                        <caption className="sr-only">{t('compare.diffTitle')}</caption>
+                        <thead>
+                          <tr className="border-b border-mp-border">
+                            <th scope="col" className="p-2 text-left text-ink-muted font-medium">{t('compare.metric')}</th>
+                            {compare.map(p => (
+                              <th key={p.id} scope="col" className="p-2 text-left font-display text-ink">{p.flag} {p.name}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {diffRows.map(r => {
+                            const nums = compare.map(p => r.numeric(p))
+                            const bests = r.best ? bestIndex(nums, r.best) : new Set<number>()
+                            return (
+                              <tr key={r.label} className="border-b border-mp-border-subtle">
+                                <th scope="row" className="p-2 text-left text-ink-muted font-medium whitespace-nowrap">{r.label}</th>
+                                {compare.map((p, i) => (
+                                  <td key={p.id} className={`p-2 text-ink ${bests.has(i) ? 'compare-best-cell font-medium' : ''}`}>
+                                    {r.render(p)}
+                                  </td>
+                                ))}
+                              </tr>
+                            )
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </section>
+              )}
             </>
           ) : (
             <div className="text-center py-16 rounded-card border border-mp-border bg-mp-card-muted text-mp-ink-tertiary">

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { Check, CheckCircle2, Copy, ExternalLink, Loader2, Radio, Rocket, ShieldCheck } from 'lucide-react'
+import { Check, CheckCircle2, Copy, ExternalLink, Loader2, Radio, Rocket } from 'lucide-react'
 import { NostrConnect } from '../components/NostrConnect'
 import { hashApplicationPayload, satohashStampGuideUrl } from '../lib/satohash'
 import { addApplication } from '../lib/storage'
@@ -12,6 +12,7 @@ import { Button } from '../components/ui/Button'
 import { Input, Textarea } from '../components/ui/Input'
 import { useLaunchGates } from '../hooks/useLaunchGates'
 import { BUILD_ID } from '../lib/buildInfo'
+import { ApplyLaunchGatesDirectory } from '../components/apply/ApplyLaunchGatesDirectory'
 
 export function ApplyPage() {
   const { t } = useI18n()
@@ -94,46 +95,12 @@ export function ApplyPage() {
         </Card>
       )}
 
-      <Card variant="elevated" animate delay={0.1} className="mb-6" aria-labelledby="apply-gates-heading">
-        <h2 id="apply-gates-heading" className="font-chrome text-sm font-semibold text-ink flex items-center gap-2 mb-4 min-w-0">
-          <ShieldCheck size={16} className="text-mp-proof shrink-0" aria-hidden />
-          <span className="truncate">{t('apply.gatesHeading')}</span>
-          {applicationsOpen && (
-            <span className="rounded-chip border border-btc-orange/35 bg-btc-orange-soft/50 text-mp-btc-text text-[10px] font-mono px-2 py-0.5 ml-auto shrink-0">
-              OPEN · {passed}/{report.gates.length}
-            </span>
-          )}
-        </h2>
-        {loading ? (
-          <div className="flex items-center gap-2 text-xs text-ink-muted font-mono py-2">
-            <Loader2 size={14} className="animate-spin text-btc-orange" aria-hidden />
-            Loading launch-gates.json…
-          </div>
-        ) : (
-          <ul className="space-y-2">
-            {report.gates.map((g, i) => (
-              <li
-                key={g.id}
-                className={g.pass ? 'gate-card-pass' : 'gate-card-pending'}
-                style={{ animationDelay: `${i * 40}ms` }}
-              >
-                <div className="flex items-center justify-between gap-2 min-w-0">
-                  <span className="font-mono font-semibold text-ink truncate">
-                    {g.pass ? '✓' : '○'} {g.id} · {g.pillar}
-                  </span>
-                  <span className={`text-[10px] uppercase tracking-wider shrink-0 ${g.pass ? 'text-mp-proof' : 'text-ink-muted'}`}>
-                    {g.pass ? 'pass' : 'pending'}
-                  </span>
-                </div>
-                <p className="font-body text-ink-secondary mt-1 break-words">{g.name}</p>
-                <p className="text-ink-muted font-mono text-[10px] mt-0.5 break-words opacity-75">{g.detail}</p>
-              </li>
-            ))}
-          </ul>
-        )}
-        <p className="text-[10px] text-ink-muted font-mono mt-4 break-all opacity-60">
-          {BUILD_ID} · <code>npm run launch:gate</code>
-        </p>
+      <Card variant="elevated" animate delay={0.1} className="mb-6 overflow-hidden !p-0">
+        <ApplyLaunchGatesDirectory
+          report={report}
+          loading={loading}
+          applicationsOpen={applicationsOpen}
+        />
       </Card>
 
       <div className="mb-6">
