@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Download, Search } from 'lucide-react'
 import type { BtcMapPlace } from '../../lib/btcmap'
 import { downloadPlacesCsv } from '../../lib/btcmapExport'
@@ -21,6 +21,7 @@ export function BtcMapMerchantDirectory({
   programName?: string
 }) {
   const { t } = useI18n()
+  const scrollRef = useRef<HTMLDivElement>(null)
   const [query, setQuery] = useState('')
   const debounced = useDebouncedValue(query.trim().toLowerCase(), 280)
 
@@ -79,7 +80,10 @@ export function BtcMapMerchantDirectory({
         </div>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-2 py-2 btcmap-directory-scroll">
+      <div
+        ref={scrollRef}
+        className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-2 py-2 btcmap-directory-scroll"
+      >
         <BtcMapPlacesList
           places={filtered}
           loading={loading}
@@ -87,6 +91,7 @@ export function BtcMapMerchantDirectory({
           showSave={showSave}
           variant="directory"
           highlightQuery={debounced}
+          scrollContainerRef={scrollRef}
         />
       </div>
     </div>

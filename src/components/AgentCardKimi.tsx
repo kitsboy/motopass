@@ -32,7 +32,7 @@ export function AgentCardKimi() {
             {availableNow && (
               <span className="inline-flex items-center gap-1.5 mt-2 text-[10px] font-chrome font-medium text-mp-proof bg-mp-proof/10 border border-mp-proof/30 rounded-full px-2.5 py-0.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-mp-proof animate-pulse" aria-hidden />
-                {t('agents.availableNow')} · {t('agents.officeHours')}
+                {t('agents.availableNow')} · {t('agents.officeHours')} · {t('agents.kimi.timezone')}
               </span>
             )}
             <p className="text-sm text-mp-ink-secondary mt-3 leading-relaxed">{t('agents.kimi.body')}</p>

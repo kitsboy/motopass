@@ -1,14 +1,20 @@
+import type { MutableRefObject } from 'react'
 import { Scale } from 'lucide-react'
 import { ClassyModal } from '../ui/ClassyModal'
 import { LEGAL_LAST_UPDATED, LEGAL_SECTIONS, LEGAL_VERSION } from '../../data/legal'
 
-type Props = { open: boolean; onClose: () => void }
+type Props = {
+  open: boolean
+  onClose: () => void
+  returnFocusRef?: MutableRefObject<HTMLElement | null>
+}
 
-export function LegalModal({ open, onClose }: Props) {
+export function LegalModal({ open, onClose, returnFocusRef }: Props) {
   return (
     <ClassyModal
       open={open}
       onClose={onClose}
+      returnFocusRef={returnFocusRef}
       title="Terms & EU Liability"
       subtitle={`No data collection · Not accepting applications · ${LEGAL_VERSION}`}
       icon={<Scale size={20} />}

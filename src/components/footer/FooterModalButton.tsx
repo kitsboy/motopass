@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { forwardRef, type ReactNode } from 'react'
 
 type Props = {
   onClick: () => void
@@ -7,9 +7,13 @@ type Props = {
   sub?: string
 }
 
-export function FooterModalButton({ onClick, icon, label, sub }: Props) {
+export const FooterModalButton = forwardRef<HTMLButtonElement, Props>(function FooterModalButton(
+  { onClick, icon, label, sub },
+  ref,
+) {
   return (
     <button
+      ref={ref}
       type="button"
       onClick={onClick}
       className="group flex flex-col items-center justify-center gap-2 p-4 sm:p-5 rounded-mp-xl border border-mp bg-card hover:border-btc-orange/35 hover:bg-btc-orange-soft/30 hover:shadow-card transition-all duration-200 min-h-[44px] w-full"
@@ -21,4 +25,4 @@ export function FooterModalButton({ onClick, icon, label, sub }: Props) {
       {sub && <span className="text-[10px] text-ink-muted font-mono -mt-1">{sub}</span>}
     </button>
   )
-}
+})

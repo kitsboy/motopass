@@ -1,11 +1,12 @@
-import { useMemo, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Shield, Copy, Check, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio, Download } from 'lucide-react'
 import { downloadVaultCredentials } from '../lib/vaultCredentialExport'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
 import { toCinematicProgram } from '../lib/programAdapter'
-import { verifyHashPaste, verifyOtsInBrowser, satohashVerifyUrl } from '../lib/seal/vaultVerify'
+import { parseHashLines, verifyHashPaste, verifyOtsInBrowser, satohashVerifyUrl } from '../lib/seal/vaultVerify'
+import { VaultEducationCard } from '../components/vault/VaultEducationCard'
 import { RowSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { PageHeader } from '../components/ui/PageHeader'
@@ -16,6 +17,7 @@ import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import type { VerifyResult } from '../types/proof'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
+import { estimateReadingMinutes } from '../lib/utils'
 import { VerifyResultsExplainer } from '../components/verify/VerifyResultsExplainer'
 import { VaultOtsDropZone } from '../components/vault/VaultOtsDropZone'
 import { VaultProofRow } from '../components/vault/VaultProofRow'
@@ -30,15 +32,21 @@ function proofHash(proof: { content_hash?: string; proof_url?: string }): string
   return tail
 }
 
+function isTxtHashFile(file: File): boolean {
+  return file.name.toLowerCase().endsWith('.txt') || file.type === 'text/plain'
+}
+
 export function VaultPage() {
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const highlightProof = searchParams.get('proof')
   const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
   const { portfolio } = usePortfolio()
   const [nostrEvent, setNostrEvent] = useState('')
   const [filter, setFilter] = useState<VaultFilter>('all')
   const [copied, setCopied] = useState(false)
-  const [hashInput, setHashInput] = useState('')
+  const [hashInput, setHashInput] = useState(() => highlightProof ?? '')
   const [verifyResult, setVerifyResult] = useState<VerifyResult | null>(null)
   const [verifyBusy, setVerifyBusy] = useState(false)
   const [selectedFile, setSelectedFile] = useState<string | null>(null)
@@ -71,6 +79,31 @@ export function VaultPage() {
 
   async function handleOtsUpload(file: File) {
     setSelectedFile(file.name)
+
+    if (isTxtHashFile(file)) {
+      const text = await file.text()
+      const hashes = parseHashLines(text)
+      const hash = hashes[0] ?? ''
+      if (hash) setHashInput(hash)
+      setVerifyBusy(true)
+      try {
+        setVerifyResult(
+          hash
+            ? await verifyHashPaste(hash)
+            : {
+                verified: false,
+                hash: '',
+                mode: 'failed',
+                blockTime: null,
+                message: 'No valid SHA-256 hash found in .txt file',
+              },
+        )
+      } finally {
+        setVerifyBusy(false)
+      }
+      return
+    }
+
     const hash = hashInput.trim() || proofHash(stamped[0]?.program.satohash_proofs?.[0] ?? {})
     setVerifyBusy(true)
     try {
@@ -79,6 +112,15 @@ export function VaultPage() {
       setVerifyBusy(false)
     }
   }
+
+  useEffect(() => {
+    if (!highlightProof) return
+    const row = document.querySelector(`[data-vault-proof-hash="${highlightProof}"]`)
+    row?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    row?.classList.add('vault-proof-row--highlight')
+    const timer = window.setTimeout(() => row?.classList.remove('vault-proof-row--highlight'), 3200)
+    return () => window.clearTimeout(timer)
+  }, [highlightProof, displayed.length])
 
   function applyProgramProof(programName: string, hash: string) {
     const params = new URLSearchParams({
@@ -89,10 +131,11 @@ export function VaultPage() {
   }
 
   function filterLabel(f: VaultFilter): string {
-    const base =
-      f === 'all' ? t('vault.filterAll') : f === 'verified' ? t('vault.filterVerified') : t('vault.filterDemo')
-    const count = f === 'all' ? stamped.length : f === 'verified' ? verifiedCount : demoCount
-    return `${base} (${count})`
+    return f === 'all' ? t('vault.filterAll') : f === 'verified' ? t('vault.filterVerified') : t('vault.filterDemo')
+  }
+
+  function filterCount(f: VaultFilter): number {
+    return f === 'all' ? stamped.length : f === 'verified' ? verifiedCount : demoCount
   }
 
   function onFilterKeyDown(e: React.KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -110,6 +153,19 @@ export function VaultPage() {
       { id: 'vault-verify', label: t('subnav.vault.verify') },
       { id: 'vault-archive', label: t('subnav.vault.archive') },
     ],
+    [t],
+  )
+
+  const guideReadingMinutes = useMemo(
+    () =>
+      estimateReadingMinutes(
+        t('vault.how.intro'),
+        t('vault.how.step1.body'),
+        t('vault.how.step2.body'),
+        t('vault.how.step3.body'),
+        t('vault.how.step4.body'),
+        t('vault.how.footer'),
+      ),
     [t],
   )
 
@@ -142,6 +198,7 @@ export function VaultPage() {
         title={t('vault.how.title')}
         intro={t('vault.how.intro')}
         footerNote={t('vault.how.footer')}
+        readingMinutes={guideReadingMinutes}
         steps={[
           { n: '01', title: t('vault.how.step1.title'), body: t('vault.how.step1.body'), icon: Hash },
           { n: '02', title: t('vault.how.step2.title'), body: t('vault.how.step2.body'), icon: BadgeCheck },
@@ -162,6 +219,8 @@ export function VaultPage() {
         ]}
       />
       </div>
+
+      <VaultEducationCard />
 
       <Card id="vault-verify" variant="proof" animate className="mb-8 scroll-mt-header" aria-labelledby="vault-verify-heading">
         <h2 id="vault-verify-heading" className="font-chrome text-sm font-semibold text-ink flex items-center gap-2 mb-3">
@@ -196,7 +255,7 @@ export function VaultPage() {
           </Button>
         </div>
 
-        <input ref={fileRef} type="file" accept=".ots,application/octet-stream" className="hidden" />
+        <input ref={fileRef} type="file" accept=".ots,.txt,application/octet-stream,text/plain" className="hidden" />
 
         <VaultOtsDropZone busy={verifyBusy} selectedFile={selectedFile} onFile={f => void handleOtsUpload(f)} />
 
@@ -264,6 +323,16 @@ export function VaultPage() {
                     }`}
                   >
                     {filterLabel(f)}
+                    <span
+                      className={`ml-1.5 inline-flex min-w-[1.25rem] items-center justify-center rounded-full px-1 py-0.5 text-[9px] font-mono ${
+                        filter === f
+                          ? 'bg-btc-orange/20 text-mp-btc-text'
+                          : 'bg-card-muted/80 text-ink-muted'
+                      }`}
+                      aria-label={formatT(t, 'vault.filterCount', { count: filterCount(f) })}
+                    >
+                      {filterCount(f)}
+                    </span>
                   </button>
                 ))}
               </div>

@@ -32,7 +32,7 @@ Each deploy gets unique asset URLs so stale CDN entries cannot serve `index.html
 
 | Path | Policy |
 |------|--------|
-| `/index.html` | `Cache-Control: no-cache, must-revalidate` + `CDN-Cache-Control: no-cache` |
+| `/index.html` | `Cache-Control: no-store, must-revalidate` + `CDN-Cache-Control: no-store` |
 | `/assets/*.js` | same — never `immutable` |
 | `/assets/*.css` | same |
 | `/research/*.json` | `max-age=3600, must-revalidate` |
@@ -69,15 +69,31 @@ Post-deploy verification:
 ```bash
 npm run verify:live          # Playwright smoke on live site
 npm run deploy:health        # lightweight BUILD_ID + bundle poison check
-node scripts/wait-live-app.mjs   # poll verify until cache settles (~2 min)
+node scripts/wait-live-app.mjs   # poll verify until cache settles (8 attempts, exponential backoff)
+node scripts/deploy-summary.mjs --out artifacts/deploy-summary.json
 ```
+
+## Footer & mobile layout contract
+
+Post–BUILD 54 (`min-h-dvh` + footer gap v2). Do not regress without updating e2e `footer-gap.spec.ts`.
+
+| Layer | Rule |
+|-------|------|
+| **Shell** | `Layout` root: `min-h-dvh flex flex-col` — document fills viewport, no phantom void below footer |
+| **Main** | `max-lg:pb-[calc(3.25rem+env(safe-area-inset-bottom))]` — scroll clearance only; **no** shell-level bottom padding |
+| **Footer** | `footer-glass mt-auto`; meta row `max-lg:pb-[3.25rem]` so glass extends behind fixed tab bar |
+| **Mobile nav** | `MobileBottomNav` fixed `bottom-0` with `safe-bottom`; overlays footer, does not reserve document space |
+| **Viewport** | `viewport-fit=cover` in `index.html` for iOS safe-area; single safe-area application on main/footer |
+
+**Verify locally:** `npm run test:e2e` (includes footer gap screenshot stub). **Post-deploy:** `verify-live-app.mjs` captures `artifacts/footer-mobile-gap-live.png` and asserts footer `BUILD` matches local.
 
 ## Boot guard (client recovery)
 
 Injected in `index.html` at build time (`vite.config.ts`):
 
 1. On CDN poison (`Unexpected token '<'`, failed dynamic import), auto-retry with `?cb=` cache-bust after a **3s countdown**
-2. If retry fails, show recovery UI with manual reload + hard-refresh hints
+2. Scroll position is saved to `sessionStorage` before `?cb=` reload and restored on the next paint
+3. If retry fails, show recovery UI with manual reload + hard-refresh hints
 
 ## CI pipeline
 

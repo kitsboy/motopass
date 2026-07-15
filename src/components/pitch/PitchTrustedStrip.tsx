@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import type { Program } from '../../types/program'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
+import { LazyFlagSprite } from './LazyFlagSprite'
 
 type PitchTrustedStripProps = {
   programs: Program[]
@@ -65,9 +66,7 @@ export function PitchTrustedStrip({ programs, loading }: PitchTrustedStripProps)
                   tabIndex={i < entries.length ? 0 : -1}
                   aria-hidden={i >= entries.length}
                 >
-                  <span className="text-xl leading-none" aria-hidden>
-                    {entry.flag}
-                  </span>
+                  <LazyFlagSprite countryName={entry.name} emojiFallback={entry.flag} />
                   <span className="font-chrome text-[11px] text-ink-muted group-hover:text-mp-btc-text whitespace-nowrap">
                     {entry.name}
                   </span>

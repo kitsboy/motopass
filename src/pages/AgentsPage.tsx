@@ -1,23 +1,30 @@
-import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Zap, MessageCircle, Radio, Bot, Handshake, ArrowRight, Clock } from 'lucide-react'
 import { MOTOPASS_RELAYS } from '../lib/nostr'
 import { NostrConnect } from '../components/NostrConnect'
 import { BtcMapReportVenue } from '../components/btcmap/BtcMapReportVenue'
 import { AgentCardKimi } from '../components/AgentCardKimi'
 import { AgentRegionMap } from '../components/agents/AgentRegionMap'
+import { PaigeChat } from '../components/PaigeChat'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { Card } from '../components/ui/Card'
 import { CopyField } from '../components/ui/CopyField'
 import { useToast } from '../components/ui/Toast'
+import { CardSkeleton } from '../components/LoadingSkeleton'
+import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { formatT } from '../i18n/format'
+import { estimateReadingMinutes } from '../lib/utils'
 import { AGENT_SLA } from '../lib/agentOfficeHours'
+import { useLaunchGates } from '../hooks/useLaunchGates'
 import type { TranslationKey } from '../i18n/translations'
 
 type AgentStatus = 'active' | 'beta' | 'coming'
 type StatusFilter = 'all' | AgentStatus
+
+const VALID_STATUS: StatusFilter[] = ['all', 'active', 'beta', 'coming']
 
 const AGENT_TIMEZONES: Record<string, string> = {
   uy: 'UYT (UTC−3)',
@@ -71,10 +78,32 @@ function buildDmStub(country: string, npub: string) {
   }, null, 2)
 }
 
+function parseStatusFilter(raw: string | null): StatusFilter {
+  if (raw && VALID_STATUS.includes(raw as StatusFilter)) return raw as StatusFilter
+  return 'all'
+}
+
 export function AgentsPage() {
   const { t } = useI18n()
   const { toast } = useToast()
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
+  const { report } = useLaunchGates()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const statusFilter = parseStatusFilter(searchParams.get('status'))
+  const [nostrBusy, setNostrBusy] = useState(true)
+
+  const distressedGateOpen = report.gates.find((g) => g.id === 'G2')?.pass === true
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setNostrBusy(false), 480)
+    return () => window.clearTimeout(timer)
+  }, [])
+
+  const setStatusFilter = (next: StatusFilter) => {
+    const params = new URLSearchParams(searchParams)
+    if (next === 'all') params.delete('status')
+    else params.set('status', next)
+    setSearchParams(params, { replace: true })
+  }
 
   const statusCounts = useMemo(() => {
     const counts: Record<StatusFilter, number> = { all: AGENTS.length, active: 0, beta: 0, coming: 0 }
@@ -83,8 +112,30 @@ export function AgentsPage() {
   }, [])
 
   const filteredAgents = useMemo(
-    () => (statusFilter === 'all' ? AGENTS : AGENTS.filter(a => a.status === statusFilter)),
+    () => (statusFilter === 'all' ? AGENTS : AGENTS.filter((a) => a.status === statusFilter)),
     [statusFilter],
+  )
+
+  const agentAnchors = useMemo(
+    () => [
+      { id: 'agents-guide', label: t('subnav.agents.guide') },
+      { id: 'agents-paige', label: t('agents.paige.title') },
+      { id: 'agents-grid', label: t('agents.gridTitle') },
+    ],
+    [t],
+  )
+
+  const guideReadingMinutes = useMemo(
+    () =>
+      estimateReadingMinutes(
+        t('agents.how.intro'),
+        t('agents.how.step1.body'),
+        t('agents.how.step2.body'),
+        t('agents.how.step3.body'),
+        t('agents.how.step4.body'),
+        t('agents.how.footer'),
+      ),
+    [t],
   )
 
   const copyDm = async (agent: (typeof AGENTS)[number]) => {
@@ -101,44 +152,56 @@ export function AgentsPage() {
     <div className="page-container px-4 sm:px-6 py-8 max-w-7xl mx-auto">
       <PageHeader eyebrow={t('agents.eyebrow')} title={t('agents.title')} subtitle={t('agents.sub')} />
 
-      <HowItWorksSection
-        eyebrow={t('agents.how.eyebrow')}
-        title={t('agents.how.title')}
-        intro={t('agents.how.intro')}
-        footerNote={t('agents.how.footer')}
-        steps={[
-          { n: '01', title: t('agents.how.step1.title'), body: t('agents.how.step1.body'), icon: Radio },
-          { n: '02', title: t('agents.how.step2.title'), body: t('agents.how.step2.body'), icon: Zap },
-          { n: '03', title: t('agents.how.step3.title'), body: t('agents.how.step3.body'), icon: MessageCircle, link: { to: '/vault', label: 'Verify proofs first' } },
-          { n: '04', title: t('agents.how.step4.title'), body: t('agents.how.step4.body'), icon: Handshake, link: { to: '/apply', label: 'Open applications' } },
-        ]}
-      />
+      <PageAnchorNav items={agentAnchors} />
+
+      <div id="agents-guide" className="scroll-mt-header">
+        <HowItWorksSection
+          eyebrow={t('agents.how.eyebrow')}
+          title={t('agents.how.title')}
+          intro={t('agents.how.intro')}
+          footerNote={t('agents.how.footer')}
+          readingMinutes={guideReadingMinutes}
+          steps={[
+            { n: '01', title: t('agents.how.step1.title'), body: t('agents.how.step1.body'), icon: Radio },
+            { n: '02', title: t('agents.how.step2.title'), body: t('agents.how.step2.body'), icon: Zap },
+            { n: '03', title: t('agents.how.step3.title'), body: t('agents.how.step3.body'), icon: MessageCircle, link: { to: '/vault', label: 'Verify proofs first' } },
+            { n: '04', title: t('agents.how.step4.title'), body: t('agents.how.step4.body'), icon: Handshake, link: { to: '/apply', label: 'Open applications' } },
+          ]}
+        />
+      </div>
 
       <Card variant="banner" animate className="mb-8 !p-6">
         <span className="club-eyebrow block mb-2">{t('agents.nexus.title')}</span>
         <p className="font-body text-sm text-ink-secondary leading-relaxed max-w-3xl">{t('agents.nexus.sub')}</p>
       </Card>
 
-      <div className="grid gap-4 md:grid-cols-2 mb-10">
-        <Card variant="elevated" animate delay={0.05} className="!p-5 border-l-4 border-l-nostr-violet">
-          <div className="flex items-center gap-2 mb-2">
-            <Bot size={18} className="text-nostr-violet" aria-hidden />
-            <h3 className="font-display font-semibold text-ink">{t('agents.paige.title')}</h3>
-          </div>
-          <p className="text-sm text-ink-secondary leading-relaxed mb-4">{t('agents.paige.body')}</p>
-          <Link to="/programs" className="text-xs font-chrome font-medium text-nostr-violet inline-flex items-center gap-1 hover:underline underline-offset-2">
-            {t('agents.paige.cta')} <ArrowRight size={12} />
-          </Link>
-        </Card>
-        <Card variant="elevated" animate delay={0.08} className="!p-5 border-l-4 border-l-btc-orange">
+      <div id="agents-paige" className="grid gap-4 md:grid-cols-2 mb-10 scroll-mt-header">
+        <div className="space-y-4">
+          <Card variant="elevated" animate delay={0.05} className="!p-5 border-l-4 border-l-nostr-violet">
+            <div className="flex items-center gap-2 mb-2">
+              <Bot size={18} className="text-nostr-violet" aria-hidden />
+              <h3 className="font-display font-semibold text-ink">{t('agents.paige.title')}</h3>
+            </div>
+            <p className="text-sm text-ink-secondary leading-relaxed mb-4">{t('agents.paige.body')}</p>
+            <Link to="/programs" className="text-xs font-chrome font-medium text-nostr-violet inline-flex items-center gap-1 hover:underline underline-offset-2">
+              {t('agents.paige.cta')} <ArrowRight size={12} />
+            </Link>
+          </Card>
+          <PaigeChat compact />
+        </div>
+        <Card variant="elevated" animate delay={0.08} className="!p-5 border-l-4 border-l-btc-orange h-fit">
           <div className="flex items-center gap-2 mb-2">
             <Handshake size={18} className="text-btc-orange" aria-hidden />
             <h3 className="font-display font-semibold text-ink">{t('agents.dealroom.title')}</h3>
           </div>
           <p className="text-sm text-ink-secondary leading-relaxed mb-4">{t('agents.dealroom.body')}</p>
-          <Link to="/distressed" className="text-xs font-chrome font-medium text-mp-btc-text inline-flex items-center gap-1 hover:underline underline-offset-2">
-            {t('agents.dealroom.cta')} <ArrowRight size={12} />
-          </Link>
+          {distressedGateOpen ? (
+            <Link to="/distressed" className="text-xs font-chrome font-medium text-mp-btc-text inline-flex items-center gap-1 hover:underline underline-offset-2">
+              {t('agents.dealroom.cta')} <ArrowRight size={12} />
+            </Link>
+          ) : (
+            <p className="text-xs text-ink-muted leading-relaxed">{t('agents.dealroom.gated')}</p>
+          )}
         </Card>
       </div>
 
@@ -148,9 +211,11 @@ export function AgentsPage() {
         <AgentCardKimi />
       </div>
 
-      <h2 className="font-display font-semibold text-lg text-ink mb-4">{t('agents.gridTitle')}</h2>
+      <h2 id="agents-grid" className="font-display font-semibold text-lg text-ink mb-4 scroll-mt-header">
+        {t('agents.gridTitle')}
+      </h2>
       <div className="mb-4 flex flex-wrap gap-2">
-        {FILTER_CHIPS.map(chip => (
+        {FILTER_CHIPS.map((chip) => (
           <button
             key={chip.id}
             type="button"
@@ -164,36 +229,40 @@ export function AgentsPage() {
         ))}
       </div>
       <div className="mb-8 flex flex-wrap items-center gap-3">
-        <NostrConnect />
+        <NostrConnect onLoadingChange={setNostrBusy} />
         <span className="text-xs text-ink-muted">{t('agents.connectHint')}</span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-        {filteredAgents.map((a, i) => (
-          <Card key={a.id} variant="elevated" animate delay={0.04 + i * 0.03} className="!p-5">
-            <div className="flex justify-between items-start mb-3">
-              <div>
-                <h3 className="font-display font-semibold text-lg text-ink">{a.country}</h3>
-                <p className="text-xs text-ink-muted">{t(a.regionKey)}</p>
+      {nostrBusy ? (
+        <CardSkeleton count={6} />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {filteredAgents.map((a, i) => (
+            <Card key={a.id} variant="elevated" animate delay={0.04 + i * 0.03} className="!p-5">
+              <div className="flex justify-between items-start mb-3">
+                <div>
+                  <h3 className="font-display font-semibold text-lg text-ink">{a.country}</h3>
+                  <p className="text-xs text-ink-muted">{t(a.regionKey)}</p>
+                </div>
+                <span className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full border ${statusClass(a.status)}`}>
+                  {t(STATUS_KEYS[a.status])}
+                </span>
               </div>
-              <span className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full border ${statusClass(a.status)}`}>
-                {t(STATUS_KEYS[a.status])}
-              </span>
-            </div>
-            <p className="text-sm text-ink-secondary mb-4 leading-relaxed">{t(a.focusKey)}</p>
-            <div className="mb-4">
-              <CopyField label={t('agents.copyNpub')} value={a.npub} truncate />
-            </div>
-            <button
-              type="button"
-              onClick={() => void copyDm(a)}
-              className="btn-secondary w-full text-sm !py-2"
-            >
-              <MessageCircle size={14} aria-hidden /> {t('agents.message')}
-            </button>
-          </Card>
-        ))}
-      </div>
+              <p className="text-sm text-ink-secondary mb-4 leading-relaxed">{t(a.focusKey)}</p>
+              <div className="mb-4">
+                <CopyField label={t('agents.copyNpub')} value={a.npub} truncate />
+              </div>
+              <button
+                type="button"
+                onClick={() => void copyDm(a)}
+                className="btn-secondary w-full text-sm !py-2"
+              >
+                <MessageCircle size={14} aria-hidden /> {t('agents.message')}
+              </button>
+            </Card>
+          ))}
+        </div>
+      )}
 
       <h2 className="font-display font-semibold text-lg text-ink mb-2 mt-10">{t('agents.officeHoursTitle')}</h2>
       <p className="text-sm text-ink-muted mb-4 max-w-2xl">{t('agents.officeHoursSub')}</p>

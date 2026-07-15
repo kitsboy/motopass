@@ -83,7 +83,7 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
   const forkSavings = Math.max(0, stackTypical - stackMin)
 
   return (
-    <Card variant="elevated" className="scroll-mt-header" id="simulator-value-forks">
+    <Card variant="elevated" className="scroll-mt-header simulator-value-forks-print" id="simulator-value-forks">
       <div className="flex items-start gap-3 mb-4">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-electric-soft border border-electric/25 text-electric">
           <GitFork size={18} aria-hidden />

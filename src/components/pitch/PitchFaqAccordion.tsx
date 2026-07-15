@@ -1,8 +1,8 @@
 import { useCallback, useId, useRef, useState, type KeyboardEvent } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Link2 } from 'lucide-react'
 import { useI18n } from '../../i18n/I18nContext'
 import { useFocusTrap } from '../../hooks/useFocusTrap'
-import { PITCH_FAQ_KEYS } from '../../lib/pitchFaq'
+import { PITCH_FAQ_KEYS, pitchFaqAnchorId } from '../../lib/pitchFaq'
 import type { TranslationKey } from '../../i18n/translations'
 
 type PitchFaqAccordionProps = {
@@ -76,31 +76,45 @@ export function PitchFaqAccordion({ eyebrow, title }: PitchFaqAccordionProps) {
           const triggerId = `${baseId}-trigger-${index}`
           const panelId = `${baseId}-panel-${index}`
 
+          const anchorId = pitchFaqAnchorId(index)
+
           return (
             <div
               key={q}
-              className="rounded-card border border-mp/60 bg-card/80 overflow-hidden"
+              id={anchorId}
+              className="rounded-card border border-mp/60 bg-card/80 overflow-hidden scroll-mt-header"
             >
               <h3 className="m-0">
-                <button
-                  ref={el => {
-                    triggerRefs.current[index] = el
-                  }}
-                  id={triggerId}
-                  type="button"
-                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-display font-semibold text-ink transition-colors hover:bg-section/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-btc-orange"
-                  aria-expanded={open}
-                  aria-controls={panelId}
-                  onClick={() => toggle(index)}
-                  onKeyDown={e => onKeyDown(e, index)}
-                >
-                  <span>{t(q)}</span>
-                  <ChevronDown
-                    size={18}
-                    className={`shrink-0 text-ink-muted transition-transform duration-base ${open ? 'rotate-180' : ''}`}
-                    aria-hidden
-                  />
-                </button>
+                <div className="flex items-stretch">
+                  <button
+                    ref={el => {
+                      triggerRefs.current[index] = el
+                    }}
+                    id={triggerId}
+                    type="button"
+                    className="flex flex-1 items-center justify-between gap-4 px-5 py-4 text-left font-display font-semibold text-ink transition-colors hover:bg-section/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-btc-orange"
+                    aria-expanded={open}
+                    aria-controls={panelId}
+                    onClick={() => toggle(index)}
+                    onKeyDown={e => onKeyDown(e, index)}
+                  >
+                    <span>{t(q)}</span>
+                    <ChevronDown
+                      size={18}
+                      className={`shrink-0 text-ink-muted transition-transform duration-base ${open ? 'rotate-180' : ''}`}
+                      aria-hidden
+                    />
+                  </button>
+                  <a
+                    href={`#${anchorId}`}
+                    className="shrink-0 self-center mr-3 rounded-lg p-2 text-ink-muted hover:text-mp-btc-text hover:bg-section/60 transition-colors"
+                    aria-label={`${t(q)} — permalink`}
+                    title="Copy link to this question"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    <Link2 size={14} aria-hidden />
+                  </a>
+                </div>
               </h3>
               <div
                 id={panelId}

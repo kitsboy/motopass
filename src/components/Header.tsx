@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { useScrollProgress } from '../hooks/useScrollProgress'
+import { useHeaderScrollDepth } from '../hooks/useHeaderScrollDepth'
 
 type HeaderProps = {
   children: ReactNode
@@ -8,9 +9,12 @@ type HeaderProps = {
 
 export function Header({ children, className = '', collapsed = false }: HeaderProps & { collapsed?: boolean }) {
   const scrollProgress = useScrollProgress()
+  const scrollDeep = useHeaderScrollDepth(200)
 
   return (
-    <header className={`club-header nav-header ${collapsed ? 'club-header--collapsed' : ''} ${className}`.trim()}>
+    <header
+      className={`club-header nav-header ${collapsed ? 'club-header--collapsed' : ''} ${collapsed && scrollDeep ? 'club-header--scroll-deep' : ''} ${className}`.trim()}
+    >
       <div
         className="header-scroll-progress"
         role="progressbar"

@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { Check, ChevronDown, Globe, Monitor } from 'lucide-react'
 import { LANGUAGES, detectBrowserLang, type LangCode, type LangPreference } from '../../i18n/languages'
 import { useI18n } from '../../i18n/I18nContext'
+import { LazyFlag } from './LazyFlag'
 
 const PANEL_WIDTH = 208
 
@@ -142,7 +143,7 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
                     onMouseEnter={() => setHighlight(optionIndex)}
                     className={`nav-dropdown-item w-full ${active ? 'nav-dropdown-item-active' : ''} ${highlighted && !active ? 'bg-section/70' : ''}`}
                   >
-                    <span className="text-base leading-none w-6 text-center" aria-hidden="true">{l.flag}</span>
+                    <LazyFlag flag={l.flag} eager={open} className="text-base leading-none w-6 text-center" />
                     <span className="flex-1 text-left min-w-0">
                       <span className="block font-chrome text-[11px] font-medium text-ink truncate">{l.nativeName}</span>
                       <span className="block font-chrome text-[10px] text-ink-muted truncate">{l.name}</span>
@@ -183,7 +184,7 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
       >
         <span className="flex items-center gap-1.5 min-w-0">
           <span className="text-base leading-none shrink-0" aria-hidden="true">
-            {usingSystem ? <Monitor size={14} className="text-ink-muted" /> : current.flag}
+            {usingSystem ? <Monitor size={14} className="text-ink-muted" /> : <LazyFlag flag={current.flag} />}
           </span>
           {(size === 'menu' || size === 'compact') && (
             <span

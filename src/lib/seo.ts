@@ -2,7 +2,7 @@ import { BLOG_POSTS } from '../data/blog'
 import type { LangCode } from '../i18n/languages'
 
 /** Top 5 locales for route-level hreflang alternates (en + primary markets). */
-export const TOP_SEO_LANGS: LangCode[] = ['en', 'es', 'fr', 'pt', 'zh']
+export const TOP_SEO_LANGS: LangCode[] = ['en', 'es', 'fr', 'pt', 'de', 'zh']
 
 export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://motopass.giveabit.io'
 export const SITE_NAME = 'MotoPass'

@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { Lock, ShieldCheck, ExternalLink } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Lock, ExternalLink } from 'lucide-react'
+import { DistressedKimiTierTooltip } from './DistressedKimiTierTooltip'
 import { BtcDualPrice } from '../BtcDualPrice'
 import { ProofBadge } from '../ui/ProofBadge'
 import { useI18n } from '../../i18n/I18nContext'
@@ -38,7 +40,17 @@ export function DistressedListingsList({
   }
 
   if (!listings.length) {
-    return <p className="text-sm text-ink-muted px-3 py-6">{t('distressed.noListings')}</p>
+    return (
+      <div className="px-3 py-8 text-center space-y-3">
+        <p className="text-sm text-ink-muted">{t('distressed.noListings')}</p>
+        <Link
+          to="/apply#apply-gates-heading"
+          className="inline-flex items-center gap-1 text-xs text-mp-btc-text hover:underline underline-offset-2 font-chrome"
+        >
+          {t('distressed.gateExplainerLink')}
+        </Link>
+      </div>
+    )
   }
 
   const handleSelect = (listing: DistressedListing) => {
@@ -49,6 +61,19 @@ export function DistressedListingsList({
   const unlock = (listing: DistressedListing, e: React.MouseEvent) => {
     e.stopPropagation()
     setUnlocked(prev => new Set(prev).add(listing.listing_id))
+  }
+
+  function onChipKeyDown(
+    e: React.KeyboardEvent<HTMLButtonElement>,
+    chips: HTMLButtonElement[],
+    index: number,
+  ) {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+    e.preventDefault()
+    e.stopPropagation()
+    const dir = e.key === 'ArrowRight' ? 1 : -1
+    const next = (index + dir + chips.length) % chips.length
+    chips[next]?.focus()
   }
 
   return (
@@ -89,7 +114,19 @@ export function DistressedListingsList({
                     {listing.distressed_score}/5
                   </span>
                 </div>
-                <p className="text-[11px] text-ink-muted truncate mt-0.5">{listing.pathway_label}</p>
+                <div
+                  className="mt-0.5"
+                  role="toolbar"
+                  aria-label={t('distressed.pathwayChips')}
+                  onClick={e => e.stopPropagation()}
+                  onKeyDown={e => e.stopPropagation()}
+                >
+                  <PathwayChip
+                    label={listing.pathway_label}
+                    active
+                    onActivate={() => handleSelect(listing)}
+                  />
+                </div>
 
                 <div className="flex flex-wrap items-center gap-2 mt-1.5">
                   {gated ? (
@@ -100,17 +137,11 @@ export function DistressedListingsList({
                     <BtcDualPrice usd={listing.ask_usd} size="sm" />
                   )}
                   {isGold ? (
-                    <span className="text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded-chip border border-btc-orange/45 text-mp-btc-text bg-btc-orange-soft/50 inline-flex items-center gap-1">
-                      <ShieldCheck size={10} /> Kimi gold
-                    </span>
+                    <DistressedKimiTierTooltip tier="gold" />
+                  ) : isCurated ? (
+                    <DistressedKimiTierTooltip tier="standard" />
                   ) : (
-                    <span
-                      className={`text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded-chip border shrink-0 ${
-                        isCurated
-                          ? 'border-mp-proof/40 text-mp-proof bg-mp-proof/10'
-                          : 'border-mp/60 text-ink-muted'
-                      }`}
-                    >
+                    <span className="text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded-chip border border-mp/60 text-ink-muted shrink-0">
                       {listing.lane}
                     </span>
                   )}
@@ -141,25 +172,12 @@ export function DistressedListingsList({
                 )}
 
                 {similar.length > 0 && !gated && (
-                  <div className="mt-2 flex flex-wrap items-center gap-1" onClick={e => e.stopPropagation()} role="presentation">
-                    <span className="text-[9px] font-mono uppercase tracking-wider text-ink-muted/80 shrink-0">
-                      {t('distressed.similarPrograms')}
-                    </span>
-                    {similar.map(peer => (
-                      <button
-                        key={peer.listing_id}
-                        type="button"
-                        onClick={e => {
-                          e.stopPropagation()
-                          onSelect(peer)
-                        }}
-                        className="rounded-chip border border-mp/60 bg-card-muted/40 px-2 py-0.5 text-[10px] font-chrome text-ink-muted hover:border-btc-orange/30 hover:text-mp-btc-text transition-colors max-w-[9rem] truncate"
-                        title={peer.program_name}
-                      >
-                        {peer.program_flag ? `${peer.program_flag} ` : ''}{peer.program_name}
-                      </button>
-                    ))}
-                  </div>
+                  <SimilarPathwayChips
+                    similar={similar}
+                    onSelect={onSelect}
+                    onChipKeyDown={onChipKeyDown}
+                    label={t('distressed.similarPrograms')}
+                  />
                 )}
               </div>
             </button>
@@ -167,5 +185,82 @@ export function DistressedListingsList({
         )
       })}
     </ul>
+  )
+}
+
+function PathwayChip({
+  label,
+  active,
+  onActivate,
+}: {
+  label: string
+  active?: boolean
+  onActivate?: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={e => {
+        e.stopPropagation()
+        onActivate?.()
+      }}
+      className={`rounded-chip border px-2 py-0.5 text-[10px] font-chrome max-w-full truncate transition-colors ${
+        active
+          ? 'border-btc-orange/35 bg-btc-orange-soft/40 text-mp-btc-text'
+          : 'border-mp/60 bg-card-muted/40 text-ink-muted hover:border-btc-orange/30 hover:text-mp-btc-text'
+      }`}
+      title={label}
+    >
+      {label}
+    </button>
+  )
+}
+
+function SimilarPathwayChips({
+  similar,
+  onSelect,
+  onChipKeyDown,
+  label,
+}: {
+  similar: DistressedListing[]
+  onSelect: (listing: DistressedListing) => void
+  onChipKeyDown: (
+    e: React.KeyboardEvent<HTMLButtonElement>,
+    chips: HTMLButtonElement[],
+    index: number,
+  ) => void
+  label: string
+}) {
+  const chipRefs = useRef<(HTMLButtonElement | null)[]>([])
+
+  return (
+    <div
+      className="mt-2 flex flex-wrap items-center gap-1"
+      onClick={e => e.stopPropagation()}
+      role="toolbar"
+      aria-label={label}
+      onKeyDown={e => e.stopPropagation()}
+    >
+      <span className="text-[9px] font-mono uppercase tracking-wider text-ink-muted/80 shrink-0">{label}</span>
+      {similar.map((peer, i) => (
+        <button
+          key={peer.listing_id}
+          ref={el => {
+            chipRefs.current[i] = el
+          }}
+          type="button"
+          onClick={e => {
+            e.stopPropagation()
+            onSelect(peer)
+          }}
+          onKeyDown={e => onChipKeyDown(e, chipRefs.current.filter(Boolean) as HTMLButtonElement[], i)}
+          className="rounded-chip border border-mp/60 bg-card-muted/40 px-2 py-0.5 text-[10px] font-chrome text-ink-muted hover:border-btc-orange/30 hover:text-mp-btc-text transition-colors max-w-[9rem] truncate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-btc-orange/50"
+          title={`${peer.pathway_label} · ${peer.program_name}`}
+        >
+          {peer.program_flag ? `${peer.program_flag} ` : ''}
+          {peer.program_name}
+        </button>
+      ))}
+    </div>
   )
 }

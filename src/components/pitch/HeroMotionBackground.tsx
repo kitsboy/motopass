@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react';
+import { useTabVisible } from '../../hooks/useTabVisible';
 
 /**
  * HeroMotionBackground
@@ -8,6 +9,8 @@ import { motion, useReducedMotion } from 'motion/react';
  */
 export function HeroMotionBackground() {
   const reduceMotion = useReducedMotion();
+  const tabVisible = useTabVisible();
+  const animate = !reduceMotion && tabVisible;
 
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -18,7 +21,7 @@ export function HeroMotionBackground() {
         className="absolute inset-0 h-full w-full object-cover"
         style={{ opacity: 'var(--hero-opacity)' }}
         initial={{ scale: 1, x: 0, y: 0 }}
-        animate={reduceMotion ? undefined : { scale: 1.08, x: '-1%', y: '-1%' }}
+        animate={animate ? { scale: 1.08, x: '-1%', y: '-1%' } : undefined}
         transition={{ duration: 24, ease: [0.16, 1, 0.3, 1], repeat: Infinity, repeatType: 'reverse' }}
       />
 
@@ -27,9 +30,11 @@ export function HeroMotionBackground() {
         className="absolute inset-0 bg-guilloche bg-[length:180px_180px] opacity-[0.06] mix-blend-overlay"
       />
 
-      {/* Layer 2b — animated gradient mesh (subtle drift when motion allowed) */}
+      {/* Layer 2b — gradient mesh; static fallback when reduced motion (item 721) */}
       <div
-        className={`hero-gradient-mesh absolute inset-0 pointer-events-none ${reduceMotion ? '' : 'hero-gradient-mesh--animate'}`}
+        className={`hero-gradient-mesh absolute inset-0 pointer-events-none ${
+          animate ? 'hero-gradient-mesh--animate' : 'hero-gradient-mesh--static'
+        }`}
         aria-hidden
       />
 

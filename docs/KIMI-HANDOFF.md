@@ -811,20 +811,37 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 56 — Batch 25 + footer gap v2)
+
+**Done:**
+- Footer gap v2: removed footer shell pb + safe-area double-count; `min-h-dvh` layout; document ends flush at footer
+- Batch 25 complete (681–780): 6 parallel agents — mobile, deploy, nav, programs, pitch/BTC map, distressed/vault, agents/design/i18n
+- 85 unit tests pass; deploy hardening (verify-live BUILD match, footer-gap e2e stub, predeploy tests)
+- BUILD `2026.07.15-56` · queue 780/780
+
+**Decisions:**
+- Mobile tab clearance: fixed nav overlays footer; no extra padding band below footer content
+- Main scroll clearance removed from layout shell — footer is last document node
+
+**Git State:**
+- SHA: pending commit
+- Branch: `main`
+
+---
+
 ## Latest Session Summary (from 2026-07-15 goodbye)
 
-**Chat Topic:** Mobile polish — lighten canvas, eliminate black void below footer.
+**Chat Topic:** Footer gap still visible after BUILD 54; ship Batch 25 with parallel agents.
 
-**Finished in this session:**
-- BUILD 53: canvas +20% lift, initial footer gap tweaks
-- BUILD 54: architectural footer flush fix (layout padding → footer padding)
-- Live deploy, docs sync, dist commit, 73 tests green
+**Finished:**
+- BUILD 56 live target — footer flush v2 + full Batch 25 (100 items)
+- 85 unit tests green
 
 **Still to do:**
-- User hard-refresh confirm on physical device
-- Next queue batch when Cam is ready
+- User hard-refresh on device to confirm footer gap gone
+- Kimi: integrate Batch 25 summary into vault
 
-**Next for Kimi:** Integrate `SESSION-SUMMARY-2026-07-15.md` into vault. BUILD 54 is current live. No nav changes needed.
+**Next for Kimi:** See `docs/IMPROVEMENTS-QUEUE.md` Batch 25 section. BUILD 56 is current.
 
 ---
 

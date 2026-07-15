@@ -96,6 +96,14 @@ function CountUp({
   );
 }
 
+function TaglineAnnouncer({ tagline }: { tagline: string }) {
+  return (
+    <p className="sr-only" aria-live="polite" aria-atomic="true">
+      {tagline}
+    </p>
+  );
+}
+
 export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, proofTimestamp }: EvolvingPitchRotatorProps) {
   const [tagIndex, setTagIndex] = useState(0);
   const reduceMotion = useReducedMotion();
@@ -122,6 +130,7 @@ export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, pro
       className="hero-glass-panel relative w-full max-w-md rounded-panel border p-6 shadow-mp-4 backdrop-blur-md sm:p-8"
       aria-label="Live sovereignty metrics"
     >
+      <TaglineAnnouncer tagline={taglines[tagIndex]} />
       <div className="flex items-center justify-between gap-3">
         <span className="font-chrome text-eyebrow uppercase tracking-[0.2em] text-mp-btc">
           Live &middot; This week

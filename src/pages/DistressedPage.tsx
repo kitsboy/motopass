@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { ExternalLink, MessageCircle, TrendingDown, Layers, Shield, BarChart3, Handshake } from 'lucide-react'
 import { useI18n } from '../i18n/I18nContext'
 import { usePrograms } from '../hooks/usePrograms'
@@ -27,6 +27,13 @@ const DEFAULT_FILTERS: DistressedFilters = {
   region: 'all',
   minScore: 1,
   maxBtcUsd: 0,
+}
+
+const SORT_VALUES: DistressedSort[] = ['discount', 'price', 'region']
+
+function parseDistressedSort(raw: string | null): DistressedSort {
+  if (raw && SORT_VALUES.includes(raw as DistressedSort)) return raw as DistressedSort
+  return 'discount'
 }
 
 function scoreChip(score: number) {
@@ -150,14 +157,35 @@ export function DistressedPage() {
   const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
   const { rate } = useBtcPrice()
+  const [searchParams, setSearchParams] = useSearchParams()
   const [lane, setLane] = useState<DistressedLane>(() => loadDistressedState()?.lane ?? 'all')
-  const [sort, setSort] = useState<DistressedSort>(() => loadDistressedState()?.sort ?? 'discount')
+  const [sort, setSort] = useState<DistressedSort>(() => {
+    const fromUrl = searchParams.get('sort')
+    if (fromUrl) return parseDistressedSort(fromUrl)
+    return loadDistressedState()?.sort ?? 'discount'
+  })
   const [filters, setFilters] = useState<DistressedFilters>(() => loadDistressedState()?.filters ?? DEFAULT_FILTERS)
   const [active, setActive] = useState<DistressedListing | null>(null)
 
   useEffect(() => {
     saveDistressedState({ lane, sort, filters })
   }, [lane, sort, filters])
+
+  useEffect(() => {
+    const current = searchParams.get('sort')
+    if (current === sort) return
+    setSearchParams(
+      p => {
+        p.set('sort', sort)
+        return p
+      },
+      { replace: true },
+    )
+  }, [sort, searchParams, setSearchParams])
+
+  const handleSortChange = (next: DistressedSort) => {
+    setSort(next)
+  }
 
   const allListings = useMemo(() => buildDistressedListings(programs), [programs])
   const regions = useMemo(() => ['all', ...distressedRegions(allListings)], [allListings])
@@ -246,7 +274,7 @@ export function DistressedPage() {
             lane={lane}
             onLaneChange={setLane}
             sort={sort}
-            onSortChange={setSort}
+            onSortChange={handleSortChange}
             filters={filters}
             onFiltersChange={setFilters}
             loading={loading}

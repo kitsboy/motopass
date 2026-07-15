@@ -27,7 +27,7 @@ export function VaultOtsDropZone({
         ref={inputRef}
         id={inputId}
         type="file"
-        accept=".ots,application/octet-stream"
+        accept=".ots,.txt,application/octet-stream,text/plain"
         className="sr-only"
         disabled={busy}
         onChange={e => {

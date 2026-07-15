@@ -30,4 +30,4 @@ npm run build --silent
 
 echo "Running smoke tests (fresh preview on :$PORT)…"
 # CI=1 → retries + consistent behavior; preview is always started by Playwright webServer
-CI=1 npx playwright test e2e/smoke.spec.ts "$@"
+CI=1 npx playwright test e2e/smoke.spec.ts e2e/footer-gap.spec.ts "$@"

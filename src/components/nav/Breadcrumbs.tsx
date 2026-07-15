@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
+import { Home } from 'lucide-react'
 import { useI18n } from '../../i18n/I18nContext'
 import type { TranslationKey } from '../../i18n/translations'
 
@@ -41,13 +42,21 @@ export function Breadcrumbs() {
   const visibleSegments = collapsed
     ? [segments[0], ...segments.slice(-2)]
     : segments
+  const showHomeIcon = segments.length > 1
 
   return (
     <nav aria-label={t('nav.breadcrumbs')} className="breadcrumb-glass text-xs text-ink-muted mb-3 w-fit max-w-full">
       <ol className="flex flex-wrap items-center gap-0.5 sm:gap-1.5 min-w-0">
         <li>
-          <Link to="/" className="breadcrumb-link hover:text-accent transition-colors">
-            {t('nav.pitch')}
+          <Link to="/" className="breadcrumb-link hover:text-accent transition-colors inline-flex items-center gap-1">
+            {showHomeIcon ? (
+              <>
+                <Home size={13} strokeWidth={2.25} aria-hidden="true" className="shrink-0" />
+                <span className="sr-only">{t('nav.pitch')}</span>
+              </>
+            ) : (
+              t('nav.pitch')
+            )}
           </Link>
         </li>
         {visibleSegments.map((seg, i) => {

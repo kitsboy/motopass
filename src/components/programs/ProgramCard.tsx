@@ -8,6 +8,7 @@ import { MerchantDensityBadge } from '../btcmap/MerchantDensityBadge';
 import { BtcDualPrice } from '../BtcDualPrice';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 import { SovereigntyScoreTooltip } from './SovereigntyScoreTooltip';
+import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
 
 interface ProgramCardProps {
@@ -119,7 +120,10 @@ function ProgramCardContent({
           </span>
           <div>
             <h3 className="font-display text-lg2 leading-tight text-mp-ink">{program.country}</h3>
-            <span className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">
+            <span
+              className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary"
+              title={t(tierTooltipKey(program.tier))}
+            >
               {program.tier} &middot; {program.region}
             </span>
             <div className="mt-1.5 flex flex-wrap items-center gap-1.5">

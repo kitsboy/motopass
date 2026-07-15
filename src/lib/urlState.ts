@@ -65,3 +65,45 @@ export function countActiveFilters(f: ProgramFilters): number {
 export function isDefaultFilters(f: ProgramFilters): boolean {
   return countActiveFilters(f) === 0
 }
+
+export type PortfolioStackPayload = {
+  v: 1
+  stack: number[]
+  exported_at: string
+}
+
+function encodePortfolioStackPayload(ids: number[]): string {
+  const payload: PortfolioStackPayload = {
+    v: 1,
+    stack: ids.slice(0, 50),
+    exported_at: new Date().toISOString(),
+  }
+  const b64 = btoa(JSON.stringify(payload))
+  return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '')
+}
+
+/** Decode shareable stack param — supports base64 JSON or legacy comma list. */
+export function decodePortfolioStackParam(raw: string | null): number[] {
+  if (!raw?.trim()) return []
+  try {
+    const padded = raw.replace(/-/g, '+').replace(/_/g, '/')
+    const json = atob(padded.padEnd(padded.length + ((4 - (padded.length % 4)) % 4), '='))
+    const data = JSON.parse(json) as PortfolioStackPayload
+    if (Array.isArray(data.stack)) {
+      return [...new Set(data.stack.filter(n => Number.isFinite(n) && n > 0))].slice(0, 50)
+    }
+  } catch {
+    /* legacy comma list */
+  }
+  return parseIdList(raw, 50)
+}
+
+/** Portfolio stack share URL — `/portfolio?stack=<base64-json>` */
+export function portfolioSharePath(ids: number[]): string {
+  if (!ids.length) return '/portfolio'
+  return `/portfolio?stack=${encodePortfolioStackPayload(ids)}`
+}
+
+export function portfolioShareUrl(ids: number[], origin = ''): string {
+  return `${origin}${portfolioSharePath(ids)}`
+}

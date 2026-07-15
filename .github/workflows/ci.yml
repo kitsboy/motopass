@@ -51,6 +51,7 @@ jobs:
             || (echo "Run npm run pitch:sync and commit anchor files" && exit 1)
       - run: npm test
       - run: npm run build
+      - run: npm run check:build-salt
       - run: node scripts/check-bundle-size.mjs
       - name: Lighthouse a11y budget (warn-only)
         run: npm run a11y:check
@@ -111,3 +112,14 @@ jobs:
           node-version: '20'
       - run: npm ci
       - run: npm run verify:live:ci
+      - name: Deploy summary JSON
+        if: always()
+        run: node scripts/deploy-summary.mjs --out artifacts/deploy-summary.json
+        continue-on-error: true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deploy-summary
+          path: artifacts/deploy-summary.json
+          retention-days: 30
+          if-no-files-found: ignore

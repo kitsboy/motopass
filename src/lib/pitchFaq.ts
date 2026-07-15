@@ -11,6 +11,11 @@ export const PITCH_FAQ_KEYS = [
 
 export type PitchFaqEntry = { q: TranslationKey; a: TranslationKey }
 
+/** Stable anchor id per FAQ question (item 730). */
+export function pitchFaqAnchorId(index: number): string {
+  return `pitch-faq-${index + 1}`
+}
+
 export function resolvePitchFaqCopy(
   t: (key: TranslationKey) => string,
 ): { question: string; answer: string }[] {

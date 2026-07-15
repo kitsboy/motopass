@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Download, Upload, Plus, Table, LayoutGrid, Link2, Rows3 } from 'lucide-react'
+import { Download, Upload, Plus, Table, LayoutGrid, Link2, Rows3, Zap } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
 import { filterPrograms, DEFAULT_FILTERS, type ProgramFilters } from '../lib/programFilter'
@@ -43,6 +43,7 @@ import {
   saveSessionFilterPresets,
   loadSessionFilterPresets,
   applyFilterPresets,
+  applyLightningPreset,
 } from '../lib/programFilterPresets'
 
 const FILTER_PRESETS: { id: FilterPresetId; labelKey: 'programs.presetUnder100k' | 'programs.presetLightning' | 'programs.presetBitcoinFriendly' }[] = [
@@ -73,6 +74,7 @@ export function ProgramsPage() {
   const [newName, setNewName] = useState('')
   const [importErrorCode, setImportErrorCode] = useState<ImportErrorCode | null>(null)
   const [shareCopied, setShareCopied] = useState(false)
+  const [importDragOver, setImportDragOver] = useState(false)
   const [tableDensity, setTableDensity] = useState<ProgramsTableDensity>(() => loadProgramsTableDensity())
   const advancedId = 'programs-advanced-filters'
   const activeFilterCount = countActiveFilters(filters)
@@ -165,23 +167,38 @@ export function ProgramsPage() {
     }
   }
 
+  const processImportText = async (raw: string) => {
+    if (!window.confirm(t('programs.importConfirm'))) return
+    const result = importProgramsJson(raw)
+    if (result.errorCode) {
+      setImportErrorCode(result.errorCode)
+      return
+    }
+    setImportErrorCode(null)
+    setAddedPrograms(result.programs)
+  }
+
   const handleImport = () => {
     const input = document.createElement('input')
     input.type = 'file'
-    input.accept = '.json'
+    input.accept = '.json,application/json'
     input.onchange = async () => {
       const file = input.files?.[0]
       if (!file) return
-      if (!window.confirm(t('programs.importConfirm'))) return
-      const result = importProgramsJson(await file.text())
-      if (result.errorCode) {
-        setImportErrorCode(result.errorCode)
-        return
-      }
-      setImportErrorCode(null)
-      setAddedPrograms(result.programs)
+      await processImportText(await file.text())
     }
     input.click()
+  }
+
+  const handleImportDrop = async (e: React.DragEvent) => {
+    e.preventDefault()
+    setImportDragOver(false)
+    const file = e.dataTransfer.files?.[0]
+    if (!file || !file.name.endsWith('.json')) {
+      setImportErrorCode('INVALID_JSON')
+      return
+    }
+    await processImportText(await file.text())
   }
 
   const submitNewProgram = () => {
@@ -246,9 +263,17 @@ export function ProgramsPage() {
   }, [programs])
 
   return (
-    <div className="page-container">
+    <div
+      className="page-container"
+      onDragOver={(e) => {
+        e.preventDefault()
+        setImportDragOver(true)
+      }}
+      onDragLeave={() => setImportDragOver(false)}
+      onDrop={handleImportDrop}
+    >
       <SeoHead jsonLd={programsJsonLd} jsonLdOnly />
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-14">
+      <div className="mx-auto max-w-6xl min-w-0 px-4 sm:px-6 py-8 sm:py-14">
         <PageHeader
           eyebrow={formatT(t, 'programs.eyebrow', { count: programs.length })}
           title={t('programs.title')}
@@ -321,14 +346,35 @@ export function ProgramsPage() {
           </p>
         )}
 
+        {importDragOver && (
+          <div
+            className="mb-4 rounded-2xl border-2 border-dashed border-btc-orange/50 bg-btc-orange-soft/30 px-4 py-6 text-center text-sm text-mp-btc-text"
+            role="status"
+          >
+            {t('programs.importDrop')}
+          </div>
+        )}
+
         <div className="mb-6">
-          <input
-            type="search"
-            value={filters.search}
-            onChange={(e) => patchFilters({ search: e.target.value })}
-            placeholder={t('programs.search')}
-            className="input-field mb-3"
-          />
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            <input
+              type="search"
+              value={filters.search}
+              onChange={(e) => patchFilters({ search: e.target.value })}
+              placeholder={t('programs.search')}
+              className="input-field flex-1 min-w-[12rem]"
+            />
+            <button
+              type="button"
+              onClick={() => patchFilters(applyLightningPreset(filters))}
+              className={filters.lightningOnly ? 'chip-active text-xs inline-flex items-center gap-1' : 'chip text-xs inline-flex items-center gap-1 hover:border-mp-btc/40'}
+              aria-pressed={filters.lightningOnly}
+              title={t('programs.presetLightning')}
+            >
+              <Zap size={12} aria-hidden="true" />
+              {t('programs.presetLightning')}
+            </button>
+          </div>
           <div className="mb-3 flex flex-wrap items-center gap-2">
             <span className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">
               {t('programs.filterPresets')}
@@ -415,8 +461,8 @@ export function ProgramsPage() {
         {loading && <CardSkeleton />}
 
         {!loading && (
-          <div className="grid gap-8 lg:grid-cols-[200px_1fr]">
-            <aside className="lg:sticky lg:top-24 lg:self-start">
+          <div className="grid min-w-0 gap-8 lg:grid-cols-[200px_1fr]">
+            <aside className="programs-filter-rail lg:sticky lg:top-24 lg:self-start">
               <span className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary lg:block lg:mb-3">
                 {t('programs.region')}
               </span>
@@ -464,7 +510,7 @@ export function ProgramsPage() {
               {cinematic.length > 0 && (
                 <>
                   {view === 'table' && (
-                    <div className="hidden sm:block">
+                    <div className="hidden sm:block min-w-0 overflow-x-auto">
                       <ProgramsTable
                         programs={cinematic}
                         onSelect={setActive}

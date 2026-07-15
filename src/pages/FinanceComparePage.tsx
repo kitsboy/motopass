@@ -17,6 +17,7 @@ import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
 import { CompareMoneyCell } from '../components/CompareMoneyCell'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
+import { compareDiffClass, compareDiffKind } from '../lib/compareDiff'
 
 function bestIndex(nums: (number | null)[], mode: 'min' | 'max'): Set<number> {
   const valid = nums.filter((n): n is number => n !== null)
@@ -195,8 +196,20 @@ export function FinanceComparePage() {
     setStackAdded(true)
   }
 
+  const suggestedPair = useMemo(() => {
+    const uy = programs.find(p => p.name === 'Uruguay')
+    const bo = programs.find(p => p.name === 'Bolivia')
+    if (!uy || !bo) return null
+    return [uy, bo] as const
+  }, [programs])
+
+  const applySuggestedPair = () => {
+    if (!suggestedPair) return
+    setIdsSynced([suggestedPair[0].id, suggestedPair[1].id])
+  }
+
   return (
-    <div className="compare-page px-4 sm:px-6 py-8 max-w-7xl mx-auto">
+    <div className="compare-page page-container px-4 sm:px-6 py-8 max-w-7xl mx-auto min-w-0">
       <PageHeader eyebrow={t('compare.eyebrow')} title={t('compare.title')} subtitle={t('compare.subtitle')} />
 
       <PageAnchorNav items={compareAnchors} />
@@ -300,7 +313,7 @@ export function FinanceComparePage() {
 
           {compare.length > 0 ? (
             <div id="compare-results" className="scroll-mt-header">
-              <div className="hidden md:block overflow-x-auto rounded-card border border-mp-border bg-mp-card shadow-mp-1">
+              <div className="hidden md:block min-w-0 overflow-x-auto rounded-card border border-mp-border bg-mp-card shadow-mp-1">
                 <table className="w-full text-sm mp-table-zebra">
                   <caption className="sr-only">{t('compare.title')}</caption>
                   <thead>
@@ -383,14 +396,24 @@ export function FinanceComparePage() {
                           {diffRows.map(r => {
                             const nums = compare.map(p => r.numeric(p))
                             const bests = r.best ? bestIndex(nums, r.best) : new Set<number>()
+                            const baselineKey = r.valueKey(compare[0])
                             return (
                               <tr key={r.label} className="border-b border-mp-border-subtle">
                                 <th scope="row" className="p-2 text-start text-ink-muted font-medium whitespace-nowrap">{r.label}</th>
-                                {compare.map((p, i) => (
-                                  <td key={p.id} className={`p-2 text-ink ${bests.has(i) ? 'compare-best-cell font-medium' : ''}`}>
-                                    {r.render(p)}
-                                  </td>
-                                ))}
+                                {compare.map((p, i) => {
+                                  const valueKey = r.valueKey(p)
+                                  const differs = valueKey !== baselineKey
+                                  const kind = compareDiffKind(valueKey, baselineKey, bests.has(i), differs)
+                                  const diffClass = compareDiffClass(kind)
+                                  return (
+                                    <td
+                                      key={p.id}
+                                      className={`p-2 text-ink ${diffClass} ${bests.has(i) ? 'compare-best-cell font-medium' : ''}`.trim()}
+                                    >
+                                      {r.render(p)}
+                                    </td>
+                                  )
+                                })}
                               </tr>
                             )
                           })}
@@ -403,7 +426,19 @@ export function FinanceComparePage() {
             </div>
           ) : (
             <div id="compare-results" className="text-center py-16 rounded-card border border-mp-border bg-mp-card-muted text-mp-ink-tertiary scroll-mt-header">
-              {t('compare.empty')}
+              <p>{t('compare.empty')}</p>
+              {suggestedPair && (
+                <div className="mt-6 flex flex-col items-center gap-3">
+                  <p className="text-sm text-ink-muted">{t('compare.suggestPairs')}</p>
+                  <button
+                    type="button"
+                    onClick={applySuggestedPair}
+                    className="chip text-xs hover:border-mp-btc/40"
+                  >
+                    {t('compare.suggestUruguayBolivia')}
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </>

@@ -1,9 +1,10 @@
-import { BUILD_ID } from './buildInfo'
+import { BUILD_ID, BUILD_LABEL } from './buildInfo'
 import type { Program } from '../types/program'
 
 export type VaultCredentialBundle = {
   schema: 'motopass-credential/v1'
   build: string
+  build_label: string
   exported_at: string
   issuer: 'MotoPass Vault'
   credentials: {
@@ -29,6 +30,7 @@ export function buildVaultCredentialBundle(programs: Program[]): VaultCredential
   return {
     schema: 'motopass-credential/v1',
     build: BUILD_ID,
+    build_label: BUILD_LABEL,
     exported_at: new Date().toISOString(),
     issuer: 'MotoPass Vault',
     credentials: stamped.map(p => ({

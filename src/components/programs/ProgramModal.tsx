@@ -14,6 +14,8 @@ import { useI18n } from '../../i18n/I18nContext';
 import { BtcMapProgramPanel } from '../btcmap/BtcMapProgramPanel';
 import { btcMapPageUrl } from '../../lib/btcmap';
 import { Program, ProgramModalTab, scoreWeight, hasFlagshipDepth } from './types';
+import { SeoHead } from '../SeoHead';
+import { programDetailJsonLd } from '../../lib/siteJsonLd';
 
 interface ProgramModalProps {
   program: Program | null;
@@ -108,15 +110,19 @@ function ProgramModalBody({
     return base;
   }, [t, deep, program.paigeFields]);
 
+  const programJsonLd = useMemo(() => programDetailJsonLd(program), [program])
+
   return (
-    <ClassyModal
-      open
-      onClose={handleClose}
-      returnFocusRef={openerRef}
-      closeLabel={t('modal.close')}
-      eyebrow={`${program.tier} · ${program.region}`}
-      title={program.country}
-    >
+    <>
+      <SeoHead jsonLd={programJsonLd} jsonLdOnly />
+      <ClassyModal
+        open
+        onClose={handleClose}
+        returnFocusRef={openerRef}
+        closeLabel={t('modal.close')}
+        eyebrow={`${program.tier} · ${program.region}`}
+        title={program.country}
+      >
       <div className="mb-4 flex items-center gap-3 flex-wrap">
         <ProofBadge status={program.proofStatus} txHint={program.proofRef} />
         {isFlagship && (
@@ -132,12 +138,15 @@ function ProgramModalBody({
 
       <ModalTabs tabs={TABS} active={tab} onChange={setTab} />
 
+      {deep && program.complianceClock && (
+        <div className="mb-4">
+          <ComplianceClock program={program} />
+        </div>
+      )}
+
       {tab === 'Overview' && (
         <div className="space-y-4 text-sm text-mp-ink-secondary">
           <p className="leading-relaxed">{program.summary}</p>
-          {deep && program.complianceClock && (
-            <ComplianceClock program={program} />
-          )}
           <div className="grid grid-cols-2 gap-2 text-xs">
             {[
               [t('modal.sovereignty'), `${program.sovereigntyScore}/100`],
@@ -313,5 +322,6 @@ function ProgramModalBody({
         </div>
       </div>
     </ClassyModal>
+    </>
   );
 }

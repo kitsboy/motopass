@@ -1,10 +1,14 @@
 import { describe, expect, it } from 'vitest'
-import { PITCH_FAQ_KEYS, resolvePitchFaqCopy } from './pitchFaq'
+import { PITCH_FAQ_KEYS, pitchFaqAnchorId, resolvePitchFaqCopy } from './pitchFaq'
 import { pitchFaqJsonLd } from './siteJsonLd'
 
 describe('pitchFaq', () => {
   it('exports five FAQ entries', () => {
     expect(PITCH_FAQ_KEYS).toHaveLength(5)
+  })
+
+  it('pitchFaqAnchorId returns stable hash targets', () => {
+    expect(pitchFaqAnchorId(2)).toBe('pitch-faq-3')
   })
 
   it('resolvePitchFaqCopy maps translation keys', () => {

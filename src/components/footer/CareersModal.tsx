@@ -1,14 +1,20 @@
+import type { MutableRefObject } from 'react'
 import { Briefcase, MapPin, Mail, ChevronRight } from 'lucide-react'
 import { ClassyModal } from '../ui/ClassyModal'
 import { CAREERS_EMAIL, JOB_POSTINGS, jobMailto } from '../../data/careers'
 
-type Props = { open: boolean; onClose: () => void }
+type Props = {
+  open: boolean
+  onClose: () => void
+  returnFocusRef?: MutableRefObject<HTMLElement | null>
+}
 
-export function CareersModal({ open, onClose }: Props) {
+export function CareersModal({ open, onClose, returnFocusRef }: Props) {
   return (
     <ClassyModal
       open={open}
       onClose={onClose}
+      returnFocusRef={returnFocusRef}
       title="Join MotoPass"
       subtitle={`7 open roles · Apply via ${CAREERS_EMAIL}`}
       icon={<Briefcase size={20} />}

@@ -3,14 +3,24 @@
  * Verify production React app actually mounts (not poisoned CDN cache).
  * Usage: node scripts/verify-live-app.mjs [baseUrl]
  */
-import { readFileSync } from 'node:fs'
+import { readFileSync, mkdirSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright'
+import { saltToBuildId } from './lib/parse-live-index.mjs'
 
 const base = (process.argv[2] ?? 'https://motopass.giveabit.io').replace(/\/$/, '')
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const distHtml = readFileSync(resolve(__dirname, '../dist/index.html'), 'utf8')
+const root = resolve(__dirname, '..')
+
+const buildInfo = readFileSync(resolve(root, 'src/lib/buildInfo.ts'), 'utf8')
+const localBuildId = buildInfo.match(/BUILD_ID\s*=\s*'([^']+)'/)?.[1]
+if (!localBuildId) {
+  console.error('FAIL: could not parse BUILD_ID from src/lib/buildInfo.ts')
+  process.exit(1)
+}
+
+const distHtml = readFileSync(resolve(root, 'dist/index.html'), 'utf8')
 const jsMatch =
   distHtml.match(/import\("(\/assets\/index-[^"]+\.js)/) ??
   distHtml.match(/src="(\/assets\/index-[^"]+\.js)/)
@@ -47,6 +57,19 @@ page.on('pageerror', e => { pageError = e.message })
 await page.goto(`${base}/`, { waitUntil: 'load', timeout: 30000 })
 await page.waitForTimeout(3000)
 const mainVisible = await page.locator('main').isVisible().catch(() => false)
+
+const footerBuild = page.locator('[data-build-version]')
+await footerBuild.scrollIntoViewIfNeeded().catch(() => {})
+const footerText = (await footerBuild.textContent().catch(() => ''))?.trim() ?? ''
+const footerBuildOk = footerText.includes(localBuildId)
+
+await page.setViewportSize({ width: 390, height: 844 })
+await footerBuild.scrollIntoViewIfNeeded().catch(() => {})
+const artifactDir = resolve(root, 'artifacts')
+mkdirSync(artifactDir, { recursive: true })
+const screenshotPath = resolve(artifactDir, 'footer-mobile-gap-live.png')
+await page.locator('footer.footer-glass').screenshot({ path: screenshotPath }).catch(() => {})
+
 await browser.close()
 
 if (poisoned.length) {
@@ -59,6 +82,10 @@ if (!mainVisible) {
   if (pageError) console.error('pageerror:', pageError)
   process.exit(1)
 }
+if (!footerBuildOk) {
+  console.error(`FAIL: footer BUILD "${footerText}" does not match local ${localBuildId}`)
+  process.exit(1)
+}
 
 const res = await fetch(jsUrl, { cache: 'no-store', headers: { Accept: '*/*' } })
 const body = await res.text()
@@ -67,4 +94,12 @@ if (!res.ok || body.trimStart().startsWith('<')) {
   process.exit(1)
 }
 
-console.log(`OK ${base}/ — main visible, ${jsUrl} (${body.length} bytes)`)
+const saltFromBundle = jsPath.match(/-(\d{8}-\d+)\.js$/)?.[1]
+const bundleBuildId = saltFromBundle ? (saltToBuildId(saltFromBundle) ?? saltFromBundle) : null
+if (bundleBuildId && bundleBuildId !== localBuildId) {
+  console.error(`FAIL: live bundle BUILD ${bundleBuildId} ≠ local ${localBuildId}`)
+  process.exit(1)
+}
+
+console.log(`OK ${base}/ — main visible, footer BUILD ${localBuildId}, ${jsUrl} (${body.length} bytes)`)
+console.log(`OK footer screenshot stub → ${screenshotPath}`)

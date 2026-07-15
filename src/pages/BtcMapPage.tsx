@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Bitcoin, ExternalLink, LayoutGrid, List, Map as MapIcon, Zap } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
@@ -18,14 +18,27 @@ import { formatT } from '../i18n/format'
 import { btcMapAttribution, btcMapMapUrl } from '../lib/btcmap'
 import { getProgramCoord } from '../data/programCoords'
 import { serializeIdList, parseIdList } from '../lib/urlState'
-
-type LayoutMode = 'split' | 'map' | 'list'
+import {
+  BTC_MAP_TABLET_LANDSCAPE_MQ,
+  defaultBtcMapLayout,
+  type BtcMapLayoutMode,
+} from '../lib/btcMapLayout'
 
 export function BtcMapPage() {
   const { t } = useI18n()
   const { programs, loading: programsLoading } = usePrograms()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [layout, setLayout] = useState<LayoutMode>('split')
+  const [layout, setLayout] = useState<BtcMapLayoutMode>(() => defaultBtcMapLayout())
+
+  useEffect(() => {
+    const mq = window.matchMedia(BTC_MAP_TABLET_LANDSCAPE_MQ)
+    const onChange = () => {
+      if (mq.matches) setLayout('split')
+    }
+    onChange()
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
 
   const programId = useMemo(() => {
     const ids = parseIdList(searchParams.get('program'))

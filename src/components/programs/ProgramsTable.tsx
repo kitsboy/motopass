@@ -4,6 +4,8 @@ import { Check } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
 import { BtcDualPrice } from '../BtcDualPrice';
 import type { ProgramsTableDensity } from '../../lib/portfolioStorage';
+import { useI18n } from '../../i18n/I18nContext';
+import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 import { SovereigntyScoreTooltip } from './SovereigntyScoreTooltip';
@@ -30,6 +32,7 @@ export function ProgramsTable({
   onTogglePortfolio,
   density = 'comfortable',
 }: ProgramsTableProps) {
+  const { t } = useI18n();
   const portfolioSet = new Set(portfolioIds);
   const compact = density === 'compact';
   const cellPad = compact ? 'py-2' : 'py-3';
@@ -111,7 +114,10 @@ export function ProgramsTable({
                   <span className={`font-display text-mp-ink ${compact ? 'text-xs' : 'text-sm'}`}>{p.country}</span>
                 </div>
               </td>
-              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-chrome text-xs text-mp-ink-secondary`}>
+              <td
+                className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-chrome text-xs text-mp-ink-secondary`}
+                title={t(tierTooltipKey(p.tier))}
+              >
                 {p.tier}
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>

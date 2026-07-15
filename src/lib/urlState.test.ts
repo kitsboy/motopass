@@ -1,5 +1,14 @@
 import { describe, it, expect } from 'vitest'
-import { parseIdList, serializeIdList, filtersFromSearchParams, filtersToSearchParams, countActiveFilters } from './urlState'
+import {
+  parseIdList,
+  serializeIdList,
+  filtersFromSearchParams,
+  filtersToSearchParams,
+  countActiveFilters,
+  portfolioSharePath,
+  portfolioShareUrl,
+  decodePortfolioStackParam,
+} from './urlState'
 import { DEFAULT_FILTERS } from './programFilter'
 
 describe('urlState', () => {
@@ -25,5 +34,18 @@ describe('urlState', () => {
     const f = filtersFromSearchParams(new URLSearchParams())
     expect(f.region).toBe(DEFAULT_FILTERS.region)
     expect(countActiveFilters(f)).toBe(0)
+  })
+
+  it('builds portfolio share URLs with base64 JSON', () => {
+    expect(portfolioSharePath([])).toBe('/portfolio')
+    const path = portfolioSharePath([3, 7])
+    expect(path.startsWith('/portfolio?stack=')).toBe(true)
+    const encoded = path.split('=')[1] ?? ''
+    expect(decodePortfolioStackParam(encoded)).toEqual([3, 7])
+    expect(portfolioShareUrl([3], 'https://motopass.test')).toContain('https://motopass.test/portfolio?stack=')
+  })
+
+  it('decodes legacy comma stack params', () => {
+    expect(decodePortfolioStackParam('3,7,9')).toEqual([3, 7, 9])
   })
 })

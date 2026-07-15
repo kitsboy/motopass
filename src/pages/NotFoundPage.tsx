@@ -7,6 +7,7 @@ import { useI18n } from '../i18n/I18nContext'
 
 const QUICK_LINK_KEYS = [
   { to: '/', key: 'nav.pitch' as const },
+  { to: '/vault', key: 'nav.vault' as const },
   { to: '/programs', key: 'nav.programs' as const },
   { to: '/simulator', key: 'nav.simulator' as const },
   { to: '/compare', key: 'nav.compare' as const },

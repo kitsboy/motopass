@@ -44,6 +44,43 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   }
 }
 
+/** Program detail stub JSON-LD when ProgramModal is open. */
+export function programDetailJsonLd(program: {
+  country: string
+  region: string
+  tier: string
+  minInvestment: number
+  sovereigntyScore: number
+  proofStatus: string
+  proofUrl?: string
+  id: string
+}) {
+  const url = `${SITE_URL}/programs#program-${program.id}`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'GovernmentService',
+    '@id': url,
+    name: `${program.country} — ${program.tier}`,
+    serviceType: 'Sovereign residency and citizenship program',
+    areaServed: { '@type': 'Place', name: program.region },
+    url,
+    description: `Sovereignty score ${program.sovereigntyScore}/100 · min investment from $${program.minInvestment.toLocaleString()}.`,
+    offers: {
+      '@type': 'Offer',
+      price: program.minInvestment,
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/OnlineOnly',
+    },
+    additionalProperty: [
+      { '@type': 'PropertyValue', name: 'proofStatus', value: program.proofStatus },
+      ...(program.proofUrl
+        ? [{ '@type': 'PropertyValue', name: 'satohashProof', value: program.proofUrl }]
+        : []),
+    ],
+    provider: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  }
+}
+
 /** FAQPage JSON-LD enriched from live i18n FAQ copy (pitch home). */
 export function pitchFaqJsonLd(entries: FaqJsonLdEntry[], lang: LangCode = 'en') {
   const pageUrl = `${SITE_URL}/`

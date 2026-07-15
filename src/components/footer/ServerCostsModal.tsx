@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type MutableRefObject } from 'react'
 import { Server, Zap, Bitcoin } from 'lucide-react'
 import { ClassyModal } from '../ui/ClassyModal'
 import { ModalTabs } from '../ui/ModalTabs'
@@ -7,9 +7,13 @@ import { PaymentQrCode } from '../ui/PaymentQrCode'
 import { SERVER_COSTS } from '../../data/serverCosts'
 
 type Tab = 'layer1' | 'layer2'
-type Props = { open: boolean; onClose: () => void }
+type Props = {
+  open: boolean
+  onClose: () => void
+  returnFocusRef?: MutableRefObject<HTMLElement | null>
+}
 
-export function ServerCostsModal({ open, onClose }: Props) {
+export function ServerCostsModal({ open, onClose, returnFocusRef }: Props) {
   const [tab, setTab] = useState<Tab>('layer1')
   const active = tab === 'layer1' ? SERVER_COSTS.layer1 : SERVER_COSTS.layer2
 
@@ -17,6 +21,7 @@ export function ServerCostsModal({ open, onClose }: Props) {
     <ClassyModal
       open={open}
       onClose={onClose}
+      returnFocusRef={returnFocusRef}
       title="Server Costs"
       subtitle="Voluntary tips offset hosting, research CDN, and stamping infra"
       icon={<Server size={20} />}

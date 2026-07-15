@@ -41,8 +41,11 @@
     "deploy": "npm run sync:build && npm run build && node scripts/purge-live-cache.mjs && wrangler pages deploy dist --project-name=motopass --branch=main --commit-dirty=true && node scripts/wait-live-app.mjs",
     "deploy:safe": "npm run sync:build && npm run build && node scripts/purge-live-cache.mjs && echo 'Deploying ONLY to motopass (motopass.giveabit.io)' && wrangler pages deploy dist --project-name=motopass --branch=main",
     "check:live-headers": "node scripts/check-live-headers.mjs",
+    "check:build-salt": "node scripts/check-build-salt.mjs",
+    "deploy:summary": "node scripts/deploy-summary.mjs",
+    "predeploy:push": "npm test && npm run test:e2e",
     "deploy:check": "test -n \"$CLOUDFLARE_API_TOKEN\" && echo 'CF token set' || echo 'Set CLOUDFLARE_API_TOKEN in .env.local for manual wrangler deploy'",
-    "deploy:all": "npm run validate:data && npm run validate:stamps && npm run validate:seal && LAUNCH_SKIP_OPS=1 LAUNCH_WRITE_ONLY=1 npm run launch:gate && npm run lint && npm test && npm run sync:build && npm run build && npm run bundle:check && npm run test:e2e && npm run deploy:safe && node scripts/wait-live-app.mjs"
+    "deploy:all": "npm run validate:data && npm run validate:stamps && npm run validate:seal && LAUNCH_SKIP_OPS=1 LAUNCH_WRITE_ONLY=1 npm run launch:gate && npm run lint && npm run sync:build && npm run build && npm run bundle:check && npm run check:build-salt && npm run predeploy:push && npm run deploy:safe && node scripts/wait-live-app.mjs"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",

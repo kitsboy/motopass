@@ -72,3 +72,8 @@ export function applyFilterPresets(filters: ProgramFilters, presets: FilterPrese
   }
   return next
 }
+
+/** One-click apply Lightning-ready preset (does not toggle off). */
+export function applyLightningPreset(filters: ProgramFilters): ProgramFilters {
+  return { ...filters, lightningOnly: true }
+}

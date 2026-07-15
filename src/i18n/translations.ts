@@ -499,5 +499,10 @@ const hi: Dict = {
 export const TRANSLATIONS: Record<LangCode, Dict> = { en, es, fr, pt, zh, ar, sw, de, hi }
 
 export function t(lang: LangCode, key: TranslationKey): string {
-  return TRANSLATIONS[lang][key] ?? TRANSLATIONS.en[key] ?? key
+  const localized = TRANSLATIONS[lang][key]
+  if (localized !== undefined) return localized
+  const fallback = TRANSLATIONS.en[key]
+  if (fallback !== undefined) return fallback
+  if (import.meta.env.DEV) return key
+  return ''
 }

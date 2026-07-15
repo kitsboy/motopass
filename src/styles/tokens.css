@@ -7,6 +7,12 @@
 
 :root {
   /* ---------------------------------------------------------------------
+     LAYOUT — mobile bottom tab bar (scroll clearance, BackToTop offset)
+     Height is the visual bar only; safe-area-inset-bottom is applied separately.
+     --------------------------------------------------------------------- */
+  --mp-mobile-tab-bar-height: 3.75rem;
+
+  /* ---------------------------------------------------------------------
      SURFACES — light fallback (dark is default via html.dark)
      --------------------------------------------------------------------- */
   --mp-surface-canvas: #F5F2EC;

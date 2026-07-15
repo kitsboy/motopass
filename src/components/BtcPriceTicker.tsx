@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Bitcoin } from 'lucide-react'
 import { formatBtc, formatUsdCompact } from '../lib/btcPrice'
 import { useBtcPrice } from '../context/BtcPriceContext'
@@ -9,16 +10,33 @@ export function BtcPriceTicker({ variant = 'default' }: { variant?: 'default' | 
   const isHero = variant === 'hero'
   const isCompact = variant === 'compact'
   const spot = `${formatBtc(1)} · ${formatUsdCompact(rate)}`
+  const [flash, setFlash] = useState(false)
+  const prevRate = useRef(rate)
+  const seeded = useRef(false)
+
+  useEffect(() => {
+    if (loading) return
+    if (!seeded.current) {
+      seeded.current = true
+      prevRate.current = rate
+      return
+    }
+    if (prevRate.current === rate) return
+    prevRate.current = rate
+    setFlash(true)
+    const id = window.setTimeout(() => setFlash(false), 900)
+    return () => window.clearTimeout(id)
+  }, [rate, loading])
+
+  const shellClass = isHero
+    ? 'inline-flex items-center gap-1.5 text-[10px] font-mono rounded-full border border-white/20 bg-black/35 px-3 py-1.5 text-mp-on-hero-secondary backdrop-blur-sm'
+    : isCompact
+      ? 'inline-flex items-center gap-1 text-[9px] font-mono rounded-full border border-mp/70 bg-mp-section/80 px-2 py-0.5 text-ink-secondary shrink-0'
+      : 'nav-btn !font-mono !text-[10px] !gap-1 !px-2 !py-0 text-ink-secondary'
 
   return (
     <div
-      className={
-        isHero
-          ? 'inline-flex items-center gap-1.5 text-[10px] font-mono rounded-full border border-white/20 bg-black/35 px-3 py-1.5 text-mp-on-hero-secondary backdrop-blur-sm'
-          : isCompact
-            ? 'inline-flex items-center gap-1 text-[9px] font-mono rounded-full border border-mp/70 bg-mp-section/80 px-2 py-0.5 text-ink-secondary shrink-0'
-            : 'nav-btn !font-mono !text-[10px] !gap-1 !px-2 !py-0 text-ink-secondary'
-      }
+      className={`${shellClass}${flash ? ' btc-price-flash' : ''}`}
       title={error ? t('btcPrice.fallback') : spot}
       aria-label={isCompact ? `${t('btcPrice.label')} ${spot}` : undefined}
     >

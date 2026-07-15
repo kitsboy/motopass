@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { Check, CheckCircle2, Copy, ExternalLink, MessageCircle, Radio, Rocket } from 'lucide-react'
+import { Check, CheckCircle2, Copy, ExternalLink, MessageCircle, Radio, Rocket, Share2 } from 'lucide-react'
 import { NostrConnect } from '../components/NostrConnect'
 import { hashApplicationPayload, satohashStampGuideUrl } from '../lib/satohash'
 import { addApplication } from '../lib/storage'
 import type { NostrSession } from '../lib/nostr'
 import { useI18n } from '../i18n/I18nContext'
+import { formatT } from '../i18n/format'
 import { PageHeader } from '../components/ui/PageHeader'
 import { Card } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
@@ -16,6 +17,8 @@ import { BUILD_ID } from '../lib/buildInfo'
 import { ApplyLaunchGatesDirectory } from '../components/apply/ApplyLaunchGatesDirectory'
 import { ApplyFormProgressStepper } from '../components/apply/ApplyFormProgressStepper'
 import { clearApplyDraft, loadApplyDraft, saveApplyDraft } from '../lib/applyDraftStorage'
+
+const NOTES_MAX = 2000
 
 function resolveApplyFields(programPrefill: string, proofPrefill: string) {
   if (programPrefill || proofPrefill) {
@@ -104,7 +107,7 @@ export function ApplyPage() {
   const relayFake = report.relay_fake ?? report.relay_status === 'fake'
 
   return (
-    <div key={`${programPrefill}-${proofPrefill}` || 'apply'} className="page-container px-4 sm:px-6 py-8 max-w-xl mx-auto">
+    <div key={`${programPrefill}-${proofPrefill}` || 'apply'} className="page-container px-4 sm:px-6 py-8 pb-24 md:pb-8 max-w-xl mx-auto">
       {applicationsOpen && (
         <Card variant="banner" animate delay={0} className="mb-6 flex items-start gap-3">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-mp-md bg-btc-orange/15 border border-btc-orange/25">
@@ -158,18 +161,26 @@ export function ApplyPage() {
 
       {proofPrefill && !result && (
         <Card variant="proof" animate delay={0.05} className="mb-6">
-          <p className="font-chrome text-xs font-semibold text-mp-proof mb-1">Vault proof attached</p>
+          <p className="font-chrome text-xs font-semibold text-mp-proof mb-1">{t('apply.vaultProofAttached')}</p>
           <code className="block text-[10px] font-mono text-ink-secondary break-all bg-card-muted/40 rounded-mp-md p-3 border border-mp-proof/25">
             {proofPrefill}
           </code>
-          <a
-            href={`https://satohash.io/verify/${proofPrefill}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-1 text-xs text-mp-btc-text hover:underline"
-          >
-            Verify on Satohash <ExternalLink size={12} />
-          </a>
+          <div className="mt-3 flex flex-wrap gap-3">
+            <Link
+              to={`/vault?proof=${encodeURIComponent(proofPrefill)}${programPrefill ? `&program=${encodeURIComponent(programPrefill)}` : ''}`}
+              className="inline-flex items-center gap-1 text-xs text-mp-btc-text hover:underline"
+            >
+              {t('apply.vaultSourceRow')} →
+            </Link>
+            <a
+              href={`https://satohash.io/verify/${proofPrefill}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-mp-btc-text hover:underline"
+            >
+              {t('apply.verifyOnSatohash')} <ExternalLink size={12} />
+            </a>
+          </div>
         </Card>
       )}
 
@@ -186,7 +197,7 @@ export function ApplyPage() {
             notes={notes}
             hasNostr={!!nostr}
           />
-          <form onSubmit={submit} className="space-y-4">
+          <form id="apply-form" onSubmit={submit} className="space-y-4">
             <fieldset disabled={!applicationsOpen || submitting} className="space-y-4 disabled:opacity-55">
               <Input
                 id="apply-name"
@@ -203,17 +214,39 @@ export function ApplyPage() {
                 onChange={e => setProgram(e.target.value)}
                 placeholder={t('apply.programPlaceholder')}
               />
-              <Textarea
-                id="apply-notes"
-                label={t('apply.notesOptional')}
-                value={notes}
-                onChange={e => setNotes(e.target.value)}
-              />
-              <Button type="submit" className="w-full" disabled={!applicationsOpen || submitting} loading={submitting}>
-                {submitting ? 'Hashing…' : t('apply.submit')}
+              <div className="space-y-1.5">
+                <Textarea
+                  id="apply-notes"
+                  label={t('apply.notesOptional')}
+                  value={notes}
+                  maxLength={NOTES_MAX}
+                  onChange={e => setNotes(e.target.value)}
+                />
+                <p
+                  className={`text-[10px] font-mono text-right ${
+                    notes.length >= NOTES_MAX ? 'text-status-amber' : 'text-ink-muted'
+                  }`}
+                  aria-live="polite"
+                >
+                  {formatT(t, 'apply.notesCharCount', { count: notes.length, max: NOTES_MAX })}
+                </p>
+              </div>
+              <Button type="submit" className="w-full hidden md:inline-flex" disabled={!applicationsOpen || submitting} loading={submitting}>
+                {submitting ? t('apply.hashing') : t('apply.submit')}
               </Button>
             </fieldset>
           </form>
+          <div className="apply-mobile-submit-bar md:hidden" aria-hidden={!applicationsOpen}>
+            <Button
+              type="submit"
+              form="apply-form"
+              className="w-full"
+              disabled={!applicationsOpen || submitting}
+              loading={submitting}
+            >
+              {submitting ? t('apply.hashing') : t('apply.submit')}
+            </Button>
+          </div>
         </Card>
       ) : (
         <Card variant="proof" animate className="space-y-4 relative overflow-hidden apply-success-card">
@@ -261,9 +294,36 @@ export function ApplyPage() {
             <li>{t('apply.stepAgents')}</li>
           </ol>
 
-          <a href={satohashStampGuideUrl(result.hash)} target="_blank" rel="noopener noreferrer" className="btn-primary w-full inline-flex items-center justify-center gap-2 relative z-[1]">
-            {t('apply.stampSatohash')} <ExternalLink size={14} />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-2 relative z-[1]">
+            <a href={satohashStampGuideUrl(result.hash)} target="_blank" rel="noopener noreferrer" className="btn-primary w-full inline-flex items-center justify-center gap-2">
+              {t('apply.stampSatohash')} <ExternalLink size={14} />
+            </a>
+            <button
+              type="button"
+              className="btn-secondary w-full inline-flex items-center justify-center gap-2"
+              onClick={async () => {
+                const shareData = {
+                  title: 'MotoPass application',
+                  text: `${program} · ${result.hash}`,
+                  url: satohashStampGuideUrl(result.hash),
+                }
+                if (typeof navigator.share === 'function') {
+                  try {
+                    await navigator.share(shareData)
+                    toast(t('apply.shareSuccess'), 'success')
+                    return
+                  } catch (err) {
+                    if (err instanceof Error && err.name === 'AbortError') return
+                  }
+                }
+                await navigator.clipboard.writeText(`${shareData.text}\n${shareData.url}`)
+                toast(t('apply.shareStub'), 'default')
+              }}
+            >
+              <Share2 size={14} aria-hidden />
+              {t('apply.shareIntent')}
+            </button>
+          </div>
           <Link to="/agents" className="btn-secondary w-full text-center block relative z-[1]">{t('apply.meetAgents')}</Link>
           <p className="font-body text-xs text-ink-muted leading-relaxed relative z-[1]">{t('apply.agentNotify')}</p>
           <Button type="button" variant="secondary" className="w-full relative z-[1]" onClick={() => setResult(null)}>

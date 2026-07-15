@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { useMemo, useState } from 'react'
-import { Layers, Wallet, Zap, Radio, ChevronUp, ChevronDown } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { Layers, Wallet, Zap, Radio, ChevronUp, ChevronDown, Link2 } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
 import { toCinematicPrograms, cinematicIdToNumber } from '../lib/programAdapter'
@@ -20,14 +21,18 @@ import { PaigeChat } from '../components/PaigeChat'
 import { NostrConnect } from '../components/NostrConnect'
 import { Card } from '../components/ui/Card'
 import { hasFlagshipDepth } from '../components/programs/types'
+import { decodePortfolioStackParam, portfolioShareUrl } from '../lib/urlState'
+import { savePortfolio } from '../lib/portfolioStorage'
 
 type SortKey = 'order' | 'name' | 'score' | 'invest'
 
 export function PortfolioPage() {
   const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
-  const { portfolio, toggle: togglePortfolio, clearAll, moveItem } = usePortfolio()
+  const { portfolio, toggle: togglePortfolio, clearAll, moveItem, setPortfolio } = usePortfolio()
+  const [searchParams] = useSearchParams()
   const [selected, setSelected] = useState<CinematicProgram | null>(null)
+  const [shareCopied, setShareCopied] = useState(false)
   const [tab, setTab] = useState<ProgramModalTab>('Overview')
   const [sort, setSort] = useState<SortKey>('order')
   const [removeAllOpen, setRemoveAllOpen] = useState(false)
@@ -75,6 +80,24 @@ export function PortfolioPage() {
     setRemoveAllOpen(false)
   }
 
+  useEffect(() => {
+    const stack = decodePortfolioStackParam(searchParams.get('stack'))
+    if (!stack.length) return
+    savePortfolio(stack)
+    setPortfolio(stack)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps -- hydrate shared stack once
+
+  const handleCopyShareUrl = async () => {
+    const url = portfolioShareUrl(portfolio, window.location.origin)
+    try {
+      await navigator.clipboard.writeText(url)
+      setShareCopied(true)
+      window.setTimeout(() => setShareCopied(false), 2000)
+    } catch {
+      setShareCopied(false)
+    }
+  }
+
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-7xl mx-auto">
       <PageHeader
@@ -96,6 +119,15 @@ export function PortfolioPage() {
                 <option value="score">{t('portfolio.sortScore')}</option>
                 <option value="invest">{t('portfolio.sortInvest')}</option>
               </select>
+              <button
+                type="button"
+                onClick={handleCopyShareUrl}
+                className="chip text-xs inline-flex items-center gap-1"
+                title={shareCopied ? t('portfolio.shareCopied') : t('portfolio.shareUrl')}
+              >
+                <Link2 size={12} aria-hidden="true" />
+                {shareCopied ? t('portfolio.shareCopied') : t('portfolio.shareUrl')}
+              </button>
               <button type="button" onClick={() => setRemoveAllOpen(true)} className="chip text-xs hover:!text-status-red">
                 {t('portfolio.removeAll')}
               </button>

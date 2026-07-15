@@ -1,16 +1,24 @@
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { ShieldCheck, ArrowRight } from 'lucide-react'
 import { Card } from '../ui/Card'
 import { ProofBadge } from '../ui/ProofBadge'
 import { toCinematicProgram } from '../../lib/programAdapter'
+import { computePitchStats } from '../../lib/pitchStats'
 import type { Program } from '../../types/program'
 
 const GOLD_STANDARD_NAMES = ['Uruguay', 'Bolivia'] as const
 
 export function GoldStandardSpotlight({ programs }: { programs: Program[] }) {
-  const spotlight = GOLD_STANDARD_NAMES.map(name => programs.find(p => p.name === name)).filter(
-    (p): p is Program => Boolean(p),
-  )
+  const stats = useMemo(() => computePitchStats(programs), [programs])
+  const spotlight = useMemo(() => {
+    const found = GOLD_STANDARD_NAMES.map(name => programs.find(p => p.name === name)).filter(
+      (p): p is Program => Boolean(p),
+    )
+    if (found.length < 2) return found
+    const offset = (stats.deepCount + stats.lightningCount) % found.length
+    return [...found.slice(offset), ...found.slice(0, offset)]
+  }, [programs, stats.deepCount, stats.lightningCount])
 
   if (spotlight.length === 0) return null
 

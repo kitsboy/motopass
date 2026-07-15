@@ -72,6 +72,7 @@ test.describe('smoke', () => {
   })
 
   test('compare empty state loads', async ({ page }) => {
+    await page.addInitScript(() => localStorage.removeItem('motopass-compare-ids'))
     await page.goto('/compare', gotoOpts)
     await expect(page.getByText(/select programs to compare/i)).toBeVisible({ timeout: 15_000 })
   })
@@ -117,7 +118,7 @@ test.describe('smoke', () => {
 
   test('404 page has noindex meta', async ({ page }) => {
     await page.goto('/this-route-does-not-exist-xyz', gotoOpts)
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/)
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/, { timeout: 10_000 })
   })
 
   test('Arabic sets RTL document direction', async ({ page }) => {
@@ -154,6 +155,22 @@ test.describe('smoke', () => {
   test('mobile viewport has no horizontal overflow on home', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 })
     await page.goto('/')
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)
+    expect(overflow).toBe(false)
+  })
+
+  test('mobile viewport has no horizontal overflow on programs', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/programs', gotoOpts)
+    await expect(page.locator('main')).toBeVisible({ timeout: 15_000 })
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)
+    expect(overflow).toBe(false)
+  })
+
+  test('mobile viewport has no horizontal overflow on compare', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/compare', gotoOpts)
+    await expect(page.locator('main')).toBeVisible({ timeout: 15_000 })
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)
     expect(overflow).toBe(false)
   })

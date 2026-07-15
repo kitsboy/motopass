@@ -6,7 +6,7 @@ import { formatT } from '../../i18n/format'
 const LEVEL_STYLES = {
   fresh: 'border-mp-proof/30 bg-mp-proof-soft text-mp-proof',
   recent: 'border-mp-ochre/40 bg-mp-btc-soft text-mp-btc-text',
-  stale: 'border-mp-border-strong bg-mp-section text-mp-ink-tertiary',
+  expired: 'border-status-red/45 bg-status-red/12 text-status-red',
 } as const
 
 export function BtcMapCacheFreshnessBadge({ fetchedAt }: { fetchedAt: string }) {

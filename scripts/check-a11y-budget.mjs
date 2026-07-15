@@ -4,7 +4,7 @@
  * Runs against local preview after `npm run build`.
  *
  * Env:
- *   A11Y_MIN_SCORE — minimum accessibility score (default 90)
+ *   A11Y_MIN_SCORE — minimum accessibility score (default 95)
  *   A11Y_PREVIEW_PORT — preview port (default 4173)
  */
 import { spawn } from 'node:child_process'
@@ -16,7 +16,7 @@ import { fileURLToPath } from 'node:url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST = resolve(__dirname, '../dist')
 const PORT = Number(process.env.A11Y_PREVIEW_PORT || 4173)
-const MIN_SCORE = Number(process.env.A11Y_MIN_SCORE || 90)
+const MIN_SCORE = Number(process.env.A11Y_MIN_SCORE || 95)
 const BASE = `http://127.0.0.1:${PORT}/`
 
 const MIME = {

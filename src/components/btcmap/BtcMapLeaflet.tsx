@@ -7,6 +7,7 @@ import { btcMapMerchantUrl } from '../../lib/btcmap'
 import { gridClusterPlaces } from '../../lib/btcmapCluster'
 import type { BtcMapArea, BtcMapPlace } from '../../lib/btcmap'
 import { useI18n } from '../../i18n/I18nContext'
+import { BtcMapPinPopover } from './BtcMapPinPopover'
 
 const pinIcon = L.divIcon({
   className: '',
@@ -73,16 +74,11 @@ function PlaceMarkers({ places, zoom }: { places: BtcMapPlace[]; zoom: number })
       {places.map(p => (
         <Marker key={p.id} position={[p.lat, p.lon]} icon={pinIcon}>
           <Popup>
-            <div className="text-sm font-medium">{p.name ?? t('btcmap.unnamed')}</div>
-            {p.address && <div className="text-xs text-gray-600 mt-0.5">{p.address}</div>}
-            <a
-              href={btcMapMerchantUrl(p.id)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-orange-600 hover:underline mt-1 inline-block"
-            >
-              btcmap.org →
-            </a>
+            <BtcMapPinPopover
+              name={p.name ?? t('btcmap.unnamed')}
+              address={p.address}
+              merchantUrl={btcMapMerchantUrl(p.id)}
+            />
           </Popup>
         </Marker>
       ))}

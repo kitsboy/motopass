@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { ExternalLink, Shield, Copy, Check, ClipboardPaste, History, RotateCcw } from 'lucide-react'
+import { ExternalLink, Shield, Copy, Check, ClipboardPaste, History, RotateCcw, QrCode } from 'lucide-react'
 import { hashApplicationPayload, satohashStampGuideUrl, satohashVerifyUrl } from '../lib/satohash'
 import { buildPageVerifyPayload } from '../lib/pageVerify'
 import { parseHashLines, verifyHashPaste } from '../lib/seal/vaultVerify'
@@ -9,10 +9,13 @@ import { BlockHeight } from '../components/BlockHeight'
 import { VerifyResultsExplainer } from '../components/verify/VerifyResultsExplainer'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
+import { useToast } from '../components/ui/Toast'
+import { formatT } from '../i18n/format'
 import type { VerifyResult } from '../types/proof'
 
 export function VerifyPage() {
   const { t } = useI18n()
+  const { toast } = useToast()
   const [searchParams] = useSearchParams()
   const [input, setInput] = useState(() => {
     const path = searchParams.get('path')
@@ -28,6 +31,8 @@ export function VerifyPage() {
   const [batchInput, setBatchInput] = useState('')
   const [batchResults, setBatchResults] = useState<VerifyResult[]>([])
   const [batchBusy, setBatchBusy] = useState(false)
+  const [batchProgress, setBatchProgress] = useState(0)
+  const [batchCopied, setBatchCopied] = useState(false)
 
   const generate = async () => {
     const next = await hashApplicationPayload({ text: input, ts: new Date().toISOString() })
@@ -63,14 +68,28 @@ export function VerifyPage() {
       return
     }
     setBatchBusy(true)
+    setBatchProgress(0)
     try {
-      const results = await Promise.all(hashes.map(h => verifyHashPaste(h)))
+      const results: VerifyResult[] = []
+      for (let i = 0; i < hashes.length; i++) {
+        results.push(await verifyHashPaste(hashes[i]))
+        setBatchProgress(Math.round(((i + 1) / hashes.length) * 100))
+      }
       setBatchResults(results)
       hashes.forEach(h => pushHashHistory(h))
       setHistory(loadHashHistory())
     } finally {
       setBatchBusy(false)
+      setBatchProgress(100)
     }
+  }
+
+  const copyAllBatchHashes = async () => {
+    if (!batchResults.length) return
+    await navigator.clipboard.writeText(batchResults.map(r => r.hash).join('\n'))
+    setBatchCopied(true)
+    toast(t('common.copied'), 'success')
+    setTimeout(() => setBatchCopied(false), 2000)
   }
 
   return (
@@ -84,6 +103,14 @@ export function VerifyPage() {
         <div className="flex flex-col sm:flex-row gap-2">
           <button type="button" onClick={paste} className="btn-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2">
             <ClipboardPaste size={14} /> {t('verify.pasteFromClipboard')}
+          </button>
+          <button
+            type="button"
+            onClick={() => toast(t('verify.qrScanStub'), 'default')}
+            className="btn-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2"
+            aria-label={t('verify.qrScan')}
+          >
+            <QrCode size={14} aria-hidden /> {t('verify.qrScan')}
           </button>
           <button type="button" onClick={generate} className="btn-primary w-full sm:w-auto">
             {t('verify.generateHash')}
@@ -173,8 +200,35 @@ export function VerifyPage() {
         >
           {batchBusy ? t('verify.batchVerifying') : t('verify.batchVerify')}
         </button>
+        {(batchBusy || batchProgress > 0) && (
+          <div className="space-y-1.5" role="progressbar" aria-valuenow={batchProgress} aria-valuemin={0} aria-valuemax={100}>
+            <div className="h-1.5 rounded-full bg-card-muted/80 overflow-hidden border border-mp/40">
+              <div
+                className="h-full bg-btc-orange transition-all duration-base ease-out"
+                style={{ width: `${batchProgress}%` }}
+              />
+            </div>
+            <p className="text-[10px] font-mono text-ink-muted">
+              {formatT(t, 'verify.batchProgress', { pct: batchProgress })}
+            </p>
+          </div>
+        )}
         {batchResults.length > 0 && (
-          <ul className="space-y-2 pt-2 border-t border-mp">
+          <div className="flex items-center justify-between gap-2 pt-2 border-t border-mp">
+            <p className="text-xs font-chrome text-ink-muted">{formatT(t, 'verify.batchResultCount', { count: batchResults.length })}</p>
+            <button
+              type="button"
+              onClick={() => void copyAllBatchHashes()}
+              className="btn-secondary text-xs !py-1 !px-2.5 inline-flex items-center gap-1"
+              aria-label={t('verify.copyAllHashes')}
+            >
+              {batchCopied ? <Check size={12} className="text-status-green" /> : <Copy size={12} />}
+              {t('verify.copyAllHashes')}
+            </button>
+          </div>
+        )}
+        {batchResults.length > 0 && (
+          <ul className="space-y-2">
             {batchResults.map(result => (
               <li
                 key={result.hash}

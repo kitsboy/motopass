@@ -63,7 +63,10 @@ export function ApplyNavTab({ moreSheetOpen = false }: { moreSheetOpen?: boolean
   }
 
   return (
-    <PrefetchNavLink to="/apply" className={({ isActive }) => navTabClass(!moreSheetOpen && isActive)}>
+    <PrefetchNavLink
+      to="/apply"
+      className={({ isActive }) => `${navTabClass(!moreSheetOpen && isActive)} apply-nav-tab-pulse`.trim()}
+    >
       {({ isActive }) => {
         const active = !moreSheetOpen && isActive
         return (

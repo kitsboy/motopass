@@ -3,7 +3,13 @@ import { LogOut, Zap } from 'lucide-react'
 import { connectNostr, hasNostrExtension, type NostrSession } from '../lib/nostr'
 import { useI18n } from '../i18n/I18nContext'
 
-export function NostrConnect({ onConnect }: { onConnect?: (s: NostrSession | null) => void }) {
+export function NostrConnect({
+  onConnect,
+  onLoadingChange,
+}: {
+  onConnect?: (s: NostrSession | null) => void
+  onLoadingChange?: (loading: boolean) => void
+}) {
   const { t } = useI18n()
   const [session, setSession] = useState<NostrSession | null>(() => {
     const saved = sessionStorage.getItem('motopass-npub')
@@ -17,11 +23,13 @@ export function NostrConnect({ onConnect }: { onConnect?: (s: NostrSession | nul
       return
     }
     setLoading(true)
+    onLoadingChange?.(true)
     const s = await connectNostr()
     setSession(s)
     if (s) sessionStorage.setItem('motopass-npub', s.npub)
     onConnect?.(s)
     setLoading(false)
+    onLoadingChange?.(false)
   }
 
   const disconnect = () => {

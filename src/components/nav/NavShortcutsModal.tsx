@@ -9,11 +9,12 @@ type Props = {
 
 type ShortcutRow = {
   keys: string
-  labelKey: 'nav.shortcuts.language' | 'nav.shortcuts.help' | 'nav.shortcuts.close'
+  labelKey: 'nav.shortcuts.language' | 'nav.shortcuts.help' | 'nav.shortcuts.close' | 'nav.shortcuts.programs'
 }
 
 const ROWS: ShortcutRow[] = [
   { keys: '⌘L / Ctrl+L', labelKey: 'nav.shortcuts.language' },
+  { keys: 'g p', labelKey: 'nav.shortcuts.programs' },
   { keys: '?', labelKey: 'nav.shortcuts.help' },
   { keys: 'Esc', labelKey: 'nav.shortcuts.close' },
 ]
@@ -43,6 +44,9 @@ export function NavShortcutsModal({ open, onClose }: Props) {
           </li>
         ))}
       </ul>
+      <p className="mt-4 rounded-xl border border-mp/40 bg-section/30 px-3.5 py-2.5 text-xs text-ink-muted leading-relaxed">
+        {t('nav.shortcuts.footerGap')}
+      </p>
     </Modal>
   )
 }

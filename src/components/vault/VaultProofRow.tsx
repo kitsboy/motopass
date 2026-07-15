@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import {
@@ -77,6 +77,12 @@ export function VaultProofRow({
   }
 
   const detailsId = `vault-proof-${program.id}-details`
+  const hasLineage = proofs.length > 1
+
+  const toggleLineage = useCallback(() => {
+    if (!hasLineage) return
+    setExpanded(v => !v)
+  }, [hasLineage])
 
   return (
     <Card
@@ -84,8 +90,30 @@ export function VaultProofRow({
       animate
       delay={0.05 + index * 0.03}
       className="!p-0 overflow-hidden"
+      data-vault-proof-hash={hash || undefined}
     >
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5">
+      <div
+        className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 ${
+          hasLineage ? 'vault-proof-row-header--tappable md:cursor-default' : ''
+        }`}
+        onClick={e => {
+          if (!hasLineage) return
+          if (window.matchMedia('(min-width: 768px)').matches) return
+          const target = e.target as HTMLElement
+          if (target.closest('button, a, input, select, textarea')) return
+          toggleLineage()
+        }}
+        onKeyDown={e => {
+          if (!hasLineage || (e.key !== 'Enter' && e.key !== ' ')) return
+          if (window.matchMedia('(min-width: 768px)').matches) return
+          e.preventDefault()
+          toggleLineage()
+        }}
+        role={hasLineage ? 'button' : undefined}
+        tabIndex={hasLineage ? 0 : undefined}
+        aria-expanded={hasLineage ? expanded : undefined}
+        aria-controls={hasLineage ? detailsId : undefined}
+      >
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2 mb-1">
             <div className="font-display font-semibold text-ink">
@@ -125,9 +153,12 @@ export function VaultProofRow({
               href={primary.proof_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-secondary text-xs !py-1.5 !px-3"
+              className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
+              aria-label={t('vault.satohashExternal')}
+              title={t('vault.satohashExternal')}
             >
-              Satohash <ExternalLink size={12} />
+              <ExternalLink size={14} className="text-btc-orange shrink-0" aria-hidden />
+              <span className="sr-only sm:not-sr-only">Satohash</span>
             </a>
           )}
           {primary?.ots_path && (

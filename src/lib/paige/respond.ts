@@ -1,11 +1,44 @@
 import type { PaigeHit } from './retrieve'
 
-const DISCLAIMER =
+export const PAIGE_DISCLAIMER =
   'Educational only — not legal, tax, or investment advice. Verify claims on Bitcoin via Satohash before you commit capital.'
+
+export type PaigeBlock = {
+  programId: number
+  programName: string
+  region: string
+  status: string
+  verified: boolean
+  snippets: string[]
+  proofUrl?: string
+  field?: string
+  blockHeight?: number
+  redFlag?: string
+}
+
+export function buildPaigeBlocks(hits: PaigeHit[]): PaigeBlock[] {
+  return hits.map((h) => {
+    const p = h.program
+    const proof = h.citations[0]
+    const verified = Boolean(proof?.proofUrl)
+    return {
+      programId: p.id,
+      programName: p.name,
+      region: p.region,
+      status: p.status,
+      verified,
+      snippets: h.snippets.map((s) => (verified ? s : `[unverified] ${s}`)),
+      proofUrl: proof?.proofUrl,
+      field: proof?.field,
+      blockHeight: proof?.blockHeight,
+      redFlag: p.paige_fields?.red_flags?.[0],
+    }
+  })
+}
 
 export function buildPaigeResponse(query: string, hits: PaigeHit[]): string {
   if (!hits.length) {
-    return `I couldn't match "${query}" to a verified program in our corpus. Try a country name (Uruguay, UAE, Portugal) or "Bitcoin residency".\n\n${DISCLAIMER}`
+    return `I couldn't match "${query}" to a verified program in our corpus. Try a country name (Uruguay, UAE, Portugal) or "Bitcoin residency".\n\n${PAIGE_DISCLAIMER}`
   }
 
   const blocks = hits.map((h) => {
@@ -33,5 +66,5 @@ export function buildPaigeResponse(query: string, hits: PaigeHit[]): string {
     return lines.join('\n')
   })
 
-  return `${blocks.join('\n\n')}\n\n${DISCLAIMER}`
+  return `${blocks.join('\n\n')}\n\n${PAIGE_DISCLAIMER}`
 }

@@ -39,7 +39,7 @@ if (!existsSync(assetsDir)) {
 const html = readFileSync(distHtml, 'utf8')
 const diskAssets = readdirSync(assetsDir).map(f => `${BASE}/assets/${f}`)
 const htmlAssets = [...html.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g)].map(m => `${BASE}${m[1]}`)
-const assets = [...new Set([`${BASE}/`, `${BASE}/index.html`, ...htmlAssets, ...diskAssets])]
+const assets = [...new Set([`${BASE}/`, `${BASE}/index.html`, `${BASE}/verify`, ...htmlAssets, ...diskAssets])]
 
 function formatCfErrors(errors) {
   if (!errors?.length) return 'unknown Cloudflare API error'

@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-56] — 2026-07-15
+
+### Changed
+- Batch 25 complete — footer gap v2, 780/780 elite polish
+
+---
+
 ## [BUILD-2026.07.15-54] — 2026-07-15
 
 ### Changed

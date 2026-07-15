@@ -1,6 +1,6 @@
 # MotoPass Improvements Queue (200 items)
 
-**Status:** Batches 1–24 complete (680/680) · **BUILD:** `2026.07.15-50`
+**Status:** Batches 1–25 complete (780/780) · **BUILD:** `2026.07.15-56`
 
 Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
 
@@ -560,6 +560,135 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 - [x] 678. Screen-reader-only live region for filter result counts
 - [x] 679. Sitemap lastmod from BUILD_DATE
 - [x] 680. Lighthouse a11y budget script in CI (warn threshold)
+
+## Batch 25 — Sovereign elite v3 (681–780)
+
+### Mobile & layout (681–690)
+
+- [x] 681. Footer gap v2 — `min-h-dvh`, remove footer shell pb, main scroll clearance only
+- [x] 682. iOS Safari bottom inset — `viewport-fit=cover` + no double safe-area on footer
+- [x] 683. Short-page main min-height without footer void
+- [x] 684. BackToTop offset above mobile tab bar (safe-area aware)
+- [x] 685. MoreNavSheet height cap — no overflow past viewport
+- [x] 686. Mobile horizontal scroll audit on Programs + Compare
+- [x] 687. Footer ₿ watermark hidden on narrow screens (<380px)
+- [x] 688. Sticky anchor nav offset below collapsed header
+- [x] 689. `scroll-padding-top` for skip-link + header clearance
+- [x] 690. Bump BUILD to `2026.07.15-55`
+
+### Deploy & reliability (691–700)
+
+- [x] 691. `verify-live-app.mjs` — assert footer BUILD matches local after deploy
+- [x] 692. Post-deploy footer gap visual regression stub (Playwright screenshot)
+- [x] 693. `check-live-headers.mjs` — assert `index.html` cache-control no-store
+- [x] 694. Deploy summary JSON artifact with live BUILD + health
+- [x] 695. `wait-live-app.mjs` exponential backoff tuning (max 8 attempts)
+- [x] 696. CI fail if `dist/index.html` references stale BUILD salt
+- [x] 697. `purge-live-cache.mjs` — purge footer verify path `/verify`
+- [x] 698. Document footer/mobile layout contract in `docs/DEPLOYMENT.md`
+- [x] 699. Boot guard — preserve scroll position on `?cb=` reload
+- [x] 700. `deploy:all` — run unit + e2e before wrangler push
+
+### Nav & chrome (701–710)
+
+- [x] 701. Mobile tab bar haptic-free active state (scale only)
+- [x] 702. More sheet swipe-to-close gesture stub
+- [x] 703. Header BUILD tag truncate on 320px width
+- [x] 704. Breadcrumb home icon on deep routes
+- [x] 705. Nav prefetch debounce 120ms on hover
+- [x] 706. Language dropdown flag lazy-load
+- [x] 707. Collapsed header shadow intensify on scroll >200px
+- [x] 708. Apply tab pulse when launch gates pass
+- [x] 709. Keyboard `g p` go-to-programs shortcut
+- [x] 710. Nav shortcuts modal — footer gap troubleshooting note
+
+### Programs & compare (711–720)
+
+- [x] 711. Compare diff highlight color tokens (added/removed/changed)
+- [x] 712. Program modal compliance clock on all deep flagships
+- [x] 713. Programs filter preset "Lightning ready" one-click
+- [x] 714. Portfolio stack export as shareable JSON URL
+- [x] 715. Simulator value forks — print-friendly summary
+- [x] 716. Program card tier badge tooltip i18n
+- [x] 717. Compare empty state with suggested pairs (Uruguay/Bolivia)
+- [x] 718. Programs table sticky header z-index above filter rail
+- [x] 719. Custom import — drag-drop JSON on Programs page
+- [x] 720. Flagship spotlight rotate on pitch stats refresh
+
+### Pitch & BTC Map (721–730)
+
+- [x] 721. Pitch hero — reduced-motion static gradient fallback
+- [x] 722. Savings rotator aria-live polite announcements
+- [x] 723. Pitch CTA band — secondary "Explore Vault" link
+- [x] 724. BTC Map — merchant directory virtualized scroll (>48 rows)
+- [x] 725. BTC Map split view default on landscape tablet
+- [x] 726. Map pin popover with copy-address action
+- [x] 727. BTC Map offline badge — red when cache >14d old
+- [x] 728. Pitch trusted-by strip — lazy-load flag sprites
+- [x] 729. BTC price ticker — flash on spot refresh
+- [x] 730. Pitch FAQ — anchor links per question
+
+### Distressed & apply (731–740)
+
+- [x] 731. Distressed filter directory — collapse on mobile scroll
+- [x] 732. Apply proof card — link back to Vault source row
+- [x] 733. Distressed Kimi tier badge tooltip
+- [x] 734. Apply gate PDF — include BUILD + timestamp
+- [x] 735. Distressed listing — pathway chips keyboard navigable
+- [x] 736. Apply form — character count on notes field
+- [x] 737. Distressed sort — persist in URL query params
+- [x] 738. Apply success — share intent Web Share API stub
+- [x] 739. Distressed empty state with gate explainer link
+- [x] 740. Apply mobile sticky submit bar above tab nav
+
+### Vault & verify (741–750)
+
+- [x] 741. Vault proof row — Satohash external link icon
+- [x] 742. Verify page — QR scan stub for hash input
+- [x] 743. Vault export credentials — include BUILD in bundle
+- [x] 744. OTS drag-drop — accept `.ots` and `.txt` hash files
+- [x] 745. Verify results — copy-all hashes button
+- [x] 746. Vault filter tabs — count badges per tier
+- [x] 747. Proof lineage timeline — expand on mobile tap
+- [x] 748. Footer verify link — prefill current route hash context
+- [x] 749. Vault education — video stub placeholder card
+- [x] 750. Batch verify — progress bar for multi-hash
+
+### Agents & Paige (751–760)
+
+- [x] 751. Paige — cite source link opens program modal
+- [x] 752. Agent filter — persist status chips in URL
+- [x] 753. Kimi card — timezone label in office hours badge
+- [x] 754. Agent region map — focus ring on keyboard nav
+- [x] 755. Paige suggested prompts — i18n for top 5 langs
+- [x] 756. Agent DM copy — toast confirmation
+- [x] 757. Paige unverified claims — amber highlight in chat
+- [x] 758. Agents page — anchor nav to Paige section
+- [x] 759. Deal-room card — link to Distressed when gates pass
+- [x] 760. Agent grid — skeleton on slow Nostr load
+
+### Design, i18n & SEO (761–780)
+
+- [x] 761. Glass card hover — respect `prefers-reduced-motion`
+- [x] 762. Modal focus trap — return focus on close (audit all modals)
+- [x] 763. Toast stack max 3 + auto-dismiss 4s
+- [x] 764. Form shake — disabled when reduced-motion
+- [x] 765. Starfield parallax — pause when tab hidden
+- [x] 766. 404 page — suggest Vault + Programs CTAs
+- [x] 767. hreflang audit — add de/pt to alternates
+- [x] 768. Reading time — Agents + Vault education sections
+- [x] 769. Sitemap — include `/distressed` + `/apply` priority
+- [x] 770. Lighthouse a11y CI — raise warn threshold to 95
+- [x] 771. RTL — Distressed filter directory audit
+- [x] 772. i18n — missing key fallback shows key in dev only
+- [x] 773. SEO — Program detail JSON-LD from modal stub
+- [x] 774. Design tokens — document mobile tab bar height var
+- [x] 775. Button focus-visible ring on Sovereign Night
+- [x] 776. Table compact mode — smaller padding on mobile
+- [x] 777. Chip selected state — BTC orange glow consistency
+- [x] 778. Footer glass — extend gradient into safe-area (no canvas bleed)
+- [x] 779. Cinematic header — pause animation when `document.hidden`
+- [x] 780. Bump BUILD to `2026.07.15-56` when batch complete
 
 ---
 

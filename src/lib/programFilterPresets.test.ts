@@ -3,6 +3,7 @@ import { DEFAULT_FILTERS } from './programFilter'
 import {
   activeFilterPresetsFromFilters,
   applyFilterPresets,
+  applyLightningPreset,
   isFilterPresetActive,
   loadSessionFilterPresets,
   saveSessionFilterPresets,
@@ -35,6 +36,12 @@ describe('programFilterPresets', () => {
     expect(
       toggleFilterPreset('under100k', { ...DEFAULT_FILTERS, maxInvestment: 100_000 }),
     ).toEqual({ maxInvestment: DEFAULT_FILTERS.maxInvestment })
+  })
+
+  it('applies lightning preset in one click without toggling off', () => {
+    const next = applyLightningPreset(DEFAULT_FILTERS)
+    expect(next.lightningOnly).toBe(true)
+    expect(applyLightningPreset(next).lightningOnly).toBe(true)
   })
 
   it('persists lightning preset in session storage', () => {

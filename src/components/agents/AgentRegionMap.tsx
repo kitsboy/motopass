@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react'
 import { useI18n } from '../../i18n/I18nContext'
 
 /** Static SVG world map with agent region markers (BUILD 654) */
@@ -12,6 +13,12 @@ const MARKERS: { id: string; cx: number; cy: number; label: string }[] = [
 
 export function AgentRegionMap() {
   const { t } = useI18n()
+  const [focusedId, setFocusedId] = useState(MARKERS[0]?.id ?? '')
+
+  const focusMarker = useCallback((id: string) => {
+    setFocusedId(id)
+    document.getElementById(`agent-marker-${id}`)?.focus()
+  }, [])
 
   return (
     <figure className="card-muted !p-4 mb-8" aria-label={t('agents.mapLabel')}>
@@ -22,10 +29,10 @@ export function AgentRegionMap() {
         viewBox="0 0 400 220"
         className="w-full h-auto max-h-48 text-ink-muted"
         role="img"
-        aria-hidden="true"
+        aria-labelledby="agent-map-title"
       >
+        <title id="agent-map-title">{t('agents.mapTitle')}</title>
         <rect width="400" height="220" rx="12" className="fill-section/80" />
-        {/* Simplified continents */}
         <path
           d="M40 80 Q80 40 140 55 Q200 35 260 50 Q320 45 360 70 L370 120 Q340 150 300 140 Q250 160 200 155 Q140 170 90 150 Q50 140 40 80 Z"
           className="fill-card-muted stroke-mp/50"
@@ -41,17 +48,54 @@ export function AgentRegionMap() {
           className="fill-card-muted stroke-mp/40"
           strokeWidth="1"
         />
-        {MARKERS.map(m => (
-          <g key={m.id}>
-            <circle cx={m.cx} cy={m.cy} r="10" className="fill-btc-orange/20 stroke-btc-orange/50" strokeWidth="1.5" />
-            <circle cx={m.cx} cy={m.cy} r="4" className="fill-btc-orange" />
-            <title>{m.label}</title>
-          </g>
-        ))}
+        {MARKERS.map((m) => {
+          const active = focusedId === m.id
+          return (
+            <g key={m.id}>
+              <circle
+                cx={m.cx}
+                cy={m.cy}
+                r="10"
+                className={`fill-btc-orange/20 stroke-btc-orange/50 transition-all ${active ? 'stroke-btc-orange' : ''}`}
+                strokeWidth={active ? 2.5 : 1.5}
+              />
+              <circle
+                id={`agent-marker-${m.id}`}
+                cx={m.cx}
+                cy={m.cy}
+                r="12"
+                tabIndex={0}
+                role="button"
+                aria-label={m.label}
+                className="fill-transparent cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-btc-orange focus-visible:ring-offset-2 focus-visible:ring-offset-section rounded-full"
+                onFocus={() => setFocusedId(m.id)}
+                onClick={() => focusMarker(m.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    focusMarker(m.id)
+                  }
+                }}
+              />
+              <circle cx={m.cx} cy={m.cy} r="4" className="fill-btc-orange pointer-events-none" />
+            </g>
+          )
+        })}
       </svg>
-      <ul className="mt-3 flex flex-wrap gap-2 text-[10px] font-mono text-ink-muted">
-        {MARKERS.map(m => (
-          <li key={m.id} className="chip !py-0.5 !px-2">{m.label}</li>
+      <ul className="mt-3 flex flex-wrap gap-2 text-[10px] font-mono text-ink-muted" role="list">
+        {MARKERS.map((m) => (
+          <li key={m.id}>
+            <button
+              type="button"
+              onClick={() => focusMarker(m.id)}
+              aria-pressed={focusedId === m.id}
+              className={`chip !py-0.5 !px-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-btc-orange ${
+                focusedId === m.id ? 'chip-active' : ''
+              }`}
+            >
+              {m.label}
+            </button>
+          </li>
         ))}
       </ul>
     </figure>

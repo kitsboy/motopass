@@ -2,6 +2,8 @@ import type { LucideIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { Card } from './Card'
+import { useI18n } from '../../i18n/I18nContext'
+import { formatT } from '../../i18n/format'
 
 export type HowItWorksStep = {
   n: string
@@ -17,6 +19,8 @@ export type HowItWorksSectionProps = {
   intro?: string
   steps: HowItWorksStep[]
   footerNote?: string
+  /** Estimated reading time badge (Agents + Vault education). */
+  readingMinutes?: number
   className?: string
 }
 
@@ -26,15 +30,25 @@ export function HowItWorksSection({
   intro,
   steps,
   footerNote,
+  readingMinutes,
   className = '',
 }: HowItWorksSectionProps) {
+  const { t } = useI18n()
+
   return (
     <section className={`mb-8 ${className}`.trim()} aria-labelledby="how-it-works-heading">
       <div className="mb-6 max-w-2xl">
         <span className="club-eyebrow block mb-2">{eyebrow}</span>
-        <h2 id="how-it-works-heading" className="font-display text-h3 font-semibold text-ink tracking-tight">
-          {title}
-        </h2>
+        <div className="flex flex-wrap items-center gap-2">
+          <h2 id="how-it-works-heading" className="font-display text-h3 font-semibold text-ink tracking-tight">
+            {title}
+          </h2>
+          {readingMinutes != null && readingMinutes > 0 && (
+            <span className="text-[10px] font-chrome uppercase tracking-wider text-ink-muted border border-mp/50 rounded-chip px-2 py-0.5">
+              {formatT(t, 'common.readingTime', { minutes: readingMinutes })}
+            </span>
+          )}
+        </div>
         {intro && (
           <p className="mt-3 font-body text-sm text-ink-secondary leading-relaxed">{intro}</p>
         )}

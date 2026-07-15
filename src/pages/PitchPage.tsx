@@ -396,6 +396,9 @@ export function PitchPage() {
             <Link to="/programs" className="btn-secondary text-sm w-full sm:w-auto">
               {t('pitch.ctaBand.explore')}
             </Link>
+            <Link to="/vault" className="btn-secondary text-sm w-full sm:w-auto">
+              {t('pitch.ctaBand.vault')} <Shield size={16} />
+            </Link>
           </div>
         </Card>
       </PitchRevealSection>

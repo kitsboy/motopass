@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
+import { useScrollCollapse } from '../../hooks/useScrollCollapse'
 import { Search } from 'lucide-react'
 import { useDebouncedValue } from '../../hooks/useDebouncedValue'
 import { useI18n } from '../../i18n/I18nContext'
@@ -56,6 +57,8 @@ export function DistressedFilterDirectory({
 }) {
   const { t } = useI18n()
   const [query, setQuery] = useState('')
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const filterBarCollapsed = useScrollCollapse(scrollRef)
   const debounced = useDebouncedValue(query.trim().toLowerCase(), 120)
   const activeFilterCount = countDistressedActiveFilters(filters, lane)
 
@@ -98,7 +101,7 @@ export function DistressedFilterDirectory({
   )
 
   return (
-    <div className="flex flex-col min-h-0 flex-1">
+    <div className="distressed-filter-directory flex flex-col min-h-0 flex-1">
       <div className="shrink-0 px-4 pt-4 pb-3 border-b border-mp/50 space-y-3">
         <div>
           <h2 className="font-display font-semibold text-sm text-ink tracking-tight">
@@ -108,13 +111,13 @@ export function DistressedFilterDirectory({
         </div>
 
         <div className="relative">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted pointer-events-none" aria-hidden />
+          <Search size={14} className="absolute start-3 top-1/2 -translate-y-1/2 text-ink-muted pointer-events-none" aria-hidden />
           <input
             type="search"
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder={t('distressed.searchListings')}
-            className="input-field w-full !py-2 !pl-9 !pr-3 text-xs font-chrome"
+            className="input-field w-full !py-2 !ps-9 !pe-3 text-xs font-chrome"
             aria-label={t('distressed.searchListings')}
           />
         </div>
@@ -199,8 +202,11 @@ export function DistressedFilterDirectory({
       </div>
 
       <div
-        className="distressed-mobile-filter-bar md:hidden shrink-0 px-3 py-2 border-b border-mp/50 bg-card-muted/80 backdrop-blur-md space-y-2"
+        className={`distressed-mobile-filter-bar md:hidden shrink-0 px-3 py-2 border-b border-mp/50 bg-card-muted/80 backdrop-blur-md space-y-2 ${
+          filterBarCollapsed ? 'distressed-mobile-filter-bar--collapsed' : ''
+        }`}
         aria-label={t('distressed.mobileFilterBar')}
+        aria-hidden={filterBarCollapsed}
       >
         {laneChips}
         <div className="flex items-center gap-2">
@@ -254,7 +260,10 @@ export function DistressedFilterDirectory({
         </div>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-2 py-2 btcmap-directory-scroll">
+      <div
+        ref={scrollRef}
+        className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-2 py-2 btcmap-directory-scroll"
+      >
         <DistressedListingsList
           listings={filtered}
           allListings={allListings}

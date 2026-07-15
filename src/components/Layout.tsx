@@ -20,12 +20,14 @@ import { useScrollToTop } from '../hooks/useScrollToTop'
 import { useHeaderCollapse } from '../hooks/useHeaderCollapse'
 import { useLanguageShortcut } from '../hooks/useLanguageShortcut'
 import { useNavShortcuts } from '../hooks/useNavShortcuts'
+import { useGoToProgramsShortcut } from '../hooks/useGoToProgramsShortcut'
 import { useRouteLangMemory } from '../hooks/useRouteLangMemory'
 import { BackToTop } from './nav/BackToTop'
 
 export function Layout() {
   useScrollToTop()
   useLanguageShortcut()
+  useGoToProgramsShortcut()
   useRouteLangMemory()
   const { shortcutsOpen, setShortcutsOpen } = useNavShortcuts()
   const { t } = useI18n()
@@ -40,8 +42,15 @@ export function Layout() {
     }
   }, [moreOpen])
 
+  useEffect(() => {
+    document.documentElement.classList.toggle('mp-header-collapsed', headerCollapsed)
+    return () => {
+      document.documentElement.classList.remove('mp-header-collapsed')
+    }
+  }, [headerCollapsed])
+
   return (
-    <div className="sovereign-canvas min-h-screen flex flex-col bg-canvas text-ink w-full max-w-[100vw] overflow-x-clip">
+    <div className="sovereign-canvas min-h-dvh flex flex-1 flex-col bg-canvas text-ink w-full max-w-[100vw] overflow-x-clip">
       <div className="sovereign-ambient" aria-hidden />
       <div className="sovereign-glow" aria-hidden />
       <RouteSeo />
@@ -65,7 +74,7 @@ export function Layout() {
                 <div className="club-header-tagline hidden md:block text-[10px] text-ink-muted truncate font-mono max-w-[14rem] opacity-80">
                   {FOOTER_VERSION} · {t('tagline')}
                 </div>
-                <div className="club-header-tagline md:hidden text-[10px] text-ink-muted truncate font-mono opacity-80">{FOOTER_VERSION}</div>
+                <div className="club-header-tagline club-header-build-tag md:hidden text-[10px] text-ink-muted truncate font-mono opacity-80">{FOOTER_VERSION}</div>
               </div>
             </NavLink>
 
@@ -87,7 +96,10 @@ export function Layout() {
         <DesktopNav />
       </Header>
 
-      <main id="main-content" className="flex-1 relative z-[1] w-full min-w-0 max-w-full overflow-x-clip">
+      <main
+        id="main-content"
+        className="layout-main flex-1 relative z-[1] w-full min-w-0 max-w-full overflow-x-clip"
+      >
         <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-3 w-full min-w-0">
           <Breadcrumbs />
         </div>

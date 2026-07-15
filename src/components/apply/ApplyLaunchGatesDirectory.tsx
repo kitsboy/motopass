@@ -58,6 +58,10 @@ export function ApplyLaunchGatesDirectory({
   }
 
   const printSummary = () => {
+    const stamp = document.getElementById('apply-gates-print-stamp')
+    if (stamp) {
+      stamp.textContent = `${BUILD_ID} · ${new Date().toISOString()} · ${formatT(t, 'apply.gatesCount', { passed, total: report.gates.length })}`
+    }
     window.print()
   }
 
@@ -132,8 +136,8 @@ export function ApplyLaunchGatesDirectory({
           )}
         </div>
 
-        <p className="hidden apply-gates-print-only text-xs text-ink-muted font-mono">
-          {report.generated_at ? new Date(report.generated_at).toLocaleString() : '—'} · {report.build_id} ·{' '}
+        <p id="apply-gates-print-stamp" className="hidden apply-gates-print-only text-xs text-ink-muted font-mono">
+          {BUILD_ID} · {report.generated_at ? new Date(report.generated_at).toISOString() : new Date().toISOString()} ·{' '}
           {formatT(t, 'apply.gatesCount', { passed, total: report.gates.length })}
         </p>
       </div>

@@ -11,7 +11,10 @@ import {
 } from './btcmap'
 import { gridClusterPlaces } from './btcmapCluster'
 import { placesToCsv } from './btcmapExport'
-import { formatCacheAge, cacheFreshnessLevel } from './btcmapFreshness'
+import { formatCacheAge, cacheFreshnessLevel, isCacheExpired } from './btcmapFreshness'
+import { defaultBtcMapLayout } from './btcMapLayout'
+import { pitchFaqAnchorId } from './pitchFaq'
+import { flagSpriteUrl, programCountryCode } from './countryCode'
 import { densityTier } from './btcmapDensity'
 import { programCacheSlug } from './btcmapSlug'
 import { loadLocalSavedIds, persistLocalSavedIds, syncSavedMerchantsNostr } from './btcmapSavedSync'
@@ -64,7 +67,28 @@ describe('btcmap helpers', () => {
   it('formats cache freshness age (622)', () => {
     const now = new Date('2026-07-15T12:00:00Z')
     expect(formatCacheAge('2026-07-13T16:02:11.611Z', now)).toBe('1d ago')
-    expect(cacheFreshnessLevel('2026-07-01T16:02:11.611Z', now)).toBe('fresh')
+    expect(cacheFreshnessLevel('2026-07-10T16:02:11.611Z', now)).toBe('fresh')
+  })
+
+  it('marks offline cache expired after 14 days (727)', () => {
+    const now = new Date('2026-07-15T12:00:00Z')
+    expect(cacheFreshnessLevel('2026-07-01T16:02:11.611Z', now)).toBe('recent')
+    expect(cacheFreshnessLevel('2026-06-30T16:02:11.611Z', now)).toBe('expired')
+    expect(isCacheExpired('2026-06-30T16:02:11.611Z', now)).toBe(true)
+  })
+
+  it('defaults btc map layout for tablet breakpoints (725)', () => {
+    expect(['split', 'map', 'list']).toContain(defaultBtcMapLayout())
+  })
+
+  it('builds flag sprite URLs for trusted strip (728)', () => {
+    expect(programCountryCode('El Salvador')).toBe('SV')
+    expect(flagSpriteUrl('El Salvador')).toBe('https://flagcdn.com/w20/sv.png')
+  })
+
+  it('exposes stable FAQ anchor ids (730)', () => {
+    expect(pitchFaqAnchorId(0)).toBe('pitch-faq-1')
+    expect(pitchFaqAnchorId(4)).toBe('pitch-faq-5')
   })
 
   it('clusters pins at low zoom (623)', () => {

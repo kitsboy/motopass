@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Assert production index.html returns no-cache headers (CDN poison defense).
+ * Assert production index.html returns no-store (or no-cache) headers (CDN poison defense).
  * Usage: node scripts/check-live-headers.mjs [baseUrl]
  */
 const base = (process.argv[2] ?? 'https://motopass.giveabit.io').replace(/\/$/, '')
@@ -22,17 +22,17 @@ if (!res.ok) {
 const cacheControl = res.headers.get('cache-control') ?? ''
 const cdnCacheControl = res.headers.get('cdn-cache-control') ?? ''
 
-function hasNoCache(value) {
-  return /no-cache/i.test(value)
+function hasNoStore(value) {
+  return /no-store/i.test(value)
 }
 
 let ok = true
-if (!hasNoCache(cacheControl)) {
-  console.error(`FAIL: Cache-Control missing no-cache — got "${cacheControl || '(empty)'}"`)
+if (!hasNoStore(cacheControl)) {
+  console.error(`FAIL: Cache-Control missing no-store — got "${cacheControl || '(empty)'}"`)
   ok = false
 }
-if (cdnCacheControl && !hasNoCache(cdnCacheControl)) {
-  console.error(`FAIL: CDN-Cache-Control missing no-cache — got "${cdnCacheControl}"`)
+if (cdnCacheControl && !hasNoStore(cdnCacheControl)) {
+  console.error(`FAIL: CDN-Cache-Control missing no-store — got "${cdnCacheControl}"`)
   ok = false
 }
 
