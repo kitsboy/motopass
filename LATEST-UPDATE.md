@@ -1,3 +1,4 @@
 # motopass — Last Updated 2026-07-14 by Grok
-Brief: BUILD 36 lighter glass canvas +20%, ambient polish across all pages
-Commit: (pending)
+Brief: BUILD 34–36 — members club UI, home pitch polish, lighter glass canvas
+Commit: f8aecf5
+Live: https://motopass.giveabit.io

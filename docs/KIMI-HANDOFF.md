@@ -525,4 +525,32 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Latest Session Summary — 2026-07-14 (goodbye · Grok)
+
+**Chat topic:** Premium sovereign UI redesign, home page business polish, then global lighten/glass pass after site felt too dark.
+
+**Key things we did:**
+- **BUILD 34** — Members-club UI: `#0a0a0f` canvas, `#ff9500` orange, Inter/Inter Tight, `Button`/`Card`/`Input`/`Modal`, cinematic `Header.tsx`, nav/footer/page polish
+- **BUILD 35** — Home (`PitchPage` at `/`) expanded: four pillars, product suite, how-it-works, live-data trust strip, FAQ, CTA band; clarified pitch *is* home and metrics auto-update from `countries.json`
+- **BUILD 36** — Canvas ~20% lighter (`#16161f`), glassier surfaces globally (48% glass, 28px blur), ambient glow, breadcrumb/nav/modal polish; 50-item UX batch shipped
+
+**What we finished:**
+- Live at https://motopass.giveabit.io · BUILD `2026.07.14-36` · commit `f8aecf5`
+- 36 unit + 19 e2e tests green on every ship
+- Nav canonical: Programs · Vault · Distressed · BTC Map · Simulator · Compare · Agents · Apply
+
+**Still to do (optional next session):**
+- Knowledge sync docs (ARCHITECTURE, UPDATES-MAP) for BUILD 35–36 if Kimi wants parity
+- `npm run pitch:sync` on next deploy if investor anchor needs fresh BTC spot
+- Further lighten if user wants another 10–15% (BUILD 36 was ~20% lift)
+
+**Next for Kimi:** Integrate summary into vault/Kanban. No raw chat logs. M4 sync when ready.
+
+**Git State:**
+- SHA: `f8aecf5`
+- Label: `lighter glass canvas +20% · ambient polish · 50 UX fixes`
+- Pushed: `origin/main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
