@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
- * Verify production serves real JS (not poisoned index.html cache).
+ * Verify production React app actually mounts (not poisoned CDN cache).
  * Usage: node scripts/verify-live-app.mjs [baseUrl]
  */
 import { readFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { chromium } from 'playwright'
 
 const base = (process.argv[2] ?? 'https://motopass.giveabit.io').replace(/\/$/, '')
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -15,20 +16,50 @@ if (!jsMatch) {
   console.error('FAIL: could not find main bundle in dist/index.html')
   process.exit(1)
 }
-const jsUrl = `${base}${jsMatch[1]}`
-const res = await fetch(jsUrl, { headers: { Accept: '*/*' } })
+const jsPath = jsMatch[1]
+const jsUrl = `${base}${jsPath}`
+
+const browser = await chromium.launch()
+const page = await browser.newPage()
+const poisoned = []
+
+page.on('response', async res => {
+  const url = res.url()
+  if (!url.includes('/assets/')) return
+  try {
+    const body = await res.text()
+    if (body.trimStart().startsWith('<')) {
+      poisoned.push(url.replace(base, ''))
+    }
+  } catch {
+    /* redirect */
+  }
+})
+
+let pageError = null
+page.on('pageerror', e => { pageError = e.message })
+
+await page.goto(`${base}/`, { waitUntil: 'load', timeout: 30000 })
+await page.waitForTimeout(3000)
+const mainVisible = await page.locator('main').isVisible().catch(() => false)
+await browser.close()
+
+if (poisoned.length) {
+  console.error('FAIL: browser received HTML for assets (CDN cache poison):')
+  for (const p of poisoned) console.error('  ', p)
+  process.exit(1)
+}
+if (!mainVisible) {
+  console.error('FAIL: React did not mount — <main> not visible')
+  if (pageError) console.error('pageerror:', pageError)
+  process.exit(1)
+}
+
+const res = await fetch(jsUrl, { cache: 'no-store', headers: { Accept: '*/*' } })
 const body = await res.text()
-if (!res.ok) {
-  console.error(`FAIL: ${jsUrl} HTTP ${res.status}`)
+if (!res.ok || body.trimStart().startsWith('<')) {
+  console.error(`FAIL: ${jsUrl} HTTP ${res.status} or HTML body`)
   process.exit(1)
 }
-if (body.trimStart().startsWith('<')) {
-  console.error(`FAIL: ${jsUrl} returned HTML (cache poison or redirect bug)`)
-  console.error(body.slice(0, 120))
-  process.exit(1)
-}
-if (!body.includes('__vite__mapDeps') && !body.includes('createRoot')) {
-  console.error(`FAIL: ${jsUrl} does not look like a Vite bundle`)
-  process.exit(1)
-}
-console.log(`OK ${jsUrl} (${body.length} bytes)`)
+
+console.log(`OK ${base}/ — main visible, ${jsUrl} (${body.length} bytes)`)
