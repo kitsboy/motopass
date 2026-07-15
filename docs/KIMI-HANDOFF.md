@@ -606,4 +606,25 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 42 — CDN cache poison recovery)
+
+**Done:**
+- **Root cause (again):** Browsers/CDN cached `index.html` as lazy JS chunks and CSS (`PitchPage-*.js`, `usePrograms-*.js`, `index-*.css` returning 3687-byte HTML). Main bundle was fine; React crashed with `useI18n must be used within I18nProvider`.
+- **Fix:** Vite output filenames now include BUILD_ID salt (`*-20260715-42.js`) so poisoned URLs are bypassed without zone purge
+- `public/_headers` — removed `immutable`, added `index.html` `no-cache`, `must-revalidate` on assets
+- `scripts/verify-live-app.mjs` — Playwright checks **all** `/assets/` responses for HTML poisoning
+- `scripts/purge-live-cache.mjs` — purge all dist assets (+ `purge_everything` fallback); token still lacks Zone.Cache Purge
+- Deployed to Cloudflare Pages; live verify passes
+
+**Decisions:**
+- Salted filenames on every ship until Kimi grants zone purge permission or CF cache rules are tightened
+- `curl` alone is insufficient for prod verify — browser cache differs from `no-store` fetch
+
+**Git State:**
+- SHA: `09cf2cc`
+- Message: `fix(deploy): BUILD 42 recover from CDN cache poison`
+- Pushed: `origin/main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
