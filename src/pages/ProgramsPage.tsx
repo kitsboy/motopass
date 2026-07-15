@@ -306,7 +306,7 @@ export function ProgramsPage() {
 
         {error && <ProgramsLoadError message={error} />}
         {importErrorCode && (
-          <p className="mb-4 text-sm text-status-red" role="alert">
+          <p className="mb-4 text-sm text-status-red field-error-shake" role="alert">
             {t('programs.importError')}: {t(`programs.importError.${importErrorCode}` as 'programs.importError.INVALID_JSON')}
             <span className="ml-2 font-mono text-[11px] text-mp-ink-muted">[{importErrorCode}]</span>
           </p>

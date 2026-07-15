@@ -175,10 +175,16 @@ export function StackSimulatorPage() {
               )}
             </div>
             <div className="rounded-card border border-mp-border bg-mp-card p-6 shadow-mp-1 flex flex-col sm:flex-row gap-2">
-              <input value={stackName} onChange={e => { setStackName(e.target.value); setSaveError(null) }} placeholder={t('simulator.stackName')} className="input-field flex-1" />
+              <input
+                value={stackName}
+                onChange={e => { setStackName(e.target.value); setSaveError(null) }}
+                placeholder={t('simulator.stackName')}
+                aria-invalid={saveError ? true : undefined}
+                className={`input-field flex-1 ${saveError ? 'input-field-error' : ''}`}
+              />
               <button type="button" onClick={save} disabled={!stackName || selected.length === 0} className="btn-primary shrink-0">{t('simulator.saveStack')}</button>
             </div>
-            {saveError && <p className="text-sm text-status-red" role="alert">{saveError}</p>}
+            {saveError && <p className="text-sm text-status-red field-error-shake" role="alert">{saveError}</p>}
             {saved.length > 0 && (
               <div id="simulator-saved" className="rounded-mp-lg border border-mp-border bg-mp-card-muted p-4 scroll-mt-header">
                 <h4 className="text-sm font-semibold text-ink mb-3">{t('simulator.savedStacks')}</h4>

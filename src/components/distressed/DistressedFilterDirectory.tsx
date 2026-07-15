@@ -3,6 +3,7 @@ import { Search } from 'lucide-react'
 import { useDebouncedValue } from '../../hooks/useDebouncedValue'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
+import { countDistressedActiveFilters } from '../../lib/distressedStorage'
 import type { DistressedFilters, DistressedLane, DistressedListing, DistressedSort } from '../../types/distressedListing'
 import { DistressedListingsList } from './DistressedListingsList'
 
@@ -24,6 +25,7 @@ const SORT_OPTIONS: { id: DistressedSort; key: 'distressed.sortDiscount' | 'dist
 
 export function DistressedFilterDirectory({
   listings,
+  allListings,
   totalCount,
   laneCounts,
   regions,
@@ -38,6 +40,7 @@ export function DistressedFilterDirectory({
   onSelectListing,
 }: {
   listings: DistressedListing[]
+  allListings: DistressedListing[]
   totalCount: number
   laneCounts: Record<DistressedLane, number>
   regions: string[]
@@ -54,6 +57,7 @@ export function DistressedFilterDirectory({
   const { t } = useI18n()
   const [query, setQuery] = useState('')
   const debounced = useDebouncedValue(query.trim().toLowerCase(), 120)
+  const activeFilterCount = countDistressedActiveFilters(filters, lane)
 
   const filtered = useMemo(() => {
     if (!debounced) return listings
@@ -71,6 +75,27 @@ export function DistressedFilterDirectory({
     if (l === 'curated') return t('distressed.laneCurated')
     return t('distressed.lanePermissionless')
   }
+
+  const laneChips = (
+    <div className="flex flex-wrap gap-1.5">
+      {LANES.map(l => (
+        <button
+          key={l}
+          type="button"
+          onClick={() => onLaneChange(l)}
+          aria-pressed={lane === l}
+          className={`rounded-chip border px-2.5 py-1 text-[10px] font-chrome transition-all duration-fast ${
+            lane === l
+              ? 'border-btc-orange/35 bg-btc-orange-soft/60 text-mp-btc-text shadow-mp-1'
+              : 'border-mp/70 text-ink-muted hover:border-btc-orange/25 hover:text-ink'
+          }`}
+        >
+          {laneLabel(l)}
+          <span className="ml-1 font-mono text-[9px] opacity-75">{laneCounts[l]}</span>
+        </button>
+      ))}
+    </div>
+  )
 
   return (
     <div className="flex flex-col min-h-0 flex-1">
@@ -94,26 +119,9 @@ export function DistressedFilterDirectory({
           />
         </div>
 
-        <div className="flex flex-wrap gap-1.5">
-          {LANES.map(l => (
-            <button
-              key={l}
-              type="button"
-              onClick={() => onLaneChange(l)}
-              aria-pressed={lane === l}
-              className={`rounded-chip border px-2.5 py-1 text-[10px] font-chrome transition-all duration-fast ${
-                lane === l
-                  ? 'border-btc-orange/35 bg-btc-orange-soft/60 text-mp-btc-text shadow-mp-1'
-                  : 'border-mp/70 text-ink-muted hover:border-btc-orange/25 hover:text-ink'
-              }`}
-            >
-              {laneLabel(l)}
-              <span className="ml-1 font-mono text-[9px] opacity-75">{laneCounts[l]}</span>
-            </button>
-          ))}
-        </div>
+        <div className="hidden md:block">{laneChips}</div>
 
-        <label className="flex items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider font-chrome">
+        <label className="hidden md:flex items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider font-chrome">
           {t('distressed.sortBy')}
           <select
             value={sort}
@@ -126,7 +134,7 @@ export function DistressedFilterDirectory({
           </select>
         </label>
 
-        <div className="flex flex-wrap gap-2 font-chrome">
+        <div className="hidden md:flex flex-wrap gap-2 font-chrome">
           <label className="flex items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider">
             {t('distressed.filterRegion')}
             <select
@@ -190,9 +198,66 @@ export function DistressedFilterDirectory({
         </div>
       </div>
 
+      <div
+        className="distressed-mobile-filter-bar md:hidden shrink-0 px-3 py-2 border-b border-mp/50 bg-card-muted/80 backdrop-blur-md space-y-2"
+        aria-label={t('distressed.mobileFilterBar')}
+      >
+        {laneChips}
+        <div className="flex items-center gap-2">
+          <label className="flex flex-1 items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider font-chrome min-w-0">
+            {t('distressed.sortBy')}
+            <select
+              value={sort}
+              onChange={e => onSortChange(e.target.value as DistressedSort)}
+              className="select-field !py-1 !px-2 text-xs normal-case tracking-normal flex-1 min-w-0"
+            >
+              {SORT_OPTIONS.map(opt => (
+                <option key={opt.id} value={opt.id}>{t(opt.key)}</option>
+              ))}
+            </select>
+          </label>
+          {activeFilterCount > 0 && (
+            <span className="rounded-chip border border-btc-orange/35 bg-btc-orange-soft/50 text-mp-btc-text text-[10px] font-mono px-2 py-0.5 shrink-0">
+              {formatT(t, 'distressed.filtersActive', { count: activeFilterCount })}
+            </span>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-2 font-chrome">
+          <label className="flex flex-1 items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider min-w-[45%]">
+            {t('distressed.filterRegion')}
+            <select
+              value={filters.region}
+              onChange={e => onFiltersChange({ ...filters, region: e.target.value })}
+              className="select-field !py-1 !px-2 text-xs normal-case tracking-normal flex-1 min-w-0"
+            >
+              {regions.map(r => (
+                <option key={r} value={r}>
+                  {r === 'all' ? t('distressed.regionAll') : r}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="flex items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider">
+            {t('distressed.filterMinScore')}
+            <select
+              value={filters.minScore}
+              onChange={e => onFiltersChange({ ...filters, minScore: Number(e.target.value) })}
+              className="select-field !py-1 !px-2 text-xs normal-case tracking-normal"
+            >
+              {[1, 2, 3, 4, 5].map(n => (
+                <option key={n} value={n}>
+                  {n}+
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </div>
+
       <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-2 py-2 btcmap-directory-scroll">
         <DistressedListingsList
           listings={filtered}
+          allListings={allListings}
           loading={loading}
           error={error}
           onSelect={onSelectListing}

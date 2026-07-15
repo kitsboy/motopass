@@ -1,6 +1,7 @@
-import { useEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useRef, type MutableRefObject, type ReactNode } from 'react'
 import { X } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { MODAL_BACKDROP_FADE, MODAL_SPRING_ENTER, MODAL_SPRING_EXIT } from '../../lib/ease'
 
 export type ModalProps = {
   open: boolean
@@ -12,6 +13,8 @@ export type ModalProps = {
   children: ReactNode
   maxWidth?: 'md' | 'lg' | 'xl'
   closeLabel?: string
+  /** Optional opener element to restore focus on close (overrides auto-captured trigger). */
+  returnFocusRef?: MutableRefObject<HTMLElement | null>
 }
 
 const MAX = { md: 'max-w-lg', lg: 'max-w-2xl', xl: 'max-w-3xl' }
@@ -28,6 +31,7 @@ export function Modal({
   children,
   maxWidth = 'lg',
   closeLabel = 'Close',
+  returnFocusRef,
 }: ModalProps) {
   const panelRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLElement | null>(null)
@@ -63,12 +67,15 @@ export function Modal({
       panelRef.current?.querySelector<HTMLElement>(FOCUSABLE)?.focus()
     })
 
+    const openerAtMount = returnFocusRef?.current ?? null
+
     return () => {
       document.body.style.overflow = prev
       window.removeEventListener('keydown', onKey)
-      triggerRef.current?.focus()
+      const focusTarget = openerAtMount ?? triggerRef.current
+      if (focusTarget?.isConnected) focusTarget.focus()
     }
-  }, [open, onClose])
+  }, [open, onClose, returnFocusRef])
 
   return (
     <AnimatePresence>
@@ -81,7 +88,7 @@ export function Modal({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={reduced ? { duration: 0 } : undefined}
+            transition={reduced ? { duration: 0 } : MODAL_BACKDROP_FADE}
             onClick={onClose}
           />
           <motion.div
@@ -90,10 +97,14 @@ export function Modal({
             aria-modal="true"
             aria-labelledby="modal-title"
             className={`relative w-full ${MAX[maxWidth]} max-h-[92vh] sm:max-h-[88vh] flex flex-col modal-glass sm:rounded-2xl rounded-t-2xl overflow-hidden`}
-            initial={reduced ? false : { opacity: 0, y: 52, scale: 0.98 }}
+            initial={reduced ? false : { opacity: 0, y: 44, scale: 0.965 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={reduced ? undefined : { opacity: 0, y: 36, scale: 0.98 }}
-            transition={reduced ? { duration: 0 } : { type: 'spring', damping: 30, stiffness: 340 }}
+            exit={
+              reduced
+                ? undefined
+                : { opacity: 0, y: 28, scale: 0.975, transition: MODAL_SPRING_EXIT }
+            }
+            transition={reduced ? { duration: 0 } : MODAL_SPRING_ENTER}
             onClick={e => e.stopPropagation()}
           >
             <div className="shrink-0 px-5 sm:px-6 pt-5 pb-4 border-b border-mp/60 bg-card-muted/30">

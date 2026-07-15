@@ -1,12 +1,24 @@
 #!/usr/bin/env node
 /** Regenerate public/sitemap.xml from route list + blog slugs. */
-import { writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const SITE = process.env.VITE_SITE_URL || 'https://motopass.giveabit.io'
-const TODAY = new Date().toISOString().slice(0, 10)
+
+function readBuildDate() {
+  try {
+    const info = readFileSync(resolve(__dirname, '../src/lib/buildInfo.ts'), 'utf8')
+    const match = info.match(/BUILD_DATE\s*=\s*'([^']+)'/)
+    if (match) return match[1]
+  } catch {
+    /* fall through */
+  }
+  return new Date().toISOString().slice(0, 10)
+}
+
+const LASTMOD = readBuildDate()
 
 const ROUTES = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
@@ -47,7 +59,7 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
 ${urls
   .map(
     (u) =>
-      `  <url><loc>${u.loc}</loc><lastmod>${TODAY}</lastmod><changefreq>${u.changefreq}</changefreq><priority>${u.priority}</priority></url>`,
+      `  <url><loc>${u.loc}</loc><lastmod>${LASTMOD}</lastmod><changefreq>${u.changefreq}</changefreq><priority>${u.priority}</priority></url>`,
   )
   .join('\n')}
 </urlset>

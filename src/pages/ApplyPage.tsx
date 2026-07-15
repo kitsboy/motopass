@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Check, CheckCircle2, Copy, ExternalLink, MessageCircle, Radio, Rocket } from 'lucide-react'
 import { NostrConnect } from '../components/NostrConnect'
@@ -14,6 +14,22 @@ import { Input, Textarea } from '../components/ui/Input'
 import { useLaunchGates } from '../hooks/useLaunchGates'
 import { BUILD_ID } from '../lib/buildInfo'
 import { ApplyLaunchGatesDirectory } from '../components/apply/ApplyLaunchGatesDirectory'
+import { ApplyFormProgressStepper } from '../components/apply/ApplyFormProgressStepper'
+import { clearApplyDraft, loadApplyDraft, saveApplyDraft } from '../lib/applyDraftStorage'
+
+function resolveApplyFields(programPrefill: string) {
+  if (programPrefill) {
+    return { name: '', program: programPrefill, notes: '', draftRestored: false }
+  }
+  const draft = loadApplyDraft()
+  if (!draft) return { name: '', program: '', notes: '', draftRestored: false }
+  return {
+    name: draft.name,
+    program: draft.program,
+    notes: draft.notes,
+    draftRestored: !!(draft.name || draft.program || draft.notes),
+  }
+}
 
 export function ApplyPage() {
   const { t } = useI18n()
@@ -22,13 +38,20 @@ export function ApplyPage() {
   const [searchParams] = useSearchParams()
   const programPrefill = searchParams.get('program') ?? ''
 
+  const initialFields = resolveApplyFields(programPrefill)
   const [nostr, setNostr] = useState<NostrSession | null>(null)
-  const [name, setName] = useState('')
-  const [program, setProgram] = useState(programPrefill)
-  const [notes, setNotes] = useState('')
+  const [name, setName] = useState(initialFields.name)
+  const [program, setProgram] = useState(initialFields.program)
+  const [notes, setNotes] = useState(initialFields.notes)
   const [result, setResult] = useState<{ hash: string; id: string } | null>(null)
   const [copied, setCopied] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const draftRestored = initialFields.draftRestored
+
+  useEffect(() => {
+    if (result) return
+    saveApplyDraft({ name, program, notes })
+  }, [name, program, notes, result])
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -56,6 +79,7 @@ export function ApplyPage() {
         satohashUrl: satohashStampGuideUrl(hash),
         notes: notes.trim() || undefined,
       })
+      clearApplyDraft()
       setResult({ hash, id })
       setCopied(false)
     } finally {
@@ -121,6 +145,17 @@ export function ApplyPage() {
 
       {!result ? (
         <Card variant="elevated" className="space-y-4">
+          {draftRestored && (
+            <p className="text-[10px] font-mono text-ink-muted uppercase tracking-wider">
+              {t('apply.draftRestored')}
+            </p>
+          )}
+          <ApplyFormProgressStepper
+            name={name}
+            program={program}
+            notes={notes}
+            hasNostr={!!nostr}
+          />
           <form onSubmit={submit} className="space-y-4">
             <fieldset disabled={!applicationsOpen || submitting} className="space-y-4 disabled:opacity-55">
               <Input
@@ -151,8 +186,9 @@ export function ApplyPage() {
           </form>
         </Card>
       ) : (
-        <Card variant="proof" animate className="space-y-4">
-          <div className="flex items-center gap-3">
+        <Card variant="proof" animate className="space-y-4 relative overflow-hidden apply-success-card">
+          <div className="apply-confetti-lite pointer-events-none" aria-hidden />
+          <div className="flex items-center gap-3 relative z-[1]">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-mp-md bg-mp-proof/15 border border-mp-proof/30">
               <CheckCircle2 size={22} className="text-mp-proof" aria-hidden />
             </div>
@@ -162,7 +198,7 @@ export function ApplyPage() {
             </div>
           </div>
 
-          <div className="rounded-mp-md border border-mp/60 bg-card-muted/50 p-3 space-y-2 text-xs backdrop-blur-sm">
+          <div className="rounded-mp-md border border-mp/60 bg-card-muted/50 p-3 space-y-2 text-xs backdrop-blur-sm relative z-[1]">
             <p className="text-ink-muted">
               {t('apply.id')}: <span className="font-mono text-ink break-all">{result.id}</span>
             </p>
@@ -171,7 +207,7 @@ export function ApplyPage() {
             </p>
           </div>
 
-          <div className="relative">
+          <div className="relative z-[1]">
             <code className="block text-[10px] font-mono text-mp-btc-text break-all bg-btc-orange-soft/40 p-3 pr-12 rounded-mp-md border border-btc-orange/25">
               {result.hash}
             </code>
@@ -190,17 +226,17 @@ export function ApplyPage() {
             </button>
           </div>
 
-          <ol className="font-body text-xs text-ink-muted list-decimal pl-4 space-y-1.5">
+          <ol className="font-body text-xs text-ink-muted list-decimal pl-4 space-y-1.5 relative z-[1]">
             <li>{t('apply.stepStamp')}</li>
             <li>{t('apply.stepAgents')}</li>
           </ol>
 
-          <a href={satohashStampGuideUrl(result.hash)} target="_blank" rel="noopener noreferrer" className="btn-primary w-full inline-flex items-center justify-center gap-2">
+          <a href={satohashStampGuideUrl(result.hash)} target="_blank" rel="noopener noreferrer" className="btn-primary w-full inline-flex items-center justify-center gap-2 relative z-[1]">
             {t('apply.stampSatohash')} <ExternalLink size={14} />
           </a>
-          <Link to="/agents" className="btn-secondary w-full text-center block">{t('apply.meetAgents')}</Link>
-          <p className="font-body text-xs text-ink-muted leading-relaxed">{t('apply.agentNotify')}</p>
-          <Button type="button" variant="secondary" className="w-full" onClick={() => setResult(null)}>
+          <Link to="/agents" className="btn-secondary w-full text-center block relative z-[1]">{t('apply.meetAgents')}</Link>
+          <p className="font-body text-xs text-ink-muted leading-relaxed relative z-[1]">{t('apply.agentNotify')}</p>
+          <Button type="button" variant="secondary" className="w-full relative z-[1]" onClick={() => setResult(null)}>
             {t('apply.registerAnother')}
           </Button>
         </Card>

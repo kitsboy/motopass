@@ -3,14 +3,16 @@ import type { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from 'rea
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string
   hint?: string
+  error?: boolean
 }
 
 type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label?: string
   hint?: string
+  error?: boolean
 }
 
-export function Input({ label, hint, id, className = '', ...props }: InputProps) {
+export function Input({ label, hint, error, id, className = '', ...props }: InputProps) {
   const fieldId = id ?? label?.toLowerCase().replace(/\s+/g, '-')
   return (
     <div className="space-y-1.5">
@@ -19,13 +21,18 @@ export function Input({ label, hint, id, className = '', ...props }: InputProps)
           {label}
         </label>
       )}
-      <input id={fieldId} className={`input-field ${className}`.trim()} {...props} />
+      <input
+        id={fieldId}
+        aria-invalid={error || undefined}
+        className={`input-field ${error ? 'input-field-error' : ''} ${className}`.trim()}
+        {...props}
+      />
       {hint && <p className="text-[10px] text-ink-muted font-mono opacity-75">{hint}</p>}
     </div>
   )
 }
 
-export function Textarea({ label, hint, id, className = '', rows = 3, ...props }: TextareaProps) {
+export function Textarea({ label, hint, error, id, className = '', rows = 3, ...props }: TextareaProps) {
   const fieldId = id ?? label?.toLowerCase().replace(/\s+/g, '-')
   return (
     <div className="space-y-1.5">
@@ -37,7 +44,8 @@ export function Textarea({ label, hint, id, className = '', rows = 3, ...props }
       <textarea
         id={fieldId}
         rows={rows}
-        className={`input-field resize-y ${className}`.trim()}
+        aria-invalid={error || undefined}
+        className={`input-field resize-y ${error ? 'input-field-error' : ''} ${className}`.trim()}
         {...props}
       />
       {hint && <p className="text-[10px] text-ink-muted font-mono opacity-75">{hint}</p>}
@@ -47,11 +55,12 @@ export function Textarea({ label, hint, id, className = '', rows = 3, ...props }
 
 export function Select({
   label,
+  error,
   id,
   className = '',
   children,
   ...props
-}: InputHTMLAttributes<HTMLSelectElement> & { label?: string; children: ReactNode }) {
+}: InputHTMLAttributes<HTMLSelectElement> & { label?: string; error?: boolean; children: ReactNode }) {
   const fieldId = id ?? label?.toLowerCase().replace(/\s+/g, '-')
   return (
     <div className="space-y-1.5">
@@ -60,7 +69,12 @@ export function Select({
           {label}
         </label>
       )}
-      <select id={fieldId} className={`select-field ${className}`.trim()} {...props}>
+      <select
+        id={fieldId}
+        aria-invalid={error || undefined}
+        className={`select-field ${error ? 'input-field-error' : ''} ${className}`.trim()}
+        {...props}
+      >
         {children}
       </select>
     </div>

@@ -6,11 +6,22 @@ import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
 import { SeoHead } from '../components/SeoHead'
 import { SITE_NAME, SITE_URL, absoluteUrl } from '../lib/seo'
+import { estimateReadingMinutes } from '../lib/utils'
 
 export function BlogPostPage() {
   const { slug } = useParams()
   const { lang } = useI18n()
   const post = BLOG_POSTS.find(p => p.slug === slug)
+
+  const readingMinutes = useMemo(() => {
+    if (!post) return 0
+    const bodyCopy = [
+      'This article is part of MotoPass sovereign mobility knowledge base.',
+      'Connect your Nostr identity to receive jurisdiction-specific updates.',
+      post.seoKeywords.join(' '),
+    ].join(' ')
+    return estimateReadingMinutes(post.title[lang], post.excerpt[lang], bodyCopy)
+  }, [post, lang])
 
   const articleJsonLd = useMemo(() => {
     if (!post) return undefined
@@ -54,6 +65,9 @@ export function BlogPostPage() {
         title={post.title[lang]}
         subtitle={post.excerpt[lang]}
       />
+      <p className="mb-6 text-xs font-mono text-ink-muted" aria-label={`${readingMinutes} minute read`}>
+        {readingMinutes} min read
+      </p>
       <div className="flex flex-wrap gap-2 mb-8">
         {post.labels.map(l => <TaxonomyChip key={l} labelId={l} />)}
       </div>

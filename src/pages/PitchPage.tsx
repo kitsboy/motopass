@@ -25,8 +25,13 @@ import { useI18n } from '../i18n/I18nContext'
 import { BlockHeight } from '../components/BlockHeight'
 import { BtcPriceTicker } from '../components/BtcPriceTicker'
 import { HeroMotionBackground } from '../components/pitch/HeroMotionBackground'
+import { HeroCtaLink } from '../components/pitch/HeroCtaLink'
 import { EvolvingPitchRotator } from '../components/pitch/EvolvingPitchRotator'
 import { SavingsGraphs } from '../components/pitch/SavingsGraphs'
+import { PitchRevealSection } from '../components/pitch/PitchRevealSection'
+import { PitchTrustedStrip } from '../components/pitch/PitchTrustedStrip'
+import { PitchRoadmapTimeline } from '../components/pitch/PitchRoadmapTimeline'
+import { PitchFaqAccordion } from '../components/pitch/PitchFaqAccordion'
 import { Card } from '../components/ui/Card'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { usePrograms } from '../hooks/usePrograms'
@@ -39,7 +44,6 @@ import {
   formatUsd,
 } from '../lib/pitchStats'
 import { BUILD_ID, BUILD_DATE } from '../lib/buildInfo'
-import { SeoHead } from '../components/SeoHead'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import type { TranslationKey } from '../i18n/translations'
 
@@ -87,14 +91,6 @@ const LIVE_KEYS = [
   'pitch.live.gates',
 ] as const
 
-const FAQ_KEYS = [
-  { q: 'pitch.faq.q1' as const, a: 'pitch.faq.a1' as const },
-  { q: 'pitch.faq.q2' as const, a: 'pitch.faq.a2' as const },
-  { q: 'pitch.faq.q3' as const, a: 'pitch.faq.a3' as const },
-  { q: 'pitch.faq.q4' as const, a: 'pitch.faq.a4' as const },
-  { q: 'pitch.faq.q5' as const, a: 'pitch.faq.a5' as const },
-] as const
-
 const GUIDE_STEPS = [
   { n: '01', titleKey: 'pitch.guide.step1.title' as const, bodyKey: 'pitch.guide.step1.body' as const, icon: Compass, to: '/programs' },
   { n: '02', titleKey: 'pitch.guide.step2.title' as const, bodyKey: 'pitch.guide.step2.body' as const, icon: ShieldCheck, to: '/vault' },
@@ -135,23 +131,8 @@ export function PitchPage() {
     [t],
   )
 
-  const faqJsonLd = useMemo(
-    () => ({
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: FAQ_KEYS.map(({ q, a }) => ({
-        '@type': 'Question',
-        name: t(q),
-        acceptedAnswer: { '@type': 'Answer', text: t(a) },
-      })),
-    }),
-    [t],
-  )
-
   return (
     <div className="page-container bg-mp-canvas">
-      <SeoHead jsonLdOnly jsonLd={faqJsonLd} />
-
       <div className="px-4 sm:px-6 max-w-7xl mx-auto">
         <PageAnchorNav items={pitchAnchors} />
       </div>
@@ -192,18 +173,19 @@ export function PitchPage() {
             )}
 
             <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <Link to="/programs" className="btn-primary text-sm !py-3">
+              <HeroCtaLink to="/programs" variant="primary">
                 {t('pitch.cta')} <ArrowRight size={18} />
-              </Link>
-              <Link to="/simulator" className="btn-secondary text-sm !py-3 border-white/20 text-mp-on-hero-secondary hover:text-mp-on-hero">
+              </HeroCtaLink>
+              <HeroCtaLink to="/simulator" variant="secondary" className="border-white/20 text-mp-on-hero-secondary hover:text-mp-on-hero">
                 {t('pitch.stackSimulator')} <Zap size={16} />
-              </Link>
-              <Link
+              </HeroCtaLink>
+              <HeroCtaLink
                 to="/btcmap"
-                className="btn-secondary text-sm !py-3 border-btc-orange/30 bg-btc-orange/8 text-mp-on-hero hover:text-mp-btc-text"
+                variant="secondary"
+                className="border-btc-orange/30 bg-btc-orange/8 text-mp-on-hero hover:text-mp-btc-text"
               >
                 {t('pitch.btcmapCta')} <Bitcoin size={16} />
-              </Link>
+              </HeroCtaLink>
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-mp-on-hero-muted">
@@ -225,10 +207,12 @@ export function PitchPage() {
         </div>
       </section>
 
+      <PitchTrustedStrip programs={programs} loading={loading} />
+
       <SavingsGraphs rows={savingsRows} loading={loading} />
 
       {/* ── Site-wide guide ── */}
-      <section id="pitch-guide" className="surface-band px-4 sm:px-6 py-14 sm:py-16 scroll-mt-header">
+      <PitchRevealSection id="pitch-guide" stagger={0.04} className="surface-band px-4 sm:px-6 py-14 sm:py-16 scroll-mt-header">
         <div className="max-w-7xl mx-auto">
           <HowItWorksSection
             eyebrow={t('pitch.guide.eyebrow')}
@@ -245,10 +229,10 @@ export function PitchPage() {
             }))}
           />
         </div>
-      </section>
+      </PitchRevealSection>
 
       {/* ── Four pillars ── */}
-      <section id="pitch-pillars" className="px-4 sm:px-6 py-14 sm:py-18 max-w-7xl mx-auto scroll-mt-header">
+      <PitchRevealSection id="pitch-pillars" stagger={0.08} className="px-4 sm:px-6 py-14 sm:py-18 max-w-7xl mx-auto scroll-mt-header">
         <div className="mb-10 max-w-2xl">
           <span className="club-eyebrow block mb-3">{t('pitch.platform.eyebrow')}</span>
           <h2 className="font-display text-h2 font-semibold text-ink tracking-tight">{t('pitch.platform.title')}</h2>
@@ -278,10 +262,10 @@ export function PitchPage() {
             </Link>
           ))}
         </div>
-      </section>
+      </PitchRevealSection>
 
       {/* ── Platform products ── */}
-      <section id="pitch-products" className="surface-band px-4 sm:px-6 py-14 sm:py-16 scroll-mt-header">
+      <PitchRevealSection id="pitch-products" stagger={0.12} className="surface-band px-4 sm:px-6 py-14 sm:py-16 scroll-mt-header">
         <div className="max-w-7xl mx-auto">
           <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <div>
@@ -306,10 +290,10 @@ export function PitchPage() {
             ))}
           </div>
         </div>
-      </section>
+      </PitchRevealSection>
 
       {/* ── How it works ── */}
-      <section id="pitch-how" className="px-4 sm:px-6 py-14 sm:py-16 max-w-7xl mx-auto scroll-mt-header">
+      <PitchRevealSection id="pitch-how" stagger={0.16} className="px-4 sm:px-6 py-14 sm:py-16 max-w-7xl mx-auto scroll-mt-header">
         <span className="club-eyebrow block mb-3">{t('pitch.how.eyebrow')}</span>
         <h2 className="font-display text-h2 font-semibold text-ink mb-10">{t('pitch.how.title')}</h2>
         <div className="grid gap-5 md:grid-cols-3">
@@ -321,10 +305,10 @@ export function PitchPage() {
             </Card>
           ))}
         </div>
-      </section>
+      </PitchRevealSection>
 
       {/* ── Feature grid ── */}
-      <section className="surface-band px-4 sm:px-6 py-12 sm:py-14">
+      <PitchRevealSection stagger={0.2} className="surface-band px-4 sm:px-6 py-12 sm:py-14">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {FEATURE_KEYS.map(({ icon: Icon, titleKey, subKey }) => (
             <Card key={titleKey} variant="elevated" className="group !p-5">
@@ -336,10 +320,10 @@ export function PitchPage() {
             </Card>
           ))}
         </div>
-      </section>
+      </PitchRevealSection>
 
       {/* ── Live data trust strip ── */}
-      <section className="px-4 sm:px-6 py-14 sm:py-16 max-w-7xl mx-auto">
+      <PitchRevealSection stagger={0.24} className="px-4 sm:px-6 py-14 sm:py-16 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-10 items-start">
           <div>
             <span className="club-eyebrow block mb-3">{t('pitch.live.eyebrow')}</span>
@@ -359,22 +343,13 @@ export function PitchPage() {
             </div>
             <h3 className="font-display font-semibold text-lg text-ink mb-3">{t('pitch.evolve.title')}</h3>
             <p className="text-sm text-ink-secondary leading-relaxed mb-5">{t('pitch.evolve.body')}</p>
-            <div className="text-2xl font-display text-gradient-orange mb-4">{t('pitch.roadmap.next')}</div>
-            <ul className="text-sm text-ink-secondary space-y-2">
-              {ROADMAP_LINKS.map(({ key, to }) => (
-                <li key={key}>
-                  <Link to={to} className="flex gap-2 hover:text-mp-btc-text transition-colors">
-                    <span className="text-mp-btc-text">→</span> {t(key)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <PitchRoadmapTimeline links={ROADMAP_LINKS} nextLabel={t('pitch.roadmap.next')} />
           </Card>
         </div>
-      </section>
+      </PitchRevealSection>
 
       {/* ── Stack deep-dive ── */}
-      <section className="surface-band px-4 sm:px-6 py-14 sm:py-16">
+      <PitchRevealSection stagger={0.28} className="surface-band px-4 sm:px-6 py-14 sm:py-16">
         <div className="max-w-7xl mx-auto">
           <div className="section-label mb-2 flex items-center gap-2">
             <Sparkles size={12} /> {t('pitch.stack.eyebrow')}
@@ -404,24 +379,12 @@ export function PitchPage() {
             </Card>
           </div>
         </div>
-      </section>
+      </PitchRevealSection>
 
-      {/* ── FAQ ── */}
-      <section id="pitch-faq" className="px-4 sm:px-6 py-14 sm:py-16 max-w-3xl mx-auto scroll-mt-header">
-        <span className="club-eyebrow block mb-3">{t('pitch.faq.eyebrow')}</span>
-        <h2 className="font-display text-h2 font-semibold text-ink mb-8">{t('pitch.faq.title')}</h2>
-        <div className="space-y-4">
-          {FAQ_KEYS.map(({ q, a }) => (
-            <Card key={q} className="!p-5">
-              <h3 className="font-display font-semibold text-ink mb-2">{t(q)}</h3>
-              <p className="text-sm text-ink-secondary leading-relaxed">{t(a)}</p>
-            </Card>
-          ))}
-        </div>
-      </section>
+      <PitchFaqAccordion eyebrow={t('pitch.faq.eyebrow')} title={t('pitch.faq.title')} />
 
       {/* ── CTA band ── */}
-      <section id="pitch-cta" className="px-4 sm:px-6 pb-16 sm:pb-20 max-w-7xl mx-auto scroll-mt-header">
+      <PitchRevealSection id="pitch-cta" stagger={0.32} className="px-4 sm:px-6 pb-16 sm:pb-20 max-w-7xl mx-auto scroll-mt-header">
         <Card variant="banner" animate className="!p-8 sm:!p-10 text-center">
           <h2 className="font-display text-h2 font-semibold text-ink mb-3">{t('pitch.ctaBand.title')}</h2>
           <p className="font-body text-body text-ink-secondary max-w-xl mx-auto mb-8 leading-relaxed">{t('pitch.ctaBand.sub')}</p>
@@ -434,7 +397,7 @@ export function PitchPage() {
             </Link>
           </div>
         </Card>
-      </section>
+      </PitchRevealSection>
     </div>
   )
 }

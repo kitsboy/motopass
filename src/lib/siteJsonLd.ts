@@ -1,4 +1,7 @@
+import type { LangCode } from '../i18n/languages'
 import { SITE_NAME, SITE_URL } from './seo'
+
+export type FaqJsonLdEntry = { question: string; answer: string }
 
 export function organizationJsonLd() {
   return {
@@ -37,6 +40,42 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
       position: i + 1,
       name: item.name,
       item: `${SITE_URL}${item.path}`,
+    })),
+  }
+}
+
+/** FAQPage JSON-LD enriched from live i18n FAQ copy (pitch home). */
+export function pitchFaqJsonLd(entries: FaqJsonLdEntry[], lang: LangCode = 'en') {
+  const pageUrl = `${SITE_URL}/`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${pageUrl}#faq`,
+    url: pageUrl,
+    inLanguage: lang,
+    isPartOf: {
+      '@type': 'WebPage',
+      '@id': pageUrl,
+      name: 'MotoPass — Bitcoin Sovereign Passports',
+      url: pageUrl,
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    },
+    about: {
+      '@type': 'Thing',
+      name: 'Bitcoin-native sovereign passport intelligence',
+      description: 'Satohash-verified residency and citizenship program research.',
+    },
+    mainEntity: entries.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['#pitch-faq'],
+        },
+      },
     })),
   }
 }

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ExternalLink, MessageCircle, TrendingDown, Layers, Shield, BarChart3, Handshake } from 'lucide-react'
 import { useI18n } from '../i18n/I18nContext'
@@ -20,6 +20,7 @@ import {
   filterListings,
   sortListings,
 } from '../lib/distressed/buildListings'
+import { loadDistressedState, saveDistressedState } from '../lib/distressedStorage'
 import type { DistressedFilters, DistressedLane, DistressedListing, DistressedSort } from '../types/distressedListing'
 
 const DEFAULT_FILTERS: DistressedFilters = {
@@ -143,10 +144,14 @@ export function DistressedPage() {
   const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
   const { rate } = useBtcPrice()
-  const [lane, setLane] = useState<DistressedLane>('all')
-  const [sort, setSort] = useState<DistressedSort>('discount')
-  const [filters, setFilters] = useState<DistressedFilters>(DEFAULT_FILTERS)
+  const [lane, setLane] = useState<DistressedLane>(() => loadDistressedState()?.lane ?? 'all')
+  const [sort, setSort] = useState<DistressedSort>(() => loadDistressedState()?.sort ?? 'discount')
+  const [filters, setFilters] = useState<DistressedFilters>(() => loadDistressedState()?.filters ?? DEFAULT_FILTERS)
   const [active, setActive] = useState<DistressedListing | null>(null)
+
+  useEffect(() => {
+    saveDistressedState({ lane, sort, filters })
+  }, [lane, sort, filters])
 
   const allListings = useMemo(() => buildDistressedListings(programs), [programs])
   const regions = useMemo(() => ['all', ...distressedRegions(allListings)], [allListings])
@@ -228,6 +233,7 @@ export function DistressedPage() {
         >
           <DistressedFilterDirectory
             listings={filtered}
+            allListings={allListings}
             totalCount={allListings.length}
             laneCounts={laneCounts}
             regions={regions}

@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
-import { DEFAULT_OG_IMAGE, SITE_NAME, formatPageTitle, absoluteUrl } from '../lib/seo'
-import { LANGUAGES } from '../i18n/languages'
+import { DEFAULT_OG_IMAGE, SITE_NAME, formatPageTitle, absoluteUrl, localizedUrl } from '../lib/seo'
+import { LANGUAGES, type LangCode } from '../i18n/languages'
 
 type JsonLd = Record<string, unknown> | Record<string, unknown>[]
 
@@ -12,6 +12,8 @@ type SeoHeadProps = {
   jsonLd?: JsonLd
   /** When true, only inject JSON-LD (route meta handled elsewhere). */
   jsonLdOnly?: boolean
+  /** hreflang alternates — defaults to all supported locales. */
+  hrefLangs?: LangCode[]
 }
 
 export function SeoHead({
@@ -21,6 +23,7 @@ export function SeoHead({
   noIndex = false,
   jsonLd,
   jsonLdOnly = false,
+  hrefLangs,
 }: SeoHeadProps) {
   if (jsonLdOnly) {
     if (!jsonLd) return null
@@ -33,14 +36,18 @@ export function SeoHead({
 
   const pageTitle = formatPageTitle(title)
   const url = absoluteUrl(path)
+  const alternates = (hrefLangs ?? LANGUAGES.map((l) => l.code)).map((code) => {
+    const meta = LANGUAGES.find((l) => l.code === code) ?? LANGUAGES[0]
+    return { code: meta.code, href: localizedUrl(path, meta.code) }
+  })
 
   return (
     <Helmet>
       <title>{pageTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
-      {LANGUAGES.map((lang) => (
-        <link key={lang.code} rel="alternate" hrefLang={lang.code} href={url} />
+      {alternates.map((alt) => (
+        <link key={alt.code} rel="alternate" hrefLang={alt.code} href={alt.href} />
       ))}
       <link rel="alternate" hrefLang="x-default" href={url} />
       {noIndex ? <meta name="robots" content="noindex, nofollow" /> : null}

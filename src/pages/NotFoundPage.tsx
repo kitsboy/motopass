@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+import { FormEvent, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Search } from 'lucide-react'
 import { SeoHead } from '../components/SeoHead'
 import { PageHeader } from '../components/ui/PageHeader'
 import { useI18n } from '../i18n/I18nContext'
@@ -15,6 +17,15 @@ const QUICK_LINK_KEYS = [
 
 export function NotFoundPage() {
   const { t } = useI18n()
+  const navigate = useNavigate()
+  const [query, setQuery] = useState('')
+
+  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const q = query.trim()
+    if (!q) return
+    navigate(`/programs?q=${encodeURIComponent(q)}`)
+  }
 
   return (
     <div className="px-4 sm:px-6 py-8 max-w-3xl mx-auto">
@@ -32,6 +43,27 @@ export function NotFoundPage() {
       <p className="text-sm text-ink-secondary mb-6 leading-relaxed">
         {t('notFound.body')}
       </p>
+
+      <form onSubmit={handleSearch} className="mb-8 max-w-md">
+        <label htmlFor="notfound-search" className="text-xs font-medium text-ink-muted mb-2 block">
+          {t('notFound.searchLabel')}
+        </label>
+        <div className="relative">
+          <Search size={16} className="absolute start-3 top-1/2 -translate-y-1/2 text-ink-muted pointer-events-none" aria-hidden />
+          <input
+            id="notfound-search"
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t('notFound.searchPlaceholder')}
+            className="input-field ps-9"
+          />
+        </div>
+        <button type="submit" className="btn-secondary mt-3 text-sm">
+          {t('notFound.searchSubmit')}
+        </button>
+      </form>
+
       <nav className="flex flex-wrap gap-3" aria-label="Helpful links">
         {QUICK_LINK_KEYS.map((link) => (
           <Link

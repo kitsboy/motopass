@@ -256,7 +256,7 @@ export function FinanceComparePage() {
               </div>
             )}
             <div className="relative max-w-md">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted pointer-events-none" />
+              <Search size={16} className="absolute start-3 top-1/2 -translate-y-1/2 text-ink-muted pointer-events-none" />
               <input
                 id="compare-search"
                 type="search"
@@ -270,7 +270,7 @@ export function FinanceComparePage() {
                 onBlur={() => setTimeout(() => setListOpen(false), 150)}
                 placeholder={ids.length >= 4 ? t('compare.maxSelected') : t('compare.searchPlaceholder')}
                 disabled={ids.length >= 4}
-                className="input-field pl-9"
+                className="input-field ps-9"
               />
               {listOpen && ids.length < 4 && filtered.length > 0 && (
                 <ul id={listId} role="listbox" className="absolute z-10 mt-1 w-full max-h-56 overflow-y-auto rounded-mp-md border border-mp-border bg-mp-card shadow-mp-1">
@@ -280,11 +280,11 @@ export function FinanceComparePage() {
                         type="button"
                         onMouseDown={e => e.preventDefault()}
                         onClick={() => { toggle(p.id); setSearch(''); setListOpen(false) }}
-                        className="w-full text-left px-3 py-2.5 text-sm text-ink hover:bg-section transition-colors flex items-center gap-2"
+                        className="w-full text-start px-3 py-2.5 text-sm text-ink hover:bg-section transition-colors flex items-center gap-2"
                       >
                         <span>{p.flag}</span>
                         <span className="font-medium">{p.name}</span>
-                        <span className="text-xs text-ink-muted ml-auto">{p.region}</span>
+                        <span className="text-xs text-ink-muted ms-auto">{p.region}</span>
                       </button>
                     </li>
                   ))}
@@ -301,17 +301,17 @@ export function FinanceComparePage() {
           {compare.length > 0 ? (
             <div id="compare-results" className="scroll-mt-header">
               <div className="hidden md:block overflow-x-auto rounded-card border border-mp-border bg-mp-card shadow-mp-1">
-                <table className="w-full text-sm">
+                <table className="w-full text-sm mp-table-zebra">
                   <caption className="sr-only">{t('compare.title')}</caption>
                   <thead>
                     <tr className="border-b border-mp-border bg-mp-card-muted/60">
-                      <th scope="col" className="p-3 text-left text-ink-muted text-xs uppercase">{t('compare.metric')}</th>
+                      <th scope="col" className="p-3 text-start text-ink-muted text-xs uppercase">{t('compare.metric')}</th>
                       {compare.map(p => (
-                        <th key={p.id} scope="col" className="p-3 text-left font-display text-ink">
+                        <th key={p.id} scope="col" className="p-3 text-start font-display text-ink">
                           <button
                             type="button"
                             onClick={() => setModalProgram(toCinematicProgram(p))}
-                            className="hover:text-accent text-left transition-colors"
+                            className="hover:text-accent text-start transition-colors"
                             aria-label={formatT(t, 'compare.openProgram', { name: p.name })}
                           >
                             {p.name}
@@ -326,7 +326,7 @@ export function FinanceComparePage() {
                       const bests = r.best ? bestIndex(nums, r.best) : new Set<number>()
                       return (
                         <tr key={r.label} className="border-b border-mp-border-subtle hover:bg-mp-btc-soft/20">
-                          <th scope="row" className="p-3 text-left text-ink-muted font-medium">{r.label}</th>
+                          <th scope="row" className="p-3 text-start text-ink-muted font-medium">{r.label}</th>
                           {compare.map((p, i) => (
                             <td key={p.id} className={`p-3 text-xs text-ink ${bests.has(i) ? 'compare-best-cell' : ''}`}>
                               {r.render(p)}
@@ -344,7 +344,7 @@ export function FinanceComparePage() {
                     <button
                       type="button"
                       onClick={() => setModalProgram(toCinematicProgram(p))}
-                      className="font-display font-semibold text-ink mb-3 text-left hover:text-accent transition-colors"
+                      className="font-display font-semibold text-ink mb-3 text-start hover:text-accent transition-colors"
                     >
                       {p.flag} {p.name}
                     </button>
@@ -352,7 +352,7 @@ export function FinanceComparePage() {
                       {rows.map(r => (
                         <div key={r.label} className="flex justify-between gap-2 border-b border-mp/40 pb-1.5">
                           <dt className="text-ink-muted">{r.label}</dt>
-                          <dd className="text-ink text-right">{r.render(p)}</dd>
+                          <dd className="text-ink text-end">{r.render(p)}</dd>
                         </div>
                       ))}
                     </dl>
@@ -369,13 +369,13 @@ export function FinanceComparePage() {
                     <p className="mt-3 text-xs text-ink-muted">{t('compare.diffEmpty')}</p>
                   ) : (
                     <div className="mt-3 overflow-x-auto">
-                      <table className="w-full text-xs">
+                      <table className="w-full text-xs mp-table-zebra">
                         <caption className="sr-only">{t('compare.diffTitle')}</caption>
                         <thead>
                           <tr className="border-b border-mp-border">
-                            <th scope="col" className="p-2 text-left text-ink-muted font-medium">{t('compare.metric')}</th>
+                            <th scope="col" className="p-2 text-start text-ink-muted font-medium">{t('compare.metric')}</th>
                             {compare.map(p => (
-                              <th key={p.id} scope="col" className="p-2 text-left font-display text-ink">{p.flag} {p.name}</th>
+                              <th key={p.id} scope="col" className="p-2 text-start font-display text-ink">{p.flag} {p.name}</th>
                             ))}
                           </tr>
                         </thead>
@@ -385,7 +385,7 @@ export function FinanceComparePage() {
                             const bests = r.best ? bestIndex(nums, r.best) : new Set<number>()
                             return (
                               <tr key={r.label} className="border-b border-mp-border-subtle">
-                                <th scope="row" className="p-2 text-left text-ink-muted font-medium whitespace-nowrap">{r.label}</th>
+                                <th scope="row" className="p-2 text-start text-ink-muted font-medium whitespace-nowrap">{r.label}</th>
                                 {compare.map((p, i) => (
                                   <td key={p.id} className={`p-2 text-ink ${bests.has(i) ? 'compare-best-cell font-medium' : ''}`}>
                                     {r.render(p)}

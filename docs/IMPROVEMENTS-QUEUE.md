@@ -1,6 +1,6 @@
 # MotoPass Improvements Queue (200 items)
 
-**Status:** Batches 1–22 complete · Batch 23–24 in progress · **BUILD:** `2026.07.15-49`
+**Status:** Batches 1–24 complete (680/680) · **BUILD:** `2026.07.15-50`
 
 Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
 
@@ -369,8 +369,8 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 - [x] 534. `verify-live-app.mjs` in CI after deploy (Playwright poison check)
 - [x] 535. Grant deploy token `Zone.Cache Purge` permission (Kimi)
 - [x] 536. Document salted-filename + no-cache policy in `docs/DEPLOYMENT.md`
-- [ ] 537. Boot guard recovery UI copy + retry countdown polish
-- [ ] 538. Bump BUILD sync in `sync-build-version.mjs` on every ship
+- [x] 537. Boot guard recovery UI copy + retry countdown polish
+- [x] 538. Bump BUILD sync in `sync-build-version.mjs` on every ship
 
 ### Nav (539–546)
 
@@ -472,16 +472,16 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 
 ### Pitch & home (611–620)
 
-- [ ] 611. Hero CTA micro-animation on hover (reduced-motion off)
-- [ ] 612. Pitch stats live counter animation on scroll-into-view
-- [ ] 613. Savings section aria-live on BTC price refresh
-- [ ] 614. Pitch roadmap timeline connector lines (responsive)
-- [ ] 615. Home “trusted by” program logo strip from live data
-- [ ] 616. Pitch FAQ accordion keyboard + focus trap
-- [ ] 617. Scroll-progress indicator in header (thin bar)
-- [ ] 618. Pitch section reveal stagger (IntersectionObserver)
-- [ ] 619. Home hero gradient mesh subtle animation
-- [ ] 620. Pitch JSON-LD FAQ enrichment from live copy
+- [x] 611. Hero CTA micro-animation on hover (reduced-motion off)
+- [x] 612. Pitch stats live counter animation on scroll-into-view
+- [x] 613. Savings section aria-live on BTC price refresh
+- [x] 614. Pitch roadmap timeline connector lines (responsive)
+- [x] 615. Home “trusted by” program logo strip from live data
+- [x] 616. Pitch FAQ accordion keyboard + focus trap
+- [x] 617. Scroll-progress indicator in header (thin bar)
+- [x] 618. Pitch section reveal stagger (IntersectionObserver)
+- [x] 619. Home hero gradient mesh subtle animation
+- [x] 620. Pitch JSON-LD FAQ enrichment from live copy
 
 ### BTC Map (621–630)
 
@@ -499,15 +499,15 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 ### Distressed & apply (631–640)
 
 - [x] 631. Distressed listings sort by discount % / price / region
-- [ ] 632. Distressed saved filters in localStorage
-- [ ] 633. Apply launch gates export PDF/print summary
-- [ ] 634. Apply page progress stepper with completion %
-- [ ] 635. Distressed listing card “similar programs” chips
-- [ ] 636. Apply form autosave draft to localStorage
+- [x] 632. Distressed saved filters in localStorage
+- [x] 633. Apply launch gates export PDF/print summary
+- [x] 634. Apply page progress stepper with completion %
+- [x] 635. Distressed listing card “similar programs” chips
+- [x] 636. Apply form autosave draft to localStorage
 - [x] 637. Distressed filter count badges per category
-- [ ] 638. Apply gate “why blocked” expandable explainer rows
-- [ ] 639. Distressed mobile sticky filter bar
-- [ ] 640. Apply success confetti-lite (CSS, reduced-motion off)
+- [x] 638. Apply gate “why blocked” expandable explainer rows
+- [x] 639. Distressed mobile sticky filter bar
+- [x] 640. Apply success confetti-lite (CSS, reduced-motion off)
 
 ### Vault & verify (641–650)
 
@@ -540,26 +540,26 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 - [x] 661. Unified `Card` elevation tokens (rest/hover/active)
 - [x] 662. Button loading spinner variant across forms
 - [x] 663. Chip focus-visible ring consistency audit
-- [ ] 664. Table zebra striping + dark mode contrast pass
-- [ ] 665. Modal entrance/exit spring tuning
-- [ ] 666. Skeleton shimmer reduced-motion static fallback
+- [x] 664. Table zebra striping + dark mode contrast pass
+- [x] 665. Modal entrance/exit spring tuning
+- [x] 666. Skeleton shimmer reduced-motion static fallback
 - [x] 667. Toast notification system (success/error/info)
-- [ ] 668. Form field error shake micro-animation (subtle)
-- [ ] 669. `prefers-contrast` media query token bump
-- [ ] 670. Sovereign Night starfield parallax depth tweak
+- [x] 668. Form field error shake micro-animation (subtle)
+- [x] 669. `prefers-contrast` media query token bump
+- [x] 670. Sovereign Night starfield parallax depth tweak
 
 ### i18n, SEO & a11y (671–680)
 
 - [x] 671. Missing translation key dev-only console warn
-- [ ] 672. RTL layout audit on Compare + Programs tables
-- [ ] 673. Route `hreflang` alternate links for top 5 langs
-- [ ] 674. Blog post reading time estimate
-- [ ] 675. 404 page search box → programs query
+- [x] 672. RTL layout audit on Compare + Programs tables
+- [x] 673. Route `hreflang` alternate links for top 5 langs
+- [x] 674. Blog post reading time estimate
+- [x] 675. 404 page search box → programs query
 - [x] 676. `aria-current="page"` on all nav active links
-- [ ] 677. Focus restore on modal close
+- [x] 677. Focus restore on modal close
 - [x] 678. Screen-reader-only live region for filter result counts
-- [ ] 679. Sitemap lastmod from BUILD_DATE
-- [ ] 680. Lighthouse a11y budget script in CI (warn threshold)
+- [x] 679. Sitemap lastmod from BUILD_DATE
+- [x] 680. Lighthouse a11y budget script in CI (warn threshold)
 
 ---
 

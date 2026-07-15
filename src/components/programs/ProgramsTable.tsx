@@ -37,25 +37,25 @@ export function ProgramsTable({
 
   return (
     <table
-      className={`w-full border-separate border-spacing-0 text-left programs-table-sticky ${compact ? 'programs-table-compact' : 'programs-table-comfortable'}`}
+      className={`w-full border-separate border-spacing-0 text-start programs-table-sticky mp-table-zebra ${compact ? 'programs-table-compact' : 'programs-table-comfortable'}`}
       aria-label="Residency and citizenship programs"
     >
       <caption className="sr-only">Residency and citizenship programs by jurisdiction</caption>
       <thead>
         <tr className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">
           {onTogglePortfolio && (
-            <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pr-2 font-medium w-10`}>
+            <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-2 font-medium w-10`}>
               <span className="sr-only">In portfolio</span>
             </th>
           )}
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pr-4 font-medium`}>Jurisdiction</th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pr-4 font-medium`}>Tier</th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pr-4 text-right font-medium`}>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>Jurisdiction</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>Tier</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>
             <span className="text-mp-btc-text">₿</span> Min. invest
           </th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pr-4 text-right font-medium`}>Timeline</th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pr-4 text-right font-medium`}>Score</th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pr-4 font-medium`}>Proof</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>Timeline</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>Score</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>Proof</th>
         </tr>
       </thead>
       <tbody>
@@ -84,11 +84,11 @@ export function ProgramsTable({
               onClick={activate}
               onKeyDown={onKeyDown}
               className={`cursor-pointer transition-colors duration-fast hover:bg-mp-section focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-mp-btc ${
-                isFlagship ? 'border-l-2 border-l-mp-btc' : 'border-l-2 border-l-transparent'
+                isFlagship ? 'border-s-2 border-s-mp-btc' : 'border-s-2 border-s-transparent'
               }`}
             >
               {onTogglePortfolio && (
-                <td className={`border-b border-mp-border-subtle ${cellPad} pr-2`}>
+                <td className={`border-b border-mp-border-subtle ${cellPad} pe-2`}>
                   <button
                     type="button"
                     onClick={handleToggle}
@@ -103,7 +103,7 @@ export function ProgramsTable({
                   </button>
                 </td>
               )}
-              <td className={`border-b border-mp-border-subtle ${cellPad} pr-4`}>
+              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4`}>
                 <div className="flex items-center gap-2.5">
                   <span className={`flex items-center justify-center rounded-full bg-mp-section font-mono text-mp-ink-secondary ${compact ? 'h-5 w-5 text-[9px]' : 'h-6 w-6 text-[10px]'}`}>
                     {p.countryCode}
@@ -111,19 +111,19 @@ export function ProgramsTable({
                   <span className={`font-display text-mp-ink ${compact ? 'text-xs' : 'text-sm'}`}>{p.country}</span>
                 </div>
               </td>
-              <td className={`border-b border-mp-border-subtle ${cellPad} pr-4 font-chrome text-xs text-mp-ink-secondary`}>
+              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-chrome text-xs text-mp-ink-secondary`}>
                 {p.tier}
               </td>
-              <td className={`border-b border-mp-border-subtle ${cellPad} pr-4 text-right`}>
+              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>
                 <BtcDualPrice usd={p.minInvestment} size="xs" layout="stack" className="items-end" />
               </td>
-              <td className={`border-b border-mp-border-subtle ${cellPad} pr-4 text-right font-mono text-sm text-mp-ink`}>
+              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-mono text-sm text-mp-ink`}>
                 {p.timelineDays}d
               </td>
-              <td className={`border-b border-mp-border-subtle ${cellPad} pr-4 text-right`}>
+              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>
                 <SovereigntyScoreTooltip program={p} score={p.sovereigntyScore} isFlagship={isFlagship} />
               </td>
-              <td className={`border-b border-mp-border-subtle ${cellPad} pr-4`}>
+              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4`}>
                 <ProofBadge status={p.proofStatus} compact />
               </td>
             </motion.tr>

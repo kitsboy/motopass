@@ -1,8 +1,9 @@
 import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import { SeoHead } from './SeoHead'
-import { ROUTE_SEO, resolveSeoForPath } from '../lib/seo'
-import { organizationJsonLd, websiteJsonLd, breadcrumbJsonLd } from '../lib/siteJsonLd'
+import { ROUTE_SEO, resolveSeoForPath, TOP_SEO_LANGS } from '../lib/seo'
+import { organizationJsonLd, websiteJsonLd, breadcrumbJsonLd, pitchFaqJsonLd } from '../lib/siteJsonLd'
+import { resolvePitchFaqCopy } from '../lib/pitchFaq'
 import { useI18n } from '../i18n/I18nContext'
 
 const BREADCRUMB_LABELS: Record<string, string> = {
@@ -25,7 +26,7 @@ function isKnownRoute(pathname: string): boolean {
 
 export function RouteSeo() {
   const { pathname } = useLocation()
-  const { lang } = useI18n()
+  const { lang, t } = useI18n()
 
   const seo = useMemo(() => {
     if (!isKnownRoute(pathname)) return null
@@ -38,10 +39,13 @@ export function RouteSeo() {
     if (pathname !== '/' && BREADCRUMB_LABELS[pathname]) {
       crumbs.push({ name: BREADCRUMB_LABELS[pathname], path: pathname })
     }
-    const items = [organizationJsonLd(), websiteJsonLd()]
+    const items: Record<string, unknown>[] = [organizationJsonLd(), websiteJsonLd()]
     if (crumbs.length > 1) items.push(breadcrumbJsonLd(crumbs))
+    if (pathname === '/') {
+      items.push(pitchFaqJsonLd(resolvePitchFaqCopy(t), lang))
+    }
     return items
-  }, [seo, pathname])
+  }, [seo, pathname, lang, t])
 
   if (!seo) return null
 
@@ -52,6 +56,7 @@ export function RouteSeo() {
       path={seo.path}
       noIndex={seo.title === 'Post Not Found'}
       jsonLd={jsonLd ?? undefined}
+      hrefLangs={TOP_SEO_LANGS}
     />
   )
 }

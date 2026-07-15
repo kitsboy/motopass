@@ -1,6 +1,10 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
 import type { SavingsRow } from '../../lib/pitchStats'
+import { useBtcPrice } from '../../context/BtcPriceContext'
+import { useI18n } from '../../i18n/I18nContext'
+import { formatT } from '../../i18n/format'
+import { formatBtc, formatUsdCompact } from '../../lib/btcPrice'
 import { BtcDualPrice } from '../BtcDualPrice'
 import { Card } from '../ui/Card'
 
@@ -108,6 +112,37 @@ function MetricCard({
   )
 }
 
+function SavingsPriceAnnouncer() {
+  const { t } = useI18n()
+  const { rate, quote, loading } = useBtcPrice()
+  const [announcement, setAnnouncement] = useState('')
+  const prevRate = useRef(rate)
+  const seeded = useRef(false)
+
+  useEffect(() => {
+    if (loading || !quote) return
+    if (!seeded.current) {
+      seeded.current = true
+      prevRate.current = rate
+      return
+    }
+    if (prevRate.current === rate) return
+    prevRate.current = rate
+    setAnnouncement(
+      formatT(t, 'pitch.savings.priceUpdated', {
+        btc: formatBtc(1),
+        usd: formatUsdCompact(rate),
+      }),
+    )
+  }, [rate, quote, loading, t])
+
+  return (
+    <p className="sr-only" aria-live="polite" aria-atomic="true">
+      {announcement}
+    </p>
+  )
+}
+
 export function SavingsGraphs({ title = 'Cost & time, modeled — not promised', rows, loading }: SavingsGraphsProps) {
   if (loading) {
     return (
@@ -134,6 +169,7 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
       style={{ clipPath: 'polygon(0 3vw, 100% 0, 100% 100%, 0 100%)' }}
       aria-labelledby="savings-graphs-heading"
     >
+      <SavingsPriceAnnouncer />
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="max-w-3xl">
           <span className="club-eyebrow block">Cost &amp; Time, Modeled</span>

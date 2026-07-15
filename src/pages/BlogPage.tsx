@@ -5,6 +5,7 @@ import { TAXONOMY } from '../data/taxonomy'
 import { TaxonomyChip } from '../components/TaxonomyChip'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
+import { estimateReadingMinutes } from '../lib/utils'
 
 export function BlogPage() {
   const { t, lang } = useI18n()
@@ -37,7 +38,7 @@ export function BlogPage() {
             <div className="flex items-center gap-2 text-[10px] font-mono text-ink-muted">
               <time>{post.date}</time>
               <span aria-hidden="true">·</span>
-              <span>{Math.max(1, Math.ceil(post.excerpt[lang].split(/\s+/).length / 200))} min read</span>
+              <span>{estimateReadingMinutes(post.excerpt[lang])} min read</span>
             </div>
             <h2 className="text-lg sm:text-xl font-display font-semibold mt-1 mb-2 text-ink group-hover:text-btc-orange transition-colors">{post.title[lang]}</h2>
             <p className="text-sm text-ink-secondary mb-4 line-clamp-3 leading-relaxed">{post.excerpt[lang]}</p>

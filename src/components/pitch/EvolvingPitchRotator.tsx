@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { motion, AnimatePresence, useInView, useReducedMotion } from 'motion/react';
 import { ProofBadge } from '../ui/ProofBadge';
 import { BtcDualPrice } from '../BtcDualPrice';
 
@@ -23,10 +23,25 @@ const DEFAULT_TAGLINES = [
   'modeled in real cost, not marketing math.',
 ];
 
-function CountUpAnimated({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) {
+function CountUpAnimated({
+  value,
+  prefix = '',
+  suffix = '',
+  active,
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  active: boolean;
+}) {
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
+    if (!active) {
+      setDisplay(0);
+      return;
+    }
+
     let raf: number;
     const start = performance.now();
     const duration = 1100;
@@ -38,7 +53,7 @@ function CountUpAnimated({ value, prefix = '', suffix = '' }: { value: number; p
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [value]);
+  }, [value, active]);
 
   return (
     <span className="font-mono tabular-nums">
@@ -49,7 +64,17 @@ function CountUpAnimated({ value, prefix = '', suffix = '' }: { value: number; p
   );
 }
 
-function CountUp({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) {
+function CountUp({
+  value,
+  prefix = '',
+  suffix = '',
+  active,
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  active: boolean;
+}) {
   const reduceMotion = useReducedMotion();
   if (reduceMotion) {
     return (
@@ -60,12 +85,22 @@ function CountUp({ value, prefix = '', suffix = '' }: { value: number; prefix?: 
       </span>
     );
   }
-  return <CountUpAnimated key={value} value={value} prefix={prefix} suffix={suffix} />;
+  return (
+    <CountUpAnimated
+      key={`${value}-${active}`}
+      value={value}
+      prefix={prefix}
+      suffix={suffix}
+      active={active}
+    />
+  );
 }
 
 export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, proofTimestamp }: EvolvingPitchRotatorProps) {
   const [tagIndex, setTagIndex] = useState(0);
   const reduceMotion = useReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-10% 0px' });
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -80,6 +115,7 @@ export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, pro
 
   return (
     <motion.aside
+      ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
@@ -124,7 +160,7 @@ export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, pro
               {m.usdValue != null ? (
                 <BtcDualPrice usd={m.usdValue} size="lg" layout="stack" />
               ) : (
-                <CountUp value={m.value} prefix={m.prefix} suffix={m.suffix} />
+                <CountUp value={m.value} prefix={m.prefix} suffix={m.suffix} active={inView} />
               )}
             </dd>
           </motion.div>

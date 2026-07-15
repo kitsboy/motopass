@@ -30,6 +30,7 @@
     "sync:build": "node scripts/sync-build-version.mjs",
     "validate:stamps": "node scripts/validate-stamps.mjs",
     "bundle:check": "node scripts/check-bundle-size.mjs",
+    "a11y:check": "node scripts/check-a11y-budget.mjs",
     "health-check": "bash scripts/health-check.sh",
     "verify:goal": "bash scripts/verify-goal.sh",
     "deploy:verify": "npm run build && echo 'Build OK — commit dist/ and push to origin main for Cloudflare Pages deploy'",

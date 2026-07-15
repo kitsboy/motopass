@@ -90,7 +90,13 @@ export function RegisterPage() {
           </div>
           <div>
             <label htmlFor="register-program" className="text-xs font-medium text-ink-muted block mb-1.5">{t('register.targetProgram')}</label>
-            <select id="register-program" value={program} onChange={e => setProgram(e.target.value)} className="select-field">
+            <select
+              id="register-program"
+              value={program}
+              onChange={e => setProgram(e.target.value)}
+              aria-invalid={isStubSelected || undefined}
+              className={`select-field ${isStubSelected ? 'input-field-error' : ''}`}
+            >
               <option value="">{t('register.select')}</option>
               {byRegion.map(([region, list]) => (
                 <optgroup key={region} label={region}>

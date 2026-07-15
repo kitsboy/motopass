@@ -1,5 +1,6 @@
 import { BtcDualPrice } from '../BtcDualPrice'
 import { useI18n } from '../../i18n/I18nContext'
+import { similarDistressedListings } from '../../lib/distressedSimilar'
 import type { DistressedListing } from '../../types/distressedListing'
 
 function scoreChip(score: number) {
@@ -10,11 +11,13 @@ function scoreChip(score: number) {
 
 export function DistressedListingsList({
   listings,
+  allListings,
   loading,
   error,
   onSelect,
 }: {
   listings: DistressedListing[]
+  allListings: DistressedListing[]
   loading: boolean
   error: string | null
   onSelect: (listing: DistressedListing) => void
@@ -35,46 +38,71 @@ export function DistressedListingsList({
 
   return (
     <ul className="divide-y divide-mp/40">
-      {listings.map(listing => (
-        <li key={listing.listing_id} className="group">
-          <button
-            type="button"
-            onClick={() => onSelect(listing)}
-            className="w-full text-left flex items-start gap-2 px-2 py-2.5 rounded-mp-md transition-colors hover:bg-section/60"
-          >
-            <div className="flex-1 min-w-0">
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0">
-                  <span className="text-[10px] text-ink-muted font-mono uppercase tracking-wider">
-                    {listing.region}
-                  </span>
-                  <div className="font-chrome text-sm font-medium text-ink truncate group-hover:text-mp-btc-text transition-colors">
-                    {listing.program_flag} {listing.program_name}
+      {listings.map(listing => {
+        const similar = similarDistressedListings(listing, allListings)
+        return (
+          <li key={listing.listing_id} className="group">
+            <button
+              type="button"
+              onClick={() => onSelect(listing)}
+              className="w-full text-left flex items-start gap-2 px-2 py-2.5 rounded-mp-md transition-colors hover:bg-section/60"
+            >
+              <div className="flex-1 min-w-0">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <span className="text-[10px] text-ink-muted font-mono uppercase tracking-wider">
+                      {listing.region}
+                    </span>
+                    <div className="font-chrome text-sm font-medium text-ink truncate group-hover:text-mp-btc-text transition-colors">
+                      {listing.program_flag} {listing.program_name}
+                    </div>
                   </div>
+                  <span
+                    className={`rounded-chip border px-2 py-0.5 text-[10px] font-mono shrink-0 ${scoreChip(listing.distressed_score)}`}
+                  >
+                    {listing.distressed_score}/5
+                  </span>
                 </div>
-                <span
-                  className={`rounded-chip border px-2 py-0.5 text-[10px] font-mono shrink-0 ${scoreChip(listing.distressed_score)}`}
-                >
-                  {listing.distressed_score}/5
-                </span>
+                <p className="text-[11px] text-ink-muted truncate mt-0.5">{listing.pathway_label}</p>
+                <div className="flex items-center justify-between gap-2 mt-1.5">
+                  <BtcDualPrice usd={listing.ask_usd} size="sm" />
+                  <span
+                    className={`text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded-chip border shrink-0 ${
+                      listing.lane === 'curated'
+                        ? 'border-mp-proof/40 text-mp-proof bg-mp-proof/10'
+                        : 'border-mp/60 text-ink-muted'
+                    }`}
+                  >
+                    {listing.lane}
+                  </span>
+                </div>
+
+                {similar.length > 0 && (
+                  <div className="mt-2 flex flex-wrap items-center gap-1" onClick={e => e.stopPropagation()} role="presentation">
+                    <span className="text-[9px] font-mono uppercase tracking-wider text-ink-muted/80 shrink-0">
+                      {t('distressed.similarPrograms')}
+                    </span>
+                    {similar.map(peer => (
+                      <button
+                        key={peer.listing_id}
+                        type="button"
+                        onClick={e => {
+                          e.stopPropagation()
+                          onSelect(peer)
+                        }}
+                        className="rounded-chip border border-mp/60 bg-card-muted/40 px-2 py-0.5 text-[10px] font-chrome text-ink-muted hover:border-btc-orange/30 hover:text-mp-btc-text transition-colors max-w-[9rem] truncate"
+                        title={peer.program_name}
+                      >
+                        {peer.program_flag ? `${peer.program_flag} ` : ''}{peer.program_name}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-              <p className="text-[11px] text-ink-muted truncate mt-0.5">{listing.pathway_label}</p>
-              <div className="flex items-center justify-between gap-2 mt-1.5">
-                <BtcDualPrice usd={listing.ask_usd} size="sm" />
-                <span
-                  className={`text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded-chip border shrink-0 ${
-                    listing.lane === 'curated'
-                      ? 'border-mp-proof/40 text-mp-proof bg-mp-proof/10'
-                      : 'border-mp/60 text-ink-muted'
-                  }`}
-                >
-                  {listing.lane}
-                </span>
-              </div>
-            </div>
-          </button>
-        </li>
-      ))}
+            </button>
+          </li>
+        )
+      })}
     </ul>
   )
 }

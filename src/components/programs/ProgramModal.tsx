@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink, Zap, Check, X as XIcon } from 'lucide-react';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
@@ -11,7 +11,6 @@ import { StatCard } from '../ui/StatCard';
 import { BtcDualPrice } from '../BtcDualPrice';
 import { ComplianceClock } from '../portfolio/ComplianceClock';
 import { useI18n } from '../../i18n/I18nContext';
-import { Link } from 'react-router-dom';
 import { BtcMapProgramPanel } from '../btcmap/BtcMapProgramPanel';
 import { btcMapPageUrl } from '../../lib/btcmap';
 import { Program, ProgramModalTab, scoreWeight, hasFlagshipDepth } from './types';
@@ -72,7 +71,20 @@ function ProgramModalBody({
   initialTab: ProgramModalTab;
 }) {
   const { t } = useI18n();
+  const openerRef = useRef<HTMLElement | null>(null);
   const [tab, setTab] = useState<ProgramModalTab>(initialTab);
+
+  useLayoutEffect(() => {
+    openerRef.current = document.activeElement as HTMLElement | null;
+  }, [program.id]);
+
+  const handleClose = useCallback(() => {
+    const target = openerRef.current;
+    onClose();
+    requestAnimationFrame(() => {
+      if (target?.isConnected) target.focus();
+    });
+  }, [onClose]);
   const isFlagship = scoreWeight(program.sovereigntyScore) === 'flagship';
   const deep = hasFlagshipDepth(program);
   const programId = cinematicIdToNumber(program.id);
@@ -99,7 +111,8 @@ function ProgramModalBody({
   return (
     <ClassyModal
       open
-      onClose={onClose}
+      onClose={handleClose}
+      returnFocusRef={openerRef}
       closeLabel={t('modal.close')}
       eyebrow={`${program.tier} · ${program.region}`}
       title={program.country}

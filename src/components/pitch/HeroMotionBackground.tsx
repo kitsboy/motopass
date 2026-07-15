@@ -27,6 +27,12 @@ export function HeroMotionBackground() {
         className="absolute inset-0 bg-guilloche bg-[length:180px_180px] opacity-[0.06] mix-blend-overlay"
       />
 
+      {/* Layer 2b — animated gradient mesh (subtle drift when motion allowed) */}
+      <div
+        className={`hero-gradient-mesh absolute inset-0 pointer-events-none ${reduceMotion ? '' : 'hero-gradient-mesh--animate'}`}
+        aria-hidden
+      />
+
       {/* Layer 3 — radial warm scrim (ochre glow top-right → obsidian falloff) */}
       <div className="absolute inset-0 bg-gradient-hero" />
 

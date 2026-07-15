@@ -1,6 +1,9 @@
 import { BLOG_POSTS } from '../data/blog'
 import type { LangCode } from '../i18n/languages'
 
+/** Top 5 locales for route-level hreflang alternates (en + primary markets). */
+export const TOP_SEO_LANGS: LangCode[] = ['en', 'es', 'fr', 'pt', 'zh']
+
 export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://motopass.giveabit.io'
 export const SITE_NAME = 'MotoPass'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/images/hero.jpg`
@@ -126,4 +129,13 @@ export function resolveSeoForPath(pathname: string, lang: LangCode = 'en'): SeoM
 export function absoluteUrl(path: string): string {
   if (path === '/') return `${SITE_URL}/`
   return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
+}
+
+/** Canonical URL with optional `?lang=` for non-English hreflang alternates. */
+export function localizedUrl(path: string, lang: LangCode): string {
+  const base = absoluteUrl(path)
+  if (lang === 'en') return base
+  const url = new URL(base)
+  url.searchParams.set('lang', lang)
+  return url.toString()
 }
