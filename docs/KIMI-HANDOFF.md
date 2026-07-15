@@ -431,7 +431,9 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Set `CLOUDFLARE_API_TOKEN` in GitHub secrets for CI deploy
 
 ### Git State
+- SHA: `1983bee`
 - Branch: `main`
+- Unpushed: (none)
 
 ---
 
