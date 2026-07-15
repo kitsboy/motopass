@@ -498,6 +498,9 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Message: `BUILD 33 — sovereign UI + nav cleanup`
 - Deployed: https://motopass.giveabit.io (preview `39fc4371.motopass.pages.dev`)
 
+**Knowledge sync (same session):**
+- SHA: `b8f2e0d` — docs, `.ai_docs/context_map.md`, ARCHITECTURE, UPDATES-MAP, SOURCE-OF-TRUTH, pitch:sync
+
 ---
 
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
