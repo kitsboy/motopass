@@ -1,4 +1,4 @@
 # motopass — Last Updated 2026-07-15 by Grok
-Brief: BUILD 52 — Elite Paradise Pass (cinematic header, proof-gated distressed, credentials)
-Commit: 0cec992
+Brief: BUILD 54 — footer flush to viewport; mobile tab clearance inside footer glass
+Commit: 4f8f4bf
 Live: https://motopass.giveabit.io

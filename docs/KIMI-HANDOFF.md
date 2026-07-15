@@ -776,4 +776,56 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 53 — canvas lift + footer gap attempt)
+
+**Done:**
+- Canvas lifted ~20% (`#0a0a0f` → `#12121c` in tokens + index.css)
+- Removed `mb-20` from `Footer.tsx`
+- Removed `min-h-screen` from `ProgramsPage.tsx`
+- **73 tests** pass · BUILD `2026.07.15-53` · deployed live
+
+**Decisions:**
+- User still saw ~5cm black void below footer on mobile — margin tweak was insufficient
+
+**Git State:**
+- SHA: `0b13550`
+- Pushed: `origin/main`
+
+---
+
+## Session — 2026-07-15 (BUILD 54 — footer flush fix)
+
+**Done:**
+- **Root cause:** layout shell `pb-[calc(3.75rem+safe-area)]` sat *below* footer → empty canvas void
+- **Fix:** removed layout padding; moved clearance into footer (`footer-glass` extends behind mobile tab bar)
+- **73 tests** pass · BUILD `2026.07.15-54` · live verified (CDN retries OK)
+- Dist artifacts + docs synced
+
+**Decisions:**
+- Mobile tab-bar clearance belongs inside footer, not layout wrapper
+- Nav primary unchanged: Programs · Vault · Distressed · BTC Map · Simulator · Agents · Apply
+
+**Git State:**
+- SHA: `4f8f4bf`
+- Pushed: `origin/main` · live https://motopass.giveabit.io
+
+---
+
+## Latest Session Summary (from 2026-07-15 goodbye)
+
+**Chat Topic:** Mobile polish — lighten canvas, eliminate black void below footer.
+
+**Finished in this session:**
+- BUILD 53: canvas +20% lift, initial footer gap tweaks
+- BUILD 54: architectural footer flush fix (layout padding → footer padding)
+- Live deploy, docs sync, dist commit, 73 tests green
+
+**Still to do:**
+- User hard-refresh confirm on physical device
+- Next queue batch when Cam is ready
+
+**Next for Kimi:** Integrate `SESSION-SUMMARY-2026-07-15.md` into vault. BUILD 54 is current live. No nav changes needed.
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
