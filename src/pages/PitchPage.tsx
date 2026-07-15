@@ -15,6 +15,9 @@ import {
   Radio,
   CheckCircle2,
   RefreshCw,
+  Compass,
+  ShieldCheck,
+  BookOpen,
 } from 'lucide-react'
 import { useMemo } from 'react'
 import { motion } from 'motion/react'
@@ -25,6 +28,7 @@ import { HeroMotionBackground } from '../components/pitch/HeroMotionBackground'
 import { EvolvingPitchRotator } from '../components/pitch/EvolvingPitchRotator'
 import { SavingsGraphs } from '../components/pitch/SavingsGraphs'
 import { Card } from '../components/ui/Card'
+import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { usePrograms } from '../hooks/usePrograms'
 import { useLaunchGates } from '../hooks/useLaunchGates'
 import {
@@ -86,6 +90,15 @@ const FAQ_KEYS = [
   { q: 'pitch.faq.q1' as const, a: 'pitch.faq.a1' as const },
   { q: 'pitch.faq.q2' as const, a: 'pitch.faq.a2' as const },
   { q: 'pitch.faq.q3' as const, a: 'pitch.faq.a3' as const },
+  { q: 'pitch.faq.q4' as const, a: 'pitch.faq.a4' as const },
+  { q: 'pitch.faq.q5' as const, a: 'pitch.faq.a5' as const },
+] as const
+
+const GUIDE_STEPS = [
+  { n: '01', titleKey: 'pitch.guide.step1.title' as const, bodyKey: 'pitch.guide.step1.body' as const, icon: Compass, to: '/programs' },
+  { n: '02', titleKey: 'pitch.guide.step2.title' as const, bodyKey: 'pitch.guide.step2.body' as const, icon: ShieldCheck, to: '/vault' },
+  { n: '03', titleKey: 'pitch.guide.step3.title' as const, bodyKey: 'pitch.guide.step3.body' as const, icon: BookOpen, to: '/portfolio' },
+  { n: '04', titleKey: 'pitch.guide.step4.title' as const, bodyKey: 'pitch.guide.step4.body' as const, icon: Users, to: '/apply' },
 ] as const
 
 const ROADMAP_LINKS: { key: TranslationKey; to: string }[] = [
@@ -194,6 +207,26 @@ export function PitchPage() {
       </section>
 
       <SavingsGraphs rows={savingsRows} loading={loading} />
+
+      {/* ── Site-wide guide ── */}
+      <section className="surface-band px-4 sm:px-6 py-14 sm:py-16">
+        <div className="max-w-7xl mx-auto">
+          <HowItWorksSection
+            eyebrow={t('pitch.guide.eyebrow')}
+            title={t('pitch.guide.title')}
+            intro={t('pitch.guide.intro')}
+            footerNote={t('pitch.guide.footer')}
+            className="mb-0"
+            steps={GUIDE_STEPS.map(step => ({
+              n: step.n,
+              title: t(step.titleKey),
+              body: t(step.bodyKey),
+              icon: step.icon,
+              link: { to: step.to, label: 'Explore' },
+            }))}
+          />
+        </div>
+      </section>
 
       {/* ── Four pillars ── */}
       <section className="px-4 sm:px-6 py-14 sm:py-18 max-w-7xl mx-auto">
@@ -329,11 +362,18 @@ export function PitchPage() {
           </div>
           <h2 className="text-2xl sm:text-4xl font-display font-semibold mb-10 text-ink">{t('pitch.stack.title')}</h2>
           <div className="grid gap-5 md:grid-cols-3">
-            <Card variant="elevated" className="md:col-span-2 border-l-4 border-l-btc-orange !p-6">
+            <Card variant="elevated" className="border-l-4 border-l-btc-orange !p-6">
               <h3 className="font-display font-semibold text-lg text-btc-orange-deep mb-3">{t('pitch.stack.satohash.title')}</h3>
               <p className="text-sm text-ink-secondary mb-5 leading-relaxed">{t('pitch.stack.satohash.body')}</p>
               <Link to="/vault" className="text-sm font-medium text-accent inline-flex items-center gap-1">
                 {t('pitch.stack.satohash.cta')} <ArrowRight size={14} />
+              </Link>
+            </Card>
+            <Card variant="elevated" className="bg-btc-orange-soft/20 border-btc-orange/20 !p-6">
+              <h3 className="font-display font-semibold text-lg text-btc-orange mb-3">{t('pitch.stack.distressed.title')}</h3>
+              <p className="text-sm text-ink-secondary mb-5 leading-relaxed">{t('pitch.stack.distressed.body')}</p>
+              <Link to="/distressed" className="text-sm font-medium text-mp-btc-text hover:underline inline-flex items-center gap-1">
+                {t('pitch.stack.distressed.cta')} <ArrowRight size={14} />
               </Link>
             </Card>
             <Card variant="elevated" className="bg-nostr-violet-soft/30 border-nostr-violet/20 !p-6">

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ExternalLink, Shield, Copy, Check, Upload, FileCheck, Loader2 } from 'lucide-react'
+import { ExternalLink, Shield, Copy, Check, Upload, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { toCinematicProgram } from '../lib/programAdapter'
 import { buildProgramUpdateEvent, serializeNostrEvent } from '../lib/nostrEvents'
@@ -11,6 +11,7 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { Card } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
 import { ProofBadge } from '../components/ui/ProofBadge'
+import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import type { VerifyResult } from '../types/proof'
@@ -82,6 +83,31 @@ export function VaultPage() {
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-4xl mx-auto">
       <PageHeader eyebrow={`MEMBERS · ${t('vault.eyebrow')}`} title={t('vault.title')} subtitle={t('vault.subtitle')} />
+
+      <HowItWorksSection
+        eyebrow={t('vault.how.eyebrow')}
+        title={t('vault.how.title')}
+        intro={t('vault.how.intro')}
+        footerNote={t('vault.how.footer')}
+        steps={[
+          { n: '01', title: t('vault.how.step1.title'), body: t('vault.how.step1.body'), icon: Hash },
+          { n: '02', title: t('vault.how.step2.title'), body: t('vault.how.step2.body'), icon: BadgeCheck },
+          {
+            n: '03',
+            title: t('vault.how.step3.title'),
+            body: t('vault.how.step3.body'),
+            icon: Search,
+            link: { to: '/verify', label: 'Stamp your own hash' },
+          },
+          {
+            n: '04',
+            title: t('vault.how.step4.title'),
+            body: t('vault.how.step4.body'),
+            icon: Radio,
+            link: { to: '/apply', label: 'Open applications' },
+          },
+        ]}
+      />
 
       <Card variant="proof" animate className="mb-8" aria-labelledby="vault-verify-heading">
         <h2 id="vault-verify-heading" className="font-chrome text-sm font-semibold text-ink flex items-center gap-2 mb-3">

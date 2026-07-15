@@ -24,6 +24,7 @@ export type TranslationKey =
   | 'pitch.stack.eyebrow' | 'pitch.stack.title'
   | 'pitch.stack.satohash.title' | 'pitch.stack.satohash.body' | 'pitch.stack.satohash.cta'
   | 'pitch.stack.nostr.title' | 'pitch.stack.nostr.body' | 'pitch.stack.nostr.cta'
+  | 'pitch.stack.distressed.title' | 'pitch.stack.distressed.body' | 'pitch.stack.distressed.cta'
   | 'pitch.evolve.eyebrow' | 'pitch.evolve.title' | 'pitch.evolve.body'
   | 'pitch.roadmap.next' | 'pitch.roadmap.btcmap' | 'pitch.roadmap.lightning' | 'pitch.roadmap.relay' | 'pitch.roadmap.uruguay' | 'pitch.roadmap.agents'
   | 'blog.title' | 'blog.filter' | 'blog.read' | 'blog.empty' | 'blog.all'
@@ -100,6 +101,9 @@ const en: Dict = {
   'pitch.stack.nostr.title': 'Nostr-native',
   'pitch.stack.nostr.body': 'Connect your npub. Policy alerts. Liaison agents. Dual-proof with Bitcoin block hashes.',
   'pitch.stack.nostr.cta': 'Meet agents',
+  'pitch.stack.distressed.title': 'Distressed — proof-gated value plays',
+  'pitch.stack.distressed.body': 'Capital-efficient sovereign routes with ₿ asks, Satohash proof required, curated or permissionless lanes, and template escrow — MotoPass coordinates intelligence, never custody.',
+  'pitch.stack.distressed.cta': 'Browse distressed',
   'pitch.evolve.eyebrow': 'EVOLVING PITCH',
   'pitch.evolve.title': 'Charts update with every BUILD',
   'pitch.evolve.body': 'Cost and time savings are computed from live countries.json data — not static investor deck numbers. As jurisdictions, Lightning readiness, and Satohash proofs grow, this page evolves automatically.',
@@ -218,6 +222,9 @@ const es: Dict = {
   'pitch.stack.nostr.title': 'Nativo Nostr',
   'pitch.stack.nostr.body': 'Conecta tu npub. Alertas de política. Agentes de enlace. Doble prueba con hashes de bloque Bitcoin.',
   'pitch.stack.nostr.cta': 'Conocer agentes',
+  'pitch.stack.distressed.title': 'Distressed — jugadas de valor con prueba',
+  'pitch.stack.distressed.body': 'Rutas soberanas eficientes en capital con ofertas en ₿, prueba Satohash obligatoria, carriles curados o sin permiso, y escrow plantilla — MotoPass coordina inteligencia, nunca custodia.',
+  'pitch.stack.distressed.cta': 'Ver distressed',
   'pitch.evolve.eyebrow': 'VISIÓN EVOLUTIVA',
   'pitch.evolve.title': 'Los gráficos se actualizan en cada BUILD',
   'pitch.evolve.body': 'Los ahorros de costo y tiempo se calculan con datos en vivo de countries.json — no cifras estáticas de un deck de inversión. A medida que crecen jurisdicciones, Lightning y pruebas Satohash, esta página evoluciona sola.',
@@ -336,6 +343,9 @@ const fr: Dict = {
   'pitch.stack.nostr.title': 'Natif Nostr',
   'pitch.stack.nostr.body': 'Connectez votre npub. Alertes politiques. Agents de liaison. Double preuve avec les hash de blocs Bitcoin.',
   'pitch.stack.nostr.cta': 'Rencontrer les agents',
+  'pitch.stack.distressed.title': 'Distressed — opportunités vérifiables',
+  'pitch.stack.distressed.body': 'Voies souveraines à capital efficient avec offres en ₿, preuve Satohash requise, voies curatées ou permissionless, et escrow modèle — MotoPass coordonne l\'intelligence, jamais la garde.',
+  'pitch.stack.distressed.cta': 'Parcourir distressed',
   'pitch.evolve.eyebrow': 'PITCH ÉVOLUTIF',
   'pitch.evolve.title': 'Les graphiques se mettent à jour à chaque BUILD',
   'pitch.evolve.body': 'Les économies de coût et de temps sont calculées à partir des données live de countries.json — pas des chiffres statiques d\'un deck investisseur. À mesure que les juridictions, Lightning et les preuves Satohash grandissent, cette page évolue automatiquement.',

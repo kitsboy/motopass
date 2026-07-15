@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ExternalLink, MessageCircle, TrendingDown } from 'lucide-react'
+import { ExternalLink, MessageCircle, TrendingDown, Layers, Shield, BarChart3, Handshake } from 'lucide-react'
+import { useI18n } from '../i18n/I18nContext'
 import { usePrograms } from '../hooks/usePrograms'
 import { useBtcPrice } from '../context/BtcPriceContext'
 import { PageHeader } from '../components/ui/PageHeader'
@@ -10,6 +11,7 @@ import { BtcDualPrice } from '../components/BtcDualPrice'
 import { ProofBadge } from '../components/ui/ProofBadge'
 import { ClassyModal } from '../components/ui/ClassyModal'
 import { Card } from '../components/ui/Card'
+import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { EscrowBuilder } from '../components/distressed/EscrowBuilder'
 import {
   buildDistressedListings,
@@ -189,6 +191,7 @@ function ListingModal({
 }
 
 export function DistressedPage() {
+  const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
   const { rate } = useBtcPrice()
   const [lane, setLane] = useState<DistressedLane>('all')
@@ -210,6 +213,25 @@ export function DistressedPage() {
         eyebrow="MEMBERS · FORGE · MARKETPLACE"
         title="Distressed sovereign plays"
         subtitle="Proof-gated listings — curated by Kimi or permissionless with Satohash + OTS. ₿ asks, template escrow only."
+      />
+
+      <HowItWorksSection
+        eyebrow={t('distressed.how.eyebrow')}
+        title={t('distressed.how.title')}
+        intro={t('distressed.how.intro')}
+        footerNote={t('distressed.how.footer')}
+        steps={[
+          { n: '01', title: t('distressed.how.step1.title'), body: t('distressed.how.step1.body'), icon: Layers },
+          { n: '02', title: t('distressed.how.step2.title'), body: t('distressed.how.step2.body'), icon: Shield },
+          { n: '03', title: t('distressed.how.step3.title'), body: t('distressed.how.step3.body'), icon: BarChart3 },
+          {
+            n: '04',
+            title: t('distressed.how.step4.title'),
+            body: t('distressed.how.step4.body'),
+            icon: Handshake,
+            link: { to: '/vault', label: 'Verify proofs in Vault' },
+          },
+        ]}
       />
 
       <Card variant="banner" animate className="mb-8 flex flex-wrap items-center gap-4">
