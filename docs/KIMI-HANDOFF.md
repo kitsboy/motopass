@@ -369,7 +369,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - 5 flagship countries before 50/50 depth push
 
 ### Git State
-- Last commit SHA: ``9a5ca035e5a8254303f7c0f7d14f1cd05948642f``
+- Last commit SHA: `ddd24d6`
 - Branch: `main`
 
 ---
