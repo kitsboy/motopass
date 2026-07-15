@@ -627,4 +627,32 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 43–47 — nav chrome + CDN cache hardening)
+
+**Done:**
+- **BUILD 43** — Language dropdown z-index fix (portal layering behind Members nav)
+- **BUILD 45** — Nav chrome pack (items 1,4–10): portaled language dropdown, tablet language label, dropdown animation, system locale auto-detect, scroll-collapse header, sticky section nav on Pitch/Vault/Distressed, larger mobile breadcrumb taps, active nav pill pulse
+- **BUILD 46** — “Blank overlay” diagnosis: not UI overlay — CDN cached `index.html` as JS; boot guard, `no-cache` asset headers, static `ErrorFallback`, eager home bundle, `ErrorBoundary` inside `I18nProvider`
+- **BUILD 47** — Auto-retry cache-bust loader (`?cb=` reload + `?b=BUILD_ID` on index assets); dynamic `import()` entry with retry hook; live verify passes
+- **Scripts:** `scripts/wait-live-app.mjs` (poll verify post-deploy), `scripts/purge-live-cache.mjs` (purge_all fallback), `scripts/verify-live-app.mjs` (Playwright + dynamic import matcher)
+- **Deploy:** `vite.config.ts` salted filenames, boot guard, safe asset loader plugins
+
+**Decisions:**
+- “Page disappears after 1s” = script poison, not a React overlay — boot guard shows recovery UI until fresh load
+- Zone Cache Purge API fails (token lacks permission) — **Kimi to grant Zone.Cache Purge for all Give A Bit sites** and wire into `deploy` script
+- Salted filenames + `no-cache` headers + auto-retry remain belt-and-suspenders until purge is live
+- `curl` alone insufficient for prod verify — use Playwright (`verify-live-app.mjs`)
+
+**Still open (polish queue):**
+- CF zone purge on every deploy (all sites)
+- Apply BTC Map directory-panel pattern to Distressed filters / Apply gates
+- Side-by-side program diff view; footer “verify this page” badge
+
+**Git State:**
+- SHA: `0858ba0`
+- Live: BUILD `2026.07.15-47` · https://motopass.giveabit.io · verify OK
+- Pushed: `origin/main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
