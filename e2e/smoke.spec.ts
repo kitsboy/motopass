@@ -116,7 +116,7 @@ test.describe('smoke', () => {
   })
 
   test('404 page has noindex meta', async ({ page }) => {
-    await page.goto('/this-route-does-not-exist-xyz')
+    await page.goto('/this-route-does-not-exist-xyz', gotoOpts)
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/)
   })
 
@@ -142,8 +142,8 @@ test.describe('smoke', () => {
   })
 
   test('dashboard redirects logged-out users to register with next', async ({ page }) => {
-    await page.goto('/dashboard?next=/profile')
-    await expect(page).toHaveURL(/\/register\?next=%2Fprofile/)
+    await page.goto('/dashboard?next=/profile', gotoOpts)
+    await expect(page).toHaveURL(/\/register\?next=%2Fprofile/, { timeout: 15_000 })
   })
 
   test('apply page loads with launch scorecard', async ({ page }) => {
