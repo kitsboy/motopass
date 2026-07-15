@@ -11,7 +11,9 @@ import { chromium } from 'playwright'
 const base = (process.argv[2] ?? 'https://motopass.giveabit.io').replace(/\/$/, '')
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const distHtml = readFileSync(resolve(__dirname, '../dist/index.html'), 'utf8')
-const jsMatch = distHtml.match(/src="(\/assets\/index-[^"]+\.js)"/)
+const jsMatch =
+  distHtml.match(/import\("(\/assets\/index-[^"]+\.js)/) ??
+  distHtml.match(/src="(\/assets\/index-[^"]+\.js)/)
 if (!jsMatch) {
   console.error('FAIL: could not find main bundle in dist/index.html')
   process.exit(1)
