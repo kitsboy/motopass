@@ -63,7 +63,6 @@ body {
   font-family: var(--mp-font-body), -apple-system, sans-serif;
   background-color: var(--mp-surface-canvas, rgb(var(--mp-canvas-rgb)));
   color: var(--mp-ink-primary, rgb(var(--mp-ink-rgb)));
-  min-height: 100svh;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
   @apply antialiased;
@@ -910,6 +909,8 @@ html.mp-header-collapsed {
   isolation: isolate;
   perspective: 1400px;
   perspective-origin: 50% 12%;
+  /* Fixed ::before/::after parallax layers must not extend scrollHeight past footer */
+  overflow: clip;
 }
 
 .sovereign-canvas::before {
@@ -1268,19 +1269,8 @@ body,
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100svh;
-}
-
-.sovereign-canvas {
-  flex: 1 0 auto;
+  display: block;
   width: 100%;
-}
-
-.layout-main {
-  flex: 1 0 auto;
-  min-height: 0;
 }
 
 @keyframes hash-drift {

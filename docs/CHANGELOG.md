@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-58] — 2026-07-15
+
+### Changed
+- Footer gap v4 — clip parallax overflow past footer
+
+---
+
 ## [BUILD-2026.07.15-57] — 2026-07-15
 
 ### Changed

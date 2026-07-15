@@ -50,7 +50,7 @@ export function Layout() {
   }, [headerCollapsed])
 
   return (
-    <div className="sovereign-canvas min-h-svh flex flex-col bg-canvas text-ink w-full max-w-[100vw] overflow-x-clip">
+    <div className="sovereign-canvas flex flex-col bg-canvas text-ink w-full max-w-[100vw] overflow-x-clip overflow-y-clip">
       <div className="sovereign-ambient" aria-hidden />
       <div className="sovereign-glow" aria-hidden />
       <RouteSeo />
@@ -98,7 +98,7 @@ export function Layout() {
 
       <main
         id="main-content"
-        className="layout-main flex-1 relative z-[1] w-full min-w-0 max-w-full overflow-x-clip"
+        className="layout-main relative z-[1] w-full min-w-0 max-w-full overflow-x-clip"
       >
         <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-3 w-full min-w-0">
           <Breadcrumbs />
