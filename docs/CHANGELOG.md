@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.14-32] — 2026-07-14
+
+### Changed
+- applications open · v2.3 master · Seal + Forge + Launch Engine
+
+---
+
 ## [BUILD-2026.07.14-29] — 2026-07-14
 
 ### Changed

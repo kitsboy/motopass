@@ -13,6 +13,8 @@ export interface SatohashProof {
   block_height?: number
   proof_url?: string
   content_hash?: string
+  ots_path?: string
+  stamped_at?: string
 }
 
 export interface ProgramPathway {

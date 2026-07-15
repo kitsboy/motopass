@@ -29,7 +29,7 @@ export function Layout() {
   }, [moreOpen])
 
   return (
-    <div className="min-h-screen flex flex-col bg-canvas text-ink pb-[calc(3.75rem+env(safe-area-inset-bottom))] md:pb-0">
+    <div className="min-h-screen flex flex-col bg-canvas text-ink w-full max-w-[100vw] overflow-x-clip pb-[calc(3.75rem+env(safe-area-inset-bottom))] md:pb-0">
       <RouteSeo />
       <a href="#main-content" className="skip-link">
         {t('nav.skip')}
@@ -74,8 +74,8 @@ export function Layout() {
         <DesktopNav />
       </header>
 
-      <main id="main-content" className="flex-1 relative">
-        <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-3">
+      <main id="main-content" className="flex-1 relative w-full min-w-0 max-w-full overflow-x-clip">
+        <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-3 w-full min-w-0">
           <Breadcrumbs />
         </div>
         <Outlet />

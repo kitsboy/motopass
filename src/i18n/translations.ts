@@ -13,7 +13,7 @@ import {
 } from './pageKeys'
 
 export type TranslationKey =
-  | 'nav.pitch' | 'nav.portfolio' | 'nav.programs' | 'nav.simulator' | 'nav.compare' | 'nav.vault'
+  | 'nav.pitch' | 'nav.portfolio' | 'nav.programs' | 'nav.simulator' | 'nav.compare' | 'nav.vault' | 'nav.distressed'
   | 'nav.blog' | 'nav.verify' | 'nav.agents' | 'nav.apply' | 'nav.dashboard' | 'nav.register' | 'nav.dashboardShort'
   | 'nav.profile' | 'nav.btcmap' | 'nav.demo' | 'nav.more' | 'nav.language' | 'nav.menu' | 'nav.close' | 'nav.explore' | 'nav.tools' | 'nav.skip'
   | 'tagline' | 'pitch.hero' | 'pitch.sub' | 'pitch.cta' | 'pitch.evolve' | 'pitch.stackSimulator'
@@ -57,6 +57,7 @@ const en: Dict = {
   'nav.simulator': 'Simulator',
   'nav.compare': 'Compare',
   'nav.vault': 'Vault',
+  'nav.distressed': 'Distressed',
   'nav.dashboard': 'Dashboard',
   'nav.register': 'Register',
   'nav.dashboardShort': 'Dash',
@@ -179,6 +180,7 @@ const es: Dict = {
   'nav.simulator': 'Simulador',
   'nav.compare': 'Comparar',
   'nav.vault': 'Bóveda',
+  'nav.distressed': 'Distressed',
   'nav.dashboard': 'Panel',
   'nav.register': 'Registrarse',
   'nav.dashboardShort': 'Panel',
@@ -296,6 +298,7 @@ const fr: Dict = {
   'nav.simulator': 'Simulateur',
   'nav.compare': 'Comparer',
   'nav.vault': 'Coffre',
+  'nav.distressed': 'Distressed',
   'nav.dashboard': 'Tableau de bord',
   'nav.register': 'S\'inscrire',
   'nav.dashboardShort': 'Tableau',

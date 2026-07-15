@@ -461,4 +461,24 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-14 (BUILD 32 — applications open · v2.3 master)
+
+**Done:**
+- Launch Engine: `scripts/launch-gate-check.mjs` (G1–G5) → `public/launch-gates.json`
+- Seal: Vault page + OTS on disk (50/50) + `validate:seal`
+- Forge: Distressed marketplace (`/distressed`) + PSBT escrow stub
+- Apply: `/apply` open when gates pass · launch banner · success polish
+- Mobile: viewport containment (`overflow-x-clip`), 19 e2e tests green
+- BUILD `2026.07.14-32` · `npm run deploy:all` script added
+
+**Decisions:**
+- G3 Nexus uses `LAUNCH_FAKE_RELAY=1` default for QA until relay live
+- Applications gated by scorecard JSON, not hardcoded flags
+
+**Git State:**
+- SHA: (see commit below)
+- Message: `BUILD 32 — applications open — full v2.3 master`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

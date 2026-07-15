@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import { useI18n } from '../../i18n/I18nContext'
 import { MORE_ROUTES } from '../../lib/navRoutes'
 import { PrefetchNavLink } from './PrefetchNavLink'
+import { ApplyNavLink } from './ApplyNavLink'
 import { useFocusTrap } from '../../hooks/useFocusTrap'
 
 export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -45,7 +46,7 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
               </button>
             </div>
             <nav className="grid grid-cols-3 gap-1.5 p-3 pb-5">
-              {MORE_ROUTES.map(n => (
+              {MORE_ROUTES.filter(n => n.to !== '/apply').map(n => (
                 <PrefetchNavLink
                   key={n.to}
                   to={n.to}
@@ -55,6 +56,7 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
                   {t(n.key)}
                 </PrefetchNavLink>
               ))}
+              <ApplyNavLink layout="tile" onClick={onClose} />
             </nav>
           </motion.div>
         </div>

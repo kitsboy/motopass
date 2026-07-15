@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PrefetchNavLink } from './PrefetchNavLink'
+import { ApplyNavLink } from './ApplyNavLink'
 import { ExternalLink, User, UserPlus, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { BlockHeight } from '../BlockHeight'
@@ -21,6 +22,7 @@ const TOOLS = [
   { to: '/simulator', key: 'nav.simulator' as const },
   { to: '/compare', key: 'nav.compare' as const },
   { to: '/vault', key: 'nav.vault' as const },
+  { to: '/distressed', key: 'nav.distressed' as const },
   { to: '/verify', key: 'nav.verify' as const },
   { to: '/blog', key: 'nav.blog' as const },
   { to: '/agents', key: 'nav.agents' as const },
@@ -94,6 +96,7 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
                 {t(n.key)}
               </PrefetchNavLink>
             ))}
+            <ApplyNavLink layout="tile" onClick={onClose} />
           </nav>
         </div>
 

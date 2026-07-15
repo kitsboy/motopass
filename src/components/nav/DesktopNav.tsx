@@ -1,4 +1,5 @@
 import { PrefetchNavLink } from './PrefetchNavLink'
+import { ApplyNavLink } from './ApplyNavLink'
 import { useI18n } from '../../i18n/I18nContext'
 import { useUser } from '../../context/UserContext'
 
@@ -13,10 +14,10 @@ const TOOLS = [
   { to: '/simulator', key: 'nav.simulator' as const },
   { to: '/compare', key: 'nav.compare' as const },
   { to: '/vault', key: 'nav.vault' as const },
+  { to: '/distressed', key: 'nav.distressed' as const },
   { to: '/verify', key: 'nav.verify' as const },
   { to: '/blog', key: 'nav.blog' as const },
   { to: '/agents', key: 'nav.agents' as const },
-  { to: '/apply', key: 'nav.apply' as const },
 ] as const
 
 export function DesktopNav() {
@@ -48,6 +49,7 @@ export function DesktopNav() {
               {t(n.key)}
             </PrefetchNavLink>
           ))}
+          <ApplyNavLink />
         </div>
         <span className="nav-divider ml-auto shrink-0" aria-hidden="true" />
         <PrefetchNavLink

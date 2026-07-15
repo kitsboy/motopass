@@ -48,6 +48,11 @@ export const ROUTE_SEO: Record<string, SeoMeta> = {
     description:
       'Satohash-anchored program proofs with OpenTimestamps verification and optional Nostr Kind 30078 stubs.',
   },
+  '/distressed': {
+    title: 'Distressed Marketplace — Proof-Gated Sovereign Plays',
+    description:
+      'Browse Kimi-curated and permissionless distressed RBI/CBI listings — ₿ asks, Satohash proofs, OTS seals, and template escrow.',
+  },
   '/blog': {
     title: 'Insights — Sovereign Mobility Blog',
     description:

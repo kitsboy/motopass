@@ -4,12 +4,16 @@ import { AgentCardKimi } from './AgentCardKimi'
 import { useI18n } from '../i18n/I18nContext'
 import { GiveABitLogoLink } from './footer/GiveABitLogoLink'
 import { FooterActionBar } from './footer/FooterActionBar'
+import { FooterApplyLink } from './footer/FooterApplyLink'
 import { BUILD_LABEL, FOOTER_VERSION } from '../lib/buildInfo'
 import type { TranslationKey } from '../i18n/translations'
 
-const FOOTER_LINKS: { to: string; key: TranslationKey }[] = [
+const FOOTER_LINKS: { to: string; key: TranslationKey; prelaunch?: true }[] = [
   { to: '/programs', key: 'nav.programs' },
+  { to: '/vault', key: 'nav.vault' },
+  { to: '/distressed', key: 'nav.distressed' },
   { to: '/agents', key: 'nav.agents' },
+  { to: '/apply', key: 'nav.apply', prelaunch: true as const },
   { to: '/blog', key: 'nav.blog' },
   { to: '/register', key: 'nav.register' },
   { to: '/dashboard', key: 'nav.dashboard' },
@@ -38,11 +42,15 @@ export function Footer() {
               {t('footer.descriptionAfter')}
             </p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-              {FOOTER_LINKS.map(l => (
-                <Link key={l.to} to={l.to} className="text-ink-muted hover:text-btc-orange transition-colors">
-                  {t(l.key)}
-                </Link>
-              ))}
+              {FOOTER_LINKS.map(l =>
+                l.prelaunch ? (
+                  <FooterApplyLink key={l.to} />
+                ) : (
+                  <Link key={l.to} to={l.to} className="text-ink-muted hover:text-btc-orange transition-colors">
+                    {t(l.key)}
+                  </Link>
+                ),
+              )}
               <a href="https://github.com/kitsboy/motopass" target="_blank" rel="noopener noreferrer" className="text-ink-muted hover:text-btc-orange transition-colors">
                 {t('footer.github')}
               </a>
@@ -70,7 +78,7 @@ export function Footer() {
               {FOOTER_VERSION}
             </span>
             <span className="text-mp-strong hidden sm:inline" aria-hidden>·</span>
-            <span className="leading-none hidden sm:inline">{BUILD_LABEL}</span>
+            <span className="leading-none hidden md:inline max-w-[12rem] truncate" title={BUILD_LABEL}>{BUILD_LABEL}</span>
           </div>
           <span>{t('footer.truth')}</span>
         </div>

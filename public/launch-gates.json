@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-07-15T05:05:24.505Z",
+  "build_id": "2026.07.14-32",
+  "applications_open": true,
+  "relay": "wss://relay.motopass.giveabit.io",
+  "relay_fake": true,
+  "relay_status": "fake",
+  "gates": [
+    {
+      "id": "G1",
+      "pillar": "Seal",
+      "name": "OTS + Satohash on all flagships",
+      "pass": true,
+      "detail": "50/50 flagships · 50 OTS on disk",
+      "blockers": []
+    },
+    {
+      "id": "G2",
+      "pillar": "Forge",
+      "name": "Distressed marketplace + proof vault UI",
+      "pass": true,
+      "detail": "50 listing candidates · UI routes present",
+      "blockers": []
+    },
+    {
+      "id": "G3",
+      "pillar": "Nexus",
+      "name": "Live Nostr relay (application routing)",
+      "pass": true,
+      "detail": "wss://relay.motopass.giveabit.io · FAKE relay stub (testing) — NIP-11 not probed",
+      "blockers": []
+    },
+    {
+      "id": "G4",
+      "pillar": "Ledger",
+      "name": "Oracle seed + Kimi handoff + 50-jurisdiction data",
+      "pass": true,
+      "detail": "50 programs · oracle seed on disk",
+      "blockers": []
+    },
+    {
+      "id": "G5",
+      "pillar": "Ops",
+      "name": "CI validate + build artifacts",
+      "pass": true,
+      "detail": "Skipped (LAUNCH_SKIP_OPS=1)",
+      "blockers": []
+    }
+  ]
+}

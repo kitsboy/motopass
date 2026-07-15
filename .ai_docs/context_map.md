@@ -1,6 +1,6 @@
 # motopass — Context Map
 
-> **Updated:** 2026-07-02
+> **Updated:** 2026-07-14 · **BUILD:** 2026.07.14-32
 > **Domain:** [motopass.giveabit.io](https://motopass.giveabit.io)
 > **Stack:** React 18 + TypeScript + Vite 5 + Tailwind CSS 3 + Cloudflare Pages
 
@@ -22,7 +22,11 @@ motopass/
 |   |   +-- pitch/              # Pitch page components (Hero, SavingsGraphs, Rotator)
 |   |   +-- programs/           # Program card/modal/table with types
 |   |   +-- *                   # Top-level: AgentCardKimi, BlockHeight, NostrConnect, etc.
-|   +-- pages/                  # Page components (14 routes)
+|   +-- pages/                  # Page components (18 routes incl. vault, distressed, apply)
+|   |   +-- VaultPage.tsx       # Seal — OTS verify
+|   |   +-- DistressedPage.tsx  # Forge marketplace
+|   |   +-- ApplyPage.tsx       # Launch Engine applications
+|   +-- lib/launch/             # launch-gates.json fetch + useLaunchGates
 |   +-- lib/                    # Utilities and business logic
 |   |   +-- nostr.ts            # Nostr protocol integration
 |   |   +-- satohash.ts         # Satohash/OTS verification

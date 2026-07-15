@@ -138,4 +138,17 @@ test.describe('smoke', () => {
     await page.goto('/dashboard?next=/profile')
     await expect(page).toHaveURL(/\/register\?next=%2Fprofile/)
   })
+
+  test('apply page loads with launch scorecard', async ({ page }) => {
+    await page.goto('/apply')
+    await expect(page.locator('main')).toBeVisible()
+    await expect(page.getByText(/launch gate scorecard/i)).toBeVisible()
+  })
+
+  test('mobile viewport has no horizontal overflow on home', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/')
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)
+    expect(overflow).toBe(false)
+  })
 })

@@ -3,7 +3,7 @@
 > **Superseded by [WORK-TREE.md](./WORK-TREE.md)** for the complete file map.  
 > This file remains as a quick agent handoff index.
 
-**BUILD:** 2026.07.14-28 · **Live:** https://motopass.giveabit.io
+**BUILD:** 2026.07.14-32 · **Live:** https://motopass.giveabit.io
 
 ## Quick facts
 
@@ -25,7 +25,12 @@
 
 | Path | Purpose |
 |------|---------|
-| `src/` | React app (15 routes) |
+| `src/` | React app (18 routes) |
+| `src/pages/VaultPage.tsx` | Seal — OTS verify UI |
+| `src/pages/DistressedPage.tsx` | Forge — distressed marketplace |
+| `src/pages/ApplyPage.tsx` | Launch Engine — applications |
+| `public/launch-gates.json` | Gate scorecard (CI-generated) |
+| `scripts/launch-gate-check.mjs` | 5-gate Launch Engine validator |
 | `src/lib/btcmap.ts` | BTC Map API v4 client |
 | `src/components/btcmap/` | Leaflet map, places list, report CTA |
 | `public/data/btcmap/` | Offline merchant snapshots |
@@ -40,7 +45,8 @@
 npm run dev
 npm run build && npm test && npm run test:e2e
 npm run btcmap:density && npm run btcmap:sync
-npm run deploy:safe
+npm run launch:gate
+npm run deploy:all
 ```
 
 See [WORK-TREE.md](./WORK-TREE.md) for the complete map.

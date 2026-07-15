@@ -1,6 +1,6 @@
 # MotoPass Technical Architecture (Initial)
 
-**BUILD-2026.07.14-28**
+**BUILD-2026.07.14-32**
 
 This is a living high-level architecture document. It will be expanded as implementation proceeds. For now it codifies the principles, current state, and intended evolution so that the Vite/React work, data pipeline, Nostr/Lightning integration, and self-hosting path all pull in the same direction.
 
@@ -14,12 +14,19 @@ This is a living high-level architecture document. It will be expanded as implem
 6. **Beauty is Non-Negotiable** — DESIGN.md is binding for all customer surfaces.
 7. **Phased, Not Big-Bang** — The pristine static demo is valuable today. The modern app evolves it. Integrations come online when the data and UX are ready to support them.
 
-## Current State (BUILD-28)
+## Current State (BUILD-32)
 
 **React SPA (primary)**
-- Vite + React 18 + TypeScript + Tailwind — 15 routes, lazy-loaded pages.
+- Vite + React 18 + TypeScript + Tailwind — 18 routes, lazy-loaded pages.
 - `ProgramsContext` fetch-once cache; local portfolio/stacks via `localStorage`.
-- Playwright e2e (16 tests), Vitest unit tests (30), CI bundle budget.
+- Playwright e2e (18 tests), Vitest unit tests (30), CI bundle budget.
+
+**Sovereign Stack v2.3 (Launch Engine)**
+- **Seal:** Vault page (`/vault`) — OTS upload, hash verify, 50/50 flagship proofs on disk.
+- **Forge:** Distressed marketplace (`/distressed`) — curated + permissionless lanes, PSBT escrow stub.
+- **Nexus:** Apply flow (`/apply`) — gated by `public/launch-gates.json` from `npm run launch:gate`.
+- **Ledger:** `research/oracle-seed.json` + Kimi handoff; 50-jurisdiction `countries.json`.
+- **Ops:** `validate:data` · `validate:stamps` · `validate:seal` · `launch:gate` scorecard.
 
 **BTC Map integration (v2)**
 - External API: [btcmap-api](https://github.com/teambtcmap/btcmap-api) v4 (`api.btcmap.org`).
@@ -165,11 +172,41 @@ Env vars: `VITE_BTCMAP_API_URL` (default `https://api.btcmap.org`), `VITE_BTCMAP
 - Data update velocity → Nostr + stamping pipeline must be maintainable by a small agent + human team.
 - Scope discipline → this document + the phased roadmap in PRODUCT-SCOPE-ROADMAP.md are the guardrails.
 
+## Launch Engine (BUILD-32)
+
+Five gates must pass before `applications_open` in `public/launch-gates.json`:
+
+| Gate | Pillar | Check |
+|------|--------|-------|
+| G1 | Seal | 50/50 flagships · OTS on disk · Satohash proofs |
+| G2 | Forge | Vault + Distressed UI · ≥40 listing candidates |
+| G3 | Nexus | Nostr relay NIP-11 (or `LAUNCH_FAKE_RELAY=1` for QA) |
+| G4 | Ledger | `oracle-seed.json` · KIMI-HANDOFF · 50 programs |
+| G5 | Ops | `validate:data` · `validate:stamps` · `validate:seal` · `dist/` |
+
+```mermaid
+flowchart TB
+  subgraph gates [Launch Engine]
+    G1[G1 Seal]
+    G2[G2 Forge]
+    G3[G3 Nexus]
+    G4[G4 Ledger]
+    G5[G5 Ops]
+  end
+  gates --> JSON[launch-gates.json]
+  JSON --> Apply[/apply/]
+  JSON --> Nav[Apply nav unlock]
+  Vault[/vault/] --> Apply
+  Distressed[/distressed/] --> Apply
+```
+
+Run: `npm run launch:gate` · Ship: `npm run deploy:all`
+
 ## Next Immediate Architecture Work
 
-- Uruguay-flagship depth for all 50 programs + real Satohash stamping pipeline.
-- Live MotoPass Nostr relay (beyond BTC Map NIP-98 saves).
-- Weekly CI cron for `btcmap:sync` + density refresh.
+- Live MotoPass Nostr relay (`LAUNCH_FAKE_RELAY=0`) for production G3.
+- Real PSBT escrow (BUILD 31+) after legal sign-off.
+- Weekly CI cron for `btcmap:sync` + density refresh + Kimi oracle diffs.
 - Stop committing `dist/` — generate in CI only.
 
 **Truth You Can Verify — in the code, in the data, and in the deployment.**
