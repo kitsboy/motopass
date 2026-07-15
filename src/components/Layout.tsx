@@ -41,7 +41,7 @@ export function Layout() {
   }, [moreOpen])
 
   return (
-    <div className="sovereign-canvas min-h-screen flex flex-col bg-canvas text-ink w-full max-w-[100vw] overflow-x-clip pb-[calc(3.75rem+env(safe-area-inset-bottom))] md:pb-0">
+    <div className="sovereign-canvas min-h-screen flex flex-col bg-canvas text-ink w-full max-w-[100vw] overflow-x-clip">
       <div className="sovereign-ambient" aria-hidden />
       <div className="sovereign-glow" aria-hidden />
       <RouteSeo />
