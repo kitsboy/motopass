@@ -42,7 +42,7 @@ export function Footer() {
   const liveHealth = useLiveDeployHealth()
 
   return (
-    <footer className="footer-glass relative z-[1] mt-auto safe-bottom mb-20 md:mb-0">
+    <footer className="footer-glass relative z-[1] mt-auto safe-bottom">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 relative">
         <div className="mb-10">
           <div className="club-divider mb-10" aria-hidden />

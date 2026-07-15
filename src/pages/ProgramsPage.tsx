@@ -246,7 +246,7 @@ export function ProgramsPage() {
   }, [programs])
 
   return (
-    <div className="page-container min-h-screen">
+    <div className="page-container">
       <SeoHead jsonLd={programsJsonLd} jsonLdOnly />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-14">
         <PageHeader

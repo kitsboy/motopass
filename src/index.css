@@ -34,10 +34,10 @@
 }
 
 .dark {
-  --mp-canvas-rgb: 10 10 15;
-  --mp-section-rgb: 18 18 26;
-  --mp-card-rgb: 26 26 38;
-  --mp-card-muted-rgb: 22 22 32;
+  --mp-canvas-rgb: 18 18 28;
+  --mp-section-rgb: 26 26 40;
+  --mp-card-rgb: 34 34 52;
+  --mp-card-muted-rgb: 30 30 44;
   --mp-ink-rgb: 246 246 250;
   --mp-ink-secondary-rgb: 196 196 212;
   --mp-ink-muted-rgb: 148 148 168;
@@ -52,7 +52,7 @@
   --mp-shadow-card-hover: 0 16px 40px rgba(8, 8, 14, 0.38), 0 0 0 1px rgba(255, 149, 0, 0.24), 0 0 32px rgba(255, 149, 0, 0.08);
   --mp-shadow-header: 0 1px 0 rgba(255, 149, 0, 0.12), 0 8px 28px rgba(8, 8, 14, 0.32);
   --mp-gradient-radial: radial-gradient(ellipse 90% 70% at 50% -12%, rgba(255, 149, 0, 0.12) 0%, rgba(77, 159, 255, 0.05) 40%, transparent 68%);
-  --mp-gradient-hero: linear-gradient(180deg, rgba(10, 10, 15, 0.45) 0%, rgba(10, 10, 15, 0.85) 50%, #0a0a0f 100%);
+  --mp-gradient-hero: linear-gradient(180deg, rgba(18, 18, 28, 0.45) 0%, rgba(18, 18, 28, 0.85) 50%, #12121c 100%);
   --mp-proof-bg: rgba(22, 163, 74, 0.14);
   --mp-proof-border: rgba(22, 163, 74, 0.38);
 }
@@ -520,7 +520,7 @@ body {
   background:
     radial-gradient(ellipse 75% 130% at 12% -8%, rgba(255, 149, 0, 0.18) 0%, transparent 52%),
     radial-gradient(ellipse 55% 90% at 88% 12%, rgba(77, 159, 255, 0.11) 0%, transparent 48%),
-    linear-gradient(180deg, rgba(10, 10, 15, 0.12) 0%, rgba(10, 10, 15, 0.82) 100%);
+    linear-gradient(180deg, rgba(18, 18, 28, 0.12) 0%, rgba(18, 18, 28, 0.82) 100%);
 }
 
 .club-header-hash-layer {
@@ -556,7 +556,7 @@ body {
 .club-header-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 120% 80% at 50% -20%, transparent 40%, rgba(10, 10, 15, 0.45) 100%);
+  background: radial-gradient(ellipse 120% 80% at 50% -20%, transparent 40%, rgba(18, 18, 28, 0.45) 100%);
   pointer-events: none;
 }
 
