@@ -567,7 +567,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - E2E tests only hit localhost preview by default — production check now via `verify-live-app.mjs`
 
 **Git State:**
-- SHA: (see latest push)
+- SHA: `e39254717046aa3e15f3bde4a2e98b1e861405bc`
 - Pushed: `origin/main`
 
 ---
