@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.07.14-28 · **Last updated:** 2026-07-14
+**BUILD:** 2026.07.14-29 · **Last updated:** 2026-07-14
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,7 +11,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.07.14-28 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.07.14-29 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
 | **BTC Map** | ✅ v2 | `/btcmap` — Leaflet, density badges, Nostr saves, offline cache |
 | **E2E smoke** | ✅ Playwright | 16 tests — `npm run test:e2e` |
 | **Unit tests** | ✅ Vitest | 30 tests |
@@ -28,6 +28,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.07.14-29** | 2026-07-14 | `9b7fd9e` | 50/50 deep flagships · all templates researched · ₿-first |
 | **2026.07.14-28** | 2026-07-14 | `963e014` | 50-item sprint: version sync + 16 flagships + deploy |
 | **2026.07.07-26** | 2026-07-07 | `41238c2` | BTC Map v2: density badges, Nostr saves, Leaflet, offline cache, report venue |
 | **2026.07.07-25** | 2026-07-07 | `8af1646` | BTC Map v1: `/btcmap` page, API client, program coords, nav |

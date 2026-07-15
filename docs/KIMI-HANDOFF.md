@@ -437,4 +437,26 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-14 (BUILD 29 — 50/50 deep flagships)
+
+**Machine:** M3 (Grok)
+**Project:** motopass
+
+### Done
+- [x] Deepened all 29 template flagships to Uruguay-standard research depth
+- [x] 0 template tiers remain — pitch metric now 50/50 deep
+- [x] `apply-flagship-extensions.mjs` clears stale `flagship_tier` on re-apply
+- [x] BUILD `2026.07.14-29` · manifest `motopass-giveabit-v29`
+- [x] All 50 re-stamped · validate:stamps green · 36 unit + 17 e2e tests
+
+### Decisions
+- Honest nulls kept where law is uncertain (dual citizenship, scope of freedom)
+- Ireland IIP closure noted; NZ AIP high threshold flagged
+- Cambodia/Japan/Philippines nomad routes marked informal where no formal visa exists
+
+### Git State
+- Branch: `main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

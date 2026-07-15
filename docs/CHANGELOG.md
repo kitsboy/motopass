@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.14-29] — 2026-07-14
+
+### Changed
+- 50/50 deep flagships · all templates researched · ₿-first
+
+---
+
 ## [BUILD-2026.07.14-28] — 2026-07-14
 
 ### Changed

@@ -1,6 +1,6 @@
 # MotoPass Documentation Hub
 
-**BUILD:** 2026.07.14-28 · **Last updated:** 2026-07-14
+**BUILD:** 2026.07.14-29 · **Last updated:** 2026-07-14
 
 Official documentation for MotoPass. All long-form docs live here unless required at repo root (see [WORK-TREE.md](./WORK-TREE.md)).
 

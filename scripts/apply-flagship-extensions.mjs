@@ -15,6 +15,7 @@ for (const program of data.programs) {
   const ext = extensions[program.name]
   if (!ext) continue
   Object.assign(program, ext)
+  if (!ext.flagship_tier) delete program.flagship_tier
   if (program.name === 'Bolivia' && program.status === 'To be filled') {
     program.status = 'Researching - Flagship'
   }

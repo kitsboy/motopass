@@ -4,8 +4,8 @@
 
 | Field | Value |
 |-------|-------|
-| Generated | 2026-07-15T00:23:25.676Z |
-| BUILD | 2026.07.14-28 |
+| Generated | 2026-07-15T00:34:21.391Z |
+| BUILD | 2026.07.14-29 |
 | BTC spot | ₿1.00 · $65k (mempool.space) |
 | Programs | 50 |
 | Avg stack savings | ₿1.19 · $77k (95%) |
@@ -16,7 +16,7 @@
 ## Uruguay 🇺🇾
 - RE min: ₿1.54 · $100k
 - Rentista ~₿0.0231/mo · $1.5k/mo
-- Gov fees: ₿0.2314 · $15k
+- Gov fees: ₿0.2313 · $15k
 
 ## Bolivia 🇧🇴
 - Min (stub): ₿1.23 · $80k
