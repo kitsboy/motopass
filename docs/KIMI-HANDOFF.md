@@ -494,8 +494,9 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - BUILD `2026.07.14-33` · 36 unit + 19 e2e green · deployed
 
 **Git State:**
-- SHA: (see commit below)
+- SHA: `03596d514409b3b0647d8ea67351780617946bf7`
 - Message: `BUILD 33 — sovereign UI + nav cleanup`
+- Deployed: https://motopass.giveabit.io (preview `39fc4371.motopass.pages.dev`)
 
 ---
 
