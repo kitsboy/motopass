@@ -20,6 +20,11 @@ export type DistressedListing = {
   optimization_tips: string[]
   btcmap_country_slug: string
   status: 'active' | 'pending' | 'expired'
+  /** Kimi gold-tier curated — proof + flagship depth */
+  curated_tier?: 'gold' | 'standard'
+  block_height?: number
+  sovereignty_score?: number
+  stacking_synergy?: string
 }
 
 export type DistressedFilters = {

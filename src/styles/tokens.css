@@ -89,13 +89,13 @@
   --mp-text-eyebrow: 0.6875rem;
   --mp-text-body: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
   --mp-text-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
-  --mp-text-h3: clamp(1.375rem, 1.2rem + 0.7vw, 1.875rem);
-  --mp-text-h2: clamp(1.75rem, 1.4rem + 1.4vw, 2.75rem);
-  --mp-text-h1: clamp(2.25rem, 1.75rem + 2.4vw, 3.75rem);
-  --mp-text-hero: clamp(2.5rem, 1.6rem + 4vw, 4.5rem);
+  --mp-text-h3: clamp(1.4375rem, 1.25rem + 0.75vw, 2rem);
+  --mp-text-h2: clamp(1.875rem, 1.5rem + 1.5vw, 3rem);
+  --mp-text-h1: clamp(2.375rem, 1.85rem + 2.5vw, 4rem);
+  --mp-text-hero: clamp(2.625rem, 1.75rem + 4.2vw, 4.75rem);
 
-  --mp-leading-body: 1.6;
-  --mp-leading-display: 1.05;
+  --mp-leading-body: 1.65;
+  --mp-leading-display: 1.02;
 
   /* ---------------------------------------------------------------------
      MOTION
@@ -200,10 +200,11 @@
   --btc-grid-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 0h48v48H0z' fill='none'/%3E%3Cpath d='M0 24h48M24 0v48' stroke='%23ff9500' stroke-width='0.35' opacity='0.09'/%3E%3Crect x='0' y='0' width='12' height='12' fill='%23ff9500' opacity='0.025'/%3E%3Crect x='24' y='24' width='12' height='12' fill='%23ff9500' opacity='0.025'/%3E%3C/svg%3E");
   --hash-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='28'%3E%3Ctext x='0' y='18' font-family='monospace' font-size='10' fill='%23ff9500' opacity='0.07'%3Ea3f9c8b2e41df0a19e7cb5d8e2f1a0b4c7d9e3f6a8b1c2d5e7f9a0b3c6d8e1f4%3C/text%3E%3C/svg%3E");
 
-  --mp-glass-bg: rgba(26, 26, 38, 0.55);
-  --mp-glass-border: rgba(255, 149, 0, 0.22);
-  --mp-glass-highlight: rgba(255, 255, 255, 0.07);
-  --mp-glass-blur: 32px;
+  --mp-glass-bg: rgba(22, 22, 34, 0.62);
+  --mp-glass-border: rgba(255, 149, 0, 0.26);
+  --mp-glass-highlight: rgba(255, 255, 255, 0.09);
+  --mp-glass-blur: 36px;
+  --grain-opacity: 0.065;
 }
 
 @media (prefers-reduced-motion: reduce) {

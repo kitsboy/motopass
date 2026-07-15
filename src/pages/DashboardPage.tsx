@@ -5,6 +5,7 @@ import { ProgressTracker } from '../components/ProgressTracker'
 import { PaymentMethods } from '../components/PaymentMethods'
 import { AgentCardKimi } from '../components/AgentCardKimi'
 import { PaigeChat } from '../components/PaigeChat'
+import { PaigeEnforcementCard } from '../components/dashboard/PaigeEnforcementCard'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
 import { ClassyModal } from '../components/ui/ClassyModal'
@@ -51,7 +52,7 @@ export function DashboardPage() {
   }
 
   return (
-    <div className="px-4 sm:px-6 py-8 max-w-4xl mx-auto">
+    <div className="page-container px-4 sm:px-6 py-8 max-w-4xl mx-auto">
       <PageHeader
         title={formatT(t, 'dashboard.welcome', { name: profile.displayName })}
         eyebrow={t('dashboard.eyebrow')}
@@ -62,6 +63,10 @@ export function DashboardPage() {
           </button>
         }
       />
+
+      <div className="mb-8">
+        <PaigeEnforcementCard />
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <div className="card-elevated">

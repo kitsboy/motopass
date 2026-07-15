@@ -36,9 +36,9 @@ export function PageHeader({
     <Header {...headerProps}>
       <div className="max-w-2xl min-w-0">
         {eyebrow && <span className="club-eyebrow block mb-3">{eyebrow}</span>}
-        <h1 className="font-display text-h2 font-semibold tracking-tight text-mp-ink sm:text-h1">{title}</h1>
+        <h1 className="display-heading text-h2 sm:text-h1">{title}</h1>
         {body && (
-          <p className="mt-3.5 max-w-xl font-body text-body text-mp-ink-secondary leading-relaxed">{body}</p>
+          <p className="mt-3.5 max-w-xl font-body text-body text-mp-ink-secondary leading-[1.65]">{body}</p>
         )}
       </div>
       {actions && <div className="flex shrink-0 flex-wrap items-center gap-2 sm:gap-3">{actions}</div>}

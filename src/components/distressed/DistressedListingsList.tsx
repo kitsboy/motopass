@@ -1,6 +1,10 @@
+import { useState } from 'react'
+import { Lock, ShieldCheck, ExternalLink } from 'lucide-react'
 import { BtcDualPrice } from '../BtcDualPrice'
+import { ProofBadge } from '../ui/ProofBadge'
 import { useI18n } from '../../i18n/I18nContext'
 import { similarDistressedListings } from '../../lib/distressedSimilar'
+import { satohashVerifyUrl } from '../../lib/seal/vaultVerify'
 import type { DistressedListing } from '../../types/distressedListing'
 
 function scoreChip(score: number) {
@@ -23,6 +27,7 @@ export function DistressedListingsList({
   onSelect: (listing: DistressedListing) => void
 }) {
   const { t } = useI18n()
+  const [unlocked, setUnlocked] = useState<Set<string>>(() => new Set())
 
   if (loading) {
     return <p className="text-sm text-ink-muted animate-pulse px-3 py-6">{t('distressed.loading')}</p>
@@ -36,16 +41,37 @@ export function DistressedListingsList({
     return <p className="text-sm text-ink-muted px-3 py-6">{t('distressed.noListings')}</p>
   }
 
+  const handleSelect = (listing: DistressedListing) => {
+    if (listing.lane === 'permissionless' && !unlocked.has(listing.listing_id)) return
+    onSelect(listing)
+  }
+
+  const unlock = (listing: DistressedListing, e: React.MouseEvent) => {
+    e.stopPropagation()
+    setUnlocked(prev => new Set(prev).add(listing.listing_id))
+  }
+
   return (
     <ul className="divide-y divide-mp/40">
       {listings.map(listing => {
         const similar = similarDistressedListings(listing, allListings)
+        const isGold = listing.curated_tier === 'gold'
+        const isCurated = listing.lane === 'curated'
+        const gated = listing.lane === 'permissionless' && !unlocked.has(listing.listing_id)
+
         return (
-          <li key={listing.listing_id} className="group">
+          <li
+            key={listing.listing_id}
+            className={`group ${isGold ? 'distressed-row-gold' : isCurated ? 'distressed-row-curated' : ''}`}
+          >
             <button
               type="button"
-              onClick={() => onSelect(listing)}
-              className="w-full text-left flex items-start gap-2 px-2 py-2.5 rounded-mp-md transition-colors hover:bg-section/60"
+              onClick={() => handleSelect(listing)}
+              className={`w-full text-left flex items-start gap-2 px-2 py-2.5 rounded-mp-md transition-all duration-base ${
+                gated
+                  ? 'opacity-90 hover:bg-section/40'
+                  : 'hover:bg-section/60 hover:border-btc-orange/20'
+              }`}
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
@@ -64,20 +90,57 @@ export function DistressedListingsList({
                   </span>
                 </div>
                 <p className="text-[11px] text-ink-muted truncate mt-0.5">{listing.pathway_label}</p>
-                <div className="flex items-center justify-between gap-2 mt-1.5">
-                  <BtcDualPrice usd={listing.ask_usd} size="sm" />
-                  <span
-                    className={`text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded-chip border shrink-0 ${
-                      listing.lane === 'curated'
-                        ? 'border-mp-proof/40 text-mp-proof bg-mp-proof/10'
-                        : 'border-mp/60 text-ink-muted'
-                    }`}
-                  >
-                    {listing.lane}
-                  </span>
+
+                <div className="flex flex-wrap items-center gap-2 mt-1.5">
+                  {gated ? (
+                    <span className="text-[10px] font-mono text-status-amber inline-flex items-center gap-1">
+                      <Lock size={10} /> Proof-gated
+                    </span>
+                  ) : (
+                    <BtcDualPrice usd={listing.ask_usd} size="sm" />
+                  )}
+                  {isGold ? (
+                    <span className="text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded-chip border border-btc-orange/45 text-mp-btc-text bg-btc-orange-soft/50 inline-flex items-center gap-1">
+                      <ShieldCheck size={10} /> Kimi gold
+                    </span>
+                  ) : (
+                    <span
+                      className={`text-[10px] font-mono uppercase tracking-wide px-2 py-0.5 rounded-chip border shrink-0 ${
+                        isCurated
+                          ? 'border-mp-proof/40 text-mp-proof bg-mp-proof/10'
+                          : 'border-mp/60 text-ink-muted'
+                      }`}
+                    >
+                      {listing.lane}
+                    </span>
+                  )}
+                  {listing.block_height != null && (
+                    <ProofBadge status="verified" compact txHint={`#${listing.block_height}`} />
+                  )}
                 </div>
 
-                {similar.length > 0 && (
+                {gated && (
+                  <div className="mt-2 flex flex-wrap gap-2" onClick={e => e.stopPropagation()} role="presentation">
+                    <button
+                      type="button"
+                      onClick={e => unlock(listing, e)}
+                      className="btn-secondary text-[10px] !py-1 !px-2.5"
+                    >
+                      Verify proof to unlock
+                    </button>
+                    <a
+                      href={satohashVerifyUrl(listing.content_hash)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="chip text-[10px] inline-flex items-center gap-1"
+                      onClick={e => e.stopPropagation()}
+                    >
+                      Satohash <ExternalLink size={10} />
+                    </a>
+                  </div>
+                )}
+
+                {similar.length > 0 && !gated && (
                   <div className="mt-2 flex flex-wrap items-center gap-1" onClick={e => e.stopPropagation()} role="presentation">
                     <span className="text-[9px] font-mono uppercase tracking-wider text-ink-muted/80 shrink-0">
                       {t('distressed.similarPrograms')}

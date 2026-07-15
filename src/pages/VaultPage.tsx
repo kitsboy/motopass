@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Shield, Copy, Check, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio } from 'lucide-react'
+import { Shield, Copy, Check, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio, Download } from 'lucide-react'
+import { downloadVaultCredentials } from '../lib/vaultCredentialExport'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
 import { toCinematicProgram } from '../lib/programAdapter'
@@ -114,7 +115,24 @@ export function VaultPage() {
 
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-4xl mx-auto">
-      <PageHeader eyebrow={`MEMBERS · ${t('vault.eyebrow')}`} title={t('vault.title')} subtitle={t('vault.subtitle')} />
+      <PageHeader
+        eyebrow={`MEMBERS · ${t('vault.eyebrow')}`}
+        title={t('vault.title')}
+        subtitle={t('vault.subtitle')}
+        actions={
+          stamped.length > 0 ? (
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={() => downloadVaultCredentials(programs)}
+              className="shrink-0"
+            >
+              <Download size={14} /> Export credentials
+            </Button>
+          ) : undefined
+        }
+      />
 
       <PageAnchorNav items={vaultAnchors} />
 

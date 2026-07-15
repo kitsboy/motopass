@@ -226,7 +226,7 @@ export function PitchPage() {
               title: t(step.titleKey),
               body: t(step.bodyKey),
               icon: step.icon,
-              link: { to: step.to, label: 'Explore' },
+              link: { to: step.to, label: t('pitch.guide.cta') },
             }))}
           />
         </div>

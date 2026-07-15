@@ -50,7 +50,13 @@ function ListingModal({
       onClose={onClose}
       title={listing.program_name}
       subtitle={listing.pathway_label}
-      eyebrow={listing.lane === 'curated' ? 'Kimi curated' : 'Permissionless · proof required'}
+      eyebrow={
+        listing.curated_tier === 'gold'
+          ? 'Kimi gold · proof-gated'
+          : listing.lane === 'curated'
+            ? 'Kimi curated'
+            : 'Permissionless · verify proof first'
+      }
       maxWidth="xl"
     >
       <div className="space-y-4">
