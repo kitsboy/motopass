@@ -1,25 +1,63 @@
-import { useEffect, useId, useRef, useState } from 'react'
-import { Check, ChevronDown, Globe } from 'lucide-react'
-import { LANGUAGES, type LangCode } from '../../i18n/languages'
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { Check, ChevronDown, Globe, Monitor } from 'lucide-react'
+import { LANGUAGES, detectBrowserLang, type LangCode, type LangPreference } from '../../i18n/languages'
 import { useI18n } from '../../i18n/I18nContext'
 
+const PANEL_WIDTH = 208
+
+type MenuPos = { top: number; left: number; width: number }
+
 export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'menu' }) {
-  const { lang, setLang, t } = useI18n()
+  const { lang, langPreference, setLang, t } = useI18n()
   const [open, setOpen] = useState(false)
   const [highlight, setHighlight] = useState(0)
+  const [menuPos, setMenuPos] = useState<MenuPos | null>(null)
   const rootRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const panelRef = useRef<HTMLUListElement>(null)
   const listId = useId()
-  const current = LANGUAGES.find(l => l.code === lang) ?? LANGUAGES[0]
 
-  const pick = (code: LangCode) => {
-    setLang(code)
+  const optionCount = LANGUAGES.length + 1
+  const systemDetected = detectBrowserLang()
+  const current = LANGUAGES.find(l => l.code === lang) ?? LANGUAGES[0]
+  const usingSystem = langPreference === 'system'
+
+  const pick = (pref: LangPreference) => {
+    setLang(pref)
     setOpen(false)
   }
+
+  const updateMenuPos = () => {
+    const trigger = triggerRef.current
+    if (!trigger) return
+    const rect = trigger.getBoundingClientRect()
+    const width = size === 'menu' ? rect.width : PANEL_WIDTH
+    const left = size === 'menu' ? rect.left : Math.min(rect.right - width, window.innerWidth - width - 8)
+    setMenuPos({
+      top: rect.bottom + 6,
+      left: Math.max(8, left),
+      width,
+    })
+  }
+
+  useLayoutEffect(() => {
+    if (!open) return
+    updateMenuPos()
+    window.addEventListener('resize', updateMenuPos)
+    window.addEventListener('scroll', updateMenuPos, true)
+    return () => {
+      window.removeEventListener('resize', updateMenuPos)
+      window.removeEventListener('scroll', updateMenuPos, true)
+    }
+  }, [open, size])
 
   useEffect(() => {
     if (!open) return
     const onDoc = (e: MouseEvent) => {
-      if (!rootRef.current?.contains(e.target as Node)) setOpen(false)
+      const target = e.target as Node
+      if (rootRef.current?.contains(target) || panelRef.current?.contains(target)) return
+      setOpen(false)
     }
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -28,17 +66,14 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
       }
       if (e.key === 'ArrowDown') {
         e.preventDefault()
-        setHighlight(i => (i + 1) % LANGUAGES.length)
+        setHighlight(i => (i + 1) % optionCount)
       } else if (e.key === 'ArrowUp') {
         e.preventDefault()
-        setHighlight(i => (i - 1 + LANGUAGES.length) % LANGUAGES.length)
+        setHighlight(i => (i - 1 + optionCount) % optionCount)
       } else if (e.key === 'Enter') {
         e.preventDefault()
-        setHighlight(i => {
-          setLang(LANGUAGES[i].code)
-          setOpen(false)
-          return i
-        })
+        if (highlight === 0) pick('system')
+        else pick(LANGUAGES[highlight - 1].code)
       }
     }
     document.addEventListener('mousedown', onDoc)
@@ -47,16 +82,88 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
       document.removeEventListener('mousedown', onDoc)
       document.removeEventListener('keydown', onKey)
     }
-  }, [open, lang, setLang])
+  }, [open, highlight, optionCount])
 
   const triggerClass =
     size === 'menu'
       ? 'nav-btn w-full justify-between !px-3'
-      : 'nav-btn nav-btn-icon !gap-1 !pl-2 !pr-1.5 min-w-[2.75rem]'
+      : 'nav-btn !gap-1 !pl-2 !pr-1.5 min-w-[2.75rem] md:min-w-[5.5rem]'
+
+  const triggerLabel = usingSystem ? t('nav.languageSystem') : current.nativeName
+
+  const panel =
+    open && menuPos
+      ? createPortal(
+          <ul
+            ref={panelRef}
+            id={listId}
+            role="listbox"
+            aria-label={t('nav.language')}
+            className="nav-dropdown-panel nav-dropdown-portal"
+            style={{
+              position: 'fixed',
+              top: menuPos.top,
+              left: menuPos.left,
+              width: menuPos.width,
+            }}
+          >
+            <li className="px-2.5 py-1.5 border-b border-mp/60 flex items-center gap-1.5 text-[10px] font-chrome uppercase tracking-wider text-ink-muted">
+              <Globe size={11} aria-hidden="true" />
+              {t('nav.language')}
+            </li>
+            <li role="option" aria-selected={usingSystem}>
+              <button
+                type="button"
+                onClick={() => pick('system')}
+                onMouseEnter={() => setHighlight(0)}
+                className={`nav-dropdown-item w-full ${usingSystem ? 'nav-dropdown-item-active' : ''} ${highlight === 0 && !usingSystem ? 'bg-section/70' : ''}`}
+              >
+                <Monitor size={16} className="shrink-0 text-ink-muted" aria-hidden="true" />
+                <span className="flex-1 text-left min-w-0">
+                  <span className="block font-chrome text-[11px] font-medium text-ink truncate">
+                    {t('nav.languageSystem')}
+                  </span>
+                  <span className="block font-chrome text-[10px] text-ink-muted truncate">
+                    {LANGUAGES.find(l => l.code === systemDetected)?.nativeName ?? systemDetected}
+                  </span>
+                </span>
+                {usingSystem && <Check size={14} className="shrink-0 text-mp-btc-text" aria-hidden="true" />}
+              </button>
+            </li>
+            {LANGUAGES.map((l, idx) => {
+              const optionIndex = idx + 1
+              const active = !usingSystem && l.code === lang
+              const highlighted = optionIndex === highlight
+              return (
+                <li key={l.code} role="option" aria-selected={active}>
+                  <button
+                    type="button"
+                    onClick={() => pick(l.code)}
+                    onMouseEnter={() => setHighlight(optionIndex)}
+                    className={`nav-dropdown-item w-full ${active ? 'nav-dropdown-item-active' : ''} ${highlighted && !active ? 'bg-section/70' : ''}`}
+                  >
+                    <span className="text-base leading-none w-6 text-center" aria-hidden="true">{l.flag}</span>
+                    <span className="flex-1 text-left min-w-0">
+                      <span className="block font-chrome text-[11px] font-medium text-ink truncate">{l.nativeName}</span>
+                      <span className="block font-chrome text-[10px] text-ink-muted truncate">{l.name}</span>
+                    </span>
+                    {l.dir === 'rtl' && (
+                      <span className="font-mono text-[9px] text-ink-muted uppercase">RTL</span>
+                    )}
+                    {active && <Check size={14} className="shrink-0 text-mp-btc-text" aria-hidden="true" />}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>,
+          document.body,
+        )
+      : null
 
   return (
-    <div ref={rootRef} className={`relative ${open ? 'z-40' : ''}`}>
+    <div ref={rootRef} className="relative">
       <button
+        ref={triggerRef}
         type="button"
         className={triggerClass}
         aria-haspopup="listbox"
@@ -64,17 +171,26 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
         aria-controls={listId}
         onClick={() => {
           setOpen(v => {
-            if (!v) setHighlight(Math.max(0, LANGUAGES.findIndex(l => l.code === lang)))
+            if (!v) {
+              if (usingSystem) setHighlight(0)
+              else setHighlight(Math.max(1, LANGUAGES.findIndex(l => l.code === lang) + 1))
+            }
             return !v
           })
         }}
         title={t('nav.language')}
       >
         <span className="flex items-center gap-1.5 min-w-0">
-          <span className="text-base leading-none" aria-hidden="true">{current.flag}</span>
-          {size === 'menu' && (
-            <span className="truncate text-left font-chrome text-[11px] text-ink-secondary">
-              {current.nativeName}
+          <span className="text-base leading-none shrink-0" aria-hidden="true">
+            {usingSystem ? <Monitor size={14} className="text-ink-muted" /> : current.flag}
+          </span>
+          {(size === 'menu' || size === 'compact') && (
+            <span
+              className={`truncate text-left font-chrome text-[11px] text-ink-secondary ${
+                size === 'compact' ? 'hidden md:inline max-w-[4.5rem]' : ''
+              }`}
+            >
+              {triggerLabel}
             </span>
           )}
         </span>
@@ -85,44 +201,7 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
         />
         <span className="sr-only">{t('nav.language')}: {current.name}</span>
       </button>
-
-      {open && (
-        <ul
-          id={listId}
-          role="listbox"
-          aria-label={t('nav.language')}
-          className={`nav-dropdown-panel ${size === 'menu' ? 'left-0 right-0' : 'right-0 w-52'}`}
-        >
-          <li className="px-2.5 py-1.5 border-b border-mp/60 flex items-center gap-1.5 text-[10px] font-chrome uppercase tracking-wider text-ink-muted">
-            <Globe size={11} aria-hidden="true" />
-            {t('nav.language')}
-          </li>
-          {LANGUAGES.map((l, idx) => {
-            const active = l.code === lang
-            const highlighted = idx === highlight
-            return (
-              <li key={l.code} role="option" aria-selected={active}>
-                <button
-                  type="button"
-                  onClick={() => pick(l.code)}
-                  onMouseEnter={() => setHighlight(idx)}
-                  className={`nav-dropdown-item w-full ${active ? 'nav-dropdown-item-active' : ''} ${highlighted && !active ? 'bg-section/70' : ''}`}
-                >
-                  <span className="text-base leading-none w-6 text-center" aria-hidden="true">{l.flag}</span>
-                  <span className="flex-1 text-left min-w-0">
-                    <span className="block font-chrome text-[11px] font-medium text-ink truncate">{l.nativeName}</span>
-                    <span className="block font-chrome text-[10px] text-ink-muted truncate">{l.name}</span>
-                  </span>
-                  {l.dir === 'rtl' && (
-                    <span className="font-mono text-[9px] text-ink-muted uppercase">RTL</span>
-                  )}
-                  {active && <Check size={14} className="shrink-0 text-mp-btc-text" aria-hidden="true" />}
-                </button>
-              </li>
-            )
-          })}
-        </ul>
-      )}
+      {panel}
     </div>
   )
 }

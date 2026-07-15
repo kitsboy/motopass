@@ -21,3 +21,29 @@ export const LANGUAGES: Language[] = [
 ]
 
 export const DEFAULT_LANG: LangCode = 'en'
+
+const LANG_PREFIXES: [string, LangCode][] = [
+  ['zh', 'zh'],
+  ['ar', 'ar'],
+  ['sw', 'sw'],
+  ['hi', 'hi'],
+  ['pt', 'pt'],
+  ['es', 'es'],
+  ['fr', 'fr'],
+  ['de', 'de'],
+  ['en', 'en'],
+]
+
+/** Map browser locale to a supported MotoPass language */
+export function detectBrowserLang(): LangCode {
+  const prefs = [...(navigator.languages ?? []), navigator.language].filter(Boolean) as string[]
+  for (const raw of prefs) {
+    const norm = raw.toLowerCase().replace('_', '-')
+    for (const [prefix, code] of LANG_PREFIXES) {
+      if (norm === prefix || norm.startsWith(`${prefix}-`)) return code
+    }
+  }
+  return DEFAULT_LANG
+}
+
+export type LangPreference = LangCode | 'system'

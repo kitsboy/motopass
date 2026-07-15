@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ExternalLink, Shield, Copy, Check, Upload, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
@@ -15,6 +15,7 @@ import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import type { VerifyResult } from '../types/proof'
+import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 
 type VaultFilter = 'all' | 'verified' | 'demo'
 
@@ -80,10 +81,22 @@ export function VaultPage() {
     void verifyHashPaste(hash).then(setVerifyResult)
   }
 
+  const vaultAnchors = useMemo(
+    () => [
+      { id: 'vault-guide', label: t('subnav.vault.guide') },
+      { id: 'vault-verify', label: t('subnav.vault.verify') },
+      { id: 'vault-archive', label: t('subnav.vault.archive') },
+    ],
+    [t],
+  )
+
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-4xl mx-auto">
       <PageHeader eyebrow={`MEMBERS · ${t('vault.eyebrow')}`} title={t('vault.title')} subtitle={t('vault.subtitle')} />
 
+      <PageAnchorNav items={vaultAnchors} />
+
+      <div id="vault-guide" className="scroll-mt-header">
       <HowItWorksSection
         eyebrow={t('vault.how.eyebrow')}
         title={t('vault.how.title')}
@@ -108,8 +121,9 @@ export function VaultPage() {
           },
         ]}
       />
+      </div>
 
-      <Card variant="proof" animate className="mb-8" aria-labelledby="vault-verify-heading">
+      <Card id="vault-verify" variant="proof" animate className="mb-8 scroll-mt-header" aria-labelledby="vault-verify-heading">
         <h2 id="vault-verify-heading" className="font-chrome text-sm font-semibold text-ink flex items-center gap-2 mb-3">
           <FileCheck size={16} className="text-btc-orange" aria-hidden />
           Verify OTS proof
@@ -200,7 +214,7 @@ export function VaultPage() {
       {error && <ProgramsLoadError message={error} />}
       {loading && !error && <RowSkeleton count={5} />}
       {!loading && !error && (
-        <div className="space-y-3">
+        <div id="vault-archive" className="space-y-3 scroll-mt-header">
           {stamped.length > 0 && (
             <>
               <div className="flex flex-wrap gap-2 mb-4">

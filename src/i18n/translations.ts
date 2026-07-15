@@ -15,7 +15,7 @@ import {
 export type TranslationKey =
   | 'nav.pitch' | 'nav.portfolio' | 'nav.programs' | 'nav.simulator' | 'nav.compare' | 'nav.vault' | 'nav.distressed'
   | 'nav.blog' | 'nav.verify' | 'nav.agents' | 'nav.apply' | 'nav.dashboard' | 'nav.register' | 'nav.dashboardShort'
-  | 'nav.profile' | 'nav.btcmap' | 'nav.demo' | 'nav.more' | 'nav.language' | 'nav.menu' | 'nav.close' | 'nav.explore' | 'nav.tools' | 'nav.skip'
+  | 'nav.profile' | 'nav.btcmap' | 'nav.demo' | 'nav.more' | 'nav.language' | 'nav.languageSystem' | 'nav.pageSections' | 'nav.menu' | 'nav.close' | 'nav.explore' | 'nav.tools' | 'nav.skip'
   | 'tagline' | 'pitch.hero' | 'pitch.sub' | 'pitch.cta' | 'pitch.evolve' | 'pitch.stackSimulator'
   | 'pitch.feature.jurisdictions.title' | 'pitch.feature.jurisdictions.sub'
   | 'pitch.feature.satohash.title' | 'pitch.feature.satohash.sub'
@@ -71,6 +71,8 @@ const en: Dict = {
   'nav.demo': 'Demo',
   'nav.more': 'More',
   'nav.language': 'Language',
+  'nav.languageSystem': 'System',
+  'nav.pageSections': 'Page sections',
   'nav.menu': 'Menu',
   'nav.close': 'Close',
   'nav.explore': 'Explore',

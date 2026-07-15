@@ -15,10 +15,12 @@ import { Breadcrumbs } from './nav/Breadcrumbs'
 import { useI18n } from '../i18n/I18nContext'
 import { FOOTER_VERSION } from '../lib/buildInfo'
 import { useScrollToTop } from '../hooks/useScrollToTop'
+import { useHeaderCollapse } from '../hooks/useHeaderCollapse'
 
 export function Layout() {
   useScrollToTop()
   const { t } = useI18n()
+  const headerCollapsed = useHeaderCollapse()
   const [menuOpen, setMenuOpen] = useState(false)
   const [moreOpen, setMoreOpen] = useState(false)
 
@@ -38,9 +40,9 @@ export function Layout() {
         {t('nav.skip')}
       </a>
 
-      <Header>
-        <div className="relative z-30 max-w-7xl mx-auto px-3 sm:px-5">
-          <div className="h-12 sm:h-[3.25rem] flex items-center justify-between gap-2">
+      <Header collapsed={headerCollapsed}>
+        <div className="relative z-30 max-w-7xl mx-auto px-3 sm:px-5 club-header-top-row">
+          <div className="club-header-top-inner flex items-center justify-between gap-2">
             <NavLink
               to="/"
               className="flex items-center gap-2.5 min-w-0 group shrink-0"
@@ -51,10 +53,10 @@ export function Layout() {
                 <div className="font-display font-semibold tracking-tight text-[13px] sm:text-sm truncate text-ink group-hover:text-mp-btc-text transition-colors duration-fast">
                   MOTOPASS
                 </div>
-                <div className="hidden md:block text-[10px] text-ink-muted truncate font-mono max-w-[14rem] opacity-80">
+                <div className="club-header-tagline hidden md:block text-[10px] text-ink-muted truncate font-mono max-w-[14rem] opacity-80">
                   {FOOTER_VERSION} · {t('tagline')}
                 </div>
-                <div className="md:hidden text-[10px] text-ink-muted truncate font-mono opacity-80">{FOOTER_VERSION}</div>
+                <div className="club-header-tagline md:hidden text-[10px] text-ink-muted truncate font-mono opacity-80">{FOOTER_VERSION}</div>
               </div>
             </NavLink>
 

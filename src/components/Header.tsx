@@ -5,9 +5,9 @@ type HeaderProps = {
   className?: string
 }
 
-export function Header({ children, className = '' }: HeaderProps) {
+export function Header({ children, className = '', collapsed = false }: HeaderProps & { collapsed?: boolean }) {
   return (
-    <header className={`club-header nav-header ${className}`.trim()}>
+    <header className={`club-header nav-header ${collapsed ? 'club-header--collapsed' : ''} ${className}`.trim()}>
       <div className="club-header-bg" aria-hidden>
         <div className="club-header-glow" />
         <div className="club-header-glow-electric" />

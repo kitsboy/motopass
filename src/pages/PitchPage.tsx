@@ -40,6 +40,7 @@ import {
 } from '../lib/pitchStats'
 import { BUILD_ID, BUILD_DATE } from '../lib/buildInfo'
 import { SeoHead } from '../components/SeoHead'
+import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import type { TranslationKey } from '../i18n/translations'
 
 const PITCH_VERSION = `${BUILD_DATE} • ${BUILD_ID}`
@@ -120,6 +121,20 @@ export function PitchPage() {
   const taglines = useMemo(() => TAGLINE_KEYS.map(k => t(k)), [t])
   const gatesPassed = report.gates.filter(g => g.pass).length
 
+  const pitchAnchors = useMemo(
+    () => [
+      { id: 'pitch-hero', label: t('subnav.pitch.overview') },
+      { id: 'pitch-savings', label: t('subnav.pitch.savings') },
+      { id: 'pitch-guide', label: t('subnav.pitch.guide') },
+      { id: 'pitch-pillars', label: t('subnav.pitch.pillars') },
+      { id: 'pitch-products', label: t('subnav.pitch.products') },
+      { id: 'pitch-how', label: t('subnav.pitch.how') },
+      { id: 'pitch-faq', label: t('subnav.pitch.faq') },
+      { id: 'pitch-cta', label: t('subnav.pitch.cta') },
+    ],
+    [t],
+  )
+
   const faqJsonLd = useMemo(
     () => ({
       '@context': 'https://schema.org',
@@ -137,8 +152,12 @@ export function PitchPage() {
     <div className="page-container bg-mp-canvas">
       <SeoHead jsonLdOnly jsonLd={faqJsonLd} />
 
+      <div className="px-4 sm:px-6 max-w-7xl mx-auto">
+        <PageAnchorNav items={pitchAnchors} />
+      </div>
+
       {/* ── Hero ── */}
-      <section className="relative isolate overflow-hidden">
+      <section id="pitch-hero" className="relative isolate overflow-hidden scroll-mt-header">
         <HeroMotionBackground />
 
         <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 py-16 sm:py-28 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:py-36">
@@ -209,7 +228,7 @@ export function PitchPage() {
       <SavingsGraphs rows={savingsRows} loading={loading} />
 
       {/* ── Site-wide guide ── */}
-      <section className="surface-band px-4 sm:px-6 py-14 sm:py-16">
+      <section id="pitch-guide" className="surface-band px-4 sm:px-6 py-14 sm:py-16 scroll-mt-header">
         <div className="max-w-7xl mx-auto">
           <HowItWorksSection
             eyebrow={t('pitch.guide.eyebrow')}
@@ -229,7 +248,7 @@ export function PitchPage() {
       </section>
 
       {/* ── Four pillars ── */}
-      <section className="px-4 sm:px-6 py-14 sm:py-18 max-w-7xl mx-auto">
+      <section id="pitch-pillars" className="px-4 sm:px-6 py-14 sm:py-18 max-w-7xl mx-auto scroll-mt-header">
         <div className="mb-10 max-w-2xl">
           <span className="club-eyebrow block mb-3">{t('pitch.platform.eyebrow')}</span>
           <h2 className="font-display text-h2 font-semibold text-ink tracking-tight">{t('pitch.platform.title')}</h2>
@@ -262,7 +281,7 @@ export function PitchPage() {
       </section>
 
       {/* ── Platform products ── */}
-      <section className="surface-band px-4 sm:px-6 py-14 sm:py-16">
+      <section id="pitch-products" className="surface-band px-4 sm:px-6 py-14 sm:py-16 scroll-mt-header">
         <div className="max-w-7xl mx-auto">
           <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <div>
@@ -290,7 +309,7 @@ export function PitchPage() {
       </section>
 
       {/* ── How it works ── */}
-      <section className="px-4 sm:px-6 py-14 sm:py-16 max-w-7xl mx-auto">
+      <section id="pitch-how" className="px-4 sm:px-6 py-14 sm:py-16 max-w-7xl mx-auto scroll-mt-header">
         <span className="club-eyebrow block mb-3">{t('pitch.how.eyebrow')}</span>
         <h2 className="font-display text-h2 font-semibold text-ink mb-10">{t('pitch.how.title')}</h2>
         <div className="grid gap-5 md:grid-cols-3">
@@ -388,7 +407,7 @@ export function PitchPage() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="px-4 sm:px-6 py-14 sm:py-16 max-w-3xl mx-auto">
+      <section id="pitch-faq" className="px-4 sm:px-6 py-14 sm:py-16 max-w-3xl mx-auto scroll-mt-header">
         <span className="club-eyebrow block mb-3">{t('pitch.faq.eyebrow')}</span>
         <h2 className="font-display text-h2 font-semibold text-ink mb-8">{t('pitch.faq.title')}</h2>
         <div className="space-y-4">
@@ -402,7 +421,7 @@ export function PitchPage() {
       </section>
 
       {/* ── CTA band ── */}
-      <section className="px-4 sm:px-6 pb-16 sm:pb-20 max-w-7xl mx-auto">
+      <section id="pitch-cta" className="px-4 sm:px-6 pb-16 sm:pb-20 max-w-7xl mx-auto scroll-mt-header">
         <Card variant="banner" animate className="!p-8 sm:!p-10 text-center">
           <h2 className="font-display text-h2 font-semibold text-ink mb-3">{t('pitch.ctaBand.title')}</h2>
           <p className="font-body text-body text-ink-secondary max-w-xl mx-auto mb-8 leading-relaxed">{t('pitch.ctaBand.sub')}</p>

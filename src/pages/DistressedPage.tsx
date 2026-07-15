@@ -13,6 +13,7 @@ import { ClassyModal } from '../components/ui/ClassyModal'
 import { Card } from '../components/ui/Card'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { EscrowBuilder } from '../components/distressed/EscrowBuilder'
+import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import {
   buildDistressedListings,
   distressedRegions,
@@ -207,6 +208,14 @@ export function DistressedPage() {
 
   const curatedCount = allListings.filter(l => l.lane === 'curated').length
 
+  const distressedAnchors = useMemo(
+    () => [
+      { id: 'distressed-guide', label: t('subnav.distressed.guide') },
+      { id: 'distressed-listings', label: t('subnav.distressed.listings') },
+    ],
+    [t],
+  )
+
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-6xl mx-auto">
       <PageHeader
@@ -215,6 +224,9 @@ export function DistressedPage() {
         subtitle="Proof-gated listings — curated by Kimi or permissionless with Satohash + OTS. ₿ asks, template escrow only."
       />
 
+      <PageAnchorNav items={distressedAnchors} />
+
+      <div id="distressed-guide" className="scroll-mt-header">
       <HowItWorksSection
         eyebrow={t('distressed.how.eyebrow')}
         title={t('distressed.how.title')}
@@ -233,7 +245,9 @@ export function DistressedPage() {
           },
         ]}
       />
+      </div>
 
+      <div id="distressed-listings" className="scroll-mt-header">
       <Card variant="banner" animate className="mb-8 flex flex-wrap items-center gap-4">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-mp-md bg-btc-orange/12 border border-btc-orange/25">
           <TrendingDown className="text-btc-orange" size={24} />
@@ -328,6 +342,8 @@ export function DistressedPage() {
           )}
         </>
       )}
+
+      </div>
 
       <ListingModal listing={active} onClose={() => setActive(null)} />
     </div>

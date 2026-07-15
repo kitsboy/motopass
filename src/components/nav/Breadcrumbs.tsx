@@ -32,9 +32,9 @@ export function Breadcrumbs() {
 
   return (
     <nav aria-label={t('nav.breadcrumbs')} className="breadcrumb-glass text-xs text-ink-muted mb-3 w-fit max-w-full">
-      <ol className="flex flex-wrap items-center gap-1.5 min-w-0">
+      <ol className="flex flex-wrap items-center gap-0.5 sm:gap-1.5 min-w-0">
         <li>
-          <Link to="/" className="hover:text-accent transition-colors">
+          <Link to="/" className="breadcrumb-link hover:text-accent transition-colors">
             {t('nav.pitch')}
           </Link>
         </li>
@@ -44,14 +44,14 @@ export function Breadcrumbs() {
           const labelKey = ROUTE_LABELS[seg]
           const label = labelKey ? t(labelKey) : seg.replace(/-/g, ' ')
           return (
-            <li key={path} className="flex items-center gap-1.5">
-              <span aria-hidden="true">/</span>
+            <li key={path} className="flex items-center gap-0.5 sm:gap-1.5">
+              <span className="breadcrumb-sep px-0.5 sm:px-0" aria-hidden="true">/</span>
               {isLast ? (
-                <span aria-current="page" className="text-ink font-medium capitalize">
+                <span aria-current="page" className="breadcrumb-current text-ink font-medium capitalize">
                   {label}
                 </span>
               ) : (
-                <Link to={path} className="hover:text-accent transition-colors capitalize">
+                <Link to={path} className="breadcrumb-link hover:text-accent transition-colors capitalize">
                   {label}
                 </Link>
               )}

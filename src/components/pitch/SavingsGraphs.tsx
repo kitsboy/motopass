@@ -111,7 +111,7 @@ function MetricCard({
 export function SavingsGraphs({ title = 'Cost & time, modeled — not promised', rows, loading }: SavingsGraphsProps) {
   if (loading) {
     return (
-      <section className="relative overflow-hidden surface-band py-14 sm:py-20">
+      <section id="pitch-savings" className="relative overflow-hidden surface-band py-14 sm:py-20 scroll-mt-header">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="h-8 w-48 rounded-lg bg-card-muted/60 animate-pulse mb-4" />
           <div className="h-12 w-96 max-w-full rounded-lg bg-card-muted/60 animate-pulse mb-3" />
@@ -129,7 +129,8 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
 
   return (
     <section
-      className="relative overflow-hidden surface-band py-14 sm:py-20"
+      id="pitch-savings"
+      className="relative overflow-hidden surface-band py-14 sm:py-20 scroll-mt-header"
       style={{ clipPath: 'polygon(0 3vw, 100% 0, 100% 100%, 0 100%)' }}
       aria-labelledby="savings-graphs-heading"
     >
