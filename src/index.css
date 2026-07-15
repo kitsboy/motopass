@@ -688,6 +688,20 @@ body::before {
   box-shadow: 0 1px 4px rgba(24, 24, 27, 0.35);
 }
 
+.btcmap-directory-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--mp-ink-muted-rgb), 0.35) transparent;
+}
+
+.btcmap-directory-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.btcmap-directory-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(var(--mp-ink-muted-rgb), 0.25);
+}
+
 html {
   overflow-x: clip;
   max-width: 100%;

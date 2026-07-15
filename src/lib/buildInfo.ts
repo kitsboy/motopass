@@ -1,6 +1,6 @@
 /** Single source of truth for BUILD — bump BUILD_ID on every push/ship */
-export const BUILD_ID = '2026.07.15-38'
-export const BUILD_LABEL = `fix CF asset cache · agents education · live app verify`
+export const BUILD_ID = '2026.07.15-39'
+export const BUILD_LABEL = `BTC Map sophisticated layout · merchant directory panel`
 export const BUILD_DATE = '2026-07-15'
 /** Shown in site footer — must stay in sync with BUILD_ID */
 export const FOOTER_VERSION = `BUILD ${BUILD_ID}`

@@ -18,10 +18,12 @@ export function BtcMapLeaflet({
   programName,
   places,
   areas,
+  tall = false,
 }: {
   programName: string
   places: BtcMapPlace[]
   areas: BtcMapArea[]
+  tall?: boolean
 }) {
   const { t } = useI18n()
   const coord = getProgramCoord(programName)
@@ -49,7 +51,10 @@ export function BtcMapLeaflet({
         zoom={zoom}
         scrollWheelZoom={false}
         className="w-full"
-        style={{ height: 'min(420px, 55vh)', minHeight: 280 }}
+        style={{
+          height: tall ? 'min(520px, 62vh)' : 'min(420px, 55vh)',
+          minHeight: tall ? 360 : 280,
+        }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

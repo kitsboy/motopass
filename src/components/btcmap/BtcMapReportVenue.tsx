@@ -1,9 +1,42 @@
-import { ExternalLink, Terminal } from 'lucide-react'
+import { ExternalLink, Plus, Terminal } from 'lucide-react'
 import { btcMapAddVenueUrl, btcMapCliRepoUrl } from '../../lib/btcmap'
 import { useI18n } from '../../i18n/I18nContext'
 
-export function BtcMapReportVenue({ lat, lon }: { lat?: number; lon?: number }) {
+export function BtcMapReportVenue({
+  lat,
+  lon,
+  variant = 'card',
+}: {
+  lat?: number
+  lon?: number
+  variant?: 'card' | 'inline'
+}) {
   const { t } = useI18n()
+
+  if (variant === 'inline') {
+    return (
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-ink-muted font-chrome">
+        <span className="text-ink-muted/80">{t('btcmap.reportTitle')}:</span>
+        <a
+          href={btcMapAddVenueUrl(lat, lon)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-mp-btc-text hover:underline underline-offset-2"
+        >
+          <Plus size={11} aria-hidden /> {t('btcmap.reportWeb')}
+        </a>
+        <span className="text-ink-muted/40">·</span>
+        <a
+          href={btcMapCliRepoUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 hover:text-ink transition-colors"
+        >
+          <Terminal size={11} aria-hidden /> {t('btcmap.reportCli')}
+        </a>
+      </div>
+    )
+  }
 
   return (
     <div className="rounded-mp-md border border-dashed border-btc-orange/35 bg-btc-orange-soft/25 p-4 space-y-3">

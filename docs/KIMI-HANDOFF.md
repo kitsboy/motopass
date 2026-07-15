@@ -553,6 +553,18 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 39 — BTC Map layout polish)
+
+**Done:**
+- Redesigned `/btcmap`: command bar (jurisdiction + program intel + Nostr), map-first 3/5 + merchant directory 2/5 split
+- `BtcMapMerchantDirectory` — search, fixed-height scroll panel, divider rows (not chunky cards)
+- Report venue demoted to inline footer links; areas chips below map; taller map on desktop
+- BUILD `2026.07.15-39` · 36 unit + 19 e2e green
+
+**Git State:** see latest push to `origin/main`
+
+---
+
 ## Session — 2026-07-15 (BUILD 38 — fix blank site + Agents education)
 
 **Done:**

@@ -110,6 +110,7 @@ export const PAGE_KEYS = [
   'btcmap.densityBadge', 'btcmap.densityTooltip', 'btcmap.save', 'btcmap.unsave', 'btcmap.signInSave',
   'btcmap.signingIn', 'btcmap.offlineCache', 'btcmap.reportTitle', 'btcmap.reportSub', 'btcmap.reportWeb',
   'btcmap.reportCli', 'btcmap.reportCliHint',
+  'btcmap.directoryTitle', 'btcmap.directorySub', 'btcmap.searchMerchants',
 ] as const
 
 export type PageKey = (typeof PAGE_KEYS)[number]
@@ -480,6 +481,9 @@ export const pageKeysEn: Record<PageKey, string> = {
   'btcmap.reportWeb': 'Add on btcmap.org',
   'btcmap.reportCli': 'btcmap-cli',
   'btcmap.reportCliHint': 'btcmap-cli signup — then tag venues from your terminal. Open-source at github.com/teambtcmap/btcmap-cli',
+  'btcmap.directoryTitle': 'Merchant directory',
+  'btcmap.directorySub': 'Bitcoin-accepting venues in radius — search, save, open on btcmap.org',
+  'btcmap.searchMerchants': 'Search merchants…',
 }
 
 /** Spanish overrides for page keys */
