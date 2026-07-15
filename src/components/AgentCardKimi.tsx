@@ -5,7 +5,7 @@ import { AnimatedBadge } from './beui/AnimatedBadge'
 export function AgentCardKimi() {
   return (
     <TiltCard className="rounded-mp-xl">
-      <div className="card-elevated border-nostr-violet/20 bg-gradient-to-br from-mp-card to-nostr-violet-soft/40 overflow-hidden">
+      <div className="glass-card-elevated border-nostr-violet/25 bg-gradient-to-br from-transparent to-nostr-violet-soft/35 overflow-hidden">
         <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
           <div className="relative shrink-0">
             <img

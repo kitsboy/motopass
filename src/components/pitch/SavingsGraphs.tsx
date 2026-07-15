@@ -64,7 +64,7 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
 
   return (
     <section
-      className="relative overflow-hidden bg-mp-section py-16 sm:py-24"
+      className="relative overflow-hidden surface-band py-16 sm:py-24"
       style={{ clipPath: 'polygon(0 3vw, 100% 0, 100% 100%, 0 100%)' }}
       aria-labelledby="savings-graphs-heading"
     >

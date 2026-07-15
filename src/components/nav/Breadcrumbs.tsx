@@ -31,8 +31,8 @@ export function Breadcrumbs() {
   if (!segments.length) return null
 
   return (
-    <nav aria-label={t('nav.breadcrumbs')} className="text-xs text-ink-muted mb-2">
-      <ol className="flex flex-wrap items-center gap-1.5">
+    <nav aria-label={t('nav.breadcrumbs')} className="breadcrumb-glass text-xs text-ink-muted mb-3 w-fit max-w-full">
+      <ol className="flex flex-wrap items-center gap-1.5 min-w-0">
         <li>
           <Link to="/" className="hover:text-accent transition-colors">
             {t('nav.pitch')}

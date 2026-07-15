@@ -49,7 +49,7 @@ export function StatCard(props: LegacyProps | CinematicProps) {
       viewport={{ once: true, margin: '-10%' }}
       transition={{ duration: 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -2 }}
-      className="group flex items-center justify-between gap-4 rounded-card border border-mp-border bg-mp-card p-4 shadow-mp-1 transition-[box-shadow,border-color] duration-base ease-spring-gentle hover:border-mp-btc/30 hover:shadow-mp-2 sm:block sm:p-5"
+      className="group glass-card flex items-center justify-between gap-4 !p-4 transition-[box-shadow,border-color] duration-base ease-spring-gentle hover:border-btc-orange/35 hover:shadow-mp-glow sm:block sm:!p-5"
     >
       <span className="block font-chrome text-[11px] uppercase tracking-[0.14em] text-mp-ink-tertiary">
         {label}

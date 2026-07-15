@@ -10,7 +10,8 @@ export function DesktopNav() {
 
   return (
     <nav
-      className="hidden lg:block border-t border-mp/30 bg-card-muted/20 backdrop-blur-md"
+      className="hidden lg:block border-t border-mp/40"
+      style={{ background: 'var(--mp-glass-bg)', backdropFilter: 'blur(20px) saturate(1.4)' }}
       aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center gap-1 overflow-x-auto scrollbar-none">

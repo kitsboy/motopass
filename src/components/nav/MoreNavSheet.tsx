@@ -20,7 +20,7 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
           <motion.button
             type="button"
             aria-label={t('nav.close')}
-            className="absolute inset-0 bg-ink/45 backdrop-blur-[2px]"
+            className="absolute inset-0 sheet-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
