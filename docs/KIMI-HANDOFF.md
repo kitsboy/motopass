@@ -692,7 +692,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Batch 23 queue updated; ~35 items still open (map clustering, vault OTS drag-drop, agent filters, etc.)
 
 **Git State:**
-- SHA: (see commit after push)
+- SHA: `922b65e`
 - Message: `feat: BUILD 48 — Batch 23 parallel agent ship`
 - Pushed: `origin/main`
 
