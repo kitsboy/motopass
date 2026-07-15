@@ -455,7 +455,9 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Cambodia/Japan/Philippines nomad routes marked informal where no formal visa exists
 
 ### Git State
+- SHA: `d796b50`
 - Branch: `main`
+- Unpushed: (none)
 
 ---
 
