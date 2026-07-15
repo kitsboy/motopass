@@ -6,6 +6,20 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-54] — 2026-07-15
+
+### Changed
+- Footer flush — nav clearance inside footer glass, no void below
+
+---
+
+## [BUILD-2026.07.15-53] — 2026-07-15
+
+### Changed
+- Canvas +20% lift, footer gap fix — mobile-tight polish
+
+---
+
 ## [BUILD-2026.07.15-52] — 2026-07-15
 
 ### Changed
