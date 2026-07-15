@@ -65,8 +65,12 @@ function serveStaticRoot(root: string) {
 }
 
 const BOOT_GUARD = `<script>
-(function(){var shown=false;function recover(){if(shown)return;shown=true;var r=document.getElementById("root");if(!r)return;r.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:#16161f;color:#f5f2ec;font-family:system-ui,sans-serif;text-align:center"><div style="max-width:22rem"><h1 style="margin:0 0 .75rem;font-size:1.25rem">MotoPass is updating</h1><p style="margin:0 0 1.25rem;opacity:.85;font-size:.9rem;line-height:1.5">Your browser cached a deploy artifact. This is not an overlay — the app script failed to load.</p><button type="button" onclick="location.reload()" style="padding:.7rem 1.4rem;border-radius:12px;border:none;background:#ff9500;color:#0a0804;font-weight:600;cursor:pointer">Hard refresh</button></div></div>';}
-function poisoned(m){return/Unexpected token '<'|dynamically imported module|Importing a module script failed/i.test(String(m||''));}
+(function(){var shown=false,KEY="motopass-cache-retry";
+function bust(){var u=new URL(location.href);u.searchParams.set("cb",String(Date.now()));location.replace(u.toString());}
+function showUI(){var r=document.getElementById("root");if(!r)return;r.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:#16161f;color:#f5f2ec;font-family:system-ui,sans-serif;text-align:center"><div style="max-width:22rem"><h1 style="margin:0 0 .75rem;font-size:1.25rem">MotoPass is updating</h1><p style="margin:0 0 1.25rem;opacity:.85;font-size:.9rem;line-height:1.5">Cached deploy files blocked the app. Tap below to load a fresh copy.</p><button type="button" id="mp-reload-btn" style="padding:.7rem 1.4rem;border-radius:12px;border:none;background:#ff9500;color:#0a0804;font-weight:600;cursor:pointer">Reload fresh copy</button><p style="margin:1rem 0 0;opacity:.55;font-size:.75rem">Or press Cmd+Shift+R (Mac) / Ctrl+Shift+R (Windows)</p></div></div>';var b=document.getElementById("mp-reload-btn");if(b)b.onclick=function(){sessionStorage.removeItem(KEY);bust();};}
+function recover(){if(shown)return;if(!sessionStorage.getItem(KEY)){sessionStorage.setItem(KEY,"1");bust();return;}sessionStorage.removeItem(KEY);shown=true;showUI();}
+window.__mpRetryLoad=recover;
+function poisoned(m){return/Unexpected token '<'|dynamically imported module|Importing a module script failed/i.test(String(m||""));}
 window.addEventListener("error",function(e){if(poisoned(e.message))recover();},true);
 window.addEventListener("unhandledrejection",function(e){if(poisoned(e.reason&&e.reason.message||e.reason))recover();});
 })();
@@ -75,8 +79,31 @@ window.addEventListener("unhandledrejection",function(e){if(poisoned(e.reason&&e
 function injectBootGuard(): Plugin {
   return {
     name: 'motopass-boot-guard',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html) {
+        return html.replace('<head>', `<head>${BOOT_GUARD}`)
+      },
+    },
+  }
+}
+
+/** Cache-bust all /assets/ URLs and load entry via dynamic import (retry on poison). */
+function safeAssetLoader(): Plugin {
+  const bust = BUILD_SALT
+  return {
+    name: 'motopass-safe-assets',
+    enforce: 'post',
     transformIndexHtml(html) {
-      return html.replace('</head>', `${BOOT_GUARD}</head>`)
+      let out = html.replace(
+        /(<(?:script|link)[^>]+(?:src|href)=")(\/assets\/[^"?]+)(")/g,
+        `$1$2?b=${bust}$3`,
+      )
+      out = out.replace(
+        /<script type="module" crossorigin src="(\/assets\/index-[^"]+\.js)\?b=[^"]+"><\/script>/,
+        `<script type="module">import("$1?b=${bust}").catch(function(){window.__mpRetryLoad&&window.__mpRetryLoad();});</script>`,
+      )
+      return out
     },
   }
 }
@@ -112,7 +139,7 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), injectBootGuard(), motopassStaticAssets()],
+  plugins: [react(), injectBootGuard(), safeAssetLoader(), motopassStaticAssets()],
   server: {
     fs: {
       strict: false,

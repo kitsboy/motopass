@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script>
+(function(){var shown=false,KEY="motopass-cache-retry";
+function bust(){var u=new URL(location.href);u.searchParams.set("cb",String(Date.now()));location.replace(u.toString());}
+function showUI(){var r=document.getElementById("root");if(!r)return;r.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:#16161f;color:#f5f2ec;font-family:system-ui,sans-serif;text-align:center"><div style="max-width:22rem"><h1 style="margin:0 0 .75rem;font-size:1.25rem">MotoPass is updating</h1><p style="margin:0 0 1.25rem;opacity:.85;font-size:.9rem;line-height:1.5">Cached deploy files blocked the app. Tap below to load a fresh copy.</p><button type="button" id="mp-reload-btn" style="padding:.7rem 1.4rem;border-radius:12px;border:none;background:#ff9500;color:#0a0804;font-weight:600;cursor:pointer">Reload fresh copy</button><p style="margin:1rem 0 0;opacity:.55;font-size:.75rem">Or press Cmd+Shift+R (Mac) / Ctrl+Shift+R (Windows)</p></div></div>';var b=document.getElementById("mp-reload-btn");if(b)b.onclick=function(){sessionStorage.removeItem(KEY);bust();};}
+function recover(){if(shown)return;if(!sessionStorage.getItem(KEY)){sessionStorage.setItem(KEY,"1");bust();return;}sessionStorage.removeItem(KEY);shown=true;showUI();}
+window.__mpRetryLoad=recover;
+function poisoned(m){return/Unexpected token '<'|dynamically imported module|Importing a module script failed/i.test(String(m||""));}
+window.addEventListener("error",function(e){if(poisoned(e.message))recover();},true);
+window.addEventListener("unhandledrejection",function(e){if(poisoned(e.reason&&e.reason.message||e.reason))recover();});
+})();
+</script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
@@ -18,7 +28,7 @@
     <meta name="description" content="MotoPass — Bitcoin-native sovereign passport platform. CBI/RBI programs, Nostr identity, Satohash OpenTimestamps, country liaison agents. Mobile-first." />
     <meta name="keywords" content="bitcoin visa, crypto golden visa, sovereign passport, bitcoin passport, CBI, RBI, citizenship by investment, Nostr, Satohash, OpenTimestamps" />
     <meta name="theme-color" content="#16161f" />
-    <link rel="preload" href="/assets/countries-BZJZzfUx-20260715-46.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="/assets/countries-BZJZzfUx-20260715-47.json" as="fetch" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta property="og:title" content="MotoPass — Bitcoin Sovereign Passports" />
@@ -43,18 +53,12 @@
         }
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-1IltPCwG-20260715-46.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/icons-D_2ZRWc5-20260715-46.js">
-    <link rel="modulepreload" crossorigin href="/assets/motion-BrKdZYIa-20260715-46.js">
-    <link rel="modulepreload" crossorigin href="/assets/nostr-CZ7B55z--20260715-46.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-CsK_HJwG-20260715-46.css">
-  <script>
-(function(){var shown=false;function recover(){if(shown)return;shown=true;var r=document.getElementById("root");if(!r)return;r.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:#16161f;color:#f5f2ec;font-family:system-ui,sans-serif;text-align:center"><div style="max-width:22rem"><h1 style="margin:0 0 .75rem;font-size:1.25rem">MotoPass is updating</h1><p style="margin:0 0 1.25rem;opacity:.85;font-size:.9rem;line-height:1.5">Your browser cached a deploy artifact. This is not an overlay — the app script failed to load.</p><button type="button" onclick="location.reload()" style="padding:.7rem 1.4rem;border-radius:12px;border:none;background:#ff9500;color:#0a0804;font-weight:600;cursor:pointer">Hard refresh</button></div></div>';}
-function poisoned(m){return/Unexpected token '<'|dynamically imported module|Importing a module script failed/i.test(String(m||''));}
-window.addEventListener("error",function(e){if(poisoned(e.message))recover();},true);
-window.addEventListener("unhandledrejection",function(e){if(poisoned(e.reason&&e.reason.message||e.reason))recover();});
-})();
-</script></head>
+    <script type="module">import("/assets/index-BCRIOcoS-20260715-47.js?b=20260715-47").catch(function(){window.__mpRetryLoad&&window.__mpRetryLoad();});</script>
+    <link rel="modulepreload" crossorigin href="/assets/icons-D_2ZRWc5-20260715-47.js?b=20260715-47">
+    <link rel="modulepreload" crossorigin href="/assets/motion-BrKdZYIa-20260715-47.js?b=20260715-47">
+    <link rel="modulepreload" crossorigin href="/assets/nostr-CZ7B55z--20260715-47.js?b=20260715-47">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsK_HJwG-20260715-47.css?b=20260715-47">
+  </head>
   <body>
     <div id="root"></div>
   </body>
