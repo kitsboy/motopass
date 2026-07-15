@@ -28,14 +28,71 @@
       "sovereignty_score": 9,
       "stacking_synergy": "high",
       "risk_level": "low",
-      "last_verified_block": 897424,
+      "last_verified_block": 958076,
       "satohash_proofs": [
         {
           "field": "program_snapshot",
-          "block_height": 897424,
-          "proof_url": "https://satohash.io/verify/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1"
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/414b33ee9278536024e6ab34c7ce636d40cdc4e1d83ed5ce1fe39c90fc3098b7",
+          "content_hash": "414b33ee9278536024e6ab34c7ce636d40cdc4e1d83ed5ce1fe39c90fc3098b7"
+        },
+        {
+          "field": "pathways",
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/414b33ee9278536024e6ab34c7ce636d40cdc4e1d83ed5ce1fe39c90fc3098b7",
+          "content_hash": "414b33ee9278536024e6ab34c7ce636d40cdc4e1d83ed5ce1fe39c90fc3098b7"
         }
-      ]
+      ],
+      "flagship_depth": true,
+      "pathways": [
+        {
+          "type": "economic_contribution",
+          "label": "Economic contribution residency",
+          "min_investment_usd": 0,
+          "notes": "Voluntary Bitcoin legal tender; pathways tied to economic activity and investment."
+        },
+        {
+          "type": "business",
+          "label": "Bitcoin business establishment",
+          "min_investment_usd": 30000,
+          "notes": "Strong fit for Lightning-native operators and crypto founders."
+        }
+      ],
+      "critical_tests": {
+        "live_and_work": true,
+        "scope_of_freedom": true,
+        "dual_citizenship": true,
+        "notes": "Legal tender status; regional mobility via CA-4 for citizens."
+      },
+      "legal_compliance": {
+        "primary_laws": [
+          "Ley Bitcoin",
+          "2025 reform framework"
+        ],
+        "official_urls": [
+          "https://www.presidencia.gob.sv"
+        ],
+        "property_foreign_ownership": "Generally permitted with standard restrictions.",
+        "recent_changes": "2025 reforms shifted to voluntary merchant acceptance while retaining pro-Bitcoin posture."
+      },
+      "compliance_clock": {
+        "renewal_interval_months": 24,
+        "citizenship_eligibility_years": 5,
+        "residency_day_count_target": 365
+      },
+      "paige_fields": {
+        "common_questions": [
+          "Is Bitcoin still legal tender?",
+          "What are capital gains rules for BTC?"
+        ],
+        "red_flags": [
+          "Verify current reform details before structuring"
+        ],
+        "optimization_tips": [
+          "Use Lightning-first business footprint in San Salvador"
+        ],
+        "escalate_when": "Large corporate relocation or mining operations"
+      }
     },
     {
       "id": 2,
@@ -78,7 +135,7 @@
       "name": "Uruguay",
       "category": "rbi_cbi",
       "region": "South America",
-      "status": "Acquired - Researching",
+      "status": "Flagship - Verified Template",
       "bitcoin_integration": "Growing crypto-friendly environment. Stable democracy with interest in digital assets and fintech. Potential for Bitcoin residency incentives.",
       "finance": {
         "min_investment_usd": 100000,
@@ -97,24 +154,89 @@
       ],
       "flag": "🇺🇾",
       "lightning_ready": true,
-      "sovereignty_score": 8,
+      "sovereignty_score": 9,
       "stacking_synergy": "high",
       "risk_level": "low",
-      "last_verified_block": 897390,
+      "last_verified_block": 958076,
       "satohash_proofs": [
         {
           "field": "program_snapshot",
-          "block_height": 897390,
-          "proof_url": "https://satohash.io/verify/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa3"
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/04c9417462f752689333f1a36991ca85a31f2c0f23a6130c075ef42ac277a0aa",
+          "content_hash": "04c9417462f752689333f1a36991ca85a31f2c0f23a6130c075ef42ac277a0aa"
+        },
+        {
+          "field": "pathways",
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/04c9417462f752689333f1a36991ca85a31f2c0f23a6130c075ef42ac277a0aa",
+          "content_hash": "04c9417462f752689333f1a36991ca85a31f2c0f23a6130c075ef42ac277a0aa"
         }
-      ]
+      ],
+      "flagship_depth": true,
+      "pathways": [
+        {
+          "type": "real_estate",
+          "label": "Real estate investment",
+          "min_investment_usd": 100000,
+          "notes": "Beachfront and rural ownership widely permitted for foreigners."
+        },
+        {
+          "type": "rentista",
+          "label": "Rentista / income proof",
+          "min_investment_usd": 18000,
+          "notes": "~$1,500/month sustained income — lower capital lock-up than RE route."
+        },
+        {
+          "type": "bank_deposit",
+          "label": "Bank deposit / bonds",
+          "min_investment_usd": 100000,
+          "notes": "Passive investment equivalent; useful for BTC→fiat structuring."
+        }
+      ],
+      "critical_tests": {
+        "live_and_work": true,
+        "scope_of_freedom": true,
+        "dual_citizenship": true,
+        "notes": "Mercosur mobility (~10 countries); visa-free ~170 after naturalization."
+      },
+      "legal_compliance": {
+        "primary_laws": [
+          "Ley de Migraciones",
+          "Decreto 394/022"
+        ],
+        "official_urls": [
+          "https://www.gub.uy/tramites/residencia-legal",
+          "https://www.minterior.gub.uy"
+        ],
+        "property_foreign_ownership": "Foreigners may own beachfront and rural land with few restrictions.",
+        "recent_changes": "2025–2026 digital nomad and investor pathways streamlined."
+      },
+      "compliance_clock": {
+        "renewal_interval_months": 36,
+        "citizenship_eligibility_years": 4,
+        "residency_day_count_target": 1095
+      },
+      "paige_fields": {
+        "common_questions": [
+          "Can I keep foreign crypto gains tax-free?",
+          "How fast is Mercosur access?",
+          "Is beachfront ownership allowed?"
+        ],
+        "red_flags": [
+          "Income proof must be sustainable; apostille delays"
+        ],
+        "optimization_tips": [
+          "RE investment for faster approval; territorial tax for BTC gains"
+        ],
+        "escalate_when": "Complex tax structuring or $500k+ investments"
+      }
     },
     {
       "id": 4,
       "name": "Bolivia",
       "category": "rbi_cbi",
       "region": "South America",
-      "status": "To be filled",
+      "status": "Researching - Flagship",
       "bitcoin_integration": "Emerging interest in crypto. Regulatory environment evolving. Potential for Bitcoin-friendly policies in coming years.",
       "finance": {
         "min_investment_usd": 80000,
@@ -136,14 +258,74 @@
       "sovereignty_score": 5,
       "stacking_synergy": "low",
       "risk_level": "medium",
-      "last_verified_block": 897373,
+      "last_verified_block": 958076,
       "satohash_proofs": [
         {
           "field": "program_snapshot",
-          "block_height": 897373,
-          "proof_url": "https://satohash.io/verify/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa4"
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/feb51c2ddc784d3fa9b9fcd54cc05e25580fbaee872e3eae54c00378a64cf09d",
+          "content_hash": "feb51c2ddc784d3fa9b9fcd54cc05e25580fbaee872e3eae54c00378a64cf09d"
+        },
+        {
+          "field": "pathways",
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/feb51c2ddc784d3fa9b9fcd54cc05e25580fbaee872e3eae54c00378a64cf09d",
+          "content_hash": "feb51c2ddc784d3fa9b9fcd54cc05e25580fbaee872e3eae54c00378a64cf09d"
         }
-      ]
+      ],
+      "flagship_depth": true,
+      "pathways": [
+        {
+          "type": "company_investment",
+          "label": "Investor / company route",
+          "min_investment_usd": 80000,
+          "notes": "Business establishment or capital investment — no pure CBI passport-for-donation program."
+        },
+        {
+          "type": "solvency_proof",
+          "label": "Low solvency / fixed deposit",
+          "min_investment_usd": 25000,
+          "notes": "Budget stacking option via solvency proof — verify current SUPREME DECREE thresholds with counsel."
+        }
+      ],
+      "critical_tests": {
+        "live_and_work": true,
+        "scope_of_freedom": false,
+        "dual_citizenship": false,
+        "notes": "Weaker passport mobility vs Uruguay; research dual nationality policy before committing."
+      },
+      "legal_compliance": {
+        "primary_laws": [
+          "Ley de Migración",
+          "SUCRE investment frameworks"
+        ],
+        "official_urls": [
+          "https://www.migracion.gob.bo"
+        ],
+        "property_foreign_ownership": "Restrictions in border/security zones; urban RE often viable — legal review required.",
+        "recent_changes": "Crypto regulation evolving; monitor official gazette."
+      },
+      "compliance_clock": {
+        "renewal_interval_months": 12,
+        "citizenship_eligibility_years": 3,
+        "residency_day_count_target": 730
+      },
+      "paige_fields": {
+        "common_questions": [
+          "Is there a golden passport program?",
+          "Can foreigners buy land?",
+          "What is the solvency route minimum?"
+        ],
+        "red_flags": [
+          "No pure CBI",
+          "INRA land restrictions near borders",
+          "Bitcoin policy still forming"
+        ],
+        "optimization_tips": [
+          "Position as value/distressed stack leg, not primary hub"
+        ],
+        "escalate_when": "Land purchase near restricted zones or corporate restructuring"
+      }
     },
     {
       "id": 5,
@@ -281,14 +463,74 @@
       "sovereignty_score": 10,
       "stacking_synergy": "high",
       "risk_level": "low",
-      "last_verified_block": 897305,
+      "last_verified_block": 958076,
       "satohash_proofs": [
         {
           "field": "program_snapshot",
-          "block_height": 897305,
-          "proof_url": "https://satohash.io/verify/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa8"
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/81159d01063d9c39512e38170ef21ba71619e7cd33e2637a35c419ac49586c04",
+          "content_hash": "81159d01063d9c39512e38170ef21ba71619e7cd33e2637a35c419ac49586c04"
+        },
+        {
+          "field": "pathways",
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/81159d01063d9c39512e38170ef21ba71619e7cd33e2637a35c419ac49586c04",
+          "content_hash": "81159d01063d9c39512e38170ef21ba71619e7cd33e2637a35c419ac49586c04"
         }
-      ]
+      ],
+      "flagship_depth": true,
+      "pathways": [
+        {
+          "type": "golden_visa",
+          "label": "Golden Visa (10-year)",
+          "min_investment_usd": 544000,
+          "notes": "Property or investment threshold in AED equivalent; VARA clarity for crypto businesses."
+        },
+        {
+          "type": "free_zone",
+          "label": "Free zone company + residency",
+          "min_investment_usd": 15000,
+          "notes": "Popular for Bitcoin/Web3 operators; zero personal income tax in many structures."
+        }
+      ],
+      "critical_tests": {
+        "live_and_work": true,
+        "scope_of_freedom": true,
+        "dual_citizenship": false,
+        "notes": "UAE does not offer citizenship by investment; residency + tax efficiency is the play."
+      },
+      "legal_compliance": {
+        "primary_laws": [
+          "Federal Decree-Law on Entry and Residence",
+          "VARA Virtual Assets Regulation"
+        ],
+        "official_urls": [
+          "https://u.ae",
+          "https://www.vara.ae"
+        ],
+        "property_foreign_ownership": "Freehold zones available for foreigners in designated areas.",
+        "recent_changes": "VARA framework strengthens crypto business licensing."
+      },
+      "compliance_clock": {
+        "renewal_interval_months": 24,
+        "citizenship_eligibility_years": null,
+        "residency_day_count_target": 180
+      },
+      "paige_fields": {
+        "common_questions": [
+          "Can I run a Bitcoin business from Dubai?",
+          "What is the golden visa property threshold?",
+          "Are crypto gains taxed?"
+        ],
+        "red_flags": [
+          "No CBI path to passport",
+          "Free zone vs mainland entity choice matters"
+        ],
+        "optimization_tips": [
+          "VARA-licensed structure for crypto treasury; Lightning-friendly free zones"
+        ],
+        "escalate_when": "VARA licensing or $1M+ property golden visa"
+      }
     },
     {
       "id": 9,
@@ -318,14 +560,74 @@
       "sovereignty_score": 9,
       "stacking_synergy": "high",
       "risk_level": "low",
-      "last_verified_block": 897288,
+      "last_verified_block": 958076,
       "satohash_proofs": [
         {
           "field": "program_snapshot",
-          "block_height": 897288,
-          "proof_url": "https://satohash.io/verify/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa9"
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/3467ebf7f83723dbdcb81945f7cea952713cd86d3079356adccf85198642f194",
+          "content_hash": "3467ebf7f83723dbdcb81945f7cea952713cd86d3079356adccf85198642f194"
+        },
+        {
+          "field": "pathways",
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/3467ebf7f83723dbdcb81945f7cea952713cd86d3079356adccf85198642f194",
+          "content_hash": "3467ebf7f83723dbdcb81945f7cea952713cd86d3079356adccf85198642f194"
         }
-      ]
+      ],
+      "flagship_depth": true,
+      "pathways": [
+        {
+          "type": "lump_sum_tax",
+          "label": "Lump-sum taxation (negotiated)",
+          "min_investment_usd": 250000,
+          "notes": "Canton-negotiated annual tax for wealthy residents — popular HNW pathway."
+        },
+        {
+          "type": "business",
+          "label": "Company + director residency",
+          "min_investment_usd": 100000,
+          "notes": "Crypto Valley (Zug) pathway for Bitcoin businesses and founders."
+        }
+      ],
+      "critical_tests": {
+        "live_and_work": true,
+        "scope_of_freedom": true,
+        "dual_citizenship": true,
+        "notes": "Strong rule of law; naturalization is canton-specific and slow vs CBI jurisdictions."
+      },
+      "legal_compliance": {
+        "primary_laws": [
+          "Federal Act on Foreign Nationals and Integration",
+          "Canton tax agreements"
+        ],
+        "official_urls": [
+          "https://www.sem.admin.ch",
+          "https://www.zug.ch"
+        ],
+        "property_foreign_ownership": "Permitted with cantonal restrictions for non-EU/EFTA in some cases.",
+        "recent_changes": "Crypto Valley continues as Bitcoin business hub; FINMA clarity for VASPs."
+      },
+      "compliance_clock": {
+        "renewal_interval_months": 12,
+        "citizenship_eligibility_years": 10,
+        "residency_day_count_target": 3650
+      },
+      "paige_fields": {
+        "common_questions": [
+          "Which canton for lump-sum tax?",
+          "Can I hold BTC in a Swiss entity?",
+          "Crypto Valley vs Zurich for founders?"
+        ],
+        "red_flags": [
+          "Citizenship takes years — plan for residency not passport",
+          "Canton selection drives tax outcome"
+        ],
+        "optimization_tips": [
+          "Zug for Bitcoin treasury companies; lump-sum in low-tax cantons"
+        ],
+        "escalate_when": "Canton negotiation or FINMA-regulated activity"
+      }
     },
     {
       "id": 10,
@@ -391,14 +693,74 @@
       "sovereignty_score": 5,
       "stacking_synergy": "medium",
       "risk_level": "medium",
-      "last_verified_block": 897254,
+      "last_verified_block": 958076,
       "satohash_proofs": [
         {
           "field": "program_snapshot",
-          "block_height": 897254,
-          "proof_url": "https://satohash.io/verify/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/92358986c6946d3cc48ad0cc0d585980d168ba4e7b5dfeff0a5fa4c5a4f8d3c9",
+          "content_hash": "92358986c6946d3cc48ad0cc0d585980d168ba4e7b5dfeff0a5fa4c5a4f8d3c9"
+        },
+        {
+          "field": "pathways",
+          "block_height": 958076,
+          "proof_url": "https://satohash.io/verify/92358986c6946d3cc48ad0cc0d585980d168ba4e7b5dfeff0a5fa4c5a4f8d3c9",
+          "content_hash": "92358986c6946d3cc48ad0cc0d585980d168ba4e7b5dfeff0a5fa4c5a4f8d3c9"
         }
-      ]
+      ],
+      "flagship_depth": true,
+      "pathways": [
+        {
+          "type": "golden_visa",
+          "label": "Golden Visa (investment fund route)",
+          "min_investment_usd": 550000,
+          "notes": "Fund route remains common post-housing reform; verify current eligible categories."
+        },
+        {
+          "type": "d7",
+          "label": "D7 passive income",
+          "min_investment_usd": 12000,
+          "notes": "Lower capital pathway for remote income / pensioners — popular with Bitcoiners."
+        }
+      ],
+      "critical_tests": {
+        "live_and_work": true,
+        "scope_of_freedom": true,
+        "dual_citizenship": true,
+        "notes": "EU Schengen access; citizenship after 5 years with Portuguese language requirement."
+      },
+      "legal_compliance": {
+        "primary_laws": [
+          "Lei de Estrangeiros",
+          "Golden Visa amendments 2023+"
+        ],
+        "official_urls": [
+          "https://imigrante.sef.pt",
+          "https://www.portugal.gov.pt"
+        ],
+        "property_foreign_ownership": "Permitted; golden visa real estate route restricted/reformed — verify current rules.",
+        "recent_changes": "Housing-route golden visa largely closed; funds and business routes remain."
+      },
+      "compliance_clock": {
+        "renewal_interval_months": 24,
+        "citizenship_eligibility_years": 5,
+        "residency_day_count_target": 1825
+      },
+      "paige_fields": {
+        "common_questions": [
+          "Is the housing golden visa still available?",
+          "How does NHR tax status interact with BTC?",
+          "Minimum stay for citizenship?"
+        ],
+        "red_flags": [
+          "Policy shifted 2023–2024 — confirm eligible investment category",
+          "NHR regime changes"
+        ],
+        "optimization_tips": [
+          "D7 for lower capital; fund route for EU stackers"
+        ],
+        "escalate_when": "NHR + crypto treasury structuring"
+      }
     },
     {
       "id": 12,

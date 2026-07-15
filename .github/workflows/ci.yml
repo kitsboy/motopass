@@ -19,8 +19,37 @@ jobs:
       - run: npm run lint
       - run: npm run prettier:check
       - run: npm run validate:data
+      - run: npm run validate:stamps
+      - name: Ensure pitch anchor in sync
+        run: |
+          npm run pitch:sync
+          git diff --exit-code research/pitch-anchor.json docs/pitch/ANCHOR-SNAPSHOT.md \
+            || (echo "Run npm run pitch:sync and commit anchor files" && exit 1)
       - run: npm test
       - run: npm run build
       - run: node scripts/check-bundle-size.mjs
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+
+  deploy:
+    needs: build-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler pages deploy dist --project-name=motopass --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        continue-on-error: true

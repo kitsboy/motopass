@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Zap, MessageCircle } from 'lucide-react'
+import { MOTOPASS_RELAYS } from '../lib/nostr'
 import { NostrConnect } from '../components/NostrConnect'
 import { BtcMapReportVenue } from '../components/btcmap/BtcMapReportVenue'
 import { AgentCardKimi } from '../components/AgentCardKimi'
@@ -37,6 +39,7 @@ const statusClass = (s: AgentStatus) =>
 
 export function AgentsPage() {
   const { t } = useI18n()
+  const [dmPreview, setDmPreview] = useState<string | null>(null)
 
   return (
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
@@ -70,10 +73,13 @@ export function AgentsPage() {
             </div>
             <button
               type="button"
-              disabled
-              aria-disabled="true"
-              title={t('agents.messageSoon')}
-              className="btn-secondary w-full text-sm !py-2 opacity-50 cursor-not-allowed"
+              onClick={() => setDmPreview(JSON.stringify({
+                kind: 14,
+                tags: [['p', a.npub]],
+                content: `MotoPass agent inquiry — ${a.country}`,
+                relays: MOTOPASS_RELAYS,
+              }, null, 2))}
+              className="btn-secondary w-full text-sm !py-2"
             >
               <MessageCircle size={14} /> {t('agents.message')}
             </button>
@@ -84,6 +90,18 @@ export function AgentsPage() {
       <div className="mt-10 max-w-xl mx-auto">
         <BtcMapReportVenue />
       </div>
+
+      {dmPreview && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" role="dialog" aria-modal="true">
+          <div className="max-w-lg w-full rounded-card border border-mp-border bg-mp-card p-5 shadow-mp-4">
+            <h3 className="font-display font-semibold text-ink mb-2">Nostr DM stub</h3>
+            <pre className="text-[10px] font-mono text-ink-secondary overflow-auto max-h-64 bg-mp-section p-3 rounded-mp-md">{dmPreview}</pre>
+            <button type="button" className="btn-primary mt-4 text-sm" onClick={() => { navigator.clipboard?.writeText(dmPreview); setDmPreview(null) }}>
+              Copy & close
+            </button>
+          </div>
+        </div>
+      )}
 
       <p className="text-xs text-ink-muted mt-6 text-center max-w-xl mx-auto leading-relaxed">
         {t('agents.disclaimer')}

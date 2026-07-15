@@ -15,7 +15,11 @@ interface UserContextValue {
 const UserContext = createContext<UserContextValue | null>(null)
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
-  const [profile, setProfileState] = useState<UserProfile | null>(() => loadProfile())
+  const [profile, setProfileState] = useState<UserProfile | null>(() => {
+    const p = loadProfile()
+    if (p?.npub) sessionStorage.setItem('motopass-npub', p.npub)
+    return p
+  })
 
   const refresh = useCallback(() => {
     setProfileState(loadProfile())

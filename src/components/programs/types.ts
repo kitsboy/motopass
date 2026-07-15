@@ -1,18 +1,33 @@
-export type ProgramModalTab = 'Overview' | 'Finance' | 'Bitcoin' | 'Legal' | 'Sources';
+import type {
+  ComplianceClock,
+  CriticalTests,
+  LegalCompliance,
+  PaigeFields,
+  ProgramPathway,
+} from '../../types/program';
+
+export type ProgramModalTab =
+  | 'Overview'
+  | 'Pathways'
+  | 'Finance'
+  | 'Bitcoin'
+  | 'Critical'
+  | 'Legal'
+  | 'Paige'
+  | 'Sources';
 
 export interface Program {
   id: string;
   country: string;
-  countryCode: string; // ISO-2, for flag rendering
+  countryCode: string;
   tier: 'Citizenship' | 'Residency' | 'Golden Visa';
   region: string;
   minInvestment: number;
   timelineDays: number;
-  sovereigntyScore: number; // 0–100, drives visual weight
+  sovereigntyScore: number;
   proofStatus: 'verified' | 'pending' | 'demo';
   proofRef?: string;
   summary: string;
-  /** Extended fields for modal tabs — populated by programAdapter */
   flag?: string;
   category?: string;
   status?: string;
@@ -30,9 +45,18 @@ export interface Program {
   sources?: string[];
   proofUrl?: string;
   proofBlockHeight?: number;
+  flagshipDepth?: boolean;
+  pathways?: ProgramPathway[];
+  criticalTests?: CriticalTests;
+  legalCompliance?: LegalCompliance;
+  complianceClock?: ComplianceClock;
+  paigeFields?: PaigeFields;
 }
 
-/** Visual weight tier derived from sovereigntyScore — used by ProgramCard & table rows */
 export function scoreWeight(score: number): 'flagship' | 'standard' {
   return score >= 85 ? 'flagship' : 'standard';
+}
+
+export function hasFlagshipDepth(program: Program): boolean {
+  return !!(program.flagshipDepth && program.pathways?.length);
 }

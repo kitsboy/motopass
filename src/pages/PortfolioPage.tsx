@@ -14,6 +14,8 @@ import { StatCard } from '../components/ui/StatCard'
 import { ClassyModal } from '../components/ui/ClassyModal'
 import { useI18n } from '../i18n/I18nContext'
 import { BtcDualPrice } from '../components/BtcDualPrice'
+import { ComplianceClock } from '../components/portfolio/ComplianceClock'
+import { hasFlagshipDepth } from '../components/programs/types'
 
 type SortKey = 'name' | 'score' | 'invest'
 
@@ -99,11 +101,26 @@ export function PortfolioPage() {
       {error && <ProgramsLoadError message={error} />}
       {loading && !error && <CardSkeleton />}
       {!loading && acquired.length === 0 && (
-        <div className="text-center py-16 card-elevated max-w-md mx-auto">
+        <div className="text-center py-16 rounded-card border border-mp-border bg-mp-card shadow-mp-2 max-w-md mx-auto">
           <p className="text-ink-secondary mb-6">{t('portfolio.empty')}</p>
           <Link to="/programs" className="btn-primary">{t('portfolio.explore')}</Link>
         </div>
       )}
+      {cinematic.some(hasFlagshipDepth) && (
+        <div className="mb-10 grid gap-4 md:grid-cols-2">
+          {cinematic.filter(hasFlagshipDepth).map((p) => (
+            <ComplianceClock key={p.id} program={p} />
+          ))}
+        </div>
+      )}
+
+      {acquired.length > 0 && (
+        <div className="mb-6 flex flex-wrap gap-3">
+          <Link to="/simulator" className="chip text-xs text-accent hover:underline">Stack simulator →</Link>
+          <Link to="/btcmap" className="chip text-xs text-mp-btc-text hover:underline">BTC Map merchants →</Link>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {cinematic.map((p, i) => (
           <ProgramCard

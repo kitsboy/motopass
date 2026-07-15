@@ -4,7 +4,7 @@ import { useUser } from '../context/UserContext'
 import { ProgressTracker } from '../components/ProgressTracker'
 import { PaymentMethods } from '../components/PaymentMethods'
 import { AgentCardKimi } from '../components/AgentCardKimi'
-import { PaigeStub } from '../components/PaigeStub'
+import { PaigeChat } from '../components/PaigeChat'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
 import { ClassyModal } from '../components/ui/ClassyModal'
@@ -80,7 +80,7 @@ export function DashboardPage() {
             <AnimatedBadge status="success">{formatT(t, 'dashboard.assigned', { name: profile.agentName })}</AnimatedBadge>
           </div>
           <AgentCardKimi />
-          <PaigeStub />
+          <PaigeChat />
         </div>
       </div>
 

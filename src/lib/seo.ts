@@ -14,9 +14,9 @@ export type SeoMeta = {
 /** Static route SEO — 14 app routes (blog slug resolved dynamically). */
 export const ROUTE_SEO: Record<string, SeoMeta> = {
   '/': {
-    title: 'Bitcoin Sovereign Passports & Residency',
+    title: 'Bitcoin Sovereign Passports & Sovereign Passport Intelligence',
     description:
-      'Evaluate, compare, and stack sovereign residency and citizenship programs with Bitcoin-verified data, Nostr identity, and Satohash OpenTimestamps proofs.',
+      'Bitcoin-native sovereign passport platform — evaluate Bitcoin visa and crypto golden visa programs with ₿-first pricing, Nostr identity, and Satohash proofs.',
   },
   '/portfolio': {
     title: 'Portfolio — Your Sovereign Stack',
@@ -24,9 +24,9 @@ export const ROUTE_SEO: Record<string, SeoMeta> = {
       'Track saved CBI, RBI, and Bitcoin-native residency programs in your personal sovereign mobility portfolio.',
   },
   '/programs': {
-    title: 'Programs — 50 Jurisdictions',
+    title: 'Bitcoin Visa & Crypto Golden Visa Programs — 50 Jurisdictions',
     description:
-      'Browse 50 citizenship-by-investment and residency-by-investment programs with Lightning readiness, crypto scores, and Satohash verification.',
+      'Browse sovereign passport and Bitcoin visa programs — crypto golden visa, residency-by-investment, and CBI with Lightning readiness, ₿-denominated costs, and Satohash verification.',
   },
   '/simulator': {
     title: 'Stack Simulator',

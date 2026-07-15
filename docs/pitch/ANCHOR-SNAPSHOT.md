@@ -4,8 +4,8 @@
 
 | Field | Value |
 |-------|-------|
-| Generated | 2026-07-15T00:05:19.504Z |
-| BUILD | 2026.07.07-26 |
+| Generated | 2026-07-15T00:11:12.727Z |
+| BUILD | 2026.07.14-27 |
 | BTC spot | ₿1.00 · $65k (mempool.space) |
 | Programs | 50 |
 | Avg stack savings | ₿1.19 · $77k (95%) |
@@ -20,7 +20,7 @@
 
 ## Bolivia 🇧🇴
 - Min (stub): ₿1.23 · $80k
-- Status: To be filled
+- Status: Researching - Flagship
 - Investor/company route — no pure CBI; verify solvency thresholds
 
 ---

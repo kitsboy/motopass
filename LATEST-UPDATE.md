@@ -1,5 +1,5 @@
 # motopass — Last Updated 2026-07-14 by Cursor
 
-Brief: Bitcoin-first pricing across pitch + app; self-evolving pitch anchor (`npm run pitch:sync`); 4 Core Pillars spec
-Commit: ddd24d6
-Live: https://motopass.giveabit.io · Footer: `BUILD 2026.07.07-26`
+Brief: BUILD 27 — 6 flagship jurisdictions, ProgramModal depth tabs, Paige RAG, compliance clock, CI stamp gate
+Commit: (pending)
+Live: https://motopass.giveabit.io · Footer: `BUILD 2026.07.14-27`

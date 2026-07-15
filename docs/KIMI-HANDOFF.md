@@ -344,6 +344,37 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-14 (BUILD 27 — all 20 priorities)
+
+**Machine:** M3 (Cursor)
+**Project:** motopass
+
+### Done (20-priority sprint)
+- [x] 1–5: Flagship schema v2 — Uruguay, Bolivia, UAE, Portugal, Switzerland, El Salvador in `countries.json`
+- [x] 6–7: Content-hash Satohash proofs + `validate:stamps` CI gate
+- [x] 8: `pitch:sync` enforced in CI
+- [x] 9–10: Organization/WebSite/BreadcrumbList JSON-LD + Bitcoin visa SEO keywords
+- [x] 11: `BtcDualPrice` in ProgramModal finance/pathways
+- [x] 12: Portfolio cinematic polish + compliance clocks + quick links
+- [x] 13: `ComplianceClock` component on portfolio + modal overview
+- [x] 14: Weekly `btcmap-cron.yml` workflow
+- [x] 15: CI builds `dist/` artifact + optional CF deploy job (dist still committed for safety)
+- [x] 16: BUILD `2026.07.14-27`
+- [x] 17: npub session sync on profile load
+- [x] 18: Paige RAG (`PaigeChat`) on dashboard
+- [x] 19: Nostr DM stub on `/agents` + `nostrRelay.ts`
+- [x] 20: Kimi: integrate this handoff + 4-pillar Kanban on M4 (instructions below)
+
+### Kimi / MASTER-BRAIN (M4 — Cam sync when ready)
+- Add swimlanes: Forge · Seal · Ledger · Nexus
+- Link `docs/SOVEREIGN-STACK-4-PILLARS.md`, `docs/pitch/README.md`
+- Weekly: `npm run pitch:sync` freshness + SEO audit queue
+
+### Git State
+- Branch: `main`
+
+---
+
 ## Handoff to Kimi — 2026-07-14 (Bitcoin-first pitch + 4 Pillars)
 
 **Machine:** M3 (Cursor/Grok)

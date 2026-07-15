@@ -12,7 +12,8 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
-const BUILD_ID = '2026.07.07-26'
+const buildInfo = readFileSync(resolve(root, 'src/lib/buildInfo.ts'), 'utf8')
+const BUILD_ID = buildInfo.match(/BUILD_ID = '([^']+)'/)?.[1] ?? '2026.07.14-27'
 const FALLBACK_BTC_USD = 105_000
 const SATS_PER_BTC = 100_000_000
 

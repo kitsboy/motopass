@@ -11,6 +11,8 @@ const ISO_BY_NAME: Record<string, string> = {
   Switzerland: 'CH',
   Singapore: 'SG',
   'United Arab Emirates': 'AE',
+  Bolivia: 'BO',
+  'UAE (Dubai / Abu Dhabi)': 'AE',
   Panama: 'PA',
   Georgia: 'GE',
   Montenegro: 'ME',
@@ -135,6 +137,12 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     sources: p.sources,
     proofUrl: proof?.proof_url,
     proofBlockHeight: proof?.block_height,
+    flagshipDepth: p.flagship_depth,
+    pathways: p.pathways,
+    criticalTests: p.critical_tests,
+    legalCompliance: p.legal_compliance,
+    complianceClock: p.compliance_clock,
+    paigeFields: p.paige_fields,
   }
 }
 
