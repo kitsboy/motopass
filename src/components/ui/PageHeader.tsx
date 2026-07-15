@@ -20,14 +20,14 @@ export function PageHeader({
   const headerProps = reduceMotion
     ? {
         className:
-          'page-header-accent flex flex-col gap-6 border-b border-mp-border-subtle/80 pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
+          'page-header-accent flex flex-col gap-6 border-b border-mp-border-subtle/60 pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
       }
     : {
-        initial: { opacity: 0, y: 16 },
+        initial: { opacity: 0, y: 18 },
         animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
         className:
-          'page-header-accent flex flex-col gap-6 border-b border-mp-border-subtle/80 pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
+          'page-header-accent flex flex-col gap-6 border-b border-mp-border-subtle/60 pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
       }
 
   const Header = reduceMotion ? 'header' : motion.header
@@ -35,14 +35,10 @@ export function PageHeader({
   return (
     <Header {...headerProps}>
       <div className="max-w-2xl min-w-0">
-        {eyebrow && (
-          <span className="font-mono text-eyebrow uppercase tracking-[0.22em] text-mp-btc-text block mb-2.5">
-            {eyebrow}
-          </span>
-        )}
+        {eyebrow && <span className="club-eyebrow block mb-3">{eyebrow}</span>}
         <h1 className="font-display text-h2 font-semibold tracking-tight text-mp-ink sm:text-h1">{title}</h1>
         {body && (
-          <p className="mt-3 max-w-xl font-body text-body text-mp-ink-secondary leading-relaxed">{body}</p>
+          <p className="mt-3.5 max-w-xl font-body text-body text-mp-ink-secondary leading-relaxed">{body}</p>
         )}
       </div>
       {actions && <div className="flex shrink-0 flex-wrap items-center gap-2 sm:gap-3">{actions}</div>}

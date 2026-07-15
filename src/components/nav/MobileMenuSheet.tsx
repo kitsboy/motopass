@@ -33,7 +33,7 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-          className="lg:hidden overflow-hidden border-t border-mp/70 bg-card/95 backdrop-blur-xl"
+          className="lg:hidden overflow-hidden border-t border-mp/50 bg-card/90 backdrop-blur-2xl"
         >
           <div className="px-4 pb-4 pt-3 space-y-3 max-h-[min(70vh,520px)] overflow-y-auto">
             <div className="flex items-center justify-between">

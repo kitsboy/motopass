@@ -31,8 +31,10 @@ import { absoluteUrl } from '../lib/seo'
 import { countActiveFilters, filtersFromSearchParams, filtersToSearchParams, isDefaultFilters } from '../lib/urlState'
 
 const iconBtn = (active: boolean) =>
-  `rounded-chip border px-2.5 py-2 font-chrome text-xs transition-colors duration-fast ${
-    active ? 'border-mp-btc/40 bg-mp-btc-soft text-mp-btc-text shadow-mp-1' : 'border-mp-border text-mp-ink-secondary hover:border-mp-border-strong hover:text-mp-ink'
+  `rounded-xl border px-2.5 py-2 font-chrome text-xs transition-all duration-fast ${
+    active
+      ? 'border-btc-orange/40 bg-btc-orange-soft text-mp-btc-text shadow-mp-glow scale-[1.02]'
+      : 'border-mp-border text-mp-ink-secondary hover:border-btc-orange/30 hover:text-mp-ink hover:scale-[1.02]'
   }`
 
 export function ProgramsPage() {
@@ -185,9 +187,9 @@ export function ProgramsPage() {
   }, [programs])
 
   return (
-    <div className="min-h-screen bg-mp-canvas">
+    <div className="page-container min-h-screen">
       <SeoHead jsonLd={programsJsonLd} jsonLdOnly />
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-16">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-14">
         <PageHeader
           eyebrow={formatT(t, 'programs.eyebrow', { count: programs.length })}
           title={t('programs.title')}
@@ -318,7 +320,7 @@ export function ProgramsPage() {
 
             <div>
               {cinematic.length === 0 && (
-                <div className="text-center py-16 rounded-card border border-mp-border bg-mp-card">
+                <div className="text-center py-16 rounded-2xl border border-mp-border glass-card">
                   <p className="text-mp-ink-tertiary">{t('programs.noMatch')}</p>
                 </div>
               )}

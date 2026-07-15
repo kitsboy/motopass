@@ -7,7 +7,9 @@ import { addApplication } from '../lib/storage'
 import type { NostrSession } from '../lib/nostr'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
-import { GlassCard } from '../components/ui/GlassCard'
+import { Card } from '../components/ui/Card'
+import { Button } from '../components/ui/Button'
+import { Input, Textarea } from '../components/ui/Input'
 import { useLaunchGates } from '../hooks/useLaunchGates'
 import { BUILD_ID } from '../lib/buildInfo'
 
@@ -64,7 +66,7 @@ export function ApplyPage() {
   return (
     <div key={programPrefill || 'apply'} className="page-container px-4 sm:px-6 py-8 max-w-xl mx-auto">
       {applicationsOpen && (
-        <GlassCard variant="banner" animate delay={0} className="mb-6 flex items-start gap-3">
+        <Card variant="banner" animate delay={0} className="mb-6 flex items-start gap-3">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-mp-md bg-btc-orange/15 border border-btc-orange/25">
             <Rocket size={18} className="text-btc-orange" aria-hidden />
           </div>
@@ -75,13 +77,13 @@ export function ApplyPage() {
               {BUILD_ID} · {passed}/{report.gates.length} gates · applications_open
             </p>
           </div>
-        </GlassCard>
+        </Card>
       )}
 
-      <PageHeader eyebrow="APPLICATIONS" title={t('apply.title')} subtitle={t('apply.sub')} />
+      <PageHeader eyebrow="MEMBERS · APPLICATIONS" title={t('apply.title')} subtitle={t('apply.sub')} />
 
       {relayFake && (
-        <GlassCard animate delay={0.05} className="mb-6 flex items-start gap-3 border-nostr-violet/25">
+        <Card animate delay={0.05} className="mb-6 flex items-start gap-3 border-nostr-violet/25">
           <Radio size={18} className="text-nostr-violet shrink-0 mt-0.5" aria-hidden />
           <div className="min-w-0">
             <p className="font-chrome text-sm font-semibold text-ink">{t('apply.relayFakeTitle')}</p>
@@ -89,10 +91,10 @@ export function ApplyPage() {
               {report.relay ?? 'wss://relay.motopass.giveabit.io'} · status: fake
             </p>
           </div>
-        </GlassCard>
+        </Card>
       )}
 
-      <GlassCard variant="elevated" animate delay={0.1} className="mb-6" aria-labelledby="apply-gates-heading">
+      <Card variant="elevated" animate delay={0.1} className="mb-6" aria-labelledby="apply-gates-heading">
         <h2 id="apply-gates-heading" className="font-chrome text-sm font-semibold text-ink flex items-center gap-2 mb-4 min-w-0">
           <ShieldCheck size={16} className="text-mp-proof shrink-0" aria-hidden />
           <span className="truncate">{t('apply.gatesHeading')}</span>
@@ -132,54 +134,52 @@ export function ApplyPage() {
         <p className="text-[10px] text-ink-muted font-mono mt-4 break-all opacity-60">
           {BUILD_ID} · <code>npm run launch:gate</code>
         </p>
-      </GlassCard>
+      </Card>
 
       <div className="mb-6">
         <NostrConnect onConnect={setNostr} />
       </div>
 
       {!result ? (
-        <form onSubmit={submit} className="glass-card-elevated space-y-4">
-          <fieldset disabled={!applicationsOpen || submitting} className="space-y-4 disabled:opacity-55">
-            <div>
-              <label htmlFor="apply-name" className="font-chrome text-xs font-medium text-ink-muted block mb-1.5">
-                {t('apply.yourName')}
-              </label>
-              <input id="apply-name" required value={name} onChange={e => setName(e.target.value)} className="input-field w-full" />
-            </div>
-            <div>
-              <label htmlFor="apply-program" className="font-chrome text-xs font-medium text-ink-muted block mb-1.5">
-                {t('apply.targetProgram')}
-              </label>
-              <input
+        <Card variant="elevated" className="space-y-4">
+          <form onSubmit={submit} className="space-y-4">
+            <fieldset disabled={!applicationsOpen || submitting} className="space-y-4 disabled:opacity-55">
+              <Input
+                id="apply-name"
+                label={t('apply.yourName')}
+                required
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+              <Input
                 id="apply-program"
+                label={t('apply.targetProgram')}
                 required
                 value={program}
                 onChange={e => setProgram(e.target.value)}
                 placeholder={t('apply.programPlaceholder')}
-                className="input-field w-full"
               />
-            </div>
-            <div>
-              <label htmlFor="apply-notes" className="font-chrome text-xs font-medium text-ink-muted block mb-1.5">
-                {t('apply.notesOptional')}
-              </label>
-              <textarea id="apply-notes" value={notes} onChange={e => setNotes(e.target.value)} rows={3} className="input-field w-full resize-y" />
-            </div>
-            <button type="submit" className="btn-primary w-full" disabled={!applicationsOpen || submitting}>
-              {submitting ? (
-                <>
-                  <Loader2 size={16} className="animate-spin" aria-hidden />
-                  Hashing…
-                </>
-              ) : (
-                t('apply.submit')
-              )}
-            </button>
-          </fieldset>
-        </form>
+              <Textarea
+                id="apply-notes"
+                label={t('apply.notesOptional')}
+                value={notes}
+                onChange={e => setNotes(e.target.value)}
+              />
+              <Button type="submit" className="w-full" disabled={!applicationsOpen || submitting}>
+                {submitting ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" aria-hidden />
+                    Hashing…
+                  </>
+                ) : (
+                  t('apply.submit')
+                )}
+              </Button>
+            </fieldset>
+          </form>
+        </Card>
       ) : (
-        <GlassCard variant="proof" animate className="space-y-4">
+        <Card variant="proof" animate className="space-y-4">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-mp-md bg-mp-proof/15 border border-mp-proof/30">
               <CheckCircle2 size={22} className="text-mp-proof" aria-hidden />
@@ -225,12 +225,12 @@ export function ApplyPage() {
           <a href={satohashStampGuideUrl(result.hash)} target="_blank" rel="noopener noreferrer" className="btn-primary w-full inline-flex items-center justify-center gap-2">
             {t('apply.stampSatohash')} <ExternalLink size={14} />
           </a>
-          <Link to="/agents" className="btn-secondary w-full text-center">{t('apply.meetAgents')}</Link>
+          <Link to="/agents" className="btn-secondary w-full text-center block">{t('apply.meetAgents')}</Link>
           <p className="font-body text-xs text-ink-muted leading-relaxed">{t('apply.agentNotify')}</p>
-          <button type="button" onClick={() => setResult(null)} className="btn-secondary w-full">
+          <Button type="button" variant="secondary" className="w-full" onClick={() => setResult(null)}>
             {t('apply.registerAnother')}
-          </button>
-        </GlassCard>
+          </Button>
+        </Card>
       )}
 
       <p className="text-center font-chrome text-xs text-ink-muted mt-8">

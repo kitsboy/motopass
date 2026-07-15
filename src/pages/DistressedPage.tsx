@@ -9,7 +9,7 @@ import { CardSkeleton } from '../components/LoadingSkeleton'
 import { BtcDualPrice } from '../components/BtcDualPrice'
 import { ProofBadge } from '../components/ui/ProofBadge'
 import { ClassyModal } from '../components/ui/ClassyModal'
-import { GlassCard } from '../components/ui/GlassCard'
+import { Card } from '../components/ui/Card'
 import { EscrowBuilder } from '../components/distressed/EscrowBuilder'
 import {
   buildDistressedListings,
@@ -40,7 +40,7 @@ function ListingCard({
   index: number
 }) {
   return (
-    <GlassCard
+    <Card
       variant="interactive"
       animate
       delay={0.04 + index * 0.03}
@@ -79,7 +79,7 @@ function ListingCard({
           {listing.lane}
         </span>
       </div>
-    </GlassCard>
+    </Card>
   )
 }
 
@@ -207,12 +207,12 @@ export function DistressedPage() {
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-6xl mx-auto">
       <PageHeader
-        eyebrow="FORGE · MARKETPLACE"
+        eyebrow="MEMBERS · FORGE · MARKETPLACE"
         title="Distressed sovereign plays"
         subtitle="Proof-gated listings — curated by Kimi or permissionless with Satohash + OTS. ₿ asks, template escrow only."
       />
 
-      <GlassCard variant="banner" animate className="mb-8 flex flex-wrap items-center gap-4">
+      <Card variant="banner" animate className="mb-8 flex flex-wrap items-center gap-4">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-mp-md bg-btc-orange/12 border border-btc-orange/25">
           <TrendingDown className="text-btc-orange" size={24} />
         </div>
@@ -224,7 +224,7 @@ export function DistressedPage() {
             Spot ₿1 ≈ ${rate.toLocaleString()} — all asks shown in ₿ first
           </p>
         </div>
-      </GlassCard>
+      </Card>
 
       <div className="flex flex-wrap gap-2 mb-5">
         {(['all', 'curated', 'permissionless'] as DistressedLane[]).map(l => (
@@ -289,9 +289,9 @@ export function DistressedPage() {
       {!loading && !error && (
         <>
           {filtered.length === 0 ? (
-            <GlassCard className="text-center py-16 text-ink-muted font-body text-sm">
+            <Card className="text-center py-16 text-ink-muted font-body text-sm">
               No listings match filters — try lowering min score or switching lane.
-            </GlassCard>
+            </Card>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filtered.map((listing, i) => (

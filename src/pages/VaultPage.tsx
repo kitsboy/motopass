@@ -8,7 +8,8 @@ import { verifyHashPaste, verifyOtsInBrowser, satohashVerifyUrl } from '../lib/s
 import { RowSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { PageHeader } from '../components/ui/PageHeader'
-import { GlassCard } from '../components/ui/GlassCard'
+import { Card } from '../components/ui/Card'
+import { Button } from '../components/ui/Button'
 import { ProofBadge } from '../components/ui/ProofBadge'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
@@ -80,9 +81,9 @@ export function VaultPage() {
 
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-4xl mx-auto">
-      <PageHeader eyebrow={t('vault.eyebrow')} title={t('vault.title')} subtitle={t('vault.subtitle')} />
+      <PageHeader eyebrow={`MEMBERS · ${t('vault.eyebrow')}`} title={t('vault.title')} subtitle={t('vault.subtitle')} />
 
-      <GlassCard variant="proof" animate className="mb-8" aria-labelledby="vault-verify-heading">
+      <Card variant="proof" animate className="mb-8" aria-labelledby="vault-verify-heading">
         <h2 id="vault-verify-heading" className="font-chrome text-sm font-semibold text-ink flex items-center gap-2 mb-3">
           <FileCheck size={16} className="text-btc-orange" aria-hidden />
           Verify OTS proof
@@ -104,14 +105,15 @@ export function VaultPage() {
             className="input-field flex-1 font-mono text-xs"
             spellCheck={false}
           />
-          <button
+          <Button
             type="button"
+            size="sm"
             onClick={handleHashVerify}
             disabled={verifyBusy || !hashInput.trim()}
-            className="btn-primary text-xs !py-2 shrink-0 min-w-[7rem]"
+            className="shrink-0 min-w-[7rem]"
           >
             {verifyBusy ? <Loader2 size={14} className="animate-spin" /> : 'Verify hash'}
-          </button>
+          </Button>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
@@ -167,7 +169,7 @@ export function VaultPage() {
             </div>
           </div>
         )}
-      </GlassCard>
+      </Card>
 
       {error && <ProgramsLoadError message={error} />}
       {loading && !error && <RowSkeleton count={5} />}
@@ -220,7 +222,7 @@ export function VaultPage() {
             const isDemo = cinematic.proofStatus === 'demo'
             const otsPath = proof.ots_path
             return (
-              <GlassCard
+              <Card
                 key={p.id}
                 variant={isDemo ? 'default' : 'proof'}
                 animate
@@ -284,19 +286,19 @@ export function VaultPage() {
                     Nostr 30078
                   </button>
                 </div>
-              </GlassCard>
+              </Card>
             )
           })}
           {stamped.length === 0 && (
-            <GlassCard className="text-center py-12 text-mp-ink-tertiary font-body">
+            <Card className="text-center py-12 text-mp-ink-tertiary font-body">
               {t('vault.empty')}
-            </GlassCard>
+            </Card>
           )}
         </div>
       )}
 
       {nostrEvent && (
-        <GlassCard variant="elevated" animate className="mt-8">
+        <Card variant="elevated" animate className="mt-8">
           <div className="flex items-center justify-between gap-3 mb-3">
             <h3 className="font-chrome text-sm font-semibold text-ink flex items-center gap-2">
               <Shield size={14} className="text-btc-orange" /> {t('vault.nostrStub')}
@@ -319,7 +321,7 @@ export function VaultPage() {
             {nostrEvent}
           </pre>
           <span className="sr-only" aria-live="polite">{copied ? t('vault.copied') : ''}</span>
-        </GlassCard>
+        </Card>
       )}
     </div>
   )

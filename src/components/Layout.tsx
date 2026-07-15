@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { Logo } from './Logo'
 import { Footer } from './Footer'
+import { Header } from './Header'
 import { RouteSeo } from './RouteSeo'
 import { HeaderToolbar } from './nav/HeaderToolbar'
 import { DesktopNav } from './nav/DesktopNav'
@@ -36,23 +37,23 @@ export function Layout() {
         {t('nav.skip')}
       </a>
 
-      <header className="sticky top-0 z-50 nav-header">
+      <Header>
         <div className="max-w-7xl mx-auto px-3 sm:px-5">
           <div className="h-12 sm:h-[3.25rem] flex items-center justify-between gap-2">
             <NavLink
               to="/"
-              className="flex items-center gap-2 min-w-0 group shrink-0"
+              className="flex items-center gap-2.5 min-w-0 group shrink-0"
               onClick={() => setMenuOpen(false)}
             >
               <Logo size="sm" />
               <div className="min-w-0 hidden sm:block leading-tight">
-                <div className="font-display font-semibold tracking-tight text-[13px] sm:text-sm truncate text-ink group-hover:text-mp-btc-text transition-colors">
+                <div className="font-display font-semibold tracking-tight text-[13px] sm:text-sm truncate text-ink group-hover:text-mp-btc-text transition-colors duration-fast">
                   MOTOPASS
                 </div>
-                <div className="hidden md:block text-[10px] text-ink-muted truncate font-mono max-w-[14rem]">
+                <div className="hidden md:block text-[10px] text-ink-muted truncate font-mono max-w-[14rem] opacity-80">
                   {FOOTER_VERSION} · {t('tagline')}
                 </div>
-                <div className="md:hidden text-[10px] text-ink-muted truncate font-mono">{FOOTER_VERSION}</div>
+                <div className="md:hidden text-[10px] text-ink-muted truncate font-mono opacity-80">{FOOTER_VERSION}</div>
               </div>
             </NavLink>
 
@@ -71,9 +72,8 @@ export function Layout() {
         </div>
 
         <MobileMenuSheet open={menuOpen} onClose={() => setMenuOpen(false)} />
-
         <DesktopNav />
-      </header>
+      </Header>
 
       <main id="main-content" className="flex-1 relative z-[1] w-full min-w-0 max-w-full overflow-x-clip">
         <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-3 w-full min-w-0">

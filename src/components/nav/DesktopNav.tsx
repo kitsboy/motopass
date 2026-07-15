@@ -10,10 +10,11 @@ export function DesktopNav() {
 
   return (
     <nav
-      className="hidden lg:block border-t border-mp/40 bg-card-muted/30 backdrop-blur-md"
+      className="hidden lg:block border-t border-mp/30 bg-card-muted/20 backdrop-blur-md"
       aria-label="Main navigation"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1.5 flex items-center gap-1 overflow-x-auto scrollbar-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center gap-1 overflow-x-auto scrollbar-none">
+        <span className="nav-section-label mr-1 shrink-0 hidden xl:inline opacity-60">Members</span>
         {MAIN_NAV_ROUTES.map(n =>
           n.apply ? (
             <ApplyNavLink key={n.to} />
