@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-51] — 2026-07-15
+
+### Changed
+- Elite sovereign — #0a0a0f design, clean nav, vault→apply proof, value forks
+
+---
+
 ## [BUILD-2026.07.15-50] — 2026-07-15
 
 ### Changed

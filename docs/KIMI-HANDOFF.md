@@ -736,4 +736,23 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 51 — elite sovereign redesign)
+
+**Done:**
+- **Design system** — dark canvas `#0a0a0f`, deeper navy glass, reverse hash drift layer on header
+- **Nav** — primary: Programs · Vault · Distressed · BTC Map · Simulator · Agents · Apply; Compare/Portfolio/Verify in overflow only
+- **Vault → Apply** — "Use this proof" navigates with `?program=&proof=`; Apply shows proof card + prefilled notes
+- **Stack Simulator** — `ValueForksPanel` (pathway forks across stack)
+- **Programs** — `GoldStandardSpotlight` for Uruguay + Bolivia flagship depth
+- **Pitch** — pillars reordered Forge → Seal → Ledger → Nexus
+- **Paige** — must cite Satohash or mark claims `[unverified]`
+- **Portfolio** — Nostr identity banner for npub readiness
+- **73 unit tests** pass · BUILD `2026.07.15-51` · live verified
+
+**Git State:**
+- SHA: `9eb8774`
+- Pushed: `origin/main` · live https://motopass.giveabit.io
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
