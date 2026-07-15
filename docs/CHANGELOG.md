@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-52] — 2026-07-15
+
+### Changed
+- Elite Paradise Pass — cinematic header, glass depth, distressed proof-gate, credentials
+
+---
+
 ## [BUILD-2026.07.15-51] — 2026-07-15
 
 ### Changed

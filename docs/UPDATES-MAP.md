@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.07.15-51 · **Last updated:** 2026-07-15
+**BUILD:** 2026.07.15-52 · **Last updated:** 2026-07-15
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,7 +11,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.07.15-51 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.07.15-52 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
 | **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
 | **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
 | **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
@@ -30,6 +30,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.07.15-52** | 2026-07-15 | `0cec992` | Elite Paradise Pass — cinematic header, glass depth, distressed proof-gate, credentials |
 | **2026.07.15-51** | 2026-07-15 | `9eb8774` | Elite sovereign — #0a0a0f design, clean nav, vault→apply proof, value forks |
 | **2026.07.15-50** | 2026-07-15 | `f907aaa` | Queue complete — pitch polish, distressed/apply UX, design motion, i18n/SEO |
 | **2026.07.15-49** | 2026-07-15 | `4e9d748` | Batch 24 — deploy playbook, purge wired, boot guard polish, live-health CI, footer deploy tooltip |
