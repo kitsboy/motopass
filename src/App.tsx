@@ -5,6 +5,7 @@ import { UserProvider } from './context/UserContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { ProgramsProvider } from './context/ProgramsContext'
 import { BlockHeightProvider } from './context/BlockHeightContext'
+import { BtcPriceProvider } from './context/BtcPriceContext'
 import { BtcMapDensityProvider } from './context/BtcMapDensityContext'
 import { BtcMapAuthProvider } from './context/BtcMapAuthContext'
 import { Layout } from './components/Layout'
@@ -34,6 +35,7 @@ export default function App() {
     <ThemeProvider>
     <ProgramsProvider>
     <BlockHeightProvider>
+    <BtcPriceProvider>
     <BtcMapDensityProvider>
     <BtcMapAuthProvider>
     <I18nProvider>
@@ -64,6 +66,7 @@ export default function App() {
     </I18nProvider>
     </BtcMapAuthProvider>
     </BtcMapDensityProvider>
+    </BtcPriceProvider>
     </BlockHeightProvider>
     </ProgramsProvider>
     </ThemeProvider>

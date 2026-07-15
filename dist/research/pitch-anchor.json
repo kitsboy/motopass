@@ -1,0 +1,85 @@
+{
+  "schema": "motopass-pitch-anchor/v1",
+  "build": "2026.07.07-26",
+  "generated_at": "2026-07-15T00:05:19.504Z",
+  "btc_usd_reference": 64977,
+  "btc_price_source": "mempool.space",
+  "sats_per_btc": 100000000,
+  "display_policy": "Bitcoin-first: show ₿ (sats-derived) before USD on all monetary figures.",
+  "stats": {
+    "program_count": 50,
+    "lightning_ready_count": 24,
+    "avg_typical_investment": {
+      "usd": 424100,
+      "btc": 6.5269249118919,
+      "btc_display": "₿6.53",
+      "usd_display": "$424k"
+    },
+    "avg_gov_fees": {
+      "usd": 18600,
+      "btc": 0.28625513643289163,
+      "btc_display": "₿0.2863",
+      "usd_display": "$19k"
+    },
+    "avg_processing_months": 5.9,
+    "traditional_advisory": {
+      "usd": 81161,
+      "btc": 1.249072748818813,
+      "btc_display": "₿1.25",
+      "usd_display": "$81k"
+    },
+    "motopass_advisory": {
+      "usd": 3888,
+      "btc": 0.05983655755113348,
+      "btc_display": "₿0.0598",
+      "usd_display": "$3.9k"
+    },
+    "cost_savings": {
+      "usd": 77273,
+      "btc": 1.1892361912676794,
+      "btc_display": "₿1.19",
+      "usd_display": "$77k"
+    },
+    "cost_savings_pct": 95,
+    "flagships": {
+      "uruguay": {
+        "min_investment": {
+          "usd": 100000,
+          "btc": 1.5390061098542562,
+          "btc_display": "₿1.54",
+          "usd_display": "$100k"
+        },
+        "rentista_monthly_usd": {
+          "usd": 1500,
+          "btc": 0.023085091647813843,
+          "btc_display": "₿0.0231",
+          "usd_display": "$1.5k"
+        },
+        "gov_fees": {
+          "usd": 15000,
+          "btc": 0.2308509164781384,
+          "btc_display": "₿0.2309",
+          "usd_display": "$15k"
+        },
+        "processing_months": "3-8",
+        "lightning_ready": true
+      },
+      "bolivia": {
+        "min_investment": {
+          "usd": 80000,
+          "btc": 1.231204887883405,
+          "btc_display": "₿1.23",
+          "usd_display": "$80k"
+        },
+        "gov_fees": {
+          "usd": 12000,
+          "btc": 0.18468073318251074,
+          "btc_display": "₿0.1847",
+          "usd_display": "$12k"
+        },
+        "status": "To be filled",
+        "note": "Investor/company route — no pure CBI; verify solvency thresholds"
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { loadCompareIds, saveCompareIds } from '../lib/portfolioStorage'
 import { Search, X } from 'lucide-react'
@@ -14,20 +14,22 @@ import { toCinematicProgram } from '../lib/programAdapter'
 import { ProgramModal } from '../components/programs/ProgramModal'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
+import { CompareMoneyCell } from '../components/CompareMoneyCell'
 
-function parseNumeric(val: string): number | null {
-  const n = parseFloat(val.replace(/[^0-9.-]/g, ''))
-  return Number.isFinite(n) ? n : null
-}
-
-function bestIndex(values: string[], mode: 'min' | 'max'): Set<number> {
-  const nums = values.map(parseNumeric)
+function bestIndex(nums: (number | null)[], mode: 'min' | 'max'): Set<number> {
   const valid = nums.filter((n): n is number => n !== null)
   if (!valid.length) return new Set()
   const target = mode === 'min' ? Math.min(...valid) : Math.max(...valid)
   const indices = new Set<number>()
   nums.forEach((n, i) => { if (n === target) indices.add(i) })
   return indices
+}
+
+type CompareRow = {
+  label: string
+  best: 'min' | 'max' | null
+  numeric: (p: Program) => number | null
+  render: (p: Program) => ReactNode
 }
 
 export function FinanceComparePage() {
@@ -83,17 +85,67 @@ export function FinanceComparePage() {
   const selected = programs.filter(p => ids.includes(p.id))
   const compare = selected
 
-  const rows = useMemo(() => [
-    { label: t('compare.minInvestment'), key: (p: Program) => `$${(p.finance.min_investment_usd ?? 0).toLocaleString()}`, best: 'min' as const },
-    { label: t('compare.typical'), key: (p: Program) => `$${(p.finance.typical_investment_usd ?? 0).toLocaleString()}`, best: 'min' as const },
-    { label: t('compare.govFees'), key: (p: Program) => `$${(p.finance.gov_fees_usd ?? 0).toLocaleString()}`, best: 'min' as const },
-    { label: t('compare.processing'), key: (p: Program) => `${p.finance.processing_time_months ?? '—'} ${t('compare.months')}`, best: null },
-    { label: t('compare.btcScore'), key: (p: Program) => `${p.finance.crypto_friendly_score ?? '—'}/10`, best: 'max' as const },
-    { label: t('compare.sovereignty'), key: (p: Program) => `${p.sovereignty_score ?? '—'}/10`, best: 'max' as const },
-    { label: t('compare.synergy'), key: (p: Program) => p.stacking_synergy ?? '—', best: null },
-    { label: t('compare.btcIntegration'), key: (p: Program) => p.bitcoin_integration ?? '—', best: null },
-    { label: t('compare.risk'), key: (p: Program) => p.risk_level ?? '—', best: null },
-    { label: t('compare.lightning'), key: (p: Program) => p.lightning_ready ? t('compare.yes') : t('compare.no'), best: null },
+  const rows = useMemo((): CompareRow[] => [
+    {
+      label: t('compare.minInvestment'),
+      best: 'min',
+      numeric: (p) => p.finance.min_investment_usd,
+      render: (p) => <CompareMoneyCell usd={p.finance.min_investment_usd ?? 0} />,
+    },
+    {
+      label: t('compare.typical'),
+      best: 'min',
+      numeric: (p) => p.finance.typical_investment_usd,
+      render: (p) => <CompareMoneyCell usd={p.finance.typical_investment_usd ?? 0} />,
+    },
+    {
+      label: t('compare.govFees'),
+      best: 'min',
+      numeric: (p) => p.finance.gov_fees_usd,
+      render: (p) => <CompareMoneyCell usd={p.finance.gov_fees_usd ?? 0} />,
+    },
+    {
+      label: t('compare.processing'),
+      best: null,
+      numeric: () => null,
+      render: (p) => `${p.finance.processing_time_months ?? '—'} ${t('compare.months')}`,
+    },
+    {
+      label: t('compare.btcScore'),
+      best: 'max',
+      numeric: (p) => p.finance.crypto_friendly_score,
+      render: (p) => `${p.finance.crypto_friendly_score ?? '—'}/10`,
+    },
+    {
+      label: t('compare.sovereignty'),
+      best: 'max',
+      numeric: (p) => p.sovereignty_score ?? null,
+      render: (p) => `${p.sovereignty_score ?? '—'}/10`,
+    },
+    {
+      label: t('compare.synergy'),
+      best: null,
+      numeric: () => null,
+      render: (p) => p.stacking_synergy ?? '—',
+    },
+    {
+      label: t('compare.btcIntegration'),
+      best: null,
+      numeric: () => null,
+      render: (p) => p.bitcoin_integration ?? '—',
+    },
+    {
+      label: t('compare.risk'),
+      best: null,
+      numeric: () => null,
+      render: (p) => p.risk_level ?? '—',
+    },
+    {
+      label: t('compare.lightning'),
+      best: null,
+      numeric: () => null,
+      render: (p) => (p.lightning_ready ? t('compare.yes') : t('compare.no')),
+    },
   ], [t])
 
   return (
@@ -210,14 +262,14 @@ export function FinanceComparePage() {
                   </thead>
                   <tbody>
                     {rows.map(r => {
-                      const cells = compare.map(p => r.key(p))
-                      const bests = r.best ? bestIndex(cells, r.best) : new Set<number>()
+                      const nums = compare.map(p => r.numeric(p))
+                      const bests = r.best ? bestIndex(nums, r.best) : new Set<number>()
                       return (
                         <tr key={r.label} className="border-b border-mp-border-subtle hover:bg-mp-btc-soft/20">
                           <th scope="row" className="p-3 text-left text-ink-muted font-medium">{r.label}</th>
                           {compare.map((p, i) => (
-                            <td key={p.id} className={`p-3 font-mono text-xs text-ink ${bests.has(i) ? 'compare-best-cell' : ''}`}>
-                              {r.key(p)}
+                            <td key={p.id} className={`p-3 text-xs text-ink ${bests.has(i) ? 'compare-best-cell' : ''}`}>
+                              {r.render(p)}
                             </td>
                           ))}
                         </tr>
@@ -240,7 +292,7 @@ export function FinanceComparePage() {
                       {rows.map(r => (
                         <div key={r.label} className="flex justify-between gap-2 border-b border-mp/40 pb-1.5">
                           <dt className="text-ink-muted">{r.label}</dt>
-                          <dd className="font-mono text-ink text-right">{r.key(p)}</dd>
+                          <dd className="text-ink text-right">{r.render(p)}</dd>
                         </div>
                       ))}
                     </dl>

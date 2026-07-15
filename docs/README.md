@@ -14,6 +14,7 @@ Official documentation for MotoPass. All long-form docs live here unless require
 | Find any file in the project | [WORK-TREE.md](./WORK-TREE.md) |
 | Understand the project canon | [SOURCE-OF-TRUTH.md](./SOURCE-OF-TRUTH.md) |
 | Pick up from last Grok session | [KIMI-HANDOFF.md](./KIMI-HANDOFF.md) |
+| Pitch figures (₿ · USD, auto-synced) | [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) · [pitch/README.md](./pitch/README.md) |
 | Build or style UI | [DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md) + [DESIGN-TOKENS.md](./DESIGN-TOKENS.md) |
 | Understand full scope | [PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md) |
 | BTC Map integration details | [ARCHITECTURE.md](./ARCHITECTURE.md) · [DATA-MODEL.md](./DATA-MODEL.md) |
@@ -34,6 +35,9 @@ Official documentation for MotoPass. All long-form docs live here unless require
 ## Document index
 
 ### Strategy & marketing
+- [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) — canonical figures (Bitcoin-first)
+- [pitch/README.md](./pitch/README.md) — self-evolving pitch pack
+- [SOVEREIGN-STACK-4-PILLARS.md](./SOVEREIGN-STACK-4-PILLARS.md)
 - [EXECUTIVE-SUMMARY.md](./EXECUTIVE-SUMMARY.md)
 - [MARKETING.md](./MARKETING.md)
 - [MISSION.md](./MISSION.md)

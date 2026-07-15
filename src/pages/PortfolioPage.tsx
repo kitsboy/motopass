@@ -13,6 +13,7 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { StatCard } from '../components/ui/StatCard'
 import { ClassyModal } from '../components/ui/ClassyModal'
 import { useI18n } from '../i18n/I18nContext'
+import { BtcDualPrice } from '../components/BtcDualPrice'
 
 type SortKey = 'name' | 'score' | 'invest'
 
@@ -90,7 +91,7 @@ export function PortfolioPage() {
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
         <StatCard value={acquired.length} label={t('portfolio.statPrograms')} accent icon={<Layers size={18} />} />
-        <StatCard value={`$${(totalInvest / 1000).toFixed(0)}k`} label={t('portfolio.statInvest')} icon={<Wallet size={18} />} />
+        <StatCard value={<BtcDualPrice usd={totalInvest} size="md" layout="stack" />} label={t('portfolio.statInvest')} icon={<Wallet size={18} />} />
         <StatCard value={avgScore.toFixed(1)} label={t('portfolio.statScore')} icon={<Zap size={18} />} />
         <StatCard value={acquired.filter((p) => p.lightning_ready).length} label={t('portfolio.statLightning')} icon={<Radio size={18} />} />
       </div>

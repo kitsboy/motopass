@@ -1,5 +1,5 @@
-# motopass — Last Updated 2026-07-07 by Grok
+# motopass — Last Updated 2026-07-14 by Cursor
 
-Brief: BTC Map v2 complete — density badges, Nostr saves, Leaflet map, offline cache, report-venue CTA — BUILD 26
-Commit: aaafb91 (handoff) / 41238c2 (feature)
+Brief: Bitcoin-first pricing across pitch + app; self-evolving pitch anchor (`npm run pitch:sync`); 4 Core Pillars spec
+Commit: `9a5ca035e5a8254303f7c0f7d14f1cd05948642f`
 Live: https://motopass.giveabit.io · Footer: `BUILD 2026.07.07-26`

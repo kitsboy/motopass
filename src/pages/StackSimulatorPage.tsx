@@ -11,9 +11,8 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
+import { BtcDualPrice } from '../components/BtcDualPrice'
 import { parseIdList, serializeIdList } from '../lib/urlState'
-import type { TranslationKey } from '../i18n/translations'
-
 export function StackSimulatorPage() {
   const { t } = useI18n()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -126,17 +125,24 @@ export function StackSimulatorPage() {
             <div className="rounded-card border border-mp-border border-l-4 border-l-mp-btc bg-mp-card p-6 shadow-mp-1">
               <h3 className="font-display font-semibold text-ink mb-4">{t('simulator.metrics')}</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
-                {([
-                  ['simulator.stat.programs', stack.length, true],
-                  ['simulator.stat.cost', `$${totalCost.toLocaleString()}`, false],
-                  ['simulator.stat.sovereignty', `${sovereignty}/10`, false],
-                  ['simulator.stat.timeline', `${months}mo`, false],
-                ] as [TranslationKey, string | number, boolean][]).map(([labelKey, val, accent]) => (
-                  <div key={labelKey}>
-                    <span className="text-ink-muted text-xs">{t(labelKey)}</span>
-                    <div className={`text-2xl font-display font-semibold ${accent ? 'text-gradient-orange' : 'text-ink'}`}>{val}</div>
+                <div>
+                  <span className="text-ink-muted text-xs">{t('simulator.stat.programs')}</span>
+                  <div className="text-2xl font-display font-semibold text-gradient-orange">{stack.length}</div>
+                </div>
+                <div>
+                  <span className="text-ink-muted text-xs">{t('simulator.stat.cost')}</span>
+                  <div className="mt-1">
+                    <BtcDualPrice usd={totalCost} size="md" layout="stack" />
                   </div>
-                ))}
+                </div>
+                <div>
+                  <span className="text-ink-muted text-xs">{t('simulator.stat.sovereignty')}</span>
+                  <div className="text-2xl font-display font-semibold text-ink">{sovereignty}/10</div>
+                </div>
+                <div>
+                  <span className="text-ink-muted text-xs">{t('simulator.stat.timeline')}</span>
+                  <div className="text-2xl font-display font-semibold text-ink">{months}mo</div>
+                </div>
               </div>
               {stack.length > 0 && (
                 <p className="mt-4 text-xs text-ink-muted">

@@ -1,6 +1,18 @@
+---
+title: Executive Summary
+project: MotoPass
+version: 1.0.0
+last_updated: 2026-07-14
+build: 2026.07.07-26
+self_evolving: true
+bitcoin_display_policy: Bitcoin-first — cite PITCH-ANCHOR for all monetary figures
+pitch_anchor: docs/PITCH-ANCHOR.md
+sync_command: npm run pitch:sync
+tags: [executive, pitch, btc]
+---
 # MotoPass — Executive Summary
 
-**BUILD-2026.07.07-26** | 2026-07-07
+**BUILD-2026.07.07-26** | **Live figures:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) · `npm run pitch:sync`
 
 ## The Opportunity
 High-net-worth individuals and Bitcoin-native entrepreneurs face an increasingly complex, opaque, and untrustworthy landscape when seeking second residencies, citizenships, and jurisdictional diversification. Traditional advisors, immigration lawyers, and CBI/RBI brokers operate with misaligned incentives, outdated data, and no independent verification layer. For Bitcoiners specifically, the problem is acute: most programs lack native support for digital assets, Lightning payments, or favorable tax treatment of crypto gains; legal extracts are rarely timestamped or independently auditable; and there is no unified, privacy-preserving way to model combined “stacks” of residencies for tax optimization, freedom of movement, and long-term sovereignty.
@@ -22,7 +34,7 @@ It combines:
 
 ## Differentiation & Moat
 - **Verifiability first.** No other platform makes every claim auditable on Bitcoin. This is both a trust moat and a regulatory moat.
-- **Bitcoin-native by design.** Payments, identity (Nostr), data integrity, and tax modeling are first-class.
+- **Bitcoin-native by design.** Payments, identity (Nostr), data integrity, and tax modeling are first-class. Every monetary figure on the pitch shows **₿ at spot** before USD ([PITCH-ANCHOR](./PITCH-ANCHOR.md)).
 - **Depth over breadth.** 50 programs at Uruguay-flagship template depth (see `research/uruguay-flagship.md`) rather than superficial coverage of hundreds.
 - **Privacy and user sovereignty.** Nostr-first, minimal KYC, local-first data where possible, self-hostable long-term.
 - **AI that actually helps.** Paige is trained on the same deep, timestamped corpus and operates transparently with escalation paths to human experts.

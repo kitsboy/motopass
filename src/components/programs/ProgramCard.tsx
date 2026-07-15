@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
 import { MerchantDensityBadge } from '../btcmap/MerchantDensityBadge';
+import { BtcDualPrice } from '../BtcDualPrice';
 import { Program, scoreWeight } from './types';
 
 interface ProgramCardProps {
@@ -137,7 +138,9 @@ function ProgramCardContent({
       <dl className="mt-4 grid grid-cols-3 gap-2 border-t border-mp-border-subtle pt-4">
         <div>
           <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">Min. invest</dt>
-          <dd className="font-mono text-sm text-mp-ink">${(program.minInvestment / 1000).toFixed(0)}k</dd>
+          <dd className="text-mp-ink">
+            <BtcDualPrice usd={program.minInvestment} size="xs" layout="stack" />
+          </dd>
         </div>
         <div>
           <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">Timeline</dt>

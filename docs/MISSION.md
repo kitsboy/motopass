@@ -1,6 +1,17 @@
+---
+title: Mission
+project: MotoPass
+version: 1.0.0
+last_updated: 2026-07-14
+build: 2026.07.07-26
+self_evolving: true
+bitcoin_display_policy: Bitcoin-first display on all monetary data — see PITCH-ANCHOR
+pitch_anchor: docs/PITCH-ANCHOR.md
+tags: [mission, btc]
+---
 # MotoPass — Mission
 
-**BUILD:** 2026.07.07-26 · **Last updated:** 2026-07-07
+**BUILD:** 2026.07.07-26 · **Figures:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md)
 
 ## Our purpose
 
@@ -9,7 +20,7 @@ To make sovereign citizenship and residency-by-investment accessible, verifiable
 ## Core values
 
 1. **Truth You Can Verify** — Every claim independently verifiable on Bitcoin via OpenTimestamps and Satohash.
-2. **Bitcoin-native** — Investment pathways payable in BTC; Lightning where possible.
+2. **Bitcoin-native** — Investment pathways payable in BTC; Lightning where possible. All program costs and pitch metrics show **₿ before USD** at live spot.
 3. **Privacy by design** — Nostr identity; no unnecessary data collection.
 4. **Global intelligence** — Maps visa-free corridors across 50+ jurisdictions.
 

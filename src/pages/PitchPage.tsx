@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import { motion } from 'motion/react'
 import { useI18n } from '../i18n/I18nContext'
 import { BlockHeight } from '../components/BlockHeight'
+import { BtcPriceTicker } from '../components/BtcPriceTicker'
 import { HeroMotionBackground } from '../components/pitch/HeroMotionBackground'
 import { EvolvingPitchRotator } from '../components/pitch/EvolvingPitchRotator'
 import { SavingsGraphs } from '../components/pitch/SavingsGraphs'
@@ -100,9 +101,16 @@ export function PitchPage() {
               >
                 {t('pitch.stackSimulator')} <Zap size={16} />
               </Link>
+              <Link
+                to="/btcmap"
+                className="inline-flex items-center gap-2 rounded-full border border-mp-btc/35 bg-mp-btc/10 px-6 py-3 font-chrome text-sm text-mp-on-hero hover:border-mp-btc/55 transition-colors"
+              >
+                {t('pitch.btcmapCta')} <Bitcoin size={16} />
+              </Link>
             </div>
             <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-mp-on-hero-muted">
               <BlockHeight variant="hero" />
+              <BtcPriceTicker variant="hero" />
               <span className="font-mono text-mp-btc/90 flex items-center gap-1">
                 <Bitcoin size={12} /> {t('pitch.evolve')}
               </span>

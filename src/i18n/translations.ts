@@ -45,7 +45,7 @@ export type TranslationKey =
   | 'footer.descriptionBefore' | 'footer.descriptionAfter' | 'footer.github' | 'footer.pristineDemo'
   | 'verify.title' | 'verify.sub' | 'verify.stamp' | 'agents.title' | 'agents.sub'
   | 'apply.title' | 'apply.sub' | 'apply.submit' | 'nostr.connect' | 'nostr.connected'
-  | 'block.live' | 'footer.truth'
+  | 'block.live' | 'block.retry' | 'btcPrice.label' | 'btcPrice.fallback' | 'pitch.btcmapCta' | 'footer.truth'
   | PageKey
 
 type Dict = Record<TranslationKey, string>
@@ -80,6 +80,9 @@ const en: Dict = {
   'pitch.cta': 'Explore programs',
   'pitch.evolve': 'Living pitch — updated with every BUILD',
   'pitch.stackSimulator': 'Stack simulator',
+  'pitch.btcmapCta': 'BTC Map merchants',
+  'btcPrice.label': 'Spot',
+  'btcPrice.fallback': 'Using pitch-anchor reference rate',
   'pitch.feature.jurisdictions.title': '50 jurisdictions',
   'pitch.feature.jurisdictions.sub': 'CBI, RBI & Bitcoin-native pathways',
   'pitch.feature.satohash.title': 'Satohash proofs',

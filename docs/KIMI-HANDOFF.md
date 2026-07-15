@@ -344,4 +344,34 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Handoff to Kimi — 2026-07-14 (Bitcoin-first pitch + 4 Pillars)
+
+**Machine:** M3 (Cursor/Grok)
+**Project:** motopass
+
+### Done
+- [x] Bitcoin-first pricing — `btcPrice.ts`, `BtcPriceContext`, `BtcDualPrice`, `BtcPriceTicker`
+- [x] Pitch page: live spot ticker, hero BTC Map CTA, savings rotator in ₿
+- [x] Program cards, compare, portfolio, simulator — ₿ primary · USD secondary
+- [x] Self-evolving pitch pack — `npm run pitch:sync` → `research/pitch-anchor.json` + `docs/pitch/ANCHOR-SNAPSHOT.md`
+- [x] Docs: `PITCH-ANCHOR.md`, `pitch/README.md`, `SOVEREIGN-STACK-4-PILLARS.md`, MARKETING/EXECUTIVE/MISSION frontmatter
+- [x] 33 unit tests passing; build green
+
+### Decisions
+- All monetary figures: ₿ at mempool.space spot (anchor JSON fallback offline)
+- Narrative docs link PITCH-ANCHOR — never duplicate dollar tables across files
+- Uruguay/Bolivia flagship amounts in anchor auto-regenerate from `countries.json`
+
+### What's Next
+- Uruguay JSON schema migration + ProgramModal depth tabs
+- `pitch:sync` in CI when `countries.json` changes
+- SEO JSON-LD (Organization, WebSite, BreadcrumbList)
+- 5 flagship countries before 50/50 depth push
+
+### Git State
+- Last commit SHA: ``9a5ca035e5a8254303f7c0f7d14f1cd05948642f``
+- Branch: `main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

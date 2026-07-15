@@ -20,6 +20,7 @@
     "sitemap": "node scripts/generate-sitemap.mjs",
     "btcmap:density": "node scripts/fetch-btcmap-density.mjs",
     "btcmap:sync": "node scripts/sync-btcmap-cache.mjs",
+    "pitch:sync": "node scripts/sync-pitch-anchor.mjs",
     "bundle:check": "node scripts/check-bundle-size.mjs",
     "health-check": "bash scripts/health-check.sh",
     "verify:goal": "bash scripts/verify-goal.sh",

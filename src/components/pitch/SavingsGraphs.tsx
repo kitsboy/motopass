@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
 import type { SavingsRow } from '../../lib/pitchStats';
+import { BtcDualPrice } from '../BtcDualPrice';
 
 interface SavingsGraphsProps {
   title?: string;
@@ -37,10 +38,14 @@ function Bar({
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay }}
         />
       </div>
-      <span className="w-24 shrink-0 text-right font-mono text-sm tabular-nums text-mp-ink-secondary">
-        {unit === '$' ? '$' : ''}
-        {value.toLocaleString()}
-        {unit !== '$' ? ` ${unit}` : ''}
+      <span className="w-28 shrink-0 text-right text-mp-ink-secondary">
+        {unit === '$' ? (
+          <BtcDualPrice usd={value} size="xs" layout="stack" />
+        ) : (
+          <span className="font-mono text-sm tabular-nums">
+            {value.toLocaleString()} {unit}
+          </span>
+        )}
       </span>
     </div>
   );
@@ -71,7 +76,7 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
           {title}
         </h2>
         <p className="mt-4 max-w-xl font-body text-body text-mp-ink-secondary">
-          Figures pulled live from <code className="font-mono text-sm">countries.json</code>, not a sales deck. Every bar you see updates when a program&apos;s terms change.
+          Figures pulled live from <code className="font-mono text-sm">countries.json</code> — shown Bitcoin-first at spot. Every bar updates when program terms or BTC price moves.
         </p>
 
         <div className="mt-12 space-y-8">

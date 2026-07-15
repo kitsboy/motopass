@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { ProofBadge } from '../ui/ProofBadge';
+import { BtcDualPrice } from '../BtcDualPrice';
 
 export interface StackMetric {
   label: string;
   value: number;
   suffix?: string;
   prefix?: string;
+  usdValue?: number;
 }
 
 interface EvolvingPitchRotatorProps {
@@ -119,7 +121,11 @@ export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, pro
               {m.label}
             </dt>
             <dd className="text-h3 font-display text-mp-on-hero sm:text-lg2">
-              <CountUp value={m.value} prefix={m.prefix} suffix={m.suffix} />
+              {m.usdValue != null ? (
+                <BtcDualPrice usd={m.usdValue} size="lg" layout="stack" />
+              ) : (
+                <CountUp value={m.value} prefix={m.prefix} suffix={m.suffix} />
+              )}
             </dd>
           </motion.div>
         ))}

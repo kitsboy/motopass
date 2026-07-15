@@ -32,7 +32,7 @@ HNWI, digital nomads, Bitcoin holders exploring residency/citizenship options.
 Live intelligence MVP (data depth expanding)
 
 ## Traction (honest)
-Live site; 16/50 country depth target; full docs suite.
+Live site; 50 jurisdictions modeled; flagship depth expanding (Uruguay template). **All pitch figures Bitcoin-first** — see `docs/PITCH-ANCHOR.md` (regenerate: `npm run pitch:sync`). Pre-launch: intelligence MVP, applications not yet accepted.
 
 ## Model / value flow
 Intelligence product; future agent marketplace; educational not legal advice.

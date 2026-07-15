@@ -52,6 +52,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 - i18n (10 locales + page keys), SEO meta + hreflang, FAQ JSON-LD
 - Luminous Sovereign light UI + Sovereign Night dark toggle
 - Playwright e2e (16 tests), CI bundle budget, sitemap generator
+- **Bitcoin-first pricing** — `BtcDualPrice` on pitch, programs, compare, portfolio, simulator; `research/pitch-anchor.json` via `npm run pitch:sync`
 
 ## Gaps & next priorities
 
@@ -68,6 +69,8 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 - **UI work:** Obey `docs/DESIGN-CONTEXT.md` + `docs/DESIGN-TOKENS.md`
 - **Scope:** `docs/PRODUCT-SCOPE-ROADMAP.md`
 - **BTC Map refresh:** `npm run btcmap:density && npm run btcmap:sync`
+- **Pitch figures refresh:** `npm run pitch:sync` — updates anchor + `docs/pitch/ANCHOR-SNAPSHOT.md`
+- **Pitch policy:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) · [pitch/README.md](./pitch/README.md)
 
 ## Give A Bit alignment
 

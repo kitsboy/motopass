@@ -78,6 +78,8 @@ export type PitchMetric = {
   value: number
   suffix?: string
   prefix?: string
+  /** When set, UI renders Bitcoin-first dual price via live spot. */
+  usdValue?: number
 }
 
 export type SavingsRow = {
@@ -90,7 +92,7 @@ export type SavingsRow = {
 export function pitchStatsToMetrics(stats: PitchStats): PitchMetric[] {
   return [
     { label: 'Jurisdictions tracked', value: stats.programCount },
-    { label: 'Avg. stack savings', value: stats.costSavingsUsd, prefix: '$' },
+    { label: 'Avg. stack savings', value: stats.costSavingsUsd, usdValue: stats.costSavingsUsd },
     { label: 'Avg. days to residency', value: Math.round(stats.avgProcessingMonths * 30), suffix: 'd' },
   ]
 }

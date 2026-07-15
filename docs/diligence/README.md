@@ -31,9 +31,12 @@ tags: [diligence, pitch, mvp, giveabit]
 5. Never remove Safe Harbour footer.
 
 ## Pitch surfaces (project-specific)
+- `docs/PITCH-ANCHOR.md` — **canonical ₿ · USD figures** (`npm run pitch:sync`)
+- `docs/pitch/README.md` — self-evolving pitch pack rules
 - `docs/EXECUTIVE-SUMMARY.md`
 - `docs/MARKETING.md`
 - `docs/MISSION.md`
+- `docs/SOVEREIGN-STACK-4-PILLARS.md`
 - `PROJECT-VISION.md`
 
 ## Live
