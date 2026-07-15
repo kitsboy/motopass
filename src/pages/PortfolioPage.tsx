@@ -17,6 +17,8 @@ import { formatT } from '../i18n/format'
 import { BtcDualPrice } from '../components/BtcDualPrice'
 import { ComplianceClock } from '../components/portfolio/ComplianceClock'
 import { PaigeChat } from '../components/PaigeChat'
+import { NostrConnect } from '../components/NostrConnect'
+import { Card } from '../components/ui/Card'
 import { hasFlagshipDepth } from '../components/programs/types'
 
 type SortKey = 'order' | 'name' | 'score' | 'invest'
@@ -74,7 +76,7 @@ export function PortfolioPage() {
   }
 
   return (
-    <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
+    <div className="page-container px-4 sm:px-6 py-8 max-w-7xl mx-auto">
       <PageHeader
         eyebrow={t('portfolio.eyebrow')}
         title={t('portfolio.title')}
@@ -101,6 +103,16 @@ export function PortfolioPage() {
           ) : undefined
         }
       />
+
+      <Card variant="banner" animate className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="min-w-0">
+          <p className="font-chrome text-xs font-semibold text-mp-btc-text uppercase tracking-wide">Nostr identity</p>
+          <p className="text-sm text-ink-secondary mt-1 leading-relaxed">
+            Connect npub before Apply — agents route deal rooms and proof updates through your sovereign key.
+          </p>
+        </div>
+        <NostrConnect />
+      </Card>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
         <StatCard value={acquired.length} label={t('portfolio.statPrograms')} accent icon={<Layers size={18} />} />

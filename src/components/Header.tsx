@@ -21,6 +21,7 @@ export function Header({ children, className = '', collapsed = false }: HeaderPr
         style={{ transform: `scaleX(${scrollProgress})` }}
       />
       <div className="club-header-bg" aria-hidden>
+        <div className="club-header-hash-layer" />
         <div className="club-header-glow" />
         <div className="club-header-glow-electric" />
       </div>

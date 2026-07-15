@@ -64,11 +64,12 @@ const FEATURE_KEYS = [
   { icon: Users, titleKey: 'pitch.feature.agents.title' as const, subKey: 'pitch.feature.agents.sub' as const },
 ]
 
+/** Forge → Seal → Ledger → Nexus */
 const PILLAR_KEYS = [
-  { icon: Shield, titleKey: 'pitch.pillar.seal.title' as const, subKey: 'pitch.pillar.seal.sub' as const, to: '/vault', accent: 'btc' },
   { icon: TrendingDown, titleKey: 'pitch.pillar.forge.title' as const, subKey: 'pitch.pillar.forge.sub' as const, to: '/distressed', accent: 'btc' },
-  { icon: Radio, titleKey: 'pitch.pillar.nexus.title' as const, subKey: 'pitch.pillar.nexus.sub' as const, to: '/agents', accent: 'violet' },
+  { icon: Shield, titleKey: 'pitch.pillar.seal.title' as const, subKey: 'pitch.pillar.seal.sub' as const, to: '/vault', accent: 'btc' },
   { icon: Database, titleKey: 'pitch.pillar.ledger.title' as const, subKey: 'pitch.pillar.ledger.sub' as const, to: '/programs', accent: 'electric' },
+  { icon: Radio, titleKey: 'pitch.pillar.nexus.title' as const, subKey: 'pitch.pillar.nexus.sub' as const, to: '/agents', accent: 'violet' },
 ] as const
 
 const PRODUCT_KEYS = [

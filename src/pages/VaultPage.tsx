@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Shield, Copy, Check, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
@@ -29,6 +30,7 @@ function proofHash(proof: { content_hash?: string; proof_url?: string }): string
 }
 
 export function VaultPage() {
+  const navigate = useNavigate()
   const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
   const { portfolio } = usePortfolio()
@@ -77,13 +79,12 @@ export function VaultPage() {
     }
   }
 
-  function applyProgramProof(hash: string) {
-    setHashInput(hash)
-    setVerifyResult(null)
-    setSelectedFile(null)
-    if (fileRef.current) fileRef.current.value = ''
-    document.getElementById('vault-verify-heading')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    void verifyHashPaste(hash).then(setVerifyResult)
+  function applyProgramProof(programName: string, hash: string) {
+    const params = new URLSearchParams({
+      program: programName,
+      proof: hash,
+    })
+    navigate(`/apply?${params.toString()}`)
   }
 
   function filterLabel(f: VaultFilter): string {

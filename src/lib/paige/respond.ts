@@ -10,18 +10,25 @@ export function buildPaigeResponse(query: string, hits: PaigeHit[]): string {
 
   const blocks = hits.map((h) => {
     const p = h.program
+    const proof = h.citations[0]
+    const verified = Boolean(proof?.proofUrl)
     const lines = [
       `**${p.name}** (${p.region}) — ${p.status}`,
-      ...h.snippets.map((s) => `• ${s}`),
+      verified
+        ? `✓ Satohash verified · block #${proof.blockHeight ?? '—'}`
+        : '⚠ UNVERIFIED — treat all claims below as research stubs until stamped',
+      ...h.snippets.map((s) =>
+        verified ? `• ${s}` : `• [unverified] ${s}`,
+      ),
     ]
     if (p.paige_fields?.red_flags?.[0]) {
       lines.push(`⚠ ${p.paige_fields.red_flags[0]}`)
     }
-    const proof = h.citations[0]
-    if (proof?.proofUrl) {
-      lines.push(`Verify: block #${proof.blockHeight ?? '—'} · ${proof.proofUrl}`)
+    if (verified && proof.proofUrl) {
+      lines.push(`Cite: ${proof.proofUrl}`)
+      if (proof.field) lines.push(`Field: ${proof.field}`)
     } else {
-      lines.push('Proof: unverified stub — flagship depth in progress')
+      lines.push('No Satohash citation — verify independently before capital commitment')
     }
     return lines.join('\n')
   })

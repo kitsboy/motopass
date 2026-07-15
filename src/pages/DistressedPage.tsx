@@ -104,7 +104,7 @@ function ListingModal({
             Verify in Vault
           </Link>
           <Link
-            to={`/apply?program=${encodeURIComponent(listing.program_name)}`}
+            to={`/apply?program=${encodeURIComponent(listing.program_name)}${listing.content_hash ? `&proof=${encodeURIComponent(listing.content_hash)}` : ''}`}
             className="btn-primary text-xs"
             onClick={onClose}
           >

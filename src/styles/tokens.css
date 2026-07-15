@@ -149,26 +149,26 @@
    DARK MODE — Sovereign Members Club (default)
    ========================================================================== */
 .dark {
-  /* ~20% lighter navy canvas + glassier surfaces */
-  --mp-surface-canvas: #16161f;
-  --mp-surface-section: #1e1e2a;
-  --mp-surface-card: #282836;
-  --mp-surface-card-aged: #242432;
-  --mp-surface-elevated: #303040;
-  --mp-surface-modal: #222230;
+  /* Sovereign club — #0a0a0f canvas, deep navy glass */
+  --mp-surface-canvas: #0a0a0f;
+  --mp-surface-section: #12121a;
+  --mp-surface-card: #1a1a26;
+  --mp-surface-card-aged: #161620;
+  --mp-surface-elevated: #222230;
+  --mp-surface-modal: #181822;
 
-  --mp-border-subtle: #343446;
-  --mp-border-default: #42425a;
-  --mp-border-strong: #56566e;
+  --mp-border-subtle: #2a2a3a;
+  --mp-border-default: #363648;
+  --mp-border-strong: #4a4a5e;
   --mp-border-focus: #ff9500;
 
   --mp-ink-primary: #f6f6fa;
   --mp-ink-secondary: #c4c4d4;
   --mp-ink-tertiary: #9494a8;
-  --mp-ink-inverse: #16161f;
+  --mp-ink-inverse: #0a0a0f;
   --mp-ink-on-accent: #0a0804;
 
-  --mp-surface-hero-glass: rgba(22, 22, 31, 0.62);
+  --mp-surface-hero-glass: rgba(10, 10, 15, 0.72);
   --mp-hero-headline: #FFC870;
   --mp-accent-btc-text: #FFC870;
   --mp-accent-btc-soft: #2a1c0c;
@@ -182,15 +182,15 @@
   --mp-shadow-glow-btc: 0 0 0 1px hsla(33, 100%, 50%, 0.32), 0 0 28px hsla(33, 100%, 50%, 0.16), 0 8px 20px hsla(228, 30%, 8%, 0.28);
   --mp-shadow-glow-electric: 0 0 0 1px hsla(214, 100%, 65%, 0.22), 0 0 22px hsla(214, 100%, 65%, 0.1);
 
-  --gradient-hero: radial-gradient(120% 90% at 68% 0%, hsla(33, 100%, 50%, 0.14) 0%, hsla(214, 100%, 65%, 0.07) 24%, hsla(228, 22%, 14%, 0.88) 72%),
-    linear-gradient(90deg, rgba(22, 22, 31, 0.82) 0%, rgba(22, 22, 31, 0.42) 42%, transparent 68%);
+  --gradient-hero: radial-gradient(120% 90% at 68% 0%, hsla(33, 100%, 50%, 0.16) 0%, hsla(214, 100%, 65%, 0.08) 24%, hsla(228, 30%, 4%, 0.94) 72%),
+    linear-gradient(90deg, rgba(10, 10, 15, 0.88) 0%, rgba(10, 10, 15, 0.48) 42%, transparent 68%);
   --gradient-radial-warm: radial-gradient(80% 60% at 50% -8%, hsla(33, 100%, 50%, 0.12), transparent 72%);
   --gradient-scrim-bottom: linear-gradient(180deg, transparent 0%, hsla(228, 22%, 10%, 0.55) 100%);
   --mp-hero-copy-scrim: linear-gradient(
     105deg,
-    rgba(22, 22, 31, 0.78) 0%,
-    rgba(22, 22, 31, 0.52) 42%,
-    rgba(22, 22, 31, 0.22) 68%,
+    rgba(10, 10, 15, 0.88) 0%,
+    rgba(10, 10, 15, 0.58) 42%,
+    rgba(10, 10, 15, 0.24) 68%,
     transparent 100%
   );
 
@@ -200,10 +200,10 @@
   --btc-grid-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 0h48v48H0z' fill='none'/%3E%3Cpath d='M0 24h48M24 0v48' stroke='%23ff9500' stroke-width='0.35' opacity='0.09'/%3E%3Crect x='0' y='0' width='12' height='12' fill='%23ff9500' opacity='0.025'/%3E%3Crect x='24' y='24' width='12' height='12' fill='%23ff9500' opacity='0.025'/%3E%3C/svg%3E");
   --hash-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='28'%3E%3Ctext x='0' y='18' font-family='monospace' font-size='10' fill='%23ff9500' opacity='0.07'%3Ea3f9c8b2e41df0a19e7cb5d8e2f1a0b4c7d9e3f6a8b1c2d5e7f9a0b3c6d8e1f4%3C/text%3E%3C/svg%3E");
 
-  --mp-glass-bg: rgba(40, 40, 54, 0.48);
-  --mp-glass-border: rgba(255, 149, 0, 0.2);
-  --mp-glass-highlight: rgba(255, 255, 255, 0.09);
-  --mp-glass-blur: 28px;
+  --mp-glass-bg: rgba(26, 26, 38, 0.55);
+  --mp-glass-border: rgba(255, 149, 0, 0.22);
+  --mp-glass-highlight: rgba(255, 255, 255, 0.07);
+  --mp-glass-blur: 32px;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-50] — 2026-07-15
+
+### Changed
+- Queue complete — pitch polish, distressed/apply UX, design motion, i18n/SEO
+
+---
+
 ## [BUILD-2026.07.15-49] — 2026-07-15
 
 ### Changed

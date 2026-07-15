@@ -17,16 +17,28 @@ import { ApplyLaunchGatesDirectory } from '../components/apply/ApplyLaunchGatesD
 import { ApplyFormProgressStepper } from '../components/apply/ApplyFormProgressStepper'
 import { clearApplyDraft, loadApplyDraft, saveApplyDraft } from '../lib/applyDraftStorage'
 
-function resolveApplyFields(programPrefill: string) {
-  if (programPrefill) {
-    return { name: '', program: programPrefill, notes: '', draftRestored: false }
+function resolveApplyFields(programPrefill: string, proofPrefill: string) {
+  if (programPrefill || proofPrefill) {
+    const proofNote = proofPrefill
+      ? `Satohash proof: ${proofPrefill}\nVerify: https://satohash.io/verify/${proofPrefill}`
+      : ''
+    return {
+      name: '',
+      program: programPrefill,
+      notes: proofNote,
+      proofHash: proofPrefill,
+      draftRestored: false,
+    }
   }
   const draft = loadApplyDraft()
-  if (!draft) return { name: '', program: '', notes: '', draftRestored: false }
+  if (!draft) {
+    return { name: '', program: '', notes: '', proofHash: '', draftRestored: false }
+  }
   return {
     name: draft.name,
     program: draft.program,
     notes: draft.notes,
+    proofHash: '',
     draftRestored: !!(draft.name || draft.program || draft.notes),
   }
 }
@@ -37,8 +49,9 @@ export function ApplyPage() {
   const { toast } = useToast()
   const [searchParams] = useSearchParams()
   const programPrefill = searchParams.get('program') ?? ''
+  const proofPrefill = searchParams.get('proof') ?? ''
 
-  const initialFields = resolveApplyFields(programPrefill)
+  const initialFields = resolveApplyFields(programPrefill, proofPrefill)
   const [nostr, setNostr] = useState<NostrSession | null>(null)
   const [name, setName] = useState(initialFields.name)
   const [program, setProgram] = useState(initialFields.program)
@@ -91,7 +104,7 @@ export function ApplyPage() {
   const relayFake = report.relay_fake ?? report.relay_status === 'fake'
 
   return (
-    <div key={programPrefill || 'apply'} className="page-container px-4 sm:px-6 py-8 max-w-xl mx-auto">
+    <div key={`${programPrefill}-${proofPrefill}` || 'apply'} className="page-container px-4 sm:px-6 py-8 max-w-xl mx-auto">
       {applicationsOpen && (
         <Card variant="banner" animate delay={0} className="mb-6 flex items-start gap-3">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-mp-md bg-btc-orange/15 border border-btc-orange/25">
@@ -142,6 +155,23 @@ export function ApplyPage() {
       <div className="mb-6">
         <NostrConnect onConnect={setNostr} />
       </div>
+
+      {proofPrefill && !result && (
+        <Card variant="proof" animate delay={0.05} className="mb-6">
+          <p className="font-chrome text-xs font-semibold text-mp-proof mb-1">Vault proof attached</p>
+          <code className="block text-[10px] font-mono text-ink-secondary break-all bg-card-muted/40 rounded-mp-md p-3 border border-mp-proof/25">
+            {proofPrefill}
+          </code>
+          <a
+            href={`https://satohash.io/verify/${proofPrefill}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1 text-xs text-mp-btc-text hover:underline"
+          >
+            Verify on Satohash <ExternalLink size={12} />
+          </a>
+        </Card>
+      )}
 
       {!result ? (
         <Card variant="elevated" className="space-y-4">

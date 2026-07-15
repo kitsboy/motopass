@@ -19,6 +19,7 @@ import {
 import { useDebouncedValue } from '../hooks/useDebouncedValue'
 import { toCinematicPrograms, cinematicIdToNumber } from '../lib/programAdapter'
 import { PageHeader } from '../components/ui/PageHeader'
+import { GoldStandardSpotlight } from '../components/programs/GoldStandardSpotlight'
 import { Chip } from '../components/ui/Chip'
 import { ClassyModal } from '../components/ui/ClassyModal'
 import { ProgramCard } from '../components/programs/ProgramCard'
@@ -303,6 +304,8 @@ export function ProgramsPage() {
             </>
           }
         />
+
+        {!loading && !error && programs.length > 0 && <GoldStandardSpotlight programs={programs} />}
 
         {error && <ProgramsLoadError message={error} />}
         {importErrorCode && (

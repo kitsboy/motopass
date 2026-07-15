@@ -9,7 +9,7 @@ import { FooterApplyLink } from './footer/FooterApplyLink'
 import { BUILD_ID, BUILD_LABEL, FOOTER_VERSION } from '../lib/buildInfo'
 import { useLiveDeployHealth } from '../hooks/useLiveDeployHealth'
 import type { LiveDeployHealthState } from '../hooks/useLiveDeployHealth'
-import { MAIN_NAV_ROUTES } from '../lib/navRoutes'
+import { MAIN_NAV_ROUTES, OVERFLOW_NAV_ROUTES } from '../lib/navRoutes'
 import type { TranslationKey } from '../i18n/translations'
 
 const FOOTER_ACCOUNT: { to: string; key: TranslationKey }[] = [
@@ -69,37 +69,38 @@ export function Footer() {
                 </a>
                 {t('footer.descriptionAfter')}
               </p>
-              <nav className="flex flex-wrap gap-x-5 gap-y-3 text-sm font-chrome" aria-label="Footer">
-                {MAIN_NAV_ROUTES.map(l =>
-                  l.apply ? (
-                    <FooterApplyLink key={l.to} />
-                  ) : (
+              <nav className="space-y-4" aria-label="Footer">
+                <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm font-chrome">
+                  {MAIN_NAV_ROUTES.map(l =>
+                    l.apply ? (
+                      <FooterApplyLink key={l.to} />
+                    ) : (
+                      <NavLink key={l.to} to={l.to} className={footerLinkClass}>
+                        {t(l.key)}
+                      </NavLink>
+                    ),
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs font-chrome text-ink-muted/90">
+                  {OVERFLOW_NAV_ROUTES.map(l => (
                     <NavLink key={l.to} to={l.to} className={footerLinkClass}>
                       {t(l.key)}
                     </NavLink>
-                  ),
-                )}
-                {FOOTER_ACCOUNT.map(l => (
-                  <NavLink key={l.to} to={l.to} className={footerLinkClass}>
-                    {t(l.key)}
-                  </NavLink>
-                ))}
-                <a
-                  href="https://github.com/kitsboy/motopass"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-ink-muted hover:text-mp-btc-text transition-colors duration-fast"
-                >
-                  {t('footer.github')}
-                </a>
-                <a
-                  href="/website/index.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-ink-muted hover:text-mp-btc-text transition-colors duration-fast"
-                >
-                  {t('footer.pristineDemo')}
-                </a>
+                  ))}
+                  {FOOTER_ACCOUNT.map(l => (
+                    <NavLink key={l.to} to={l.to} className={footerLinkClass}>
+                      {t(l.key)}
+                    </NavLink>
+                  ))}
+                  <a
+                    href="https://github.com/kitsboy/motopass"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-mp-btc-text transition-colors duration-fast"
+                  >
+                    {t('footer.github')}
+                  </a>
+                </div>
               </nav>
             </div>
             <AgentCardKimi />

@@ -35,7 +35,7 @@ export function VaultProofRow({
   cinematic: CinematicProgram
   index: number
   inPortfolio: boolean
-  onUseProof: (hash: string) => void
+  onUseProof: (programName: string, hash: string) => void
   onNostrStub: (json: string) => void
 }) {
   const { t } = useI18n()
@@ -102,7 +102,7 @@ export function VaultProofRow({
           {hash && (
             <button
               type="button"
-              onClick={() => onUseProof(hash)}
+              onClick={() => onUseProof(program.name, hash)}
               className="btn-primary text-xs !py-1.5 !px-3"
               title={hash}
             >
@@ -141,7 +141,7 @@ export function VaultProofRow({
             </Link>
           )}
           <Link
-            to={`/apply?program=${encodeURIComponent(program.name)}`}
+            to={`/apply?program=${encodeURIComponent(program.name)}${hash ? `&proof=${encodeURIComponent(hash)}` : ''}`}
             className="btn-secondary text-xs !py-1.5 !px-3"
           >
             Apply

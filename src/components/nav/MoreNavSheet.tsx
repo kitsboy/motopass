@@ -48,7 +48,7 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
                 <X size={18} />
               </button>
             </div>
-            <nav className="grid grid-cols-2 gap-1.5 p-3 pb-5" aria-label="More navigation">
+            <nav className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 p-3 pb-5" aria-label="More navigation">
               {MORE_ROUTES.map(n => (
                 <PrefetchNavLink
                   key={n.to}

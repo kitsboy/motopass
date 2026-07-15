@@ -9,19 +9,25 @@ export type NavRoute = {
   end?: boolean
 }
 
-/** Canonical main nav — single source of truth for all menus */
+/** Canonical main nav — Programs · Vault · Distressed · BTC Map · Simulator · Agents · Apply */
 export const MAIN_NAV_ROUTES: readonly NavRoute[] = [
   { to: '/programs', key: 'nav.programs' },
   { to: '/vault', key: 'nav.vault' },
   { to: '/distressed', key: 'nav.distressed' },
   { to: '/btcmap', key: 'nav.btcmap' },
   { to: '/simulator', key: 'nav.simulator' },
-  { to: '/compare', key: 'nav.compare' },
   { to: '/agents', key: 'nav.agents' },
   { to: '/apply', key: 'nav.apply', apply: true },
 ] as const
 
 export const MAIN_NAV_PATHS = MAIN_NAV_ROUTES.map(r => r.to)
+
+/** Secondary routes — More sheet + footer only (not primary chrome) */
+export const OVERFLOW_NAV_ROUTES: readonly NavRoute[] = [
+  { to: '/compare', key: 'nav.compare' },
+  { to: '/portfolio', key: 'nav.portfolio' },
+  { to: '/verify', key: 'nav.verify' },
+] as const
 
 /** Primary mobile bottom tabs */
 export const MOBILE_TAB_ROUTES: readonly { to: string; key: TranslationKey; icon: LucideIcon }[] = [
@@ -31,9 +37,12 @@ export const MOBILE_TAB_ROUTES: readonly { to: string; key: TranslationKey; icon
 ] as const
 
 /** Overflow routes in the mobile More sheet (excludes bottom-tab + Apply) */
-export const MORE_ROUTES = MAIN_NAV_ROUTES.filter(
-  r => !r.apply && !MOBILE_TAB_ROUTES.some(t => t.to === r.to),
-)
+export const MORE_ROUTES: readonly NavRoute[] = [
+  ...MAIN_NAV_ROUTES.filter(
+    r => !r.apply && !MOBILE_TAB_ROUTES.some(t => t.to === r.to),
+  ),
+  ...OVERFLOW_NAV_ROUTES,
+]
 
 export const MORE_PATHS = MORE_ROUTES.map(r => r.to)
 
