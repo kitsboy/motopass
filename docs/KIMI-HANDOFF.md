@@ -553,4 +553,26 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 37 — education / how-it-works sections)
+
+**Done:**
+- New `HowItWorksSection` component (`src/components/ui/HowItWorksSection.tsx`) — reusable step cards with icons, links, footer note
+- **Vault** (`/vault`): 4-step guide — what gets stamped, verified vs demo, browser verify, Nostr lineage
+- **Distressed** (`/distressed`): 4-step guide — listing criteria, curated vs permissionless, score meaning, deal-room flow
+- **Pitch** (`/`): site-wide "Understanding MotoPass" four-pillar guide (Forge → Seal → Ledger → Nexus), Distressed stack card, FAQ expanded to 5 questions (Vault + Distressed)
+- i18n keys in `pageKeys.ts` + `translations.ts` for all new copy
+- BUILD `2026.07.15-37` · 36 unit + 19 e2e green
+
+**Decisions:**
+- Education sections sit above interactive tools on Vault/Distressed so visitors understand *why* before *how*
+- Pitch guide uses same four-pillar language as `docs/SOVEREIGN-STACK-4-PILLARS.md` for consistency
+- Safe harbour disclaimer on every education footer
+
+**Git State:**
+- SHA: `c20846e`
+- Message: `feat(education): BUILD 37 how-it-works for Vault, Distressed, and Pitch`
+- Pushed: `origin/main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
