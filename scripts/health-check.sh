@@ -34,4 +34,6 @@ console.log('OK programs', d.programs.length, 'last_updated', d.last_updated);
 curl -sfI "$BASE/logo.png" | grep -qi 'image' && echo "OK logo.png" || { echo "FAIL logo.png"; exit 1; }
 curl -sf "$BASE/sitemap.xml" | grep -q 'urlset' && echo "OK sitemap.xml" || { echo "FAIL sitemap.xml"; exit 1; }
 
+node scripts/verify-live-app.mjs "$BASE" || { echo "FAIL main JS bundle"; exit 1; }
+
 echo "Health check passed for $BASE"

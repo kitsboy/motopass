@@ -553,6 +553,25 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 38 — fix blank site + Agents education)
+
+**Done:**
+- **Root cause:** Cloudflare CDN cached `index.html` as `/assets/index-*.js` (`cf-cache-status: HIT`, HTML body + `immutable` headers) — React never mounted, blank black screen
+- **Fix:** `public/_redirects` now serves `/assets/*` before SPA fallback; JS headers add `must-revalidate`; new bundle hash busts poisoned cache
+- **Agents page** (`/agents`): full how-it-works (4 steps), Nexus banner, Paige + deal-room cards, upgraded agent grid with Card primitives
+- `scripts/verify-live-app.mjs` + wired into `health-check.sh` — confirms main bundle is JS not HTML
+- Live verified: `SMOKE_URL=https://motopass.giveabit.io` e2e passes · BUILD `2026.07.15-38`
+
+**Decisions:**
+- Cache purge API failed (token lacks Zone Cache Purge) — bundle hash rotation is sufficient fix; Kimi may purge zone manually if needed
+- E2E tests only hit localhost preview by default — production check now via `verify-live-app.mjs`
+
+**Git State:**
+- SHA: (see latest push)
+- Pushed: `origin/main`
+
+---
+
 ## Session — 2026-07-15 (BUILD 37 — education / how-it-works sections)
 
 **Done:**

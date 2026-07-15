@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { Zap, MessageCircle } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Zap, MessageCircle, Radio, Bot, Handshake, ArrowRight } from 'lucide-react'
 import { MOTOPASS_RELAYS } from '../lib/nostr'
 import { NostrConnect } from '../components/NostrConnect'
 import { BtcMapReportVenue } from '../components/btcmap/BtcMapReportVenue'
 import { AgentCardKimi } from '../components/AgentCardKimi'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
+import { HowItWorksSection } from '../components/ui/HowItWorksSection'
+import { Card } from '../components/ui/Card'
 import type { TranslationKey } from '../i18n/translations'
 
 type AgentStatus = 'active' | 'beta' | 'coming'
@@ -42,8 +45,49 @@ export function AgentsPage() {
   const [dmPreview, setDmPreview] = useState<string | null>(null)
 
   return (
-    <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
+    <div className="page-container px-4 sm:px-6 py-8 max-w-7xl mx-auto">
       <PageHeader eyebrow={t('agents.eyebrow')} title={t('agents.title')} subtitle={t('agents.sub')} />
+
+      <HowItWorksSection
+        eyebrow={t('agents.how.eyebrow')}
+        title={t('agents.how.title')}
+        intro={t('agents.how.intro')}
+        footerNote={t('agents.how.footer')}
+        steps={[
+          { n: '01', title: t('agents.how.step1.title'), body: t('agents.how.step1.body'), icon: Radio },
+          { n: '02', title: t('agents.how.step2.title'), body: t('agents.how.step2.body'), icon: Zap },
+          { n: '03', title: t('agents.how.step3.title'), body: t('agents.how.step3.body'), icon: MessageCircle, link: { to: '/vault', label: 'Verify proofs first' } },
+          { n: '04', title: t('agents.how.step4.title'), body: t('agents.how.step4.body'), icon: Handshake, link: { to: '/apply', label: 'Open applications' } },
+        ]}
+      />
+
+      <Card variant="banner" animate className="mb-8 !p-6">
+        <span className="club-eyebrow block mb-2">{t('agents.nexus.title')}</span>
+        <p className="font-body text-sm text-ink-secondary leading-relaxed max-w-3xl">{t('agents.nexus.sub')}</p>
+      </Card>
+
+      <div className="grid gap-4 md:grid-cols-2 mb-10">
+        <Card variant="elevated" animate delay={0.05} className="!p-5 border-l-4 border-l-nostr-violet">
+          <div className="flex items-center gap-2 mb-2">
+            <Bot size={18} className="text-nostr-violet" aria-hidden />
+            <h3 className="font-display font-semibold text-ink">{t('agents.paige.title')}</h3>
+          </div>
+          <p className="text-sm text-ink-secondary leading-relaxed mb-4">{t('agents.paige.body')}</p>
+          <Link to="/programs" className="text-xs font-chrome font-medium text-nostr-violet inline-flex items-center gap-1 hover:underline underline-offset-2">
+            Browse programs <ArrowRight size={12} />
+          </Link>
+        </Card>
+        <Card variant="elevated" animate delay={0.08} className="!p-5 border-l-4 border-l-btc-orange">
+          <div className="flex items-center gap-2 mb-2">
+            <Handshake size={18} className="text-btc-orange" aria-hidden />
+            <h3 className="font-display font-semibold text-ink">{t('agents.dealroom.title')}</h3>
+          </div>
+          <p className="text-sm text-ink-secondary leading-relaxed mb-4">{t('agents.dealroom.body')}</p>
+          <Link to="/distressed" className="text-xs font-chrome font-medium text-mp-btc-text inline-flex items-center gap-1 hover:underline underline-offset-2">
+            Distressed deal room <ArrowRight size={12} />
+          </Link>
+        </Card>
+      </div>
 
       <div className="mb-10 max-w-xl">
         <AgentCardKimi />
@@ -56,11 +100,11 @@ export function AgentsPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-        {AGENTS.map(a => (
-          <div key={a.id} className="card-elevated">
+        {AGENTS.map((a, i) => (
+          <Card key={a.id} variant="elevated" animate delay={0.04 + i * 0.03} className="!p-5">
             <div className="flex justify-between items-start mb-3">
               <div>
-                <h2 className="font-display font-semibold text-lg text-ink">{a.country}</h2>
+                <h3 className="font-display font-semibold text-lg text-ink">{a.country}</h3>
                 <p className="text-xs text-ink-muted">{t(a.regionKey)}</p>
               </div>
               <span className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full border ${statusClass(a.status)}`}>
@@ -69,7 +113,7 @@ export function AgentsPage() {
             </div>
             <p className="text-sm text-ink-secondary mb-4 leading-relaxed">{t(a.focusKey)}</p>
             <div className="flex items-center gap-2 text-xs font-mono text-nostr-violet bg-nostr-violet-soft rounded-mp-md px-3 py-2 mb-4 border border-nostr-violet/15">
-              <Zap size={12} /> {a.npub}
+              <Zap size={12} aria-hidden /> {a.npub}
             </div>
             <button
               type="button"
@@ -81,9 +125,9 @@ export function AgentsPage() {
               }, null, 2))}
               className="btn-secondary w-full text-sm !py-2"
             >
-              <MessageCircle size={14} /> {t('agents.message')}
+              <MessageCircle size={14} aria-hidden /> {t('agents.message')}
             </button>
-          </div>
+          </Card>
         ))}
       </div>
 
@@ -93,17 +137,17 @@ export function AgentsPage() {
 
       {dmPreview && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" role="dialog" aria-modal="true">
-          <div className="max-w-lg w-full rounded-card border border-mp-border bg-mp-card p-5 shadow-mp-4">
+          <Card variant="elevated" className="max-w-lg w-full !p-5 shadow-mp-4">
             <h3 className="font-display font-semibold text-ink mb-2">Nostr DM stub</h3>
-            <pre className="text-[10px] font-mono text-ink-secondary overflow-auto max-h-64 bg-mp-section p-3 rounded-mp-md">{dmPreview}</pre>
+            <pre className="text-[10px] font-mono text-ink-secondary overflow-auto max-h-64 bg-card-muted/50 p-3 rounded-mp-md border border-mp/50">{dmPreview}</pre>
             <button type="button" className="btn-primary mt-4 text-sm" onClick={() => { navigator.clipboard?.writeText(dmPreview); setDmPreview(null) }}>
               Copy & close
             </button>
-          </div>
+          </Card>
         </div>
       )}
 
-      <p className="text-xs text-ink-muted mt-6 text-center max-w-xl mx-auto leading-relaxed">
+      <p className="text-xs text-ink-muted mt-6 text-center max-w-2xl mx-auto leading-relaxed">
         {t('agents.disclaimer')}
       </p>
     </div>
