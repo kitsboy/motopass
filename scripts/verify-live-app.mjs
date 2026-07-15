@@ -19,8 +19,11 @@ if (!jsMatch) {
 const jsPath = jsMatch[1]
 const jsUrl = `${base}${jsPath}`
 
-const browser = await chromium.launch()
-const page = await browser.newPage()
+const browser = await chromium.launch({
+  args: ['--disk-cache-size=1', '--media-cache-size=1'],
+})
+const context = await browser.newContext({ bypassCSP: true })
+const page = await context.newPage()
 const poisoned = []
 
 page.on('response', async res => {
