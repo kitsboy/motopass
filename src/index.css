@@ -329,7 +329,7 @@ body {
   top: 0;
   z-index: 50;
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .club-header-bg {
@@ -337,6 +337,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 }
 
 .club-header-bg::before {
@@ -466,7 +467,7 @@ body {
 }
 
 .nav-dropdown-panel {
-  @apply absolute top-[calc(100%+4px)] z-[80] max-h-64 overflow-y-auto rounded-2xl border border-mp py-1 shadow-card-hover;
+  @apply absolute top-[calc(100%+4px)] z-[120] max-h-64 overflow-y-auto rounded-2xl border border-mp py-1 shadow-card-hover;
   background: var(--mp-glass-bg);
   backdrop-filter: blur(24px) saturate(1.45);
   @apply animate-[fade-up_0.18s_ease-out_both];

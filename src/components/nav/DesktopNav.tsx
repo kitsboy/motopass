@@ -10,7 +10,7 @@ export function DesktopNav() {
 
   return (
     <nav
-      className="hidden lg:block border-t border-mp/40"
+      className="relative z-10 hidden lg:block border-t border-mp/40"
       style={{ background: 'var(--mp-glass-bg)', backdropFilter: 'blur(20px) saturate(1.4)' }}
       aria-label="Main navigation"
     >

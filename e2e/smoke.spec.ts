@@ -35,7 +35,11 @@ test.describe('smoke', () => {
     const langBtn = page.getByRole('button', { name: /language/i }).first()
     await expect(langBtn).toBeVisible()
     await langBtn.click()
-    await expect(page.getByRole('listbox', { name: /language/i })).toBeVisible()
+    const listbox = page.getByRole('listbox', { name: /language/i })
+    await expect(listbox).toBeVisible()
+    for (const name of ['Español', 'Français', 'Português', '中文', 'العربية', 'Kiswahili', 'Deutsch', 'हिन्दी']) {
+      await expect(listbox.getByRole('option', { name })).toBeVisible()
+    }
   })
 
   test('language switch updates document lang', async ({ page }) => {

@@ -39,7 +39,7 @@ export function Layout() {
       </a>
 
       <Header>
-        <div className="max-w-7xl mx-auto px-3 sm:px-5">
+        <div className="relative z-30 max-w-7xl mx-auto px-3 sm:px-5">
           <div className="h-12 sm:h-[3.25rem] flex items-center justify-between gap-2">
             <NavLink
               to="/"

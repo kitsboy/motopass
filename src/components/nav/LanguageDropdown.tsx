@@ -55,7 +55,7 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
       : 'nav-btn nav-btn-icon !gap-1 !pl-2 !pr-1.5 min-w-[2.75rem]'
 
   return (
-    <div ref={rootRef} className="relative">
+    <div ref={rootRef} className={`relative ${open ? 'z-40' : ''}`}>
       <button
         type="button"
         className={triggerClass}
