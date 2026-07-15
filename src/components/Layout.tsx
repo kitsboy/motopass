@@ -50,7 +50,7 @@ export function Layout() {
   }, [headerCollapsed])
 
   return (
-    <div className="sovereign-canvas min-h-dvh flex flex-1 flex-col bg-canvas text-ink w-full max-w-[100vw] overflow-x-clip">
+    <div className="sovereign-canvas min-h-svh flex flex-col bg-canvas text-ink w-full max-w-[100vw] overflow-x-clip">
       <div className="sovereign-ambient" aria-hidden />
       <div className="sovereign-glow" aria-hidden />
       <RouteSeo />
@@ -108,10 +108,10 @@ export function Layout() {
 
       <NavShortcutsModal open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
       <MoreNavSheet open={moreOpen} onClose={() => setMoreOpen(false)} />
-      <MobileBottomNav moreOpen={moreOpen} onMoreToggle={() => setMoreOpen(v => !v)} />
 
       <BackToTop />
       <Footer />
+      <MobileBottomNav moreOpen={moreOpen} onMoreToggle={() => setMoreOpen(v => !v)} />
     </div>
   )
 }

@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-57] — 2026-07-15
+
+### Changed
+- Footer gap v3 — sticky tab bar after footer, remove bad preload
+
+---
+
 ## [BUILD-2026.07.15-56] — 2026-07-15
 
 ### Changed

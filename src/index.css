@@ -63,7 +63,7 @@ body {
   font-family: var(--mp-font-body), -apple-system, sans-serif;
   background-color: var(--mp-surface-canvas, rgb(var(--mp-canvas-rgb)));
   color: var(--mp-ink-primary, rgb(var(--mp-ink-rgb)));
-  min-height: 100dvh;
+  min-height: 100svh;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
   @apply antialiased;
@@ -1257,7 +1257,6 @@ body::before {
 html {
   overflow-x: clip;
   max-width: 100%;
-  min-height: 100dvh;
   scroll-padding-top: calc(var(--mp-header-offset, 7.25rem) + env(safe-area-inset-top, 0px) + 0.5rem);
 }
 
@@ -1271,14 +1270,16 @@ body,
 #root {
   display: flex;
   flex-direction: column;
+  min-height: 100svh;
 }
 
 .sovereign-canvas {
-  flex: 1 1 auto;
+  flex: 1 0 auto;
+  width: 100%;
 }
 
 .layout-main {
-  flex: 1 1 auto;
+  flex: 1 0 auto;
   min-height: 0;
 }
 

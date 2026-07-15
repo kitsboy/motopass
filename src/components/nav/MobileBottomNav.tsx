@@ -11,7 +11,7 @@ export function MobileBottomNav({ moreOpen, onMoreToggle }: { moreOpen: boolean;
   const moreActive = MORE_PATHS.some(p => location.pathname === p || location.pathname.startsWith(`${p}/`))
 
   return (
-    <nav className="mobile-nav-glass lg:hidden fixed bottom-0 inset-x-0 z-50 safe-bottom" aria-label="Mobile tab bar">
+    <nav className="mobile-nav-glass lg:hidden sticky bottom-0 inset-x-0 z-50 safe-bottom shrink-0" aria-label="Mobile tab bar">
       <div className="grid grid-cols-5 gap-0 px-1 pt-1 pb-1">
         {MOBILE_TAB_ROUTES.map(tab => {
           const Icon = tab.icon

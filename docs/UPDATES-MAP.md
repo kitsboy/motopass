@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.07.15-56 · **Last updated:** 2026-07-15
+**BUILD:** 2026.07.15-57 · **Last updated:** 2026-07-15
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,7 +11,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.07.15-56 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.07.15-57 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
 | **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
 | **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
 | **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
@@ -30,6 +30,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.07.15-57** | 2026-07-15 | `1765ad3` | Footer gap v3 — sticky tab bar after footer, remove bad preload |
 | **2026.07.15-56** | 2026-07-15 | `9e9e53c` | Batch 25 complete — footer gap v2, 780/780 elite polish |
 | **2026.07.15-54** | 2026-07-15 | `9aeb3ce` | Footer flush — nav clearance inside footer glass, no void below |
 | **2026.07.15-53** | 2026-07-15 | `0b13550` | Canvas +20% lift, footer gap fix — mobile-tight polish |

@@ -27,10 +27,12 @@ test.describe('footer gap (visual stub)', () => {
       const scrollY = window.scrollY
       const docHeight = document.documentElement.scrollHeight
       const footerDocBottom = footerRect.bottom + scrollY
+      const navDocBottom = navRect.bottom + scrollY
       return {
-        footerBottom: footerDocBottom,
-        navTop: navRect.top,
-        gapBelowFooter: docHeight - footerDocBottom,
+        footerDocBottom,
+        navDocBottom,
+        gapBelowFooter: footerRect.bottom - navRect.top,
+        gapBelowDocument: docHeight - navDocBottom,
         docHeight,
         scrollY,
       }
@@ -38,8 +40,10 @@ test.describe('footer gap (visual stub)', () => {
 
     expect(metrics).not.toBeNull()
     if (metrics) {
-      expect(metrics.gapBelowFooter).toBeLessThan(16)
-      expect(metrics.footerBottom).toBeGreaterThanOrEqual(metrics.navTop - 4)
+      // Footer sits directly above tab bar (no canvas void between them)
+      expect(metrics.gapBelowFooter).toBeLessThan(4)
+      // Document ends at tab bar — no scrollable void below
+      expect(metrics.gapBelowDocument).toBeLessThan(16)
     }
 
     const screenshot = await footer.screenshot()
