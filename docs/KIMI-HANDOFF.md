@@ -503,4 +503,26 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-14 (BUILD 34 — members club UI redesign)
+
+**Done:**
+- Full premium redesign: dark canvas `#0a0a0f`, Bitcoin orange `#ff9500`, electric blue accents
+- Typography: Inter body + Inter Tight display (replaced Fraunces/Source Serif)
+- New UI primitives: `Button`, `Card`, `Input`, `Modal` in `src/components/ui/`
+- `Header.tsx` with cinematic animated hash-pattern background + orange/electric glows
+- Premium glass cards (rounded-2xl buttons, scale+glow hover, grain textures)
+- Polished Vault, Distressed, Apply, Programs pages + exclusive nav + premium footer
+- BUILD `2026.07.14-34` · 36 unit + 19 e2e green
+
+**Decisions:**
+- `GlassCard` / `ClassyModal` kept as thin wrappers over `Card` / `Modal` for backward compat
+- Header uses CSS-only animation (hash drift + glow pulse) — no image gen dependency
+
+**Git State:**
+- SHA: `7e53381`
+- Message: `feat(ui): BUILD 34 members club redesign — cinematic header, premium glass`
+- Pushed: `origin/main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
