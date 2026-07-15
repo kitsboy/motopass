@@ -18,26 +18,32 @@ export function PageHeader({
   const reduceMotion = useReducedMotion()
 
   const headerProps = reduceMotion
-    ? { className: 'flex flex-col gap-6 border-b border-mp-border-subtle pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between' }
+    ? {
+        className:
+          'page-header-accent flex flex-col gap-6 border-b border-mp-border-subtle/80 pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
+      }
     : {
-        initial: { opacity: 0, y: 14 },
+        initial: { opacity: 0, y: 16 },
         animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
-        className: 'flex flex-col gap-6 border-b border-mp-border-subtle pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
+        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+        className:
+          'page-header-accent flex flex-col gap-6 border-b border-mp-border-subtle/80 pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
       }
 
   const Header = reduceMotion ? 'header' : motion.header
 
   return (
     <Header {...headerProps}>
-      <div className="max-w-2xl">
+      <div className="max-w-2xl min-w-0">
         {eyebrow && (
-          <span className="font-mono text-eyebrow uppercase tracking-[0.2em] text-mp-btc-text block mb-2">
+          <span className="font-mono text-eyebrow uppercase tracking-[0.22em] text-mp-btc-text block mb-2.5">
             {eyebrow}
           </span>
         )}
-        <h1 className="font-display text-2xl font-semibold tracking-tight text-mp-ink sm:text-h2 lg:text-h1">{title}</h1>
-        {body && <p className="mt-3 max-w-xl font-body text-body text-mp-ink-secondary text-sm leading-relaxed">{body}</p>}
+        <h1 className="font-display text-h2 font-semibold tracking-tight text-mp-ink sm:text-h1">{title}</h1>
+        {body && (
+          <p className="mt-3 max-w-xl font-body text-body text-mp-ink-secondary leading-relaxed">{body}</p>
+        )}
       </div>
       {actions && <div className="flex shrink-0 flex-wrap items-center gap-2 sm:gap-3">{actions}</div>}
     </Header>

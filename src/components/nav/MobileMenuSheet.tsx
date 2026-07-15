@@ -10,23 +10,7 @@ import { ThemeToggle } from '../ThemeToggle'
 import { LanguageDropdown } from './LanguageDropdown'
 import { useI18n } from '../../i18n/I18nContext'
 import { useUser } from '../../context/UserContext'
-
-const EXPLORE = [
-  { to: '/', key: 'nav.pitch' as const, end: true },
-  { to: '/programs', key: 'nav.programs' as const },
-  { to: '/portfolio', key: 'nav.portfolio' as const },
-] as const
-
-const TOOLS = [
-  { to: '/btcmap', key: 'nav.btcmap' as const },
-  { to: '/simulator', key: 'nav.simulator' as const },
-  { to: '/compare', key: 'nav.compare' as const },
-  { to: '/vault', key: 'nav.vault' as const },
-  { to: '/distressed', key: 'nav.distressed' as const },
-  { to: '/verify', key: 'nav.verify' as const },
-  { to: '/blog', key: 'nav.blog' as const },
-  { to: '/agents', key: 'nav.agents' as const },
-] as const
+import { MAIN_NAV_ROUTES, navTileClass } from '../../lib/navRoutes'
 
 export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useI18n()
@@ -34,83 +18,77 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
 
   useEffect(() => {
     if (!open) return
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
-  const gridLink = (isActive: boolean) =>
-    `nav-mobile-tile ${isActive ? 'nav-mobile-tile-active' : ''}`
-
   return (
     <AnimatePresence initial={false}>
       {open && (
-    <motion.div
-      initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: 'auto' }}
-      exit={{ opacity: 0, height: 0 }}
-      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-      className="lg:hidden overflow-hidden border-t border-mp/70 bg-card/95"
-    >
-      <div className="px-4 pb-4 pt-3 space-y-3 max-h-[min(70vh,520px)] overflow-y-auto">
-        <div className="flex items-center justify-between">
-          <span className="font-chrome text-[10px] uppercase tracking-wider text-ink-muted">{t('nav.menu')}</span>
-          <button type="button" onClick={onClose} className="nav-btn nav-btn-icon !h-8 !w-8" aria-label={t('nav.close')}>
-            <X size={18} />
-          </button>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-1.5">
-          <BlockHeight />
-          <NostrConnect />
-          <ThemeToggle compact />
-        </div>
-
-        <LanguageDropdown size="menu" />
-
-        <Link
-          to={isLoggedIn ? '/dashboard' : '/register'}
-          onClick={onClose}
-          className={isLoggedIn ? 'nav-btn nav-btn-primary w-full justify-center' : 'nav-btn nav-btn-violet w-full justify-center'}
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:hidden overflow-hidden border-t border-mp/70 bg-card/95 backdrop-blur-xl"
         >
-          {isLoggedIn ? <User size={14} /> : <UserPlus size={14} />}
-          {isLoggedIn ? t('nav.dashboard') : t('nav.register')}
-        </Link>
+          <div className="px-4 pb-4 pt-3 space-y-3 max-h-[min(70vh,520px)] overflow-y-auto">
+            <div className="flex items-center justify-between">
+              <span className="font-chrome text-[10px] uppercase tracking-wider text-ink-muted">{t('nav.menu')}</span>
+              <button type="button" onClick={onClose} className="nav-btn nav-btn-icon !h-8 !w-8" aria-label={t('nav.close')}>
+                <X size={18} />
+              </button>
+            </div>
 
-        <div>
-          <p className="nav-section-label mb-1.5 px-0.5">{t('nav.explore')}</p>
-          <nav className="grid grid-cols-3 gap-1.5">
-            {EXPLORE.map(n => (
-              <PrefetchNavLink key={n.to} to={n.to} end={'end' in n ? n.end : false} onClick={onClose} className={({ isActive }) => gridLink(isActive)}>
-                {t(n.key)}
-              </PrefetchNavLink>
-            ))}
-          </nav>
-        </div>
+            <div className="flex flex-wrap items-center gap-1.5">
+              <BlockHeight />
+              <NostrConnect />
+              <ThemeToggle compact />
+            </div>
 
-        <div>
-          <p className="nav-section-label mb-1.5 px-0.5">{t('nav.tools')}</p>
-          <nav className="grid grid-cols-3 gap-1.5">
-            {TOOLS.map(n => (
-              <PrefetchNavLink key={n.to} to={n.to} onClick={onClose} className={({ isActive }) => gridLink(isActive)}>
-                {t(n.key)}
-              </PrefetchNavLink>
-            ))}
-            <ApplyNavLink layout="tile" onClick={onClose} />
-          </nav>
-        </div>
+            <LanguageDropdown size="menu" />
 
-        <a
-          href="/website/index.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="nav-btn nav-btn-ghost w-full justify-center"
-        >
-          <ExternalLink size={14} />
-          {t('nav.demo')}
-        </a>
-      </div>
-    </motion.div>
+            <Link
+              to={isLoggedIn ? '/dashboard' : '/register'}
+              onClick={onClose}
+              className={isLoggedIn ? 'nav-btn nav-btn-primary w-full justify-center' : 'nav-btn nav-btn-violet w-full justify-center'}
+            >
+              {isLoggedIn ? <User size={14} /> : <UserPlus size={14} />}
+              {isLoggedIn ? t('nav.dashboard') : t('nav.register')}
+            </Link>
+
+            <nav className="grid grid-cols-2 gap-1.5" aria-label="Main navigation">
+              {MAIN_NAV_ROUTES.map(n =>
+                n.apply ? (
+                  <ApplyNavLink key={n.to} layout="tile" onClick={onClose} />
+                ) : (
+                  <PrefetchNavLink
+                    key={n.to}
+                    to={n.to}
+                    end={n.end}
+                    onClick={onClose}
+                    className={({ isActive }) => navTileClass(isActive)}
+                  >
+                    {t(n.key)}
+                  </PrefetchNavLink>
+                ),
+              )}
+            </nav>
+
+            <a
+              href="/website/index.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-btn nav-btn-ghost w-full justify-center"
+            >
+              <ExternalLink size={14} />
+              {t('nav.demo')}
+            </a>
+          </div>
+        </motion.div>
       )}
     </AnimatePresence>
   )

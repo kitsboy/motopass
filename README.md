@@ -1,6 +1,6 @@
 # MotoPass — Bitcoin Sovereign Passports & Residency
 
-**BUILD 2026.07.14-32** · Last updated: 2026-07-14
+**BUILD 2026.07.14-33** · Last updated: 2026-07-14
 
 [![CI](https://github.com/kitsboy/motopass/actions/workflows/ci.yml/badge.svg)](https://github.com/kitsboy/motopass/actions/workflows/ci.yml)
 [![Live](https://img.shields.io/website?url=https%3A%2F%2Fmotopass.giveabit.io&label=motopass.giveabit.io)](https://motopass.giveabit.io)
@@ -67,7 +67,7 @@ motopass/
 
 ---
 
-## Current state (BUILD 32)
+## Current state (BUILD 33)
 
 - **Luminous Sovereign** light UI + dark mode toggle
 - **50 jurisdictions** in live data · **16 flagships** at Uruguay template depth

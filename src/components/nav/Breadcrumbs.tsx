@@ -9,6 +9,7 @@ const ROUTE_LABELS: Record<string, TranslationKey> = {
   simulator: 'nav.simulator',
   compare: 'nav.compare',
   vault: 'nav.vault',
+  distressed: 'nav.distressed',
   blog: 'nav.blog',
   verify: 'nav.verify',
   agents: 'nav.agents',

@@ -1,67 +1,46 @@
 import { NavLink, useLocation } from 'react-router-dom'
-import { BookOpen, Briefcase, Compass, LayoutGrid, MoreHorizontal } from 'lucide-react'
+import { MoreHorizontal } from 'lucide-react'
 import { useI18n } from '../../i18n/I18nContext'
-import { useUser } from '../../context/UserContext'
-import { MORE_PATHS } from '../../lib/navRoutes'
-
-type Tab = {
-  to: string
-  labelKey: 'nav.pitch' | 'nav.programs' | 'nav.portfolio' | 'nav.dashboard'
-  icon: typeof Compass
-  end?: boolean
-  registerFallback?: boolean
-}
+import { MOBILE_TAB_ROUTES, MORE_PATHS, navTabClass } from '../../lib/navRoutes'
+import { ApplyNavTab } from './ApplyNavLink'
 
 export function MobileBottomNav({ moreOpen, onMoreToggle }: { moreOpen: boolean; onMoreToggle: () => void }) {
   const { t } = useI18n()
-  const { isLoggedIn } = useUser()
   const location = useLocation()
-  const moreActive = MORE_PATHS.some(
-    p => location.pathname === p || (p === '/blog' && location.pathname.startsWith('/blog')),
-  )
-
-  const tabs: Tab[] = [
-    { to: '/', labelKey: 'nav.pitch', icon: Compass, end: true },
-    { to: '/programs', labelKey: 'nav.programs', icon: LayoutGrid },
-    { to: '/portfolio', labelKey: 'nav.portfolio', icon: Briefcase },
-    { to: isLoggedIn ? '/dashboard' : '/register', labelKey: 'nav.dashboard', icon: BookOpen, registerFallback: !isLoggedIn },
-  ]
+  const moreActive = MORE_PATHS.some(p => location.pathname === p || location.pathname.startsWith(`${p}/`))
 
   return (
-    <nav
-      className="lg:hidden fixed bottom-0 inset-x-0 z-50 border-t border-mp/80 bg-card/96 backdrop-blur-xl shadow-[0_-8px_32px_rgba(24,24,27,0.08)] safe-bottom"
-      aria-label="Mobile tab bar"
-    >
+    <nav className="mobile-nav-glass lg:hidden fixed bottom-0 inset-x-0 z-50 safe-bottom" aria-label="Mobile tab bar">
       <div className="grid grid-cols-5 gap-0 px-1 pt-1 pb-1">
-        {tabs.map(tab => {
+        {MOBILE_TAB_ROUTES.map(tab => {
           const Icon = tab.icon
           return (
             <NavLink
               key={tab.to}
               to={tab.to}
-              end={tab.end}
-              className={({ isActive }) => `nav-tab ${isActive ? 'nav-tab-active' : ''}`}
+              className={({ isActive }) => navTabClass(isActive)}
             >
               {({ isActive }) => (
                 <>
                   <Icon size={17} strokeWidth={isActive ? 2.5 : 2} className="shrink-0" aria-hidden="true" />
-                  <span className="leading-none truncate max-w-full px-0.5 text-[10px]">
-                    {tab.registerFallback ? t('nav.register') : t(tab.labelKey === 'nav.dashboard' ? 'nav.dashboardShort' : tab.labelKey)}
+                  <span className="leading-none truncate max-w-full px-0.5 text-[10px] font-chrome">
+                    {t(tab.key)}
                   </span>
                 </>
               )}
             </NavLink>
           )
         })}
+        <ApplyNavTab />
         <button
           type="button"
           onClick={onMoreToggle}
-          className={`nav-tab ${moreActive || moreOpen ? 'nav-tab-active' : ''}`}
+          className={navTabClass(moreActive || moreOpen)}
           aria-expanded={moreOpen}
           aria-label={t('nav.more')}
         >
           <MoreHorizontal size={17} strokeWidth={moreActive || moreOpen ? 2.5 : 2} aria-hidden="true" />
-          <span className="leading-none text-[10px]">{t('nav.more')}</span>
+          <span className="leading-none text-[10px] font-chrome">{t('nav.more')}</span>
         </button>
       </div>
     </nav>

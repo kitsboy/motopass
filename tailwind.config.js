@@ -114,6 +114,11 @@ export default {
         'gradient-seal': 'var(--gradient-seal)',
         guilloche: 'var(--guilloche-pattern)',
         grid: 'var(--grid-pattern)',
+        'btc-grid': 'var(--btc-grid-pattern)',
+        hash: 'var(--hash-pattern)',
+      },
+      backdropBlur: {
+        glass: 'var(--mp-glass-blur)',
       },
       transitionTimingFunction: {
         'spring-snappy': 'var(--spring-snappy)',

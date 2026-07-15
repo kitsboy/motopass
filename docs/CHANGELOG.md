@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.14-33] — 2026-07-14
+
+### Changed
+- sovereign UI · nav cleanup · glass dark + canonical menu
+
+---
+
 ## [BUILD-2026.07.14-32] — 2026-07-14
 
 ### Changed

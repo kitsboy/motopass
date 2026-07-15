@@ -117,6 +117,18 @@
   /* fine linen crosshatch, 3% opacity */
   --grid-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M0 12h24M12 0v24' stroke='%23000' stroke-width='0.5' opacity='0.4'/%3E%3C/svg%3E");
 
+  /* Bitcoin block-grid — subtle sovereign texture */
+  --btc-grid-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 0h48v48H0z' fill='none'/%3E%3Cpath d='M0 24h48M24 0v48' stroke='%23F7931A' stroke-width='0.35' opacity='0.18'/%3E%3Crect x='0' y='0' width='12' height='12' fill='%23F7931A' opacity='0.04'/%3E%3Crect x='24' y='24' width='12' height='12' fill='%23F7931A' opacity='0.04'/%3E%3C/svg%3E");
+
+  /* Hash monospace texture — ledger feel */
+  --hash-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='24'%3E%3Ctext x='0' y='16' font-family='monospace' font-size='9' fill='%23F7931A' opacity='0.07'%3Ea3f9·8b2e·c41d·f0a1·9e7c·b5d8%3C/text%3E%3C/svg%3E");
+
+  /* Glassmorphism */
+  --mp-glass-bg: rgba(255, 255, 255, 0.62);
+  --mp-glass-border: rgba(247, 147, 26, 0.14);
+  --mp-glass-highlight: rgba(255, 255, 255, 0.55);
+  --mp-glass-blur: 18px;
+
   /* passport guilloche-inspired interlocking meridian arcs, 4-8% opacity */
   --guilloche-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='none' stroke='%23B5651D' stroke-width='0.6' opacity='0.5'%3E%3Ccircle cx='90' cy='90' r='40'/%3E%3Ccircle cx='90' cy='90' r='60'/%3E%3Ccircle cx='90' cy='90' r='80'/%3E%3Ccircle cx='0' cy='0' r='60'/%3E%3Ccircle cx='180' cy='180' r='60'/%3E%3Ccircle cx='180' cy='0' r='50'/%3E%3Ccircle cx='0' cy='180' r='50'/%3E%3C/g%3E%3C/svg%3E");
 
@@ -142,12 +154,12 @@
    DARK MODE — "Sovereign Night" → Obsidian Slate, warm undertones
    ========================================================================== */
 .dark {
-  --mp-surface-canvas: #121214;
-  --mp-surface-section: #1C1C1F;
-  --mp-surface-card: #27272A;
-  --mp-surface-card-aged: #262421;
-  --mp-surface-elevated: #2E2C29;
-  --mp-surface-modal: #201E1B;
+  --mp-surface-canvas: #0A0A0C;
+  --mp-surface-section: #111114;
+  --mp-surface-card: #16161A;
+  --mp-surface-card-aged: #1A1816;
+  --mp-surface-elevated: #1E1E22;
+  --mp-surface-modal: #141316;
 
   --mp-border-subtle: #2E2B27;
   --mp-border-default: #3D3934;
@@ -191,8 +203,17 @@
   --gradient-radial-warm: radial-gradient(70% 70% at 50% 30%, hsla(30, 90%, 50%, 0.12), transparent 70%);
   --gradient-scrim-bottom: linear-gradient(180deg, transparent 0%, hsla(0, 0%, 0%, 0.65) 100%);
 
-  --grain-opacity: 0.05;
+  --grain-opacity: 0.04;
+  --grid-pattern-opacity: 0.06;
   --guilloche-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='none' stroke='%23F7931A' stroke-width='0.6' opacity='0.35'%3E%3Ccircle cx='90' cy='90' r='40'/%3E%3Ccircle cx='90' cy='90' r='60'/%3E%3Ccircle cx='90' cy='90' r='80'/%3E%3Ccircle cx='0' cy='0' r='60'/%3E%3Ccircle cx='180' cy='180' r='60'/%3E%3Ccircle cx='180' cy='0' r='50'/%3E%3Ccircle cx='0' cy='180' r='50'/%3E%3C/g%3E%3C/svg%3E");
+
+  --btc-grid-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 0h48v48H0z' fill='none'/%3E%3Cpath d='M0 24h48M24 0v48' stroke='%23F7931A' stroke-width='0.35' opacity='0.14'/%3E%3Crect x='0' y='0' width='12' height='12' fill='%23F7931A' opacity='0.035'/%3E%3Crect x='24' y='24' width='12' height='12' fill='%23F7931A' opacity='0.035'/%3E%3C/svg%3E");
+  --hash-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='24'%3E%3Ctext x='0' y='16' font-family='monospace' font-size='9' fill='%23F7931A' opacity='0.09'%3Ea3f9·8b2e·c41d·f0a1·9e7c·b5d8%3C/text%3E%3C/svg%3E");
+
+  --mp-glass-bg: rgba(18, 18, 22, 0.72);
+  --mp-glass-border: rgba(247, 147, 26, 0.18);
+  --mp-glass-highlight: rgba(255, 255, 255, 0.06);
+  --mp-glass-blur: 20px;
 }
 
 /* Respect reduced motion globally */

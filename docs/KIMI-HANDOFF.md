@@ -476,8 +476,26 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Applications gated by scorecard JSON, not hardcoded flags
 
 **Git State:**
-- SHA: (see commit below)
+- SHA: `e5527fdcdab7d1608126868d04f04938316ad73f`
 - Message: `BUILD 32 — applications open — full v2.3 master`
+- Deployed: Cloudflare Pages `064d43c2.motopass.pages.dev` → https://motopass.giveabit.io
+- Health check: passed (50 programs, sitemap, logo)
+
+---
+
+## Session — 2026-07-14 (BUILD 33 — sovereign UI + nav cleanup)
+
+**Done:**
+- Premium dark sovereign UI: glass cards, BTC grid/hash textures, default dark theme
+- `GlassCard` component · polished Apply/Vault/Distressed pages
+- Nav audit: single `MAIN_NAV_ROUTES` in `navRoutes.ts` — no Explore/Tools duplicates
+- Canonical menu: Programs · Vault · Distressed · BTC Map · Simulator · Compare · Agents · Apply
+- Mobile: bottom tabs + More sheet · footer/desktop active states
+- BUILD `2026.07.14-33` · 36 unit + 19 e2e green · deployed
+
+**Git State:**
+- SHA: (see commit below)
+- Message: `BUILD 33 — sovereign UI + nav cleanup`
 
 ---
 
