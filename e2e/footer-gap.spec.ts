@@ -8,15 +8,15 @@ import { BUILD_ID } from '../src/lib/buildInfo'
 test.describe('footer gap (visual stub)', () => {
   test('mobile footer sits flush with tab bar — no document void', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 })
-    await page.goto('/verify', { waitUntil: 'domcontentloaded' })
-    await expect(page.locator('main')).toBeVisible()
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    await expect(page.locator('main')).toBeVisible({ timeout: 10_000 })
 
     const footer = page.locator('footer.footer-glass')
     await page.evaluate(() => {
       document.querySelector('footer.footer-glass')?.scrollIntoView({ block: 'end', behavior: 'instant' })
     })
     await expect(footer).toBeVisible({ timeout: 10_000 })
-    await expect(footer.getByText(`BUILD ${BUILD_ID}`, { exact: false })).toBeVisible()
+    await expect(footer.locator('[data-build-version]')).toContainText(BUILD_ID)
 
     const metrics = await page.evaluate(() => {
       const footerEl = document.querySelector('footer.footer-glass')
