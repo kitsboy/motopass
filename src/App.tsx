@@ -1,6 +1,7 @@
 import { lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { I18nProvider } from './i18n/I18nContext'
+import { PitchPage } from './pages/PitchPage'
 import { UserProvider } from './context/UserContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { ProgramsProvider } from './context/ProgramsContext'
@@ -12,7 +13,6 @@ import { Layout } from './components/Layout'
 import { RouteSuspense } from './components/RouteSuspense'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
-const PitchPage = lazy(() => import('./pages/PitchPage').then(m => ({ default: m.PitchPage })))
 const ProgramsPage = lazy(() => import('./pages/ProgramsPage').then(m => ({ default: m.ProgramsPage })))
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage').then(m => ({ default: m.PortfolioPage })))
 const StackSimulatorPage = lazy(() => import('./pages/StackSimulatorPage').then(m => ({ default: m.StackSimulatorPage })))
@@ -32,7 +32,6 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ defa
 
 export default function App() {
   return (
-    <ErrorBoundary>
     <ThemeProvider>
     <ProgramsProvider>
     <BlockHeightProvider>
@@ -40,6 +39,7 @@ export default function App() {
     <BtcMapDensityProvider>
     <BtcMapAuthProvider>
     <I18nProvider>
+    <ErrorBoundary>
       <UserProvider>
         <BrowserRouter>
           <Routes>
@@ -65,6 +65,7 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       </UserProvider>
+    </ErrorBoundary>
     </I18nProvider>
     </BtcMapAuthProvider>
     </BtcMapDensityProvider>
@@ -72,6 +73,5 @@ export default function App() {
     </BlockHeightProvider>
     </ProgramsProvider>
     </ThemeProvider>
-    </ErrorBoundary>
   )
 }

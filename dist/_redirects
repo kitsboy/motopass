@@ -1,5 +1,4 @@
-# Cloudflare Pages — explicit static paths BEFORE SPA fallback (prevents index.html caching as .js)
-/assets/*    /assets/:splat    200
+# Cloudflare Pages — SPA fallback ONLY for HTML routes (static /assets files served from dist)
 /website/*   /website/:splat   200
 /research/*  /research/:splat  200
 /images/*    /images/:splat    200

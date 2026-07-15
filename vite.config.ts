@@ -64,6 +64,23 @@ function serveStaticRoot(root: string) {
   }
 }
 
+const BOOT_GUARD = `<script>
+(function(){var shown=false;function recover(){if(shown)return;shown=true;var r=document.getElementById("root");if(!r)return;r.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:#16161f;color:#f5f2ec;font-family:system-ui,sans-serif;text-align:center"><div style="max-width:22rem"><h1 style="margin:0 0 .75rem;font-size:1.25rem">MotoPass is updating</h1><p style="margin:0 0 1.25rem;opacity:.85;font-size:.9rem;line-height:1.5">Your browser cached a deploy artifact. This is not an overlay — the app script failed to load.</p><button type="button" onclick="location.reload()" style="padding:.7rem 1.4rem;border-radius:12px;border:none;background:#ff9500;color:#0a0804;font-weight:600;cursor:pointer">Hard refresh</button></div></div>';}
+function poisoned(m){return/Unexpected token '<'|dynamically imported module|Importing a module script failed/i.test(String(m||''));}
+window.addEventListener("error",function(e){if(poisoned(e.message))recover();},true);
+window.addEventListener("unhandledrejection",function(e){if(poisoned(e.reason&&e.reason.message||e.reason))recover();});
+})();
+</script>`
+
+function injectBootGuard(): Plugin {
+  return {
+    name: 'motopass-boot-guard',
+    transformIndexHtml(html) {
+      return html.replace('</head>', `${BOOT_GUARD}</head>`)
+    },
+  }
+}
+
 function motopassStaticAssets(): Plugin {
   return {
     name: 'motopass-static-assets',
@@ -95,7 +112,7 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), motopassStaticAssets()],
+  plugins: [react(), injectBootGuard(), motopassStaticAssets()],
   server: {
     fs: {
       strict: false,

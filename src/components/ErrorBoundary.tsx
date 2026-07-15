@@ -13,7 +13,7 @@ export class ErrorBoundary extends React.Component<{ children: React.ReactNode }
 
   render() {
     if (this.state.hasError) {
-      return <ErrorFallback />
+      return <ErrorFallback message={this.state.message} />
     }
     return this.props.children
   }

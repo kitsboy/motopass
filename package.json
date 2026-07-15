@@ -34,7 +34,7 @@
     "verify:goal": "bash scripts/verify-goal.sh",
     "deploy:verify": "npm run build && echo 'Build OK — commit dist/ and push to origin main for Cloudflare Pages deploy'",
     "verify:live": "node scripts/verify-live-app.mjs",
-    "deploy": "npm run build && node scripts/purge-live-cache.mjs && wrangler pages deploy dist --project-name=motopass --branch=main && node scripts/verify-live-app.mjs",
+    "deploy": "npm run build && node scripts/purge-live-cache.mjs && wrangler pages deploy dist --project-name=motopass --branch=main --commit-dirty=true && node scripts/wait-live-app.mjs",
     "deploy:safe": "npm run build && echo 'Deploying ONLY to motopass (motopass.giveabit.io)' && wrangler pages deploy dist --project-name=motopass --branch=main",
     "deploy:check": "test -n \"$CLOUDFLARE_API_TOKEN\" && echo 'CF token set' || echo 'Set CLOUDFLARE_API_TOKEN in .env.local for manual wrangler deploy'",
     "deploy:all": "npm run validate:data && npm run validate:stamps && npm run validate:seal && LAUNCH_SKIP_OPS=1 LAUNCH_WRITE_ONLY=1 npm run launch:gate && npm run lint && npm test && npm run build && npm run bundle:check && npm run test:e2e && npm run deploy:safe"
