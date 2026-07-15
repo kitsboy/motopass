@@ -714,7 +714,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 **Still open (Batch 24):** Pitch polish 611–620, distressed 632–640, design 664–670, i18n/SEO 672–680 (~30 items)
 
 **Git State:**
-- SHA: (see commit after push)
+- SHA: `dd553b0`
 - Pushed: `origin/main`
 
 ---
