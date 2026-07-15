@@ -13,9 +13,9 @@ tags: [pillars, architecture, pitch, btc]
 # MotoPass Sovereign Stack — 4 Core Pillars Spec
 
 **Date:** 2026-07-14  
-**Build:** `2026.07.14-28`  
+**Build:** `2026.07.14-33`  
 **Figures:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) (₿ primary · USD secondary)  
-**Status:** Pre-launch — intelligence MVP live; applications not yet accepted  
+**Status:** Launch Engine open — 5/5 gates · applications at `/apply` · Sovereign Night UI live  
 **Live:** https://motopass.giveabit.io  
 **Prime directive:** Truth You Can Verify — Satohash + OpenTimestamps on every material claim
 

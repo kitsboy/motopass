@@ -3,7 +3,7 @@
 **Project:** MotoPass  
 **Date:** 2026-07-14  
 **BUILD:** 2026.07.14-33  
-**Commit:** `41238c2` (feature) / `aaafb91` (handoff)
+**Commit:** `0ce5e12` (BUILD 33) / `03596d5` (feature)
 
 ## Project overview
 
@@ -29,7 +29,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 | Asset | Path | Status |
 |-------|------|--------|
-| React app | `src/` + `npm run dev` | BUILD-33 — 15 routes, dark mode, BTC Map, ₿-first pricing |
+| React app | `src/` + `npm run dev` | BUILD-33 — 18 routes, Sovereign Night default, glass UI, canonical nav |
 | Program data | `research/countries.json` | **50 programs** |
 | BTC Map cache | `public/data/btcmap/` | **50 jurisdiction snapshots** |
 | BTC Map density | `public/data/btcmap-density.json` | Merchant counts per program |
@@ -41,24 +41,28 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 ## Current capabilities (shipped)
 
-- Programs explorer (card + table, filters, breadcrumbs)
-- Portfolio, Stack Simulator, Finance Compare, Vault, Blog, Agents
+- Programs explorer (card + table, filters, breadcrumbs) — **50/50 deep flagships**
+- Portfolio, Stack Simulator, Finance Compare, Blog, Agents
+- **Seal** (`/vault`) — OTS upload, hash verify, 50/50 proofs on disk
+- **Forge** (`/distressed`) — curated + permissionless marketplace, PSBT escrow stub
+- **Apply** (`/apply`) — Launch Engine gated applications, 5/5 gate scorecard
+- **Launch Engine** — `npm run launch:gate` → `public/launch-gates.json`
+- **Canonical nav** — `src/lib/navRoutes.ts` (8 links, mobile bottom + More sheet)
+- **Sovereign UI** — glass cards, BTC textures, dark default, motion polish
 - **BTC Map layer** (`/btcmap`): Leaflet map, merchant list, area chips, program modal panel
 - **Merchant density badges** on program cards (sparse / moderate / dense)
 - **Nostr NIP-98** sign-in for BTC Map saved merchants (heart toggle)
 - **Offline BTC Map cache** — cache-first, API refresh fallback
-- **Report venue CTA** — btcmap.org/add-location + btcmap-cli bridge
 - Nostr connect stub, Satohash verify UI, payment methods stub
 - i18n (10 locales + page keys), SEO meta + hreflang, FAQ JSON-LD
-- Luminous Sovereign light UI + Sovereign Night dark toggle
-- Playwright e2e (16 tests), CI bundle budget, sitemap generator
-- **Bitcoin-first pricing** — `BtcDualPrice` on pitch, programs, compare, portfolio, simulator; `research/pitch-anchor.json` via `npm run pitch:sync`
+- Playwright e2e (19 tests), Vitest (36), CI bundle budget, `npm run deploy:all`
+- **Bitcoin-first pricing** — `BtcDualPrice`; `research/pitch-anchor.json` via `npm run pitch:sync`
 
 ## Gaps & next priorities
 
-1. **Data depth** — Expand all 50 countries to Uruguay flagship template
-2. **Bitcoin core** — Real Satohash stamping, Lightning settlement
-3. **Nostr** — Live MotoPass relay, full npub-native applications
+1. **Bitcoin core** — Real Satohash stamping, Lightning settlement
+2. **Nostr** — Live MotoPass relay (`LAUNCH_FAKE_RELAY=0`), full npub-native routing
+3. **PSBT escrow** — Real 2-of-3 after legal sign-off
 4. **Paige AI** — Move from simulated to real concierge
 5. **CI** — Generate `dist/` in pipeline; weekly `btcmap:sync` cron
 

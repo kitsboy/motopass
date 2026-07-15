@@ -8,8 +8,19 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 ## [BUILD-2026.07.14-33] — 2026-07-14
 
+### Added
+- `GlassCard` component — glassmorphism variants (default, elevated, interactive, banner, proof)
+- `src/lib/navRoutes.ts` — `MAIN_NAV_ROUTES` single source of truth for all menus
+- Sovereign canvas — BTC block-grid + hash monospace textures (`tokens.css`, `index.css`)
+- `ApplyNavTab` — Apply in mobile bottom nav with launch-gate gating
+
 ### Changed
-- sovereign UI · nav cleanup · glass dark + canonical menu
+- **Default theme:** Sovereign Night (dark) unless user saved light preference
+- **Nav:** Removed Explore/Tools/Pitch/Portfolio duplicates; canonical order Programs · Vault · Distressed · BTC Map · Simulator · Compare · Agents · Apply
+- **Mobile:** Bottom tabs (Programs, Vault, Distressed, Apply, More) + 2-col hamburger grid
+- **Footer:** `NavLink` active states; matches canonical nav order
+- Polished Apply, Vault, Distressed pages — motion, shimmer skeletons, glass cards
+- 36 unit + 19 e2e tests green · deployed to motopass.giveabit.io
 
 ---
 

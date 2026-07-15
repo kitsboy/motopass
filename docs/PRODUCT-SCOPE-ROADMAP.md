@@ -1,7 +1,7 @@
 # MotoPass — Product Scope & Roadmap
 ## The Complete Answer to “How Much Are We Going to Build Here?”
 
-**BUILD-2026.07.14-28** | 2026-07-14  
+**BUILD-2026.07.14-33** | 2026-07-14  
 **Status:** Authoritative reference. Update only with corresponding changes to vision, data model, or architecture. Cross-reference with `docs/PROJECT-VISION.md`, `docs/DESIGN-CONTEXT.md`, `docs/NEXT-PROMPT.md`, and `docs/SOURCE-OF-TRUTH.md`.
 
 ---
@@ -18,18 +18,19 @@ The full vision spans data depth, user experience, Bitcoin protocol integration,
 
 ---
 
-## Current State (BUILD-28 Baseline)
+## Current State (BUILD-33 Baseline)
 
 ### Data
-- 16 programs seeded in `research/countries.json` (El Salvador, Central African Republic, Uruguay, St. Kitts & Nevis, Antigua & Barbuda, Dominica, UAE, Switzerland/Crypto Valley, Singapore, Portugal (policy shift note), Malta, Panama, Georgia, Paraguay, Bolivia placeholder, and one explicit “to be filled”).
-- Rich finance modeling per program: min/typical investment USD, gov/processing fees, processing time months, tax benefits (territorial, crypto treatment, holidays), crypto-friendly score (0–10), Bitcoin-specific narrative.
-- Uruguay documented as official flagship + v2.0 master template in `research/uruguay-flagship.md` (Basic Info, 3 Critical Tests, Investment/Financial, Process/Timeline, Legal & Compliance deep extracts, Lifestyle, Bitcoin-Native Features, Paige AI fields).
+- **50 programs** in `research/countries.json` — **50/50 deep flagships** at Uruguay template depth.
+- Rich finance modeling per program: min/typical investment USD, gov/processing fees, processing time months, tax benefits, crypto-friendly score (0–10), Bitcoin-specific narrative, pathways, critical tests, Paige fields.
+- **50 OTS files on disk** · Satohash proof URLs · `research/oracle-seed.json` for G4 Ledger.
 - **BTC Map layer shipped**: merchant density (`btcmap-density.json`), offline cache (50 snapshots), live btcmap-api v4 on `/btcmap`.
-- Target: all 50 programs at Uruguay flagship depth + real Satohash stamps.
 
-### Experience (React App — primary, BUILD-28)
-- 15 routes: Portfolio, Programs, Simulator, Compare, Vault, **BTC Map**, Blog, Agents, Register/Dashboard.
-- Leaflet merchant pins, density badges on cards, Nostr save merchants, offline cache, 30 unit + 16 e2e tests.
+### Experience (React App — primary, BUILD-33)
+- **18 routes** including `/vault` (Seal), `/distressed` (Forge), `/apply` (Launch Engine).
+- **Canonical nav** via `src/lib/navRoutes.ts` — Programs · Vault · Distressed · BTC Map · Simulator · Compare · Agents · Apply.
+- **Sovereign Night default UI** — glass cards, BTC textures, motion polish.
+- Launch Engine: `npm run launch:gate` → `applications_open` · 36 unit + 19 e2e tests · `npm run deploy:all`.
 
 ### Experience (Pristine Reference — still maintained)
 - Self-contained single-file `website/index.html` (~2,362 lines of HTML/CSS/JS).

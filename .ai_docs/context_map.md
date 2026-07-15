@@ -1,6 +1,6 @@
 # motopass — Context Map
 
-> **Updated:** 2026-07-14 · **BUILD:** 2026.07.14-32
+> **Updated:** 2026-07-14 · **BUILD:** 2026.07.14-33 · **Commit:** `0ce5e12`
 > **Domain:** [motopass.giveabit.io](https://motopass.giveabit.io)
 > **Stack:** React 18 + TypeScript + Vite 5 + Tailwind CSS 3 + Cloudflare Pages
 
@@ -10,218 +10,139 @@
 
 ```
 motopass/
-+-- src/                        # React application (TypeScript)
-|   +-- main.tsx                # App entry point
-|   +-- App.tsx                 # Root component with routing
-|   +-- index.css               # Global styles
-|   +-- vite-env.d.ts           # Vite type declarations
-|   +-- components/             # Reusable components
-|   |   +-- ui/                 # Base UI components (Chip, Modal, CopyField, etc.)
-|   |   +-- beui/               # BE UI kit (AnimatedBadge, FileUpload, TiltCard)
-|   |   +-- footer/             # Footer components (Legal, Careers, ServerCosts modals)
-|   |   +-- pitch/              # Pitch page components (Hero, SavingsGraphs, Rotator)
-|   |   +-- programs/           # Program card/modal/table with types
-|   |   +-- *                   # Top-level: AgentCardKimi, BlockHeight, NostrConnect, etc.
-|   +-- pages/                  # Page components (18 routes incl. vault, distressed, apply)
-|   |   +-- VaultPage.tsx       # Seal — OTS verify
-|   |   +-- DistressedPage.tsx  # Forge marketplace
-|   |   +-- ApplyPage.tsx       # Launch Engine applications
-|   +-- lib/launch/             # launch-gates.json fetch + useLaunchGates
-|   +-- lib/                    # Utilities and business logic
-|   |   +-- nostr.ts            # Nostr protocol integration
-|   |   +-- satohash.ts         # Satohash/OTS verification
-|   |   +-- payments.ts         # Payment utilities
-|   |   +-- schema.ts           # JSON schemas
-|   |   +-- storage.ts          # localStorage utilities
-|   |   +-- *.test.ts           # Test files (4 test files)
-|   +-- data/                   # Static data (blog, careers, legal, taxonomy)
-|   +-- hooks/                  # Custom React hooks
-|   +-- i18n/                   # Internationalization (context, languages, translations)
-|   +-- context/                # React contexts (Theme, User)
-|   +-- styles/                 # Design tokens (tokens.css)
-|   +-- types/                  # TypeScript types (program, user)
-+-- public/                     # Static assets (served by Vite)
-|   +-- logo.png                # Site logo (24KB)
-|   +-- _headers                # Cloudflare Pages headers config
-|   +-- _redirects              # Cloudflare Pages redirect rules (SPA fallback)
-|   +-- robots.txt              # Search engine rules
-|   +-- sitemap.xml             # SEO sitemap
-|   +-- images/                 # Public images
-+-- research/                   # Research data (served as static JSON)
-|   +-- countries.json          # 50 programs (CBI/RBI)
-|   +-- countries_full.json     # Full data set
-|   +-- uruguay-flagship.md     # Uruguay flagship document
-+-- website/                    # Static demo site
-|   +-- index.html              # Zero-build reference demo
-+-- images/                     # Visual assets (8 images: hero, sovereignty, passport, etc.)
-+-- scripts/                    # Build and validation scripts (8 scripts)
-+-- docs/                       # Full documentation (35+ files)
-|   +-- .ai_docs/               # Existing AI docs (legacy)
-|   +-- ARCHITECTURE.md, DATA-MODEL.md, DESIGN.md, SEO.md, etc.
-+-- dist/                       # Build output (git-committed for CF Pages)
-+-- archive/                    # Deprecated content
-+-- .github/                    # GitHub config
-+-- .wrangler/                  # Wrangler local state
-+-- index.html                  # Vite entry HTML
-+-- package.json                # Dependencies & scripts
-+-- wrangler.toml               # Cloudflare Pages config
-+-- vite.config.ts              # Vite config + static asset plugin
-+-- vitest.config.ts            # Test runner config
-+-- tsconfig.json               # TypeScript config
-+-- tailwind.config.js          # Tailwind CSS config (extensive custom theme)
-+-- eslint.config.js            # ESLint flat config
-+-- postcss.config.js           # PostCSS config
-+-- .prettierrc                 # Prettier config
-+-- .env.example                # Env var template
-+-- .env.local                  # Local env vars (gitignored secrets)
-+-- README.md                   # Project README
+├── src/
+│   ├── lib/
+│   │   ├── buildInfo.ts          # BUILD_ID source of truth
+│   │   ├── navRoutes.ts          # MAIN_NAV_ROUTES — canonical menu
+│   │   ├── launch/               # launch-gates.json fetch
+│   │   ├── btcmap.ts             # BTC Map API v4 client
+│   │   ├── seal/                 # vaultVerify.ts
+│   │   └── distressed/           # buildListings.ts
+│   ├── components/
+│   │   ├── ui/GlassCard.tsx      # Glassmorphism card primitive
+│   │   ├── nav/                  # DesktopNav, MobileMenuSheet, MoreNavSheet, ApplyNavLink
+│   │   ├── footer/               # FooterApplyLink, modals
+│   │   ├── btcmap/               # Leaflet, places list, density badge
+│   │   └── programs/             # ProgramCard, Modal, Table
+│   ├── pages/
+│   │   ├── VaultPage.tsx         # Seal — OTS verify
+│   │   ├── DistressedPage.tsx    # Forge marketplace
+│   │   ├── ApplyPage.tsx         # Launch Engine applications
+│   │   └── … (18 routes total)
+│   ├── styles/tokens.css         # Design tokens + glass + BTC textures
+│   └── index.css                 # Global styles, nav chrome, sovereign canvas
+├── public/
+│   ├── launch-gates.json         # 5-gate scorecard (applications_open)
+│   └── data/btcmap/              # 50 jurisdiction snapshots
+├── research/
+│   ├── countries.json            # 50 programs (50/50 deep flagships)
+│   ├── oracle-seed.json          # G4 Ledger seed
+│   └── pitch-anchor.json         # ₿-first pitch figures
+├── scripts/
+│   ├── launch-gate-check.mjs     # Launch Engine validator
+│   ├── sync-build-version.mjs    # npm run sync:build
+│   └── sync-pitch-anchor.mjs     # npm run pitch:sync
+└── docs/                         # Full knowledge base
 ```
 
 ---
 
-## Dependencies
+## Canonical Navigation
 
-### Runtime (`dependencies`)
+**Source:** `src/lib/navRoutes.ts` → `MAIN_NAV_ROUTES`
 
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `react` | ^18.3.1 | UI framework |
-| `react-dom` | ^18.3.1 | React DOM rendering |
-| `react-router-dom` | ^7.18.1 | Client-side routing |
-| `lucide-react` | ^0.511.0 | Icon library |
-| `motion` | ^12.42.2 | Animation library |
-| `nostr-tools` | ^2.23.9 | Nostr protocol (identity, events) |
-| `qrcode.react` | ^4.2.0 | QR code generation (payments) |
+Programs · Vault · Distressed · BTC Map · Simulator · Compare · Agents · Apply
 
-### Dev Dependencies
-
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `vite` | ^5.4.0 | Build tool & dev server |
-| `@vitejs/plugin-react` | ^4.3.1 | Vite React plugin |
-| `typescript` | ^5.5.3 | TypeScript compiler |
-| `typescript-eslint` | ^8.62.1 | TS ESLint integration |
-| `eslint` | ^9.39.4 | Linter (flat config) |
-| `tailwindcss` | ^3.4.19 | Utility CSS framework |
-| `vitest` | ^3.2.6 | Unit test runner |
-| `playwright` | ^1.61.1 | E2E browser testing |
-| `ajv` | ^8.20.0 | JSON schema validator |
-| `prettier` | ^3.9.4 | Code formatter |
+| Surface | Implementation |
+|---------|----------------|
+| Desktop | `DesktopNav.tsx` — flat row + Register/Dashboard |
+| Mobile menu | `MobileMenuSheet.tsx` — 2-col grid, all 8 |
+| Bottom bar | `MobileBottomNav.tsx` — Programs, Vault, Distressed, Apply, More |
+| More sheet | `MoreNavSheet.tsx` — BTC Map, Simulator, Compare, Agents |
+| Footer | `Footer.tsx` — same order + NavLink active states |
 
 ---
 
-## Build Chain
+## Sovereign Stack v2.3 (Launch Engine)
 
-```
-src/ (TSX/TS) --> Vite (esbuild + Rollup) --> dist/ (bundled JS/CSS/assets)
-                                                    |
-research/ ------------------------------------------+ (copied by custom plugin)
-website/ -------------------------------------------+
-images/ --------------------------------------------+
-                                                    v
-                                        wrangler pages deploy
-                                                    |
-                                                    v
-                                        Cloudflare Pages (CDN)
-                                        motopass.giveabit.io
-```
+| Pillar | Route / Asset | Gate |
+|--------|---------------|------|
+| Seal | `/vault` · 50 OTS on disk | G1 |
+| Forge | `/distressed` | G2 |
+| Nexus | Nostr relay · `/apply` | G3 |
+| Ledger | `oracle-seed.json` · 50 programs | G4 |
+| Ops | validate:* · build · e2e | G5 |
 
-**Toolchain details:**
-- **Build:** Vite 5 with `@vitejs/plugin-react`
-- **Bundler:** Rollup (production), esbuild (dev)
-- **CSS:** PostCSS + Tailwind CSS 3
-- **Type checking:** TypeScript 5.5 (via Vite)
-- **Output:** `dist/` — JS, CSS, copied static assets
-- **Custom plugin:** `motopassStaticAssets` — serves `research/`, `website/`, `images/` in dev + copies to `dist/` at build close
-- **SPA fallback:** `_redirects` rule: `/* /index.html 200`
+Run: `npm run launch:gate` · Ship: `npm run deploy:all`
 
 ---
 
-## Configuration
+## Design System (BUILD-33)
 
-### Vite (`vite.config.ts`)
-- Dev server port: **5173** (default)
-- `fs.strict: false` — allows serving files outside project root
-- Custom `motopassStaticAssets` plugin for research/website/images
-
-### Wrangler (`wrangler.toml`)
-```toml
-name = "motopass"
-compatibility_date = "2026-07-02"
-pages_build_output_dir = "dist"
-
-[vars]
-VITE_SITE_URL = "https://motopass.giveabit.io"
-```
-
-### Tailwind (`tailwind.config.js`)
-- Dark mode: `class` (toggle via ThemeContext)
-- Extensive custom color tokens: `mp-*`, `btc-orange`, `nostr-violet`, `sovereign`, `freedom`
-- Custom font families: display (Space Grotesk), body (Inter), chrome (IBM Plex Sans), mono (JetBrains Mono)
-- Custom animations: ken-burns, fade-up, shimmer, rise-in, bar-grow
-- Custom shadows: card, header, mp-1/2/3/4, mp-glow
-- Custom gradients: hero, radial, scrim, seal, guilloche, grid
+- **Default theme:** Sovereign Night (`#0A0A0C`) — `ThemeContext` + `index.html` flash
+- **Glass cards:** `.glass-card`, `GlassCard` component — blur, orange edge glow
+- **Textures:** BTC block-grid + hash monospace patterns on `.sovereign-canvas`
+- **Typography:** Fraunces display · Source Serif body · IBM Plex chrome/mono
+- **Tokens:** `src/styles/tokens.css` · Tailwind `mp-*` namespace
 
 ---
 
-## Environment Variables
+## Routing (18 pages)
 
-| Variable | Default | Required For |
-|----------|---------|-------------|
-| `CLOUDFLARE_API_TOKEN` | -- | Manual `wrangler pages deploy` |
-| `VITE_SITE_URL` | `https://motopass.giveabit.io` | Runtime site URL |
-| `VITE_SATOHASH_URL` | `https://satohash.io` | Satohash integration |
-| `VITE_NOSTR_RELAY` | `wss://relay.motopass.giveabit.io` | Nostr relay endpoint |
-
----
-
-## Routing (14 Pages)
-
-All routes defined in `App.tsx` via `react-router-dom`:
-
-| Route | Page Component |
-|-------|---------------|
+| Route | Page |
+|-------|------|
 | `/` | PitchPage |
 | `/programs` | ProgramsPage |
-| `/apply` | ApplyPage |
-| `/dashboard` | DashboardPage |
-| `/portfolio` | PortfolioPage |
 | `/vault` | VaultPage |
-| `/verify` | VerifyPage |
-| `/profile` | ProfilePage |
-| `/register` | RegisterPage |
+| `/distressed` | DistressedPage |
+| `/btcmap` | BtcMapPage |
 | `/simulator` | StackSimulatorPage |
 | `/compare` | FinanceComparePage |
+| `/agents` | AgentsPage |
+| `/apply` | ApplyPage |
+| `/portfolio` | PortfolioPage |
+| `/dashboard` | DashboardPage |
+| `/register` | RegisterPage |
+| `/profile` | ProfilePage |
+| `/verify` | VerifyPage |
 | `/blog` | BlogPage |
 | `/blog/:slug` | BlogPostPage |
-| `/agents` | AgentsPage |
+| `*` | NotFoundPage |
 
 ---
 
-## NPM Scripts Reference
+## Tests & Deploy
 
-| Script | Command | Purpose |
-|--------|---------|---------|
-| `dev` | `vite` | Start dev server (:5173) |
-| `build` | `vite build` | Production build to dist/ |
-| `preview` | `vite preview` | Preview production build |
-| `test` | `vitest run` | Run unit tests |
-| `lint` | `eslint src --max-warnings 50` | TypeScript linting |
-| `format` | `prettier --check src` | Code formatting check |
-| `validate:data` | `node scripts/validate-data.mjs` | Validate countries.json schema |
-| `health-check` | `bash scripts/health-check.sh` | Production endpoint check |
-| `verify:goal` | `bash scripts/verify-goal.sh` | Full build -> test -> deploy pipeline |
-| `deploy` | `build + wrangler pages deploy` | Build + deploy |
-| `deploy:safe` | `build + echo + wrangler deploy` | Safe deploy with warning |
-| `deploy:verify` | `npm run build` | Build-only verification |
-| `deploy:check` | `test CLOUDFLARE_API_TOKEN` | Check deploy readiness |
+| Check | Count / Command |
+|-------|-----------------|
+| Unit | 36 — `npm test` |
+| E2E | 19 — `npm run test:e2e` |
+| Gates | 5/5 — `npm run launch:gate` |
+| Bundle | 877 KB / 2500 KB budget |
+| Deploy | `npm run deploy:all` → Cloudflare Pages `motopass` |
+| Health | `npm run health-check` |
 
 ---
 
-## Ports & Services
+## Knowledge Base Index
 
-| Service | Port | Notes |
-|---------|------|-------|
-| Vite dev server | 5173 | Local development only |
-| Cloudflare Pages | 443 (HTTPS) | Production at motopass.giveabit.io |
-| Nostr relay | 443 (WSS) | `wss://relay.motopass.giveabit.io` |
+| Doc | Purpose |
+|-----|---------|
+| `docs/SOURCE-OF-TRUTH.md` | Canonical project record |
+| `docs/UPDATES-MAP.md` | Build history & queue |
+| `docs/ARCHITECTURE.md` | System architecture + Launch Engine |
+| `docs/DIRECTORY-MAP.md` | Quick agent path index |
+| `docs/KIMI-HANDOFF.md` | Session handoffs for Kimi/M4 |
+| `docs/PITCH-ANCHOR.md` | ₿-first pitch figures policy |
+| `docs/CHANGELOG.md` | Version history |
+| `LATEST-UPDATE.md` | Last Grok ship summary |
+
+---
+
+## Environment
+
+| Variable | Default |
+|----------|---------|
+| `CLOUDFLARE_API_TOKEN` | Manual wrangler deploy |
+| `VITE_SITE_URL` | `https://motopass.giveabit.io` |
+| `LAUNCH_FAKE_RELAY` | `1` (QA) — set `0` for production G3 |

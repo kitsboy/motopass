@@ -69,15 +69,15 @@ motopass/
 
 ## Current state (BUILD 33)
 
-- **Luminous Sovereign** light UI + dark mode toggle
-- **50 jurisdictions** in live data · **16 flagships** at Uruguay template depth
-- Portfolio, Simulator, Compare, Vault, Agents, Blog
-- **BTC Map layer** (`/btcmap`) — Leaflet pins, merchant density on cards, Nostr saves, offline cache
+- **Sovereign Night** default UI — glass cards, BTC grid/hash textures, orange accents
+- **50/50 deep flagships** · Launch Engine 5/5 · applications open at `/apply`
+- **Canonical nav** — Programs · Vault · Distressed · BTC Map · Simulator · Compare · Agents · Apply
+- Vault (Seal), Distressed (Forge), Apply, Portfolio, Simulator, Compare, Agents, Blog
+- **BTC Map** (`/btcmap`) — Leaflet, density badges, Nostr saves, offline cache
 - **₿-first pricing** — `BtcDualPrice`, `pitch:sync`, `research/pitch-anchor.json`
-- Playwright e2e (16 tests), CI bundle budget, hreflang SEO · package **0.2.0**
-- Nostr connect stub, Satohash verify UI, payment methods stub
+- 36 unit + 19 e2e tests · `npm run deploy:all` · package **0.2.0**
 
-**Next:** Deepen remaining 34 to Uruguay flagship template; live Satohash + Nostr relay.
+**Next:** Live Nostr relay; real PSBT escrow; Paige concierge.
 
 ---
 

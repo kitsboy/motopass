@@ -17,6 +17,8 @@ Official documentation for MotoPass. All long-form docs live here unless require
 | Pitch figures (₿ · USD, auto-synced) | [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) · [pitch/README.md](./pitch/README.md) |
 | Build or style UI | [DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md) + [DESIGN-TOKENS.md](./DESIGN-TOKENS.md) |
 | Understand full scope | [PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md) |
+| System architecture & nav | [ARCHITECTURE.md](./ARCHITECTURE.md) · [DIRECTORY-MAP.md](./DIRECTORY-MAP.md) |
+| Agent context map | [.ai_docs/context_map.md](../.ai_docs/context_map.md) |
 | BTC Map integration details | [ARCHITECTURE.md](./ARCHITECTURE.md) · [DATA-MODEL.md](./DATA-MODEL.md) |
 
 ---

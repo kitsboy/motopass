@@ -11,13 +11,15 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.07.14-33 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.07.14-33 | Vite + React 18 + TS + Tailwind · 18 routes · 50/50 flagships |
+| **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
+| **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
+| **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
 | **BTC Map** | ✅ v2 | `/btcmap` — Leaflet, density badges, Nostr saves, offline cache |
-| **E2E smoke** | ✅ Playwright | 16 tests — `npm run test:e2e` |
-| **Unit tests** | ✅ Vitest | 30 tests |
-| **Improvements** | ✅ 500/500 + BTC Map | Batches 1–20 + BTC Map v1/v2 |
-| **Design system** | ✅ Warm Sovereign Cinematic | Luminous light + dark toggle |
-| **Programs data** | ✅ 50 / 50 | `research/countries.json` |
+| **E2E smoke** | ✅ Playwright | 19 tests — `npm run test:e2e` |
+| **Unit tests** | ✅ Vitest | 36 tests |
+| **Design system** | ✅ Warm Sovereign Cinematic | Sovereign Night default + light toggle |
+| **Programs data** | ✅ 50 / 50 deep | `research/countries.json` |
 | **BTC Map cache** | ✅ 50 snapshots | `public/data/btcmap/` |
 | **CI** | ✅ Green | GitHub Actions + bundle budget |
 | **Handoff** | ✅ Current | `docs/KIMI-HANDOFF.md` |
@@ -28,7 +30,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
-| **2026.07.14-33** | 2026-07-14 | `e5527fd` | sovereign UI · nav cleanup · glass dark + canonical menu |
+| **2026.07.14-33** | 2026-07-14 | `03596d5` | sovereign UI · nav cleanup · glass dark + canonical menu |
 | **2026.07.14-32** | 2026-07-14 | `0f75791` | applications open · v2.3 master · Seal + Forge + Launch Engine |
 | **2026.07.14-29** | 2026-07-14 | `9b7fd9e` | 50/50 deep flagships · all templates researched · ₿-first |
 | **2026.07.14-28** | 2026-07-14 | `963e014` | 50-item sprint: version sync + 16 flagships + deploy |

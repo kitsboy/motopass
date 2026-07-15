@@ -12,7 +12,7 @@ tags: [executive, pitch, btc]
 ---
 # MotoPass — Executive Summary
 
-**BUILD-2026.07.14-28** | **Live figures:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) · `npm run pitch:sync`
+**BUILD-2026.07.14-33** | **Live figures:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) · `npm run pitch:sync`
 
 ## The Opportunity
 High-net-worth individuals and Bitcoin-native entrepreneurs face an increasingly complex, opaque, and untrustworthy landscape when seeking second residencies, citizenships, and jurisdictional diversification. Traditional advisors, immigration lawyers, and CBI/RBI brokers operate with misaligned incentives, outdated data, and no independent verification layer. For Bitcoiners specifically, the problem is acute: most programs lack native support for digital assets, Lightning payments, or favorable tax treatment of crypto gains; legal extracts are rarely timestamped or independently auditable; and there is no unified, privacy-preserving way to model combined “stacks” of residencies for tax optimization, freedom of movement, and long-term sovereignty.
@@ -40,13 +40,13 @@ It combines:
 - **AI that actually helps.** Paige is trained on the same deep, timestamped corpus and operates transparently with escalation paths to human experts.
 - **Two-sided future.** Once the intelligence layer is trusted, the marketplace and B2G surfaces become natural and defensible.
 
-## Current Traction & Assets (BUILD-28)
-- **50 Bitcoin-prioritized programs** in `research/countries.json` with finance fields, proof stubs, and cinematic program cards/table.
-- **Production React app** at https://motopass.giveabit.io — Portfolio, Simulator, Compare, Vault, Blog, Agents, Register/Dashboard, and **BTC Map layer** (`/btcmap`).
-- **BTC Map v2 integration**: Leaflet merchant pins per jurisdiction, density badges on program cards, Nostr NIP-98 saved merchants, offline cache (50 snapshots), community report-venue CTA. Powered by [btcmap-api](https://github.com/teambtcmap/btcmap-api) v4.
-- **Pristine reference dashboard** (`website/index.html`, zero dependencies) — still the living specification artifact.
-- **Luminous Sovereign design system** (`docs/DESIGN-CONTEXT.md`, `docs/DESIGN-TOKENS.md`) with dark mode toggle.
-- **Quality gates**: 30 unit tests, 16 Playwright e2e tests, CI bundle budget, hreflang SEO, sitemap generator.
+## Current Traction & Assets (BUILD-33)
+- **50/50 deep flagships** in `research/countries.json` with OTS on disk, pathways, critical tests, and cinematic program cards/table.
+- **Production React app** at https://motopass.giveabit.io — Launch Engine open; Vault, Distressed, Apply, Portfolio, Simulator, Compare, Agents, BTC Map.
+- **Sovereign Stack v2.3 shipped**: Seal (`/vault`), Forge (`/distressed`), Nexus (`/apply`), Ledger (`oracle-seed.json`), Ops (`deploy:all`).
+- **Sovereign Night UI** — glass cards, BTC textures, canonical nav — default dark theme.
+- **BTC Map v2**: Leaflet pins, density badges, Nostr NIP-98 saves, offline cache (50 snapshots).
+- **Quality gates**: 36 unit tests, 19 Playwright e2e tests, 5/5 launch gates, CI bundle budget.
 - **Full documentation package** (this `docs/` folder) + M3/M4 handoff protocol.
 
 ## The Build Ahead (High-Level Scope)

@@ -1,6 +1,6 @@
 # MotoPass Technical Architecture (Initial)
 
-**BUILD-2026.07.14-32**
+**BUILD-2026.07.14-33**
 
 This is a living high-level architecture document. It will be expanded as implementation proceeds. For now it codifies the principles, current state, and intended evolution so that the Vite/React work, data pipeline, Nostr/Lightning integration, and self-hosting path all pull in the same direction.
 
@@ -14,12 +14,14 @@ This is a living high-level architecture document. It will be expanded as implem
 6. **Beauty is Non-Negotiable** — DESIGN.md is binding for all customer surfaces.
 7. **Phased, Not Big-Bang** — The pristine static demo is valuable today. The modern app evolves it. Integrations come online when the data and UX are ready to support them.
 
-## Current State (BUILD-32)
+## Current State (BUILD-33)
 
 **React SPA (primary)**
 - Vite + React 18 + TypeScript + Tailwind — 18 routes, lazy-loaded pages.
+- **Sovereign Night default** — glassmorphism cards, BTC grid/hash textures, `GlassCard` component.
+- **Canonical nav** — `src/lib/navRoutes.ts` · Programs · Vault · Distressed · BTC Map · Simulator · Compare · Agents · Apply (no Explore/Tools duplicates).
 - `ProgramsContext` fetch-once cache; local portfolio/stacks via `localStorage`.
-- Playwright e2e (18 tests), Vitest unit tests (30), CI bundle budget.
+- Playwright e2e (19 tests), Vitest unit tests (36), CI bundle budget.
 
 **Sovereign Stack v2.3 (Launch Engine)**
 - **Seal:** Vault page (`/vault`) — OTS upload, hash verify, 50/50 flagship proofs on disk.
@@ -172,7 +174,19 @@ Env vars: `VITE_BTCMAP_API_URL` (default `https://api.btcmap.org`), `VITE_BTCMAP
 - Data update velocity → Nostr + stamping pipeline must be maintainable by a small agent + human team.
 - Scope discipline → this document + the phased roadmap in PRODUCT-SCOPE-ROADMAP.md are the guardrails.
 
-## Launch Engine (BUILD-32)
+## Navigation (BUILD-33)
+
+Single source of truth: `MAIN_NAV_ROUTES` in `src/lib/navRoutes.ts`.
+
+| Surface | Links |
+|---------|-------|
+| Desktop nav | All 8 in order + Register/Dashboard pill |
+| Mobile hamburger | Same 8 · 2-column grid |
+| Mobile bottom bar | Programs · Vault · Distressed · Apply · More |
+| More sheet | BTC Map · Simulator · Compare · Agents |
+| Footer | Same 8 + account links · `NavLink` active states |
+
+## Launch Engine (BUILD-32+)
 
 Five gates must pass before `applications_open` in `public/launch-gates.json`:
 
@@ -212,6 +226,6 @@ Run: `npm run launch:gate` · Ship: `npm run deploy:all`
 **Truth You Can Verify — in the code, in the data, and in the deployment.**
 
 — Architecture Layer, MotoPass  
-BUILD-2026.07.14-28
+BUILD-2026.07.14-33
 
 Cross-references: `docs/PRODUCT-SCOPE-ROADMAP.md`, root `PROJECT-VISION.md`, `DESIGN.md`, `DATA-MODEL.md`.
