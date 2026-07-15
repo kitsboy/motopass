@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test'
 import { BUILD_ID } from '../src/lib/buildInfo'
 
+/** Lazy routes need domcontentloaded + content wait (not full load). */
+const gotoOpts = { waitUntil: 'domcontentloaded' as const }
+
 test.describe('smoke', () => {
   test('home loads with hero headline', async ({ page }) => {
     await page.goto('/')
@@ -17,15 +20,17 @@ test.describe('smoke', () => {
   })
 
   test('btcmap page loads with program selector', async ({ page }) => {
-    await page.goto('/btcmap')
-    await expect(page.locator('main')).toBeVisible()
-    await expect(page.locator('#btcmap-program')).toBeVisible()
+    const chunk = page.waitForResponse(r => /BtcMapPage-.*\.js/.test(r.url()) && r.ok(), { timeout: 20_000 })
+    await page.goto('/btcmap', gotoOpts)
+    await chunk.catch(() => {})
+    await expect(page.locator('#btcmap-program')).toBeVisible({ timeout: 20_000 })
   })
 
   test('programs page loads', async ({ page }) => {
-    await page.goto('/programs')
-    await expect(page.locator('main')).toBeVisible()
-    await expect(page.locator('main')).not.toBeEmpty()
+    const chunk = page.waitForResponse(r => /ProgramsPage-.*\.js/.test(r.url()) && r.ok(), { timeout: 20_000 })
+    await page.goto('/programs', gotoOpts)
+    await chunk.catch(() => {})
+    await expect(page.locator('input[type="search"]').first()).toBeVisible({ timeout: 20_000 })
     await expect(page).toHaveURL(/\/programs/)
   })
 
@@ -67,9 +72,8 @@ test.describe('smoke', () => {
   })
 
   test('compare empty state loads', async ({ page }) => {
-    await page.goto('/compare')
-    await expect(page.locator('main')).toBeVisible()
-    await expect(page.getByText(/select programs to compare/i)).toBeVisible()
+    await page.goto('/compare', gotoOpts)
+    await expect(page.getByText(/select programs to compare/i)).toBeVisible({ timeout: 15_000 })
   })
 
   test('mobile bottom nav and more sheet', async ({ page }) => {
@@ -83,29 +87,27 @@ test.describe('smoke', () => {
 
   test('compare URL preserves selected ids', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
-    await page.goto('/compare?ids=1,2')
-    await expect(page.locator('main')).toBeVisible()
+    await page.goto('/compare?ids=1,2', gotoOpts)
     const compareTable = page.getByRole('table', { name: 'Side-by-side comparison' })
-    await expect(compareTable).toBeVisible()
+    await expect(compareTable).toBeVisible({ timeout: 15_000 })
     await expect(compareTable.locator('thead th')).toHaveCount(3)
   })
 
   test('programs URL filter shows in search', async ({ page }) => {
-    await page.goto('/programs?q=Uruguay')
-    await expect(page.locator('main')).toBeVisible()
+    await page.goto('/programs?q=Uruguay', gotoOpts)
     const search = page.locator('input[type="search"]').first()
+    await expect(search).toBeVisible({ timeout: 15_000 })
     await expect(search).toHaveValue('Uruguay')
   })
 
   test('simulator URL restores program selection', async ({ page }) => {
-    await page.goto('/simulator?programs=1,4')
-    await expect(page.locator('main')).toBeVisible()
-    await expect(page.locator('#sim-p-1')).toBeChecked()
+    await page.goto('/simulator?programs=1,4', gotoOpts)
+    await expect(page.locator('#sim-p-1')).toBeChecked({ timeout: 15_000 })
     await expect(page.locator('#sim-p-4')).toBeChecked()
   })
 
   test('verify generates 64-char hash', async ({ page }) => {
-    await page.goto('/verify')
+    await page.goto('/verify', gotoOpts)
     await page.getByRole('button', { name: /generate sha-256 hash/i }).click()
     const code = page.locator('code').first()
     await expect(code).toBeVisible()
@@ -130,8 +132,8 @@ test.describe('smoke', () => {
 
   test('Uruguay flagship modal shows Pathways tab when visible', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
-    await page.goto('/programs')
-    await expect(page.locator('main')).toBeVisible()
+    await page.goto('/programs', gotoOpts)
+    await expect(page.locator('input[type="search"]').first()).toBeVisible({ timeout: 15_000 })
     const uruguay = page.getByText('Uruguay', { exact: true }).first()
     if (await uruguay.isVisible()) {
       await uruguay.click()
@@ -145,9 +147,8 @@ test.describe('smoke', () => {
   })
 
   test('apply page loads with launch scorecard', async ({ page }) => {
-    await page.goto('/apply')
-    await expect(page.locator('main')).toBeVisible()
-    await expect(page.getByText(/launch gate scorecard/i)).toBeVisible()
+    await page.goto('/apply', gotoOpts)
+    await expect(page.getByText(/launch gate scorecard/i)).toBeVisible({ timeout: 15_000 })
   })
 
   test('mobile viewport has no horizontal overflow on home', async ({ page }) => {

@@ -27,3 +27,5 @@ export type DistressedFilters = {
   minScore: number
   maxBtcUsd: number
 }
+
+export type DistressedSort = 'discount' | 'price' | 'region'

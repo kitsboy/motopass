@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { Map } from 'lucide-react'
+import { ExternalLink, Map } from 'lucide-react'
 import { useBtcMapPlaces } from '../../hooks/useBtcMapPlaces'
+import { btcMapPageUrl } from '../../lib/btcmap'
 import { BtcMapPlacesList } from './BtcMapPlacesList'
 import { BtcMapAreasChips } from './BtcMapAreasChips'
 import { useI18n } from '../../i18n/I18nContext'
@@ -11,7 +12,7 @@ export function BtcMapProgramPanel({ programName, programId }: { programName: st
   const { places, areas, loading, error } = useBtcMapPlaces(programName)
 
   return (
-    <div className="mt-4 rounded-mp-md border border-mp-border bg-mp-card-muted/40 p-4">
+    <div id="btcmap-program-panel" className="mt-4 rounded-mp-md border border-mp-border bg-mp-card-muted/40 p-4 scroll-mt-24">
       <div className="flex items-start justify-between gap-3 mb-3">
         <div>
           <h3 className="font-display font-semibold text-sm text-ink flex items-center gap-2">
@@ -20,10 +21,10 @@ export function BtcMapProgramPanel({ programName, programId }: { programName: st
           <p className="text-[11px] text-ink-muted mt-0.5">{t('btcmap.panelSub')}</p>
         </div>
         <Link
-          to={`/btcmap?program=${programId}`}
-          className="chip text-[10px] shrink-0 text-accent hover:underline"
+          to={btcMapPageUrl(programId, 'directory')}
+          className="chip text-[10px] shrink-0 text-accent hover:underline inline-flex items-center gap-1"
         >
-          {t('btcmap.explore')}
+          {t('btcmap.explore')} <ExternalLink size={10} aria-hidden />
         </Link>
       </div>
       <BtcMapAreasChips areas={areas} />

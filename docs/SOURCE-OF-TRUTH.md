@@ -1,8 +1,8 @@
 # SOURCE-OF-TRUTH — MotoPass
 
 **Project:** MotoPass  
-**Date:** 2026-07-14  
-**BUILD:** 2026.07.14-33  
+**Date:** 2026-07-15  
+**BUILD:** 2026.07.15-49  
 **Commit:** `0ce5e12` (BUILD 33) / `03596d5` (feature)
 
 ## Project overview
@@ -29,7 +29,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 | Asset | Path | Status |
 |-------|------|--------|
-| React app | `src/` + `npm run dev` | BUILD-33 — 18 routes, Sovereign Night default, glass UI, canonical nav |
+| React app | `src/` + `npm run dev` | BUILD-49 — 15 routes, dark mode, BTC Map, ₿-first pricing |
 | Program data | `research/countries.json` | **50 programs** |
 | BTC Map cache | `public/data/btcmap/` | **50 jurisdiction snapshots** |
 | BTC Map density | `public/data/btcmap-density.json` | Merchant counts per program |

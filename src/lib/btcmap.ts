@@ -108,11 +108,24 @@ export function btcMapAttribution(): { map: string; data: string; api: string } 
 }
 
 /** btcmap.org web flow for community-submitted venues. */
-export function btcMapAddVenueUrl(lat?: number, lon?: number): string {
+export function btcMapAddVenueUrl(lat?: number, lon?: number, programName?: string): string {
+  const q = new URLSearchParams()
   if (lat != null && lon != null) {
-    return `${WEB_BASE}/add-location?lat=${lat}&lon=${lon}`
+    q.set('lat', String(lat))
+    q.set('lon', String(lon))
   }
-  return `${WEB_BASE}/add-location`
+  if (programName?.trim()) {
+    q.set('name', programName.trim())
+  }
+  const qs = q.toString()
+  return qs ? `${WEB_BASE}/add-location?${qs}` : `${WEB_BASE}/add-location`
+}
+
+/** Deep-link to MotoPass BTC Map page for a jurisdiction (item 625). */
+export function btcMapPageUrl(programId: string | number, hash?: string): string {
+  const id = typeof programId === 'string' ? programId : String(programId)
+  const base = `/btcmap?program=${encodeURIComponent(id)}`
+  return hash ? `${base}#${hash}` : base
 }
 
 export function btcMapCliRepoUrl(): string {

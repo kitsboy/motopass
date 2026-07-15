@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { LANGUAGES, detectBrowserLang, type LangCode, type LangPreference } from './languages'
 import { saveRouteLang } from './routeLangStorage'
-import { t, type TranslationKey } from './translations'
+import { TRANSLATIONS, t as translate, type TranslationKey } from './translations'
 
 interface I18nContextValue {
   lang: LangCode
@@ -51,7 +51,14 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     langPreference,
     setLang,
     setRoutePath,
-    t: (key) => t(lang, key),
+    t: (key) => {
+      const dict = TRANSLATIONS[lang]
+      const enDict = TRANSLATIONS.en
+      if (import.meta.env.DEV && dict[key] === undefined && enDict[key] === undefined) {
+        console.warn(`[i18n] Missing translation key: "${key}" (lang: ${lang})`)
+      }
+      return translate(lang, key)
+    },
     dir: meta.dir,
   }), [lang, langPreference, setLang, setRoutePath, meta.dir])
 

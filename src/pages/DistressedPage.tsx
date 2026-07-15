@@ -18,8 +18,9 @@ import {
   buildDistressedListings,
   distressedRegions,
   filterListings,
+  sortListings,
 } from '../lib/distressed/buildListings'
-import type { DistressedFilters, DistressedLane, DistressedListing } from '../types/distressedListing'
+import type { DistressedFilters, DistressedLane, DistressedListing, DistressedSort } from '../types/distressedListing'
 
 const DEFAULT_FILTERS: DistressedFilters = {
   region: 'all',
@@ -143,15 +144,25 @@ export function DistressedPage() {
   const { programs, loading, error } = usePrograms()
   const { rate } = useBtcPrice()
   const [lane, setLane] = useState<DistressedLane>('all')
+  const [sort, setSort] = useState<DistressedSort>('discount')
   const [filters, setFilters] = useState<DistressedFilters>(DEFAULT_FILTERS)
   const [active, setActive] = useState<DistressedListing | null>(null)
 
   const allListings = useMemo(() => buildDistressedListings(programs), [programs])
   const regions = useMemo(() => ['all', ...distressedRegions(allListings)], [allListings])
   const filtered = useMemo(
-    () => filterListings(allListings, lane, filters),
-    [allListings, lane, filters],
+    () => sortListings(filterListings(allListings, lane, filters), sort),
+    [allListings, lane, filters, sort],
   )
+
+  const laneCounts = useMemo(() => {
+    const base = filterListings(allListings, 'all', filters)
+    return {
+      all: base.length,
+      curated: base.filter(l => l.lane === 'curated').length,
+      permissionless: base.filter(l => l.lane === 'permissionless').length,
+    }
+  }, [allListings, filters])
 
   const curatedCount = allListings.filter(l => l.lane === 'curated').length
 
@@ -218,9 +229,12 @@ export function DistressedPage() {
           <DistressedFilterDirectory
             listings={filtered}
             totalCount={allListings.length}
+            laneCounts={laneCounts}
             regions={regions}
             lane={lane}
             onLaneChange={setLane}
+            sort={sort}
+            onSortChange={setSort}
             filters={filters}
             onFiltersChange={setFilters}
             loading={loading}

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head><script>
-(function(){var shown=false,KEY="motopass-cache-retry";
+(function(){var shown=false,retrying=false,KEY="motopass-cache-retry",COUNT=3;
 function bust(){var u=new URL(location.href);u.searchParams.set("cb",String(Date.now()));location.replace(u.toString());}
-function showUI(){var r=document.getElementById("root");if(!r)return;r.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:#16161f;color:#f5f2ec;font-family:system-ui,sans-serif;text-align:center"><div style="max-width:22rem"><h1 style="margin:0 0 .75rem;font-size:1.25rem">MotoPass is updating</h1><p style="margin:0 0 1.25rem;opacity:.85;font-size:.9rem;line-height:1.5">Cached deploy files blocked the app. Tap below to load a fresh copy.</p><button type="button" id="mp-reload-btn" style="padding:.7rem 1.4rem;border-radius:12px;border:none;background:#ff9500;color:#0a0804;font-weight:600;cursor:pointer">Reload fresh copy</button><p style="margin:1rem 0 0;opacity:.55;font-size:.75rem">Or press Cmd+Shift+R (Mac) / Ctrl+Shift+R (Windows)</p></div></div>';var b=document.getElementById("mp-reload-btn");if(b)b.onclick=function(){sessionStorage.removeItem(KEY);bust();};}
-function recover(){if(shown)return;if(!sessionStorage.getItem(KEY)){sessionStorage.setItem(KEY,"1");bust();return;}sessionStorage.removeItem(KEY);shown=true;showUI();}
+function shell(title,body,extra){var r=document.getElementById("root");if(!r)return;r.innerHTML='<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:#16161f;color:#f5f2ec;font-family:system-ui,sans-serif;text-align:center"><div style="max-width:24rem"><h1 style="margin:0 0 .75rem;font-size:1.2rem;font-weight:600">'+title+'</h1><p style="margin:0 0 1rem;opacity:.88;font-size:.9rem;line-height:1.55">'+body+'</p>'+extra+'</div></div>';}
+function showCountdown(sec,cb){var n=sec;function tick(){if(n<=0){cb();return;}shell("Almost there","Your browser kept an older deploy. We will fetch a fresh copy automatically.",'<p id="mp-count" style="margin:0 0 1rem;font-variant-numeric:tabular-nums;opacity:.7;font-size:.85rem">Retrying in <strong>'+n+'</strong>s…</p><button type="button" id="mp-reload-btn" style="padding:.65rem 1.3rem;border-radius:12px;border:none;background:#ff9500;color:#0a0804;font-weight:600;cursor:pointer">Load now</button>');var b=document.getElementById("mp-reload-btn");if(b)b.onclick=function(){sessionStorage.removeItem(KEY);cb();};n--;setTimeout(tick,1000);}tick();}
+function showUI(){shell("MotoPass needs a quick refresh","Cached deploy files blocked startup — your account and data are fine. Load a fresh copy below, or hard-refresh your browser.",'<button type="button" id="mp-reload-btn" style="padding:.7rem 1.4rem;border-radius:12px;border:none;background:#ff9500;color:#0a0804;font-weight:600;cursor:pointer">Load fresh copy</button><p style="margin:1rem 0 0;opacity:.55;font-size:.75rem;line-height:1.4">Mac: Cmd+Shift+R · Windows: Ctrl+Shift+R</p>');var b=document.getElementById("mp-reload-btn");if(b)b.onclick=function(){sessionStorage.removeItem(KEY);bust();};}
+function recover(){if(shown||retrying)return;if(!sessionStorage.getItem(KEY)){retrying=true;showCountdown(COUNT,function(){sessionStorage.setItem(KEY,"1");retrying=false;bust();});return;}sessionStorage.removeItem(KEY);shown=true;showUI();}
 window.__mpRetryLoad=recover;
 function poisoned(m){return/Unexpected token '<'|dynamically imported module|Importing a module script failed/i.test(String(m||""));}
 window.addEventListener("error",function(e){if(poisoned(e.message))recover();},true);
@@ -28,7 +30,7 @@ window.addEventListener("unhandledrejection",function(e){if(poisoned(e.reason&&e
     <meta name="description" content="MotoPass — Bitcoin-native sovereign passport platform. CBI/RBI programs, Nostr identity, Satohash OpenTimestamps, country liaison agents. Mobile-first." />
     <meta name="keywords" content="bitcoin visa, crypto golden visa, sovereign passport, bitcoin passport, CBI, RBI, citizenship by investment, Nostr, Satohash, OpenTimestamps" />
     <meta name="theme-color" content="#16161f" />
-    <link rel="preload" href="/assets/countries-BZJZzfUx-20260715-48.json" as="fetch" crossorigin="anonymous" />
+    <link rel="preload" href="/assets/countries-BZJZzfUx-20260715-49.json" as="fetch" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta property="og:title" content="MotoPass — Bitcoin Sovereign Passports" />
@@ -53,11 +55,11 @@ window.addEventListener("unhandledrejection",function(e){if(poisoned(e.reason&&e
         }
       })();
     </script>
-    <script type="module">import("/assets/index-BUSN6jij-20260715-48.js?b=20260715-48").catch(function(){window.__mpRetryLoad&&window.__mpRetryLoad();});</script>
-    <link rel="modulepreload" crossorigin href="/assets/icons-BcbWalfD-20260715-48.js?b=20260715-48">
-    <link rel="modulepreload" crossorigin href="/assets/motion-BrKdZYIa-20260715-48.js?b=20260715-48">
-    <link rel="modulepreload" crossorigin href="/assets/nostr-CZ7B55z--20260715-48.js?b=20260715-48">
-    <link rel="stylesheet" crossorigin href="/assets/index-5Bq0C6BM-20260715-48.css?b=20260715-48">
+    <script type="module">import("/assets/index-DtS4De7Y-20260715-49.js?b=20260715-49").catch(function(){window.__mpRetryLoad&&window.__mpRetryLoad();});</script>
+    <link rel="modulepreload" crossorigin href="/assets/icons-C9T_wMXF-20260715-49.js?b=20260715-49">
+    <link rel="modulepreload" crossorigin href="/assets/motion-BrKdZYIa-20260715-49.js?b=20260715-49">
+    <link rel="modulepreload" crossorigin href="/assets/nostr-CZ7B55z--20260715-49.js?b=20260715-49">
+    <link rel="stylesheet" crossorigin href="/assets/index-VE51lRov-20260715-49.css?b=20260715-49">
   </head>
   <body>
     <div id="root"></div>

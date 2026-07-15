@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Download, Upload, Plus, Table, LayoutGrid } from 'lucide-react'
+import { Download, Upload, Plus, Table, LayoutGrid, Link2, Rows3 } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
 import { filterPrograms, DEFAULT_FILTERS, type ProgramFilters } from '../lib/programFilter'
@@ -11,6 +11,10 @@ import {
   importProgramsJson,
   loadProgramsView,
   saveProgramsView,
+  loadProgramsTableDensity,
+  saveProgramsTableDensity,
+  type ProgramsTableDensity,
+  type ImportErrorCode,
 } from '../lib/portfolioStorage'
 import { useDebouncedValue } from '../hooks/useDebouncedValue'
 import { toCinematicPrograms, cinematicIdToNumber } from '../lib/programAdapter'
@@ -33,6 +37,10 @@ import {
   type FilterPresetId,
   isFilterPresetActive,
   toggleFilterPreset,
+  activeFilterPresetsFromFilters,
+  saveSessionFilterPresets,
+  loadSessionFilterPresets,
+  applyFilterPresets,
 } from '../lib/programFilterPresets'
 
 const FILTER_PRESETS: { id: FilterPresetId; labelKey: 'programs.presetUnder100k' | 'programs.presetLightning' | 'programs.presetBitcoinFriendly' }[] = [
@@ -61,19 +69,28 @@ export function ProgramsPage() {
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [addOpen, setAddOpen] = useState(false)
   const [newName, setNewName] = useState('')
-  const [importError, setImportError] = useState<string | null>(null)
+  const [importErrorCode, setImportErrorCode] = useState<ImportErrorCode | null>(null)
+  const [shareCopied, setShareCopied] = useState(false)
+  const [tableDensity, setTableDensity] = useState<ProgramsTableDensity>(() => loadProgramsTableDensity())
   const advancedId = 'programs-advanced-filters'
   const activeFilterCount = countActiveFilters(filters)
 
   useEffect(() => { saveSavedFilters(filters) }, [filters])
   useEffect(() => { saveProgramsView(view) }, [view])
+  useEffect(() => { saveProgramsTableDensity(tableDensity) }, [tableDensity])
+  useEffect(() => {
+    saveSessionFilterPresets(activeFilterPresetsFromFilters(filters))
+  }, [filters])
 
   useEffect(() => {
     if (searchParams.toString()) return
     const saved = loadSavedFilters<ProgramFilters>()
     const savedView = loadProgramsView()
-    if (saved || savedView) {
-      setSearchParams(filtersToSearchParams(saved ?? DEFAULT_FILTERS, savedView ?? 'table'), { replace: true })
+    const sessionPresets = loadSessionFilterPresets()
+    const baseFilters = saved ?? DEFAULT_FILTERS
+    const hydratedFilters = sessionPresets.length ? applyFilterPresets(baseFilters, sessionPresets) : baseFilters
+    if (saved || savedView || sessionPresets.length) {
+      setSearchParams(filtersToSearchParams(hydratedFilters, savedView ?? 'table'), { replace: true })
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps -- hydrate once
 
@@ -107,7 +124,7 @@ export function ProgramsPage() {
     return counts
   }, [programs, filters])
 
-  const handleExport = () => {
+  const handleExportAll = () => {
     const blob = new Blob([exportProgramsJson(programs)], { type: 'application/json' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
@@ -115,6 +132,35 @@ export function ProgramsPage() {
     a.download = 'motopass-programs.json'
     a.click()
     URL.revokeObjectURL(url)
+  }
+
+  const handleExportFiltered = () => {
+    const filteredIds = filtered.map((p) => p.id)
+    const blob = new Blob([
+      exportProgramsJson(filtered, {
+        filter_snapshot: filters,
+        program_ids: filteredIds,
+        count: filtered.length,
+      }),
+    ], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'motopass-programs-filtered.json'
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  const handleCopyShareUrl = async () => {
+    const params = filtersToSearchParams(filters, view)
+    const url = `${window.location.origin}/programs?${params.toString()}`
+    try {
+      await navigator.clipboard.writeText(url)
+      setShareCopied(true)
+      window.setTimeout(() => setShareCopied(false), 2000)
+    } catch {
+      setShareCopied(false)
+    }
   }
 
   const handleImport = () => {
@@ -126,11 +172,11 @@ export function ProgramsPage() {
       if (!file) return
       if (!window.confirm(t('programs.importConfirm'))) return
       const result = importProgramsJson(await file.text())
-      if (result.error) {
-        setImportError(result.error)
+      if (result.errorCode) {
+        setImportErrorCode(result.errorCode)
         return
       }
-      setImportError(null)
+      setImportErrorCode(null)
       setAddedPrograms(result.programs)
     }
     input.click()
@@ -215,7 +261,37 @@ export function ProgramsPage() {
                   <LayoutGrid size={14} />
                 </button>
               </div>
-              <button type="button" onClick={handleExport} className={iconBtn(false)} title={t('programs.export')} aria-label={t('programs.export')}>
+              {view === 'table' && (
+                <button
+                  type="button"
+                  onClick={() => setTableDensity((d) => (d === 'compact' ? 'comfortable' : 'compact'))}
+                  className={iconBtn(tableDensity === 'compact')}
+                  title={tableDensity === 'compact' ? t('programs.tableComfortable') : t('programs.tableCompact')}
+                  aria-label={tableDensity === 'compact' ? t('programs.tableComfortable') : t('programs.tableCompact')}
+                  aria-pressed={tableDensity === 'compact'}
+                >
+                  <Rows3 size={14} />
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={handleCopyShareUrl}
+                className={iconBtn(shareCopied)}
+                title={shareCopied ? t('programs.shareCopied') : t('programs.shareUrl')}
+                aria-label={shareCopied ? t('programs.shareCopied') : t('programs.shareUrl')}
+              >
+                <Link2 size={14} />
+              </button>
+              <button
+                type="button"
+                onClick={handleExportFiltered}
+                className={iconBtn(false)}
+                title={t('programs.exportFiltered')}
+                aria-label={t('programs.exportFiltered')}
+              >
+                <Download size={14} />
+              </button>
+              <button type="button" onClick={handleExportAll} className={iconBtn(false)} title={t('programs.export')} aria-label={t('programs.export')}>
                 <Download size={14} />
               </button>
               <button type="button" onClick={handleImport} className={iconBtn(false)} title={t('programs.import')} aria-label={t('programs.import')}>
@@ -229,8 +305,11 @@ export function ProgramsPage() {
         />
 
         {error && <ProgramsLoadError message={error} />}
-        {importError && (
-          <p className="mb-4 text-sm text-status-red" role="alert">{t('programs.importError')}: {importError}</p>
+        {importErrorCode && (
+          <p className="mb-4 text-sm text-status-red" role="alert">
+            {t('programs.importError')}: {t(`programs.importError.${importErrorCode}` as 'programs.importError.INVALID_JSON')}
+            <span className="ml-2 font-mono text-[11px] text-mp-ink-muted">[{importErrorCode}]</span>
+          </p>
         )}
 
         <div className="mb-6">
@@ -346,9 +425,30 @@ export function ProgramsPage() {
             </aside>
 
             <div>
+              <p className="sr-only" aria-live="polite" aria-atomic="true">
+                {formatT(t, 'programs.filterResults', { count: cinematic.length })}
+              </p>
               {cinematic.length === 0 && (
                 <div className="text-center py-16 rounded-2xl border border-mp-border glass-card">
-                  <p className="text-mp-ink-tertiary">{t('programs.noMatch')}</p>
+                  <p className="text-mp-ink-tertiary mb-2">{t('programs.noMatch')}</p>
+                  <p className="text-sm text-mp-ink-muted mb-6">{t('programs.emptySuggest')}</p>
+                  <div className="flex flex-wrap items-center justify-center gap-2">
+                    {FILTER_PRESETS.map(({ id, labelKey }) => (
+                      <button
+                        key={id}
+                        type="button"
+                        onClick={() => patchFilters(toggleFilterPreset(id, DEFAULT_FILTERS))}
+                        className="chip text-xs hover:border-mp-btc/40"
+                      >
+                        {t(labelKey)}
+                      </button>
+                    ))}
+                    {!isDefaultFilters(filters) && (
+                      <button type="button" onClick={clearFilters} className="chip text-xs text-accent hover:underline">
+                        {t('programs.clearFilters')}
+                      </button>
+                    )}
+                  </div>
                 </div>
               )}
 
@@ -361,6 +461,7 @@ export function ProgramsPage() {
                         onSelect={setActive}
                         portfolioIds={portfolio}
                         onTogglePortfolio={handleTogglePortfolio}
+                        density={tableDensity}
                       />
                     </div>
                   )}

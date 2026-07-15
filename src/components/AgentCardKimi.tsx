@@ -1,8 +1,16 @@
-import { MessageCircle, Zap } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
 import { TiltCard } from './beui/TiltCard'
 import { AnimatedBadge } from './beui/AnimatedBadge'
+import { useI18n } from '../i18n/I18nContext'
+import { isOfficeHoursOpen, KIMI_TIMEZONE } from '../lib/agentOfficeHours'
+import { CopyField } from './ui/CopyField'
+
+const KIMI_NPUB = 'npub1kimi…motopass'
 
 export function AgentCardKimi() {
+  const { t } = useI18n()
+  const availableNow = isOfficeHoursOpen(KIMI_TIMEZONE)
+
   return (
     <TiltCard className="rounded-mp-xl">
       <div className="glass-card-elevated border-nostr-violet/25 bg-gradient-to-br from-transparent to-nostr-violet-soft/35 overflow-hidden">
@@ -18,23 +26,27 @@ export function AgentCardKimi() {
             </AnimatedBadge>
           </div>
           <div className="flex-1 text-center sm:text-left min-w-0">
-            <div className="section-label mb-1">YOUR LIAISON AGENT</div>
+            <div className="section-label mb-1">{t('agents.kimi.liaison')}</div>
             <h3 className="text-xl font-display font-semibold text-mp-ink">Kimi</h3>
-            <p className="text-xs text-mp-ink-secondary mt-1">M4 HERMES · Strategic orchestrator · Give A Bit</p>
-            <p className="text-sm text-mp-ink-secondary mt-3 leading-relaxed">
-              Kimi coordinates country liaison agents, tracks your application progress, and connects you with passport offices via Nostr.
-            </p>
-            <div className="flex flex-wrap gap-2 mt-4 justify-center sm:justify-start">
-              <span className="text-[10px] font-mono text-nostr-violet bg-nostr-violet-soft border border-nostr-violet/20 rounded-full px-3 py-1 flex items-center gap-1">
-                <Zap size={10} /> npub1kimi…motopass
+            <p className="text-xs text-mp-ink-secondary mt-1">{t('agents.kimi.sub')}</p>
+            {availableNow && (
+              <span className="inline-flex items-center gap-1.5 mt-2 text-[10px] font-chrome font-medium text-mp-proof bg-mp-proof/10 border border-mp-proof/30 rounded-full px-2.5 py-0.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-mp-proof animate-pulse" aria-hidden />
+                {t('agents.availableNow')} · {t('agents.officeHours')}
               </span>
+            )}
+            <p className="text-sm text-mp-ink-secondary mt-3 leading-relaxed">{t('agents.kimi.body')}</p>
+            <div className="mt-4 max-w-sm">
+              <CopyField label={t('agents.copyNpub')} value={KIMI_NPUB} truncate />
+            </div>
+            <div className="flex flex-wrap gap-2 mt-4 justify-center sm:justify-start">
               <a
                 href="https://nostr.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm inline-flex items-center gap-2 border border-nostr-violet/30 text-nostr-violet hover:bg-nostr-violet-soft rounded-full px-4 py-1.5 transition-colors font-medium"
               >
-                <MessageCircle size={14} /> Message on Nostr
+                <MessageCircle size={14} /> {t('agents.kimi.message')}
               </a>
             </div>
           </div>

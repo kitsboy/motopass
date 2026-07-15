@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useMemo, useState } from 'react'
-import { Layers, Wallet, Zap, Radio } from 'lucide-react'
+import { Layers, Wallet, Zap, Radio, ChevronUp, ChevronDown } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
 import { toCinematicPrograms, cinematicIdToNumber } from '../lib/programAdapter'
@@ -13,20 +13,21 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { StatCard } from '../components/ui/StatCard'
 import { ClassyModal } from '../components/ui/ClassyModal'
 import { useI18n } from '../i18n/I18nContext'
+import { formatT } from '../i18n/format'
 import { BtcDualPrice } from '../components/BtcDualPrice'
 import { ComplianceClock } from '../components/portfolio/ComplianceClock'
 import { PaigeChat } from '../components/PaigeChat'
 import { hasFlagshipDepth } from '../components/programs/types'
 
-type SortKey = 'name' | 'score' | 'invest'
+type SortKey = 'order' | 'name' | 'score' | 'invest'
 
 export function PortfolioPage() {
   const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
-  const { portfolio, toggle: togglePortfolio, clearAll } = usePortfolio()
+  const { portfolio, toggle: togglePortfolio, clearAll, moveItem } = usePortfolio()
   const [selected, setSelected] = useState<CinematicProgram | null>(null)
   const [tab, setTab] = useState<ProgramModalTab>('Overview')
-  const [sort, setSort] = useState<SortKey>('name')
+  const [sort, setSort] = useState<SortKey>('order')
   const [removeAllOpen, setRemoveAllOpen] = useState(false)
 
   const acquired = useMemo(
@@ -35,12 +36,20 @@ export function PortfolioPage() {
   )
   const cinematic = useMemo(() => {
     const list = toCinematicPrograms(acquired)
+    if (sort === 'order') {
+      const order = new Map(portfolio.map((id, index) => [id, index]))
+      return [...list].sort((a, b) => {
+        const ai = order.get(cinematicIdToNumber(a.id)) ?? 0
+        const bi = order.get(cinematicIdToNumber(b.id)) ?? 0
+        return ai - bi
+      })
+    }
     return [...list].sort((a, b) => {
       if (sort === 'score') return (b.cryptoFriendlyScore ?? 0) - (a.cryptoFriendlyScore ?? 0)
       if (sort === 'invest') return b.minInvestment - a.minInvestment
       return a.country.localeCompare(b.country)
     })
-  }, [acquired, sort])
+  }, [acquired, sort, portfolio])
   const totalInvest = acquired.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
   const avgScore = acquired.length
     ? acquired.reduce((s, p) => s + (p.finance.crypto_friendly_score ?? 0), 0) / acquired.length
@@ -80,6 +89,7 @@ export function PortfolioPage() {
                 onChange={(e) => setSort(e.target.value as SortKey)}
                 className="select-field !py-1.5 !text-xs !w-auto"
               >
+                <option value="order">{t('portfolio.sortOrder')}</option>
                 <option value="name">{t('portfolio.sortName')}</option>
                 <option value="score">{t('portfolio.sortScore')}</option>
                 <option value="invest">{t('portfolio.sortInvest')}</option>
@@ -126,16 +136,45 @@ export function PortfolioPage() {
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-        {cinematic.map((p, i) => (
-          <ProgramCard
-            key={p.id}
-            program={p}
-            index={i}
-            inPortfolio
-            onTogglePortfolio={handleTogglePortfolio}
-            onSelect={(prog) => { setSelected(prog); setTab('Overview') }}
-          />
-        ))}
+        {cinematic.map((p, i) => {
+          const id = cinematicIdToNumber(p.id)
+          const stackIndex = portfolio.indexOf(id)
+          const canMoveUp = sort === 'order' && stackIndex > 0
+          const canMoveDown = sort === 'order' && stackIndex >= 0 && stackIndex < portfolio.length - 1
+          return (
+            <div key={p.id} className="relative">
+              {sort === 'order' && (
+                <div className="absolute right-3 top-3 z-10 flex flex-col gap-1">
+                  <button
+                    type="button"
+                    disabled={!canMoveUp}
+                    onClick={() => moveItem(id, 'up')}
+                    aria-label={formatT(t, 'portfolio.moveUp', { name: p.country })}
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-mp-border bg-mp-card text-mp-ink-secondary transition-colors hover:border-mp-btc/40 hover:text-mp-btc-text disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    <ChevronUp size={14} aria-hidden="true" />
+                  </button>
+                  <button
+                    type="button"
+                    disabled={!canMoveDown}
+                    onClick={() => moveItem(id, 'down')}
+                    aria-label={formatT(t, 'portfolio.moveDown', { name: p.country })}
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-mp-border bg-mp-card text-mp-ink-secondary transition-colors hover:border-mp-btc/40 hover:text-mp-btc-text disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    <ChevronDown size={14} aria-hidden="true" />
+                  </button>
+                </div>
+              )}
+              <ProgramCard
+                program={p}
+                index={i}
+                inPortfolio
+                onTogglePortfolio={handleTogglePortfolio}
+                onSelect={(prog) => { setSelected(prog); setTab('Overview') }}
+              />
+            </div>
+          )
+        })}
       </div>
 
       <ProgramModal

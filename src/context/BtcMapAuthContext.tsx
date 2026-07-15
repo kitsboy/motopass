@@ -1,6 +1,12 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import { addSavedPlace, getSavedPlaces, removeSavedPlace } from '../lib/btcmap'
 import {
+  addLocalSavedId,
+  loadLocalSavedIds,
+  removeLocalSavedId,
+  syncSavedMerchantsNostr,
+} from '../lib/btcmapSavedSync'
+import {
   clearBtcMapToken,
   getBtcMapToken,
   signInBtcMapWithNostr,
@@ -23,7 +29,7 @@ const BtcMapAuthContext = createContext<Ctx | null>(null)
 
 export function BtcMapAuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<BtcMapAuthSession | null>(null)
-  const [savedIds, setSavedIds] = useState<Set<number>>(new Set())
+  const [savedIds, setSavedIds] = useState<Set<number>>(() => new Set(loadLocalSavedIds()))
   const [loading, setLoading] = useState(false)
   const [signingIn, setSigningIn] = useState(false)
 
@@ -50,7 +56,7 @@ export function BtcMapAuthProvider({ children }: { children: ReactNode }) {
       })
       .catch(() => {
         if (cancelled) return
-        setSavedIds(new Set())
+        setSavedIds(new Set(loadLocalSavedIds()))
       })
     return () => { cancelled = true }
   }, [])
@@ -80,13 +86,17 @@ export function BtcMapAuthProvider({ children }: { children: ReactNode }) {
 
   const toggleSave = useCallback(async (placeId: number) => {
     if (!getBtcMapToken()) {
-      const ok = await signIn()
-      if (!ok) return
+      const wasSaved = savedIds.has(placeId)
+      const ids = wasSaved ? removeLocalSavedId(placeId) : addLocalSavedId(placeId)
+      setSavedIds(new Set(ids))
+      if (session?.npub) void syncSavedMerchantsNostr(session.npub, ids)
+      return
     }
     const wasSaved = savedIds.has(placeId)
     const ids = wasSaved ? await removeSavedPlace(placeId) : await addSavedPlace(placeId)
     setSavedIds(new Set(ids))
-  }, [savedIds, signIn])
+    if (session?.npub) void syncSavedMerchantsNostr(session.npub, ids)
+  }, [savedIds, session])
 
   const isSaved = useCallback((placeId: number) => savedIds.has(placeId), [savedIds])
 

@@ -16,6 +16,7 @@ import { ProgramModal } from '../components/programs/ProgramModal'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
 import { CompareMoneyCell } from '../components/CompareMoneyCell'
+import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 
 function bestIndex(nums: (number | null)[], mode: 'min' | 'max'): Set<number> {
   const valid = nums.filter((n): n is number => n !== null)
@@ -179,6 +180,15 @@ export function FinanceComparePage() {
 
   const allInStack = compare.length > 0 && compare.every(p => portfolio.includes(p.id))
 
+  const compareAnchors = useMemo(
+    () => [
+      { id: 'compare-picker', label: t('subnav.compare.picker') },
+      { id: 'compare-results', label: t('subnav.compare.results') },
+      { id: 'compare-diff', label: t('subnav.compare.diff') },
+    ],
+    [t],
+  )
+
   const handleAddAllToStack = () => {
     const next = addPortfolioIds(compare.map(p => p.id))
     setPortfolio(next)
@@ -186,14 +196,16 @@ export function FinanceComparePage() {
   }
 
   return (
-    <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
+    <div className="compare-page px-4 sm:px-6 py-8 max-w-7xl mx-auto">
       <PageHeader eyebrow={t('compare.eyebrow')} title={t('compare.title')} subtitle={t('compare.subtitle')} />
+
+      <PageAnchorNav items={compareAnchors} />
 
       {error && <ProgramsLoadError message={error} />}
       {loading && !error && <CardSkeleton count={4} />}
       {!loading && !error && (
         <>
-          <div className="mb-8">
+          <div id="compare-picker" className="mb-8 scroll-mt-header">
             <label htmlFor="compare-search" className="text-xs font-medium text-ink-muted mb-2 block">
               {formatT(t, 'compare.programsLabel', { count: ids.length })}
             </label>
@@ -287,7 +299,7 @@ export function FinanceComparePage() {
           </div>
 
           {compare.length > 0 ? (
-            <>
+            <div id="compare-results" className="scroll-mt-header">
               <div className="hidden md:block overflow-x-auto rounded-card border border-mp-border bg-mp-card shadow-mp-1">
                 <table className="w-full text-sm">
                   <caption className="sr-only">{t('compare.title')}</caption>
@@ -348,7 +360,7 @@ export function FinanceComparePage() {
                 ))}
               </div>
               {compare.length >= 2 && compare.length <= 3 && (
-                <section className="mt-6 rounded-card border border-mp-border bg-mp-card-muted/50 p-4" aria-labelledby="compare-diff-heading">
+                <section id="compare-diff" className="mt-6 rounded-card border border-mp-border bg-mp-card-muted/50 p-4 scroll-mt-header" aria-labelledby="compare-diff-heading">
                   <h2 id="compare-diff-heading" className="font-display text-sm font-semibold text-ink">
                     {t('compare.diffTitle')}
                   </h2>
@@ -388,9 +400,9 @@ export function FinanceComparePage() {
                   )}
                 </section>
               )}
-            </>
+            </div>
           ) : (
-            <div className="text-center py-16 rounded-card border border-mp-border bg-mp-card-muted text-mp-ink-tertiary">
+            <div id="compare-results" className="text-center py-16 rounded-card border border-mp-border bg-mp-card-muted text-mp-ink-tertiary scroll-mt-header">
               {t('compare.empty')}
             </div>
           )}

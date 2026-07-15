@@ -1,25 +1,26 @@
 import { useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { ExternalLink, Shield, Copy, Check, Upload, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio } from 'lucide-react'
+import { Shield, Copy, Check, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
 import { toCinematicProgram } from '../lib/programAdapter'
-import { buildProgramUpdateEvent, serializeNostrEvent } from '../lib/nostrEvents'
 import { verifyHashPaste, verifyOtsInBrowser, satohashVerifyUrl } from '../lib/seal/vaultVerify'
 import { RowSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { PageHeader } from '../components/ui/PageHeader'
 import { Card } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
-import { ProofBadge } from '../components/ui/ProofBadge'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import type { VerifyResult } from '../types/proof'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { VerifyResultsExplainer } from '../components/verify/VerifyResultsExplainer'
+import { VaultOtsDropZone } from '../components/vault/VaultOtsDropZone'
+import { VaultProofRow } from '../components/vault/VaultProofRow'
 
 type VaultFilter = 'all' | 'verified' | 'demo'
+
+const VAULT_FILTERS: VaultFilter[] = ['all', 'verified', 'demo']
 
 function proofHash(proof: { content_hash?: string; proof_url?: string }): string {
   if (proof.content_hash) return proof.content_hash
@@ -39,6 +40,7 @@ export function VaultPage() {
   const [verifyBusy, setVerifyBusy] = useState(false)
   const [selectedFile, setSelectedFile] = useState<string | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
+  const filterTabRefs = useRef<(HTMLButtonElement | null)[]>([])
 
   const stamped = programs
     .filter(p => p.satohash_proofs?.length)
@@ -82,6 +84,22 @@ export function VaultPage() {
     if (fileRef.current) fileRef.current.value = ''
     document.getElementById('vault-verify-heading')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     void verifyHashPaste(hash).then(setVerifyResult)
+  }
+
+  function filterLabel(f: VaultFilter): string {
+    const base =
+      f === 'all' ? t('vault.filterAll') : f === 'verified' ? t('vault.filterVerified') : t('vault.filterDemo')
+    const count = f === 'all' ? stamped.length : f === 'verified' ? verifiedCount : demoCount
+    return `${base} (${count})`
+  }
+
+  function onFilterKeyDown(e: React.KeyboardEvent<HTMLButtonElement>, index: number) {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+    e.preventDefault()
+    const dir = e.key === 'ArrowRight' ? 1 : -1
+    const next = (index + dir + VAULT_FILTERS.length) % VAULT_FILTERS.length
+    setFilter(VAULT_FILTERS[next])
+    filterTabRefs.current[next]?.focus()
   }
 
   const vaultAnchors = useMemo(
@@ -159,30 +177,9 @@ export function VaultPage() {
           </Button>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
-          <input
-            ref={fileRef}
-            type="file"
-            accept=".ots,application/octet-stream"
-            className="hidden"
-            onChange={e => {
-              const f = e.target.files?.[0]
-              if (f) void handleOtsUpload(f)
-            }}
-          />
-          <button
-            type="button"
-            onClick={() => fileRef.current?.click()}
-            disabled={verifyBusy}
-            className="btn-secondary text-xs inline-flex items-center gap-1.5"
-          >
-            <Upload size={14} aria-hidden />
-            Upload .ots
-          </button>
-          {selectedFile && (
-            <span className="text-xs font-mono text-ink-muted truncate max-w-[200px] opacity-75">{selectedFile}</span>
-          )}
-        </div>
+        <input ref={fileRef} type="file" accept=".ots,application/octet-stream" className="hidden" />
+
+        <VaultOtsDropZone busy={verifyBusy} selectedFile={selectedFile} onFile={f => void handleOtsUpload(f)} />
 
         {verifyResult && (
           <div
@@ -223,19 +220,31 @@ export function VaultPage() {
         <div id="vault-archive" className="space-y-3 scroll-mt-header">
           {stamped.length > 0 && (
             <>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {(['all', 'verified', 'demo'] as VaultFilter[]).map(f => (
+              <div
+                role="tablist"
+                aria-label={t('vault.filterTabs')}
+                className="flex flex-wrap gap-2 mb-4"
+              >
+                {VAULT_FILTERS.map((f, i) => (
                   <button
                     key={f}
+                    ref={el => {
+                      filterTabRefs.current[i] = el
+                    }}
                     type="button"
+                    role="tab"
+                    id={`vault-filter-${f}`}
+                    aria-selected={filter === f}
+                    tabIndex={filter === f ? 0 : -1}
                     onClick={() => setFilter(f)}
+                    onKeyDown={e => onFilterKeyDown(e, i)}
                     className={`rounded-chip border px-2.5 py-1 text-xs font-chrome transition-all duration-fast ${
                       filter === f
                         ? 'border-btc-orange/35 bg-btc-orange-soft/60 text-mp-btc-text shadow-mp-1'
                         : 'border-mp/70 text-ink-muted hover:border-btc-orange/25 hover:text-ink'
                     }`}
                   >
-                    {f === 'all' ? t('vault.filterAll') : f === 'verified' ? t('vault.filterVerified') : t('vault.filterDemo')}
+                    {filterLabel(f)}
                   </button>
                 ))}
               </div>
@@ -262,84 +271,17 @@ export function VaultPage() {
             </>
           )}
 
-          {displayed.map(({ program: p, cinematic }, i) => {
-            const proof = p.satohash_proofs![0]
-            const hash = proofHash(proof)
-            const isDemo = cinematic.proofStatus === 'demo'
-            const otsPath = proof.ots_path
-            return (
-              <Card
-                key={p.id}
-                variant={isDemo ? 'default' : 'proof'}
-                animate
-                delay={0.05 + i * 0.03}
-                className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 !p-5"
-              >
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <div className="font-display font-semibold text-ink">{p.flag} {p.name}</div>
-                    <ProofBadge status={cinematic.proofStatus} compact txHint={cinematic.proofRef} />
-                  </div>
-                  <div className="text-xs text-ink-muted mt-1 font-mono break-all opacity-80">
-                    Block #{proof.block_height} · {p.last_checked}
-                    {otsPath && <span className="text-mp-proof"> · {otsPath}</span>}
-                  </div>
-                </div>
-                <div className="flex gap-2 flex-wrap shrink-0 items-center">
-                  {hash && (
-                    <button
-                      type="button"
-                      onClick={() => applyProgramProof(hash)}
-                      className="btn-primary text-xs !py-1.5 !px-3"
-                      title={hash}
-                    >
-                      Use this proof
-                    </button>
-                  )}
-                  {proof.proof_url && (
-                    <a
-                      href={proof.proof_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-secondary text-xs !py-1.5 !px-3"
-                    >
-                      Satohash <ExternalLink size={12} />
-                    </a>
-                  )}
-                  {otsPath && (
-                    <a href={otsPath} download className="btn-secondary text-xs !py-1.5 !px-3">
-                      .ots
-                    </a>
-                  )}
-                  {portfolio.includes(p.id) && (
-                    <Link to="/portfolio" className="btn-secondary text-xs !py-1.5 !px-3">
-                      {t('vault.inPortfolio')}
-                    </Link>
-                  )}
-                  <Link to={`/apply?program=${encodeURIComponent(p.name)}`} className="btn-secondary text-xs !py-1.5 !px-3">
-                    Apply
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setNostrEvent(
-                        serializeNostrEvent(
-                          buildProgramUpdateEvent(
-                            p.name,
-                            isDemo ? 'Demo anchor (seed data)' : 'OTS on disk',
-                            proof.proof_url,
-                          ),
-                        ),
-                      )
-                    }
-                    className="chip text-xs !text-nostr-violet !border-nostr-violet/30 hover:!bg-nostr-violet-soft"
-                  >
-                    Nostr 30078
-                  </button>
-                </div>
-              </Card>
-            )
-          })}
+          {displayed.map(({ program: p, cinematic }, i) => (
+            <VaultProofRow
+              key={p.id}
+              program={p}
+              cinematic={cinematic}
+              index={i}
+              inPortfolio={portfolio.includes(p.id)}
+              onUseProof={applyProgramProof}
+              onNostrStub={setNostrEvent}
+            />
+          ))}
           {stamped.length === 0 && (
             <Card className="text-center py-12 text-mp-ink-tertiary font-body">
               {t('vault.empty')}

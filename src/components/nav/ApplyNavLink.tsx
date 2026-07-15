@@ -49,7 +49,7 @@ export function ApplyNavLink({ layout = 'pill', className, ...props }: Props) {
 }
 
 /** Apply tab for mobile bottom nav */
-export function ApplyNavTab() {
+export function ApplyNavTab({ moreSheetOpen = false }: { moreSheetOpen?: boolean }) {
   const { t } = useI18n()
   const { applicationsOpen } = useLaunchGates()
 
@@ -63,13 +63,16 @@ export function ApplyNavTab() {
   }
 
   return (
-    <PrefetchNavLink to="/apply" className={({ isActive }) => navTabClass(isActive)}>
-      {({ isActive }) => (
-        <>
-          <ClipboardList size={17} strokeWidth={isActive ? 2.5 : 2} className="shrink-0" aria-hidden="true" />
-          <span className="leading-none truncate max-w-full px-0.5 text-[10px] font-chrome">{t('nav.apply')}</span>
-        </>
-      )}
+    <PrefetchNavLink to="/apply" className={({ isActive }) => navTabClass(!moreSheetOpen && isActive)}>
+      {({ isActive }) => {
+        const active = !moreSheetOpen && isActive
+        return (
+          <>
+            <ClipboardList size={17} strokeWidth={active ? 2.5 : 2} className="shrink-0" aria-hidden="true" />
+            <span className="leading-none truncate max-w-full px-0.5 text-[10px] font-chrome">{t('nav.apply')}</span>
+          </>
+        )
+      }}
     </PrefetchNavLink>
   )
 }

@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-49] — 2026-07-15
+
+### Changed
+- Batch 24 — deploy playbook, purge wired, boot guard polish, live-health CI, footer deploy tooltip
+
+---
+
 ## [BUILD-2026.07.14-33] — 2026-07-14
 
 ### Added

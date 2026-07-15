@@ -12,6 +12,7 @@ import { BtcMapAuthProvider } from './context/BtcMapAuthContext'
 import { Layout } from './components/Layout'
 import { RouteSuspense } from './components/RouteSuspense'
 import { ErrorBoundary } from './components/ErrorBoundary'
+import { ToastProvider } from './components/ui/Toast'
 
 const ProgramsPage = lazy(() => import('./pages/ProgramsPage').then(m => ({ default: m.ProgramsPage })))
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage').then(m => ({ default: m.PortfolioPage })))
@@ -39,6 +40,7 @@ export default function App() {
     <BtcMapDensityProvider>
     <BtcMapAuthProvider>
     <I18nProvider>
+    <ToastProvider>
     <ErrorBoundary>
       <UserProvider>
         <BrowserRouter>
@@ -66,6 +68,7 @@ export default function App() {
         </BrowserRouter>
       </UserProvider>
     </ErrorBoundary>
+    </ToastProvider>
     </I18nProvider>
     </BtcMapAuthProvider>
     </BtcMapDensityProvider>

@@ -1,5 +1,5 @@
 import type { Program } from '../../types/program'
-import type { DistressedFilters, DistressedLane, DistressedListing } from '../../types/distressedListing'
+import type { DistressedFilters, DistressedLane, DistressedListing, DistressedSort } from '../../types/distressedListing'
 
 function slugify(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
@@ -82,4 +82,15 @@ export function filterListings(
 
 export function distressedRegions(listings: DistressedListing[]): string[] {
   return [...new Set(listings.map(l => l.region))].sort()
+}
+
+export function sortListings(listings: DistressedListing[], sort: DistressedSort): DistressedListing[] {
+  const copy = [...listings]
+  if (sort === 'discount') {
+    return copy.sort((a, b) => b.distressed_score - a.distressed_score || a.ask_usd - b.ask_usd)
+  }
+  if (sort === 'price') {
+    return copy.sort((a, b) => a.ask_usd - b.ask_usd)
+  }
+  return copy.sort((a, b) => a.region.localeCompare(b.region) || a.program_name.localeCompare(b.program_name))
 }

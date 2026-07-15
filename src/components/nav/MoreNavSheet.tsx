@@ -13,6 +13,9 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
   const reduced = useReducedMotion()
   useFocusTrap(panelRef, open, onClose)
 
+  const instant = { duration: 0 } as const
+  const panelTransition = reduced ? instant : { type: 'spring' as const, damping: 30, stiffness: 340 }
+
   return (
     <AnimatePresence>
       {open && (
@@ -24,7 +27,7 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={reduced ? { duration: 0 } : undefined}
+            transition={reduced ? instant : { duration: 0.18 }}
             onClick={onClose}
           />
           <motion.div
@@ -33,10 +36,10 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
             aria-modal="true"
             aria-label={t('nav.more')}
             className="absolute inset-x-0 bottom-0 mobile-nav-glass rounded-t-2xl safe-bottom"
-            initial={reduced ? false : { y: '100%' }}
-            animate={{ y: 0 }}
-            exit={reduced ? undefined : { y: '100%' }}
-            transition={reduced ? { duration: 0 } : { type: 'spring', damping: 30, stiffness: 340 }}
+            initial={reduced ? { y: 0, opacity: 1 } : { y: '100%' }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={reduced ? { y: 0, opacity: 0 } : { y: '100%' }}
+            transition={panelTransition}
           >
             <div className="mx-auto w-10 h-1 rounded-full bg-btc-orange/30 mt-2 mb-1" aria-hidden="true" />
             <div className="flex items-center justify-between px-4 py-2 border-b border-mp/50">

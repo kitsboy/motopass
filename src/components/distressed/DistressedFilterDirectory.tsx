@@ -3,7 +3,7 @@ import { Search } from 'lucide-react'
 import { useDebouncedValue } from '../../hooks/useDebouncedValue'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
-import type { DistressedFilters, DistressedLane, DistressedListing } from '../../types/distressedListing'
+import type { DistressedFilters, DistressedLane, DistressedListing, DistressedSort } from '../../types/distressedListing'
 import { DistressedListingsList } from './DistressedListingsList'
 
 const MAX_ASK_OPTIONS = [
@@ -16,12 +16,21 @@ const MAX_ASK_OPTIONS = [
 
 const LANES: DistressedLane[] = ['all', 'curated', 'permissionless']
 
+const SORT_OPTIONS: { id: DistressedSort; key: 'distressed.sortDiscount' | 'distressed.sortPrice' | 'distressed.sortRegion' }[] = [
+  { id: 'discount', key: 'distressed.sortDiscount' },
+  { id: 'price', key: 'distressed.sortPrice' },
+  { id: 'region', key: 'distressed.sortRegion' },
+]
+
 export function DistressedFilterDirectory({
   listings,
   totalCount,
+  laneCounts,
   regions,
   lane,
   onLaneChange,
+  sort,
+  onSortChange,
   filters,
   onFiltersChange,
   loading,
@@ -30,9 +39,12 @@ export function DistressedFilterDirectory({
 }: {
   listings: DistressedListing[]
   totalCount: number
+  laneCounts: Record<DistressedLane, number>
   regions: string[]
   lane: DistressedLane
   onLaneChange: (lane: DistressedLane) => void
+  sort: DistressedSort
+  onSortChange: (sort: DistressedSort) => void
   filters: DistressedFilters
   onFiltersChange: (filters: DistressedFilters) => void
   loading: boolean
@@ -88,6 +100,7 @@ export function DistressedFilterDirectory({
               key={l}
               type="button"
               onClick={() => onLaneChange(l)}
+              aria-pressed={lane === l}
               className={`rounded-chip border px-2.5 py-1 text-[10px] font-chrome transition-all duration-fast ${
                 lane === l
                   ? 'border-btc-orange/35 bg-btc-orange-soft/60 text-mp-btc-text shadow-mp-1'
@@ -95,9 +108,23 @@ export function DistressedFilterDirectory({
               }`}
             >
               {laneLabel(l)}
+              <span className="ml-1 font-mono text-[9px] opacity-75">{laneCounts[l]}</span>
             </button>
           ))}
         </div>
+
+        <label className="flex items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider font-chrome">
+          {t('distressed.sortBy')}
+          <select
+            value={sort}
+            onChange={e => onSortChange(e.target.value as DistressedSort)}
+            className="select-field !py-1 !px-2 text-xs normal-case tracking-normal"
+          >
+            {SORT_OPTIONS.map(opt => (
+              <option key={opt.id} value={opt.id}>{t(opt.key)}</option>
+            ))}
+          </select>
+        </label>
 
         <div className="flex flex-wrap gap-2 font-chrome">
           <label className="flex items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider">

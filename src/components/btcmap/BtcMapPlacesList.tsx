@@ -1,6 +1,7 @@
 import { ExternalLink, Heart, MapPin } from 'lucide-react'
 import { btcMapMerchantUrl } from '../../lib/btcmap'
 import type { BtcMapPlace } from '../../lib/btcmap'
+import { highlightMatches } from '../../lib/btcmapHighlight'
 import { useBtcMapAuth } from '../../context/BtcMapAuthContext'
 import { useI18n } from '../../i18n/I18nContext'
 
@@ -11,6 +12,7 @@ export function BtcMapPlacesList({
   compact = false,
   showSave = false,
   variant = 'cards',
+  highlightQuery = '',
 }: {
   places: BtcMapPlace[]
   loading: boolean
@@ -18,6 +20,7 @@ export function BtcMapPlacesList({
   compact?: boolean
   showSave?: boolean
   variant?: 'cards' | 'directory'
+  highlightQuery?: string
 }) {
   const { t } = useI18n()
   const auth = useBtcMapAuth()
@@ -68,12 +71,12 @@ export function BtcMapPlacesList({
               >
                 <div className="min-w-0">
                   <div className="font-chrome text-sm font-medium text-ink truncate group-hover:text-mp-btc-text transition-colors">
-                    {p.name ?? t('btcmap.unnamed')}
+                    {highlightMatches(p.name ?? t('btcmap.unnamed'), highlightQuery)}
                   </div>
                   {p.address && (
                     <div className="text-[11px] text-ink-muted truncate flex items-center gap-1 mt-0.5">
                       <MapPin size={10} className="shrink-0 opacity-60" aria-hidden />
-                      {p.address}
+                      {highlightMatches(p.address, highlightQuery)}
                     </div>
                   )}
                   {p.verified_at && (

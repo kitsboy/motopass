@@ -1,4 +1,4 @@
-import { NavLink, type NavLinkProps } from 'react-router-dom'
+import { NavLink, useMatch, useResolvedPath, type NavLinkProps } from 'react-router-dom'
 import { prefetchRoute } from '../../lib/prefetchRoutes'
 
 function routePath(to: NavLinkProps['to']): string {
@@ -6,18 +6,31 @@ function routePath(to: NavLinkProps['to']): string {
   return to.pathname ?? ''
 }
 
-export function PrefetchNavLink({ onMouseEnter, onFocus, to, ...props }: NavLinkProps) {
+function warmRoute(path: string) {
+  prefetchRoute(path)
+}
+
+export function PrefetchNavLink({ onMouseEnter, onFocus, onPointerEnter, to, end, ...props }: NavLinkProps) {
   const path = routePath(to)
+  const resolved = useResolvedPath(typeof to === 'string' ? to : to.pathname ?? '')
+  const match = useMatch({ path: resolved.pathname, end: end ?? resolved.pathname === '/' })
+
   return (
     <NavLink
       {...props}
       to={to}
+      end={end}
+      aria-current={match ? 'page' : undefined}
+      onPointerEnter={(e) => {
+        if (e.pointerType === 'mouse') warmRoute(path)
+        onPointerEnter?.(e)
+      }}
       onMouseEnter={(e) => {
-        prefetchRoute(path)
+        warmRoute(path)
         onMouseEnter?.(e)
       }}
       onFocus={(e) => {
-        prefetchRoute(path)
+        warmRoute(path)
         onFocus?.(e)
       }}
     />

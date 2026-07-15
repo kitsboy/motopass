@@ -8,9 +8,12 @@ import { LanguageDropdown } from './LanguageDropdown'
 import { useI18n } from '../../i18n/I18nContext'
 import { useUser } from '../../context/UserContext'
 
-export function HeaderToolbar() {
+export function HeaderToolbar({ collapsed = false }: { collapsed?: boolean }) {
   const { t } = useI18n()
   const { isLoggedIn } = useUser()
+  const ctaClass = collapsed
+    ? (isLoggedIn ? 'nav-btn nav-btn-primary header-cta-collapsed' : 'nav-btn nav-btn-violet header-cta-collapsed')
+    : (isLoggedIn ? 'nav-btn nav-btn-primary' : 'nav-btn nav-btn-violet')
 
   return (
     <>
@@ -29,12 +32,12 @@ export function HeaderToolbar() {
       </div>
       <div className="flex items-center gap-1 pl-1">
         {isLoggedIn ? (
-          <Link to="/dashboard" className="nav-btn nav-btn-primary">
+          <Link to="/dashboard" className={ctaClass}>
             <User size={13} strokeWidth={2.25} aria-hidden="true" />
-            <span>{t('nav.dashboard')}</span>
+            <span>{collapsed ? t('nav.dashboardShort') : t('nav.dashboard')}</span>
           </Link>
         ) : (
-          <Link to="/register" className="nav-btn nav-btn-violet">
+          <Link to="/register" className={ctaClass}>
             <UserPlus size={13} strokeWidth={2.25} aria-hidden="true" />
             <span>{t('nav.register')}</span>
           </Link>

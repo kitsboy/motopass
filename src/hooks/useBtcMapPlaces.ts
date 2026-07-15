@@ -9,10 +9,11 @@ type State = {
   loading: boolean
   error: string | null
   fromCache: boolean
+  fetchedAt: string | null
 }
 
-const IDLE: State = { places: [], areas: [], loading: false, error: null, fromCache: false }
-const LOADING: State = { places: [], areas: [], loading: true, error: null, fromCache: false }
+const IDLE: State = { places: [], areas: [], loading: false, error: null, fromCache: false, fetchedAt: null }
+const LOADING: State = { places: [], areas: [], loading: true, error: null, fromCache: false, fetchedAt: null }
 
 function useBtcMapFetch(programName: string | null, coord: ProgramCoord | null): State {
   const [state, setState] = useState<State>(IDLE)
@@ -33,6 +34,7 @@ function useBtcMapFetch(programName: string | null, coord: ProgramCoord | null):
           loading: false,
           error: null,
           fromCache: true,
+          fetchedAt: snapshot.fetchedAt,
         })
       } else {
         setState(LOADING)
@@ -44,7 +46,7 @@ function useBtcMapFetch(programName: string | null, coord: ProgramCoord | null):
           getAreasAt(coord.lat, coord.lon),
         ])
         if (cancelled) return
-        setState({ places, areas, loading: false, error: null, fromCache: false })
+        setState({ places, areas, loading: false, error: null, fromCache: false, fetchedAt: null })
       } catch (err: unknown) {
         if (cancelled) return
         if (snapshot) return
@@ -54,6 +56,7 @@ function useBtcMapFetch(programName: string | null, coord: ProgramCoord | null):
           loading: false,
           error: err instanceof Error ? err.message : 'fetch_failed',
           fromCache: false,
+          fetchedAt: null,
         })
       }
     }
@@ -70,6 +73,6 @@ export function useBtcMapPlaces(programName: string | null): State {
   const fetched = useBtcMapFetch(programName, coord)
 
   if (!programName) return IDLE
-  if (!coord) return { places: [], areas: [], loading: false, error: 'no_coords', fromCache: false }
+  if (!coord) return { places: [], areas: [], loading: false, error: 'no_coords', fromCache: false, fetchedAt: null }
   return fetched
 }

@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { Check, Copy } from 'lucide-react'
 import { useI18n } from '../../i18n/I18nContext'
+import { truncateNpub } from '../../lib/truncateNpub'
 
-type Props = { label: string; value: string; mono?: boolean }
+type Props = { label: string; value: string; mono?: boolean; truncate?: boolean }
 
-export function CopyField({ label, value, mono = true }: Props) {
+export function CopyField({ label, value, mono = true, truncate = false }: Props) {
   const { t } = useI18n()
   const [copied, setCopied] = useState(false)
 
@@ -22,8 +23,11 @@ export function CopyField({ label, value, mono = true }: Props) {
     <div className="card-muted">
       <div className="text-[10px] font-mono uppercase tracking-wider text-ink-muted mb-2">{label}</div>
       <div className="flex items-start gap-2">
-        <code className={`flex-1 text-xs sm:text-sm text-ink break-all leading-relaxed ${mono ? 'font-mono' : ''}`}>
-          {value}
+        <code
+          className={`flex-1 text-xs sm:text-sm text-ink leading-relaxed ${mono ? 'font-mono' : ''} ${truncate ? 'truncate' : 'break-all'}`}
+          title={truncate ? value : undefined}
+        >
+          {truncate ? truncateNpub(value) : value}
         </code>
         <button
           type="button"

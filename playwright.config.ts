@@ -9,6 +9,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   workers: 1,
+  timeout: 45_000,
   reporter: 'list',
   use: {
     ...devices['Desktop Chrome'],

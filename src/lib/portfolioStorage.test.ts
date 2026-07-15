@@ -9,7 +9,11 @@ import {
   saveStack,
   deleteStack,
   loadStacks,
+  loadProgramsTableDensity,
+  saveProgramsTableDensity,
+  movePortfolioItem,
   PORTFOLIO_KEY,
+  PROGRAMS_TABLE_DENSITY_KEY,
 } from './portfolioStorage'
 import type { Program } from '../types/program'
 
@@ -96,9 +100,25 @@ describe('portfolioStorage', () => {
     expect(imported.programs[0].name).toBe('Uruguay')
   })
 
-  it('rejects invalid import json', () => {
-    expect(importProgramsJson('not json').error).toBeTruthy()
-    expect(importProgramsJson('[]').error).toBeTruthy()
+  it('rejects invalid import json with error codes', () => {
+    expect(importProgramsJson('not json').errorCode).toBe('INVALID_JSON')
+    expect(importProgramsJson('[]').errorCode).toBe('EMPTY_FILE')
+    expect(importProgramsJson('[{"foo":1}]').errorCode).toBe('NO_VALID_ENTRIES')
+  })
+
+  it('persists table density preference', () => {
+    saveProgramsTableDensity('compact')
+    expect(loadProgramsTableDensity()).toBe('compact')
+    expect(storage[PROGRAMS_TABLE_DENSITY_KEY]).toBe('compact')
+  })
+
+  it('moves portfolio items up and down', () => {
+    savePortfolio([1, 2, 3])
+    expect(movePortfolioItem(2, 'up')).toEqual([2, 1, 3])
+    expect(movePortfolioItem(3, 'down')).toEqual([2, 1, 3])
+    expect(movePortfolioItem(1, 'up')).toEqual([1, 2, 3])
+    expect(movePortfolioItem(1, 'up')).toEqual([1, 2, 3])
+    expect(movePortfolioItem(3, 'down')).toEqual([1, 2, 3])
   })
 
   it('caps saved stacks at 20 and supports delete', () => {

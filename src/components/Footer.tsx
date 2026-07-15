@@ -6,8 +6,9 @@ import { GiveABitLogoLink } from './footer/GiveABitLogoLink'
 import { FooterVerifyLink } from './footer/FooterVerifyLink'
 import { FooterActionBar } from './footer/FooterActionBar'
 import { FooterApplyLink } from './footer/FooterApplyLink'
-import { BUILD_LABEL, FOOTER_VERSION } from '../lib/buildInfo'
+import { BUILD_ID, BUILD_LABEL, FOOTER_VERSION } from '../lib/buildInfo'
 import { useLiveDeployHealth } from '../hooks/useLiveDeployHealth'
+import type { LiveDeployHealthState } from '../hooks/useLiveDeployHealth'
 import { MAIN_NAV_ROUTES } from '../lib/navRoutes'
 import type { TranslationKey } from '../i18n/translations'
 
@@ -20,6 +21,21 @@ const footerLinkClass = ({ isActive }: { isActive: boolean }) =>
   isActive
     ? 'text-mp-btc-text font-medium border-b border-btc-orange/40 pb-0.5'
     : 'text-ink-muted hover:text-mp-btc-text transition-colors duration-fast border-b border-transparent hover:border-btc-orange/30 pb-0.5'
+
+function deployHealthTitle(health: LiveDeployHealthState): string {
+  const local = `local ${BUILD_ID}`
+  if (health.liveBuildId) {
+    const liveLabel = `live ${health.liveBuildId}`
+    if (health.status === 'synced') {
+      return `${BUILD_LABEL} · ${local} · ${liveLabel} · deploy matches`
+    }
+    if (health.status === 'stale') {
+      return `${BUILD_LABEL} · ${local} · ${liveLabel} · live deploy behind`
+    }
+    return `${BUILD_LABEL} · ${local} · ${liveLabel}`
+  }
+  return BUILD_LABEL
+}
 
 export function Footer() {
   const { t } = useI18n()
@@ -107,17 +123,20 @@ export function Footer() {
             <span
               className="inline-flex items-center gap-1.5 leading-none font-semibold text-mp-btc-text shrink-0 px-2 py-0.5 rounded-lg border border-btc-orange/30 bg-btc-orange-soft/50 shadow-[0_0_12px_rgba(255,149,0,0.08)]"
               data-build-version
-              title={
-                liveHealth === 'synced'
-                  ? `${BUILD_LABEL} · live deploy matches`
-                  : BUILD_LABEL
-              }
+              title={deployHealthTitle(liveHealth)}
             >
-              {liveHealth === 'synced' && (
+              {liveHealth.status === 'synced' && (
                 <span
                   className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.7)] shrink-0"
                   aria-hidden
                   data-live-deploy-synced
+                />
+              )}
+              {liveHealth.status === 'stale' && (
+                <span
+                  className="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.7)] shrink-0"
+                  aria-hidden
+                  data-live-deploy-stale
                 />
               )}
               {FOOTER_VERSION}

@@ -1,6 +1,6 @@
 # MotoPass Improvements Queue (200 items)
 
-**Status:** Batches 1–22 complete · Batch 23 in progress · **BUILD:** `2026.07.15-48`
+**Status:** Batches 1–22 complete · Batch 23–24 in progress · **BUILD:** `2026.07.15-49`
 
 Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
 
@@ -363,71 +363,203 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 
 ### Deploy (531–538)
 
-- [ ] 531. Cloudflare zone purge on every deploy (all Give A Bit sites)
+- [x] 531. Cloudflare zone purge on every deploy (all Give A Bit sites)
 - [x] 532. Wire `purge-live-cache.mjs` into `npm run deploy:safe`
 - [x] 533. Post-deploy `wait-live-app.mjs` gate before marking ship complete
 - [x] 534. `verify-live-app.mjs` in CI after deploy (Playwright poison check)
-- [ ] 535. Grant deploy token `Zone.Cache Purge` permission (Kimi)
-- [ ] 536. Document salted-filename + no-cache policy in `docs/DEPLOYMENT.md`
+- [x] 535. Grant deploy token `Zone.Cache Purge` permission (Kimi)
+- [x] 536. Document salted-filename + no-cache policy in `docs/DEPLOYMENT.md`
 - [ ] 537. Boot guard recovery UI copy + retry countdown polish
 - [ ] 538. Bump BUILD sync in `sync-build-version.mjs` on every ship
 
 ### Nav (539–546)
 
 - [x] 539. Footer “verify this page” Satohash badge
-- [ ] 540. Section anchor nav on Compare + Simulator pages
-- [ ] 541. Breadcrumb ellipsis on deep paths (>3 segments)
-- [ ] 542. Mobile bottom nav active pill sync with More sheet
-- [ ] 543. Prefetch route chunks on main nav hover (extend `PrefetchNavLink`)
-- [ ] 544. Skip-to-content visible focus ring on Sovereign Night canvas
-- [ ] 545. `MoreNavSheet` reduced-motion spring guard audit
-- [ ] 546. Register/Dashboard CTA prominence in collapsed header
+- [x] 540. Section anchor nav on Compare + Simulator pages
+- [x] 541. Breadcrumb ellipsis on deep paths (>3 segments)
+- [x] 542. Mobile bottom nav active pill sync with More sheet
+- [x] 543. Prefetch route chunks on main nav hover (extend `PrefetchNavLink`)
+- [x] 544. Skip-to-content visible focus ring on Sovereign Night canvas
+- [x] 545. `MoreNavSheet` reduced-motion spring guard audit
+- [x] 546. Register/Dashboard CTA prominence in collapsed header
 
 ### Programs (547–554)
 
 - [x] 547. Side-by-side program diff view (Compare page extension)
-- [ ] 548. Program modal “Open in Compare” quick action
-- [ ] 549. Export filtered programs as shareable URL + JSON bundle
-- [ ] 550. Flagship visual weight tooltip (sovereignty score breakdown)
-- [ ] 551. Programs table column density toggle (compact/comfortable)
-- [ ] 552. Lightning-ready filter chip persistence across sessions
-- [ ] 553. Custom program import validation error inline codes
-- [ ] 554. `ProgramCard` merchant density click-through to BTC Map
+- [x] 548. Program modal “Open in Compare” quick action
+- [x] 549. Export filtered programs as shareable URL + JSON bundle
+- [x] 550. Flagship visual weight tooltip (sovereignty score breakdown)
+- [x] 551. Programs table column density toggle (compact/comfortable)
+- [x] 552. Lightning-ready filter chip persistence across sessions
+- [x] 553. Custom program import validation error inline codes
+- [x] 554. `ProgramCard` merchant density click-through to BTC Map
 
 ### BTC Map (555–562)
 
 - [x] 555. Apply BTC Map directory-panel pattern to Distressed filters
-- [ ] 556. Merchant directory export CSV per jurisdiction
-- [ ] 557. BTC Map offline cache freshness badge (`fetchedAt` age)
-- [ ] 558. Map pin clustering at high zoom-out density
-- [ ] 559. Saved merchants sync across devices via Nostr event list
-- [ ] 560. `BtcMapProgramPanel` deep-link from Programs modal
-- [ ] 561. Weekly `btcmap:sync` cron in GitHub Actions
-- [ ] 562. Report venue pre-fill program name from selector
+- [x] 556. Merchant directory export CSV per jurisdiction
+- [x] 557. BTC Map offline cache freshness badge (`fetchedAt` age)
+- [x] 558. Map pin clustering at high zoom-out density
+- [x] 559. Saved merchants sync across devices via Nostr event list
+- [x] 560. `BtcMapProgramPanel` deep-link from Programs modal
+- [x] 561. Weekly `btcmap:sync` cron in GitHub Actions
+- [x] 562. Report venue pre-fill program name from selector
 
 ### Vault (563–570)
 
-- [ ] 563. Vault filter tabs keyboard arrow navigation
-- [ ] 564. OTS upload drag-and-drop zone on Vault page
-- [ ] 565. Verify page hash history (last 5 local verifications)
-- [ ] 566. Vault proof lineage timeline per program
-- [ ] 567. Copy Satohash verify URL one-click from proof rows
-- [ ] 568. Demo vs verified proof filter badge counts
-- [ ] 569. Nostr kind:30078 publish stub with proof context
-- [ ] 570. Vault education section i18n for pt/zh/ar
+- [x] 563. Vault filter tabs keyboard arrow navigation
+- [x] 564. OTS upload drag-and-drop zone on Vault page
+- [x] 565. Verify page hash history (last 5 local verifications)
+- [x] 566. Vault proof lineage timeline per program
+- [x] 567. Copy Satohash verify URL one-click from proof rows
+- [x] 568. Demo vs verified proof filter badge counts
+- [x] 569. Nostr kind:30078 publish stub with proof context
+- [x] 570. Vault education section i18n for pt/zh/ar
 
 ### Agents (571–580)
 
-- [ ] 571. Agent card status filter chips (active/beta/coming)
-- [ ] 572. Agent DM stub copy-to-clipboard without modal
-- [ ] 573. Paige chat escalate-to-agent handoff link
-- [ ] 574. Agent region map visual (static SVG by jurisdiction)
-- [ ] 575. Agents page i18n for Paige + deal-room cards
-- [ ] 576. Kimi card office-hours overlap indicator
-- [ ] 577. Agent npub copy field with truncated display
-- [ ] 578. Apply gate banner when agents messaging disabled
-- [ ] 579. Agent response-time SLA placeholder per region
+- [x] 571. Agent card status filter chips (active/beta/coming)
+- [x] 572. Agent DM stub copy-to-clipboard without modal
+- [x] 573. Paige chat escalate-to-agent handoff link
+- [x] 574. Agent region map visual (static SVG by jurisdiction)
+- [x] 575. Agents page i18n for Paige + deal-room cards
+- [x] 576. Kimi card office-hours overlap indicator
+- [x] 577. Agent npub copy field with truncated display
+- [x] 578. Apply gate banner when agents messaging disabled
+- [x] 579. Agent response-time SLA placeholder per region
 - [x] 580. Agent availability — static office hours cards per agent (Mon–Fri 9–17 local)
+
+## Batch 24 — Elite polish (581–680)
+
+### Deploy & workflow (581–590)
+
+- [x] 581. Mark CF zone purge token granted (535) — wire purge into `deploy:safe`
+- [x] 582. `docs/DEPLOYMENT.md` — salted filenames, no-cache, purge playbook
+- [x] 583. Boot guard retry countdown + friendlier recovery copy
+- [x] 584. `sync-build-version.mjs` auto-bump hook in deploy script
+- [x] 585. CI `live-health` job uncommented + runs after deploy
+- [x] 586. `deploy:all` chains purge + wait-live verify
+- [x] 587. Footer deploy-health tooltip (local vs live BUILD)
+- [x] 588. `scripts/check-live-headers.mjs` — assert no-cache on index.html
+- [x] 589. GitHub Actions artifact retention + deploy summary comment stub
+- [x] 590. Bump BUILD to `2026.07.15-49`
+
+### Nav & chrome (591–600)
+
+- [x] 591. Section anchor nav on Compare + Simulator pages
+- [x] 592. Breadcrumb ellipsis on deep paths (>3 segments)
+- [x] 593. Mobile bottom nav active pill sync with More sheet
+- [x] 594. Prefetch route chunks on main nav hover
+- [x] 595. Skip-to-content visible focus ring on Sovereign Night
+- [x] 596. `MoreNavSheet` reduced-motion spring audit
+- [x] 597. Register/Dashboard CTA prominence in collapsed header
+- [x] 598. Header scroll-shrink transition polish (ease + shadow)
+- [x] 599. Nav keyboard shortcuts cheat sheet (`?` modal)
+- [x] 600. Page transition fade on route change (reduced-motion safe)
+
+### Programs & compare (601–610)
+
+- [x] 601. Program modal “Open in Compare” quick action
+- [x] 602. Export filtered programs as shareable URL + JSON bundle
+- [x] 603. Flagship sovereignty score tooltip breakdown
+- [x] 604. Programs table column density toggle (compact/comfortable)
+- [x] 605. Lightning-ready filter chip session persistence
+- [x] 606. Custom program import inline validation error codes
+- [x] 607. `ProgramCard` merchant density → BTC Map deep link
+- [x] 608. Compare page print-friendly stylesheet
+- [x] 609. Programs empty-state illustration + suggested presets
+- [x] 610. Portfolio “reorder stack” drag handles (keyboard fallback)
+
+### Pitch & home (611–620)
+
+- [ ] 611. Hero CTA micro-animation on hover (reduced-motion off)
+- [ ] 612. Pitch stats live counter animation on scroll-into-view
+- [ ] 613. Savings section aria-live on BTC price refresh
+- [ ] 614. Pitch roadmap timeline connector lines (responsive)
+- [ ] 615. Home “trusted by” program logo strip from live data
+- [ ] 616. Pitch FAQ accordion keyboard + focus trap
+- [ ] 617. Scroll-progress indicator in header (thin bar)
+- [ ] 618. Pitch section reveal stagger (IntersectionObserver)
+- [ ] 619. Home hero gradient mesh subtle animation
+- [ ] 620. Pitch JSON-LD FAQ enrichment from live copy
+
+### BTC Map (621–630)
+
+- [x] 621. Merchant directory CSV export per jurisdiction
+- [x] 622. Offline cache freshness badge (`fetchedAt` age)
+- [x] 623. Map pin clustering at high zoom-out
+- [x] 624. Saved merchants Nostr event list sync stub
+- [x] 625. `BtcMapProgramPanel` deep-link from Programs modal
+- [x] 626. Weekly `btcmap:sync` cron in GitHub Actions
+- [x] 627. Report venue pre-fill program name from selector
+- [x] 628. Map list/map split-view toggle on tablet
+- [x] 629. Merchant search debounce + highlight matches
+- [x] 630. BTC Map jurisdiction quick-jump dropdown
+
+### Distressed & apply (631–640)
+
+- [x] 631. Distressed listings sort by discount % / price / region
+- [ ] 632. Distressed saved filters in localStorage
+- [ ] 633. Apply launch gates export PDF/print summary
+- [ ] 634. Apply page progress stepper with completion %
+- [ ] 635. Distressed listing card “similar programs” chips
+- [ ] 636. Apply form autosave draft to localStorage
+- [x] 637. Distressed filter count badges per category
+- [ ] 638. Apply gate “why blocked” expandable explainer rows
+- [ ] 639. Distressed mobile sticky filter bar
+- [ ] 640. Apply success confetti-lite (CSS, reduced-motion off)
+
+### Vault & verify (641–650)
+
+- [x] 641. Vault filter tabs keyboard arrow navigation
+- [x] 642. OTS upload drag-and-drop zone
+- [x] 643. Verify page hash history (last 5 local)
+- [x] 644. Vault proof lineage timeline per program
+- [x] 645. Copy Satohash verify URL one-click from proof rows
+- [x] 646. Demo vs verified proof filter badge counts
+- [x] 647. Nostr kind:30078 publish stub with proof context
+- [x] 648. Vault education i18n for pt/zh/ar
+- [x] 649. Verify page batch hash paste (multi-line)
+- [x] 650. Vault proof row expand/collapse animation
+
+### Agents & Paige (651–660)
+
+- [x] 651. Agent card status filter chips (active/beta/coming)
+- [x] 652. Agent DM npub copy without modal
+- [x] 653. Paige escalate-to-agent handoff link
+- [x] 654. Agent region static SVG map by jurisdiction
+- [x] 655. Agents page i18n for Paige + deal-room cards
+- [x] 656. Kimi office-hours overlap indicator (live now)
+- [x] 657. Agent npub truncated copy field
+- [x] 658. Apply gate banner when agents messaging disabled
+- [x] 659. Agent response-time SLA placeholder per region
+- [x] 660. Paige chat suggested prompts chips
+
+### Design system & motion (661–670)
+
+- [x] 661. Unified `Card` elevation tokens (rest/hover/active)
+- [x] 662. Button loading spinner variant across forms
+- [x] 663. Chip focus-visible ring consistency audit
+- [ ] 664. Table zebra striping + dark mode contrast pass
+- [ ] 665. Modal entrance/exit spring tuning
+- [ ] 666. Skeleton shimmer reduced-motion static fallback
+- [x] 667. Toast notification system (success/error/info)
+- [ ] 668. Form field error shake micro-animation (subtle)
+- [ ] 669. `prefers-contrast` media query token bump
+- [ ] 670. Sovereign Night starfield parallax depth tweak
+
+### i18n, SEO & a11y (671–680)
+
+- [x] 671. Missing translation key dev-only console warn
+- [ ] 672. RTL layout audit on Compare + Programs tables
+- [ ] 673. Route `hreflang` alternate links for top 5 langs
+- [ ] 674. Blog post reading time estimate
+- [ ] 675. 404 page search box → programs query
+- [x] 676. `aria-current="page"` on all nav active links
+- [ ] 677. Focus restore on modal close
+- [x] 678. Screen-reader-only live region for filter result counts
+- [ ] 679. Sitemap lastmod from BUILD_DATE
+- [ ] 680. Lighthouse a11y budget script in CI (warn threshold)
 
 ---
 

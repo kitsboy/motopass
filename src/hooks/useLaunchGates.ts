@@ -16,5 +16,10 @@ export function useLaunchGates() {
     return () => { cancelled = true }
   }, [])
 
-  return { report, loading, applicationsOpen: report.applications_open }
+  return {
+    report,
+    loading,
+    applicationsOpen: report.applications_open,
+    agentsMessagingOpen: report.agents_messaging_open ?? false,
+  }
 }

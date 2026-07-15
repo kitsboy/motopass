@@ -3,7 +3,7 @@ title: Technical Architecture One-Pager
 project: MotoPass
 version: 1.0.0
 audience: developers, technical partners
-last_updated: 2026-07-14
+last_updated: 2026-07-15
 owner: Kimi (Orchestrator) + Nova (Docs)
 self_evolving: true
 update_rule: >

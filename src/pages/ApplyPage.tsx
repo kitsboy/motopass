@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { Check, CheckCircle2, Copy, ExternalLink, Loader2, Radio, Rocket } from 'lucide-react'
+import { Check, CheckCircle2, Copy, ExternalLink, MessageCircle, Radio, Rocket } from 'lucide-react'
 import { NostrConnect } from '../components/NostrConnect'
 import { hashApplicationPayload, satohashStampGuideUrl } from '../lib/satohash'
 import { addApplication } from '../lib/storage'
@@ -9,6 +9,7 @@ import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
 import { Card } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
+import { useToast } from '../components/ui/Toast'
 import { Input, Textarea } from '../components/ui/Input'
 import { useLaunchGates } from '../hooks/useLaunchGates'
 import { BUILD_ID } from '../lib/buildInfo'
@@ -16,7 +17,8 @@ import { ApplyLaunchGatesDirectory } from '../components/apply/ApplyLaunchGatesD
 
 export function ApplyPage() {
   const { t } = useI18n()
-  const { report, loading, applicationsOpen } = useLaunchGates()
+  const { report, loading, applicationsOpen, agentsMessagingOpen } = useLaunchGates()
+  const { toast } = useToast()
   const [searchParams] = useSearchParams()
   const programPrefill = searchParams.get('program') ?? ''
 
@@ -83,6 +85,16 @@ export function ApplyPage() {
 
       <PageHeader eyebrow="MEMBERS · APPLICATIONS" title={t('apply.title')} subtitle={t('apply.sub')} />
 
+      {applicationsOpen && !agentsMessagingOpen && (
+        <Card animate delay={0.03} className="mb-6 flex items-start gap-3 border-nostr-violet/25">
+          <MessageCircle size={18} className="text-nostr-violet shrink-0 mt-0.5" aria-hidden />
+          <div className="min-w-0">
+            <p className="font-chrome text-sm font-semibold text-ink">{t('apply.agentsMessagingBannerTitle')}</p>
+            <p className="text-xs text-ink-muted mt-1 leading-relaxed">{t('apply.agentsMessagingBannerBody')}</p>
+          </div>
+        </Card>
+      )}
+
       {relayFake && (
         <Card animate delay={0.05} className="mb-6 flex items-start gap-3 border-nostr-violet/25">
           <Radio size={18} className="text-nostr-violet shrink-0 mt-0.5" aria-hidden />
@@ -132,15 +144,8 @@ export function ApplyPage() {
                 value={notes}
                 onChange={e => setNotes(e.target.value)}
               />
-              <Button type="submit" className="w-full" disabled={!applicationsOpen || submitting}>
-                {submitting ? (
-                  <>
-                    <Loader2 size={16} className="animate-spin" aria-hidden />
-                    Hashing…
-                  </>
-                ) : (
-                  t('apply.submit')
-                )}
+              <Button type="submit" className="w-full" disabled={!applicationsOpen || submitting} loading={submitting}>
+                {submitting ? 'Hashing…' : t('apply.submit')}
               </Button>
             </fieldset>
           </form>
@@ -175,6 +180,7 @@ export function ApplyPage() {
               onClick={async () => {
                 await navigator.clipboard.writeText(result.hash)
                 setCopied(true)
+                toast(t('common.copied'), 'success')
                 setTimeout(() => setCopied(false), 2000)
               }}
               className="absolute top-2 right-2 chip text-xs !py-1 !px-2"

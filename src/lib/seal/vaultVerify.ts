@@ -11,6 +11,20 @@ function normalizeHash(input: string): string | null {
   return /^[a-f0-9]{64}$/.test(h) ? h : null
 }
 
+/** Parse one hash per line from a multi-line paste */
+export function parseHashLines(input: string): string[] {
+  const seen = new Set<string>()
+  const hashes: string[] = []
+  for (const line of input.split(/\r?\n/)) {
+    const hash = normalizeHash(line)
+    if (hash && !seen.has(hash)) {
+      seen.add(hash)
+      hashes.push(hash)
+    }
+  }
+  return hashes
+}
+
 /** Paste a content hash — validates format and links to Satohash */
 export async function verifyHashPaste(hashInput: string): Promise<VerifyResult> {
   const hash = normalizeHash(hashInput)

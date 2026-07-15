@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
-import { Search } from 'lucide-react'
+import { Download, Search } from 'lucide-react'
 import type { BtcMapPlace } from '../../lib/btcmap'
+import { downloadPlacesCsv } from '../../lib/btcmapExport'
 import { useDebouncedValue } from '../../hooks/useDebouncedValue'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
@@ -11,15 +12,17 @@ export function BtcMapMerchantDirectory({
   loading,
   error,
   showSave = true,
+  programName,
 }: {
   places: BtcMapPlace[]
   loading: boolean
   error: string | null
   showSave?: boolean
+  programName?: string
 }) {
   const { t } = useI18n()
   const [query, setQuery] = useState('')
-  const debounced = useDebouncedValue(query.trim().toLowerCase(), 120)
+  const debounced = useDebouncedValue(query.trim().toLowerCase(), 280)
 
   const filtered = useMemo(() => {
     if (!debounced) return places
@@ -55,11 +58,24 @@ export function BtcMapMerchantDirectory({
               ? t('btcmap.loading')
               : formatT(t, 'btcmap.merchantCount', { count: filtered.length })}
           </span>
-          {debounced && places.length !== filtered.length && (
-            <span className="text-ink-muted/80 normal-case tracking-normal font-body">
-              {filtered.length} of {places.length}
-            </span>
-          )}
+          <div className="flex items-center gap-2 normal-case tracking-normal font-body">
+            {debounced && places.length !== filtered.length && (
+              <span className="text-ink-muted/80">
+                {filtered.length} of {places.length}
+              </span>
+            )}
+            {programName && !loading && places.length > 0 && (
+              <button
+                type="button"
+                onClick={() => downloadPlacesCsv(filtered, programName)}
+                className="inline-flex items-center gap-1 text-[10px] font-chrome text-mp-btc-text hover:underline underline-offset-2"
+                aria-label={t('btcmap.exportCsv')}
+              >
+                <Download size={11} aria-hidden />
+                {t('btcmap.exportCsv')}
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -70,6 +86,7 @@ export function BtcMapMerchantDirectory({
           error={error}
           showSave={showSave}
           variant="directory"
+          highlightQuery={debounced}
         />
       </div>
     </div>

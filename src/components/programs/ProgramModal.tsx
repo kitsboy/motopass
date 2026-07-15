@@ -1,5 +1,9 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ExternalLink, Zap, Check, X as XIcon } from 'lucide-react';
+import { cinematicIdToNumber } from '../../lib/programAdapter';
+import { loadCompareIds } from '../../lib/portfolioStorage';
+import { serializeIdList } from '../../lib/urlState';
 import { ClassyModal } from '../ui/ClassyModal';
 import { ModalTabs } from '../ui/ModalTabs';
 import { ProofBadge } from '../ui/ProofBadge';
@@ -7,7 +11,9 @@ import { StatCard } from '../ui/StatCard';
 import { BtcDualPrice } from '../BtcDualPrice';
 import { ComplianceClock } from '../portfolio/ComplianceClock';
 import { useI18n } from '../../i18n/I18nContext';
+import { Link } from 'react-router-dom';
 import { BtcMapProgramPanel } from '../btcmap/BtcMapProgramPanel';
+import { btcMapPageUrl } from '../../lib/btcmap';
 import { Program, ProgramModalTab, scoreWeight, hasFlagshipDepth } from './types';
 
 interface ProgramModalProps {
@@ -69,6 +75,12 @@ function ProgramModalBody({
   const [tab, setTab] = useState<ProgramModalTab>(initialTab);
   const isFlagship = scoreWeight(program.sovereigntyScore) === 'flagship';
   const deep = hasFlagshipDepth(program);
+  const programId = cinematicIdToNumber(program.id);
+  const compareIds = useMemo(() => {
+    const existing = loadCompareIds().filter((id) => id !== programId);
+    return [...existing, programId].slice(0, 4);
+  }, [programId]);
+  const compareHref = `/compare?ids=${serializeIdList(compareIds)}`;
 
   const TABS = useMemo(() => {
     const base = [
@@ -187,6 +199,12 @@ function ProgramModalBody({
               {t('modal.verifyBlock')} #{program.proofBlockHeight ?? '—'} <ExternalLink size={12} />
             </a>
           )}
+          <Link
+            to={btcMapPageUrl(program.id, 'btcmap-program-panel')}
+            className="inline-flex items-center gap-1.5 text-xs font-chrome text-mp-btc-text hover:underline underline-offset-2"
+          >
+            {t('btcmap.openLayer')} <ExternalLink size={12} aria-hidden />
+          </Link>
           <BtcMapProgramPanel programName={program.country} programId={program.id} />
         </div>
       )}
@@ -257,22 +275,30 @@ function ProgramModalBody({
         </ul>
       )}
 
-      {onAddToStack && (
-        <div className="mt-6 flex flex-col gap-3 border-t border-mp-border-subtle pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-[11px] text-mp-ink-tertiary">{t('modal.figuresNote')}</p>
-          <button
-            type="button"
-            onClick={() => onAddToStack(program)}
-            className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-chrome text-sm font-semibold transition-transform duration-fast ease-spring-snappy hover:-translate-y-0.5 ${
-              inPortfolio
-                ? 'border border-mp-border bg-mp-section text-mp-ink-secondary'
-                : 'bg-mp-btc text-mp-ink-on-accent shadow-mp-glow'
-            }`}
+      <div className="mt-6 flex flex-col gap-3 border-t border-mp-border-subtle pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <p className="font-mono text-[11px] text-mp-ink-tertiary">{t('modal.figuresNote')}</p>
+        <div className="flex flex-wrap items-center justify-end gap-2">
+          <Link
+            to={compareHref}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-mp-border bg-mp-section px-5 py-2.5 font-chrome text-sm font-semibold text-mp-ink-secondary transition-colors duration-fast hover:border-mp-btc/40 hover:text-mp-btc-text"
           >
-            {inPortfolio ? t('modal.removeFromStack') : t('modal.addToStack')}
-          </button>
+            {t('modal.openCompare')}
+          </Link>
+          {onAddToStack && (
+            <button
+              type="button"
+              onClick={() => onAddToStack(program)}
+              className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-chrome text-sm font-semibold transition-transform duration-fast ease-spring-snappy hover:-translate-y-0.5 ${
+                inPortfolio
+                  ? 'border border-mp-border bg-mp-section text-mp-ink-secondary'
+                  : 'bg-mp-btc text-mp-ink-on-accent shadow-mp-glow'
+              }`}
+            >
+              {inPortfolio ? t('modal.removeFromStack') : t('modal.addToStack')}
+            </button>
+          )}
         </div>
-      )}
+      </div>
     </ClassyModal>
   );
 }

@@ -6,6 +6,8 @@ import { FreshnessBadge } from '../ui/FreshnessBadge';
 import { useI18n } from '../../i18n/I18nContext';
 import { MerchantDensityBadge } from '../btcmap/MerchantDensityBadge';
 import { BtcDualPrice } from '../BtcDualPrice';
+import { cinematicIdToNumber } from '../../lib/programAdapter';
+import { SovereigntyScoreTooltip } from './SovereigntyScoreTooltip';
 import { Program, scoreWeight } from './types';
 
 interface ProgramCardProps {
@@ -121,7 +123,7 @@ function ProgramCardContent({
               {program.tier} &middot; {program.region}
             </span>
             <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-              <MerchantDensityBadge programName={program.country} />
+              <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />
               <FreshnessBadge
                 lastChecked={program.lastChecked}
                 proofStampedAt={program.proofStampedAt}
@@ -165,8 +167,8 @@ function ProgramCardContent({
         </div>
         <div>
           <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">Score</dt>
-          <dd className={`font-mono text-sm ${isFlagship ? 'text-mp-btc-text' : 'text-mp-ink'}`}>
-            {program.sovereigntyScore}
+          <dd>
+            <SovereigntyScoreTooltip program={program} score={program.sovereigntyScore} isFlagship={isFlagship} />
           </dd>
         </div>
       </dl>

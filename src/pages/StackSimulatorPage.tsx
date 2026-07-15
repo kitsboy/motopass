@@ -13,6 +13,8 @@ import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import { BtcDualPrice } from '../components/BtcDualPrice'
 import { parseIdList, serializeIdList } from '../lib/urlState'
+import { PageAnchorNav } from '../components/nav/PageAnchorNav'
+
 export function StackSimulatorPage() {
   const { t } = useI18n()
   const [searchParams, setSearchParams] = useSearchParams()
@@ -74,6 +76,15 @@ export function StackSimulatorPage() {
     setSaved(loadStacks())
   }
 
+  const simulatorAnchors = useMemo(
+    () => [
+      { id: 'simulator-picker', label: t('subnav.simulator.picker') },
+      { id: 'simulator-metrics', label: t('subnav.simulator.metrics') },
+      { id: 'simulator-saved', label: t('subnav.simulator.saved') },
+    ],
+    [t],
+  )
+
   const save = () => {
     const name = stackName.trim()
     if (!name || selected.length === 0) return
@@ -91,11 +102,13 @@ export function StackSimulatorPage() {
     <div className="px-4 sm:px-6 py-8 max-w-7xl mx-auto">
       <PageHeader eyebrow={t('simulator.eyebrow')} title={t('simulator.title')} subtitle={t('simulator.subtitle')} />
 
+      <PageAnchorNav items={simulatorAnchors} />
+
       {error && <ProgramsLoadError message={error} />}
       {loading && !error && <CardSkeleton />}
       {!loading && !error && (
         <div className="grid lg:grid-cols-2 gap-6">
-          <div className="rounded-card border border-mp-border bg-mp-card p-6 shadow-mp-1 max-h-[60vh] flex flex-col">
+          <div id="simulator-picker" className="rounded-card border border-mp-border bg-mp-card p-6 shadow-mp-1 max-h-[60vh] flex flex-col scroll-mt-header">
             <h3 className="font-display font-semibold text-ink mb-3">{t('simulator.selectPrograms')}</h3>
             <div className="relative mb-3">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted pointer-events-none" />
@@ -122,7 +135,7 @@ export function StackSimulatorPage() {
           </div>
 
           <div className="space-y-4 lg:sticky lg:top-24 lg:self-start">
-            <div className="rounded-card border border-mp-border border-l-4 border-l-mp-btc bg-mp-card p-6 shadow-mp-1">
+            <div id="simulator-metrics" className="rounded-card border border-mp-border border-l-4 border-l-mp-btc bg-mp-card p-6 shadow-mp-1 scroll-mt-header">
               <h3 className="font-display font-semibold text-ink mb-4">{t('simulator.metrics')}</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
@@ -167,7 +180,7 @@ export function StackSimulatorPage() {
             </div>
             {saveError && <p className="text-sm text-status-red" role="alert">{saveError}</p>}
             {saved.length > 0 && (
-              <div className="rounded-mp-lg border border-mp-border bg-mp-card-muted p-4">
+              <div id="simulator-saved" className="rounded-mp-lg border border-mp-border bg-mp-card-muted p-4 scroll-mt-header">
                 <h4 className="text-sm font-semibold text-ink mb-3">{t('simulator.savedStacks')}</h4>
                 {saved.map(s => (
                   <div key={s.id} className="flex items-center justify-between gap-2 text-xs text-ink-secondary py-2 border-b border-mp/60 last:border-0">

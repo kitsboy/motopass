@@ -11,6 +11,8 @@ export type LaunchGateReport = {
   generated_at: string
   build_id: string
   applications_open: boolean
+  /** When false, agent DM / deal-room messaging stays gated (Apply banner) */
+  agents_messaging_open?: boolean
   relay?: string
   relay_fake?: boolean
   relay_status?: 'fake' | 'live'
@@ -21,6 +23,7 @@ export const FALLBACK_LAUNCH_GATES: LaunchGateReport = {
   generated_at: '',
   build_id: 'pre-launch',
   applications_open: false,
+  agents_messaging_open: false,
   gates: [
     { id: 'G1', pillar: 'Seal', name: 'OTS + Satohash on all flagships', pass: false, detail: 'Run npm run launch:gate' },
     { id: 'G2', pillar: 'Forge', name: 'Distressed marketplace + proof vault UI', pass: false, detail: 'Pending scorecard' },

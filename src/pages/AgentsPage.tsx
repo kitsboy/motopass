@@ -1,19 +1,23 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Zap, MessageCircle, Radio, Bot, Handshake, ArrowRight, Clock } from 'lucide-react'
 import { MOTOPASS_RELAYS } from '../lib/nostr'
 import { NostrConnect } from '../components/NostrConnect'
 import { BtcMapReportVenue } from '../components/btcmap/BtcMapReportVenue'
 import { AgentCardKimi } from '../components/AgentCardKimi'
+import { AgentRegionMap } from '../components/agents/AgentRegionMap'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { Card } from '../components/ui/Card'
+import { CopyField } from '../components/ui/CopyField'
+import { useToast } from '../components/ui/Toast'
+import { formatT } from '../i18n/format'
+import { AGENT_SLA } from '../lib/agentOfficeHours'
 import type { TranslationKey } from '../i18n/translations'
 
 type AgentStatus = 'active' | 'beta' | 'coming'
-
-const OFFICE_HOURS = 'Mon–Fri 9:00–17:00'
+type StatusFilter = 'all' | AgentStatus
 
 const AGENT_TIMEZONES: Record<string, string> = {
   uy: 'UYT (UTC−3)',
@@ -46,14 +50,52 @@ const STATUS_KEYS: Record<AgentStatus, TranslationKey> = {
   coming: 'agents.statusComing',
 }
 
+const FILTER_CHIPS: { id: StatusFilter; key: TranslationKey }[] = [
+  { id: 'all', key: 'agents.filterAll' },
+  { id: 'active', key: 'agents.filterActive' },
+  { id: 'beta', key: 'agents.filterBeta' },
+  { id: 'coming', key: 'agents.filterComing' },
+]
+
 const statusClass = (s: AgentStatus) =>
   s === 'active' ? 'proof-badge' :
   s === 'beta' ? 'chip border-status-amber/40 bg-btc-orange-soft text-status-amber' :
   'chip'
 
+function buildDmStub(country: string, npub: string) {
+  return JSON.stringify({
+    kind: 14,
+    tags: [['p', npub]],
+    content: `MotoPass agent inquiry — ${country}`,
+    relays: MOTOPASS_RELAYS,
+  }, null, 2)
+}
+
 export function AgentsPage() {
   const { t } = useI18n()
-  const [dmPreview, setDmPreview] = useState<string | null>(null)
+  const { toast } = useToast()
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
+
+  const statusCounts = useMemo(() => {
+    const counts: Record<StatusFilter, number> = { all: AGENTS.length, active: 0, beta: 0, coming: 0 }
+    for (const a of AGENTS) counts[a.status] += 1
+    return counts
+  }, [])
+
+  const filteredAgents = useMemo(
+    () => (statusFilter === 'all' ? AGENTS : AGENTS.filter(a => a.status === statusFilter)),
+    [statusFilter],
+  )
+
+  const copyDm = async (agent: (typeof AGENTS)[number]) => {
+    const stub = buildDmStub(agent.country, agent.npub)
+    try {
+      await navigator.clipboard.writeText(stub)
+      toast(t('agents.copyDm'), 'success')
+    } catch {
+      toast(t('agents.copyDm'), 'error')
+    }
+  }
 
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-7xl mx-auto">
@@ -85,7 +127,7 @@ export function AgentsPage() {
           </div>
           <p className="text-sm text-ink-secondary leading-relaxed mb-4">{t('agents.paige.body')}</p>
           <Link to="/programs" className="text-xs font-chrome font-medium text-nostr-violet inline-flex items-center gap-1 hover:underline underline-offset-2">
-            Browse programs <ArrowRight size={12} />
+            {t('agents.paige.cta')} <ArrowRight size={12} />
           </Link>
         </Card>
         <Card variant="elevated" animate delay={0.08} className="!p-5 border-l-4 border-l-btc-orange">
@@ -95,23 +137,39 @@ export function AgentsPage() {
           </div>
           <p className="text-sm text-ink-secondary leading-relaxed mb-4">{t('agents.dealroom.body')}</p>
           <Link to="/distressed" className="text-xs font-chrome font-medium text-mp-btc-text inline-flex items-center gap-1 hover:underline underline-offset-2">
-            Distressed deal room <ArrowRight size={12} />
+            {t('agents.dealroom.cta')} <ArrowRight size={12} />
           </Link>
         </Card>
       </div>
+
+      <AgentRegionMap />
 
       <div className="mb-10 max-w-xl">
         <AgentCardKimi />
       </div>
 
       <h2 className="font-display font-semibold text-lg text-ink mb-4">{t('agents.gridTitle')}</h2>
+      <div className="mb-4 flex flex-wrap gap-2">
+        {FILTER_CHIPS.map(chip => (
+          <button
+            key={chip.id}
+            type="button"
+            aria-pressed={statusFilter === chip.id}
+            onClick={() => setStatusFilter(chip.id)}
+            className={statusFilter === chip.id ? 'chip-active text-xs' : 'chip text-xs'}
+          >
+            {t(chip.key)}
+            <span className="ml-1.5 font-mono text-[10px] opacity-70">{statusCounts[chip.id]}</span>
+          </button>
+        ))}
+      </div>
       <div className="mb-8 flex flex-wrap items-center gap-3">
         <NostrConnect />
         <span className="text-xs text-ink-muted">{t('agents.connectHint')}</span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-        {AGENTS.map((a, i) => (
+        {filteredAgents.map((a, i) => (
           <Card key={a.id} variant="elevated" animate delay={0.04 + i * 0.03} className="!p-5">
             <div className="flex justify-between items-start mb-3">
               <div>
@@ -123,17 +181,12 @@ export function AgentsPage() {
               </span>
             </div>
             <p className="text-sm text-ink-secondary mb-4 leading-relaxed">{t(a.focusKey)}</p>
-            <div className="flex items-center gap-2 text-xs font-mono text-nostr-violet bg-nostr-violet-soft rounded-mp-md px-3 py-2 mb-4 border border-nostr-violet/15">
-              <Zap size={12} aria-hidden /> {a.npub}
+            <div className="mb-4">
+              <CopyField label={t('agents.copyNpub')} value={a.npub} truncate />
             </div>
             <button
               type="button"
-              onClick={() => setDmPreview(JSON.stringify({
-                kind: 14,
-                tags: [['p', a.npub]],
-                content: `MotoPass agent inquiry — ${a.country}`,
-                relays: MOTOPASS_RELAYS,
-              }, null, 2))}
+              onClick={() => void copyDm(a)}
               className="btn-secondary w-full text-sm !py-2"
             >
               <MessageCircle size={14} aria-hidden /> {t('agents.message')}
@@ -142,10 +195,8 @@ export function AgentsPage() {
         ))}
       </div>
 
-      <h2 className="font-display font-semibold text-lg text-ink mb-2 mt-10">Agent availability</h2>
-      <p className="text-sm text-ink-muted mb-4 max-w-2xl">
-        Placeholder office hours per liaison region — local time, weekdays only. Live scheduling ships with Nexus club gates.
-      </p>
+      <h2 className="font-display font-semibold text-lg text-ink mb-2 mt-10">{t('agents.officeHoursTitle')}</h2>
+      <p className="text-sm text-ink-muted mb-4 max-w-2xl">{t('agents.officeHoursSub')}</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-10">
         {AGENTS.map((a, i) => (
           <Card key={`hours-${a.id}`} variant="elevated" animate delay={0.04 + i * 0.03} className="!p-5">
@@ -160,10 +211,13 @@ export function AgentsPage() {
             </div>
             <div className="flex items-start gap-2 text-sm text-ink-secondary mb-2">
               <Clock size={14} className="text-nostr-violet shrink-0 mt-0.5" aria-hidden />
-              <span>{OFFICE_HOURS}</span>
+              <span>{t('agents.officeHours')}</span>
             </div>
-            <p className="text-xs font-mono text-ink-muted bg-card-muted/50 rounded-mp-md px-3 py-2 border border-mp/50">
-              {AGENT_TIMEZONES[a.id]} · local time
+            <p className="text-xs font-mono text-ink-muted bg-card-muted/50 rounded-mp-md px-3 py-2 border border-mp/50 mb-2">
+              {AGENT_TIMEZONES[a.id]} · {t('agents.localTime')}
+            </p>
+            <p className="text-[10px] font-chrome text-ink-muted uppercase tracking-wider">
+              {formatT(t, 'agents.slaPlaceholder', { sla: AGENT_SLA[a.id] ?? '48–72h' })}
             </p>
           </Card>
         ))}
@@ -172,18 +226,6 @@ export function AgentsPage() {
       <div className="mt-10 max-w-xl mx-auto">
         <BtcMapReportVenue />
       </div>
-
-      {dmPreview && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" role="dialog" aria-modal="true">
-          <Card variant="elevated" className="max-w-lg w-full !p-5 shadow-mp-4">
-            <h3 className="font-display font-semibold text-ink mb-2">Nostr DM stub</h3>
-            <pre className="text-[10px] font-mono text-ink-secondary overflow-auto max-h-64 bg-card-muted/50 p-3 rounded-mp-md border border-mp/50">{dmPreview}</pre>
-            <button type="button" className="btn-primary mt-4 text-sm" onClick={() => { navigator.clipboard?.writeText(dmPreview); setDmPreview(null) }}>
-              Copy & close
-            </button>
-          </Card>
-        </div>
-      )}
 
       <p className="text-xs text-ink-muted mt-6 text-center max-w-2xl mx-auto leading-relaxed">
         {t('agents.disclaimer')}

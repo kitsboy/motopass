@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { ExternalLink, Shield, Copy, Check, ClipboardPaste } from 'lucide-react'
+import { ExternalLink, Shield, Copy, Check, ClipboardPaste, History, RotateCcw } from 'lucide-react'
 import { hashApplicationPayload, satohashStampGuideUrl, satohashVerifyUrl } from '../lib/satohash'
 import { buildPageVerifyPayload } from '../lib/pageVerify'
+import { parseHashLines, verifyHashPaste } from '../lib/seal/vaultVerify'
+import { loadHashHistory, pushHashHistory } from '../lib/verifyHashHistory'
 import { BlockHeight } from '../components/BlockHeight'
 import { VerifyResultsExplainer } from '../components/verify/VerifyResultsExplainer'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
+import type { VerifyResult } from '../types/proof'
 
 export function VerifyPage() {
   const { t } = useI18n()
@@ -21,8 +24,16 @@ export function VerifyPage() {
   })
   const [hash, setHash] = useState(() => searchParams.get('hash') ?? '')
   const [copied, setCopied] = useState(false)
+  const [history, setHistory] = useState(() => loadHashHistory())
+  const [batchInput, setBatchInput] = useState('')
+  const [batchResults, setBatchResults] = useState<VerifyResult[]>([])
+  const [batchBusy, setBatchBusy] = useState(false)
 
-  const generate = async () => setHash(await hashApplicationPayload({ text: input, ts: new Date().toISOString() }))
+  const generate = async () => {
+    const next = await hashApplicationPayload({ text: input, ts: new Date().toISOString() })
+    setHash(next)
+    setHistory(pushHashHistory(next, input.slice(0, 48)))
+  }
 
   const copy = async () => {
     if (!hash) return
@@ -37,6 +48,28 @@ export function VerifyPage() {
       if (text.trim()) setInput(text.trim())
     } catch {
       /* clipboard blocked */
+    }
+  }
+
+  async function reverify(entryHash: string) {
+    setHash(entryHash)
+    setHistory(pushHashHistory(entryHash))
+  }
+
+  async function runBatchVerify() {
+    const hashes = parseHashLines(batchInput)
+    if (!hashes.length) {
+      setBatchResults([])
+      return
+    }
+    setBatchBusy(true)
+    try {
+      const results = await Promise.all(hashes.map(h => verifyHashPaste(h)))
+      setBatchResults(results)
+      hashes.forEach(h => pushHashHistory(h))
+      setHistory(loadHashHistory())
+    } finally {
+      setBatchBusy(false)
     }
   }
 
@@ -75,6 +108,87 @@ export function VerifyPage() {
             </div>
             <VerifyResultsExplainer messageKey="verify.resultsExplainer" />
           </div>
+        )}
+      </div>
+
+      {history.length > 0 && (
+        <div className="card-muted mt-6 space-y-3">
+          <h2 className="font-chrome text-sm font-semibold text-ink flex items-center gap-2">
+            <History size={14} className="text-btc-orange" aria-hidden />
+            {t('verify.hashHistory')}
+          </h2>
+          <ul className="space-y-2">
+            {history.map(entry => (
+              <li
+                key={`${entry.hash}-${entry.ts}`}
+                className="flex flex-col sm:flex-row sm:items-center gap-2 rounded-mp-md border border-mp/60 bg-card px-3 py-2"
+              >
+                <code className="flex-1 text-[10px] font-mono text-ink-secondary break-all">
+                  {entry.label ? `${entry.label} · ` : ''}
+                  {entry.hash.slice(0, 20)}…
+                </code>
+                <div className="flex gap-2 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => void reverify(entry.hash)}
+                    className="btn-secondary text-xs !py-1 !px-2.5 inline-flex items-center gap-1"
+                  >
+                    <RotateCcw size={12} aria-hidden />
+                    {t('verify.reverify')}
+                  </button>
+                  <a
+                    href={satohashVerifyUrl(entry.hash)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary text-xs !py-1 !px-2.5 inline-flex items-center gap-1"
+                  >
+                    Satohash <ExternalLink size={12} />
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="card-elevated mt-6 space-y-4 border-l-4 border-l-mp-proof">
+        <label htmlFor="verify-batch" className="block text-sm font-medium text-ink-secondary">
+          {t('verify.batchHashes')}
+        </label>
+        <p className="text-xs text-ink-muted leading-relaxed">{t('verify.batchHashesHint')}</p>
+        <textarea
+          id="verify-batch"
+          value={batchInput}
+          onChange={e => setBatchInput(e.target.value)}
+          rows={5}
+          placeholder="One SHA-256 hash per line…"
+          className="input-field font-mono text-xs"
+          spellCheck={false}
+        />
+        <button
+          type="button"
+          onClick={() => void runBatchVerify()}
+          disabled={batchBusy || !batchInput.trim()}
+          className="btn-primary w-full sm:w-auto"
+        >
+          {batchBusy ? t('verify.batchVerifying') : t('verify.batchVerify')}
+        </button>
+        {batchResults.length > 0 && (
+          <ul className="space-y-2 pt-2 border-t border-mp">
+            {batchResults.map(result => (
+              <li
+                key={result.hash}
+                className={`rounded-mp-md border px-3 py-2 text-xs font-mono ${
+                  result.verified
+                    ? 'border-mp-proof/40 bg-mp-proof/10 text-mp-proof'
+                    : 'border-status-amber/40 bg-status-amber/10 text-status-amber'
+                }`}
+              >
+                <div className="break-all">{result.hash.slice(0, 24)}…</div>
+                <div className="mt-1 opacity-80">{result.message}</div>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
 

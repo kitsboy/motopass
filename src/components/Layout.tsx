@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
@@ -12,11 +12,14 @@ import { MobileMenuSheet } from './nav/MobileMenuSheet'
 import { MobileBottomNav } from './nav/MobileBottomNav'
 import { MoreNavSheet } from './nav/MoreNavSheet'
 import { Breadcrumbs } from './nav/Breadcrumbs'
+import { PageTransition } from './nav/PageTransition'
+import { NavShortcutsModal } from './nav/NavShortcutsModal'
 import { useI18n } from '../i18n/I18nContext'
 import { FOOTER_VERSION } from '../lib/buildInfo'
 import { useScrollToTop } from '../hooks/useScrollToTop'
 import { useHeaderCollapse } from '../hooks/useHeaderCollapse'
 import { useLanguageShortcut } from '../hooks/useLanguageShortcut'
+import { useNavShortcuts } from '../hooks/useNavShortcuts'
 import { useRouteLangMemory } from '../hooks/useRouteLangMemory'
 import { BackToTop } from './nav/BackToTop'
 
@@ -24,6 +27,7 @@ export function Layout() {
   useScrollToTop()
   useLanguageShortcut()
   useRouteLangMemory()
+  const { shortcutsOpen, setShortcutsOpen } = useNavShortcuts()
   const { t } = useI18n()
   const headerCollapsed = useHeaderCollapse()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -65,7 +69,7 @@ export function Layout() {
               </div>
             </NavLink>
 
-            <HeaderToolbar />
+            <HeaderToolbar collapsed={headerCollapsed} />
 
             <button
               type="button"
@@ -87,9 +91,10 @@ export function Layout() {
         <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-3 w-full min-w-0">
           <Breadcrumbs />
         </div>
-        <Outlet />
+        <PageTransition />
       </main>
 
+      <NavShortcutsModal open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
       <MoreNavSheet open={moreOpen} onClose={() => setMoreOpen(false)} />
       <MobileBottomNav moreOpen={moreOpen} onMoreToggle={() => setMoreOpen(v => !v)} />
 

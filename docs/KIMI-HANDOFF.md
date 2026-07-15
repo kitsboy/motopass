@@ -698,4 +698,25 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 49 — Batch 24 elite, 100-item queue)
+
+**Done:**
+- **Batch 24 queue** — items 581–680 added to `IMPROVEMENTS-QUEUE.md`
+- **6 parallel agents** shipped ~70 upgrades across deploy, nav, programs, BTC map, distressed, vault, agents, design, i18n
+- **Deploy:** purge token live, `DEPLOYMENT.md`, boot guard countdown, CI live-health, `check-live-headers.mjs`
+- **Nav:** anchor nav, breadcrumbs ellipsis, shortcuts modal (`?`), page transitions, prefetch hover
+- **Programs:** compare modal link, export URL/JSON, sovereignty tooltip, density toggle, portfolio reorder
+- **BTC Map:** CSV export, clustering, freshness badge, split view, jurisdiction jump, weekly sync cron
+- **Vault/Verify:** OTS drag-drop, hash history, lineage timeline, batch verify, kind:30078 stub
+- **Agents:** status filters, region SVG map, Paige prompts, toast system, Kimi live-now indicator
+- **62 unit tests** pass · BUILD `2026.07.15-49`
+
+**Still open (Batch 24):** Pitch polish 611–620, distressed 632–640, design 664–670, i18n/SEO 672–680 (~30 items)
+
+**Git State:**
+- SHA: (see commit after push)
+- Pushed: `origin/main`
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
