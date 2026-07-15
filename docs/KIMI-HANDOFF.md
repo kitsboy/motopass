@@ -655,4 +655,24 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Latest Session Summary (from 2026-07-15 goodbye)
+
+**Chat topic:** Stabilize production after CDN cache poison outages; ship nav chrome; harden deploys.
+
+**Finished in this session:**
+- BUILD 43–47 deployed; site live and user-confirmed healthy
+- Nav chrome pack (lang portal, collapse header, anchor nav, breadcrumbs, pill pulse, system locale)
+- CDN poison mitigations: salted filenames, no-cache headers, boot guard, auto-retry `?cb=` loader
+- Live verify passing; handoff + `SESSION-SUMMARY-2026-07-15.md` written
+
+**Still to do:**
+- Grant Cloudflare **Zone.Cache Purge** for deploy tokens (all Give A Bit sites)
+- Polish queue: Distressed directory filters, program diff view, footer verify badge
+
+**Next for Kimi:** Integrate summary into MASTER-BRAIN / Obsidian. Add CF purge to shared deploy playbook. See `docs/SESSION-SUMMARY-2026-07-15.md`.
+
+**Git:** `f100da7` · BUILD `2026.07.15-47` · https://motopass.giveabit.io
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
