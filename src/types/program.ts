@@ -23,9 +23,9 @@ export interface ProgramPathway {
 }
 
 export interface CriticalTests {
-  live_and_work: boolean
-  scope_of_freedom: boolean
-  dual_citizenship: boolean
+  live_and_work: boolean | null
+  scope_of_freedom: boolean | null
+  dual_citizenship: boolean | null
   notes?: string
 }
 
@@ -69,6 +69,8 @@ export interface Program {
   satohash_proofs?: SatohashProof[]
   /** Flagship v2 depth — Uruguay template */
   flagship_depth?: boolean
+  /** `template` = seeded scaffold; omit = researched deep flagship */
+  flagship_tier?: 'template' | 'deep'
   pathways?: ProgramPathway[]
   critical_tests?: CriticalTests
   legal_compliance?: LegalCompliance

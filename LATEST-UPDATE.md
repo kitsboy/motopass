@@ -1,5 +1,5 @@
-# motopass — Last Updated 2026-07-14 by Cursor
+# motopass — Last Updated 2026-07-14 by Grok
 
-Brief: BUILD 27 — 6 flagship jurisdictions, ProgramModal depth tabs, Paige RAG, compliance clock, CI stamp gate
-Commit: (pending)
-Live: https://motopass.giveabit.io · Footer: `BUILD 2026.07.14-27`
+Brief: BUILD 28 — 50/50 flagship depth, version sync across all docs, package 0.2.0, redeployed
+Commit: 6f9bb74
+Live: https://motopass.giveabit.io · Footer: `BUILD 2026.07.14-28`

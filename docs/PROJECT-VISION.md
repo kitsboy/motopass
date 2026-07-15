@@ -5,7 +5,7 @@
 **Core Philosophy:** Every law, cost, requirement, document, user action, and data update must be verifiable on the Bitcoin blockchain via OpenTimestamps + Satohash.io (as of one Bitcoin block ago). This is the non-negotiable foundation, unique sales proposition, and trust mechanism.
 
 **Date of Handoff:** 2026-06-08 (enhanced 2026-07-07 in BUILD-26 documentation pass)  
-**Status:** Production React app live (BUILD-26) — 50 programs, BTC Map v2, e2e CI. Ongoing: flagship data depth + Satohash pipeline.  
+**Status:** Production React app live (BUILD-28) — 50 programs, 16 flagships, BTC Map v2, ₿-first pricing, e2e CI. Ongoing: remaining flagship depth + Satohash pipeline.  
 **Single Source of Truth:** `/Users/cam/projects/motopass/` (this folder is canonical for both M3 Goose and M4 HERMES/Kimi)
 
 ## 1. Project Vision & Positioning (Expanded)

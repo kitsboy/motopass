@@ -1,6 +1,6 @@
 # MotoPass Design Context
 
-**BUILD:** 2026.07.07-26 · **Last updated:** 2026-07-07
+**BUILD:** 2026.07.14-28 · **Last updated:** 2026-07-14
 
 ## Why we moved to a lighter palette
 

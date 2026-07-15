@@ -11,6 +11,9 @@ function parseMonths(raw: string | null | undefined): number {
 
 export type PitchStats = {
   programCount: number
+  flagshipCount: number
+  /** Researched deep flagships (excludes template-tier scaffolds). */
+  deepCount: number
   lightningCount: number
   avgSovereignty: number
   avgTypicalInvestment: number
@@ -28,6 +31,8 @@ export type PitchStats = {
 export function computePitchStats(programs: Program[]): PitchStats {
   const n = programs.length || 1
   const lightning = programs.filter(p => p.lightning_ready)
+  const flagshipCount = programs.filter(p => p.flagship_depth).length
+  const deepCount = programs.filter(p => p.flagship_depth && p.flagship_tier !== 'template').length
   const avgSovereignty =
     programs.reduce((s, p) => s + (p.sovereignty_score ?? 6), 0) / n
   const avgTypical =
@@ -52,6 +57,8 @@ export function computePitchStats(programs: Program[]): PitchStats {
 
   return {
     programCount: programs.length,
+    flagshipCount,
+    deepCount,
     lightningCount: lightning.length,
     avgSovereignty: Math.round(avgSovereignty * 10) / 10,
     avgTypicalInvestment: Math.round(avgTypical),
@@ -90,11 +97,20 @@ export type SavingsRow = {
 }
 
 export function pitchStatsToMetrics(stats: PitchStats): PitchMetric[] {
-  return [
+  const metrics: PitchMetric[] = [
     { label: 'Jurisdictions tracked', value: stats.programCount },
     { label: 'Avg. stack savings', value: stats.costSavingsUsd, usdValue: stats.costSavingsUsd },
     { label: 'Avg. days to residency', value: Math.round(stats.avgProcessingMonths * 30), suffix: 'd' },
   ]
+  if (stats.flagshipCount > 0) {
+    const depthValue = stats.deepCount > 0 ? stats.deepCount : stats.flagshipCount
+    metrics.push({
+      label: '50/50 flagship depth',
+      value: depthValue,
+      suffix: `/${stats.programCount}`,
+    })
+  }
+  return metrics
 }
 
 export function pitchStatsToSavingsRows(stats: PitchStats): SavingsRow[] {

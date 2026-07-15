@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ExternalLink, User, UserPlus } from 'lucide-react'
 import { BlockHeight } from '../BlockHeight'
+import { BtcPriceTicker } from '../BtcPriceTicker'
 import { NostrConnect } from '../NostrConnect'
 import { ThemeToggle } from '../ThemeToggle'
 import { LanguageDropdown } from './LanguageDropdown'
@@ -12,9 +13,14 @@ export function HeaderToolbar() {
   const { isLoggedIn } = useUser()
 
   return (
+    <>
+    <div className="flex lg:hidden items-center shrink-0 mr-1" aria-label="Bitcoin spot price">
+      <BtcPriceTicker variant="compact" />
+    </div>
     <div className="hidden lg:flex items-center gap-1 shrink-0" role="toolbar" aria-label="Site tools">
       <div className="flex items-center gap-1 pr-1 border-r border-mp/70">
         <BlockHeight />
+        <BtcPriceTicker />
         <NostrConnect />
       </div>
       <div className="flex items-center gap-1 px-1 border-r border-mp/70">
@@ -44,5 +50,6 @@ export function HeaderToolbar() {
         </a>
       </div>
     </div>
+    </>
   )
 }

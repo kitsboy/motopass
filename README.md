@@ -1,6 +1,6 @@
 # MotoPass — Bitcoin Sovereign Passports & Residency
 
-**BUILD 2026.07.07-26** · Last updated: 2026-07-07
+**BUILD 2026.07.14-28** · Last updated: 2026-07-14
 
 [![CI](https://github.com/kitsboy/motopass/actions/workflows/ci.yml/badge.svg)](https://github.com/kitsboy/motopass/actions/workflows/ci.yml)
 [![Live](https://img.shields.io/website?url=https%3A%2F%2Fmotopass.giveabit.io&label=motopass.giveabit.io)](https://motopass.giveabit.io)
@@ -67,16 +67,17 @@ motopass/
 
 ---
 
-## Current state (BUILD 26)
+## Current state (BUILD 28)
 
 - **Luminous Sovereign** light UI + dark mode toggle
-- **50 jurisdictions** in live data
+- **50 jurisdictions** in live data · **16 flagships** at Uruguay template depth
 - Portfolio, Simulator, Compare, Vault, Agents, Blog
 - **BTC Map layer** (`/btcmap`) — Leaflet pins, merchant density on cards, Nostr saves, offline cache
-- Playwright e2e (16 tests), CI bundle budget, hreflang SEO
+- **₿-first pricing** — `BtcDualPrice`, `pitch:sync`, `research/pitch-anchor.json`
+- Playwright e2e (16 tests), CI bundle budget, hreflang SEO · package **0.2.0**
 - Nostr connect stub, Satohash verify UI, payment methods stub
 
-**Next:** Deepen all 50 to Uruguay flagship template; live Satohash + Nostr relay.
+**Next:** Deepen remaining 34 to Uruguay flagship template; live Satohash + Nostr relay.
 
 ---
 

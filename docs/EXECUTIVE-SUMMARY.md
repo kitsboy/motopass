@@ -3,7 +3,7 @@ title: Executive Summary
 project: MotoPass
 version: 1.0.0
 last_updated: 2026-07-14
-build: 2026.07.07-26
+build: 2026.07.14-28
 self_evolving: true
 bitcoin_display_policy: Bitcoin-first — cite PITCH-ANCHOR for all monetary figures
 pitch_anchor: docs/PITCH-ANCHOR.md
@@ -12,7 +12,7 @@ tags: [executive, pitch, btc]
 ---
 # MotoPass — Executive Summary
 
-**BUILD-2026.07.07-26** | **Live figures:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) · `npm run pitch:sync`
+**BUILD-2026.07.14-28** | **Live figures:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) · `npm run pitch:sync`
 
 ## The Opportunity
 High-net-worth individuals and Bitcoin-native entrepreneurs face an increasingly complex, opaque, and untrustworthy landscape when seeking second residencies, citizenships, and jurisdictional diversification. Traditional advisors, immigration lawyers, and CBI/RBI brokers operate with misaligned incentives, outdated data, and no independent verification layer. For Bitcoiners specifically, the problem is acute: most programs lack native support for digital assets, Lightning payments, or favorable tax treatment of crypto gains; legal extracts are rarely timestamped or independently auditable; and there is no unified, privacy-preserving way to model combined “stacks” of residencies for tax optimization, freedom of movement, and long-term sovereignty.
@@ -40,7 +40,7 @@ It combines:
 - **AI that actually helps.** Paige is trained on the same deep, timestamped corpus and operates transparently with escalation paths to human experts.
 - **Two-sided future.** Once the intelligence layer is trusted, the marketplace and B2G surfaces become natural and defensible.
 
-## Current Traction & Assets (BUILD-26)
+## Current Traction & Assets (BUILD-28)
 - **50 Bitcoin-prioritized programs** in `research/countries.json` with finance fields, proof stubs, and cinematic program cards/table.
 - **Production React app** at https://motopass.giveabit.io — Portfolio, Simulator, Compare, Vault, Blog, Agents, Register/Dashboard, and **BTC Map layer** (`/btcmap`).
 - **BTC Map v2 integration**: Leaflet merchant pins per jurisdiction, density badges on program cards, Nostr NIP-98 saved merchants, offline cache (50 snapshots), community report-venue CTA. Powered by [btcmap-api](https://github.com/teambtcmap/btcmap-api) v4.

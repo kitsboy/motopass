@@ -15,6 +15,7 @@ import { ClassyModal } from '../components/ui/ClassyModal'
 import { useI18n } from '../i18n/I18nContext'
 import { BtcDualPrice } from '../components/BtcDualPrice'
 import { ComplianceClock } from '../components/portfolio/ComplianceClock'
+import { PaigeChat } from '../components/PaigeChat'
 import { hasFlagshipDepth } from '../components/programs/types'
 
 type SortKey = 'name' | 'score' | 'invest'
@@ -115,9 +116,12 @@ export function PortfolioPage() {
       )}
 
       {acquired.length > 0 && (
-        <div className="mb-6 flex flex-wrap gap-3">
-          <Link to="/simulator" className="chip text-xs text-accent hover:underline">Stack simulator →</Link>
-          <Link to="/btcmap" className="chip text-xs text-mp-btc-text hover:underline">BTC Map merchants →</Link>
+        <div className="mb-6 grid gap-4 lg:grid-cols-[1fr_minmax(0,20rem)] lg:items-start">
+          <div className="flex flex-wrap gap-3">
+            <Link to="/simulator" className="chip text-xs text-accent hover:underline">Stack simulator →</Link>
+            <Link to="/btcmap" className="chip text-xs text-mp-btc-text hover:underline">BTC Map merchants →</Link>
+          </div>
+          <PaigeChat compact />
         </div>
       )}
 

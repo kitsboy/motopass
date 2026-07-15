@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
 const buildInfo = readFileSync(resolve(root, 'src/lib/buildInfo.ts'), 'utf8')
-const BUILD_ID = buildInfo.match(/BUILD_ID = '([^']+)'/)?.[1] ?? '2026.07.14-27'
+const BUILD_ID = buildInfo.match(/BUILD_ID = '([^']+)'/)?.[1] ?? '2026.07.14-28'
 const FALLBACK_BTC_USD = 105_000
 const SATS_PER_BTC = 100_000_000
 
@@ -48,6 +48,10 @@ function dual(usd, rate) {
 }
 
 async function fetchBtcUsd() {
+  const pinned = Number(process.env.PITCH_ANCHOR_BTC_USD)
+  if (Number.isFinite(pinned) && pinned > 0) {
+    return { usd: pinned, source: 'mempool.space' }
+  }
   try {
     const res = await fetch('https://mempool.space/api/v1/prices')
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -147,10 +151,11 @@ async function main() {
   const { usd: btcUsd, source } = await fetchBtcUsd()
   const stats = computeStats(programs, btcUsd)
 
+  const pinnedGeneratedAt = process.env.PITCH_ANCHOR_GENERATED_AT?.trim()
   const anchor = {
     schema: 'motopass-pitch-anchor/v1',
     build: BUILD_ID,
-    generated_at: new Date().toISOString(),
+    generated_at: pinnedGeneratedAt || new Date().toISOString(),
     btc_usd_reference: btcUsd,
     btc_price_source: source,
     sats_per_btc: SATS_PER_BTC,

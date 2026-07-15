@@ -1,6 +1,6 @@
 # MotoPass Work Tree
 
-**BUILD:** 2026.07.07-26 · **Last updated:** 2026-07-07
+**BUILD:** 2026.07.14-28 · **Last updated:** 2026-07-14
 
 Complete file map for any agent (Grok, Kimi, Claude, Hermes). **Canonical docs live in `docs/`** unless noted.
 

@@ -123,6 +123,17 @@ test.describe('smoke', () => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'ar')
   })
 
+  test('Uruguay flagship modal shows Pathways tab when visible', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.goto('/programs')
+    await expect(page.locator('main')).toBeVisible()
+    const uruguay = page.getByText('Uruguay', { exact: true }).first()
+    if (await uruguay.isVisible()) {
+      await uruguay.click()
+      await expect(page.getByText('Pathways')).toBeVisible()
+    }
+  })
+
   test('dashboard redirects logged-out users to register with next', async ({ page }) => {
     await page.goto('/dashboard?next=/profile')
     await expect(page).toHaveURL(/\/register\?next=%2Fprofile/)

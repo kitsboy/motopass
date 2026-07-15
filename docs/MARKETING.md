@@ -3,7 +3,7 @@ title: Marketing Strategy & Positioning
 project: MotoPass
 version: 1.0.0
 last_updated: 2026-07-14
-build: 2026.07.07-26
+build: 2026.07.14-28
 self_evolving: true
 bitcoin_display_policy: Bitcoin-first — all monetary figures via PITCH-ANCHOR (₿ primary, USD secondary)
 pitch_anchor: docs/PITCH-ANCHOR.md
@@ -12,7 +12,7 @@ tags: [marketing, pitch, btc]
 ---
 # MotoPass Marketing Strategy & Positioning
 
-**BUILD-2026.07.07-26** | **Figures:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) (auto-synced — do not paste stale $ here)
+**BUILD-2026.07.14-28** | **Figures:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) (auto-synced — do not paste stale $ here)
 
 ## Positioning Statement
 For high-net-worth Bitcoiners, digital-asset entrepreneurs, and freedom-minded families who refuse to accept opaque advisors, unverifiable data, or fiat-only pathways, MotoPass is the premium Bitcoin-native sovereign identity platform that delivers the world’s most trusted, verifiable, and Bitcoin-optimized residency, citizenship, and jurisdictional stacking intelligence and execution layer.
@@ -167,7 +167,7 @@ We do not need to convince the world that second residencies matter. We need to 
 This is the message. This is the product. This is the standard.
 
 — Marketing & Narrative Layer, MotoPass  
-BUILD-2026.07.07-26
+BUILD-2026.07.14-28
 
 ---
 **Diligence pack:** [docs/diligence/](../diligence/) (investor + architecture + ask)

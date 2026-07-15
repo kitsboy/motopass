@@ -138,6 +138,7 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     proofUrl: proof?.proof_url,
     proofBlockHeight: proof?.block_height,
     flagshipDepth: p.flagship_depth,
+    flagshipTier: p.flagship_tier ?? (p.flagship_depth ? 'deep' : undefined),
     pathways: p.pathways,
     criticalTests: p.critical_tests,
     legalCompliance: p.legal_compliance,

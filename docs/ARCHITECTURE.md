@@ -1,6 +1,6 @@
 # MotoPass Technical Architecture (Initial)
 
-**BUILD-2026.07.07-26**
+**BUILD-2026.07.14-28**
 
 This is a living high-level architecture document. It will be expanded as implementation proceeds. For now it codifies the principles, current state, and intended evolution so that the Vite/React work, data pipeline, Nostr/Lightning integration, and self-hosting path all pull in the same direction.
 
@@ -14,7 +14,7 @@ This is a living high-level architecture document. It will be expanded as implem
 6. **Beauty is Non-Negotiable** — DESIGN.md is binding for all customer surfaces.
 7. **Phased, Not Big-Bang** — The pristine static demo is valuable today. The modern app evolves it. Integrations come online when the data and UX are ready to support them.
 
-## Current State (BUILD-26)
+## Current State (BUILD-28)
 
 **React SPA (primary)**
 - Vite + React 18 + TypeScript + Tailwind — 15 routes, lazy-loaded pages.
@@ -175,6 +175,6 @@ Env vars: `VITE_BTCMAP_API_URL` (default `https://api.btcmap.org`), `VITE_BTCMAP
 **Truth You Can Verify — in the code, in the data, and in the deployment.**
 
 — Architecture Layer, MotoPass  
-BUILD-2026.07.07-26
+BUILD-2026.07.14-28
 
 Cross-references: `docs/PRODUCT-SCOPE-ROADMAP.md`, root `PROJECT-VISION.md`, `DESIGN.md`, `DATA-MODEL.md`.

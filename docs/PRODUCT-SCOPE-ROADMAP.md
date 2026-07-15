@@ -1,7 +1,7 @@
 # MotoPass — Product Scope & Roadmap
 ## The Complete Answer to “How Much Are We Going to Build Here?”
 
-**BUILD-2026.07.07-26** | 2026-07-07  
+**BUILD-2026.07.14-28** | 2026-07-14  
 **Status:** Authoritative reference. Update only with corresponding changes to vision, data model, or architecture. Cross-reference with `docs/PROJECT-VISION.md`, `docs/DESIGN-CONTEXT.md`, `docs/NEXT-PROMPT.md`, and `docs/SOURCE-OF-TRUTH.md`.
 
 ---
@@ -18,7 +18,7 @@ The full vision spans data depth, user experience, Bitcoin protocol integration,
 
 ---
 
-## Current State (BUILD-26 Baseline)
+## Current State (BUILD-28 Baseline)
 
 ### Data
 - 16 programs seeded in `research/countries.json` (El Salvador, Central African Republic, Uruguay, St. Kitts & Nevis, Antigua & Barbuda, Dominica, UAE, Switzerland/Crypto Valley, Singapore, Portugal (policy shift note), Malta, Panama, Georgia, Paraguay, Bolivia placeholder, and one explicit “to be filled”).
@@ -27,7 +27,7 @@ The full vision spans data depth, user experience, Bitcoin protocol integration,
 - **BTC Map layer shipped**: merchant density (`btcmap-density.json`), offline cache (50 snapshots), live btcmap-api v4 on `/btcmap`.
 - Target: all 50 programs at Uruguay flagship depth + real Satohash stamps.
 
-### Experience (React App — primary, BUILD-26)
+### Experience (React App — primary, BUILD-28)
 - 15 routes: Portfolio, Programs, Simulator, Compare, Vault, **BTC Map**, Blog, Agents, Register/Dashboard.
 - Leaflet merchant pins, density badges on cards, Nostr save merchants, offline cache, 30 unit + 16 e2e tests.
 
@@ -368,7 +368,7 @@ That is how much we are going to build.
 Now we execute — phase by phase, with precision, beauty, and uncompromising Bitcoin alignment.
 
 — Product & Scope Layer, MotoPass  
-BUILD-2026.07.07-26
+BUILD-2026.07.14-28
 
 **Cross-references**  
 - Docs: `docs/PROJECT-VISION.md`, `docs/DESIGN-CONTEXT.md`, `docs/NEXT-PROMPT.md`, `docs/SOURCE-OF-TRUTH.md`, `docs/UPDATES-MAP.md`, `README.md`  

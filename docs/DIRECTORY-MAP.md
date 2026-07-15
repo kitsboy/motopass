@@ -3,7 +3,7 @@
 > **Superseded by [WORK-TREE.md](./WORK-TREE.md)** for the complete file map.  
 > This file remains as a quick agent handoff index.
 
-**BUILD:** 2026.07.07-26 · **Live:** https://motopass.giveabit.io
+**BUILD:** 2026.07.14-28 · **Live:** https://motopass.giveabit.io
 
 ## Quick facts
 

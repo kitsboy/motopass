@@ -2,6 +2,7 @@ import type { KeyboardEvent, MouseEvent } from 'react';
 import { motion } from 'motion/react';
 import { Check } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
+import { BtcDualPrice } from '../BtcDualPrice';
 import { Program, scoreWeight } from './types';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 
@@ -39,7 +40,9 @@ export function ProgramsTable({
           )}
           <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 font-medium">Jurisdiction</th>
           <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 font-medium">Tier</th>
-          <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 text-right font-medium">Min. invest</th>
+          <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 text-right font-medium">
+            <span className="text-mp-btc-text">₿</span> Min. invest
+          </th>
           <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 text-right font-medium">Timeline</th>
           <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 text-right font-medium">Score</th>
           <th scope="col" className="border-b border-mp-border-subtle py-3 pr-4 font-medium">Proof</th>
@@ -101,8 +104,8 @@ export function ProgramsTable({
               <td className="border-b border-mp-border-subtle py-3 pr-4 font-chrome text-xs text-mp-ink-secondary">
                 {p.tier}
               </td>
-              <td className="border-b border-mp-border-subtle py-3 pr-4 text-right font-mono text-sm text-mp-ink">
-                ${(p.minInvestment / 1000).toFixed(0)}k
+              <td className="border-b border-mp-border-subtle py-3 pr-4 text-right">
+                <BtcDualPrice usd={p.minInvestment} size="xs" layout="stack" className="items-end" />
               </td>
               <td className="border-b border-mp-border-subtle py-3 pr-4 text-right font-mono text-sm text-mp-ink">
                 {p.timelineDays}d

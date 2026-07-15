@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { computePitchStats } from './pitchStats'
+import { computePitchStats, pitchStatsToMetrics } from './pitchStats'
 import type { Program } from '../types/program'
 
 const base: Program = {
@@ -31,5 +31,31 @@ describe('computePitchStats', () => {
     expect(stats.traditionalAdvisoryUsd).toBeGreaterThan(stats.motopassAdvisoryUsd)
     expect(stats.costSavingsUsd).toBeGreaterThan(0)
     expect(stats.timeSavingsMonths).toBeGreaterThan(0)
+  })
+
+  it('counts flagship depth programs', () => {
+    const stats = computePitchStats([
+      { ...base, flagship_depth: true },
+      { ...base, id: 2, flagship_depth: false },
+    ])
+    expect(stats.flagshipCount).toBe(1)
+    expect(stats.deepCount).toBe(1)
+    const metrics = pitchStatsToMetrics(stats)
+    expect(metrics.some((m) => m.label === '50/50 flagship depth' && m.value === 1 && m.suffix === '/2')).toBe(true)
+  })
+
+  it('excludes template tier from deep count', () => {
+    const stats = computePitchStats([
+      { ...base, flagship_depth: true },
+      { ...base, id: 2, flagship_depth: true, flagship_tier: 'template' },
+    ])
+    expect(stats.flagshipCount).toBe(2)
+    expect(stats.deepCount).toBe(1)
+    const metrics = pitchStatsToMetrics(stats)
+    expect(metrics.find((m) => m.label === '50/50 flagship depth')).toEqual({
+      label: '50/50 flagship depth',
+      value: 1,
+      suffix: '/2',
+    })
   })
 })

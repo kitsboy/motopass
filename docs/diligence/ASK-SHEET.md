@@ -3,7 +3,7 @@ title: Ask Sheet
 project: MotoPass
 version: 1.0.0
 audience: investors, partners, collaborators
-last_updated: 2026-07-13
+last_updated: 2026-07-14
 owner: Kimi (Orchestrator) + Nova (Docs)
 self_evolving: true
 update_rule: >

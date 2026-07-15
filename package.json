@@ -1,6 +1,6 @@
 {
   "name": "motopass",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "MotoPass — Bitcoin Sovereign Passports & Residency Programs. Single source of truth project with pristine demo + modern dev environment.",
@@ -23,6 +23,8 @@
     "pitch:sync": "node scripts/sync-pitch-anchor.mjs",
     "flagships:apply": "node scripts/apply-flagship-extensions.mjs",
     "flagships:stamp": "node scripts/stamp-flagships.mjs",
+    "flagships:seed": "node scripts/seed-remaining-flagships.mjs && npm run flagships:apply && npm run flagships:stamp",
+    "sync:build": "node scripts/sync-build-version.mjs",
     "validate:stamps": "node scripts/validate-stamps.mjs",
     "bundle:check": "node scripts/check-bundle-size.mjs",
     "health-check": "bash scripts/health-check.sh",

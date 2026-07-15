@@ -6,7 +6,7 @@ import { buildPaigeResponse } from '../lib/paige/respond'
 
 type Msg = { role: 'user' | 'paige'; text: string }
 
-export function PaigeChat() {
+export function PaigeChat({ compact = false }: { compact?: boolean }) {
   const { programs } = usePrograms()
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState<Msg[]>([
@@ -34,15 +34,15 @@ export function PaigeChat() {
   }
 
   return (
-    <div className="card border-nostr-violet/25 bg-nostr-violet-soft/60">
-      <div className="flex items-center gap-2 mb-3">
-        <Bot size={16} className="text-nostr-violet" />
-        <span className="font-semibold text-sm text-ink">Paige AI</span>
+    <div className={`card border-nostr-violet/25 bg-nostr-violet-soft/60 ${compact ? '!p-4' : ''}`}>
+      <div className={`flex items-center gap-2 ${compact ? 'mb-2' : 'mb-3'}`}>
+        <Bot size={compact ? 14 : 16} className="text-nostr-violet" />
+        <span className={`font-semibold text-ink ${compact ? 'text-xs' : 'text-sm'}`}>Paige AI</span>
         <span className="text-[10px] font-mono uppercase tracking-wide text-mp-btc-text bg-btc-orange-soft px-2 py-0.5 rounded-chip">
           RAG · {flagshipCount} flagships
         </span>
       </div>
-      <div className="max-h-48 overflow-y-auto space-y-2 mb-3 text-xs leading-relaxed" aria-live="polite">
+      <div className={`${compact ? 'max-h-32' : 'max-h-48'} overflow-y-auto space-y-2 mb-3 text-xs leading-relaxed`} aria-live="polite">
         {messages.map((m, i) => (
           <div
             key={i}

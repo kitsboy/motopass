@@ -400,7 +400,37 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - 5 flagship countries before 50/50 depth push
 
 ### Git State
-- Last commit SHA: `ddd24d6`
+- Last commit SHA: `963e0149cb0c73d4268faff3f9388112462edd73`
+- Branch: `main`
+
+---
+
+## Handoff to Kimi — 2026-07-14 (BUILD 28 — 50/50 + version sync + redeploy)
+
+**Machine:** M3 (Grok)
+**Project:** motopass
+
+### Done
+- [x] BUILD `2026.07.14-28` · package `0.2.0` · manifest `motopass-giveabit-v28`
+- [x] `scripts/sync-build-version.mjs` + `npm run sync:build` in CI
+- [x] 50/50 flagship depth — 16 deep + 34 template scaffolds (all stamped)
+- [x] +5 deep flagships: Costa Rica, Hong Kong, Thailand, Cyprus, Estonia (`c43a95c`)
+- [x] Version sync across README, docs hub, diligence, pitch anchor
+- [x] UI: BtcPriceTicker header, ProgramsTable ₿, tier badges, pitch 50/50 metric
+- [x] CI pitch:sync pins BTC spot + timestamp for idempotent gate
+- [x] 36 unit + 17 e2e tests green · deploy to motopass.giveabit.io
+
+### Decisions
+- Template tier = honest "research pending" scaffolds; deep tier = Uruguay-standard
+- `flagship_tier` preserved in adapter + modal badge
+- Historical BUILD 26/27 refs kept in changelog/session archives only
+
+### Kimi / M4
+- Kanban: deepen remaining 29 template flagships (real research)
+- OpenTimestamps pipeline (replace content-hash-only proofs)
+- Set `CLOUDFLARE_API_TOKEN` in GitHub secrets for CI deploy
+
+### Git State
 - Branch: `main`
 
 ---

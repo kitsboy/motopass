@@ -46,6 +46,7 @@ export interface Program {
   proofUrl?: string;
   proofBlockHeight?: number;
   flagshipDepth?: boolean;
+  flagshipTier?: 'template' | 'deep';
   pathways?: ProgramPathway[];
   criticalTests?: CriticalTests;
   legalCompliance?: LegalCompliance;

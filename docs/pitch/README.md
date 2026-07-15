@@ -13,7 +13,7 @@ tags: [pitch, marketing, btc, self-evolving]
 ---
 # MotoPass — Self-Evolving Pitch Pack
 
-**Live pitch:** https://motopass.giveabit.io · **BUILD:** `2026.07.07-26`
+**Live pitch:** https://motopass.giveabit.io · **BUILD:** `2026.07.14-28`
 
 ## How evolution works (no line-by-line churn)
 

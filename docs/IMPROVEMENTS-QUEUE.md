@@ -1,6 +1,6 @@
 # MotoPass Improvements Queue (200 items)
 
-**Status:** Batches 1–22 complete · **BUILD:** `2026.07.07-26`
+**Status:** Batches 1–22 complete · **BUILD:** `2026.07.14-28`
 
 Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
 

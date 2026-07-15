@@ -39,12 +39,14 @@ export function ProgramModal({
   );
 }
 
-function TestBadge({ pass, label }: { pass: boolean; label: string }) {
+function TestBadge({ pass, label }: { pass: boolean | null | undefined; label: string }) {
+  const pending = pass == null
   return (
     <div className={`flex items-center gap-2 rounded-mp-md border px-3 py-2 text-xs font-medium ${
+      pending ? 'border-mp-border bg-mp-section text-mp-ink-muted' :
       pass ? 'border-mp-proof/30 bg-mp-proof/10 text-mp-proof' : 'border-mp-wax/30 bg-mp-wax/10 text-mp-wax'
     }`}>
-      {pass ? <Check size={14} /> : <XIcon size={14} />}
+      {pending ? <span className="text-[10px]">?</span> : pass ? <Check size={14} /> : <XIcon size={14} />}
       {label}
     </div>
   );
@@ -95,8 +97,11 @@ function ProgramModalBody({
         {isFlagship && (
           <span className="font-mono text-[11px] uppercase tracking-wide text-mp-btc-text">{t('modal.flagship')}</span>
         )}
-        {deep && (
-          <span className="chip text-[10px] text-mp-btc-text border-mp-btc/30">Flagship depth</span>
+        {program.flagshipTier === 'template' && (
+          <span className="chip text-[10px] text-mp-ink-muted border-mp-border bg-mp-section">{t('modal.flagshipTemplate')}</span>
+        )}
+        {deep && program.flagshipTier !== 'template' && (
+          <span className="chip text-[10px] text-mp-btc-text border-mp-btc/30">{t('modal.flagshipDeep')}</span>
         )}
       </div>
 

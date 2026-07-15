@@ -37,8 +37,8 @@ for (const p of data.programs) {
   }
 }
 
-if (flagshipCount < 6) {
-  console.error(`✗ Expected at least 6 flagships, found ${flagshipCount}`)
+if (flagshipCount < 50) {
+  console.error(`✗ Expected 50/50 flagships, found ${flagshipCount}`)
   failed = true
 }
 

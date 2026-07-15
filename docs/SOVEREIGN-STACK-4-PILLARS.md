@@ -3,7 +3,7 @@ title: Sovereign Stack — 4 Core Pillars
 project: MotoPass
 version: 1.0.0
 last_updated: 2026-07-14
-build: 2026.07.07-26
+build: 2026.07.14-28
 self_evolving: true
 bitcoin_display_policy: Bitcoin-first — all figures via PITCH-ANCHOR + BtcDualPrice UI
 pitch_anchor: docs/PITCH-ANCHOR.md
@@ -13,7 +13,7 @@ tags: [pillars, architecture, pitch, btc]
 # MotoPass Sovereign Stack — 4 Core Pillars Spec
 
 **Date:** 2026-07-14  
-**Build:** `2026.07.07-26`  
+**Build:** `2026.07.14-28`  
 **Figures:** [PITCH-ANCHOR.md](./PITCH-ANCHOR.md) (₿ primary · USD secondary)  
 **Status:** Pre-launch — intelligence MVP live; applications not yet accepted  
 **Live:** https://motopass.giveabit.io  
@@ -285,7 +285,7 @@ Bitcoin operators already have npubs. Nexus meets them where they are — no Sal
 | This spec | M3 | Committed at `docs/SOVEREIGN-STACK-4-PILLARS.md` |
 | Weekly program oracle | M4 Kimi | Diff official sources → handoff section → Cam approves JSON merge |
 | SEO + schema | M4 Kimi | `docs/SEO.md` audit queue → M3 implements JSON-LD |
-| MASTER-BRAIN | M4 | 4 pillars as Kanban swimlanes; link to BUILD 26 baseline |
+| MASTER-BRAIN | M4 | 4 pillars as Kanban swimlanes; link to BUILD 28 baseline |
 | Sync trigger | Cam | Tailscale Obsidian sync when Kimi or Grok says "time to sync" |
 | No raw chats | Both | Only `KIMI-HANDOFF.md` + `SESSION-SUMMARY-*.md` cross the wire |
 
@@ -300,4 +300,4 @@ Bitcoin operators already have npubs. Nexus meets them where they are — no Sal
 
 ---
 
-*Safe Harbour · Give A Bit family · motopass.giveabit.io · BUILD 2026.07.07-26*
+*Safe Harbour · Give A Bit family · motopass.giveabit.io · BUILD 2026.07.14-28*

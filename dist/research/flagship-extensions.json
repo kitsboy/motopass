@@ -2,68 +2,2552 @@
   "El Salvador": {
     "flagship_depth": true,
     "pathways": [
-      { "type": "economic_contribution", "label": "Economic contribution residency", "min_investment_usd": 0, "notes": "Voluntary Bitcoin legal tender; pathways tied to economic activity and investment." },
-      { "type": "business", "label": "Bitcoin business establishment", "min_investment_usd": 30000, "notes": "Strong fit for Lightning-native operators and crypto founders." }
+      {
+        "type": "economic_contribution",
+        "label": "Economic contribution residency",
+        "min_investment_usd": 0,
+        "notes": "Voluntary Bitcoin legal tender; pathways tied to economic activity and investment."
+      },
+      {
+        "type": "business",
+        "label": "Bitcoin business establishment",
+        "min_investment_usd": 30000,
+        "notes": "Strong fit for Lightning-native operators and crypto founders."
+      }
     ],
-    "critical_tests": { "live_and_work": true, "scope_of_freedom": true, "dual_citizenship": true, "notes": "Legal tender status; regional mobility via CA-4 for citizens." },
-    "legal_compliance": { "primary_laws": ["Ley Bitcoin", "2025 reform framework"], "official_urls": ["https://www.presidencia.gob.sv"], "property_foreign_ownership": "Generally permitted with standard restrictions.", "recent_changes": "2025 reforms shifted to voluntary merchant acceptance while retaining pro-Bitcoin posture." },
-    "compliance_clock": { "renewal_interval_months": 24, "citizenship_eligibility_years": 5, "residency_day_count_target": 365 },
-    "paige_fields": { "common_questions": ["Is Bitcoin still legal tender?", "What are capital gains rules for BTC?"], "red_flags": ["Verify current reform details before structuring"], "optimization_tips": ["Use Lightning-first business footprint in San Salvador"], "escalate_when": "Large corporate relocation or mining operations" }
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Legal tender status; regional mobility via CA-4 for citizens."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Ley Bitcoin",
+        "2025 reform framework"
+      ],
+      "official_urls": [
+        "https://www.presidencia.gob.sv"
+      ],
+      "property_foreign_ownership": "Generally permitted with standard restrictions.",
+      "recent_changes": "2025 reforms shifted to voluntary merchant acceptance while retaining pro-Bitcoin posture."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": 5,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Is Bitcoin still legal tender?",
+        "What are capital gains rules for BTC?"
+      ],
+      "red_flags": [
+        "Verify current reform details before structuring"
+      ],
+      "optimization_tips": [
+        "Use Lightning-first business footprint in San Salvador"
+      ],
+      "escalate_when": "Large corporate relocation or mining operations"
+    }
   },
   "Uruguay": {
     "flagship_depth": true,
     "pathways": [
-      { "type": "real_estate", "label": "Real estate investment", "min_investment_usd": 100000, "notes": "Beachfront and rural ownership widely permitted for foreigners." },
-      { "type": "rentista", "label": "Rentista / income proof", "min_investment_usd": 18000, "notes": "~$1,500/month sustained income — lower capital lock-up than RE route." },
-      { "type": "bank_deposit", "label": "Bank deposit / bonds", "min_investment_usd": 100000, "notes": "Passive investment equivalent; useful for BTC→fiat structuring." }
+      {
+        "type": "real_estate",
+        "label": "Real estate investment",
+        "min_investment_usd": 100000,
+        "notes": "Beachfront and rural ownership widely permitted for foreigners."
+      },
+      {
+        "type": "rentista",
+        "label": "Rentista / income proof",
+        "min_investment_usd": 18000,
+        "notes": "~$1,500/month sustained income — lower capital lock-up than RE route."
+      },
+      {
+        "type": "bank_deposit",
+        "label": "Bank deposit / bonds",
+        "min_investment_usd": 100000,
+        "notes": "Passive investment equivalent; useful for BTC→fiat structuring."
+      }
     ],
-    "critical_tests": { "live_and_work": true, "scope_of_freedom": true, "dual_citizenship": true, "notes": "Mercosur mobility (~10 countries); visa-free ~170 after naturalization." },
-    "legal_compliance": { "primary_laws": ["Ley de Migraciones", "Decreto 394/022"], "official_urls": ["https://www.gub.uy/tramites/residencia-legal", "https://www.minterior.gub.uy"], "property_foreign_ownership": "Foreigners may own beachfront and rural land with few restrictions.", "recent_changes": "2025–2026 digital nomad and investor pathways streamlined." },
-    "compliance_clock": { "renewal_interval_months": 36, "citizenship_eligibility_years": 4, "residency_day_count_target": 1095 },
-    "paige_fields": { "common_questions": ["Can I keep foreign crypto gains tax-free?", "How fast is Mercosur access?", "Is beachfront ownership allowed?"], "red_flags": ["Income proof must be sustainable; apostille delays"], "optimization_tips": ["RE investment for faster approval; territorial tax for BTC gains"], "escalate_when": "Complex tax structuring or $500k+ investments" }
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Mercosur mobility (~10 countries); visa-free ~170 after naturalization."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Ley de Migraciones",
+        "Decreto 394/022"
+      ],
+      "official_urls": [
+        "https://www.gub.uy/tramites/residencia-legal",
+        "https://www.minterior.gub.uy"
+      ],
+      "property_foreign_ownership": "Foreigners may own beachfront and rural land with few restrictions.",
+      "recent_changes": "2025–2026 digital nomad and investor pathways streamlined."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 36,
+      "citizenship_eligibility_years": 4,
+      "residency_day_count_target": 1095
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Can I keep foreign crypto gains tax-free?",
+        "How fast is Mercosur access?",
+        "Is beachfront ownership allowed?"
+      ],
+      "red_flags": [
+        "Income proof must be sustainable; apostille delays"
+      ],
+      "optimization_tips": [
+        "RE investment for faster approval; territorial tax for BTC gains"
+      ],
+      "escalate_when": "Complex tax structuring or $500k+ investments"
+    }
   },
   "Bolivia": {
     "flagship_depth": true,
     "pathways": [
-      { "type": "company_investment", "label": "Investor / company route", "min_investment_usd": 80000, "notes": "Business establishment or capital investment — no pure CBI passport-for-donation program." },
-      { "type": "solvency_proof", "label": "Low solvency / fixed deposit", "min_investment_usd": 25000, "notes": "Budget stacking option via solvency proof — verify current SUPREME DECREE thresholds with counsel." }
+      {
+        "type": "company_investment",
+        "label": "Investor / company route",
+        "min_investment_usd": 80000,
+        "notes": "Business establishment or capital investment — no pure CBI passport-for-donation program."
+      },
+      {
+        "type": "solvency_proof",
+        "label": "Low solvency / fixed deposit",
+        "min_investment_usd": 25000,
+        "notes": "Budget stacking option via solvency proof — verify current SUPREME DECREE thresholds with counsel."
+      }
     ],
-    "critical_tests": { "live_and_work": true, "scope_of_freedom": false, "dual_citizenship": false, "notes": "Weaker passport mobility vs Uruguay; research dual nationality policy before committing." },
-    "legal_compliance": { "primary_laws": ["Ley de Migración", "SUCRE investment frameworks"], "official_urls": ["https://www.migracion.gob.bo"], "property_foreign_ownership": "Restrictions in border/security zones; urban RE often viable — legal review required.", "recent_changes": "Crypto regulation evolving; monitor official gazette." },
-    "compliance_clock": { "renewal_interval_months": 12, "citizenship_eligibility_years": 3, "residency_day_count_target": 730 },
-    "paige_fields": { "common_questions": ["Is there a golden passport program?", "Can foreigners buy land?", "What is the solvency route minimum?"], "red_flags": ["No pure CBI", "INRA land restrictions near borders", "Bitcoin policy still forming"], "optimization_tips": ["Position as value/distressed stack leg, not primary hub"], "escalate_when": "Land purchase near restricted zones or corporate restructuring" }
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": false,
+      "dual_citizenship": false,
+      "notes": "Weaker passport mobility vs Uruguay; research dual nationality policy before committing."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Ley de Migración",
+        "SUCRE investment frameworks"
+      ],
+      "official_urls": [
+        "https://www.migracion.gob.bo"
+      ],
+      "property_foreign_ownership": "Restrictions in border/security zones; urban RE often viable — legal review required.",
+      "recent_changes": "Crypto regulation evolving; monitor official gazette."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 12,
+      "citizenship_eligibility_years": 3,
+      "residency_day_count_target": 730
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Is there a golden passport program?",
+        "Can foreigners buy land?",
+        "What is the solvency route minimum?"
+      ],
+      "red_flags": [
+        "No pure CBI",
+        "INRA land restrictions near borders",
+        "Bitcoin policy still forming"
+      ],
+      "optimization_tips": [
+        "Position as value/distressed stack leg, not primary hub"
+      ],
+      "escalate_when": "Land purchase near restricted zones or corporate restructuring"
+    }
   },
   "UAE (Dubai / Abu Dhabi)": {
     "flagship_depth": true,
     "pathways": [
-      { "type": "golden_visa", "label": "Golden Visa (10-year)", "min_investment_usd": 544000, "notes": "Property or investment threshold in AED equivalent; VARA clarity for crypto businesses." },
-      { "type": "free_zone", "label": "Free zone company + residency", "min_investment_usd": 15000, "notes": "Popular for Bitcoin/Web3 operators; zero personal income tax in many structures." }
+      {
+        "type": "golden_visa",
+        "label": "Golden Visa (10-year)",
+        "min_investment_usd": 544000,
+        "notes": "Property or investment threshold in AED equivalent; VARA clarity for crypto businesses."
+      },
+      {
+        "type": "free_zone",
+        "label": "Free zone company + residency",
+        "min_investment_usd": 15000,
+        "notes": "Popular for Bitcoin/Web3 operators; zero personal income tax in many structures."
+      }
     ],
-    "critical_tests": { "live_and_work": true, "scope_of_freedom": true, "dual_citizenship": false, "notes": "UAE does not offer citizenship by investment; residency + tax efficiency is the play." },
-    "legal_compliance": { "primary_laws": ["Federal Decree-Law on Entry and Residence", "VARA Virtual Assets Regulation"], "official_urls": ["https://u.ae", "https://www.vara.ae"], "property_foreign_ownership": "Freehold zones available for foreigners in designated areas.", "recent_changes": "VARA framework strengthens crypto business licensing." },
-    "compliance_clock": { "renewal_interval_months": 24, "citizenship_eligibility_years": null, "residency_day_count_target": 180 },
-    "paige_fields": { "common_questions": ["Can I run a Bitcoin business from Dubai?", "What is the golden visa property threshold?", "Are crypto gains taxed?"], "red_flags": ["No CBI path to passport", "Free zone vs mainland entity choice matters"], "optimization_tips": ["VARA-licensed structure for crypto treasury; Lightning-friendly free zones"], "escalate_when": "VARA licensing or $1M+ property golden visa" }
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": false,
+      "notes": "UAE does not offer citizenship by investment; residency + tax efficiency is the play."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Federal Decree-Law on Entry and Residence",
+        "VARA Virtual Assets Regulation"
+      ],
+      "official_urls": [
+        "https://u.ae",
+        "https://www.vara.ae"
+      ],
+      "property_foreign_ownership": "Freehold zones available for foreigners in designated areas.",
+      "recent_changes": "VARA framework strengthens crypto business licensing."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 180
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Can I run a Bitcoin business from Dubai?",
+        "What is the golden visa property threshold?",
+        "Are crypto gains taxed?"
+      ],
+      "red_flags": [
+        "No CBI path to passport",
+        "Free zone vs mainland entity choice matters"
+      ],
+      "optimization_tips": [
+        "VARA-licensed structure for crypto treasury; Lightning-friendly free zones"
+      ],
+      "escalate_when": "VARA licensing or $1M+ property golden visa"
+    }
   },
   "Portugal": {
     "flagship_depth": true,
     "pathways": [
-      { "type": "golden_visa", "label": "Golden Visa (investment fund route)", "min_investment_usd": 550000, "notes": "Fund route remains common post-housing reform; verify current eligible categories." },
-      { "type": "d7", "label": "D7 passive income", "min_investment_usd": 12000, "notes": "Lower capital pathway for remote income / pensioners — popular with Bitcoiners." }
+      {
+        "type": "golden_visa",
+        "label": "Golden Visa (investment fund route)",
+        "min_investment_usd": 550000,
+        "notes": "Fund route remains common post-housing reform; verify current eligible categories."
+      },
+      {
+        "type": "d7",
+        "label": "D7 passive income",
+        "min_investment_usd": 12000,
+        "notes": "Lower capital pathway for remote income / pensioners — popular with Bitcoiners."
+      }
     ],
-    "critical_tests": { "live_and_work": true, "scope_of_freedom": true, "dual_citizenship": true, "notes": "EU Schengen access; citizenship after 5 years with Portuguese language requirement." },
-    "legal_compliance": { "primary_laws": ["Lei de Estrangeiros", "Golden Visa amendments 2023+"], "official_urls": ["https://imigrante.sef.pt", "https://www.portugal.gov.pt"], "property_foreign_ownership": "Permitted; golden visa real estate route restricted/reformed — verify current rules.", "recent_changes": "Housing-route golden visa largely closed; funds and business routes remain." },
-    "compliance_clock": { "renewal_interval_months": 24, "citizenship_eligibility_years": 5, "residency_day_count_target": 1825 },
-    "paige_fields": { "common_questions": ["Is the housing golden visa still available?", "How does NHR tax status interact with BTC?", "Minimum stay for citizenship?"], "red_flags": ["Policy shifted 2023–2024 — confirm eligible investment category", "NHR regime changes"], "optimization_tips": ["D7 for lower capital; fund route for EU stackers"], "escalate_when": "NHR + crypto treasury structuring" }
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "EU Schengen access; citizenship after 5 years with Portuguese language requirement."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Lei de Estrangeiros",
+        "Golden Visa amendments 2023+"
+      ],
+      "official_urls": [
+        "https://imigrante.sef.pt",
+        "https://www.portugal.gov.pt"
+      ],
+      "property_foreign_ownership": "Permitted; golden visa real estate route restricted/reformed — verify current rules.",
+      "recent_changes": "Housing-route golden visa largely closed; funds and business routes remain."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": 5,
+      "residency_day_count_target": 1825
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Is the housing golden visa still available?",
+        "How does NHR tax status interact with BTC?",
+        "Minimum stay for citizenship?"
+      ],
+      "red_flags": [
+        "Policy shifted 2023–2024 — confirm eligible investment category",
+        "NHR regime changes"
+      ],
+      "optimization_tips": [
+        "D7 for lower capital; fund route for EU stackers"
+      ],
+      "escalate_when": "NHR + crypto treasury structuring"
+    }
   },
   "Switzerland": {
     "flagship_depth": true,
     "pathways": [
-      { "type": "lump_sum_tax", "label": "Lump-sum taxation (negotiated)", "min_investment_usd": 250000, "notes": "Canton-negotiated annual tax for wealthy residents — popular HNW pathway." },
-      { "type": "business", "label": "Company + director residency", "min_investment_usd": 100000, "notes": "Crypto Valley (Zug) pathway for Bitcoin businesses and founders." }
+      {
+        "type": "lump_sum_tax",
+        "label": "Lump-sum taxation (negotiated)",
+        "min_investment_usd": 250000,
+        "notes": "Canton-negotiated annual tax for wealthy residents — popular HNW pathway."
+      },
+      {
+        "type": "business",
+        "label": "Company + director residency",
+        "min_investment_usd": 100000,
+        "notes": "Crypto Valley (Zug) pathway for Bitcoin businesses and founders."
+      }
     ],
-    "critical_tests": { "live_and_work": true, "scope_of_freedom": true, "dual_citizenship": true, "notes": "Strong rule of law; naturalization is canton-specific and slow vs CBI jurisdictions." },
-    "legal_compliance": { "primary_laws": ["Federal Act on Foreign Nationals and Integration", "Canton tax agreements"], "official_urls": ["https://www.sem.admin.ch", "https://www.zug.ch"], "property_foreign_ownership": "Permitted with cantonal restrictions for non-EU/EFTA in some cases.", "recent_changes": "Crypto Valley continues as Bitcoin business hub; FINMA clarity for VASPs." },
-    "compliance_clock": { "renewal_interval_months": 12, "citizenship_eligibility_years": 10, "residency_day_count_target": 3650 },
-    "paige_fields": { "common_questions": ["Which canton for lump-sum tax?", "Can I hold BTC in a Swiss entity?", "Crypto Valley vs Zurich for founders?"], "red_flags": ["Citizenship takes years — plan for residency not passport", "Canton selection drives tax outcome"], "optimization_tips": ["Zug for Bitcoin treasury companies; lump-sum in low-tax cantons"], "escalate_when": "Canton negotiation or FINMA-regulated activity" }
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Strong rule of law; naturalization is canton-specific and slow vs CBI jurisdictions."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Federal Act on Foreign Nationals and Integration",
+        "Canton tax agreements"
+      ],
+      "official_urls": [
+        "https://www.sem.admin.ch",
+        "https://www.zug.ch"
+      ],
+      "property_foreign_ownership": "Permitted with cantonal restrictions for non-EU/EFTA in some cases.",
+      "recent_changes": "Crypto Valley continues as Bitcoin business hub; FINMA clarity for VASPs."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 12,
+      "citizenship_eligibility_years": 10,
+      "residency_day_count_target": 3650
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Which canton for lump-sum tax?",
+        "Can I hold BTC in a Swiss entity?",
+        "Crypto Valley vs Zurich for founders?"
+      ],
+      "red_flags": [
+        "Citizenship takes years — plan for residency not passport",
+        "Canton selection drives tax outcome"
+      ],
+      "optimization_tips": [
+        "Zug for Bitcoin treasury companies; lump-sum in low-tax cantons"
+      ],
+      "escalate_when": "Canton negotiation or FINMA-regulated activity"
+    }
+  },
+  "Singapore": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "gip",
+        "label": "Global Investor Programme (GIP)",
+        "min_investment_usd": 1800000,
+        "notes": "S$2.5M+ in approved business, fund, or family office — premier HNW residency route; verify current MAS-approved categories."
+      },
+      {
+        "type": "entrepass",
+        "label": "EntrePass / EP company director",
+        "min_investment_usd": 400000,
+        "notes": "Incorporate Singapore entity with meaningful local activity; lower capital than GIP but requires operational substance."
+      },
+      {
+        "type": "family_office",
+        "label": "Single Family Office (SFO)",
+        "min_investment_usd": 5000000,
+        "notes": "MAS-licensed SFO pathway for crypto treasury families — strict AML but no capital gains tax on personal holdings."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": false,
+      "notes": "PR achievable via GIP; citizenship rare and generally requires renouncing prior nationality. No capital gains tax — major BTC advantage."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Immigration Act",
+        "MAS Payment Services Act",
+        "Variable Capital Companies Act"
+      ],
+      "official_urls": [
+        "https://www.edb.gov.sg",
+        "https://www.mas.gov.sg"
+      ],
+      "property_foreign_ownership": "Foreigners may purchase private residential with ABSD surcharge (15–60% depending on profile); landed restricted.",
+      "recent_changes": "MAS continues tightening VASP licensing; GIP fund categories updated periodically — confirm eligible vehicles."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 60,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 730
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Can I run a Bitcoin fund from Singapore?",
+        "What is the GIP minimum today?",
+        "Is PR the realistic end-state vs passport?"
+      ],
+      "red_flags": [
+        "Citizenship effectively unavailable for most",
+        "MAS licensing required for custodial/trading activity",
+        "ABSD adds cost to property route"
+      ],
+      "optimization_tips": [
+        "Structure for PR + tax efficiency, not passport; use VCC for fund vehicles"
+      ],
+      "escalate_when": "MAS licensing, GIP fund selection, or $5M+ family office structuring"
+    }
+  },
+  "Malta": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "mprp",
+        "label": "Malta Permanent Residence Programme (MPRP)",
+        "min_investment_usd": 200000,
+        "notes": "Govt contribution + property rental/purchase — EU Schengen mobility without minimum stay; popular stacker route."
+      },
+      {
+        "type": "nomad",
+        "label": "Nomad Residence Permit (NRP)",
+        "min_investment_usd": 42000,
+        "notes": "~€42k annual remote income proof — lower capital, 1-year renewable; verify current income thresholds."
+      },
+      {
+        "type": "crypto_license",
+        "label": "VFA business + director residency",
+        "min_investment_usd": 150000,
+        "notes": "MFSA crypto licensing pathway for EU passporting — higher compliance overhead but strong for regulated Bitcoin businesses."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "EU member; citizenship after 5+ years residence with language/integration requirements — not a fast CBI."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Malta Permanent Residence Programme Rules",
+        "Virtual Financial Assets Act",
+        "Immigration Act"
+      ],
+      "official_urls": [
+        "https://residencymalta.gov.mt",
+        "https://www.mfsa.mt"
+      ],
+      "property_foreign_ownership": "Foreigners may acquire property; MPRP requires qualifying lease or purchase.",
+      "recent_changes": "Individual Investor Programme (IIP) closed; MPRP remains active. MFSA VFA framework mature but compliance-heavy."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 60,
+      "citizenship_eligibility_years": 5,
+      "residency_day_count_target": 1825
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Is MPRP still the main EU route?",
+        "Can I hold BTC without triggering Maltese tax?",
+        "How does MFSA licensing work for exchanges?"
+      ],
+      "red_flags": [
+        "IIP closed — do not confuse with MPRP",
+        "Remittance basis tax requires careful structuring",
+        "Citizenship is slow vs Caribbean CBI"
+      ],
+      "optimization_tips": [
+        "MPRP for Schengen access with minimal stay; remittance basis for foreign-sourced BTC gains"
+      ],
+      "escalate_when": "MFSA licensing application or citizenship naturalization planning"
+    }
+  },
+  "Panama": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "friendly_nations",
+        "label": "Friendly Nations Visa",
+        "min_investment_usd": 5000,
+        "notes": "Economic ties + local bank deposit (~$5k) — fastest budget route for citizens of ~50 listed countries; verify list includes your nationality."
+      },
+      {
+        "type": "qualified_investor",
+        "label": "Qualified Investor Visa",
+        "min_investment_usd": 300000,
+        "notes": "Real estate or fixed-term deposit at qualifying threshold — permanent residency track; thresholds reformed in 2021–2022."
+      },
+      {
+        "type": "pensionado",
+        "label": "Pensionado / fixed income",
+        "min_investment_usd": 1000,
+        "notes": "Minimum ~$1,000/month lifetime pension — popular retiree route; not ideal for active Bitcoin entrepreneurs but low cost."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Territorial tax — foreign-source income (including BTC gains realized abroad) often untaxed locally; citizenship after 5 years with Spanish proficiency."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Executive Decree 226 (2021 reforms)",
+        "Immigration Law",
+        "Tax Code (territorial principle)"
+      ],
+      "official_urls": [
+        "https://www.migracion.gob.pa",
+        "https://www.gacetaoficial.gob.pa"
+      ],
+      "property_foreign_ownership": "Foreigners may own real estate freely; no general restrictions on urban property.",
+      "recent_changes": "2021 decree raised qualified investor thresholds; Friendly Nations remains popular for low-capital entrants."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": 5,
+      "residency_day_count_target": 1825
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Does Panama tax my foreign Bitcoin gains?",
+        "Which visa for a $100k budget?",
+        "Can I get citizenship from residency?"
+      ],
+      "red_flags": [
+        "Banking due diligence strict for crypto-sourced funds",
+        "Qualified investor thresholds changed — confirm current amounts",
+        "Friendly Nations country list is limited"
+      ],
+      "optimization_tips": [
+        "Territorial tax + Friendly Nations for budget stackers; RE route for permanent residency"
+      ],
+      "escalate_when": "Crypto fund source documentation for banking or $300k+ qualified investor structuring"
+    }
+  },
+  "Georgia": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "business",
+        "label": "Work residence via company registration",
+        "min_investment_usd": 50000,
+        "notes": "Register Georgian LLC with modest capital; fast processing (weeks). Popular emerging-market hub for crypto operators."
+      },
+      {
+        "type": "real_estate",
+        "label": "Real estate ownership residency",
+        "min_investment_usd": 100000,
+        "notes": "Property investment pathway — verify current minimum thresholds with counsel; Tbilisi market accessible."
+      },
+      {
+        "type": "remote_work",
+        "label": "Remotely from Georgia",
+        "min_investment_usd": 2000,
+        "notes": "Remote worker permit with proof of ~$2k/month foreign income — very low capital entry; 1-year renewable."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Individual crypto trading taxed at 0% in practice for personal holders; corporate rate 15%. Fast, affordable — weaker passport than EU/Caribbean."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Law on Legal Status of Foreigners",
+        "Tax Code of Georgia",
+        "Virtual Asset Service Providers draft framework"
+      ],
+      "official_urls": [
+        "https://sda.gov.ge",
+        "https://www.rs.ge"
+      ],
+      "property_foreign_ownership": "Foreigners may freely purchase land and apartments except agricultural land (restrictions apply).",
+      "recent_changes": "VASP licensing framework developing; personal crypto gains remain favorable. Remote work permit launched 2021."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 12,
+      "citizenship_eligibility_years": 10,
+      "residency_day_count_target": 3650
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Is personal Bitcoin trading really 0% tax?",
+        "How fast is the company route?",
+        "Is the passport worth naturalizing for?"
+      ],
+      "red_flags": [
+        "VASP rules evolving — business activity may need licensing soon",
+        "Banking can be uneven for crypto deposits",
+        "Citizenship takes 10 years"
+      ],
+      "optimization_tips": [
+        "Company + remote work combo for lowest cost; Tbilisi as BTC operational base"
+      ],
+      "escalate_when": "VASP-regulated business activity or large-scale mining operations"
+    }
+  },
+  "St. Kitts and Nevis": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "sgf_donation",
+        "label": "Sustainable Growth Fund (SGF) donation",
+        "min_investment_usd": 250000,
+        "notes": "Non-refundable contribution to govt fund — fastest CBI route; family add-ons increase total cost."
+      },
+      {
+        "type": "real_estate",
+        "label": "Approved real estate investment",
+        "min_investment_usd": 400000,
+        "notes": "Government-approved development; hold period typically 5–7 years — may be resalable after lock-up."
+      },
+      {
+        "type": "alternative_investment",
+        "label": "Public Good Project Option (PGPO)",
+        "min_investment_usd": 250000,
+        "notes": "Approved public-good projects — verify current PGPO availability and project list with licensed agent."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Premium Caribbean passport (~150+ visa-free); no personal income, capital gains, or inheritance tax. No residency requirement post-approval."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Citizenship Act",
+        "St. Kitts and Nevis Citizenship by Investment Unit regulations"
+      ],
+      "official_urls": [
+        "https://www.ciu.gov.kn"
+      ],
+      "property_foreign_ownership": "Foreigners may purchase approved CBI real estate and other property with standard conveyancing.",
+      "recent_changes": "SGF remains primary donation route; pricing and due diligence standards tightened industry-wide post-2024."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": null,
+      "citizenship_eligibility_years": 0,
+      "residency_day_count_target": 0
+    },
+    "paige_fields": {
+      "common_questions": [
+        "SGF vs real estate — which is better?",
+        "Can I use Bitcoin to fund the donation?",
+        "Is there a residency requirement?"
+      ],
+      "red_flags": [
+        "Use only CIU-licensed agents",
+        "Source-of-funds scrutiny high for crypto wealth",
+        "Real estate route has hold-period lock-up"
+      ],
+      "optimization_tips": [
+        "SGF for speed and simplicity; RE if you want an asset + passport combo"
+      ],
+      "escalate_when": "Crypto source-of-funds documentation or family application >4 dependents"
+    }
+  },
+  "Antigua and Barbuda": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "ndf_donation",
+        "label": "National Development Fund (NDF) donation",
+        "min_investment_usd": 230000,
+        "notes": "Single applicant minimum; govt processing fees additional — competitive Caribbean CBI pricing."
+      },
+      {
+        "type": "real_estate",
+        "label": "Approved real estate",
+        "min_investment_usd": 300000,
+        "notes": "Government-approved project; 5-year hold typical. UWI fund option also available at similar threshold."
+      },
+      {
+        "type": "business",
+        "label": "Business investment",
+        "min_investment_usd": 1500000,
+        "notes": "Direct business investment route — higher capital, less common than NDF; verify current minimum with CBI unit."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Strong passport mobility; 5-day physical presence in first 5 years required to maintain citizenship. No capital gains tax."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Citizenship by Investment Act",
+        "Antigua and Barbuda Citizenship by Investment Unit Regulations"
+      ],
+      "official_urls": [
+        "https://www.cip.gov.ag"
+      ],
+      "property_foreign_ownership": "Foreigners may own property; CBI requires approved development purchase.",
+      "recent_changes": "NDF thresholds stable; industry-wide enhanced due diligence post-2024 Caribbean CBI summit commitments."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": null,
+      "citizenship_eligibility_years": 0,
+      "residency_day_count_target": 5
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the 5-day residency rule?",
+        "NDF vs real estate cost comparison?",
+        "Can Bitcoin wealth fund the application?"
+      ],
+      "red_flags": [
+        "5-day visit requirement over 5 years — track compliance",
+        "Processing fees add ~$30k+ on top of donation",
+        "Business route rarely used — confirm viability"
+      ],
+      "optimization_tips": [
+        "NDF for cost efficiency; plan 5-day visits as Caribbean holidays"
+      ],
+      "escalate_when": "Family applications or complex crypto wealth tracing"
+    }
+  },
+  "Dominica": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "edf_donation",
+        "label": "Economic Diversification Fund (EDF) donation",
+        "min_investment_usd": 200000,
+        "notes": "Most affordable premium CBI donation route; single applicant baseline — family tiers increase cost."
+      },
+      {
+        "type": "real_estate",
+        "label": "Approved real estate",
+        "min_investment_usd": 200000,
+        "notes": "Government-approved development with hold period; verify current approved project list."
+      },
+      {
+        "type": "alternative",
+        "label": "Alternative investment option",
+        "min_investment_usd": 200000,
+        "notes": "Govt-approved alternative projects — less common than EDF; confirm availability with authorized agent."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Citizenship by Investment Act (1993)",
+        "CBIU Regulations"
+      ],
+      "official_urls": [
+        "https://cbiu.gov.dm"
+      ],
+      "property_foreign_ownership": "Foreigners may purchase approved CBI real estate; standard restrictions on non-approved land.",
+      "recent_changes": "EDF remains primary route; due diligence standards aligned with regional CBI reforms."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": null,
+      "citizenship_eligibility_years": 0,
+      "residency_day_count_target": 0
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Is Dominica the best value CBI?",
+        "How does passport strength compare to St. Kitts?",
+        "Can I fund with crypto?"
+      ],
+      "red_flags": [
+        "Passport slightly weaker than premium tier",
+        "Only use CBIU-authorized agents",
+        "Post-approval name change restrictions apply"
+      ],
+      "optimization_tips": [
+        "EDF for budget-conscious stackers needing a second passport fast"
+      ],
+      "escalate_when": "Comparing Dominica vs Grenada for E-2 treaty access (Grenada only)"
+    }
+  },
+  "Grenada": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "ntf_donation",
+        "label": "National Transformation Fund (NTF) donation",
+        "min_investment_usd": 150000,
+        "notes": "Single applicant minimum — among lowest CBI donation thresholds; processing fees additional."
+      },
+      {
+        "type": "real_estate",
+        "label": "Approved real estate",
+        "min_investment_usd": 220000,
+        "notes": "Government-approved project with hold period; verify current approved developments."
+      },
+      {
+        "type": "alternative",
+        "label": "Alternative investment",
+        "min_investment_usd": 150000,
+        "notes": "Approved alternative projects — less common; confirm with licensed marketing agent."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Only Caribbean CBI with US E-2 treaty access — major differentiator for US market entry. No residency requirement post-approval."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Citizenship by Investment Act",
+        "Grenada Citizenship by Investment Committee regulations"
+      ],
+      "official_urls": [
+        "https://www.cbi.gov.gd"
+      ],
+      "property_foreign_ownership": "Foreigners may purchase approved CBI real estate; Alien Landholding License required for other property.",
+      "recent_changes": "NTF pricing competitive; E-2 treaty pathway remains unique selling point in Caribbean CBI market."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": null,
+      "citizenship_eligibility_years": 0,
+      "residency_day_count_target": 0
+    },
+    "paige_fields": {
+      "common_questions": [
+        "How does the E-2 treaty pathway work?",
+        "Grenada vs Dominica on value?",
+        "What are the NTF all-in costs?"
+      ],
+      "red_flags": [
+        "E-2 requires substantive US business plan — not automatic",
+        "All-in costs higher than NTF headline figure",
+        "CBI due diligence timeline 3–6 months"
+      ],
+      "optimization_tips": [
+        "Choose Grenada over Dominica if US E-2 access is in the stack plan"
+      ],
+      "escalate_when": "E-2 treaty business planning or comparing NTF vs RE hold-period economics"
+    }
+  },
+  "Paraguay": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "suace",
+        "label": "SUACE investor residency",
+        "min_investment_usd": 70000,
+        "notes": "Simplified registry for foreign investors — business plan + capital commitment; verify current SUACE minimums with local counsel."
+      },
+      {
+        "type": "real_estate",
+        "label": "Real estate investment residency",
+        "min_investment_usd": 80000,
+        "notes": "Property acquisition pathway — popular in Asunción and Encarnación; confirm current immigration thresholds."
+      },
+      {
+        "type": "rentista",
+        "label": "Rentista / passive income proof",
+        "min_investment_usd": 12000,
+        "notes": "Proof of ~$1,200/month passive income — lower capital route; suitable for remote Bitcoin income earners."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Territorial tax system — foreign-source income often untaxed. Growing Bitcoin mining scene; weaker passport vs Uruguay but lower cost."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Law No. 6984/2022 (migration reform)",
+        "SUACE investment framework",
+        "Tax Code (territorial principle)"
+      ],
+      "official_urls": [
+        "https://www.migraciones.gov.py",
+        "https://www.set.gov.py"
+      ],
+      "property_foreign_ownership": "Foreigners may own property; rural/agricultural land may have additional registration requirements.",
+      "recent_changes": "2022 migration law modernized residency categories; Bitcoin mining interest growing but regulatory framework still forming."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": 3,
+      "residency_day_count_target": 1095
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Is Paraguay territorial tax reliable for BTC?",
+        "SUACE vs rentista for my budget?",
+        "How fast is permanent residency?"
+      ],
+      "red_flags": [
+        "Immigration bureaucracy can be slow and inconsistent",
+        "Bitcoin mining regulations still evolving",
+        "Banking for crypto natives uneven"
+      ],
+      "optimization_tips": [
+        "Rentista for low-capital remote earners; SUACE for business operators and miners"
+      ],
+      "escalate_when": "Mining operation licensing or citizenship naturalization within 3-year window"
+    }
+  },
+  "Mexico": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "temporary_resident",
+        "label": "Temporary resident (economic solvency)",
+        "min_investment_usd": 40000,
+        "notes": "Bank balances or income proof (~$2,600/month or ~$43k balance) — 1–4 year renewable; most accessible North American route."
+      },
+      {
+        "type": "investor",
+        "label": "Investor visa (capital investment)",
+        "min_investment_usd": 250000,
+        "notes": "Mexican business or property investment at qualifying threshold — path to permanent residency; verify current MXN equivalent."
+      },
+      {
+        "type": "permanent_resident",
+        "label": "Permanent resident (after 4 years temporary)",
+        "min_investment_usd": 0,
+        "notes": "Upgrade from temporary status after 4 consecutive years — no new capital required if compliance maintained."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "Territorial tax for non-Mexico income in practice for many structures; active Bitcoin community in CDMX, Tulum, Puerto Vallarta. Citizenship after 5 years."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Ley de Migración",
+        "Reglamento de la Ley de Migración",
+        "Código Fiscal (territorial elements)"
+      ],
+      "official_urls": [
+        "https://www.inm.gob.mx",
+        "https://www.gob.mx"
+      ],
+      "property_foreign_ownership": "Foreigners may own property except in restricted coastal/border zones (fideicomiso required within ~50km of coast).",
+      "recent_changes": "2024–2025 digital nomad interest surged; INM processing times vary by consulate. Fintech law provides crypto framework but taxation case-by-case."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 48,
+      "citizenship_eligibility_years": 5,
+      "residency_day_count_target": 1825
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Does Mexico tax my foreign Bitcoin gains?",
+        "Temporary vs investor visa for $50k budget?",
+        "Can I use fideicomiso for beach property?"
+      ],
+      "red_flags": [
+        "Consulate requirements vary significantly",
+        "Coastal property needs fideicomiso structure",
+        "Cartel/security considerations in some regions — location matters"
+      ],
+      "optimization_tips": [
+        "Temporary resident for fast North American base; territorial tax for foreign BTC income"
+      ],
+      "escalate_when": "Fideicomiso structuring, investor visa capital deployment, or citizenship naturalization"
+    }
+  },
+  "Central African Republic": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 0,
+        "notes": "Template from Central African Republic finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-05-20."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Central African Republic?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Costa Rica": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "digital_nomad",
+        "label": "Digital nomad visa (Law 9996)",
+        "min_investment_usd": 36000,
+        "notes": "~$3,000/month foreign income proof (~$4,000 with dependents); 1-year renewable remote-work permit — popular Bitcoin nomad route."
+      },
+      {
+        "type": "rentista",
+        "label": "Rentista / fixed income",
+        "min_investment_usd": 60000,
+        "notes": "~$2,500/month guaranteed for 2+ years from investments, dividends, or rentals — apostilled income proof required."
+      },
+      {
+        "type": "inversionista",
+        "label": "Inversionista (investor)",
+        "min_investment_usd": 150000,
+        "notes": "$150k+ in qualifying business, securities, or real estate — permanent residency track; verify approved project categories."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": null,
+      "notes": "Territorial tax on Costa Rica–source income only; CA-4 regional mobility for citizens. Dual nationality rules vary by origin — confirm before naturalization."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Ley General de Migración y Extranjería",
+        "Ley 9996 (estancia digital nómadas)",
+        "Código de Normas y Procedimientos Tributarios (territorial principle)"
+      ],
+      "official_urls": [
+        "https://www.migracion.go.cr",
+        "https://www.hacienda.go.cr"
+      ],
+      "property_foreign_ownership": "Foreigners may own urban and most rural property; beachfront concessions require special permits in maritime zone.",
+      "recent_changes": "2021 digital nomad law formalized remote work; 2024–2025 immigration processing times vary by consulate."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 12,
+      "citizenship_eligibility_years": 7,
+      "residency_day_count_target": 2555
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Does Costa Rica tax my foreign Bitcoin gains?",
+        "Digital nomad vs rentista for $50k budget?",
+        "How long to citizenship from residency?"
+      ],
+      "red_flags": [
+        "Income proofs must be apostilled — plan 2–3 month lead time",
+        "Banking due diligence strict for crypto-sourced deposits",
+        "Maritime-zone property requires concession, not fee simple"
+      ],
+      "optimization_tips": [
+        "Digital nomad visa for lowest-capital remote earners; territorial tax for foreign BTC realized abroad",
+        "Stack with Panama Friendly Nations for Central America mobility"
+      ],
+      "escalate_when": "Inversionista $150k+ deployment or maritime-zone property structuring"
+    }
+  },
+  "Hong Kong": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "cies",
+        "label": "Capital Investment Entrant Scheme (CIES)",
+        "min_investment_usd": 3800000,
+        "notes": "HK$30M+ in permitted assets (re-launched 2024) — premier HNW route to 2-year visa, extendable to 7-year PR track."
+      },
+      {
+        "type": "ttps",
+        "label": "Top Talent Pass Scheme",
+        "min_investment_usd": 500000,
+        "notes": "High-income professionals (HK$2.5M+ annual income in prior year) or top-university graduates — 2-year open work visa, no employer sponsor."
+      },
+      {
+        "type": "entrepreneur",
+        "label": "Investment as Entrepreneurs / GEP",
+        "min_investment_usd": 500000,
+        "notes": "Incorporate HK entity with substantive local operations and job creation — lower profile than CIES but requires business substance."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": null,
+      "dual_citizenship": false,
+      "notes": "No capital gains tax — major BTC advantage. PR realistic; separate HK citizenship not available — PRC nationality pathway only. Post-2020 legal environment evolving."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Immigration Ordinance (Cap. 115)",
+        "Securities and Futures Ordinance",
+        "SFC Virtual Asset Trading Platform licensing framework"
+      ],
+      "official_urls": [
+        "https://www.immd.gov.hk",
+        "https://www.sfc.hk"
+      ],
+      "property_foreign_ownership": "Foreigners may purchase private residential; Buyer's Stamp Duty and Additional BSD surcharges apply (up to 30%+ for non-permanent residents).",
+      "recent_changes": "CIES reinstated March 2024 at HK$30M threshold; SFC VATP licensing regime maturing for custodial exchanges."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 2555
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Can I run a Bitcoin fund from Hong Kong?",
+        "What is the CIES minimum today?",
+        "Is 7-year PR the realistic end-state?"
+      ],
+      "red_flags": [
+        "CIES threshold is HK$30M — confirm permitted asset categories",
+        "SFC licensing required for custodial/trading activity",
+        "BSD surcharges add significant property cost for non-PR holders"
+      ],
+      "optimization_tips": [
+        "Structure for PR + zero CGT, not passport; TTPS for employed crypto professionals",
+        "Pair with Singapore GIP only if capital exceeds single-jurisdiction needs"
+      ],
+      "escalate_when": "SFC VATP licensing, CIES asset selection, or $5M+ family office structuring"
+    }
+  },
+  "Thailand": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "ltr",
+        "label": "Long-Term Resident (LTR) visa",
+        "min_investment_usd": 80000,
+        "notes": "$80k/year income or $1M assets + qualifying investment — 10-year renewable permit with work authorization; verify category (wealthy citizen, pensioner, remote worker, skilled pro)."
+      },
+      {
+        "type": "elite",
+        "label": "Thailand Elite residence",
+        "min_investment_usd": 15000,
+        "notes": "Membership packages from ~$15k (5 years) to ~$60k (20 years) — lifestyle residency without income proof; popular stacker shortcut."
+      },
+      {
+        "type": "business",
+        "label": "Non-Immigrant B / BOI company",
+        "min_investment_usd": 60000,
+        "notes": "Thai company with work permit via BOI-promoted activity — operational substance required; verify current capital and Thai-shareholding rules."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": false,
+      "notes": "2024+ territorial tax reforms may tax foreign income remitted to Thailand — structure carefully. Citizenship rare for foreigners; PR after 3 consecutive years on qualifying visas."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Immigration Act B.E. 2522",
+        "Long-Term Resident Visa regulations (BOI)",
+        "Revenue Code (territorial/remittance reforms)"
+      ],
+      "official_urls": [
+        "https://ltr.boi.go.th",
+        "https://www.immigration.go.th"
+      ],
+      "property_foreign_ownership": "Foreigners may own condominiums up to 49% of building units; land ownership prohibited — leasehold or Thai-company structures common.",
+      "recent_changes": "LTR launched 2022; 2024 Revenue Department guidance on foreign-sourced income remittance created tax uncertainty for nomads."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 12,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 1095
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Does Thailand tax Bitcoin I bring into the country?",
+        "LTR vs Elite for a remote Bitcoin earner?",
+        "Can foreigners own land?"
+      ],
+      "red_flags": [
+        "2024 remittance-based taxation — keep foreign gains offshore until rules clarified",
+        "Land ownership restricted — condo 49% quota or leasehold only",
+        "Work permit required for any local employment activity"
+      ],
+      "optimization_tips": [
+        "Elite for lifestyle-only; LTR if you need legal work authorization",
+        "Avoid remitting crypto gains to Thai accounts until tax counsel confirms treatment"
+      ],
+      "escalate_when": "LTR category selection, BOI company structuring, or large condo portfolio acquisition"
+    }
+  },
+  "Cyprus": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "permanent_residency",
+        "label": "Permanent residency (Regulation 6.2)",
+        "min_investment_usd": 300000,
+        "notes": "€300k+ in new residential property + €30k bank deposit + clean record — fast EU permanent residency (~2 months); no minimum stay requirement."
+      },
+      {
+        "type": "digital_nomad",
+        "label": "Digital nomad visa",
+        "min_investment_usd": 42000,
+        "notes": "~€3,500/month net remote income proof — 1-year renewable; lower capital than 6.2 route, Schengen travel access."
+      },
+      {
+        "type": "non_dom",
+        "label": "Non-dom tax residency",
+        "min_investment_usd": 0,
+        "notes": "17-year non-domicile regime exempts foreign dividends and capital gains — pair with 6.2 PR or employment route; requires substance and day-count planning."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": true,
+      "notes": "EU member; citizenship after 7 years (or 5 with Greek proficiency). Golden passport (CBI) scheme closed 2020 — do not confuse with 6.2 PR."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Aliens and Immigration Regulations (Regulation 6.2)",
+        "Non-Domiciled Resident scheme (Income Tax Law)",
+        "CySEC crypto-asset service provider framework"
+      ],
+      "official_urls": [
+        "https://www.moi.gov.cy",
+        "https://www.mof.gov.cy"
+      ],
+      "property_foreign_ownership": "Foreigners may purchase property; 6.2 route requires new-build residential at qualifying threshold. No general land restrictions for EU-route investors.",
+      "recent_changes": "Golden passport programme terminated 2020 after EU pressure; 6.2 fast-track PR remains active. Schengen accession negotiations ongoing."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 60,
+      "citizenship_eligibility_years": 7,
+      "residency_day_count_target": 2555
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Is the Cyprus golden passport still available?",
+        "Can non-dom protect my foreign BTC gains?",
+        "6.2 vs digital nomad for €300k budget?"
+      ],
+      "red_flags": [
+        "Golden passport closed — agents still marketing it illegally",
+        "6.2 requires new-build residential, not resale in all cases",
+        "Non-dom requires careful day-count and remittance planning"
+      ],
+      "optimization_tips": [
+        "6.2 PR for zero-stay EU base; non-dom for 17-year foreign-gains shield",
+        "Pair with Malta MPRP only if you need two Mediterranean EU anchors"
+      ],
+      "escalate_when": "6.2 property selection, non-dom election, or CySEC-licensed business setup"
+    }
+  },
+  "Greece": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 250000,
+        "notes": "Template from Greece finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Greece?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Vanuatu": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 130000,
+        "notes": "Template from Vanuatu finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Vanuatu?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Turkey": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 400000,
+        "notes": "Template from Turkey finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Turkey?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Mauritius": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 50000,
+        "notes": "Template from Mauritius finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Mauritius?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Seychelles": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 100000,
+        "notes": "Template from Seychelles finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Seychelles?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Brazil": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 150000,
+        "notes": "Template from Brazil finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Brazil?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Argentina": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 50000,
+        "notes": "Template from Argentina finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Argentina?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Chile": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 200000,
+        "notes": "Template from Chile finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Chile?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Colombia": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 100000,
+        "notes": "Template from Colombia finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Colombia?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "St. Lucia": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 100000,
+        "notes": "Template from St. Lucia finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for St. Lucia?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Barbados": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 200000,
+        "notes": "Template from Barbados finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Barbados?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Bahamas": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 500000,
+        "notes": "Template from Bahamas finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Bahamas?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Belize": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 50000,
+        "notes": "Template from Belize finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Belize?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Cambodia": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 100000,
+        "notes": "Template from Cambodia finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Cambodia?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Philippines": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 75000,
+        "notes": "Template from Philippines finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Philippines?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Malaysia": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 100000,
+        "notes": "Template from Malaysia finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Malaysia?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Indonesia": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 250000,
+        "notes": "Template from Indonesia finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Indonesia?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Japan": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 500000,
+        "notes": "Template from Japan finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Japan?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "New Zealand": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 2000000,
+        "notes": "Template from New Zealand finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for New Zealand?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Ireland": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 500000,
+        "notes": "Template from Ireland finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Ireland?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Spain": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 500000,
+        "notes": "Template from Spain finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Spain?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Italy": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 250000,
+        "notes": "Template from Italy finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Italy?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Latvia": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 50000,
+        "notes": "Template from Latvia finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Latvia?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Estonia": {
+    "flagship_depth": true,
+    "pathways": [
+      {
+        "type": "digital_nomad",
+        "label": "Digital nomad visa",
+        "min_investment_usd": 42000,
+        "notes": "~€3,504/month gross remote income proof — 1-year permit for location-independent workers; does not grant tax residency automatically."
+      },
+      {
+        "type": "startup",
+        "label": "Startup visa / founder residence",
+        "min_investment_usd": 0,
+        "notes": "Estonian startup endorsed by Startup Committee — equity-based founder route with modest capital; popular for Lightning/fintech builders."
+      },
+      {
+        "type": "e_residency",
+        "label": "e-Residency + OÜ company",
+        "min_investment_usd": 300,
+        "notes": "Digital identity for EU company formation — not physical residency; pair with nomad or employment visa for Tallinn base. €300 state fee + compliance costs."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": true,
+      "scope_of_freedom": true,
+      "dual_citizenship": false,
+      "notes": "EU/Schengen access via residence permit. e-Residency ≠ residency. Crypto licensing tightened 2020–2022 — VASP rules apply to custodial businesses. Citizenship after 8 years with Estonian language."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Aliens Act (Välismaalaste seadus)",
+        "Income Tax Act",
+        "Money Laundering and Terrorist Financing Prevention Act (VASP rules)"
+      ],
+      "official_urls": [
+        "https://www.politsei.ee",
+        "https://www.e-resident.gov.ee",
+        "https://www.rik.ee"
+      ],
+      "property_foreign_ownership": "Foreigners may freely purchase apartments and land with no general restrictions; same rights as Estonian citizens for urban property.",
+      "recent_changes": "2020–2022 FIU tightened crypto licensing — many VASPs exited. Digital nomad visa launched 2020; startup visa remains active for endorsed founders."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 12,
+      "citizenship_eligibility_years": 8,
+      "residency_day_count_target": 2920
+    },
+    "paige_fields": {
+      "common_questions": [
+        "Does e-Residency give me EU residency?",
+        "Can I run a Bitcoin company from Estonia?",
+        "Digital nomad vs startup visa for founders?"
+      ],
+      "red_flags": [
+        "e-Residency is NOT a visa — cannot live in Estonia on it alone",
+        "VASP licensing required for custodial/exchange activity",
+        "Dual citizenship not permitted except in limited birth cases"
+      ],
+      "optimization_tips": [
+        "Startup visa for founders; nomad visa for remote earners",
+        "OÜ structure for EU invoicing; keep custodial activity licensed or offshore"
+      ],
+      "escalate_when": "FIU VASP licensing application, startup committee endorsement, or citizenship naturalization planning"
+    }
+  },
+  "Bulgaria": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 250000,
+        "notes": "Template from Bulgaria finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Bulgaria?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Croatia": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 300000,
+        "notes": "Template from Croatia finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Croatia?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Gibraltar": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 1000000,
+        "notes": "Template from Gibraltar finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Gibraltar?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Cayman Islands": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 1000000,
+        "notes": "Template from Cayman Islands finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Cayman Islands?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
+  },
+  "Andorra": {
+    "flagship_depth": true,
+    "flagship_tier": "template",
+    "pathways": [
+      {
+        "type": "research_pending",
+        "label": "Primary pathway (research pending)",
+        "min_investment_usd": 400000,
+        "notes": "Template from Andorra finance fields — deepen to Uruguay standard."
+      }
+    ],
+    "critical_tests": {
+      "live_and_work": null,
+      "scope_of_freedom": null,
+      "dual_citizenship": null,
+      "notes": "Critical tests pending official research pass."
+    },
+    "legal_compliance": {
+      "primary_laws": [
+        "Research pending"
+      ],
+      "official_urls": [],
+      "property_foreign_ownership": "Verify with counsel before committing capital.",
+      "recent_changes": "Last checked 2026-07-02."
+    },
+    "compliance_clock": {
+      "renewal_interval_months": 24,
+      "citizenship_eligibility_years": null,
+      "residency_day_count_target": 365
+    },
+    "paige_fields": {
+      "common_questions": [
+        "What is the minimum investment for Andorra?",
+        "Is Bitcoin accepted for fees?"
+      ],
+      "red_flags": [
+        "Template depth — verify all figures before acting"
+      ],
+      "optimization_tips": [
+        "Cross-check with /btcmap merchant density for lifestyle fit"
+      ],
+      "escalate_when": "Any commitment above typical investment threshold"
+    }
   }
 }

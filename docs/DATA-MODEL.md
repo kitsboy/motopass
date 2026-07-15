@@ -1,6 +1,6 @@
 # MotoPass Data Model & Schema
 
-**BUILD-2026.07.07-26** | 2026-07-07
+**BUILD-2026.07.14-28** | 2026-07-14
 
 This document is the authoritative reference for all data structures in MotoPass. It describes the current `research/countries.json` schema (v2.0 master template), user-side models (portfolio, stacks, trackers), future data pack and delta formats, and the requirements for timestamping and provenance.
 
@@ -268,4 +268,4 @@ This data model is the permanent foundation. UI and integrations come and go; th
 - `PROJECT-VISION.md` (master template v2.0)  
 
 — Data Layer, MotoPass  
-BUILD-2026.07.07-26
+BUILD-2026.07.14-28

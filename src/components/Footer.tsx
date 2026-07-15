@@ -62,7 +62,13 @@ export function Footer() {
             <span className="text-mp-strong hidden sm:inline" aria-hidden>·</span>
             <GiveABitLogoLink />
             <span className="text-mp-strong" aria-hidden>·</span>
-            <span className="leading-none font-semibold text-mp-btc-text">{FOOTER_VERSION}</span>
+            <span
+              className="leading-none font-semibold text-mp-btc-text shrink-0"
+              data-build-version
+              title={BUILD_LABEL}
+            >
+              {FOOTER_VERSION}
+            </span>
             <span className="text-mp-strong hidden sm:inline" aria-hidden>·</span>
             <span className="leading-none hidden sm:inline">{BUILD_LABEL}</span>
           </div>

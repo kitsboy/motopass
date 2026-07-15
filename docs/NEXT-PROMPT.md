@@ -1,4 +1,4 @@
-> **Note (BUILD-26):** The shipped React app uses **Luminous Sovereign** (light + dark toggle) with 15 routes including `/btcmap` (Leaflet merchant layer). Apply `docs/DESIGN-CONTEXT.md` + `docs/DESIGN-TOKENS.md` for colors. BTC Map pins use `.btcmap-pin` (orange dot, white border). This prompt describes interaction structure; swap dark palette below for current tokens when generating.
+> **Note (BUILD-28):** The shipped React app uses **Luminous Sovereign** (light + dark toggle) with 15 routes including `/btcmap` (Leaflet merchant layer). Apply `docs/DESIGN-CONTEXT.md` + `docs/DESIGN-TOKENS.md` for colors. BTC Map pins use `.btcmap-pin` (orange dot, white border). This prompt describes interaction structure; swap dark palette below for current tokens when generating.
 
 A premium, immersive sovereign identity and Bitcoin finance dashboard for MotoPass — the ultimate platform for jurisdictional stacking, citizenship/residency programs, and Bitcoin-native passport acquisition. The interface should feel like a private high-net-worth command center: luxurious, trustworthy, empowering, with strong cyber-sovereign and rebellious Bitcoin energy.
 

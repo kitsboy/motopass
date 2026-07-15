@@ -1,6 +1,6 @@
 # MotoPass Glossary
 
-**BUILD-2026.07.07-26**
+**BUILD-2026.07.14-28**
 
 Precise, shared language is part of the product. This glossary defines key terms as used across MotoPass documentation, UI, Paige responses, marketing, and handoffs.
 
@@ -111,4 +111,4 @@ Use these terms consistently in UI labels, Paige responses, docs, and external c
 **Truth You Can Verify.**
 
 — Documentation Layer, MotoPass  
-BUILD-2026.07.07-26
+BUILD-2026.07.14-28

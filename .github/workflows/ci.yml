@@ -16,13 +16,16 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci
+      - run: npm run sync:build
       - run: npm run lint
       - run: npm run prettier:check
       - run: npm run validate:data
       - run: npm run validate:stamps
       - name: Ensure pitch anchor in sync
         run: |
-          npm run pitch:sync
+          PIN=$(node -p "JSON.parse(require('fs').readFileSync('research/pitch-anchor.json','utf8')).btc_usd_reference")
+          GEN=$(node -p "JSON.parse(require('fs').readFileSync('research/pitch-anchor.json','utf8')).generated_at")
+          PITCH_ANCHOR_BTC_USD=$PIN PITCH_ANCHOR_GENERATED_AT=$GEN npm run pitch:sync
           git diff --exit-code research/pitch-anchor.json docs/pitch/ANCHOR-SNAPSHOT.md \
             || (echo "Run npm run pitch:sync and commit anchor files" && exit 1)
       - run: npm test
