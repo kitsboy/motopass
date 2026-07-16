@@ -1,0 +1,1 @@
+import{a,j as e}from"./index-BNDU543m-20260715-53.js";import{h as r}from"./icons-Bl3c_5Hd-20260715-53.js";function x({messageKey:s}){const{t}=a();return e.jsxs("p",{className:"flex gap-2 text-xs text-ink-muted leading-relaxed pt-1",children:[e.jsx(r,{size:14,className:"text-btc-orange shrink-0 mt-0.5","aria-hidden":!0}),e.jsx("span",{children:t(s)})]})}export{x as V};
