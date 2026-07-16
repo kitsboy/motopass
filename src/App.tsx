@@ -13,11 +13,11 @@ import { Layout } from './components/Layout'
 import { RouteSuspense } from './components/RouteSuspense'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { ToastProvider } from './components/ui/Toast'
+import { FinanceComparePage } from './pages/FinanceComparePage'
 
 const ProgramsPage = lazy(() => import('./pages/ProgramsPage').then(m => ({ default: m.ProgramsPage })))
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage').then(m => ({ default: m.PortfolioPage })))
 const StackSimulatorPage = lazy(() => import('./pages/StackSimulatorPage').then(m => ({ default: m.StackSimulatorPage })))
-const FinanceComparePage = lazy(() => import('./pages/FinanceComparePage').then(m => ({ default: m.FinanceComparePage })))
 const DashboardPage = lazy(() => import('./pages/DashboardPage').then(m => ({ default: m.DashboardPage })))
 const RegisterPage = lazy(() => import('./pages/RegisterPage').then(m => ({ default: m.RegisterPage })))
 const ProfilePage = lazy(() => import('./pages/ProfilePage').then(m => ({ default: m.ProfilePage })))

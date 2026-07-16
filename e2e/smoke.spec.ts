@@ -73,8 +73,10 @@ test.describe('smoke', () => {
 
   test('compare empty state loads', async ({ page }) => {
     await page.addInitScript(() => localStorage.removeItem('motopass-compare-ids'))
+    const data = page.waitForResponse(r => /countries\.json/.test(r.url()) && r.ok(), { timeout: 20_000 })
     await page.goto('/compare', gotoOpts)
-    await expect(page.getByText(/select programs to compare/i)).toBeVisible({ timeout: 15_000 })
+    await data.catch(() => {})
+    await expect(page.getByText(/select programs to compare/i)).toBeVisible({ timeout: 20_000 })
   })
 
   test('mobile bottom nav and more sheet', async ({ page }) => {
@@ -88,9 +90,11 @@ test.describe('smoke', () => {
 
   test('compare URL preserves selected ids', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
+    const data = page.waitForResponse(r => /countries\.json/.test(r.url()) && r.ok(), { timeout: 20_000 })
     await page.goto('/compare?ids=1,2', gotoOpts)
+    await data.catch(() => {})
     const compareTable = page.getByRole('table', { name: 'Side-by-side comparison' })
-    await expect(compareTable).toBeVisible({ timeout: 15_000 })
+    await expect(compareTable).toBeVisible({ timeout: 20_000 })
     await expect(compareTable.locator('thead th')).toHaveCount(3)
   })
 

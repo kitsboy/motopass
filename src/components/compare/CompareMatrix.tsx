@@ -41,7 +41,7 @@ export function CompareMatrix({ programs, rows, onOpenProgram, toCinematic }: Co
       {/* Desktop matrix */}
       <div className="fc-matrix__desktop hidden lg:block">
         <div className="fc-matrix__table-wrap">
-          <table className="fc-matrix__table">
+          <table className="fc-matrix__table" aria-label={t('compare.title')}>
             <caption className="sr-only">{t('compare.title')}</caption>
             <thead>
               <tr>

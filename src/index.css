@@ -1322,7 +1322,7 @@ html.mp-header-collapsed {
 .fc-page {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible;
   margin-inline: calc(-1 * max(1rem, env(safe-area-inset-left)));
   width: calc(100% + 2 * max(1rem, env(safe-area-inset-left)));
   background:
@@ -1336,6 +1336,7 @@ html.mp-header-collapsed {
 .fc-page__ambient {
   position: absolute;
   inset: -10%;
+  overflow: hidden;
   pointer-events: none;
   background:
     radial-gradient(ellipse 50% 35% at 50% 100%, rgba(255, 149, 0, 0.09) 0%, transparent 68%),
@@ -1472,6 +1473,8 @@ html.mp-header-collapsed {
 }
 
 .fc-picker__panel {
+  position: relative;
+  overflow: visible;
   padding: clamp(1rem, 2vw, 1.35rem);
   border-radius: clamp(16px, 2vw, 22px);
   border: 1px solid rgba(255, 149, 0, 0.16);

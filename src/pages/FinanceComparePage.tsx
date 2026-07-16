@@ -239,50 +239,50 @@ export function FinanceComparePage() {
         <PageAnchorNav items={compareAnchors} />
 
         {error && <ProgramsLoadError message={error} />}
-        {loading && !error && <CardSkeleton count={4} />}
 
-        {!loading && !error && (
-          <>
-            <ComparePicker
-              ids={ids}
-              selected={compare}
-              filtered={filtered}
-              search={search}
-              listOpen={listOpen}
-              listId={listId}
-              debouncedSearch={debouncedSearch}
-              allInStack={allInStack}
-              stackAdded={stackAdded}
-              onSearchChange={v => {
-                setSearch(v)
-                setListOpen(true)
-              }}
-              onSearchFocus={() => setListOpen(true)}
-              onSearchBlur={() => setTimeout(() => setListOpen(false), 150)}
-              onToggle={toggle}
-              onRemove={remove}
-              onClearAll={() => setIdsSynced([])}
-              onAddAllToStack={handleAddAllToStack}
-            />
+        <ComparePicker
+          ids={ids}
+          selected={compare}
+          filtered={filtered}
+          search={search}
+          listOpen={listOpen}
+          listId={listId}
+          debouncedSearch={debouncedSearch}
+          programsLoading={loading}
+          allInStack={allInStack}
+          stackAdded={stackAdded}
+          onSearchChange={v => {
+            setSearch(v)
+            setListOpen(true)
+          }}
+          onSearchFocus={() => setListOpen(true)}
+          onSearchBlur={() => setTimeout(() => setListOpen(false), 150)}
+          onToggle={toggle}
+          onRemove={remove}
+          onClearAll={() => setIdsSynced([])}
+          onAddAllToStack={handleAddAllToStack}
+        />
 
-            {compare.length > 0 ? (
-              <>
-                <CompareSummaryStrip programs={compare} rows={rows} />
-                <CompareMatrix
-                  programs={compare}
-                  rows={rows}
-                  onOpenProgram={setModalProgram}
-                  toCinematic={toCinematicProgram}
-                />
-                <CompareDiffSection programs={compare} diffRows={diffRows} onExport={handleExportMarkdown} />
-              </>
-            ) : (
-              <CompareEmptyState
-                showSuggested={!!suggestedPair}
-                onSuggestedPair={applySuggestedPair}
+        {compare.length > 0 ? (
+          loading ? (
+            <CardSkeleton count={2} />
+          ) : (
+            <>
+              <CompareSummaryStrip programs={compare} rows={rows} />
+              <CompareMatrix
+                programs={compare}
+                rows={rows}
+                onOpenProgram={setModalProgram}
+                toCinematic={toCinematicProgram}
               />
-            )}
-          </>
+              <CompareDiffSection programs={compare} diffRows={diffRows} onExport={handleExportMarkdown} />
+            </>
+          )
+        ) : (
+          <CompareEmptyState
+            showSuggested={!loading && !!suggestedPair}
+            onSuggestedPair={applySuggestedPair}
+          />
         )}
 
         <ProgramModal program={modalProgram} onClose={() => setModalProgram(null)} />

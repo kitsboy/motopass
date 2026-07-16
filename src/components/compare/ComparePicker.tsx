@@ -14,6 +14,7 @@ interface ComparePickerProps {
   listOpen: boolean
   listId: string
   debouncedSearch: string
+  programsLoading: boolean
   allInStack: boolean
   stackAdded: boolean
   onSearchChange: (value: string) => void
@@ -33,6 +34,7 @@ export function ComparePicker({
   listOpen,
   listId,
   debouncedSearch,
+  programsLoading,
   allInStack,
   stackAdded,
   onSearchChange,
@@ -98,11 +100,18 @@ export function ComparePicker({
             onChange={e => onSearchChange(e.target.value)}
             onFocus={onSearchFocus}
             onBlur={onSearchBlur}
-            placeholder={ids.length >= 4 ? t('compare.maxSelected') : t('compare.searchPlaceholder')}
-            disabled={ids.length >= 4}
+            placeholder={
+              ids.length >= 4
+                ? t('compare.maxSelected')
+                : programsLoading
+                  ? t('compare.loadingPrograms')
+                  : t('compare.searchPlaceholder')
+            }
+            disabled={ids.length >= 4 || programsLoading}
+            aria-busy={programsLoading}
             className="fc-picker__search"
           />
-          {listOpen && ids.length < 4 && filtered.length > 0 && (
+          {listOpen && !programsLoading && ids.length < 4 && filtered.length > 0 && (
             <ul id={listId} role="listbox" className="fc-picker__dropdown">
               {filtered.slice(0, 20).map(p => (
                 <li key={p.id} role="option">
