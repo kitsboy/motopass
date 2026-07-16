@@ -3,7 +3,7 @@ import { Download, Minus, TrendingDown } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import type { SavingsRow } from '../../lib/pitchStats'
 import { useI18n } from '../../i18n/I18nContext'
-import { downloadSavingsGraphPng } from '../../lib/savingsGraphExport'
+import { downloadSavingsGraph } from '../../lib/savingsGraphExport'
 
 interface SavingsGraphsProps {
   title?: string
@@ -187,7 +187,7 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
     if (exporting) return
     setExporting(true)
     try {
-      await downloadSavingsGraphPng(EXPORT_ROWS, title)
+      await downloadSavingsGraph(EXPORT_ROWS, title)
     } finally {
       setExporting(false)
     }
