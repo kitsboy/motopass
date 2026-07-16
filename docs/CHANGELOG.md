@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-65] — 2026-07-15
+
+### Changed
+- Finance Compare premium redesign — glass matrix + mobile scroll
+
+---
+
 ## [BUILD-2026.07.15-64] — 2026-07-15
 
 ### Changed

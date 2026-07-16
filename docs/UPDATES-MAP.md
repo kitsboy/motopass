@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.07.15-64 · **Last updated:** 2026-07-15
+**BUILD:** 2026.07.15-65 · **Last updated:** 2026-07-15
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,7 +11,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.07.15-64 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.07.15-65 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
 | **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
 | **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
 | **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
@@ -30,6 +30,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.07.15-65** | 2026-07-15 | `9d9d424` | Finance Compare premium redesign — glass matrix + mobile scroll |
 | **2026.07.15-64** | 2026-07-15 | `5851dfe` | Elite premium navigation — desktop glass bar + mobile drawer |
 | **2026.07.15-63** | 2026-07-15 | `e3d85c7` | Presentation methodology disclaimer — illustrative, not promises |
 | **2026.07.15-62** | 2026-07-15 | `a055f68` | Full-screen data-story dashboard presentation — animated metrics |
