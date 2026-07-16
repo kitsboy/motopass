@@ -8,7 +8,7 @@ export function HeroMotionBackground() {
       <img
         src="/images/header-elite.jpg"
         alt=""
-        className="hero-elite-photo hero-elite-photo--animate absolute inset-0 h-[112%] w-[112%] max-w-none object-cover object-[center_22%] -left-[6%] -top-[6%]"
+        className="hero-elite-photo hero-elite-photo--animate absolute -left-[6%] -top-[6%] inset-0 h-[112%] w-[112%] max-w-none object-cover"
       />
 
       <div className="hero-elite-fog hero-elite-fog--a hero-elite-fog--animate-a pointer-events-none absolute inset-0" />

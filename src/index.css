@@ -1165,7 +1165,27 @@ body::before {
 .hero-elite-photo {
   filter: saturate(1.08) contrast(1.06);
   will-change: transform;
-  transform-origin: 52% 32%;
+  transform-origin: 58% 42%;
+  /* Mobile-friendly crop — building left, tall ship right */
+  object-position: 56% 44%;
+}
+
+@media (max-width: 640px) {
+  .hero-elite-photo {
+    /* Narrow viewports: bias crop toward the ship on the right */
+    object-position: 78% 46%;
+    transform-origin: 74% 44%;
+  }
+
+  .hero-elite-scrim {
+    background: linear-gradient(
+      105deg,
+      rgba(8, 8, 14, 0.82) 0%,
+      rgba(8, 8, 14, 0.48) 34%,
+      rgba(8, 8, 14, 0.14) 58%,
+      transparent 82%
+    );
+  }
 }
 
 .hero-elite-photo--animate {

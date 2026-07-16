@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-55] — 2026-07-15
+
+### Changed
+- Elite header v4 — mobile-friendly ship crop
+
+---
+
 ## [BUILD-2026.07.15-60] — 2026-07-15
 
 ### Changed
