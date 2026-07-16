@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { X } from 'lucide-react'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import { useI18n } from '../../i18n/I18nContext'
+import { FOOTER_VERSION } from '../../lib/buildInfo'
 import { MORE_ROUTES } from '../../lib/navRoutes'
 import { PrefetchNavLink } from './PrefetchNavLink'
 import { useFocusTrap } from '../../hooks/useFocusTrap'
@@ -85,7 +86,10 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
               data-swipe-handle
             />
             <div className="flex items-center justify-between px-4 py-2 border-b border-mp/50">
-              <span className="font-chrome text-[10px] uppercase tracking-wider text-ink-muted">{t('nav.more')}</span>
+              <div className="min-w-0">
+                <span className="font-chrome text-[10px] uppercase tracking-wider text-ink-muted">{t('nav.more')}</span>
+                <span className="block font-mono text-[9px] text-ink-muted/80 truncate xs-only-build">{FOOTER_VERSION}</span>
+              </div>
               <button type="button" onClick={onClose} className="nav-btn nav-btn-icon !h-8 !w-8" aria-label={t('nav.close')}>
                 <X size={18} />
               </button>

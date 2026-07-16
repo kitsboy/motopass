@@ -7,6 +7,7 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { SeoHead } from '../components/SeoHead'
 import { SITE_NAME, SITE_URL, absoluteUrl } from '../lib/seo'
 import { estimateReadingMinutes } from '../lib/utils'
+import { DEFAULT_OG_IMAGE } from '../lib/seo'
 
 export function BlogPostPage() {
   const { slug } = useParams()
@@ -71,6 +72,16 @@ export function BlogPostPage() {
       <div className="flex flex-wrap gap-2 mb-8">
         {post.labels.map(l => <TaxonomyChip key={l} labelId={l} />)}
       </div>
+
+      <img
+        src={post.coverImage ?? DEFAULT_OG_IMAGE}
+        alt=""
+        width={1200}
+        height={630}
+        loading="lazy"
+        decoding="async"
+        className="mb-8 w-full rounded-panel border border-mp object-cover aspect-[16/9] max-h-72"
+      />
 
       <div className="card text-sm text-ink-secondary space-y-4 leading-relaxed">
         <p>

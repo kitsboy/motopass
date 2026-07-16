@@ -96,7 +96,7 @@ export function Modal({
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
-            className={`relative w-full ${MAX[maxWidth]} max-h-[92vh] sm:max-h-[88vh] flex flex-col modal-glass sm:rounded-2xl rounded-t-2xl overflow-hidden`}
+            className={`relative w-full ${MAX[maxWidth]} max-h-[90dvh] flex flex-col modal-glass sm:rounded-2xl rounded-t-2xl overflow-hidden`}
             initial={reduced ? false : { opacity: 0, y: 44, scale: 0.965 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={

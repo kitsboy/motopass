@@ -9,6 +9,8 @@ export interface BlogPost {
   title: Record<LangCode, string>
   excerpt: Record<LangCode, string>
   seoKeywords: string[]
+  /** Optional hero image — defaults to site OG image when omitted */
+  coverImage?: string
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -17,7 +19,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'truth-you-can-verify-launch',
     date: '2026-07-02',
     labels: ['sovereignty', 'satohash', 'bitcoin'],
-    langs: ['en', 'es', 'fr', 'pt', 'zh', 'ar', 'sw', 'de', 'hi'],
+    langs: ['en', 'es', 'fr', 'pt', 'zh', 'ar', 'sw', 'de', 'hi', 'ja'],
     title: {
       en: 'MotoPass launches Truth You Can Verify on Bitcoin',
       es: 'MotoPass lanza Verdad que Puedes Verificar en Bitcoin',
@@ -28,6 +30,7 @@ export const BLOG_POSTS: BlogPost[] = [
       sw: 'MotoPass inazindua Ukweli Unaweza Kuthibitisha kwenye Bitcoin',
       de: 'MotoPass startet Wahrheit, die Sie auf Bitcoin verifizieren können',
       hi: 'MotoPass ने Bitcoin पर सत्यापन योग्य सत्य लॉन्च किया',
+      ja: 'MotoPass、Bitcoin上で検証可能な真実をローンチ',
     },
     excerpt: {
       en: 'Every residency program, cost figure, and application milestone can now anchor to OpenTimestamps via Satohash.io — our Give A Bit verification layer.',
@@ -39,6 +42,7 @@ export const BLOG_POSTS: BlogPost[] = [
       sw: 'Kila programu, gharama na hatua inaweza kuhusishwa na Satohash.io.',
       de: 'Jedes Programm und jeder Meilenstein verankert sich über Satohash.io.',
       hi: 'हर कार्यक्रम और आवेदन मील का पत्थर Satohash.io के माध्यम से एंकर हो सकता है।',
+      ja: 'すべての居住プログラム、費用、申請マイルストーンをSatohash.io経由でOpenTimestampsにアンカーできます。',
     },
     seoKeywords: ['bitcoin passport', 'CBI verification', 'OpenTimestamps', 'Satohash'],
   },
@@ -58,6 +62,7 @@ export const BLOG_POSTS: BlogPost[] = [
       sw: 'Maombi ya pasipoti kupitia Nostr:unganisha npub yako',
       de: 'Nostr-Passanträge: verbinden Sie Ihre npub',
       hi: 'Nostr पासपोर्ट आवेदन: अपना npub कनेक्ट करें',
+      ja: 'Nostrネイティブのパスポート申請：npubを接続',
     },
     excerpt: {
       en: 'Real applicants with Nostr accounts can register interest and be matched with country liaison AI agents — no email required.',
@@ -69,6 +74,7 @@ export const BLOG_POSTS: BlogPost[] = [
       sw: 'Waombaji halisi na akaunti za Nostr wanaweza kusajili bila barua pepe.',
       de: 'Bewerber mit Nostr-Konto können sich ohne E-Mail registrieren.',
       hi: 'Nostr खाते वाले आवेदक बिना ईमेल के रुचि दर्ज कर सकते हैं।',
+      ja: 'Nostrアカウントを持つ申請者はメール不要で関心を登録し、国別エージェントとマッチングできます。',
     },
     seoKeywords: ['nostr passport', 'npub identity', 'CBI application'],
   },
@@ -88,6 +94,7 @@ export const BLOG_POSTS: BlogPost[] = [
       sw: 'El Salvador: Bitcoin kama sarafu halali',
       de: 'El Salvador: Bitcoin als gesetzliches Zahlungsmittel',
       hi: 'एल सल्वाडोर: बिटकॉइन कानूनी टेंडर',
+      ja: 'エルサルバドル：ビットコイン法貨と居住パス',
     },
     excerpt: {
       en: 'Deep dive on the first Bitcoin legal tender nation — investment thresholds, Lightning readiness, and MotoPass pilot opportunities.',
@@ -99,6 +106,7 @@ export const BLOG_POSTS: BlogPost[] = [
       sw: 'Uchambuzi wa kina wa nchi ya kwanza ya Bitcoin.',
       de: 'Tiefenanalyse des ersten Bitcoin-Legal-Tender-Landes.',
       hi: 'पहले बिटकॉइन कानूनी टेंडर देश का विश्लेषण।',
+      ja: '初のビットコイン法貨国の深掘り — 投資閾値、Lightning対応、MotoPassパイロット機会。',
     },
     seoKeywords: ['El Salvador residency', 'bitcoin legal tender', 'Lightning'],
   },
@@ -118,6 +126,7 @@ export const BLOG_POSTS: BlogPost[] = [
       sw: 'Mawakala wa AI kwa ofisi za pasipoti',
       de: 'KI-Verbindungsagenten für Passämter',
       hi: 'पासपोर्ट कार्यालयों के लिए संपर्क AI एजेंट',
+      ja: 'パスポート窓口向け国別リエゾンAIエージェント',
     },
     excerpt: {
       en: 'How MotoPass connects verified Nostr users with jurisdiction-specific liaison agents — streamlining official passport and residency conversations.',
@@ -129,6 +138,7 @@ export const BLOG_POSTS: BlogPost[] = [
       sw: 'Jinsi MotoPass inaunganisha watumiaji wa Nostr na mawakala.',
       de: 'Wie MotoPass verifizierte Nostr-Nutzer mit Agenten verbindet.',
       hi: 'MotoPass सत्यापित Nostr उपयोगकर्ताओं को एजेंटों से कैसे जोड़ता है।',
+      ja: 'MotoPassが検証済みNostrユーザーと法域別エージェントをつなぐ方法。',
     },
     seoKeywords: ['passport agent', 'CBI liaison', 'immigration AI'],
   },

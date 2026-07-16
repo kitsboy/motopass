@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import type { Program } from '../types/program'
+import { BUILD_ID } from '../lib/buildInfo'
 
 type ProgramsContextValue = {
   programs: Program[]
@@ -22,7 +23,7 @@ function fetchProgramsOnce(force = false): Promise<ProgramsCache> {
   if (!force && inflight) return inflight
 
   const gen = ++fetchGeneration
-  inflight = fetch('/research/countries.json')
+  inflight = fetch(`/research/countries.json?v=${encodeURIComponent(BUILD_ID)}`)
     .then(r => {
       if (!r.ok) throw new Error('Failed to load programs')
       return r.json()

@@ -17,6 +17,18 @@ retry_curl() {
 
 echo "Checking $BASE ..."
 
+LOCAL_BUILD=$(node -p "require('fs').readFileSync('src/lib/buildInfo.ts','utf8').match(/BUILD_ID = '([^']+)'/)[1]")
+LIVE_HTML=$(curl -sf "$BASE/" || true)
+if [[ -z "$LIVE_HTML" ]]; then
+  echo "FAIL could not fetch $BASE/"
+  exit 1
+fi
+echo "$LIVE_HTML" | grep -q "BUILD ${LOCAL_BUILD}" || {
+  echo "FAIL footer BUILD ${LOCAL_BUILD} not found in live HTML"
+  exit 1
+}
+echo "OK footer BUILD ${LOCAL_BUILD} in live HTML"
+
 curl -sfI "$BASE/research/countries.json" | grep -qi 'application/json' || { echo "FAIL json content-type"; exit 1; }
 echo "OK content-type application/json"
 

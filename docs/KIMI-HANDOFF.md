@@ -845,4 +845,25 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+---
+
+## Session — 2026-07-15 (BUILD 60 — Batch 26)
+
+**Done:**
+- Batch 26 complete (781–880): 100 items — deploy/CI hardening, nav shortcuts (`g v`, `g a`), programs compare markdown export, pitch/BTC map polish, distressed bookmarks/filters, vault bulk export, Paige streaming/history, Nostr relay config, Kimi .ics, ja/de i18n stubs, `links:check`, bundle warn >460kb
+- Preserved BUILD 58 footer-gap fix (`overflow: clip` on `.sovereign-canvas`; no `min-h-svh` / `flex-1` shell stretch)
+- Footer-gap e2e corrected to scroll to document bottom (not `scrollIntoView block:end` under sticky tab bar)
+- 122 unit tests pass; footer-gap e2e 4/4 pass
+
+**Decisions:**
+- Layout shell stays BUILD 58 shape — footer is last content node; sticky mobile tab bar follows in DOM
+- E2e footer metrics use `nav.mobile-nav-glass[aria-label="Mobile tab bar"]` selector
+
+**Git State:**
+- SHA: `e9281b3`
+- Branch: `main`
+- Live: https://motopass.giveabit.io (deploy after push)
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

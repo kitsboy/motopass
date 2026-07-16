@@ -25,7 +25,13 @@ describe('distressedStorage', () => {
     const state = {
       lane: 'curated' as const,
       sort: 'price' as const,
-      filters: { region: 'Europe', minScore: 3, maxBtcUsd: 100_000 },
+      filters: {
+        region: 'Europe',
+        minScore: 3,
+        maxBtcUsd: 100_000,
+        proofGatedOnly: false,
+        bookmarksOnly: false,
+      },
     }
     saveDistressedState(state)
     expect(storage[DISTRESSED_FILTERS_KEY]).toBeTruthy()
@@ -38,7 +44,7 @@ describe('distressedStorage', () => {
   })
 
   it('counts active filters', () => {
-    expect(countDistressedActiveFilters({ region: 'all', minScore: 1, maxBtcUsd: 0 }, 'all')).toBe(0)
-    expect(countDistressedActiveFilters({ region: 'Asia', minScore: 4, maxBtcUsd: 50_000 }, 'curated')).toBe(4)
+    expect(countDistressedActiveFilters({ region: 'all', minScore: 1, maxBtcUsd: 0, proofGatedOnly: false, bookmarksOnly: false }, 'all')).toBe(0)
+    expect(countDistressedActiveFilters({ region: 'Asia', minScore: 4, maxBtcUsd: 50_000, proofGatedOnly: true, bookmarksOnly: true }, 'curated')).toBe(6)
   })
 })

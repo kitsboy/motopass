@@ -1,7 +1,8 @@
-import type { KeyboardEvent, MouseEvent } from 'react';
+import { useMemo, useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { motion } from 'motion/react';
-import { Check } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
+import { LazyFlagSprite } from '../pitch/LazyFlagSprite';
 import { BtcDualPrice } from '../BtcDualPrice';
 import type { ProgramsTableDensity } from '../../lib/portfolioStorage';
 import { useI18n } from '../../i18n/I18nContext';
@@ -25,6 +26,8 @@ interface ProgramsTableProps {
  * of a full card treatment, keeping density high without losing hierarchy.
  * Not used on mobile — ProgramsPage swaps to ProgramCard stack below `lg`.
  */
+type SortDir = 'asc' | 'desc' | null
+
 export function ProgramsTable({
   programs,
   onSelect,
@@ -33,10 +36,23 @@ export function ProgramsTable({
   density = 'comfortable',
 }: ProgramsTableProps) {
   const { t } = useI18n();
+  const [scoreSort, setScoreSort] = useState<SortDir>(null);
   const portfolioSet = new Set(portfolioIds);
   const compact = density === 'compact';
   const cellPad = compact ? 'py-2' : 'py-3';
   const toggleSize = compact ? 'h-6 w-6' : 'h-7 w-7';
+
+  const sortedPrograms = useMemo(() => {
+    if (!scoreSort) return programs;
+    return [...programs].sort((a, b) => {
+      const diff = a.sovereigntyScore - b.sovereigntyScore;
+      return scoreSort === 'asc' ? diff : -diff;
+    });
+  }, [programs, scoreSort]);
+
+  const toggleScoreSort = () => {
+    setScoreSort(prev => (prev === null ? 'desc' : prev === 'desc' ? 'asc' : null));
+  };
 
   return (
     <table
@@ -57,12 +73,23 @@ export function ProgramsTable({
             <span className="text-mp-btc-text">₿</span> Min. invest
           </th>
           <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>Timeline</th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>Score</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>
+            <button
+              type="button"
+              onClick={toggleScoreSort}
+              className="inline-flex items-center gap-1 hover:text-mp-btc-text transition-colors"
+              aria-label={t('programs.sortSovereignty')}
+            >
+              Score
+              {scoreSort === 'desc' && <ChevronDown size={12} aria-hidden="true" />}
+              {scoreSort === 'asc' && <ChevronUp size={12} aria-hidden="true" />}
+            </button>
+          </th>
           <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>Proof</th>
         </tr>
       </thead>
       <tbody>
-        {programs.map((p, i) => {
+        {sortedPrograms.map((p, i) => {
           const isFlagship = scoreWeight(p.sovereigntyScore) === 'flagship';
           const inPortfolio = portfolioSet.has(cinematicIdToNumber(p.id));
           const activate = () => onSelect(p);
@@ -108,9 +135,11 @@ export function ProgramsTable({
               )}
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4`}>
                 <div className="flex items-center gap-2.5">
-                  <span className={`flex items-center justify-center rounded-full bg-mp-section font-mono text-mp-ink-secondary ${compact ? 'h-5 w-5 text-[9px]' : 'h-6 w-6 text-[10px]'}`}>
-                    {p.countryCode}
-                  </span>
+                  <LazyFlagSprite
+                    countryName={p.country}
+                    emojiFallback={p.flag ?? p.countryCode}
+                    className={compact ? 'h-5 w-5' : 'h-6 w-6'}
+                  />
                   <span className={`font-display text-mp-ink ${compact ? 'text-xs' : 'text-sm'}`}>{p.country}</span>
                 </div>
               </td>

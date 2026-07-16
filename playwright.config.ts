@@ -16,7 +16,9 @@ export default defineConfig({
     baseURL: BASE_URL,
     navigationTimeout: 20_000,
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
   },
+  outputDir: 'artifacts/playwright',
   webServer: {
     command: `npm run preview -- --port ${PORT} --strictPort`,
     url: BASE_URL,

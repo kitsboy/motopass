@@ -6,6 +6,20 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-60] — 2026-07-15
+
+### Changed
+- Design perf i18n — lazy flags, ja/de stubs, bundle warn
+
+---
+
+## [BUILD-2026.07.15-59] — 2026-07-15
+
+### Changed
+- Footer gap v5 — e2e scroll lock + deploy CI
+
+---
+
 ## [BUILD-2026.07.15-58] — 2026-07-15
 
 ### Changed

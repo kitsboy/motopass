@@ -45,6 +45,8 @@ export function VaultPage() {
   const { portfolio } = usePortfolio()
   const [nostrEvent, setNostrEvent] = useState('')
   const [filter, setFilter] = useState<VaultFilter>('all')
+  const [archiveQuery, setArchiveQuery] = useState('')
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(() => new Set())
   const [copied, setCopied] = useState(false)
   const [hashInput, setHashInput] = useState(() => highlightProof ?? '')
   const [verifyResult, setVerifyResult] = useState<VerifyResult | null>(null)
@@ -58,9 +60,11 @@ export function VaultPage() {
     .map(p => ({ program: p, cinematic: toCinematicProgram(p) }))
     .sort((a, b) => (b.program.last_checked ?? '').localeCompare(a.program.last_checked ?? ''))
 
-  const displayed = stamped.filter(({ cinematic }) => {
-    if (filter === 'verified') return cinematic.proofStatus === 'verified'
-    if (filter === 'demo') return cinematic.proofStatus === 'demo'
+  const displayed = stamped.filter(({ program: p, cinematic }) => {
+    if (filter === 'verified' && cinematic.proofStatus !== 'verified') return false
+    if (filter === 'demo' && cinematic.proofStatus !== 'demo') return false
+    const q = archiveQuery.trim().toLowerCase()
+    if (q && !p.name.toLowerCase().includes(q) && !p.region.toLowerCase().includes(q)) return false
     return true
   })
 
@@ -177,15 +181,26 @@ export function VaultPage() {
         subtitle={t('vault.subtitle')}
         actions={
           stamped.length > 0 ? (
-            <Button
-              type="button"
-              variant="secondary"
-              size="sm"
-              onClick={() => downloadVaultCredentials(programs)}
-              className="shrink-0"
-            >
-              <Download size={14} /> Export credentials
-            </Button>
+            <div className="flex flex-wrap gap-2 shrink-0">
+              {selectedIds.size > 0 && (
+                <Button
+                  type="button"
+                  variant="primary"
+                  size="sm"
+                  onClick={() => downloadVaultCredentials(programs, [...selectedIds])}
+                >
+                  <Download size={14} /> {formatT(t, 'vault.exportSelected', { count: selectedIds.size })}
+                </Button>
+              )}
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                onClick={() => downloadVaultCredentials(programs)}
+              >
+                <Download size={14} /> {t('vault.exportAll')}
+              </Button>
+            </div>
           ) : undefined
         }
       />
@@ -298,6 +313,17 @@ export function VaultPage() {
         <div id="vault-archive" className="space-y-3 scroll-mt-header">
           {stamped.length > 0 && (
             <>
+              <div className="relative mb-4">
+                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted pointer-events-none" aria-hidden />
+                <input
+                  type="search"
+                  value={archiveQuery}
+                  onChange={e => setArchiveQuery(e.target.value)}
+                  placeholder={t('vault.searchPrograms')}
+                  className="input-field w-full !py-2 !pl-9 !pr-3 text-xs font-chrome"
+                  aria-label={t('vault.searchPrograms')}
+                />
+              </div>
               <div
                 role="tablist"
                 aria-label={t('vault.filterTabs')}
@@ -366,6 +392,15 @@ export function VaultPage() {
               cinematic={cinematic}
               index={i}
               inPortfolio={portfolio.includes(p.id)}
+              selected={selectedIds.has(p.id)}
+              onToggleSelect={id => {
+                setSelectedIds(prev => {
+                  const next = new Set(prev)
+                  if (next.has(id)) next.delete(id)
+                  else next.add(id)
+                  return next
+                })
+              }}
               onUseProof={applyProgramProof}
               onNostrStub={setNostrEvent}
             />

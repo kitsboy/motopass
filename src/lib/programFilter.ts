@@ -7,6 +7,8 @@ export interface ProgramFilters {
   minInvestment: number
   maxInvestment: number
   minCryptoScore: number
+  minSovereignty: number
+  maxSovereignty: number
   lightningOnly: boolean
   status: string
 }
@@ -18,6 +20,8 @@ export const DEFAULT_FILTERS: ProgramFilters = {
   minInvestment: 0,
   maxInvestment: 2_000_000,
   minCryptoScore: 0,
+  minSovereignty: 0,
+  maxSovereignty: 10,
   lightningOnly: false,
   status: 'All',
 }
@@ -38,6 +42,12 @@ export function filterPrograms(programs: Program[], filters: ProgramFilters): Pr
   if (filters.lightningOnly) result = result.filter(p => p.lightning_ready)
   if (filters.minCryptoScore > 0) {
     result = result.filter(p => (p.finance.crypto_friendly_score ?? 0) >= filters.minCryptoScore)
+  }
+  if (filters.minSovereignty > 0 || filters.maxSovereignty < 10) {
+    result = result.filter(p => {
+      const score = p.sovereignty_score ?? 0
+      return score >= filters.minSovereignty && score <= filters.maxSovereignty
+    })
   }
   result = result.filter(p => {
     const min = p.finance.min_investment_usd ?? 0

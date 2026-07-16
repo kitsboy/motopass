@@ -1,11 +1,30 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ShieldAlert, ExternalLink } from 'lucide-react'
+import { ShieldAlert, ExternalLink, X } from 'lucide-react'
 import { Card } from '../ui/Card'
+import { dismissPaigeEnforcement, isPaigeEnforcementDismissed } from '../../lib/paigeEnforcementDismiss'
 
 export function PaigeEnforcementCard() {
+  const [dismissed, setDismissed] = useState(() => isPaigeEnforcementDismissed())
+
+  if (dismissed) return null
+
+  const handleDismiss = () => {
+    dismissPaigeEnforcement()
+    setDismissed(true)
+  }
+
   return (
-    <Card variant="banner" className="!p-5 border-l-4 border-l-nostr-violet">
-      <div className="flex items-start gap-3">
+    <Card variant="banner" className="!p-5 border-l-4 border-l-nostr-violet relative">
+      <button
+        type="button"
+        onClick={handleDismiss}
+        className="absolute top-3 right-3 p-1 rounded-full text-ink-muted hover:text-ink-secondary hover:bg-card-muted/60"
+        aria-label="Dismiss Paige proof policy notice"
+      >
+        <X size={14} aria-hidden />
+      </button>
+      <div className="flex items-start gap-3 pr-6">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-nostr-violet-soft border border-nostr-violet/25 text-nostr-violet">
           <ShieldAlert size={18} aria-hidden />
         </div>

@@ -7,6 +7,7 @@ import { formatT } from '../../i18n/format'
 import { countDistressedActiveFilters } from '../../lib/distressedStorage'
 import type { DistressedFilters, DistressedLane, DistressedListing, DistressedSort } from '../../types/distressedListing'
 import { DistressedListingsList } from './DistressedListingsList'
+import { DistressedFilterSheet, DistressedFilterSheetButton } from './DistressedFilterSheet'
 
 const MAX_ASK_OPTIONS = [
   { value: 0, key: 'distressed.maxAskAny' as const },
@@ -36,6 +37,8 @@ export function DistressedFilterDirectory({
   onSortChange,
   filters,
   onFiltersChange,
+  bookmarks,
+  onBookmarksChange,
   loading,
   error,
   onSelectListing,
@@ -51,12 +54,15 @@ export function DistressedFilterDirectory({
   onSortChange: (sort: DistressedSort) => void
   filters: DistressedFilters
   onFiltersChange: (filters: DistressedFilters) => void
+  bookmarks: string[]
+  onBookmarksChange: (ids: string[]) => void
   loading: boolean
   error: string | null
   onSelectListing: (listing: DistressedListing) => void
 }) {
   const { t } = useI18n()
   const [query, setQuery] = useState('')
+  const [sheetOpen, setSheetOpen] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const filterBarCollapsed = useScrollCollapse(scrollRef)
   const debounced = useDebouncedValue(query.trim().toLowerCase(), 120)
@@ -137,6 +143,27 @@ export function DistressedFilterDirectory({
           </select>
         </label>
 
+        <div className="hidden md:flex flex-wrap items-center gap-3 font-chrome">
+          <label className="flex items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider">
+            <input
+              type="checkbox"
+              checked={filters.proofGatedOnly}
+              onChange={e => onFiltersChange({ ...filters, proofGatedOnly: e.target.checked })}
+              className="rounded border-mp"
+            />
+            {t('distressed.proofGatedOnly')}
+          </label>
+          <label className="flex items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider">
+            <input
+              type="checkbox"
+              checked={filters.bookmarksOnly}
+              onChange={e => onFiltersChange({ ...filters, bookmarksOnly: e.target.checked })}
+              className="rounded border-mp"
+            />
+            {t('distressed.bookmarksOnly')}
+          </label>
+        </div>
+
         <div className="hidden md:flex flex-wrap gap-2 font-chrome">
           <label className="flex items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider">
             {t('distressed.filterRegion')}
@@ -209,56 +236,26 @@ export function DistressedFilterDirectory({
         aria-hidden={filterBarCollapsed}
       >
         {laneChips}
-        <div className="flex items-center gap-2">
-          <label className="flex flex-1 items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider font-chrome min-w-0">
-            {t('distressed.sortBy')}
-            <select
-              value={sort}
-              onChange={e => onSortChange(e.target.value as DistressedSort)}
-              className="select-field !py-1 !px-2 text-xs normal-case tracking-normal flex-1 min-w-0"
-            >
-              {SORT_OPTIONS.map(opt => (
-                <option key={opt.id} value={opt.id}>{t(opt.key)}</option>
-              ))}
-            </select>
-          </label>
-          {activeFilterCount > 0 && (
-            <span className="rounded-chip border border-btc-orange/35 bg-btc-orange-soft/50 text-mp-btc-text text-[10px] font-mono px-2 py-0.5 shrink-0">
-              {formatT(t, 'distressed.filtersActive', { count: activeFilterCount })}
-            </span>
-          )}
-        </div>
-        <div className="flex flex-wrap gap-2 font-chrome">
-          <label className="flex flex-1 items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider min-w-[45%]">
-            {t('distressed.filterRegion')}
-            <select
-              value={filters.region}
-              onChange={e => onFiltersChange({ ...filters, region: e.target.value })}
-              className="select-field !py-1 !px-2 text-xs normal-case tracking-normal flex-1 min-w-0"
-            >
-              {regions.map(r => (
-                <option key={r} value={r}>
-                  {r === 'all' ? t('distressed.regionAll') : r}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="flex items-center gap-1.5 text-[10px] text-ink-muted uppercase tracking-wider">
-            {t('distressed.filterMinScore')}
-            <select
-              value={filters.minScore}
-              onChange={e => onFiltersChange({ ...filters, minScore: Number(e.target.value) })}
-              className="select-field !py-1 !px-2 text-xs normal-case tracking-normal"
-            >
-              {[1, 2, 3, 4, 5].map(n => (
-                <option key={n} value={n}>
-                  {n}+
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+        <DistressedFilterSheetButton
+          activeFilterCount={activeFilterCount}
+          open={sheetOpen}
+          onOpen={() => setSheetOpen(true)}
+        />
       </div>
+
+      <DistressedFilterSheet
+        open={sheetOpen}
+        onClose={() => setSheetOpen(false)}
+        regions={regions}
+        lane={lane}
+        onLaneChange={onLaneChange}
+        sort={sort}
+        onSortChange={onSortChange}
+        filters={filters}
+        onFiltersChange={onFiltersChange}
+        laneCounts={laneCounts}
+        activeFilterCount={activeFilterCount}
+      />
 
       <div
         ref={scrollRef}
@@ -267,6 +264,8 @@ export function DistressedFilterDirectory({
         <DistressedListingsList
           listings={filtered}
           allListings={allListings}
+          bookmarks={bookmarks}
+          onBookmarksChange={onBookmarksChange}
           loading={loading}
           error={error}
           onSelect={onSelectListing}

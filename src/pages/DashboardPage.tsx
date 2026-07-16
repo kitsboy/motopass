@@ -11,6 +11,7 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { ClassyModal } from '../components/ui/ClassyModal'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
+import { truncateNpub } from '../lib/truncateNpub'
 import type { PaymentRail } from '../types/user'
 import type { PaymentInvoice } from '../lib/payments'
 
@@ -54,9 +55,9 @@ export function DashboardPage() {
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-4xl mx-auto">
       <PageHeader
-        title={formatT(t, 'dashboard.welcome', { name: profile.displayName })}
+        title={formatT(t, 'dashboard.welcomeBack', { name: profile.displayName })}
         eyebrow={t('dashboard.eyebrow')}
-        subtitle={profile.npub}
+        subtitle={truncateNpub(profile.npub)}
         actions={
           <button type="button" onClick={() => setLogoutOpen(true)} className="chip text-xs hover:!border-status-red/40 hover:!text-status-red">
             {t('dashboard.logout')}

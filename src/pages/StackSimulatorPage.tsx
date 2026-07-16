@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { Search, Trash2 } from 'lucide-react'
+import { Search, Trash2, Copy } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { loadStacks, saveStack, deleteStack, type SavedStack } from '../lib/portfolioStorage'
 import { useDebouncedValue } from '../hooks/useDebouncedValue'
@@ -16,9 +16,12 @@ import { parseIdList, serializeIdList } from '../lib/urlState'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { ValueForksPanel } from '../components/simulator/ValueForksPanel'
 import { Card } from '../components/ui/Card'
+import { formatStackSummary } from '../lib/simulatorSummary'
+import { useToast } from '../components/ui/Toast'
 
 export function StackSimulatorPage() {
   const { t } = useI18n()
+  const { toast } = useToast()
   const [searchParams, setSearchParams] = useSearchParams()
   const { programs, loading, error } = usePrograms()
   const selected = useMemo(() => parseIdList(searchParams.get('programs'), 50), [searchParams])
@@ -87,6 +90,16 @@ export function StackSimulatorPage() {
     ],
     [t],
   )
+
+  const handleCopySummary = async () => {
+    if (!stack.length) return
+    try {
+      await navigator.clipboard.writeText(formatStackSummary(stack))
+      toast(t('simulator.summaryCopied'), 'success')
+    } catch {
+      toast(t('simulator.summaryCopied'), 'error')
+    }
+  }
 
   const save = () => {
     const name = stackName.trim()
@@ -168,6 +181,16 @@ export function StackSimulatorPage() {
               <div className="flex flex-wrap gap-2 mt-5">
                 {stack.map(p => <AnimatedBadge key={p.id} status="info">{p.name}</AnimatedBadge>)}
               </div>
+              {stack.length > 0 && (
+                <button
+                  type="button"
+                  onClick={handleCopySummary}
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
+                >
+                  <Copy size={14} aria-hidden="true" />
+                  {t('simulator.copySummary')}
+                </button>
+              )}
               {selected.length >= 2 && selected.length <= 4 && (
                 <Link
                   to={`/compare?ids=${serializeIdList(selected)}`}

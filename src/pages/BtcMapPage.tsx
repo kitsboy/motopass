@@ -11,6 +11,7 @@ import { BtcMapMerchantDirectory } from '../components/btcmap/BtcMapMerchantDire
 import { BtcMapAreasChips } from '../components/btcmap/BtcMapAreasChips'
 import { BtcMapReportVenue } from '../components/btcmap/BtcMapReportVenue'
 import { BtcMapCacheFreshnessBadge } from '../components/btcmap/BtcMapCacheFreshnessBadge'
+import { BtcMapCacheStaleBanner } from '../components/btcmap/BtcMapCacheStaleBanner'
 import { BtcMapJurisdictionJump } from '../components/btcmap/BtcMapJurisdictionJump'
 import { NostrConnect } from '../components/NostrConnect'
 import { useI18n } from '../i18n/I18nContext'
@@ -19,6 +20,7 @@ import { btcMapAttribution, btcMapMapUrl } from '../lib/btcmap'
 import { getProgramCoord } from '../data/programCoords'
 import { serializeIdList, parseIdList } from '../lib/urlState'
 import {
+  BTC_MAP_PHONE_LANDSCAPE_MQ,
   BTC_MAP_TABLET_LANDSCAPE_MQ,
   defaultBtcMapLayout,
   type BtcMapLayoutMode,
@@ -31,13 +33,18 @@ export function BtcMapPage() {
   const [layout, setLayout] = useState<BtcMapLayoutMode>(() => defaultBtcMapLayout())
 
   useEffect(() => {
-    const mq = window.matchMedia(BTC_MAP_TABLET_LANDSCAPE_MQ)
+    const phoneMq = window.matchMedia(BTC_MAP_PHONE_LANDSCAPE_MQ)
+    const tabletMq = window.matchMedia(BTC_MAP_TABLET_LANDSCAPE_MQ)
     const onChange = () => {
-      if (mq.matches) setLayout('split')
+      if (phoneMq.matches || tabletMq.matches) setLayout('split')
     }
     onChange()
-    mq.addEventListener('change', onChange)
-    return () => mq.removeEventListener('change', onChange)
+    phoneMq.addEventListener('change', onChange)
+    tabletMq.addEventListener('change', onChange)
+    return () => {
+      phoneMq.removeEventListener('change', onChange)
+      tabletMq.removeEventListener('change', onChange)
+    }
   }, [])
 
   const programId = useMemo(() => {
@@ -94,6 +101,8 @@ export function BtcMapPage() {
       <p className="text-sm text-ink-secondary mb-6 max-w-3xl leading-relaxed">
         {t('btcmap.intro')}
       </p>
+
+      {fromCache && fetchedAt && <BtcMapCacheStaleBanner fetchedAt={fetchedAt} />}
 
       {/* Command bar */}
       <Card variant="elevated" animate className="mb-6 !p-4 sm:!p-5">

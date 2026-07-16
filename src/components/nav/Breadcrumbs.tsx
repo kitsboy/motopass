@@ -2,8 +2,10 @@ import { Link, useLocation } from 'react-router-dom'
 import { Home } from 'lucide-react'
 import { useI18n } from '../../i18n/I18nContext'
 import type { TranslationKey } from '../../i18n/translations'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 
-const MAX_VISIBLE_SEGMENTS = 3
+const MAX_VISIBLE_DESKTOP = 3
+const MAX_VISIBLE_MOBILE = 2
 
 const ROUTE_LABELS: Record<string, TranslationKey> = {
   portfolio: 'nav.portfolio',
@@ -32,13 +34,15 @@ function segmentLabel(seg: string, t: (key: TranslationKey) => string): string {
 export function Breadcrumbs() {
   const { pathname } = useLocation()
   const { t } = useI18n()
+  const isMobile = useMediaQuery('(max-width: 639px)')
+  const maxVisible = isMobile ? MAX_VISIBLE_MOBILE : MAX_VISIBLE_DESKTOP
 
   if (HIDE_ON.has(pathname)) return null
 
   const segments = pathname.split('/').filter(Boolean)
   if (!segments.length) return null
 
-  const collapsed = segments.length > MAX_VISIBLE_SEGMENTS
+  const collapsed = segments.length > maxVisible
   const visibleSegments = collapsed
     ? [segments[0], ...segments.slice(-2)]
     : segments
@@ -72,7 +76,11 @@ export function Breadcrumbs() {
               {collapsed && i === 1 && (
                 <>
                   <span className="breadcrumb-sep px-0.5 sm:px-0" aria-hidden="true">/</span>
-                  <span className="breadcrumb-ellipsis px-1" title={t('nav.breadcrumbsEllipsis')} aria-hidden="true">
+                  <span
+                    className="breadcrumb-ellipsis px-1 max-w-[2.5rem] sm:max-w-none truncate"
+                    title={t('nav.breadcrumbsEllipsis')}
+                    aria-hidden="true"
+                  >
                     …
                   </span>
                 </>

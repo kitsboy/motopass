@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Lock, ExternalLink } from 'lucide-react'
+import { Lock, ExternalLink, Bookmark } from 'lucide-react'
+import { toggleDistressedBookmark, isDistressedBookmarked } from '../../lib/distressedBookmarkStorage'
 import { DistressedKimiTierTooltip } from './DistressedKimiTierTooltip'
 import { BtcDualPrice } from '../BtcDualPrice'
 import { ProofBadge } from '../ui/ProofBadge'
@@ -18,18 +19,23 @@ function scoreChip(score: number) {
 export function DistressedListingsList({
   listings,
   allListings,
+  bookmarks,
+  onBookmarksChange,
   loading,
   error,
   onSelect,
 }: {
   listings: DistressedListing[]
   allListings: DistressedListing[]
+  bookmarks: string[]
+  onBookmarksChange: (ids: string[]) => void
   loading: boolean
   error: string | null
   onSelect: (listing: DistressedListing) => void
 }) {
   const { t } = useI18n()
   const [unlocked, setUnlocked] = useState<Set<string>>(() => new Set())
+  const [confettiIds, setConfettiIds] = useState<Set<string>>(() => new Set())
 
   if (loading) {
     return <p className="text-sm text-ink-muted animate-pulse px-3 py-6">{t('distressed.loading')}</p>
@@ -61,6 +67,19 @@ export function DistressedListingsList({
   const unlock = (listing: DistressedListing, e: React.MouseEvent) => {
     e.stopPropagation()
     setUnlocked(prev => new Set(prev).add(listing.listing_id))
+    setConfettiIds(prev => new Set(prev).add(listing.listing_id))
+    window.setTimeout(() => {
+      setConfettiIds(current => {
+        const next = new Set(current)
+        next.delete(listing.listing_id)
+        return next
+      })
+    }, 2600)
+  }
+
+  const toggleBookmark = (listingId: string, e: React.MouseEvent) => {
+    e.stopPropagation()
+    onBookmarksChange(toggleDistressedBookmark(listingId))
   }
 
   function onChipKeyDown(
@@ -83,16 +102,19 @@ export function DistressedListingsList({
         const isGold = listing.curated_tier === 'gold'
         const isCurated = listing.lane === 'curated'
         const gated = listing.lane === 'permissionless' && !unlocked.has(listing.listing_id)
+        const bookmarked = isDistressedBookmarked(listing.listing_id, bookmarks)
+        const showConfetti = confettiIds.has(listing.listing_id)
 
         return (
           <li
             key={listing.listing_id}
-            className={`group ${isGold ? 'distressed-row-gold' : isCurated ? 'distressed-row-curated' : ''}`}
+            className={`group relative ${isGold ? 'distressed-row-gold' : isCurated ? 'distressed-row-curated' : ''}`}
           >
+            {showConfetti && <div className="distressed-confetti-lite pointer-events-none absolute inset-0 z-[1]" aria-hidden />}
             <button
               type="button"
               onClick={() => handleSelect(listing)}
-              className={`w-full text-left flex items-start gap-2 px-2 py-2.5 rounded-mp-md transition-all duration-base ${
+              className={`w-full text-left flex items-start gap-2 px-2 py-2.5 rounded-mp-md transition-all duration-base relative z-[2] ${
                 gated
                   ? 'opacity-90 hover:bg-section/40'
                   : 'hover:bg-section/60 hover:border-btc-orange/20'
@@ -108,11 +130,26 @@ export function DistressedListingsList({
                       {listing.program_flag} {listing.program_name}
                     </div>
                   </div>
-                  <span
-                    className={`rounded-chip border px-2 py-0.5 text-[10px] font-mono shrink-0 ${scoreChip(listing.distressed_score)}`}
-                  >
-                    {listing.distressed_score}/5
-                  </span>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <button
+                      type="button"
+                      onClick={e => toggleBookmark(listing.listing_id, e)}
+                      className={`inline-flex h-7 w-7 items-center justify-center rounded-chip border transition-colors ${
+                        bookmarked
+                          ? 'border-btc-orange/40 bg-btc-orange-soft/50 text-mp-btc-text'
+                          : 'border-mp/60 text-ink-muted hover:border-btc-orange/30 hover:text-mp-btc-text'
+                      }`}
+                      aria-label={bookmarked ? t('distressed.bookmarkRemove') : t('distressed.bookmarkAdd')}
+                      aria-pressed={bookmarked}
+                    >
+                      <Bookmark size={12} className={bookmarked ? 'fill-current' : ''} aria-hidden />
+                    </button>
+                    <span
+                      className={`rounded-chip border px-2 py-0.5 text-[10px] font-mono ${scoreChip(listing.distressed_score)}`}
+                    >
+                      {listing.distressed_score}/5
+                    </span>
+                  </div>
                 </div>
                 <div
                   className="mt-0.5"

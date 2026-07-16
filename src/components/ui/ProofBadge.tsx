@@ -15,9 +15,9 @@ interface ProofBadgeProps {
 export function ProofBadge({ status, compact = false, txHint }: ProofBadgeProps) {
   const styles =
     status === 'verified'
-      ? 'border-mp-proof/30 bg-mp-proof-soft text-mp-proof'
+      ? 'border-mp-proof/35 bg-mp-proof-soft text-mp-proof dark:border-mp-proof/45 dark:bg-mp-proof/15 dark:text-[#4ade80]'
       : status === 'demo'
-        ? 'border-mp-border-strong bg-mp-section text-mp-ink-secondary'
+        ? 'border-mp-border-strong bg-mp-section text-mp-ink-secondary dark:text-mp-ink-secondary'
         : 'border-mp-ochre/40 bg-mp-btc-soft text-mp-btc-text';
 
   const label =

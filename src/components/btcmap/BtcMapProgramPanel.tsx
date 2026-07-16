@@ -20,12 +20,20 @@ export function BtcMapProgramPanel({ programName, programId }: { programName: st
           </h3>
           <p className="text-[11px] text-ink-muted mt-0.5">{t('btcmap.panelSub')}</p>
         </div>
-        <Link
-          to={btcMapPageUrl(programId, 'directory')}
-          className="chip text-[10px] shrink-0 text-accent hover:underline inline-flex items-center gap-1"
-        >
-          {t('btcmap.explore')} <ExternalLink size={10} aria-hidden />
-        </Link>
+        <div className="flex flex-col items-end gap-1.5 shrink-0">
+          <Link
+            to={btcMapPageUrl(programId, 'directory')}
+            className="chip text-[10px] text-accent hover:underline inline-flex items-center gap-1"
+          >
+            {t('btcmap.explore')} <ExternalLink size={10} aria-hidden />
+          </Link>
+          <Link
+            to={`/programs?q=${encodeURIComponent(programName)}`}
+            className="chip text-[10px] text-mp-btc-text hover:underline inline-flex items-center gap-1"
+          >
+            {t('btcmap.openInPrograms')} →
+          </Link>
+        </div>
       </div>
       <BtcMapAreasChips areas={areas} />
       <div className="mt-3 mb-2 text-[10px] font-mono uppercase tracking-wide text-ink-muted">

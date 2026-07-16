@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from 'react'
 import { Download, Search } from 'lucide-react'
 import type { BtcMapPlace } from '../../lib/btcmap'
 import { downloadPlacesCsv } from '../../lib/btcmapExport'
+import { btcMapCategoryFilters, filterPlacesByCategory } from '../../lib/btcmapIcons'
 import { useDebouncedValue } from '../../hooks/useDebouncedValue'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
@@ -23,15 +24,18 @@ export function BtcMapMerchantDirectory({
   const { t } = useI18n()
   const scrollRef = useRef<HTMLDivElement>(null)
   const [query, setQuery] = useState('')
+  const [categoryId, setCategoryId] = useState<string | null>(null)
   const debounced = useDebouncedValue(query.trim().toLowerCase(), 280)
+  const categories = useMemo(() => btcMapCategoryFilters(places), [places])
 
   const filtered = useMemo(() => {
-    if (!debounced) return places
-    return places.filter(p => {
+    let result = filterPlacesByCategory(places, categoryId)
+    if (!debounced) return result
+    return result.filter(p => {
       const hay = [p.name, p.address].filter(Boolean).join(' ').toLowerCase()
       return hay.includes(debounced)
     })
-  }, [places, debounced])
+  }, [places, debounced, categoryId])
 
   return (
     <div className="flex flex-col min-h-0 flex-1">
@@ -53,6 +57,36 @@ export function BtcMapMerchantDirectory({
             aria-label={t('btcmap.searchMerchants')}
           />
         </div>
+        {categories.length > 1 && (
+          <div className="flex flex-wrap gap-1.5" role="group" aria-label={t('btcmap.filterCategory')}>
+            <button
+              type="button"
+              onClick={() => setCategoryId(null)}
+              className={`chip text-[10px] ${categoryId == null ? 'text-mp-btc-text border-btc-orange/40' : 'text-ink-muted'}`}
+              aria-pressed={categoryId == null}
+            >
+              {t('btcmap.allCategories')}
+            </button>
+            {categories.slice(0, 8).map(cat => {
+              const Icon = cat.icon
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setCategoryId(prev => (prev === cat.id ? null : cat.id))}
+                  className={`chip text-[10px] inline-flex items-center gap-1 ${
+                    categoryId === cat.id ? 'text-mp-btc-text border-btc-orange/40' : 'text-ink-muted'
+                  }`}
+                  aria-pressed={categoryId === cat.id}
+                  title={cat.label}
+                >
+                  <Icon size={10} aria-hidden />
+                  {cat.label}
+                </button>
+              )
+            })}
+          </div>
+        )}
         <div className="flex items-center justify-between gap-2 text-[10px] font-mono uppercase tracking-wider text-ink-muted">
           <span>
             {loading

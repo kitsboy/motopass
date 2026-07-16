@@ -8,10 +8,13 @@ import {
   ExternalLink,
   Radio,
   GitBranch,
+  Hash,
 } from 'lucide-react'
+import { nostrEventIdStub } from '../../lib/nostrEventId'
 import { Card } from '../ui/Card'
 import { ProofBadge } from '../ui/ProofBadge'
 import { useI18n } from '../../i18n/I18nContext'
+import { formatT } from '../../i18n/format'
 import { satohashVerifyUrl } from '../../lib/seal/vaultVerify'
 import { buildProgramProofEvent, serializeNostrEvent } from '../../lib/nostrEvents'
 import type { Program } from '../../types/program'
@@ -28,6 +31,8 @@ export function VaultProofRow({
   cinematic,
   index,
   inPortfolio,
+  selected,
+  onToggleSelect,
   onUseProof,
   onNostrStub,
 }: {
@@ -35,6 +40,8 @@ export function VaultProofRow({
   cinematic: CinematicProgram
   index: number
   inPortfolio: boolean
+  selected?: boolean
+  onToggleSelect?: (programId: number) => void
   onUseProof: (programName: string, hash: string) => void
   onNostrStub: (json: string) => void
 }) {
@@ -42,6 +49,7 @@ export function VaultProofRow({
   const reduceMotion = useReducedMotion()
   const [expanded, setExpanded] = useState(false)
   const [copiedUrl, setCopiedUrl] = useState(false)
+  const [copiedEventId, setCopiedEventId] = useState<string | null>(null)
 
   const proofs = program.satohash_proofs ?? []
   const primary = proofs[0]
@@ -89,11 +97,11 @@ export function VaultProofRow({
       variant={isDemo ? 'default' : 'proof'}
       animate
       delay={0.05 + index * 0.03}
-      className="!p-0 overflow-hidden"
+      className={`!p-0 overflow-hidden ${isDemo ? 'vault-demo-watermark' : ''}`}
       data-vault-proof-hash={hash || undefined}
     >
       <div
-        className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 ${
+        className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 relative z-[1] ${
           hasLineage ? 'vault-proof-row-header--tappable md:cursor-default' : ''
         }`}
         onClick={e => {
@@ -116,10 +124,25 @@ export function VaultProofRow({
       >
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2 mb-1">
+            {onToggleSelect && (
+              <input
+                type="checkbox"
+                checked={selected ?? false}
+                onChange={() => onToggleSelect(program.id)}
+                onClick={e => e.stopPropagation()}
+                className="rounded border-mp shrink-0"
+                aria-label={formatT(t, 'vault.selectProof', { name: program.name })}
+              />
+            )}
             <div className="font-display font-semibold text-ink">
               {program.flag} {program.name}
             </div>
             <ProofBadge status={cinematic.proofStatus} compact txHint={cinematic.proofRef} />
+            {isDemo && (
+              <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded-chip border border-mp-strong/50 text-ink-muted">
+                {t('vault.demoWatermark')}
+              </span>
+            )}
           </div>
           <div className="text-xs text-ink-muted mt-1 font-mono break-all opacity-80">
             Block #{primary?.block_height} · {program.last_checked}
@@ -224,6 +247,20 @@ export function VaultProofRow({
                 {proofs.map((proof, i) => {
                   const stepHash = proofHash(proof)
                   const stepUrl = stepHash ? satohashVerifyUrl(stepHash) : proof.proof_url
+                  const eventStub = buildProgramProofEvent(
+                    program.name,
+                    isDemo ? 'Demo anchor (seed data)' : 'OTS on disk',
+                    {
+                      field: proof.field,
+                      content_hash: proof.content_hash ?? stepHash,
+                      block_height: proof.block_height,
+                      proof_url: proof.proof_url,
+                      ots_path: proof.ots_path,
+                      proof_status: isDemo ? 'demo' : 'verified',
+                    },
+                  )
+                  const eventId = nostrEventIdStub(eventStub)
+                  const copyKey = `${proof.field}-${i}`
                   return (
                     <li key={`${proof.field}-${i}`} className="relative pl-5">
                       <span
@@ -235,16 +272,35 @@ export function VaultProofRow({
                         {proof.block_height != null && <>Block #{proof.block_height} · </>}
                         {stepHash ? `${stepHash.slice(0, 16)}…` : '—'}
                       </div>
-                      {stepUrl && (
-                        <a
-                          href={stepUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[10px] text-btc-orange hover:underline mt-1 inline-flex items-center gap-1"
+                      <div className="mt-1 flex flex-wrap items-center gap-2">
+                        {stepUrl && (
+                          <a
+                            href={stepUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[10px] text-btc-orange hover:underline inline-flex items-center gap-1"
+                          >
+                            Satohash <ExternalLink size={10} />
+                          </a>
+                        )}
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            await navigator.clipboard.writeText(eventId)
+                            setCopiedEventId(copyKey)
+                            window.setTimeout(() => setCopiedEventId(null), 2000)
+                          }}
+                          className="text-[10px] text-ink-muted hover:text-mp-btc-text inline-flex items-center gap-1"
+                          aria-label={t('vault.copyEventId')}
                         >
-                          Satohash <ExternalLink size={10} />
-                        </a>
-                      )}
+                          {copiedEventId === copyKey ? (
+                            <Check size={10} className="text-status-green" />
+                          ) : (
+                            <Hash size={10} />
+                          )}
+                          {t('vault.copyEventId')}
+                        </button>
+                      </div>
                     </li>
                   )
                 })}

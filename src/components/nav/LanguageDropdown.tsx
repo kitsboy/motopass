@@ -1,8 +1,9 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Check, ChevronDown, Globe, Monitor } from 'lucide-react'
-import { LANGUAGES, detectBrowserLang, type LangCode, type LangPreference } from '../../i18n/languages'
+import { LANGUAGES, detectBrowserLang, type LangPreference } from '../../i18n/languages'
 import { useI18n } from '../../i18n/I18nContext'
+import { loadRecentLangs, rememberRecentLang } from '../../i18n/recentLangStorage'
 import { LazyFlag } from './LazyFlag'
 
 const PANEL_WIDTH = 208
@@ -24,7 +25,10 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
   const current = LANGUAGES.find(l => l.code === lang) ?? LANGUAGES[0]
   const usingSystem = langPreference === 'system'
 
+  const recentLangs = loadRecentLangs()
+
   const pick = (pref: LangPreference) => {
+    if (pref !== 'system') rememberRecentLang(pref)
     setLang(pref)
     setOpen(false)
   }
@@ -112,6 +116,34 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
               <Globe size={11} aria-hidden="true" />
               {t('nav.language')}
             </li>
+            {recentLangs.length > 0 && (
+              <>
+                <li className="px-2.5 py-1 text-[9px] font-chrome uppercase tracking-wider text-ink-muted">
+                  {t('nav.languageRecent')}
+                </li>
+                {recentLangs.map(code => {
+                  const l = LANGUAGES.find(x => x.code === code)
+                  if (!l) return null
+                  const active = !usingSystem && l.code === lang
+                  return (
+                    <li key={`recent-${l.code}`} role="option" aria-selected={active}>
+                      <button
+                        type="button"
+                        onClick={() => pick(l.code)}
+                        className={`nav-dropdown-item w-full ${active ? 'nav-dropdown-item-active' : ''}`}
+                      >
+                        <LazyFlag flag={l.flag} eager={open} className="text-base leading-none w-6 text-center" />
+                        <span className="flex-1 text-left min-w-0">
+                          <span className="block font-chrome text-[11px] font-medium text-ink truncate">{l.nativeName}</span>
+                        </span>
+                        {active && <Check size={14} className="shrink-0 text-mp-btc-text" aria-hidden="true" />}
+                      </button>
+                    </li>
+                  )
+                })}
+                <li className="mx-2 border-b border-mp/50" aria-hidden="true" />
+              </>
+            )}
             <li role="option" aria-selected={usingSystem}>
               <button
                 type="button"

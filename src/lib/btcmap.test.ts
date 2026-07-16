@@ -6,12 +6,14 @@ import {
   btcMapMapUrl,
   btcMapMerchantUrl,
   btcMapPageUrl,
+  googleMapsDirectionsUrl,
   getAreasAt,
   searchPlacesNearby,
 } from './btcmap'
 import { gridClusterPlaces } from './btcmapCluster'
 import { placesToCsv } from './btcmapExport'
-import { formatCacheAge, cacheFreshnessLevel, isCacheExpired } from './btcmapFreshness'
+import { formatCacheAge, cacheFreshnessLevel, isCacheExpired, isCacheStale } from './btcmapFreshness'
+import { filterPlacesByCategory, btcMapPlaceCategory } from './btcmapIcons'
 import { defaultBtcMapLayout } from './btcMapLayout'
 import { pitchFaqAnchorId } from './pitchFaq'
 import { flagSpriteUrl, programCountryCode } from './countryCode'
@@ -40,6 +42,11 @@ describe('btcmap urls', () => {
     expect(btcMapPageUrl(42)).toBe('/btcmap?program=42')
     expect(btcMapPageUrl('42', 'directory')).toBe('/btcmap?program=42#directory')
   })
+
+  it('builds Google Maps directions links (824)', () => {
+    expect(googleMapsDirectionsUrl(9.93, -84.09)).toContain('destination=9.93,-84.09')
+    expect(googleMapsDirectionsUrl(9.93, -84.09, 'Cafe BTC')).toContain('destination=Cafe%20BTC')
+  })
 })
 
 describe('btcmap helpers', () => {
@@ -59,7 +66,7 @@ describe('btcmap helpers', () => {
       [{ id: 1, lat: 9, lon: -84, name: 'Cafe "BTC"', address: 'Main St' }],
       'Costa Rica',
     )
-    expect(csv.split('\n')[0]).toContain('program,id,name')
+    expect(csv.split('\n')[0]).toContain('program_name,id,name')
     expect(csv).toContain('Costa Rica')
     expect(csv).toContain('"Cafe ""BTC"""')
   })
@@ -75,6 +82,23 @@ describe('btcmap helpers', () => {
     expect(cacheFreshnessLevel('2026-07-01T16:02:11.611Z', now)).toBe('recent')
     expect(cacheFreshnessLevel('2026-06-30T16:02:11.611Z', now)).toBe('expired')
     expect(isCacheExpired('2026-06-30T16:02:11.611Z', now)).toBe(true)
+  })
+
+  it('flags stale offline cache after 7 days (827)', () => {
+    const now = new Date('2026-07-15T12:00:00Z')
+    expect(isCacheStale('2026-07-10T16:02:11.611Z', now)).toBe(false)
+    expect(isCacheStale('2026-07-07T16:02:11.611Z', now)).toBe(true)
+  })
+
+  it('filters merchants by category icon (825)', () => {
+    const places = [
+      { id: 1, lat: 1, lon: 2, icon: 'restaurant', name: 'Cafe' },
+      { id: 2, lat: 1, lon: 2, icon: 'hotel', name: 'Inn' },
+      { id: 3, lat: 1, lon: 2, name: 'Other' },
+    ]
+    expect(btcMapPlaceCategory(places[0]).id).toBe('restaurant')
+    expect(filterPlacesByCategory(places, 'hotel')).toHaveLength(1)
+    expect(filterPlacesByCategory(places, null)).toHaveLength(3)
   })
 
   it('defaults btc map layout for tablet breakpoints (725)', () => {

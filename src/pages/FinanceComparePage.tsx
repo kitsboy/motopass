@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react
 import { Link, useSearchParams } from 'react-router-dom'
 import { addPortfolioIds, loadCompareIds, saveCompareIds } from '../lib/portfolioStorage'
 import { usePortfolio } from '../hooks/usePortfolio'
-import { Search, X } from 'lucide-react'
+import { Search, X, Download } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { useDebouncedValue } from '../hooks/useDebouncedValue'
 import { CardSkeleton } from '../components/LoadingSkeleton'
@@ -18,6 +18,8 @@ import type { Program } from '../types/program'
 import { CompareMoneyCell } from '../components/CompareMoneyCell'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { compareDiffClass, compareDiffKind } from '../lib/compareDiff'
+import { compareDiffMarkdown } from '../lib/compareMarkdown'
+import { useToast } from '../components/ui/Toast'
 
 function bestIndex(nums: (number | null)[], mode: 'min' | 'max'): Set<number> {
   const valid = nums.filter((n): n is number => n !== null)
@@ -44,6 +46,7 @@ function rowValuesDiffer(row: CompareRow, programs: Program[]): boolean {
 
 export function FinanceComparePage() {
   const { t } = useI18n()
+  const { toast } = useToast()
   const [searchParams, setSearchParams] = useSearchParams()
   const { programs, loading, error } = usePrograms()
   const { portfolio, setPortfolio } = usePortfolio()
@@ -206,6 +209,25 @@ export function FinanceComparePage() {
   const applySuggestedPair = () => {
     if (!suggestedPair) return
     setIdsSynced([suggestedPair[0].id, suggestedPair[1].id])
+  }
+
+  const handleExportMarkdown = async () => {
+    const mdRows = rows.map(r => ({
+      label: r.label,
+      valueKey: r.valueKey,
+      render: (p: Program) => {
+        const rendered = r.render(p)
+        return typeof rendered === 'string' || typeof rendered === 'number' ? String(rendered) : r.valueKey(p)
+      },
+    }))
+    const md = compareDiffMarkdown(compare, mdRows, rowValuesDiffer)
+    if (!md) return
+    try {
+      await navigator.clipboard.writeText(md)
+      toast(t('compare.exportMarkdownCopied'), 'success')
+    } catch {
+      toast(t('compare.exportMarkdownCopied'), 'error')
+    }
   }
 
   return (
@@ -374,10 +396,22 @@ export function FinanceComparePage() {
               </div>
               {compare.length >= 2 && compare.length <= 3 && (
                 <section id="compare-diff" className="mt-6 rounded-card border border-mp-border bg-mp-card-muted/50 p-4 scroll-mt-header" aria-labelledby="compare-diff-heading">
-                  <h2 id="compare-diff-heading" className="font-display text-sm font-semibold text-ink">
-                    {t('compare.diffTitle')}
-                  </h2>
-                  <p className="mt-1 text-xs text-ink-muted">{t('compare.diffSubtitle')}</p>
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <h2 id="compare-diff-heading" className="font-display text-sm font-semibold text-ink">
+                        {t('compare.diffTitle')}
+                      </h2>
+                      <p className="mt-1 text-xs text-ink-muted">{t('compare.diffSubtitle')}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleExportMarkdown}
+                      className="chip text-xs inline-flex items-center gap-1 text-accent hover:border-mp-btc/40"
+                    >
+                      <Download size={12} aria-hidden="true" />
+                      {t('compare.exportMarkdown')}
+                    </button>
+                  </div>
                   {diffRows.length === 0 ? (
                     <p className="mt-3 text-xs text-ink-muted">{t('compare.diffEmpty')}</p>
                   ) : (

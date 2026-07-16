@@ -28,8 +28,20 @@ function isFilters(v: unknown): v is DistressedFilters {
     f.minScore >= 1 &&
     f.minScore <= 5 &&
     typeof f.maxBtcUsd === 'number' &&
-    f.maxBtcUsd >= 0
+    f.maxBtcUsd >= 0 &&
+    (f.proofGatedOnly === undefined || typeof f.proofGatedOnly === 'boolean') &&
+    (f.bookmarksOnly === undefined || typeof f.bookmarksOnly === 'boolean')
   )
+}
+
+export function normalizeDistressedFilters(filters: Partial<DistressedFilters> | DistressedFilters): DistressedFilters {
+  return {
+    region: filters.region ?? 'all',
+    minScore: filters.minScore ?? 1,
+    maxBtcUsd: filters.maxBtcUsd ?? 0,
+    proofGatedOnly: filters.proofGatedOnly ?? false,
+    bookmarksOnly: filters.bookmarksOnly ?? false,
+  }
 }
 
 export function loadDistressedState(): DistressedSavedState | null {
@@ -40,7 +52,7 @@ export function loadDistressedState(): DistressedSavedState | null {
     if (typeof parsed !== 'object' || parsed === null) return null
     const { lane, sort, filters } = parsed as Partial<DistressedSavedState>
     if (!isLane(lane) || !isSort(sort) || !isFilters(filters)) return null
-    return { lane, sort, filters }
+    return { lane, sort, filters: normalizeDistressedFilters(filters) }
   } catch {
     return null
   }
@@ -56,5 +68,7 @@ export function countDistressedActiveFilters(filters: DistressedFilters, lane: D
   if (filters.region !== 'all') n += 1
   if (filters.minScore > 1) n += 1
   if (filters.maxBtcUsd > 0) n += 1
+  if (filters.proofGatedOnly) n += 1
+  if (filters.bookmarksOnly) n += 1
   return n
 }

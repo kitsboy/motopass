@@ -1,15 +1,18 @@
 import { useState } from 'react'
-import { Copy, Check } from 'lucide-react'
+import { Copy, Check, Navigation } from 'lucide-react'
+import { googleMapsDirectionsUrl } from '../../lib/btcmap'
 import { useI18n } from '../../i18n/I18nContext'
 
 type BtcMapPinPopoverProps = {
   name: string
   address?: string
   merchantUrl: string
+  lat: number
+  lon: number
 }
 
 /** Map pin popup with copy-address action (item 726). */
-export function BtcMapPinPopover({ name, address, merchantUrl }: BtcMapPinPopoverProps) {
+export function BtcMapPinPopover({ name, address, merchantUrl, lat, lon }: BtcMapPinPopoverProps) {
   const { t } = useI18n()
   const [copied, setCopied] = useState(false)
 
@@ -41,14 +44,25 @@ export function BtcMapPinPopover({ name, address, merchantUrl }: BtcMapPinPopove
           </button>
         </div>
       )}
-      <a
-        href={merchantUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-xs text-orange-600 hover:underline mt-2 inline-block"
-      >
-        btcmap.org →
-      </a>
+      <div className="mt-2 flex flex-wrap items-center gap-3">
+        <a
+          href={merchantUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs text-orange-600 hover:underline inline-flex items-center gap-1"
+        >
+          btcmap.org →
+        </a>
+        <a
+          href={googleMapsDirectionsUrl(lat, lon, address ?? name)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs text-gray-600 hover:text-orange-600 inline-flex items-center gap-1"
+        >
+          <Navigation size={11} aria-hidden />
+          {t('btcmap.directions')}
+        </a>
+      </div>
     </div>
   )
 }

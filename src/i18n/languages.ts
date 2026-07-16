@@ -1,4 +1,4 @@
-export type LangCode = 'en' | 'es' | 'fr' | 'pt' | 'zh' | 'ar' | 'sw' | 'de' | 'hi'
+export type LangCode = 'en' | 'es' | 'fr' | 'pt' | 'zh' | 'ar' | 'sw' | 'de' | 'hi' | 'ja'
 
 export interface Language {
   code: LangCode
@@ -18,11 +18,13 @@ export const LANGUAGES: Language[] = [
   { code: 'sw', flag: '🇰🇪', name: 'Swahili', nativeName: 'Kiswahili', dir: 'ltr' },
   { code: 'de', flag: '🇩🇪', name: 'German', nativeName: 'Deutsch', dir: 'ltr' },
   { code: 'hi', flag: '🇮🇳', name: 'Hindi', nativeName: 'हिन्दी', dir: 'ltr' },
+  { code: 'ja', flag: '🇯🇵', name: 'Japanese', nativeName: '日本語', dir: 'ltr' },
 ]
 
 export const DEFAULT_LANG: LangCode = 'en'
 
 const LANG_PREFIXES: [string, LangCode][] = [
+  ['ja', 'ja'],
   ['zh', 'zh'],
   ['ar', 'ar'],
   ['sw', 'sw'],

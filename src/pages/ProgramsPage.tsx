@@ -26,7 +26,7 @@ import { ClassyModal } from '../components/ui/ClassyModal'
 import { ProgramCard } from '../components/programs/ProgramCard'
 import { ProgramsTable } from '../components/programs/ProgramsTable'
 import { ProgramModal } from '../components/programs/ProgramModal'
-import { CardSkeleton } from '../components/LoadingSkeleton'
+import { CardSkeleton, RowSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
@@ -85,6 +85,17 @@ export function ProgramsPage() {
   useEffect(() => {
     saveSessionFilterPresets(activeFilterPresetsFromFilters(filters))
   }, [filters])
+
+  useEffect(() => {
+    const programId = searchParams.get('program')
+    if (!programId || loading || !programs.length) return
+    const id = Number(programId)
+    if (!Number.isFinite(id)) return
+    const raw = programs.find(p => p.id === id)
+    if (!raw) return
+    const cinematicProgram = toCinematicPrograms([raw])[0]
+    if (cinematicProgram) setActive(cinematicProgram)
+  }, [searchParams, programs, loading])
 
   useEffect(() => {
     if (searchParams.toString()) return
@@ -434,6 +445,33 @@ export function ProgramsPage() {
                   {t('programs.lightningOnly')}
                 </label>
               </div>
+              <div>
+                <label className="text-xs font-medium text-ink-muted mb-1 block">
+                  {t('programs.sovereigntyRange')}: {filters.minSovereignty}–{filters.maxSovereignty}/10
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  <input
+                    type="range"
+                    min={0}
+                    max={10}
+                    step={1}
+                    value={filters.minSovereignty}
+                    onChange={(e) => patchFilters({ minSovereignty: Math.min(Number(e.target.value), filters.maxSovereignty) })}
+                    className="w-full accent-btc-orange h-2"
+                    aria-label={t('programs.minSovereignty')}
+                  />
+                  <input
+                    type="range"
+                    min={0}
+                    max={10}
+                    step={1}
+                    value={filters.maxSovereignty}
+                    onChange={(e) => patchFilters({ maxSovereignty: Math.max(Number(e.target.value), filters.minSovereignty) })}
+                    className="w-full accent-btc-orange h-2"
+                    aria-label={t('programs.maxSovereignty')}
+                  />
+                </div>
+              </div>
               {[
                 { labelKey: 'programs.minInvestment' as const, key: 'minInvestment' as const, max: 2000000, step: 25000 },
                 { labelKey: 'programs.maxInvestment' as const, key: 'maxInvestment' as const, max: 2000000, step: 50000 },
@@ -458,7 +496,7 @@ export function ProgramsPage() {
           )}
         </div>
 
-        {loading && <CardSkeleton />}
+        {loading && (view === 'table' ? <RowSkeleton count={6} /> : <CardSkeleton />)}
 
         {!loading && (
           <div className="grid min-w-0 gap-8 lg:grid-cols-[200px_1fr]">

@@ -108,12 +108,15 @@ export function filterListings(
   listings: DistressedListing[],
   lane: DistressedLane,
   filters: DistressedFilters,
+  bookmarkIds?: string[],
 ): DistressedListing[] {
   return listings.filter(l => {
     if (lane !== 'all' && l.lane !== lane) return false
     if (filters.region !== 'all' && l.region !== filters.region) return false
     if (l.distressed_score < filters.minScore) return false
     if (filters.maxBtcUsd > 0 && l.ask_usd > filters.maxBtcUsd) return false
+    if (filters.proofGatedOnly && l.lane !== 'permissionless') return false
+    if (filters.bookmarksOnly && bookmarkIds && !bookmarkIds.includes(l.listing_id)) return false
     return true
   })
 }

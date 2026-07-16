@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ShieldCheck, ArrowRight } from 'lucide-react'
 import { Card } from '../ui/Card'
@@ -8,17 +8,45 @@ import { computePitchStats } from '../../lib/pitchStats'
 import type { Program } from '../../types/program'
 
 const GOLD_STANDARD_NAMES = ['Uruguay', 'Bolivia'] as const
+const IDLE_CYCLE_MS = 30_000
 
 export function GoldStandardSpotlight({ programs }: { programs: Program[] }) {
   const stats = useMemo(() => computePitchStats(programs), [programs])
-  const spotlight = useMemo(() => {
-    const found = GOLD_STANDARD_NAMES.map(name => programs.find(p => p.name === name)).filter(
+  const candidates = useMemo(() => {
+    return GOLD_STANDARD_NAMES.map(name => programs.find(p => p.name === name)).filter(
       (p): p is Program => Boolean(p),
     )
-    if (found.length < 2) return found
-    const offset = (stats.deepCount + stats.lightningCount) % found.length
-    return [...found.slice(offset), ...found.slice(0, offset)]
-  }, [programs, stats.deepCount, stats.lightningCount])
+  }, [programs])
+
+  const [cycleIndex, setCycleIndex] = useState(0)
+  const [lastActivity, setLastActivity] = useState(() => Date.now())
+
+  useEffect(() => {
+    const markActive = () => setLastActivity(Date.now())
+    window.addEventListener('pointerdown', markActive)
+    window.addEventListener('keydown', markActive)
+    window.addEventListener('scroll', markActive, { passive: true })
+    return () => {
+      window.removeEventListener('pointerdown', markActive)
+      window.removeEventListener('keydown', markActive)
+      window.removeEventListener('scroll', markActive)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (candidates.length < 2) return
+    const id = window.setInterval(() => {
+      if (Date.now() - lastActivity < IDLE_CYCLE_MS) return
+      setCycleIndex(i => (i + 1) % candidates.length)
+    }, IDLE_CYCLE_MS)
+    return () => window.clearInterval(id)
+  }, [candidates.length, lastActivity])
+
+  const spotlight = useMemo(() => {
+    if (candidates.length < 2) return candidates
+    const offset = (stats.deepCount + stats.lightningCount + cycleIndex) % candidates.length
+    return [...candidates.slice(offset), ...candidates.slice(0, offset)]
+  }, [candidates, stats.deepCount, stats.lightningCount, cycleIndex])
 
   if (spotlight.length === 0) return null
 

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Download } from 'lucide-react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
 import type { SavingsRow } from '../../lib/pitchStats'
 import { useBtcPrice } from '../../context/BtcPriceContext'
@@ -7,6 +8,7 @@ import { formatT } from '../../i18n/format'
 import { formatBtc, formatUsdCompact } from '../../lib/btcPrice'
 import { BtcDualPrice } from '../BtcDualPrice'
 import { Card } from '../ui/Card'
+import { downloadSavingsGraphPng } from '../../lib/savingsGraphExport'
 
 interface SavingsGraphsProps {
   title?: string
@@ -144,6 +146,19 @@ function SavingsPriceAnnouncer() {
 }
 
 export function SavingsGraphs({ title = 'Cost & time, modeled — not promised', rows, loading }: SavingsGraphsProps) {
+  const { t } = useI18n()
+  const [exporting, setExporting] = useState(false)
+
+  const handleExportPng = async () => {
+    if (!rows.length || exporting) return
+    setExporting(true)
+    try {
+      await downloadSavingsGraphPng(rows, title)
+    } finally {
+      setExporting(false)
+    }
+  }
+
   if (loading) {
     return (
       <section id="pitch-savings" className="relative overflow-hidden surface-band py-14 sm:py-20 scroll-mt-header">
@@ -172,13 +187,29 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
       <SavingsPriceAnnouncer />
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="max-w-3xl">
-          <span className="club-eyebrow block">Cost &amp; Time, Modeled</span>
-          <h2 id="savings-graphs-heading" className="mt-3 font-display text-h2 text-ink tracking-tight">
-            {title}
-          </h2>
-          <p className="mt-4 font-body text-body text-ink-secondary leading-relaxed">
-            Figures pulled live from <code className="font-mono text-sm text-mp-btc-text">countries.json</code> — shown Bitcoin-first at spot. Every bar updates when program terms or BTC price moves.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div>
+              <span className="club-eyebrow block">Cost &amp; Time, Modeled</span>
+              <h2 id="savings-graphs-heading" className="mt-3 font-display text-h2 text-ink tracking-tight">
+                {title}
+              </h2>
+              <p className="mt-4 font-body text-body text-ink-secondary leading-relaxed">
+                Figures pulled live from <code className="font-mono text-sm text-mp-btc-text">countries.json</code> — shown Bitcoin-first at spot. Every bar updates when program terms or BTC price moves.
+              </p>
+            </div>
+            {rows.length > 0 && (
+              <button
+                type="button"
+                onClick={() => void handleExportPng()}
+                disabled={exporting}
+                className="chip shrink-0 inline-flex items-center gap-1.5 text-xs text-mp-btc-text hover:underline underline-offset-2 disabled:opacity-60"
+                aria-label={t('pitch.savings.exportPng')}
+              >
+                <Download size={13} aria-hidden />
+                {exporting ? t('pitch.savings.exporting') : t('pitch.savings.exportPng')}
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">

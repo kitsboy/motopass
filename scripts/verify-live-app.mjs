@@ -3,7 +3,7 @@
  * Verify production React app actually mounts (not poisoned CDN cache).
  * Usage: node scripts/verify-live-app.mjs [baseUrl]
  */
-import { readFileSync, mkdirSync } from 'node:fs'
+import { readFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright'
@@ -65,10 +65,35 @@ const footerBuildOk = footerText.includes(localBuildId)
 
 await page.setViewportSize({ width: 390, height: 844 })
 await footerBuild.scrollIntoViewIfNeeded().catch(() => {})
+
+const scrollMetrics = await page.evaluate(() => {
+  const footerEl = document.querySelector('footer.footer-glass')
+  const navEl = document.querySelector('.mobile-nav-glass')
+  const scrollHeight = document.documentElement.scrollHeight
+  const bodyOffsetHeight = document.body.offsetHeight
+  const voidPx = scrollHeight - bodyOffsetHeight
+  let gapBelowDocument = voidPx
+  if (footerEl && navEl) {
+    const navRect = navEl.getBoundingClientRect()
+    const navDocBottom = navRect.bottom + window.scrollY
+    gapBelowDocument = scrollHeight - navDocBottom
+  }
+  return {
+    scrollHeight,
+    bodyOffsetHeight,
+    voidPx,
+    gapBelowDocument,
+  }
+})
+
 const artifactDir = resolve(root, 'artifacts')
 mkdirSync(artifactDir, { recursive: true })
 const screenshotPath = resolve(artifactDir, 'footer-mobile-gap-live.png')
 await page.locator('footer.footer-glass').screenshot({ path: screenshotPath }).catch(() => {})
+writeFileSync(
+  resolve(artifactDir, 'scroll-metrics-live.json'),
+  `${JSON.stringify({ generatedAt: new Date().toISOString(), site: base, ...scrollMetrics }, null, 2)}\n`,
+)
 
 await browser.close()
 
@@ -84,6 +109,12 @@ if (!mainVisible) {
 }
 if (!footerBuildOk) {
   console.error(`FAIL: footer BUILD "${footerText}" does not match local ${localBuildId}`)
+  process.exit(1)
+}
+if (scrollMetrics.voidPx >= 16) {
+  console.error(
+    `FAIL: scroll void ${scrollMetrics.voidPx}px (scrollHeight ${scrollMetrics.scrollHeight} − offsetHeight ${scrollMetrics.bodyOffsetHeight})`,
+  )
   process.exit(1)
 }
 
@@ -102,4 +133,7 @@ if (bundleBuildId && bundleBuildId !== localBuildId) {
 }
 
 console.log(`OK ${base}/ — main visible, footer BUILD ${localBuildId}, ${jsUrl} (${body.length} bytes)`)
+console.log(
+  `OK scroll metrics — void ${scrollMetrics.voidPx}px, gapBelowDocument ${scrollMetrics.gapBelowDocument}px`,
+)
 console.log(`OK footer screenshot stub → ${screenshotPath}`)

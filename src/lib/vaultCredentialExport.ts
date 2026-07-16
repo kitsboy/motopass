@@ -24,8 +24,12 @@ export type VaultCredentialBundle = {
   }[]
 }
 
-export function buildVaultCredentialBundle(programs: Program[]): VaultCredentialBundle {
-  const stamped = programs.filter(p => p.satohash_proofs?.length)
+export function buildVaultCredentialBundle(programs: Program[], programIds?: number[]): VaultCredentialBundle {
+  let stamped = programs.filter(p => p.satohash_proofs?.length)
+  if (programIds?.length) {
+    const idSet = new Set(programIds)
+    stamped = stamped.filter(p => idSet.has(p.id))
+  }
 
   return {
     schema: 'motopass-credential/v1',
@@ -51,8 +55,8 @@ export function buildVaultCredentialBundle(programs: Program[]): VaultCredential
   }
 }
 
-export function downloadVaultCredentials(programs: Program[]): void {
-  const bundle = buildVaultCredentialBundle(programs)
+export function downloadVaultCredentials(programs: Program[], programIds?: number[]): void {
+  const bundle = buildVaultCredentialBundle(programs, programIds)
   const blob = new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/json' })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')

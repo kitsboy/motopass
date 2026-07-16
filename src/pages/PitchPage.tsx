@@ -32,6 +32,7 @@ import { PitchRevealSection } from '../components/pitch/PitchRevealSection'
 import { PitchTrustedStrip } from '../components/pitch/PitchTrustedStrip'
 import { PitchRoadmapTimeline } from '../components/pitch/PitchRoadmapTimeline'
 import { PitchFaqAccordion } from '../components/pitch/PitchFaqAccordion'
+import { PitchHeroSubline } from '../components/pitch/PitchHeroSubline'
 import { Card } from '../components/ui/Card'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { usePrograms } from '../hooks/usePrograms'
@@ -99,10 +100,10 @@ const GUIDE_STEPS = [
   { n: '04', titleKey: 'pitch.guide.step4.title' as const, bodyKey: 'pitch.guide.step4.body' as const, icon: Users, to: '/apply' },
 ] as const
 
-const ROADMAP_LINKS: { key: TranslationKey; to: string }[] = [
+const ROADMAP_LINKS: { key: TranslationKey; to: string; external?: boolean }[] = [
   { key: 'pitch.roadmap.btcmap', to: '/btcmap' },
   { key: 'pitch.roadmap.lightning', to: '/programs?lightning=1' },
-  { key: 'pitch.roadmap.relay', to: '/verify' },
+  { key: 'pitch.roadmap.relay', to: 'https://relay.motopass.giveabit.io', external: true },
   { key: 'pitch.roadmap.uruguay', to: '/programs?q=Uruguay' },
   { key: 'pitch.roadmap.agents', to: '/agents' },
 ]
@@ -153,9 +154,7 @@ export function PitchPage() {
               MEMBERS · {t('tagline')}
             </span>
             <h1 className="hero-headline mt-4 font-display text-hero">{t('pitch.hero')}</h1>
-            <p className="mt-6 max-w-lg font-body text-lg2 text-mp-on-hero-secondary drop-shadow-[0_1px_12px_rgba(0,0,0,0.55)] leading-relaxed">
-              {t('pitch.sub')}
-            </p>
+            <PitchHeroSubline />
 
             {stats && (
               <div className="mt-6 flex flex-wrap gap-2">
@@ -241,7 +240,11 @@ export function PitchPage() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {PILLAR_KEYS.map(({ icon: Icon, titleKey, subKey, to, accent }, i) => (
-            <Link key={titleKey} to={to} className="group">
+            <Link
+              key={titleKey}
+              to={to}
+              className="group rounded-card focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-mp-btc"
+            >
               <Card variant="interactive" animate delay={0.04 + i * 0.04} className="h-full !p-5">
                 <div
                   className={`w-11 h-11 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-105 ${

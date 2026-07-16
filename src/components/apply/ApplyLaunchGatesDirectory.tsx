@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { ChevronDown, Loader2, Printer, Search, ShieldCheck } from 'lucide-react'
+import { ChevronDown, Copy, Check, Loader2, Printer, Search, ShieldCheck } from 'lucide-react'
+import { useToast } from '../ui/Toast'
 import { useDebouncedValue } from '../../hooks/useDebouncedValue'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
@@ -24,9 +25,11 @@ export function ApplyLaunchGatesDirectory({
   applicationsOpen: boolean
 }) {
   const { t } = useI18n()
+  const { toast } = useToast()
   const [query, setQuery] = useState('')
   const [gateFilter, setGateFilter] = useState<GateFilter>('all')
   const [expanded, setExpanded] = useState<Set<string>>(new Set())
+  const [jsonCopied, setJsonCopied] = useState(false)
   const debounced = useDebouncedValue(query.trim().toLowerCase(), 120)
 
   const passed = report.gates.filter(g => g.pass).length
@@ -55,6 +58,13 @@ export function ApplyLaunchGatesDirectory({
       else next.add(id)
       return next
     })
+  }
+
+  const copyGateStatusJson = async () => {
+    await navigator.clipboard.writeText(JSON.stringify(report, null, 2))
+    setJsonCopied(true)
+    toast(t('apply.gatesJsonCopied'), 'success')
+    window.setTimeout(() => setJsonCopied(false), 2000)
   }
 
   const printSummary = () => {
@@ -112,6 +122,15 @@ export function ApplyLaunchGatesDirectory({
               </button>
             ))}
           </div>
+          <button
+            type="button"
+            onClick={() => void copyGateStatusJson()}
+            className="btn-secondary text-xs inline-flex items-center gap-1.5 shrink-0 !py-1.5 !px-2.5"
+            aria-label={t('apply.gatesCopyJson')}
+          >
+            {jsonCopied ? <Check size={13} className="text-status-green" /> : <Copy size={13} />}
+            {t('apply.gatesCopyJson')}
+          </button>
           <button
             type="button"
             onClick={printSummary}

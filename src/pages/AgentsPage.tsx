@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Zap, MessageCircle, Radio, Bot, Handshake, ArrowRight, Clock } from 'lucide-react'
-import { MOTOPASS_RELAYS } from '../lib/nostr'
+import { getPrimaryNostrRelay } from '../lib/nostr'
+import { buildAgentDmCopyText } from '../lib/nostrDmStub'
+import { SeoHead } from '../components/SeoHead'
+import { kimiPersonJsonLd } from '../lib/siteJsonLd'
 import { NostrConnect } from '../components/NostrConnect'
 import { BtcMapReportVenue } from '../components/btcmap/BtcMapReportVenue'
 import { AgentCardKimi } from '../components/AgentCardKimi'
@@ -23,8 +26,10 @@ import type { TranslationKey } from '../i18n/translations'
 
 type AgentStatus = 'active' | 'beta' | 'coming'
 type StatusFilter = 'all' | AgentStatus
+type RegionFilter = 'all' | 'South America' | 'Central America' | 'Middle East' | 'Asia' | 'Europe'
 
 const VALID_STATUS: StatusFilter[] = ['all', 'active', 'beta', 'coming']
+const VALID_REGIONS: RegionFilter[] = ['all', 'South America', 'Central America', 'Middle East', 'Asia', 'Europe']
 
 const AGENT_TIMEZONES: Record<string, string> = {
   uy: 'UYT (UTC−3)',
@@ -38,17 +43,18 @@ const AGENT_TIMEZONES: Record<string, string> = {
 const AGENTS: {
   id: string
   country: string
+  region: Exclude<RegionFilter, 'all'>
   regionKey: TranslationKey
   focusKey: TranslationKey
   npub: string
   status: AgentStatus
 }[] = [
-  { id: 'uy', country: 'Uruguay', regionKey: 'agents.uy.region', focusKey: 'agents.uy.focus', npub: 'npub1motopass…uy', status: 'active' },
-  { id: 'sv', country: 'El Salvador', regionKey: 'agents.sv.region', focusKey: 'agents.sv.focus', npub: 'npub1motopass…sv', status: 'active' },
-  { id: 'ae', country: 'UAE', regionKey: 'agents.ae.region', focusKey: 'agents.ae.focus', npub: 'npub1motopass…ae', status: 'beta' },
-  { id: 'sg', country: 'Singapore', regionKey: 'agents.sg.region', focusKey: 'agents.sg.focus', npub: 'npub1motopass…sg', status: 'beta' },
-  { id: 'pt', country: 'Portugal', regionKey: 'agents.pt.region', focusKey: 'agents.pt.focus', npub: 'npub1motopass…pt', status: 'coming' },
-  { id: 'ge', country: 'Georgia', regionKey: 'agents.ge.region', focusKey: 'agents.ge.focus', npub: 'npub1motopass…ge', status: 'coming' },
+  { id: 'uy', country: 'Uruguay', region: 'South America', regionKey: 'agents.uy.region', focusKey: 'agents.uy.focus', npub: 'npub1motopass…uy', status: 'active' },
+  { id: 'sv', country: 'El Salvador', region: 'Central America', regionKey: 'agents.sv.region', focusKey: 'agents.sv.focus', npub: 'npub1motopass…sv', status: 'active' },
+  { id: 'ae', country: 'UAE', region: 'Middle East', regionKey: 'agents.ae.region', focusKey: 'agents.ae.focus', npub: 'npub1motopass…ae', status: 'beta' },
+  { id: 'sg', country: 'Singapore', region: 'Asia', regionKey: 'agents.sg.region', focusKey: 'agents.sg.focus', npub: 'npub1motopass…sg', status: 'beta' },
+  { id: 'pt', country: 'Portugal', region: 'Europe', regionKey: 'agents.pt.region', focusKey: 'agents.pt.focus', npub: 'npub1motopass…pt', status: 'coming' },
+  { id: 'ge', country: 'Georgia', region: 'Europe', regionKey: 'agents.ge.region', focusKey: 'agents.ge.focus', npub: 'npub1motopass…ge', status: 'coming' },
 ]
 
 const STATUS_KEYS: Record<AgentStatus, TranslationKey> = {
@@ -57,11 +63,20 @@ const STATUS_KEYS: Record<AgentStatus, TranslationKey> = {
   coming: 'agents.statusComing',
 }
 
-const FILTER_CHIPS: { id: StatusFilter; key: TranslationKey }[] = [
+const STATUS_FILTER_CHIPS: { id: StatusFilter; key: TranslationKey }[] = [
   { id: 'all', key: 'agents.filterAll' },
   { id: 'active', key: 'agents.filterActive' },
   { id: 'beta', key: 'agents.filterBeta' },
   { id: 'coming', key: 'agents.filterComing' },
+]
+
+const REGION_FILTER_CHIPS: { id: RegionFilter; key: TranslationKey }[] = [
+  { id: 'all', key: 'agents.filterRegionAll' },
+  { id: 'South America', key: 'agents.filterRegionSouthAmerica' },
+  { id: 'Central America', key: 'agents.filterRegionCentralAmerica' },
+  { id: 'Middle East', key: 'agents.filterRegionMiddleEast' },
+  { id: 'Asia', key: 'agents.filterRegionAsia' },
+  { id: 'Europe', key: 'agents.filterRegionEurope' },
 ]
 
 const statusClass = (s: AgentStatus) =>
@@ -69,17 +84,13 @@ const statusClass = (s: AgentStatus) =>
   s === 'beta' ? 'chip border-status-amber/40 bg-btc-orange-soft text-status-amber' :
   'chip'
 
-function buildDmStub(country: string, npub: string) {
-  return JSON.stringify({
-    kind: 14,
-    tags: [['p', npub]],
-    content: `MotoPass agent inquiry — ${country}`,
-    relays: MOTOPASS_RELAYS,
-  }, null, 2)
-}
-
 function parseStatusFilter(raw: string | null): StatusFilter {
   if (raw && VALID_STATUS.includes(raw as StatusFilter)) return raw as StatusFilter
+  return 'all'
+}
+
+function parseRegionFilter(raw: string | null): RegionFilter {
+  if (raw && VALID_REGIONS.includes(raw as RegionFilter)) return raw as RegionFilter
   return 'all'
 }
 
@@ -89,9 +100,15 @@ export function AgentsPage() {
   const { report } = useLaunchGates()
   const [searchParams, setSearchParams] = useSearchParams()
   const statusFilter = parseStatusFilter(searchParams.get('status'))
+  const regionFilter = parseRegionFilter(searchParams.get('region'))
+  const primaryRelay = getPrimaryNostrRelay()
   const [nostrBusy, setNostrBusy] = useState(true)
 
   const distressedGateOpen = report.gates.find((g) => g.id === 'G2')?.pass === true
+  const applicationId = searchParams.get('application')
+  const applicationProgram = searchParams.get('program')
+  const applicationHash = searchParams.get('hash')
+  const hasApplicationContext = Boolean(applicationId && applicationProgram)
 
   useEffect(() => {
     const timer = window.setTimeout(() => setNostrBusy(false), 480)
@@ -105,15 +122,40 @@ export function AgentsPage() {
     setSearchParams(params, { replace: true })
   }
 
+  const setRegionFilter = (next: RegionFilter) => {
+    const params = new URLSearchParams(searchParams)
+    if (next === 'all') params.delete('region')
+    else params.set('region', next)
+    setSearchParams(params, { replace: true })
+  }
+
   const statusCounts = useMemo(() => {
     const counts: Record<StatusFilter, number> = { all: AGENTS.length, active: 0, beta: 0, coming: 0 }
     for (const a of AGENTS) counts[a.status] += 1
     return counts
   }, [])
 
+  const regionCounts = useMemo(() => {
+    const counts: Record<RegionFilter, number> = {
+      all: AGENTS.length,
+      'South America': 0,
+      'Central America': 0,
+      'Middle East': 0,
+      Asia: 0,
+      Europe: 0,
+    }
+    for (const a of AGENTS) counts[a.region] += 1
+    return counts
+  }, [])
+
   const filteredAgents = useMemo(
-    () => (statusFilter === 'all' ? AGENTS : AGENTS.filter((a) => a.status === statusFilter)),
-    [statusFilter],
+    () =>
+      AGENTS.filter((a) => {
+        const statusOk = statusFilter === 'all' || a.status === statusFilter
+        const regionOk = regionFilter === 'all' || a.region === regionFilter
+        return statusOk && regionOk
+      }),
+    [statusFilter, regionFilter],
   )
 
   const agentAnchors = useMemo(
@@ -139,7 +181,7 @@ export function AgentsPage() {
   )
 
   const copyDm = async (agent: (typeof AGENTS)[number]) => {
-    const stub = buildDmStub(agent.country, agent.npub)
+    const stub = buildAgentDmCopyText(agent.id, agent.npub, agent.country)
     try {
       await navigator.clipboard.writeText(stub)
       toast(t('agents.copyDm'), 'success')
@@ -150,7 +192,28 @@ export function AgentsPage() {
 
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-7xl mx-auto">
+      <SeoHead jsonLd={kimiPersonJsonLd()} jsonLdOnly />
       <PageHeader eyebrow={t('agents.eyebrow')} title={t('agents.title')} subtitle={t('agents.sub')} />
+
+      {hasApplicationContext && (
+        <Card variant="banner" animate className="mb-6 flex items-start gap-3">
+          <Handshake size={18} className="text-nostr-violet shrink-0 mt-0.5" aria-hidden />
+          <div className="min-w-0 flex-1">
+            <p className="font-display text-sm font-semibold text-ink">{t('agents.applicationContextTitle')}</p>
+            <p className="text-xs text-ink-muted mt-1 leading-relaxed">
+              {formatT(t, 'agents.applicationContextBody', { program: applicationProgram ?? '', id: applicationId ?? '' })}
+            </p>
+            {applicationHash && (
+              <code className="block text-[10px] font-mono text-ink-secondary break-all mt-2 opacity-80">
+                {applicationHash}
+              </code>
+            )}
+            <Link to="/apply" className="inline-flex text-xs text-mp-btc-text hover:underline mt-2">
+              {t('agents.applicationContextBack')} →
+            </Link>
+          </div>
+        </Card>
+      )}
 
       <PageAnchorNav items={agentAnchors} />
 
@@ -207,15 +270,15 @@ export function AgentsPage() {
 
       <AgentRegionMap />
 
-      <div className="mb-10 max-w-xl">
+      <div id="kimi" className="mb-10 max-w-xl scroll-mt-header">
         <AgentCardKimi />
       </div>
 
       <h2 id="agents-grid" className="font-display font-semibold text-lg text-ink mb-4 scroll-mt-header">
         {t('agents.gridTitle')}
       </h2>
-      <div className="mb-4 flex flex-wrap gap-2">
-        {FILTER_CHIPS.map((chip) => (
+      <div className="mb-3 flex flex-wrap gap-2">
+        {STATUS_FILTER_CHIPS.map((chip) => (
           <button
             key={chip.id}
             type="button"
@@ -228,9 +291,30 @@ export function AgentsPage() {
           </button>
         ))}
       </div>
+      <div className="mb-4 flex flex-wrap gap-2">
+        <span className="sr-only">{t('agents.filterRegion')}</span>
+        {REGION_FILTER_CHIPS.map((chip) => (
+          <button
+            key={chip.id}
+            type="button"
+            aria-pressed={regionFilter === chip.id}
+            onClick={() => setRegionFilter(chip.id)}
+            className={regionFilter === chip.id ? 'chip-active text-xs' : 'chip text-xs'}
+          >
+            {t(chip.key)}
+            <span className="ml-1.5 font-mono text-[10px] opacity-70">{regionCounts[chip.id]}</span>
+          </button>
+        ))}
+      </div>
       <div className="mb-8 flex flex-wrap items-center gap-3">
         <NostrConnect onLoadingChange={setNostrBusy} />
         <span className="text-xs text-ink-muted">{t('agents.connectHint')}</span>
+        <span
+          className="text-[10px] font-mono text-ink-muted bg-card-muted/50 border border-mp/50 rounded-chip px-2 py-1"
+          title={t('agents.relayHint')}
+        >
+          {t('agents.relayLabel')}: {primaryRelay}
+        </span>
       </div>
 
       {nostrBusy ? (

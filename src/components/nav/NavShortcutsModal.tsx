@@ -9,12 +9,20 @@ type Props = {
 
 type ShortcutRow = {
   keys: string
-  labelKey: 'nav.shortcuts.language' | 'nav.shortcuts.help' | 'nav.shortcuts.close' | 'nav.shortcuts.programs'
+  labelKey:
+    | 'nav.shortcuts.language'
+    | 'nav.shortcuts.help'
+    | 'nav.shortcuts.close'
+    | 'nav.shortcuts.programs'
+    | 'nav.shortcuts.vault'
+    | 'nav.shortcuts.agents'
 }
 
 const ROWS: ShortcutRow[] = [
   { keys: '⌘L / Ctrl+L', labelKey: 'nav.shortcuts.language' },
   { keys: 'g p', labelKey: 'nav.shortcuts.programs' },
+  { keys: 'g v', labelKey: 'nav.shortcuts.vault' },
+  { keys: 'g a', labelKey: 'nav.shortcuts.agents' },
   { keys: '?', labelKey: 'nav.shortcuts.help' },
   { keys: 'Esc', labelKey: 'nav.shortcuts.close' },
 ]

@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { ExternalLink, Shield, Copy, Check, ClipboardPaste, History, RotateCcw, QrCode } from 'lucide-react'
+import { ExternalLink, Shield, Copy, Check, ClipboardPaste, History, RotateCcw, QrCode, Download, FileUp } from 'lucide-react'
 import { hashApplicationPayload, satohashStampGuideUrl, satohashVerifyUrl } from '../lib/satohash'
 import { buildPageVerifyPayload } from '../lib/pageVerify'
 import { parseHashLines, verifyHashPaste } from '../lib/seal/vaultVerify'
+import { verifyOtsPasteContent } from '../lib/verifyOtsPaste'
 import { loadHashHistory, pushHashHistory } from '../lib/verifyHashHistory'
 import { BlockHeight } from '../components/BlockHeight'
 import { VerifyResultsExplainer } from '../components/verify/VerifyResultsExplainer'
@@ -33,6 +34,9 @@ export function VerifyPage() {
   const [batchBusy, setBatchBusy] = useState(false)
   const [batchProgress, setBatchProgress] = useState(0)
   const [batchCopied, setBatchCopied] = useState(false)
+  const [otsPaste, setOtsPaste] = useState('')
+  const [otsHash, setOtsHash] = useState('')
+  const [otsResult, setOtsResult] = useState<VerifyResult | null>(null)
 
   const generate = async () => {
     const next = await hashApplicationPayload({ text: input, ts: new Date().toISOString() })
@@ -82,6 +86,39 @@ export function VerifyPage() {
       setBatchBusy(false)
       setBatchProgress(100)
     }
+  }
+
+  async function runOtsPasteVerify() {
+    const hash = otsHash.trim() || parseHashLines(otsPaste)[0] || ''
+    setOtsResult(verifyOtsPasteContent(otsPaste, hash))
+  }
+
+  async function handleOtsFile(file: File) {
+    const text = await file.text()
+    setOtsPaste(text)
+    if (!otsHash.trim()) {
+      const hashes = parseHashLines(text)
+      if (hashes[0]) setOtsHash(hashes[0])
+    }
+    setOtsResult(verifyOtsPasteContent(text, otsHash.trim() || parseHashLines(text)[0] || ''))
+  }
+
+  const downloadBatchResultsJson = () => {
+    if (!batchResults.length) return
+    const payload = {
+      schema: 'motopass-verify-batch/v1',
+      exported_at: new Date().toISOString(),
+      count: batchResults.length,
+      results: batchResults,
+    }
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `motopass-verify-batch-${Date.now()}.json`
+    a.click()
+    URL.revokeObjectURL(url)
+    toast(t('verify.batchDownloaded'), 'success')
   }
 
   const copyAllBatchHashes = async () => {
@@ -178,6 +215,68 @@ export function VerifyPage() {
         </div>
       )}
 
+      <div className="card-elevated mt-6 space-y-4 border-l-4 border-l-nostr-violet/60">
+        <h2 className="font-chrome text-sm font-semibold text-ink">{t('verify.otsPasteTitle')}</h2>
+        <p className="text-xs text-ink-muted leading-relaxed">{t('verify.otsPasteHint')}</p>
+        <label htmlFor="verify-ots-hash" className="block text-xs font-medium text-ink-secondary">
+          {t('verify.otsHashOptional')}
+        </label>
+        <input
+          id="verify-ots-hash"
+          type="text"
+          value={otsHash}
+          onChange={e => setOtsHash(e.target.value)}
+          placeholder="SHA-256 content hash (optional)"
+          className="input-field font-mono text-xs"
+          spellCheck={false}
+        />
+        <textarea
+          id="verify-ots-paste"
+          value={otsPaste}
+          onChange={e => setOtsPaste(e.target.value)}
+          rows={4}
+          placeholder={t('verify.otsPastePlaceholder')}
+          className="input-field font-mono text-xs"
+          spellCheck={false}
+        />
+        <div className="flex flex-col sm:flex-row gap-2">
+          <label className="btn-secondary w-full sm:w-auto inline-flex items-center justify-center gap-2 cursor-pointer">
+            <FileUp size={14} aria-hidden />
+            {t('verify.otsUpload')}
+            <input
+              type="file"
+              accept=".ots,.txt,application/octet-stream,text/plain"
+              className="sr-only"
+              onChange={e => {
+                const file = e.target.files?.[0]
+                if (file) void handleOtsFile(file)
+                e.target.value = ''
+              }}
+            />
+          </label>
+          <button
+            type="button"
+            onClick={() => runOtsPasteVerify()}
+            disabled={!otsPaste.trim()}
+            className="btn-primary w-full sm:w-auto"
+          >
+            {t('verify.otsParse')}
+          </button>
+        </div>
+        {otsResult && (
+          <div
+            role="status"
+            className={`rounded-mp-md border px-4 py-3 text-xs font-mono ${
+              otsResult.verified
+                ? 'border-mp-proof/40 bg-mp-proof/10 text-mp-proof'
+                : 'border-status-amber/40 bg-status-amber/10 text-status-amber'
+            }`}
+          >
+            {otsResult.message}
+          </div>
+        )}
+      </div>
+
       <div className="card-elevated mt-6 space-y-4 border-l-4 border-l-mp-proof">
         <label htmlFor="verify-batch" className="block text-sm font-medium text-ink-secondary">
           {t('verify.batchHashes')}
@@ -214,17 +313,28 @@ export function VerifyPage() {
           </div>
         )}
         {batchResults.length > 0 && (
-          <div className="flex items-center justify-between gap-2 pt-2 border-t border-mp">
+          <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-mp">
             <p className="text-xs font-chrome text-ink-muted">{formatT(t, 'verify.batchResultCount', { count: batchResults.length })}</p>
-            <button
-              type="button"
-              onClick={() => void copyAllBatchHashes()}
-              className="btn-secondary text-xs !py-1 !px-2.5 inline-flex items-center gap-1"
-              aria-label={t('verify.copyAllHashes')}
-            >
-              {batchCopied ? <Check size={12} className="text-status-green" /> : <Copy size={12} />}
-              {t('verify.copyAllHashes')}
-            </button>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={downloadBatchResultsJson}
+                className="btn-secondary text-xs !py-1 !px-2.5 inline-flex items-center gap-1"
+                aria-label={t('verify.batchDownloadJson')}
+              >
+                <Download size={12} aria-hidden />
+                {t('verify.batchDownloadJson')}
+              </button>
+              <button
+                type="button"
+                onClick={() => void copyAllBatchHashes()}
+                className="btn-secondary text-xs !py-1 !px-2.5 inline-flex items-center gap-1"
+                aria-label={t('verify.copyAllHashes')}
+              >
+                {batchCopied ? <Check size={12} className="text-status-green" /> : <Copy size={12} />}
+                {t('verify.copyAllHashes')}
+              </button>
+            </div>
           </div>
         )}
         {batchResults.length > 0 && (

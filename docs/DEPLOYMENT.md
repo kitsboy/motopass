@@ -75,17 +75,25 @@ node scripts/deploy-summary.mjs --out artifacts/deploy-summary.json
 
 ## Footer & mobile layout contract
 
-Post–BUILD 54 (`min-h-dvh` + footer gap v2). Do not regress without updating e2e `footer-gap.spec.ts`.
+Post–BUILD 59 (`min-h-svh` + `overflow: clip` on sovereign canvas). Do not regress without updating e2e `footer-gap.spec.ts`.
 
 | Layer | Rule |
 |-------|------|
-| **Shell** | `Layout` root: `min-h-dvh flex flex-col` — document fills viewport, no phantom void below footer |
-| **Main** | `max-lg:pb-[calc(3.25rem+env(safe-area-inset-bottom))]` — scroll clearance only; **no** shell-level bottom padding |
-| **Footer** | `footer-glass mt-auto`; meta row `max-lg:pb-[3.25rem]` so glass extends behind fixed tab bar |
-| **Mobile nav** | `MobileBottomNav` fixed `bottom-0` with `safe-bottom`; overlays footer, does not reserve document space |
-| **Viewport** | `viewport-fit=cover` in `index.html` for iOS safe-area; single safe-area application on main/footer |
+| **Shell** | `.sovereign-canvas`: `min-h-svh flex flex-col overflow: clip` — short pages fill viewport; fixed parallax layers cannot extend `scrollHeight` past footer |
+| **Main** | `flex-1` — grows on short pages; **no** shell-level bottom padding |
+| **Footer** | `footer-glass mt-auto shrink-0` — sits at document end; mobile tab bar overlays footer glass |
+| **Mobile nav** | `MobileBottomNav` `sticky bottom-0` with `safe-bottom`; overlays footer, does not reserve document space |
+| **Viewport** | `viewport-fit=cover` in `index.html` for iOS safe-area; safe-area on nav sheets + Apply sticky submit only |
 
-**Verify locally:** `npm run test:e2e` (includes footer gap screenshot stub). **Post-deploy:** `verify-live-app.mjs` captures `artifacts/footer-mobile-gap-live.png` and asserts footer `BUILD` matches local.
+### BUILD 58 — parallax overflow root cause (fixed in 58–59)
+
+Before BUILD 58, `.sovereign-canvas::before` and `::after` used `position: fixed` with `inset: -4%` / `-2%` and 3D parallax transforms. Those layers lived **outside** the normal footer flow and inflated `document.documentElement.scrollHeight` by ~16–80px on mobile — a scrollable void below the tab bar even when footer + nav were visually flush.
+
+**Fix (BUILD 58):** `overflow: clip` on `.sovereign-canvas` clips fixed descendants from contributing to scrollable overflow past the footer.
+
+**Regression lock (BUILD 59):** e2e `footer-gap.spec.ts` asserts `scrollHeight === body.offsetHeight` on desktop and `gapBelowDocument < 1px` on `/` + `/verify` mobile; `verify-live-app.mjs` fails when `scrollHeight − offsetHeight ≥ 16`.
+
+**Verify locally:** `npm run test:e2e` (includes `footer-gap.spec.ts`). **Post-deploy:** `verify-live-app.mjs` captures `artifacts/footer-mobile-gap-live.png`, writes `artifacts/scroll-metrics-live.json`, and asserts footer `BUILD` + scroll void < 16px.
 
 ## Boot guard (client recovery)
 

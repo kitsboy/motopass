@@ -1,4 +1,5 @@
 import type { Program } from '../types/program'
+import { validateProgramImportEntry } from './schema'
 
 export const PORTFOLIO_KEY = 'motopass-portfolio'
 const FILTERS_KEY = 'motopass-program-filters'
@@ -87,12 +88,13 @@ export const PROGRAMS_VIEW_KEY = 'motopass-programs-view'
 export const PROGRAMS_TABLE_DENSITY_KEY = 'motopass-programs-table-density'
 
 export type ProgramsTableDensity = 'compact' | 'comfortable'
-export type ImportErrorCode = 'INVALID_JSON' | 'EMPTY_FILE' | 'NO_VALID_ENTRIES'
+export type ImportErrorCode = 'INVALID_JSON' | 'EMPTY_FILE' | 'NO_VALID_ENTRIES' | 'SCHEMA_INVALID'
 
 export const IMPORT_ERROR_CODES: Record<ImportErrorCode, string> = {
   INVALID_JSON: 'Invalid JSON file',
   EMPTY_FILE: 'No programs found in file',
   NO_VALID_ENTRIES: 'No valid program entries (need id + name)',
+  SCHEMA_INVALID: 'Program entries failed schema validation',
 }
 
 export function loadCompareIds(): number[] {
@@ -160,5 +162,20 @@ export function importProgramsJson(raw: string): { programs: Program[]; error?: 
   if (valid.length === 0) {
     return { programs: [], error: IMPORT_ERROR_CODES.NO_VALID_ENTRIES, errorCode: 'NO_VALID_ENTRIES' }
   }
-  return { programs: valid }
+  const schemaChecked = valid.filter(p => validateProgramImportEntry(p).valid)
+  if (schemaChecked.length === 0) {
+    return { programs: [], error: IMPORT_ERROR_CODES.SCHEMA_INVALID, errorCode: 'SCHEMA_INVALID' }
+  }
+  return { programs: schemaChecked }
+}
+
+/** Reorder portfolio by explicit id list (persists to localStorage). */
+export function reorderPortfolio(ids: number[]): number[] {
+  const current = loadPortfolio()
+  const next = ids.filter(id => current.includes(id))
+  for (const id of current) {
+    if (!next.includes(id)) next.push(id)
+  }
+  savePortfolio(next)
+  return next
 }

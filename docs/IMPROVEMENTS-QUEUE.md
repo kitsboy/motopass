@@ -1,6 +1,6 @@
 # MotoPass Improvements Queue (200 items)
 
-**Status:** Batches 1–25 complete (780/780) · **BUILD:** `2026.07.15-56`
+**Status:** Batches 1–26 complete (880/880) · **BUILD:** `2026.07.15-60`
 
 Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]` when shipped.
 
@@ -689,6 +689,132 @@ Living checklist of the 200-item polish pass (25 items × 8 batches). Mark `[x]`
 - [x] 778. Footer glass — extend gradient into safe-area (no canvas bleed)
 - [x] 779. Cinematic header — pause animation when `document.hidden`
 - [x] 780. Bump BUILD to `2026.07.15-56` when batch complete
+
+## Batch 26 — Sovereign forge v4 (781–880)
+
+### Layout & regression (781–790)
+
+- [x] 781. Lock footer gap fix — `overflow: clip` on `.sovereign-canvas` documented in DEPLOYMENT.md
+- [x] 782. Footer-gap e2e — assert `scrollHeight === body.offsetHeight` on desktop Chrome
+- [x] 783. Footer-gap e2e — assert 0px viewport void below footer on home + verify
+- [x] 784. Remove dead `layout-main` flex rules from index.css
+- [x] 785. Short-page footer — optional `min-h-svh` wrapper without scroll void
+- [x] 786. `prefers-reduced-motion` — disable parallax animations on canvas layers
+- [x] 787. Print stylesheet — hide mobile tab bar + back-to-top
+- [x] 788. Safe-area audit on Apply sticky submit + Distressed mobile filters
+- [x] 789. Landscape phone — BTC Map split view forced
+- [x] 790. Bump BUILD to `2026.07.15-59`
+
+### Deploy & CI (791–800)
+
+- [x] 791. `verify-live-app.mjs` — assert no scroll void (scrollHeight − offsetHeight < 16)
+- [x] 792. CI `footer-gap.spec.ts` in e2e-smoke.sh
+- [x] 793. `check-build-salt.mjs` — run on every deploy script
+- [x] 794. GitHub Actions — cache Playwright browsers between runs
+- [x] 795. `deploy-summary.mjs` — include scroll metrics
+- [x] 796. Document BUILD 58 parallax overflow root cause in DEPLOYMENT.md
+- [x] 797. `health-check.sh` — assert footer BUILD on live HTML
+- [x] 798. Preconnect `mempool.space` for BTC price ticker
+- [x] 799. `index.html` — dns-prefetch satohash.io + btcmap.org
+- [x] 800. CI artifact — upload e2e footer-gap screenshot on fail
+
+### Nav & UX (801–810)
+
+- [x] 801. Header BTC ticker — click copies spot price
+- [x] 802. Nav active state — underline slide animation (reduced-motion safe)
+- [x] 803. Breadcrumb truncate middle segments on mobile
+- [x] 804. More sheet — focus trap on open
+- [x] 805. Language dropdown — remember last 3 used langs
+- [x] 806. `g v` shortcut → Vault
+- [x] 807. `g a` shortcut → Agents
+- [x] 808. Collapsed header — hide BUILD on xs, show in More sheet only
+- [x] 809. Desktop nav — tooltip on Compare overflow link
+- [x] 810. Page transition — respect reduced-motion (instant swap)
+
+### Programs & data (811–820)
+
+- [x] 811. Program modal — share deep link `?program=` URL copy button
+- [x] 812. Programs filter — sovereignty score range slider
+- [x] 813. Compare — export diff as markdown
+- [x] 814. Portfolio — drag reorder persistence toast
+- [x] 815. Simulator — copy stack summary to clipboard
+- [x] 816. Program card — Lightning badge when `lightning_ready`
+- [x] 817. Programs table — sort by sovereignty score column
+- [x] 818. Custom program — validate schema on import with Zod-like checks
+- [x] 819. Pitch stats — cache bust on `countries.json` refresh
+- [x] 820. Flagship spotlight — cycle every 30s on Programs idle
+
+### Pitch & BTC Map (821–830)
+
+- [x] 821. Pitch hero — subtle BTC price in headline subline
+- [x] 822. Savings graphs — export PNG stub (canvas to blob)
+- [x] 823. Pitch roadmap — link each milestone to live route
+- [x] 824. BTC Map — merchant "directions" link (Google Maps)
+- [x] 825. BTC Map — filter merchants by category icon
+- [x] 826. BTC Map — program panel "Open in Programs" link
+- [x] 827. Offline cache — show stale warning banner >7d
+- [x] 828. Map clustering — expand cluster on click
+- [x] 829. BTC Map CSV export — include program name column
+- [x] 830. Pitch pillar cards — keyboard focus ring polish
+
+### Distressed, Apply, Vault (831–850)
+
+- [x] 831. Distressed — listing bookmark localStorage
+- [x] 832. Distressed — filter by proof-gated only toggle
+- [x] 833. Apply — prefill from `?program=` query on load
+- [x] 834. Apply gates — copy gate status JSON
+- [x] 835. Apply success — redirect to Agents with context
+- [x] 836. Vault — bulk select proofs for export
+- [x] 837. Vault — search proofs by program name
+- [x] 838. Verify — paste OTS file content parser
+- [x] 839. Vault lineage — copy npub event id stub
+- [x] 840. Distressed Kimi tier — link to Agents page
+- [x] 841. Apply draft — restore banner on return visit
+- [x] 842. Distressed — price filter range in URL
+- [x] 843. Vault — demo proof watermark badge
+- [x] 844. Apply — office hours hint when gates blocked
+- [x] 845. Distressed mobile filters — bottom sheet on tap
+- [x] 846. Vault export — include OTS paths in bundle
+- [x] 847. Verify batch — download results JSON
+- [x] 848. Apply proof card — Satohash verify link
+- [x] 849. Distressed confetti — respect reduced-motion
+- [x] 850. Launch gates — auto-refresh every 5m on Apply page
+
+### Agents, Paige & Nostr (851–860)
+
+- [x] 851. Paige — streaming response stub (typewriter effect)
+- [x] 852. Paige — conversation history localStorage (last 10)
+- [x] 853. Nostr relay — env-configurable relay URL stub
+- [x] 854. Agents — filter by region chip
+- [x] 855. Kimi card — calendar .ics office hours download stub
+- [x] 856. Paige — "compare these two" handoff to Compare page
+- [x] 857. Agent DM — nostr `nevent` copy format
+- [x] 858. Dashboard — Paige enforcement dismissible card
+- [x] 859. Agents page — JSON-LD Person schema for Kimi
+- [x] 860. Paige chat — clear history button
+
+### Design, perf & i18n (861–880)
+
+- [x] 861. Reduce motion — disable hash drift on header
+- [x] 862. Image lazy-loading on program cards (flag sprites)
+- [x] 863. `loading="lazy"` on blog post images
+- [x] 864. Chip focus ring — 2px BTC orange all themes
+- [x] 865. Table header — sticky shadow on scroll
+- [x] 866. Modal — max-height 90dvh with internal scroll
+- [x] 867. Form autofill — `autocomplete` attrs on Register/Apply
+- [x] 868. i18n — Japanese (ja) stub keys for nav + pitch
+- [x] 869. i18n — German (de) programs page overrides
+- [x] 870. SEO — WebSite SearchAction JSON-LD
+- [x] 871. Sitemap — add `/vault` `/distressed` lastmod from BUILD
+- [x] 872. robots.txt — allow GPTBot / ClaudeBot (optional crawl)
+- [x] 873. Meta description per-route dynamic override audit
+- [x] 874. Bundle budget — warn if index chunk >460kb
+- [x] 875. `rel=noopener` audit on all external links
+- [x] 876. Color contrast — proof badge AA on dark cards
+- [x] 877. Skip link — visible on Tab focus (already?) audit + fix
+- [x] 878. `aria-busy` on programs loading skeleton
+- [x] 879. Dashboard — welcome back message with npub truncate
+- [x] 880. Bump BUILD to `2026.07.15-60` when batch complete
 
 ---
 

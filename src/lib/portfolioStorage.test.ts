@@ -12,6 +12,7 @@ import {
   loadProgramsTableDensity,
   saveProgramsTableDensity,
   movePortfolioItem,
+  reorderPortfolio,
   PORTFOLIO_KEY,
   PROGRAMS_TABLE_DENSITY_KEY,
 } from './portfolioStorage'
@@ -119,6 +120,17 @@ describe('portfolioStorage', () => {
     expect(movePortfolioItem(1, 'up')).toEqual([1, 2, 3])
     expect(movePortfolioItem(1, 'up')).toEqual([1, 2, 3])
     expect(movePortfolioItem(3, 'down')).toEqual([1, 2, 3])
+  })
+
+  it('reorders portfolio by explicit id list', () => {
+    savePortfolio([1, 2, 3])
+    expect(reorderPortfolio([3, 1, 2])).toEqual([3, 1, 2])
+    expect(loadPortfolio()).toEqual([3, 1, 2])
+  })
+
+  it('rejects schema-invalid import entries', () => {
+    const bad = JSON.stringify([{ id: 1, name: 'X' }])
+    expect(importProgramsJson(bad).errorCode).toBe('SCHEMA_INVALID')
   })
 
   it('caps saved stacks at 20 and supports delete', () => {

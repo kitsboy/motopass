@@ -97,6 +97,17 @@ export function formatPageTitle(title: string): string {
   return `${title} • ${TITLE_SUFFIX}`
 }
 
+/** Per-locale meta overrides — RouteSeo + page-level SeoHead should use this helper. */
+export const ROUTE_SEO_I18N: Partial<Record<LangCode, Partial<Record<string, SeoMeta>>>> = {
+  de: {
+    '/programs': {
+      title: 'Bitcoin-Visa- & Krypto-Golden-Visa-Programme — 50 Jurisdiktionen',
+      description:
+        'Souveräne Pass- und Bitcoin-Visa-Programme — Krypto-Golden-Visa, RBI und CBI mit Lightning-Bereitschaft, ₿-Kosten und Satohash-Verifizierung.',
+    },
+  },
+}
+
 export function resolveSeoForPath(pathname: string, lang: LangCode = 'en'): SeoMeta & { path: string } {
   const blogMatch = pathname.match(/^\/blog\/([^/]+)$/)
   if (blogMatch) {
@@ -117,7 +128,10 @@ export function resolveSeoForPath(pathname: string, lang: LangCode = 'en'): SeoM
   }
 
   const meta = ROUTE_SEO[pathname]
-  if (meta) return { ...meta, path: pathname }
+  if (meta) {
+    const localized = ROUTE_SEO_I18N[lang]?.[pathname]
+    return { ...meta, ...localized, path: pathname }
+  }
 
   return {
     path: pathname,

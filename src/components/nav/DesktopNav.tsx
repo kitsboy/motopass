@@ -2,7 +2,7 @@ import { PrefetchNavLink } from './PrefetchNavLink'
 import { ApplyNavLink } from './ApplyNavLink'
 import { useI18n } from '../../i18n/I18nContext'
 import { useUser } from '../../context/UserContext'
-import { MAIN_NAV_ROUTES, navPillClass } from '../../lib/navRoutes'
+import { MAIN_NAV_ROUTES, OVERFLOW_NAV_ROUTES, navPillClass } from '../../lib/navRoutes'
 
 export function DesktopNav() {
   const { t } = useI18n()
@@ -31,6 +31,16 @@ export function DesktopNav() {
           ),
         )}
         <span className="nav-divider ml-auto shrink-0" aria-hidden="true" />
+        {OVERFLOW_NAV_ROUTES.filter(n => n.to === '/compare').map(n => (
+          <PrefetchNavLink
+            key={n.to}
+            to={n.to}
+            title={t('nav.compareTooltip')}
+            className={({ isActive }) => navPillClass(isActive)}
+          >
+            {t(n.key)}
+          </PrefetchNavLink>
+        ))}
         <PrefetchNavLink
           to={isLoggedIn ? '/dashboard' : '/register'}
           className={({ isActive }) => (isActive ? 'nav-pill nav-pill-violet' : 'nav-pill nav-pill-violet-muted')}

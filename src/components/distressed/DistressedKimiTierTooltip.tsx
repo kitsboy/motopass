@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import { Info } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useI18n } from '../../i18n/I18nContext'
 
 type Tier = 'gold' | 'standard'
@@ -47,7 +48,14 @@ export function DistressedKimiTierTooltip({ tier }: { tier: Tier }) {
           className="absolute left-0 top-full z-20 mt-1 w-52 rounded-mp-md border border-mp/60 bg-card p-2.5 text-left shadow-mp-2"
           onClick={e => e.stopPropagation()}
         >
-          <span className="font-body text-[10px] text-ink-secondary leading-relaxed">{t(tooltipKey)}</span>
+          <span className="font-body text-[10px] text-ink-secondary leading-relaxed block">{t(tooltipKey)}</span>
+          <Link
+            to="/agents"
+            className="mt-2 inline-flex text-[10px] font-chrome text-mp-btc-text hover:underline"
+            onClick={e => e.stopPropagation()}
+          >
+            {t('distressed.kimiAgentsLink')} →
+          </Link>
         </span>
       )}
     </span>

@@ -20,14 +20,14 @@ import { useScrollToTop } from '../hooks/useScrollToTop'
 import { useHeaderCollapse } from '../hooks/useHeaderCollapse'
 import { useLanguageShortcut } from '../hooks/useLanguageShortcut'
 import { useNavShortcuts } from '../hooks/useNavShortcuts'
-import { useGoToProgramsShortcut } from '../hooks/useGoToProgramsShortcut'
+import { useGoToNavShortcuts } from '../hooks/useGoToNavShortcuts'
 import { useRouteLangMemory } from '../hooks/useRouteLangMemory'
 import { BackToTop } from './nav/BackToTop'
 
 export function Layout() {
   useScrollToTop()
   useLanguageShortcut()
-  useGoToProgramsShortcut()
+  useGoToNavShortcuts()
   useRouteLangMemory()
   const { shortcutsOpen, setShortcutsOpen } = useNavShortcuts()
   const { t } = useI18n()
@@ -74,7 +74,7 @@ export function Layout() {
                 <div className="club-header-tagline hidden md:block text-[10px] text-ink-muted truncate font-mono max-w-[14rem] opacity-80">
                   {FOOTER_VERSION} · {t('tagline')}
                 </div>
-                <div className="club-header-tagline club-header-build-tag md:hidden text-[10px] text-ink-muted truncate font-mono opacity-80">{FOOTER_VERSION}</div>
+                <div className="club-header-tagline club-header-build-tag hidden text-[10px] text-ink-muted truncate font-mono opacity-80">{FOOTER_VERSION}</div>
               </div>
             </NavLink>
 

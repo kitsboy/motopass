@@ -25,7 +25,10 @@ export function websiteJsonLd() {
     publisher: { '@type': 'Organization', name: SITE_NAME },
     potentialAction: {
       '@type': 'SearchAction',
-      target: `${SITE_URL}/programs?q={search_term_string}`,
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SITE_URL}/programs?q={search_term_string}`,
+      },
       'query-input': 'required name=search_term_string',
     },
   }
@@ -78,6 +81,25 @@ export function programDetailJsonLd(program: {
         : []),
     ],
     provider: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+  }
+}
+
+/** Kimi liaison agent — Person schema on /agents (BUILD 859). */
+export function kimiPersonJsonLd() {
+  const url = `${SITE_URL}/agents#kimi`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': url,
+    name: 'Kimi',
+    jobTitle: 'MotoPass Liaison Agent',
+    description:
+      'Bitcoin-native sovereign mobility liaison — Nostr DM handoff, office hours, and escalation from Paige AI.',
+    url,
+    image: `${SITE_URL}/images/kimi.jpg`,
+    worksFor: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    knowsAbout: ['Bitcoin residency', 'CBI/RBI programs', 'Nostr identity', 'Satohash verification'],
+    sameAs: ['https://nostr.com'],
   }
 }
 

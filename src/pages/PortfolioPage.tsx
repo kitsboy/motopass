@@ -23,13 +23,16 @@ import { Card } from '../components/ui/Card'
 import { hasFlagshipDepth } from '../components/programs/types'
 import { decodePortfolioStackParam, portfolioShareUrl } from '../lib/urlState'
 import { savePortfolio } from '../lib/portfolioStorage'
+import { useToast } from '../components/ui/Toast'
 
 type SortKey = 'order' | 'name' | 'score' | 'invest'
 
 export function PortfolioPage() {
   const { t } = useI18n()
   const { programs, loading, error } = usePrograms()
-  const { portfolio, toggle: togglePortfolio, clearAll, moveItem, setPortfolio } = usePortfolio()
+  const { portfolio, toggle: togglePortfolio, clearAll, moveItem, reorder, setPortfolio } = usePortfolio()
+  const { toast } = useToast()
+  const [dragId, setDragId] = useState<number | null>(null)
   const [searchParams] = useSearchParams()
   const [selected, setSelected] = useState<CinematicProgram | null>(null)
   const [shareCopied, setShareCopied] = useState(false)
@@ -86,6 +89,19 @@ export function PortfolioPage() {
     savePortfolio(stack)
     setPortfolio(stack)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps -- hydrate shared stack once
+
+  const handleReorderDrop = (targetId: number) => {
+    if (dragId == null || dragId === targetId || sort !== 'order') return
+    const next = [...portfolio]
+    const from = next.indexOf(dragId)
+    const to = next.indexOf(targetId)
+    if (from < 0 || to < 0) return
+    next.splice(from, 1)
+    next.splice(to, 0, dragId)
+    reorder(next)
+    setDragId(null)
+    toast(t('portfolio.reorderSaved'), 'success')
+  }
 
   const handleCopyShareUrl = async () => {
     const url = portfolioShareUrl(portfolio, window.location.origin)
@@ -186,7 +202,15 @@ export function PortfolioPage() {
           const canMoveUp = sort === 'order' && stackIndex > 0
           const canMoveDown = sort === 'order' && stackIndex >= 0 && stackIndex < portfolio.length - 1
           return (
-            <div key={p.id} className="relative">
+            <div
+              key={p.id}
+              className={`relative ${sort === 'order' ? 'portfolio-drag-item' : ''}`}
+              draggable={sort === 'order'}
+              onDragStart={() => setDragId(id)}
+              onDragEnd={() => setDragId(null)}
+              onDragOver={(e) => { if (sort === 'order') e.preventDefault() }}
+              onDrop={() => handleReorderDrop(id)}
+            >
               {sort === 'order' && (
                 <div className="absolute right-3 top-3 z-10 flex flex-col gap-1">
                   <button

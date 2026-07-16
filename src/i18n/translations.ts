@@ -9,6 +9,7 @@ import {
   pageKeysSw,
   pageKeysDe,
   pageKeysHi,
+  pageKeysJa,
   type PageKey,
 } from './pageKeys'
 
@@ -46,7 +47,7 @@ export type TranslationKey =
   | 'footer.descriptionBefore' | 'footer.descriptionAfter' | 'footer.github' | 'footer.pristineDemo'
   | 'verify.title' | 'verify.sub' | 'verify.stamp' | 'agents.title' | 'agents.sub'
   | 'apply.title' | 'apply.sub' | 'apply.submit' | 'nostr.connect' | 'nostr.connected'
-  | 'block.live' | 'block.retry' | 'btcPrice.label' | 'btcPrice.fallback' | 'pitch.btcmapCta' | 'footer.truth'
+  | 'block.live' | 'block.retry' | 'btcPrice.label' | 'btcPrice.fallback' | 'btcPrice.copyHint' | 'btcPrice.copied' | 'pitch.btcmapCta' | 'footer.truth'
   | PageKey
 
 type Dict = Record<TranslationKey, string>
@@ -89,6 +90,8 @@ const en: Dict = {
   'pitch.btcmapCta': 'BTC Map merchants',
   'btcPrice.label': 'Spot',
   'btcPrice.fallback': 'Using pitch-anchor reference rate',
+  'btcPrice.copyHint': 'Click to copy spot price',
+  'btcPrice.copied': 'Copied',
   'pitch.feature.jurisdictions.title': '50 jurisdictions',
   'pitch.feature.jurisdictions.sub': 'CBI, RBI & Bitcoin-native pathways',
   'pitch.feature.satohash.title': 'Satohash proofs',
@@ -482,6 +485,8 @@ const de: Dict = {
   'nav.agents': 'Agenten',
   'nav.apply': 'Bewerben',
   'pitch.hero': 'Souveräne Pässe auf Bitcoin-Schienen',
+  'programs.title': 'Bitcoin-Visa- & Krypto-Golden-Visa-Programme',
+  'programs.description': 'Jede Zahl unten ist modelliert, zeitgestempelt und nach einem Zeitplan erneut geprüft — kein einmaliger Broschüren-Snapshot.',
 }
 
 const hi: Dict = {
@@ -496,7 +501,34 @@ const hi: Dict = {
   'pitch.hero': 'बिटकॉइन रेल्स पर संप्रभु पासपोर्ट',
 }
 
-export const TRANSLATIONS: Record<LangCode, Dict> = { en, es, fr, pt, zh, ar, sw, de, hi }
+const ja: Dict = {
+  ...en,
+  ...pageKeysJa,
+  'nav.pitch': 'ピッチ',
+  'nav.portfolio': 'ポートフォリオ',
+  'nav.programs': 'プログラム',
+  'nav.simulator': 'シミュレーター',
+  'nav.compare': '比較',
+  'nav.vault': 'ボールト',
+  'nav.distressed': 'ディストレス',
+  'nav.blog': 'インサイト',
+  'nav.verify': '検証',
+  'nav.agents': 'エージェント',
+  'nav.apply': '申請',
+  'nav.dashboard': 'ダッシュボード',
+  'nav.register': '登録',
+  'nav.btcmap': 'BTCマップ',
+  'nav.more': 'その他',
+  'nav.skip': 'コンテンツへスキップ',
+  'pitch.hero': '主権オペレーターのためのプライベートOS',
+  'pitch.sub': '50の法域を調査。₿でスタックをモデル化。Bitcoin上ですべての主張を検証。Nostrで申請 — メール不要、パンフレット信頼不要。',
+  'pitch.cta': 'プログラムを探索',
+  'pitch.evolve': 'ライブピッチ — すべてのBUILDで更新',
+  'pitch.stackSimulator': 'スタックシミュレーター',
+  'pitch.btcmapCta': 'BTCマップ加盟店',
+}
+
+export const TRANSLATIONS: Record<LangCode, Dict> = { en, es, fr, pt, zh, ar, sw, de, hi, ja }
 
 export function t(lang: LangCode, key: TranslationKey): string {
   const localized = TRANSLATIONS[lang][key]

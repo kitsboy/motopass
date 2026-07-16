@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { Check } from 'lucide-react';
+import { Check, Zap } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
+import { LazyFlagSprite } from '../pitch/LazyFlagSprite';
 import { FreshnessBadge } from '../ui/FreshnessBadge';
 import { useI18n } from '../../i18n/I18nContext';
 import { MerchantDensityBadge } from '../btcmap/MerchantDensityBadge';
@@ -112,12 +113,11 @@ function ProgramCardContent({
 
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
-          <span
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-mp-border-subtle bg-mp-section font-mono text-[11px] font-medium text-mp-ink-secondary"
-            aria-hidden="true"
-          >
-            {program.countryCode}
-          </span>
+          <LazyFlagSprite
+            countryName={program.country}
+            emojiFallback={program.flag ?? program.countryCode}
+            className="h-9 w-9 rounded-full border border-mp-border-subtle bg-mp-section p-1.5"
+          />
           <div>
             <h3 className="font-display text-lg2 leading-tight text-mp-ink">{program.country}</h3>
             <span
@@ -127,6 +127,12 @@ function ProgramCardContent({
               {program.tier} &middot; {program.region}
             </span>
             <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+              {program.lightningReady && (
+                <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-btc/30 bg-mp-btc-soft px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-btc-text">
+                  <Zap size={9} aria-hidden="true" />
+                  Lightning
+                </span>
+              )}
               <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />
               <FreshnessBadge
                 lastChecked={program.lastChecked}

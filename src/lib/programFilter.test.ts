@@ -54,4 +54,10 @@ describe('programFilter', () => {
     const r = filterPrograms(sample, { ...DEFAULT_FILTERS, status: 'Rejected' })
     expect(r).toHaveLength(0)
   })
+
+  it('filters by sovereignty score range', () => {
+    const r = filterPrograms(sample, { ...DEFAULT_FILTERS, minSovereignty: 9, maxSovereignty: 10 })
+    expect(r).toHaveLength(1)
+    expect(r[0].name).toBe('El Salvador')
+  })
 })

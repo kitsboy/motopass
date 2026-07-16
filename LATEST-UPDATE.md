@@ -1,4 +1,4 @@
 # motopass — Last Updated 2026-07-15 by Grok
-Brief: BUILD 58 — footer gap v4; clip parallax overflow (314px Chrome void)
-Commit: 39cce78
+Brief: BUILD 60 — Batch 26 complete (880/880); deploy/CI, nav, Paige, i18n stubs
+Commit: e9281b3
 Live: https://motopass.giveabit.io

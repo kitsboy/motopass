@@ -56,8 +56,21 @@ jobs:
       - name: Lighthouse a11y budget (warn-only)
         run: npm run a11y:check
         continue-on-error: true
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: footer-gap-screenshots
+          path: artifacts/playwright/
+          retention-days: 7
+          if-no-files-found: ignore
       - uses: actions/upload-artifact@v4
         with:
           name: dist
@@ -111,6 +124,13 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache-live
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
       - run: npm run verify:live:ci
       - name: Deploy summary JSON
         if: always()

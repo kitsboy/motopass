@@ -1,8 +1,9 @@
-import { MessageCircle } from 'lucide-react'
+import { Calendar, MessageCircle } from 'lucide-react'
 import { TiltCard } from './beui/TiltCard'
 import { AnimatedBadge } from './beui/AnimatedBadge'
 import { useI18n } from '../i18n/I18nContext'
 import { isOfficeHoursOpen, KIMI_TIMEZONE } from '../lib/agentOfficeHours'
+import { downloadKimiOfficeHoursIcs } from '../lib/kimiOfficeHoursIcs'
 import { CopyField } from './ui/CopyField'
 
 const KIMI_NPUB = 'npub1kimi…motopass'
@@ -48,6 +49,13 @@ export function AgentCardKimi() {
               >
                 <MessageCircle size={14} /> {t('agents.kimi.message')}
               </a>
+              <button
+                type="button"
+                onClick={() => downloadKimiOfficeHoursIcs()}
+                className="text-sm inline-flex items-center gap-2 border border-mp text-ink-secondary hover:bg-card-muted rounded-full px-4 py-1.5 transition-colors font-medium"
+              >
+                <Calendar size={14} aria-hidden /> {t('agents.kimi.downloadIcs')}
+              </button>
             </div>
           </div>
         </div>

@@ -31,6 +31,10 @@ export type DistressedFilters = {
   region: string
   minScore: number
   maxBtcUsd: number
+  /** Show only permissionless proof-gated listings */
+  proofGatedOnly: boolean
+  /** Show only bookmarked listing ids */
+  bookmarksOnly: boolean
 }
 
 export type DistressedSort = 'discount' | 'price' | 'region'

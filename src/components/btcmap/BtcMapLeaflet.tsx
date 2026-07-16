@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, Circle, useMap, useMapEvents } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { getProgramCoord } from '../../data/programCoords'
 import { btcMapMerchantUrl } from '../../lib/btcmap'
-import { gridClusterPlaces } from '../../lib/btcmapCluster'
+import { gridClusterPlaces, type BtcMapCluster } from '../../lib/btcmapCluster'
 import type { BtcMapArea, BtcMapPlace } from '../../lib/btcmap'
 import { useI18n } from '../../i18n/I18nContext'
 import { BtcMapPinPopover } from './BtcMapPinPopover'
@@ -45,25 +45,47 @@ function MapZoomTracker({ onZoom }: { onZoom: (zoom: number) => void }) {
   return null
 }
 
+function ClusterMarker({ cluster, onExpand }: { cluster: BtcMapCluster; onExpand: (cluster: BtcMapCluster) => void }) {
+  const { t } = useI18n()
+
+  return (
+    <Marker
+      key={cluster.key}
+      position={[cluster.lat, cluster.lon]}
+      icon={clusterIcon(cluster.count)}
+      eventHandlers={{
+        click: () => onExpand(cluster),
+      }}
+    >
+      <Popup>
+        <div className="text-sm font-medium">{cluster.count} merchants</div>
+        <p className="text-[11px] text-gray-500 mt-1">{t('btcmap.clusterExpand')}</p>
+        <ul className="text-xs text-gray-600 mt-1 max-h-32 overflow-y-auto space-y-0.5">
+          {cluster.places.slice(0, 6).map(p => (
+            <li key={p.id} className="truncate">{p.name ?? t('btcmap.unnamed')}</li>
+          ))}
+          {cluster.places.length > 6 && <li className="text-gray-400">+{cluster.places.length - 6} more</li>}
+        </ul>
+      </Popup>
+    </Marker>
+  )
+}
+
 function PlaceMarkers({ places, zoom }: { places: BtcMapPlace[]; zoom: number }) {
   const { t } = useI18n()
+  const map = useMap()
   const clusters = useMemo(() => gridClusterPlaces(places, zoom), [places, zoom])
+
+  const expandCluster = useCallback((cluster: BtcMapCluster) => {
+    const nextZoom = Math.min(map.getZoom() + 2, 16)
+    map.flyTo([cluster.lat, cluster.lon], nextZoom, { duration: 0.45 })
+  }, [map])
 
   if (clusters) {
     return (
       <>
         {clusters.map(c => (
-          <Marker key={c.key} position={[c.lat, c.lon]} icon={clusterIcon(c.count)}>
-            <Popup>
-              <div className="text-sm font-medium">{c.count} merchants</div>
-              <ul className="text-xs text-gray-600 mt-1 max-h-32 overflow-y-auto space-y-0.5">
-                {c.places.slice(0, 6).map(p => (
-                  <li key={p.id} className="truncate">{p.name ?? t('btcmap.unnamed')}</li>
-                ))}
-                {c.places.length > 6 && <li className="text-gray-400">+{c.places.length - 6} more</li>}
-              </ul>
-            </Popup>
-          </Marker>
+          <ClusterMarker key={c.key} cluster={c} onExpand={expandCluster} />
         ))}
       </>
     )
@@ -78,6 +100,8 @@ function PlaceMarkers({ places, zoom }: { places: BtcMapPlace[]; zoom: number })
               name={p.name ?? t('btcmap.unnamed')}
               address={p.address}
               merchantUrl={btcMapMerchantUrl(p.id)}
+              lat={p.lat}
+              lon={p.lon}
             />
           </Popup>
         </Marker>

@@ -86,12 +86,14 @@ export function RegisterPage() {
           <p className="text-xs font-mono text-nostr-violet truncate bg-nostr-violet-soft px-3 py-2 rounded-mp-md">{nostr.npub}</p>
           <div>
             <label htmlFor="register-name" className="text-xs font-medium text-ink-muted block mb-1.5">{t('register.displayName')}</label>
-            <input id="register-name" value={name} onChange={e => setName(e.target.value)} className="input-field" />
+            <input id="register-name" name="name" autoComplete="name" value={name} onChange={e => setName(e.target.value)} className="input-field" />
           </div>
           <div>
             <label htmlFor="register-program" className="text-xs font-medium text-ink-muted block mb-1.5">{t('register.targetProgram')}</label>
             <select
               id="register-program"
+              name="organization"
+              autoComplete="organization"
               value={program}
               onChange={e => setProgram(e.target.value)}
               aria-invalid={isStubSelected || undefined}

@@ -10,7 +10,7 @@ function csvCell(value: string | number | undefined): string {
 
 /** Serialize merchant directory rows for CSV download (item 621). */
 export function placesToCsv(places: BtcMapPlace[], programName: string): string {
-  const header = ['program', 'id', 'name', 'address', 'lat', 'lon', 'verified_at', 'website'].join(',')
+  const header = ['program_name', 'id', 'name', 'address', 'lat', 'lon', 'verified_at', 'website'].join(',')
   const rows = places.map(p =>
     [
       csvCell(programName),

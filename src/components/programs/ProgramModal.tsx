@@ -1,6 +1,6 @@
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, Zap, Check, X as XIcon } from 'lucide-react';
+import { ExternalLink, Zap, Check, X as XIcon, Link2 } from 'lucide-react';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 import { loadCompareIds } from '../../lib/portfolioStorage';
 import { serializeIdList } from '../../lib/urlState';
@@ -75,6 +75,7 @@ function ProgramModalBody({
   const { t } = useI18n();
   const openerRef = useRef<HTMLElement | null>(null);
   const [tab, setTab] = useState<ProgramModalTab>(initialTab);
+  const [shareCopied, setShareCopied] = useState(false);
 
   useLayoutEffect(() => {
     openerRef.current = document.activeElement as HTMLElement | null;
@@ -95,6 +96,17 @@ function ProgramModalBody({
     return [...existing, programId].slice(0, 4);
   }, [programId]);
   const compareHref = `/compare?ids=${serializeIdList(compareIds)}`;
+  const programShareUrl = `${window.location.origin}/programs?program=${encodeURIComponent(programId)}`;
+
+  const handleCopyProgramLink = async () => {
+    try {
+      await navigator.clipboard.writeText(programShareUrl);
+      setShareCopied(true);
+      window.setTimeout(() => setShareCopied(false), 2000);
+    } catch {
+      setShareCopied(false);
+    }
+  };
 
   const TABS = useMemo(() => {
     const base = [
@@ -300,6 +312,15 @@ function ProgramModalBody({
       <div className="mt-6 flex flex-col gap-3 border-t border-mp-border-subtle pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-mono text-[11px] text-mp-ink-tertiary">{t('modal.figuresNote')}</p>
         <div className="flex flex-wrap items-center justify-end gap-2">
+          <button
+            type="button"
+            onClick={handleCopyProgramLink}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-mp-border bg-mp-section px-5 py-2.5 font-chrome text-sm font-semibold text-mp-ink-secondary transition-colors duration-fast hover:border-mp-btc/40 hover:text-mp-btc-text"
+            title={shareCopied ? t('modal.shareCopied') : t('modal.shareProgram')}
+          >
+            <Link2 size={14} aria-hidden="true" />
+            {shareCopied ? t('modal.shareCopied') : t('modal.shareProgram')}
+          </button>
           <Link
             to={compareHref}
             className="inline-flex items-center justify-center gap-2 rounded-full border border-mp-border bg-mp-section px-5 py-2.5 font-chrome text-sm font-semibold text-mp-ink-secondary transition-colors duration-fast hover:border-mp-btc/40 hover:text-mp-btc-text"

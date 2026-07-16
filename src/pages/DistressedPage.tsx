@@ -20,13 +20,17 @@ import {
   filterListings,
   sortListings,
 } from '../lib/distressed/buildListings'
-import { loadDistressedState, saveDistressedState } from '../lib/distressedStorage'
+import { loadDistressedState, normalizeDistressedFilters, saveDistressedState } from '../lib/distressedStorage'
+import { loadDistressedBookmarks } from '../lib/distressedBookmarkStorage'
+import { distressedFiltersFromSearchParams, distressedFiltersToSearchParams } from '../lib/distressedUrlState'
 import type { DistressedFilters, DistressedLane, DistressedListing, DistressedSort } from '../types/distressedListing'
 
 const DEFAULT_FILTERS: DistressedFilters = {
   region: 'all',
   minScore: 1,
   maxBtcUsd: 0,
+  proofGatedOnly: false,
+  bookmarksOnly: false,
 }
 
 const SORT_VALUES: DistressedSort[] = ['discount', 'price', 'region']
@@ -164,7 +168,12 @@ export function DistressedPage() {
     if (fromUrl) return parseDistressedSort(fromUrl)
     return loadDistressedState()?.sort ?? 'discount'
   })
-  const [filters, setFilters] = useState<DistressedFilters>(() => loadDistressedState()?.filters ?? DEFAULT_FILTERS)
+  const [filters, setFilters] = useState<DistressedFilters>(() => {
+    const saved = loadDistressedState()?.filters
+    const fromUrl = distressedFiltersFromSearchParams(searchParams)
+    return normalizeDistressedFilters({ ...DEFAULT_FILTERS, ...saved, ...fromUrl })
+  })
+  const [bookmarks, setBookmarks] = useState(() => loadDistressedBookmarks())
   const [active, setActive] = useState<DistressedListing | null>(null)
 
   useEffect(() => {
@@ -172,16 +181,14 @@ export function DistressedPage() {
   }, [lane, sort, filters])
 
   useEffect(() => {
-    const current = searchParams.get('sort')
-    if (current === sort) return
     setSearchParams(
       p => {
         p.set('sort', sort)
-        return p
+        return distressedFiltersToSearchParams(filters, p)
       },
       { replace: true },
     )
-  }, [sort, searchParams, setSearchParams])
+  }, [sort, filters, setSearchParams])
 
   const handleSortChange = (next: DistressedSort) => {
     setSort(next)
@@ -190,12 +197,12 @@ export function DistressedPage() {
   const allListings = useMemo(() => buildDistressedListings(programs), [programs])
   const regions = useMemo(() => ['all', ...distressedRegions(allListings)], [allListings])
   const filtered = useMemo(
-    () => sortListings(filterListings(allListings, lane, filters), sort),
-    [allListings, lane, filters, sort],
+    () => sortListings(filterListings(allListings, lane, filters, bookmarks), sort),
+    [allListings, lane, filters, bookmarks, sort],
   )
 
   const laneCounts = useMemo(() => {
-    const base = filterListings(allListings, 'all', filters)
+    const base = filterListings(allListings, 'all', filters, bookmarks)
     return {
       all: base.length,
       curated: base.filter(l => l.lane === 'curated').length,
@@ -277,6 +284,8 @@ export function DistressedPage() {
             onSortChange={handleSortChange}
             filters={filters}
             onFiltersChange={setFilters}
+            bookmarks={bookmarks}
+            onBookmarksChange={setBookmarks}
             loading={loading}
             error={null}
             onSelectListing={setActive}

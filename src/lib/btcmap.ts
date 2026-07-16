@@ -99,6 +99,12 @@ export function btcMapMapUrl(lat: number, lon: number, zoom = 11): string {
   return `${WEB_BASE}/map#${zoom}/${lat}/${lon}`
 }
 
+/** Google Maps directions deep link for a merchant pin (item 824). */
+export function googleMapsDirectionsUrl(lat: number, lon: number, label?: string): string {
+  const destination = label?.trim() ? encodeURIComponent(label.trim()) : `${lat},${lon}`
+  return `https://www.google.com/maps/dir/?api=1&destination=${destination}`
+}
+
 export function btcMapAttribution(): { map: string; data: string; api: string } {
   return {
     map: WEB_BASE,

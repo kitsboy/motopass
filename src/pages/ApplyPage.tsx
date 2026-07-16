@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
-import { Check, CheckCircle2, Copy, ExternalLink, MessageCircle, Radio, Rocket, Share2 } from 'lucide-react'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Check, CheckCircle2, Copy, ExternalLink, MessageCircle, Radio, Rocket, Share2, X, Clock } from 'lucide-react'
 import { NostrConnect } from '../components/NostrConnect'
 import { hashApplicationPayload, satohashStampGuideUrl } from '../lib/satohash'
 import { addApplication } from '../lib/storage'
@@ -12,7 +12,8 @@ import { Card } from '../components/ui/Card'
 import { Button } from '../components/ui/Button'
 import { useToast } from '../components/ui/Toast'
 import { Input, Textarea } from '../components/ui/Input'
-import { useLaunchGates } from '../hooks/useLaunchGates'
+import { useLaunchGates, LAUNCH_GATES_REFRESH_MS } from '../hooks/useLaunchGates'
+import { isOfficeHoursOpen, KIMI_TIMEZONE } from '../lib/agentOfficeHours'
 import { BUILD_ID } from '../lib/buildInfo'
 import { ApplyLaunchGatesDirectory } from '../components/apply/ApplyLaunchGatesDirectory'
 import { ApplyFormProgressStepper } from '../components/apply/ApplyFormProgressStepper'
@@ -48,7 +49,8 @@ function resolveApplyFields(programPrefill: string, proofPrefill: string) {
 
 export function ApplyPage() {
   const { t } = useI18n()
-  const { report, loading, applicationsOpen, agentsMessagingOpen } = useLaunchGates()
+  const navigate = useNavigate()
+  const { report, loading, applicationsOpen, agentsMessagingOpen } = useLaunchGates({ refreshMs: LAUNCH_GATES_REFRESH_MS })
   const { toast } = useToast()
   const [searchParams] = useSearchParams()
   const programPrefill = searchParams.get('program') ?? ''
@@ -62,7 +64,9 @@ export function ApplyPage() {
   const [result, setResult] = useState<{ hash: string; id: string } | null>(null)
   const [copied, setCopied] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const draftRestored = initialFields.draftRestored
+  const [draftBannerDismissed, setDraftBannerDismissed] = useState(false)
+  const draftRestored = initialFields.draftRestored && !draftBannerDismissed
+  const kimiOfficeOpen = isOfficeHoursOpen(KIMI_TIMEZONE)
 
   useEffect(() => {
     if (result) return
@@ -98,6 +102,14 @@ export function ApplyPage() {
       clearApplyDraft()
       setResult({ hash, id })
       setCopied(false)
+      const agentParams = new URLSearchParams({
+        application: id,
+        program: program.trim(),
+        hash,
+      })
+      window.setTimeout(() => {
+        navigate(`/agents?${agentParams.toString()}`)
+      }, 2400)
     } finally {
       setSubmitting(false)
     }
@@ -147,6 +159,21 @@ export function ApplyPage() {
         </Card>
       )}
 
+      {!applicationsOpen && (
+        <Card animate delay={0.08} className="mb-6 flex items-start gap-3 border-status-amber/30">
+          <Clock size={18} className="text-status-amber shrink-0 mt-0.5" aria-hidden />
+          <div className="min-w-0">
+            <p className="font-chrome text-sm font-semibold text-ink">{t('apply.officeHoursHintTitle')}</p>
+            <p className="text-xs text-ink-muted mt-1 leading-relaxed">
+              {kimiOfficeOpen ? t('apply.officeHoursOpenNow') : t('apply.officeHoursClosed')}
+            </p>
+            <p className="text-[10px] font-mono text-ink-muted mt-2 opacity-80">
+              {t('agents.officeHours')} · {t('agents.kimi.timezone')}
+            </p>
+          </div>
+        </Card>
+      )}
+
       <Card variant="elevated" animate delay={0.1} className="mb-6 overflow-hidden !p-0">
         <ApplyLaunchGatesDirectory
           report={report}
@@ -187,9 +214,17 @@ export function ApplyPage() {
       {!result ? (
         <Card variant="elevated" className="space-y-4">
           {draftRestored && (
-            <p className="text-[10px] font-mono text-ink-muted uppercase tracking-wider">
-              {t('apply.draftRestored')}
-            </p>
+            <div className="flex items-start justify-between gap-3 rounded-mp-md border border-btc-orange/25 bg-btc-orange-soft/30 px-3 py-2.5">
+              <p className="text-xs font-chrome text-ink-secondary leading-relaxed">{t('apply.draftRestoredBanner')}</p>
+              <button
+                type="button"
+                onClick={() => setDraftBannerDismissed(true)}
+                className="chip !p-1 shrink-0"
+                aria-label={t('common.close')}
+              >
+                <X size={14} />
+              </button>
+            </div>
           )}
           <ApplyFormProgressStepper
             name={name}
@@ -201,6 +236,8 @@ export function ApplyPage() {
             <fieldset disabled={!applicationsOpen || submitting} className="space-y-4 disabled:opacity-55">
               <Input
                 id="apply-name"
+                name="name"
+                autoComplete="name"
                 label={t('apply.yourName')}
                 required
                 value={name}
@@ -208,6 +245,8 @@ export function ApplyPage() {
               />
               <Input
                 id="apply-program"
+                name="organization"
+                autoComplete="organization"
                 label={t('apply.targetProgram')}
                 required
                 value={program}
@@ -324,7 +363,12 @@ export function ApplyPage() {
               {t('apply.shareIntent')}
             </button>
           </div>
-          <Link to="/agents" className="btn-secondary w-full text-center block relative z-[1]">{t('apply.meetAgents')}</Link>
+          <Link
+            to={`/agents?application=${encodeURIComponent(result.id)}&program=${encodeURIComponent(program)}&hash=${encodeURIComponent(result.hash)}`}
+            className="btn-secondary w-full text-center block relative z-[1]"
+          >
+            {t('apply.meetAgents')}
+          </Link>
           <p className="font-body text-xs text-ink-muted leading-relaxed relative z-[1]">{t('apply.agentNotify')}</p>
           <Button type="button" variant="secondary" className="w-full relative z-[1]" onClick={() => setResult(null)}>
             {t('apply.registerAnother')}

@@ -3,6 +3,7 @@ import { daysSince } from './programFreshness'
 export type CacheFreshnessLevel = 'fresh' | 'recent' | 'expired'
 
 const CACHE_STALE_DAYS = 14
+const CACHE_WARN_DAYS = 7
 
 /** Format ISO timestamp from btcmap cache snapshot for badge label (item 622). */
 export function formatCacheAge(fetchedAt: string, now = new Date()): string {
@@ -27,6 +28,11 @@ export function cacheFreshnessLevel(fetchedAt: string, now = new Date()): CacheF
 
 export function isCacheExpired(fetchedAt: string, now = new Date()): boolean {
   return cacheFreshnessLevel(fetchedAt, now) === 'expired'
+}
+
+/** True when offline cache is older than 7 days — show warning banner (item 827). */
+export function isCacheStale(fetchedAt: string, now = new Date()): boolean {
+  return cacheFreshnessDays(fetchedAt, now) > CACHE_WARN_DAYS
 }
 
 export function cacheFreshnessDays(fetchedAt: string, now = new Date()): number {

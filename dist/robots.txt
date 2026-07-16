@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+# Optional AI crawler access (batch 26 #872)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 Sitemap: https://motopass.giveabit.io/sitemap.xml
