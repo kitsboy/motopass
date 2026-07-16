@@ -2137,19 +2137,63 @@ body,
   }
 }
 
-/* ── Savings presentation — data-story.jpg fullscreen modal ── */
+/* ── Savings presentation — motion data-story fullscreen ── */
 .savings-presentation {
   position: fixed;
   inset: 0;
   z-index: 250;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
-    max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
-  background: rgba(4, 4, 8, 0.94);
-  backdrop-filter: blur(12px);
+  gap: 1rem;
+  padding: max(1.25rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right))
+    max(1.25rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(18, 14, 8, 0.95) 0%, rgba(4, 4, 8, 0.98) 70%);
+  backdrop-filter: blur(16px) saturate(1.1);
   color: rgba(255, 255, 255, 0.94);
+}
+
+.savings-presentation__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 75% 65% at 50% 45%, transparent 35%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.savings-presentation__grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: var(--grain-svg);
+}
+
+.savings-presentation__progress-rail {
+  position: relative;
+  z-index: 2;
+  width: min(96vw, 1168px);
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.savings-presentation__progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #e68600, #ffc46e);
+  box-shadow: 0 0 14px rgba(255, 149, 0, 0.45);
+}
+
+.savings-presentation__phase-label {
+  position: relative;
+  z-index: 2;
+  font-family: var(--mp-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 196, 110, 0.65);
 }
 
 .savings-presentation__close {
@@ -2178,15 +2222,23 @@ body,
 
 .savings-presentation__frame {
   position: relative;
+  z-index: 1;
   width: min(96vw, 1168px);
   aspect-ratio: 1168 / 784;
-  max-height: min(88vh, 784px);
-  border-radius: 18px;
+  max-height: min(82vh, 784px);
+  border-radius: 20px;
   overflow: hidden;
   box-shadow:
-    0 32px 80px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(255, 149, 0, 0.18);
+    0 40px 100px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 149, 0, 0.22),
+    0 0 60px rgba(255, 149, 0, 0.08);
   outline: none;
+}
+
+.data-story__art-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
 
 .data-story__art {
@@ -2204,11 +2256,93 @@ body,
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(6, 6, 10, 0.35) 0%,
-    transparent 18%,
-    transparent 72%,
-    rgba(6, 6, 10, 0.45) 100%
+    rgba(6, 6, 10, 0.5) 0%,
+    transparent 20%,
+    transparent 68%,
+    rgba(6, 6, 10, 0.55) 100%
   );
+}
+
+.data-story__spotlight {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 16px;
+  transition: opacity 0.65s ease;
+}
+
+.data-story__spotlight--legal {
+  left: 1.5%;
+  top: 10%;
+  width: 44%;
+  height: 48%;
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(255, 149, 0, 0.14) 0%, transparent 72%);
+  box-shadow: inset 0 0 60px rgba(255, 149, 0, 0.06);
+}
+
+.data-story__spotlight--time {
+  left: 49%;
+  top: 10%;
+  width: 48%;
+  height: 48%;
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(255, 149, 0, 0.14) 0%, transparent 72%);
+}
+
+.data-story__spotlight--jurisdictions {
+  left: 51%;
+  top: 52%;
+  width: 46%;
+  height: 44%;
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(255, 149, 0, 0.14) 0%, transparent 72%);
+}
+
+.data-story__intro {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(4, 4, 8, 0.55);
+  backdrop-filter: blur(6px);
+}
+
+.data-story__intro-logo {
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 149, 0, 0.4);
+  background: rgba(8, 8, 12, 0.6);
+  box-shadow: 0 0 40px rgba(255, 149, 0, 0.3);
+}
+
+.data-story__intro-eyebrow {
+  font-family: var(--mp-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #ffc46e;
+}
+
+.data-story__intro-title {
+  font-family: var(--mp-font-display);
+  font-size: clamp(1.25rem, 2.8vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: #fff;
+  max-width: 24rem;
+  text-wrap: balance;
+}
+
+.data-story__metrics-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
 }
 
 /* MotoPass watermark — covers large Bitcoin symbol in artwork */
@@ -2311,19 +2445,32 @@ body,
   height: 36%;
 }
 
+.data-story__slot--active {
+  z-index: 2;
+}
+
 .data-story__slot-glass {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
+  gap: 0.4rem;
   height: 100%;
-  padding: 0.5rem 0.65rem;
+  padding: 0.45rem 0.6rem;
   border-radius: 12px;
-  background: rgba(6, 6, 12, 0.78);
-  backdrop-filter: blur(8px) saturate(1.2);
+  background: rgba(6, 6, 12, 0.82);
+  backdrop-filter: blur(10px) saturate(1.25);
   border: 1px solid rgba(255, 149, 0, 0.15);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: border-color 0.5s, box-shadow 0.5s;
+}
+
+.data-story__slot-eyebrow {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(0.4rem, 1vw, 0.5rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 196, 110, 0.7);
 }
 
 .data-story__slot-numbers {
@@ -2380,7 +2527,8 @@ body,
   color: rgba(196, 196, 212, 0.92);
 }
 
-.data-story__value--motopass {
+.data-story__value--motopass,
+.data-story__value--gold {
   color: #ffc46e;
   text-shadow: 0 0 20px rgba(255, 149, 0, 0.35);
 }
@@ -2393,56 +2541,144 @@ body,
   color: rgba(255, 196, 110, 0.85);
 }
 
-.data-story__bars {
+/* Vertical bar chart — legal fees */
+.data-story__vbars {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 0.35rem;
-  width: 55%;
-  max-width: 8rem;
+  gap: 0.5rem;
+  width: 50%;
+  height: 3.25rem;
 }
 
-.data-story__bars--horizontal {
-  flex-direction: column;
-  align-items: stretch;
-  width: 75%;
-  max-width: 10rem;
-  gap: 0.3rem;
+.data-story__vbar-col {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  width: 1.1rem;
 }
 
-.data-story__bars--vertical {
-  height: 2.5rem;
-}
-
-.data-story__bars--horizontal .data-story__bar--traditional,
-.data-story__bars--horizontal .data-story__bar--motopass {
-  height: 0.45rem;
-  transform-origin: left center;
-}
-
-.data-story__bars--vertical .data-story__bar {
-  width: 0.55rem;
-  min-height: 4px;
+.data-story__vbar {
+  width: 100%;
+  border-radius: 4px 4px 2px 2px;
   transform-origin: bottom center;
 }
 
-.data-story__bar--traditional {
-  border-radius: 4px;
-  background: linear-gradient(180deg, rgba(148, 148, 168, 0.6), rgba(148, 148, 168, 0.3));
+.data-story__vbar--traditional {
+  background: linear-gradient(180deg, rgba(148, 148, 168, 0.65), rgba(148, 148, 168, 0.28));
 }
 
-.data-story__bars--horizontal .data-story__bar--traditional {
-  background: linear-gradient(90deg, rgba(148, 148, 168, 0.6), rgba(148, 148, 168, 0.3));
+.data-story__vbar--motopass {
+  background: linear-gradient(180deg, #ffc46e, #e68600);
+  box-shadow: 0 0 16px rgba(255, 149, 0, 0.5);
 }
 
-.data-story__bar--motopass {
-  border-radius: 4px;
-  background: linear-gradient(180deg, #ffc46e, #ff9500);
-  box-shadow: 0 0 12px rgba(255, 149, 0, 0.45);
+/* Line chart — time comparison */
+.data-story__line-chart {
+  width: 62%;
+  max-width: 9rem;
+  height: auto;
 }
 
-.data-story__bars--horizontal .data-story__bar--motopass {
+.data-story__grid-line {
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 0.4;
+}
+
+.data-story__line {
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.data-story__line--traditional {
+  stroke: rgba(148, 148, 168, 0.55);
+}
+
+.data-story__line--motopass {
+  stroke-width: 2.6;
+  filter: drop-shadow(0 0 6px rgba(255, 149, 0, 0.45));
+}
+
+.data-story__line-dot--traditional {
+  fill: rgba(148, 148, 168, 0.7);
+}
+
+.data-story__line-dot--motopass {
+  fill: #ffc46e;
+  filter: drop-shadow(0 0 4px rgba(255, 149, 0, 0.6));
+}
+
+/* Horizontal bars — jurisdictions */
+.data-story__hbars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 72%;
+  max-width: 10rem;
+}
+
+.data-story__hbar {
+  height: 0.5rem;
+  border-radius: 999px;
+  transform-origin: left center;
+}
+
+.data-story__hbar--traditional {
+  background: linear-gradient(90deg, rgba(148, 148, 168, 0.6), rgba(148, 148, 168, 0.28));
+}
+
+.data-story__hbar--motopass {
   background: linear-gradient(90deg, #e68600, #ffc46e);
+  box-shadow: 0 0 14px rgba(255, 149, 0, 0.45);
+}
+
+/* Finale summary */
+.data-story__finale {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(6, 6, 12, 0.88);
+  border: 1px solid rgba(255, 149, 0, 0.35);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.data-story__finale-eyebrow {
+  font-family: var(--mp-font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 196, 110, 0.75);
+}
+
+.data-story__finale-grid {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+
+.data-story__finale-grid > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.data-story__finale-label {
+  font-family: var(--mp-font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 @media (max-width: 640px) {
@@ -2465,14 +2701,22 @@ body,
     gap: 0.25rem;
   }
 
-  .data-story__bars--vertical {
-    height: 1.75rem;
+  .data-story__vbars {
+    height: 2.25rem;
+  }
+
+  .data-story__finale-grid {
+    gap: 0.85rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .data-story__bar--traditional,
-  .data-story__bar--motopass {
+  .data-story__vbar,
+  .data-story__hbar {
+    transform: none !important;
+  }
+
+  .data-story__art-wrap {
     transform: none !important;
   }
 }

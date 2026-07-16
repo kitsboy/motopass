@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.07.15-60 · **Last updated:** 2026-07-15
+**BUILD:** 2026.07.15-61 · **Last updated:** 2026-07-15
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,7 +11,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.07.15-60 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.07.15-61 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
 | **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
 | **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
 | **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
@@ -30,6 +30,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.07.15-61** | 2026-07-15 | `d020317` | Motion data-story presentation — sequenced charts |
 | **2026.07.15-55** | 2026-07-15 | `5e78921` | Elite header v4 — mobile-friendly ship crop |
 | **2026.07.15-60** | 2026-07-15 | `37d4ca7` | Design perf i18n — lazy flags, ja/de stubs, bundle warn |
 | **2026.07.15-59** | 2026-07-15 | `37d4ca7` | Footer gap v5 — e2e scroll lock + deploy CI |

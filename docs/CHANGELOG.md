@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-61] — 2026-07-15
+
+### Changed
+- Motion data-story presentation — sequenced charts
+
+---
+
 ## [BUILD-2026.07.15-55] — 2026-07-15
 
 ### Changed
