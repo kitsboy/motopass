@@ -866,4 +866,25 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 57 — Savings dashboard v3)
+
+**Done:**
+- Replaced pitch `SavingsGraphs` with elite dark-glass multi-panel dashboard (v3 style)
+- Static modeled figures: Legal $81,000 vs $3,900 · Time 177 vs 135 days · Jurisdictions 3 vs 50
+- MotoPass logo (`/images/motopass-logo.png`) — no Bitcoin branding in section
+- Animated horizontal comparison bars with gold shimmer on MotoPass fills
+- Title: "Cost & time, modeled — not promised"
+- BUILD `2026.07.15-57` deployed + CF cache purge (58 URLs)
+
+**Decisions:**
+- Savings section uses fixed anchor numbers (not live `pitchStatsToSavingsRows`) for clarity per user spec
+- Section is self-contained dark band (`savings-dashboard-v3`) for elite contrast vs light page bands
+
+**Git State:**
+- SHA: `1cc79b9`
+- Branch: `main`
+- Live: https://motopass.giveabit.io
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
