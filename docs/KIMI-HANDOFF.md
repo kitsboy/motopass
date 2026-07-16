@@ -887,4 +887,27 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 62 — Full-screen data-story presentation)
+
+**Done:**
+- Rebuilt `SavingsPresentation` as pure React/CSS dashboard matching `data-story.jpg` design language
+- Full-screen modal — no image crop; scales to fit viewport via `min(vw, vh)` aspect-ratio box
+- Six-card grid: Cost Comparison, MotoPass mini, Time Comparison, Jurisdictions, Savings donut, Modeled delta summary
+- Animated real metrics: $81,000→$3,900 · 177→135 days · 3→50 jurisdictions
+- MotoPass logo only (no Bitcoin) on all branded cards
+- Phased auto-play: intro → cost → time → jurisdictions → savings → finale
+- BUILD `2026.07.15-62` deployed to https://motopass.giveabit.io
+- 125 unit tests pass
+
+**Decisions:**
+- Pure React recreation instead of `data-story.jpg` background overlay — eliminates bottom cutoff and Bitcoin artifacts while preserving exact visual style
+- Homepage `SavingsGraphs` section unchanged; only presentation overlay updated
+
+**Git State:**
+- SHA: `a055f68` (+ docs sync commit)
+- Branch: `main`
+- Live: https://motopass.giveabit.io
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
