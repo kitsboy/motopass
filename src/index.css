@@ -1150,6 +1150,111 @@ body::before {
     0 1px 2px rgba(8, 8, 14, 0.55);
 }
 
+/* ── Elite cinematic homepage hero ── */
+.pitch-hero-elite {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  width: 100vw;
+  max-width: 100vw;
+}
+
+.hero-elite-photo {
+  filter: saturate(1.05) contrast(1.04);
+}
+
+.hero-elite-tagline {
+  color: #fff;
+  font-size: clamp(2.375rem, 1.25rem + 5.5vw, 4.875rem);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  text-shadow:
+    0 1px 2px rgba(8, 8, 14, 0.65),
+    0 4px 24px rgba(8, 8, 14, 0.55),
+    0 8px 48px rgba(8, 8, 14, 0.38),
+    0 0 60px rgba(255, 255, 255, 0.06);
+}
+
+.hero-elite-tagline__line {
+  display: block;
+}
+
+.hero-elite-tagline__line--finale {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-shadow:
+    0 1px 2px rgba(8, 8, 14, 0.7),
+    0 4px 28px rgba(8, 8, 14, 0.6),
+    0 0 40px rgba(255, 255, 255, 0.1);
+}
+
+.hero-elite-eyebrow {
+  text-shadow: 0 2px 16px rgba(8, 8, 14, 0.5);
+  letter-spacing: 0.2em;
+}
+
+.hero-elite-sub {
+  text-shadow:
+    0 1px 12px rgba(8, 8, 14, 0.55),
+    0 2px 24px rgba(8, 8, 14, 0.35);
+}
+
+.hero-elite-copy {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-elite-vignette {
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 40%, transparent 35%, rgba(8, 8, 14, 0.55) 100%),
+    radial-gradient(ellipse 90% 60% at 0% 50%, rgba(8, 8, 14, 0.45) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-elite-scrim {
+  background: linear-gradient(
+    105deg,
+    rgba(8, 8, 14, 0.72) 0%,
+    rgba(8, 8, 14, 0.38) 38%,
+    rgba(8, 8, 14, 0.12) 62%,
+    transparent 88%
+  );
+  pointer-events: none;
+}
+
+.hero-elite-fog {
+  filter: blur(28px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+.hero-elite-fog--a {
+  background:
+    radial-gradient(ellipse 70% 55% at 22% 38%, rgba(255, 255, 255, 0.14) 0%, transparent 72%),
+    radial-gradient(ellipse 55% 45% at 78% 62%, rgba(200, 210, 230, 0.1) 0%, transparent 70%);
+  opacity: 0.42;
+}
+
+.hero-elite-fog--b {
+  background:
+    radial-gradient(ellipse 60% 50% at 65% 28%, rgba(255, 248, 235, 0.12) 0%, transparent 68%),
+    radial-gradient(ellipse 80% 60% at 12% 72%, rgba(180, 195, 220, 0.08) 0%, transparent 74%);
+  opacity: 0.32;
+  mix-blend-mode: soft-light;
+}
+
+.hero-elite-fog--animate-a {
+  animation: hero-elite-fog-a 38s ease-in-out infinite alternate;
+}
+
+.hero-elite-fog--animate-b {
+  animation: hero-elite-fog-b 52s ease-in-out infinite alternate;
+}
+
+.hero-elite-fog--static {
+  opacity: 0.38;
+}
+
 .hero-gradient-mesh {
   opacity: 0.42;
   background:
@@ -1381,6 +1486,36 @@ body,
 @keyframes glow-pulse {
   0% { opacity: 0.65; transform: scale(1); }
   100% { opacity: 1; transform: scale(1.06); }
+}
+
+@keyframes hero-elite-fog-a {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.34;
+  }
+  50% {
+    transform: translate3d(2.5%, -1.8%, 0) scale(1.03);
+    opacity: 0.48;
+  }
+  100% {
+    transform: translate3d(-1.5%, 1.2%, 0) scale(1.01);
+    opacity: 0.38;
+  }
+}
+
+@keyframes hero-elite-fog-b {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.02);
+    opacity: 0.26;
+  }
+  50% {
+    transform: translate3d(-2%, 2.2%, 0) scale(1.05);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate3d(1.8%, -1%, 0) scale(1.01);
+    opacity: 0.3;
+  }
 }
 
 @keyframes hero-mesh-drift {
@@ -1727,6 +1862,8 @@ body,
   .club-header-glow,
   .club-header-glow-electric,
   .hero-gradient-mesh--animate,
+  .hero-elite-fog--animate-a,
+  .hero-elite-fog--animate-b,
   .pitch-trusted-track {
     animation: none;
     transform: none;

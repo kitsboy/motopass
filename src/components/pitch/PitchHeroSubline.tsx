@@ -9,7 +9,7 @@ export function PitchHeroSubline() {
   const { rate, loading } = useBtcPrice()
 
   return (
-    <p className="mt-6 max-w-lg font-body text-lg2 text-mp-on-hero-secondary drop-shadow-[0_1px_12px_rgba(0,0,0,0.55)] leading-relaxed">
+    <p className="mt-5 max-w-lg font-body text-base sm:text-lg2 text-white/82 leading-relaxed hero-elite-sub">
       {t('pitch.sub')}
       <span
         className="mt-2 block font-mono text-sm text-mp-btc/85 tabular-nums"

@@ -1,58 +1,57 @@
-import { motion, useReducedMotion } from 'motion/react';
-import { useTabVisible } from '../../hooks/useTabVisible';
+import { motion, useReducedMotion } from 'motion/react'
+import { useTabVisible } from '../../hooks/useTabVisible'
 
 /**
- * HeroMotionBackground
- * Dual-layer cinematic backdrop: sovereignty.jpg Ken Burns @ 35% opacity,
- * guilloche security-print overlay @ 6%, radial warm-to-obsidian scrim on top.
- * Mobile: Ken Burns pans slower and crops tighter so the scrim carries contrast alone.
+ * Cinematic full-bleed hero — header-elite.jpg with slow Ken Burns,
+ * dual fog parallax layers, vignette, and legibility scrims.
  */
 export function HeroMotionBackground() {
-  const reduceMotion = useReducedMotion();
-  const tabVisible = useTabVisible();
-  const animate = !reduceMotion && tabVisible;
+  const reduceMotion = useReducedMotion()
+  const tabVisible = useTabVisible()
+  const animate = !reduceMotion && tabVisible
 
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-      {/* Layer 1 — photographic imagery, Ken Burns */}
+      {/* Layer 1 — elite header photograph, very slow Ken Burns */}
       <motion.img
-        src="/images/sovereignty.jpg"
+        src="/images/header-elite.jpg"
         alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ opacity: 'var(--hero-opacity)' }}
-        initial={{ scale: 1, x: 0, y: 0 }}
-        animate={animate ? { scale: 1.08, x: '-1%', y: '-1%' } : undefined}
-        transition={{ duration: 24, ease: [0.16, 1, 0.3, 1], repeat: Infinity, repeatType: 'reverse' }}
+        className="hero-elite-photo absolute inset-0 h-full w-full object-cover object-[center_22%]"
+        initial={{ scale: 1.02, x: 0, y: 0 }}
+        animate={animate ? { scale: 1.07, x: '-0.6%', y: '-0.4%' } : undefined}
+        transition={{ duration: 42, ease: [0.16, 1, 0.3, 1], repeat: Infinity, repeatType: 'reverse' }}
       />
 
-      {/* Layer 2 — guilloche security print, static, low opacity */}
+      {/* Layer 2 — fog parallax (drifts opposite to photo) */}
       <div
-        className="absolute inset-0 bg-guilloche bg-[length:180px_180px] opacity-[0.06] mix-blend-overlay"
-      />
-
-      {/* Layer 2b — gradient mesh; static fallback when reduced motion (item 721) */}
-      <div
-        className={`hero-gradient-mesh absolute inset-0 pointer-events-none ${
-          animate ? 'hero-gradient-mesh--animate' : 'hero-gradient-mesh--static'
+        className={`hero-elite-fog hero-elite-fog--a pointer-events-none absolute inset-0 ${
+          animate ? 'hero-elite-fog--animate-a' : 'hero-elite-fog--static'
         }`}
-        aria-hidden
+      />
+      <div
+        className={`hero-elite-fog hero-elite-fog--b pointer-events-none absolute inset-0 ${
+          animate ? 'hero-elite-fog--animate-b' : 'hero-elite-fog--static'
+        }`}
       />
 
-      {/* Layer 3 — radial warm scrim (ochre glow top-right → obsidian falloff) */}
-      <div className="absolute inset-0 bg-gradient-hero" />
+      {/* Layer 3 — guilloche security print, whisper */}
+      <div className="absolute inset-0 bg-guilloche bg-[length:200px_200px] opacity-[0.04] mix-blend-overlay" />
 
-      {/* Layer 4 — bottom scrim for text legibility on mobile fold */}
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-scrim-bottom" />
+      {/* Layer 4 — cinematic vignette + left legibility scrim */}
+      <div className="hero-elite-vignette absolute inset-0" />
+      <div className="hero-elite-scrim absolute inset-0" />
 
-      {/* Grain — 3.5% film grain, breaks up any gradient banding */}
+      {/* Layer 5 — bottom falloff */}
+      <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-[#08080e]/88 via-[#08080e]/35 to-transparent" />
+
+      {/* Grain */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none mix-blend-overlay"
         style={{
           backgroundImage: 'var(--grain-svg)',
-          opacity: 'var(--grain-opacity)',
-          mixBlendMode: 'overlay',
+          opacity: 'calc(var(--grain-opacity, 0.04) * 1.2)',
         }}
       />
     </div>
-  );
+  )
 }

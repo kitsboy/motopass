@@ -33,6 +33,7 @@ import { PitchTrustedStrip } from '../components/pitch/PitchTrustedStrip'
 import { PitchRoadmapTimeline } from '../components/pitch/PitchRoadmapTimeline'
 import { PitchFaqAccordion } from '../components/pitch/PitchFaqAccordion'
 import { PitchHeroSubline } from '../components/pitch/PitchHeroSubline'
+import { PitchHeroTagline } from '../components/pitch/PitchHeroTagline'
 import { Card } from '../components/ui/Card'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { usePrograms } from '../hooks/usePrograms'
@@ -139,21 +140,27 @@ export function PitchPage() {
         <PageAnchorNav items={pitchAnchors} />
       </div>
 
-      {/* ── Hero ── */}
-      <section id="pitch-hero" className="relative isolate overflow-hidden scroll-mt-header">
+      {/* ── Hero — cinematic elite header ── */}
+      <section
+        id="pitch-hero"
+        className="pitch-hero-elite relative isolate w-full overflow-hidden scroll-mt-header"
+      >
         <HeroMotionBackground />
 
-        <div className="relative mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 py-16 sm:py-28 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:py-36">
+        <div className="relative z-[1] mx-auto flex min-h-[min(88vh,920px)] max-w-7xl flex-col justify-center gap-12 px-4 sm:px-6 py-20 sm:py-24 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:py-28">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="hero-copy max-w-xl"
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="hero-elite-copy max-w-2xl"
           >
-            <span className="club-eyebrow text-mp-btc drop-shadow-[0_1px_8px_rgba(0,0,0,0.5)]">
+            <PitchHeroTagline />
+            <span className="hero-elite-eyebrow club-eyebrow mt-6 inline-block text-white/75">
               MEMBERS · {t('tagline')}
             </span>
-            <h1 className="hero-headline mt-4 font-display text-hero">{t('pitch.hero')}</h1>
+            <p className="mt-4 max-w-lg font-body text-lg2 text-white/88 leading-relaxed hero-elite-sub">
+              {t('pitch.hero')}
+            </p>
             <PitchHeroSubline />
 
             {stats && (
