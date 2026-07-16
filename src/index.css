@@ -1158,8 +1158,18 @@ body::before {
   max-width: 100vw;
 }
 
+.hero-elite-stage {
+  isolation: isolate;
+}
+
 .hero-elite-photo {
-  filter: saturate(1.05) contrast(1.04);
+  filter: saturate(1.08) contrast(1.06);
+  will-change: transform;
+  transform-origin: 52% 32%;
+}
+
+.hero-elite-photo--animate {
+  animation: hero-elite-kenburns 20s ease-in-out infinite alternate;
 }
 
 .hero-elite-tagline {
@@ -1223,36 +1233,36 @@ body::before {
 }
 
 .hero-elite-fog {
-  filter: blur(28px);
-  mix-blend-mode: screen;
+  filter: blur(22px);
   will-change: transform, opacity;
+  width: 130%;
+  left: -15%;
+  top: -8%;
+  height: 116%;
 }
 
 .hero-elite-fog--a {
   background:
-    radial-gradient(ellipse 70% 55% at 22% 38%, rgba(255, 255, 255, 0.14) 0%, transparent 72%),
-    radial-gradient(ellipse 55% 45% at 78% 62%, rgba(200, 210, 230, 0.1) 0%, transparent 70%);
-  opacity: 0.42;
+    radial-gradient(ellipse 58% 48% at 30% 42%, rgba(255, 255, 255, 0.42) 0%, transparent 68%),
+    radial-gradient(ellipse 52% 44% at 72% 58%, rgba(210, 220, 245, 0.32) 0%, transparent 72%);
+  mix-blend-mode: screen;
+  opacity: 0.72;
 }
 
 .hero-elite-fog--b {
   background:
-    radial-gradient(ellipse 60% 50% at 65% 28%, rgba(255, 248, 235, 0.12) 0%, transparent 68%),
-    radial-gradient(ellipse 80% 60% at 12% 72%, rgba(180, 195, 220, 0.08) 0%, transparent 74%);
-  opacity: 0.32;
+    radial-gradient(ellipse 54% 46% at 68% 30%, rgba(255, 245, 228, 0.36) 0%, transparent 70%),
+    radial-gradient(ellipse 62% 52% at 18% 68%, rgba(185, 200, 230, 0.28) 0%, transparent 74%);
   mix-blend-mode: soft-light;
+  opacity: 0.62;
 }
 
 .hero-elite-fog--animate-a {
-  animation: hero-elite-fog-a 38s ease-in-out infinite alternate;
+  animation: hero-elite-fog-a 14s ease-in-out infinite alternate;
 }
 
 .hero-elite-fog--animate-b {
-  animation: hero-elite-fog-b 52s ease-in-out infinite alternate;
-}
-
-.hero-elite-fog--static {
-  opacity: 0.38;
+  animation: hero-elite-fog-b 18s ease-in-out infinite alternate-reverse;
 }
 
 .hero-gradient-mesh {
@@ -1488,33 +1498,65 @@ body,
   100% { opacity: 1; transform: scale(1.06); }
 }
 
-@keyframes hero-elite-fog-a {
+@keyframes hero-elite-kenburns {
   0% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.34;
-  }
-  50% {
-    transform: translate3d(2.5%, -1.8%, 0) scale(1.03);
-    opacity: 0.48;
+    transform: scale(1) translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(-1.5%, 1.2%, 0) scale(1.01);
-    opacity: 0.38;
+    transform: scale(1.18) translate3d(-5%, -3.5%, 0);
+  }
+}
+
+@keyframes hero-elite-fog-a {
+  0% {
+    transform: translate3d(-14%, 2%, 0) scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(14%, -3%, 0) scale(1.08);
+    opacity: 0.82;
   }
 }
 
 @keyframes hero-elite-fog-b {
   0% {
-    transform: translate3d(0, 0, 0) scale(1.02);
-    opacity: 0.26;
-  }
-  50% {
-    transform: translate3d(-2%, 2.2%, 0) scale(1.05);
-    opacity: 0.4;
+    transform: translate3d(16%, -2%, 0) scale(1.04);
+    opacity: 0.48;
   }
   100% {
-    transform: translate3d(1.8%, -1%, 0) scale(1.01);
-    opacity: 0.3;
+    transform: translate3d(-16%, 3%, 0) scale(1.1);
+    opacity: 0.78;
+  }
+}
+
+@keyframes hero-elite-kenburns-reduced {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.1) translate3d(-2.5%, -1.5%, 0);
+  }
+}
+
+@keyframes hero-elite-fog-a-reduced {
+  0% {
+    transform: translate3d(-8%, 1%, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(8%, -1.5%, 0);
+    opacity: 0.68;
+  }
+}
+
+@keyframes hero-elite-fog-b-reduced {
+  0% {
+    transform: translate3d(9%, -1%, 0);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate3d(-9%, 1.5%, 0);
+    opacity: 0.65;
   }
 }
 
@@ -1862,11 +1904,22 @@ body,
   .club-header-glow,
   .club-header-glow-electric,
   .hero-gradient-mesh--animate,
-  .hero-elite-fog--animate-a,
-  .hero-elite-fog--animate-b,
   .pitch-trusted-track {
     animation: none;
     transform: none;
+  }
+
+  /* Elite hero keeps visible motion — slower/smaller, not off */
+  .hero-elite-photo--animate {
+    animation: hero-elite-kenburns-reduced 32s ease-in-out infinite alternate;
+  }
+
+  .hero-elite-fog--animate-a {
+    animation: hero-elite-fog-a-reduced 22s ease-in-out infinite alternate;
+  }
+
+  .hero-elite-fog--animate-b {
+    animation: hero-elite-fog-b-reduced 26s ease-in-out infinite alternate-reverse;
   }
 
   .hero-cta-shimmer::after {

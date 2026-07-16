@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.07.15-53 · **Last updated:** 2026-07-15
+**BUILD:** 2026.07.15-54 · **Last updated:** 2026-07-15
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,7 +11,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.07.15-53 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.07.15-54 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
 | **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
 | **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
 | **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
