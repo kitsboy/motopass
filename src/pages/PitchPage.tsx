@@ -41,7 +41,7 @@ import { useLaunchGates } from '../hooks/useLaunchGates'
 import {
   computePitchStats,
   pitchStatsToMetrics,
-  pitchStatsToSavingsRows,
+
   latestProofTimestamp,
   formatUsd,
 } from '../lib/pitchStats'
@@ -115,7 +115,7 @@ export function PitchPage() {
   const { report, applicationsOpen } = useLaunchGates()
   const stats = useMemo(() => (programs.length ? computePitchStats(programs) : null), [programs])
   const metrics = useMemo(() => (stats ? pitchStatsToMetrics(stats) : []), [stats])
-  const savingsRows = useMemo(() => (stats ? pitchStatsToSavingsRows(stats) : []), [stats])
+
   const proofTs = useMemo(() => latestProofTimestamp(programs), [programs])
   const taglines = useMemo(() => TAGLINE_KEYS.map(k => t(k)), [t])
   const gatesPassed = report.gates.filter(g => g.pass).length
@@ -216,7 +216,7 @@ export function PitchPage() {
 
       <PitchTrustedStrip programs={programs} loading={loading} />
 
-      <SavingsGraphs rows={savingsRows} loading={loading} />
+      <SavingsGraphs loading={loading} />
 
       {/* ── Site-wide guide ── */}
       <PitchRevealSection id="pitch-guide" stagger={0.04} className="surface-band px-4 sm:px-6 py-14 sm:py-16 scroll-mt-header">

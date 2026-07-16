@@ -1,159 +1,193 @@
-import { useEffect, useRef, useState } from 'react'
-import { Download } from 'lucide-react'
-import { motion, useInView, useReducedMotion } from 'motion/react'
+import { useRef, useState } from 'react'
+import { Download, Minus, TrendingDown } from 'lucide-react'
+import { motion, useInView } from 'motion/react'
 import type { SavingsRow } from '../../lib/pitchStats'
-import { useBtcPrice } from '../../context/BtcPriceContext'
 import { useI18n } from '../../i18n/I18nContext'
-import { formatT } from '../../i18n/format'
-import { formatBtc, formatUsdCompact } from '../../lib/btcPrice'
-import { BtcDualPrice } from '../BtcDualPrice'
-import { Card } from '../ui/Card'
 import { downloadSavingsGraphPng } from '../../lib/savingsGraphExport'
 
 interface SavingsGraphsProps {
   title?: string
-  rows: SavingsRow[]
   loading?: boolean
 }
 
-function ValueDisplay({ value, unit }: { value: number; unit: string }) {
-  if (unit === '$') {
-    return <BtcDualPrice usd={value} size="sm" layout="stack" />
-  }
-  return (
-    <span className="font-mono text-sm tabular-nums text-ink">
-      {value.toLocaleString()}
-      <span className="text-ink-muted text-xs ml-0.5">{unit === 'days' ? 'days' : unit}</span>
-    </span>
-  )
+type MetricUnit = 'usd' | 'days' | 'count'
+
+interface DashboardMetric {
+  id: string
+  label: string
+  traditional: number
+  motopass: number
+  unit: MetricUnit
+  deltaLabel: string
 }
 
-function MetricColumn({
+const DASHBOARD_METRICS: DashboardMetric[] = [
+  {
+    id: 'legal',
+    label: 'Legal & advisory',
+    traditional: 81_000,
+    motopass: 3_900,
+    unit: 'usd',
+    deltaLabel: '−$77,100 modeled',
+  },
+  {
+    id: 'time',
+    label: 'Time to approval',
+    traditional: 177,
+    motopass: 135,
+    unit: 'days',
+    deltaLabel: '−42 days modeled',
+  },
+  {
+    id: 'jurisdictions',
+    label: 'Jurisdictions',
+    traditional: 3,
+    motopass: 50,
+    unit: 'count',
+    deltaLabel: '+47 jurisdictions modeled',
+  },
+]
+
+const EXPORT_ROWS: SavingsRow[] = DASHBOARD_METRICS.map(m => ({
+  label: m.label,
+  traditional: m.traditional,
+  motopass: m.motopass,
+  unit: m.unit === 'usd' ? '$' : m.unit === 'days' ? 'days' : 'programs',
+}))
+
+function formatMetricValue(value: number, unit: MetricUnit): string {
+  if (unit === 'usd') return `$${value.toLocaleString()}`
+  if (unit === 'days') return `${value.toLocaleString()}`
+  return value.toLocaleString()
+}
+
+function metricSuffix(unit: MetricUnit): string {
+  if (unit === 'days') return 'days'
+  if (unit === 'count') return ''
+  return ''
+}
+
+function ComparisonBar({
   label,
-  tone,
   value,
   max,
+  tone,
   delay,
-  unit,
+  active,
+  displayValue,
+  suffix,
 }: {
   label: string
-  tone: 'muted' | 'btc'
   value: number
   max: number
+  tone: 'traditional' | 'motopass'
   delay: number
-  unit: string
+  active: boolean
+  displayValue: string
+  suffix: string
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-8% 0px' })
-  const reduceMotion = useReducedMotion()
-  const heightPct = Math.max(10, Math.round((value / max) * 100))
+  const widthPct = Math.max(6, Math.round((value / max) * 100))
 
   return (
-    <div ref={ref} className="flex flex-col items-center flex-1 min-w-0 gap-3">
-      <div className="relative flex h-36 sm:h-40 w-full items-end justify-center px-2">
-        <motion.div
-          className={`w-full max-w-[3.5rem] rounded-t-xl origin-bottom ${
-            tone === 'btc'
-              ? 'bg-gradient-to-t from-btc-orange to-btc-orange/75 shadow-[0_0_20px_rgba(255,149,0,0.2)]'
-              : 'bg-ink-muted/35'
-          }`}
-          style={{ height: `${heightPct}%` }}
-          initial={{ scaleY: reduceMotion ? 1 : 0 }}
-          animate={inView ? { scaleY: 1 } : {}}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay }}
-        />
-      </div>
-      <div className="text-center w-full">
-        <span
-          className={`block font-chrome text-[10px] uppercase tracking-wider mb-1.5 ${
-            tone === 'btc' ? 'text-mp-btc-text' : 'text-ink-muted'
-          }`}
-        >
-          {label}
+    <div className="savings-v3-bar-group">
+      <div className="savings-v3-bar-head">
+        <span className={`savings-v3-bar-label savings-v3-bar-label--${tone}`}>{label}</span>
+        <span className={`savings-v3-bar-value savings-v3-bar-value--${tone}`}>
+          {displayValue}
+          {suffix ? <span className="savings-v3-bar-suffix">{suffix}</span> : null}
         </span>
-        <ValueDisplay value={value} unit={unit} />
+      </div>
+      <div className="savings-v3-bar-track" aria-hidden>
+        <motion.div
+          className={`savings-v3-bar-fill savings-v3-bar-fill--${tone}${tone === 'motopass' ? ' savings-v3-bar-fill--shimmer' : ''}`}
+          style={{ width: `${widthPct}%` }}
+          initial={{ scaleX: 0 }}
+          animate={active ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1], delay }}
+        />
       </div>
     </div>
   )
 }
 
-function MetricCard({
-  row,
-  max,
-  index,
-}: {
-  row: SavingsRow
-  max: number
-  index: number
-}) {
+function MetricPanel({ metric, index }: { metric: DashboardMetric; index: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-10% 0px' })
+  const max = Math.max(metric.traditional, metric.motopass)
+  const suffix = metricSuffix(metric.unit)
+
   return (
-    <Card variant="elevated" animate delay={0.05 + index * 0.06} className="!p-5 sm:!p-6 flex flex-col h-full">
-      <h3 className="font-display font-semibold text-sm text-ink mb-5 text-center sm:text-left tracking-tight">
-        {row.label}
-      </h3>
-      <div className="flex items-end gap-3 sm:gap-4 flex-1 mt-auto">
-        <MetricColumn
+    <article
+      ref={ref}
+      className="savings-v3-panel"
+      aria-labelledby={`savings-metric-${metric.id}`}
+      style={{ animationDelay: `${index * 80}ms` }}
+    >
+      <div className="savings-v3-panel__head">
+        <h3 id={`savings-metric-${metric.id}`} className="savings-v3-panel__title">
+          {metric.label}
+        </h3>
+        <span className="savings-v3-panel__delta">
+          <TrendingDown size={12} aria-hidden />
+          {metric.deltaLabel}
+        </span>
+      </div>
+
+      <div className="savings-v3-panel__numbers">
+        <div className="savings-v3-stat savings-v3-stat--traditional">
+          <span className="savings-v3-stat__eyebrow">Traditional</span>
+          <span className="savings-v3-stat__value">
+            {formatMetricValue(metric.traditional, metric.unit)}
+            {suffix ? <span className="savings-v3-stat__unit">{suffix}</span> : null}
+          </span>
+        </div>
+        <div className="savings-v3-stat-divider" aria-hidden>
+          <Minus size={14} />
+        </div>
+        <div className="savings-v3-stat savings-v3-stat--motopass">
+          <span className="savings-v3-stat__eyebrow">MotoPass</span>
+          <span className="savings-v3-stat__value">
+            {formatMetricValue(metric.motopass, metric.unit)}
+            {suffix ? <span className="savings-v3-stat__unit">{suffix}</span> : null}
+          </span>
+        </div>
+      </div>
+
+      <div className="savings-v3-panel__chart">
+        <ComparisonBar
           label="Traditional"
-          tone="muted"
-          value={row.traditional}
+          value={metric.traditional}
           max={max}
-          delay={index * 0.1}
-          unit={row.unit}
+          tone="traditional"
+          delay={index * 0.08}
+          active={inView}
+          displayValue={formatMetricValue(metric.traditional, metric.unit)}
+          suffix={suffix}
         />
-        <div className="w-px self-stretch bg-mp/50 shrink-0" aria-hidden />
-        <MetricColumn
+        <ComparisonBar
           label="MotoPass"
-          tone="btc"
-          value={row.motopass}
+          value={metric.motopass}
           max={max}
-          delay={index * 0.1 + 0.12}
-          unit={row.unit}
+          tone="motopass"
+          delay={index * 0.08 + 0.14}
+          active={inView}
+          displayValue={formatMetricValue(metric.motopass, metric.unit)}
+          suffix={suffix}
         />
       </div>
-    </Card>
+    </article>
   )
 }
 
-function SavingsPriceAnnouncer() {
-  const { t } = useI18n()
-  const { rate, quote, loading } = useBtcPrice()
-  const [announcement, setAnnouncement] = useState('')
-  const prevRate = useRef(rate)
-  const seeded = useRef(false)
-
-  useEffect(() => {
-    if (loading || !quote) return
-    if (!seeded.current) {
-      seeded.current = true
-      prevRate.current = rate
-      return
-    }
-    if (prevRate.current === rate) return
-    prevRate.current = rate
-    setAnnouncement(
-      formatT(t, 'pitch.savings.priceUpdated', {
-        btc: formatBtc(1),
-        usd: formatUsdCompact(rate),
-      }),
-    )
-  }, [rate, quote, loading, t])
-
-  return (
-    <p className="sr-only" aria-live="polite" aria-atomic="true">
-      {announcement}
-    </p>
-  )
-}
-
-export function SavingsGraphs({ title = 'Cost & time, modeled — not promised', rows, loading }: SavingsGraphsProps) {
+export function SavingsGraphs({ title = 'Cost & time, modeled — not promised', loading }: SavingsGraphsProps) {
   const { t } = useI18n()
   const [exporting, setExporting] = useState(false)
 
   const handleExportPng = async () => {
-    if (!rows.length || exporting) return
+    if (exporting) return
     setExporting(true)
     try {
-      await downloadSavingsGraphPng(rows, title)
+      await downloadSavingsGraphPng(EXPORT_ROWS, title)
     } finally {
       setExporting(false)
     }
@@ -161,13 +195,14 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
 
   if (loading) {
     return (
-      <section id="pitch-savings" className="relative overflow-hidden surface-band py-14 sm:py-20 scroll-mt-header">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="h-8 w-48 rounded-lg bg-card-muted/60 animate-pulse mb-4" />
-          <div className="h-12 w-96 max-w-full rounded-lg bg-card-muted/60 animate-pulse mb-3" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
+      <section id="pitch-savings" className="savings-dashboard-v3 scroll-mt-header" aria-busy="true">
+        <div className="savings-dashboard-v3__ambient" aria-hidden />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
+          <div className="h-10 w-56 rounded-xl bg-white/5 animate-pulse mb-6" />
+          <div className="h-14 w-full max-w-xl rounded-xl bg-white/5 animate-pulse mb-10" />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5">
             {[1, 2, 3].map(i => (
-              <div key={i} className="h-64 rounded-card bg-card-muted/50 animate-pulse" />
+              <div key={i} className="h-72 rounded-[20px] bg-white/5 animate-pulse" />
             ))}
           </div>
         </div>
@@ -175,48 +210,77 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
     )
   }
 
-  const maxByRow = rows.map(r => Math.max(r.traditional, r.motopass))
-
   return (
     <section
       id="pitch-savings"
-      className="relative overflow-hidden surface-band py-14 sm:py-20 scroll-mt-header"
-      style={{ clipPath: 'polygon(0 3vw, 100% 0, 100% 100%, 0 100%)' }}
+      className="savings-dashboard-v3 scroll-mt-header"
       aria-labelledby="savings-graphs-heading"
     >
-      <SavingsPriceAnnouncer />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="max-w-3xl">
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+      <div className="savings-dashboard-v3__ambient" aria-hidden />
+      <div className="savings-dashboard-v3__grid" aria-hidden />
+
+      <div className="relative z-[1] mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
+        <header className="savings-v3-header">
+          <div className="savings-v3-header__brand">
+            <img
+              src="/images/motopass-logo.png"
+              alt="MotoPass"
+              className="savings-v3-header__logo"
+              width={52}
+              height={52}
+              loading="lazy"
+              decoding="async"
+            />
             <div>
-              <span className="club-eyebrow block">Cost &amp; Time, Modeled</span>
-              <h2 id="savings-graphs-heading" className="mt-3 font-display text-h2 text-ink tracking-tight">
+              <span className="savings-v3-header__eyebrow">Members · Modeled economics</span>
+              <h2 id="savings-graphs-heading" className="savings-v3-header__title">
                 {title}
               </h2>
-              <p className="mt-4 font-body text-body text-ink-secondary leading-relaxed">
-                Figures pulled live from <code className="font-mono text-sm text-mp-btc-text">countries.json</code> — shown Bitcoin-first at spot. Every bar updates when program terms or BTC price moves.
-              </p>
             </div>
-            {rows.length > 0 && (
-              <button
-                type="button"
-                onClick={() => void handleExportPng()}
-                disabled={exporting}
-                className="chip shrink-0 inline-flex items-center gap-1.5 text-xs text-mp-btc-text hover:underline underline-offset-2 disabled:opacity-60"
-                aria-label={t('pitch.savings.exportPng')}
-              >
-                <Download size={13} aria-hidden />
-                {exporting ? t('pitch.savings.exporting') : t('pitch.savings.exportPng')}
-              </button>
-            )}
+          </div>
+          <p className="savings-v3-header__copy">
+            Illustrative sovereign stacking comparison — elite advisory modeling, not a guarantee. Figures
+            shown as exact USD and day counts for clarity.
+          </p>
+          <button
+            type="button"
+            onClick={() => void handleExportPng()}
+            disabled={exporting}
+            className="savings-v3-export"
+            aria-label={t('pitch.savings.exportPng')}
+          >
+            <Download size={14} aria-hidden />
+            {exporting ? t('pitch.savings.exporting') : t('pitch.savings.exportPng')}
+          </button>
+        </header>
+
+        <div className="savings-v3-summary" aria-label="Modeled savings summary">
+          <div className="savings-v3-summary__item">
+            <span className="savings-v3-summary__value">$77,100</span>
+            <span className="savings-v3-summary__label">Legal delta</span>
+          </div>
+          <div className="savings-v3-summary__divider" aria-hidden />
+          <div className="savings-v3-summary__item">
+            <span className="savings-v3-summary__value">42</span>
+            <span className="savings-v3-summary__label">Days faster</span>
+          </div>
+          <div className="savings-v3-summary__divider" aria-hidden />
+          <div className="savings-v3-summary__item">
+            <span className="savings-v3-summary__value">47</span>
+            <span className="savings-v3-summary__label">More jurisdictions</span>
           </div>
         </div>
 
-        <div className="mt-10 sm:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
-          {rows.map((row, i) => (
-            <MetricCard key={row.label} row={row} max={maxByRow[i]} index={i} />
+        <div className="savings-v3-panels">
+          {DASHBOARD_METRICS.map((metric, i) => (
+            <MetricPanel key={metric.id} metric={metric} index={i} />
           ))}
         </div>
+
+        <p className="savings-v3-footnote">
+          Modeled for member evaluation only. Traditional advisory assumes boutique counsel across three
+          jurisdictions; MotoPass reflects platform-modeled stack economics at current program depth.
+        </p>
       </div>
     </section>
   )
