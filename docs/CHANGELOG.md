@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-64] — 2026-07-15
+
+### Changed
+- Elite premium navigation — desktop glass bar + mobile drawer
+
+---
+
 ## [BUILD-2026.07.15-63] — 2026-07-15
 
 ### Changed

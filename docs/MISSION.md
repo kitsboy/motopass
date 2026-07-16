@@ -3,7 +3,7 @@ title: Mission
 project: MotoPass
 version: 1.0.0
 last_updated: 2026-07-15
-build: 2026.07.15-63
+build: 2026.07.15-64
 self_evolving: true
 bitcoin_display_policy: Bitcoin-first display on all monetary data — see PITCH-ANCHOR
 pitch_anchor: docs/PITCH-ANCHOR.md
