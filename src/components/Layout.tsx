@@ -82,7 +82,7 @@ export function Layout() {
 
             <button
               type="button"
-              className="lg:hidden nav-btn nav-btn-icon !h-9 !w-9 shrink-0"
+              className={`elite-hamburger lg:hidden shrink-0${menuOpen ? ' elite-hamburger--open' : ''}`}
               onClick={() => setMenuOpen(v => !v)}
               aria-expanded={menuOpen}
               aria-label={menuOpen ? t('nav.close') : t('nav.menu')}

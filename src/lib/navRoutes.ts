@@ -58,6 +58,14 @@ export function navTabClass(isActive: boolean): string {
   return `nav-tab ${isActive ? 'nav-tab-active' : ''}`
 }
 
+export function eliteNavLinkClass(isActive: boolean): string {
+  return `elite-nav-link${isActive ? ' elite-nav-link--active' : ''}`
+}
+
+export function eliteDrawerLinkClass(isActive: boolean): string {
+  return `elite-drawer-link${isActive ? ' elite-drawer-link--active' : ''}`
+}
+
 export function isNavActive(pathname: string, to: string, end?: boolean): boolean {
   if (end) return pathname === to
   return pathname === to || pathname.startsWith(`${to}/`)

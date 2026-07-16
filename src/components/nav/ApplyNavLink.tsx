@@ -5,17 +5,23 @@ import { useLaunchGates } from '../../hooks/useLaunchGates'
 import { useI18n } from '../../i18n/I18nContext'
 import { navPillClass, navTabClass, navTileClass } from '../../lib/navRoutes'
 
+type NavLayout = 'pill' | 'tile' | 'tab' | 'cta' | 'drawer-cta'
+
 type Props = Omit<NavLinkProps, 'to' | 'children'> & {
-  layout?: 'pill' | 'tile' | 'tab'
+  layout?: NavLayout
 }
 
-function layoutClass(layout: 'pill' | 'tile' | 'tab', isActive: boolean): string {
+function layoutClass(layout: NavLayout, isActive: boolean): string {
+  if (layout === 'cta') return `elite-nav-cta${isActive ? ' elite-nav-cta--active' : ''}`
+  if (layout === 'drawer-cta') return `elite-drawer-cta${isActive ? ' elite-drawer-cta--active' : ''}`
   if (layout === 'tile') return navTileClass(isActive)
   if (layout === 'tab') return navTabClass(isActive)
   return navPillClass(isActive)
 }
 
-function mutedClass(layout: 'pill' | 'tile' | 'tab'): string {
+function mutedClass(layout: NavLayout): string {
+  if (layout === 'cta') return 'elite-nav-cta elite-nav-cta--muted'
+  if (layout === 'drawer-cta') return 'elite-drawer-cta elite-drawer-cta--muted'
   if (layout === 'tile') return 'nav-mobile-tile opacity-50 cursor-not-allowed'
   if (layout === 'tab') return 'nav-tab opacity-50 cursor-not-allowed'
   return 'nav-pill opacity-50 cursor-not-allowed'

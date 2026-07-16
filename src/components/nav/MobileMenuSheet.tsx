@@ -2,94 +2,106 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PrefetchNavLink } from './PrefetchNavLink'
 import { ApplyNavLink } from './ApplyNavLink'
-import { ExternalLink, User, UserPlus, X } from 'lucide-react'
-import { AnimatePresence, motion } from 'motion/react'
-import { BlockHeight } from '../BlockHeight'
-import { NostrConnect } from '../NostrConnect'
-import { ThemeToggle } from '../ThemeToggle'
-import { LanguageDropdown } from './LanguageDropdown'
+import { X } from 'lucide-react'
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+
 import { useI18n } from '../../i18n/I18nContext'
-import { useUser } from '../../context/UserContext'
-import { MAIN_NAV_ROUTES, navTileClass } from '../../lib/navRoutes'
+import { MAIN_NAV_ROUTES, eliteDrawerLinkClass } from '../../lib/navRoutes'
 
 export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useI18n()
-  const { isLoggedIn } = useUser()
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
     }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+
+    return () => {
+      document.body.style.overflow = prev
+      window.removeEventListener('keydown', onKey)
+    }
   }, [open, onClose])
+
+  const panelMotion = reduceMotion
+    ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
+    : { initial: { x: '100%' }, animate: { x: 0 }, exit: { x: '100%' } }
 
   return (
     <AnimatePresence initial={false}>
       {open && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-          className="lg:hidden overflow-hidden border-t border-mp/40"
-          style={{ background: 'var(--mp-glass-bg)', backdropFilter: 'blur(24px) saturate(1.45)' }}
-        >
-          <div className="px-4 pb-4 pt-3 space-y-3 max-h-[min(70vh,520px)] overflow-y-auto">
-            <div className="flex items-center justify-between">
-              <span className="font-chrome text-[10px] uppercase tracking-wider text-ink-muted">{t('nav.menu')}</span>
-              <button type="button" onClick={onClose} className="nav-btn nav-btn-icon !h-8 !w-8" aria-label={t('nav.close')}>
-                <X size={18} />
+        <div className="elite-mobile-drawer lg:hidden" role="presentation">
+          <motion.button
+            type="button"
+            className="elite-mobile-drawer__backdrop"
+            aria-label={t('nav.close')}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            onClick={onClose}
+          />
+
+          <motion.aside
+            className="elite-mobile-drawer__panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label={t('nav.menu')}
+            {...panelMotion}
+            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <header className="elite-mobile-drawer__header">
+              <Link to="/" className="elite-mobile-drawer__brand" onClick={onClose}>
+                <img
+                  src="/logo.png"
+                  alt=""
+                  className="elite-mobile-drawer__brand-logo"
+                  width={32}
+                  height={32}
+                  decoding="async"
+                />
+                <span className="elite-mobile-drawer__brand-name">MotoPass</span>
+              </Link>
+              <button
+                type="button"
+                onClick={onClose}
+                className="elite-hamburger elite-hamburger--close"
+                aria-label={t('nav.close')}
+              >
+                <X size={20} strokeWidth={2.25} />
               </button>
-            </div>
+            </header>
 
-            <div className="flex flex-wrap items-center gap-1.5">
-              <BlockHeight />
-              <NostrConnect />
-              <ThemeToggle compact />
-            </div>
-
-            <LanguageDropdown size="menu" />
-
-            <Link
-              to={isLoggedIn ? '/dashboard' : '/register'}
-              onClick={onClose}
-              className={isLoggedIn ? 'nav-btn nav-btn-primary w-full justify-center' : 'nav-btn nav-btn-violet w-full justify-center'}
-            >
-              {isLoggedIn ? <User size={14} /> : <UserPlus size={14} />}
-              {isLoggedIn ? t('nav.dashboard') : t('nav.register')}
-            </Link>
-
-            <nav className="grid grid-cols-2 gap-1.5" aria-label="Main navigation">
-              {MAIN_NAV_ROUTES.map(n =>
-                n.apply ? (
-                  <ApplyNavLink key={n.to} layout="tile" onClick={onClose} />
-                ) : (
+            <nav className="elite-mobile-drawer__nav" aria-label="Main navigation">
+              {MAIN_NAV_ROUTES.filter(n => !n.apply).map((n, i) => (
+                <motion.div
+                  key={n.to}
+                  initial={reduceMotion ? false : { opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 + i * 0.04, duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                >
                   <PrefetchNavLink
-                    key={n.to}
                     to={n.to}
                     end={n.end}
                     onClick={onClose}
-                    className={({ isActive }) => navTileClass(isActive)}
+                    className={({ isActive }) => eliteDrawerLinkClass(isActive)}
                   >
                     {t(n.key)}
                   </PrefetchNavLink>
-                ),
-              )}
+                </motion.div>
+              ))}
             </nav>
 
-            <a
-              href="/website/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-btn nav-btn-ghost w-full justify-center"
-            >
-              <ExternalLink size={14} />
-              {t('nav.demo')}
-            </a>
-          </div>
-        </motion.div>
+            <footer className="elite-mobile-drawer__footer">
+              <ApplyNavLink layout="drawer-cta" onClick={onClose} />
+            </footer>
+          </motion.aside>
+        </div>
       )}
     </AnimatePresence>
   )
