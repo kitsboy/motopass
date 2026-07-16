@@ -40,7 +40,7 @@
     "deploy:health": "node scripts/deploy-health.mjs",
     "//deploy": "Staged: build → purge CF cache → wrangler pages deploy → wait-live verify (Playwright)",
     "deploy": "npm run sync:build && npm run build && npm run check:build-salt && node scripts/purge-live-cache.mjs && wrangler pages deploy dist --project-name=motopass --branch=main --commit-dirty=true && node scripts/wait-live-app.mjs",
-    "deploy:safe": "npm run sync:build && npm run build && npm run check:build-salt && node scripts/purge-live-cache.mjs && echo 'Deploying ONLY to motopass (motopass.giveabit.io)' && wrangler pages deploy dist --project-name=motopass --branch=main",
+    "deploy:safe": "npm run sync:build && npm run build && npm run check:build-salt && node scripts/purge-live-cache.mjs && echo 'Deploying ONLY to motopass (motopass.giveabit.io)' && wrangler pages deploy dist --project-name=motopass --branch=main --commit-dirty=true",
     "check:live-headers": "node scripts/check-live-headers.mjs",
     "check:build-salt": "node scripts/check-build-salt.mjs",
     "deploy:summary": "node scripts/deploy-summary.mjs",

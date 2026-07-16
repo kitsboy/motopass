@@ -26,6 +26,7 @@ if (!token) {
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const distHtml = resolve(__dirname, '../dist/index.html')
 const assetsDir = resolve(__dirname, '../dist/assets')
+const imagesDir = resolve(__dirname, '../dist/images')
 
 if (!existsSync(distHtml)) {
   console.error('FAIL purge: dist/index.html missing — run npm run build first')
@@ -36,10 +37,28 @@ if (!existsSync(assetsDir)) {
   process.exit(1)
 }
 
+function listImageUrls(dir, prefix = '/images') {
+  if (!existsSync(dir)) return []
+  return readdirSync(dir)
+    .filter(f => !f.startsWith('.'))
+    .map(f => `${BASE}${prefix}/${f}`)
+}
+
 const html = readFileSync(distHtml, 'utf8')
 const diskAssets = readdirSync(assetsDir).map(f => `${BASE}/assets/${f}`)
 const htmlAssets = [...html.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g)].map(m => `${BASE}${m[1]}`)
-const assets = [...new Set([`${BASE}/`, `${BASE}/index.html`, `${BASE}/verify`, ...htmlAssets, ...diskAssets])]
+const imageAssets = listImageUrls(imagesDir)
+const assets = [
+  ...new Set([
+    `${BASE}/`,
+    `${BASE}/index.html`,
+    `${BASE}/verify`,
+    `${BASE}/images/header-elite.jpg`,
+    ...htmlAssets,
+    ...diskAssets,
+    ...imageAssets,
+  ]),
+]
 
 function formatCfErrors(errors) {
   if (!errors?.length) return 'unknown Cloudflare API error'
