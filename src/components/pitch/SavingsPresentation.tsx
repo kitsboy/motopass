@@ -5,6 +5,9 @@ import { DASHBOARD_METRICS, type MetricUnit } from '../../lib/savingsDashboardMe
 
 const LOGO_SRC = '/images/motopass-logo.png'
 
+const METHODOLOGY_DISCLAIMER =
+  'Modeled from boutique advisory across three jurisdictions vs MotoPass stack economics at current program depth. Illustrative figures for member evaluation — not promises.'
+
 const PHASES = ['intro', 'cost', 'time', 'jurisdictions', 'savings', 'finale'] as const
 type Phase = (typeof PHASES)[number]
 
@@ -604,6 +607,14 @@ export function SavingsPresentation({ open, onClose, title }: SavingsPresentatio
                   >
                     {title}
                   </motion.h2>
+                  <motion.p
+                    className="ds-intro__disclaimer"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7, duration: 0.5 }}
+                  >
+                    {METHODOLOGY_DISCLAIMER}
+                  </motion.p>
                 </motion.div>
               ) : (
                 <motion.div
@@ -645,6 +656,8 @@ export function SavingsPresentation({ open, onClose, title }: SavingsPresentatio
           >
             {phaseLabel[phase]}
           </motion.span>
+
+          <p className="savings-presentation__disclaimer">{METHODOLOGY_DISCLAIMER}</p>
         </motion.div>
       )}
     </AnimatePresence>

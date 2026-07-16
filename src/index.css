@@ -2199,6 +2199,21 @@ body,
   color: rgba(255, 196, 110, 0.65);
 }
 
+.savings-presentation__disclaimer {
+  position: relative;
+  z-index: 2;
+  max-width: min(96vw, calc(90vh * 1168 / 784));
+  margin: 0;
+  padding: 0 0.5rem;
+  font-family: var(--mp-font-mono);
+  font-size: clamp(0.5625rem, 1.2vw, 0.6875rem);
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.38);
+  text-wrap: balance;
+}
+
 .savings-presentation__close {
   position: fixed;
   top: max(1rem, env(safe-area-inset-top));
@@ -2281,6 +2296,17 @@ body,
   line-height: 1.12;
   color: #fff;
   max-width: 28rem;
+  text-wrap: balance;
+}
+
+.ds-intro__disclaimer {
+  max-width: 26rem;
+  margin: 0.25rem 0 0;
+  font-family: var(--mp-font-mono);
+  font-size: clamp(0.5625rem, 1.2vw, 0.6875rem);
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.42);
   text-wrap: balance;
 }
 

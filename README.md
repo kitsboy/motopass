@@ -1,6 +1,6 @@
 # MotoPass — Bitcoin Sovereign Passports & Residency
 
-**BUILD 2026.07.15-62** · Last updated: 2026-07-15
+**BUILD 2026.07.15-63** · Last updated: 2026-07-15
 
 [![CI](https://github.com/kitsboy/motopass/actions/workflows/ci.yml/badge.svg)](https://github.com/kitsboy/motopass/actions/workflows/ci.yml)
 [![Live](https://img.shields.io/website?url=https%3A%2F%2Fmotopass.giveabit.io&label=motopass.giveabit.io)](https://motopass.giveabit.io)
@@ -67,7 +67,7 @@ motopass/
 
 ---
 
-## Current state (BUILD 62)
+## Current state (BUILD 63)
 
 - **Sovereign Night** default UI — glass cards, BTC grid/hash textures, orange accents
 - **50/50 deep flagships** · Launch Engine 5/5 · applications open at `/apply`

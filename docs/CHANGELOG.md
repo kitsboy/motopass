@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-63] — 2026-07-15
+
+### Changed
+- Presentation methodology disclaimer — illustrative, not promises
+
+---
+
 ## [BUILD-2026.07.15-62] — 2026-07-15
 
 ### Changed

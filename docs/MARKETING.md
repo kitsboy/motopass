@@ -3,7 +3,7 @@ title: Marketing Strategy & Positioning
 project: MotoPass
 version: 1.0.0
 last_updated: 2026-07-15
-build: 2026.07.15-62
+build: 2026.07.15-63
 self_evolving: true
 bitcoin_display_policy: Bitcoin-first — all monetary figures via PITCH-ANCHOR (₿ primary, USD secondary)
 pitch_anchor: docs/PITCH-ANCHOR.md
