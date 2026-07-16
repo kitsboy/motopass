@@ -1,3 +1,3 @@
 # motopass — Last Updated 2026-07-15 by Grok
-Brief: BUILD 62 — full-screen animated data-story dashboard presentation (no crop, MotoPass-only branding)
-Commit: a055f68
+Brief: BUILD 66 — Finance Compare fix (eager route, empty state, dropdown clip)
+Commit: f5c575e

@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.07.15-65 · **Last updated:** 2026-07-15
+**BUILD:** 2026.07.15-66 · **Last updated:** 2026-07-15
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,13 +11,14 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.07.15-65 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.07.15-66 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
 | **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
 | **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
 | **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
 | **BTC Map** | ✅ v2 | `/btcmap` — Leaflet, density badges, Nostr saves, offline cache |
 | **E2E smoke** | ✅ Playwright | 19 tests — `npm run test:e2e` |
-| **Unit tests** | ✅ Vitest | 36 tests |
+| **Unit tests** | ✅ Vitest | 125 tests |
+| **Finance Compare** | ✅ BUILD 66 | Eager route · glass matrix · immediate empty state |
 | **Design system** | ✅ Warm Sovereign Cinematic | Sovereign Night default + light toggle |
 | **Programs data** | ✅ 50 / 50 deep | `research/countries.json` |
 | **BTC Map cache** | ✅ 50 snapshots | `public/data/btcmap/` |
@@ -30,6 +31,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.07.15-66** | 2026-07-15 | `f5c575e` | Finance Compare fix — eager route, empty state, dropdown clip |
 | **2026.07.15-65** | 2026-07-15 | `9d9d424` | Finance Compare premium redesign — glass matrix + mobile scroll |
 | **2026.07.15-64** | 2026-07-15 | `5851dfe` | Elite premium navigation — desktop glass bar + mobile drawer |
 | **2026.07.15-63** | 2026-07-15 | `e3d85c7` | Presentation methodology disclaimer — illustrative, not promises |

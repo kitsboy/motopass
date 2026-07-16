@@ -95,6 +95,14 @@ Before BUILD 58, `.sovereign-canvas::before` and `::after` used `position: fixed
 
 **Verify locally:** `npm run test:e2e` (includes `footer-gap.spec.ts`). **Post-deploy:** `verify-live-app.mjs` captures `artifacts/footer-mobile-gap-live.png`, writes `artifacts/scroll-metrics-live.json`, and asserts footer `BUILD` + scroll void < 16px.
 
+### BUILD 66 — Finance Compare route (eager import)
+
+BUILD 65 lazy-loaded `FinanceComparePage` as a separate chunk; in preview/production the chunk often never resolved, leaving `/compare` stuck on the `RouteSuspense` skeleton. **BUILD 66** eager-imports compare in `App.tsx` so the page always hydrates with the main bundle.
+
+**Compare page CSS:** `.fc-page` uses `overflow: visible` so the program picker dropdown is not clipped. Decorative ambient layers clip locally.
+
+**Smoke tests:** `e2e/smoke.spec.ts` compare cases wait for `countries.json` before asserting empty state or matrix table.
+
 ## Boot guard (client recovery)
 
 Injected in `index.html` at build time (`vite.config.ts`):

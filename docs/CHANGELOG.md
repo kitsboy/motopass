@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.07.15-66] — 2026-07-15
+
+### Changed
+- Finance Compare fix — eager route, empty state, dropdown clip
+
+---
+
 ## [BUILD-2026.07.15-65] — 2026-07-15
 
 ### Changed

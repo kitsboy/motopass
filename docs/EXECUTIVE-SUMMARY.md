@@ -3,7 +3,7 @@ title: Executive Summary
 project: MotoPass
 version: 1.0.0
 last_updated: 2026-07-15
-build: 2026.07.15-65
+build: 2026.07.15-66
 self_evolving: true
 bitcoin_display_policy: Bitcoin-first — cite PITCH-ANCHOR for all monetary figures
 pitch_anchor: docs/PITCH-ANCHOR.md

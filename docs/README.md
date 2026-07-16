@@ -1,6 +1,6 @@
 # MotoPass Documentation Hub
 
-**BUILD:** 2026.07.15-65 · **Last updated:** 2026-07-15
+**BUILD:** 2026.07.15-66 · **Last updated:** 2026-07-15
 
 Official documentation for MotoPass. All long-form docs live here unless required at repo root (see [WORK-TREE.md](./WORK-TREE.md)).
 
@@ -28,9 +28,10 @@ Official documentation for MotoPass. All long-form docs live here unless require
 1. **[SOURCE-OF-TRUTH.md](./SOURCE-OF-TRUTH.md)** — Canonical project record
 2. **[UPDATES-MAP.md](./UPDATES-MAP.md)** — Build history & work queue
 3. **[KIMI-HANDOFF.md](./KIMI-HANDOFF.md)** — Latest M3 session (bottom section)
-4. **[EXECUTIVE-SUMMARY.md](./EXECUTIVE-SUMMARY.md)** — Strategic one-pager
-5. **[PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md)** — Phased ambition
-6. **[DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md)** — Current UI direction
+4. **[SESSION-SUMMARY-2026-07-15-BUILD66.md](./SESSION-SUMMARY-2026-07-15-BUILD66.md)** — Compare fix session (goodbye)
+5. **[EXECUTIVE-SUMMARY.md](./EXECUTIVE-SUMMARY.md)** — Strategic one-pager
+6. **[PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md)** — Phased ambition
+7. **[DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md)** — Current UI direction
 
 ---
 

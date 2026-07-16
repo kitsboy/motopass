@@ -910,4 +910,40 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-15 (BUILD 66 — Finance Compare fix)
+
+**Done:**
+- Fixed `/compare` stuck on infinite loading skeleton after BUILD 65 redesign
+- Root cause: lazy `FinanceComparePage` chunk never resolved in preview/production (e2e showed only `status "Loading"`)
+- Eager-import compare route in `src/App.tsx` — reliable load in main bundle
+- Show picker + empty state immediately; matrix/diff wait on `countries.json` only
+- Fixed program search dropdown clipped by `.fc-page { overflow: hidden }`
+- Added `compare.loadingPrograms` i18n key; table `aria-label` for a11y/e2e
+- Compare e2e: wait for `countries.json`; 3/3 smoke tests pass
+- BUILD `2026.07.15-66` pushed; live confirmed (`index-...-66.js`)
+- Docs synced: `sync-build-version.mjs`, CHANGELOG, UPDATES-MAP, SOURCE-OF-TRUTH, handoff
+
+**Decisions:**
+- Eager import for `/compare` — core nav route; reliability over code-split (~17KB chunk was broken)
+- Do not gate empty state on programs fetch — users must see "Select programs to compare" immediately
+- BUILD 65 lazy chunks remain on CDN but unused; boot guard handles stale caches
+
+**Git State:**
+- SHA: `f5c575ef65430e73906379c897e6570b632f3972`
+- Branch: `main`
+- Unpushed: docs commit pending this session
+- Live: https://motopass.giveabit.io/compare (BUILD 66)
+
+### Latest Session Summary (from 2026-07-15 goodbye)
+
+**Chat topic:** Finance Compare broken after BUILD 65 — user said "it does not work anymore."
+
+**Finished:** BUILD 66 compare regression fix shipped and live; tests green.
+
+**Still to do:** Optional tsc cleanup; long-term Bitcoin/Nostr/escrow roadmap unchanged.
+
+**Next for Kimi:** Integrate BUILD 66 note into vault maps; no action unless compare regressions reported.
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*

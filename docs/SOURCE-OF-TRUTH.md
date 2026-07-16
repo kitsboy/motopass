@@ -2,8 +2,8 @@
 
 **Project:** MotoPass  
 **Date:** 2026-07-15  
-**BUILD:** 2026.07.15-65  
-**Commit:** `0ce5e12` (BUILD 33) / `03596d5` (feature)
+**BUILD:** 2026.07.15-66  
+**Commit:** `f5c575e` (BUILD 66 compare fix)
 
 ## Project overview
 
@@ -29,7 +29,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 | Asset | Path | Status |
 |-------|------|--------|
-| React app | `src/` + `npm run dev` | BUILD-65 — 15 routes, dark mode, BTC Map, ₿-first pricing |
+| React app | `src/` + `npm run dev` | BUILD-66 — 15 routes, eager `/compare`, dark mode, BTC Map, ₿-first pricing |
 | Program data | `research/countries.json` | **50 programs** |
 | BTC Map cache | `public/data/btcmap/` | **50 jurisdiction snapshots** |
 | BTC Map density | `public/data/btcmap-density.json` | Merchant counts per program |
@@ -42,7 +42,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 ## Current capabilities (shipped)
 
 - Programs explorer (card + table, filters, breadcrumbs) — **50/50 deep flagships**
-- Portfolio, Stack Simulator, Finance Compare, Blog, Agents
+- Portfolio, Stack Simulator, **Finance Compare** (BUILD-66 eager route — glass matrix, mobile scroll, immediate empty state), Blog, Agents
 - **Seal** (`/vault`) — OTS upload, hash verify, 50/50 proofs on disk
 - **Forge** (`/distressed`) — curated + permissionless marketplace, PSBT escrow stub
 - **Apply** (`/apply`) — Launch Engine gated applications, 5/5 gate scorecard
