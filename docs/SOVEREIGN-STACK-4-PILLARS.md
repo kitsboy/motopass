@@ -3,7 +3,7 @@ title: Sovereign Stack — 4 Core Pillars
 project: MotoPass
 version: 1.0.0
 last_updated: 2026-07-15
-build: 2026.07.15-59
+build: 2026.07.15-60
 self_evolving: true
 bitcoin_display_policy: Bitcoin-first — all figures via PITCH-ANCHOR + BtcDualPrice UI
 pitch_anchor: docs/PITCH-ANCHOR.md

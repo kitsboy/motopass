@@ -1,25 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { X, TrendingDown } from 'lucide-react'
-import {
-  DASHBOARD_METRICS,
-  formatMetricValue,
-  metricSuffix,
-  type DashboardMetric,
-  type MetricUnit,
-} from '../../lib/savingsDashboardMetrics'
+import { X } from 'lucide-react'
+import { DASHBOARD_METRICS, type MetricUnit } from '../../lib/savingsDashboardMetrics'
 
-const SCENE_ORDER = ['intro', ...DASHBOARD_METRICS.map(m => m.id), 'summary', 'outro'] as const
-type SceneId = (typeof SCENE_ORDER)[number]
-
-const SCENE_MS: Record<SceneId, number> = {
-  intro: 2800,
-  legal: 4500,
-  time: 4500,
-  jurisdictions: 4500,
-  summary: 4200,
-  outro: 3600,
-}
+const DATA_STORY_SRC = '/images/data-story.jpg'
+const LOGO_SRC = '/images/motopass-logo.png'
 
 interface SavingsPresentationProps {
   open: boolean
@@ -32,20 +17,31 @@ function CountUp({
   unit,
   active,
   tone,
+  delay = 0,
 }: {
   value: number
   unit: MetricUnit
   active: boolean
-  tone: 'traditional' | 'motopass' | 'gold'
+  tone: 'traditional' | 'motopass'
+  delay?: number
 }) {
   const reduceMotion = useReducedMotion()
   const [display, setDisplay] = useState(reduceMotion ? value : 0)
+  const [started, setStarted] = useState(false)
 
   useEffect(() => {
     if (!active) {
+      setStarted(false)
       setDisplay(reduceMotion ? value : 0)
       return
     }
+
+    const timer = window.setTimeout(() => setStarted(true), delay)
+    return () => window.clearTimeout(timer)
+  }, [active, delay, reduceMotion, value])
+
+  useEffect(() => {
+    if (!started) return
     if (reduceMotion) {
       setDisplay(value)
       return
@@ -53,7 +49,7 @@ function CountUp({
 
     let raf = 0
     const start = performance.now()
-    const duration = 1200
+    const duration = 1400
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / duration)
       const eased = 1 - Math.pow(1 - t, 3)
@@ -62,146 +58,137 @@ function CountUp({
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [value, active, reduceMotion])
+  }, [started, value, reduceMotion])
 
-  const suffix = metricSuffix(unit)
+  const suffix = unit === 'days' ? ' days' : unit === 'count' ? '' : ''
   const formatted =
-    unit === 'usd'
-      ? `$${display.toLocaleString()}`
-      : `${display.toLocaleString()}${suffix ? ` ${suffix}` : ''}`
+    unit === 'usd' ? `$${display.toLocaleString()}` : `${display.toLocaleString()}${suffix}`
 
   return (
-    <span className={`savings-presentation__value savings-presentation__value--${tone}`}>
-      {formatted}
-    </span>
+    <span className={`data-story__value data-story__value--${tone}`}>{formatted}</span>
   )
 }
 
-function PresentationBar({
-  value,
-  max,
-  tone,
+function MetricBars({
+  traditional,
+  motopass,
   active,
+  orientation,
   delay = 0,
 }: {
-  value: number
-  max: number
-  tone: 'traditional' | 'motopass'
+  traditional: number
+  motopass: number
   active: boolean
+  orientation: 'vertical' | 'horizontal'
   delay?: number
 }) {
-  const widthPct = Math.max(6, Math.round((value / max) * 100))
+  const max = Math.max(traditional, motopass, 1)
+  const tradPct = Math.max(8, Math.round((traditional / max) * 100))
+  const motoPct = Math.max(8, Math.round((motopass / max) * 100))
 
   return (
-    <div className="savings-presentation__bar-track">
+    <div
+      className={`data-story__bars data-story__bars--${orientation}`}
+      aria-hidden
+    >
       <motion.div
-        className={`savings-presentation__bar-fill savings-presentation__bar-fill--${tone}`}
-        style={{ width: `${widthPct}%` }}
-        initial={{ scaleX: 0 }}
-        animate={active ? { scaleX: 1 } : { scaleX: 0 }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay }}
+        className="data-story__bar data-story__bar--traditional"
+        style={orientation === 'vertical' ? { height: `${tradPct}%` } : { width: `${tradPct}%` }}
+        initial={{ scaleY: orientation === 'vertical' ? 0 : 1, scaleX: orientation === 'horizontal' ? 0 : 1 }}
+        animate={
+          active
+            ? { scaleY: 1, scaleX: 1 }
+            : { scaleY: orientation === 'vertical' ? 0 : 1, scaleX: orientation === 'horizontal' ? 0 : 1 }
+        }
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay }}
+      />
+      <motion.div
+        className="data-story__bar data-story__bar--motopass"
+        style={orientation === 'vertical' ? { height: `${motoPct}%` } : { width: `${motoPct}%` }}
+        initial={{ scaleY: orientation === 'vertical' ? 0 : 1, scaleX: orientation === 'horizontal' ? 0 : 1 }}
+        animate={
+          active
+            ? { scaleY: 1, scaleX: 1 }
+            : { scaleY: orientation === 'vertical' ? 0 : 1, scaleX: orientation === 'horizontal' ? 0 : 1 }
+        }
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: delay + 0.16 }}
       />
     </div>
   )
 }
 
-function MetricScene({ metric, active }: { metric: DashboardMetric; active: boolean }) {
-  const max = Math.max(metric.traditional, metric.motopass)
-  const suffix = metricSuffix(metric.unit)
+function MetricSlot({
+  metricId,
+  active,
+  delay,
+}: {
+  metricId: string
+  active: boolean
+  delay: number
+}) {
+  const metric = DASHBOARD_METRICS.find(m => m.id === metricId)
+  if (!metric) return null
+
+  const orientation = metricId === 'jurisdictions' ? 'horizontal' : 'vertical'
 
   return (
     <motion.div
-      key={metric.id}
-      className="savings-presentation__scene-inner"
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -18 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      className={`data-story__slot data-story__slot--${metricId}`}
+      initial={{ opacity: 0, y: 14 }}
+      animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay }}
     >
-      <span className="savings-presentation__scene-eyebrow">{metric.label}</span>
-      <div className="savings-presentation__compare-row">
-        <div className="savings-presentation__compare-col">
-          <span className="savings-presentation__compare-label">Traditional</span>
-          <CountUp value={metric.traditional} unit={metric.unit} active={active} tone="traditional" />
-        </div>
-        <div className="savings-presentation__compare-col savings-presentation__compare-col--right">
-          <span className="savings-presentation__compare-label savings-presentation__compare-label--gold">
-            MotoPass
+      <div className="data-story__slot-glass">
+        <div className="data-story__slot-numbers">
+          <div className="data-story__slot-col">
+            <span className="data-story__slot-label">Traditional</span>
+            <CountUp
+              value={metric.traditional}
+              unit={metric.unit}
+              active={active}
+              tone="traditional"
+              delay={delay * 1000 + 200}
+            />
+          </div>
+          <span className="data-story__slot-arrow" aria-hidden>
+            →
           </span>
-          <CountUp value={metric.motopass} unit={metric.unit} active={active} tone="motopass" />
+          <div className="data-story__slot-col data-story__slot-col--right">
+            <span className="data-story__slot-label data-story__slot-label--gold">MotoPass</span>
+            <CountUp
+              value={metric.motopass}
+              unit={metric.unit}
+              active={active}
+              tone="motopass"
+              delay={delay * 1000 + 450}
+            />
+          </div>
         </div>
+        <MetricBars
+          traditional={metric.traditional}
+          motopass={metric.motopass}
+          active={active}
+          orientation={orientation}
+          delay={delay + 0.35}
+        />
+        <span className="data-story__slot-delta">{metric.deltaLabel}</span>
       </div>
-
-      <div className="savings-presentation__bars">
-        <div className="savings-presentation__bar-row">
-          <span className="savings-presentation__bar-label">Traditional</span>
-          <PresentationBar value={metric.traditional} max={max} tone="traditional" active={active} />
-          <span className="savings-presentation__bar-num">
-            {formatMetricValue(metric.traditional, metric.unit)}
-            {suffix ? ` ${suffix}` : ''}
-          </span>
-        </div>
-        <div className="savings-presentation__bar-row">
-          <span className="savings-presentation__bar-label savings-presentation__bar-label--gold">
-            MotoPass
-          </span>
-          <PresentationBar
-            value={metric.motopass}
-            max={max}
-            tone="motopass"
-            active={active}
-            delay={0.18}
-          />
-          <span className="savings-presentation__bar-num savings-presentation__bar-num--gold">
-            {formatMetricValue(metric.motopass, metric.unit)}
-            {suffix ? ` ${suffix}` : ''}
-          </span>
-        </div>
-      </div>
-
-      <span className="savings-presentation__delta">
-        <TrendingDown size={13} aria-hidden />
-        {metric.deltaLabel}
-      </span>
     </motion.div>
   )
 }
 
 export function SavingsPresentation({ open, onClose, title }: SavingsPresentationProps) {
-  const [sceneIndex, setSceneIndex] = useState(0)
-  const [playing, setPlaying] = useState(false)
+  const [animating, setAnimating] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
-  const scene = SCENE_ORDER[sceneIndex]
-
-  const restart = useCallback(() => {
-    setSceneIndex(0)
-    setPlaying(true)
-  }, [])
 
   useEffect(() => {
     if (!open) {
-      setPlaying(false)
-      setSceneIndex(0)
+      setAnimating(false)
       return
     }
-    restart()
-  }, [open, restart])
-
-  useEffect(() => {
-    if (!open || !playing) return
-
-    const duration = SCENE_MS[scene]
-    const isLast = sceneIndex >= SCENE_ORDER.length - 1
-    const timer = window.setTimeout(() => {
-      if (isLast) {
-        onClose()
-        return
-      }
-      setSceneIndex(i => i + 1)
-    }, duration)
-
-    return () => window.clearTimeout(timer)
-  }, [open, playing, scene, sceneIndex, onClose])
+    const t = window.setTimeout(() => setAnimating(true), 120)
+    return () => window.clearTimeout(t)
+  }, [open])
 
   useEffect(() => {
     if (!open) return
@@ -220,8 +207,6 @@ export function SavingsPresentation({ open, onClose, title }: SavingsPresentatio
     }
   }, [open, onClose])
 
-  const metric = DASHBOARD_METRICS.find(m => m.id === scene)
-
   return (
     <AnimatePresence>
       {open && (
@@ -233,110 +218,82 @@ export function SavingsPresentation({ open, onClose, title }: SavingsPresentatio
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.35 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="savings-presentation__ambient" aria-hidden />
-          <div className="savings-presentation__grid" aria-hidden />
+          <motion.button
+            type="button"
+            className="savings-presentation__close"
+            onClick={onClose}
+            aria-label="Close presentation"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.35 }}
+          >
+            <X size={22} />
+          </motion.button>
 
-          <div ref={panelRef} tabIndex={-1} className="savings-presentation__stage">
-            <button
-              type="button"
-              className="savings-presentation__close"
-              onClick={onClose}
-              aria-label="Close presentation"
+          <motion.div
+            ref={panelRef}
+            tabIndex={-1}
+            className="savings-presentation__frame"
+            initial={{ opacity: 0, scale: 0.9, y: 28 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 16 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <img
+              src={DATA_STORY_SRC}
+              alt=""
+              className="data-story__art"
+              width={1168}
+              height={784}
+              decoding="async"
+            />
+
+            <div className="data-story__scrim" aria-hidden />
+
+            <motion.img
+              src={LOGO_SRC}
+              alt="MotoPass"
+              className="data-story__watermark"
+              width={200}
+              height={200}
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={animating ? { opacity: 0.92, scale: 1 } : {}}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            />
+
+            <img
+              src={LOGO_SRC}
+              alt=""
+              className="data-story__card-logo data-story__card-logo--cost"
+              width={28}
+              height={28}
+              aria-hidden
+            />
+            <img
+              src={LOGO_SRC}
+              alt=""
+              className="data-story__card-logo data-story__card-logo--jur"
+              width={28}
+              height={28}
+              aria-hidden
+            />
+
+            <motion.div
+              className="data-story__title-band"
+              initial={{ opacity: 0, y: -10 }}
+              animate={animating ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55, delay: 0.15 }}
             >
-              <X size={20} />
-            </button>
+              <img src={LOGO_SRC} alt="" className="data-story__title-logo" width={24} height={24} aria-hidden />
+              <span className="data-story__title-text">{title}</span>
+            </motion.div>
 
-            <div className="savings-presentation__progress" aria-hidden>
-              {SCENE_ORDER.map((id, i) => (
-                <span
-                  key={id}
-                  className={`savings-presentation__progress-dot${i <= sceneIndex ? ' savings-presentation__progress-dot--active' : ''}${i === sceneIndex ? ' savings-presentation__progress-dot--current' : ''}`}
-                />
-              ))}
-            </div>
-
-            <AnimatePresence mode="wait">
-              {scene === 'intro' && (
-                <motion.div
-                  key="intro"
-                  className="savings-presentation__scene-inner savings-presentation__scene-inner--intro"
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.02 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <motion.img
-                    src="/images/motopass-logo.png"
-                    alt="MotoPass"
-                    className="savings-presentation__logo"
-                    width={96}
-                    height={96}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.15, duration: 0.7 }}
-                  />
-                  <span className="savings-presentation__intro-eyebrow">Members · Modeled economics</span>
-                  <h2 className="savings-presentation__intro-title">{title}</h2>
-                  <p className="savings-presentation__intro-copy">
-                    Three comparisons. Exact figures. Modeled — not promised.
-                  </p>
-                </motion.div>
-              )}
-
-              {metric && <MetricScene key={metric.id} metric={metric} active />}
-
-              {scene === 'summary' && (
-                <motion.div
-                  key="summary"
-                  className="savings-presentation__scene-inner"
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <span className="savings-presentation__scene-eyebrow">Modeled delta</span>
-                  <div className="savings-presentation__summary-grid">
-                    <div className="savings-presentation__summary-item">
-                      <CountUp value={77_100} unit="usd" active tone="gold" />
-                      <span className="savings-presentation__summary-label">Legal delta</span>
-                    </div>
-                    <div className="savings-presentation__summary-item">
-                      <CountUp value={42} unit="days" active tone="gold" />
-                      <span className="savings-presentation__summary-label">Days faster</span>
-                    </div>
-                    <div className="savings-presentation__summary-item">
-                      <CountUp value={47} unit="count" active tone="gold" />
-                      <span className="savings-presentation__summary-label">More jurisdictions</span>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-
-              {scene === 'outro' && (
-                <motion.div
-                  key="outro"
-                  className="savings-presentation__scene-inner savings-presentation__scene-inner--intro"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <img
-                    src="/images/motopass-logo.png"
-                    alt="MotoPass"
-                    className="savings-presentation__logo savings-presentation__logo--small"
-                    width={72}
-                    height={72}
-                  />
-                  <p className="savings-presentation__outro-copy">
-                    Modeled for member evaluation only — elite advisory economics, not a guarantee.
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+            <MetricSlot metricId="legal" active={animating} delay={0.35} />
+            <MetricSlot metricId="time" active={animating} delay={0.55} />
+            <MetricSlot metricId="jurisdictions" active={animating} delay={0.75} />
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

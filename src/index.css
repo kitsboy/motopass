@@ -2137,7 +2137,7 @@ body,
   }
 }
 
-/* ── Savings presentation — fullscreen animated data story ── */
+/* ── Savings presentation — data-story.jpg fullscreen modal ── */
 .savings-presentation {
   position: fixed;
   inset: 0;
@@ -2145,329 +2145,336 @@ body,
   display: flex;
   align-items: center;
   justify-content: center;
-  background:
-    radial-gradient(ellipse 90% 60% at 12% 0%, rgba(255, 149, 0, 0.14) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 50% at 88% 20%, rgba(77, 159, 255, 0.1) 0%, transparent 50%),
-    linear-gradient(168deg, #06060c 0%, #0e0e18 42%, #080810 100%);
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  background: rgba(4, 4, 8, 0.94);
+  backdrop-filter: blur(12px);
   color: rgba(255, 255, 255, 0.94);
 }
 
-.savings-presentation__ambient {
-  position: absolute;
-  inset: -6%;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 55% 40% at 50% 100%, rgba(255, 149, 0, 0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 30% at 20% 30%, rgba(255, 196, 112, 0.08) 0%, transparent 65%);
-}
-
-.savings-presentation__grid {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: var(--btc-grid-pattern);
-  background-size: 48px 48px;
-  opacity: 0.16;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 20%, transparent 85%);
-}
-
-.savings-presentation__stage {
-  position: relative;
-  z-index: 1;
-  width: min(92vw, 52rem);
-  min-height: min(72vh, 36rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3.5rem 1.5rem 2.5rem;
-  border-radius: 28px;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, transparent 42%),
-    rgba(12, 12, 20, 0.82);
-  backdrop-filter: blur(28px) saturate(1.5);
-  border: 1px solid rgba(255, 149, 0, 0.22);
-  box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  outline: none;
-}
-
 .savings-presentation__close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  position: fixed;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  z-index: 3;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.75);
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 149, 0, 0.28);
+  background: rgba(10, 10, 16, 0.82);
+  color: #ffc46e;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
 }
 
 .savings-presentation__close:hover {
-  background: rgba(255, 149, 0, 0.12);
-  border-color: rgba(255, 149, 0, 0.35);
-  color: #ffc46e;
+  background: rgba(255, 149, 0, 0.14);
+  border-color: rgba(255, 149, 0, 0.45);
+  transform: scale(1.04);
 }
 
-.savings-presentation__progress {
+.savings-presentation__frame {
+  position: relative;
+  width: min(96vw, 1168px);
+  aspect-ratio: 1168 / 784;
+  max-height: min(88vh, 784px);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 149, 0, 0.18);
+  outline: none;
+}
+
+.data-story__art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.data-story__scrim {
   position: absolute;
-  top: 1.25rem;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 6, 10, 0.35) 0%,
+    transparent 18%,
+    transparent 72%,
+    rgba(6, 6, 10, 0.45) 100%
+  );
+}
+
+/* MotoPass watermark — covers large Bitcoin symbol in artwork */
+.data-story__watermark {
+  position: absolute;
+  top: 4%;
+  right: 8%;
+  width: 34%;
+  max-width: 14rem;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 0 40px rgba(255, 149, 0, 0.35));
+  mix-blend-mode: screen;
+}
+
+/* Small card logos — cover Bitcoin icons in card headers */
+.data-story__card-logo {
+  position: absolute;
+  width: 1.65rem;
+  height: 1.65rem;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(8, 8, 12, 0.92);
+  border: 1px solid rgba(255, 149, 0, 0.35);
+  padding: 2px;
+  box-shadow: 0 0 12px rgba(255, 149, 0, 0.25);
+  pointer-events: none;
+}
+
+.data-story__card-logo--cost {
+  top: 11.5%;
+  left: 39.5%;
+}
+
+.data-story__card-logo--jur {
+  top: 55.5%;
+  right: 3.8%;
+}
+
+.data-story__title-band {
+  position: absolute;
+  top: 2.2%;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  gap: 0.45rem;
-}
-
-.savings-presentation__progress-dot {
-  width: 0.45rem;
-  height: 0.45rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 72%;
+  padding: 0.4rem 0.9rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
-  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  background: rgba(8, 8, 14, 0.88);
+  border: 1px solid rgba(255, 149, 0, 0.32);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
-.savings-presentation__progress-dot--active {
-  background: rgba(255, 149, 0, 0.45);
+.data-story__title-logo {
+  width: 1.35rem;
+  height: 1.35rem;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
-.savings-presentation__progress-dot--current {
-  background: #ffc46e;
-  transform: scale(1.25);
-  box-shadow: 0 0 12px rgba(255, 149, 0, 0.5);
+.data-story__title-text {
+  font-family: var(--mp-font-display);
+  font-size: clamp(0.625rem, 1.6vw, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #ffc46e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.savings-presentation__scene-inner {
-  width: 100%;
-  text-align: center;
+/* Metric overlay slots — positioned over chart areas in data-story.jpg */
+.data-story__slot {
+  position: absolute;
+  pointer-events: none;
 }
 
-.savings-presentation__scene-inner--intro {
+.data-story__slot--legal {
+  left: 3.5%;
+  top: 24%;
+  width: 40%;
+  height: 30%;
+}
+
+.data-story__slot--time {
+  left: 52%;
+  top: 24%;
+  width: 44%;
+  height: 30%;
+}
+
+.data-story__slot--jurisdictions {
+  left: 54%;
+  top: 58%;
+  width: 42%;
+  height: 36%;
+}
+
+.data-story__slot-glass {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 100%;
+  padding: 0.5rem 0.65rem;
+  border-radius: 12px;
+  background: rgba(6, 6, 12, 0.78);
+  backdrop-filter: blur(8px) saturate(1.2);
+  border: 1px solid rgba(255, 149, 0, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.savings-presentation__logo {
-  width: 6rem;
-  height: 6rem;
-  object-fit: contain;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 149, 0, 0.35);
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 32px rgba(255, 149, 0, 0.25);
+.data-story__slot-numbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
 }
 
-.savings-presentation__logo--small {
-  width: 4.5rem;
-  height: 4.5rem;
-}
-
-.savings-presentation__intro-eyebrow {
-  font-family: var(--mp-font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: #ffc46e;
-}
-
-.savings-presentation__intro-title {
-  font-family: var(--mp-font-display);
-  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: #fff;
-  text-wrap: balance;
-  max-width: 28rem;
-}
-
-.savings-presentation__intro-copy,
-.savings-presentation__outro-copy {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.62);
-  max-width: 26rem;
-}
-
-.savings-presentation__scene-eyebrow {
-  display: block;
-  margin-bottom: 1.25rem;
-  font-family: var(--mp-font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #ffc46e;
-}
-
-.savings-presentation__compare-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.savings-presentation__compare-col {
+.data-story__slot-col {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  align-items: flex-start;
+  gap: 0.1rem;
+  min-width: 0;
 }
 
-.savings-presentation__compare-col--right {
+.data-story__slot-col--right {
+  align-items: flex-end;
   text-align: right;
 }
 
-.savings-presentation__compare-label {
+.data-story__slot-label {
   font-family: var(--mp-font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.savings-presentation__compare-label--gold {
-  color: #ffc46e;
-}
-
-.savings-presentation__value {
-  font-family: var(--mp-font-display);
-  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.1;
-}
-
-.savings-presentation__value--traditional {
-  color: rgba(196, 196, 212, 0.9);
-}
-
-.savings-presentation__value--motopass,
-.savings-presentation__value--gold {
-  color: #ffc46e;
-  text-shadow: 0 0 28px rgba(255, 149, 0, 0.3);
-}
-
-.savings-presentation__bars {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 28rem;
-  margin: 0 auto 1.5rem;
-  text-align: left;
-}
-
-.savings-presentation__bar-row {
-  display: grid;
-  grid-template-columns: 5.5rem 1fr auto;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-@media (max-width: 480px) {
-  .savings-presentation__bar-row {
-    grid-template-columns: 1fr;
-    gap: 0.35rem;
-  }
-}
-
-.savings-presentation__bar-label {
-  font-family: var(--mp-font-mono);
-  font-size: 0.5625rem;
+  font-size: clamp(0.45rem, 1.1vw, 0.5625rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.45);
 }
 
-.savings-presentation__bar-label--gold {
+.data-story__slot-label--gold {
   color: #ffc46e;
 }
 
-.savings-presentation__bar-track {
-  height: 0.7rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.savings-presentation__bar-fill {
-  height: 100%;
-  border-radius: 999px;
-  transform-origin: left center;
-}
-
-.savings-presentation__bar-fill--traditional {
-  background: linear-gradient(90deg, rgba(148, 148, 168, 0.55), rgba(148, 148, 168, 0.28));
-}
-
-.savings-presentation__bar-fill--motopass {
-  background: linear-gradient(90deg, #e68600 0%, #ff9500 45%, #ffc46e 100%);
-  box-shadow: 0 0 18px rgba(255, 149, 0, 0.4);
-}
-
-.savings-presentation__bar-num {
+.data-story__slot-arrow {
   font-family: var(--mp-font-mono);
-  font-size: 0.6875rem;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  color: rgba(255, 149, 0, 0.55);
+  flex-shrink: 0;
+}
+
+.data-story__value {
+  font-family: var(--mp-font-display);
+  font-size: clamp(0.75rem, 2.4vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
-  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.1;
   white-space: nowrap;
 }
 
-.savings-presentation__bar-num--gold {
-  color: #ffc46e;
-  font-weight: 600;
+.data-story__value--traditional {
+  color: rgba(196, 196, 212, 0.92);
 }
 
-.savings-presentation__delta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 149, 0, 0.28);
-  background: rgba(255, 149, 0, 0.1);
+.data-story__value--motopass {
+  color: #ffc46e;
+  text-shadow: 0 0 20px rgba(255, 149, 0, 0.35);
+}
+
+.data-story__slot-delta {
   font-family: var(--mp-font-mono);
-  font-size: 0.625rem;
+  font-size: clamp(0.4rem, 1vw, 0.5625rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #ffc46e;
+  color: rgba(255, 196, 110, 0.85);
 }
 
-.savings-presentation__summary-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  max-width: 36rem;
-  margin: 0 auto;
+.data-story__bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 55%;
+  max-width: 8rem;
 }
 
-@media (max-width: 540px) {
-  .savings-presentation__summary-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+.data-story__bars--horizontal {
+  flex-direction: column;
+  align-items: stretch;
+  width: 75%;
+  max-width: 10rem;
+  gap: 0.3rem;
+}
+
+.data-story__bars--vertical {
+  height: 2.5rem;
+}
+
+.data-story__bars--horizontal .data-story__bar--traditional,
+.data-story__bars--horizontal .data-story__bar--motopass {
+  height: 0.45rem;
+  transform-origin: left center;
+}
+
+.data-story__bars--vertical .data-story__bar {
+  width: 0.55rem;
+  min-height: 4px;
+  transform-origin: bottom center;
+}
+
+.data-story__bar--traditional {
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(148, 148, 168, 0.6), rgba(148, 148, 168, 0.3));
+}
+
+.data-story__bars--horizontal .data-story__bar--traditional {
+  background: linear-gradient(90deg, rgba(148, 148, 168, 0.6), rgba(148, 148, 168, 0.3));
+}
+
+.data-story__bar--motopass {
+  border-radius: 4px;
+  background: linear-gradient(180deg, #ffc46e, #ff9500);
+  box-shadow: 0 0 12px rgba(255, 149, 0, 0.45);
+}
+
+.data-story__bars--horizontal .data-story__bar--motopass {
+  background: linear-gradient(90deg, #e68600, #ffc46e);
+}
+
+@media (max-width: 640px) {
+  .savings-presentation__frame {
+    border-radius: 12px;
+  }
+
+  .data-story__watermark {
+    width: 28%;
+    right: 5%;
+  }
+
+  .data-story__title-band {
+    max-width: 88%;
+    padding: 0.3rem 0.65rem;
+  }
+
+  .data-story__slot-glass {
+    padding: 0.35rem 0.45rem;
+    gap: 0.25rem;
+  }
+
+  .data-story__bars--vertical {
+    height: 1.75rem;
   }
 }
 
-.savings-presentation__summary-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  align-items: center;
-}
-
-.savings-presentation__summary-label {
-  font-family: var(--mp-font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+@media (prefers-reduced-motion: reduce) {
+  .data-story__bar--traditional,
+  .data-story__bar--motopass {
+    transform: none !important;
+  }
 }
 
 .back-to-top {
