@@ -860,7 +860,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - E2e footer metrics use `nav.mobile-nav-glass[aria-label="Mobile tab bar"]` selector
 
 **Git State:**
-- SHA: `e9281b3`
+- SHA: `a9b7d1f`
 - Branch: `main`
 - Live: https://motopass.giveabit.io (deploy after push)
 
