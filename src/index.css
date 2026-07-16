@@ -2146,10 +2146,13 @@ body,
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  padding: max(1.25rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right))
-    max(1.25rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
-  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(18, 14, 8, 0.95) 0%, rgba(4, 4, 8, 0.98) 70%);
+  gap: 0.85rem;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  background:
+    radial-gradient(ellipse 90% 60% at 12% 0%, rgba(255, 149, 0, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 88% 20%, rgba(77, 159, 255, 0.06) 0%, transparent 50%),
+    linear-gradient(168deg, #06060c 0%, #0e0e16 42%, #08080f 100%);
   backdrop-filter: blur(16px) saturate(1.1);
   color: rgba(255, 255, 255, 0.94);
 }
@@ -2172,7 +2175,7 @@ body,
 .savings-presentation__progress-rail {
   position: relative;
   z-index: 2;
-  width: min(96vw, 1168px);
+  width: min(96vw, calc(90vh * 1168 / 784));
   height: 3px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
@@ -2220,302 +2223,219 @@ body,
   transform: scale(1.04);
 }
 
-.savings-presentation__frame {
+.savings-presentation__stage {
   position: relative;
   z-index: 1;
-  width: min(96vw, 1168px);
+  width: min(96vw, calc(90vh * 1168 / 784));
+  height: min(90vh, calc(96vw * 784 / 1168));
   aspect-ratio: 1168 / 784;
-  max-height: min(82vh, 784px);
-  border-radius: 20px;
+  border-radius: clamp(14px, 1.8vw, 22px);
   overflow: hidden;
   box-shadow:
-    0 40px 100px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(255, 149, 0, 0.22),
-    0 0 60px rgba(255, 149, 0, 0.08);
+    0 40px 100px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 149, 0, 0.2),
+    0 0 80px rgba(255, 149, 0, 0.06);
   outline: none;
+  background: #0a0a12;
 }
 
-.data-story__art-wrap {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
+/* ── Data-story presentation dashboard (pure React, no image crop) ── */
 
-.data-story__art {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-  user-select: none;
-}
-
-.data-story__scrim {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(6, 6, 10, 0.5) 0%,
-    transparent 20%,
-    transparent 68%,
-    rgba(6, 6, 10, 0.55) 100%
-  );
-}
-
-.data-story__spotlight {
-  position: absolute;
-  pointer-events: none;
-  border-radius: 16px;
-  transition: opacity 0.65s ease;
-}
-
-.data-story__spotlight--legal {
-  left: 1.5%;
-  top: 10%;
-  width: 44%;
-  height: 48%;
-  background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(255, 149, 0, 0.14) 0%, transparent 72%);
-  box-shadow: inset 0 0 60px rgba(255, 149, 0, 0.06);
-}
-
-.data-story__spotlight--time {
-  left: 49%;
-  top: 10%;
-  width: 48%;
-  height: 48%;
-  background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(255, 149, 0, 0.14) 0%, transparent 72%);
-}
-
-.data-story__spotlight--jurisdictions {
-  left: 51%;
-  top: 52%;
-  width: 46%;
-  height: 44%;
-  background: radial-gradient(ellipse 90% 80% at 50% 50%, rgba(255, 149, 0, 0.14) 0%, transparent 72%);
-}
-
-.data-story__intro {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
+.ds-intro {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
+  height: 100%;
   text-align: center;
   padding: 2rem;
-  background: rgba(4, 4, 8, 0.55);
-  backdrop-filter: blur(6px);
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255, 149, 0, 0.08) 0%, transparent 70%),
+    #0a0a12;
 }
 
-.data-story__intro-logo {
-  width: 5rem;
-  height: 5rem;
+.ds-intro__logo {
+  width: clamp(4.5rem, 10vw, 5.5rem);
+  height: clamp(4.5rem, 10vw, 5.5rem);
   object-fit: contain;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 149, 0, 0.4);
-  background: rgba(8, 8, 12, 0.6);
-  box-shadow: 0 0 40px rgba(255, 149, 0, 0.3);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 149, 0, 0.42);
+  background: rgba(8, 8, 12, 0.65);
+  box-shadow: 0 0 48px rgba(255, 149, 0, 0.32);
 }
 
-.data-story__intro-eyebrow {
+.ds-intro__eyebrow {
   font-family: var(--mp-font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.24em;
+  font-size: clamp(0.625rem, 1.4vw, 0.75rem);
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #ffc46e;
 }
 
-.data-story__intro-title {
+.ds-intro__title {
   font-family: var(--mp-font-display);
-  font-size: clamp(1.25rem, 2.8vw, 2rem);
+  font-size: clamp(1.2rem, 2.6vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.12;
   color: #fff;
-  max-width: 24rem;
+  max-width: 28rem;
   text-wrap: balance;
 }
 
-.data-story__metrics-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
+.ds-stage-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(10px, 1.4vw, 16px);
+  gap: clamp(8px, 1vw, 12px);
 }
 
-/* MotoPass watermark — covers large Bitcoin symbol in artwork */
-.data-story__watermark {
-  position: absolute;
-  top: 4%;
-  right: 8%;
-  width: 34%;
-  max-width: 14rem;
-  height: auto;
-  object-fit: contain;
-  pointer-events: none;
-  filter: drop-shadow(0 0 40px rgba(255, 149, 0, 0.35));
-  mix-blend-mode: screen;
-}
-
-/* Small card logos — cover Bitcoin icons in card headers */
-.data-story__card-logo {
-  position: absolute;
-  width: 1.65rem;
-  height: 1.65rem;
-  object-fit: contain;
-  border-radius: 6px;
-  background: rgba(8, 8, 12, 0.92);
-  border: 1px solid rgba(255, 149, 0, 0.35);
-  padding: 2px;
-  box-shadow: 0 0 12px rgba(255, 149, 0, 0.25);
-  pointer-events: none;
-}
-
-.data-story__card-logo--cost {
-  top: 11.5%;
-  left: 39.5%;
-}
-
-.data-story__card-logo--jur {
-  top: 55.5%;
-  right: 3.8%;
-}
-
-.data-story__title-band {
-  position: absolute;
-  top: 2.2%;
-  left: 50%;
-  transform: translateX(-50%);
+.ds-header {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  max-width: 72%;
-  padding: 0.4rem 0.9rem;
+  align-self: center;
+  padding: 0.35rem 0.85rem;
   border-radius: 999px;
   background: rgba(8, 8, 14, 0.88);
-  border: 1px solid rgba(255, 149, 0, 0.32);
+  border: 1px solid rgba(255, 149, 0, 0.28);
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
 }
 
-.data-story__title-logo {
+.ds-header__logo {
   width: 1.35rem;
   height: 1.35rem;
   object-fit: contain;
   flex-shrink: 0;
 }
 
-.data-story__title-text {
+.ds-header__title {
   font-family: var(--mp-font-display);
-  font-size: clamp(0.625rem, 1.6vw, 0.8125rem);
+  font-size: clamp(0.6rem, 1.4vw, 0.8rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #ffc46e;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 42vw;
 }
 
-/* Metric overlay slots — positioned over chart areas in data-story.jpg */
-.data-story__slot {
-  position: absolute;
-  pointer-events: none;
+.ds-dashboard {
+  display: grid;
+  grid-template-columns: 1.72fr 1fr;
+  grid-template-rows: 1.12fr 1fr 0.9fr;
+  gap: clamp(8px, 1.1vw, 13px);
+  flex: 1;
+  min-height: 0;
 }
 
-.data-story__slot--legal {
-  left: 3.5%;
-  top: 24%;
-  width: 40%;
-  height: 30%;
-}
-
-.data-story__slot--time {
-  left: 52%;
-  top: 24%;
-  width: 44%;
-  height: 30%;
-}
-
-.data-story__slot--jurisdictions {
-  left: 54%;
-  top: 58%;
-  width: 42%;
-  height: 36%;
-}
-
-.data-story__slot--active {
-  z-index: 2;
-}
-
-.data-story__slot-glass {
+.ds-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  height: 100%;
-  padding: 0.45rem 0.6rem;
-  border-radius: 12px;
-  background: rgba(6, 6, 12, 0.82);
-  backdrop-filter: blur(10px) saturate(1.25);
-  border: 1px solid rgba(255, 149, 0, 0.15);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  transition: border-color 0.5s, box-shadow 0.5s;
+  min-height: 0;
+  padding: clamp(10px, 1.4vw, 16px);
+  border-radius: clamp(12px, 1.5vw, 18px);
+  background: rgba(28, 31, 46, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 10px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px) saturate(1.15);
+  overflow: hidden;
 }
 
-.data-story__slot-eyebrow {
-  font-family: var(--mp-font-mono);
-  font-size: clamp(0.4rem, 1vw, 0.5rem);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 196, 110, 0.7);
+.ds-card--active {
+  border-color: rgba(255, 149, 0, 0.38);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 36px rgba(255, 149, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.data-story__slot-numbers {
+.ds-card__title {
+  font-family: var(--mp-font-display);
+  font-size: clamp(0.8rem, 1.8vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: clamp(6px, 0.8vw, 10px);
+  flex-shrink: 0;
+}
+
+.ds-card__brand {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.45rem;
+  margin-bottom: clamp(6px, 0.8vw, 10px);
+  flex-shrink: 0;
+}
+
+.ds-card__brand-logo {
+  width: clamp(18px, 2.2vw, 24px);
+  height: clamp(18px, 2.2vw, 24px);
+  object-fit: contain;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 149, 0, 0.3);
+  background: rgba(8, 8, 12, 0.7);
+  padding: 2px;
+}
+
+.ds-card__brand-name {
+  font-family: var(--mp-font-display);
+  font-size: clamp(0.75rem, 1.6vw, 0.95rem);
+  font-weight: 600;
+  color: #fff;
+}
+
+.ds-metrics-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.5rem;
-  width: 100%;
+  margin-top: auto;
+  padding-top: clamp(6px, 0.8vw, 10px);
+  flex-shrink: 0;
 }
 
-.data-story__slot-col {
+.ds-metrics-row__col {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 0.1rem;
   min-width: 0;
 }
 
-.data-story__slot-col--right {
+.ds-metrics-row__col--right {
   align-items: flex-end;
   text-align: right;
 }
 
-.data-story__slot-label {
+.ds-metrics-row__label {
   font-family: var(--mp-font-mono);
-  font-size: clamp(0.45rem, 1.1vw, 0.5625rem);
+  font-size: clamp(0.45rem, 1vw, 0.5625rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.42);
 }
 
-.data-story__slot-label--gold {
+.ds-metrics-row__label--gold {
   color: #ffc46e;
 }
 
-.data-story__slot-arrow {
+.ds-metrics-row__arrow {
   font-family: var(--mp-font-mono);
-  font-size: clamp(0.75rem, 2vw, 1rem);
+  font-size: clamp(0.8rem, 1.8vw, 1.1rem);
   color: rgba(255, 149, 0, 0.55);
   flex-shrink: 0;
 }
 
-.data-story__value {
+.ds-value {
   font-family: var(--mp-font-display);
-  font-size: clamp(0.75rem, 2.4vw, 1.25rem);
+  font-size: clamp(0.8rem, 2vw, 1.35rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
@@ -2523,200 +2443,233 @@ body,
   white-space: nowrap;
 }
 
-.data-story__value--traditional {
+.ds-value--traditional {
   color: rgba(196, 196, 212, 0.92);
 }
 
-.data-story__value--motopass,
-.data-story__value--gold {
+.ds-value--motopass,
+.ds-value--gold {
   color: #ffc46e;
   text-shadow: 0 0 20px rgba(255, 149, 0, 0.35);
 }
 
-.data-story__slot-delta {
-  font-family: var(--mp-font-mono);
-  font-size: clamp(0.4rem, 1vw, 0.5625rem);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 196, 110, 0.85);
-}
-
-/* Vertical bar chart — legal fees */
-.data-story__vbars {
+/* Cost comparison — 10 decorative vertical bars */
+.ds-cost-bars {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 0.5rem;
-  width: 50%;
-  height: 3.25rem;
+  gap: clamp(4px, 0.7vw, 8px);
+  flex: 1;
+  min-height: 0;
+  padding: 0.25rem 0 0.5rem;
 }
 
-.data-story__vbar-col {
+.ds-cost-bars__col {
   display: flex;
   align-items: flex-end;
   height: 100%;
-  width: 1.1rem;
+  width: clamp(10px, 1.6vw, 18px);
+  transform-origin: bottom center;
 }
 
-.data-story__vbar {
+.ds-cost-bars__bar {
   width: 100%;
+  border-radius: 5px 5px 2px 2px;
+  background: linear-gradient(180deg, #ffc46e 0%, #e68600 55%, #c46a00 100%);
+  box-shadow: 0 0 12px rgba(255, 149, 0, 0.35);
+}
+
+/* MotoPass mini card */
+.ds-mini-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(6px, 1vw, 12px);
+  flex: 1;
+  min-height: 0;
+  padding-bottom: 0.25rem;
+}
+
+.ds-mini-bars__bar {
+  width: clamp(14px, 2.2vw, 22px);
   border-radius: 4px 4px 2px 2px;
   transform-origin: bottom center;
 }
 
-.data-story__vbar--traditional {
-  background: linear-gradient(180deg, rgba(148, 148, 168, 0.65), rgba(148, 148, 168, 0.28));
+.ds-mini-bars__bar--traditional {
+  background: linear-gradient(180deg, rgba(148, 148, 168, 0.7), rgba(148, 148, 168, 0.3));
 }
 
-.data-story__vbar--motopass {
+.ds-mini-bars__bar--motopass {
   background: linear-gradient(180deg, #ffc46e, #e68600);
-  box-shadow: 0 0 16px rgba(255, 149, 0, 0.5);
+  box-shadow: 0 0 14px rgba(255, 149, 0, 0.45);
 }
 
-/* Line chart — time comparison */
-.data-story__line-chart {
-  width: 62%;
-  max-width: 9rem;
-  height: auto;
+.ds-mini-bars__bar--accent {
+  background: linear-gradient(180deg, rgba(255, 196, 110, 0.55), rgba(230, 134, 0, 0.35));
 }
 
-.data-story__grid-line {
+/* Time comparison line chart */
+.ds-line-chart {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  max-height: 100%;
+}
+
+.ds-line-chart__grid {
   stroke: rgba(255, 255, 255, 0.06);
-  stroke-width: 0.4;
+  stroke-width: 0.5;
 }
 
-.data-story__line {
-  stroke-width: 2.2;
+.ds-line-chart__line {
+  stroke-width: 2.4;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.data-story__line--traditional {
+.ds-line-chart__line--traditional {
   stroke: rgba(148, 148, 168, 0.55);
 }
 
-.data-story__line--motopass {
-  stroke-width: 2.6;
+.ds-line-chart__line--motopass {
+  stroke-width: 2.8;
   filter: drop-shadow(0 0 6px rgba(255, 149, 0, 0.45));
 }
 
-.data-story__line-dot--traditional {
+.ds-line-chart__dot--traditional {
   fill: rgba(148, 148, 168, 0.7);
 }
 
-.data-story__line-dot--motopass {
+.ds-line-chart__dot--motopass {
   fill: #ffc46e;
   filter: drop-shadow(0 0 4px rgba(255, 149, 0, 0.6));
 }
 
-/* Horizontal bars — jurisdictions */
-.data-story__hbars {
+/* Jurisdictions horizontal bars */
+.ds-hbars {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  width: 72%;
-  max-width: 10rem;
+  justify-content: center;
+  gap: clamp(5px, 0.7vw, 8px);
+  flex: 1;
+  min-height: 0;
+  padding: 0.25rem 0;
 }
 
-.data-story__hbar {
-  height: 0.5rem;
+.ds-hbars__bar {
+  height: clamp(8px, 1.2vw, 12px);
   border-radius: 999px;
   transform-origin: left center;
 }
 
-.data-story__hbar--traditional {
-  background: linear-gradient(90deg, rgba(148, 148, 168, 0.6), rgba(148, 148, 168, 0.28));
+.ds-hbars__bar--deco {
+  background: linear-gradient(90deg, #e68600, #ffc46e);
+  opacity: 0.55;
 }
 
-.data-story__hbar--motopass {
+.ds-hbars__bar--traditional {
+  background: linear-gradient(90deg, rgba(148, 148, 168, 0.65), rgba(148, 148, 168, 0.28));
+}
+
+.ds-hbars__bar--motopass {
   background: linear-gradient(90deg, #e68600, #ffc46e);
   box-shadow: 0 0 14px rgba(255, 149, 0, 0.45);
 }
 
-/* Finale summary */
-.data-story__finale {
-  position: absolute;
-  left: 50%;
-  bottom: 8%;
-  transform: translateX(-50%);
-  z-index: 5;
+/* Savings donut */
+.ds-donut {
+  position: relative;
+  flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: 16px;
-  background: rgba(6, 6, 12, 0.88);
-  border: 1px solid rgba(255, 149, 0, 0.35);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  min-height: 0;
 }
 
-.data-story__finale-eyebrow {
-  font-family: var(--mp-font-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255, 196, 110, 0.75);
+.ds-donut__svg {
+  width: min(100%, 10rem);
+  height: auto;
 }
 
-.data-story__finale-grid {
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-end;
+.ds-donut__track {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 10;
 }
 
-.data-story__finale-grid > div {
+.ds-donut__arc {
+  stroke-width: 10;
+}
+
+.ds-donut__pct {
+  position: absolute;
+  bottom: 18%;
+  font-family: var(--mp-font-display);
+  font-size: clamp(1rem, 2.4vw, 1.5rem);
+  font-weight: 700;
+  color: #ffc46e;
+  text-shadow: 0 0 16px rgba(255, 149, 0, 0.35);
+}
+
+.ds-savings-value {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.15rem;
+  flex-shrink: 0;
 }
 
-.data-story__finale-label {
+.ds-savings-value__label {
   font-family: var(--mp-font-mono);
-  font-size: 0.5rem;
+  font-size: clamp(0.45rem, 1vw, 0.5625rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* Summary card */
+.ds-summary-grid {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: clamp(8px, 1.2vw, 16px);
+  flex: 1;
+  min-height: 0;
+  padding: 0.25rem 0;
+}
+
+.ds-summary-grid__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.ds-summary-grid__label {
+  font-family: var(--mp-font-mono);
+  font-size: clamp(0.42rem, 0.9vw, 0.5rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+  text-align: center;
 }
 
 @media (max-width: 640px) {
-  .savings-presentation__frame {
+  .savings-presentation__stage {
+    width: min(98vw, calc(88vh * 1168 / 784));
+    height: min(88vh, calc(98vw * 784 / 1168));
     border-radius: 12px;
   }
 
-  .data-story__watermark {
-    width: 28%;
-    right: 5%;
-  }
-
-  .data-story__title-band {
-    max-width: 88%;
-    padding: 0.3rem 0.65rem;
-  }
-
-  .data-story__slot-glass {
-    padding: 0.35rem 0.45rem;
-    gap: 0.25rem;
-  }
-
-  .data-story__vbars {
-    height: 2.25rem;
-  }
-
-  .data-story__finale-grid {
-    gap: 0.85rem;
+  .ds-header__title {
+    max-width: 52vw;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .data-story__vbar,
-  .data-story__hbar {
-    transform: none !important;
-  }
-
-  .data-story__art-wrap {
+  .ds-cost-bars__col,
+  .ds-mini-bars__bar,
+  .ds-hbars__bar {
     transform: none !important;
   }
 }

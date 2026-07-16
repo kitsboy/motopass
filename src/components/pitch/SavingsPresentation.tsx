@@ -1,21 +1,27 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { X } from 'lucide-react'
 import { DASHBOARD_METRICS, type MetricUnit } from '../../lib/savingsDashboardMetrics'
 
-const DATA_STORY_SRC = '/images/data-story.jpg'
 const LOGO_SRC = '/images/motopass-logo.png'
 
-const PHASES = ['intro', 'legal', 'time', 'jurisdictions', 'finale'] as const
+const PHASES = ['intro', 'cost', 'time', 'jurisdictions', 'savings', 'finale'] as const
 type Phase = (typeof PHASES)[number]
 
 const PHASE_MS: Record<Phase, number> = {
-  intro: 2400,
-  legal: 4200,
-  time: 4200,
-  jurisdictions: 4200,
-  finale: 3200,
+  intro: 2600,
+  cost: 4500,
+  time: 4500,
+  jurisdictions: 4500,
+  savings: 3800,
+  finale: 4200,
 }
+
+const COST_BARS = [58, 82, 68, 42, 76, 55, 62, 88, 38, 72]
+
+const legal = DASHBOARD_METRICS.find(m => m.id === 'legal')!
+const time = DASHBOARD_METRICS.find(m => m.id === 'time')!
+const jurisdictions = DASHBOARD_METRICS.find(m => m.id === 'jurisdictions')!
 
 interface SavingsPresentationProps {
   open: boolean
@@ -50,7 +56,7 @@ function CountUp({
     }
 
     let raf = 0
-    const duration = 1500
+    const duration = 1600
 
     const begin = window.setTimeout(() => {
       const start = performance.now()
@@ -73,219 +79,396 @@ function CountUp({
   const formatted =
     unit === 'usd' ? `$${display.toLocaleString()}` : `${display.toLocaleString()}${suffix}`
 
-  return <span className={`data-story__value data-story__value--${tone}`}>{formatted}</span>
+  return <span className={`ds-value ds-value--${tone}`}>{formatted}</span>
 }
 
-function VerticalBars({
-  traditional,
-  motopass,
-  run,
+function CardShell({
+  cardPhase,
+  currentPhase,
+  className,
+  children,
 }: {
-  traditional: number
-  motopass: number
-  run: boolean
+  cardPhase: Phase
+  currentPhase: Phase
+  className?: string
+  children: ReactNode
 }) {
-  const max = Math.max(traditional, motopass, 1)
-  const tradH = Math.max(10, Math.round((traditional / max) * 100))
-  const motoH = Math.max(10, Math.round((motopass / max) * 100))
+  const phaseIdx = PHASES.indexOf(currentPhase)
+  const cardIdx = PHASES.indexOf(cardPhase)
+  const revealed = currentPhase !== 'intro' && phaseIdx >= cardIdx
+  const active = currentPhase === cardPhase
+  const finale = currentPhase === 'finale'
 
   return (
-    <div className="data-story__vbars" aria-hidden>
-      <div className="data-story__vbar-col">
+    <motion.article
+      className={`ds-card ${className ?? ''}${active ? ' ds-card--active' : ''}`}
+      animate={{
+        opacity: revealed ? (active || finale ? 1 : 0.42) : 0.22,
+        scale: active ? 1.012 : 1,
+        filter: active ? 'brightness(1.06)' : finale ? 'brightness(0.95)' : 'brightness(0.78)',
+      }}
+      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.article>
+  )
+}
+
+function CostComparisonCard({
+  currentPhase,
+  run,
+}: {
+  currentPhase: Phase
+  run: boolean
+}) {
+  return (
+    <CardShell cardPhase="cost" currentPhase={currentPhase} className="ds-card--cost">
+      <h3 className="ds-card__title">Cost Comparison</h3>
+
+      <div className="ds-cost-bars" aria-hidden>
+        {COST_BARS.map((h, i) => (
+          <motion.div
+            key={i}
+            className="ds-cost-bars__col"
+            initial={{ scaleY: 0 }}
+            animate={run ? { scaleY: 1 } : { scaleY: 0 }}
+            transition={{
+              duration: 1.1,
+              ease: [0.22, 1, 0.36, 1],
+              delay: 0.15 + i * 0.07,
+            }}
+          >
+            <div className="ds-cost-bars__bar" style={{ height: `${h}%` }} />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="ds-metrics-row">
+        <div className="ds-metrics-row__col">
+          <span className="ds-metrics-row__label">Traditional</span>
+          <CountUp value={legal.traditional} unit="usd" run={run} tone="traditional" delay={200} />
+        </div>
+        <motion.span
+          className="ds-metrics-row__arrow"
+          animate={{ opacity: run ? 1 : 0.3, x: run ? 0 : -6 }}
+        >
+          →
+        </motion.span>
+        <div className="ds-metrics-row__col ds-metrics-row__col--right">
+          <span className="ds-metrics-row__label ds-metrics-row__label--gold">MotoPass</span>
+          <CountUp value={legal.motopass} unit="usd" run={run} tone="motopass" delay={550} />
+        </div>
+      </div>
+    </CardShell>
+  )
+}
+
+function MotoPassMiniCard({
+  currentPhase,
+  run,
+}: {
+  currentPhase: Phase
+  run: boolean
+}) {
+  const max = legal.traditional
+  const tradH = Math.round((legal.traditional / max) * 100)
+  const motoH = Math.max(12, Math.round((legal.motopass / max) * 100))
+
+  return (
+    <CardShell cardPhase="cost" currentPhase={currentPhase} className="ds-card--mini">
+      <div className="ds-card__brand">
+        <img src={LOGO_SRC} alt="" className="ds-card__brand-logo" width={22} height={22} aria-hidden />
+        <span className="ds-card__brand-name">MotoPass</span>
+      </div>
+
+      <div className="ds-mini-bars" aria-hidden>
         <motion.div
-          className="data-story__vbar data-story__vbar--traditional"
+          className="ds-mini-bars__bar ds-mini-bars__bar--traditional"
           style={{ height: `${tradH}%` }}
           initial={{ scaleY: 0 }}
           animate={run ? { scaleY: 1 } : { scaleY: 0 }}
-          transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
         />
-      </div>
-      <div className="data-story__vbar-col">
         <motion.div
-          className="data-story__vbar data-story__vbar--motopass"
+          className="ds-mini-bars__bar ds-mini-bars__bar--motopass"
           style={{ height: `${motoH}%` }}
           initial={{ scaleY: 0 }}
           animate={run ? { scaleY: 1 } : { scaleY: 0 }}
-          transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.65 }}
+        />
+        <motion.div
+          className="ds-mini-bars__bar ds-mini-bars__bar--accent"
+          style={{ height: '28%' }}
+          initial={{ scaleY: 0 }}
+          animate={run ? { scaleY: 1 } : { scaleY: 0 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.85 }}
         />
       </div>
-    </div>
+    </CardShell>
   )
 }
 
-function TimeLineChart({ run }: { run: boolean }) {
-  const tradPath = 'M 8 72 C 28 58, 42 38, 58 28 S 82 18, 92 14'
-  const motoPath = 'M 8 78 C 28 68, 42 58, 58 50 S 82 42, 92 38'
-
-  return (
-    <svg className="data-story__line-chart" viewBox="0 0 100 88" aria-hidden>
-      <defs>
-        <linearGradient id="moto-line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#e68600" />
-          <stop offset="100%" stopColor="#ffc46e" />
-        </linearGradient>
-      </defs>
-      {[18, 36, 54, 72].map(y => (
-        <line key={y} x1="6" y1={y} x2="94" y2={y} className="data-story__grid-line" />
-      ))}
-      <motion.path
-        d={tradPath}
-        className="data-story__line data-story__line--traditional"
-        fill="none"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={run ? { pathLength: 1, opacity: 0.55 } : { pathLength: 0, opacity: 0 }}
-        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-      />
-      <motion.path
-        d={motoPath}
-        className="data-story__line data-story__line--motopass"
-        fill="none"
-        stroke="url(#moto-line-grad)"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={run ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-        transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
-      />
-      <motion.circle
-        cx="92"
-        cy="14"
-        r="2.8"
-        className="data-story__line-dot data-story__line-dot--traditional"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={run ? { scale: 1, opacity: 0.7 } : { scale: 0, opacity: 0 }}
-        transition={{ delay: 1.55, duration: 0.35 }}
-      />
-      <motion.circle
-        cx="92"
-        cy="38"
-        r="3.2"
-        className="data-story__line-dot data-story__line-dot--motopass"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={run ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-        transition={{ delay: 1.85, duration: 0.4 }}
-      />
-    </svg>
-  )
-}
-
-function HorizontalBars({
-  traditional,
-  motopass,
+function TimeComparisonCard({
+  currentPhase,
   run,
 }: {
-  traditional: number
-  motopass: number
+  currentPhase: Phase
   run: boolean
 }) {
-  const max = Math.max(traditional, motopass, 1)
-  const tradW = Math.max(8, Math.round((traditional / max) * 100))
-  const motoW = Math.max(12, Math.round((motopass / max) * 100))
+  const tradPath = 'M 6 78 C 22 62, 36 48, 52 38 S 78 22, 94 16'
+  const motoPath = 'M 6 82 C 22 72, 36 62, 52 54 S 78 46, 94 42'
 
   return (
-    <div className="data-story__hbars" aria-hidden>
-      <motion.div
-        className="data-story__hbar data-story__hbar--traditional"
-        style={{ width: `${tradW}%` }}
-        initial={{ scaleX: 0 }}
-        animate={run ? { scaleX: 1 } : { scaleX: 0 }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-      />
-      <motion.div
-        className="data-story__hbar data-story__hbar--motopass"
-        style={{ width: `${motoW}%` }}
-        initial={{ scaleX: 0 }}
-        animate={run ? { scaleX: 1 } : { scaleX: 0 }}
-        transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
-      />
-    </div>
+    <CardShell cardPhase="time" currentPhase={currentPhase} className="ds-card--time">
+      <h3 className="ds-card__title">Time Comparison</h3>
+
+      <svg className="ds-line-chart" viewBox="0 0 100 90" aria-hidden>
+        <defs>
+          <linearGradient id="ds-line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#e68600" />
+            <stop offset="100%" stopColor="#ffc46e" />
+          </linearGradient>
+        </defs>
+        {[18, 36, 54, 72].map(y => (
+          <line key={y} x1="4" y1={y} x2="96" y2={y} className="ds-line-chart__grid" />
+        ))}
+        <motion.path
+          d={tradPath}
+          className="ds-line-chart__line ds-line-chart__line--traditional"
+          fill="none"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={run ? { pathLength: 1, opacity: 0.5 } : { pathLength: 0, opacity: 0 }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        />
+        <motion.path
+          d={motoPath}
+          className="ds-line-chart__line ds-line-chart__line--motopass"
+          fill="none"
+          stroke="url(#ds-line-grad)"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={run ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
+        />
+        <motion.circle
+          cx="52"
+          cy="38"
+          r="2.5"
+          className="ds-line-chart__dot ds-line-chart__dot--traditional"
+          initial={{ scale: 0 }}
+          animate={run ? { scale: 1 } : { scale: 0 }}
+          transition={{ delay: 1.2, duration: 0.35 }}
+        />
+        <motion.circle
+          cx="94"
+          cy="16"
+          r="3"
+          className="ds-line-chart__dot ds-line-chart__dot--motopass"
+          initial={{ scale: 0 }}
+          animate={run ? { scale: 1 } : { scale: 0 }}
+          transition={{ delay: 1.65, duration: 0.4 }}
+        />
+      </svg>
+
+      <div className="ds-metrics-row">
+        <div className="ds-metrics-row__col">
+          <span className="ds-metrics-row__label">Traditional</span>
+          <CountUp value={time.traditional} unit="days" run={run} tone="traditional" delay={250} />
+        </div>
+        <motion.span
+          className="ds-metrics-row__arrow"
+          animate={{ opacity: run ? 1 : 0.3, x: run ? 0 : -6 }}
+        >
+          →
+        </motion.span>
+        <div className="ds-metrics-row__col ds-metrics-row__col--right">
+          <span className="ds-metrics-row__label ds-metrics-row__label--gold">MotoPass</span>
+          <CountUp value={time.motopass} unit="days" run={run} tone="motopass" delay={600} />
+        </div>
+      </div>
+    </CardShell>
   )
 }
 
-function MetricPanel({
-  metricId,
-  phase,
+function JurisdictionsCard({
   currentPhase,
+  run,
 }: {
-  metricId: string
-  phase: Phase
   currentPhase: Phase
+  run: boolean
 }) {
-  const metric = DASHBOARD_METRICS.find(m => m.id === metricId)
-  if (!metric) return null
-
-  const active = currentPhase === phase
-  const revealed =
-    PHASES.indexOf(currentPhase) >= PHASES.indexOf(phase) && currentPhase !== 'intro'
-  const isLegal = metricId === 'legal'
-  const isTime = metricId === 'time'
+  const max = jurisdictions.motopass
+  const tradW = Math.max(6, Math.round((jurisdictions.traditional / max) * 100))
+  const motoW = Math.round((jurisdictions.motopass / max) * 100)
+  const decoWidths = [92, 74, 58, 42]
 
   return (
-    <motion.div
-      className={`data-story__slot data-story__slot--${metricId}${active ? ' data-story__slot--active' : ''}`}
-      animate={{
-        opacity: revealed ? (active ? 1 : 0.42) : 0,
-        scale: active ? 1 : 0.98,
-        filter: active ? 'brightness(1)' : 'brightness(0.72)',
-      }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <motion.div
-        className="data-story__slot-glass"
-        animate={{
-          borderColor: active ? 'rgba(255, 149, 0, 0.42)' : 'rgba(255, 149, 0, 0.12)',
-          boxShadow: active
-            ? '0 0 40px rgba(255, 149, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-            : 'inset 0 1px 0 rgba(255, 255, 255, 0.04)',
-        }}
-        transition={{ duration: 0.6 }}
-      >
-        <span className="data-story__slot-eyebrow">{metric.label}</span>
+    <CardShell cardPhase="jurisdictions" currentPhase={currentPhase} className="ds-card--jur">
+      <h3 className="ds-card__title">Jurisdictions</h3>
 
-        <div className="data-story__slot-numbers">
-          <div className="data-story__slot-col">
-            <span className="data-story__slot-label">Traditional</span>
-            <CountUp
-              value={metric.traditional}
-              unit={metric.unit}
-              run={active}
-              tone="traditional"
-              delay={180}
-            />
-          </div>
-          <motion.span
-            className="data-story__slot-arrow"
-            aria-hidden
-            animate={{ opacity: active ? 1 : 0.35, x: active ? 0 : -4 }}
-          >
-            →
-          </motion.span>
-          <div className="data-story__slot-col data-story__slot-col--right">
-            <span className="data-story__slot-label data-story__slot-label--gold">MotoPass</span>
-            <CountUp
-              value={metric.motopass}
-              unit={metric.unit}
-              run={active}
-              tone="motopass"
-              delay={520}
-            />
-          </div>
+      <div className="ds-hbars" aria-hidden>
+        {decoWidths.map((w, i) => (
+          <motion.div
+            key={i}
+            className="ds-hbars__bar ds-hbars__bar--deco"
+            style={{ width: `${w}%` }}
+            initial={{ scaleX: 0 }}
+            animate={run ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 + i * 0.12 }}
+          />
+        ))}
+        <motion.div
+          className="ds-hbars__bar ds-hbars__bar--traditional"
+          style={{ width: `${tradW}%` }}
+          initial={{ scaleX: 0 }}
+          animate={run ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
+        />
+        <motion.div
+          className="ds-hbars__bar ds-hbars__bar--motopass"
+          style={{ width: `${motoW}%` }}
+          initial={{ scaleX: 0 }}
+          animate={run ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 1.25, ease: [0.22, 1, 0.36, 1], delay: 0.8 }}
+        />
+      </div>
+
+      <div className="ds-metrics-row">
+        <div className="ds-metrics-row__col">
+          <span className="ds-metrics-row__label">Traditional</span>
+          <CountUp value={jurisdictions.traditional} unit="count" run={run} tone="traditional" delay={300} />
         </div>
-
-        {isLegal && <VerticalBars traditional={metric.traditional} motopass={metric.motopass} run={active} />}
-        {isTime && <TimeLineChart run={active} />}
-        {!isLegal && !isTime && (
-          <HorizontalBars traditional={metric.traditional} motopass={metric.motopass} run={active} />
-        )}
-
         <motion.span
-          className="data-story__slot-delta"
-          initial={{ opacity: 0, y: 6 }}
-          animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
-          transition={{ delay: 0.9, duration: 0.45 }}
+          className="ds-metrics-row__arrow"
+          animate={{ opacity: run ? 1 : 0.3, x: run ? 0 : -6 }}
         >
-          {metric.deltaLabel}
+          →
         </motion.span>
-      </motion.div>
-    </motion.div>
+        <div className="ds-metrics-row__col ds-metrics-row__col--right">
+          <span className="ds-metrics-row__label ds-metrics-row__label--gold">MotoPass</span>
+          <CountUp value={jurisdictions.motopass} unit="count" run={run} tone="motopass" delay={650} />
+        </div>
+      </div>
+    </CardShell>
+  )
+}
+
+function SavingsCard({
+  currentPhase,
+  run,
+}: {
+  currentPhase: Phase
+  run: boolean
+}) {
+  const savingsPct = Math.round(((legal.traditional - legal.motopass) / legal.traditional) * 100)
+
+  return (
+    <CardShell cardPhase="savings" currentPhase={currentPhase} className="ds-card--savings">
+      <div className="ds-card__brand">
+        <img src={LOGO_SRC} alt="" className="ds-card__brand-logo" width={22} height={22} aria-hidden />
+        <span className="ds-card__brand-name">Savings</span>
+      </div>
+
+      <div className="ds-donut" aria-hidden>
+        <svg viewBox="0 0 120 70" className="ds-donut__svg">
+          <defs>
+            <linearGradient id="ds-donut-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#e68600" />
+              <stop offset="100%" stopColor="#ffc46e" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M 12 60 A 48 48 0 0 1 108 60"
+            className="ds-donut__track"
+            fill="none"
+          />
+          <motion.path
+            d="M 12 60 A 48 48 0 0 1 108 60"
+            className="ds-donut__arc"
+            fill="none"
+            stroke="url(#ds-donut-grad)"
+            strokeLinecap="round"
+            initial={{ pathLength: 0 }}
+            animate={run ? { pathLength: savingsPct / 100 } : { pathLength: 0 }}
+            transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
+          />
+        </svg>
+        <motion.span
+          className="ds-donut__pct"
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={run ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+          transition={{ delay: 0.9, duration: 0.5 }}
+        >
+          {savingsPct}%
+        </motion.span>
+      </div>
+
+      <div className="ds-savings-value">
+        <CountUp value={77_100} unit="usd" run={run} tone="gold" delay={400} />
+        <span className="ds-savings-value__label">modeled legal delta</span>
+      </div>
+    </CardShell>
+  )
+}
+
+function SummaryCard({
+  currentPhase,
+  run,
+}: {
+  currentPhase: Phase
+  run: boolean
+}) {
+  return (
+    <CardShell cardPhase="savings" currentPhase={currentPhase} className="ds-card--summary">
+      <div className="ds-card__brand">
+        <img src={LOGO_SRC} alt="" className="ds-card__brand-logo" width={22} height={22} aria-hidden />
+        <span className="ds-card__brand-name">Modeled delta</span>
+      </div>
+
+      <div className="ds-summary-grid">
+        <motion.div
+          className="ds-summary-grid__item"
+          initial={{ opacity: 0, y: 10 }}
+          animate={run ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ delay: 0.3, duration: 0.45 }}
+        >
+          <CountUp value={77_100} unit="usd" run={run} tone="gold" delay={350} />
+          <span className="ds-summary-grid__label">Legal</span>
+        </motion.div>
+        <motion.div
+          className="ds-summary-grid__item"
+          initial={{ opacity: 0, y: 10 }}
+          animate={run ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ delay: 0.45, duration: 0.45 }}
+        >
+          <CountUp value={42} unit="days" run={run} tone="gold" delay={500} />
+          <span className="ds-summary-grid__label">Days faster</span>
+        </motion.div>
+        <motion.div
+          className="ds-summary-grid__item"
+          initial={{ opacity: 0, y: 10 }}
+          animate={run ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ delay: 0.6, duration: 0.45 }}
+        >
+          <CountUp value={47} unit="count" run={run} tone="gold" delay={650} />
+          <span className="ds-summary-grid__label">Jurisdictions</span>
+        </motion.div>
+      </div>
+    </CardShell>
+  )
+}
+
+function Dashboard({ phase }: { phase: Phase }) {
+  const past = (p: Phase) => PHASES.indexOf(phase) >= PHASES.indexOf(p)
+
+  return (
+    <div className="ds-dashboard">
+      <CostComparisonCard currentPhase={phase} run={phase === 'cost' || phase === 'finale'} />
+      <MotoPassMiniCard currentPhase={phase} run={phase === 'cost' || phase === 'finale'} />
+      <TimeComparisonCard currentPhase={phase} run={phase === 'time' || phase === 'finale'} />
+      <JurisdictionsCard currentPhase={phase} run={phase === 'jurisdictions' || phase === 'finale'} />
+      <SavingsCard currentPhase={phase} run={past('savings')} />
+      <SummaryCard currentPhase={phase} run={past('savings')} />
+    </div>
   )
 }
 
@@ -339,6 +522,15 @@ export function SavingsPresentation({ open, onClose, title }: SavingsPresentatio
 
   const progress = ((phaseIndex + 1) / PHASES.length) * 100
 
+  const phaseLabel: Record<Phase, string> = {
+    intro: 'Opening',
+    cost: 'Cost comparison',
+    time: 'Time comparison',
+    jurisdictions: 'Jurisdictions',
+    savings: 'Savings',
+    finale: 'Summary',
+  }
+
   return (
     <AnimatePresence>
       {open && (
@@ -370,151 +562,67 @@ export function SavingsPresentation({ open, onClose, title }: SavingsPresentatio
           <motion.div
             ref={panelRef}
             tabIndex={-1}
-            className="savings-presentation__frame"
-            initial={{ opacity: 0, scale: 0.88, y: 32 }}
+            className="savings-presentation__stage"
+            initial={{ opacity: 0, scale: 0.9, y: 28 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.92, y: 20 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, scale: 0.94, y: 16 }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.div
-              className="data-story__art-wrap"
-              animate={{ scale: phase === 'intro' ? 1.04 : 1 }}
-              transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <img
-                src={DATA_STORY_SRC}
-                alt=""
-                className="data-story__art"
-                width={1168}
-                height={784}
-                decoding="async"
-              />
-            </motion.div>
-
-            <div className="data-story__scrim" aria-hidden />
-
-            <motion.div
-              className="data-story__spotlight data-story__spotlight--legal"
-              animate={{ opacity: phase === 'legal' ? 1 : 0 }}
-              transition={{ duration: 0.65 }}
-              aria-hidden
-            />
-            <motion.div
-              className="data-story__spotlight data-story__spotlight--time"
-              animate={{ opacity: phase === 'time' ? 1 : 0 }}
-              transition={{ duration: 0.65 }}
-              aria-hidden
-            />
-            <motion.div
-              className="data-story__spotlight data-story__spotlight--jurisdictions"
-              animate={{ opacity: phase === 'jurisdictions' ? 1 : 0 }}
-              transition={{ duration: 0.65 }}
-              aria-hidden
-            />
-
-            <motion.img
-              src={LOGO_SRC}
-              alt="MotoPass"
-              className="data-story__watermark"
-              width={200}
-              height={200}
-              initial={{ opacity: 0, scale: 0.8, rotate: -4 }}
-              animate={{ opacity: 0.95, scale: 1, rotate: 0 }}
-              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
-            />
-
-            <motion.img
-              src={LOGO_SRC}
-              alt=""
-              className="data-story__card-logo data-story__card-logo--cost"
-              width={28}
-              height={28}
-              aria-hidden
-              initial={{ opacity: 0, scale: 0.6 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-            />
-            <motion.img
-              src={LOGO_SRC}
-              alt=""
-              className="data-story__card-logo data-story__card-logo--jur"
-              width={28}
-              height={28}
-              aria-hidden
-              initial={{ opacity: 0, scale: 0.6 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.55, duration: 0.5 }}
-            />
-
             <AnimatePresence mode="wait">
               {phase === 'intro' ? (
                 <motion.div
                   key="intro"
-                  className="data-story__intro"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.65 }}
+                  className="ds-intro"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.6 }}
                 >
                   <motion.img
                     src={LOGO_SRC}
                     alt="MotoPass"
-                    className="data-story__intro-logo"
-                    width={80}
-                    height={80}
-                    initial={{ opacity: 0, scale: 0.85 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2, duration: 0.7 }}
+                    className="ds-intro__logo"
+                    width={88}
+                    height={88}
+                    initial={{ opacity: 0, scale: 0.82, rotate: -6 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.15, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
                   />
-                  <span className="data-story__intro-eyebrow">Members · Modeled economics</span>
-                  <h2 className="data-story__intro-title">{title}</h2>
+                  <motion.span
+                    className="ds-intro__eyebrow"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.35, duration: 0.5 }}
+                  >
+                    Members · Modeled economics
+                  </motion.span>
+                  <motion.h2
+                    className="ds-intro__title"
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.55 }}
+                  >
+                    {title}
+                  </motion.h2>
                 </motion.div>
               ) : (
                 <motion.div
-                  key="metrics"
-                  className="data-story__metrics-layer"
+                  key="dashboard"
+                  className="ds-stage-inner"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.55 }}
                 >
                   <motion.div
-                    className="data-story__title-band"
-                    initial={{ opacity: 0, y: -8 }}
+                    className="ds-header"
+                    initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.45 }}
                   >
-                    <img src={LOGO_SRC} alt="" className="data-story__title-logo" width={24} height={24} aria-hidden />
-                    <span className="data-story__title-text">{title}</span>
+                    <img src={LOGO_SRC} alt="" className="ds-header__logo" width={26} height={26} aria-hidden />
+                    <span className="ds-header__title">{title}</span>
                   </motion.div>
-
-                  <MetricPanel metricId="legal" phase="legal" currentPhase={phase} />
-                  <MetricPanel metricId="time" phase="time" currentPhase={phase} />
-                  <MetricPanel metricId="jurisdictions" phase="jurisdictions" currentPhase={phase} />
-
-                  {phase === 'finale' && (
-                    <motion.div
-                      className="data-story__finale"
-                      initial={{ opacity: 0, y: 18 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <span className="data-story__finale-eyebrow">Modeled delta</span>
-                      <div className="data-story__finale-grid">
-                        <div>
-                          <CountUp value={77_100} unit="usd" run tone="gold" delay={100} />
-                          <span className="data-story__finale-label">Legal</span>
-                        </div>
-                        <div>
-                          <CountUp value={42} unit="days" run tone="gold" delay={280} />
-                          <span className="data-story__finale-label">Days faster</span>
-                        </div>
-                        <div>
-                          <CountUp value={47} unit="count" run tone="gold" delay={460} />
-                          <span className="data-story__finale-label">Jurisdictions</span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
+                  <Dashboard phase={phase} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -535,11 +643,7 @@ export function SavingsPresentation({ open, onClose, title }: SavingsPresentatio
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
           >
-            {phase === 'intro' && 'Opening'}
-            {phase === 'legal' && 'Legal & advisory'}
-            {phase === 'time' && 'Time to approval'}
-            {phase === 'jurisdictions' && 'Jurisdictions'}
-            {phase === 'finale' && 'Summary'}
+            {phaseLabel[phase]}
           </motion.span>
         </motion.div>
       )}
