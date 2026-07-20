@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly VITE_SITE_URL: string
   readonly VITE_SATOHASH_URL: string
+  readonly VITE_SATOHASH_API_URL: string
   readonly VITE_NOSTR_RELAY: string
 }
 

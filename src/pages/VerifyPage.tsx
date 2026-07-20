@@ -1,7 +1,13 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { ExternalLink, Shield, Copy, Check, ClipboardPaste, History, RotateCcw, QrCode, Download, FileUp } from 'lucide-react'
-import { hashApplicationPayload, satohashStampGuideUrl, satohashVerifyUrl } from '../lib/satohash'
+import { ExternalLink, Shield, Copy, Check, ClipboardPaste, History, RotateCcw, QrCode, Download, FileUp, Loader2 } from 'lucide-react'
+import {
+  hashApplicationPayload,
+  satohashStampGuideUrl,
+  satohashVerifyUrl,
+  satohashProofVerifyUrl,
+  stampHash,
+} from '../lib/satohash'
 import { buildPageVerifyPayload } from '../lib/pageVerify'
 import { parseHashLines, verifyHashPaste } from '../lib/seal/vaultVerify'
 import { verifyOtsPasteContent } from '../lib/verifyOtsPaste'
@@ -13,6 +19,12 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { useToast } from '../components/ui/Toast'
 import { formatT } from '../i18n/format'
 import type { VerifyResult } from '../types/proof'
+
+type StampUiState =
+  | { kind: 'idle' }
+  | { kind: 'pending' }
+  | { kind: 'api'; id: string; status?: string; verifyUrl: string }
+  | { kind: 'fallback'; guideUrl: string; error?: string }
 
 export function VerifyPage() {
   const { t } = useI18n()
@@ -37,11 +49,29 @@ export function VerifyPage() {
   const [otsPaste, setOtsPaste] = useState('')
   const [otsHash, setOtsHash] = useState('')
   const [otsResult, setOtsResult] = useState<VerifyResult | null>(null)
+  const [stampUi, setStampUi] = useState<StampUiState>({ kind: 'idle' })
 
   const generate = async () => {
     const next = await hashApplicationPayload({ text: input, ts: new Date().toISOString() })
     setHash(next)
+    setStampUi({ kind: 'idle' })
     setHistory(pushHashHistory(next, input.slice(0, 48)))
+  }
+
+  /** Try Satohash API stamp; fall back to satohash.io/stamp?hash= deep link when offline. */
+  const stampViaApi = async () => {
+    if (!hash || stampUi.kind === 'pending') return
+    setStampUi({ kind: 'pending' })
+    const result = await stampHash(hash, { filename: 'motopass-verify' })
+    if (result.ok && result.id) {
+      const verifyUrl = satohashProofVerifyUrl(result.id)
+      setStampUi({ kind: 'api', id: result.id, status: result.status, verifyUrl })
+      toast(t('verify.stampApiOk'), 'success')
+      return
+    }
+    const guideUrl = satohashStampGuideUrl(hash)
+    setStampUi({ kind: 'fallback', guideUrl, error: result.error })
+    toast(t('verify.stampApiFallback'), 'default')
   }
 
   const copy = async () => {
@@ -163,13 +193,55 @@ export function VerifyPage() {
               </button>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
-              <a href={satohashStampGuideUrl(hash)} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center gap-2 flex-1">
-                {t('verify.stampSatohash')} <ExternalLink size={14} />
-              </a>
+              <button
+                type="button"
+                onClick={() => void stampViaApi()}
+                disabled={stampUi.kind === 'pending'}
+                className="btn-primary inline-flex items-center justify-center gap-2 flex-1"
+              >
+                {stampUi.kind === 'pending' ? (
+                  <>
+                    <Loader2 size={14} className="animate-spin" aria-hidden /> {t('verify.stamping')}
+                  </>
+                ) : (
+                  <>{t('verify.stampSatohash')}</>
+                )}
+              </button>
               <a href={satohashVerifyUrl(hash)} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center justify-center gap-2 flex-1">
                 {t('verify.verifyProof')} <ExternalLink size={14} />
               </a>
             </div>
+            {stampUi.kind === 'api' && (
+              <div className="rounded-mp-md border border-mp-proof/40 bg-mp-proof/10 px-3 py-2.5 text-xs space-y-1.5" role="status">
+                <p className="font-chrome font-semibold text-mp-proof">{t('verify.stampProofReady')}</p>
+                <p className="font-mono text-ink-secondary break-all">
+                  {t('verify.stampProofId')}: {stampUi.id}
+                  {stampUi.status ? ` · ${stampUi.status}` : ''}
+                </p>
+                <a
+                  href={stampUi.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-btc-orange font-medium hover:underline"
+                >
+                  {t('verify.verifyProof')} <ExternalLink size={12} />
+                </a>
+              </div>
+            )}
+            {stampUi.kind === 'fallback' && (
+              <div className="rounded-mp-md border border-status-amber/40 bg-status-amber/10 px-3 py-2.5 text-xs space-y-1.5" role="status">
+                <p className="font-chrome font-semibold text-status-amber">{t('verify.stampApiOffline')}</p>
+                {stampUi.error && <p className="text-ink-muted font-mono break-all">{stampUi.error}</p>}
+                <a
+                  href={stampUi.guideUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-btc-orange font-medium hover:underline"
+                >
+                  {t('verify.stampGuideLink')} <ExternalLink size={12} />
+                </a>
+              </div>
+            )}
             <VerifyResultsExplainer messageKey="verify.resultsExplainer" />
           </div>
         )}

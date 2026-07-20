@@ -946,4 +946,38 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 
 ---
 
+## Session — 2026-07-19 (Satohash API client — family timestamp backbone)
+
+**Machine:** M3 (Grok)  
+**Project:** motopass
+
+### Done
+- [x] Expanded `src/lib/satohash.ts` with Satohash public API client:
+  - `SATOHASH_API_BASE` from `VITE_SATOHASH_API_URL` (default `https://api.satohash.io`)
+  - `getApiHealth()`, `stampHash()`, `getStamp()` — never throw; `ok:false` when offline
+  - Headers: `X-Satohash-Client: motopass`, optional `X-Satohash-Key`
+  - Kept browser hash + deep-link helpers (`sha256Hex`, `satohashVerifyUrl`, `satohashStampGuideUrl`, `hashApplicationPayload`, `fetchBitcoinBlockHeight`)
+  - Added `satohashProofVerifyUrl(id)` for API-issued proof ids
+- [x] Tests: `src/lib/satohash.test.ts` — 12 tests with mocked `fetch` (offline, validation, success, API key header)
+- [x] UI: `/verify` stamps via API first; on success shows proof id + verify link; on failure falls back to `satohash.io/stamp?hash=` deep link
+- [x] `.env.example`: `VITE_SATOHASH_URL`, `VITE_SATOHASH_API_URL` (no secrets)
+- [x] `vite-env.d.ts` types for `VITE_SATOHASH_API_URL`
+- [x] Full unit suite: 135 tests pass
+
+### Decisions
+- API may not be live yet — all client calls are graceful-fail; VerifyPage always offers stamp-guide fallback
+- Minimal UI surface: only VerifyPage stamp button changed (Profile/Apply still use deep links)
+- No API keys committed; optional key only via runtime `opts.apiKey` or future env if needed
+
+### What's Next
+- When `api.satohash.io` is live: smoke stamp from `/verify` and confirm proof id resolves
+- Optional: wire ProfilePage/ApplyPage upload path to `stampHash` the same way
+- Optional: family free-tier key via env (never commit secrets)
+
+### Git State
+- Branch: `main`
+- See commit message after push for SHA
+
+---
+
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
