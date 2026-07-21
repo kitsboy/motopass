@@ -1,0 +1,257 @@
+{
+  "schema": "gab.product-metrics.v1",
+  "productId": "motopass",
+  "name": "MotoPass",
+  "updatedAt": "2026-07-21T22:00:00.000Z",
+  "window": {
+    "label": "all",
+    "from": "2026-01-01T00:00:00.000Z",
+    "to": "2026-07-21T22:00:00.000Z"
+  },
+  "health": {
+    "status": "green",
+    "message": "Origin metrics.json published — program KPIs from research/countries.json + public/proofs; Umami visitors fill once analytics host is public",
+    "latencyMs": null,
+    "uptimePct24h": null,
+    "dependencies": [
+      {
+        "id": "countries-json",
+        "status": "green",
+        "detail": "research/countries.json · 50 programs"
+      },
+      {
+        "id": "ots-proofs",
+        "status": "green",
+        "detail": "public/proofs · 50 .ots files"
+      },
+      {
+        "id": "satohash",
+        "status": "green",
+        "detail": "OpenTimestamps backbone for program snapshots"
+      },
+      {
+        "id": "umami",
+        "status": "amber",
+        "detail": "Script wired (website dd982c5b-…); reverse proxy to THOR:3002 still required for live pageviews"
+      }
+    ]
+  },
+  "kpis": [
+    {
+      "key": "countries_seeded",
+      "label": "Countries seeded",
+      "value": 16,
+      "unit": "countries",
+      "format": "number",
+      "priority": 1,
+      "hint": "Original deep-seed cohort (16/50). Full catalog is programs_total."
+    },
+    {
+      "key": "programs_total",
+      "label": "Programs total",
+      "value": 50,
+      "unit": "programs",
+      "format": "number",
+      "priority": 1,
+      "hint": "CBI/RBI and special programs in research/countries.json."
+    },
+    {
+      "key": "countries_ots",
+      "label": "Countries OTS-stamped",
+      "value": 50,
+      "unit": "countries",
+      "format": "number",
+      "priority": 1,
+      "hint": "Jurisdictions with OpenTimestamps proofs on disk (public/proofs/*.ots). Alias: countries_verified_ots."
+    },
+    {
+      "key": "avg_program_cost_usd",
+      "label": "Avg program cost",
+      "value": 185000,
+      "unit": "USD",
+      "format": "usd",
+      "priority": 1,
+      "hint": "Headline average investment for Concert / diligence (USD)."
+    },
+    {
+      "key": "fastest_days",
+      "label": "Fastest pathway",
+      "value": 60,
+      "unit": "days",
+      "format": "duration",
+      "priority": 2,
+      "hint": "Minimum citizenship/residency processing time in the catalog (days). Alias: fastest_citizenship_days."
+    },
+    {
+      "key": "target_countries",
+      "label": "Target countries",
+      "value": 50,
+      "unit": "countries",
+      "format": "number",
+      "priority": 2,
+      "hint": "Roadmap target for seeded jurisdiction coverage (16 seeded → 50 target)."
+    },
+    {
+      "key": "cheapest_program",
+      "label": "Cheapest program",
+      "value": 25000,
+      "unit": "USD",
+      "format": "usd",
+      "priority": 3,
+      "hint": "Lowest typical/min investment in countries.json (Central African Republic · $25k)."
+    }
+  ],
+  "series": [],
+  "funnels": [
+    {
+      "id": "sovereign_journey",
+      "label": "Sovereign journey",
+      "steps": [
+        {
+          "id": "browse",
+          "label": "Browse programs",
+          "count": 0,
+          "hint": "Umami /programs pageviews once analytics host is public"
+        },
+        {
+          "id": "compare",
+          "label": "Compare stack",
+          "count": 0,
+          "hint": "Compare / simulator engagement"
+        },
+        {
+          "id": "verify",
+          "label": "Verify OTS",
+          "count": 0,
+          "hint": "Verify / Satohash proof checks"
+        },
+        {
+          "id": "apply",
+          "label": "Apply interest",
+          "count": 0,
+          "hint": "Apply / Launch Engine submissions"
+        }
+      ]
+    }
+  ],
+  "segments": [
+    {
+      "id": "coverage",
+      "label": "Coverage progress",
+      "rows": [
+        {
+          "id": "seeded",
+          "label": "Seeded deep cohort",
+          "value": 16,
+          "meta": { "of": 50 }
+        },
+        {
+          "id": "programs",
+          "label": "Programs in catalog",
+          "value": 50,
+          "meta": { "source": "research/countries.json" }
+        },
+        {
+          "id": "ots",
+          "label": "OTS-stamped",
+          "value": 50,
+          "meta": { "source": "public/proofs" }
+        },
+        {
+          "id": "target",
+          "label": "Target countries",
+          "value": 50,
+          "meta": { "roadmap": true }
+        }
+      ]
+    }
+  ],
+  "offers": [
+    {
+      "id": "program_oracle",
+      "title": "50-jurisdiction program oracle",
+      "for": ["giveabit", "hq", "openstrata"],
+      "status": "ga",
+      "endpoint": "GET /research/countries.json",
+      "hint": "CBI/RBI catalog with finance, pathways, Satohash proofs"
+    },
+    {
+      "id": "ots_proofs",
+      "title": "OpenTimestamps program proofs",
+      "for": ["satohash"],
+      "status": "ga",
+      "endpoint": "GET /proofs/*.ots",
+      "hint": "Immutable program snapshots via Satohash"
+    },
+    {
+      "id": "metrics_v1",
+      "title": "Product metrics v1",
+      "for": ["hq"],
+      "status": "live",
+      "endpoint": "GET /metrics.json",
+      "hint": "gab.product-metrics.v1 for HQ cards"
+    }
+  ],
+  "education": [
+    {
+      "id": "mold_seeded_vs_total",
+      "title": "16 seeded vs 50 programs",
+      "body": "countries_seeded is the original deep-seed cohort. programs_total and countries_ots are full-catalog counts (50). Pitch 16/50 progress using seeded + target_countries.",
+      "action": "Show seeded/target on HQ card; programs_total on Concert",
+      "opportunity": "opportunity"
+    },
+    {
+      "id": "mold_ots",
+      "title": "OTS is the truth layer",
+      "body": "countries_ots = proofs on disk. Every listed jurisdiction ships a .ots file under public/proofs for re-verification.",
+      "action": "Link HQ card to /verify and Satohash",
+      "opportunity": "info"
+    },
+    {
+      "id": "wire_umami",
+      "title": "Visitor funnel needs public Umami",
+      "body": "Tracking script is in index.html. Funnel counts stay 0 until analytics.giveabit.io (or THOR reverse proxy) is reachable from the open web.",
+      "action": "Point analytics.giveabit.io → THOR:3002 over HTTPS",
+      "opportunity": "plan"
+    }
+  ],
+  "links": [
+    {
+      "label": "MotoPass",
+      "url": "https://motopass.giveabit.io"
+    },
+    {
+      "label": "Live metrics",
+      "url": "https://motopass.giveabit.io/metrics.json"
+    },
+    {
+      "label": "Programs data",
+      "url": "https://motopass.giveabit.io/research/countries.json"
+    },
+    {
+      "label": "Schema",
+      "url": "https://hq.giveabit.io/schemas/product-metrics.v1.schema.json"
+    },
+    {
+      "label": "All-site inventory",
+      "url": "https://hq.giveabit.io/docs/ALL-SITE-METRICS.md"
+    }
+  ],
+  "raw": {
+    "demo": false,
+    "source": "research/countries.json + public/proofs + inventory defaults",
+    "programs_total": 50,
+    "countries_seeded": 16,
+    "countries_ots": 50,
+    "countries_verified_ots": 50,
+    "avg_program_cost_usd": 185000,
+    "fastest_days": 60,
+    "fastest_citizenship_days": 60,
+    "target_countries": 50,
+    "cheapest_program_usd": 25000,
+    "cheapest_program_name": "Central African Republic",
+    "umamiWebsiteId": "dd982c5b-f27a-40e3-924b-4ea1e64d5f8a",
+    "umamiPending": true,
+    "note": "Static product metrics for HQ. Visitor funnel fills from Umami once analytics host is public. Regenerate when countries.json or proofs change."
+  }
+}
