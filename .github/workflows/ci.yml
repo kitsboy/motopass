@@ -8,28 +8,9 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-  schedule:
-    - cron: '0 6 * * 1'
   workflow_dispatch:
 
 jobs:
-  btcmap-sync:
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: npm
-      - run: npm ci
-      - run: npm run btcmap:density
-      - run: npm run btcmap:sync
-      - uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: 'chore: weekly btcmap density + cache sync'
-          file_pattern: 'public/data/btcmap*'
-
   build-test:
     if: github.event_name == 'push' || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
