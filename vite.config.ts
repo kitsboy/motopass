@@ -129,6 +129,7 @@ function motopassStaticAssets(): Plugin {
 
 export default defineConfig({
   build: {
+    sourcemap: true,
     rollupOptions: {
       output: {
         entryFileNames: `assets/[name]-[hash]-${BUILD_SALT}.js`,

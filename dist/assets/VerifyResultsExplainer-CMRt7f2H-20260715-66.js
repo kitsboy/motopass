@@ -1,0 +1,2 @@
+import{d as r,j as e}from"./index-Cr1A19KZ-20260715-66.js";import{h as a}from"./icons-oau3oHEU-20260715-66.js";function x({messageKey:s}){const{t}=r();return e.jsxs("p",{className:"flex gap-2 text-xs text-ink-muted leading-relaxed pt-1",children:[e.jsx(a,{size:14,className:"text-btc-orange shrink-0 mt-0.5","aria-hidden":!0}),e.jsx("span",{children:t(s)})]})}export{x as V};
+//# sourceMappingURL=VerifyResultsExplainer-CMRt7f2H-20260715-66.js.map

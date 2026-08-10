@@ -90,9 +90,9 @@ export function BtcPriceTicker({ variant = 'default' }: { variant?: 'default' | 
         onClick={copySpot}
         className={className}
         title={title}
-        aria-label={ariaLabel}
       >
         {content}
+        <span className="sr-only">{t('btcPrice.copyHint')}</span>
       </button>
     )
   }
