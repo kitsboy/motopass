@@ -14,7 +14,7 @@
 - Corpus depth enrichment composes from existing finance/pathways only (no invented legal claims)
 
 **Git State:**
-- Tip: `c797868` (docs align)
+- Tip: \`9e4bfe2\` (session-end handoff) (docs align)
 - Feature: `db2206c` (BUILD 67 code)
 - Unpushed: none
 - Branch: main
