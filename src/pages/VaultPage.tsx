@@ -311,6 +311,25 @@ export function VaultPage() {
       {loading && !error && <RowSkeleton count={5} />}
       {!loading && !error && (
         <div id="vault-archive" className="space-y-3 scroll-mt-header">
+          <div className="relative mb-4 overflow-hidden rounded-mp-xl border border-mp-border/50">
+            <img
+              src="/images/vault-archive.jpg"
+              alt=""
+              className="h-36 w-full object-cover object-center sm:h-44"
+              loading="lazy"
+              width={1280}
+              height={720}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08080e]/90 via-[#08080e]/35 to-transparent" />
+            <div className="absolute bottom-3 left-4 right-4">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-btc-orange/90">
+                {t('vault.eyebrow')} · archive
+              </p>
+              <p className="font-display text-sm font-semibold text-ink sm:text-base">
+                {formatT(t, 'vault.archiveBanner', { count: stamped.length })}
+              </p>
+            </div>
+          </div>
           {stamped.length > 0 && (
             <>
               <div className="relative mb-4">

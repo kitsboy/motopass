@@ -35,13 +35,22 @@ export function DashboardPage() {
     return <Navigate to={`/register?next=${encodeURIComponent(next)}`} replace />
   }
 
-  const handlePay = (rail: PaymentRail, amountSats: number, _invoice: PaymentInvoice) => {
+  const handlePay = (rail: PaymentRail, amountSats: number, invoice: PaymentInvoice) => {
+    // Live Lightning Address / on-chain QR: mark pending until operator confirms settlement.
+    // Demo rails still auto-confirm for UX walkthroughs.
+    const livePending = Boolean(invoice.qrPayload && !invoice.demo)
     setProfile({
       ...profile,
       payments: [{
-        id: `pay-${Date.now()}`, rail, amountSats, status: 'confirmed',
-        createdAt: new Date().toISOString(), label: `${profile.program} application fee`,
-        txId: `demo-${rail}-${Date.now().toString(36)}`,
+        id: invoice.id,
+        rail,
+        amountSats,
+        status: livePending ? 'pending' : 'confirmed',
+        createdAt: new Date().toISOString(),
+        label: `${profile.program} application fee`,
+        txId: livePending
+          ? invoice.lightningAddress ?? invoice.onchainAddress ?? invoice.id
+          : `demo-${rail}-${Date.now().toString(36)}`,
       }, ...profile.payments],
       status: 'payment_pending',
     })

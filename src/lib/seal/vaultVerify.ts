@@ -25,7 +25,7 @@ export function parseHashLines(input: string): string[] {
   return hashes
 }
 
-/** Paste a content hash — validates format and links to Satohash */
+/** Paste a content hash — validates format, pings Satohash API health, links to verify */
 export async function verifyHashPaste(hashInput: string): Promise<VerifyResult> {
   const hash = normalizeHash(hashInput)
   if (!hash) {
@@ -37,12 +37,25 @@ export async function verifyHashPaste(hashInput: string): Promise<VerifyResult> 
       message: 'Invalid SHA-256 — expected 64 hex characters',
     }
   }
+
+  // Best-effort API liveness — does not prove the hash is stamped, but surfaces plane status.
+  let apiNote = ''
+  try {
+    const { getApiHealth } = await import('../satohash')
+    const health = await getApiHealth()
+    apiNote = health.ok
+      ? ' · Satohash API online'
+      : ' · Satohash API offline (use satohash.io deep link)'
+  } catch {
+    /* ignore */
+  }
+
   return {
     verified: true,
     hash,
     mode: 'hash-only',
     blockTime: null,
-    message: 'Valid content hash — open Satohash for independent Bitcoin verification',
+    message: `Valid content hash — open Satohash for independent Bitcoin verification${apiNote}`,
   }
 }
 

@@ -5,6 +5,10 @@ interface ImportMetaEnv {
   readonly VITE_SATOHASH_URL: string
   readonly VITE_SATOHASH_API_URL: string
   readonly VITE_NOSTR_RELAY: string
+  /** Lightning Address (user@domain) for live LNURL-pay QR on dashboard */
+  readonly VITE_LIGHTNING_ADDRESS?: string
+  /** Optional on-chain bc1… donation / fee address */
+  readonly VITE_ONCHAIN_ADDRESS?: string
 }
 
 interface ImportMeta {

@@ -1,3 +1,24 @@
+## Session — 2026-08-11 (Grok / M3)
+
+**Done:**
+- BUILD 67 — Imagine brand pack wired: hero, sovereignty, passport, funding-flow, vault-archive (public/ + images/ + dist)
+- HeroMotionBackground → sovereignty.jpg (header-elite fallback); CompareHero funding-flow band; ProgramModal passport; Vault archive banner
+- Satohash: API health chip on Verify, pollStamp after stamp, vault hash verify notes API liveness
+- Lightning: live LN Address QR (`motopass-server@giveabit.io` / `VITE_LIGHTNING_ADDRESS`) + live on-chain donation address; demo rails labeled
+- countries.json narrative depth pass from structured fields (details / bitcoin_integration / sources)
+- Docs: `.ai_docs/current-status.md`, ROADMAP, DESIGN-CONTEXT imagery table
+- Tests: 140 unit green; production build OK
+
+**Decisions:**
+- Lightning “live” path = Lightning Address QR (LNURL-pay), not BOLT11 mint yet — next step LNbits when node env ready
+- Corpus depth enrichment composes from existing finance/pathways only (no invented legal claims)
+
+**Git State:**
+- SHA: `023c6a1`
+- Branch: main
+
+---
+
 ## 2026-08-10 — Kimi/THOR: Lighthouse sweep (DONE, deployed)
 Full site optimization sweep completed end-to-end (sw.js 206-crash fix, console-error elimination, a11y + SEO + security pass). See LATEST-UPDATE.md (top) for per-site summary + commit. Scores re-verified by Kimi. Before touching code, re-check the live Lighthouse state; do not regress: sw.js cache guards (status 200 only), CSP analytics allowlist, image width/height attrs, aria-labels on form controls.
 

@@ -135,6 +135,17 @@ function ProgramModalBody({
         eyebrow={`${program.tier} · ${program.region}`}
         title={program.country}
       >
+      <div className="mb-4 overflow-hidden rounded-mp-lg border border-mp-border/60">
+        <img
+          src="/images/passport.jpg"
+          alt=""
+          className="h-28 w-full object-cover object-center sm:h-32"
+          loading="lazy"
+          width={1024}
+          height={1024}
+        />
+      </div>
+
       <div className="mb-4 flex items-center gap-3 flex-wrap">
         <ProofBadge status={program.proofStatus} txHint={program.proofRef} />
         {isFlagship && (

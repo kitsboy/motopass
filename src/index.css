@@ -1383,6 +1383,35 @@ html.mp-header-collapsed {
 .fc-hero {
   position: relative;
   margin-bottom: 2rem;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.25rem 1.5rem;
+  border: 1px solid rgba(255, 149, 0, 0.12);
+  background: rgba(8, 8, 14, 0.55);
+}
+
+.fc-hero__photo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.32;
+}
+
+.fc-hero__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.fc-hero__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(105deg, rgba(8, 8, 14, 0.92) 0%, rgba(8, 8, 14, 0.72) 42%, rgba(8, 8, 14, 0.45) 100%),
+    radial-gradient(ellipse at 70% 40%, rgba(255, 149, 0, 0.14) 0%, transparent 55%);
 }
 
 .fc-hero__ambient {

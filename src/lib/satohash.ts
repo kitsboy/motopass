@@ -222,3 +222,38 @@ export async function getStamp(id: string): Promise<SatohashGetStampResult> {
     }
   }
 }
+
+const TERMINAL_STAMP_STATUSES = new Set([
+  'confirmed',
+  'anchored',
+  'complete',
+  'completed',
+  'failed',
+  'error',
+  'rejected',
+])
+
+/**
+ * Poll GET /api/stamps/:id until status is terminal or attempts exhausted.
+ * Never throws. Used after stampHash to surface Bitcoin anchor progress.
+ */
+export async function pollStamp(
+  id: string,
+  opts?: { attempts?: number; intervalMs?: number },
+): Promise<SatohashGetStampResult> {
+  const attempts = opts?.attempts ?? 5
+  const intervalMs = opts?.intervalMs ?? 1500
+  let last: SatohashGetStampResult = { ok: false, error: 'No poll attempts' }
+
+  for (let i = 0; i < attempts; i++) {
+    last = await getStamp(id)
+    if (!last.ok) return last
+    const status = (last.status ?? '').toLowerCase()
+    if (status && TERMINAL_STAMP_STATUSES.has(status)) return last
+    if (last.bitcoin_block_height != null) return last
+    if (i < attempts - 1) {
+      await new Promise(r => setTimeout(r, intervalMs))
+    }
+  }
+  return last
+}

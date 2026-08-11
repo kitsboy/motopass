@@ -38,10 +38,12 @@ The upgraded direction is **Luminous Sovereign**: warm light backgrounds, crisp 
 
 | Asset | Role |
 |-------|------|
-| `/images/sovereignty.jpg` | Landing hero motion background (35% opacity) |
-| `/images/hero.jpg` | OG + secondary sections |
-| `/images/passport.jpg` | Modals, vault |
-| `/images/funding-flow.jpg` | Finance compare |
+| `/images/sovereignty.jpg` | Landing hero motion background (Imagine pack · BUILD 67) |
+| `/images/hero.jpg` | OG + secondary sections (Imagine pack · BUILD 67) |
+| `/images/passport.jpg` | Program modal banner, vault, portfolio |
+| `/images/funding-flow.jpg` | Finance Compare hero band |
+| `/images/vault-archive.jpg` | Vault archive section banner |
+| `/images/header-elite.jpg` | Hero fallback if sovereignty fails to load |
 | `/logo.png` | Header, footer, favicon |
 
 ## Implementation map

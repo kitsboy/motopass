@@ -11,6 +11,9 @@ export function CompareHero({ slotCount }: { slotCount: number }) {
 
   return (
     <header className="fc-hero">
+      <div className="fc-hero__photo" aria-hidden>
+        <img src="/images/funding-flow.jpg" alt="" className="fc-hero__photo-img" />
+      </div>
       <div className="fc-hero__ambient" aria-hidden />
       <motion.div
         className="fc-hero__content"

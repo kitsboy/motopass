@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { ExternalLink, Shield, Copy, Check, ClipboardPaste, History, RotateCcw, QrCode, Download, FileUp, Loader2 } from 'lucide-react'
 import {
@@ -7,6 +7,8 @@ import {
   satohashVerifyUrl,
   satohashProofVerifyUrl,
   stampHash,
+  getApiHealth,
+  pollStamp,
 } from '../lib/satohash'
 import { buildPageVerifyPayload } from '../lib/pageVerify'
 import { parseHashLines, verifyHashPaste } from '../lib/seal/vaultVerify'
@@ -23,8 +25,17 @@ import type { VerifyResult } from '../types/proof'
 type StampUiState =
   | { kind: 'idle' }
   | { kind: 'pending' }
-  | { kind: 'api'; id: string; status?: string; verifyUrl: string }
+  | {
+      kind: 'api'
+      id: string
+      status?: string
+      verifyUrl: string
+      blockHeight?: number | null
+      confirmedAt?: string | null
+    }
   | { kind: 'fallback'; guideUrl: string; error?: string }
+
+type ApiHealthUi = 'checking' | 'online' | 'offline'
 
 export function VerifyPage() {
   const { t } = useI18n()
@@ -50,6 +61,17 @@ export function VerifyPage() {
   const [otsHash, setOtsHash] = useState('')
   const [otsResult, setOtsResult] = useState<VerifyResult | null>(null)
   const [stampUi, setStampUi] = useState<StampUiState>({ kind: 'idle' })
+  const [apiHealth, setApiHealth] = useState<ApiHealthUi>('checking')
+
+  useEffect(() => {
+    let cancelled = false
+    void getApiHealth().then(h => {
+      if (!cancelled) setApiHealth(h.ok ? 'online' : 'offline')
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   const generate = async () => {
     const next = await hashApplicationPayload({ text: input, ts: new Date().toISOString() })
@@ -58,7 +80,7 @@ export function VerifyPage() {
     setHistory(pushHashHistory(next, input.slice(0, 48)))
   }
 
-  /** Try Satohash API stamp; fall back to satohash.io/stamp?hash= deep link when offline. */
+  /** Try Satohash API stamp; poll proof status; fall back to deep link when offline. */
   const stampViaApi = async () => {
     if (!hash || stampUi.kind === 'pending') return
     setStampUi({ kind: 'pending' })
@@ -67,10 +89,26 @@ export function VerifyPage() {
       const verifyUrl = satohashProofVerifyUrl(result.id)
       setStampUi({ kind: 'api', id: result.id, status: result.status, verifyUrl })
       toast(t('verify.stampApiOk'), 'success')
+      // Poll for Bitcoin anchor progress (non-blocking for UX after first paint)
+      void pollStamp(result.id, { attempts: 4, intervalMs: 1200 }).then(polled => {
+        if (!polled.ok) return
+        setStampUi({
+          kind: 'api',
+          id: polled.id ?? result.id!,
+          status: polled.status ?? result.status,
+          verifyUrl,
+          blockHeight: polled.bitcoin_block_height,
+          confirmedAt: polled.confirmed_at,
+        })
+        if (polled.bitcoin_block_height != null) {
+          toast(t('verify.stampAnchored'), 'success')
+        }
+      })
       return
     }
     const guideUrl = satohashStampGuideUrl(hash)
     setStampUi({ kind: 'fallback', guideUrl, error: result.error })
+    setApiHealth('offline')
     toast(t('verify.stampApiFallback'), 'default')
   }
 
@@ -162,7 +200,35 @@ export function VerifyPage() {
   return (
     <div className="px-4 sm:px-6 py-8 max-w-3xl mx-auto">
       <PageHeader eyebrow="SATOHASH.IO" title={t('verify.title')} subtitle={t('verify.sub')} />
-      <BlockHeight />
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <BlockHeight />
+        <span
+          className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider ${
+            apiHealth === 'online'
+              ? 'border-mp-proof/40 bg-mp-proof/10 text-mp-proof'
+              : apiHealth === 'offline'
+                ? 'border-status-amber/40 bg-status-amber/10 text-status-amber'
+                : 'border-mp-border bg-card-muted text-ink-muted'
+          }`}
+          role="status"
+        >
+          <span
+            className={`h-1.5 w-1.5 rounded-full ${
+              apiHealth === 'online'
+                ? 'bg-mp-proof'
+                : apiHealth === 'offline'
+                  ? 'bg-status-amber'
+                  : 'bg-ink-muted animate-pulse'
+            }`}
+            aria-hidden
+          />
+          {apiHealth === 'online'
+            ? t('verify.apiOnline')
+            : apiHealth === 'offline'
+              ? t('verify.apiOffline')
+              : t('verify.apiChecking')}
+        </span>
+      </div>
 
       <div className="card-elevated mt-8 space-y-4 border-l-4 border-l-btc-orange">
         <label htmlFor="verify-input" className="block text-sm font-medium text-ink-secondary">{t('verify.dataLabel')}</label>
@@ -218,6 +284,12 @@ export function VerifyPage() {
                   {t('verify.stampProofId')}: {stampUi.id}
                   {stampUi.status ? ` · ${stampUi.status}` : ''}
                 </p>
+                {stampUi.blockHeight != null && (
+                  <p className="font-mono text-mp-proof">
+                    {t('verify.stampBlock')}: {stampUi.blockHeight}
+                    {stampUi.confirmedAt ? ` · ${stampUi.confirmedAt}` : ''}
+                  </p>
+                )}
                 <a
                   href={stampUi.verifyUrl}
                   target="_blank"

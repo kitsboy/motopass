@@ -8,6 +8,7 @@ import {
   getApiHealth,
   stampHash,
   getStamp,
+  pollStamp,
 } from './satohash'
 
 describe('satohash', () => {
@@ -171,5 +172,26 @@ describe('satohash', () => {
     const result = await getStamp('missing')
     expect(result.ok).toBe(false)
     expect(result.error).toMatch(/offline|unreachable/i)
+  })
+
+  it('pollStamp stops early when status is confirmed', async () => {
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({ id: 'p1', status: 'pending' }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({ id: 'p1', status: 'confirmed', bitcoin_block_height: 901000 }),
+      })
+    vi.stubGlobal('fetch', fetchMock)
+    const result = await pollStamp('p1', { attempts: 5, intervalMs: 1 })
+    expect(result.ok).toBe(true)
+    expect(result.status).toBe('confirmed')
+    expect(result.bitcoin_block_height).toBe(901000)
+    expect(fetchMock).toHaveBeenCalledTimes(2)
   })
 })

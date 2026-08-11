@@ -1,14 +1,20 @@
 /**
- * Cinematic full-bleed hero — header-elite.jpg with CSS Ken Burns + dual fog drift.
- * Motion is always on via CSS keyframes (not gated by useReducedMotion).
+ * Cinematic full-bleed hero — sovereignty.jpg (Imagine) with header-elite fallback,
+ * CSS Ken Burns + dual fog drift. Motion is always on via CSS keyframes.
  */
 export function HeroMotionBackground() {
   return (
     <div className="hero-elite-stage absolute inset-0 overflow-hidden" aria-hidden="true">
       <img
-        src="/images/header-elite.jpg"
+        src="/images/sovereignty.jpg"
         alt=""
         className="hero-elite-photo hero-elite-photo--animate absolute -left-[6%] -top-[6%] inset-0 h-[112%] w-[112%] max-w-none object-cover"
+        onError={(e) => {
+          const img = e.currentTarget
+          if (!img.src.endsWith('header-elite.jpg')) {
+            img.src = '/images/header-elite.jpg'
+          }
+        }}
       />
 
       <div className="hero-elite-fog hero-elite-fog--a hero-elite-fog--animate-a pointer-events-none absolute inset-0" />

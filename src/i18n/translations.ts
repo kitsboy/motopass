@@ -43,6 +43,7 @@ export type TranslationKey =
   | 'simulator.stat.sovereignty' | 'simulator.stat.timeline' | 'simulator.stackName' | 'simulator.saveStack'
   | 'simulator.savedStacks' | 'simulator.savedCount'
   | 'payments.accept' | 'payments.history' | 'payments.demoNote'
+  | 'payments.liveNote' | 'payments.liveLightning' | 'payments.liveBadge' | 'payments.demoBadge'
   | 'layout.skipToContent' | 'layout.registerNostr' | 'layout.demo'
   | 'footer.descriptionBefore' | 'footer.descriptionAfter' | 'footer.github' | 'footer.pristineDemo'
   | 'verify.title' | 'verify.sub' | 'verify.stamp' | 'agents.title' | 'agents.sub'
@@ -161,6 +162,10 @@ const en: Dict = {
   'payments.accept': 'Accept payment',
   'payments.history': 'Payment history',
   'payments.demoNote': 'Demo: {btc} BTC equivalent · BOLT12 offers & Silent Payments supported',
+  'payments.liveNote': 'Lightning Address live · suggested amount {btc} BTC · scan QR with any LNURL wallet',
+  'payments.liveLightning': 'Live Lightning Address',
+  'payments.liveBadge': 'LIVE',
+  'payments.demoBadge': 'DEMO',
   'layout.skipToContent': 'Skip to content',
   'layout.registerNostr': 'Register with Nostr',
   'layout.demo': 'Demo',
@@ -281,6 +286,10 @@ const es: Dict = {
   'payments.accept': 'Aceptar pago',
   'payments.history': 'Historial de pagos',
   'payments.demoNote': 'Demo: {btc} BTC equivalente · Ofertas BOLT12 y Silent Payments compatibles',
+  'payments.liveNote': 'Lightning Address en vivo · monto sugerido {btc} BTC · escanea el QR',
+  'payments.liveLightning': 'Lightning Address en vivo',
+  'payments.liveBadge': 'EN VIVO',
+  'payments.demoBadge': 'DEMO',
   'layout.skipToContent': 'Saltar al contenido',
   'layout.registerNostr': 'Registrarse con Nostr',
   'layout.demo': 'Demo',
@@ -402,6 +411,10 @@ const fr: Dict = {
   'payments.accept': 'Accepter le paiement',
   'payments.history': 'Historique des paiements',
   'payments.demoNote': 'Démo : {btc} BTC équivalent · Offres BOLT12 et Silent Payments pris en charge',
+  'payments.liveNote': 'Lightning Address actif · montant suggéré {btc} BTC · scannez le QR',
+  'payments.liveLightning': 'Lightning Address actif',
+  'payments.liveBadge': 'LIVE',
+  'payments.demoBadge': 'DÉMO',
   'layout.skipToContent': 'Aller au contenu',
   'layout.registerNostr': 'S\'inscrire avec Nostr',
   'layout.demo': 'Démo',
