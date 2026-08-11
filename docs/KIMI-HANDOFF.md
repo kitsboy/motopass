@@ -14,7 +14,7 @@
 - Corpus depth enrichment composes from existing finance/pathways only (no invented legal claims)
 
 **Git State:**
-- SHA: `023c6a1`
+- SHA: `db2206c`
 - Branch: main
 
 ---
@@ -146,7 +146,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - CF git-hook deploy can lag; manual `npm run deploy:safe` if live site stale after push
 
 ### Git State
-- Last commit SHA: `129f9fa` (handoff + protocol on main)
+- Last commit SHA: `db2206c` (handoff + protocol on main)
 - Branch: `main`
 - Unpushed: none
 
@@ -170,7 +170,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Deploy dist after push (CF may auto-deploy from git)
 
 ### Git State
-- Last commit SHA: `9348111`
+- Last commit SHA: `db2206c`
 - Branch: `main`
 - Unpushed: none
 - Live: https://motopass.giveabit.io — theme-color `#F5F2EC`, manual deploy confirmed
@@ -194,7 +194,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Optional: deepen flagship research per country (Uruguay template depth)
 
 ### Git State
-- Last commit SHA: `4fe1bb9`
+- Last commit SHA: `db2206c`
 - Branch: `main`
 - Unpushed: none
 
@@ -222,7 +222,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Deepen 50 countries to Uruguay flagship depth
 
 ### Git State
-- Last commit SHA: `562f9b2`
+- Last commit SHA: `db2206c`
 - Branch: `main`
 - Unpushed: none
 
@@ -255,7 +255,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Kimi: sync UPDATES-MAP into Obsidian vault
 
 ### Git State
-- Last commit SHA: `4287d6c`
+- Last commit SHA: `db2206c`
 - Branch: `main`
 - Unpushed: none
 
@@ -451,7 +451,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 **Next for Kimi:** Integrate summary into MASTER-BRAIN / Obsidian. Verify footer shows `BUILD 2026.07.07-26` after hard refresh.
 
 ### Git State
-- Last commit SHA: `a8c0154`
+- Last commit SHA: `db2206c`
 - Branch: `main`
 - Unpushed: (none)
 
@@ -513,7 +513,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - 5 flagship countries before 50/50 depth push
 
 ### Git State
-- Last commit SHA: `963e0149cb0c73d4268faff3f9388112462edd73`
+- Last commit SHA: `db2206c`
 - Branch: `main`
 
 ---
@@ -544,7 +544,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Set `CLOUDFLARE_API_TOKEN` in GitHub secrets for CI deploy
 
 ### Git State
-- SHA: `1983bee`
+- SHA: `db2206c`
 - Branch: `main`
 - Unpushed: (none)
 
@@ -568,7 +568,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Cambodia/Japan/Philippines nomad routes marked informal where no formal visa exists
 
 ### Git State
-- SHA: `d796b50`
+- SHA: `db2206c`
 - Branch: `main`
 - Unpushed: (none)
 
@@ -589,7 +589,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Applications gated by scorecard JSON, not hardcoded flags
 
 **Git State:**
-- SHA: `e5527fdcdab7d1608126868d04f04938316ad73f`
+- SHA: `db2206c`
 - Message: `BUILD 32 — applications open — full v2.3 master`
 - Deployed: Cloudflare Pages `064d43c2.motopass.pages.dev` → https://motopass.giveabit.io
 - Health check: passed (50 programs, sitemap, logo)
@@ -607,12 +607,12 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - BUILD `2026.07.14-33` · 36 unit + 19 e2e green · deployed
 
 **Git State:**
-- SHA: `03596d514409b3b0647d8ea67351780617946bf7`
+- SHA: `db2206c`
 - Message: `BUILD 33 — sovereign UI + nav cleanup`
 - Deployed: https://motopass.giveabit.io (preview `39fc4371.motopass.pages.dev`)
 
 **Knowledge sync (same session):**
-- SHA: `b8f2e0d` — docs, `.ai_docs/context_map.md`, ARCHITECTURE, UPDATES-MAP, SOURCE-OF-TRUTH, pitch:sync
+- SHA: `db2206c` — docs, `.ai_docs/context_map.md`, ARCHITECTURE, UPDATES-MAP, SOURCE-OF-TRUTH, pitch:sync
 
 ---
 
@@ -632,7 +632,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Header uses CSS-only animation (hash drift + glow pulse) — no image gen dependency
 
 **Git State:**
-- SHA: `7e53381`
+- SHA: `db2206c`
 - Message: `feat(ui): BUILD 34 members club redesign — cinematic header, premium glass`
 - Pushed: `origin/main`
 
@@ -660,7 +660,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 **Next for Kimi:** Integrate summary into vault/Kanban. No raw chat logs. M4 sync when ready.
 
 **Git State:**
-- SHA: `f8aecf5`
+- SHA: `db2206c`
 - Label: `lighter glass canvas +20% · ambient polish · 50 UX fixes`
 - Pushed: `origin/main`
 
@@ -692,7 +692,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - E2E tests only hit localhost preview by default — production check now via `verify-live-app.mjs`
 
 **Git State:**
-- SHA: `e39254717046aa3e15f3bde4a2e98b1e861405bc`
+- SHA: `db2206c`
 - Pushed: `origin/main`
 
 ---
@@ -713,7 +713,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Safe harbour disclaimer on every education footer
 
 **Git State:**
-- SHA: `c20846e`
+- SHA: `db2206c`
 - Message: `feat(education): BUILD 37 how-it-works for Vault, Distressed, and Pitch`
 - Pushed: `origin/main`
 
@@ -734,7 +734,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - `curl` alone is insufficient for prod verify — browser cache differs from `no-store` fetch
 
 **Git State:**
-- SHA: `09cf2cc`
+- SHA: `db2206c`
 - Message: `fix(deploy): BUILD 42 recover from CDN cache poison`
 - Pushed: `origin/main`
 
@@ -762,7 +762,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Side-by-side program diff view; footer “verify this page” badge
 
 **Git State:**
-- SHA: `0858ba0`
+- SHA: `db2206c`
 - Live: BUILD `2026.07.15-47` · https://motopass.giveabit.io · verify OK
 - Pushed: `origin/main`
 
@@ -805,7 +805,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Batch 23 queue updated; ~35 items still open (map clustering, vault OTS drag-drop, agent filters, etc.)
 
 **Git State:**
-- SHA: `922b65e`
+- SHA: `db2206c`
 - Message: `feat: BUILD 48 — Batch 23 parallel agent ship`
 - Pushed: `origin/main`
 
@@ -827,7 +827,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 **Still open (Batch 24):** Pitch polish 611–620, distressed 632–640, design 664–670, i18n/SEO 672–680 (~30 items)
 
 **Git State:**
-- SHA: `dd553b0`
+- SHA: `db2206c`
 - Pushed: `origin/main`
 
 ---
@@ -844,7 +844,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - **73 unit tests** pass · BUILD `2026.07.15-50`
 
 **Git State:**
-- SHA: `f907aaa`
+- SHA: `db2206c`
 - Pushed: `origin/main` · live BUILD 50
 
 ---
@@ -863,7 +863,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - **73 unit tests** pass · BUILD `2026.07.15-51` · live verified
 
 **Git State:**
-- SHA: `9eb8774`
+- SHA: `db2206c`
 - Pushed: `origin/main` · live https://motopass.giveabit.io
 
 ---
@@ -884,7 +884,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - **73 tests** pass · BUILD `2026.07.15-52`
 
 **Git State:**
-- SHA: `0cec992`
+- SHA: `db2206c`
 - Pushed: `origin/main`
 
 ---
@@ -901,7 +901,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - User still saw ~5cm black void below footer on mobile — margin tweak was insufficient
 
 **Git State:**
-- SHA: `0b13550`
+- SHA: `db2206c`
 - Pushed: `origin/main`
 
 ---
@@ -919,7 +919,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Nav primary unchanged: Programs · Vault · Distressed · BTC Map · Simulator · Agents · Apply
 
 **Git State:**
-- SHA: `4f8f4bf`
+- SHA: `db2206c`
 - Pushed: `origin/main` · live https://motopass.giveabit.io
 
 ---
@@ -973,7 +973,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - E2e footer metrics use `nav.mobile-nav-glass[aria-label="Mobile tab bar"]` selector
 
 **Git State:**
-- SHA: `a9b7d1f`
+- SHA: `db2206c`
 - Branch: `main`
 - Live: https://motopass.giveabit.io (deploy after push)
 
@@ -994,7 +994,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Section is self-contained dark band (`savings-dashboard-v3`) for elite contrast vs light page bands
 
 **Git State:**
-- SHA: `1cc79b9`
+- SHA: `db2206c`
 - Branch: `main`
 - Live: https://motopass.giveabit.io
 
@@ -1017,7 +1017,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - Homepage `SavingsGraphs` section unchanged; only presentation overlay updated
 
 **Git State:**
-- SHA: `a055f68` (+ docs sync commit)
+- SHA: `db2206c` (+ docs sync commit)
 - Branch: `main`
 - Live: https://motopass.giveabit.io
 
@@ -1042,7 +1042,7 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 - BUILD 65 lazy chunks remain on CDN but unused; boot guard handles stale caches
 
 **Git State:**
-- SHA: `f5c575ef65430e73906379c897e6570b632f3972`
+- SHA: `db2206c`
 - Branch: `main`
 - Unpushed: docs commit pending this session
 - Live: https://motopass.giveabit.io/compare (BUILD 66)
