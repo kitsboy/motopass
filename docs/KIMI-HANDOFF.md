@@ -14,7 +14,7 @@
 - Corpus depth enrichment composes from existing finance/pathways only (no invented legal claims)
 
 **Git State:**
-- SHA: `db2206c`
+- SHA: `27ff60b`
 - Branch: main
 
 ---

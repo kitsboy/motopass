@@ -1,6 +1,6 @@
 # motopass — Last Updated 2026-08-11 by Grok/M3
 Brief: BUILD 67 — Imagine assets wired; Satohash poll+health; live LN Address QR; countries depth pass
-Commit: c624b2b
+Commit: 27ff60b
 Deploy: https://motopass.giveabit.io · CF project motopass
 
 ---
