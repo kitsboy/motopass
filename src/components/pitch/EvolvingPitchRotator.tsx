@@ -135,7 +135,7 @@ export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, pro
         <span className="font-chrome text-eyebrow uppercase tracking-[0.2em] text-mp-btc">
           Live &middot; This week
         </span>
-        <ProofBadge status="verified" compact />
+        <ProofBadge status="recorded" compact />
       </div>
 
       <div className="mt-3 h-6 overflow-hidden">

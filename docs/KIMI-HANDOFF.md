@@ -1,3 +1,14 @@
+## Session — 2026-08-18 (Grok / M3) — BUILD 71
+
+**Done:**
+- Eager Distressed, Agents, Apply, Simulator + nav crash smoke
+- Distressed ProofBadge uses proofStatusFromUrl (never hardcoded verified)
+- NIP-07 announce verifies NIP-01 id + Schnorr before publish
+- Apply/Profile hashes omit name, notes, filename
+- `dist/` untracked — CI/Pages is the only builder
+
+---
+
 ## Session — 2026-08-18 (Grok / M3) — BUILD 69 hotfix
 
 **Done:**

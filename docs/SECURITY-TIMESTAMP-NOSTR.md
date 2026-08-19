@@ -62,9 +62,10 @@ We sign only templates we built. After `signEvent`:
 
 1. Type-check `id`, `sig`, `pubkey`, `tags`, `content`.
 2. Refuse publish if kind / `created_at` / tags / content differ from the template.
-3. Recovery `rejected` — do not send the signer’s payload.
+3. Refuse publish if `id !== getEventHash(signed)` or Schnorr `verifyEvent` fails.
+4. Recovery `rejected` — do not send the signer’s payload.
 
-The extension can still show the user a different prompt. Documented TCB. Future: `getEventHash` + Schnorr `verifyEvent` before publish.
+The extension can still show the user a different prompt. Documented TCB.
 
 ## 6. Replaceable events
 

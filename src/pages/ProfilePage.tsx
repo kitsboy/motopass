@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useUser } from '../context/UserContext'
 import { FileUpload, type UploadItem } from '../components/beui/FileUpload'
 import { hashApplicationPayload, satohashStampGuideUrl } from '../lib/satohash'
+import { profileDocumentStampPayload } from '../lib/stampPayload'
 import type { UserDocument } from '../types/user'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
@@ -17,7 +18,20 @@ export function ProfilePage() {
   if (!isLoggedIn || !profile) return <Navigate to="/register" replace />
 
   const handleFileAdded = async (item: UploadItem) => {
-    const hash = await hashApplicationPayload({ name: item.name, size: item.size, npub: profile.npub, program: profile.program })
+    const digest = await crypto.subtle.digest('SHA-256', await item.file.arrayBuffer())
+    const fileHash = Array.from(new Uint8Array(digest))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('')
+    const hash = await hashApplicationPayload(
+      profileDocumentStampPayload({
+        program: profile.program,
+        created: new Date().toISOString(),
+        contentHash: fileHash,
+        size: item.size,
+        type: item.type,
+        npub: profile.npub,
+      }),
+    )
     const satohashUrl = satohashStampGuideUrl(hash)
     const doc: UserDocument = { id: item.id, name: item.name, size: item.size, type: item.type, hash, satohashUrl, stampedAt: new Date().toISOString(), status: 'hashed' }
     setUploadItems(uploadItems.map(u => u.id === item.id ? { ...u, progress: 100, status: 'success' as const, hash, satohashUrl } : u))

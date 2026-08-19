@@ -2,7 +2,7 @@
 
 **Project:** MotoPass  
 **Date:** 2026-08-18  
-**BUILD:** 2026.08.18-70  
+**BUILD:** 2026.08.18-71  
 **Commit:** `f5c575e` (BUILD 66 compare fix)
 
 ## Project overview
@@ -29,7 +29,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 | Asset | Path | Status |
 |-------|------|--------|
-| React app | `src/` + `npm run dev` | BUILD-70 — 15 routes, dark mode, BTC Map, ₿-first pricing |
+| React app | `src/` + `npm run dev` | BUILD-71 — 15 routes, dark mode, BTC Map, ₿-first pricing |
 | Program data | `research/countries.json` | **50 programs** |
 | BTC Map cache | `public/data/btcmap/` | **50 jurisdiction snapshots** |
 | BTC Map density | `public/data/btcmap-density.json` | Merchant counts per program |
@@ -66,7 +66,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 2. **Nostr** — Attestations ship (BUILD 68); live MotoPass relay + npub-native routing still open
 3. **PSBT escrow** — Real 2-of-3 after legal sign-off
 4. **Paige AI** — Move from simulated to real concierge
-5. **CI** — Generate `dist/` in pipeline (weekly `btcmap:sync` already ships)
+5. **CI** — Generate `dist/` in pipeline (not committed; weekly `btcmap:sync` already ships)
 
 ## Agent instructions
 

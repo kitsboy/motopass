@@ -115,8 +115,8 @@ Injected in `index.html` at build time (`vite.config.ts`):
 
 `.github/workflows/ci.yml`:
 
-- **build-test** — lint, validate, test, build, e2e; uploads `dist/` artifact (7-day retention)
-- **deploy** — wrangler pages deploy on `main` push
+- **build-test** — lint, validate, test, build, e2e; uploads `dist/` artifact (7-day retention). `dist/` is **not** committed.
+- **deploy** — CI runs `npm run build` then `wrangler pages deploy dist` on `main` push
 - **live-health** — `npm run verify:live:ci` after deploy
 
 ## Troubleshooting

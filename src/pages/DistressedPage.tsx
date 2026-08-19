@@ -8,6 +8,7 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { BtcDualPrice } from '../components/BtcDualPrice'
 import { ProofBadge } from '../components/ui/ProofBadge'
+import { proofStatusFromUrl } from '../lib/programAdapter'
 import { ClassyModal } from '../components/ui/ClassyModal'
 import { Card } from '../components/ui/Card'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
@@ -74,7 +75,7 @@ function ListingModal({
     >
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
-          <ProofBadge status="verified" compact />
+          <ProofBadge status={proofStatusFromUrl(listing.proof_url)} compact />
           <BtcDualPrice usd={listing.ask_usd} size="md" />
           <span className={`rounded-chip border px-2 py-0.5 text-xs font-mono ${scoreChip(listing.distressed_score)}`}>
             distressed {listing.distressed_score}/5

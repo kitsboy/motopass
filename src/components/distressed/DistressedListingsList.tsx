@@ -5,6 +5,7 @@ import { toggleDistressedBookmark, isDistressedBookmarked } from '../../lib/dist
 import { DistressedKimiTierTooltip } from './DistressedKimiTierTooltip'
 import { BtcDualPrice } from '../BtcDualPrice'
 import { ProofBadge } from '../ui/ProofBadge'
+import { proofStatusFromUrl } from '../../lib/programAdapter'
 import { useI18n } from '../../i18n/I18nContext'
 import { similarDistressedListings } from '../../lib/distressedSimilar'
 import { satohashVerifyUrl } from '../../lib/seal/vaultVerify'
@@ -183,7 +184,7 @@ export function DistressedListingsList({
                     </span>
                   )}
                   {listing.block_height != null && (
-                    <ProofBadge status="verified" compact txHint={`#${listing.block_height}`} />
+                    <ProofBadge status={proofStatusFromUrl(listing.proof_url)} compact txHint={`#${listing.block_height}`} />
                   )}
                 </div>
 

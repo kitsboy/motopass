@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.08.18-70 · **Last updated:** 2026-08-18
+**BUILD:** 2026.08.18-71 · **Last updated:** 2026-08-18
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,7 +11,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.08.18-70 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.08.18-71 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
 | **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
 | **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
 | **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
@@ -31,6 +31,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.08.18-71** | 2026-08-18 | `f85aa51` | Eager primary routes, honest distressed badges, signed-event verify, redacted hashes, no committed dist |
 | **2026.08.18-70** | 2026-08-18 | `1a99116` | Fix programs crash: dedupe react-router, eager programs/vault, route error boundary |
 | **2026.08.18-69** | 2026-08-18 | `0fdc627` | Fix verify crash (eager route + i18n fallback) and blank motion cards |
 | **2026.08.18-68** | 2026-08-18 | `12848c6` | Nostr + Satohash timestamp attestations — allowlisted, honest badges, recovery |
@@ -82,7 +83,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 - [ ] Live Nostr relay + real npub auth (beyond BTC Map saves)
 - [x] Satohash stamp API + Nostr kind 30078 attestations (BUILD 68)
 - [ ] Paige AI backend (beyond simulated chat)
-- [ ] CI generates `dist/` on push (stop committing build artifacts)
+- [x] CI generates `dist/` on push (stop committing build artifacts)
 - [x] Weekly `btcmap:sync` cron in CI
 
 ### P2 — Later

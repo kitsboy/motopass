@@ -1,5 +1,5 @@
 # motopass — Last Updated 2026-08-18 by Grok/M3
-Brief: BUILD 69 — fix /verify crash (eager route + i18n fallback) and blank opacity-0 cards
+Brief: BUILD 71 — eager primary routes, honest distressed badges, signed-event verify, redacted hashes, dist untracked
 Commit: pending
 Deploy: https://motopass.giveabit.io · CF project motopass
 

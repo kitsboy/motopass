@@ -71,6 +71,30 @@ test.describe('smoke', () => {
     expect(stored).toBe(after ? 'dark' : 'light')
   })
 
+  test('primary nav routes render without router/i18n crash', async ({ page }) => {
+    const fatal: string[] = []
+    page.on('pageerror', e => {
+      if (/useLocation|useI18n must|Something went wrong/i.test(e.message)) fatal.push(e.message)
+    })
+    const routes = [
+      '/',
+      '/programs',
+      '/vault',
+      '/distressed',
+      '/simulator',
+      '/agents',
+      '/apply',
+      '/compare',
+      '/verify',
+    ]
+    for (const to of routes) {
+      await page.goto(to, gotoOpts)
+      await expect(page.locator('main')).toBeVisible({ timeout: 20_000 })
+      await expect(page.getByRole('heading', { name: /something went wrong/i })).toHaveCount(0)
+      expect(fatal, `fatal error on ${to}`).toEqual([])
+    }
+  })
+
   test('compare empty state loads', async ({ page }) => {
     await page.addInitScript(() => localStorage.removeItem('motopass-compare-ids'))
     const data = page.waitForResponse(r => /countries\.json/.test(r.url()) && r.ok(), { timeout: 20_000 })

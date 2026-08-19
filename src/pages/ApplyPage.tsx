@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { Check, CheckCircle2, Copy, ExternalLink, MessageCircle, Radio, Rocket, Share2, X, Clock } from 'lucide-react'
 import { NostrConnect } from '../components/NostrConnect'
 import { hashApplicationPayload, satohashStampGuideUrl } from '../lib/satohash'
+import { applyStampPayload } from '../lib/stampPayload'
 import { addApplication } from '../lib/storage'
 import type { NostrSession } from '../lib/nostr'
 import { useI18n } from '../i18n/I18nContext'
@@ -78,14 +79,13 @@ export function ApplyPage() {
     if (!applicationsOpen || !name.trim() || !program.trim()) return
     setSubmitting(true)
     try {
-      const payload = {
-        applicant: name.trim(),
+      const created = new Date().toISOString()
+      const payload = applyStampPayload({
         program: program.trim(),
+        created,
         npub: nostr?.npub ?? null,
-        notes: notes.trim() || null,
-        created: new Date().toISOString(),
-        platform: 'MotoPass',
-      }
+        proofHash: initialFields.proofHash || undefined,
+      })
       const hash = await hashApplicationPayload(payload)
       const id = `app-${Date.now()}`
       addApplication({
@@ -94,7 +94,7 @@ export function ApplyPage() {
         applicantName: name.trim(),
         npub: nostr?.npub,
         status: 'interest',
-        createdAt: payload.created,
+        createdAt: created,
         dataHash: hash,
         satohashUrl: satohashStampGuideUrl(hash),
         notes: notes.trim() || undefined,
@@ -119,7 +119,7 @@ export function ApplyPage() {
   const relayFake = report.relay_fake ?? report.relay_status === 'fake'
 
   return (
-    <div key={`${programPrefill}-${proofPrefill}` || 'apply'} className="page-container px-4 sm:px-6 py-8 pb-24 md:pb-8 max-w-xl mx-auto">
+    <div key={programPrefill || proofPrefill ? `${programPrefill}-${proofPrefill}` : 'apply'} className="page-container px-4 sm:px-6 py-8 pb-24 md:pb-8 max-w-xl mx-auto">
       {applicationsOpen && (
         <Card variant="banner" animate delay={0} className="mb-6 flex items-start gap-3">
           <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-mp-md bg-btc-orange/15 border border-btc-orange/25">

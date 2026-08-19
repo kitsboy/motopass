@@ -1,4 +1,4 @@
-import type { Event } from 'nostr-tools'
+import { getEventHash, verifyEvent, type Event } from 'nostr-tools'
 import { hasNostrExtension } from './nostr'
 import { nostrEventIdStub } from './nostrEventId'
 import type { ProgramUpdateEvent } from './nostrEvents'
@@ -82,6 +82,29 @@ export async function announceTimestampOnNostr(
         eventId: stubId,
         recovery: 'rejected',
         error: 'Signer returned a different event — publish aborted',
+      }
+    }
+
+    const expectedId = getEventHash(signed)
+    if (signed.id !== expectedId) {
+      return {
+        signed: false,
+        published: false,
+        json,
+        eventId: stubId,
+        recovery: 'rejected',
+        error: 'Signed event id does not match NIP-01 hash',
+      }
+    }
+
+    if (!verifyEvent(signed)) {
+      return {
+        signed: false,
+        published: false,
+        json,
+        eventId: stubId,
+        recovery: 'rejected',
+        error: 'Schnorr signature failed verification',
       }
     }
 

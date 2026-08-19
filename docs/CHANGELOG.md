@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.08.18-71] — 2026-08-18
+
+### Changed
+- Eager primary routes, honest distressed badges, signed-event verify, redacted hashes, no committed dist
+
+---
+
 ## [BUILD-2026.08.18-70] — 2026-08-18
 
 ### Changed

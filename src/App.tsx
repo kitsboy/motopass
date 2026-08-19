@@ -17,16 +17,16 @@ import { FinanceComparePage } from './pages/FinanceComparePage'
 import { VerifyPage } from './pages/VerifyPage'
 import { ProgramsPage } from './pages/ProgramsPage'
 import { VaultPage } from './pages/VaultPage'
+import { DistressedPage } from './pages/DistressedPage'
+import { AgentsPage } from './pages/AgentsPage'
+import { ApplyPage } from './pages/ApplyPage'
+import { StackSimulatorPage } from './pages/StackSimulatorPage'
 
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage').then(m => ({ default: m.PortfolioPage })))
-const StackSimulatorPage = lazy(() => import('./pages/StackSimulatorPage').then(m => ({ default: m.StackSimulatorPage })))
 const DashboardPage = lazy(() => import('./pages/DashboardPage').then(m => ({ default: m.DashboardPage })))
 const RegisterPage = lazy(() => import('./pages/RegisterPage').then(m => ({ default: m.RegisterPage })))
 const ProfilePage = lazy(() => import('./pages/ProfilePage').then(m => ({ default: m.ProfilePage })))
-const ApplyPage = lazy(() => import('./pages/ApplyPage').then(m => ({ default: m.ApplyPage })))
 const BtcMapPage = lazy(() => import('./pages/BtcMapPage').then(m => ({ default: m.BtcMapPage })))
-const DistressedPage = lazy(() => import('./pages/DistressedPage').then(m => ({ default: m.DistressedPage })))
-const AgentsPage = lazy(() => import('./pages/AgentsPage').then(m => ({ default: m.AgentsPage })))
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })))
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })))
@@ -49,16 +49,16 @@ export default function App() {
               <Route index element={<RouteSuspense count={1}><PitchPage /></RouteSuspense>} />
               <Route path="portfolio" element={<RouteSuspense><PortfolioPage /></RouteSuspense>} />
               <Route path="programs" element={<ProgramsPage />} />
-              <Route path="simulator" element={<RouteSuspense><StackSimulatorPage /></RouteSuspense>} />
+              <Route path="simulator" element={<StackSimulatorPage />} />
               <Route path="compare" element={<RouteSuspense><FinanceComparePage /></RouteSuspense>} />
               <Route path="btcmap" element={<RouteSuspense><BtcMapPage /></RouteSuspense>} />
               <Route path="vault" element={<VaultPage />} />
-              <Route path="distressed" element={<RouteSuspense count={3}><DistressedPage /></RouteSuspense>} />
+              <Route path="distressed" element={<DistressedPage />} />
               <Route path="blog" element={<RouteSuspense><BlogPage /></RouteSuspense>} />
               <Route path="blog/:slug" element={<RouteSuspense><BlogPostPage /></RouteSuspense>} />
               <Route path="verify" element={<VerifyPage />} />
-              <Route path="agents" element={<RouteSuspense><AgentsPage /></RouteSuspense>} />
-              <Route path="apply" element={<RouteSuspense><ApplyPage /></RouteSuspense>} />
+              <Route path="agents" element={<AgentsPage />} />
+              <Route path="apply" element={<ApplyPage />} />
               <Route path="register" element={<RouteSuspense><RegisterPage /></RouteSuspense>} />
               <Route path="dashboard" element={<RouteSuspense><DashboardPage /></RouteSuspense>} />
               <Route path="profile" element={<RouteSuspense><ProfilePage /></RouteSuspense>} />

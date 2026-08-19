@@ -62,6 +62,13 @@ export function isStubProofUrl(url: string | undefined): boolean {
   return STUB_PROOF_RE.test(url)
 }
 
+/** URL on file is never Bitcoin-verified. */
+export function proofStatusFromUrl(url: string | undefined): 'pending' | 'demo' | 'recorded' {
+  if (!url) return 'pending'
+  if (isStubProofUrl(url) || !isAllowedSatohashUrl(url)) return 'demo'
+  return 'recorded'
+}
+
 /** User-added research placeholders — not valid registration targets. */
 export function isResearchProgram(p: DataProgram): boolean {
   return p.status === 'Researching' || p.id > 100_000
@@ -113,13 +120,7 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     minInvestment,
     timelineDays: parseMonthsToDays(p.finance.processing_time_months),
     sovereigntyScore,
-    proofStatus: (() => {
-      const url = proof?.proof_url
-      if (!url) return 'pending' as const
-      if (isStubProofUrl(url) || !isAllowedSatohashUrl(url)) return 'demo' as const
-      // URL on file is not a live Satohash/OTS confirmation.
-      return 'recorded' as const
-    })(),
+    proofStatus: proofStatusFromUrl(proof?.proof_url),
     proofRef: proofRef(p),
     summary: p.details,
     flag: p.flag,

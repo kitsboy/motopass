@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { finalizeEvent, generateSecretKey } from 'nostr-tools/pure'
 import { buildTimestampAttestationEvent } from './nostrEvents'
 
 vi.mock('./nostrRelay', () => ({
@@ -33,13 +34,17 @@ describe('announceTimestampOnNostr', () => {
     expect(publishEvent).not.toHaveBeenCalled()
   })
 
-  it('signs and publishes when NIP-07 returns a signed event', async () => {
-    const signed = {
-      ...event,
-      id: 'bb'.repeat(32),
-      pubkey: 'cc'.repeat(32),
-      sig: 'dd'.repeat(32),
-    }
+  it('signs and publishes when NIP-07 returns a valid signed event', async () => {
+    const sk = generateSecretKey()
+    const signed = finalizeEvent(
+      {
+        kind: event.kind,
+        created_at: event.created_at,
+        tags: event.tags,
+        content: event.content,
+      },
+      sk,
+    )
     vi.stubGlobal('window', {
       nostr: {
         getPublicKey: vi.fn(),
@@ -58,6 +63,30 @@ describe('announceTimestampOnNostr', () => {
     expect(result.eventId).toBe(signed.id)
     expect(result.relaySummary).toBe('1/2 relays accepted')
     expect(publishEvent).toHaveBeenCalledWith(signed)
+  })
+
+  it('rejects a signer payload whose id or signature is forged', async () => {
+    const sk = generateSecretKey()
+    const signed = finalizeEvent(
+      {
+        kind: event.kind,
+        created_at: event.created_at,
+        tags: event.tags,
+        content: event.content,
+      },
+      sk,
+    )
+    vi.stubGlobal('window', {
+      nostr: {
+        getPublicKey: vi.fn(),
+        signEvent: vi.fn().mockResolvedValue({ ...signed, id: 'ab'.repeat(32) }),
+      },
+    })
+    const result = await announceTimestampOnNostr(event)
+    expect(result.recovery).toBe('rejected')
+    expect(result.published).toBe(false)
+    expect(result.error).toMatch(/id|signature|hash/i)
+    expect(publishEvent).not.toHaveBeenCalled()
   })
 
   it('aborts publish when signer swaps tags or content', async () => {
