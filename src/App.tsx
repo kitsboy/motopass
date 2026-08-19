@@ -15,8 +15,9 @@ import { ErrorBoundary } from './components/ErrorBoundary'
 import { ToastProvider } from './components/ui/Toast'
 import { FinanceComparePage } from './pages/FinanceComparePage'
 import { VerifyPage } from './pages/VerifyPage'
+import { ProgramsPage } from './pages/ProgramsPage'
+import { VaultPage } from './pages/VaultPage'
 
-const ProgramsPage = lazy(() => import('./pages/ProgramsPage').then(m => ({ default: m.ProgramsPage })))
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage').then(m => ({ default: m.PortfolioPage })))
 const StackSimulatorPage = lazy(() => import('./pages/StackSimulatorPage').then(m => ({ default: m.StackSimulatorPage })))
 const DashboardPage = lazy(() => import('./pages/DashboardPage').then(m => ({ default: m.DashboardPage })))
@@ -24,7 +25,6 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage').then(m => ({ defa
 const ProfilePage = lazy(() => import('./pages/ProfilePage').then(m => ({ default: m.ProfilePage })))
 const ApplyPage = lazy(() => import('./pages/ApplyPage').then(m => ({ default: m.ApplyPage })))
 const BtcMapPage = lazy(() => import('./pages/BtcMapPage').then(m => ({ default: m.BtcMapPage })))
-const VaultPage = lazy(() => import('./pages/VaultPage').then(m => ({ default: m.VaultPage })))
 const DistressedPage = lazy(() => import('./pages/DistressedPage').then(m => ({ default: m.DistressedPage })))
 const AgentsPage = lazy(() => import('./pages/AgentsPage').then(m => ({ default: m.AgentsPage })))
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })))
@@ -41,18 +41,18 @@ export default function App() {
     <BtcMapAuthProvider>
     <I18nProvider>
     <ToastProvider>
-    <ErrorBoundary>
       <UserProvider>
         <BrowserRouter>
+          <ErrorBoundary>
           <Routes>
             <Route element={<Layout />}>
               <Route index element={<RouteSuspense count={1}><PitchPage /></RouteSuspense>} />
               <Route path="portfolio" element={<RouteSuspense><PortfolioPage /></RouteSuspense>} />
-              <Route path="programs" element={<RouteSuspense count={3}><ProgramsPage /></RouteSuspense>} />
+              <Route path="programs" element={<ProgramsPage />} />
               <Route path="simulator" element={<RouteSuspense><StackSimulatorPage /></RouteSuspense>} />
               <Route path="compare" element={<RouteSuspense><FinanceComparePage /></RouteSuspense>} />
               <Route path="btcmap" element={<RouteSuspense><BtcMapPage /></RouteSuspense>} />
-              <Route path="vault" element={<RouteSuspense><VaultPage /></RouteSuspense>} />
+              <Route path="vault" element={<VaultPage />} />
               <Route path="distressed" element={<RouteSuspense count={3}><DistressedPage /></RouteSuspense>} />
               <Route path="blog" element={<RouteSuspense><BlogPage /></RouteSuspense>} />
               <Route path="blog/:slug" element={<RouteSuspense><BlogPostPage /></RouteSuspense>} />
@@ -65,9 +65,9 @@ export default function App() {
               <Route path="*" element={<RouteSuspense><NotFoundPage /></RouteSuspense>} />
             </Route>
           </Routes>
+          </ErrorBoundary>
         </BrowserRouter>
       </UserProvider>
-    </ErrorBoundary>
     </ToastProvider>
     </I18nProvider>
     </BtcMapAuthProvider>

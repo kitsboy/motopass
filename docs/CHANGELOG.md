@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.08.18-70] — 2026-08-18
+
+### Changed
+- Fix programs crash: dedupe react-router, eager programs/vault, route error boundary
+
+---
+
 ## [BUILD-2026.08.18-69] — 2026-08-18
 
 ### Changed

@@ -1,5 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import { RouteErrorBoundary } from '../ErrorBoundary'
 
 export function PageTransition() {
   const location = useLocation()
@@ -8,7 +9,9 @@ export function PageTransition() {
   if (reduced) {
     return (
       <div key={location.pathname} className="page-transition">
-        <Outlet />
+        <RouteErrorBoundary>
+          <Outlet />
+        </RouteErrorBoundary>
       </div>
     )
   }
@@ -23,7 +26,9 @@ export function PageTransition() {
         exit={{ opacity: 0.92 }}
         transition={{ duration: 0.12, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Outlet />
+        <RouteErrorBoundary>
+          <Outlet />
+        </RouteErrorBoundary>
       </motion.div>
     </AnimatePresence>
   )

@@ -128,6 +128,9 @@ function motopassStaticAssets(): Plugin {
 }
 
 export default defineConfig({
+  resolve: {
+    dedupe: ['react', 'react-dom', 'react-router-dom'],
+  },
   build: {
     sourcemap: true,
     rollupOptions: {
