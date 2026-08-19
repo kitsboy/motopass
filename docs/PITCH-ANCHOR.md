@@ -3,7 +3,7 @@ title: Pitch Anchor — Canonical Figures
 project: MotoPass
 version: 1.0.0
 last_updated: 2026-08-18
-build: 2026.08.18-68
+build: 2026.08.18-69
 owner: M3 + M4
 self_evolving: true
 bitcoin_display_policy: Bitcoin-first — ₿ primary, USD secondary

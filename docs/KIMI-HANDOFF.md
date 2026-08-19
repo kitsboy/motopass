@@ -1,3 +1,16 @@
+## Session — 2026-08-18 (Grok / M3) — BUILD 69 hotfix
+
+**Done:**
+- Live `/verify` crashed: `useI18n must be used within I18nProvider` (lazy chunk / duplicate context). Verify is now eager like Compare.
+- `useI18n` never throws — English fallback if context is missing.
+- `t()` no longer returns empty string in prod (blank card copy).
+- Glass `Card` no longer starts at opacity 0 (stuck motion looked like empty cards).
+
+**Git State:**
+- BUILD: 2026.08.18-69
+
+---
+
 ## Session — 2026-08-18 (Grok / M3) — BUILD 68
 
 **Done:**

@@ -548,6 +548,5 @@ export function t(lang: LangCode, key: TranslationKey): string {
   if (localized !== undefined) return localized
   const fallback = TRANSLATIONS.en[key]
   if (fallback !== undefined) return fallback
-  if (import.meta.env.DEV) return key
-  return ''
+  return key
 }

@@ -65,8 +65,18 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>
 }
 
+const FALLBACK_I18N: I18nContextValue = {
+  lang: 'en',
+  langPreference: 'system',
+  setLang: () => {},
+  setRoutePath: () => {},
+  t: key => translate('en', key),
+  dir: 'ltr',
+}
+
 export function useI18n() {
   const ctx = useContext(I18nContext)
-  if (!ctx) throw new Error('useI18n must be used within I18nProvider')
-  return ctx
+  // Never throw — a split chunk can see a different Context instance than the
+  // provider. Fall back to English so the page still renders.
+  return ctx ?? FALLBACK_I18N
 }

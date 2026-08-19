@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.08.18-69] — 2026-08-18
+
+### Changed
+- Fix verify crash (eager route + i18n fallback) and blank motion cards
+
+---
+
 ## [BUILD-2026.08.18-68] — 2026-08-18
 
 ### Changed

@@ -14,6 +14,7 @@ import { RouteSuspense } from './components/RouteSuspense'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { ToastProvider } from './components/ui/Toast'
 import { FinanceComparePage } from './pages/FinanceComparePage'
+import { VerifyPage } from './pages/VerifyPage'
 
 const ProgramsPage = lazy(() => import('./pages/ProgramsPage').then(m => ({ default: m.ProgramsPage })))
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage').then(m => ({ default: m.PortfolioPage })))
@@ -25,7 +26,6 @@ const ApplyPage = lazy(() => import('./pages/ApplyPage').then(m => ({ default: m
 const BtcMapPage = lazy(() => import('./pages/BtcMapPage').then(m => ({ default: m.BtcMapPage })))
 const VaultPage = lazy(() => import('./pages/VaultPage').then(m => ({ default: m.VaultPage })))
 const DistressedPage = lazy(() => import('./pages/DistressedPage').then(m => ({ default: m.DistressedPage })))
-const VerifyPage = lazy(() => import('./pages/VerifyPage').then(m => ({ default: m.VerifyPage })))
 const AgentsPage = lazy(() => import('./pages/AgentsPage').then(m => ({ default: m.AgentsPage })))
 const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })))
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })))
@@ -56,7 +56,7 @@ export default function App() {
               <Route path="distressed" element={<RouteSuspense count={3}><DistressedPage /></RouteSuspense>} />
               <Route path="blog" element={<RouteSuspense><BlogPage /></RouteSuspense>} />
               <Route path="blog/:slug" element={<RouteSuspense><BlogPostPage /></RouteSuspense>} />
-              <Route path="verify" element={<RouteSuspense><VerifyPage /></RouteSuspense>} />
+              <Route path="verify" element={<VerifyPage />} />
               <Route path="agents" element={<RouteSuspense><AgentsPage /></RouteSuspense>} />
               <Route path="apply" element={<RouteSuspense><ApplyPage /></RouteSuspense>} />
               <Route path="register" element={<RouteSuspense><RegisterPage /></RouteSuspense>} />
