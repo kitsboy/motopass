@@ -1,3 +1,30 @@
+## 2026-08-19 (Kimi/THOR — Standard Project Kit adopted + debrief + repo re-sync)
+
+**Scope:** Standard Project Kit rollout + first machine-readable session debrief + repo sync check.
+
+**Done:**
+- Adopted the senior-engineer **Standard Project Kit** (skill `standard-project-kit`): investigate → bounded implement → verify real system → milestone tag → handoff; two-actor loop (Kimi assistant + Grok/Aider coder). Now the default build/handoff method for ALL projects.
+- Session debrief now runs **automatically at session end** (silent, machine-readable YAML) via the `/goodbye` pipeline.
+- Wrote first debrief: `docs/debriefs/session-2026-08-19-001.yaml`.
+- Re-synced `/root/ref/motopass` from origin (was 13 behind) — now at `440198b` (BUILD 71 session-end handoff).
+- Verified live: `https://motopass.giveabit.io` → HTTP 200, title OK, site up.
+
+**Git State:**
+- Tip SHA: `440198b`; repo in sync with origin/main.
+
+**Open (unchanged, still live):**
+| Item |
+|------|
+| LNbits BOLT11 mint (when node env ready) |
+| Remaining lazy routes (BTC Map / Portfolio / Blog) |
+| Paige hosted backend |
+| Repo-wide `tsc --noEmit` |
+| Live Nostr relay / portfolio sync |
+
+**Do not regress:** `dist/` untracked (CI/wrangler is the only builder) · Nostr = gossip, Satohash/OTS = proof · BIP-85 `128002'` never in SPA · honest badges only.
+
+---
+
 ## Session — 2026-08-18 (Grok / M3) — CLOSED
 
 **Done:**
