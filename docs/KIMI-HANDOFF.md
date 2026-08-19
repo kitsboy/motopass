@@ -13,8 +13,10 @@
 - Demo/on-file URLs must never render as “Satohash Verified”
 
 **Git State:**
+- SHA: `e582a74`
 - Branch: main
 - BUILD: 2026.08.18-68
+- Unpushed: committing now
 
 **Not done / next:**
 - LNbits BOLT11 mint

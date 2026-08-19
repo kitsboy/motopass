@@ -1,6 +1,6 @@
 # motopass — Last Updated 2026-08-18 by Grok/M3
 Brief: BUILD 68 — Nostr+Satohash timestamp attestations, honest badges, allowlisted hrefs, recovery JSON, security doc
-Commit: pending
+Commit: e582a74
 Deploy: https://motopass.giveabit.io · CF project motopass
 
 ---
