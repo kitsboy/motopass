@@ -1,6 +1,6 @@
 # Roadmap — MotoPass
 
-*Updated 2026-08-18 · BUILD 68*
+*Updated 2026-08-18 · BUILD 71*
 
 ## Status
 - [x] Project scaffolded
@@ -8,7 +8,8 @@
 - [x] Sovereign Night design system + Imagine brand pack
 - [x] Satohash stamp API client + poll + health chip
 - [x] Live Lightning Address + on-chain donation QR
-- [x] Nostr kind 30078 timestamp attestations (Satohash tags, allowlist, stub recovery)
+- [x] Nostr kind 30078 timestamp attestations (Satohash tags, allowlist, stub recovery, Schnorr verify)
+- [x] Honest proof badges + CI-only `dist/` (BUILD 71)
 - [ ] BOLT11 mint via LNbits / family node
 - [ ] Paige hosted backend
 - [ ] Nostr primary identity sync / BIP-85 `128002'` (wallet/node only — never in the SPA)

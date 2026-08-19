@@ -1,11 +1,44 @@
-## Session — 2026-08-18 (Grok / M3) — BUILD 71
+## Session — 2026-08-18 (Grok / M3) — CLOSED
 
 **Done:**
-- Eager Distressed, Agents, Apply, Simulator + nav crash smoke
-- Distressed ProofBadge uses proofStatusFromUrl (never hardcoded verified)
-- NIP-07 announce verifies NIP-01 id + Schnorr before publish
-- Apply/Profile hashes omit name, notes, filename
-- `dist/` untracked — CI/Pages is the only builder
+- BUILD 68 — Nostr kind 30078 + Satohash timestamp attestations; allowlisted hrefs; honest badges; `docs/SECURITY-TIMESTAMP-NOSTR.md`
+- BUILD 69 — `/verify` i18n-context crash; `useI18n` fallback; cards no longer start at opacity 0
+- BUILD 70 — `/programs` `useLocation` crash; dedupe react-router; eager Programs/Vault/Verify; route error boundary
+- BUILD 71 — eager Distressed/Agents/Apply/Simulator; Distressed badges honest; Schnorr + NIP-01 id before publish; redacted Apply/Profile hashes; `dist/` untracked
+- Live verified: home, `/programs` (Uruguay/Bolivia filled), `/verify`, `/vault` on BUILD 70; 71 is on `main` via CI build+deploy
+
+**Decisions:**
+- Nostr is gossip; Satohash/OTS is proof. Never badge “Bitcoin-verified” from a URL.
+- BIP-85 Nostr `128002'` is wallet/node only — never in the SPA.
+- CI/`wrangler pages deploy` is the only `dist/` builder. Do not commit build artifacts.
+
+**Git State:**
+- SHA: `4b39a863ec0514e59ad919d9cb92d0ef38bb9444`
+- Tip: `4b39a86` feat(build71): eager primary routes, honest proofs, signed-event verify
+- Branch: main
+- Unpushed: none
+
+**Not done / next agent:**
+- LNbits BOLT11 mint when node env is ready
+- Remaining lazy routes (BTC Map, Portfolio, Blog) — watch for router-context crash
+- Paige hosted backend (grounded only)
+- Repo-wide `tsc --noEmit`
+- Live Nostr relay / portfolio sync
+
+## Latest Session Summary (from 2026-08-18 goodbye)
+
+**Chat Topic:** Whatsup → Nostr + Satohash timestamps → security + live crash recovery → BUILD 68–71.
+
+**Finished in this session:**
+- Timestamp attestations (kind 30078) with allowlist, honest badges, copyable stub
+- `docs/SECURITY-TIMESTAMP-NOSTR.md`
+- Live crash fixes (verify i18n, programs router)
+- BUILD 71: eager primary routes, Schnorr verify, redacted hashes, `dist/` untracked
+
+**Still to do:**
+- LNbits BOLT11; remaining lazy routes; Paige hosted; tsc cleanup; live relay
+
+**Next for Kimi:** Integrate into MASTER-BRAIN / Kanban. Do not expect `dist/` in git. Live: https://motopass.giveabit.io · wait for BUILD 71 in the footer after CI.
 
 ---
 

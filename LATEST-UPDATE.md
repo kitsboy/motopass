@@ -1,6 +1,6 @@
 # motopass — Last Updated 2026-08-18 by Grok/M3
-Brief: BUILD 71 — eager primary routes, honest distressed badges, signed-event verify, redacted hashes, dist untracked
-Commit: pending
+Brief: BUILD 71 closed — Nostr+Satohash attestations, crash fixes, honest badges, dist untracked
+Commit: 4b39a863ec0514e59ad919d9cb92d0ef38bb9444
 Deploy: https://motopass.giveabit.io · CF project motopass
 
 ---
