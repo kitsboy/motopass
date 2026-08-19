@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.07.15-66 · **Last updated:** 2026-07-15
+**BUILD:** 2026.08.18-68 · **Last updated:** 2026-08-18
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,7 +11,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.07.15-66 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.08.18-68 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
 | **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
 | **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
 | **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
@@ -31,6 +31,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.08.18-68** | 2026-08-18 | `12848c6` | Nostr + Satohash timestamp attestations — allowlisted, honest badges, recovery |
 | **2026.07.15-66** | 2026-07-15 | `f5c575e` | Finance Compare fix — eager route, empty state, dropdown clip |
 | **2026.07.15-65** | 2026-07-15 | `9d9d424` | Finance Compare premium redesign — glass matrix + mobile scroll |
 | **2026.07.15-64** | 2026-07-15 | `5851dfe` | Elite premium navigation — desktop glass bar + mobile drawer |
@@ -77,10 +78,10 @@ Living record of what shipped, what's in progress, and where to find everything.
 ### P1 — Next
 - [ ] Deepen all 50 countries to Uruguay flagship template depth
 - [ ] Live Nostr relay + real npub auth (beyond BTC Map saves)
-- [ ] Satohash stamping pipeline (not stub URLs)
+- [x] Satohash stamp API + Nostr kind 30078 attestations (BUILD 68)
 - [ ] Paige AI backend (beyond simulated chat)
 - [ ] CI generates `dist/` on push (stop committing build artifacts)
-- [ ] Weekly `btcmap:sync` cron in CI
+- [x] Weekly `btcmap:sync` cron in CI
 
 ### P2 — Later
 - [ ] Lightning fee settlement

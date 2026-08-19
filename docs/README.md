@@ -1,6 +1,6 @@
 # MotoPass Documentation Hub
 
-**BUILD:** 2026.07.15-66 · **Last updated:** 2026-07-15
+**BUILD:** 2026.08.18-68 · **Last updated:** 2026-08-18
 
 Official documentation for MotoPass. All long-form docs live here unless required at repo root (see [WORK-TREE.md](./WORK-TREE.md)).
 
@@ -52,6 +52,7 @@ Official documentation for MotoPass. All long-form docs live here unless require
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — includes BTC Map v2 architecture
 - [DATA-MODEL.md](./DATA-MODEL.md) — includes BTC Map cache/density schemas
 - [BITCOIN-VERIFICATION.md](./BITCOIN-VERIFICATION.md)
+- [SECURITY-TIMESTAMP-NOSTR.md](./SECURITY-TIMESTAMP-NOSTR.md) — Nostr is gossip; Satohash/OTS is proof
 - [PAIGE-AI.md](./PAIGE-AI.md)
 - [I18N.md](./I18N.md)
 

@@ -24,7 +24,7 @@ This is a living high-level architecture document. It will be expanded as implem
 - Playwright e2e (19 tests), Vitest unit tests (36), CI bundle budget.
 
 **Sovereign Stack v2.3 (Launch Engine)**
-- **Seal:** Vault page (`/vault`) — OTS upload, hash verify, 50/50 flagship proofs on disk.
+- **Seal:** Vault page (`/vault`) — OTS upload, hash verify, 50/50 flagship proofs on disk. BUILD 68: kind `30078` attestations + Satohash API stamp. Threat model: [SECURITY-TIMESTAMP-NOSTR.md](./SECURITY-TIMESTAMP-NOSTR.md).
 - **Forge:** Distressed marketplace (`/distressed`) — curated + permissionless lanes, PSBT escrow stub.
 - **Nexus:** Apply flow (`/apply`) — gated by `public/launch-gates.json` from `npm run launch:gate`.
 - **Ledger:** `research/oracle-seed.json` + Kimi handoff; 50-jurisdiction `countries.json`.

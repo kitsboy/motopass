@@ -1,3 +1,29 @@
+## Session — 2026-08-18 (Grok / M3) — BUILD 68
+
+**Done:**
+- Nostr + Satohash timestamp attestations (kind 30078, satohash/hash/block/ots tags)
+- NIP-07 sign + publish with template-match reject; stub recovery always (JSON + copy + sessionStorage)
+- Allowlisted Satohash/OTS hrefs; hash-only is not “verified”; badges: Demo / Proof on file / Bitcoin-verified
+- No preimage prefix in verify history
+- `docs/SECURITY-TIMESTAMP-NOSTR.md` — attack vectors + verifier contract
+- BIP-85 Nostr `128002'` noted as wallet/node only — not in the SPA
+
+**Decisions:**
+- Nostr is gossip; Satohash/OTS is proof
+- Demo/on-file URLs must never render as “Satohash Verified”
+
+**Git State:**
+- Branch: main
+- BUILD: 2026.08.18-68
+
+**Not done / next:**
+- LNbits BOLT11 mint
+- Schnorr + getEventHash after signEvent
+- Paige hosted backend
+- tsc cleanup
+
+---
+
 ## Session — 2026-08-11 (Grok / M3) — CLOSED
 
 **Done:**

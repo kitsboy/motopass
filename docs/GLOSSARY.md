@@ -53,6 +53,12 @@ The open protocol and tools for creating and verifying Bitcoin timestamps on arb
 **Nostr**  
 The open, decentralized protocol for signed events and relays. MotoPass uses Nostr as the primary identity layer (pubkeys instead of emails where possible), notification and alert bus, private messaging channel for Paige, and publication mechanism for program updates and community research. Private relays protect sensitive user context.
 
+**Nostr timestamp attestation (kind 30078)**  
+A signed *claim* that a SHA-256 was stamped. Tags may carry a Satohash URL, hash, stamp id, and Bitcoin block. It is gossip, not proof. See [SECURITY-TIMESTAMP-NOSTR.md](./SECURITY-TIMESTAMP-NOSTR.md).
+
+**Proof on file**  
+An allowlisted Satohash URL exists in seed data. Not the same as Bitcoin-verified. Live confirmation is Satohash confirmed/anchored or independent OTS verify.
+
 **BOLT12**  
 A Lightning Network improvement for reusable, static invoices/offers. Preferred payment primitive for MotoPass program fees and subscriptions because it is privacy-friendly and UX-simple (“pay this offer” rather than a new invoice every time).
 

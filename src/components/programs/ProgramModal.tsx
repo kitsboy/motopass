@@ -16,6 +16,7 @@ import { btcMapPageUrl } from '../../lib/btcmap';
 import { Program, ProgramModalTab, scoreWeight, hasFlagshipDepth } from './types';
 import { SeoHead } from '../SeoHead';
 import { programDetailJsonLd } from '../../lib/siteJsonLd';
+import { safeSatohashHref } from '../../lib/satohash';
 
 interface ProgramModalProps {
   program: Program | null;
@@ -239,8 +240,8 @@ function ProgramModalBody({
               <Zap size={14} className="text-mp-btc" /> {t('modal.score')}: {program.cryptoFriendlyScore}/10
             </div>
           )}
-          {program.proofUrl && (
-            <a href={program.proofUrl} target="_blank" rel="noopener noreferrer" className="proof-badge inline-flex items-center gap-1 hover:opacity-90">
+          {safeSatohashHref(program.proofUrl) && (
+            <a href={safeSatohashHref(program.proofUrl)} target="_blank" rel="noopener noreferrer" className="proof-badge inline-flex items-center gap-1 hover:opacity-90">
               {t('modal.verifyBlock')} #{program.proofBlockHeight ?? '—'} <ExternalLink size={12} />
             </a>
           )}

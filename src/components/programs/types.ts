@@ -25,7 +25,7 @@ export interface Program {
   minInvestment: number;
   timelineDays: number;
   sovereigntyScore: number;
-  proofStatus: 'verified' | 'pending' | 'demo';
+  proofStatus: 'verified' | 'recorded' | 'pending' | 'demo';
   proofRef?: string;
   summary: string;
   flag?: string;

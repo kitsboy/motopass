@@ -1,6 +1,6 @@
-# motopass — Last Updated 2026-08-11 by Grok/M3
-Brief: BUILD 67 session closed — Imagine assets, Satohash poll+health, live LN Address QR, countries depth; handoff complete
-Commit: 255c426
+# motopass — Last Updated 2026-08-18 by Grok/M3
+Brief: BUILD 68 — Nostr+Satohash timestamp attestations, honest badges, allowlisted hrefs, recovery JSON, security doc
+Commit: pending
 Deploy: https://motopass.giveabit.io · CF project motopass
 
 ---

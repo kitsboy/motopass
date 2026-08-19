@@ -39,6 +39,16 @@ describe('isStubProofUrl', () => {
   })
 })
 
+describe('proofStatus honesty', () => {
+  it('marks allowlisted non-stub URL as recorded, not verified', () => {
+    const withUrl = {
+      ...baseProgram,
+      satohash_proofs: [{ proof_url: 'https://satohash.io/verify/deadbeefcafebabe', block_height: 800000 }],
+    }
+    expect(toCinematicProgram(withUrl).proofStatus).toBe('recorded')
+  })
+})
+
 describe('toCinematicProgram', () => {
   it('maps sovereignty to 0-100 scale', () => {
     const p = toCinematicProgram(baseProgram)

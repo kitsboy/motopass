@@ -23,6 +23,8 @@ import {
 import { loadDistressedState, normalizeDistressedFilters, saveDistressedState } from '../lib/distressedStorage'
 import { loadDistressedBookmarks } from '../lib/distressedBookmarkStorage'
 import { distressedFiltersFromSearchParams, distressedFiltersToSearchParams } from '../lib/distressedUrlState'
+import { safeSatohashHref } from '../lib/satohash'
+import { sanitizeOtsPath } from '../lib/timestampSecurity'
 import type { DistressedFilters, DistressedLane, DistressedListing, DistressedSort } from '../types/distressedListing'
 
 const DEFAULT_FILTERS: DistressedFilters = {
@@ -104,16 +106,18 @@ function ListingModal({
         )}
 
         <div className="flex flex-wrap gap-2">
+          {safeSatohashHref(listing.proof_url) && (
           <a
-            href={listing.proof_url}
+            href={safeSatohashHref(listing.proof_url)}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary text-xs inline-flex items-center gap-1"
           >
             Satohash <ExternalLink size={12} />
           </a>
-          {listing.ots_path && (
-            <a href={listing.ots_path} download className="btn-secondary text-xs">
+          )}
+          {sanitizeOtsPath(listing.ots_path ?? '') && (
+            <a href={sanitizeOtsPath(listing.ots_path ?? '') ?? undefined} download className="btn-secondary text-xs">
               Download .ots
             </a>
           )}

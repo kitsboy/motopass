@@ -1,10 +1,6 @@
 import type { VerifyResult } from '../../types/proof'
 
-const SATOHASH_BASE = import.meta.env.VITE_SATOHASH_URL || 'https://satohash.io'
-
-export function satohashVerifyUrl(hash: string): string {
-  return `${SATOHASH_BASE}/verify/${hash}`
-}
+export { satohashVerifyUrl } from '../satohash'
 
 function normalizeHash(input: string): string | null {
   const h = input.trim().toLowerCase()
@@ -51,11 +47,11 @@ export async function verifyHashPaste(hashInput: string): Promise<VerifyResult> 
   }
 
   return {
-    verified: true,
+    verified: false,
     hash,
     mode: 'hash-only',
     blockTime: null,
-    message: `Valid content hash — open Satohash for independent Bitcoin verification${apiNote}`,
+    message: `Valid content hash — not Bitcoin-verified. Open Satohash to confirm the stamp${apiNote}`,
   }
 }
 

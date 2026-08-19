@@ -2,8 +2,8 @@
 title: Sovereign Stack — 4 Core Pillars
 project: MotoPass
 version: 1.0.0
-last_updated: 2026-07-15
-build: 2026.07.15-66
+last_updated: 2026-08-18
+build: 2026.08.18-68
 self_evolving: true
 bitcoin_display_policy: Bitcoin-first — all figures via PITCH-ANCHOR + BtcDualPrice UI
 pitch_anchor: docs/PITCH-ANCHOR.md
@@ -112,8 +112,8 @@ Credential engine: OpenTimestamps + Satohash proofs on program data, user milest
 - Every Ledger state change should reference a Seal proof ID.
 - **Nexus** members see proof lineage on club dashboards.
 
-**Shipped:** Stub `satohash_proofs[]` in `countries.json`, `ProofBadge`, block height display, FAQ JSON-LD.  
-**Gap:** Real stamping pipeline (replace `aaaaaaaa…` stub URLs), OTS file upload, Nostr attestation relay.
+**Shipped:** `satohash_proofs[]` in `countries.json`, honest `ProofBadge` (demo / on file / Bitcoin-verified), Satohash API stamp+poll, OTS upload, BUILD 68 Nostr kind `30078` attestations.  
+**Gap:** Replace remaining stub URLs; live calendar `ots verify`; official operator npub.
 
 ### First steps (manual → agent)
 

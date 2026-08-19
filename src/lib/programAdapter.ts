@@ -1,5 +1,6 @@
 import type { Program as DataProgram } from '../types/program'
 import type { Program as CinematicProgram } from '../components/programs/types'
+import { isAllowedSatohashUrl } from './timestampSecurity'
 
 const ISO_BY_NAME: Record<string, string> = {
   'El Salvador': 'SV',
@@ -115,8 +116,9 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     proofStatus: (() => {
       const url = proof?.proof_url
       if (!url) return 'pending' as const
-      if (isStubProofUrl(url)) return 'demo' as const
-      return 'verified' as const
+      if (isStubProofUrl(url) || !isAllowedSatohashUrl(url)) return 'demo' as const
+      // URL on file is not a live Satohash/OTS confirmation.
+      return 'recorded' as const
     })(),
     proofRef: proofRef(p),
     summary: p.details,

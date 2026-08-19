@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.08.18-68] — 2026-08-18
+
+### Changed
+- Nostr + Satohash timestamp attestations — allowlisted, honest badges, recovery
+
+---
+
 ## [BUILD-2026.07.15-66] — 2026-07-15
 
 ### Changed

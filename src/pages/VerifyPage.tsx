@@ -10,6 +10,8 @@ import {
   getApiHealth,
   pollStamp,
 } from '../lib/satohash'
+import { buildTimestampAttestationEvent } from '../lib/nostrEvents'
+import { announceTimestampOnNostr, type TimestampPublishResult } from '../lib/nostrTimestamp'
 import { buildPageVerifyPayload } from '../lib/pageVerify'
 import { parseHashLines, verifyHashPaste } from '../lib/seal/vaultVerify'
 import { verifyOtsPasteContent } from '../lib/verifyOtsPaste'
@@ -62,6 +64,8 @@ export function VerifyPage() {
   const [otsResult, setOtsResult] = useState<VerifyResult | null>(null)
   const [stampUi, setStampUi] = useState<StampUiState>({ kind: 'idle' })
   const [apiHealth, setApiHealth] = useState<ApiHealthUi>('checking')
+  const [nostrAnnounce, setNostrAnnounce] = useState<TimestampPublishResult | null>(null)
+  const [nostrBusy, setNostrBusy] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -77,7 +81,8 @@ export function VerifyPage() {
     const next = await hashApplicationPayload({ text: input, ts: new Date().toISOString() })
     setHash(next)
     setStampUi({ kind: 'idle' })
-    setHistory(pushHashHistory(next, input.slice(0, 48)))
+    setNostrAnnounce(null)
+    setHistory(pushHashHistory(next))
   }
 
   /** Try Satohash API stamp; poll proof status; fall back to deep link when offline. */
@@ -110,6 +115,40 @@ export function VerifyPage() {
     setStampUi({ kind: 'fallback', guideUrl, error: result.error })
     setApiHealth('offline')
     toast(t('verify.stampApiFallback'), 'default')
+  }
+
+  const announceStampOnNostr = async () => {
+    if (!hash || nostrBusy) return
+    setNostrBusy(true)
+    try {
+      const satohashUrl =
+        stampUi.kind === 'api'
+          ? stampUi.verifyUrl
+          : stampUi.kind === 'fallback'
+            ? stampUi.guideUrl
+            : satohashVerifyUrl(hash)
+      const result = await announceTimestampOnNostr(
+        buildTimestampAttestationEvent({
+          hash,
+          satohashUrl,
+          stampId: stampUi.kind === 'api' ? stampUi.id : undefined,
+          blockHeight: stampUi.kind === 'api' ? stampUi.blockHeight : undefined,
+          status: stampUi.kind === 'api' ? stampUi.status : stampUi.kind === 'fallback' ? 'guide-fallback' : 'hashed',
+          filename: 'motopass-verify',
+        }),
+      )
+      setNostrAnnounce(result)
+      try {
+        sessionStorage.setItem('motopass-nostr-announce', result.json)
+      } catch {
+        /* private mode */
+      }
+      if (result.published) toast(t('verify.nostrAnnounceOk'), 'success')
+      else if (result.error) toast(t('verify.nostrAnnounceFail'), 'error')
+      else toast(t('verify.nostrAnnounceStub'), 'default')
+    } finally {
+      setNostrBusy(false)
+    }
   }
 
   const copy = async () => {
@@ -273,9 +312,11 @@ export function VerifyPage() {
                   <>{t('verify.stampSatohash')}</>
                 )}
               </button>
+              {satohashVerifyUrl(hash) && (
               <a href={satohashVerifyUrl(hash)} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex items-center justify-center gap-2 flex-1">
                 {t('verify.verifyProof')} <ExternalLink size={14} />
               </a>
+              )}
             </div>
             {stampUi.kind === 'api' && (
               <div className="rounded-mp-md border border-mp-proof/40 bg-mp-proof/10 px-3 py-2.5 text-xs space-y-1.5" role="status">
@@ -314,6 +355,61 @@ export function VerifyPage() {
                 </a>
               </div>
             )}
+            {(stampUi.kind === 'api' || stampUi.kind === 'fallback') && (
+              <div className="space-y-2 pt-1">
+                <button
+                  type="button"
+                  onClick={() => void announceStampOnNostr()}
+                  disabled={nostrBusy}
+                  className="btn-secondary w-full inline-flex items-center justify-center gap-2"
+                >
+                  {nostrBusy ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin" aria-hidden /> {t('verify.nostrAnnouncing')}
+                    </>
+                  ) : (
+                    t('verify.nostrAnnounce')
+                  )}
+                </button>
+                <p className="text-[11px] text-ink-muted leading-relaxed">{t('verify.nostrAnnounceHint')}</p>
+                <p className="text-[11px] text-status-amber leading-relaxed">{t('verify.nostrPublicWarn')}</p>
+                {nostrAnnounce && (
+                  <div className="rounded-mp-md border border-nostr-violet/30 bg-nostr-violet-soft/40 px-3 py-2.5 text-xs space-y-1.5" role="status">
+                    <p className="font-chrome text-ink">
+                      {nostrAnnounce.recovery === 'published'
+                        ? t('verify.nostrRecoveryPublished')
+                        : nostrAnnounce.recovery === 'signed-unpublished'
+                          ? t('verify.nostrRecoverySigned')
+                          : nostrAnnounce.recovery === 'rejected'
+                            ? t('verify.nostrRecoveryRejected')
+                            : t('verify.nostrRecoveryStub')}
+                    </p>
+                    <p className="font-mono text-ink-secondary break-all">
+                      {t('verify.nostrEventId')}: {nostrAnnounce.eventId}
+                    </p>
+                    {nostrAnnounce.relaySummary && (
+                      <p className="text-ink-muted">{nostrAnnounce.relaySummary}</p>
+                    )}
+                    {nostrAnnounce.error && (
+                      <p className="text-status-amber font-mono break-all">{nostrAnnounce.error}</p>
+                    )}
+                    <pre className="text-[10px] font-mono text-ink-secondary overflow-x-auto whitespace-pre-wrap bg-card-muted/40 rounded-mp-md p-3 border border-mp/50">
+                      {nostrAnnounce.json}
+                    </pre>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        await navigator.clipboard.writeText(nostrAnnounce.json)
+                        toast(t('common.copied'), 'success')
+                      }}
+                      className="btn-secondary text-xs !py-1 !px-2.5 inline-flex items-center gap-1"
+                    >
+                      <Copy size={12} aria-hidden /> {t('vault.copyNostr')}
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
             <VerifyResultsExplainer messageKey="verify.resultsExplainer" />
           </div>
         )}
@@ -344,6 +440,7 @@ export function VerifyPage() {
                     <RotateCcw size={12} aria-hidden />
                     {t('verify.reverify')}
                   </button>
+                  {satohashVerifyUrl(entry.hash) && (
                   <a
                     href={satohashVerifyUrl(entry.hash)}
                     target="_blank"
@@ -352,6 +449,7 @@ export function VerifyPage() {
                   >
                     Satohash <ExternalLink size={12} />
                   </a>
+                  )}
                 </div>
               </li>
             ))}

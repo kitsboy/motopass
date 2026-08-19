@@ -21,7 +21,7 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
       sovereignty: number
       synergy: string
       hasProof: boolean
-      proofStatus: 'verified' | 'demo' | 'none'
+      proofStatus: 'verified' | 'recorded' | 'demo' | 'none'
       savingsVsTypical: number
     }[] = []
 
@@ -133,7 +133,7 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
                 <span className="rounded-chip border border-electric/25 bg-electric-soft/50 px-2 py-0.5 text-[10px] font-mono text-electric uppercase">
                   {f.type}
                 </span>
-                {f.hasProof && <ProofBadge status={f.proofStatus} compact />}
+                {f.hasProof && f.proofStatus !== 'none' && <ProofBadge status={f.proofStatus} compact />}
                 <span className="rounded-chip border border-mp/50 px-2 py-0.5 text-[10px] font-mono text-ink-muted capitalize inline-flex items-center gap-1">
                   <Zap size={9} /> {f.synergy}
                 </span>

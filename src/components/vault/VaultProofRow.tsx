@@ -14,16 +14,19 @@ import { nostrEventIdStub } from '../../lib/nostrEventId'
 import { Card } from '../ui/Card'
 import { ProofBadge } from '../ui/ProofBadge'
 import { useI18n } from '../../i18n/I18nContext'
+import { useToast } from '../ui/Toast'
 import { formatT } from '../../i18n/format'
-import { satohashVerifyUrl } from '../../lib/seal/vaultVerify'
-import { buildProgramProofEvent, serializeNostrEvent } from '../../lib/nostrEvents'
+import { satohashVerifyUrl, safeSatohashHref } from '../../lib/satohash'
+import { normalizeSha256, sanitizeOtsPath } from '../../lib/timestampSecurity'
+import { buildProgramProofEvent } from '../../lib/nostrEvents'
+import { announceTimestampOnNostr } from '../../lib/nostrTimestamp'
 import type { Program } from '../../types/program'
 import type { Program as CinematicProgram } from '../programs/types'
 
 function proofHash(proof: { content_hash?: string; proof_url?: string }): string {
-  if (proof.content_hash) return proof.content_hash
+  if (proof.content_hash && normalizeSha256(proof.content_hash)) return normalizeSha256(proof.content_hash)!
   const tail = proof.proof_url?.replace(/\/$/, '').split('/').pop() ?? ''
-  return tail
+  return normalizeSha256(tail) ?? ''
 }
 
 export function VaultProofRow({
@@ -46,10 +49,12 @@ export function VaultProofRow({
   onNostrStub: (json: string) => void
 }) {
   const { t } = useI18n()
+  const { toast } = useToast()
   const reduceMotion = useReducedMotion()
   const [expanded, setExpanded] = useState(false)
   const [copiedUrl, setCopiedUrl] = useState(false)
   const [copiedEventId, setCopiedEventId] = useState<string | null>(null)
+  const [announceBusy, setAnnounceBusy] = useState(false)
 
   const proofs = program.satohash_proofs ?? []
   const primary = proofs[0]
@@ -64,10 +69,11 @@ export function VaultProofRow({
     setTimeout(() => setCopiedUrl(false), 2000)
   }
 
-  function publishNostrStub() {
-    if (!primary) return
-    onNostrStub(
-      serializeNostrEvent(
+  async function announceNostr() {
+    if (!primary || announceBusy) return
+    setAnnounceBusy(true)
+    try {
+      const result = await announceTimestampOnNostr(
         buildProgramProofEvent(
           program.name,
           isDemo ? 'Demo anchor (seed data)' : 'OTS on disk',
@@ -77,11 +83,17 @@ export function VaultProofRow({
             block_height: primary.block_height,
             proof_url: primary.proof_url,
             ots_path: primary.ots_path,
-            proof_status: isDemo ? 'demo' : 'verified',
+            proof_status: isDemo ? 'demo' : 'unverified',
           },
         ),
-      ),
-    )
+      )
+      onNostrStub(result.json)
+      if (result.published) toast(t('verify.nostrAnnounceOk'), 'success')
+      else if (result.error) toast(t('verify.nostrAnnounceFail'), 'error')
+      else toast(t('verify.nostrAnnounceStub'), 'default')
+    } finally {
+      setAnnounceBusy(false)
+    }
   }
 
   const detailsId = `vault-proof-${program.id}-details`
@@ -171,9 +183,9 @@ export function VaultProofRow({
               {t('vault.copyVerifyUrl')}
             </button>
           )}
-          {primary?.proof_url && (
+          {safeSatohashHref(primary?.proof_url) && (
             <a
-              href={primary.proof_url}
+              href={safeSatohashHref(primary?.proof_url)}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
@@ -184,8 +196,8 @@ export function VaultProofRow({
               <span className="sr-only sm:not-sr-only">Satohash</span>
             </a>
           )}
-          {primary?.ots_path && (
-            <a href={primary.ots_path} download className="btn-secondary text-xs !py-1.5 !px-3">
+          {sanitizeOtsPath(primary?.ots_path ?? '') && (
+            <a href={sanitizeOtsPath(primary?.ots_path ?? '') ?? undefined} download className="btn-secondary text-xs !py-1.5 !px-3">
               .ots
             </a>
           )}
@@ -202,11 +214,12 @@ export function VaultProofRow({
           </Link>
           <button
             type="button"
-            onClick={publishNostrStub}
-            className="chip text-xs !text-nostr-violet !border-nostr-violet/30 hover:!bg-nostr-violet-soft inline-flex items-center gap-1"
+            onClick={() => void announceNostr()}
+            disabled={announceBusy}
+            className="chip text-xs !text-nostr-violet !border-nostr-violet/30 hover:!bg-nostr-violet-soft inline-flex items-center gap-1 disabled:opacity-60"
           >
             <Radio size={12} aria-hidden />
-            {t('vault.nostrPublish')}
+            {announceBusy ? t('verify.nostrAnnouncing') : t('vault.nostrPublish')}
           </button>
           {proofs.length > 1 && (
             <button
@@ -246,7 +259,7 @@ export function VaultProofRow({
               <ol className="relative border-l border-mp-proof/30 ml-2 space-y-4">
                 {proofs.map((proof, i) => {
                   const stepHash = proofHash(proof)
-                  const stepUrl = stepHash ? satohashVerifyUrl(stepHash) : proof.proof_url
+                  const stepUrl = stepHash ? satohashVerifyUrl(stepHash) : safeSatohashHref(proof.proof_url)
                   const eventStub = buildProgramProofEvent(
                     program.name,
                     isDemo ? 'Demo anchor (seed data)' : 'OTS on disk',
@@ -256,7 +269,7 @@ export function VaultProofRow({
                       block_height: proof.block_height,
                       proof_url: proof.proof_url,
                       ots_path: proof.ots_path,
-                      proof_status: isDemo ? 'demo' : 'verified',
+                      proof_status: isDemo ? 'demo' : 'unverified',
                     },
                   )
                   const eventId = nostrEventIdStub(eventStub)

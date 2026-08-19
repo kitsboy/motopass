@@ -25,11 +25,13 @@ describe('satohash', () => {
     expect(h1).toMatch(/^[a-f0-9]{64}$/)
   })
 
-  it('builds verify and stamp URLs', () => {
-    const hash = 'abc123'
+  it('builds verify and stamp URLs only for 64-hex hashes', () => {
+    const hash = 'ab'.repeat(32)
     expect(satohashVerifyUrl(hash)).toContain(hash)
     expect(satohashStampGuideUrl(hash)).toContain(hash)
     expect(satohashStampGuideUrl(hash)).toContain('/stamp?hash=')
+    expect(satohashVerifyUrl('abc123')).toBe('')
+    expect(satohashStampGuideUrl('javascript:alert(1)')).toBe('')
   })
 
   it('builds proof verify URL and exposes API base', () => {

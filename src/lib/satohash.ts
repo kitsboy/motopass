@@ -1,3 +1,5 @@
+import { isAllowedSatohashUrl, normalizeSha256, sanitizeStampId } from './timestampSecurity'
+
 const SATOHASH_BASE = import.meta.env.VITE_SATOHASH_URL || 'https://satohash.io'
 
 /** Public Satohash API base (family timestamp backbone). May be offline until API is deployed. */
@@ -44,18 +46,38 @@ export async function sha256Hex(input: string): Promise<string> {
     .join('')
 }
 
+function satohashOrigin(): string {
+  return SATOHASH_BASE.replace(/\/$/, '')
+}
+
+/** Allowlisted verify URL, or empty string if hash/origin is unsafe. */
 export function satohashVerifyUrl(hash: string): string {
-  return `${SATOHASH_BASE}/verify/${hash}`
+  const h = normalizeSha256(hash)
+  if (!h) return ''
+  const url = `${satohashOrigin()}/verify/${h}`
+  return isAllowedSatohashUrl(url) ? url : ''
 }
 
 /** Deep-link to Satohash stamp UI when the API is unreachable (browser fallback). */
 export function satohashStampGuideUrl(hash: string): string {
-  return `${SATOHASH_BASE}/stamp?hash=${hash}`
+  const h = normalizeSha256(hash)
+  if (!h) return ''
+  const url = `${satohashOrigin()}/stamp?hash=${h}`
+  return isAllowedSatohashUrl(url) ? url : ''
 }
 
 /** Verify URL for a server-issued proof id (preferred when API stamp succeeds). */
 export function satohashProofVerifyUrl(id: string): string {
-  return `${SATOHASH_BASE}/verify/${id}`
+  const safe = sanitizeStampId(id)
+  if (!safe) return ''
+  const url = `${satohashOrigin()}/verify/${encodeURIComponent(safe)}`
+  return isAllowedSatohashUrl(url) ? url : ''
+}
+
+/** Render `href` only for allowlisted Satohash URLs. */
+export function safeSatohashHref(url: string | undefined): string | undefined {
+  if (!url || !isAllowedSatohashUrl(url)) return undefined
+  return url
 }
 
 export async function hashApplicationPayload(payload: Record<string, unknown>): Promise<string> {
@@ -177,7 +199,7 @@ export async function stampHash(
  * GET /api/stamps/:id — proof status for a stamp id. Never throws.
  */
 export async function getStamp(id: string): Promise<SatohashGetStampResult> {
-  const stampId = id.trim()
+  const stampId = sanitizeStampId(id)
   if (!stampId) {
     return { ok: false, error: 'Stamp id is required' }
   }

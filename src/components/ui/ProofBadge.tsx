@@ -1,6 +1,6 @@
 import { CheckCircle2, Clock, FlaskConical } from 'lucide-react';
 
-export type ProofStatus = 'verified' | 'pending' | 'demo';
+export type ProofStatus = 'verified' | 'recorded' | 'pending' | 'demo';
 
 interface ProofBadgeProps {
   status: ProofStatus;
@@ -16,12 +16,20 @@ export function ProofBadge({ status, compact = false, txHint }: ProofBadgeProps)
   const styles =
     status === 'verified'
       ? 'border-mp-proof/35 bg-mp-proof-soft text-mp-proof dark:border-mp-proof/45 dark:bg-mp-proof/15 dark:text-[#4ade80]'
-      : status === 'demo'
-        ? 'border-mp-border-strong bg-mp-section text-mp-ink-secondary dark:text-mp-ink-secondary'
-        : 'border-mp-ochre/40 bg-mp-btc-soft text-mp-btc-text';
+      : status === 'recorded'
+        ? 'border-btc-orange/35 bg-btc-orange-soft/50 text-mp-btc-text'
+        : status === 'demo'
+          ? 'border-mp-border-strong bg-mp-section text-mp-ink-secondary dark:text-mp-ink-secondary'
+          : 'border-mp-ochre/40 bg-mp-btc-soft text-mp-btc-text';
 
   const label =
-    status === 'verified' ? 'Satohash Verified' : status === 'demo' ? 'Demo Anchor' : 'Anchor Pending';
+    status === 'verified'
+      ? 'Bitcoin-verified'
+      : status === 'recorded'
+        ? 'Proof on file'
+        : status === 'demo'
+          ? 'Demo Anchor'
+          : 'Anchor Pending';
 
   const Icon = status === 'verified' ? CheckCircle2 : status === 'demo' ? FlaskConical : Clock;
 

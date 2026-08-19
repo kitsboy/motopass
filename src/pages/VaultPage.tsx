@@ -61,14 +61,14 @@ export function VaultPage() {
     .sort((a, b) => (b.program.last_checked ?? '').localeCompare(a.program.last_checked ?? ''))
 
   const displayed = stamped.filter(({ program: p, cinematic }) => {
-    if (filter === 'verified' && cinematic.proofStatus !== 'verified') return false
+    if (filter === 'verified' && cinematic.proofStatus !== 'recorded' && cinematic.proofStatus !== 'verified') return false
     if (filter === 'demo' && cinematic.proofStatus !== 'demo') return false
     const q = archiveQuery.trim().toLowerCase()
     if (q && !p.name.toLowerCase().includes(q) && !p.region.toLowerCase().includes(q)) return false
     return true
   })
 
-  const verifiedCount = stamped.filter(s => s.cinematic.proofStatus === 'verified').length
+  const verifiedCount = stamped.filter(s => s.cinematic.proofStatus === 'recorded' || s.cinematic.proofStatus === 'verified').length
   const demoCount = stamped.filter(s => s.cinematic.proofStatus === 'demo').length
   const otsCount = stamped.filter(s => s.program.satohash_proofs?.[0]?.ots_path).length
 
@@ -286,7 +286,7 @@ export function VaultPage() {
             <div>{verifyResult.message}</div>
             <div className="mt-1 text-ink-muted opacity-80">
               mode: {verifyResult.mode}
-              {verifyResult.hash && /^[a-f0-9]{64}$/.test(verifyResult.hash) && (
+              {verifyResult.hash && satohashVerifyUrl(verifyResult.hash) && (
                 <>
                   {' · '}
                   <a
@@ -452,6 +452,7 @@ export function VaultPage() {
               {t('vault.copyNostr')}
             </button>
           </div>
+          <p className="text-[11px] text-status-amber leading-relaxed mb-3">{t('verify.nostrPublicWarn')}</p>
           <pre className="text-[10px] font-mono text-ink-secondary overflow-x-auto whitespace-pre-wrap bg-card-muted/40 rounded-mp-md p-4 border border-mp/50 backdrop-blur-sm">
             {nostrEvent}
           </pre>

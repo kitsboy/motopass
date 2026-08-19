@@ -95,13 +95,14 @@ This is the ultimate trust signal and the feature that no traditional CBI direct
 - We do **not** claim that a Satohash stamp makes the underlying legal text correct or the tax advice sound. It only proves that a specific artifact existed at a specific time and has not been retroactively altered.
 - We do **not** stamp every UI pixel or every transient price. We stamp the substantive research and user decisions.
 - Stamping is a tool for transparency and audit, not a substitute for qualified legal/tax counsel.
+- **A Nostr announcement is not Bitcoin verification.** Kind `30078` is a signed claim. See [SECURITY-TIMESTAMP-NOSTR.md](./SECURITY-TIMESTAMP-NOSTR.md).
 
 ## 8. Open Questions / Future Work
 
 - Direct integration vs. user-guided stamping (trade-off between convenience and “the user did it themselves”).
 - Calendar server diversity and resilience (don’t rely on a single OTS calendar).
 - Cost and UX of stamping many small user actions at scale.
-- Standardized event kinds for Nostr + OTS proof anchoring.
+- Standardized event kinds for Nostr + OTS proof anchoring — **started** in BUILD 68 (kind `30078` + Satohash tags; NIP-07 sign + stub recovery).
 
 This specification is binding for all future development. Any feature that presents data or records decisions must answer: “Where is the proof, and how does a stranger verify it without trusting us?”
 
