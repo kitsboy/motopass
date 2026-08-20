@@ -6,6 +6,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 
 
+## [BUILD-2026.08.20-72] — 2026-08-20
+
+### Changed
+- Eager remaining lazy routes (BTC Map / Portfolio / Blog), hero e2e selector fix
+
+---
+
 ## [BUILD-2026.08.18-71] — 2026-08-18
 
 ### Changed

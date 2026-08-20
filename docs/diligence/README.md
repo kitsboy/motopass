@@ -3,7 +3,7 @@ title: Diligence Pack Index
 project: MotoPass
 version: 1.0.0
 audience: all
-last_updated: 2026-08-18
+last_updated: 2026-08-20
 owner: Kimi (Orchestrator) + Nova (Docs)
 self_evolving: true
 update_rule: >

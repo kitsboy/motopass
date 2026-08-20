@@ -1,6 +1,6 @@
-# motopass — Last Updated 2026-08-18 by Grok/M3
-Brief: BUILD 71 closed — Nostr+Satohash attestations, crash fixes, honest badges, dist untracked
-Commit: 4b39a863ec0514e59ad919d9cb92d0ef38bb9444
+# motopass — Last Updated 2026-08-20 by Grok/M3
+Brief: BUILD 72 closed — eager remaining lazy routes (BTC Map/Portfolio/Blog), hero e2e selector fix
+Commit: 55d228d
 Deploy: https://motopass.giveabit.io · CF project motopass
 
 ---

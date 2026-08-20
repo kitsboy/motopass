@@ -1,3 +1,25 @@
+## Session — 2026-08-20 (Grok/M3) — BUILD 72 CLOSED
+
+**Done:**
+- BUILD 72 — Portfolio / BTC Map / Blog / BlogPost now **eager** imports in `src/App.tsx` (same pattern as BUILD 70/71 crash fixes). Dashboard / Register / Profile / NotFound stay lazy.
+- Fixed stale e2e selector `.hero-headline` → `.hero-elite-tagline` — hero redesign dropped the class; test was already failing on `main` before this session (verified via stash).
+- Verified: `tsc --noEmit` adds **zero** new errors (26 pre-existing repo-wide backlog untouched, none in App.tsx) · 156 unit tests · production build green · bundle gate OK (index 1010 KB, advisory warn only) · **26/26 e2e pass**.
+
+**Decisions:**
+- Keep the crash-prone route set fully eager until the lazy-chunk context crash class is retired; only non-primary routes (Dashboard/Register/Profile/NotFound) remain lazy.
+
+**Git State:**
+- SHA: `55d228d` (code) — handoff/docs follow in the next commit
+- Branch: main
+
+**Not done / next agent:**
+- LNbits BOLT11 mint when node env is ready
+- Paige hosted backend (grounded only)
+- Repo-wide `tsc --noEmit` — 26 pre-existing errors in: CompareMatrix, heroEliteMotion.test, PitchRevealSection, PitchTrustedStrip, ValueForksPanel, Card, VaultEducationCard, translations, nostrEventId, paigeHistory.test, pitchStats, programAdapter.test, savingsGraphExport, vaultVerify, DashboardPage, FinanceComparePage
+- Live Nostr relay / portfolio sync
+
+---
+
 ## 2026-08-19 (Kimi/THOR — Standard Project Kit adopted + debrief + repo re-sync)
 
 **Scope:** Standard Project Kit rollout + first machine-readable session debrief + repo sync check.
