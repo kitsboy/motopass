@@ -1,9 +1,13 @@
 import type {
+  AuditEntry,
   ComplianceClock,
   CriticalTests,
+  IntelClaim,
   LegalCompliance,
   PaigeFields,
+  ProgramFreshness,
   ProgramPathway,
+  ProgramScorecard,
 } from '../../types/program';
 
 export type ProgramModalTab =
@@ -13,6 +17,7 @@ export type ProgramModalTab =
   | 'Bitcoin'
   | 'Critical'
   | 'Legal'
+  | 'Intel'
   | 'Paige'
   | 'Sources';
 
@@ -53,6 +58,13 @@ export interface Program {
   legalCompliance?: LegalCompliance;
   complianceClock?: ComplianceClock;
   paigeFields?: PaigeFields;
+  /** Schema v3 intel — surfaced from the daily Country Intel pipeline. */
+  freshness?: ProgramFreshness;
+  watchChanged?: boolean;
+  pros?: IntelClaim[];
+  cons?: IntelClaim[];
+  scorecard?: ProgramScorecard;
+  auditTrail?: AuditEntry[];
 }
 
 export function scoreWeight(score: number): 'flagship' | 'standard' {

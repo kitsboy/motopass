@@ -1,3 +1,28 @@
+## Session — 2026-08-20 (Grok/M3) — Intel surface UI + Paige Satohash knowledge — BUILD 72 continued
+
+**Done:**
+- **Surface slice (consumes intel.json):**
+  - `src/hooks/useIntel.ts` — runtime manifest hook (module-cached, BUILD-tagged fetch).
+  - `IntelStatusBadge` on program cards — honest watch-changed / stale-days / proof-re-anchoring states from the manifest (renders nothing when fresh+in-sync).
+  - `IntelWatchStrip` on Programs (full: sweep counts, Satohash API chip, source-change flags, Bitcoin-anchored change feed) + compact ticker on home live-data section.
+  - ProgramModal **Intel tab** — pros/cons (each with `verified` date), 7-metric scorecard bars (honest nulls = research pending), freshness, and the Bitcoin-anchored change ledger with per-entry verify links.
+  - i18n keys added (English fallback for other locales).
+- **Paige Satohash knowledge base (Track B):**
+  - `docs/PAIGE-SATOHASH-GUIDE.md` — technical guide: endpoints, headers, rate limits, codebase map, honesty rules, promotion do/don't.
+  - `docs/PAIGE-USER-GUIDE.md` — member-facing plain-language scripts.
+  - `research/paige/satohash-knowledge.json` — machine-readable corpus Paige loads at boot.
+- Verified: tsc adds zero new errors (26 pre-existing) · 165 unit tests · build green · validate:data/stamps + intel:check green · 26/26 e2e.
+
+**Decisions:**
+- `proof.in_sync` comes only from the server-side intel.json (canonical-slice comparison) — never derived in the SPA.
+- Intel surfaces stay honest: badges render nothing rather than invent a state.
+
+**Git State:**
+- Commit: `feat(intel): surface UI (badges/strip/modal intel tab) + paige satohash knowledge base`
+- Branch: main
+
+---
+
 ## Session — 2026-08-20 (Grok/M3) — Country Intel pipeline (schema v3) — BUILD 72 continued
 
 **Done:**

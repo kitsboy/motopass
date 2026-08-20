@@ -36,6 +36,7 @@ import { PitchHeroSubline } from '../components/pitch/PitchHeroSubline'
 import { PitchHeroTagline } from '../components/pitch/PitchHeroTagline'
 import { Card } from '../components/ui/Card'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
+import { IntelWatchStrip } from '../components/intel/IntelWatchStrip'
 import { usePrograms } from '../hooks/usePrograms'
 import { useLaunchGates } from '../hooks/useLaunchGates'
 import {
@@ -347,6 +348,9 @@ export function PitchPage() {
                 </li>
               ))}
             </ul>
+            <div className="mt-6">
+              <IntelWatchStrip variant="ticker" />
+            </div>
           </div>
           <Card variant="banner" className="!p-6">
             <div className="section-label mb-2 flex items-center gap-2">

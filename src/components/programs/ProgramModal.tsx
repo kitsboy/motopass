@@ -17,6 +17,7 @@ import { Program, ProgramModalTab, scoreWeight, hasFlagshipDepth } from './types
 import { SeoHead } from '../SeoHead';
 import { programDetailJsonLd } from '../../lib/siteJsonLd';
 import { safeSatohashHref } from '../../lib/satohash';
+import { ScorecardBars } from '../intel/ScorecardBars';
 
 interface ProgramModalProps {
   program: Program | null;
@@ -109,6 +110,7 @@ function ProgramModalBody({
     }
   };
 
+  const hasIntel = !!(program.pros?.length || program.cons?.length || program.scorecard)
   const TABS = useMemo(() => {
     const base = [
       { id: 'Overview' as const, label: t('modal.tabOverview') },
@@ -117,11 +119,12 @@ function ProgramModalBody({
       { id: 'Bitcoin' as const, label: t('modal.tabBitcoin') },
       ...(deep ? [{ id: 'Critical' as const, label: t('modal.tabCritical') }] : []),
       { id: 'Legal' as const, label: t('modal.tabLegal') },
+      ...(hasIntel ? [{ id: 'Intel' as const, label: t('modal.tabIntel') }] : []),
       ...(program.paigeFields ? [{ id: 'Paige' as const, label: t('modal.tabPaige') }] : []),
       { id: 'Sources' as const, label: t('modal.tabSources') },
     ];
     return base;
-  }, [t, deep, program.paigeFields]);
+  }, [t, deep, program.paigeFields, hasIntel]);
 
   const programJsonLd = useMemo(() => programDetailJsonLd(program), [program])
 
@@ -291,6 +294,76 @@ function ProgramModalBody({
               <p className="text-xs"><strong>{t('modal.property')}:</strong> {program.legalCompliance.property_foreign_ownership}</p>
               <p className="text-xs"><strong>{t('modal.recentChanges')}:</strong> {program.legalCompliance.recent_changes}</p>
             </>
+          )}
+        </div>
+      )}
+
+      {tab === 'Intel' && (
+        <div className="space-y-5 text-sm text-mp-ink-secondary">
+          {program.pros && program.pros.length > 0 && (
+            <div>
+              <h4 className="mb-2 font-chrome text-[11px] uppercase tracking-wide text-mp-proof">{t('modal.intelPros')}</h4>
+              <ul className="space-y-1.5">
+                {program.pros.map((p, i) => (
+                  <li key={i} className="flex items-start gap-2 text-xs leading-relaxed">
+                    <Check size={13} className="mt-0.5 shrink-0 text-mp-proof" aria-hidden="true" />
+                    <span>
+                      {p.text}
+                      {p.verified_at && <span className="block font-mono text-[10px] text-mp-ink-muted">verified {p.verified_at}</span>}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {program.cons && program.cons.length > 0 && (
+            <div>
+              <h4 className="mb-2 font-chrome text-[11px] uppercase tracking-wide text-mp-wax">{t('modal.intelCons')}</h4>
+              <ul className="space-y-1.5">
+                {program.cons.map((c, i) => (
+                  <li key={i} className="flex items-start gap-2 text-xs leading-relaxed">
+                    <XIcon size={13} className="mt-0.5 shrink-0 text-mp-wax" aria-hidden="true" />
+                    <span>
+                      {c.text}
+                      {c.verified_at && <span className="block font-mono text-[10px] text-mp-ink-muted">verified {c.verified_at}</span>}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {program.scorecard && (
+            <div>
+              <h4 className="mb-2 font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">{t('modal.intelScorecard')}</h4>
+              <ScorecardBars scorecard={program.scorecard} />
+            </div>
+          )}
+          {program.freshness && (
+            <p className="text-xs card-muted">
+              {t('modal.intelFreshness')}: <strong className="text-mp-ink">{program.freshness.status}</strong> · {program.freshness.days_stale} {t('modal.intelDays')} · {t('modal.lastChecked')} {program.lastChecked ?? '—'}
+            </p>
+          )}
+          {program.auditTrail && program.auditTrail.length > 0 && (
+            <div>
+              <h4 className="mb-2 font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">{t('modal.intelAudit')}</h4>
+              <ul className="space-y-1.5">
+                {program.auditTrail.slice(-5).reverse().map((e, i) => {
+                  const verifyHref = safeSatohashHref(e.hash ? `https://satohash.io/verify/${e.hash}` : undefined)
+                  return (
+                    <li key={i} className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px]">
+                      <span className="font-mono text-mp-ink-muted">{e.date}</span>
+                      <span className="font-mono text-mp-btc-text">{e.field}</span>
+                      <span className="truncate">{e.from ? `${e.from} → ` : ''}{e.to}</span>
+                      {verifyHref && (
+                        <a href={verifyHref} target="_blank" rel="noopener noreferrer" className="font-mono text-mp-btc-text hover:underline underline-offset-2">
+                          verify ↗
+                        </a>
+                      )}
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
           )}
         </div>
       )}

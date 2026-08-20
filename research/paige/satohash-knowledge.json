@@ -1,0 +1,61 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "satohash",
+  "version": "2026-08-20",
+  "build": "2026.08.20-72",
+  "facts": [
+    "Satohash.io is the Give A Bit family timestamp engine wrapping OpenTimestamps (OTS).",
+    "A stamp commits a SHA-256 hash of a document into a Bitcoin transaction via OTS calendars.",
+    "The hash is the only thing sent to Satohash — documents never leave the user's device.",
+    "Nostr is gossip; Satohash/OTS is proof. A Nostr post never proves anything by itself.",
+    "A URL on file is never verification by itself — verify it on satohash.io/verify/<hash> first.",
+    "Stamps start as 'pending' and become 'confirmed' when a Bitcoin block includes the anchor.",
+    "Stamping is free to try on the public API; Bitcoin network fees are batched and small via calendars.",
+    "MotoPass re-anchors program data automatically when research changes (daily intel pipeline).",
+    "BIP-85 Nostr derivation path 128002' is wallet/node-only — never a browser SPA feature."
+  ],
+  "endpoints": {
+    "health": { "method": "GET", "url": "https://api.satohash.io/health", "auth": "X-Satohash-Client" },
+    "metrics": { "method": "GET", "url": "https://api.satohash.io/metrics.json", "auth": "none" },
+    "stamp": { "method": "POST", "url": "https://api.satohash.io/api/stamp", "auth": "X-Satohash-Client + optional X-Satohash-Key", "body": { "hash": "64-hex", "filename": "optional" }, "returns": "id, status(pending), verify_url" },
+    "getStamp": { "method": "GET", "url": "https://api.satohash.io/api/stamps/:id", "auth": "X-Satohash-Client", "returns": "id, status, hash, bitcoin_block_height" }
+  },
+  "headers": {
+    "X-Satohash-Client": "always sent; identifies the calling product (motopass, motopass-intel)",
+    "X-Satohash-Key": "optional privileged key; GitHub secret SATOHASH_API_KEY; never in the SPA"
+  },
+  "rate_limits": {
+    "note": "Bursts are throttled (HTTP 429). Programmatic stamping must pace ~2s and cap ~15/run.",
+    "env": { "STAMP_DELAY_MS": "2000", "MAX_STAMPS_PER_RUN": "15" }
+  },
+  "badge_vocabulary": {
+    "Demo": "seed/placeholder proof for testing — NOT verification",
+    "Proof on file": "a recorded proof URL exists — verify before relying",
+    "Bitcoin-verified": "hash is anchored on Bitcoin via Satohash/OTS",
+    "Re-anchoring": "proof being re-stamped after a data update; converges on next daily sweep"
+  },
+  "do": [
+    "Always cite the Satohash proof link (https://satohash.io/verify/<hash-or-id>) for substantive claims.",
+    "Say 'the hash is anchored at block N' only when bitcoin_block_height is confirmed.",
+    "Tell members they can verify any program hash themselves without trusting MotoPass.",
+    "Recommend stamping personal documents the same way: hash locally, stamp, keep the hash, verify later.",
+    "Reference the intel manifest (proof.in_sync) when asked how fresh a program's proof is.",
+    "Point members to /vault for audit, /verify for stamping their own data, /apply for application hashes."
+  ],
+  "do_not": [
+    "Never claim a Nostr post is proof.",
+    "Never invent block numbers or verification status.",
+    "Never say Satohash stores or sees the user's documents (hashes only).",
+    "Never call a stamp 'legally binding proof' — it is cryptographic timestamp evidence.",
+    "Never present Demo proofs as verified.",
+    "Never mention BIP-85 128002' as an SPA feature.",
+    "Never give personalized legal, tax, or immigration advice — escalate to humans."
+  ],
+  "member_scripts": {
+    "what_is": "Satohash is the Bitcoin birth certificate for information: a fingerprint of your data is committed into a Bitcoin block, so you can prove it existed unchanged from that moment.",
+    "cost": "Stamping is free to try on the public API; Bitcoin fees are batched via calendars, far cheaper than sending your own transaction.",
+    "time": "Created instantly (pending), confirmed once a Bitcoin block includes it — often within the hour, sometimes longer if calendars are busy.",
+    "verify": "Open https://satohash.io/verify/<hash-or-id> — no need to trust MotoPass.",
+    "what_can_i_stamp": "Contracts, passport-scan hashes, proof-of-funds summaries, applications, wills, creative works, research notes — hash it, stamp it, keep the hash, verify later."
+  }
+}

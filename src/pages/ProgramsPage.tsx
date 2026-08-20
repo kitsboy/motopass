@@ -26,6 +26,7 @@ import { ClassyModal } from '../components/ui/ClassyModal'
 import { ProgramCard } from '../components/programs/ProgramCard'
 import { ProgramsTable } from '../components/programs/ProgramsTable'
 import { ProgramModal } from '../components/programs/ProgramModal'
+import { IntelWatchStrip } from '../components/intel/IntelWatchStrip'
 import { CardSkeleton, RowSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import type { Program as CinematicProgram } from '../components/programs/types'
@@ -348,6 +349,10 @@ export function ProgramsPage() {
             <ProgramsComplianceStrip />
           </>
         )}
+
+        <div className="mb-6">
+          <IntelWatchStrip />
+        </div>
 
         {error && <ProgramsLoadError message={error} />}
         {importErrorCode && (

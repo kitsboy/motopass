@@ -148,6 +148,15 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     legalCompliance: p.legal_compliance,
     complianceClock: p.compliance_clock,
     paigeFields: p.paige_fields,
+    // Schema v3 intel (Country Intel pipeline). `proof.in_sync` is computed
+    // server-side in intel.json (canonical-slice comparison) — surfaced via
+    // the useIntel hook, never derived here.
+    freshness: p.freshness,
+    watchChanged: p.watch?.changed === true,
+    pros: p.pros,
+    cons: p.cons,
+    scorecard: p.scorecard,
+    auditTrail: p.audit_trail,
   }
 }
 
