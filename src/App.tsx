@@ -21,14 +21,14 @@ import { DistressedPage } from './pages/DistressedPage'
 import { AgentsPage } from './pages/AgentsPage'
 import { ApplyPage } from './pages/ApplyPage'
 import { StackSimulatorPage } from './pages/StackSimulatorPage'
+import { PortfolioPage } from './pages/PortfolioPage'
+import { BtcMapPage } from './pages/BtcMapPage'
+import { BlogPage } from './pages/BlogPage'
+import { BlogPostPage } from './pages/BlogPostPage'
 
-const PortfolioPage = lazy(() => import('./pages/PortfolioPage').then(m => ({ default: m.PortfolioPage })))
 const DashboardPage = lazy(() => import('./pages/DashboardPage').then(m => ({ default: m.DashboardPage })))
 const RegisterPage = lazy(() => import('./pages/RegisterPage').then(m => ({ default: m.RegisterPage })))
 const ProfilePage = lazy(() => import('./pages/ProfilePage').then(m => ({ default: m.ProfilePage })))
-const BtcMapPage = lazy(() => import('./pages/BtcMapPage').then(m => ({ default: m.BtcMapPage })))
-const BlogPage = lazy(() => import('./pages/BlogPage').then(m => ({ default: m.BlogPage })))
-const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })))
 
 export default function App() {

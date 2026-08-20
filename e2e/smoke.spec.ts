@@ -8,8 +8,8 @@ test.describe('smoke', () => {
   test('home loads with hero headline', async ({ page }) => {
     await page.goto('/')
     await expect(page.locator('main')).toBeVisible()
-    await expect(page.locator('.hero-headline')).toBeVisible()
-    await expect(page.locator('.hero-headline')).not.toBeEmpty()
+    await expect(page.locator('.hero-elite-tagline')).toBeVisible()
+    await expect(page.locator('.hero-elite-tagline')).not.toBeEmpty()
   })
 
   test('BUILD version is visible in chrome or footer', async ({ page }) => {
