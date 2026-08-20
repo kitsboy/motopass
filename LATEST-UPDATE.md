@@ -1,6 +1,6 @@
 # motopass — Last Updated 2026-08-20 by Grok/M3
-Brief: BUILD 72 closed — eager remaining lazy routes (BTC Map/Portfolio/Blog), hero e2e selector fix
-Commit: 55d228d
+Brief: Country Intel pipeline — schema v3 (pros/cons/scorecard/freshness/audit), daily self-heal cron, Satohash API re-stamp loop (19/50 proofs healed)
+Commit: (see git log — intel feature commit)
 Deploy: https://motopass.giveabit.io · CF project motopass
 
 ---

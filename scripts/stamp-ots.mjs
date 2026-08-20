@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { canonicalSlice } from './lib/canonical-slice.mjs'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
 const countriesPath = resolve(root, 'research/countries.json')
@@ -15,19 +16,6 @@ const CALENDAR_URIS = [
 const SKIP_NETWORK = process.env.OTS_SKIP_NETWORK === '1'
 function slugify(name) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
-function canonicalSlice(program) {
-  const slice = {
-    id: program.id,
-    name: program.name,
-    finance: program.finance,
-    pathways: program.pathways,
-    critical_tests: program.critical_tests,
-    legal_compliance: program.legal_compliance,
-    compliance_clock: program.compliance_clock,
-    last_checked: program.last_checked,
-  }
-  return JSON.stringify(slice, Object.keys(slice).sort())
 }
 async function loadOpenTimestamps() {
   const mod = await import('opentimestamps')

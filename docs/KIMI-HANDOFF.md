@@ -1,3 +1,32 @@
+## Session — 2026-08-20 (Grok/M3) — Country Intel pipeline (schema v3) — BUILD 72 continued
+
+**Done:**
+- **Country Intel pipeline built** (`docs/COUNTRY-INTEL.md`): daily self-healing layer over the 50-program corpus.
+  - Schema v3 per program: `freshness` (fresh≤14d / watch≤45d / stale>45d), `watch` (official URLs + probe state), `pros[]/cons[]` (structured claims, each `{text, source, verified_at}`), `scorecard` (7 metrics, honest nulls where unresearched), `audit_trail` (every change, hash-anchored). All derived only from vetted corpus fields — no invented facts.
+  - `scripts/migrate-schema-v3.mjs` (idempotent, 300 blocks / 50 programs), `update-freshness.mjs`, `probe-sources.mjs` (official-source watchdog: body-hash change detection → audit entry), `stamp-changed.mjs` (**Satohash API re-stamp loop**: canonical-slice hash drift → `POST /api/stamp` → new proof_url/stamp_id/stamped_at), `write-intel.mjs`/`check-intel.mjs` (runtime manifest `public/data/intel.json` + CI gate).
+  - `scripts/lib/canonical-slice.mjs` — single shared slice definition (stamp-ots.mjs refactored onto it).
+  - `.github/workflows/daily-intel.yml` — daily 06:00 UTC cron: migrate → freshness → probe → re-stamp (paced 2.5 s, capped 12/run) → write manifest → validate gates → auto-commit detection + re-anchors only.
+  - `validate-data.mjs` now requires v3 blocks; staleness is a hard warning (not a deploy blocker).
+  - 9 new unit tests (`scripts/intel-core.test.ts`) — 165 total green.
+- **Healed 19/50 stale proofs in-session**: discovered ALL 50 programs' stored `content_hash`/`proof_url` drifted from the current canonical slice (corpus enriched after BUILD 68 proofs — proof_url hash ≠ .ots filename hash). Re-stamped via the live Satohash API (v5.0.0-ELITE, anonymous stamps work, HTTP 200). Remaining 31 converge over daily runs (API rate-limits bursts — 429 handled gracefully, incremental self-heal by design).
+
+**Decisions:**
+- Detection + re-anchors auto-commit (facts); rule **rewrites** stay human-reviewed (us / Kimi / Paige). `last_checked` is a human research date — the pipeline never rewrites it, so daily sweeps never trigger spurious re-stamps.
+- Satohash API is the re-stamp backbone (part-owned, cost-down vs local OTS calendars); `proof.in_sync` in intel.json shows honest per-program state until converged.
+- Pre-existing lint red on main (12 errors, unrelated src components) — untouched this session; worth a cleanup pass later.
+
+**Git State:**
+- Commit: `feat(intel): country intel pipeline — schema v3 + daily self-heal + satohash re-stamp loop`
+- Branch: main
+
+**Not done / next agent:**
+- UI slice: freshness badges on cards, pros/cons + scorecard in modal, policy-watch feed, freshness ticker (consume `intel.json` via a `useIntel` hook)
+- Continue re-stamp convergence (31 pending) — or run `npm run intel:stamp` manually in batches
+- Paige: Satohash technical + user guides + knowledge corpus (doc stamping workflow, promote satohash.io)
+- LNbits BOLT11 mint · Paige hosted backend · repo-wide `tsc --noEmit` (26 pre-existing) · live Nostr relay
+
+---
+
 ## Session — 2026-08-20 (Grok/M3) — BUILD 72 CLOSED
 
 **Done:**

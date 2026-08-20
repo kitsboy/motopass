@@ -33,9 +33,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/414b33ee9278536024e6ab34c7ce636d40cdc4e1d83ed5ce1fe39c90fc3098b7",
-          "content_hash": "414b33ee9278536024e6ab34c7ce636d40cdc4e1d83ed5ce1fe39c90fc3098b7",
-          "ots_path": "/proofs/el-salvador-d509c5268fd4.ots"
+          "proof_url": "https://satohash.io/verify/d509c5268fd43f6bb61eb5f858d358749d5b4a9ba6e34a9dc081987ec5abb261",
+          "content_hash": "d509c5268fd43f6bb61eb5f858d358749d5b4a9ba6e34a9dc081987ec5abb261",
+          "ots_path": "/proofs/el-salvador-d509c5268fd4.ots",
+          "stamped_at": "2026-08-20T23:38:34.108Z",
+          "stamp_id": "eb26f4fc-b292-4498-803e-c8002878d761"
         },
         {
           "field": "pathways",
@@ -93,7 +95,85 @@
           "Use Lightning-first business footprint in San Salvador"
         ],
         "escalate_when": "Large corporate relocation or mining operations"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 77,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.presidencia.gob.sv",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-05"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-05"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-05"
+        },
+        {
+          "text": "Bitcoin: Direct Bitcoin payments accepted in many places.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-05"
+        },
+        {
+          "text": "Tip: Use Lightning-first business footprint in San Salvador",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-05"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Verify current reform details before structuring",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-05"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 9,
+        "freedom": 9,
+        "stability": 9,
+        "tax": 7,
+        "cost": 10,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "d509c5268fd43f6bb61eb5f858d358749d5b4a9ba6e34a9dc081987ec5abb261"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "414b33ee92785360",
+          "to": "re-anchored d509c5268fd43f6b (stamp eb26f4fc-b29)",
+          "source": "satohash-api",
+          "hash": "d509c5268fd43f6bb61eb5f858d358749d5b4a9ba6e34a9dc081987ec5abb261"
+        }
+      ]
     },
     {
       "id": 2,
@@ -127,9 +207,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/8e899cd0df7ecb975b26574671c93a98243ef426f91d122823ed7dfedada4887",
-          "content_hash": "8e899cd0df7ecb975b26574671c93a98243ef426f91d122823ed7dfedada4887",
-          "ots_path": "/proofs/central-african-republic-27d7921d71cc.ots"
+          "proof_url": "https://satohash.io/verify/27d7921d71ccb5b5d2ab806576f74b044316f6c96dce44d71d05ad494f89fe2c",
+          "content_hash": "27d7921d71ccb5b5d2ab806576f74b044316f6c96dce44d71d05ad494f89fe2c",
+          "ots_path": "/proofs/central-african-republic-27d7921d71cc.ots",
+          "stamped_at": "2026-08-20T23:38:35.430Z",
+          "stamp_id": "4cab0aaf-f9fa-40df-b0fc-47b60b50b8ce"
         },
         {
           "field": "pathways",
@@ -201,7 +283,111 @@
           "Use Lightning-first merchant pilots where Bangui infrastructure allows"
         ],
         "escalate_when": "Any land purchase, mining-licence application, or investment above $50k in CAR"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 93,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://gouvernement.cf",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.finances.gouv.cf",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-20"
+        },
+        {
+          "text": "Bitcoin: Legal tender status enables direct Bitcoin use.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-20"
+        },
+        {
+          "text": "Tip: Position as pioneer/legal-tender research leg, not primary residency hub",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-20"
+        },
+        {
+          "text": "Tip: Pair with stable African anchor (Mauritius) if building an Africa stack",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-20"
+        },
+        {
+          "text": "Tip: Use Lightning-first merchant pilots where Bangui infrastructure allows",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-20"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-20"
+        },
+        {
+          "text": "No mature CBI or golden-visa program — agent marketing may overstate Sango offerings",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-20"
+        },
+        {
+          "text": "Security situation outside Bangui is volatile",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-20"
+        },
+        {
+          "text": "Banking and apostille infrastructure weak — plan long lead times",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-20"
+        },
+        {
+          "text": "Dual nationality rules unclear — confirm before naturalization planning",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-20"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 7,
+        "stability": 6,
+        "tax": 7,
+        "cost": 10,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "27d7921d71ccb5b5d2ab806576f74b044316f6c96dce44d71d05ad494f89fe2c"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "8e899cd0df7ecb97",
+          "to": "re-anchored 27d7921d71ccb5b5 (stamp 4cab0aaf-f9f)",
+          "source": "satohash-api",
+          "hash": "27d7921d71ccb5b5d2ab806576f74b044316f6c96dce44d71d05ad494f89fe2c"
+        }
+      ]
     },
     {
       "id": 3,
@@ -235,9 +421,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/04c9417462f752689333f1a36991ca85a31f2c0f23a6130c075ef42ac277a0aa",
-          "content_hash": "04c9417462f752689333f1a36991ca85a31f2c0f23a6130c075ef42ac277a0aa",
-          "ots_path": "/proofs/uruguay-9e3adfb544c1.ots"
+          "proof_url": "https://satohash.io/verify/9e3adfb544c1b648485a76090f9d97cf7b12c6fc50e866627a10272ec1ca6db1",
+          "content_hash": "9e3adfb544c1b648485a76090f9d97cf7b12c6fc50e866627a10272ec1ca6db1",
+          "ots_path": "/proofs/uruguay-9e3adfb544c1.ots",
+          "stamped_at": "2026-08-20T23:38:36.839Z",
+          "stamp_id": "f9b39c52-9011-4151-98b7-142a7f0c68f0"
         },
         {
           "field": "pathways",
@@ -303,7 +491,91 @@
           "RE investment for faster approval; territorial tax for BTC gains"
         ],
         "escalate_when": "Complex tax structuring or $500k+ investments"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 81,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.gub.uy/tramites/residencia-legal",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.minterior.gub.uy",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        },
+        {
+          "text": "Bitcoin: Stable jurisdiction for Bitcoin holders.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        },
+        {
+          "text": "Tip: RE investment for faster approval; territorial tax for BTC gains",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Income proof must be sustainable; apostille delays",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 8,
+        "freedom": 9,
+        "stability": 9,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "9e3adfb544c1b648485a76090f9d97cf7b12c6fc50e866627a10272ec1ca6db1"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "04c9417462f75268",
+          "to": "re-anchored 9e3adfb544c1b648 (stamp f9b39c52-901)",
+          "source": "satohash-api",
+          "hash": "9e3adfb544c1b648485a76090f9d97cf7b12c6fc50e866627a10272ec1ca6db1"
+        }
+      ]
     },
     {
       "id": 4,
@@ -337,9 +609,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/feb51c2ddc784d3fa9b9fcd54cc05e25580fbaee872e3eae54c00378a64cf09d",
-          "content_hash": "feb51c2ddc784d3fa9b9fcd54cc05e25580fbaee872e3eae54c00378a64cf09d",
-          "ots_path": "/proofs/bolivia-c385b8dd4489.ots"
+          "proof_url": "https://satohash.io/verify/c385b8dd4489e228d4e109eeae4ad332588e20e2d9bec31d9090e685c9d3719e",
+          "content_hash": "c385b8dd4489e228d4e109eeae4ad332588e20e2d9bec31d9090e685c9d3719e",
+          "ots_path": "/proofs/bolivia-c385b8dd4489.ots",
+          "stamped_at": "2026-08-20T23:38:38.413Z",
+          "stamp_id": "89b9da81-3cf9-43fa-b673-d2f2890f5594"
         },
         {
           "field": "pathways",
@@ -400,7 +674,95 @@
           "Position as value/distressed stack leg, not primary hub"
         ],
         "escalate_when": "Land purchase near restricted zones or corporate restructuring"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 98,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.migracion.gob.bo",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-15"
+        },
+        {
+          "text": "Bitcoin: Monitor for policy shifts.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-15"
+        },
+        {
+          "text": "Tip: Position as value/distressed stack leg, not primary hub",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-15"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Limited scope of freedom",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-15"
+        },
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-15"
+        },
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-15"
+        },
+        {
+          "text": "No pure CBI",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-15"
+        },
+        {
+          "text": "INRA land restrictions near borders",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-15"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 5,
+        "freedom": 5,
+        "stability": 6,
+        "tax": 7,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "c385b8dd4489e228d4e109eeae4ad332588e20e2d9bec31d9090e685c9d3719e"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "feb51c2ddc784d3f",
+          "to": "re-anchored c385b8dd4489e228 (stamp 89b9da81-3cf)",
+          "source": "satohash-api",
+          "hash": "c385b8dd4489e228d4e109eeae4ad332588e20e2d9bec31d9090e685c9d3719e"
+        }
+      ]
     },
     {
       "id": 5,
@@ -434,9 +796,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/03027c9c0a995a2f6276c730d4b90ab1c01c111ece254489163df2362834ca9d",
-          "content_hash": "03027c9c0a995a2f6276c730d4b90ab1c01c111ece254489163df2362834ca9d",
-          "ots_path": "/proofs/st-kitts-and-nevis-6a452e9aa052.ots"
+          "proof_url": "https://satohash.io/verify/6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2",
+          "content_hash": "6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2",
+          "ots_path": "/proofs/st-kitts-and-nevis-6a452e9aa052.ots",
+          "stamped_at": "2026-08-20T23:38:39.841Z",
+          "stamp_id": "1f59a490-61fc-474e-8ea6-ee1151eb0d30"
         },
         {
           "field": "pathways",
@@ -503,7 +867,95 @@
           "SGF for speed and simplicity; RE if you want an asset + passport combo"
         ],
         "escalate_when": "Crypto source-of-funds documentation or family application >4 dependents"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 79,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.ciu.gov.kn",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-03"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-03"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-03"
+        },
+        {
+          "text": "Bitcoin: Program accepts real estate or donation; some flexibility for crypto-sourced funds.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-03"
+        },
+        {
+          "text": "Tip: SGF for speed and simplicity; RE if you want an asset + passport combo",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-03"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Use only CIU-licensed agents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-03"
+        },
+        {
+          "text": "Source-of-funds scrutiny high for crypto wealth",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-03"
+        },
+        {
+          "text": "Real estate route has hold-period lock-up",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-03"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 8,
+        "freedom": 8,
+        "stability": 9,
+        "tax": 9,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "03027c9c0a995a2f",
+          "to": "re-anchored 6a452e9aa0522016 (stamp 1f59a490-61f)",
+          "source": "satohash-api",
+          "hash": "6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2"
+        }
+      ]
     },
     {
       "id": 6,
@@ -537,9 +989,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/b0080967535080db1856cd83793a382b2ff86ec82908584be998ce1e8d77a677",
-          "content_hash": "b0080967535080db1856cd83793a382b2ff86ec82908584be998ce1e8d77a677",
-          "ots_path": "/proofs/antigua-and-barbuda-91a26594ae70.ots"
+          "proof_url": "https://satohash.io/verify/91a26594ae7015d5cb1b6ca08dd00e0f9c349b0c44399f6a03ee5f383fc2ef44",
+          "content_hash": "91a26594ae7015d5cb1b6ca08dd00e0f9c349b0c44399f6a03ee5f383fc2ef44",
+          "ots_path": "/proofs/antigua-and-barbuda-91a26594ae70.ots",
+          "stamped_at": "2026-08-20T23:38:41.416Z",
+          "stamp_id": "6a6dc159-dac3-4818-b784-9ebe71ad0989"
         },
         {
           "field": "pathways",
@@ -606,7 +1060,100 @@
           "NDF for cost efficiency; plan 5-day visits as Caribbean holidays"
         ],
         "escalate_when": "Family applications or complex crypto wealth tracing"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 85,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.cip.gov.ag",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-28"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-28"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-28"
+        },
+        {
+          "text": "Bitcoin: Good for Bitcoin-funded applications.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-28"
+        },
+        {
+          "text": "Tip: NDF for cost efficiency; plan 5-day visits as Caribbean holidays",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-28"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-28"
+        },
+        {
+          "text": "5-day visit requirement over 5 years — track compliance",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-28"
+        },
+        {
+          "text": "Processing fees add ~$30k+ on top of donation",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-28"
+        },
+        {
+          "text": "Business route rarely used — confirm viability",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-28"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 7,
+        "stability": 6,
+        "tax": 9,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "91a26594ae7015d5cb1b6ca08dd00e0f9c349b0c44399f6a03ee5f383fc2ef44"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "b0080967535080db",
+          "to": "re-anchored 91a26594ae7015d5 (stamp 6a6dc159-dac)",
+          "source": "satohash-api",
+          "hash": "91a26594ae7015d5cb1b6ca08dd00e0f9c349b0c44399f6a03ee5f383fc2ef44"
+        }
+      ]
     },
     {
       "id": 7,
@@ -640,9 +1187,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/e7932ee15cefc0b7a19cedeb3ede1a3be5178092480095b50142c2969fba7457",
-          "content_hash": "e7932ee15cefc0b7a19cedeb3ede1a3be5178092480095b50142c2969fba7457",
-          "ots_path": "/proofs/dominica-5af844999b98.ots"
+          "proof_url": "https://satohash.io/verify/5af844999b98cd5887607fc7b51656ba66d7e599ba3856065dc4744dac179b3f",
+          "content_hash": "5af844999b98cd5887607fc7b51656ba66d7e599ba3856065dc4744dac179b3f",
+          "ots_path": "/proofs/dominica-5af844999b98.ots",
+          "stamped_at": "2026-08-20T23:38:42.847Z",
+          "stamp_id": "217dfbe6-39ea-4909-90cf-f1376671311a"
         },
         {
           "field": "pathways",
@@ -709,7 +1258,100 @@
           "EDF for budget-conscious stackers needing a second passport fast"
         ],
         "escalate_when": "Comparing Dominica vs Grenada for E-2 treaty access (Grenada only)"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 80,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://cbiu.gov.dm",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-02"
+        },
+        {
+          "text": "Bitcoin: Affordable entry point with solid passport.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-02"
+        },
+        {
+          "text": "Tip: EDF for budget-conscious stackers needing a second passport fast",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-02"
+        },
+        {
+          "text": "Passport slightly weaker than premium tier",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-02"
+        },
+        {
+          "text": "Only use CBIU-authorized agents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-02"
+        },
+        {
+          "text": "Post-approval name change restrictions apply",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 7,
+        "stability": 6,
+        "tax": 9,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "5af844999b98cd5887607fc7b51656ba66d7e599ba3856065dc4744dac179b3f"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "e7932ee15cefc0b7",
+          "to": "re-anchored 5af844999b98cd58 (stamp 217dfbe6-39e)",
+          "source": "satohash-api",
+          "hash": "5af844999b98cd5887607fc7b51656ba66d7e599ba3856065dc4744dac179b3f"
+        }
+      ]
     },
     {
       "id": 8,
@@ -744,9 +1386,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/81159d01063d9c39512e38170ef21ba71619e7cd33e2637a35c419ac49586c04",
-          "content_hash": "81159d01063d9c39512e38170ef21ba71619e7cd33e2637a35c419ac49586c04",
-          "ots_path": "/proofs/uae-dubai-abu-dhabi-3feeb56e3372.ots"
+          "proof_url": "https://satohash.io/verify/3feeb56e33724b916386121e28fc4326102dd1700c230888929e3e4d6e143c73",
+          "content_hash": "3feeb56e33724b916386121e28fc4326102dd1700c230888929e3e4d6e143c73",
+          "ots_path": "/proofs/uae-dubai-abu-dhabi-3feeb56e3372.ots",
+          "stamped_at": "2026-08-20T23:38:44.436Z",
+          "stamp_id": "83b39743-a07a-4257-b853-a98d9039c136"
         },
         {
           "field": "pathways",
@@ -807,7 +1451,96 @@
           "VARA-licensed structure for crypto treasury; Lightning-friendly free zones"
         ],
         "escalate_when": "VARA licensing or $1M+ property golden visa"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 75,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://u.ae",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.vara.ae",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Bitcoin: World-class for Bitcoin businesses and holders.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Tip: VARA-licensed structure for crypto treasury; Lightning-friendly free zones",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "No CBI path to passport",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Free zone vs mainland entity choice matters",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 10,
+        "freedom": 10,
+        "stability": 9,
+        "tax": 9,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "3feeb56e33724b916386121e28fc4326102dd1700c230888929e3e4d6e143c73"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "81159d01063d9c39",
+          "to": "re-anchored 3feeb56e33724b91 (stamp 83b39743-a07)",
+          "source": "satohash-api",
+          "hash": "3feeb56e33724b916386121e28fc4326102dd1700c230888929e3e4d6e143c73"
+        }
+      ]
     },
     {
       "id": 9,
@@ -842,9 +1575,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/3467ebf7f83723dbdcb81945f7cea952713cd86d3079356adccf85198642f194",
-          "content_hash": "3467ebf7f83723dbdcb81945f7cea952713cd86d3079356adccf85198642f194",
-          "ots_path": "/proofs/switzerland-02caca688c68.ots"
+          "proof_url": "https://satohash.io/verify/02caca688c68f420a9e38755f5064e8ab4e7a82d3eff5b169eb288e5b04aecc2",
+          "content_hash": "02caca688c68f420a9e38755f5064e8ab4e7a82d3eff5b169eb288e5b04aecc2",
+          "ots_path": "/proofs/switzerland-02caca688c68.ots",
+          "stamped_at": "2026-08-20T23:38:45.866Z",
+          "stamp_id": "3fb32305-e7ea-4237-9b4b-dd673824cc73"
         },
         {
           "field": "pathways",
@@ -905,7 +1640,96 @@
           "Zug for Bitcoin treasury companies; lump-sum in low-tax cantons"
         ],
         "escalate_when": "Canton negotiation or FINMA-regulated activity"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 78,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.sem.admin.ch",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.zug.ch",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-04"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-04"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-04"
+        },
+        {
+          "text": "Bitcoin: Best-in-class infrastructure for Bitcoin companies and individuals.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-04"
+        },
+        {
+          "text": "Tip: Zug for Bitcoin treasury companies; lump-sum in low-tax cantons",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-04"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Citizenship takes years — plan for residency not passport",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-04"
+        },
+        {
+          "text": "Canton selection drives tax outcome",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-04"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 9,
+        "freedom": 9,
+        "stability": 9,
+        "tax": 7,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "02caca688c68f420a9e38755f5064e8ab4e7a82d3eff5b169eb288e5b04aecc2"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "3467ebf7f83723db",
+          "to": "re-anchored 02caca688c68f420 (stamp 3fb32305-e7e)",
+          "source": "satohash-api",
+          "hash": "02caca688c68f420a9e38755f5064e8ab4e7a82d3eff5b169eb288e5b04aecc2"
+        }
+      ]
     },
     {
       "id": 10,
@@ -940,9 +1764,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/c33cafa9586cac2b99cbfbf843c2132f2860b754df216380cbe47b93d5c0c9d1",
-          "content_hash": "c33cafa9586cac2b99cbfbf843c2132f2860b754df216380cbe47b93d5c0c9d1",
-          "ots_path": "/proofs/singapore-994c9ac4c70c.ots"
+          "proof_url": "https://satohash.io/verify/994c9ac4c70ca766b2cde65fb88bd7e0b2320d4774f87a88f8f7bfe33a323b2d",
+          "content_hash": "994c9ac4c70ca766b2cde65fb88bd7e0b2320d4774f87a88f8f7bfe33a323b2d",
+          "ots_path": "/proofs/singapore-994c9ac4c70c.ots",
+          "stamped_at": "2026-08-20T23:39:20.410Z",
+          "stamp_id": "ed7eba7e-15e7-474d-816c-c9c2fafaa2c7"
         },
         {
           "field": "pathways",
@@ -1011,7 +1837,101 @@
           "Structure for PR + tax efficiency, not passport; use VCC for fund vehicles"
         ],
         "escalate_when": "MAS licensing, GIP fund selection, or $5M+ family office structuring"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 76,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.edb.gov.sg",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.mas.gov.sg",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-06"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-06"
+        },
+        {
+          "text": "Bitcoin: World-class for Bitcoin trading, custody, and business.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-06"
+        },
+        {
+          "text": "Tip: Structure for PR + tax efficiency, not passport; use VCC for fund vehicles",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-06"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-06"
+        },
+        {
+          "text": "Citizenship effectively unavailable for most",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-06"
+        },
+        {
+          "text": "MAS licensing required for custodial/trading activity",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-06"
+        },
+        {
+          "text": "ABSD adds cost to property route",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-06"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 9,
+        "freedom": 9,
+        "stability": 9,
+        "tax": 9,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "994c9ac4c70ca766b2cde65fb88bd7e0b2320d4774f87a88f8f7bfe33a323b2d"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "c33cafa9586cac2b",
+          "to": "re-anchored 994c9ac4c70ca766 (stamp ed7eba7e-15e)",
+          "source": "satohash-api",
+          "hash": "994c9ac4c70ca766b2cde65fb88bd7e0b2320d4774f87a88f8f7bfe33a323b2d"
+        }
+      ]
     },
     {
       "id": 11,
@@ -1045,9 +1965,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/92358986c6946d3cc48ad0cc0d585980d168ba4e7b5dfeff0a5fa4c5a4f8d3c9",
-          "content_hash": "92358986c6946d3cc48ad0cc0d585980d168ba4e7b5dfeff0a5fa4c5a4f8d3c9",
-          "ots_path": "/proofs/portugal-c538408c3f58.ots"
+          "proof_url": "https://satohash.io/verify/c538408c3f58df15f742bd7c985af91fafefca90f18812f6c0d125aa9d1a351a",
+          "content_hash": "c538408c3f58df15f742bd7c985af91fafefca90f18812f6c0d125aa9d1a351a",
+          "ots_path": "/proofs/portugal-c538408c3f58.ots",
+          "stamped_at": "2026-08-20T23:39:24.344Z",
+          "stamp_id": "58a7e0e4-de02-47ce-96ba-06dc1cd90539"
         },
         {
           "field": "pathways",
@@ -1108,7 +2030,101 @@
           "D7 for lower capital; fund route for EU stackers"
         ],
         "escalate_when": "NHR + crypto treasury structuring"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 83,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://imigrante.sef.pt",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.portugal.gov.pt",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-30"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-30"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-30"
+        },
+        {
+          "text": "Bitcoin: Monitor closely.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-30"
+        },
+        {
+          "text": "Tip: D7 for lower capital; fund route for EU stackers",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-30"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-30"
+        },
+        {
+          "text": "Policy shifted 2023–2024 — confirm eligible investment category",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-30"
+        },
+        {
+          "text": "NHR regime changes",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-30"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 5,
+        "stability": 6,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "c538408c3f58df15f742bd7c985af91fafefca90f18812f6c0d125aa9d1a351a"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "92358986c6946d3c",
+          "to": "re-anchored c538408c3f58df15 (stamp 58a7e0e4-de0)",
+          "source": "satohash-api",
+          "hash": "c538408c3f58df15f742bd7c985af91fafefca90f18812f6c0d125aa9d1a351a"
+        }
+      ]
     },
     {
       "id": 12,
@@ -1142,9 +2158,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/9902443fa88fa82e5873236e07e24062cac5af87e491ae42deecc17d63c1f657",
-          "content_hash": "9902443fa88fa82e5873236e07e24062cac5af87e491ae42deecc17d63c1f657",
-          "ots_path": "/proofs/malta-7a9f591e2499.ots"
+          "proof_url": "https://satohash.io/verify/7a9f591e2499d54309cfb645c6680d8f0668f339d54d3007b7a6050c1ff619c0",
+          "content_hash": "7a9f591e2499d54309cfb645c6680d8f0668f339d54d3007b7a6050c1ff619c0",
+          "ots_path": "/proofs/malta-7a9f591e2499.ots",
+          "stamped_at": "2026-08-20T23:39:27.582Z",
+          "stamp_id": "8a17b0c2-cec6-48cd-bd1b-d633a7bff3d5"
         },
         {
           "field": "pathways",
@@ -1213,7 +2231,101 @@
           "MPRP for Schengen access with minimal stay; remittance basis for foreign-sourced BTC gains"
         ],
         "escalate_when": "MFSA licensing application or citizenship naturalization planning"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 81,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://residencymalta.gov.mt",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.mfsa.mt",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        },
+        {
+          "text": "Bitcoin: Strong for regulated Bitcoin activity in EU.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        },
+        {
+          "text": "Tip: MPRP for Schengen access with minimal stay; remittance basis for foreign-sourced BTC gains",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        }
+      ],
+      "cons": [
+        {
+          "text": "IIP closed — do not confuse with MPRP",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        },
+        {
+          "text": "Remittance basis tax requires careful structuring",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        },
+        {
+          "text": "Citizenship is slow vs Caribbean CBI",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-01"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 8,
+        "freedom": 8,
+        "stability": 9,
+        "tax": 7,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "7a9f591e2499d54309cfb645c6680d8f0668f339d54d3007b7a6050c1ff619c0"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "9902443fa88fa82e",
+          "to": "re-anchored 7a9f591e2499d543 (stamp 8a17b0c2-cec)",
+          "source": "satohash-api",
+          "hash": "7a9f591e2499d54309cfb645c6680d8f0668f339d54d3007b7a6050c1ff619c0"
+        }
+      ]
     },
     {
       "id": 13,
@@ -1247,9 +2359,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/be87377d1f95266cfc56cc7d7e9ffa1dd732af0376efbc91b0ced6e09c194d81",
-          "content_hash": "be87377d1f95266cfc56cc7d7e9ffa1dd732af0376efbc91b0ced6e09c194d81",
-          "ots_path": "/proofs/panama-f834d1ee5e41.ots"
+          "proof_url": "https://satohash.io/verify/f834d1ee5e418f4384f709cb9f9699aa1b026a9b576a908055714b3fd6220c9e",
+          "content_hash": "f834d1ee5e418f4384f709cb9f9699aa1b026a9b576a908055714b3fd6220c9e",
+          "ots_path": "/proofs/panama-f834d1ee5e41.ots",
+          "stamped_at": "2026-08-20T23:39:31.260Z",
+          "stamp_id": "2cbba005-d46e-4f80-a152-bf615f8c496b"
         },
         {
           "field": "pathways",
@@ -1318,7 +2432,101 @@
           "Territorial tax + Friendly Nations for budget stackers; RE route for permanent residency"
         ],
         "escalate_when": "Crypto fund source documentation for banking or $300k+ qualified investor structuring"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 88,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.migracion.gob.pa",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.gacetaoficial.gob.pa",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-25"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-25"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-25"
+        },
+        {
+          "text": "Bitcoin: Popular Bitcoin jurisdiction in practice.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-25"
+        },
+        {
+          "text": "Tip: Territorial tax + Friendly Nations for budget stackers; RE route for permanent residency",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-25"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Banking due diligence strict for crypto-sourced funds",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-25"
+        },
+        {
+          "text": "Qualified investor thresholds changed — confirm current amounts",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-25"
+        },
+        {
+          "text": "Friendly Nations country list is limited",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-25"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 8,
+        "freedom": 8,
+        "stability": 9,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "f834d1ee5e418f4384f709cb9f9699aa1b026a9b576a908055714b3fd6220c9e"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "be87377d1f95266c",
+          "to": "re-anchored f834d1ee5e418f43 (stamp 2cbba005-d46)",
+          "source": "satohash-api",
+          "hash": "f834d1ee5e418f4384f709cb9f9699aa1b026a9b576a908055714b3fd6220c9e"
+        }
+      ]
     },
     {
       "id": 14,
@@ -1352,9 +2560,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/6f0a02af24f0841e9b74fdabba0ebc84382dfa2442cd9dcdb26641c80e6b2de3",
-          "content_hash": "6f0a02af24f0841e9b74fdabba0ebc84382dfa2442cd9dcdb26641c80e6b2de3",
-          "ots_path": "/proofs/georgia-692d34157ac8.ots"
+          "proof_url": "https://satohash.io/verify/692d34157ac8b046d436567147c426ee19fe6ecf9fecbab963d72dfd795a6050",
+          "content_hash": "692d34157ac8b046d436567147c426ee19fe6ecf9fecbab963d72dfd795a6050",
+          "ots_path": "/proofs/georgia-692d34157ac8.ots",
+          "stamped_at": "2026-08-20T23:39:34.586Z",
+          "stamp_id": "b6d2e73a-4fb7-4ce3-96e0-0fd3815e37a0"
         },
         {
           "field": "pathways",
@@ -1423,7 +2633,101 @@
           "Company + remote work combo for lowest cost; Tbilisi as BTC operational base"
         ],
         "escalate_when": "VASP-regulated business activity or large-scale mining operations"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 75,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://sda.gov.ge",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.rs.ge",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Bitcoin: Fast, low-cost, crypto-positive.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Tip: Company + remote work combo for lowest cost; Tbilisi as BTC operational base",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        }
+      ],
+      "cons": [
+        {
+          "text": "VASP rules evolving — business activity may need licensing soon",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Banking can be uneven for crypto deposits",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Citizenship takes 10 years",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-06-07"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 8,
+        "freedom": 8,
+        "stability": 9,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "692d34157ac8b046d436567147c426ee19fe6ecf9fecbab963d72dfd795a6050"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "6f0a02af24f0841e",
+          "to": "re-anchored 692d34157ac8b046 (stamp b6d2e73a-4fb)",
+          "source": "satohash-api",
+          "hash": "692d34157ac8b046d436567147c426ee19fe6ecf9fecbab963d72dfd795a6050"
+        }
+      ]
     },
     {
       "id": 15,
@@ -1457,9 +2761,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/392fa04a3fcd90dae1494b610a9580639d0a4ca3f9926d4ea2c2d5acbcef5680",
-          "content_hash": "392fa04a3fcd90dae1494b610a9580639d0a4ca3f9926d4ea2c2d5acbcef5680",
-          "ots_path": "/proofs/paraguay-d31c88b62c96.ots"
+          "proof_url": "https://satohash.io/verify/d31c88b62c960276627afd5ee833c131500103430312cd7d36b159ab6f31a17e",
+          "content_hash": "d31c88b62c960276627afd5ee833c131500103430312cd7d36b159ab6f31a17e",
+          "ots_path": "/proofs/paraguay-d31c88b62c96.ots",
+          "stamped_at": "2026-08-20T23:39:38.141Z",
+          "stamp_id": "9c1edb0e-d604-486b-ac19-e4dded389721"
         },
         {
           "field": "pathways",
@@ -1528,7 +2834,106 @@
           "Rentista for low-capital remote earners; SUACE for business operators and miners"
         ],
         "escalate_when": "Mining operation licensing or citizenship naturalization within 3-year window"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 95,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.migraciones.gov.py",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.set.gov.py",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-18"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-18"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-18"
+        },
+        {
+          "text": "Bitcoin: Watch for Bitcoin mining and adoption growth.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-18"
+        },
+        {
+          "text": "Tip: Rentista for low-capital remote earners; SUACE for business operators and miners",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-18"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-18"
+        },
+        {
+          "text": "Immigration bureaucracy can be slow and inconsistent",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-18"
+        },
+        {
+          "text": "Bitcoin mining regulations still evolving",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-18"
+        },
+        {
+          "text": "Banking for crypto natives uneven",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-05-18"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 6,
+        "stability": 6,
+        "tax": 7,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "d31c88b62c960276627afd5ee833c131500103430312cd7d36b159ab6f31a17e"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "392fa04a3fcd90da",
+          "to": "re-anchored d31c88b62c960276 (stamp 9c1edb0e-d60)",
+          "source": "satohash-api",
+          "hash": "d31c88b62c960276627afd5ee833c131500103430312cd7d36b159ab6f31a17e"
+        }
+      ]
     },
     {
       "name": "Costa Rica",
@@ -1562,9 +2967,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/8d5621d63fb115907bf5cc81814481363296b00ae407f92d8c4b9791654ceae0",
-          "content_hash": "8d5621d63fb115907bf5cc81814481363296b00ae407f92d8c4b9791654ceae0",
-          "ots_path": "/proofs/costa-rica-ec93289aa77e.ots"
+          "proof_url": "https://satohash.io/verify/ec93289aa77e74cb14251c9e697e512efee306619e7726d0b67b8b348a7c0bbc",
+          "content_hash": "ec93289aa77e74cb14251c9e697e512efee306619e7726d0b67b8b348a7c0bbc",
+          "ots_path": "/proofs/costa-rica-ec93289aa77e.ots",
+          "stamped_at": "2026-08-20T23:39:41.709Z",
+          "stamp_id": "c1582fd0-06a6-4dbf-ac50-61af5f575709"
         },
         {
           "field": "pathways",
@@ -1634,7 +3041,106 @@
           "Stack with Panama Friendly Nations for Central America mobility"
         ],
         "escalate_when": "Inversionista $150k+ deployment or maritime-zone property structuring"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.migracion.go.cr",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.hacienda.go.cr",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Nomad-friendly, Lightning cafes in San José",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Digital nomad visa for lowest-capital remote earners; territorial tax for foreign BTC realized abroad",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Stack with Panama Friendly Nations for Central America mobility",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Income proofs must be apostilled — plan 2–3 month lead time",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Banking due diligence strict for crypto-sourced deposits",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Maritime-zone property requires concession, not fee simple",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 6,
+        "stability": 6,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "ec93289aa77e74cb14251c9e697e512efee306619e7726d0b67b8b348a7c0bbc"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "8d5621d63fb11590",
+          "to": "re-anchored ec93289aa77e74cb (stamp c1582fd0-06a)",
+          "source": "satohash-api",
+          "hash": "ec93289aa77e74cb14251c9e697e512efee306619e7726d0b67b8b348a7c0bbc"
+        }
+      ]
     },
     {
       "name": "Hong Kong",
@@ -1668,9 +3174,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/60b6287b11a999e56442dc704a3e03890c35f4a17991dbc07c9c0e9b600619dd",
-          "content_hash": "60b6287b11a999e56442dc704a3e03890c35f4a17991dbc07c9c0e9b600619dd",
-          "ots_path": "/proofs/hong-kong-4a16ed5842c1.ots"
+          "proof_url": "https://satohash.io/verify/4a16ed5842c138873dfde1b23b0f49708e9b0489bfa08780983c9a11c8099417",
+          "content_hash": "4a16ed5842c138873dfde1b23b0f49708e9b0489bfa08780983c9a11c8099417",
+          "ots_path": "/proofs/hong-kong-4a16ed5842c1.ots",
+          "stamped_at": "2026-08-20T23:39:45.149Z",
+          "stamp_id": "91fc3475-0d43-40c3-8b82-2e91960bd98b"
         },
         {
           "field": "pathways",
@@ -1740,7 +3248,101 @@
           "Pair with Singapore GIP only if capital exceeds single-jurisdiction needs"
         ],
         "escalate_when": "SFC VATP licensing, CIES asset selection, or $5M+ family office structuring"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.immd.gov.hk",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.sfc.hk",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Licensed exchanges, institutional BTC custody",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Structure for PR + zero CGT, not passport; TTPS for employed crypto professionals",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Pair with Singapore GIP only if capital exceeds single-jurisdiction needs",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "CIES threshold is HK$30M — confirm permitted asset categories",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "SFC licensing required for custodial/trading activity",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "BSD surcharges add significant property cost for non-PR holders",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 8,
+        "freedom": 7,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "4a16ed5842c138873dfde1b23b0f49708e9b0489bfa08780983c9a11c8099417"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "60b6287b11a999e5",
+          "to": "re-anchored 4a16ed5842c13887 (stamp 91fc3475-0d4)",
+          "source": "satohash-api",
+          "hash": "4a16ed5842c138873dfde1b23b0f49708e9b0489bfa08780983c9a11c8099417"
+        }
+      ]
     },
     {
       "name": "Thailand",
@@ -1774,9 +3376,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/1df8b816392543c763bf29a9fb8c66730910cf727ec0dfdca6c4cfa528619c06",
-          "content_hash": "1df8b816392543c763bf29a9fb8c66730910cf727ec0dfdca6c4cfa528619c06",
-          "ots_path": "/proofs/thailand-b72a6e34f7b7.ots"
+          "proof_url": "https://satohash.io/verify/b72a6e34f7b7f3486f9d66cec5ed656df92a0f3f3a0c1397b9741d782755094a",
+          "content_hash": "b72a6e34f7b7f3486f9d66cec5ed656df92a0f3f3a0c1397b9741d782755094a",
+          "ots_path": "/proofs/thailand-b72a6e34f7b7.ots",
+          "stamped_at": "2026-08-20T23:39:48.658Z",
+          "stamp_id": "cd825708-e316-49fd-b751-0f6383bcd196"
         },
         {
           "field": "pathways",
@@ -1846,7 +3450,111 @@
           "Avoid remitting crypto gains to Thai accounts until tax counsel confirms treatment"
         ],
         "escalate_when": "LTR category selection, BOI company structuring, or large condo portfolio acquisition"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://ltr.boi.go.th",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.immigration.go.th",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: LTR visa popular with Bitcoiners",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Elite for lifestyle-only; LTR if you need legal work authorization",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Avoid remitting crypto gains to Thai accounts until tax counsel confirms treatment",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "2024 remittance-based taxation — keep foreign gains offshore until rules clarified",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Land ownership restricted — condo 49% quota or leasehold only",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Work permit required for any local employment activity",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 6,
+        "stability": 6,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "b72a6e34f7b7f3486f9d66cec5ed656df92a0f3f3a0c1397b9741d782755094a"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "1df8b816392543c7",
+          "to": "re-anchored b72a6e34f7b7f348 (stamp cd825708-e31)",
+          "source": "satohash-api",
+          "hash": "b72a6e34f7b7f3486f9d66cec5ed656df92a0f3f3a0c1397b9741d782755094a"
+        }
+      ]
     },
     {
       "name": "Mexico",
@@ -1880,9 +3588,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/7ac3fa094a892da4fe123e12b7fe61d6c13e7dca96fa5e9d9259dd43394da942",
-          "content_hash": "7ac3fa094a892da4fe123e12b7fe61d6c13e7dca96fa5e9d9259dd43394da942",
-          "ots_path": "/proofs/mexico-c336294e6264.ots"
+          "proof_url": "https://satohash.io/verify/c336294e6264fbc187185fcb99881fe6724d8475ffe9a04408dae7d976bcb90f",
+          "content_hash": "c336294e6264fbc187185fcb99881fe6724d8475ffe9a04408dae7d976bcb90f",
+          "ots_path": "/proofs/mexico-c336294e6264.ots",
+          "stamped_at": "2026-08-20T23:39:52.185Z",
+          "stamp_id": "999d9a7e-468a-4be9-b6df-93abafc9f68a"
         },
         {
           "field": "pathways",
@@ -1951,7 +3661,106 @@
           "Temporary resident for fast North American base; territorial tax for foreign BTC income"
         ],
         "escalate_when": "Fideicomiso structuring, investor visa capital deployment, or citizenship naturalization"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.inm.gob.mx",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.gob.mx",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin circular economies in CDMX and beach towns",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Temporary resident for fast North American base; territorial tax for foreign BTC income",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Consulate requirements vary significantly",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Coastal property needs fideicomiso structure",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Cartel/security considerations in some regions — location matters",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 6,
+        "stability": 6,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "c336294e6264fbc187185fcb99881fe6724d8475ffe9a04408dae7d976bcb90f"
+        },
+        {
+          "date": "2026-08-20",
+          "field": "proof",
+          "from": "7ac3fa094a892da4",
+          "to": "re-anchored c336294e6264fbc1 (stamp 999d9a7e-468)",
+          "source": "satohash-api",
+          "hash": "c336294e6264fbc187185fcb99881fe6724d8475ffe9a04408dae7d976bcb90f"
+        }
+      ]
     },
     {
       "name": "Cyprus",
@@ -2057,7 +3866,98 @@
           "Pair with Malta MPRP only if you need two Mediterranean EU anchors"
         ],
         "escalate_when": "6.2 property selection, non-dom election, or CySEC-licensed business setup"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.moi.gov.cy",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.mof.gov.cy",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: EU passport path, crypto service providers licensed",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: 6.2 PR for zero-stay EU base; non-dom for 17-year foreign-gains shield",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Golden passport closed — agents still marketing it illegally",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "6.2 requires new-build residential, not resale in all cases",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Non-dom requires careful day-count and remittance planning",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 6,
+        "stability": 6,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "d973ba0673408f0a368146844f3ef31bdd4b7baf69d256f5118d3fb6567876bf"
+        }
+      ]
     },
     {
       "name": "Greece",
@@ -2165,7 +4065,103 @@
           "Athens merchant density growing — viable Lightning lifestyle base within EU"
         ],
         "escalate_when": "Golden visa property selection in €800k zones, non-dom election, or citizenship naturalization planning"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://migration.gov.gr",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.mfa.gr",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: EU mobility, monitor crypto tax rules",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: FIP or digital nomad for sub-€250k budgets; golden visa only if committed to qualifying RE zone",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "2024 threshold reforms — confirm zone before signing purchase contract",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Golden visa does not grant work rights for Greek employers without separate permit",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Non-dom election has strict timing and substance requirements",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Property due diligence essential — undeclared building violations common",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 5,
+        "stability": 6,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "afcaa9b623bdb1e2ea28dd868738966b9d829b01d7f066f854d643db2fb540a9"
+        }
+      ]
     },
     {
       "name": "Vanuatu",
@@ -2273,7 +4269,103 @@
           "Lightning merchant presence growing in Port Vila — viable short-stay base"
         ],
         "escalate_when": "Crypto source-of-funds documentation, family application >3 dependents, or comparing DSP vs Caribbean CBI economics"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://cilc.vu",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://immigration.gov.vu",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Fast passport, Bitcoin-friendly agents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: DSP donation for speed and tax-free status; residency permit if you want Pacific lifestyle without CBI capital",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Use only Citizenship Commission–licensed agents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "EU Schengen waiver has been suspended before — passport mobility not guaranteed long-term",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Leasehold land system unfamiliar to common-law buyers — title review essential",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Source-of-funds scrutiny high for crypto wealth",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 6,
+        "stability": 6,
+        "tax": 9,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "3210959517994f765209cd1362c3fa8ab33d442ffdddbef366b0cbc063dfc14f"
+        }
+      ]
     },
     {
       "name": "Turkey",
@@ -2382,7 +4474,103 @@
           "Use escrow and independent tapu valuation before citizenship application filing"
         ],
         "escalate_when": "CBI property due diligence, military-clearance issues, or crypto-to-lira conversion for tapu purchase"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.goc.gov.tr",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.invest.gov.tr",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: High retail BTC adoption",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: CBI for fast passport; business route for lower-capital Istanbul operations",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Istanbul has strongest BTC merchant density in country",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Property must be valued at $400k on official deed — inflated appraisals trigger rejection",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "3-year hold lock-up on CBI property — early sale voids citizenship",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Military-zone clearance can delay or block purchases",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Lira depreciation risk — price in hard currency at contract",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 5,
+        "stability": 6,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "d837cfc89a7b39433a2b931c24f67ebdb4a5e4eb06aa06239b83ae79833b4d7c"
+        }
+      ]
     },
     {
       "name": "Mauritius",
@@ -2492,7 +4680,103 @@
           "Pair with CAR or Seychelles for Indian Ocean/Africa stack diversification"
         ],
         "escalate_when": "FSC sandbox licensing, IRS/PDS property selection, or occupation-permit business structuring above $100k"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.edbmauritius.org",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://immigration.govmu.org",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: FSC crypto sandbox",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Premium Visa for lowest-capital remote Bitcoin earners; keep foreign gains offshore",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Occupation Permit for entrepreneurs building Africa-facing Bitcoin businesses",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Territorial tax requires careful remittance planning — bringing crypto gains onshore may trigger liability",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Standard property purchases restricted for foreigners outside IRS/PDS",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Citizenship is slow and dual nationality on naturalization is limited",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Banking due diligence strict for crypto-sourced funds",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 6,
+        "stability": 6,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "b427d068a55c10ffdc22586449a4a9e535e733bab8fbffb56f388a57bb2c94f9"
+        }
+      ]
     },
     {
       "name": "Seychelles",
@@ -2602,7 +4886,109 @@
           "Stack with Mauritius Premium Visa or UAE free zone for Indian Ocean + Gulf mobility"
         ],
         "escalate_when": "SIB project memorandum, GOP application, or property sanction above $100k"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.ics.gov.sc",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.investinseychelles.com",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.src.gov.sc",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Offshore structures common",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: GCCS + offshore treasury for asset protection; Residence Permit for lifestyle base",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Pair GOP/SIB approval if launching an on-island Bitcoin business",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Stack with Mauritius Premium Visa or UAE free zone for Indian Ocean + Gulf mobility",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Residence Permit prohibits gainful occupation — need GOP for business activity",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "SCR 20,000 bank guarantee callable for govt medical/repatriation costs",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "No free public healthcare on Residence Permit",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Offshore company ≠ physical residency — structure both if relocating",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 5,
+        "stability": 6,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "857993eee28c3a560dc53c04e61fe7a8b76762a004ded74b3c9132e4dbef3023"
+        }
+      ]
     },
     {
       "id": 26,
@@ -2712,7 +5098,109 @@
           "Florianópolis and São Paulo have strongest BTC merchant density"
         ],
         "escalate_when": "R$500k+ investor capital deployment, crypto-to-BRL banking, or citizenship within 4-year window"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.gov.br/pf/pt-br/assuntos/imigracao",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Active Bitcoin community; Lightning adoption in fintech corridors.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: VITEM XIV for low-capital nomads; VITEM IX for business operators",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Visas must be obtained abroad — not at Brazilian airports",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "R$500k investor capital must be traceable — crypto source-of-funds scrutiny",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Crypto gains taxable once Brazilian tax resident",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Consulate requirements vary by jurisdiction",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 7,
+        "stability": 6,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "838e334a0ef9bea75866d2ae984f088db1c68fd89c360821ccab9472e3f5cffb"
+        }
+      ]
     },
     {
       "id": 27,
@@ -2823,7 +5311,109 @@
           "Stack with Uruguay Mercosur residency for diversified South America base"
         ],
         "escalate_when": "Inversor business structuring, rentista fund-source documentation, or citizenship within 2-year window"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.migraciones.gob.ar",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.boletinoficial.gob.ar",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Active Bitcoin community; Lightning adoption in fintech corridors.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Rentista for lowest-capital passive BTC income earners",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Rentista/inversor applications require presence in Argentina",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Income must enter via authorized banks — plan FX/crypto off-ramp",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Digital nomad is transitory only (max ~360 days) — not PR path alone",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Apostille + certified Spanish translation adds 2–3 month lead time",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 8,
+        "freedom": 7,
+        "stability": 6,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "36eb480827c95e98fad6eff1f50416e18972716fc8d5f3307c51697a68ad28ce"
+        }
+      ]
     },
     {
       "id": 28,
@@ -2933,7 +5523,109 @@
           "Pair with Uruguay or Argentina for Mercosur diversification"
         ],
         "escalate_when": "INVESTCHILE sponsorship, $500k+ capital deployment, or CMF-regulated crypto business setup"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://serviciomigraciones.cl",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.investchile.gob.cl",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://startupchile.org",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Rentista for passive-income remote earners; investor for $500k+ operators",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Start-Up Chile for equity founders needing visa + ecosystem support",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Pair with Uruguay or Argentina for Mercosur diversification",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Investor visa application only from outside Chile",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "INVESTCHILE sponsorship letter mandatory for investor route",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship not available for most naturalization cases",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Extension requires proof of investment materialization",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 8,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "34efcf0221693dfc3a93d035a178aefb050fb457fc396a928ad90d2573fe4798"
+        }
+      ]
     },
     {
       "id": 29,
@@ -3043,7 +5735,109 @@
           "Stack with Panama or Mexico for Central + South America coverage"
         ],
         "escalate_when": "M-visa investment structuring, pensionado income documentation from crypto sources, or citizenship planning at year 5"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.migracioncolombia.gov.co",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://tramitesmre.cancilleria.gov.co",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: V visa to test Medellín lifestyle; upgrade to M pensionado for PR track",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: M investor for $100k+ capital deployment with business substance",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Stack with Panama or Mexico for Central + South America coverage",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "V visa is visitor status — limited work authorization in Colombia",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Income proofs must be bank-statement based for 6 months",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "M-visa investment capital must be documented and traceable",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "SMMLV-indexed thresholds change annually — verify before filing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 6,
+        "stability": 6,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "2cbd8718c3ec1393e5c04c71cc89754cee07b07781bab74ff46cc2887050eb48"
+        }
+      ]
     },
     {
       "id": 30,
@@ -3147,7 +5941,87 @@
           "Stack with Dominica or Grenada only if E-2 treaty access (Grenada) is the differentiator"
         ],
         "escalate_when": "Bond-route structuring, family applications >4 dependents, or complex crypto source-of-funds documentation"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.ciu.gov.lc",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: NEF for speed and simplicity; bonds if you want capital returned after hold period",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Use only CIU-licensed agents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bond route availability varies — confirm before structuring",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Source-of-funds scrutiny high for crypto wealth",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 6,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "27d4e604e55abef2fb29cfb6e7b456f6d69a8249aa1cfea7bb32863d2e88cfb0"
+        }
+      ]
     },
     {
       "id": 31,
@@ -3250,7 +6124,87 @@
           "Choose Grenada over Dominica if US E-2 access is in the stack plan"
         ],
         "escalate_when": "E-2 treaty business planning or comparing NTF vs RE hold-period economics"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.cbi.gov.gd",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Choose Grenada over Dominica if US E-2 access is in the stack plan",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "E-2 requires substantive US business plan — not automatic",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "All-in costs higher than NTF headline figure",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "CBI due diligence timeline 3–6 months",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 6,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "387e77668217d7b25f4f0c9960abb8ce9318a683bd57533dce4ef2860a191ff2"
+        }
+      ]
     },
     {
       "id": 32,
@@ -3355,7 +6309,93 @@
           "Pair with Eastern Caribbean tax planning — Barbados taxes worldwide income for residents"
         ],
         "escalate_when": "SEP application, $500k+ property purchase, or long-term citizenship naturalization planning"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.immigration.gov.bb",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://barbadoswelcomestamp.bb",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Welcome Stamp for nomads under $1M capital; SEP for HNW property buyers",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Pair with Eastern Caribbean tax planning — Barbados taxes worldwide income for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "No CBI passport program — plan for residency not citizenship",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "SEP wealth thresholds not publicly standardized — counsel required",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Banking due diligence strict for crypto-sourced income",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 5,
+        "freedom": 7,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "40cba1605c68b8be0a3f67036e446383e1a22e866a4e18145874f1373daddd08"
+        }
+      ]
     },
     {
       "id": 33,
@@ -3461,7 +6501,98 @@
           "Home Owner's Card for lifestyle base; EPR for permanent status at $750k+"
         ],
         "escalate_when": "EPR $750k+ structuring, Speedy Permit tier selection, or property purchase with crypto source-of-funds"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.bahamas.gov.bs",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.bahamaschamber.com",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Zero personal income tax makes Bahamas strong for BTC holders who become tax residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Home Owner's Card for lifestyle base; EPR for permanent status at $750k+",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "No CBI passport pathway",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Annual permit ≠ permanent residency — understand tier before buying property",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Citizenship effectively unavailable for most foreign investors",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 5,
+        "freedom": 7,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "8bd909d33fa96bda4c87823838357304eb439cac62ceccd8a3ea429ed170b243"
+        }
+      ]
     },
     {
       "id": 34,
@@ -3567,7 +6698,98 @@
           "Stack with Panama or Costa Rica for Central America mobility — Belize passport weaker"
         ],
         "escalate_when": "QRP tax-exemption structuring, permanent residency after year-one residence, or citizenship naturalization planning"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.belizeinvest.org.bz",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.tourism.gov.bz",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: QRP for retirees with passive income; business route for active entrepreneurs",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Stack with Panama or Costa Rica for Central America mobility — Belize passport weaker",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "QRP requires age 45+ and provable lifetime income stream",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "30-day annual presence mandatory for QRP compliance",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship rules not well documented — verify for your nationality",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 5,
+        "stability": 6,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "c97ba4040054ee025dea54f423455f281613879761666356b86e697ae6cf33b3"
+        }
+      ]
     },
     {
       "id": 35,
@@ -3674,7 +6896,98 @@
           "Use Cambodia as low-cost lifestyle base, not sovereignty play"
         ],
         "escalate_when": "Business registration with foreign capital, property purchase structuring, or any citizenship inquiry"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.cambodiaimmigration.gov.kh",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.cdc.gov.kh",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: K-class for entrepreneurs; ER extension for retirees — both require annual renewal discipline",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Use Cambodia as low-cost lifestyle base, not sovereignty play",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "No formal residency-by-investment program",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Land ownership via nominee companies is legally risky",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Visa rules change without clear notice — maintain compliant renewals",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 5,
+        "freedom": 4,
+        "stability": 6,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "b2c938d1c394a76ce4c034c8380b03a9a50f941fec76ed99b1b64fb1833165db"
+        }
+      ]
     },
     {
       "id": 36,
@@ -3781,7 +7094,109 @@
           "Cebu or Davao for lower cost vs Manila; verify PRA-accredited bank for deposit"
         ],
         "escalate_when": "SIRV $75k+ enterprise structuring, SRRV deposit sourcing from crypto, or pending nomad legislation impact"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://pra.gov.ph",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://immigration.gov.ph",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://boi.gov.ph",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: SRRV $50k tier for flexible age/pension-free residency; pair with territorial tax planning for foreign BTC ga…",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Cebu or Davao for lower cost vs Manila; verify PRA-accredited bank for deposit",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "SRRV deposit is with PRA-designated banks — not spendable capital",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Land ownership restricted — condo or leasehold only",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "13(a) is spouse-of-Filipino route, not a general investor visa",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 5,
+        "stability": 6,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "081adedde8a141dbb5a414b566d25cb02b342ef56e98ea6ac749a019459626f9"
+        }
+      ]
     },
     {
       "id": 37,
@@ -3890,7 +7305,104 @@
           "Keep foreign BTC proceeds offshore to preserve territorial tax treatment"
         ],
         "escalate_when": "MM2H tier selection with RM600k+ property, MTEP company structuring, or crypto remittance tax planning"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.mm2h.gov.my",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://mdec.my/de-rantau",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.imi.gov.my",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: DE Rantau for lowest-capital remote work; MM2H for family/long-horizon base without employment",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Keep foreign BTC proceeds offshore to preserve territorial tax treatment",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "MM2H 2024 thresholds significantly higher than legacy programme",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "MM2H alone does not authorize local employment",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Citizenship not a realistic outcome — plan for long-term residency only",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 7,
+        "freedom": 6,
+        "stability": 9,
+        "tax": 8,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "411924bd12f5e68bb800fd4264d45f82cb71adbed04938d2c76d469559cf8231"
+        }
+      ]
     },
     {
       "id": 38,
@@ -3999,7 +7511,109 @@
           "Avoid advertising remote work on B211A — use Second Home or proper KITAS for long horizons"
         ],
         "escalate_when": "PT PMA $250k+ capital structuring, 2025 KITAS compliance audit exposure, or Second Home bank-proof sourcing from crypto"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://evisa.imigrasi.go.id",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.imigrasi.go.id",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://oss.go.id",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Second Home for $130k liquid proof without operating a company; KITAS for founders needing legal work status",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Avoid advertising remote work on B211A — use Second Home or proper KITAS for long horizons",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "B211A is not a work visa — immigration raids and deportations occur",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Investor KITAS requires active PT PMA compliance and reporting",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Land freehold not available to foreigners directly",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 5,
+        "stability": 6,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "097602372f96add6d078882a683fc0d6b49de16dea8496ef64aec54198391bde"
+        }
+      ]
     },
     {
       "id": 39,
@@ -4108,7 +7722,104 @@
           "Plan for PR via HSP 80-point fast track rather than citizenship"
         ],
         "escalate_when": "Business Manager substance review, FSA-regulated crypto entity setup, or HSP points calculation near 70/80 thresholds"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.moj.go.jp/isa",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.meti.go.jp",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.fsa.go.jp",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Active Bitcoin community; Lightning adoption in fintech corridors.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: HSP for employed senior professionals; Business Manager only with genuine operating company",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Plan for PR via HSP 80-point fast track rather than citizenship",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "¥5M capital is minimum — immigration expects real office, employees, and revenue",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "No golden visa or passive investor route",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Crypto gains taxed up to ~55% as miscellaneous income on realization",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 5,
+        "freedom": 9,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "40332e103f0f7f4233903ce23922bec0573789fcd19a11c2f9dd82c8cf6cb337"
+        }
+      ]
     },
     {
       "id": 40,
@@ -4218,7 +7929,98 @@
           "AIP only at genuine NZD 15M+ deployable capital — pair with active growth fund allocation"
         ],
         "escalate_when": "AIP NZD 15M+ asset class selection, SMC expression-of-interest strategy, or entrepreneur visa Stage 2 residence benchmarks"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.immigration.govt.nz",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.mbie.govt.nz",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: SMC for skilled professionals without capital; Entrepreneur for $100k NZD business plays",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "AIP NZD 15M threshold excludes most stackers — confirm INZ eligibility before planning",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "No golden visa shortcut below AIP tier",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Crypto gains taxable; FMA licensing for regulated crypto services",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Overseas Investment Act may block direct property plays for non-residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 4,
+        "freedom": 9,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "abd953127e8a0e8c124137064349a0d62e03b7423ffc48e70d92f8bd14ef0dce"
+        }
+      ]
     },
     {
       "id": 41,
@@ -4327,7 +8129,99 @@
           "Pair with Malta MPRP or Portugal D7 if you need a passive-investment EU anchor"
         ],
         "escalate_when": "STEP endorsement application, Critical Skills permit strategy, or citizenship naturalization with reckonable residence planning"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.irishimmigration.ie",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://enterprise.gov.ie",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.centralbank.ie",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Critical Skills for employed crypto professionals; STEP for founders with ~€50k runway",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "IIP closed 2021 — reject any agent pitching €1M golden visa",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Critical Skills requires genuine employment contract in listed occupation",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "STEP requires innovative business plan and endorsement — not a passive investment",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 5,
+        "freedom": 8,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "42ae6c4ec985beaad72da5ea567019d7d1f950853cb5b9214ecd4dd613ba876c"
+        }
+      ]
     },
     {
       "id": 42,
@@ -4435,7 +8329,99 @@
           "Stack with Portugal D7 or Andorra for Iberian tax arbitrage — plan substance carefully"
         ],
         "escalate_when": "€500k+ golden visa property selection, Beckham Law election, or citizenship planning within 10-year window"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.inclusion.gob.es",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.exteriores.gob.es",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.cnmv.es",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Golden visa for passive HNW with minimal stay; nomad visa for active remote earners under €500k budget",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Golden visa reform debated — verify current eligible investment categories before closing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Non-lucrative prohibits local employment — nomad visa needed to work remotely legally",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Beckham Law eligibility narrowed in recent reforms — do not assume flat 24% rate",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 8,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "23329cd5b097d93c5385a364b6c4973ed10c1389bf839dd8a56a9bc21a171432"
+        }
+      ]
     },
     {
       "id": 43,
@@ -4543,7 +8529,99 @@
           "Pair with Malta MPRP for dual Mediterranean EU anchors with minimal stay overlap"
         ],
         "escalate_when": "Investor Visa Nulla Osta application, flat-tax election, or €250k+ startup capital deployment"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.interno.gov.it",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://investorvisa.mise.gov.it",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.agenziaentrate.gov.it",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Elective residence for retirees/passive yield; €250k startup route for founders needing EU base",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elective residence requires genuinely passive foreign income — trading income may not qualify",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Investor visa requires Nulla Osta before consular application — plan 4–6 month lead time",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Flat-tax regime has strict eligibility windows — confirm before relocating",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 8,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "10067552127100548b8f1f63cc1b77ac44c40faf2bcb8dab6337c40c92f2de79"
+        }
+      ]
     },
     {
       "id": 44,
@@ -4651,7 +8729,104 @@
           "Subordinated capital only if passive HNW and participating bank confirmed"
         ],
         "escalate_when": "Company substance planning for TRP, subordinated capital placement, or comparing Latvia vs Estonia EU entry"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.pmlp.gov.lv",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.ur.gov.lv",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.fktk.lv",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Company investment for operators needing Baltic EU base; compare with Estonia startup visa for lower friction",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Subordinated capital only if passive HNW and participating bank confirmed",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "RE-based TRP suspended 2022 — agents pitching €50k apartment residency are outdated",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Company route requires genuine tax contributions and employment — not a shell",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship not permitted except limited cases",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 6,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "dc9725dec2767022d7d49e77c2232a9f2523af5fe333a3262b5f49bc763de412"
+        }
+      ]
     },
     {
       "id": 45,
@@ -4759,7 +8934,104 @@
           "OÜ structure for EU invoicing; keep custodial activity licensed or offshore"
         ],
         "escalate_when": "FIU VASP licensing application, startup committee endorsement, or citizenship naturalization planning"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.politsei.ee",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.e-resident.gov.ee",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.rik.ee",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Active Bitcoin community; Lightning adoption in fintech corridors.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Startup visa for founders; nomad visa for remote earners",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: OÜ structure for EU invoicing; keep custodial activity licensed or offshore",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "e-Residency is NOT a visa — cannot live in Estonia on it alone",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "VASP licensing required for custodial/exchange activity",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship not permitted except in limited birth cases",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 8,
+        "freedom": 8,
+        "stability": 9,
+        "tax": 8,
+        "cost": 10,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "95a926817571fe544010c9751f7cec52576da036285732fc88d863c023a84a5e"
+        }
+      ]
     },
     {
       "id": 46,
@@ -4867,7 +9139,104 @@
           "Pair with Portugal or Malta only if you need faster Schengen access without job-creation burden"
         ],
         "escalate_when": "BGN 1M+ company structuring for investor PR, job-creation compliance audit, or citizenship naturalization after 5-year PR"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.mvr.bg",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.bnb.bg",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.fsc.bg",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: BGN 1M company PR for operators building real Bulgarian teams; 10% flat tax attractive for business income",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Elevated operational risk (medium) — verify security and legal exposure before committing",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "No passive real-estate golden visa — property-only purchase insufficient for PR",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Company route requires 10 real jobs and payroll substance — not a shelf company",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Government bonds route may be discontinued — verify before deploying capital",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 5,
+        "freedom": 5,
+        "stability": 6,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "35b914b2cb350a3a949d2ce1fb6d82aeefaedd56be3946717af95f5d63958687"
+        }
+      ]
     },
     {
       "id": 47,
@@ -4980,7 +9349,93 @@
           "Stack with Malta MPRP or Portugal D7 for broader EU footprint"
         ],
         "escalate_when": "€300k+ property acquisition, company substance review, or citizenship naturalization planning"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://mup.gov.hr",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://digitalnomadscroatia.mup.hr",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Nomad visa for remote BTC earners; company-rep for EU market operators",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Stack with Malta MPRP or Portugal D7 for broader EU footprint",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Digital nomads cannot work for Croatian clients — separate company-rep visa needed",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Income proofs must be in Croatian or English with clear currency labeling",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Property route thresholds and reciprocity rules vary by nationality",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 5,
+        "freedom": 7,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "c84e459a68830e554f4373fa4d372012136c4402a3de1ec6a4e34425d16ad721"
+        }
+      ]
     },
     {
       "id": 48,
@@ -5087,7 +9542,93 @@
           "Pair with Malta or Portugal only if you need EU Schengen mobility"
         ],
         "escalate_when": "Cat 2 property selection, GFSC DLT licensing, or £1M+ investor structuring"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.gibraltar.gov.gi",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.gfsc.gi",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Dual citizenship permitted",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Cat 2 for HNW passive investors; HEPPS for crypto executives relocating to licensed entities",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Cat 2 requires genuine property commitment — not a paper residency",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "HEPPS tied to Gibraltar employer — not for pure passive investors",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Citizenship is slow; plan for tax residency not fast passport",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 7,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "8ce940491625438eb7ea23c4676c0ebfbaae082adf2e633040c3968ad35c5fd5"
+        }
+      ]
     },
     {
       "id": 49,
@@ -5194,7 +9735,93 @@
           "Pair with Caribbean CBI (Grenada/St. Kitts) if you need a travel passport alongside zero-tax base"
         ],
         "escalate_when": "$2.4M+ real estate certificate, exempted company fund structuring, or staffing-plan compliance review"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.gov.ky",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.ciregistry.gov.ky",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: GCC for remote HNW with $1M deployable capital; staffing route for operating funds",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Pair with Caribbean CBI (Grenada/St. Kitts) if you need a travel passport alongside zero-tax base",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "No fast passport path — residency certificates are not CBI",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Business staffing requires real Caymanian hires — not shell entities",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Banking and source-of-funds scrutiny intense for crypto wealth",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 5,
+        "freedom": 6,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "ee79229d8c1ef0a85bb4a9b64f7ce33a642f522162a270e4cec18bfce52df072"
+        }
+      ]
     },
     {
       "id": 50,
@@ -5301,7 +9928,98 @@
           "Pair with Spain or Portugal base only after confirming tax-residency conflict rules"
         ],
         "escalate_when": "€400k+ Housing Fund investment, Omnibus 2 passive filing, or active SL incorporation with crypto treasury"
-      }
+      },
+      "freshness": {
+        "status": "stale",
+        "days_stale": 50,
+        "last_sweep": null
+      },
+      "watch": {
+        "urls": [
+          {
+            "url": "https://www.govern.ad",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          },
+          {
+            "url": "https://www.afa.ad",
+            "last_probed": null,
+            "last_hash": null,
+            "status": "unprobed"
+          }
+        ],
+        "changed": false,
+        "last_probe_at": null
+      },
+      "pros": [
+        {
+          "text": "Right to live and work for approved residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Broad scope of freedom for residents",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Bitcoin: Bitcoin accepted indirectly via banking partners; verify local rules.",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Housing Fund passive route for HNW stackers at €400k; active SL for operators needing local substance",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Tip: Pair with Spain or Portugal base only after confirming tax-residency conflict rules",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "cons": [
+        {
+          "text": "Dual citizenship not available",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Passive residency forbids local employment — cannot take Andorran job without switching to active status",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "90-day administrative stay may not suffice for tax residency — plan 183 days if optimizing tax",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        },
+        {
+          "text": "2026 reforms tightened passive thresholds — verify Housing Fund eligibility before capital deployment",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "verified_at": "2026-07-02"
+        }
+      ],
+      "scorecard": {
+        "crypto_friendly": 6,
+        "freedom": 8,
+        "stability": 9,
+        "tax": null,
+        "cost": 1,
+        "mobility": null,
+        "banking": null,
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+      },
+      "audit_trail": [
+        {
+          "date": "2026-08-20",
+          "field": "schema.v3",
+          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+          "source": "MotoPass corpus (BUILD 72 research)",
+          "hash": "b970ec3ac0391c8ea509cdc610ae28c292dc4f0e8e5ec8132c9216865ed3c385"
+        }
+      ]
     }
   ],
   "project": "MotoPass",

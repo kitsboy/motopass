@@ -1,0 +1,84 @@
+# Country Intel — daily self-healing pipeline (schema v3)
+
+MotoPass keeps 50 jurisdictions honest and near-real-time. The pipeline detects
+rule-page changes daily, records every data change in a Bitcoin-anchored audit
+trail, and re-stamps changed programs via the Satohash API.
+
+**Do not regress:** detection is auto-committed (facts); rule *rewrites* are
+always human-reviewed (us / Kimi / Paige). `last_checked` is a human research
+date — the pipeline never rewrites it, so daily sweeps never trigger re-stamps.
+
+---
+
+## Data flow
+
+```
+research/countries.json (schema v3)
+  ├─ freshness     — status fresh(≤14d)/watch(≤45d)/stale(>45d) + days_stale
+  ├─ watch         — official URLs (legal_compliance.official_urls) + probe state
+  ├─ pros / cons   — structured claims, each {text, source, verified_at}
+  ├─ scorecard     — 7 metrics (0–10; null = honest “research pending”)
+  └─ audit_trail   — every change {date, field, from→to, source, hash}
+        ↓
+public/data/intel.json  — runtime manifest (SPA fetches for badges/tickers)
+```
+
+## Daily run (`.github/workflows/daily-intel.yml`, 06:00 UTC)
+
+| Step | Script | What it does |
+|------|--------|--------------|
+| 1 | `intel:migrate` | Seeds missing v3 blocks (idempotent, preserves edits) |
+| 2 | `intel:freshness` | Recomputes freshness status from `last_checked` |
+| 3 | `intel:probe` | Probes `watch.urls`, hashes first 16 KB, flags changes |
+| 4 | `intel:stamp` | Re-anchors changed programs via `POST /api/stamp` |
+| 5 | `intel:write` | Regenerates `intel.json` + Satohash API health |
+| 6 | `intel:check` + validate gates | Shape + 50/50 coverage + stamps intact |
+| 7 | auto-commit | Commits detection + re-anchors (facts only) |
+
+Run manually anytime: `npm run intel:run` (or step-wise `intel:migrate`,
+`intel:freshness`, `intel:probe`, `intel:stamp`, `intel:write`, `intel:check`).
+
+## The self-heal loop (Satohash API)
+
+`scripts/stamp-changed.mjs` compares each program's **canonical slice hash**
+(`scripts/lib/canonical-slice.mjs` — the exact field set covered by proofs,
+shared with `stamp-ots.mjs`) to its stored `content_hash`. On drift:
+
+1. `POST https://api.satohash.io/api/stamp` `{hash, filename}` with
+   `X-Satohash-Client: motopass-intel` (+ optional `X-Satohash-Key` secret).
+2. Proof record updated: `content_hash`, `proof_url` (`/verify/<hash>`),
+   `stamped_at`, `stamp_id`, `block_height` (synced to `last_verified_block`).
+3. `audit_trail` entry appended with the new hash — the change is on-chain.
+
+API down or rate-limited? Non-fatal — partial updates commit, remaining
+re-stamps retry next run (paced 2 s, capped 15/run — the Satohash API throttles
+bursts, so drift converges incrementally over days). `proof.in_sync` in
+`intel.json` reports the honest per-program state until healed.
+
+## Source watchdog (rule-change detection)
+
+`scripts/probe-sources.mjs` probes each `watch.url` (concurrency 5, 10 s timeout,
+16 KB hash window). First probe records a baseline. A later differing hash →
+`status: 'changed'` + an audit entry (`source: source-probe`) — a **detection
+fact**. Humans then review and update the corpus; the next re-stamp anchors it.
+
+## Honesty rules
+
+- Every seeded pro/cons/scorecard claim is derived from vetted corpus fields
+  (`paige_fields`, `critical_tests`, `finance`, `risk_level`) and tagged with
+  `source: MotoPass corpus (BUILD 72 research)` + `verified_at: last_checked`.
+- Scorecard `mobility`/`banking` are `null` until real research lands (honest
+  nulls, same pattern as uncertain-law fields).
+- `validate-data.mjs` requires v3 blocks; staleness is a hard warning, not a
+  deploy blocker — the pipeline exists to heal it.
+
+## Env
+
+| Var | Used by | Notes |
+|-----|---------|-------|
+| `SATOHASH_API_URL` | stamp/write | default `https://api.satohash.io` |
+| `SATOHASH_API_KEY` | stamp | optional, sent as `X-Satohash-Key` (GitHub secret) |
+| `PROBE_TIMEOUT_MS` | probe | default 10000 |
+| `PROBE_CONCURRENCY` | probe | default 5 |
+| `STAMP_DELAY_MS` | stamp | default 2000 (rate-limit pacing) |
+| `MAX_STAMPS_PER_RUN` | stamp | default 15 (incremental self-heal) |

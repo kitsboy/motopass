@@ -1,0 +1,87 @@
+name: Daily Country Intel (self-heal)
+
+on:
+  schedule:
+    # 06:00 UTC daily — after btcmap sync (Mon) and before morning review
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  intel-sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+
+      # 1) Seed any missing schema v3 blocks (idempotent — preserves edits)
+      - run: npm run intel:migrate
+
+      # 2) Freshness sweep + write runtime manifest (with Satohash API health)
+      - run: npm run intel:freshness
+      - run: npm run intel:write
+
+      # 3) Official-source watchdog — detects rule-page changes (baselines first run)
+      - name: Probe official sources
+        run: npm run intel:probe
+        env:
+          PROBE_TIMEOUT_MS: '15000'
+          PROBE_CONCURRENCY: '8'
+
+      # 4) Re-anchor changed programs via Satohash API (self-heal to the chain)
+      #    Paced + capped: ~12 stamps/run, rest converges over subsequent days.
+      - name: Satohash re-stamp loop
+        run: npm run intel:stamp
+        env:
+          SATOHASH_API_URL: ${{ vars.SATOHASH_API_URL }}
+          SATOHASH_API_KEY: ${{ secrets.SATOHASH_API_KEY }}
+          STAMP_DELAY_MS: '2500'
+          MAX_STAMPS_PER_RUN: '12'
+
+      # 5) Rewrite manifest with probe/stamp state + validate the gate
+      - run: npm run intel:write
+      - run: npm run intel:check
+      - run: npm run validate:data
+      - run: npm run validate:stamps
+
+      # 6) Auto-commit DETECTION + re-anchors only (facts, never invented rules)
+      - name: Commit intel sweep
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore(intel): daily freshness sweep + source probe + satohash re-stamp'
+          file_pattern: 'research/countries.json public/data/intel.json public/proofs/*'
+          skip_fetch: true
+
+      # 7) Summary for the morning review
+      - name: Intel summary
+        run: |
+          node -e "
+            const i = JSON.parse(require('fs').readFileSync('public/data/intel.json','utf8'));
+            const entries = Object.entries(i.programs);
+            const changed = entries.filter(([, p]) => p.watch.changed).map(([k]) => k);
+            const stale = entries.filter(([, p]) => p.freshness.status === 'stale').map(([k]) => k);
+            console.log('## Daily Country Intel');
+            console.log('');
+            console.log('| Metric | Value |');
+            console.log('|--------|-------|');
+            console.log('| Sweep | ' + i.sweep.fresh + ' fresh / ' + i.sweep.watch + ' watch / ' + i.sweep.stale + ' stale |');
+            console.log('| Satohash API | ' + (i.sweep.satohash_api?.status ?? 'unknown') + ' |');
+            console.log('| Source changes flagged | ' + changed.length + ' |');
+            console.log('| Stale (>45d) | ' + stale.length + ' |');
+            if (changed.length) {
+              console.log('');
+              console.log('**Flagged for review:** ' + changed.join(', '));
+            }
+            if (stale.length) {
+              console.log('');
+              console.log('**Stale (>45d):** ' + stale.join(', '));
+            }
+          " >> "$GITHUB_STEP_SUMMARY"
