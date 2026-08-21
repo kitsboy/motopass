@@ -1,3 +1,17 @@
+## Session — 2026-08-21 (Grok/M3) — Country flags fixed (12 wrong ISO codes) — BUILD 72
+
+**Done (user report: "Central African Republic flag is wrong"):**
+- **Root cause:** `src/lib/countryCode.ts` and `src/lib/programAdapter.ts` both map country name → ISO 3166-1 alpha-2 for flagcdn sprites, but 12 of the 50 programs were missing from the map. The initials fallback silently returned the WRONG country: Central African Republic → `CA` (**Canada's flag** 🇨🇦 shown instead of 🇨🇫), St. Kitts and Nevis → `SK` (Slovakia), St. Lucia → `SL` (Sierra Leone), Estonia → `ES` (Spain), Croatia → `CR` (Costa Rica), Cayman Islands → `CI` (Côte d'Ivoire), Belize → `BE` (Belgium), Latvia → `LA` (Laos), Barbados/Bahamas → `BA` (Bosnia), Bulgaria → `BU` (invalid), Andorra → `AN` (invalid). The emoji fallback in countries.json was correct all along — the CDN sprite is tried first, so it masked the error.
+- **Fix:** added the 12 missing mappings (`CF`, `KN` for the `St. Kitts and Nevis` spelling, `LC` for `St. Lucia`, `BB`, `BS`, `BZ`, `LV`, `EE`, `BG`, `HR`, `KY`, `AD`) to BOTH maps (they're duplicated — keep in sync).
+- **Regression guard:** new test in `src/lib/btcmap.test.ts` asserting the correct ISO + sprite URL for all 50 programs (would have caught Canada-for-CAR).
+- **Verified:** 193 unit tests (43 files) · 26/26 e2e · build green · 0 new tsc errors (26 pre-existing baseline).
+
+**Git State:**
+- Commit: `fix(flags): correct ISO codes for 12 countries — CAR showed Canada's flag`
+- Branch: main
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — Vault proof card polish + hover education tips — BUILD 72
 
 **Done (user request — make the proof cards presentable + mouse-over tips):**

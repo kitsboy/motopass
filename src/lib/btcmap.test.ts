@@ -110,6 +110,70 @@ describe('btcmap helpers', () => {
     expect(flagSpriteUrl('El Salvador')).toBe('https://flagcdn.com/w20/sv.png')
   })
 
+  it('resolves correct ISO codes for every program flag (CAR was Canada)', () => {
+    // ISO 3166-1 alpha-2 for all 50 programs in research/countries.json.
+    // The initials fallback silently returns WRONG countries (Central African
+    // Republic → CA = Canada, St. Kitts → SK = Slovakia), so every program
+    // must resolve explicitly.
+    const expected: Record<string, string> = {
+      'El Salvador': 'SV',
+      'Central African Republic': 'CF',
+      Uruguay: 'UY',
+      Bolivia: 'BO',
+      'St. Kitts and Nevis': 'KN',
+      'Antigua and Barbuda': 'AG',
+      Dominica: 'DM',
+      'UAE (Dubai / Abu Dhabi)': 'AE',
+      Switzerland: 'CH',
+      Singapore: 'SG',
+      Portugal: 'PT',
+      Malta: 'MT',
+      Panama: 'PA',
+      Georgia: 'GE',
+      Paraguay: 'PY',
+      'Costa Rica': 'CR',
+      'Hong Kong': 'HK',
+      Thailand: 'TH',
+      Mexico: 'MX',
+      Cyprus: 'CY',
+      Greece: 'GR',
+      Vanuatu: 'VU',
+      Turkey: 'TR',
+      Mauritius: 'MU',
+      Seychelles: 'SC',
+      Brazil: 'BR',
+      Argentina: 'AR',
+      Chile: 'CL',
+      Colombia: 'CO',
+      'St. Lucia': 'LC',
+      Grenada: 'GD',
+      Barbados: 'BB',
+      Bahamas: 'BS',
+      Belize: 'BZ',
+      Cambodia: 'KH',
+      Philippines: 'PH',
+      Malaysia: 'MY',
+      Indonesia: 'ID',
+      Japan: 'JP',
+      'New Zealand': 'NZ',
+      Ireland: 'IE',
+      Spain: 'ES',
+      Italy: 'IT',
+      Latvia: 'LV',
+      Estonia: 'EE',
+      Bulgaria: 'BG',
+      Croatia: 'HR',
+      Gibraltar: 'GI',
+      'Cayman Islands': 'KY',
+      Andorra: 'AD',
+    }
+    for (const [name, iso] of Object.entries(expected)) {
+      expect(programCountryCode(name), `${name} should be ${iso}`).toBe(iso)
+      expect(flagSpriteUrl(name)).toBe(`https://flagcdn.com/w20/${iso.toLowerCase()}.png`)
+    }
+    expect(Object.keys(expected)).toHaveLength(50)
+  })
+
   it('exposes stable FAQ anchor ids (730)', () => {
     expect(pitchFaqAnchorId(0)).toBe('pitch-faq-1')
     expect(pitchFaqAnchorId(4)).toBe('pitch-faq-5')

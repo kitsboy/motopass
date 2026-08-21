@@ -53,6 +53,20 @@ const ISO_BY_NAME: Record<string, string> = {
   'United States': 'US',
   Australia: 'AU',
   'New Zealand': 'NZ',
+  // Correct ISO 3166-1 alpha-2 for remaining programs (initials fallback
+  // produces wrong flags: CAR→CA(Canada), St. Kitts→SK(Slovakia), etc.)
+  'Central African Republic': 'CF',
+  'St. Kitts and Nevis': 'KN',
+  'St. Lucia': 'LC',
+  Barbados: 'BB',
+  Bahamas: 'BS',
+  Belize: 'BZ',
+  Latvia: 'LV',
+  Estonia: 'EE',
+  Bulgaria: 'BG',
+  Croatia: 'HR',
+  'Cayman Islands': 'KY',
+  Andorra: 'AD',
 }
 
 const STUB_PROOF_RE = /aaaa|placeholder|stub|demo|0000000/i
