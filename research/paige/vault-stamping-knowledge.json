@@ -1,0 +1,91 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "vault-stamping",
+  "version": "2026-08-21",
+  "build": "2026.08.20-72",
+  "facts": [
+    "The Vault (/vault) is MotoPass's proof archive — it shows Bitcoin-anchored proofs for all 50 programs.",
+    "The Vault also hosts the Document Stamper — members can timestamp their own files on Bitcoin.",
+    "Document stamping works by hashing the file locally (SHA-256), then submitting only the hash to the Satohash API.",
+    "The file never leaves the member's device — only the 64-character hex hash is sent to Satohash.",
+    "The shared document registry (localStorage key 'motopass-vault-documents') is the single source of truth across Profile, Vault, and Dashboard.",
+    "A stamped document has three honest statuses: pending (submitted, awaiting Bitcoin block), confirmed (anchor seen at block N), error (submission failed, retry available).",
+    "Only confirmed stamps (with a Bitcoin block height) are treated as proofs — pending stamps are not proof of anything yet.",
+    "Members can re-check any document's anchor status via the Satohash API (GET /api/stamps/:id).",
+    "Members can retry-stamp a failed document — the file is never needed again, only the already-local hash is re-submitted.",
+    "The Apply flow (/apply) lets members attach confirmed document stamps to their application — only Bitcoin-confirmed stamps are selectable.",
+    "When attaching documents to an application, the on-chain claim is 'these exact files existed at block N' — never 'this person is X'.",
+    "The document registry can be exported as a portable JSON backup with verify links — so the backup can be audited against Bitcoin without MotoPass.",
+    "Registry backups can be restored via the import UI — it validates the schema, checks hash format, and merges into the existing registry.",
+    "The Verify tool (/verify) lets members generate a hash from their own data and stamp it independently.",
+    "Proof cards in the Vault show: block number, last-checked date, content hash, OTS receipt path, and education tooltips explaining each item.",
+    "The Vault's education section explains the 4-step proof workflow: hash → stamp → verify → apply.",
+    "Profile (/profile) shows the same document registry as Vault — stamp from either place, same list everywhere.",
+    "Dashboard shows a document registry card with stamp/re-check quick actions — the complete doc lifecycle is visible at a glance.",
+    "Satohash verify URLs are allowlisted — Paige must never fabricate or alter verify links.",
+    "The Vault credential export bundles program proofs (not documents) as a portable JSON — separate from the document registry export."
+  ],
+  "workflow": {
+    "stamp_file": [
+      "1. Member drops a file (passport scan, contract, application, creative work) into the Document Stamper",
+      "2. SHA-256 computed locally via crypto.subtle — the file never leaves the device",
+      "3. Hash posted to Satohash API (POST /api/stamp) with filename metadata",
+      "4. Light poll for Bitcoin anchor (GET /api/stamps/:id, 3 attempts, 2s interval)",
+      "5. Status determined: pending (no block yet), confirmed (block_height present), error (API failure)",
+      "6. Registry entry saved to localStorage with metadata + hash only, never the file"
+    ],
+    "attach_to_application": [
+      "1. Member visits /apply and sees the 'Attach stamped documents' card",
+      "2. Registry is loaded — only Bitcoin-confirmed stamps are selectable",
+      "3. Pending/error rows show honest labels (Awaiting anchor / Stamp error) and are disabled",
+      "4. ?proof=<hash> deep-link auto-selects a matching confirmed registry doc",
+      "5. On submit, doc hashes are included in the stamped payload and docProofs stored on the application",
+      "6. Success card lists attached proofs with Satohash verify links"
+    ],
+    "verify_independently": [
+      "1. Copy hash or proof URL from any program card or document entry",
+      "2. Open satohash.io/verify/<hash-or-id>",
+      "3. Satohash shows whether hash is anchored and at which Bitcoin block",
+      "4. No account needed — trustless verification"
+    ],
+    "export_restore": [
+      "1. Export: Download motopass-documents-<BUILD>.json with all registry entries + verify URLs",
+      "2. Restore: Import button validates schema, checks 64-hex hash format, merges into registry",
+      "3. Post-restore: Re-check all confirms anchors against Satohash API"
+    ]
+  },
+  "honesty_rules": [
+    "Only confirmed stamps (with bitcoin_block_height) are proofs — pending is 'awaiting anchor', not proof.",
+    "The file never leaves the device — only the SHA-256 hash is sent to Satohash.",
+    "The on-chain claim is 'this exact file existed at block N' — never identity claims.",
+    "Verify URLs are allowlisted — never fabricate or alter satohash.io/verify links.",
+    "Badge vocabulary: Demo / Proof on file / Bitcoin-verified. Never invent categories.",
+    "Do not fabricate block numbers — only cite bitcoin_block_height from the API.",
+    "The registry is device-local (localStorage) — it doesn't sync across devices without export/import."
+  ],
+  "badge_vocabulary": {
+    "Demo": "seed/placeholder proof for testing — NOT verification",
+    "Proof on file": "a recorded proof URL exists — verify before relying",
+    "Bitcoin-verified": "hash is anchored on Bitcoin via Satohash/OTS",
+    "Re-anchoring": "proof being re-stamped after data update; converges on next daily sweep",
+    "Awaiting anchor": "document stamp submitted but no Bitcoin block yet — not proof",
+    "Stamp error": "submission failed; retry available via restamp or Satohash stamp guide"
+  },
+  "member_scripts": {
+    "what_is_vault": "The Vault is your proof archive — it shows Bitcoin-anchored proofs for all 50 countries and lets you timestamp your own documents the same way.",
+    "how_to_stamp": "Drop any file into the Document Stamper on /vault. Its fingerprint (hash) is computed locally — the file never leaves your device — and anchored to Bitcoin via Satohash. You get a proof card showing the block number when it's confirmed.",
+    "is_it_safe": "Your file never leaves your device. Only the cryptographic fingerprint (SHA-256 hash) is sent to Satohash. Even Satohash never sees your document — just the hash.",
+    "how_to_verify": "Copy the hash from any proof card, open satohash.io/verify/<hash>, and see for yourself. You don't need to trust MotoPass.",
+    "what_can_i_stamp": "Anything you want a tamper-evident record of: passport scans, contracts, proof-of-funds, applications, wills, creative works, research notes.",
+    "how_to_attach": "When you apply on /apply, you can attach confirmed document stamps to your application. Only Bitcoin-confirmed stamps are selectable — pending stamps aren't proof yet.",
+    "how_to_export": "Download your document registry as a portable JSON backup from the Dashboard or Profile. It includes verify links so you can audit against Bitcoin without MotoPass.",
+    "how_to_restore": "Use the Import button on the Dashboard or Profile to restore a backup. It validates the format and merges into your existing registry."
+  },
+  "pages": {
+    "/vault": "Proof archive + Document Stamper + OTS verifier + program proof cards",
+    "/profile": "Same document registry + profile status derivation from stamps",
+    "/dashboard": "Document registry card with stamp/re-check quick actions + export/import",
+    "/apply": "Attach confirmed stamps to applications + docProofs on submitted applications",
+    "/verify": "Independent hash generation and stamping tool"
+  }
+}
