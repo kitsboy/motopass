@@ -31,10 +31,12 @@ if (!jsMatch) {
 const jsPath = jsMatch[1]
 const jsUrl = `${base}${jsPath}`
 
+// Strict CSP (no bypass): a Content-Security-Policy regression (e.g. blocking
+// the ajv eval or the entry import) must fail this check, not pass it.
 const browser = await chromium.launch({
   args: ['--disk-cache-size=1', '--media-cache-size=1'],
 })
-const context = await browser.newContext({ bypassCSP: true })
+const context = await browser.newContext({ bypassCSP: false })
 const page = await context.newPage()
 const poisoned = []
 
@@ -57,6 +59,7 @@ page.on('pageerror', e => { pageError = e.message })
 await page.goto(`${base}/`, { waitUntil: 'load', timeout: 30000 })
 await page.waitForTimeout(3000)
 const mainVisible = await page.locator('main').isVisible().catch(() => false)
+const bootGuardVisible = await page.locator('#mp-reload-btn, #mp-count').count().catch(() => 0)
 
 const footerBuild = page.locator('[data-build-version]')
 await footerBuild.scrollIntoViewIfNeeded().catch(() => {})
@@ -105,6 +108,11 @@ if (poisoned.length) {
 if (!mainVisible) {
   console.error('FAIL: React did not mount — <main> not visible')
   if (pageError) console.error('pageerror:', pageError)
+  if (bootGuardVisible) console.error('FAIL: boot guard visible (import failed — check CSP / bundle URLs)')
+  process.exit(1)
+}
+if (bootGuardVisible) {
+  console.error('FAIL: boot guard visible although <main> mounted')
   process.exit(1)
 }
 if (!footerBuildOk) {

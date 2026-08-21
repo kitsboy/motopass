@@ -1,3 +1,20 @@
+## Session — 2026-08-21 (Grok/M3) — HOTFIX: CSP blocked startup (boot-guard loop) — BUILD 72
+
+**Critical — live site was broken for real browsers (reported by Cam):**
+- **Symptom:** stuck in the boot-guard loop — "MotoPass needs a quick refresh" → "Almost there — Retrying in 1s…" reloading forever.
+- **Root cause:** Kimi's `_headers` CSP (`77f4000`, no `'unsafe-eval'`) blocked ajv's code generation. `src/lib/schema.ts` compiles schemas at **module scope** via `new Function` → throws "Error compiling schema" → the entry `import()` rejects → the boot-guard loader's unconditional `.catch` fired `__mpRetryLoad()` → infinite `?cb=` reload loop. Confirmed by strict-CSP Playwright (main never mounts) vs `bypassCSP` (works) — and `verify-live-app.mjs` used `bypassCSP: true`, so CI couldn't catch it.
+- **Fixes:**
+  1. `public/_headers` CSP: added `'unsafe-eval'` (ajv requirement, documented), allowlisted `https://static.cloudflareinsights.com` (CF auto Web Analytics beacon that was spamming violations), and added `https://api.btcmap.org` + `wss://*` to `connect-src` (BTC Map + Nostr relays were also blocked).
+  2. Boot-guard hardening (`vite.config.ts`): the entry `.catch(e => __mpRetryLoad(e))` now passes the rejection reason; non-poison errors show the recovery UI **once** instead of the reload loop — future boot bugs won't loop forever.
+  3. `scripts/verify-live-app.mjs` now runs with `bypassCSP: false` + asserts no boot-guard UI — CSP regressions will fail CI (`live-health`) from now on.
+- **Verified:** strict-CSP local serve of `dist` with the production headers → React mounts, footer BUILD 72, zero CSP violations, zero page errors · 192 unit tests · 26/26 e2e.
+
+**Git State:**
+- Commit: `fix(csp): allow ajv eval + btcmap/wss connect-src — boot-guard loop hotfix`
+- Branch: main
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — Registry backup restore/import — BUILD 72 continued
 
 **Done:**
