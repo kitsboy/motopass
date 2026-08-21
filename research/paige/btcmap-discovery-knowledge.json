@@ -1,0 +1,133 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "btcmap-discovery",
+  "version": "2026-08-21",
+  "build": "2026.08.21-80",
+  "facts": [
+    "BTC Map (btcmap.org) is a community-sourced, open-data map of Bitcoin-accepting merchants worldwide.",
+    "MotoPass integrates BTC Map via the v4 REST API (api.btcmap.org) to show merchant density per jurisdiction.",
+    "Each MotoPass program has a lat/lon coordinate and radius — the API searches within that circle for Bitcoin-accepting places.",
+    "Merchant density is scored into three tiers: sparse (0-4), moderate (5-19), dense (20+) — shown as colored badges on program cards.",
+    "The density score is merchants-per-km² scaled to 0-100 — higher means more Bitcoin commerce relative to jurisdiction size.",
+    "BTC Map data is pre-fetched daily by fetch-btcmap-density.mjs and cached in public/data/btcmap-density.json for instant client-side display.",
+    "Per-jurisdiction snapshots (places + areas) are synced by sync-btcmap-cache.mjs to public/data/btcmap/{slug}.json for offline use.",
+    "The BTC Map page (/btcmap) shows an interactive Leaflet map with merchant pins, a searchable directory, category filters, and CSV export.",
+    "Merchant categories include: ATM, Store, Restaurant, Cafe, Hotel, Exchange, Medical, Tech, Grocery, Fitness, Bar, Spa, and more (20+ types).",
+    "Grid clustering groups nearby pins at low zoom levels — cell size scales from 0.45° (zoom ≤7) to 0.045° (zoom ≥11).",
+    "BTC Map authentication uses NIP-98 (Nostr HTTP Auth) — sign in with a Nostr extension to save favorite merchants across devices.",
+    "Saved merchants are persisted in localStorage (motopass-btcmap-saved) with a future Nostr kind-event sync for cross-device.",
+    "Cache freshness is tracked: fresh (≤7 days), recent (8-14 days), expired (>14 days) — stale caches show a warning banner.",
+    "The intel pipeline uses BTC Map as a signal source — merchant count feeds into crypto_friendly_score for each country.",
+    "BTC Map places have: id, lat, lon, name, icon (category), address, verified_at (community verification date), website.",
+    "Each merchant links to btcmap.org/merchant/{id} for community-maintained details and verification status.",
+    "Google Maps directions links are generated from merchant coordinates — deep-link to turn-by-turn navigation.",
+    "The 'Report Venue' feature links to btcmap.org/add-location with pre-filled coordinates and program name.",
+    "CSV export downloads the merchant directory as a portable spreadsheet with program name, id, name, address, coordinates, and verification date.",
+    "BTC Map is open data — attribution to btcmap.org, OpenStreetMap, and the btcmap-api GitHub repo is required on all views.",
+    "The BTC Map page supports three layout modes on tablet: split (map + directory), map-only, and list-only.",
+    "Jurisdiction jump lets users quickly switch between programs with BTC Map data without returning to the dropdown.",
+    "Lightning-ready badges on merchant pins indicate Lightning Network payment support (tags.payment.lightning === 'yes').",
+    "The BTC Map embed uses Leaflet with OpenStreetMap tiles — no Google Maps API key required.",
+    "Offline cache staleness is detected by comparing fetchedAt against the current date — expired caches show a red banner.",
+    "Merchant search is debounced (280ms) and filters by name and address — results highlight matching text.",
+    "Virtual scrolling is used for directories with 48+ merchants — only visible rows are rendered for performance."
+  ],
+  "endpoints": {
+    "places_search": {
+      "method": "GET",
+      "url": "https://api.btcmap.org/v4/places/search/?lat={lat}&lon={lon}&radius_km={km}",
+      "auth": "Bearer token (NIP-98, optional)",
+      "returns": "BtcMapPlace[] — id, lat, lon, name, icon, address, verified_at, website"
+    },
+    "areas_at": {
+      "method": "GET",
+      "url": "https://api.btcmap.org/v4/areas?lat={lat}&lon={lon}",
+      "auth": "none",
+      "returns": "BtcMapArea[] — id, name, type, url_alias, icon, website_url"
+    },
+    "area_by_id": {
+      "method": "GET",
+      "url": "https://api.btcmap.org/v4/areas/{id_or_alias}",
+      "auth": "none",
+      "returns": "BtcMapArea"
+    },
+    "saved_places": {
+      "method": "GET",
+      "url": "https://api.btcmap.org/v4/places/saved",
+      "auth": "Bearer token (NIP-98, required)",
+      "returns": "BtcMapPlace[]"
+    },
+    "add_saved": {
+      "method": "POST",
+      "url": "https://api.btcmap.org/v4/places/saved",
+      "auth": "Bearer token (NIP-98, required)",
+      "body": "place_id (number)",
+      "returns": "number[] (updated saved list)"
+    },
+    "remove_saved": {
+      "method": "DELETE",
+      "url": "https://api.btcmap.org/v4/places/saved/{place_id}",
+      "auth": "Bearer token (NIP-98, required)",
+      "returns": "number[] (updated saved list)"
+    }
+  },
+  "density_tiers": {
+    "sparse": "0-4 merchants — minimal Bitcoin commerce",
+    "moderate": "5-19 merchants — growing Bitcoin ecosystem",
+    "dense": "20+ merchants — strong Bitcoin commerce presence"
+  },
+  "cache_system": {
+    "density": "public/data/btcmap-density.json — per-program merchant count + tier + score",
+    "snapshots": "public/data/btcmap/{slug}.json — full place list + areas per jurisdiction",
+    "manifest": "public/data/btcmap/manifest.json — list of all synced programs with file names and counts",
+    "stale_threshold_days": 14,
+    "warn_threshold_days": 7
+  },
+  "honesty_rules": [
+    "BTC Map data is community-sourced — merchant counts may lag behind real-world changes.",
+    "A merchant pin on BTC Map does not mean the venue definitely accepts Bitcoin today — verify before visiting.",
+    "Density tiers are approximate — a jurisdiction with 19 merchants (moderate) is not dramatically different from 20 (dense).",
+    "Cache staleness is honest — if the data is 10+ days old, tell the member and suggest checking btcmap.org directly.",
+    "Lightning readiness is reported by the merchant — it may be outdated or self-reported.",
+    "MotoPass does not verify BTC Map data — it is an open-data integration, not a curated list.",
+    "Saved merchants are stored locally until Nostr sync ships — switching devices loses the list.",
+    "CSV exports are snapshots — they do not update automatically as merchants change on BTC Map."
+  ],
+  "member_scripts": {
+    "what_is_btcmap": "BTC Map is like Yelp but for Bitcoin: a community-maintained map of businesses that accept Bitcoin, created and verified by users worldwide.",
+    "how_many_merchants": "MotoPass shows the number of Bitcoin-accepting merchants near each program's capital city. The density badge tells you at a glance whether there's a strong Bitcoin commerce scene.",
+    "is_it_accurate": "BTC Map is community-sourced, so it may lag behind real-world changes. If you know a venue that accepts Bitcoin but isn't on the map, you can add it at btcmap.org/add-location.",
+    "what_is_density": "Density is the number of Bitcoin-accepting merchants within a radius of the program's capital. Sparse means few options, moderate means a growing scene, dense means plenty of places to spend Bitcoin.",
+    "can_i_save_merchants": "Yes — sign in with a Nostr extension and click the heart icon on any merchant. Your saved list is stored locally and will sync across devices when Nostr relay sync ships.",
+    "how_do_i_export": "Click the CSV download button in the merchant directory. You get a spreadsheet with name, address, coordinates, and verification date for every merchant in the current filter.",
+    "what_is_lightning": "Lightning-ready means the merchant accepts Bitcoin Lightning Network payments — near-instant, near-zero-fee transactions. Look for the ⚡ badge on the map.",
+    "how_do_i_add_venue": "Click 'Report Venue' on the BTC Map page — it links to btcmap.org/add-location with the coordinates pre-filled. The community verifies new submissions."
+  },
+  "page_map": {
+    "/btcmap": "Interactive map + merchant directory for all 50 programs",
+    "/programs": "Program cards show merchant density badges linking to /btcmap",
+    "/dashboard": "Density snapshot overview (when wired)"
+  },
+  "key_files": {
+    "src/lib/btcmap.ts": "API client — searchPlacesNearby, getAreasAt, saved places CRUD, URL builders",
+    "src/lib/btcmapDensity.ts": "Density tiers, scoring, snapshot loading from /data/btcmap-density.json",
+    "src/lib/btcmapCluster.ts": "Grid clustering for Leaflet pins at low zoom",
+    "src/lib/btcmapCache.ts": "Offline snapshot loading from /data/btcmap/{slug}.json",
+    "src/lib/btcmapFreshness.ts": "Cache age formatting, staleness detection, freshness badges",
+    "src/lib/btcmapAuth.ts": "NIP-98 Nostr HTTP Auth for BTC Map saved places",
+    "src/lib/btcmapSavedSync.ts": "localStorage persistence + future Nostr kind-event sync",
+    "src/lib/btcmapExport.ts": "CSV export — placesToCsv, downloadPlacesCsv",
+    "src/lib/btcmapIcons.ts": "20+ merchant category icons, filter and classify functions",
+    "src/lib/btcmapSlug.ts": "URL-safe slugs for cache file paths",
+    "src/lib/btcmapHighlight.tsx": "Search query match highlighting in merchant lists",
+    "src/pages/BtcMapPage.tsx": "BTC Map page — map embed, directory, command bar, layout modes",
+    "src/components/btcmap/BtcMapMerchantDirectory.tsx": "Searchable merchant directory with category filters",
+    "src/components/btcmap/BtcMapPlacesList.tsx": "Merchant list with virtual scrolling, save, directions",
+    "src/components/btcmap/MerchantDensityBadge.tsx": "Colored density badge on program cards",
+    "src/components/btcmap/BtcMapCacheFreshnessBadge.tsx": "Cache age indicator (fresh/recent/expired)",
+    "src/components/btcmap/BtcMapCacheStaleBanner.tsx": "Warning banner for expired offline cache",
+    "scripts/fetch-btcmap-density.mjs": "Daily density pre-fetch → public/data/btcmap-density.json",
+    "scripts/sync-btcmap-cache.mjs": "Per-jurisdiction snapshot sync → public/data/btcmap/{slug}.json",
+    "src/data/programCoords.ts": "Lat/lon coordinates + radius for all 50 programs"
+  }
+}

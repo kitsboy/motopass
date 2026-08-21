@@ -66,6 +66,7 @@ interface KnowledgeIndex {
   facts: KnowledgeFact[]
   scripts: KnowledgeScript[]
   topicText: Map<string, string>
+  topicTokens: Map<string, string[]>
 }
 
 let _index: KnowledgeIndex | null = null
@@ -82,6 +83,7 @@ function buildIndex(): KnowledgeIndex {
   const facts: KnowledgeFact[] = []
   const scripts: KnowledgeScript[] = []
   const topicText = new Map<string, string>()
+  const topicTokens = new Map<string, string[]>()
 
   for (const [path, loader] of Object.entries(knowledgeModules)) {
     const kb: KnowledgeFile = (loader as { default: KnowledgeFile }).default
@@ -97,14 +99,17 @@ function buildIndex(): KnowledgeIndex {
       scripts.push({ topic, key, text })
     }
 
-    // Build topic search text (facts + topic name + common keywords)
+    // Build topic search text (facts + topic name split on hyphens)
+    // Split topic name on hyphens so "intel-pipeline" matches "intel" and "pipeline"
+    const topicNameTokens = topic.split(/[-_]/)
     topicText.set(topic, [
       kb.facts.join(' '),
-      topic,
+      topicNameTokens.join(' '),
     ].join(' ').toLowerCase())
+    topicTokens.set(topic, topicNameTokens.map(t => t.toLowerCase()))
   }
 
-  _index = { facts, scripts, topicText }
+  _index = { facts, scripts, topicText, topicTokens }
   return _index
 }
 
@@ -119,7 +124,7 @@ export function resetKnowledgeIndex(): void {
  * Search the knowledge base for a query. Returns top topics ranked by
  * token overlap, with the most relevant facts and matching member scripts.
  */
-export function searchKnowledge(query: string, limit = 3): KnowledgeHit[] {
+export function searchKnowledge(query: string, limit = 5): KnowledgeHit[] {
   const idx = buildIndex()
   const toks = tokenize(query)
   if (!toks.length) return []
@@ -128,8 +133,13 @@ export function searchKnowledge(query: string, limit = 3): KnowledgeHit[] {
 
   for (const [topic, text] of idx.topicText) {
     let score = 0
+    const nameTokens = idx.topicTokens.get(topic) ?? []
     for (const t of toks) {
-      if (text.includes(t)) score += 2
+      if (text.includes(t)) {
+        score += 2
+        // Boost when query token exactly matches a topic name token
+        if (nameTokens.includes(t)) score += 3
+      }
     }
     if (score === 0) continue
 
