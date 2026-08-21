@@ -27,3 +27,18 @@ proof the site is dead for humans.
   processed by AIMA.
 - Others (e.g. `u.ae`, `gob.mx`, `migraciones.gob.ar`, `immigration.go.th`)
   are live government portals that block automated probes — re-check manually.
+
+## Live research attempt (2026-08-20) — BLOCKED
+
+The 2026-08-20 live pass could not run: the web-search backend was down and
+government portals yield only nav boilerplate or unrelated gazette content to
+automated extraction. **No rule updates were drafted — nothing here is
+fabricated.** Briefs below are ready to fill the moment a source-enabled
+researcher (human, Kimi, Paige, or an agent with search access) runs:
+
+```bash
+npm run research:pass        # regenerate briefs
+# fill each brief's “Sources found” table with dated, URL-backed findings
+# then update last_checked + legal_compliance in research/countries.json
+# the daily intel pipeline re-anchors the new state automatically
+```
