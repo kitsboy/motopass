@@ -1,3 +1,20 @@
+## Session — 2026-08-21 (Grok/M3) — Vault proof card polish + hover education tips — BUILD 72
+
+**Done (user request — make the proof cards presentable + mouse-over tips):**
+- **`src/components/ui/InfoTip.tsx`** — new lightweight hover/focus tooltip (useId + role=tooltip, pointer-events-none panel so it never intercepts clicks). Follows the SovereigntyScoreTooltip pattern.
+- **`VaultProofRow` restructured:**
+  - The raw `Block # · date · .ots` wall-of-text line became a labeled **proof-anchor strip** on a bordered card-muted background: `⛓ Block #958093` · `📅 Last checked 2026-07-02` · `# Content hash e7f67a70…` (full hash in the tooltip) · `🧾 OTS receipt /proofs/….ots` — each with sr-only labels (a11y win).
+  - **Every action button got an icon + education tip**: Use this proof (BadgeCheck), Copy verify URL, Satohash ↗, .ots ⬇ (FileDown), Apply → (ArrowRight), Announce on Nostr, Lineage; the ProofBadge and the lineage-row Satohash/copy-event-id links too.
+  - Removed `overflow-hidden` from the row card (demo watermark clips via its own class) so tooltips can overflow the card.
+- 20 new i18n keys (`vault.tip.*`, `vault.blockLabel/hashLabel/otsLabel`), English fallback. Demo rows still clip tooltips via the DEMO watermark's overflow — acceptable (placeholders).
+- **Verified:** 192 unit tests · 26/26 e2e · build green · 0 new tsc errors · browser-checked locally: card reads `Costa Rica · Proof on file · Block #958093 · Last checked 2026-07-02 · Content hash e7f67a70… · OTS receipt /proofs/….ots · [actions]`, tooltip shown on hover for both meta chips and action buttons.
+
+**Git State:**
+- Commit: `feat(vault): polished proof cards — labeled anchor strip + hover education tips`
+- Branch: main
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — HOTFIX: CSP blocked startup (boot-guard loop) — BUILD 72
 
 **Critical — live site was broken for real browsers (reported by Cam):**

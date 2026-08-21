@@ -2,14 +2,21 @@ import { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import {
+  Anchor,
+  ArrowRight,
+  BadgeCheck,
+  CalendarDays,
+  Check,
   ChevronDown,
   Copy,
-  Check,
   ExternalLink,
-  Radio,
+  FileCheck2,
+  FileDown,
   GitBranch,
   Hash,
+  Radio,
 } from 'lucide-react'
+import { InfoTip } from '../ui/InfoTip'
 import { nostrEventIdStub } from '../../lib/nostrEventId'
 import { Card } from '../ui/Card'
 import { ProofBadge } from '../ui/ProofBadge'
@@ -109,7 +116,7 @@ export function VaultProofRow({
       variant={isDemo ? 'default' : 'proof'}
       animate
       delay={0.05 + index * 0.03}
-      className={`!p-0 overflow-hidden ${isDemo ? 'vault-demo-watermark' : ''}`}
+      className={`!p-0 ${isDemo ? 'vault-demo-watermark' : ''}`}
       data-vault-proof-hash={hash || undefined}
     >
       <div
@@ -135,7 +142,7 @@ export function VaultProofRow({
         aria-controls={hasLineage ? detailsId : undefined}
       >
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-2 mb-1">
+          <div className="flex flex-wrap items-center gap-2">
             {onToggleSelect && (
               <input
                 type="checkbox"
@@ -149,94 +156,169 @@ export function VaultProofRow({
             <div className="font-display font-semibold text-ink">
               {program.flag} {program.name}
             </div>
-            <ProofBadge status={cinematic.proofStatus} compact txHint={cinematic.proofRef} />
+            <InfoTip
+              tip={
+                cinematic.proofStatus === 'verified'
+                  ? t('vault.tip.badgeVerified')
+                  : cinematic.proofStatus === 'recorded'
+                    ? t('vault.tip.badgeRecorded')
+                    : cinematic.proofStatus === 'pending'
+                      ? t('vault.tip.badgePending')
+                      : t('vault.tip.badgeDemo')
+              }
+            >
+              <ProofBadge status={cinematic.proofStatus} compact txHint={cinematic.proofRef} />
+            </InfoTip>
             {isDemo && (
               <span className="text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded-chip border border-mp-strong/50 text-ink-muted">
                 {t('vault.demoWatermark')}
               </span>
             )}
           </div>
-          <div className="text-xs text-ink-muted mt-1 font-mono break-all opacity-80">
-            Block #{primary?.block_height} · {program.last_checked}
-            {primary?.ots_path && <span className="text-mp-proof"> · {primary.ots_path}</span>}
+
+          <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-mp-md border border-mp/50 bg-card-muted/40 px-3 py-2 font-mono text-[11px] text-ink-muted">
+            {primary?.block_height != null && (
+              <InfoTip tip={t('vault.tip.block')}>
+                <span className="inline-flex items-center gap-1.5">
+                  <Anchor size={11} className="text-mp-proof shrink-0" aria-hidden />
+                  <span className="sr-only">{t('vault.blockLabel')}</span>
+                  <span className="text-ink-secondary font-semibold">#{primary.block_height}</span>
+                </span>
+              </InfoTip>
+            )}
+            {program.last_checked && (
+              <InfoTip tip={t('vault.tip.checked')}>
+                <span className="inline-flex items-center gap-1.5">
+                  <CalendarDays size={11} className="shrink-0" aria-hidden />
+                  <span className="sr-only">{t('modal.lastChecked')}</span>
+                  <span>{program.last_checked}</span>
+                </span>
+              </InfoTip>
+            )}
+            {hash && (
+              <InfoTip
+                tip={
+                  <span>
+                    {t('vault.tip.hash')}
+                    <br />
+                    <code className="mt-1 block break-all font-mono text-[9px] text-ink-muted">{hash}</code>
+                  </span>
+                }
+              >
+                <span className="inline-flex items-center gap-1.5">
+                  <Hash size={11} className="shrink-0" aria-hidden />
+                  <span className="sr-only">{t('vault.hashLabel')}</span>
+                  <span className="text-ink-secondary">{hash.slice(0, 10)}…</span>
+                </span>
+              </InfoTip>
+            )}
+            {primary?.ots_path && (
+              <InfoTip tip={t('vault.tip.ots')}>
+                <span className="inline-flex items-center gap-1.5">
+                  <FileCheck2 size={11} className="text-mp-proof shrink-0" aria-hidden />
+                  <span className="sr-only">{t('vault.otsLabel')}</span>
+                  <span className="break-all">{primary.ots_path}</span>
+                </span>
+              </InfoTip>
+            )}
           </div>
         </div>
         <div className="flex gap-2 flex-wrap shrink-0 items-center">
           {hash && (
-            <button
-              type="button"
-              onClick={() => onUseProof(program.name, hash)}
-              className="btn-primary text-xs !py-1.5 !px-3"
-              title={hash}
-            >
-              {t('vault.useProof')}
-            </button>
+            <InfoTip tip={t('vault.tip.useProof')}>
+              <button
+                type="button"
+                onClick={() => onUseProof(program.name, hash)}
+                className="btn-primary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
+              >
+                <BadgeCheck size={13} aria-hidden />
+                {t('vault.useProof')}
+              </button>
+            </InfoTip>
           )}
           {verifyUrl && (
-            <button
-              type="button"
-              onClick={() => void copyVerifyUrl()}
-              className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1"
-              aria-label={t('vault.copyVerifyUrl')}
-            >
-              {copiedUrl ? <Check size={12} className="text-status-green" /> : <Copy size={12} />}
-              {t('vault.copyVerifyUrl')}
-            </button>
+            <InfoTip tip={t('vault.tip.copyUrl')}>
+              <button
+                type="button"
+                onClick={() => void copyVerifyUrl()}
+                className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1"
+                aria-label={t('vault.copyVerifyUrl')}
+              >
+                {copiedUrl ? <Check size={12} className="text-status-green" /> : <Copy size={12} />}
+                {t('vault.copyVerifyUrl')}
+              </button>
+            </InfoTip>
           )}
           {safeSatohashHref(primary?.proof_url) && (
-            <a
-              href={safeSatohashHref(primary?.proof_url)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
-              aria-label={t('vault.satohashExternal')}
-              title={t('vault.satohashExternal')}
-            >
-              <ExternalLink size={14} className="text-btc-orange shrink-0" aria-hidden />
-              <span className="sr-only sm:not-sr-only">Satohash</span>
-            </a>
+            <InfoTip tip={t('vault.tip.satohash')}>
+              <a
+                href={safeSatohashHref(primary?.proof_url)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
+                aria-label={t('vault.satohashExternal')}
+              >
+                <ExternalLink size={14} className="text-btc-orange shrink-0" aria-hidden />
+                <span className="sr-only sm:not-sr-only">Satohash</span>
+              </a>
+            </InfoTip>
           )}
           {sanitizeOtsPath(primary?.ots_path ?? '') && (
-            <a href={sanitizeOtsPath(primary?.ots_path ?? '') ?? undefined} download className="btn-secondary text-xs !py-1.5 !px-3">
-              .ots
-            </a>
+            <InfoTip tip={t('vault.tip.otsDownload')}>
+              <a
+                href={sanitizeOtsPath(primary?.ots_path ?? '') ?? undefined}
+                download
+                className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
+                aria-label={t('vault.otsLabel')}
+              >
+                <FileDown size={13} aria-hidden />
+                .ots
+              </a>
+            </InfoTip>
           )}
           {inPortfolio && (
             <Link to="/portfolio" className="btn-secondary text-xs !py-1.5 !px-3">
               {t('vault.inPortfolio')}
             </Link>
           )}
-          <Link
-            to={`/apply?program=${encodeURIComponent(program.name)}${hash ? `&proof=${encodeURIComponent(hash)}` : ''}`}
-            className="btn-secondary text-xs !py-1.5 !px-3"
-          >
-            Apply
-          </Link>
-          <button
-            type="button"
-            onClick={() => void announceNostr()}
-            disabled={announceBusy}
-            className="chip text-xs !text-nostr-violet !border-nostr-violet/30 hover:!bg-nostr-violet-soft inline-flex items-center gap-1 disabled:opacity-60"
-          >
-            <Radio size={12} aria-hidden />
-            {announceBusy ? t('verify.nostrAnnouncing') : t('vault.nostrPublish')}
-          </button>
-          {proofs.length > 1 && (
+          <InfoTip tip={t('vault.tip.apply')}>
+            <Link
+              to={`/apply?program=${encodeURIComponent(program.name)}${hash ? `&proof=${encodeURIComponent(hash)}` : ''}`}
+              className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
+            >
+              Apply
+              <ArrowRight size={13} aria-hidden />
+            </Link>
+          </InfoTip>
+          <InfoTip tip={t('vault.tip.nostr')}>
             <button
               type="button"
-              aria-expanded={expanded}
-              aria-controls={detailsId}
-              onClick={() => setExpanded(v => !v)}
-              className="chip text-xs inline-flex items-center gap-1"
+              onClick={() => void announceNostr()}
+              disabled={announceBusy}
+              className="chip text-xs !text-nostr-violet !border-nostr-violet/30 hover:!bg-nostr-violet-soft inline-flex items-center gap-1 disabled:opacity-60"
             >
-              <GitBranch size={12} aria-hidden />
-              {expanded ? t('vault.collapseLineage') : t('vault.expandLineage')}
-              <ChevronDown
-                size={12}
-                className={`transition-transform duration-fast ${expanded ? 'rotate-180' : ''}`}
-                aria-hidden
-              />
+              <Radio size={12} aria-hidden />
+              {announceBusy ? t('verify.nostrAnnouncing') : t('vault.nostrPublish')}
             </button>
+          </InfoTip>
+          {proofs.length > 1 && (
+            <InfoTip tip={t('vault.tip.lineage')}>
+              <button
+                type="button"
+                aria-expanded={expanded}
+                aria-controls={detailsId}
+                onClick={() => setExpanded(v => !v)}
+                className="chip text-xs inline-flex items-center gap-1"
+              >
+                <GitBranch size={12} aria-hidden />
+                {expanded ? t('vault.collapseLineage') : t('vault.expandLineage')}
+                <ChevronDown
+                  size={12}
+                  className={`transition-transform duration-fast ${expanded ? 'rotate-180' : ''}`}
+                  aria-hidden
+                />
+              </button>
+            </InfoTip>
           )}
         </div>
       </div>
@@ -287,32 +369,36 @@ export function VaultProofRow({
                       </div>
                       <div className="mt-1 flex flex-wrap items-center gap-2">
                         {stepUrl && (
-                          <a
-                            href={stepUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[10px] text-btc-orange hover:underline inline-flex items-center gap-1"
-                          >
-                            Satohash <ExternalLink size={10} />
-                          </a>
+                          <InfoTip tip={t('vault.tip.satohash')}>
+                            <a
+                              href={stepUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[10px] text-btc-orange hover:underline inline-flex items-center gap-1"
+                            >
+                              Satohash <ExternalLink size={10} />
+                            </a>
+                          </InfoTip>
                         )}
-                        <button
-                          type="button"
-                          onClick={async () => {
-                            await navigator.clipboard.writeText(eventId)
-                            setCopiedEventId(copyKey)
-                            window.setTimeout(() => setCopiedEventId(null), 2000)
-                          }}
-                          className="text-[10px] text-ink-muted hover:text-mp-btc-text inline-flex items-center gap-1"
-                          aria-label={t('vault.copyEventId')}
-                        >
-                          {copiedEventId === copyKey ? (
-                            <Check size={10} className="text-status-green" />
-                          ) : (
-                            <Hash size={10} />
-                          )}
-                          {t('vault.copyEventId')}
-                        </button>
+                        <InfoTip tip={t('vault.tip.lineageEventId')}>
+                          <button
+                            type="button"
+                            onClick={async () => {
+                              await navigator.clipboard.writeText(eventId)
+                              setCopiedEventId(copyKey)
+                              window.setTimeout(() => setCopiedEventId(null), 2000)
+                            }}
+                            className="text-[10px] text-ink-muted hover:text-mp-btc-text inline-flex items-center gap-1"
+                            aria-label={t('vault.copyEventId')}
+                          >
+                            {copiedEventId === copyKey ? (
+                              <Check size={10} className="text-status-green" />
+                            ) : (
+                              <Hash size={10} />
+                            )}
+                            {t('vault.copyEventId')}
+                          </button>
+                        </InfoTip>
                       </div>
                     </li>
                   )
