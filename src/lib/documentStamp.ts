@@ -1,4 +1,5 @@
-import { stampHash, pollStamp, getStamp, satohashVerifyUrl } from './satohash'
+import { stampHash, pollStamp, getStamp, satohashVerifyUrl, satohashStampGuideUrl } from './satohash'
+import type { ApplicationStatus, UserDocument } from '../types/user'
 
 /**
  * Vault document-stamping registry.
@@ -58,6 +59,40 @@ export function deleteStampedDocument(id: string): StampedDocument[] {
   const next = loadStampedDocuments().filter(d => d.id !== id)
   saveStampedDocuments(next)
   return next
+}
+
+/** Replace an existing registry entry (by id) or prepend a new one — newest first. */
+export function upsertStampedDocument(doc: StampedDocument): StampedDocument[] {
+  const all = loadStampedDocuments()
+  const idx = all.findIndex(d => d.id === doc.id)
+  const next = idx >= 0 ? all.map(d => (d.id === doc.id ? doc : d)) : [doc, ...all]
+  saveStampedDocuments(next)
+  return next
+}
+
+/**
+ * Mirror the shared registry into UserDocument[] for the profile.
+ * Confirmed anchors map to the semantic 'stamped' status; pending/error
+ * pass through honestly. Names are display-only — never hashed on-chain.
+ */
+export function registryToProfileDocuments(registry: StampedDocument[]): UserDocument[] {
+  return registry.map(d => ({
+    id: d.id,
+    name: d.name,
+    size: d.size,
+    type: d.type,
+    hash: d.hash,
+    satohashUrl: documentVerifyUrl(d) ?? satohashStampGuideUrl(d.hash),
+    stampedAt: d.updatedAt,
+    status: d.status === 'confirmed' ? 'stamped' : d.status,
+  }))
+}
+
+/** Honest profile status from the registry — never downgrades a progressed profile. */
+export function deriveProfileStatus(registry: StampedDocument[], current: ApplicationStatus): ApplicationStatus {
+  if (registry.some(d => d.status === 'confirmed')) return 'stamped'
+  if (registry.length > 0 && current === 'registered') return 'documents'
+  return current
 }
 
 /** Pure status mapping — testable without the API. */

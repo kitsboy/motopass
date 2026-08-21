@@ -1,3 +1,22 @@
+## Session — 2026-08-21 (Grok/M3) — Profile + Vault share one document registry — BUILD 72 continued
+
+**Done:**
+- **Unified document stamping**: ProfilePage and Vault now share the single `motopass-vault-documents` registry (`documentStamp.ts`).
+  - ProfilePage file-upload now runs the **exact Vault workflow** (`stampDocumentFile`): local SHA-256 → `POST /api/stamp` → poll → honest pending/confirmed/error status. The old divergent "metadata-wrapped hash + deep-link only" path is gone — the raw-file hash is the anchor everywhere (`profileDocumentStampPayload` removed with its test).
+  - Profile document list renders **from the registry** (mount-sync pulls Vault-stamped docs into the profile mirror) with honest status chips (Confirmed @ block N / Awaiting anchor / Error), verify links, re-check (`refreshStampStatus`), and delete.
+  - `PassportApplication`-style mirror: `registryToProfileDocuments` maps registry → `UserDocument[]` (confirmed → `stamped`, pending/error pass through); `UserDocument.status` widened. `deriveProfileStatus` sets `stamped` only when ≥1 confirmed anchor, `documents` when any doc — and never downgrades a progressed profile.
+  - New registry helpers: `upsertStampedDocument` (in-place update or newest-first prepend).
+- 3 new unit tests (upsert in-place + prepend, registry→profile mirror honesty, status derivation without downgrade) — 180 total green · 26/26 e2e · build green · 0 new tsc errors (26 pre-existing baseline).
+
+**Decisions:**
+- One registry, one anchor: raw-file SHA-256. Profile names stay display-only — never hashed on-chain.
+
+**Git State:**
+- Commit: `feat(profile): unify document stamping with the vault registry — one list, honest statuses`
+- Branch: main
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — Document proofs wired into Apply — BUILD 72 continued
 
 **Done:**

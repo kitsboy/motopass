@@ -30,23 +30,3 @@ export function applyStampPayload(input: {
     docs: docs.length ? docs : null,
   }
 }
-
-export function profileDocumentStampPayload(input: {
-  program: string
-  created: string
-  contentHash: string
-  size: number
-  type: string
-  npub?: string | null
-}): Record<string, unknown> {
-  return {
-    platform: 'MotoPass',
-    kind: 'profile-document',
-    program: input.program.trim(),
-    created: input.created,
-    content_hash: input.contentHash,
-    size: input.size,
-    type: input.type || 'application/octet-stream',
-    npub: input.npub ?? null,
-  }
-}

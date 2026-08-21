@@ -4,6 +4,9 @@ import {
   loadStampedDocuments,
   saveStampedDocuments,
   deleteStampedDocument,
+  upsertStampedDocument,
+  registryToProfileDocuments,
+  deriveProfileStatus,
   documentVerifyUrl,
   formatBytes,
   sha256File,
@@ -71,6 +74,45 @@ describe('registry persistence', () => {
     saveStampedDocuments([DOC, { ...DOC, id: 'x2' }])
     const next = deleteStampedDocument('x1')
     expect(next.map(d => d.id)).toEqual(['x2'])
+  })
+
+  it('upserts in place by id', () => {
+    saveStampedDocuments([DOC, { ...DOC, id: 'x2' }])
+    const next = upsertStampedDocument({ ...DOC, status: 'confirmed', blockHeight: 958093 })
+    expect(next).toHaveLength(2)
+    expect(next[0]).toMatchObject({ id: 'x1', status: 'confirmed', blockHeight: 958093 })
+    expect(next[1].id).toBe('x2')
+  })
+
+  it('upsert prepends new documents (newest first)', () => {
+    saveStampedDocuments([DOC])
+    const next = upsertStampedDocument({ ...DOC, id: 'x3' })
+    expect(next.map(d => d.id)).toEqual(['x3', 'x1'])
+  })
+})
+
+describe('registry → profile bridge', () => {
+  it('maps registry entries to UserDocument mirror with honest statuses', () => {
+    const registry: StampedDocument[] = [
+      { ...DOC, id: 'c1', status: 'confirmed', blockHeight: 958093, hash: 'bb'.repeat(32) },
+      { ...DOC, id: 'p1', status: 'pending' },
+      { ...DOC, id: 'e1', status: 'error', note: 'API unreachable' },
+    ]
+    const mirror = registryToProfileDocuments(registry)
+    expect(mirror.map(d => d.status)).toEqual(['stamped', 'pending', 'error'])
+    expect(mirror[0].hash).toBe('bb'.repeat(32))
+    expect(mirror[0].satohashUrl).toBe(`https://satohash.io/verify/${'bb'.repeat(32)}`)
+    expect(mirror[0].name).toBe('passport.pdf') // display-only, never hashed on-chain
+  })
+
+  it('derives profile status honestly without downgrading', () => {
+    const confirmed = [{ ...DOC, status: 'confirmed' as const }]
+    const pending = [{ ...DOC, status: 'pending' as const }]
+    expect(deriveProfileStatus(confirmed, 'registered')).toBe('stamped')
+    expect(deriveProfileStatus(pending, 'registered')).toBe('documents')
+    expect(deriveProfileStatus([], 'registered')).toBe('registered')
+    expect(deriveProfileStatus(pending, 'agent_assigned')).toBe('agent_assigned')
+    expect(deriveProfileStatus(confirmed, 'agent_assigned')).toBe('stamped')
   })
 })
 

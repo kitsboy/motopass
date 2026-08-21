@@ -18,7 +18,8 @@ export interface UserDocument {
   hash: string
   satohashUrl: string
   stampedAt: string
-  status: 'uploading' | 'hashed' | 'stamped'
+  /** upload progress states + honest registry statuses (mirror of the Vault registry). */
+  status: 'uploading' | 'hashed' | 'pending' | 'confirmed' | 'error' | 'stamped'
 }
 
 export interface UserPayment {

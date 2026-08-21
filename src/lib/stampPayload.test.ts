@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { applyStampPayload, normalizeDocHashes, profileDocumentStampPayload } from './stampPayload'
+import { applyStampPayload, normalizeDocHashes } from './stampPayload'
 
 describe('stampPayload', () => {
   it('apply payload omits name and notes', () => {
@@ -43,18 +43,4 @@ describe('stampPayload', () => {
     expect(normalizeDocHashes(null)).toEqual([])
   })
 
-  it('profile document payload omits filename', () => {
-    const payload = profileDocumentStampPayload({
-      program: 'Uruguay',
-      created: '2026-08-18T00:00:00.000Z',
-      contentHash: 'bb'.repeat(32),
-      size: 12,
-      type: 'application/pdf',
-      npub: 'npub1xyz',
-    })
-    const json = JSON.stringify(payload)
-    expect(json).not.toMatch(/filename|\.pdf/i)
-    expect(payload.content_hash).toBe('bb'.repeat(32))
-    expect(payload.kind).toBe('profile-document')
-  })
 })
