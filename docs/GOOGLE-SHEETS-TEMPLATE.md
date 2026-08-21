@@ -4,9 +4,38 @@
 
 ---
 
-## Quick Start (2 Minutes)
+## Quick Start — Auto-Import (30 Seconds)
+
+**The fastest way to populate everything:**
 
 1. Open your sheet: https://docs.google.com/spreadsheets/d/1b7Q1YIvJCW1qJm28SlRy99mzmaTF6Y8Ss8hFKDpiiHM
+2. Go to **Extensions → Apps Script**
+3. Delete any existing code, paste the contents of `docs/GOOGLE-SHEETS-AUTO-IMPORT.js`
+4. Click **Save** (floppy disk icon)
+5. Click **Run** → select `importAll` from the dropdown
+6. Click **Run** (authorize when prompted — first time only)
+7. Wait ~10 seconds — all 5+ tabs auto-populate with live data from GitHub!
+8. (Optional) Run `setupDashboard` to create 8 beautiful charts
+9. (Optional) Run `createImportTrigger` for daily auto-refresh at 06:30 UTC
+
+**One-click full setup:** Run `fullSetup()` — imports data, creates charts, and sets up the daily trigger.
+
+### Auto-Import Menu
+
+After setup, a **🔗 MotoPass** menu appears in the menu bar with:
+- 📥 Import All Data
+- 📊 Setup Dashboard Charts
+- ⏰ Create Daily Import Trigger
+- 🗑️ Remove Import Triggers
+- 📋 List Triggers
+
+---
+
+## Quick Start — Manual Setup (2 Minutes)
+
+If you prefer manual setup:
+
+1. Open your sheet
 2. Create 8 tabs (rename sheets at bottom): `Programs`, `Transactions`, `Documents`, `Intel Log`, `Applications`, `Alerts`, `BTC Prices`, `Dashboard`
 3. Copy each tab's header row + sample data from the sections below
 4. Paste into the sheet starting at A1
