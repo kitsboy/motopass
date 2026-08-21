@@ -6,6 +6,7 @@ import { PaymentMethods } from '../components/PaymentMethods'
 import { AgentCardKimi } from '../components/AgentCardKimi'
 import { PaigeChat } from '../components/PaigeChat'
 import { PaigeEnforcementCard } from '../components/dashboard/PaigeEnforcementCard'
+import { DocumentRegistryCard } from '../components/dashboard/DocumentRegistryCard'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
 import { ClassyModal } from '../components/ui/ClassyModal'
@@ -98,6 +99,8 @@ export function DashboardPage() {
           <PaigeChat />
         </div>
       </div>
+
+      <DocumentRegistryCard />
 
       <div className="card">
         <PaymentMethods onPay={handlePay} payments={profile.payments} />

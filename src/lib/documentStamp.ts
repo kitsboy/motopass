@@ -183,6 +183,40 @@ export async function refreshStampStatus(doc: StampedDocument): Promise<StampedD
   }
 }
 
+/**
+ * Re-submit a stored content hash to the Satohash API — the "stamp" quick
+ * action for entries whose first attempt failed or never anchored. The file
+ * is never needed again: only the already-local hash leaves the device.
+ */
+export async function restampHash(doc: StampedDocument): Promise<StampedDocument> {
+  if (!doc.hash) {
+    return { ...doc, status: 'error', note: 'No content hash on file to restamp.' }
+  }
+  const submitted = await stampHash(doc.hash, { filename: `motopass-doc-${doc.name}` })
+  if (!submitted.ok || !submitted.id) {
+    return {
+      ...doc,
+      status: 'error',
+      note: submitted.error ?? 'Satohash API unreachable — retry later or use the stamp guide.',
+    }
+  }
+  const base: StampedDocument = {
+    ...doc,
+    stampId: submitted.id,
+    status: 'pending',
+    note: undefined,
+    updatedAt: new Date().toISOString(),
+  }
+  const polled = await pollStamp(submitted.id, { attempts: 3, intervalMs: 2000 })
+  const blockHeight = polled.ok ? polled.bitcoin_block_height ?? null : null
+  return {
+    ...base,
+    blockHeight,
+    status: deriveDocStatus(polled.ok ? polled.status : undefined, blockHeight),
+    updatedAt: new Date().toISOString(),
+  }
+}
+
 /** Allowlisted Satohash verify URL for a document's content hash. */
 export function documentVerifyUrl(doc: StampedDocument): string | undefined {
   if (!doc.hash) return undefined

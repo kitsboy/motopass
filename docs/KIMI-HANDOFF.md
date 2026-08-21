@@ -1,3 +1,20 @@
+## Session — 2026-08-21 (Grok/M3) — Dashboard document registry card — BUILD 72 continued
+
+**Done:**
+- **Shared document registry now on the Dashboard** (`DocumentRegistryCard`, mounted between the main grid and payments):
+  - Renders the same `motopass-vault-documents` registry as Profile/Vault — one list everywhere.
+  - Honest status chips (Confirmed @ block N / Awaiting anchor / Error + note), verify links, size/type meta.
+  - **Quick actions**: per-row **Re-check** (`refreshStampStatus`) and **Retry stamp** (`restampHash` — re-submits the stored hash for entries whose first attempt failed or never anchored; the file is never needed again, only the hash leaves the device). Card-level **Re-check all** (sequential, non-blocking) + "Add documents" link to Profile + "Open Vault" link.
+  - `restampHash` added to `documentStamp.ts` (stampHash → pollStamp → honest deriveDocStatus); profile mirror + status stay synced after every action (`registryToProfileDocuments` / `deriveProfileStatus`), so a confirmed anchor can move the profile to `stamped`.
+  - i18n: 12 new `dashboard.registry*` keys (English fallback).
+- 3 new unit tests for `restampHash` (satohash module mocked: confirmed derivation + filename sent, API-failure honesty with hash preserved, no-hash guard without API call) — 183 total green · 26/26 e2e (Arabic RTL flake passed on retry — unrelated dropdown timing) · build green · 0 new tsc errors.
+
+**Git State:**
+- Commit: `feat(dashboard): shared document registry card with stamp / re-check quick actions`
+- Branch: main
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — Profile + Vault share one document registry — BUILD 72 continued
 
 **Done:**

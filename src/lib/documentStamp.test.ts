@@ -10,8 +10,21 @@ import {
   documentVerifyUrl,
   formatBytes,
   sha256File,
+  restampHash,
   type StampedDocument,
 } from './documentStamp'
+import { stampHash } from './satohash'
+
+const mockStampHash = vi.mocked(stampHash)
+
+vi.mock('./satohash', async importOriginal => {
+  const actual = await importOriginal<typeof import('./satohash')>()
+  return {
+    ...actual,
+    stampHash: vi.fn(async (hash: string) => ({ ok: true, id: `stamp-${hash.slice(0, 6)}` })),
+    pollStamp: vi.fn(async () => ({ ok: true, status: 'confirmed', bitcoin_block_height: 958100 })),
+  }
+})
 
 const DOC: StampedDocument = {
   id: 'x1',
@@ -113,6 +126,34 @@ describe('registry → profile bridge', () => {
     expect(deriveProfileStatus([], 'registered')).toBe('registered')
     expect(deriveProfileStatus(pending, 'agent_assigned')).toBe('agent_assigned')
     expect(deriveProfileStatus(confirmed, 'agent_assigned')).toBe('stamped')
+  })
+})
+
+describe('restampHash', () => {
+  it('re-submits the stored hash and derives an honest confirmed status', async () => {
+    const doc: StampedDocument = { ...DOC, status: 'error', note: 'API unreachable' }
+    const updated = await restampHash(doc)
+    expect(mockStampHash).toHaveBeenCalledWith('a1'.repeat(32), expect.objectContaining({ filename: expect.stringContaining('passport') }))
+    expect(updated.status).toBe('confirmed')
+    expect(updated.blockHeight).toBe(958100)
+    expect(updated.stampId).toBe('stamp-a1a1a1')
+    expect(updated.note).toBeUndefined()
+  })
+
+  it('surfaces API failure as an honest error with the hash preserved', async () => {
+    mockStampHash.mockResolvedValueOnce({ ok: false, error: 'Rate limited' })
+    const doc: StampedDocument = { ...DOC, status: 'error' }
+    const updated = await restampHash(doc)
+    expect(updated.status).toBe('error')
+    expect(updated.hash).toBe(DOC.hash)
+    expect(updated.note).toContain('Rate limited')
+  })
+
+  it('rejects a doc with no hash without calling the API', async () => {
+    mockStampHash.mockClear()
+    const updated = await restampHash({ ...DOC, hash: '' })
+    expect(updated.status).toBe('error')
+    expect(mockStampHash).not.toHaveBeenCalled()
   })
 })
 
