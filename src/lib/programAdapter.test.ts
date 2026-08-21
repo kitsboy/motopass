@@ -1,6 +1,63 @@
 import { describe, expect, it } from 'vitest'
 import { isStubProofUrl, parseMonthsToDays, toCinematicProgram } from './programAdapter'
+import { programCountryCode } from './countryCode'
 import type { Program } from '../types/program'
+
+// All 50 jurisdictions in research/countries.json — canonical countryCode
+// source. If a new country is added, add it here AND to src/lib/countryCode.ts
+// (the single ISO map — the adapter must never duplicate it again).
+const ALL_PROGRAM_NAMES = [
+  'El Salvador',
+  'Central African Republic',
+  'Uruguay',
+  'Bolivia',
+  'St. Kitts and Nevis',
+  'Antigua and Barbuda',
+  'Dominica',
+  'UAE (Dubai / Abu Dhabi)',
+  'Switzerland',
+  'Singapore',
+  'Portugal',
+  'Malta',
+  'Panama',
+  'Georgia',
+  'Paraguay',
+  'Costa Rica',
+  'Hong Kong',
+  'Thailand',
+  'Mexico',
+  'Cyprus',
+  'Greece',
+  'Vanuatu',
+  'Turkey',
+  'Mauritius',
+  'Seychelles',
+  'Brazil',
+  'Argentina',
+  'Chile',
+  'Colombia',
+  'St. Lucia',
+  'Grenada',
+  'Barbados',
+  'Bahamas',
+  'Belize',
+  'Cambodia',
+  'Philippines',
+  'Malaysia',
+  'Indonesia',
+  'Japan',
+  'New Zealand',
+  'Ireland',
+  'Spain',
+  'Italy',
+  'Latvia',
+  'Estonia',
+  'Bulgaria',
+  'Croatia',
+  'Gibraltar',
+  'Cayman Islands',
+  'Andorra',
+]
 
 const baseProgram: Program = {
   id: 1,
@@ -63,5 +120,24 @@ describe('toCinematicProgram', () => {
       satohash_proofs: [{ proof_url: 'https://satohash.io/verify/aaaa1111bbbb2222', block_height: 800000 }],
     }
     expect(toCinematicProgram(withStub).proofStatus).toBe('demo')
+  })
+})
+
+describe('countryCode single source of truth', () => {
+  it('every program name resolves an ISO code via the shared module', () => {
+    expect(ALL_PROGRAM_NAMES).toHaveLength(50)
+    for (const name of ALL_PROGRAM_NAMES) {
+      const code = programCountryCode(name)
+      // No name may fall through to the initials guess — that produced
+      // CA (Canada) for Central African Republic.
+      expect(code, `${name} must resolve via the ISO map, got ${code}`).toMatch(/^[A-Z]{2}$/)
+    }
+  })
+
+  it('adapter countryCode matches the shared module (no drift possible)', () => {
+    for (const name of ALL_PROGRAM_NAMES) {
+      const p = toCinematicProgram({ ...baseProgram, name })
+      expect(p.countryCode, name).toBe(programCountryCode(name))
+    }
   })
 })

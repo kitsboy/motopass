@@ -1,73 +1,7 @@
 import type { Program as DataProgram } from '../types/program'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import { isAllowedSatohashUrl } from './timestampSecurity'
-
-const ISO_BY_NAME: Record<string, string> = {
-  'El Salvador': 'SV',
-  Malta: 'MT',
-  Portugal: 'PT',
-  'St Kitts & Nevis': 'KN',
-  Paraguay: 'PY',
-  Uruguay: 'UY',
-  Switzerland: 'CH',
-  Singapore: 'SG',
-  'United Arab Emirates': 'AE',
-  Bolivia: 'BO',
-  'UAE (Dubai / Abu Dhabi)': 'AE',
-  Panama: 'PA',
-  Georgia: 'GE',
-  Montenegro: 'ME',
-  Turkey: 'TR',
-  Thailand: 'TH',
-  Mexico: 'MX',
-  Brazil: 'BR',
-  Argentina: 'AR',
-  Chile: 'CL',
-  Colombia: 'CO',
-  'Costa Rica': 'CR',
-  Dominica: 'DM',
-  Grenada: 'GD',
-  'Antigua and Barbuda': 'AG',
-  'St Lucia': 'LC',
-  Vanuatu: 'VU',
-  Cambodia: 'KH',
-  Malaysia: 'MY',
-  Indonesia: 'ID',
-  Philippines: 'PH',
-  Japan: 'JP',
-  'South Korea': 'KR',
-  Taiwan: 'TW',
-  'Hong Kong': 'HK',
-  Mauritius: 'MU',
-  Seychelles: 'SC',
-  Cyprus: 'CY',
-  Greece: 'GR',
-  Spain: 'ES',
-  Italy: 'IT',
-  France: 'FR',
-  Germany: 'DE',
-  Austria: 'AT',
-  Ireland: 'IE',
-  'United Kingdom': 'GB',
-  Canada: 'CA',
-  'United States': 'US',
-  Australia: 'AU',
-  'New Zealand': 'NZ',
-  // Correct ISO 3166-1 alpha-2 for remaining programs (initials fallback
-  // produces wrong flags: CAR→CA(Canada), St. Kitts→SK(Slovakia), etc.)
-  'Central African Republic': 'CF',
-  'St. Kitts and Nevis': 'KN',
-  'St. Lucia': 'LC',
-  Barbados: 'BB',
-  Bahamas: 'BS',
-  Belize: 'BZ',
-  Latvia: 'LV',
-  Estonia: 'EE',
-  Bulgaria: 'BG',
-  Croatia: 'HR',
-  'Cayman Islands': 'KY',
-  Andorra: 'AD',
-}
+import { programCountryCode } from './countryCode'
 
 const STUB_PROOF_RE = /aaaa|placeholder|stub|demo|0000000/i
 
@@ -104,13 +38,6 @@ function mapTier(category: string): CinematicProgram['tier'] {
   return 'Residency'
 }
 
-function countryCode(name: string): string {
-  if (ISO_BY_NAME[name]) return ISO_BY_NAME[name]
-  const words = name.split(/\s+/).filter(Boolean)
-  if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase()
-  return name.slice(0, 2).toUpperCase()
-}
-
 function proofRef(p: DataProgram): string | undefined {
   const url = p.satohash_proofs?.[0]?.proof_url
   if (!url) return undefined
@@ -128,7 +55,7 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
   return {
     id: String(p.id),
     country: p.name,
-    countryCode: countryCode(p.name),
+    countryCode: programCountryCode(p.name),
     tier: mapTier(p.category),
     region: p.region,
     minInvestment,

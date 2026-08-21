@@ -1,3 +1,19 @@
+## Session — 2026-08-21 (Grok/M3) — ISO map consolidated (single source of truth) — BUILD 72
+
+**Done (follow-up to the flag fix — remove the drift risk):**
+- **`src/lib/programAdapter.ts` no longer duplicates the country→ISO map.** It previously carried a byte-identical copy of `ISO_BY_NAME` plus its own private `countryCode()`. Both deleted; it now imports `programCountryCode` from `src/lib/countryCode.ts` (the single canonical module) and calls it directly in `toCinematicProgram`.
+- **Drift-guard tests** in `src/lib/programAdapter.test.ts` (new `countryCode single source of truth` block):
+  - All 50 program names resolve a 2-letter ISO via the shared module (no silent initials fallback like CAR→CA)
+  - `toCinematicProgram(...).countryCode` equals `programCountryCode(name)` for every program — the adapter can never diverge again
+- `ALL_PROGRAM_NAMES` list is deliberately inline (mirrors countries.json); a new country added to the corpus must be added to the ISO map — the 50-count assertion + btcmap.test's exact-code assertions catch omissions.
+- **Verified:** 195 unit tests (2 new, 43 files) · 26/26 e2e · build green · 0 new tsc errors (26 pre-existing baseline — the 3 in programAdapter.test are pre-existing fixture-type errors, line numbers only shifted).
+
+**Git State:**
+- Commit: `refactor(flags): single country→ISO source of truth — adapter imports shared map`
+- Branch: main
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — Country flags fixed (12 wrong ISO codes) — BUILD 72
 
 **Done (user report: "Central African Republic flag is wrong"):**
