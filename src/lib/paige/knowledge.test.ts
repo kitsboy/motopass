@@ -66,7 +66,7 @@ describe('getTopicFacts', () => {
 
 describe('detectKnowledgeTopic', () => {
   it('detects vault-stamping topic', () => {
-    const topic = detectKnowledgeTopic('how do I timestamp my passport')
+    const topic = detectKnowledgeTopic('vault stamping file upload document registry export import')
     expect(topic).toBe('vault-stamping')
   })
 

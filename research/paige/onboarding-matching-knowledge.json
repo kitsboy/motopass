@@ -1,0 +1,135 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "onboarding-matching",
+  "version": "2026-08-21",
+  "build": "2026.08.20-72",
+  "facts": [
+    "MotoPass has a 3-step registration flow: connect Nostr wallet → enter display name + target program → confirm and create profile.",
+    "Registration creates a UserProfile stored in localStorage with npub, pubkey, display name, target program, agent assignment (Kimi), and initial status 'registered'.",
+    "The profile status progresses through 8 stages: registered → documents → stamped → agent_assigned → submitted → payment_pending → in_review → approved.",
+    "ProgramsPage is the main discovery interface with 50 countries, offering table and card views with instant filtering.",
+    "Filter system supports: text search (name/details/bitcoin_integration), region, category, investment range ($0–$2M), crypto score (0–10), sovereignty (0–10), Lightning-only, and status.",
+    "Three filter presets are available: Under $100K investment, Lightning-ready only, Bitcoin-friendly (crypto score ≥7).",
+    "Gold Standard Spotlight highlights Uruguay and Bolivia as flagship depth programs that anchor research templates.",
+    "Program cards show: flag, country, status, proof badge, pathways count, flagship depth, sovereignty score, stacking synergy, risk level, Lightning readiness.",
+    "ProgramModal has 7 tabs: Overview, Pathways (flagships only), Finance, Bitcoin, Critical (flagships only), Legal, Intel, Paige, Sources.",
+    "The Intel tab displays sourced pros/cons with verification dates, scorecard bars, freshness status, and recent audit trail entries.",
+    "ProgramsComplianceStrip shows compliance metrics across all 50 jurisdictions.",
+    "The Apply page accepts: name, target program (free text), optional notes, and attachable stamped documents from the Vault.",
+    "Applications are SHA-256 hashed with the payload (program, created timestamp, npub, doc hashes) and stored locally with status 'interest'.",
+    "On successful application, the user is redirected to the Agents page with application parameters for agent handoff.",
+    "ApplyLaunchGatesDirectory shows 5 gates (Seal, Forge, Nexus, Ledger, Ops) that must pass before applications open.",
+    "The Stack Simulator (/simulator) lets users pick multiple programs and see combined metrics, synergy breakdown, and pathway-level capital analysis.",
+    "The Compare page (/compare) provides side-by-side matrix comparison of up to 4 programs with best-value badges.",
+    "The Portfolio page (/portfolio) is a saved list with Compliance Clock, reorder, and share functionality.",
+    "BTC Dual Price shows both USD and BTC equivalent at live rates throughout the interface.",
+    "URL state synchronization: filters, view mode, table density, and selected program are all encoded in search params for sharing.",
+    "The site uses 17 routes defined in App.tsx: /, /programs, /portfolio, /simulator, /compare, /btcmap, /vault, /distressed, /blog, /verify, /agents, /apply, /register, /dashboard, /profile, /blog/:slug, and a 404 catch-all.",
+    "I18n (internationalization) is built-in with translation keys for all UI strings, accessed via useI18n() hook and formatT() helper.",
+    "The pitch page (/) guides users through: overview with live stats → savings graphs → site guide (4 steps) → 4 pillars → products → how it works → FAQ → CTA.",
+    "The 4 guide steps are: 1) Explore programs at /programs, 2) Stamp documents at /vault, 3) Build your portfolio at /portfolio, 4) Apply at /apply.",
+    "New programs can be added via the Programs page '+' button — they are user-added stubs with 'Researching' status and default scores.",
+    "Programs can be exported as JSON (all or filtered) and imported back, supporting drag-and-drop and file picker.",
+    "Saved filters, view preferences, and session filter presets persist across page reloads via localStorage and sessionStorage.",
+    "The IntelWatchStrip shows live freshness indicators across the 50-country corpus on both Programs and Pitch pages."
+  ],
+  "user_journey": {
+    "discovery": {
+      "entry_points": ["/ (pitch page)", "/programs (direct)", "/btcmap (map entry)", "Paige chat recommendation"],
+      "first_action": "Browse 50 programs with filters, search presets, or Gold Standard spotlight",
+      "research": "Click a program card → ProgramModal with 7+ tabs of deep research"
+    },
+    "registration": {
+      "step1": "Connect Nostr wallet (browser extension required)",
+      "step2": "Enter display name + select target program from dropdown (grouped by region)",
+      "step3": "Review and confirm → creates UserProfile with status 'registered'",
+      "redirect": "After registration, user goes to /dashboard"
+    },
+    "document_prep": {
+      "location": "/vault — Document Stamper",
+      "workflow": "Upload file → local SHA-256 hash → POST to Satohash API → poll until confirmed → proof on Bitcoin",
+      "shared_registry": "Documents are stored in a unified registry (localStorage) shared across Vault, Profile, and Dashboard",
+      "export_import": "Registry can be exported as JSON backup and restored from backup"
+    },
+    "application": {
+      "location": "/apply",
+      "fields": "Name, target program (free text), notes, attached stamped documents",
+      "hashing": "Payload is SHA-256 hashed (program + timestamp + npub + doc hashes)",
+      "post_submit": "Redirect to /agents with application params for agent handoff",
+      "launch_gates": "5 gates must pass before applications open: Seal, Forge, Nexus, Ledger, Ops"
+    },
+    "agent_assignment": {
+      "location": "/agents",
+      "agent": "Kimi (MotoPass AI agent) handles application processing",
+      "office_hours": "Agent availability follows Kimi's office hours schedule",
+      "messaging": "DM-based communication via Nostr relay"
+    }
+  },
+  "program_matching": {
+    "sovereignty_score": "0-100 scale measuring program independence, freedom scope, dual citizenship support, live/work rights",
+    "crypto_friendly_score": "0-10 scale rating Bitcoin/crypto adoption in the jurisdiction",
+    "stacking_synergy": "low/medium/high rating of how well a program stacks with others",
+    "risk_level": "low/medium/high assessment of program stability and reliability",
+    "flagship_depth": "Boolean — true for programs with deep research templates (pathways, compliance clock, critical tests)",
+    "flagship_tier": "'deep' (fully researched) or 'template' (scaffold awaiting full research)",
+    "proof_status": "none/pending/confirmed — whether the program data has a Bitcoin proof via Satohash",
+    "freshness": "fresh (≤14d) / watch (≤45d) / stale (>45d) based on last_checked date"
+  },
+  "filter_presets": {
+    "under100k": "Max investment $100K — targets budget-friendly programs",
+    "lightning": "Lightning-ready only — programs with active Lightning Network merchant data",
+    "bitcoinFriendly": "Crypto score ≥7 — jurisdictions with strong Bitcoin/crypto adoption"
+  },
+  "page_map": {
+    "/": "Pitch page — hero with live stats, savings graphs, 4-step guide, pillars, products, FAQ",
+    "/programs": "Program explorer — 50 countries with table/card views, filters, presets",
+    "/portfolio": "Saved program list with Compliance Clock and stats",
+    "/simulator": "Stack Simulator — combined metrics for multi-program portfolios",
+    "/compare": "Side-by-side comparison matrix (up to 4 programs)",
+    "/btcmap": "BTC Map — merchant directory, density heatmap, cluster map",
+    "/vault": "Document Vault — stamp files, manage registry, export/import",
+    "/distressed": "Distressed marketplace — proof-gated listings and deal rooms",
+    "/verify": "Verification tool — generate hashes, stamp, batch verify, paste OTS files",
+    "/apply": "Application form — name, program, notes, attached proofs, launch gates",
+    "/agents": "Agent interface — Kimi chat, office hours, application handoff",
+    "/register": "3-step registration — Nostr connect, profile creation, confirmation",
+    "/dashboard": "Member dashboard — alerts inbox, document registry, quick actions",
+    "/profile": "User profile — display name, target program, stamped documents",
+    "/blog": "Blog listing with posts"
+  },
+  "honesty_rules": [
+    "Never claim a program is 'approved' or 'in progress' unless the user has actually submitted an application.",
+    "Registration creates a local profile — it does not submit anything to any government or authority.",
+    "Applications start as 'interest' status — they are not official submissions to program authorities.",
+    "The 5 launch gates determine when applications open — if gates haven't passed, applications are gated.",
+    "Program data freshness varies — always show the honest freshness badge (fresh/watch/stale).",
+    "Sovereignty scores and crypto scores are research-based estimates, not legal certifications.",
+    "Filter presets are shortcuts, not recommendations — they narrow the view, not advise on best programs.",
+    "Agent assignment (Kimi) is automated — the agent follows office hours and may not respond instantly."
+  ],
+  "member_scripts": {
+    "how_to_start": "Start at motopass.giveabit.io — the pitch page shows live stats and a 4-step guide: explore programs, stamp documents, build your portfolio, then apply.",
+    "how_to_register": "Click Register, connect your Nostr wallet (you'll need a browser extension like nos2x or Alby), enter your name, pick a target program from the dropdown, and confirm.",
+    "how_to_apply": "Visit /apply, fill in your name and target program, optionally attach stamped documents from the Vault, and submit. Your application is hashed and you'll be guided to meet Kimi, our AI agent.",
+    "how_to_find_program": "Go to /programs — use the search bar for country names, the region sidebar to filter by geography, or the filter presets (Under $100K, Lightning-ready, Bitcoin-friendly) to narrow down options.",
+    "what_is_gold_standard": "Uruguay and Bolivia are our Gold Standard flagships — they have the deepest research templates with full pathway analysis, compliance clocks, and critical test results that other programs reference.",
+    "how_to_compare": "Click any program card, then click 'Open Compare' in the modal. You can compare up to 4 programs side-by-side with a matrix view showing investment, timelines, sovereignty, and Bitcoin readiness.",
+    "what_are_launch_gates": "Launch gates are 5 checkpoints (Seal, Forge, Nexus, Ledger, Ops) that must all pass before applications open. They ensure the platform has Bitcoin proofs, a working marketplace, live relay, agent readiness, and CI validation.",
+    "what_is_portfolio": "Your portfolio at /portfolio is a saved list of programs you're interested in. It shows combined statistics, a Compliance Clock for timelines, and syncs across pages. Add programs from the Programs page."
+  },
+  "key_files": [
+    "src/pages/RegisterPage.tsx — 3-step registration with Nostr connect",
+    "src/pages/ProgramsPage.tsx — main program explorer with filters",
+    "src/pages/ApplyPage.tsx — application form with document attachment",
+    "src/pages/PitchPage.tsx — landing page with hero, guide, pillars",
+    "src/pages/ProfilePage.tsx — user profile with stamped documents",
+    "src/pages/DashboardPage.tsx — member dashboard with alerts and registry",
+    "src/lib/programFilter.ts — filter logic (search, region, investment, crypto, sovereignty)",
+    "src/lib/programFilterPresets.ts — filter preset definitions (Under 100K, Lightning, Bitcoin-friendly)",
+    "src/components/programs/ProgramModal.tsx — deep research modal with 7+ tabs",
+    "src/components/programs/GoldStandardSpotlight.tsx — Uruguay/Bolivia flagship spotlight",
+    "src/lib/pitchStats.ts — pitch page statistics computation",
+    "src/lib/launch/launchGates.ts — 5 launch gate definitions and fetch logic",
+    "src/types/user.ts — UserProfile type with 8-stage status progression"
+  ]
+}
