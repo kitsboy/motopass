@@ -1,3 +1,21 @@
+## Session — 2026-08-21 (Grok/M3) — Document registry export backup — BUILD 72 continued
+
+**Done:**
+- **Portable JSON backup of the shared document registry** (`src/lib/documentRegistryExport.ts`):
+  - `motopass-document-registry/v1` bundle — build id/label, exported_at, issuer, and every document with raw SHA-256 (the on-chain anchor), Satohash stamp id, honest status, block height, created/updated dates, note, and an **allowlisted verify URL** (`documentVerifyUrl`) so the backup is auditable against Bitcoin without MotoPass.
+  - Names are included for the owner's identification only — they were never part of any hashed payload.
+  - **Export backup** button on the Dashboard registry card and on the Profile document list → downloads `motopass-documents-<BUILD>.json` (same pattern as Vault credential export).
+- 3 new unit tests (v1 schema + verify links, honest pending/error passthrough, JSON round-trip) — 186 total green · 26/26 e2e · build green · 0 new tsc errors (26 pre-existing).
+
+**Git State:**
+- Commit: `feat(registry): portable JSON export backup with verify links`
+- Branch: main
+
+**Not done / next agent:**
+- Restore/import UI for the backup (parser + merge is a natural follow-up)
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — Dashboard document registry card — BUILD 72 continued
 
 **Done:**

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ExternalLink, FilePlus2, RefreshCw, ShieldCheck } from 'lucide-react'
+import { Download, ExternalLink, FilePlus2, RefreshCw, ShieldCheck } from 'lucide-react'
 import { useUser } from '../../context/UserContext'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
@@ -15,6 +15,7 @@ import {
   formatBytes,
   type StampedDocument,
 } from '../../lib/documentStamp'
+import { downloadDocumentRegistry } from '../../lib/documentRegistryExport'
 
 function statusChip(status: StampedDocument['status']): string {
   if (status === 'confirmed') return 'border-mp-proof/40 bg-mp-proof/10 text-mp-proof'
@@ -95,6 +96,15 @@ export function DocumentRegistryCard() {
             <FilePlus2 size={12} aria-hidden />
             {t('dashboard.registryAdd')}
           </Link>
+          <button
+            type="button"
+            onClick={() => downloadDocumentRegistry(docs)}
+            disabled={docs.length === 0}
+            className="chip text-xs inline-flex items-center gap-1 disabled:opacity-55 disabled:cursor-not-allowed"
+          >
+            <Download size={12} aria-hidden />
+            {t('dashboard.registryExport')}
+          </button>
           {docs.length > 0 && (
             <button
               type="button"

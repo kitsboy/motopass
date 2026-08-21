@@ -1,6 +1,6 @@
 import { Link, Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { ExternalLink } from 'lucide-react'
+import { Download, ExternalLink } from 'lucide-react'
 import { useUser } from '../context/UserContext'
 import { FileUpload, type UploadItem } from '../components/beui/FileUpload'
 import { satohashStampGuideUrl } from '../lib/satohash'
@@ -16,6 +16,7 @@ import {
   formatBytes,
   type StampedDocument,
 } from '../lib/documentStamp'
+import { downloadDocumentRegistry } from '../lib/documentRegistryExport'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
 import { useI18n } from '../i18n/I18nContext'
@@ -100,7 +101,17 @@ export function ProfilePage() {
 
       {docs.length > 0 && (
         <div className="mt-8 card">
-          <h3 className="font-display font-semibold text-ink mb-1">{t('profile.stampedHashes')}</h3>
+          <div className="flex items-start justify-between gap-3 mb-1">
+            <h3 className="font-display font-semibold text-ink">{t('profile.stampedHashes')}</h3>
+            <button
+              type="button"
+              onClick={() => downloadDocumentRegistry(docs)}
+              className="chip text-xs inline-flex items-center gap-1 shrink-0"
+            >
+              <Download size={12} aria-hidden />
+              {t('profile.registryExport')}
+            </button>
+          </div>
           <p className="font-body text-xs text-ink-muted mb-4 leading-relaxed">{t('profile.registryNote')}</p>
           <ul className="space-y-3">
             {docs.map(doc => (
