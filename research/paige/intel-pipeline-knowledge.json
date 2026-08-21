@@ -1,0 +1,134 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "intel-pipeline",
+  "version": "2026-08-21",
+  "build": "2026.08.20-72",
+  "facts": [
+    "MotoPass tracks 50 countries (jurisdictions) with residency, citizenship, and Bitcoin integration data.",
+    "The intel pipeline runs daily at 06:00 UTC via GitHub Actions (.github/workflows/daily-intel.yml).",
+    "The pipeline has 8 steps: migrate, freshness, fetch (auto-research), probe, stamp, write, validate, commit.",
+    "intel:fetch is the automated research layer that replaces manual brief-filling with live source fetching.",
+    "Three data sources feed intel:fetch: Wikipedia REST API, BTC Map API, and CoinGecko price API.",
+    "Wikipedia provides crypto mentions, tax regime signals, investment thresholds, and processing times.",
+    "BTC Map provides real merchant counts and Lightning readiness per country (lat/lon/radius spatial query).",
+    "CoinGecko provides BTC local-currency price data for crypto climate assessment.",
+    "Every change to countries.json is recorded in audit_trail with date, field, from→to, source, and canonical slice hash.",
+    "The canonical slice hash is computed by scripts/lib/canonical-slice.mjs — the exact field set covered by Bitcoin proofs.",
+    "intel:probe hashes the first 16KB of each program's official government URLs to detect rule-page changes.",
+    "A changed hash from probe is a detection fact — humans review flagged countries and update the corpus.",
+    "intel:stamp re-anchors changed programs via POST /api/stamp to the Satohash API.",
+    "Stamping is paced (~2s between stamps) and capped (~15 per run) to respect API rate limits.",
+    "If the Satohash API is down, remaining re-stamps are deferred to the next daily run — incremental self-heal.",
+    "proof.in_sync in intel.json reports whether the stored proof hash matches the current data.",
+    "Freshness status is computed from last_checked: fresh (≤14d), watch (≤45d), stale (>45d).",
+    "last_checked is a human research date — the pipeline never rewrites it, so daily sweeps never trigger re-stamps.",
+    "Detection is auto-committed (facts); rule rewrites are always human-reviewed.",
+    "intel.json is the runtime manifest that the SPA fetches for badges, tickers, and freshness indicators.",
+    "npm run intel:run runs the full pipeline locally (migrate → freshness → fetch → probe → stamp → write → check).",
+    "npm run intel:fetch --top=10 runs auto-research on the 10 stalest countries.",
+    "npm run intel:fetch --country='El Salvador' runs auto-research on a single country.",
+    "npm run intel:fetch --dry-run previews changes without writing to countries.json.",
+    "The pipeline uses confidence-gated changes: only medium+ confidence updates are applied to the corpus.",
+    "Low-confidence signals are collected but never written — they appear in the summary for human review.",
+    "The self-healing loop: research change → canonical-slice hash drifts → stamp-changed.mjs → POST /api/stamp → new proof recorded → intel.json proof.in_sync: true."
+  ],
+  "pipeline_steps": {
+    "migrate": {
+      "script": "scripts/migrate-schema-v3.mjs",
+      "npm": "intel:migrate",
+      "purpose": "Seeds missing v3 blocks in countries.json (idempotent, preserves edits)"
+    },
+    "freshness": {
+      "script": "scripts/update-freshness.mjs",
+      "npm": "intel:freshness",
+      "purpose": "Recomputes freshness status (fresh/watch/stale) from last_checked dates"
+    },
+    "fetch": {
+      "script": "scripts/intel-fetch.mjs",
+      "npm": "intel:fetch",
+      "purpose": "Auto-research: fetches Wikipedia + BTC Map + CoinGecko, diffs against corpus, applies verified changes with audit trail",
+      "sources": {
+        "wikipedia": "REST API /page/summary/ + /page/html/ — crypto mentions, tax signals, investment thresholds",
+        "btcmap": "API /v4/places/search/ — merchant count + Lightning readiness (lat/lon/radius_km)",
+        "coingecko": "API /simple/price — BTC local-currency price for crypto climate"
+      }
+    },
+    "probe": {
+      "script": "scripts/probe-sources.mjs",
+      "npm": "intel:probe",
+      "purpose": "Probes official government URLs, hashes first 16KB, flags content changes for human review"
+    },
+    "stamp": {
+      "script": "scripts/stamp-changed.mjs",
+      "npm": "intel:stamp",
+      "purpose": "Re-anchors changed programs via Satohash API (paced 2s, capped 15/run)"
+    },
+    "write": {
+      "script": "scripts/write-intel.mjs",
+      "npm": "intel:write",
+      "purpose": "Regenerates intel.json runtime manifest with probe/stamp state"
+    },
+    "check": {
+      "script": "scripts/check-intel.mjs",
+      "npm": "intel:check",
+      "purpose": "CI gate: validates intel.json shape, 50/50 coverage, stamps intact"
+    }
+  },
+  "sources": {
+    "wikipedia": {
+      "api": "https://en.wikipedia.org/api/rest_v1",
+      "endpoints": {
+        "summary": "/page/summary/{title}",
+        "html": "/page/html/{title}"
+      },
+      "extracts": ["crypto_mentions", "tax_regime", "investment_thresholds", "processing_times", "residency_pathways"],
+      "confidence": "medium-high",
+      "note": "Page titles are mapped per country in intel-sources.mjs WIKI_TITLE_MAP"
+    },
+    "btcmap": {
+      "api": "https://api.btcmap.org",
+      "endpoint": "/v4/places/search/?lat={lat}&lon={lon}&radius_km={km}",
+      "extracts": ["merchant_count", "lightning_ready"],
+      "confidence": "high",
+      "note": "Uses lat/lon/radius_km from BTCMAP_COORDS (mirrors fetch-btcmap-density.mjs)"
+    },
+    "coingecko": {
+      "api": "https://api.coingecko.com",
+      "endpoint": "/api/v3/simple/price?ids=bitcoin&vs_currencies={currency}",
+      "extracts": ["btc_local_price"],
+      "confidence": "high",
+      "note": "Currency codes mapped per country in CURRENCY_MAP"
+    }
+  },
+  "honesty_rules": [
+    "Only medium+ confidence changes are applied to countries.json.",
+    "last_checked is never updated by the pipeline — it is a human research date.",
+    "Every change is recorded in audit_trail with source: intel-fetch:<adapter> + canonical slice hash.",
+    "Low-confidence signals are collected but never written.",
+    "Detection (probe) is auto-committed; rule rewrites are always human-reviewed.",
+    "proof.in_sync in intel.json tells whether the stored proof matches current data.",
+    "Never claim a program is 'verified' unless proof.in_sync is true and bitcoin_block_height is confirmed."
+  ],
+  "self_heal_loop": {
+    "trigger": "Research change in countries.json causes canonical-slice hash to drift from stored proof hash",
+    "detection": "intel:probe detects official URL content changes (hash comparison)",
+    "auto_research": "intel:fetch fetches live sources, diffs against corpus, applies verified changes",
+    "re_anchor": "intel:stamp POSTs new hash to Satohash API, records stamp_id + block_height",
+    "convergence": "If API is down, deferred to next run; proof.in_sync reports honest state until healed",
+    "audit": "Every change recorded in audit_trail with date, field, from→to, source, hash"
+  },
+  "env_vars": {
+    "SATOHASH_API_URL": "default https://api.satohash.io — used by stamp and write steps",
+    "SATOHASH_API_KEY": "optional API key (GitHub secret) — sent as X-Satohash-Key",
+    "PROBE_TIMEOUT_MS": "default 10000 — timeout for official URL probes",
+    "PROBE_CONCURRENCY": "default 5 — parallel URL probes",
+    "STAMP_DELAY_MS": "default 2000 — pace between Satohash API stamps",
+    "MAX_STAMPS_PER_RUN": "default 15 — cap per daily run"
+  },
+  "member_scripts": {
+    "how_fresh": "MotoPass runs a daily research pipeline that fetches live data from Wikipedia, BTC Map, and CoinGecko for all 50 countries. When something changes, the new data is verified and anchored to Bitcoin via Satohash.",
+    "self_heal": "If a government changes its rules, the pipeline detects it (URL hash change), researches the update, applies verified changes, and re-anchors the proof to Bitcoin — all automatically.",
+    "why_trust": "Every data change is recorded in an audit trail with a Bitcoin-anchored hash. You can verify any program's proof at satohash.io/verify/<hash> without trusting MotoPass.",
+    "how_to_check": "Visit /vault to see all proofs, /programs for freshness badges, or ask me about any specific country."
+  }
+}
