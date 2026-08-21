@@ -1,0 +1,151 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "verification-lifecycle",
+  "version": "2026-08-21",
+  "build": "2026.08.21-80",
+  "facts": [
+    "The verification layer is the cryptographic backbone of MotoPass — it proves data integrity without requiring trust in the platform.",
+    "Every verification starts with a SHA-256 hash of the data: the hash is the fingerprint, not the data itself.",
+    "The Satohash API accepts a 64-hex SHA-256 hash and anchors it into a Bitcoin transaction via OpenTimestamps (OTS) calendars.",
+    "A stamp starts as 'pending' and becomes 'confirmed' when a Bitcoin block includes the OTS anchor — the block height is the proof.",
+    "Polling (GET /api/stamps/:id) checks the anchor status; terminal statuses are confirmed, anchored, complete, failed, error, rejected.",
+    "The Verify page (/verify) supports four modes: generate+stamp, OTS paste/file upload, batch hash verification, and hash history re-verification.",
+    "Batch verification processes one SHA-256 hash per line, validates format, and offers Satohash deep links for each.",
+    "OTS paste verification parses hex-dump or base64 OTS file content for structural checks (browser-side cannot do full OTS verify).",
+    "Full OTS verification requires either the Satohash server or the opentimestamps Node.js CLI — the browser does structural validation only.",
+    "Hash history is stored in localStorage (max 5 entries) so users can re-verify previous hashes without re-entering them.",
+    "The proof lifecycle is: hash locally → submit to Satohash API → poll for Bitcoin anchor → confirm block height → announce on Nostr (optional).",
+    "When program data changes (daily intel pipeline), proofs are re-stamped: the old proof stays in audit_trail, the new one is anchored.",
+    "Re-stamping follows pacing rules: 2-second delay between stamps, max 15 per run, to respect Satohash API rate limits.",
+    "proof.in_sync in intel.json reports whether a program's proof matches its current canonical slice — honest per-program state.",
+    "Document stamping (Vault) hashes the file locally via crypto.subtle.digest('SHA-256'), submits only the hash, never the file.",
+    "The shared document registry (localStorage) is the single source of truth across Profile, Vault, and Dashboard pages.",
+    "Each registry entry has: id, name, size, type, hash, stampId, status (pending/confirmed/error), blockHeight, createdAt, updatedAt.",
+    "deriveDocStatus() maps API status strings to honest statuses: confirmed/anchored/complete → confirmed; failed/error/rejected → error; else pending.",
+    "restampHash() re-submits an existing hash to the Satohash API without needing the original file — the hash is the anchor.",
+    "refreshStampStatus() re-checks a stored document's anchor against the API — used by the Dashboard quick-action button.",
+    "The Verify page checks Satohash API health on mount via GET /health — shown as online/offline badge in the page header.",
+    "When the Satohash API is offline, the stamp button falls back to a deep-link guide URL (satohash.io/stamp?hash=<hash>).",
+    "Nostr attestation is optional and fire-and-forget: a kind 30078 replaceable event is built, signed via NIP-07, and published to relays.",
+    "The Nostr event carries tags: hash, satohash URL, stamp-id, block height, stamp-status — all allowlisted and sanitized.",
+    "signedEventMatchesTemplate() ensures the NIP-07 signer did not swap kind, tags, or content — prevents rogue signer mutation.",
+    "validateTimestampTemplate() checks: kind is 30078, hash tag is 64-hex, satohash URL is allowlisted, stamp-id passes regex, OTS path is relative.",
+    "The allowlisted Satohash origins are: satohash.io, api.satohash.io, satohash.giveabit.io — enforced by isAllowedSatohashUrl().",
+    "Page verification (/verify?path=<route>&build=<id>) hashes the current route + build ID for deploy-integrity checks.",
+    "buildPageVerifyPayload() creates a canonical JSON payload from pathname + buildId + platform, which is then SHA-256 hashed.",
+    "The document registry export (motopass-document-registry/v1) includes per-document verify_url for offline auditing against Bitcoin.",
+    "Registry import validates schema, requires 64-hex hashes, preserves backup statuses as claims, and offers re-check for honest confirmation.",
+    "mergeRegistryBackup() deduplicates by id, keeps the newer updatedAt, and sorts newest-first — safe for idempotent restores.",
+    "MotoPass never stores or sees user documents — only the SHA-256 hash and metadata (name, size, type) are recorded.",
+    "A Satohash proof is cryptographic timestamp evidence, not a legal document — it proves data existed at a point in time.",
+    "The intel manifest's proof.in_sync field uses SHA-256 of the canonical slice (JSON.stringify with sorted keys) to detect drift."
+  ],
+  "workflows": {
+    "hash_and_stamp": [
+      "User enters text or uploads a file on /verify",
+      "SHA-256 hash is generated locally (crypto.subtle.digest)",
+      "Hash is submitted to POST /api/stamp with filename",
+      "API returns a stamp id (uuid) and status 'pending'",
+      "Client polls GET /api/stamps/:id until terminal status or 4 attempts",
+      "On confirmed: block height and confirmed_at are shown",
+      "User can optionally announce the stamp on Nostr via NIP-07"
+    ],
+    "document_stamp_vault": [
+      "User selects a file in the Vault Document Stamper",
+      "File is SHA-256 hashed locally (file never leaves device)",
+      "Hash is submitted to Satohash API",
+      "Stamp is polled for Bitcoin anchor",
+      "Registry entry is created/updated in localStorage",
+      "Entry appears across Profile, Vault, and Dashboard (shared registry)"
+    ],
+    "re_anchor_programs": [
+      "Daily intel pipeline detects data changes (probe, fetch, diff)",
+      "Changed canonical slices are re-hashed and re-stamped",
+      "Pacing: 2s delay, max 15 stamps per run",
+      "Old proofs preserved in audit_trail with source and hash",
+      "proof.in_sync updated to reflect current anchor state"
+    ],
+    "batch_verify": [
+      "User pastes multiple SHA-256 hashes (one per line)",
+      "Each hash is validated (64-hex format)",
+      "API health is checked once",
+      "Each hash gets a verify link to satohash.io/verify/<hash>",
+      "Results can be downloaded as JSON or all hashes copied"
+    ],
+    "ots_file_verify": [
+      "User uploads a .ots file or pastes hex/base64 content",
+      "Browser parses the binary content (structural check only)",
+      "Content is paired with an expected SHA-256 hash",
+      "Result indicates structural validity — full verify requires Satohash server"
+    ],
+    "nostr_attestation": [
+      "buildTimestampAttestationEvent() creates kind 30078 with sanitized tags",
+      "validateTimestampTemplate() ensures all tags are allowlisted",
+      "NIP-07 extension signs the event",
+      "signedEventMatchesTemplate() prevents signer mutation",
+      "getEventHash() + verifyEvent() validate NIP-01 hash and Schnorr signature",
+      "publishEvent() sends to configured relays",
+      "Result includes relay summary and recovery status (published/signed-unpublished/stub/rejected)"
+    ]
+  },
+  "statuses": {
+    "stamp_lifecycle": {
+      "pending": "Submitted to Satohash API, awaiting Bitcoin block inclusion",
+      "confirmed": "Bitcoin block height received — anchor is on-chain",
+      "error": "API failure, polling timeout, or rejected — retry available"
+    },
+    "verify_modes": {
+      "opentimestamps": "Full OTS verification (requires server or Node CLI)",
+      "structural": "Browser-side structural check of .ots binary content",
+      "hash-only": "Valid 64-hex hash, not yet stamped or confirmed on Bitcoin",
+      "failed": "Invalid input, parse error, or API rejection"
+    },
+    "nostr_recovery": {
+      "published": "Signed and accepted by at least one relay",
+      "signed-unpublished": "Signed locally but no relay accepted — keep the JSON",
+      "stub": "No NIP-07 extension available — unsigned copyable JSON",
+      "rejected": "Template validation failed or signer returned a different event"
+    }
+  },
+  "honesty_rules": [
+    "A hash alone is not proof — it must be anchored on Bitcoin via Satohash/OTS.",
+    "A .ots file uploaded to the browser is structurally checked only — full verification requires the Satohash server or opentimestamps CLI.",
+    "A Nostr post is an attestation, not proof — the Bitcoin anchor is the proof.",
+    "Demo proofs are placeholders for testing — never present them as verified.",
+    "The file never leaves the device — only the SHA-256 hash is submitted to the API.",
+    "Statuses are honest: pending means not yet confirmed; error means something failed.",
+    "Re-stamping after a data change is expected behavior — the old proof is not invalidated, a new one is created.",
+    "A stamp is cryptographic timestamp evidence, not a legal document or binding proof."
+  ],
+  "member_scripts": {
+    "what_is_verify": "Verification means checking that a SHA-256 hash matches its Bitcoin anchor on Satohash — proving the data existed unchanged since the stamp was created.",
+    "how_to_stamp": "Go to /verify, paste or type your data, click Generate Hash, then click Stamp via Satohash. The API anchors your hash into Bitcoin via OpenTimestamps.",
+    "what_is_pending": "Pending means the hash has been submitted to the Satohash API but a Bitcoin block has not yet included the anchor. It usually confirms within the hour.",
+    "what_is_confirmed": "Confirmed means a Bitcoin block height has been recorded — your hash is immutably anchored on the Bitcoin blockchain.",
+    "can_i_verify_offline": "You can paste a hash and check format, or upload a .ots file for structural validation. But full proof verification requires the Satohash API to be online.",
+    "what_is_ots": "OpenTimestamps (OTS) is a protocol that batch-commits data hashes into Bitcoin transactions via calendar servers — Satohash wraps this into a simple API.",
+    "is_it_legally_binding": "A Satohash proof is cryptographic timestamp evidence proving data existed at a point in time. It is not a legal document — consult legal counsel for binding agreements.",
+    "how_do_i_reverify": "Your recent hashes are saved in the Hash History section on /verify. Click Re-verify to check any previous hash again, or visit satohash.io/verify/<hash> directly."
+  },
+  "page_map": {
+    "/verify": "Hash generation, Satohash stamping, OTS paste/file verify, batch verify, hash history",
+    "/vault": "Document Stamper (file → hash → stamp → registry), registry list, export/import",
+    "/dashboard": "Document registry card with stamp/re-check quick action, alert inbox",
+    "/profile": "Application status with stamped document status derived from registry",
+    "/apply": "Application hash generation and Satohash proof attachment"
+  },
+  "key_files": {
+    "src/lib/satohash.ts": "Satohash API client — sha256Hex, stampHash, getStamp, pollStamp, health check, URL builders",
+    "src/lib/documentStamp.ts": "Vault document-stamping registry — stampDocumentFile, restampHash, refreshStampStatus, deriveDocStatus",
+    "src/lib/verifyOtsPaste.ts": "Browser-side OTS paste parsing and structural verification",
+    "src/lib/verifyHashHistory.ts": "localStorage-backed hash history (max 5 entries)",
+    "src/lib/pageVerify.ts": "Page verification payload builder for deploy-integrity checks",
+    "src/lib/timestampSecurity.ts": "Input guards — normalizeSha256, sanitizeStampId, isAllowedSatohashUrl, validateTimestampTemplate",
+    "src/lib/nostrEvents.ts": "Nostr event builders — buildTimestampAttestationEvent, buildProgramProofEvent",
+    "src/lib/nostrTimestamp.ts": "NIP-07 sign + publish pipeline with signedEventMatchesTemplate guard",
+    "src/lib/documentRegistryExport.ts": "Registry export/import — buildDocumentRegistryBundle, parseDocumentRegistryBackup, mergeRegistryBackup",
+    "src/lib/seal/vaultVerify.ts": "Batch hash verify + OTS file upload verify helpers",
+    "src/types/proof.ts": "VerifyResult type — verified, hash, mode, blockTime, message",
+    "src/pages/VerifyPage.tsx": "Verify page UI — hash generate, stamp, OTS, batch, history"
+  }
+}
