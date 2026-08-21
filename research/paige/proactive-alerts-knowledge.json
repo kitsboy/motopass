@@ -1,0 +1,60 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "proactive-alerts",
+  "version": "2026-08-21",
+  "build": "2026.08.20-72",
+  "facts": [
+    "Paige publishes proactive alerts to Nostr when the daily pipeline detects a rule change, proof update, or freshness warning.",
+    "Every alert carries a Satohash proof link — Paige never publishes an alert without an anchored proof.",
+    "Alerts are detection facts: 'something changed' — they never tell you what it means or what to do.",
+    "Five alert types: rule-change, proof-update, freshness-stale, new-pathway, pathway-closed.",
+    "Rule-change alerts fire when the official source page content hash differs from the baseline.",
+    "Proof-update alerts fire when intel:stamp re-anchors a program to a new Bitcoin block.",
+    "Freshness-stale alerts fire when a program is more than 45 days since last human research.",
+    "New-pathway alerts fire when a new pathway is added to a program in countries.json.",
+    "Pathway-closed alerts fire when a pathway is removed from a program in countries.json.",
+    "Alerts are published as Nostr kind 30078 replaceable events with hashtag filters.",
+    "Users subscribe to Paige's pubkey and filter by the 'motopass' hashtag to see alerts.",
+    "Portfolio-aware filtering is client-side: load portfolio from localStorage, match against alert #program tag.",
+    "Alerts are fire-and-forget: if no relay accepts, no retry spam.",
+    "No tracking: Paige does not know who subscribes. All filtering happens on the user's device.",
+    "The 'd' tag ensures dedup: one alert per program per change per day.",
+    "Alert generation reads audit_trail entries from countries.json and classifies them by field.",
+    "The alert generator script (generate-alerts.mjs) is wired into the daily-intel.yml pipeline after intel:stamp."
+  ],
+  "alert_types": {
+    "rule-change": "Official source page content changed — hash differs from baseline",
+    "proof-update": "Program re-anchored to a new Bitcoin block via Satohash",
+    "freshness-stale": "Program data is more than 45 days old — needs re-research",
+    "new-pathway": "New pathway added to a program in countries.json",
+    "pathway-closed": "Pathway removed from a program in countries.json"
+  },
+  "nostr_event": {
+    "kind": 30078,
+    "tags": ["d", "t", "satohash", "block", "program", "alert-type", "source"],
+    "d_format": "motopass-alert-{slug}-{type}-{date}",
+    "hashtags": ["motopass", "rule-change", "proof-update", "freshness-stale"]
+  },
+  "subscription_filter": {
+    "authors": "<paige_agent_pubkey>",
+    "kinds": [30078],
+    "#t": ["motopass"],
+    "limit": 50
+  },
+  "honesty_rules": [
+    "Alerts are detection facts — 'something changed', never 'X now means Y'.",
+    "Every alert carries a Satohash proof link — no proof, no alert.",
+    "Alerts are fire-and-forget — no retry spam if relays are down.",
+    "No tracking — Paige does not know who subscribes.",
+    "No false urgency — alerts are informational, not actionable instructions.",
+    "Dedup by design — one alert per program per change per day."
+  ],
+  "member_scripts": {
+    "how_will_i_know": "Paige publishes proactive alerts to Nostr when the daily pipeline detects a rule change, proof update, or freshness warning. Subscribe to Paige pubkey in your Nostr client to see notifications for programs in your portfolio.",
+    "what_does_alert_mean": "A rule-change alert means the official source page for a program has changed. It does not tell you what changed or whether it affects you. Verify the proof and check the program page for details.",
+    "can_i_filter_alerts": "Yes. Subscribe to Paige pubkey and filter by the motopass hashtag. Your Nostr client can further filter by program name to show only alerts for programs in your portfolio.",
+    "are_alerts_proof_gated": "Yes. Every alert carries a Satohash proof link. Paige never publishes an alert without an anchored proof. You can verify the alert independently.",
+    "what_is_freshness_alert": "A freshness-stale alert fires when a program is more than 45 days since last human research. The data may be outdated — check the program page for the latest.",
+    "how_to_subscribe": "In your Nostr client, add a subscription filter: authors = Paige pubkey, #t = motopass, kinds = 30078. You will see all MotoPass alerts in your timeline."
+  }
+}
