@@ -21,22 +21,36 @@ research/countries.json (schema v3)
   └─ audit_trail   — every change {date, field, from→to, source, hash}
         ↓
 public/data/intel.json  — runtime manifest (SPA fetches for badges/tickers)
-```
-
-## Daily run (`.github/workflows/daily-intel.yml`, 06:00 UTC)
+```## Daily run (`.github/workflows/daily-intel.yml`, 06:00 UTC)
 
 | Step | Script | What it does |
 |------|--------|--------------|
 | 1 | `intel:migrate` | Seeds missing v3 blocks (idempotent, preserves edits) |
 | 2 | `intel:freshness` | Recomputes freshness status from `last_checked` |
-| 3 | `intel:probe` | Probes `watch.urls`, hashes first 16 KB, flags changes |
-| 4 | `intel:stamp` | Re-anchors changed programs via `POST /api/stamp` |
-| 5 | `intel:write` | Regenerates `intel.json` + Satohash API health |
-| 6 | `intel:check` + validate gates | Shape + 50/50 coverage + stamps intact |
-| 7 | auto-commit | Commits detection + re-anchors (facts only) |
+| 3 | `intel:fetch` | Auto-research: Wikipedia + BTC Map + CoinGecko → diff → apply verified changes |
+| 4 | `intel:probe` | Probes `watch.urls`, hashes first 16 KB, flags changes |
+| 5 | `intel:stamp` | Re-anchors changed programs via `POST /api/stamp` |
+| 6 | `intel:write` | Regenerates `intel.json` + Satohash API health |
+| 7 | `intel:check` + validate gates | Shape + 50/50 coverage + stamps intact |
+| 8 | auto-commit | Commits detection + re-anchors + research changes (facts only) |
 
-Run manually anytime: `npm run intel:run` (or step-wise `intel:migrate`,
-`intel:freshness`, `intel:probe`, `intel:stamp`, `intel:write`, `intel:check`).
+Run manually anytime: `npm run intel:run` (or step-wise `intel:migrate`, `intel:freshness`, `intel:fetch`, `intel:probe`, `intel:stamp`, `intel:write`, `intel:check`).
+
+### intel:fetch — automated research layer
+
+Fetches real-world data from three sources for every stale country, diffs against the corpus, and writes verified changes with audit trail:
+
+| Source | What it provides | Confidence | |
+|--------|-----------------|------------|---|
+| Wikipedia REST API | Crypto mentions, tax regime, investment thresholds, processing times | medium–high | |
+| BTC Map `/v4/places/search/` | Merchant count, Lightning readiness | high | |
+| CoinGecko `/simple/price` | BTC local-currency price (crypto climate signal) | high | |
+
+**Safety rules:** only medium+ confidence changes are applied; `last_checked` is never updated (human research date); every change is recorded in `audit_trail` with `source: intel-fetch:<adapter>` + canonical slice hash.
+
+**Usage:** `npm run intel:fetch` (all 50) · `npm run intel:fetch -- --top=10` (stalest 10) · `npm run intel:fetch -- --country="El Salvador"` (single)
+
+**Options:** `--dry-run` (preview without writing) · `--top=N` (limit to N stalest countries) · `--country=NAME` (single country)
 
 ## The self-heal loop (Satohash API)
 

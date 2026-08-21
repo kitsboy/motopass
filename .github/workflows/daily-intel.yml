@@ -29,14 +29,21 @@ jobs:
       - run: npm run intel:freshness
       - run: npm run intel:write
 
-      # 3) Official-source watchdog — detects rule-page changes (baselines first run)
+      # 3) Auto-research — fetch Wikipedia + BTC Map + CoinGecko for stale countries,
+      #    diff against corpus, apply verified changes with audit trail.
+      - name: Auto-research (Wikipedia + BTC Map + CoinGecko)
+        run: npm run intel:fetch
+        env:
+          NODE_OPTIONS: '--max-old-space-size=512'
+
+      # 4) Official-source watchdog — detects rule-page changes (baselines first run)
       - name: Probe official sources
         run: npm run intel:probe
         env:
           PROBE_TIMEOUT_MS: '15000'
           PROBE_CONCURRENCY: '8'
 
-      # 4) Re-anchor changed programs via Satohash API (self-heal to the chain)
+      # 5) Re-anchor changed programs via Satohash API (self-heal to the chain)
       #    Paced + capped: ~12 stamps/run, rest converges over subsequent days.
       - name: Satohash re-stamp loop
         run: npm run intel:stamp
@@ -46,13 +53,13 @@ jobs:
           STAMP_DELAY_MS: '2500'
           MAX_STAMPS_PER_RUN: '12'
 
-      # 5) Rewrite manifest with probe/stamp state + validate the gate
+      # 6) Rewrite manifest with probe/stamp state + validate the gate
       - run: npm run intel:write
       - run: npm run intel:check
       - run: npm run validate:data
       - run: npm run validate:stamps
 
-      # 6) Auto-commit DETECTION + re-anchors only (facts, never invented rules)
+      # 7) Auto-commit DETECTION + re-anchors + research changes (facts, never invented rules)
       - name: Commit intel sweep
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
@@ -60,7 +67,7 @@ jobs:
           file_pattern: 'research/countries.json public/data/intel.json public/proofs/*'
           skip_fetch: true
 
-      # 7) Summary for the morning review
+      # 8) Summary for the morning review
       - name: Intel summary
         run: |
           node -e "
@@ -74,6 +81,7 @@ jobs:
             console.log('|--------|-------|');
             console.log('| Sweep | ' + i.sweep.fresh + ' fresh / ' + i.sweep.watch + ' watch / ' + i.sweep.stale + ' stale |');
             console.log('| Satohash API | ' + (i.sweep.satohash_api?.status ?? 'unknown') + ' |');
+            console.log('| Auto-researched | ' + entries.filter(([, p]) => p.freshness.status === 'stale').length + ' stale countries |');
             console.log('| Source changes flagged | ' + changed.length + ' |');
             console.log('| Stale (>45d) | ' + stale.length + ' |');
             if (changed.length) {

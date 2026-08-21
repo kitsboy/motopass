@@ -1,3 +1,32 @@
+## Session — 2026-08-21 (Grok/M3) — Intel fetch pipeline: automated daily research layer — BUILD 72
+
+**Done (user request: "Build the daily-intel pipeline" — automated web research to replace manual brief-filling):**
+- **`scripts/lib/intel-sources.mjs`** — Multi-source adapter module:
+  - Wikipedia REST API (`/page/summary/` + `/page/html/`): extracts crypto mentions, tax regime, investment thresholds, processing times; handles 50 country→page-title mappings with unquoted-key-safe syntax
+  - BTC Map API (`/v4/places/search/`): merchant count + Lightning readiness per country, using lat/lon/radius_km from the existing `fetch-btcmap-density.mjs` coordinate map
+  - CoinGecko API (`/simple/price`): BTC local-currency price signal for crypto climate assessment
+  - All sources timeout-bounded (12s), graceful failure → null (never blocks the pipeline)
+- **`scripts/lib/intel-diff.mjs`** — Diff engine comparing fetched intel against corpus:
+  - Wikipedia analysis: crypto keyword detection, tax signal extraction (no-income > territorial > favorable hierarchy), investment threshold parsing, processing time detection, residency pathway signals
+  - BTC Map analysis: merchant count → Lightning-ready upgrade, crypto-friendly score boost for strong merchant presence
+  - Confidence-gated changes: only `medium`+ confidence proposals reach the write layer; `low` signals are collected but never applied
+  - Honesty rules: never overwrites null/empty, never downgrades a researched value, never touches `last_checked`
+- **`scripts/intel-fetch.mjs`** — Orchestrator script:
+  - Fetches all 3 sources for each country (concurrency 5, paced 500ms between batches)
+  - Diffs against corpus, validates each change, applies verified updates, records `audit_trail` entries with `source: intel-fetch:<adapter>` + canonical slice hash
+  - Options: `--dry-run`, `--top=N` (stalest N), `--country=NAME` (single)
+  - First real run: 48/50 Wikipedia, 35/50 BTC Map, 1 CoinGecko fetched; 107 signals across 48 countries; 4 verified changes applied (Bolivia +2 crypto score from BTC Map merchants, Portugal +1, Bulgaria +1, Vanuatu tax clarification from Wikipedia)
+- **npm script** `intel:fetch` added, wired into `intel:run` pipeline (between `intel:freshness` and `intel:probe`)
+- **GitHub Actions** `.github/workflows/daily-intel.yml` updated: step 3 is now `intel:fetch` (auto-research), all step numbers shifted, summary includes auto-research stats
+- **Documentation** `docs/COUNTRY-INTEL.md` updated with full pipeline table + intel:fetch reference
+- **Verified:** 195 unit tests · 26/26 e2e · build green · 0 new tsc errors (26 pre-existing baseline)
+
+**Git State:**
+- Files: `scripts/lib/intel-sources.mjs`, `scripts/lib/intel-diff.mjs`, `scripts/intel-fetch.mjs`, `package.json`, `.github/workflows/daily-intel.yml`, `docs/COUNTRY-INTEL.md`
+- Branch: main
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — ISO map consolidated (single source of truth) — BUILD 72
 
 **Done (follow-up to the flag fix — remove the drift risk):**

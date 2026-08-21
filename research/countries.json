@@ -614,7 +614,7 @@
         "gov_fees_usd": 12000,
         "processing_time_months": "4-9",
         "tax_benefits": "Research needed on crypto tax treatment and investment incentives.",
-        "crypto_friendly_score": 5,
+        "crypto_friendly_score": 7,
         "bitcoin_specific": "Monitor for policy shifts. Potential future MotoPass candidate in Andes region."
       },
       "details": "User to fill detailed research, current finance numbers, Bitcoin friendliness, and status update. Modeled minimum investment $80,000 (typical $120,000). Primary routes on file: Investor / company route, Low solvency / fixed deposit. Tax notes: Research needed on crypto tax treatment and investment incentives. Verify every figure against primary sources and Satohash proofs before acting.",
@@ -793,6 +793,22 @@
           "to": "re-anchored b3a045e3235cb018 (stamp 65448252-e0f)",
           "source": "satohash-api",
           "hash": "b3a045e3235cb01834b4bf5046ad707836ff20b49de63d449f2404657bbf092f"
+        },
+        {
+          "date": "2026-08-21",
+          "field": "finance.crypto_friendly_score",
+          "from": "5",
+          "to": "6",
+          "source": "intel-fetch:btcmap",
+          "hash": "c2d495b13191f53ff76cc6c0852ed360a68dde5763261ba6ac92cfcb3e714b35"
+        },
+        {
+          "date": "2026-08-21",
+          "field": "finance.crypto_friendly_score",
+          "from": "6",
+          "to": "7",
+          "source": "intel-fetch:btcmap",
+          "hash": "cb49ebf77a8b646af06753b503045a58cbb53d2babbcd6e60591c13452c95fd7"
         }
       ]
     },
@@ -2033,7 +2049,7 @@
         "gov_fees_usd": 20000,
         "processing_time_months": "6-12",
         "tax_benefits": "Changes in 2023-2025 reduced some benefits. Still territorial elements and quality of life high.",
-        "crypto_friendly_score": 6,
+        "crypto_friendly_score": 7,
         "bitcoin_specific": "Monitor closely. Previously excellent; now more neutral. Good lifestyle option if rules stabilize."
       },
       "details": "Lifestyle + residency strong, but tax/crypto policy has shifted. Requires fresh research for MotoPass. Modeled minimum investment $250,000 (typical $400,000). Primary routes on file: Golden Visa (investment fund route), D7 passive income. Tax notes: Changes in 2023-2025 reduced some benefits. Still territorial elements and quality of life high. Verify every figure against primary sources and Satohash proofs before acting.",
@@ -2226,6 +2242,14 @@
           "to": "re-anchored 87177a9450d09131 (stamp dff933e5-eb5)",
           "source": "satohash-api",
           "hash": "87177a9450d09131bc3445575e3a9d361e2f2eb11772d7d85ae7cf53fb47e5f4"
+        },
+        {
+          "date": "2026-08-21",
+          "field": "finance.crypto_friendly_score",
+          "from": "6",
+          "to": "7",
+          "source": "intel-fetch:btcmap",
+          "hash": "0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b"
         }
       ]
     },
@@ -4405,7 +4429,7 @@
         "typical_investment_usd": 150000,
         "gov_fees_usd": 10000,
         "processing_time_months": "1-3",
-        "tax_benefits": "No income tax",
+        "tax_benefits": "No personal income tax (Wikipedia)",
         "crypto_friendly_score": 7,
         "bitcoin_specific": "Fast passport, Bitcoin-friendly agents"
       },
@@ -4620,6 +4644,14 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "83771c5faafe612ad36e9034634e81db7dd70a92d8853637af8b735471292c51"
+        },
+        {
+          "date": "2026-08-21",
+          "field": "finance.tax_benefits",
+          "from": "No income tax",
+          "to": "No personal income tax (Wikipedia)",
+          "source": "intel-fetch:wikipedia",
+          "hash": "3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34"
         }
       ]
     },
@@ -9812,7 +9844,7 @@
         "gov_fees_usd": 15000,
         "processing_time_months": "4-10",
         "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
-        "crypto_friendly_score": 5,
+        "crypto_friendly_score": 6,
         "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
       },
       "details": "Flagship-depth research entry for Bulgaria. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
@@ -10025,6 +10057,14 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "abbaabdd8d4320d60f850ebed095c30f8b1c248d87d9d836cc03b9259fba9d79"
+        },
+        {
+          "date": "2026-08-21",
+          "field": "finance.crypto_friendly_score",
+          "from": "5",
+          "to": "6",
+          "source": "intel-fetch:btcmap",
+          "hash": "06ab34e38d9c8fc200e5b18c151a4c565f291d4622d6012489d6e00bd540fb7c"
         }
       ]
     },
