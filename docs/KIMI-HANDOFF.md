@@ -1,3 +1,22 @@
+## Session — 2026-08-20 (Grok/M3) — Vault document-stamping workflow — BUILD 72 continued
+
+**Done:**
+- **Stamp any document in the Vault via the Satohash API** (`DocumentStamper` on /vault):
+  - `src/lib/documentStamp.ts` — registry (localStorage, hash-only, files never leave device) + orchestration: SHA-256 locally → `POST /api/stamp` → `pollStamp` for Bitcoin anchor → honest status (`pending` / `confirmed` @ block / `error`).
+  - `refreshStampStatus` re-checks a stored stamp via `GET /api/stamps/:id`; verify links use the allowlisted satohash.io origin; delete/copy per entry.
+  - 8 new unit tests (status derivation, registry round-trip, corrupt-storage tolerance, sha256 vector, verify-URL allowlist) — 174 total green · 26/26 e2e · build green · 0 new tsc errors.
+  - i18n keys (English fallback) + mounted between the verify card and the archive on VaultPage.
+
+**Decisions:**
+- Raw-file hash (not metadata-wrapped) is the honest anchor — proves that exact file existed at block N.
+- Statuses stay honest: pending until the API reports an anchor; never claims verified without a block height.
+
+**Git State:**
+- Commit: `feat(vault): stamp any document via the Satohash API — local-hash registry with honest status`
+- Branch: main
+
+---
+
 ## Session — 2026-08-20 (Grok/M3) — CRITICAL: canonical-slice bug fixed + re-anchored — BUILD 72 continued
 
 **Critical fix (proof coverage bug):**

@@ -21,6 +21,7 @@ import { estimateReadingMinutes } from '../lib/utils'
 import { VerifyResultsExplainer } from '../components/verify/VerifyResultsExplainer'
 import { VaultOtsDropZone } from '../components/vault/VaultOtsDropZone'
 import { VaultProofRow } from '../components/vault/VaultProofRow'
+import { DocumentStamper } from '../components/vault/DocumentStamper'
 
 type VaultFilter = 'all' | 'verified' | 'demo'
 
@@ -306,6 +307,8 @@ export function VaultPage() {
           </div>
         )}
       </Card>
+
+      <DocumentStamper />
 
       {error && <ProgramsLoadError message={error} />}
       {loading && !error && <RowSkeleton count={5} />}
