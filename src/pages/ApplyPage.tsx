@@ -19,6 +19,8 @@ import { BUILD_ID } from '../lib/buildInfo'
 import { ApplyLaunchGatesDirectory } from '../components/apply/ApplyLaunchGatesDirectory'
 import { ApplyFormProgressStepper } from '../components/apply/ApplyFormProgressStepper'
 import { clearApplyDraft, loadApplyDraft, saveApplyDraft } from '../lib/applyDraftStorage'
+import { loadStampedDocuments, documentVerifyUrl, formatBytes } from '../lib/documentStamp'
+import type { StampedDocument } from '../lib/documentStamp'
 
 const NOTES_MAX = 2000
 
@@ -66,8 +68,17 @@ export function ApplyPage() {
   const [copied, setCopied] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [draftBannerDismissed, setDraftBannerDismissed] = useState(false)
+  const [docs] = useState<StampedDocument[]>(() => loadStampedDocuments())
+  const [selectedDocIds, setSelectedDocIds] = useState<Set<string>>(() => {
+    if (!proofPrefill) return new Set()
+    const match = loadStampedDocuments().find(d => d.hash === proofPrefill.toLowerCase())
+    return match && match.status === 'confirmed' ? new Set([match.id]) : new Set()
+  })
   const draftRestored = initialFields.draftRestored && !draftBannerDismissed
   const kimiOfficeOpen = isOfficeHoursOpen(KIMI_TIMEZONE)
+  const selectedDocs = docs.filter(d => selectedDocIds.has(d.id))
+  const confirmedDocs = docs.filter(d => d.status === 'confirmed')
+  const attachedDocs = selectedDocs.filter(d => d.status === 'confirmed')
 
   useEffect(() => {
     if (result) return
@@ -85,6 +96,7 @@ export function ApplyPage() {
         created,
         npub: nostr?.npub ?? null,
         proofHash: initialFields.proofHash || undefined,
+        docHashes: attachedDocs.map(d => d.hash),
       })
       const hash = await hashApplicationPayload(payload)
       const id = `app-${Date.now()}`
@@ -98,6 +110,13 @@ export function ApplyPage() {
         dataHash: hash,
         satohashUrl: satohashStampGuideUrl(hash),
         notes: notes.trim() || undefined,
+        docProofs: attachedDocs.map(d => ({
+          hash: d.hash,
+          name: d.name,
+          stampId: d.stampId,
+          blockHeight: d.blockHeight,
+          stampedAt: d.createdAt,
+        })),
       })
       clearApplyDraft()
       setResult({ hash, id })
@@ -185,6 +204,116 @@ export function ApplyPage() {
       <div className="mb-6">
         <NostrConnect onConnect={setNostr} />
       </div>
+
+      {!result && (
+        <Card animate delay={0.06} className="mb-6">
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <p className="font-chrome text-sm font-semibold text-ink">{t('apply.attachDocsTitle')}</p>
+              <p className="font-body text-xs text-ink-muted mt-1 leading-relaxed max-w-prose">{t('apply.attachDocsSub')}</p>
+            </div>
+            <Link
+              to="/vault"
+              className="chip text-xs shrink-0 inline-flex items-center gap-1 hover:border-mp-proof/40"
+            >
+              {t('apply.attachDocsGoVault')} →
+            </Link>
+          </div>
+
+          {docs.length === 0 ? (
+            <div className="rounded-mp-md border border-mp/60 bg-card-muted/40 px-3 py-2.5">
+              <p className="text-xs text-ink-muted font-chrome">{t('apply.attachDocsEmpty')}</p>
+              <Link to="/vault" className="text-xs text-mp-proof hover:underline mt-1 inline-block">
+                {t('apply.attachDocsEmptyCta')}
+              </Link>
+            </div>
+          ) : (
+            <ul className="space-y-2">
+              {docs.map(doc => {
+                const selectable = doc.status === 'confirmed'
+                const checked = selectedDocIds.has(doc.id)
+                const verifyUrl = documentVerifyUrl(doc)
+                return (
+                  <li key={doc.id} className="flex items-center gap-3 rounded-mp-md border border-mp/60 bg-card-muted/40 px-3 py-2.5">
+                    <input
+                      type="checkbox"
+                      id={`apply-doc-${doc.id}`}
+                      className="accent-btc-orange h-4 w-4 shrink-0"
+                      checked={checked}
+                      disabled={!selectable}
+                      onChange={e => {
+                        setSelectedDocIds(prev => {
+                          const next = new Set(prev)
+                          if (e.target.checked) next.add(doc.id)
+                          else next.delete(doc.id)
+                          return next
+                        })
+                      }}
+                    />
+                    <label htmlFor={`apply-doc-${doc.id}`} className={`min-w-0 flex-1 cursor-pointer ${selectable ? '' : 'cursor-not-allowed opacity-55'}`}>
+                      <span className="block truncate text-xs font-chrome text-ink">{doc.name}</span>
+                      <span className="block truncate font-mono text-[10px] text-ink-muted">{doc.hash.slice(0, 18)}… · {formatBytes(doc.size)}</span>
+                    </label>
+                    <span
+                      className={`rounded-chip border px-2 py-0.5 text-[10px] font-mono shrink-0 ${
+                        doc.status === 'confirmed'
+                          ? 'border-mp-proof/35 bg-mp-proof/10 text-mp-proof'
+                          : doc.status === 'pending'
+                            ? 'border-status-amber/35 bg-status-amber/10 text-status-amber'
+                            : 'border-status-red/35 bg-status-red/10 text-status-red'
+                      }`}
+                    >
+                      {doc.status === 'confirmed'
+                        ? doc.blockHeight != null
+                          ? `${t('vault.doc.status.confirmed')} · ${doc.blockHeight}`
+                          : t('vault.doc.status.confirmed')
+                        : doc.status === 'pending'
+                          ? t('apply.attachDocsPending')
+                          : t('apply.attachDocsError')}
+                    </span>
+                    {verifyUrl && (
+                      <a
+                        href={verifyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="chip text-[10px] shrink-0 inline-flex items-center gap-1 hover:text-mp-proof"
+                        aria-label={t('apply.verifyOnSatohash')}
+                      >
+                        <ExternalLink size={10} />
+                      </a>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          )}
+
+          <div className="mt-3 flex items-center justify-between gap-3">
+            <p className="text-[10px] font-mono text-ink-muted">
+              {formatT(t, 'apply.attachDocsSelected', { count: selectedDocs.length })}
+            </p>
+            {confirmedDocs.length > 0 && (
+              <button
+                type="button"
+                className="text-[10px] font-chrome text-mp-btc-text hover:underline"
+                onClick={() => {
+                  setSelectedDocIds(prev => {
+                    const next = new Set(prev)
+                    if (prev.size === confirmedDocs.length) {
+                      confirmedDocs.forEach(d => next.delete(d.id))
+                    } else {
+                      confirmedDocs.forEach(d => next.add(d.id))
+                    }
+                    return next
+                  })
+                }}
+              >
+                {selectedDocs.length === confirmedDocs.length ? t('apply.attachDocsClear') : formatT(t, 'apply.attachDocsSelectAll', { count: confirmedDocs.length })}
+              </button>
+            )}
+          </div>
+        </Card>
+      )}
 
       {proofPrefill && !result && (
         <Card variant="proof" animate delay={0.05} className="mb-6">
@@ -307,6 +436,30 @@ export function ApplyPage() {
             <p className="text-ink-muted">
               {t('apply.targetProgram')}: <span className="font-semibold text-ink">{program}</span>
             </p>
+            {attachedDocs.length > 0 && (
+              <div className="pt-2 border-t border-mp/40 space-y-1.5">
+                <p className="font-chrome text-[10px] uppercase tracking-wider text-mp-proof">
+                  {t('apply.attachedProofs')} · {attachedDocs.length}
+                </p>
+                {attachedDocs.map(doc => (
+                  <div key={doc.id} className="flex items-center gap-2">
+                    <span className="font-mono text-[10px] text-ink-secondary truncate flex-1">
+                      {doc.hash.slice(0, 18)}… · {doc.blockHeight != null ? `${t('vault.doc.status.confirmed')} @ ${doc.blockHeight}` : t('vault.doc.status.confirmed')}
+                    </span>
+                    {documentVerifyUrl(doc) && (
+                      <a
+                        href={documentVerifyUrl(doc)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-[10px] text-mp-btc-text hover:underline shrink-0"
+                      >
+                        {t('apply.verifyOnSatohash')} <ExternalLink size={10} />
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="relative z-[1]">

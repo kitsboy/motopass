@@ -164,6 +164,18 @@ export interface Program {
   audit_trail?: AuditEntry[]
 }
 
+export interface ApplicationDocProof {
+  /** SHA-256 of the raw file bytes — the on-chain anchor. */
+  hash: string
+  /** Local display name only — never included in the hashed payload. */
+  name?: string
+  /** Satohash API stamp id once submitted. */
+  stampId?: string
+  blockHeight?: number | null
+  /** ISO date the document was stamped. */
+  stampedAt?: string
+}
+
 export interface PassportApplication {
   id: string
   programName: string
@@ -174,4 +186,6 @@ export interface PassportApplication {
   dataHash: string
   satohashUrl?: string
   notes?: string
+  /** Bitcoin-confirmed document stamps attached from the Vault registry. */
+  docProofs?: ApplicationDocProof[]
 }

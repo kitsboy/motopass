@@ -1,3 +1,22 @@
+## Session — 2026-08-21 (Grok/M3) — Document proofs wired into Apply — BUILD 72 continued
+
+**Done:**
+- **Attach Vault-stamped document proofs to an application** (`/apply`):
+  - `applyStampPayload` now emits a `docs[]` array — the SHA-256 hashes of attached documents, validated hex, deduped, sorted; **names/notes never enter the on-chain payload** (`normalizeDocHashes` helper, unit-tested).
+  - New attach-documents card between NostrConnect and the form: lists the Vault registry (`loadStampedDocuments`), **only Bitcoin-confirmed stamps are selectable**; pending/error rows render disabled with honest labels ("Awaiting anchor" / "Stamp error — restamp in Vault"). Select-all/clear, per-doc verify links (allowlisted), "Open Vault" CTA, empty state linking to the stamper.
+  - `?proof=<hash>` prefill now auto-selects a matching confirmed registry doc (external program-proof hashes keep the existing behavior unchanged).
+  - `PassportApplication.docProofs[]` — hash + display name (local only) + stamp_id + block height + stamped date stored per application; success card shows attached proofs with Satohash verify links.
+- 3 new unit tests (docs emitted as null when empty; sorted/deduped/lowercased + filename never leaked; normalizeDocHashes edge cases) — 177 total green · 26/26 e2e · build green · 0 new tsc errors (26 pre-existing baseline).
+
+**Decisions:**
+- Only `confirmed` (block-anchored) documents attach — a pending stamp is not yet a proof of existence. The on-chain claim stays "these exact files existed at block N", never "this person is X" (names are local-only display).
+
+**Git State:**
+- Commit: `feat(apply): attach vault-stamped document proofs to applications`
+- Branch: main
+
+---
+
 ## Session — 2026-08-20 (Grok/M3) — Vault document-stamping workflow — BUILD 72 continued
 
 **Done:**
