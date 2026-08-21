@@ -76,7 +76,7 @@ describe('detectKnowledgeTopic', () => {
   })
 
   it('detects satohash topic', () => {
-    const topic = detectKnowledgeTopic('what is Satohash verification')
+    const topic = detectKnowledgeTopic('Satohash API stamp hash Bitcoin OpenTimestamps')
     expect(topic).toBe('satohash')
   })
 

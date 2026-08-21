@@ -1,0 +1,61 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "distressed-marketplace",
+  "version": "2026-08-21",
+  "build": "2026.08.20-72",
+  "facts": [
+    "The Distressed Marketplace (/distressed) shows proof-gated listings for undervalued residency and citizenship pathways.",
+    "Every listing requires a Satohash proof — no proof, no listing. This is the proof-gate.",
+    "Two lanes: Kimi-curated (human-reviewed, gold-tier for flagships) and permissionless (auto-generated, verify proof first).",
+    "The distressed score (1-5) ranks listings by value: lower investment + higher sovereignty = higher score.",
+    "All asks are shown in Bitcoin first — the marketplace thinks in sats, not dollars.",
+    "The Escrow Builder generates a non-custodial 2-of-3 PSBT template (buyer, seller, arbiter) — template only, pre-launch.",
+    "Deal rooms are agent-mediated — escalate to Kimi via Nostr for high-stakes negotiations.",
+    "Red flags are honest warnings from the corpus — every listing shows them upfront.",
+    "Optimization tips come from the program's Paige fields — actionable advice for each pathway.",
+    "Bookmarks let you save listings for later — stored locally in localStorage.",
+    "Filters: region, minimum score, max BTC price, proof-gated only, bookmarks only.",
+    "Sort: by discount (score + gold tier), price (lowest first), or region (alphabetical).",
+    "Gold-tier curated listings are flagship programs (Uruguay, Bolivia, El Salvador, UAE, Portugal, Georgia) with proof + deep research.",
+    "Standard curated listings are high-score programs with proof but not flagship depth.",
+    "Permissionless listings are auto-generated from any program with a proof — buyer beware.",
+    "The marketplace links to Vault for proof verification, BTC Map for merchant density, and Apply for applications.",
+    "MotoPass does not custody funds — the escrow is a template, not a service.",
+    "Listings are built from countries.json pathway data — the same data powering the simulator and compare tools."
+  ],
+  "lanes": {
+    "curated": "Human-reviewed by Kimi. Gold tier = flagship programs with proof + deep research. Standard = high-score with proof.",
+    "permissionless": "Auto-generated from any program with a Satohash proof. Verify the proof first — buyer beware.",
+    "all": "Shows both curated and permissionless listings."
+  },
+  "scoring": {
+    "method": "distressed_score (1-5) based on: lower investment = higher score, budget/value keywords = bonus, low sovereignty = bonus, flagship depth = bonus, gold-curated = bonus.",
+    "interpretation": "4-5 = strong value, 3 = moderate, 1-2 = standard. Always verify the proof regardless of score."
+  },
+  "pages": {
+    "/distressed": "Marketplace with listings, filters, sort, bookmarks, and listing modals",
+    "/agents": "Agent grid — escalate to Kimi for deal room negotiations",
+    "/vault": "Verify proofs before committing to any listing",
+    "/apply": "Apply with a proof attached from the listing",
+    "/btcmap": "Check merchant density in the listing's jurisdiction"
+  },
+  "honesty_rules": [
+    "Every listing requires a Satohash proof — no proof, no listing.",
+    "Permissionless listings are auto-generated — verify the proof independently.",
+    "MotoPass does not custody funds — the escrow is a PSBT template, not a service.",
+    "Red flags are honest warnings — read them before acting.",
+    "The distressed score is a heuristic — it does not guarantee investment quality.",
+    "Gold-tier means Kimi reviewed it — but still verify the proof yourself.",
+    "Deal rooms are agent-mediated — Kimi facilitates, but the deal is between buyer and seller."
+  ],
+  "member_scripts": {
+    "what_is_distressed": "The Distressed Marketplace shows proof-gated listings for undervalued residency and citizenship pathways. Every listing has a Satohash proof — no proof, no listing.",
+    "what_are_lanes": "Two lanes: Kimi-curated (human-reviewed, gold-tier for flagships) and permissionless (auto-generated from any program with a proof). Always verify the proof.",
+    "what_is_distressed_score": "The distressed score (1-5) ranks listings by value — lower investment plus higher sovereignty equals higher score. 4-5 is strong value, 3 is moderate.",
+    "how_does_escrow_work": "The Escrow Builder generates a non-custodial 2-of-3 PSBT template — buyer, seller, arbiter. It is a template only, pre-launch. MotoPass does not custody funds.",
+    "what_are_red_flags": "Red flags are honest warnings from the corpus — every listing shows them upfront. Read them before committing capital.",
+    "how_to_bookmark": "Click the bookmark icon on any listing to save it for later. Bookmarks are stored locally — they do not sync across devices.",
+    "what_are_deal_rooms": "Deal rooms are agent-mediated negotiations — escalate to Kimi via Nostr for high-stakes discussions. Kimi facilitates, but the deal is between buyer and seller.",
+    "how_to_verify_listing": "Copy the proof URL from any listing, open satohash.io/verify/<hash>, and confirm the anchor. You do not need to trust MotoPass."
+  }
+}
