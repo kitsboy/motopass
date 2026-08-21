@@ -62,6 +62,19 @@ bursts, so drift converges incrementally over days). `proof.in_sync` in
 `status: 'changed'` + an audit entry (`source: source-probe`) — a **detection
 fact**. Humans then review and update the corpus; the next re-stamp anchors it.
 
+## Proof coverage fix (2026-08-20)
+
+The original `canonicalSlice` used `JSON.stringify(slice, Object.keys(slice).sort())`.
+An array replacer applies at **every** nesting level, so all nested objects
+(`finance`, `pathways`, `legal_compliance`, `critical_tests`, `compliance_clock`)
+serialized as empty `{}` — proofs covered only `id`/`name`/`last_checked`.
+Replaced with a recursive stable stringify (`stableStringify`) that covers all
+nested researched content with deterministic key order (regression test in
+`scripts/intel-core.test.ts`). All 50 programs were re-anchored with the
+corrected hashes (48/50 in-session; the remainder converge via the daily run).
+The old `.ots` files in `public/proofs` predate the fix and cover the old slice
+format — the API-issued `stamp_id` is now the authoritative anchor.
+
 ## Honesty rules
 
 - Every seeded pro/cons/scorecard claim is derived from vetted corpus fields

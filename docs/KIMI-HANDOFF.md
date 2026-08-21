@@ -1,3 +1,23 @@
+## Session — 2026-08-20 (Grok/M3) — CRITICAL: canonical-slice bug fixed + re-anchored — BUILD 72 continued
+
+**Critical fix (proof coverage bug):**
+- The canonical slice used `JSON.stringify(slice, Object.keys(slice).sort())` — an array replacer applies at EVERY nesting level, so `finance`/`pathways`/`legal_compliance`/`critical_tests`/`compliance_clock` serialized as EMPTY `{}`. **All proofs (and all prior .ots files) only covered id/name/last_checked — the researched content was never on-chain.**
+- Fix: recursive `stableStringify` (key-sorted at all depths) in `scripts/lib/canonical-slice.mjs` + regression test (nested content present + key-order independence).
+- Re-anchored 48/50 with corrected hashes via the Satohash API (Cayman Islands + Andorra hit the rate limit — converge on the daily run; intel.json reports them honestly as `in_sync: false`).
+- Old `public/proofs/*.ots` predate the fix (covered the old slice format) — API `stamp_id` is now the authoritative anchor. Documented in `docs/COUNTRY-INTEL.md`.
+
+**Also this round:**
+- Source probe baselined 108 official URLs — **30 unreachable** (bot-blocked gov portals + dead links) recorded in intel.json `watch.unreachable`.
+- Portugal source-layer fix: added `https://aima.gov.pt` (SEF successor, verified live) + recent_changes note + audit entry.
+- `npm run research:pass` briefs generated for the 10 stalest (web search backend was down — briefs await a source-enabled researcher).
+- 166 unit tests · build green · gates green · 26/26 e2e · 0 new tsc errors.
+
+**Git State:**
+- Commit: `fix(intel): canonical slice covered empty nested objects — stable stringify + re-anchor`
+- Branch: main
+
+---
+
 ## Session — 2026-08-20 (Grok/M3) — 50/50 proofs re-anchored + research pass scaffold — BUILD 72 continued
 
 **Done:**

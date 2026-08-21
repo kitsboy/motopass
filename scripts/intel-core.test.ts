@@ -124,6 +124,31 @@ describe('canonical slice', () => {
     expect(canonicalSlice(withIntel)).toBe(canonicalSlice(baseProgram))
   })
 
+  it('covers NESTED researched content — regression for the empty-{} replacer bug', () => {
+    // The old array-replacer stringify dropped nested keys, so proofs only
+    // covered id/name/last_checked. The slice must include finance/pathways/
+    // legal_compliance content, deterministically.
+    const slice = canonicalSlice(baseProgram)
+    expect(slice).toContain('min_investment_usd')
+    expect(slice).toContain('100000')
+    expect(slice).toContain('real_estate')
+    expect(slice).toContain('Ley Test')
+    expect(slice).toContain('example.gov')
+    // Key-order independence: a deep-reordered clone hashes identically.
+    const deepReorder = (v: unknown): unknown => {
+      if (Array.isArray(v)) return v.map(deepReorder)
+      if (v && typeof v === 'object') {
+        const out: Record<string, unknown> = {}
+        for (const k of Object.keys(v as Record<string, unknown>).reverse()) {
+          out[k] = deepReorder((v as Record<string, unknown>)[k])
+        }
+        return out
+      }
+      return v
+    }
+    expect(canonicalSliceHash(deepReorder(baseProgram))).toBe(canonicalSliceHash(baseProgram))
+  })
+
   it('includes last_checked but not intel metadata', () => {
     const a = { ...baseProgram, last_checked: '2026-08-01' }
     const b = { ...baseProgram, last_checked: '2026-08-19' }
