@@ -1,0 +1,99 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "knowledge-index",
+  "version": "2026-08-21",
+  "build": "2026.08.20-72",
+  "facts": [
+    "The Paige knowledge base contains 10 topics covering every major MotoPass feature and subsystem.",
+    "Each topic is a standalone JSON file in research/paige/*-knowledge.json, auto-discovered by import.meta.glob.",
+    "Topics are hot-loadable: adding a new JSON file automatically includes it in Paige's RAG retrieval with zero code changes.",
+    "The knowledge base currently indexes 220 facts and 73 member scripts across 10 topics.",
+    "Search is token-based with topic-name boost: queries are tokenized, scored against topic text, and ranked by overlap.",
+    "The KB badge in Paige's chat header shows live topic count and total fact count.",
+    "Every topic includes honest rules — non-negotiable guidelines that Paige must follow when discussing that topic.",
+    "Member scripts provide pre-written, vetted answers for the most common member questions per topic.",
+    "The knowledge base was designed to be self-documenting: each JSON file is both machine-readable for RAG and human-readable for developers."
+  ],
+  "topics_summary": {
+    "satohash": {
+      "description": "Satohash.io timestamp engine, OpenTimestamps, SHA-256 hashing, Bitcoin proof lifecycle",
+      "facts": 9,
+      "scripts": 5,
+      "key_concepts": ["OpenTimestamps", "SHA-256", "Bitcoin anchoring", "stamp API", "verify"],
+      "pages_covered": ["/verify", "/vault"]
+    },
+    "intel-pipeline": {
+      "description": "Daily automated research pipeline, source adapters, self-healing loop, freshness tracking",
+      "facts": 27,
+      "scripts": 4,
+      "key_concepts": ["GitHub Actions", "Wikipedia API", "BTC Map API", "CoinGecko", "audit trail", "canonical slice"],
+      "pages_covered": ["/programs", "/dashboard"]
+    },
+    "vault-stamping": {
+      "description": "Document Vault, file stamping workflow, shared registry, export/import",
+      "facts": 20,
+      "scripts": 8,
+      "key_concepts": ["Document Stamper", "SHA-256 hash", "Satohash API", "registry", "export", "import"],
+      "pages_covered": ["/vault", "/profile", "/dashboard"]
+    },
+    "stacking-portfolio": {
+      "description": "Portfolio management, Stack Simulator, Value Forks, Compare matrix, BTC dual price",
+      "facts": 19,
+      "scripts": 10,
+      "key_concepts": ["Portfolio", "Simulator", "Value Forks", "Compare", "Compliance Clock", "sovereignty"],
+      "pages_covered": ["/portfolio", "/simulator", "/compare"]
+    },
+    "distressed-marketplace": {
+      "description": "Proof-gated listings, curated vs permissionless lanes, escrow templates, deal rooms",
+      "facts": 18,
+      "scripts": 8,
+      "key_concepts": ["proof-gate", "lanes", "distressed score", "escrow", "deal rooms", "bookmarks"],
+      "pages_covered": ["/distressed"]
+    },
+    "proactive-alerts": {
+      "description": "Nostr-based rule-change alerts, alert types, subscription, portfolio-aware filtering",
+      "facts": 17,
+      "scripts": 6,
+      "key_concepts": ["Nostr events", "kind 30078", "rule-change", "freshness-stale", "alert inbox"],
+      "pages_covered": ["/dashboard"]
+    },
+    "verification-lifecycle": {
+      "description": "Hash generation, OTS verification, batch verify, Nostr attestation, security guards",
+      "facts": 35,
+      "scripts": 8,
+      "key_concepts": ["SHA-256", "OpenTimestamps", "batch verify", "Nostr attestation", "security guards"],
+      "pages_covered": ["/verify", "/vault"]
+    },
+    "onboarding-matching": {
+      "description": "Registration flow, program discovery, filters, Gold Standard, application, launch gates",
+      "facts": 28,
+      "scripts": 8,
+      "key_concepts": ["Nostr registration", "filter presets", "Gold Standard", "launch gates", "application hash"],
+      "pages_covered": ["/register", "/programs", "/apply", "/dashboard"]
+    },
+    "btcmap-discovery": {
+      "description": "BTC Map merchant directory, density heatmap, cluster map, Lightning readiness",
+      "facts": 27,
+      "scripts": 8,
+      "key_concepts": ["merchant count", "density heatmap", "cluster map", "Lightning", "spatial query"],
+      "pages_covered": ["/btcmap", "/programs"]
+    },
+    "i18n-internationalization": {
+      "description": "10-language support, browser detection, per-route overrides, RTL, keyboard shortcut",
+      "facts": 20,
+      "scripts": 8,
+      "key_concepts": ["10 languages", "auto-detect", "per-route", "RTL", "Cmd+L", "fallback chain"],
+      "pages_covered": ["all pages"]
+    }
+  },
+  "total_topics": 10,
+  "total_facts": 220,
+  "total_scripts": 73,
+  "architecture": {
+    "discovery": "import.meta.glob('research/paige/*-knowledge.json', { eager: true })",
+    "indexing": "Token-based: facts + member_scripts + topic name (split on hyphens)",
+    "search": "Score = 2 per matching token + 3 bonus for exact topic-name token match",
+    "default_limit": 5,
+    "fallback": "English for missing translations, key name as last resort"
+  }
+}
