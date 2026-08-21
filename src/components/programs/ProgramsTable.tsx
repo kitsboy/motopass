@@ -2,6 +2,7 @@ import { useMemo, useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { motion } from 'motion/react';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
+import { IntelStatusBadge } from '../intel/IntelStatusBadge';
 import { LazyFlagSprite } from '../pitch/LazyFlagSprite';
 import { BtcDualPrice } from '../BtcDualPrice';
 import type { ProgramsTableDensity } from '../../lib/portfolioStorage';
@@ -86,6 +87,7 @@ export function ProgramsTable({
             </button>
           </th>
           <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>Proof</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-2 font-medium`}>Intel</th>
         </tr>
       </thead>
       <tbody>
@@ -160,6 +162,9 @@ export function ProgramsTable({
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4`}>
                 <ProofBadge status={p.proofStatus} compact />
+              </td>
+              <td className={`border-b border-mp-border-subtle ${cellPad} pe-2`}>
+                <IntelStatusBadge programName={p.country} compact />
               </td>
             </motion.tr>
           );

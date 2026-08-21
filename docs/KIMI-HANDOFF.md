@@ -1,3 +1,18 @@
+## Session — 2026-08-20 (Grok/M3) — 50/50 proofs re-anchored + research pass scaffold — BUILD 72 continued
+
+**Done:**
+- **All 50/50 proofs now in sync on the Satohash API** (0 drifted) — completed the incremental re-anchor over paced runs (19 → 50). Every program has a real `stamp_id`, fresh `content_hash`, `stamped_at`, and a `proof` audit entry.
+- **ProgramsTable Intel column** — compact IntelStatusBadge (renders nothing when fresh+in-sync, keeps density).
+- **Freshness research pass scaffold** — `npm run research:pass` generates `research/passes/<date>/<slug>-brief.md` for the stalest programs (current corpus facts + official URLs + fill-in source checklist + verdict). Never mutates facts; a researcher fills briefs with sources, updates `last_checked`, and the pipeline re-anchors. 10 briefs generated (Bolivia 98d → St. Kitts 79d).
+- **Note:** web search backend was down this session — no live research was possible; the briefs are ready for the next researcher/agent with source access.
+- Verified: 165 unit tests · build green · validate:data/stamps + intel:check green · 26/26 e2e · 0 new tsc errors.
+
+**Git State:**
+- Commit: `chore(intel): 50/50 proofs re-anchored + table intel column + research pass scaffold`
+- Branch: main
+
+---
+
 ## Session — 2026-08-20 (Grok/M3) — Intel surface UI + Paige Satohash knowledge — BUILD 72 continued
 
 **Done:**

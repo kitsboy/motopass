@@ -30,6 +30,7 @@
     "intel:stamp": "node scripts/stamp-changed.mjs",
     "intel:write": "node scripts/write-intel.mjs",
     "intel:check": "node scripts/check-intel.mjs",
+    "research:pass": "node scripts/research-pass.mjs",
     "intel:run": "npm run intel:migrate && npm run intel:freshness && npm run intel:probe && npm run intel:stamp && npm run intel:write && npm run intel:check",
     "flagships:apply": "node scripts/apply-flagship-extensions.mjs",
     "flagships:stamp": "node scripts/stamp-flagships.mjs",
