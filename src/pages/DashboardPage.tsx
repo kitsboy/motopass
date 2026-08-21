@@ -7,6 +7,7 @@ import { AgentCardKimi } from '../components/AgentCardKimi'
 import { PaigeChat } from '../components/PaigeChat'
 import { PaigeEnforcementCard } from '../components/dashboard/PaigeEnforcementCard'
 import { DocumentRegistryCard } from '../components/dashboard/DocumentRegistryCard'
+import { AlertInbox } from '../components/dashboard/AlertInbox'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
 import { ClassyModal } from '../components/ui/ClassyModal'
@@ -99,6 +100,8 @@ export function DashboardPage() {
           <PaigeChat />
         </div>
       </div>
+
+      <AlertInbox />
 
       <DocumentRegistryCard />
 
