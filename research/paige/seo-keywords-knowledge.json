@@ -1,0 +1,60 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "seo-keywords",
+  "version": "2026-08-21",
+  "build": "2026.08.20-72",
+  "facts": [
+    "MotoPass has a comprehensive SEO strategy targeting sovereign mobility, Bitcoin passport, and crypto golden visa niches in 10 languages.",
+    "Primary keywords (English): bitcoin passport, sovereign passport, crypto golden visa, residency by investment, bitcoin visa, sovereign mobility.",
+    "Primary keywords (Spanish): pasaporte bitcoin, pasaporte soberano, visa dorada crypto, residencia por inversión, visa bitcoin, movilidad soberana.",
+    "Primary keywords (French): passeport bitcoin, passeport souverain, visa dorée crypto, résidence par investissement, visa bitcoin, mobilité souveraine.",
+    "Primary keywords (Portuguese): passaporte bitcoin, passaporte soberano, visto dourado crypto, residência por investimento.",
+    "Primary keywords (Chinese): 比特币护照, 主权护照, 加密黄金签证, 投资居留.",
+    "Primary keywords (Arabic): جواز سفر بيتكوين, جواز سفر سيادي, تأشيرة ذهبية مشفرة, إقامة بالاستثمار.",
+    "Primary keywords (Swahili): hatari ya bitcoin, hatari ya uso, kibali cha dhahabu ya crypto.",
+    "Primary keywords (German): Bitcoin-Reisepass, souveräner Reisepass, Krypto-Golden-Visa, Aufenthalt durch Investition.",
+    "Primary keywords (Hindi): बिटकॉइन पासपोर्ट, संप्रभु पासपोर्ट, क्रिप्टो गोल्डन वीज़ा.",
+    "Primary keywords (Japanese): ビットコインパスポート, 主権パスポート, 暗号ゴールデンビザ.",
+    "Every page route has optimized title (max 60 chars), meta description (max 160 chars), and keyword targets in all 10 languages.",
+    "hreflang tags are present on every page for all 10 supported languages plus x-default for English fallback.",
+    "The sitemap.xml includes per-language alternate URLs with hreflang annotations for search engine discovery.",
+    "JSON-LD structured data is present on key pages: Organization, WebSite, BreadcrumbList, GovernmentService, FAQPage, Person.",
+    "The FAQPage JSON-LD on the homepage uses live i18n translations — FAQ content adapts to the user's language.",
+    "Open Graph and Twitter Card meta tags are present on every page for social media sharing in any language.",
+    "The SeoHead component handles all meta tag injection with automatic hreflang generation for all 10 locales.",
+    "The keyword map is maintained in seoKeywords.ts — a single source of truth for per-route, per-language SEO content.",
+    "Long-tail keywords target specific queries: 'lightning ready residency', 'satohash verified programs', 'proof-gated listings', 'nostr passport application'."
+  ],
+  "target_niches": {
+    "sovereign_mobility": "People seeking second passports, residency-by-investment, and citizenship-by-investment programs",
+    "bitcoin_native": "Bitcoiners who want to live in crypto-friendly jurisdictions with Lightning acceptance",
+    "crypto_investors": "Crypto holders looking for golden visa programs that accept digital assets",
+    "digital_nomads": "Remote workers seeking location-independent residency with low tax burdens",
+    "privacy_focused": "Users who value Nostr identity, no-email applications, and Bitcoin-anchored proofs"
+  },
+  "seo_infrastructure": {
+    "meta_tags": "react-helmet-async with SeoHead component — title, description, canonical, OG, Twitter",
+    "hreflang": "All 10 languages + x-default on every page via SeoHead hrefLangs prop",
+    "structured_data": "JSON-LD: Organization, WebSite, BreadcrumbList, GovernmentService, FAQPage, Person",
+    "sitemap": "Static sitemap.xml with per-language hreflang alternates for all routes",
+    "robots": "Allows all crawlers including GPTBot and ClaudeBot for AI search visibility",
+    "canonical": "Self-referencing canonical on every page, English URL is the canonical",
+    "og_image": "Default hero image for all pages, shareable on social media"
+  },
+  "honesty_rules": [
+    "Never promise search engine rankings — SEO is about relevance, not guarantees.",
+    "Keyword content must be honest — titles and descriptions accurately reflect page content.",
+    "hreflang alternates are machine-translated titles — the actual page content varies by translation coverage.",
+    "Structured data must be accurate — GovernmentService schema reflects real program data, not marketing claims.",
+    "The sitemap is static — it does not auto-update when routes change; manual updates are required.",
+    "AI crawler access (GPTBot, ClaudeBot) is allowed — MotoPass wants to be findable in AI search results.",
+    "Long-tail keywords target real user intent — 'satohash verified programs' matches users who already know the technology.",
+    "Social sharing (OG/Twitter) uses the default hero image — no per-page custom images yet."
+  ],
+  "member_scripts": {
+    "how_to_find_motopass": "Search for 'bitcoin passport', 'crypto golden visa', or 'sovereign mobility' in your language — MotoPass ranks for these terms in English, Spanish, French, and 7 other languages.",
+    "what_languages_rank": "MotoPass has full SEO coverage in English, Spanish, and French, with targeted keywords in Portuguese, Chinese, Arabic, Swahili, German, Hindi, and Japanese.",
+    "how_to_share": "When you share a MotoPass link on social media, it shows a rich preview with title, description, and hero image — optimized for Open Graph and Twitter Cards.",
+    "can_ai_find_motopass": "Yes — MotoPass allows AI crawlers (GPTBot, ClaudeBot) so the platform is discoverable in AI-powered search results and chatbots."
+  }
+}

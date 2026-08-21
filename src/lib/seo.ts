@@ -1,8 +1,8 @@
 import { BLOG_POSTS } from '../data/blog'
 import type { LangCode } from '../i18n/languages'
 
-/** Top 5 locales for route-level hreflang alternates (en + primary markets). */
-export const TOP_SEO_LANGS: LangCode[] = ['en', 'es', 'fr', 'pt', 'de', 'zh']
+/** All 10 locales for route-level hreflang alternates. */
+export const TOP_SEO_LANGS: LangCode[] = ['en', 'es', 'fr', 'pt', 'zh', 'ar', 'sw', 'de', 'hi', 'ja']
 
 export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://motopass.giveabit.io'
 export const SITE_NAME = 'MotoPass'
@@ -98,15 +98,13 @@ export function formatPageTitle(title: string): string {
 }
 
 /** Per-locale meta overrides — RouteSeo + page-level SeoHead should use this helper. */
-export const ROUTE_SEO_I18N: Partial<Record<LangCode, Partial<Record<string, SeoMeta>>>> = {
-  de: {
-    '/programs': {
-      title: 'Bitcoin-Visa- & Krypto-Golden-Visa-Programme — 50 Jurisdiktionen',
-      description:
-        'Souveräne Pass- und Bitcoin-Visa-Programme — Krypto-Golden-Visa, RBI und CBI mit Lightning-Bereitschaft, ₿-Kosten und Satohash-Verifizierung.',
-    },
-  },
-}
+import { getSeoKeywords, type SeoKeywords } from './seoKeywords'
+
+/**
+ * Per-locale meta overrides — pulled from the keyword map.
+ * Falls back to English if a route/language combo is missing.
+ */
+export const ROUTE_SEO_I18N: Partial<Record<LangCode, Partial<Record<string, SeoMeta>>>> = {}
 
 export function resolveSeoForPath(pathname: string, lang: LangCode = 'en'): SeoMeta & { path: string } {
   const blogMatch = pathname.match(/^\/blog\/([^/]+)$/)
@@ -129,8 +127,14 @@ export function resolveSeoForPath(pathname: string, lang: LangCode = 'en'): SeoM
 
   const meta = ROUTE_SEO[pathname]
   if (meta) {
+    // Use keyword map for per-language titles and descriptions
+    const kw = getSeoKeywords(pathname, lang)
     const localized = ROUTE_SEO_I18N[lang]?.[pathname]
-    return { ...meta, ...localized, path: pathname }
+    return {
+      title: kw.title || localized?.title || meta.title,
+      description: kw.description || localized?.description || meta.description,
+      path: pathname,
+    }
   }
 
   return {
