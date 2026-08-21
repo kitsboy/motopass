@@ -31,6 +31,7 @@
     "intel:write": "node scripts/write-intel.mjs",
     "intel:fetch": "node scripts/intel-fetch.mjs",
     "intel:check": "node scripts/check-intel.mjs",
+    "export:sheets": "node scripts/export-sheets-data.mjs",
     "research:pass": "node scripts/research-pass.mjs",
     "intel:run": "npm run intel:migrate && npm run intel:freshness && npm run intel:fetch && npm run intel:probe && npm run intel:stamp && npm run intel:write && npm run intel:check",
     "flagships:apply": "node scripts/apply-flagship-extensions.mjs",
