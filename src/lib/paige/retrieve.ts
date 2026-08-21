@@ -1,4 +1,5 @@
 import type { Program } from '../../types/program'
+import { searchKnowledge } from './knowledge'
 
 export type PaigeCitation = {
   programName: string
@@ -13,6 +14,16 @@ export type PaigeHit = {
   snippets: string[]
   citations: PaigeCitation[]
 }
+
+export type PaigeKnowledgeHit = {
+  kind: 'knowledge'
+  topic: string
+  score: number
+  facts: string[]
+  scripts: string[]
+}
+
+export type PaigeResult = (PaigeHit & { kind?: 'program' }) | (PaigeKnowledgeHit & { kind: 'knowledge' })
 
 const TOKEN_RE = /[^\s,.;:!?]+/g
 
@@ -69,4 +80,50 @@ export function retrievePrograms(programs: Program[], query: string, limit = 3):
     .filter((h) => h.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
+}
+
+/**
+ * Search both program data AND the knowledge base.
+ * Returns PaigeHit[] for programs and PaigeKnowledgeHit[] for topics
+ * (satohash, intel-pipeline, vault-stamping).
+ */
+export function retrieveAll(programs: Program[], query: string, limit = 3): PaigeResult[] {
+  const toks = tokens(query)
+  if (!toks.length) return []
+
+  const programHits: PaigeHit[] = programs
+    .map((program) => {
+      const { score, snippets } = scoreProgram(program, toks)
+      const proof = program.satohash_proofs?.[0]
+      return {
+        program,
+        score,
+        snippets,
+        citations: score > 0 ? [{
+          programName: program.name,
+          field: proof?.field ?? 'program_snapshot',
+          proofUrl: proof?.proof_url,
+          blockHeight: proof?.block_height,
+        }] : [],
+      }
+    })
+    .filter((h) => h.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+
+  const knowledgeHits: PaigeKnowledgeHit[] = searchKnowledge(query, limit)
+    .map(kh => ({
+      kind: 'knowledge' as const,
+      topic: kh.topic,
+      score: kh.score,
+      facts: kh.facts,
+      scripts: kh.scripts,
+    }))
+
+  // Interleave: knowledge hits first if they score higher, then programs
+  const all: PaigeResult[] = [...knowledgeHits, ...programHits]
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit * 2) // allow more results when mixing types
+
+  return all
 }

@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Bot, Send, ArrowRight, FileSearch, Trash2 } from 'lucide-react'
 import { useReducedMotion } from 'motion/react'
 import { usePrograms } from '../hooks/usePrograms'
-import { retrievePrograms } from '../lib/paige/retrieve'
-import type { PaigeHit } from '../lib/paige/retrieve'
-import { buildPaigeBlocks, buildPaigeResponse, PAIGE_DISCLAIMER } from '../lib/paige/respond'
+import { retrievePrograms, retrieveAll } from '../lib/paige/retrieve'
+import type { PaigeHit, PaigeKnowledgeHit } from '../lib/paige/retrieve'
+import { buildPaigeBlocks, buildPaigeResponseWithKnowledge, PAIGE_DISCLAIMER } from '../lib/paige/respond'
 import { compareHandoffPath, resolveCompareHandoff } from '../lib/paige/compareHandoff'
 import {
   clearPaigeHistory,
@@ -256,14 +256,32 @@ export function PaigeChat({ compact = false }: { compact?: boolean }) {
         return
       }
 
-      const hits = retrievePrograms(programs, q)
-      if (!hits.length) {
-        const text = buildPaigeResponse(q, hits)
+      const results = retrieveAll(programs, q)
+      const programHits = results.filter((r): r is PaigeHit => !('kind' in r && r.kind === 'knowledge'))
+      const knowledgeHits = results.filter((r): r is PaigeKnowledgeHit => 'kind' in r && r.kind === 'knowledge')
+
+      if (!results.length) {
+        const text = buildPaigeResponseWithKnowledge(q, results)
         setMessages((m) => [...m, { role: 'paige', kind: 'streaming', text, displayed: 0 }])
         return
       }
 
-      const intro = `Found ${hits.length} matching program${hits.length === 1 ? '' : 's'} in the corpus…`
+      // Build intro message accounting for both program and knowledge hits
+      const parts: string[] = []
+      if (knowledgeHits.length) {
+        const topics = knowledgeHits.map(kh => {
+          if (kh.topic === 'satohash') return 'Satohash'
+          if (kh.topic === 'intel-pipeline') return 'the intel pipeline'
+          if (kh.topic === 'vault-stamping') return 'the Vault'
+          return kh.topic
+        })
+        parts.push(`Found knowledge on ${topics.join(', ')}`)
+      }
+      if (programHits.length) {
+        parts.push(`${programHits.length} matching program${programHits.length === 1 ? '' : 's'}`)
+      }
+      const intro = parts.length ? `${parts.join(' + ')} in the corpus…` : 'Searching…'
+
       setMessages((m) => [
         ...m,
         { role: 'paige', kind: 'streaming', text: intro, displayed: 0 },
@@ -272,7 +290,17 @@ export function PaigeChat({ compact = false }: { compact?: boolean }) {
       window.setTimeout(() => {
         setMessages((m) => {
           const withoutStreaming = m.filter((msg) => !(msg.role === 'paige' && msg.kind === 'streaming'))
-          return [...withoutStreaming, { role: 'paige', kind: 'hits', hits }]
+          // If we have only knowledge hits (no programs), show as streaming text
+          if (knowledgeHits.length && !programHits.length) {
+            const text = buildPaigeResponseWithKnowledge(q, results)
+            return [...withoutStreaming, { role: 'paige', kind: 'streaming', text, displayed: 0 }]
+          }
+          // If we have program hits, show them as hits cards (existing behavior)
+          // Knowledge context is woven into the response via buildPaigeResponseWithKnowledge
+          if (programHits.length) {
+            return [...withoutStreaming, { role: 'paige', kind: 'hits', hits: programHits }]
+          }
+          return withoutStreaming
         })
         setBusy(false)
       }, reduceMotion ? 120 : Math.min(intro.length * PAIGE_CHAR_MS + 200, 2400))

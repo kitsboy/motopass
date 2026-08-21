@@ -1,3 +1,26 @@
+## Session — 2026-08-21 (Grok/M3) — Paige knowledge-base wiring: RAG retrieval + knowledge search — BUILD 72
+
+**Done (user request: "Wire all three Paige knowledge JSONs into the RAG retrieval"):**
+- **`src/lib/paige/knowledge.ts`** — Knowledge-base module that imports all three JSON files (`satohash-knowledge.json`, `intel-pipeline-knowledge.json`, `vault-stamping-knowledge.json`), indexes facts + member scripts, and provides token-based search:
+  - `searchKnowledge(query)` → ranked topics with relevant facts and matching member scripts
+  - `getMemberScript(topic, key)` → specific pre-written answer
+  - `getTopicFacts(topic)` → all facts for a topic
+  - `detectKnowledgeTopic(query)` → checks if a query matches a knowledge-base topic (score threshold)
+- **`src/lib/paige/retrieve.ts`** — Extended with `retrieveAll()` that searches both program data AND knowledge base, returning interleaved `PaigeHit[]` (programs) + `PaigeKnowledgeHit[]` (topics). New types: `PaigeKnowledgeHit`, `PaigeResult`.
+- **`src/lib/paige/respond.ts`** — Extended with `buildPaigeResponseWithKnowledge()` that formats knowledge hits (topic label + top script or fact) alongside program blocks. Topic labels: Satohash & Timestamping / Intel Pipeline & Self-Healing / Vault & Document Stamping.
+- **`src/components/PaigeChat.tsx`** — Updated to use `retrieveAll()` and handle mixed results:
+  - Knowledge-only queries → streaming text response (no program cards)
+  - Mixed queries → intro message lists both topics and programs, then shows program cards
+  - Knowledge context is woven into responses via `buildPaigeResponseWithKnowledge`
+- **`src/lib/paige/knowledge.test.ts`** — 14 tests covering search, member scripts, topic facts, and topic detection across all three knowledge domains.
+- **Verified:** 209 unit tests (14 new, 44 files) · 26/26 e2e (1 flaky unrelated) · build green · 0 new tsc errors (26 pre-existing baseline).
+
+**Git State:**
+- Files: `src/lib/paige/knowledge.ts`, `src/lib/paige/knowledge.test.ts`, `src/lib/paige/retrieve.ts`, `src/lib/paige/respond.ts`, `src/components/PaigeChat.tsx`
+- Branch: main
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — Intel fetch pipeline: automated daily research layer — BUILD 72
 
 **Done (user request: "Build the daily-intel pipeline" — automated web research to replace manual brief-filling):**
