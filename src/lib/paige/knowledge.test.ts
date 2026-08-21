@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { searchKnowledge, getMemberScript, getTopicFacts, detectKnowledgeTopic } from './knowledge'
+import { searchKnowledge, getMemberScript, getTopicFacts, detectKnowledgeTopic, listTopics, getKnowledgeStats } from './knowledge'
 
 describe('searchKnowledge', () => {
   it('finds satohash topic for stamp-related queries', () => {
@@ -83,5 +83,28 @@ describe('detectKnowledgeTopic', () => {
   it('returns null for low-confidence queries', () => {
     const topic = detectKnowledgeTopic('hello')
     expect(topic).toBeNull()
+  })
+})
+
+describe('listTopics', () => {
+  it('returns all auto-discovered topics', () => {
+    const topics = listTopics()
+    expect(topics).toContain('satohash')
+    expect(topics).toContain('intel-pipeline')
+    expect(topics).toContain('vault-stamping')
+    expect(topics.length).toBeGreaterThanOrEqual(3)
+  })
+})
+
+describe('getKnowledgeStats', () => {
+  it('returns stats for all loaded topics', () => {
+    const stats = getKnowledgeStats()
+    expect(stats.topics.length).toBeGreaterThanOrEqual(3)
+    expect(stats.totalFacts).toBeGreaterThanOrEqual(30)
+    expect(stats.totalScripts).toBeGreaterThanOrEqual(10)
+    // Each topic should have facts
+    for (const t of stats.topics) {
+      expect(t.facts).toBeGreaterThan(0)
+    }
   })
 })

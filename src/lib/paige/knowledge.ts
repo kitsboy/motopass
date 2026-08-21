@@ -1,31 +1,47 @@
 /**
- * Paige knowledge-base — loads the three machine-readable JSON knowledge files
- * and provides token-based search across facts, member scripts, and endpoints.
+ * Paige knowledge-base — auto-discovers and indexes all knowledge JSON files
+ * from research/paige/*-knowledge.json via Vite's import.meta.glob.
  *
- * Sources:
- *   - research/paige/satohash-knowledge.json
- *   - research/paige/intel-pipeline-knowledge.json
- *   - research/paige/vault-stamping-knowledge.json
+ * To add a new topic:
+ *   1. Create research/paige/{topic}-knowledge.json following the schema:
+ *      { schema, topic, version, build, facts: string[], member_scripts: Record<string, string> }
+ *   2. Done — it's loaded automatically at build time.
  *
- * This module is the bridge between the static knowledge files and Paige's
- * RAG retrieval — it indexes facts so they appear alongside program hits.
+ * No code changes needed. The glob picks up any *-knowledge.json file.
  */
 
-import satohashKb from '../../../research/paige/satohash-knowledge.json'
-import intelKb from '../../../research/paige/intel-pipeline-knowledge.json'
-import vaultKb from '../../../research/paige/vault-stamping-knowledge.json'
+// ── Schema type ──────────────────────────────────────────────────────────────
+
+interface KnowledgeFile {
+  schema: string
+  topic: string
+  version: string
+  build: string
+  facts: string[]
+  member_scripts?: Record<string, string>
+}
+
+// ── Auto-discover all knowledge JSONs ────────────────────────────────────────
+// import.meta.glob returns a map of path → async loader.
+// Each key is like "../../research/paige/satohash-knowledge.json"
+// and each value is () => Promise<{ default: KnowledgeFile }>
+
+const knowledgeModules = import.meta.glob<{ default: KnowledgeFile }>(
+  '../../../research/paige/*-knowledge.json',
+  { eager: true },
+)
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
 export interface KnowledgeFact {
-  topic: string       // 'satohash' | 'intel-pipeline' | 'vault-stamping'
+  topic: string
   text: string
-  source: string      // JSON filename
+  source: string
 }
 
 export interface KnowledgeScript {
   topic: string
-  key: string         // e.g. 'what_is', 'cost', 'verify'
+  key: string
   text: string
 }
 
@@ -49,11 +65,16 @@ function tokenize(text: string): string[] {
 interface KnowledgeIndex {
   facts: KnowledgeFact[]
   scripts: KnowledgeScript[]
-  /** topic → concatenated lowercase text for fast search */
   topicText: Map<string, string>
 }
 
 let _index: KnowledgeIndex | null = null
+
+/** Extract the topic name from a file path like "../../research/paige/satohash-knowledge.json" */
+function topicFromPath(path: string): string {
+  const filename = path.split('/').pop() ?? ''
+  return filename.replace(/-knowledge\.json$/, '')
+}
 
 function buildIndex(): KnowledgeIndex {
   if (_index) return _index
@@ -62,47 +83,34 @@ function buildIndex(): KnowledgeIndex {
   const scripts: KnowledgeScript[] = []
   const topicText = new Map<string, string>()
 
-  // Satohash knowledge
-  for (const f of satohashKb.facts) {
-    facts.push({ topic: 'satohash', text: f, source: 'satohash-knowledge.json' })
-  }
-  for (const [key, text] of Object.entries(satohashKb.member_scripts ?? {})) {
-    scripts.push({ topic: 'satohash', key, text })
-  }
-  topicText.set('satohash', [
-    satohashKb.facts.join(' '),
-    satohashKb.topic,
-    'satohash', 'timestamp', 'proof', 'bitcoin', 'hash', 'stamp', 'verify',
-  ].join(' ').toLowerCase())
+  for (const [path, loader] of Object.entries(knowledgeModules)) {
+    const kb: KnowledgeFile = (loader as { default: KnowledgeFile }).default
+    const topic = kb.topic || topicFromPath(path)
 
-  // Intel pipeline knowledge
-  for (const f of intelKb.facts) {
-    facts.push({ topic: 'intel-pipeline', text: f, source: 'intel-pipeline-knowledge.json' })
-  }
-  for (const [key, text] of Object.entries(intelKb.member_scripts ?? {})) {
-    scripts.push({ topic: 'intel-pipeline', key, text })
-  }
-  topicText.set('intel-pipeline', [
-    intelKb.facts.join(' '),
-    intelKb.topic,
-    'pipeline', 'intel', 'daily', 'research', 'fresh', 'stale', 'probe', 'fetch',
-  ].join(' ').toLowerCase())
+    // Index facts
+    for (const f of kb.facts) {
+      facts.push({ topic, text: f, source: `${topic}-knowledge.json` })
+    }
 
-  // Vault stamping knowledge
-  for (const f of vaultKb.facts) {
-    facts.push({ topic: 'vault-stamping', text: f, source: 'vault-stamping-knowledge.json' })
+    // Index member scripts
+    for (const [key, text] of Object.entries(kb.member_scripts ?? {})) {
+      scripts.push({ topic, key, text })
+    }
+
+    // Build topic search text (facts + topic name + common keywords)
+    topicText.set(topic, [
+      kb.facts.join(' '),
+      topic,
+    ].join(' ').toLowerCase())
   }
-  for (const [key, text] of Object.entries(vaultKb.member_scripts ?? {})) {
-    scripts.push({ topic: 'vault-stamping', key, text })
-  }
-  topicText.set('vault-stamping', [
-    vaultKb.facts.join(' '),
-    vaultKb.topic,
-    'vault', 'stamp', 'document', 'file', 'registry', 'backup', 'restore',
-  ].join(' ').toLowerCase())
 
   _index = { facts, scripts, topicText }
   return _index
+}
+
+// Force rebuild (for tests or hot-reload scenarios)
+export function resetKnowledgeIndex(): void {
+  _index = null
 }
 
 // ── Search ───────────────────────────────────────────────────────────────────
@@ -196,15 +204,30 @@ export interface KnowledgeStats {
 /** Get stats about the loaded knowledge base (for the UI badge). */
 export function getKnowledgeStats(): KnowledgeStats {
   const idx = buildIndex()
-  const topicNames = ['satohash', 'intel-pipeline', 'vault-stamping']
+
+  // Collect unique topic names from facts + scripts
+  const topicNames = [...new Set([
+    ...idx.facts.map(f => f.topic),
+    ...idx.scripts.map(s => s.topic),
+  ])]
+
   const topics = topicNames.map(name => ({
     name,
     facts: idx.facts.filter(f => f.topic === name).length,
     scripts: idx.scripts.filter(s => s.topic === name).length,
   }))
+
   return {
     topics,
     totalFacts: idx.facts.length,
     totalScripts: idx.scripts.length,
   }
+}
+
+/**
+ * List all loaded topic names.
+ */
+export function listTopics(): string[] {
+  const idx = buildIndex()
+  return [...new Set(idx.facts.map(f => f.topic))]
 }
