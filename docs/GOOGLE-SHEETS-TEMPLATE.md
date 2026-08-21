@@ -392,6 +392,53 @@ Created At: =NOW()
 
 ---
 
+## Dashboard Charts (Auto-Generated)
+
+The Dashboard tab can be auto-populated with 8 beautiful charts using the Google Apps Script.
+
+### Quick Setup
+
+1. Open your Google Sheet
+2. Go to **Extensions → Apps Script**
+3. Delete any existing code in the editor
+4. Paste the contents of `docs/GOOGLE-SHEETS-CHARTS-SCRIPT.js`
+5. Click **Save** (floppy disk icon)
+6. Click **Run** → select `setupDashboard` from the dropdown
+7. Click **Run** (you may need to authorize the script)
+
+### Charts Created
+
+| # | Chart | Type | Data Source | Position |
+|---|-------|------|-------------|----------|
+| 1 | Programs by Region | Donut | Programs tab | Row 8 |
+| 2 | Sovereignty Distribution | Column | Programs tab | Row 8 |
+| 3 | Transactions Over Time | Line | Transactions tab | Row 23 |
+| 4 | Document Stamp Status | Pie | Documents tab | Row 23 |
+| 5 | Intel Pipeline Activity | Bar | Intel Log tab | Row 38 |
+| 6 | Application Funnel | Bar | Applications tab | Row 38 |
+| 7 | Alert Types | Donut | Alerts tab | Row 53 |
+| 8 | Crypto vs Sovereignty | Scatter | Programs tab | Row 53 |
+
+### Auto-Refresh
+
+To auto-refresh the dashboard daily:
+
+1. In Apps Script, run `createDailyRefreshTrigger`
+2. This creates a trigger that runs `refreshDashboard` every day at 06:00 UTC
+3. The dashboard will automatically update with fresh data
+
+### Brand Colors
+
+The charts use the MotoPass brand palette:
+- BTC Orange `#F7931A` — primary, transactions
+- Electric Blue `#3B82F6` — programs, comparisons
+- Proof Green `#22C55E` — confirmed, healthy states
+- Nostr Violet `#7C3AED` — intel, agent-related
+- Watch Amber `#F59E0B` — pending, watch states
+- Alert Red `#EF4444` — errors, stale states
+
+---
+
 ## Import Script (Optional)
 
 If you want to auto-populate from MotoPass data:
