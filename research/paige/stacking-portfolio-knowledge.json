@@ -1,0 +1,61 @@
+{
+  "schema": "motopass.paige-knowledge.v1",
+  "topic": "stacking-portfolio",
+  "version": "2026-08-21",
+  "build": "2026.08.20-72",
+  "facts": [
+    "The Portfolio (/portfolio) is a saved list of programs you are tracking or have acquired — stored locally in localStorage.",
+    "The Stack Simulator (/simulator) lets you pick programs and see combined metrics: total cost, avg sovereignty, longest timeline, and stacking synergy.",
+    "Value Forks show pathway-level capital analysis — minimum investment vs typical, with proof status and stacking synergy per pathway.",
+    "Compare (/compare) is a side-by-side matrix of 2-4 programs across finance, timeline, scores, and stacking metrics.",
+    "Stacking synergy (high/medium/low) indicates how well programs complement each other for Bitcoin-first users.",
+    "Sovereignty score (0-10) rates a jurisdiction's independence — higher means more control over your assets and residency.",
+    "BTC Dual Price shows USD amounts alongside their Bitcoin equivalent at current market rates.",
+    "Saved Stacks are named combinations of programs stored locally (max 20) — restore them with one click.",
+    "Portfolio order matters — drag to reorder, and the stack simulator respects your priority sequence.",
+    "The portfolio can be shared via URL — anyone with the link sees the same program combination.",
+    "Compliance Clock shows the timeline for flagship programs — key milestones and deadlines.",
+    "The simulator summary copies a text summary of your stack: programs, cost, sovereignty, timeline.",
+    "Value Forks calculate potential savings by choosing minimum-pathway investments over typical costs.",
+    "Compare highlights the best value in each metric column — green badge marks the winner.",
+    "Portfolio stats show: program count, total investment (USD + BTC), avg crypto-friendly score, Lightning-ready count.",
+    "Programs with flagship depth have detailed pathway analysis in the Value Forks panel.",
+    "The simulator links to Compare when 2-4 programs are selected for deeper side-by-side analysis.",
+    "Portfolio data is device-local — it does not sync across devices without the share URL.",
+    "Stacking synergy is derived from each program's stacking_synergy field in countries.json."
+  ],
+  "pages": {
+    "/portfolio": "Saved program list with stats, Compliance Clock, portfolio cards, Paige chat, and links to simulator/compare",
+    "/simulator": "Pick programs, see combined metrics (cost, sovereignty, timeline, synergy), save named stacks, Value Forks",
+    "/compare": "Side-by-side matrix of 2-4 programs across finance, timeline, scores, stacking metrics",
+    "/programs": "Browse all 50 programs, add to portfolio, filter and sort"
+  },
+  "metrics": {
+    "total_cost": "Sum of typical investment USD across selected programs",
+    "avg_sovereignty": "Average sovereignty score (0-10) across selected programs",
+    "longest_timeline": "Maximum processing time in months across selected programs",
+    "stacking_synergy": "Count of high/medium/low synergy programs in the stack",
+    "fork_savings": "Difference between typical total cost and minimum-pathway total cost",
+    "crypto_friendly_score": "0-10 rating of crypto/friendly environment per program"
+  },
+  "honesty_rules": [
+    "Portfolio and stacks are device-local — they do not sync across devices.",
+    "Costs shown are typical estimates from countries.json — actual costs vary by pathway and advisor.",
+    "Sovereignty scores are modeled estimates — verify with local legal counsel.",
+    "Stacking synergy is a heuristic indicator — it does not guarantee operational compatibility.",
+    "BTC price conversion is approximate and changes with market rates.",
+    "Saved stacks are limited to 20 — older stacks are removed when the limit is hit."
+  ],
+  "member_scripts": {
+    "what_is_portfolio": "Your portfolio is a saved list of programs you are tracking. It shows combined stats like total investment, average sovereignty score, and how many are Lightning-ready. You can reorder programs by priority.",
+    "what_is_simulator": "The Stack Simulator lets you pick any combination of programs and see the combined metrics — total cost, average sovereignty, longest timeline, and how well they stack together for Bitcoin-first users.",
+    "what_are_value_forks": "Value Forks show the cheapest pathway for each program in your stack — the minimum investment you could start with, compared to the typical cost. It also shows proof status and stacking synergy.",
+    "how_to_compare": "Select 2-4 programs in the simulator and click Compare to see a side-by-side matrix. It highlights the best value in each category — cost, timeline, sovereignty, and crypto-friendliness.",
+    "what_is_stacking_synergy": "Stacking synergy (high/medium/low) indicates how well a program complements others for Bitcoin-first users. High synergy means the program works well alongside other jurisdictions.",
+    "what_is_sovereignty": "Sovereignty score (0-10) rates how independent a jurisdiction is — higher means more control over your assets, residency, and financial freedom.",
+    "how_to_save_stack": "In the simulator, name your stack and click Save. You can save up to 20 named combinations and restore them with one click. Share via URL to show others.",
+    "how_to_share": "Copy the share URL from the Portfolio or Simulator — anyone with the link sees the same program combination. The URL encodes the program IDs.",
+    "what_is_btc_price": "BTC Dual Price shows USD amounts alongside their Bitcoin equivalent at current market rates — so you can think in sats when evaluating investments.",
+    "what_is_compliance_clock": "Compliance Clock shows the timeline for flagship programs — key milestones like application submission, processing, approval, and residency activation."
+  }
+}
