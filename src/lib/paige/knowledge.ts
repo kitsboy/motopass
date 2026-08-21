@@ -184,3 +184,27 @@ export function detectKnowledgeTopic(query: string): string | null {
   if (hits.length === 0 || hits[0].score < 4) return null
   return hits[0].topic
 }
+
+// ── Stats ────────────────────────────────────────────────────────────────────
+
+export interface KnowledgeStats {
+  topics: { name: string; facts: number; scripts: number }[]
+  totalFacts: number
+  totalScripts: number
+}
+
+/** Get stats about the loaded knowledge base (for the UI badge). */
+export function getKnowledgeStats(): KnowledgeStats {
+  const idx = buildIndex()
+  const topicNames = ['satohash', 'intel-pipeline', 'vault-stamping']
+  const topics = topicNames.map(name => ({
+    name,
+    facts: idx.facts.filter(f => f.topic === name).length,
+    scripts: idx.scripts.filter(s => s.topic === name).length,
+  }))
+  return {
+    topics,
+    totalFacts: idx.facts.length,
+    totalScripts: idx.scripts.length,
+  }
+}

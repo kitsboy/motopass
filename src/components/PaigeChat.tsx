@@ -6,6 +6,7 @@ import { usePrograms } from '../hooks/usePrograms'
 import { retrievePrograms, retrieveAll } from '../lib/paige/retrieve'
 import type { PaigeHit, PaigeKnowledgeHit } from '../lib/paige/retrieve'
 import { buildPaigeBlocks, buildPaigeResponseWithKnowledge, PAIGE_DISCLAIMER } from '../lib/paige/respond'
+import { getKnowledgeStats } from '../lib/paige/knowledge'
 import { compareHandoffPath, resolveCompareHandoff } from '../lib/paige/compareHandoff'
 import {
   clearPaigeHistory,
@@ -166,6 +167,7 @@ export function PaigeChat({ compact = false }: { compact?: boolean }) {
   const streamTimer = useRef<number | null>(null)
 
   const flagshipCount = useMemo(() => programs.filter((p) => p.flagship_depth).length, [programs])
+  const knowledgeStats = useMemo(() => getKnowledgeStats(), [])
 
   useEffect(() => {
     if (hydrated || !programs.length) return
@@ -315,6 +317,12 @@ export function PaigeChat({ compact = false }: { compact?: boolean }) {
           <span className={`font-semibold text-ink ${compact ? 'text-xs' : 'text-sm'}`}>Paige AI</span>
           <span className="text-[10px] font-mono uppercase tracking-wide text-mp-btc-text bg-btc-orange-soft px-2 py-0.5 rounded-chip">
             RAG · {flagshipCount} flagships
+          </span>
+          <span
+            className="text-[10px] font-mono uppercase tracking-wide text-nostr-violet bg-nostr-violet/10 px-2 py-0.5 rounded-chip"
+            title={knowledgeStats.topics.map(t => `${t.name}: ${t.facts} facts, ${t.scripts} scripts`).join(' · ')}
+          >
+            KB · {knowledgeStats.topics.length} topics · {knowledgeStats.totalFacts} facts
           </span>
           <button
             type="button"
