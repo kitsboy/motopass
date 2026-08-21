@@ -1,3 +1,18 @@
+## Session — 2026-08-21 (Grok/M3) — Registry backup restore/import — BUILD 72 continued
+
+**Done:**
+- **Restore/import UI for the registry backup** — closes the export loop:
+  - `parseDocumentRegistryBackup(json)` — validates schema `motopass-document-registry/v1`, imports only entries with a 64-hex SHA-256 (the honest anchor), preserves the recorded status as the backup's claim, tolerates missing fields, reports `imported`/`skipped`.
+  - `mergeRegistryBackup(current, incoming)` — same-id entries keep the newer `updatedAt`, new entries added, result newest-first.
+  - `RegistryImportButton` (shared component, hidden .json input) — parse → merge → `saveStampedDocuments` → toast result (or error with the validation reason). Mounted on the Dashboard registry card and the Profile document list, next to Export; both pages refresh their `docs` state + profile mirror after a successful restore.
+- 6 new unit tests (valid parse preserves claim, invalid JSON/foreign-schema reject, hash-validity skip count, no-survivors failure, merge newer-wins, merge newest-first) — 192 total green · 26/26 e2e · build green · 0 new tsc errors.
+
+**Git State:**
+- Commit: `feat(registry): restore/import UI — parse, validate, merge backup`
+- Branch: main
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — Document registry export backup — BUILD 72 continued
 
 **Done:**

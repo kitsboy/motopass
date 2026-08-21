@@ -16,6 +16,7 @@ import {
   type StampedDocument,
 } from '../../lib/documentStamp'
 import { downloadDocumentRegistry } from '../../lib/documentRegistryExport'
+import { RegistryImportButton } from './RegistryImportButton'
 
 function statusChip(status: StampedDocument['status']): string {
   if (status === 'confirmed') return 'border-mp-proof/40 bg-mp-proof/10 text-mp-proof'
@@ -105,6 +106,12 @@ export function DocumentRegistryCard() {
             <Download size={12} aria-hidden />
             {t('dashboard.registryExport')}
           </button>
+          <RegistryImportButton
+            onImported={merged => {
+              setDocs(merged)
+              syncProfile(merged)
+            }}
+          />
           {docs.length > 0 && (
             <button
               type="button"

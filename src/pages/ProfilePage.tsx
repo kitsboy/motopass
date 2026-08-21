@@ -17,6 +17,7 @@ import {
   type StampedDocument,
 } from '../lib/documentStamp'
 import { downloadDocumentRegistry } from '../lib/documentRegistryExport'
+import { RegistryImportButton } from '../components/dashboard/RegistryImportButton'
 import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { PageHeader } from '../components/ui/PageHeader'
 import { useI18n } from '../i18n/I18nContext'
@@ -103,14 +104,22 @@ export function ProfilePage() {
         <div className="mt-8 card">
           <div className="flex items-start justify-between gap-3 mb-1">
             <h3 className="font-display font-semibold text-ink">{t('profile.stampedHashes')}</h3>
-            <button
-              type="button"
-              onClick={() => downloadDocumentRegistry(docs)}
-              className="chip text-xs inline-flex items-center gap-1 shrink-0"
-            >
-              <Download size={12} aria-hidden />
-              {t('profile.registryExport')}
-            </button>
+            <div className="flex gap-2 shrink-0">
+              <RegistryImportButton
+                onImported={merged => {
+                  setDocs(merged)
+                  syncProfile(merged)
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => downloadDocumentRegistry(docs)}
+                className="chip text-xs inline-flex items-center gap-1"
+              >
+                <Download size={12} aria-hidden />
+                {t('profile.registryExport')}
+              </button>
+            </div>
           </div>
           <p className="font-body text-xs text-ink-muted mb-4 leading-relaxed">{t('profile.registryNote')}</p>
           <ul className="space-y-3">
