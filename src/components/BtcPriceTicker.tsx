@@ -1,16 +1,29 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Bitcoin } from 'lucide-react'
 import { formatBtc, formatUsdCompact } from '../lib/btcPrice'
+import { FIATS, formatFiat } from '../lib/fx'
 import { useBtcPrice } from '../context/BtcPriceContext'
+import { useDisplayCurrency } from '../context/DisplayCurrencyContext'
 import { useI18n } from '../i18n/I18nContext'
 
 export function BtcPriceTicker({ variant = 'default' }: { variant?: 'default' | 'hero' | 'compact' }) {
   const { rate, loading, error, retry } = useBtcPrice()
+  const { currency, fx } = useDisplayCurrency()
   const { t } = useI18n()
   const [copied, setCopied] = useState(false)
   const isHero = variant === 'hero'
   const isCompact = variant === 'compact'
-  const spot = `${formatBtc(1)} · ${formatUsdCompact(rate)}`
+  const spot = useMemo(() => {
+    if (currency === 'SAT') return `${formatBtc(1)} · 100M sats`
+    if (currency === 'BTC') return formatBtc(1)
+    if (currency === 'USD') return `${formatBtc(1)} · ${formatUsdCompact(rate)}`
+    if (fx && !fx.missing && fx.ratePerBtc) {
+      const meta = FIATS.find((f) => f.code === currency)
+      if (meta) return `${formatBtc(1)} · ${formatFiat(fx.ratePerBtc, meta, true)}`
+    }
+    // Honest fallback: real BTC spot with USD secondary; fiat conversion unavailable.
+    return `${formatBtc(1)} · ${formatUsdCompact(rate)}`
+  }, [currency, fx, rate])
   const [flash, setFlash] = useState(false)
   const prevRate = useRef(rate)
   const seeded = useRef(false)

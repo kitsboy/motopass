@@ -52,6 +52,7 @@ export type TranslationKey =
   | 'verify.title' | 'verify.sub' | 'verify.stamp' | 'agents.title' | 'agents.sub'
   | 'apply.title' | 'apply.sub' | 'apply.submit' | 'nostr.connect' | 'nostr.connected'
   | 'block.live' | 'block.retry' | 'btcPrice.label' | 'btcPrice.fallback' | 'btcPrice.copyHint' | 'btcPrice.copied' | 'pitch.btcmapCta' | 'footer.truth'
+  | 'currency.label' | 'currency.btcFirstDefault' | 'currency.wholeBtc' | 'currency.suggested' | 'currency.liveRate' | 'currency.staleTag' | 'currency.fxUnavailable' | 'currency.degradedTitle'
   | PageKey
 
 type Dict = Record<TranslationKey, string>
@@ -96,6 +97,14 @@ const en: Dict = {
   'btcPrice.fallback': 'Using pitch-anchor reference rate',
   'btcPrice.copyHint': 'Click to copy spot price',
   'btcPrice.copied': 'Copied',
+  'currency.label': 'Display currency',
+  'currency.btcFirstDefault': 'BTC-first default',
+  'currency.wholeBtc': 'Whole bitcoin',
+  'currency.suggested': 'Suggested for your language',
+  'currency.liveRate': 'Live rate',
+  'currency.staleTag': 'Stale rate',
+  'currency.fxUnavailable': 'FX unavailable',
+  'currency.degradedTitle': 'Live FX feed unreachable — showing last known good rates (stale) or BTC-only.',
   'pitch.feature.jurisdictions.title': '50 jurisdictions',
   'pitch.feature.jurisdictions.sub': 'CBI, RBI & Bitcoin-native pathways',
   'pitch.feature.satohash.title': 'Satohash proofs',
@@ -437,6 +446,14 @@ const fr: Dict = {
   'nostr.connected': 'Connecté',
   'block.live': 'Bloc Bitcoin',
   'footer.truth': 'Une vérité vérifiable — Satohash + OpenTimestamps + Nostr',
+  'currency.label': 'Devise d’affichage',
+  'currency.btcFirstDefault': 'Défaut Bitcoin-first',
+  'currency.wholeBtc': 'Bitcoin entier',
+  'currency.suggested': 'Suggéré pour votre langue',
+  'currency.liveRate': 'Taux en direct',
+  'currency.staleTag': 'Taux périmé',
+  'currency.fxUnavailable': 'Taux de change indisponible',
+  'currency.degradedTitle': 'Flux FX en direct injoignable — affichage du dernier taux connu (périmé) ou uniquement en sats.',
   ...pageKeysEn,
   ...pageKeysFr,
 }

@@ -1,11 +1,13 @@
-import { formatDualUsd } from '../lib/btcPrice'
-import { useBtcPrice } from '../context/BtcPriceContext'
+import { RefreshCw, TriangleAlert } from 'lucide-react'
+import { useDisplayCurrency } from '../context/DisplayCurrencyContext'
+import { useI18n } from '../i18n/I18nContext'
 
 type BtcDualPriceProps = {
+  /** Stored USD figure — anchored to sats via btc_price_at_capture, re-priced to the active display currency. */
   usd: number
   size?: 'xs' | 'sm' | 'md' | 'lg'
   layout?: 'stack' | 'inline'
-  /** Show USD line (always secondary to BTC). */
+  /** Show the secondary line (always muted, BTC/sats counterpart). */
   showUsd?: boolean
   className?: string
 }
@@ -24,19 +26,39 @@ export function BtcDualPrice({
   showUsd = true,
   className = '',
 }: BtcDualPriceProps) {
-  const { rate } = useBtcPrice()
-  const dual = formatDualUsd(usd, rate)
+  const { priceFor } = useDisplayCurrency()
+  const { t } = useI18n()
+  const priced = priceFor(usd)
   const sizes = sizeClasses[size]
+
+  const staleBadge = priced.stale && (
+    <span
+      className="inline-flex items-center gap-0.5 text-[9px] font-chrome uppercase tracking-wide text-amber-300/90"
+      title={t('currency.degradedTitle')}
+    >
+      <RefreshCw size={8} aria-hidden="true" />
+      {t('currency.staleTag')}
+    </span>
+  )
+
+  const missingBadge = priced.missing && (
+    <span
+      className="inline-flex items-center gap-0.5 text-[9px] font-chrome uppercase tracking-wide text-amber-300/90"
+      title={t('currency.fxUnavailable')}
+    >
+      <TriangleAlert size={8} aria-hidden="true" />
+      {t('currency.fxUnavailable')}
+    </span>
+  )
 
   if (layout === 'inline') {
     return (
       <span className={`font-mono tabular-nums ${className}`}>
-        <span className={`font-semibold text-mp-btc-text ${sizes.btc}`}>{dual.btc}</span>
-        {showUsd && (
-          <span className={`ml-1.5 text-ink-muted ${sizes.usd}`} aria-label={`${dual.usd} US dollars`}>
-            · {dual.usd}
-          </span>
+        <span className={`font-semibold text-mp-btc-text ${sizes.btc}`}>{priced.primary}</span>
+        {showUsd && priced.secondary && !priced.missing && (
+          <span className={`ml-1.5 text-ink-muted ${sizes.usd}`}>· {priced.secondary}</span>
         )}
+        {(priced.stale || priced.missing) && <span className="ml-1.5">{priced.stale ? staleBadge : missingBadge}</span>}
       </span>
     )
   }
@@ -44,12 +66,13 @@ export function BtcDualPrice({
   return (
     <span className={`inline-flex flex-col ${className}`}>
       <span className={`font-mono font-semibold tabular-nums text-mp-btc-text ${sizes.btc}`}>
-        {dual.btc}
+        {priced.primary}
       </span>
-      {showUsd && (
-        <span className={`font-mono tabular-nums text-ink-muted ${sizes.usd}`}>
-          {dual.usd}
-        </span>
+      {showUsd && priced.secondary && !priced.missing && (
+        <span className={`font-mono tabular-nums text-ink-muted ${sizes.usd}`}>{priced.secondary}</span>
+      )}
+      {(priced.stale || priced.missing) && (
+        <span className={`mt-0.5 font-mono ${sizes.usd}`}>{priced.stale ? staleBadge : missingBadge}</span>
       )}
     </span>
   )

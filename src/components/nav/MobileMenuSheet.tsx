@@ -6,6 +6,8 @@ import { X } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 
 import { useI18n } from '../../i18n/I18nContext'
+import { LanguageDropdown } from './LanguageDropdown'
+import { CurrencyDropdown } from './CurrencyDropdown'
 import { MAIN_NAV_ROUTES, eliteDrawerLinkClass } from '../../lib/navRoutes'
 
 export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -98,6 +100,10 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
             </nav>
 
             <footer className="elite-mobile-drawer__footer">
+              <div className="flex items-center gap-2 px-3 pb-2">
+                <LanguageDropdown size="menu" />
+                <CurrencyDropdown size="menu" />
+              </div>
               <ApplyNavLink layout="drawer-cta" onClick={onClose} />
             </footer>
           </motion.aside>

@@ -22,6 +22,7 @@
     "validate:data": "node scripts/validate-data.mjs",
     "sitemap": "node scripts/generate-sitemap.mjs",
     "btcmap:density": "node scripts/fetch-btcmap-density.mjs",
+    "fx:sync": "node scripts/sync-fx-snapshot.mjs",
     "btcmap:sync": "node scripts/sync-btcmap-cache.mjs",
     "pitch:sync": "node scripts/sync-pitch-anchor.mjs",
     "intel:migrate": "node scripts/migrate-schema-v3.mjs",

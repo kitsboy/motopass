@@ -4,6 +4,7 @@ import { BtcPriceTicker } from '../BtcPriceTicker'
 import { NostrConnect } from '../NostrConnect'
 import { ThemeToggle } from '../ThemeToggle'
 import { LanguageDropdown } from './LanguageDropdown'
+import { CurrencyDropdown } from './CurrencyDropdown'
 import { useI18n } from '../../i18n/I18nContext'
 
 export function HeaderToolbar({ collapsed: _collapsed = false }: { collapsed?: boolean }) {
@@ -23,6 +24,7 @@ export function HeaderToolbar({ collapsed: _collapsed = false }: { collapsed?: b
       <div className="flex items-center gap-1 px-1 border-r border-mp/70">
         <ThemeToggle compact />
         <LanguageDropdown />
+        <CurrencyDropdown />
       </div>
       <div className="flex items-center gap-1 pl-1">
         <a
