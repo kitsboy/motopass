@@ -28,9 +28,13 @@
 
 | Date | Fact changed | New value | Source URL | Confidence |
 |------|--------------|-----------|------------|------------|
-| | | | | |
+| 2026-08-22 | Nationality law | Lei Orgânica 1/2026 in force 19 May 2026: naturalisation 7 yrs (EU/CPLP) / 10 yrs (others), counted from first residence card (was 5) | https://thegoldenportugal.com · https://globalresidenceindex.com | High |
+| 2026-08-22 | Golden visa fund route | €500k confirmed unchanged by the reform | https://getgoldenvisa.com | High |
+| 2026-08-22 | Processing | AIMA processes residency (SEF wound down 2023); digital platform rollout | https://aima.gov.pt (already on file) | Medium |
+| 2026-08-22 | compliance_clock | citizenship_eligibility_years 5 → 10; day target 1825 → 3650 | — | High |
+| 2026-08-22 | last_checked | refreshed 2026-08-22 | — | High |
 
 ## Verdict after research
 
 - [ ] No material change — refresh `last_checked` and re-verify figures
-- [ ] Changes found — update `legal_compliance.recent_changes`, `finance`, `pathways`, `status` as needed, then re-stamp
+- [x] Changes found — nationality reform (7/10 yrs) applied to `critical_tests.notes`, `legal_compliance.recent_changes`, `compliance_clock`; fund route confirmed; last_checked refreshed 2026-08-22.

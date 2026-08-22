@@ -28,9 +28,12 @@
 
 | Date | Fact changed | New value | Source URL | Confidence |
 |------|--------------|-----------|------------|------------|
-| | | | | |
+| 2026-08-22 | Citizenship-by-investment | TERMINATED: CJEU ruled MEIN illegal 29 Apr 2025 (C-181/23); discontinued via Act XXI/2025 — no EU CBI remains | https://ancova-associates.com · https://globalcitizensolutions.com | High |
+| 2026-08-22 | MPRP | Still active: ~€99k government fees/contributions + qualifying property (rent ≥€14k/yr or purchase ≥€375k) + €2k donation | https://ccmalta.com · https://passportivity.com | High |
+| 2026-08-22 | Naturalisation from MPRP | ~5 years genuine residence + language/integration — residence, not fast citizenship | https://goldenvisamap.com | Medium |
+| 2026-08-22 | last_checked | refreshed 2026-08-22 | — | High |
 
 ## Verdict after research
 
 - [ ] No material change — refresh `last_checked` and re-verify figures
-- [ ] Changes found — update `legal_compliance.recent_changes`, `finance`, `pathways`, `status` as needed, then re-stamp
+- [x] Changes found — CBI termination (2025) + updated MPRP cost applied to `legal_compliance.recent_changes`, `pathways`, `critical_tests`; last_checked refreshed 2026-08-22.

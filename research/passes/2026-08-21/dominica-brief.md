@@ -27,9 +27,12 @@
 
 | Date | Fact changed | New value | Source URL | Confidence |
 |------|--------------|-----------|------------|------------|
-| | | | | |
+| 2026-08-22 | EDF minimum | $200,000 (single) confirmed current | https://ancova-associates.com | High |
+| 2026-08-22 | OECS harmonization | ECCIRA rolling out 2026 — biometrics, mandatory interviews, annual caps | https://goldenharbors.com | Medium |
+| 2026-08-22 | US visa restriction | Presidential Proclamation 10998 (Jan 2026) restricts US visas for Dominica nationals | https://imidaily.com | Medium |
+| 2026-08-22 | last_checked | refreshed 2026-08-22 | — | High |
 
 ## Verdict after research
 
 - [ ] No material change — refresh `last_checked` and re-verify figures
-- [ ] Changes found — update `legal_compliance.recent_changes`, `finance`, `pathways`, `status` as needed, then re-stamp
+- [x] Changes found — EDF confirmed; ECCIRA 2026 + US visa restriction applied to `legal_compliance.recent_changes`; last_checked refreshed 2026-08-22.

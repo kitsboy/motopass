@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-22T14:00:18.372Z",
+  "generated_at": "2026-08-22T14:10:41.374Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
-    "fresh": 4,
+    "fresh": 10,
     "watch": 0,
-    "stale": 46,
-    "swept_at": "2026-08-22T14:00:18.372Z",
+    "stale": 40,
+    "swept_at": "2026-08-22T14:10:41.374Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -106,9 +106,9 @@
     "Uruguay": {
       "id": 3,
       "freshness": {
-        "status": "stale",
-        "days_stale": 83,
-        "last_checked": "2026-06-01"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -117,12 +117,19 @@
       },
       "proof": {
         "hash": "b4e567c15db4a72141915e1c134c87801ae52c011e594fa300b47c295a4241ed",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:15:30.065Z",
         "stamp_id": "1b21a090-c396-4fee-bf55-ae469d3a5a8b"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "verification",
+          "from": "corpus BUILD 72",
+          "to": "2026-08-22 verification pass — flagship template entry re-verified, no material change; last_checked refreshed",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -205,9 +212,9 @@
     "St. Kitts and Nevis": {
       "id": 5,
       "freshness": {
-        "status": "stale",
-        "days_stale": 81,
-        "last_checked": "2026-06-03"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -216,12 +223,19 @@
       },
       "proof": {
         "hash": "8cecba069c0f4b4059f56581900a2030efcdddfe19c2dea4262f8cde57e3893c",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:15:36.963Z",
         "stamp_id": "2e3f88b7-7d30-4d62-90fc-75e556f36f68"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "pathways.legal_compliance.critical_tests",
+          "from": "corpus BUILD 72",
+          "to": "SGF -> SISC rename; real estate floor corrected $400k -> $325k (2024 OECS harmonization); 2026 framework (interviews, proposed 30-day visit); US visa restriction noted",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.ciu.gov.kn",
@@ -253,9 +267,9 @@
     "Antigua and Barbuda": {
       "id": 6,
       "freshness": {
-        "status": "stale",
-        "days_stale": 87,
-        "last_checked": "2026-05-28"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -264,12 +278,19 @@
       },
       "proof": {
         "hash": "341c070a4384f648410ca060ba25f815a1ebbb2c539005c638cb404b6906be99",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:15:40.682Z",
         "stamp_id": "1f66f623-f266-4f45-b788-48606ff7501f"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "pathways.legal_compliance.critical_tests",
+          "from": "corpus BUILD 72",
+          "to": "Business route corrected $1.5M -> $400k share of $5M+ joint business; UWI $260k (families 6+); ECCIRA harmonization 2026; US visa restriction noted",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -295,9 +316,9 @@
     "Dominica": {
       "id": 7,
       "freshness": {
-        "status": "stale",
-        "days_stale": 82,
-        "last_checked": "2026-06-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -306,12 +327,19 @@
       },
       "proof": {
         "hash": "0173506b5b8bb09b22fff4a2e2617b5f5a37637af1fe320a11d5a7b2ce6a4c9c",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:15:43.990Z",
         "stamp_id": "2c384449-8515-49f7-b92a-85e8bacc4b85"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "EDF $200k confirmed current; ECCIRA harmonization 2026; US visa restriction noted",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -475,9 +503,9 @@
     "Portugal": {
       "id": 11,
       "freshness": {
-        "status": "stale",
-        "days_stale": 85,
-        "last_checked": "2026-05-30"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -486,12 +514,19 @@
       },
       "proof": {
         "hash": "0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-22T06:21:18.845Z",
         "stamp_id": "ded8e251-5e52-4424-bd3d-3e8d9ed49378"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "compliance_clock.critical_tests.legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Nationality reform Lei Orgânica 1/2026 (in force 19 May 2026): naturalisation 7 yrs EU/CPLP / 10 yrs others (was 5), clock from first residence card; citizenship_eligibility_years 5 -> 10",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "proof",
@@ -518,22 +553,15 @@
           "field": "watch.official_urls",
           "from": "https://imigrante.sef.pt",
           "to": "added https://aima.gov.pt (SEF successor agency, verified live 2026-08-20)"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "proof",
-          "from": "92358986c6946d3c",
-          "to": "re-anchored c538408c3f58df15 (stamp 58a7e0e4-de0)",
-          "hash": "c538408c3f58df15f742bd7c985af91fafefca90f18812f6c0d125aa9d1a351a"
         }
       ]
     },
     "Malta": {
       "id": 12,
       "freshness": {
-        "status": "stale",
-        "days_stale": 83,
-        "last_checked": "2026-06-01"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -542,12 +570,19 @@
       },
       "proof": {
         "hash": "3c722ec81c847ff9e46fd6061b841e7d7c1e1c75ba3a1f49bc9d25dabdf2269f",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:16:52.803Z",
         "stamp_id": "1ed1a114-75f4-44d9-851a-55b35b969469"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance.pathways",
+          "from": "corpus BUILD 72",
+          "to": "CBI terminated (CJEU C-181/23, 29 Apr 2025; Act XXI/2025) — no EU CBI remains; MPRP ~€99k + property updated; critical_tests clarified",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "watch.https://residencymalta.gov.mt",

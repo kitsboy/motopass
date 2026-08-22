@@ -37,3 +37,10 @@
 
 - [ ] No material change — refresh `last_checked` and re-verify figures
 - [x] Changes found — crypto grey-area status, Friendly Nations floor ($5k → $200k), Qualified Investor modalities applied to `legal_compliance.recent_changes`, `bitcoin_integration`, `finance`, `pathways`, `details`, `paige_fields`, `pros`; last_checked refreshed 2026-08-22. Pipeline will re-anchor on next intel run.
+
+## Tracking: 2025 draft crypto bill
+
+As of 2026-08-22 (per Lightspark 2026 guide, fetched today): the 2025 draft bill is **still under
+review in the National Assembly** — aims to license crypto service providers and formalize crypto
+payments; **not enacted**. Panama City already accepts crypto for some public services (2025).
+**Revisit this entry if the bill passes** — it would move Panama from grey-area to regulated.
