@@ -3,8 +3,22 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # The Daily Country Intel workflow commits with GITHUB_TOKEN, which does NOT
+  # trigger `on: push` (GitHub prevents recursion). Re-run the deploy when that
+  # workflow finishes so intel data changes actually reach production.
+  workflow_run:
+    workflows: ["Daily Country Intel (self-heal)"]
+    types: [completed]
+    branches: [main]
 jobs:
   deploy:
+    # For workflow_run: github.sha = last commit on default branch; the intel
+    # run's head_sha = the commit it started from. If they differ, intel pushed
+    # a commit -> deploy. If equal, intel made no changes -> skip the rebuild.
+    if: |
+      github.event_name != 'workflow_run'
+      || (github.event.workflow_run.conclusion == 'success'
+          && github.event.workflow_run.head_sha != github.sha)
     runs-on: ubuntu-latest
     permissions:
       contents: read
