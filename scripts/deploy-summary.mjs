@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Emit deploy summary JSON with local + live BUILD and health probes.
- * Usage: node scripts/deploy-summary.mjs [baseUrl] [--out path.json]
+ * Usage: node scripts/deploy-summary.mjs [baseUrl] [--out path.json] [--fresh]
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
@@ -14,6 +14,7 @@ const root = resolve(__dirname, '..')
 const args = process.argv.slice(2)
 const outIdx = args.indexOf('--out')
 const outPath = outIdx === -1 ? null : args[outIdx + 1]
+const forceFresh = args.includes('--fresh')
 const base = (args.find(a => !a.startsWith('--') && a !== outPath) ?? 'https://motopass.giveabit.io').replace(
   /\/$/,
   '',
@@ -33,23 +34,31 @@ function cacheDirectiveOk(value) {
   return /no-store|no-cache|must-revalidate|max-age\s*=\s*0/i.test(value ?? '')
 }
 
-async function readScrollMetrics() {
+// Reuse the cached scroll probe (written by verify-live-app.mjs or this
+// script) only while fresh — without a TTL a committed copy sat stale for
+// weeks and deploy-summary kept reporting it. --fresh forces a real probe.
+const TTL_SCROLL_CACHE_MS = 24 * 60 * 60 * 1000
+
+async function readScrollMetrics(forceFresh) {
   const artifactPath = resolve(root, 'artifacts/scroll-metrics-live.json')
-  if (existsSync(artifactPath)) {
+  if (!forceFresh && existsSync(artifactPath)) {
     try {
-      return JSON.parse(readFileSync(artifactPath, 'utf8'))
+      const cached = JSON.parse(readFileSync(artifactPath, 'utf8'))
+      const age = Date.now() - new Date(cached.generatedAt ?? NaN).getTime()
+      if (Number.isFinite(age) && age >= 0 && age <= TTL_SCROLL_CACHE_MS) return cached
     } catch {
-      /* fall through */
+      /* corrupt or missing generatedAt — fall through to a fresh probe */
     }
   }
 
   const browser = await chromium.launch({ args: ['--disk-cache-size=1', '--media-cache-size=1'] })
+  let metrics
   try {
     const page = await browser.newPage()
     await page.goto(`${base}/`, { waitUntil: 'load', timeout: 30000 })
     await page.setViewportSize({ width: 390, height: 844 })
     await page.locator('footer.footer-glass').scrollIntoViewIfNeeded().catch(() => {})
-    return await page.evaluate(() => {
+    metrics = await page.evaluate(() => {
       const navEl = document.querySelector('.mobile-nav-glass')
       const scrollHeight = document.documentElement.scrollHeight
       const bodyOffsetHeight = document.body.offsetHeight
@@ -70,6 +79,17 @@ async function readScrollMetrics() {
   } finally {
     await browser.close()
   }
+  // Persist so later runs reuse it within the TTL (same shape as
+  // verify-live-app.mjs writes). Non-fatal if the write fails.
+  try {
+    writeFileSync(
+      artifactPath,
+      `${JSON.stringify({ generatedAt: new Date().toISOString(), site: base, ...metrics }, null, 2)}\n`,
+    )
+  } catch {
+    /* cache write is best-effort */
+  }
+  return metrics
 }
 
 const summary = {
@@ -118,7 +138,7 @@ try {
     }
 
     try {
-      summary.scrollMetrics = await readScrollMetrics()
+      summary.scrollMetrics = await readScrollMetrics(forceFresh)
       summary.scrollVoidOk = summary.scrollMetrics.scrollVoidOk ?? summary.scrollMetrics.voidPx < 16
       if (!summary.scrollVoidOk) {
         summary.errors.push(
