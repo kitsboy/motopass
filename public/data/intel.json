@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-22T14:32:58.711Z",
+  "generated_at": "2026-08-22T14:57:41.416Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
-    "fresh": 20,
+    "fresh": 24,
     "watch": 0,
-    "stale": 30,
-    "swept_at": "2026-08-22T14:32:58.711Z",
+    "stale": 26,
+    "swept_at": "2026-08-22T14:57:41.416Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -25,13 +25,20 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "91427ffdd75bcd09ea333e683bf42eafc4f213102c57a19c15b10de35ba80fda",
-        "in_sync": false,
+        "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:15:22.906Z",
-        "stamp_id": "698e0012-ebe1-46e3-b137-708ccc1eb0e4"
+        "stamped_at": "2026-08-22T14:57:00.700Z",
+        "stamp_id": "a25cef33-2c75-4f6e-9dcd-9ed1cc979953"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "proof",
+          "from": "91427ffdd75bcd09",
+          "to": "re-anchored 279fb4c4cd5d2d69 (stamp a25cef33-2c7)",
+          "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
+        },
         {
           "date": "2026-08-22",
           "field": "category.bitcoin_integration.finance.legal_compliance",
@@ -74,13 +81,20 @@
         "unreachable": 1
       },
       "proof": {
-        "hash": "3436be752d1dbe7cd79fa580d15bd1d478fb96f5c52c0a967858768ab80193fe",
-        "in_sync": false,
+        "hash": "b5ff369da5887cf7ecf57eabf9bdc2d91647068faf0c7cf24ab11e645984cb1a",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:15:26.268Z",
-        "stamp_id": "e1d03d09-4a0b-445a-a3bf-14c65f3630f2"
+        "stamped_at": "2026-08-22T14:57:04.136Z",
+        "stamp_id": "fa6db16a-37e1-4304-adf8-f035e0ca071d"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "proof",
+          "from": "3436be752d1dbe7c",
+          "to": "re-anchored b5ff369da5887cf7 (stamp fa6db16a-37e)",
+          "hash": "b5ff369da5887cf7ecf57eabf9bdc2d91647068faf0c7cf24ab11e645984cb1a"
+        },
         {
           "date": "2026-08-22",
           "field": "legal_compliance.category",
@@ -123,13 +137,20 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "b4e567c15db4a72141915e1c134c87801ae52c011e594fa300b47c295a4241ed",
-        "in_sync": false,
+        "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:15:30.065Z",
-        "stamp_id": "1b21a090-c396-4fee-bf55-ae469d3a5a8b"
+        "stamped_at": "2026-08-22T14:57:07.682Z",
+        "stamp_id": "e0350760-c535-4b9a-a132-8a6501f96e00"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "proof",
+          "from": "b4e567c15db4a721",
+          "to": "re-anchored 1e9993bb823a6b8f (stamp e0350760-c53)",
+          "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
+        },
         {
           "date": "2026-08-22",
           "field": "verification",
@@ -172,13 +193,20 @@
         "unreachable": 1
       },
       "proof": {
-        "hash": "cb49ebf77a8b646af06753b503045a58cbb53d2babbcd6e60591c13452c95fd7",
-        "in_sync": false,
+        "hash": "c1a4ea09d99674bbc1fce88bf400c10f6bc1c36b73296654a2bcdbf6006d9306",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-22T06:21:15.130Z",
-        "stamp_id": "489b5e57-38bf-492b-b2a8-3f3ff655a538"
+        "stamped_at": "2026-08-22T14:57:11.291Z",
+        "stamp_id": "1706033e-780d-4aa8-bfc7-2b2e9bc53bb6"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "proof",
+          "from": "cb49ebf77a8b646a",
+          "to": "re-anchored c1a4ea09d99674bb (stamp 1706033e-780)",
+          "hash": "c1a4ea09d99674bbc1fce88bf400c10f6bc1c36b73296654a2bcdbf6006d9306"
+        },
         {
           "date": "2026-08-22",
           "field": "legal_compliance",
@@ -206,13 +234,6 @@
           "from": "5",
           "to": "6",
           "hash": "c2d495b13191f53ff76cc6c0852ed360a68dde5763261ba6ac92cfcb3e714b35"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "c385b8dd4489e228",
-          "to": "re-anchored b3a045e3235cb018 (stamp 65448252-e0f)",
-          "hash": "b3a045e3235cb01834b4bf5046ad707836ff20b49de63d449f2404657bbf092f"
         }
       ]
     },
@@ -229,13 +250,20 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "8cecba069c0f4b4059f56581900a2030efcdddfe19c2dea4262f8cde57e3893c",
-        "in_sync": false,
+        "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:15:36.963Z",
-        "stamp_id": "2e3f88b7-7d30-4d62-90fc-75e556f36f68"
+        "stamped_at": "2026-08-22T14:57:14.776Z",
+        "stamp_id": "41f66fcd-c033-49d5-8879-229136db8125"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "proof",
+          "from": "8cecba069c0f4b40",
+          "to": "re-anchored f2209308668869dc (stamp 41f66fcd-c03)",
+          "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
+        },
         {
           "date": "2026-08-22",
           "field": "pathways.legal_compliance.critical_tests",
@@ -262,12 +290,6 @@
           "from": "03027c9c0a995a2f",
           "to": "re-anchored 6a452e9aa0522016 (stamp 1f59a490-61f)",
           "hash": "6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2"
         }
       ]
     },
@@ -284,13 +306,20 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "341c070a4384f648410ca060ba25f815a1ebbb2c539005c638cb404b6906be99",
-        "in_sync": false,
+        "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:15:40.682Z",
-        "stamp_id": "1f66f623-f266-4f45-b788-48606ff7501f"
+        "stamped_at": "2026-08-22T14:57:18.189Z",
+        "stamp_id": "932a0976-606b-46aa-adeb-0f5d23bed0cb"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "proof",
+          "from": "341c070a4384f648",
+          "to": "re-anchored aa4c45f7a554951b (stamp 932a0976-606)",
+          "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e"
+        },
         {
           "date": "2026-08-22",
           "field": "pathways.legal_compliance.critical_tests",
@@ -333,13 +362,20 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "0173506b5b8bb09b22fff4a2e2617b5f5a37637af1fe320a11d5a7b2ce6a4c9c",
-        "in_sync": false,
+        "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:15:43.990Z",
-        "stamp_id": "2c384449-8515-49f7-b92a-85e8bacc4b85"
+        "stamped_at": "2026-08-22T14:57:21.703Z",
+        "stamp_id": "dc5dc26a-0ccc-44dc-b1a7-c81645392428"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "proof",
+          "from": "0173506b5b8bb09b",
+          "to": "re-anchored 9098fd4e4d1a73f2 (stamp dc5dc26a-0cc)",
+          "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c"
+        },
         {
           "date": "2026-08-22",
           "field": "legal_compliance",
@@ -382,13 +418,20 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "cb5a3ac7d03452b4f75c83d835ffa3d189a62906cb74688de37526e54c23e133",
-        "in_sync": false,
+        "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:15:47.581Z",
-        "stamp_id": "421fc3c6-6fda-40b4-a749-7373916af9dc"
+        "stamped_at": "2026-08-22T14:57:25.299Z",
+        "stamp_id": "63145a39-1f6b-433c-9b01-bef9da543348"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "proof",
+          "from": "cb5a3ac7d03452b4",
+          "to": "re-anchored d742ba3e4c25028a (stamp 63145a39-1f6)",
+          "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2"
+        },
         {
           "date": "2026-08-22",
           "field": "legal_compliance",
@@ -415,12 +458,6 @@
           "from": "81159d01063d9c39",
           "to": "re-anchored 3feeb56e33724b91 (stamp 83b39743-a07)",
           "hash": "3feeb56e33724b916386121e28fc4326102dd1700c230888929e3e4d6e143c73"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "3feeb56e33724b916386121e28fc4326102dd1700c230888929e3e4d6e143c73"
         }
       ]
     },
@@ -437,13 +474,20 @@
         "unreachable": 1
       },
       "proof": {
-        "hash": "427d012781ca45de7bce7a9268e6b0523f9a47f5da54cfae839c13f970eff22e",
-        "in_sync": false,
+        "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:15:51.119Z",
-        "stamp_id": "c9a9f281-a7e5-421f-8124-0e7e2bd874be"
+        "stamped_at": "2026-08-22T14:57:28.715Z",
+        "stamp_id": "760db661-c1a7-42a4-801e-5c83da431718"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "proof",
+          "from": "427d012781ca45de",
+          "to": "re-anchored 2a1287a7ea1c1d47 (stamp 760db661-c1a)",
+          "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
+        },
         {
           "date": "2026-08-22",
           "field": "pathways.legal_compliance",
@@ -486,13 +530,20 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "837b0b631ca12cf321fb66db83e54dbbe6dece279596b62e2788b7d553359b10",
-        "in_sync": false,
+        "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:15:54.721Z",
-        "stamp_id": "0bbfb2c5-5086-40f1-adfc-883f398eb301"
+        "stamped_at": "2026-08-22T14:57:31.799Z",
+        "stamp_id": "c5d17f09-dbc2-4a58-b94f-83ebac8cf285"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "proof",
+          "from": "837b0b631ca12cf3",
+          "to": "re-anchored 33606bf60e75ee2c (stamp c5d17f09-dbc)",
+          "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+        },
         {
           "date": "2026-08-22",
           "field": "legal_compliance",
@@ -518,12 +569,6 @@
           "field": "proof",
           "from": "c33cafa9586cac2b",
           "to": "re-anchored 994c9ac4c70ca766 (stamp ed7eba7e-15e)",
-          "hash": "994c9ac4c70ca766b2cde65fb88bd7e0b2320d4774f87a88f8f7bfe33a323b2d"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
           "hash": "994c9ac4c70ca766b2cde65fb88bd7e0b2320d4774f87a88f8f7bfe33a323b2d"
         }
       ]
@@ -875,6 +920,13 @@
       "recent_changes": [
         {
           "date": "2026-08-22",
+          "field": "pathways.cies",
+          "from": "corpus BUILD 72 (HK$30M+)",
+          "to": "CIES verified: HK$30M incl. mandatory HK$3M CIES-IP (HKIC), HK$30M net assets 6mo prior, RE cap HK$10M, 800+ apps by Jan 2025",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
           "field": "legal_compliance",
           "from": "corpus BUILD 72",
           "to": "VATP regs in force mid-2024 (SFC, same-activity-same-regulation); crypto legal in HK since 2013 (HKMA: virtual commodity)",
@@ -899,12 +951,6 @@
           "from": "60b6287b11a999e5",
           "to": "re-anchored 4a16ed5842c13887 (stamp 91fc3475-0d4)",
           "hash": "4a16ed5842c138873dfde1b23b0f49708e9b0489bfa08780983c9a11c8099417"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "4a16ed5842c138873dfde1b23b0f49708e9b0489bfa08780983c9a11c8099417"
         }
       ]
     },
@@ -928,6 +974,13 @@
         "stamp_id": "d9b48d05-1a79-4836-a948-a7f0eb4c4cd2"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "pathways.ltr",
+          "from": "corpus BUILD 72 ($80k income or $1M assets)",
+          "to": "LTR verified from official BOI: 4 categories — Wealthy Global Citizen USD 1M assets + USD 500k Thai investment; pensioner/remote/skilled USD 80k (or 40k + quals); 10yr visa (5+5)",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "legal_compliance",
@@ -1058,9 +1111,9 @@
     "Greece": {
       "id": 21,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -1069,12 +1122,19 @@
       },
       "proof": {
         "hash": "fbf0b01ae365582ba18f3eb1d78e7525bae6f4d4c287e7034e1b704029252b69",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:18:21.366Z",
         "stamp_id": "53d4629c-dd96-48a7-8347-2e95cdd57b01"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Legal, no specific bitcoin legislation (Wikipedia); MiCA from 2025; golden-visa 2024 thresholds unchanged",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -1100,9 +1160,9 @@
     "Vanuatu": {
       "id": 22,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -1111,12 +1171,19 @@
       },
       "proof": {
         "hash": "3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-22T06:21:22.666Z",
         "stamp_id": "b2c92368-b0f7-4f3b-984c-7ad775333123"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Crypto legal — ban lifted July 2021 (Finance Magnates via Wikipedia); VCP $130k unchanged",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "proof",
@@ -1143,22 +1210,15 @@
           "from": "3210959517994f76",
           "to": "re-anchored 83771c5faafe612a (stamp 203518a5-a9e)",
           "hash": "83771c5faafe612ad36e9034634e81db7dd70a92d8853637af8b735471292c51"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "47b05762934d0bd9",
-          "to": "re-anchored 3210959517994f76 (stamp c84de88c-b2c)",
-          "hash": "3210959517994f765209cd1362c3fa8ab33d442ffdddbef366b0cbc063dfc14f"
         }
       ]
     },
     "Turkey": {
       "id": 23,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -1167,12 +1227,19 @@
       },
       "proof": {
         "hash": "419d55339ea7ed5d115ba881dade499ce233270fd7125c03221f01f4140ea2fd",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:18:33.036Z",
         "stamp_id": "2b671442-1267-4c3d-a795-e9a6fd360e2f"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Payment-tool ban since 30 Apr 2021 (CBRT) verified; trading legal, SPK oversight; $400k CBI unchanged",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.invest.gov.tr",
@@ -1198,21 +1265,15 @@
           "from": "54e443fd1293e3a1",
           "to": "re-anchored d837cfc89a7b3943 (stamp 1549fd9e-d48)",
           "hash": "d837cfc89a7b39433a2b931c24f67ebdb4a5e4eb06aa06239b83ae79833b4d7c"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "d837cfc89a7b39433a2b931c24f67ebdb4a5e4eb06aa06239b83ae79833b4d7c"
         }
       ]
     },
     "Mauritius": {
       "id": 24,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -1221,12 +1282,19 @@
       },
       "proof": {
         "hash": "cbad869adf54c90ae2c8dc401e73698620a7ac67bf483c9291bdfb304b3de571",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:18:36.586Z",
         "stamp_id": "d44b3987-6f69-497f-b67b-55abdb7fa293"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Legal; FSC regulates as Digital Asset under FSA 2007 (guidance Sep 2018) — confirms corpus FSC framing",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "watch.https://www.edbmauritius.org",

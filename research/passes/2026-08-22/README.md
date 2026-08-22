@@ -1,6 +1,6 @@
 # Freshness research pass — 2026-08-22 (batch 2)
 
-**Scope:** 10 programs (ranks 11–20 by staleness, after the 2026-08-21 batch).
+**Scope:** 14 programs (ranks 11–24 by staleness, after the 2026-08-21 batch).
 Filled with sourced findings, then `countries.json` updated and re-anchored.
 
 | Rank | Program | Stale (days) | Brief |
@@ -15,6 +15,10 @@ Filled with sourced findings, then `countries.json` updated and re-anchored.
 | 8 | Thailand | 50 | `thailand-brief.md` |
 | 9 | Mexico | 50 | `mexico-brief.md` |
 | 10 | Cyprus | 50 | `cyprus-brief.md` |
+| 11 | Greece | 50 | `greece-brief.md` |
+| 12 | Vanuatu | 50 | `vanuatu-brief.md` |
+| 13 | Turkey | 50 | `turkey-brief.md` |
+| 14 | Mauritius | 50 | `mauritius-brief.md` |
 
 ## Method
 
@@ -57,10 +61,18 @@ Reuters/IMF coverage surfaced by the one Brave query that did succeed
   assets with case-by-case taxation — confirms corpus.
 - **Cyprus:** legal and unregulated for individual use; business activity
   falls under CySEC CASP licensing + EU MiCA (from 2025).
+- **Greece:** legal — no specific bitcoin legislation; EU MiCA applies to
+  CASPs from 2025; golden-visa 2024 thresholds unchanged.
+- **Vanuatu:** crypto **legal since July 2021** (prior ban lifted); VCP
+  donation route unchanged.
+- **Turkey:** CBRT regulation (effective 30 Apr 2021) bans crypto as a
+  payment tool; holding/trading legal under SPK oversight.
+- **Mauritius:** legal — FSC regulates crypto as a Digital Asset under the
+  Financial Services Act 2007 (Sep 2018 guidance).
 
 ## Result
 
-`intel.json` regenerated — **20 fresh / 0 watch / 30 stale** (was 16 fresh).
+`intel.json` regenerated — **24 fresh / 0 watch / 26 stale** (was 20 fresh).
 All gates pass (`validate:data`, `validate:stamps`, `intel:check`).
 
 Sources: `Legality of cryptocurrency by country or territory` (Wikipedia,
