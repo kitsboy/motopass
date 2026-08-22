@@ -24,8 +24,13 @@ function readLocalBuildId() {
   return info.match(/BUILD_ID\s*=\s*'([^']+)'/)?.[1] ?? null
 }
 
+// index.html must revalidate-or-fetch on every request so new deploys
+// propagate immediately. no-store, no-cache, must-revalidate, and max-age=0
+// all satisfy that (Cloudflare Pages serves `public, max-age=0,
+// must-revalidate` by default). A long-lived max-age without revalidation
+// is the failure case — it would pin stale HTML after a deploy.
 function cacheDirectiveOk(value) {
-  return /no-store/i.test(value ?? '')
+  return /no-store|no-cache|must-revalidate|max-age\s*=\s*0/i.test(value ?? '')
 }
 
 async function readScrollMetrics() {
