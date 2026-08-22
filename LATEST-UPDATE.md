@@ -13,9 +13,19 @@ Live-verified: vite build clean · preview server serves fresh bundle · browser
 ---
 
 # motopass — Last Updated 2026-08-23 by Ziggy/THOR
-Brief: Adv8d Arabic (ar) RTL — FULL Arabic translation shipped (CORE + long-tail), live-verified RTL rendering
-Commit: 67546ee
+Brief: Adv8a — FULL fr/es/de translation finalized (bonded: fr, es, de) — restored genuine values scrambled by sibling regen
+Commit: fa9b5ba
 Deploy: https://motopass.giveabit.io · CF project motopass
+
+What landed:
+- Complete FULL French, Spanish, German translations for MotoPass: fr/es/de each have 766/766 page keys (pageKeys.ts) + 209-key core dict (translations.ts). No English fallback. English remains source of truth.
+- Fixed cross-locale scramble introduced by sibling advance commits (adv8e/f/g locale fills rotated statutory keys into wrong blocks in pageKeys.ts): EN block carried French, FR block carried German, DE/PT carried English, ES carried German. Restored every value to its correct language.
+- Keys repaired: portfolio.statLightning, programs.presetLightning, programs.presetBitcoinFriendly, programs.scoreCrypto, btcmap.lightningReady, programs.lightningOnly, trust.axis.cryptoFriendly (fr/de/es fully genuine). Plus restored EN source-of-truth and pt values re-broken by regen.
+- Currency selector untouched (client-side, never identity-inferred, re-verified).
+
+Live-verified: vite build clean · 247/247 tests pass · preview + production probes confirm switching to fr/es/de genuinely renders nav (Programmes/Portefeuille/Comparer etc.) + trust titles + portfolio lightning stat in the target language with html lang correct · all 9 genuine fr/es/de strings present in the deployed CF bundle. Only pre-existing (non-i18n) issue: /trust page throws `Cannot read properties of undefined (reading 'add')` in every language incl. English — separate lane (adv10 mobile QA), not this card.
+
+---
 
 What landed:
 - Complete Arabic (ar) translation for MotoPass: ar dict (209 keys) + pageKeysAr (766/766 page keys). Genuine Arabic, no gibberish. English remains source of truth.
