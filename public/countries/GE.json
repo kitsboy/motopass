@@ -1,0 +1,188 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "GE",
+    "name": "Georgia",
+    "flag": "🇬🇪",
+    "region": "Europe / Caucasus",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.135Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:16:59.792Z",
+    "hash": "d511ab16255dc8d6ef15a0358d4f520607940a1fa59f0f6d12395837003d412f",
+    "proof_url": "https://satohash.io/verify/d511ab16255dc8d6ef15a0358d4f520607940a1fa59f0f6d12395837003d412f",
+    "ots_path": "/proofs/georgia-692d34157ac8.ots",
+    "in_sync": false
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 8,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 8,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 8,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 50000,
+    "typical_investment_usd": 100000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 50000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "business",
+        "label": "Work residence via company registration",
+        "min_investment_usd": 50000
+      },
+      {
+        "type": "real_estate",
+        "label": "Real estate ownership residency",
+        "min_investment_usd": 100000
+      },
+      {
+        "type": "remote_work",
+        "label": "Remotely from Georgia",
+        "min_investment_usd": 2000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 0,
+      "legal": 0,
+      "secondary": 2
+    },
+    "list": [
+      {
+        "name": "Recent policy updates",
+        "tier": "secondary"
+      },
+      {
+        "name": "Our research",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://sda.gov.ge",
+      "https://www.rs.ge"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://sda.gov.ge",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.rs.ge",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "692d34157ac8b046d436567147c426ee19fe6ecf9fecbab963d72dfd795a6050"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "6f0a02af24f0841e",
+      "to": "re-anchored 692d34157ac8b046 (stamp b6d2e73a-4fb)",
+      "hash": "692d34157ac8b046d436567147c426ee19fe6ecf9fecbab963d72dfd795a6050"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "692d34157ac8b046",
+      "to": "re-anchored d511ab16255dc8d6 (stamp a15e668d-567)",
+      "hash": "d511ab16255dc8d6ef15a0358d4f520607940a1fa59f0f6d12395837003d412f"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://www.rs.ge",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "d511ab16255dc8d6ef15a0358d4f520607940a1fa59f0f6d12395837003d412f"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.rs.ge",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "d511ab16255dc8d6ef15a0358d4f520607940a1fa59f0f6d12395837003d412f"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "2019 MoF decision confirmed — crypto not Georgia-sourced, 0% personal capital gains",
+      "hash": null
+    }
+  ],
+  "sovereignty": {
+    "score": 8,
+    "stacking_synergy": "high",
+    "risk_level": "low",
+    "lightning_ready": true,
+    "bitcoin_integration": "Very crypto-friendly policies in recent years. Low taxes, fast residency, growing Bitcoin scene. Attractive for digital asset holders."
+  }
+}

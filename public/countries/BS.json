@@ -1,0 +1,167 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "BS",
+    "name": "Bahamas",
+    "flag": "🇧🇸",
+    "region": "Caribbean",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.140Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:20:02.324Z",
+    "hash": "30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d",
+    "proof_url": "https://satohash.io/verify/30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d",
+    "ots_path": "/proofs/bahamas-8bd909d33fa9.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 5,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 7,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 500000,
+    "typical_investment_usd": 750000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 500000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "economic_permanent_residency",
+        "label": "Economic Permanent Residency (EPR)",
+        "min_investment_usd": 750000
+      },
+      {
+        "type": "annual_residency",
+        "label": "Annual Residency Permit (Home Owner's Card)",
+        "min_investment_usd": 250000
+      },
+      {
+        "type": "property",
+        "label": "Accelerated property residency (Speedy Permit)",
+        "min_investment_usd": 500000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.bahamas.gov.bs",
+      "https://www.bahamaschamber.com"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.bahamas.gov.bs",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      },
+      {
+        "url": "https://www.bahamaschamber.com",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "8bd909d33fa96bda4c87823838357304eb439cac62ceccd8a3ea429ed170b243"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "1b572825a4eff8e6",
+      "to": "re-anchored 8bd909d33fa96bda (stamp 8cc36135-c7d)",
+      "hash": "8bd909d33fa96bda4c87823838357304eb439cac62ceccd8a3ea429ed170b243"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "8bd909d33fa96bda",
+      "to": "re-anchored 30dca88964459f41 (stamp 34f86875-6c1)",
+      "hash": "30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d"
+    }
+  ],
+  "sovereignty": {
+    "score": 7,
+    "stacking_synergy": "low",
+    "risk_level": "low",
+    "lightning_ready": false,
+    "bitcoin_integration": "Bahamas offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

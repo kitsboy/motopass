@@ -1,0 +1,181 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "UY",
+    "name": "Uruguay",
+    "flag": "🇺🇾",
+    "region": "South America",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.132Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T14:57:07.682Z",
+    "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4",
+    "proof_url": "https://satohash.io/verify/1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4",
+    "ots_path": "/proofs/uruguay-9e3adfb544c1.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 8,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 9,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 8,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 100000,
+    "typical_investment_usd": 150000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 100000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "real_estate",
+        "label": "Real estate investment",
+        "min_investment_usd": 100000
+      },
+      {
+        "type": "rentista",
+        "label": "Rentista / income proof",
+        "min_investment_usd": 18000
+      },
+      {
+        "type": "bank_deposit",
+        "label": "Bank deposit / bonds",
+        "min_investment_usd": 100000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration sites",
+        "tier": "official"
+      },
+      {
+        "name": "Our detailed research",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.gub.uy/tramites/residencia-legal",
+      "https://www.minterior.gub.uy"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.gub.uy/tramites/residencia-legal",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.minterior.gub.uy",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "9e3adfb544c1b648485a76090f9d97cf7b12c6fc50e866627a10272ec1ca6db1"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "04c9417462f75268",
+      "to": "re-anchored 9e3adfb544c1b648 (stamp f9b39c52-901)",
+      "hash": "9e3adfb544c1b648485a76090f9d97cf7b12c6fc50e866627a10272ec1ca6db1"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "9e3adfb544c1b648",
+      "to": "re-anchored b4e567c15db4a721 (stamp 1b21a090-c39)",
+      "hash": "b4e567c15db4a72141915e1c134c87801ae52c011e594fa300b47c295a4241ed"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "verification",
+      "from": "corpus BUILD 72",
+      "to": "2026-08-22 verification pass — flagship template entry re-verified, no material change; last_checked refreshed",
+      "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "b4e567c15db4a721",
+      "to": "re-anchored 1e9993bb823a6b8f (stamp e0350760-c53)",
+      "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
+    }
+  ],
+  "sovereignty": {
+    "score": 9,
+    "stacking_synergy": "high",
+    "risk_level": "low",
+    "lightning_ready": true,
+    "bitcoin_integration": "Growing crypto-friendly environment. Stable democracy with interest in digital assets and fintech. Potential for Bitcoin residency incentives."
+  }
+}

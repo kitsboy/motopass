@@ -1,0 +1,173 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "SC",
+    "name": "Seychelles",
+    "flag": "🇸🇨",
+    "region": "Africa",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.138Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:18:40.040Z",
+    "hash": "6a9b4b43ee6852de5f20e65cfd1cdbbfde18adb2ab30dc745bf110083d03f4cb",
+    "proof_url": "https://satohash.io/verify/6a9b4b43ee6852de5f20e65cfd1cdbbfde18adb2ab30dc745bf110083d03f4cb",
+    "ots_path": "/proofs/seychelles-857993eee28c.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 6,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 5,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 100000,
+    "typical_investment_usd": 150000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 100000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "investor_permit",
+        "label": "Residence / investor permit",
+        "min_investment_usd": 11000
+      },
+      {
+        "type": "gccs_company",
+        "label": "GCCS / offshore company (FSA)",
+        "min_investment_usd": 5000
+      },
+      {
+        "type": "property",
+        "label": "Property + permanent residence track",
+        "min_investment_usd": 100000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 0,
+      "legal": 0,
+      "secondary": 2
+    },
+    "list": [
+      {
+        "name": "Seychelles investment",
+        "tier": "secondary"
+      },
+      {
+        "name": "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.ics.gov.sc",
+      "https://www.investinseychelles.com",
+      "https://www.src.gov.sc"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.ics.gov.sc",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.investinseychelles.com",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.src.gov.sc",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "857993eee28c3a560dc53c04e61fe7a8b76762a004ded74b3c9132e4dbef3023"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "9130f8236bb2972f",
+      "to": "re-anchored 857993eee28c3a56 (stamp ecaab7c8-c44)",
+      "hash": "857993eee28c3a560dc53c04e61fe7a8b76762a004ded74b3c9132e4dbef3023"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "857993eee28c3a56",
+      "to": "re-anchored 6a9b4b43ee6852de (stamp 7a048d21-326)",
+      "hash": "6a9b4b43ee6852de5f20e65cfd1cdbbfde18adb2ab30dc745bf110083d03f4cb"
+    }
+  ],
+  "sovereignty": {
+    "score": 5,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": false,
+    "bitcoin_integration": "Offshore-friendly, no capital gains tax, privacy-oriented. Offshore structures common Not marked Lightning-ready in corpus until independently verified. Crypto-friendly score (modeled): 6/10."
+  }
+}

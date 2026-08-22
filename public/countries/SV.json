@@ -1,0 +1,182 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "SV",
+    "name": "El Salvador",
+    "flag": "🇸🇻",
+    "region": "Central America",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.127Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T14:57:00.700Z",
+    "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50",
+    "proof_url": "https://satohash.io/verify/279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50",
+    "ots_path": "/proofs/el-salvador-d509c5268fd4.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 9,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 9,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 7,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 10,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 0,
+    "typical_investment_usd": 30000,
+    "history": [
+      {
+        "date": "2026-08-22",
+        "field": "category.bitcoin_integration.finance.legal_compliance",
+        "usd": 2025,
+        "note": "Legal-tender status revoked Feb 2025 (IMF $1.4B deal; amendment Jan 29-30, 2025) — moved to rbi_cbi, reframed as histori"
+      }
+    ],
+    "pathways": [
+      {
+        "type": "economic_contribution",
+        "label": "Economic contribution residency",
+        "min_investment_usd": 0
+      },
+      {
+        "type": "business",
+        "label": "Bitcoin business establishment",
+        "min_investment_usd": 30000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 2,
+      "legal": 0,
+      "secondary": 3
+    },
+    "list": [
+      {
+        "name": "Reuters (2025-01-30)",
+        "tier": "secondary"
+      },
+      {
+        "name": "IMF Country Report 25/58",
+        "tier": "official"
+      },
+      {
+        "name": "CoinDesk",
+        "tier": "secondary"
+      },
+      {
+        "name": "Wikipedia (Bitcoin in El Salvador)",
+        "tier": "secondary"
+      },
+      {
+        "name": "Official government announcements",
+        "tier": "official"
+      }
+    ],
+    "official_urls": [
+      "https://www.presidencia.gob.sv"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.presidencia.gob.sv",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "d509c5268fd43f6bb61eb5f858d358749d5b4a9ba6e34a9dc081987ec5abb261"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "414b33ee92785360",
+      "to": "re-anchored d509c5268fd43f6b (stamp eb26f4fc-b29)",
+      "hash": "d509c5268fd43f6bb61eb5f858d358749d5b4a9ba6e34a9dc081987ec5abb261"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "d509c5268fd43f6b",
+      "to": "re-anchored 91427ffdd75bcd09 (stamp 698e0012-ebe)",
+      "hash": "91427ffdd75bcd09ea333e683bf42eafc4f213102c57a19c15b10de35ba80fda"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "category.bitcoin_integration.finance.legal_compliance",
+      "from": "corpus BUILD 72 (legal_tender_bitcoin)",
+      "to": "Legal-tender status revoked Feb 2025 (IMF $1.4B deal; amendment Jan 29-30, 2025) — moved to rbi_cbi, reframed as historical pioneer with voluntary BTC",
+      "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "91427ffdd75bcd09",
+      "to": "re-anchored 279fb4c4cd5d2d69 (stamp a25cef33-2c7)",
+      "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
+    }
+  ],
+  "sovereignty": {
+    "score": 9,
+    "stacking_synergy": "high",
+    "risk_level": "low",
+    "lightning_ready": true,
+    "bitcoin_integration": "Bitcoin was legal tender 2021-2025 (status revoked Feb 2025 as an IMF $1.4B program condition); voluntary acceptance continues with strong government support for the Bitcoin ecosystem, Lightning adoption, and crypto businesses. No capital gains tax on Bitcoin in many cases. Excellent for Bitcoin-native identity experiments and residency."
+  }
+}

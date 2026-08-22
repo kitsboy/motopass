@@ -1,0 +1,208 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "BG",
+    "name": "Bulgaria",
+    "flag": "🇧🇬",
+    "region": "Europe",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.143Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T06:21:26.678Z",
+    "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01",
+    "proof_url": "https://satohash.io/verify/b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01",
+    "ots_path": "/proofs/bulgaria-35b914b2cb35.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 5,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 5,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 250000,
+    "typical_investment_usd": 400000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 250000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "investor_pr",
+        "label": "Investor permanent residence (company route)",
+        "min_investment_usd": 560000
+      },
+      {
+        "type": "real_estate",
+        "label": "Real estate + long-term residence",
+        "min_investment_usd": 150000
+      },
+      {
+        "type": "government_bonds",
+        "label": "Government bonds (legacy investor route)",
+        "min_investment_usd": 285000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.mvr.bg",
+      "https://www.bnb.bg",
+      "https://www.fsc.bg"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.mvr.bg",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.bnb.bg",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.fsc.bg",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "aecc57bcdf9a10ae",
+      "to": "re-anchored 35b914b2cb350a3a (stamp 8fc8ee09-462)",
+      "hash": "35b914b2cb350a3a949d2ce1fb6d82aeefaedd56be3946717af95f5d63958687"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "35b914b2cb350a3a",
+      "to": "re-anchored abbaabdd8d4320d6 (stamp 8e24dbb5-71c)",
+      "hash": "abbaabdd8d4320d60f850ebed095c30f8b1c248d87d9d836cc03b9259fba9d79"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://www.bnb.bg",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "abbaabdd8d4320d60f850ebed095c30f8b1c248d87d9d836cc03b9259fba9d79"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "finance.crypto_friendly_score",
+      "from": "5",
+      "to": "6",
+      "hash": "06ab34e38d9c8fc200e5b18c151a4c565f291d4622d6012489d6e00bd540fb7c"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "finance.crypto_friendly_score",
+      "from": "6",
+      "to": "7",
+      "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.bnb.bg",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.fsc.bg",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "abbaabdd8d4320d6",
+      "to": "re-anchored b61f29cc0ee1e51d (stamp 5a7a3d48-2f4)",
+      "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01"
+    }
+  ],
+  "sovereignty": {
+    "score": 5,
+    "stacking_synergy": "low",
+    "risk_level": "medium",
+    "lightning_ready": false,
+    "bitcoin_integration": "Bulgaria offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

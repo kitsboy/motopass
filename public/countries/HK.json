@@ -1,0 +1,188 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "HK",
+    "name": "Hong Kong",
+    "flag": "🇭🇰",
+    "region": "Asia",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.136Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:17:14.441Z",
+    "hash": "d8a92c2d9cbbc542de1a5e16ff9a30561203f926395d6ed015073ffacf45aba3",
+    "proof_url": "https://satohash.io/verify/d8a92c2d9cbbc542de1a5e16ff9a30561203f926395d6ed015073ffacf45aba3",
+    "ots_path": "/proofs/hong-kong-4a16ed5842c1.ots",
+    "in_sync": false
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 8,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 7,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 500000,
+    "typical_investment_usd": 800000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 500000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "cies",
+        "label": "Capital Investment Entrant Scheme (CIES)",
+        "min_investment_usd": 3800000
+      },
+      {
+        "type": "ttps",
+        "label": "Top Talent Pass Scheme",
+        "min_investment_usd": 500000
+      },
+      {
+        "type": "entrepreneur",
+        "label": "Investment as Entrepreneurs / GEP",
+        "min_investment_usd": 500000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "SFC",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.immd.gov.hk",
+      "https://www.sfc.hk"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.immd.gov.hk",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.sfc.hk",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "4a16ed5842c138873dfde1b23b0f49708e9b0489bfa08780983c9a11c8099417"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "60b6287b11a999e5",
+      "to": "re-anchored 4a16ed5842c13887 (stamp 91fc3475-0d4)",
+      "hash": "4a16ed5842c138873dfde1b23b0f49708e9b0489bfa08780983c9a11c8099417"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "4a16ed5842c13887",
+      "to": "re-anchored d8a92c2d9cbbc542 (stamp 943d564b-d67)",
+      "hash": "d8a92c2d9cbbc542de1a5e16ff9a30561203f926395d6ed015073ffacf45aba3"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.sfc.hk",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "d8a92c2d9cbbc542de1a5e16ff9a30561203f926395d6ed015073ffacf45aba3"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "VATP regs in force mid-2024 (SFC, same-activity-same-regulation); crypto legal in HK since 2013 (HKMA: virtual commodity)",
+      "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "pathways.cies",
+      "from": "corpus BUILD 72 (HK$30M+)",
+      "to": "CIES verified: HK$30M incl. mandatory HK$3M CIES-IP (HKIC), HK$30M net assets 6mo prior, RE cap HK$10M, 800+ apps by Jan 2025",
+      "hash": null
+    }
+  ],
+  "sovereignty": {
+    "score": 7,
+    "stacking_synergy": "high",
+    "risk_level": "low",
+    "lightning_ready": true,
+    "bitcoin_integration": "Major Asian finance hub, clear SFC crypto licensing framework. Licensed exchanges, institutional BTC custody Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 8/10."
+  }
+}

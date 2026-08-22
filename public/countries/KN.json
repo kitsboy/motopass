@@ -1,0 +1,182 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "KN",
+    "name": "St. Kitts and Nevis",
+    "flag": "🇰🇳",
+    "region": "Caribbean",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.133Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T14:57:14.776Z",
+    "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248",
+    "proof_url": "https://satohash.io/verify/f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248",
+    "ots_path": "/proofs/st-kitts-and-nevis-6a452e9aa052.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 8,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 8,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 9,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 250000,
+    "typical_investment_usd": 300000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 250000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "sgf_donation",
+        "label": "Sustainable Island State Contribution (SISC) donation",
+        "min_investment_usd": 250000
+      },
+      {
+        "type": "real_estate",
+        "label": "Approved real estate investment",
+        "min_investment_usd": 325000
+      },
+      {
+        "type": "alternative_investment",
+        "label": "Public Good Project Option (PGPO)",
+        "min_investment_usd": 250000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official CBI unit",
+        "tier": "official"
+      },
+      {
+        "name": "Our research",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.ciu.gov.kn"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.ciu.gov.kn",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "03027c9c0a995a2f",
+      "to": "re-anchored 6a452e9aa0522016 (stamp 1f59a490-61f)",
+      "hash": "6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "6a452e9aa0522016",
+      "to": "re-anchored 8cecba069c0f4b40 (stamp 2e3f88b7-7d3)",
+      "hash": "8cecba069c0f4b4059f56581900a2030efcdddfe19c2dea4262f8cde57e3893c"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.ciu.gov.kn",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "8cecba069c0f4b4059f56581900a2030efcdddfe19c2dea4262f8cde57e3893c"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "pathways.legal_compliance.critical_tests",
+      "from": "corpus BUILD 72",
+      "to": "SGF -> SISC rename; real estate floor corrected $400k -> $325k (2024 OECS harmonization); 2026 framework (interviews, proposed 30-day visit); US visa restriction noted",
+      "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "8cecba069c0f4b40",
+      "to": "re-anchored f2209308668869dc (stamp 41f66fcd-c03)",
+      "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
+    }
+  ],
+  "sovereignty": {
+    "score": 8,
+    "stacking_synergy": "high",
+    "risk_level": "low",
+    "lightning_ready": true,
+    "bitcoin_integration": "One of the oldest and most respected CBI programs. Crypto-friendly in practice for high-net-worth applicants. Accepts digital asset investments in some cases."
+  }
+}

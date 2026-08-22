@@ -1,0 +1,191 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "BO",
+    "name": "Bolivia",
+    "flag": "🇧🇴",
+    "region": "South America",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.133Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T14:57:11.291Z",
+    "hash": "c1a4ea09d99674bbc1fce88bf400c10f6bc1c36b73296654a2bcdbf6006d9306",
+    "proof_url": "https://satohash.io/verify/c1a4ea09d99674bbc1fce88bf400c10f6bc1c36b73296654a2bcdbf6006d9306",
+    "ots_path": "/proofs/bolivia-c385b8dd4489.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 5,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 5,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 7,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 80000,
+    "typical_investment_usd": 120000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 80000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "company_investment",
+        "label": "Investor / company route",
+        "min_investment_usd": 80000
+      },
+      {
+        "type": "solvency_proof",
+        "label": "Low solvency / fixed deposit",
+        "min_investment_usd": 25000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 0,
+      "legal": 0,
+      "secondary": 2
+    },
+    "list": [
+      {
+        "name": "Initial scan",
+        "tier": "secondary"
+      },
+      {
+        "name": "User research pending",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.migracion.gob.bo"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.migracion.gob.bo",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "c385b8dd4489e228d4e109eeae4ad332588e20e2d9bec31d9090e685c9d3719e"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "feb51c2ddc784d3f",
+      "to": "re-anchored c385b8dd4489e228 (stamp 89b9da81-3cf)",
+      "hash": "c385b8dd4489e228d4e109eeae4ad332588e20e2d9bec31d9090e685c9d3719e"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "c385b8dd4489e228",
+      "to": "re-anchored b3a045e3235cb018 (stamp 65448252-e0f)",
+      "hash": "b3a045e3235cb01834b4bf5046ad707836ff20b49de63d449f2404657bbf092f"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "finance.crypto_friendly_score",
+      "from": "5",
+      "to": "6",
+      "hash": "c2d495b13191f53ff76cc6c0852ed360a68dde5763261ba6ac92cfcb3e714b35"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "finance.crypto_friendly_score",
+      "from": "6",
+      "to": "7",
+      "hash": "cb49ebf77a8b646af06753b503045a58cbb53d2babbcd6e60591c13452c95fd7"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "b3a045e3235cb018",
+      "to": "re-anchored cb49ebf77a8b646a (stamp 489b5e57-38b)",
+      "hash": "cb49ebf77a8b646af06753b503045a58cbb53d2babbcd6e60591c13452c95fd7"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "Sourced 2014-ban repeal (BCB Resolution 144, 15 Dec 2020); bitcoin_integration, tax_benefits, details refreshed",
+      "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "cb49ebf77a8b646a",
+      "to": "re-anchored c1a4ea09d99674bb (stamp 1706033e-780)",
+      "hash": "c1a4ea09d99674bbc1fce88bf400c10f6bc1c36b73296654a2bcdbf6006d9306"
+    }
+  ],
+  "sovereignty": {
+    "score": 5,
+    "stacking_synergy": "low",
+    "risk_level": "medium",
+    "lightning_ready": false,
+    "bitcoin_integration": "Crypto is legal: the 2014 ban (BCB Resolution 044) was repealed by Central Bank Resolution 144 of 15 Dec 2020. Policy still evolving and banking adoption gradual. Value/cost-distressed LatAm option for stacking."
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "PT",
+    "name": "Portugal",
+    "flag": "🇵🇹",
+    "region": "Europe",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.135Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T06:21:18.845Z",
+    "hash": "0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b",
+    "proof_url": "https://satohash.io/verify/0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b",
+    "ots_path": "/proofs/portugal-c538408c3f58.ots",
+    "in_sync": false
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 6,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 5,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 8,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 250000,
+    "typical_investment_usd": 400000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 250000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "golden_visa",
+        "label": "Golden Visa (investment fund route)",
+        "min_investment_usd": 550000
+      },
+      {
+        "type": "d7",
+        "label": "D7 passive income",
+        "min_investment_usd": 12000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official updates",
+        "tier": "official"
+      },
+      {
+        "name": "Industry analysis",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://imigrante.sef.pt",
+      "https://www.portugal.gov.pt",
+      "https://aima.gov.pt"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://imigrante.sef.pt",
+        "status": "unreachable",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.portugal.gov.pt",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "c538408c3f58df15f742bd7c985af91fafefca90f18812f6c0d125aa9d1a351a"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "92358986c6946d3c",
+      "to": "re-anchored c538408c3f58df15 (stamp 58a7e0e4-de0)",
+      "hash": "c538408c3f58df15f742bd7c985af91fafefca90f18812f6c0d125aa9d1a351a"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "watch.official_urls",
+      "from": "https://imigrante.sef.pt",
+      "to": "added https://aima.gov.pt (SEF successor agency, verified live 2026-08-20)",
+      "hash": null
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "c538408c3f58df15",
+      "to": "re-anchored 87177a9450d09131 (stamp dff933e5-eb5)",
+      "hash": "87177a9450d09131bc3445575e3a9d361e2f2eb11772d7d85ae7cf53fb47e5f4"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "finance.crypto_friendly_score",
+      "from": "6",
+      "to": "7",
+      "hash": "0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "87177a9450d09131",
+      "to": "re-anchored 0fbde9af40b0c5ef (stamp ded8e251-5e5)",
+      "hash": "0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "compliance_clock.critical_tests.legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "Nationality reform Lei Orgânica 1/2026 (in force 19 May 2026): naturalisation 7 yrs EU/CPLP / 10 yrs others (was 5), clock from first residence card; citizenship_eligibility_years 5 -> 10",
+      "hash": null
+    }
+  ],
+  "sovereignty": {
+    "score": 5,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": false,
+    "bitcoin_integration": "Was very crypto-friendly (NHR regime). Recent changes to tax rules for crypto. Still attractive but monitor updates. Golden Visa evolving."
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "IE",
+    "name": "Ireland",
+    "flag": "🇮🇪",
+    "region": "Europe",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.142Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:22:29.176Z",
+    "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825",
+    "proof_url": "https://satohash.io/verify/a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825",
+    "ots_path": "/proofs/ireland-42ae6c4ec985.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 5,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 8,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 500000,
+    "typical_investment_usd": 1000000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 500000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "stamp_4_investor",
+        "label": "Stamp 4 (post-IIP investor legacy)",
+        "min_investment_usd": 1000000
+      },
+      {
+        "type": "critical_skills",
+        "label": "Critical Skills Employment Permit → Stamp 4",
+        "min_investment_usd": 35000
+      },
+      {
+        "type": "startup",
+        "label": "Start-up Entrepreneur Programme (STEP)",
+        "min_investment_usd": 55000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.irishimmigration.ie",
+      "https://enterprise.gov.ie",
+      "https://www.centralbank.ie"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.irishimmigration.ie",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://enterprise.gov.ie",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.centralbank.ie",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "42ae6c4ec985beaad72da5ea567019d7d1f950853cb5b9214ecd4dd613ba876c"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "8d8a7a5b02f47c2a",
+      "to": "re-anchored 42ae6c4ec985beaa (stamp 8c1a5c33-336)",
+      "hash": "42ae6c4ec985beaad72da5ea567019d7d1f950853cb5b9214ecd4dd613ba876c"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "42ae6c4ec985beaa",
+      "to": "re-anchored a510e269112f00c6 (stamp 0d2c76be-0c9)",
+      "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://enterprise.gov.ie",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://enterprise.gov.ie",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.centralbank.ie",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
+    }
+  ],
+  "sovereignty": {
+    "score": 8,
+    "stacking_synergy": "low",
+    "risk_level": "low",
+    "lightning_ready": false,
+    "bitcoin_integration": "Ireland offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

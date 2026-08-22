@@ -1,0 +1,173 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "BR",
+    "name": "Brazil",
+    "flag": "🇧🇷",
+    "region": "South America",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.138Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:18:43.891Z",
+    "hash": "d8e4ab5c9927b3d712e36aa2e1e6804198d2367dae62c88edf25025ffe53869e",
+    "proof_url": "https://satohash.io/verify/d8e4ab5c9927b3d712e36aa2e1e6804198d2367dae62c88edf25025ffe53869e",
+    "ots_path": "/proofs/brazil-838e334a0ef9.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 7,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 7,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 8,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 150000,
+    "typical_investment_usd": 250000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 150000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "investor",
+        "label": "Investor visa (VITEM IX)",
+        "min_investment_usd": 95000
+      },
+      {
+        "type": "retirement",
+        "label": "Retirement / passive-income residency",
+        "min_investment_usd": 2000
+      },
+      {
+        "type": "digital_nomad",
+        "label": "Digital nomad visa (VITEM XIV)",
+        "min_investment_usd": 1500
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
+      "https://www.gov.br/pf/pt-br/assuntos/imigracao",
+      "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.gov.br/pf/pt-br/assuntos/imigracao",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "838e334a0ef9bea75866d2ae984f088db1c68fd89c360821ccab9472e3f5cffb"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "55bef9590ff758b0",
+      "to": "re-anchored 838e334a0ef9bea7 (stamp bc365f4a-f39)",
+      "hash": "838e334a0ef9bea75866d2ae984f088db1c68fd89c360821ccab9472e3f5cffb"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "838e334a0ef9bea7",
+      "to": "re-anchored d8e4ab5c9927b3d7 (stamp fef533d6-4cd)",
+      "hash": "d8e4ab5c9927b3d712e36aa2e1e6804198d2367dae62c88edf25025ffe53869e"
+    }
+  ],
+  "sovereignty": {
+    "score": 7,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": true,
+    "bitcoin_integration": "Brazil offers residency or citizenship pathways with growing crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

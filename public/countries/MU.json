@@ -1,0 +1,181 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "MU",
+    "name": "Mauritius",
+    "flag": "🇲🇺",
+    "region": "Africa",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.138Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:18:36.586Z",
+    "hash": "cbad869adf54c90ae2c8dc401e73698620a7ac67bf483c9291bdfb304b3de571",
+    "proof_url": "https://satohash.io/verify/cbad869adf54c90ae2c8dc401e73698620a7ac67bf483c9291bdfb304b3de571",
+    "ots_path": "/proofs/mauritius-b427d068a55c.ots",
+    "in_sync": false
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 7,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 6,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 8,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 50000,
+    "typical_investment_usd": 100000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 50000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "premium_visa",
+        "label": "Premium Visa (remote worker / retiree)",
+        "min_investment_usd": 18000
+      },
+      {
+        "type": "occupation_permit",
+        "label": "Occupation Permit (investor / professional)",
+        "min_investment_usd": 50000
+      },
+      {
+        "type": "property_investment",
+        "label": "Property investment (IRS / PDS schemes)",
+        "min_investment_usd": 375000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "EDB Mauritius",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.edbmauritius.org",
+      "https://immigration.govmu.org"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.edbmauritius.org",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://immigration.govmu.org",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "b427d068a55c10ffdc22586449a4a9e535e733bab8fbffb56f388a57bb2c94f9"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "68c6fc6d94dcd3f9",
+      "to": "re-anchored b427d068a55c10ff (stamp 4f029e1b-f45)",
+      "hash": "b427d068a55c10ffdc22586449a4a9e535e733bab8fbffb56f388a57bb2c94f9"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "b427d068a55c10ff",
+      "to": "re-anchored cbad869adf54c90a (stamp d44b3987-6f6)",
+      "hash": "cbad869adf54c90ae2c8dc401e73698620a7ac67bf483c9291bdfb304b3de571"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://www.edbmauritius.org",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "cbad869adf54c90ae2c8dc401e73698620a7ac67bf483c9291bdfb304b3de571"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "Legal; FSC regulates as Digital Asset under FSA 2007 (guidance Sep 2018) — confirms corpus FSC framing",
+      "hash": null
+    }
+  ],
+  "sovereignty": {
+    "score": 6,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": true,
+    "bitcoin_integration": "Premium visa, African financial hub, territorial tax. FSC crypto sandbox Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10."
+  }
+}

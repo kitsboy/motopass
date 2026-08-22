@@ -20,11 +20,12 @@ export const MAIN_NAV_ROUTES: readonly NavRoute[] = [
   { to: '/apply', key: 'nav.apply', apply: true },
 ] as const
 
-export const MAIN_NAV_PATHS = MAIN_NAV_ROUTES.map(r => r.to)
+export const MAIN_NAV_PATHS = MAIN_NAV_ROUTES.map((r) => r.to)
 
 /** Secondary routes — More sheet + footer only (not primary chrome) */
 export const OVERFLOW_NAV_ROUTES: readonly NavRoute[] = [
   { to: '/compare', key: 'nav.compare' },
+  { to: '/trust', key: 'nav.trust' },
   { to: '/portfolio', key: 'nav.portfolio' },
   { to: '/verify', key: 'nav.verify' },
 ] as const
@@ -38,13 +39,11 @@ export const MOBILE_TAB_ROUTES: readonly { to: string; key: TranslationKey; icon
 
 /** Overflow routes in the mobile More sheet (excludes bottom-tab + Apply) */
 export const MORE_ROUTES: readonly NavRoute[] = [
-  ...MAIN_NAV_ROUTES.filter(
-    r => !r.apply && !MOBILE_TAB_ROUTES.some(t => t.to === r.to),
-  ),
+  ...MAIN_NAV_ROUTES.filter((r) => !r.apply && !MOBILE_TAB_ROUTES.some((t) => t.to === r.to)),
   ...OVERFLOW_NAV_ROUTES,
 ]
 
-export const MORE_PATHS = MORE_ROUTES.map(r => r.to)
+export const MORE_PATHS = MORE_ROUTES.map((r) => r.to)
 
 export function navPillClass(isActive: boolean): string {
   return isActive ? 'nav-pill nav-pill-active' : 'nav-pill'

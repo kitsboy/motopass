@@ -1,0 +1,180 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "LV",
+    "name": "Latvia",
+    "flag": "🇱🇻",
+    "region": "Europe",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.143Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:22:40.497Z",
+    "hash": "65c94892b6ed552bcd6d5bef08dfd18221abf7a20f5a66bdae9bc4615fe3ed56",
+    "proof_url": "https://satohash.io/verify/65c94892b6ed552bcd6d5bef08dfd18221abf7a20f5a66bdae9bc4615fe3ed56",
+    "ots_path": "/proofs/latvia-dc9725dec276.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 6,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 6,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 50000,
+    "typical_investment_usd": 100000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 50000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "company_investment",
+        "label": "Temporary residence via company investment",
+        "min_investment_usd": 55000
+      },
+      {
+        "type": "real_estate",
+        "label": "Real estate (legacy / restricted)",
+        "min_investment_usd": 275000
+      },
+      {
+        "type": "subordinated_capital",
+        "label": "Subordinated capital in credit institution",
+        "min_investment_usd": 305000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.pmlp.gov.lv",
+      "https://www.ur.gov.lv",
+      "https://www.fktk.lv"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.pmlp.gov.lv",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.ur.gov.lv",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.fktk.lv",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "dc9725dec2767022d7d49e77c2232a9f2523af5fe333a3262b5f49bc763de412"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "83e9ce9333b6139a",
+      "to": "re-anchored dc9725dec2767022 (stamp ddc5c9eb-b98)",
+      "hash": "dc9725dec2767022d7d49e77c2232a9f2523af5fe333a3262b5f49bc763de412"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "dc9725dec2767022",
+      "to": "re-anchored 65c94892b6ed552b (stamp e2a78597-aec)",
+      "hash": "65c94892b6ed552bcd6d5bef08dfd18221abf7a20f5a66bdae9bc4615fe3ed56"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.fktk.lv",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "65c94892b6ed552bcd6d5bef08dfd18221abf7a20f5a66bdae9bc4615fe3ed56"
+    }
+  ],
+  "sovereignty": {
+    "score": 6,
+    "stacking_synergy": "medium",
+    "risk_level": "low",
+    "lightning_ready": false,
+    "bitcoin_integration": "Latvia offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

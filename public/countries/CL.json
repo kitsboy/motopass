@@ -1,0 +1,173 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "CL",
+    "name": "Chile",
+    "flag": "🇨🇱",
+    "region": "South America",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.139Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:18:50.773Z",
+    "hash": "fc01e17c7c97376a15590b855701094b0f8b50dcac410e4be7f1ad22592308ed",
+    "proof_url": "https://satohash.io/verify/fc01e17c7c97376a15590b855701094b0f8b50dcac410e4be7f1ad22592308ed",
+    "ots_path": "/proofs/chile-34efcf022169.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 6,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 8,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 200000,
+    "typical_investment_usd": 350000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 200000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "investor",
+        "label": "Investor residency (SERMIG subcategory 13)",
+        "min_investment_usd": 500000
+      },
+      {
+        "type": "rentista",
+        "label": "Rentista / retired or leaser",
+        "min_investment_usd": 12000
+      },
+      {
+        "type": "startup",
+        "label": "Start-Up Chile / tech founder visa",
+        "min_investment_usd": 0
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://serviciomigraciones.cl",
+      "https://www.investchile.gob.cl",
+      "https://startupchile.org"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://serviciomigraciones.cl",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.investchile.gob.cl",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://startupchile.org",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "34efcf0221693dfc3a93d035a178aefb050fb457fc396a928ad90d2573fe4798"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "9e469c89d110bf02",
+      "to": "re-anchored 34efcf0221693dfc (stamp e2995bf6-664)",
+      "hash": "34efcf0221693dfc3a93d035a178aefb050fb457fc396a928ad90d2573fe4798"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "34efcf0221693dfc",
+      "to": "re-anchored fc01e17c7c97376a (stamp cceedee7-249)",
+      "hash": "fc01e17c7c97376a15590b855701094b0f8b50dcac410e4be7f1ad22592308ed"
+    }
+  ],
+  "sovereignty": {
+    "score": 8,
+    "stacking_synergy": "medium",
+    "risk_level": "low",
+    "lightning_ready": false,
+    "bitcoin_integration": "Chile offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

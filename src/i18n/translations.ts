@@ -14,45 +14,155 @@ import {
 } from './pageKeys'
 
 export type TranslationKey =
-  | 'nav.pitch' | 'nav.portfolio' | 'nav.programs' | 'nav.simulator' | 'nav.compare' | 'nav.vault' | 'nav.distressed'
-  | 'nav.blog' | 'nav.verify' | 'nav.agents' | 'nav.apply' | 'nav.dashboard' | 'nav.register' | 'nav.dashboardShort'
-  | 'nav.profile' | 'nav.btcmap' | 'nav.demo' | 'nav.more' | 'nav.language' | 'nav.languageSystem' | 'nav.languageShortcut' | 'nav.backToTop' | 'nav.pageSections' | 'nav.menu' | 'nav.close' | 'nav.explore' | 'nav.tools' | 'nav.skip'
-  | 'tagline' | 'pitch.hero' | 'pitch.sub' | 'pitch.cta' | 'pitch.evolve' | 'pitch.stackSimulator'
-  | 'pitch.feature.jurisdictions.title' | 'pitch.feature.jurisdictions.sub'
-  | 'pitch.feature.satohash.title' | 'pitch.feature.satohash.sub'
-  | 'pitch.feature.nostr.title' | 'pitch.feature.nostr.sub'
-  | 'pitch.feature.agents.title' | 'pitch.feature.agents.sub'
-  | 'pitch.stack.eyebrow' | 'pitch.stack.title'
-  | 'pitch.stack.satohash.title' | 'pitch.stack.satohash.body' | 'pitch.stack.satohash.cta'
-  | 'pitch.stack.nostr.title' | 'pitch.stack.nostr.body' | 'pitch.stack.nostr.cta'
-  | 'pitch.stack.distressed.title' | 'pitch.stack.distressed.body' | 'pitch.stack.distressed.cta'
-  | 'pitch.evolve.eyebrow' | 'pitch.evolve.title' | 'pitch.evolve.body'
-  | 'pitch.roadmap.next' | 'pitch.roadmap.btcmap' | 'pitch.roadmap.lightning' | 'pitch.roadmap.relay' | 'pitch.roadmap.uruguay' | 'pitch.roadmap.agents'
-  | 'blog.title' | 'blog.filter' | 'blog.read' | 'blog.empty' | 'blog.all'
-  | 'programs.title' | 'programs.search' | 'programs.showAdvanced' | 'programs.hideAdvanced'
-  | 'programs.lightningOnly' | 'programs.minInvestment' | 'programs.maxInvestment' | 'programs.minCryptoScore'
-  | 'programs.region' | 'programs.noMatch' | 'programs.inStack'
-  | 'portfolio.empty' | 'portfolio.explore'
+  | 'nav.pitch'
+  | 'nav.portfolio'
+  | 'nav.programs'
+  | 'nav.simulator'
+  | 'nav.compare'
+  | 'nav.vault'
+  | 'nav.distressed'
+  | 'nav.blog'
+  | 'nav.verify'
+  | 'nav.trust'
+  | 'nav.agents'
+  | 'nav.apply'
+  | 'nav.dashboard'
+  | 'nav.register'
+  | 'nav.dashboardShort'
+  | 'nav.profile'
+  | 'nav.btcmap'
+  | 'nav.demo'
+  | 'nav.more'
+  | 'nav.language'
+  | 'nav.languageSystem'
+  | 'nav.languageShortcut'
+  | 'nav.backToTop'
+  | 'nav.pageSections'
+  | 'nav.menu'
+  | 'nav.close'
+  | 'nav.explore'
+  | 'nav.tools'
+  | 'nav.skip'
+  | 'tagline'
+  | 'pitch.hero'
+  | 'pitch.sub'
+  | 'pitch.cta'
+  | 'pitch.evolve'
+  | 'pitch.stackSimulator'
+  | 'pitch.feature.jurisdictions.title'
+  | 'pitch.feature.jurisdictions.sub'
+  | 'pitch.feature.satohash.title'
+  | 'pitch.feature.satohash.sub'
+  | 'pitch.feature.nostr.title'
+  | 'pitch.feature.nostr.sub'
+  | 'pitch.feature.agents.title'
+  | 'pitch.feature.agents.sub'
+  | 'pitch.stack.eyebrow'
+  | 'pitch.stack.title'
+  | 'pitch.stack.satohash.title'
+  | 'pitch.stack.satohash.body'
+  | 'pitch.stack.satohash.cta'
+  | 'pitch.stack.nostr.title'
+  | 'pitch.stack.nostr.body'
+  | 'pitch.stack.nostr.cta'
+  | 'pitch.stack.distressed.title'
+  | 'pitch.stack.distressed.body'
+  | 'pitch.stack.distressed.cta'
+  | 'pitch.evolve.eyebrow'
+  | 'pitch.evolve.title'
+  | 'pitch.evolve.body'
+  | 'pitch.roadmap.next'
+  | 'pitch.roadmap.btcmap'
+  | 'pitch.roadmap.lightning'
+  | 'pitch.roadmap.relay'
+  | 'pitch.roadmap.uruguay'
+  | 'pitch.roadmap.agents'
+  | 'blog.title'
+  | 'blog.filter'
+  | 'blog.read'
+  | 'blog.empty'
+  | 'blog.all'
+  | 'programs.title'
+  | 'programs.search'
+  | 'programs.showAdvanced'
+  | 'programs.hideAdvanced'
+  | 'programs.lightningOnly'
+  | 'programs.minInvestment'
+  | 'programs.maxInvestment'
+  | 'programs.minCryptoScore'
+  | 'programs.region'
+  | 'programs.noMatch'
+  | 'programs.inStack'
+  | 'portfolio.empty'
+  | 'portfolio.explore'
   | 'compare.empty'
   | 'vault.empty'
-  | 'dashboard.connectPrompt' | 'dashboard.registerCta'
-  | 'dashboard.alertsTitle' | 'dashboard.alertsSub' | 'dashboard.alertsPortfolio'
-  | 'dashboard.alertsEmpty' | 'dashboard.alertsShowMore' | 'dashboard.alertsShowLess'
-  | 'dashboard.alertsSource' | 'dashboard.alertsBrowse'
+  | 'dashboard.connectPrompt'
+  | 'dashboard.registerCta'
+  | 'dashboard.alertsTitle'
+  | 'dashboard.alertsSub'
+  | 'dashboard.alertsPortfolio'
+  | 'dashboard.alertsEmpty'
+  | 'dashboard.alertsShowMore'
+  | 'dashboard.alertsShowLess'
+  | 'dashboard.alertsSource'
+  | 'dashboard.alertsBrowse'
   | 'register.step'
-  | 'simulator.eyebrow' | 'simulator.title' | 'simulator.subtitle'
-  | 'simulator.selectPrograms' | 'simulator.filterPrograms' | 'simulator.noSearchMatch'
-  | 'simulator.metrics' | 'simulator.stat.programs' | 'simulator.stat.cost'
-  | 'simulator.stat.sovereignty' | 'simulator.stat.timeline' | 'simulator.stackName' | 'simulator.saveStack'
-  | 'simulator.savedStacks' | 'simulator.savedCount'
-  | 'payments.accept' | 'payments.history' | 'payments.demoNote'
-  | 'payments.liveNote' | 'payments.liveLightning' | 'payments.liveBadge' | 'payments.demoBadge'
-  | 'layout.skipToContent' | 'layout.registerNostr' | 'layout.demo'
-  | 'footer.descriptionBefore' | 'footer.descriptionAfter' | 'footer.github' | 'footer.pristineDemo'
-  | 'verify.title' | 'verify.sub' | 'verify.stamp' | 'agents.title' | 'agents.sub'
-  | 'apply.title' | 'apply.sub' | 'apply.submit' | 'nostr.connect' | 'nostr.connected'
-  | 'block.live' | 'block.retry' | 'btcPrice.label' | 'btcPrice.fallback' | 'btcPrice.copyHint' | 'btcPrice.copied' | 'pitch.btcmapCta' | 'footer.truth'
-  | 'currency.label' | 'currency.btcFirstDefault' | 'currency.wholeBtc' | 'currency.suggested' | 'currency.liveRate' | 'currency.staleTag' | 'currency.fxUnavailable' | 'currency.degradedTitle'
+  | 'simulator.eyebrow'
+  | 'simulator.title'
+  | 'simulator.subtitle'
+  | 'simulator.selectPrograms'
+  | 'simulator.filterPrograms'
+  | 'simulator.noSearchMatch'
+  | 'simulator.metrics'
+  | 'simulator.stat.programs'
+  | 'simulator.stat.cost'
+  | 'simulator.stat.sovereignty'
+  | 'simulator.stat.timeline'
+  | 'simulator.stackName'
+  | 'simulator.saveStack'
+  | 'simulator.savedStacks'
+  | 'simulator.savedCount'
+  | 'payments.accept'
+  | 'payments.history'
+  | 'payments.demoNote'
+  | 'payments.liveNote'
+  | 'payments.liveLightning'
+  | 'payments.liveBadge'
+  | 'payments.demoBadge'
+  | 'layout.skipToContent'
+  | 'layout.registerNostr'
+  | 'layout.demo'
+  | 'footer.descriptionBefore'
+  | 'footer.descriptionAfter'
+  | 'footer.github'
+  | 'footer.pristineDemo'
+  | 'verify.title'
+  | 'verify.sub'
+  | 'verify.stamp'
+  | 'agents.title'
+  | 'agents.sub'
+  | 'apply.title'
+  | 'apply.sub'
+  | 'apply.submit'
+  | 'nostr.connect'
+  | 'nostr.connected'
+  | 'block.live'
+  | 'block.retry'
+  | 'btcPrice.label'
+  | 'btcPrice.fallback'
+  | 'btcPrice.copyHint'
+  | 'btcPrice.copied'
+  | 'pitch.btcmapCta'
+  | 'footer.truth'
+  | 'currency.label'
+  | 'currency.btcFirstDefault'
+  | 'currency.wholeBtc'
+  | 'currency.suggested'
+  | 'currency.liveRate'
+  | 'currency.staleTag'
+  | 'currency.fxUnavailable'
+  | 'currency.degradedTitle'
   | PageKey
 
 type Dict = Record<TranslationKey, string>
@@ -72,6 +182,7 @@ const en: Dict = {
   'nav.btcmap': 'BTC Map',
   'nav.blog': 'Insights',
   'nav.verify': 'Verify',
+  'nav.trust': 'Trust',
   'nav.agents': 'Agents',
   'nav.apply': 'Apply',
   'nav.demo': 'Demo',
@@ -88,7 +199,8 @@ const en: Dict = {
   'nav.skip': 'Skip to content',
   tagline: 'Truth You Can Verify',
   'pitch.hero': 'The private OS for sovereign operators',
-  'pitch.sub': 'Research 50 jurisdictions. Model stacks in ₿. Verify every claim on Bitcoin. Apply with Nostr — no email, no brochure trust.',
+  'pitch.sub':
+    'Research 50 jurisdictions. Model stacks in ₿. Verify every claim on Bitcoin. Apply with Nostr — no email, no brochure trust.',
   'pitch.cta': 'Explore programs',
   'pitch.evolve': 'Living pitch — updated with every BUILD',
   'pitch.stackSimulator': 'Stack simulator',
@@ -104,7 +216,8 @@ const en: Dict = {
   'currency.liveRate': 'Live rate',
   'currency.staleTag': 'Stale rate',
   'currency.fxUnavailable': 'FX unavailable',
-  'currency.degradedTitle': 'Live FX feed unreachable — showing last known good rates (stale) or BTC-only.',
+  'currency.degradedTitle':
+    'Live FX feed unreachable — showing last known good rates (stale) or BTC-only.',
   'pitch.feature.jurisdictions.title': '50 jurisdictions',
   'pitch.feature.jurisdictions.sub': 'CBI, RBI & Bitcoin-native pathways',
   'pitch.feature.satohash.title': 'Satohash proofs',
@@ -116,17 +229,21 @@ const en: Dict = {
   'pitch.stack.eyebrow': 'THE STACK',
   'pitch.stack.title': 'Bitcoin rails for sovereign mobility',
   'pitch.stack.satohash.title': 'Satohash.io — Truth You Can Verify',
-  'pitch.stack.satohash.body': 'Every program cost, legal extract, and passport milestone anchors to Bitcoin via OpenTimestamps. One click to verify — speed without sacrificing sovereignty.',
+  'pitch.stack.satohash.body':
+    'Every program cost, legal extract, and passport milestone anchors to Bitcoin via OpenTimestamps. One click to verify — speed without sacrificing sovereignty.',
   'pitch.stack.satohash.cta': 'Verify now',
   'pitch.stack.nostr.title': 'Nostr-native',
-  'pitch.stack.nostr.body': 'Connect your npub. Policy alerts. Liaison agents. Dual-proof with Bitcoin block hashes.',
+  'pitch.stack.nostr.body':
+    'Connect your npub. Policy alerts. Liaison agents. Dual-proof with Bitcoin block hashes.',
   'pitch.stack.nostr.cta': 'Meet agents',
   'pitch.stack.distressed.title': 'Distressed — proof-gated value plays',
-  'pitch.stack.distressed.body': 'Capital-efficient sovereign routes with ₿ asks, Satohash proof required, curated or permissionless lanes, and template escrow — MotoPass coordinates intelligence, never custody.',
+  'pitch.stack.distressed.body':
+    'Capital-efficient sovereign routes with ₿ asks, Satohash proof required, curated or permissionless lanes, and template escrow — MotoPass coordinates intelligence, never custody.',
   'pitch.stack.distressed.cta': 'Browse distressed',
   'pitch.evolve.eyebrow': 'EVOLVING PITCH',
   'pitch.evolve.title': 'Charts update with every BUILD',
-  'pitch.evolve.body': 'Cost and time savings are computed from live countries.json data — not static investor deck numbers. As jurisdictions, Lightning readiness, and Satohash proofs grow, this page evolves automatically.',
+  'pitch.evolve.body':
+    'Cost and time savings are computed from live countries.json data — not static investor deck numbers. As jurisdictions, Lightning readiness, and Satohash proofs grow, this page evolves automatically.',
   'pitch.roadmap.next': 'Next',
   'pitch.roadmap.btcmap': 'BTC Map merchant layer per jurisdiction',
   'pitch.roadmap.lightning': 'Lightning fee rails for premium stamping',
@@ -174,14 +291,16 @@ const en: Dict = {
   'payments.accept': 'Accept payment',
   'payments.history': 'Payment history',
   'payments.demoNote': 'Demo: {btc} BTC equivalent · BOLT12 offers & Silent Payments supported',
-  'payments.liveNote': 'Lightning Address live · suggested amount {btc} BTC · scan QR with any LNURL wallet',
+  'payments.liveNote':
+    'Lightning Address live · suggested amount {btc} BTC · scan QR with any LNURL wallet',
   'payments.liveLightning': 'Live Lightning Address',
   'payments.liveBadge': 'LIVE',
   'payments.demoBadge': 'DEMO',
   'layout.skipToContent': 'Skip to content',
   'layout.registerNostr': 'Register with Nostr',
   'layout.demo': 'Demo',
-  'footer.descriptionBefore': 'Bitcoin-native sovereign passports and residency. Every claim verifiable on-chain via ',
+  'footer.descriptionBefore':
+    'Bitcoin-native sovereign passports and residency. Every claim verifiable on-chain via ',
   'footer.descriptionAfter': '. Nostr identity. Not accepting applications yet.',
   'footer.github': 'GitHub',
   'footer.pristineDemo': 'Pristine Demo',
@@ -214,6 +333,7 @@ const es: Dict = {
   'nav.dashboardShort': 'Panel',
   'nav.blog': 'Blog',
   'nav.verify': 'Verificar',
+  'nav.trust': 'Confianza',
   'nav.agents': 'Agentes',
   'nav.apply': 'Solicitar',
   'nav.demo': 'Demo',
@@ -241,17 +361,21 @@ const es: Dict = {
   'pitch.stack.eyebrow': 'EL STACK',
   'pitch.stack.title': 'Rieles Bitcoin para movilidad soberana',
   'pitch.stack.satohash.title': 'Satohash.io — Verdad que puedes comprobar',
-  'pitch.stack.satohash.body': 'Cada costo de programa, extracto legal y hito de pasaporte se ancla a Bitcoin vía OpenTimestamps. Un clic para verificar — velocidad sin sacrificar soberanía.',
+  'pitch.stack.satohash.body':
+    'Cada costo de programa, extracto legal y hito de pasaporte se ancla a Bitcoin vía OpenTimestamps. Un clic para verificar — velocidad sin sacrificar soberanía.',
   'pitch.stack.satohash.cta': 'Verificar ahora',
   'pitch.stack.nostr.title': 'Nativo Nostr',
-  'pitch.stack.nostr.body': 'Conecta tu npub. Alertas de política. Agentes de enlace. Doble prueba con hashes de bloque Bitcoin.',
+  'pitch.stack.nostr.body':
+    'Conecta tu npub. Alertas de política. Agentes de enlace. Doble prueba con hashes de bloque Bitcoin.',
   'pitch.stack.nostr.cta': 'Conocer agentes',
   'pitch.stack.distressed.title': 'Distressed — jugadas de valor con prueba',
-  'pitch.stack.distressed.body': 'Rutas soberanas eficientes en capital con ofertas en ₿, prueba Satohash obligatoria, carriles curados o sin permiso, y escrow plantilla — MotoPass coordina inteligencia, nunca custodia.',
+  'pitch.stack.distressed.body':
+    'Rutas soberanas eficientes en capital con ofertas en ₿, prueba Satohash obligatoria, carriles curados o sin permiso, y escrow plantilla — MotoPass coordina inteligencia, nunca custodia.',
   'pitch.stack.distressed.cta': 'Ver distressed',
   'pitch.evolve.eyebrow': 'VISIÓN EVOLUTIVA',
   'pitch.evolve.title': 'Los gráficos se actualizan en cada BUILD',
-  'pitch.evolve.body': 'Los ahorros de costo y tiempo se calculan con datos en vivo de countries.json — no cifras estáticas de un deck de inversión. A medida que crecen jurisdicciones, Lightning y pruebas Satohash, esta página evoluciona sola.',
+  'pitch.evolve.body':
+    'Los ahorros de costo y tiempo se calculan con datos en vivo de countries.json — no cifras estáticas de un deck de inversión. A medida que crecen jurisdicciones, Lightning y pruebas Satohash, esta página evoluciona sola.',
   'pitch.roadmap.next': 'Próximo',
   'pitch.roadmap.lightning': 'Rieles de comisiones Lightning para sellado premium',
   'pitch.roadmap.relay': 'Relay Nostr en vivo en relay.motopass.giveabit.io',
@@ -305,7 +429,8 @@ const es: Dict = {
   'layout.skipToContent': 'Saltar al contenido',
   'layout.registerNostr': 'Registrarse con Nostr',
   'layout.demo': 'Demo',
-  'footer.descriptionBefore': 'Pasaportes y residencias soberanas nativas de Bitcoin. Cada dato verificable en cadena vía ',
+  'footer.descriptionBefore':
+    'Pasaportes y residencias soberanas nativas de Bitcoin. Cada dato verificable en cadena vía ',
   'footer.descriptionAfter': '. Identidad Nostr. Aún no aceptamos solicitudes.',
   'footer.github': 'GitHub',
   'footer.pristineDemo': 'Demo original',
@@ -313,7 +438,8 @@ const es: Dict = {
   'verify.sub': 'Cada dato de MotoPass se ancla a OpenTimestamps vía Satohash.io',
   'verify.stamp': 'Sellar solicitud',
   'agents.title': 'Agentes de enlace por país',
-  'agents.sub': 'Enlaces con oficinas de pasaportes asistidos por IA — accesibles en Nostr para solicitantes verificados',
+  'agents.sub':
+    'Enlaces con oficinas de pasaportes asistidos por IA — accesibles en Nostr para solicitantes verificados',
   'apply.title': 'Seguimiento de solicitud de pasaporte',
   'apply.sub': 'Registra interés, sella el hash de tu solicitud, conecta tu npub',
   'apply.submit': 'Registrar y sellar',
@@ -335,10 +461,11 @@ const fr: Dict = {
   'nav.vault': 'Coffre',
   'nav.distressed': 'Distressed',
   'nav.dashboard': 'Tableau de bord',
-  'nav.register': 'S\'inscrire',
+  'nav.register': "S'inscrire",
   'nav.dashboardShort': 'Tableau',
   'nav.blog': 'Blog',
   'nav.verify': 'Vérifier',
+  'nav.trust': 'Confiance',
   'nav.agents': 'Agents',
   'nav.apply': 'Postuler',
   'nav.demo': 'Démo',
@@ -366,17 +493,21 @@ const fr: Dict = {
   'pitch.stack.eyebrow': 'LE STACK',
   'pitch.stack.title': 'Rails Bitcoin pour la mobilité souveraine',
   'pitch.stack.satohash.title': 'Satohash.io — Une vérité vérifiable',
-  'pitch.stack.satohash.body': 'Chaque coût de programme, extrait juridique et étape de passeport s\'ancre sur Bitcoin via OpenTimestamps. Un clic pour vérifier — rapidité sans sacrifier la souveraineté.',
+  'pitch.stack.satohash.body':
+    "Chaque coût de programme, extrait juridique et étape de passeport s'ancre sur Bitcoin via OpenTimestamps. Un clic pour vérifier — rapidité sans sacrifier la souveraineté.",
   'pitch.stack.satohash.cta': 'Vérifier maintenant',
   'pitch.stack.nostr.title': 'Natif Nostr',
-  'pitch.stack.nostr.body': 'Connectez votre npub. Alertes politiques. Agents de liaison. Double preuve avec les hash de blocs Bitcoin.',
+  'pitch.stack.nostr.body':
+    'Connectez votre npub. Alertes politiques. Agents de liaison. Double preuve avec les hash de blocs Bitcoin.',
   'pitch.stack.nostr.cta': 'Rencontrer les agents',
   'pitch.stack.distressed.title': 'Distressed — opportunités vérifiables',
-  'pitch.stack.distressed.body': 'Voies souveraines à capital efficient avec offres en ₿, preuve Satohash requise, voies curatées ou permissionless, et escrow modèle — MotoPass coordonne l\'intelligence, jamais la garde.',
+  'pitch.stack.distressed.body':
+    "Voies souveraines à capital efficient avec offres en ₿, preuve Satohash requise, voies curatées ou permissionless, et escrow modèle — MotoPass coordonne l'intelligence, jamais la garde.",
   'pitch.stack.distressed.cta': 'Parcourir distressed',
   'pitch.evolve.eyebrow': 'PITCH ÉVOLUTIF',
   'pitch.evolve.title': 'Les graphiques se mettent à jour à chaque BUILD',
-  'pitch.evolve.body': 'Les économies de coût et de temps sont calculées à partir des données live de countries.json — pas des chiffres statiques d\'un deck investisseur. À mesure que les juridictions, Lightning et les preuves Satohash grandissent, cette page évolue automatiquement.',
+  'pitch.evolve.body':
+    "Les économies de coût et de temps sont calculées à partir des données live de countries.json — pas des chiffres statiques d'un deck investisseur. À mesure que les juridictions, Lightning et les preuves Satohash grandissent, cette page évolue automatiquement.",
   'pitch.roadmap.next': 'Prochainement',
   'pitch.roadmap.lightning': 'Rails de frais Lightning pour le cachet premium',
   'pitch.roadmap.relay': 'Relais Nostr live sur relay.motopass.giveabit.io',
@@ -385,7 +516,7 @@ const fr: Dict = {
   'blog.title': 'Perspectives souveraines',
   'blog.filter': 'Filtrer par sujet',
   'blog.read': 'Lire',
-  'blog.empty': 'Aucun article pour cette langue ou ce filtre pour l\'instant.',
+  'blog.empty': "Aucun article pour cette langue ou ce filtre pour l'instant.",
   'blog.all': 'Tous',
   'programs.title': 'Programmes de résidence et citoyenneté',
   'programs.search': 'Rechercher des programmes…',
@@ -398,12 +529,12 @@ const fr: Dict = {
   'programs.region': 'Région',
   'programs.noMatch': 'Aucun programme ne correspond à vos filtres.',
   'programs.inStack': 'dans votre stack',
-  'portfolio.empty': 'Aucun programme dans votre portefeuille pour l\'instant.',
+  'portfolio.empty': "Aucun programme dans votre portefeuille pour l'instant.",
   'portfolio.explore': 'Explorer les programmes',
   'compare.empty': 'Sélectionnez des programmes à comparer',
-  'vault.empty': 'Aucune preuve horodatée pour l\'instant.',
+  'vault.empty': "Aucune preuve horodatée pour l'instant.",
   'dashboard.connectPrompt': 'Connectez votre compte Nostr pour voir la progression.',
-  'dashboard.registerCta': 'S\'inscrire avec Nostr',
+  'dashboard.registerCta': "S'inscrire avec Nostr",
   'register.step': 'Étape',
   'simulator.eyebrow': 'SIMULATEUR DE STACK',
   'simulator.title': 'Empilement juridictionnel',
@@ -422,26 +553,30 @@ const fr: Dict = {
   'simulator.savedCount': 'programmes',
   'payments.accept': 'Accepter le paiement',
   'payments.history': 'Historique des paiements',
-  'payments.demoNote': 'Démo : {btc} BTC équivalent · Offres BOLT12 et Silent Payments pris en charge',
+  'payments.demoNote':
+    'Démo : {btc} BTC équivalent · Offres BOLT12 et Silent Payments pris en charge',
   'payments.liveNote': 'Lightning Address actif · montant suggéré {btc} BTC · scannez le QR',
   'payments.liveLightning': 'Lightning Address actif',
   'payments.liveBadge': 'LIVE',
   'payments.demoBadge': 'DÉMO',
   'layout.skipToContent': 'Aller au contenu',
-  'layout.registerNostr': 'S\'inscrire avec Nostr',
+  'layout.registerNostr': "S'inscrire avec Nostr",
   'layout.demo': 'Démo',
-  'footer.descriptionBefore': 'Passeports et résidences souverains natifs Bitcoin. Chaque donnée vérifiable on-chain via ',
-  'footer.descriptionAfter': '. Identité Nostr. Nous n\'acceptons pas encore les demandes.',
+  'footer.descriptionBefore':
+    'Passeports et résidences souverains natifs Bitcoin. Chaque donnée vérifiable on-chain via ',
+  'footer.descriptionAfter': ". Identité Nostr. Nous n'acceptons pas encore les demandes.",
   'footer.github': 'GitHub',
-  'footer.pristineDemo': 'Démo d\'origine',
+  'footer.pristineDemo': "Démo d'origine",
   'verify.title': 'Vérifier sur Bitcoin',
-  'verify.sub': 'Chaque donnée MotoPass s\'ancre sur OpenTimestamps via Satohash.io',
+  'verify.sub': "Chaque donnée MotoPass s'ancre sur OpenTimestamps via Satohash.io",
   'verify.stamp': 'Horodater la demande',
   'agents.title': 'Agents de liaison par pays',
-  'agents.sub': 'Liaisons avec les bureaux de passeports assistées par IA — joignables sur Nostr pour les candidats vérifiés',
+  'agents.sub':
+    'Liaisons avec les bureaux de passeports assistées par IA — joignables sur Nostr pour les candidats vérifiés',
   'apply.title': 'Suivi de demande de passeport',
-  'apply.sub': 'Enregistrez votre intérêt, horodatez le hash de votre demande, connectez votre npub',
-  'apply.submit': 'S\'inscrire et horodater',
+  'apply.sub':
+    'Enregistrez votre intérêt, horodatez le hash de votre demande, connectez votre npub',
+  'apply.submit': "S'inscrire et horodater",
   'nostr.connect': 'Connecter Nostr',
   'nostr.connected': 'Connecté',
   'block.live': 'Bloc Bitcoin',
@@ -453,7 +588,8 @@ const fr: Dict = {
   'currency.liveRate': 'Taux en direct',
   'currency.staleTag': 'Taux périmé',
   'currency.fxUnavailable': 'Taux de change indisponible',
-  'currency.degradedTitle': 'Flux FX en direct injoignable — affichage du dernier taux connu (périmé) ou uniquement en sats.',
+  'currency.degradedTitle':
+    'Flux FX en direct injoignable — affichage du dernier taux connu (périmé) ou uniquement en sats.',
   ...pageKeysEn,
   ...pageKeysFr,
 }
@@ -465,6 +601,7 @@ const pt: Dict = {
   'nav.programs': 'Programas',
   'nav.blog': 'Blog',
   'nav.verify': 'Verificar',
+  'nav.trust': 'Confiança',
   'nav.agents': 'Agentes',
   'nav.apply': 'Candidatar',
   'pitch.hero': 'Passaportes soberanos em trilhos Bitcoin',
@@ -477,6 +614,7 @@ const zh: Dict = {
   'nav.programs': '项目',
   'nav.blog': '洞察',
   'nav.verify': '验证',
+  'nav.trust': '信任',
   'nav.agents': '代理',
   'nav.apply': '申请',
   'pitch.hero': '基于比特币rails的主权护照',
@@ -490,6 +628,7 @@ const ar: Dict = {
   'nav.programs': 'البرامج',
   'nav.blog': 'مدونة',
   'nav.verify': 'تحقق',
+  'nav.trust': 'ثقة',
   'nav.agents': 'وكلاء',
   'nav.apply': 'تقديم',
   'pitch.hero': 'جوازات سيادية على قضبان البيتكوين',
@@ -503,6 +642,7 @@ const sw: Dict = {
   'nav.programs': 'Programu',
   'nav.blog': 'Maarifa',
   'nav.verify': 'Thibitisha',
+  'nav.trust': 'Uaminifu',
   'nav.agents': 'Mawakala',
   'nav.apply': 'Omba',
   'pitch.hero': 'Pasipoti za uhuru kwenye reli za Bitcoin',
@@ -515,11 +655,13 @@ const de: Dict = {
   'nav.programs': 'Programme',
   'nav.blog': 'Blog',
   'nav.verify': 'Verifizieren',
+  'nav.trust': 'Vertrauen',
   'nav.agents': 'Agenten',
   'nav.apply': 'Bewerben',
   'pitch.hero': 'Souveräne Pässe auf Bitcoin-Schienen',
   'programs.title': 'Bitcoin-Visa- & Krypto-Golden-Visa-Programme',
-  'programs.description': 'Jede Zahl unten ist modelliert, zeitgestempelt und nach einem Zeitplan erneut geprüft — kein einmaliger Broschüren-Snapshot.',
+  'programs.description':
+    'Jede Zahl unten ist modelliert, zeitgestempelt und nach einem Zeitplan erneut geprüft — kein einmaliger Broschüren-Snapshot.',
 }
 
 const hi: Dict = {
@@ -529,6 +671,7 @@ const hi: Dict = {
   'nav.programs': 'कार्यक्रम',
   'nav.blog': 'ब्लॉग',
   'nav.verify': 'सत्यापित',
+  'nav.trust': 'विश्वास',
   'nav.agents': 'एजेंट',
   'nav.apply': 'आवेदन',
   'pitch.hero': 'बिटकॉइन रेल्स पर संप्रभु पासपोर्ट',
@@ -546,6 +689,7 @@ const ja: Dict = {
   'nav.distressed': 'ディストレス',
   'nav.blog': 'インサイト',
   'nav.verify': '検証',
+  'nav.trust': '信頼',
   'nav.agents': 'エージェント',
   'nav.apply': '申請',
   'nav.dashboard': 'ダッシュボード',
@@ -554,7 +698,8 @@ const ja: Dict = {
   'nav.more': 'その他',
   'nav.skip': 'コンテンツへスキップ',
   'pitch.hero': '主権オペレーターのためのプライベートOS',
-  'pitch.sub': '50の法域を調査。₿でスタックをモデル化。Bitcoin上ですべての主張を検証。Nostrで申請 — メール不要、パンフレット信頼不要。',
+  'pitch.sub':
+    '50の法域を調査。₿でスタックをモデル化。Bitcoin上ですべての主張を検証。Nostrで申請 — メール不要、パンフレット信頼不要。',
   'pitch.cta': 'プログラムを探索',
   'pitch.evolve': 'ライブピッチ — すべてのBUILDで更新',
   'pitch.stackSimulator': 'スタックシミュレーター',

@@ -1,0 +1,167 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "BZ",
+    "name": "Belize",
+    "flag": "🇧🇿",
+    "region": "Central America",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.140Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:20:07.336Z",
+    "hash": "48d103c25fdfc804c4fe64de0ae3e054ac4a7dbeefd75a2f8eea29d6df01b537",
+    "proof_url": "https://satohash.io/verify/48d103c25fdfc804c4fe64de0ae3e054ac4a7dbeefd75a2f8eea29d6df01b537",
+    "ots_path": "/proofs/belize-c97ba4040054.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 6,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 5,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 50000,
+    "typical_investment_usd": 100000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 50000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "qrp",
+        "label": "Qualified Retired Persons (QRP)",
+        "min_investment_usd": 24000
+      },
+      {
+        "type": "investment",
+        "label": "Permanent residency (investment/solvency)",
+        "min_investment_usd": 50000
+      },
+      {
+        "type": "business",
+        "label": "Business / entrepreneur residency",
+        "min_investment_usd": 25000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.belizeinvest.org.bz",
+      "https://www.tourism.gov.bz"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.belizeinvest.org.bz",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      },
+      {
+        "url": "https://www.tourism.gov.bz",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "c97ba4040054ee025dea54f423455f281613879761666356b86e697ae6cf33b3"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "ee600d1c53ae4b44",
+      "to": "re-anchored c97ba4040054ee02 (stamp 0b913721-104)",
+      "hash": "c97ba4040054ee025dea54f423455f281613879761666356b86e697ae6cf33b3"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "c97ba4040054ee02",
+      "to": "re-anchored 48d103c25fdfc804 (stamp cb686d2a-706)",
+      "hash": "48d103c25fdfc804c4fe64de0ae3e054ac4a7dbeefd75a2f8eea29d6df01b537"
+    }
+  ],
+  "sovereignty": {
+    "score": 5,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": false,
+    "bitcoin_integration": "Belize offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

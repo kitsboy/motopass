@@ -1,0 +1,188 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "CR",
+    "name": "Costa Rica",
+    "flag": "🇨🇷",
+    "region": "Central America",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.136Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:17:09.498Z",
+    "hash": "e7f67a705c49a29d0b29c7b89aa01c34c0042f4a14a348d3476f46e786a9b585",
+    "proof_url": "https://satohash.io/verify/e7f67a705c49a29d0b29c7b89aa01c34c0042f4a14a348d3476f46e786a9b585",
+    "ots_path": "/proofs/costa-rica-ec93289aa77e.ots",
+    "in_sync": false
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 7,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 6,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 8,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 50000,
+    "typical_investment_usd": 100000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 50000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "digital_nomad",
+        "label": "Digital nomad visa (Law 9996)",
+        "min_investment_usd": 36000
+      },
+      {
+        "type": "rentista",
+        "label": "Rentista / fixed income",
+        "min_investment_usd": 60000
+      },
+      {
+        "type": "inversionista",
+        "label": "Inversionista (investor)",
+        "min_investment_usd": 150000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 0,
+      "legal": 1,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Immigration rules",
+        "tier": "legal"
+      },
+      {
+        "name": "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.migracion.go.cr",
+      "https://www.hacienda.go.cr"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.migracion.go.cr",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      },
+      {
+        "url": "https://www.hacienda.go.cr",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "ec93289aa77e74cb14251c9e697e512efee306619e7726d0b67b8b348a7c0bbc"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "8d5621d63fb11590",
+      "to": "re-anchored ec93289aa77e74cb (stamp c1582fd0-06a)",
+      "hash": "ec93289aa77e74cb14251c9e697e512efee306619e7726d0b67b8b348a7c0bbc"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "ec93289aa77e74cb",
+      "to": "re-anchored e7f67a705c49a29d (stamp 128e7a70-e9a)",
+      "hash": "e7f67a705c49a29d0b29c7b89aa01c34c0042f4a14a348d3476f46e786a9b585"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://www.hacienda.go.cr",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "e7f67a705c49a29d0b29c7b89aa01c34c0042f4a14a348d3476f46e786a9b585"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.hacienda.go.cr",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "e7f67a705c49a29d0b29c7b89aa01c34c0042f4a14a348d3476f46e786a9b585"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "BCCR Oct 2017 statement confirmed — crypto not currency, at own risk",
+      "hash": null
+    }
+  ],
+  "sovereignty": {
+    "score": 6,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": true,
+    "bitcoin_integration": "Territorial tax, growing crypto adoption, popular with nomads. Nomad-friendly, Lightning cafes in San José Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10."
+  }
+}

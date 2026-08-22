@@ -1,0 +1,195 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "VU",
+    "name": "Vanuatu",
+    "flag": "🇻🇺",
+    "region": "Oceania",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.137Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T06:21:22.666Z",
+    "hash": "3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34",
+    "proof_url": "https://satohash.io/verify/3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34",
+    "ots_path": "/proofs/vanuatu-321095951799.ots",
+    "in_sync": false
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 7,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 6,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 9,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 130000,
+    "typical_investment_usd": 150000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 130000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "dsp_donation",
+        "label": "DSP citizenship (donation)",
+        "min_investment_usd": 130000
+      },
+      {
+        "type": "real_estate",
+        "label": "Approved real estate CBI",
+        "min_investment_usd": 200000
+      },
+      {
+        "type": "residency",
+        "label": "Investor / business residency permit",
+        "min_investment_usd": 50000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 0,
+      "legal": 0,
+      "secondary": 2
+    },
+    "list": [
+      {
+        "name": "Vanuatu DSP",
+        "tier": "secondary"
+      },
+      {
+        "name": "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://cilc.vu",
+      "https://immigration.gov.vu"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://cilc.vu",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      },
+      {
+        "url": "https://immigration.gov.vu",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "3210959517994f765209cd1362c3fa8ab33d442ffdddbef366b0cbc063dfc14f"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "47b05762934d0bd9",
+      "to": "re-anchored 3210959517994f76 (stamp c84de88c-b2c)",
+      "hash": "3210959517994f765209cd1362c3fa8ab33d442ffdddbef366b0cbc063dfc14f"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "3210959517994f76",
+      "to": "re-anchored 83771c5faafe612a (stamp 203518a5-a9e)",
+      "hash": "83771c5faafe612ad36e9034634e81db7dd70a92d8853637af8b735471292c51"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://immigration.gov.vu",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "83771c5faafe612ad36e9034634e81db7dd70a92d8853637af8b735471292c51"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "finance.tax_benefits",
+      "from": "No income tax",
+      "to": "No personal income tax (Wikipedia)",
+      "hash": "3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "83771c5faafe612a",
+      "to": "re-anchored 3012b5f3857415cc (stamp b2c92368-b0f)",
+      "hash": "3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "Crypto legal — ban lifted July 2021 (Finance Magnates via Wikipedia); VCP $130k unchanged",
+      "hash": null
+    }
+  ],
+  "sovereignty": {
+    "score": 6,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": true,
+    "bitcoin_integration": "Fast CBI program, accepts crypto payments in practice. Fast passport, Bitcoin-friendly agents Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10."
+  }
+}

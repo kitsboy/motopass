@@ -27,6 +27,7 @@ const ROUTES = [
   { path: '/btcmap', priority: '0.85', changefreq: 'weekly' },
   { path: '/simulator', priority: '0.8', changefreq: 'weekly' },
   { path: '/compare', priority: '0.8', changefreq: 'weekly' },
+  { path: '/trust', priority: '0.85', changefreq: 'daily' },
   { path: '/vault', priority: '0.8', changefreq: 'weekly' },
   { path: '/distressed', priority: '0.85', changefreq: 'weekly' },
   { path: '/blog', priority: '0.9', changefreq: 'daily' },

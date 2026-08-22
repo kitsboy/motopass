@@ -1,0 +1,174 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "AD",
+    "name": "Andorra",
+    "flag": "🇦🇩",
+    "region": "Europe",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.144Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T06:26:51.227Z",
+    "hash": "66da679de4006f6a22bd2133b8836388ab1c67bea53caf0234a91e484e274b4b",
+    "proof_url": "https://satohash.io/verify/66da679de4006f6a22bd2133b8836388ab1c67bea53caf0234a91e484e274b4b",
+    "ots_path": "/proofs/andorra-b970ec3ac039.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 6,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 8,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 400000,
+    "typical_investment_usd": 600000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 400000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "passive_residency",
+        "label": "Passive residency (residència passiva)",
+        "min_investment_usd": 400000
+      },
+      {
+        "type": "active_business",
+        "label": "Active business / self-employed",
+        "min_investment_usd": 50000
+      },
+      {
+        "type": "digital_nomad",
+        "label": "Digital nomad / remote worker",
+        "min_investment_usd": 42000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.govern.ad",
+      "https://www.afa.ad"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.govern.ad",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.afa.ad",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "b970ec3ac0391c8ea509cdc610ae28c292dc4f0e8e5ec8132c9216865ed3c385"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "fc3aae5c3d819794",
+      "to": "re-anchored b970ec3ac0391c8e (stamp 9dc75e3f-93d)",
+      "hash": "b970ec3ac0391c8ea509cdc610ae28c292dc4f0e8e5ec8132c9216865ed3c385"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://www.afa.ad",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "66da679de4006f6a22bd2133b8836388ab1c67bea53caf0234a91e484e274b4b"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "b970ec3ac0391c8e",
+      "to": "re-anchored 66da679de4006f6a (stamp e1e7d322-1c3)",
+      "hash": "66da679de4006f6a22bd2133b8836388ab1c67bea53caf0234a91e484e274b4b"
+    }
+  ],
+  "sovereignty": {
+    "score": 8,
+    "stacking_synergy": "medium",
+    "risk_level": "low",
+    "lightning_ready": false,
+    "bitcoin_integration": "Andorra offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

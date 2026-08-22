@@ -1,0 +1,188 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "TR",
+    "name": "Turkey",
+    "flag": "🇹🇷",
+    "region": "Europe / Middle East",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.138Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:18:33.036Z",
+    "hash": "419d55339ea7ed5d115ba881dade499ce233270fd7125c03221f01f4140ea2fd",
+    "proof_url": "https://satohash.io/verify/419d55339ea7ed5d115ba881dade499ce233270fd7125c03221f01f4140ea2fd",
+    "ots_path": "/proofs/turkey-d837cfc89a7b.ots",
+    "in_sync": false
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 6,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 5,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 400000,
+    "typical_investment_usd": 450000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 400000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "real_estate_cbi",
+        "label": "Citizenship by property investment",
+        "min_investment_usd": 400000
+      },
+      {
+        "type": "work_permit",
+        "label": "Work permit + residence",
+        "min_investment_usd": 0
+      },
+      {
+        "type": "business",
+        "label": "Company establishment + investor residence",
+        "min_investment_usd": 50000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 0,
+      "legal": 0,
+      "secondary": 2
+    },
+    "list": [
+      {
+        "name": "Turkish citizenship by investment",
+        "tier": "secondary"
+      },
+      {
+        "name": "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.goc.gov.tr",
+      "https://www.invest.gov.tr"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.goc.gov.tr",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.invest.gov.tr",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "d837cfc89a7b39433a2b931c24f67ebdb4a5e4eb06aa06239b83ae79833b4d7c"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "54e443fd1293e3a1",
+      "to": "re-anchored d837cfc89a7b3943 (stamp 1549fd9e-d48)",
+      "hash": "d837cfc89a7b39433a2b931c24f67ebdb4a5e4eb06aa06239b83ae79833b4d7c"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "d837cfc89a7b3943",
+      "to": "re-anchored 419d55339ea7ed5d (stamp 2b671442-126)",
+      "hash": "419d55339ea7ed5d115ba881dade499ce233270fd7125c03221f01f4140ea2fd"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://www.invest.gov.tr",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "419d55339ea7ed5d115ba881dade499ce233270fd7125c03221f01f4140ea2fd"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.invest.gov.tr",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "419d55339ea7ed5d115ba881dade499ce233270fd7125c03221f01f4140ea2fd"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "Payment-tool ban since 30 Apr 2021 (CBRT) verified; trading legal, SPK oversight; $400k CBI unchanged",
+      "hash": null
+    }
+  ],
+  "sovereignty": {
+    "score": 5,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": false,
+    "bitcoin_integration": "Citizenship via real estate, large Bitcoin trading volume. High retail BTC adoption Not marked Lightning-ready in corpus until independently verified. Crypto-friendly score (modeled): 6/10."
+  }
+}

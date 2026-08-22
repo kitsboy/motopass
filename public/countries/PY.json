@@ -1,0 +1,174 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "PY",
+    "name": "Paraguay",
+    "flag": "🇵🇾",
+    "region": "South America",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.136Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:17:05.878Z",
+    "hash": "96d4209201de7eda8a59c3d9891599223b1b3106ac44744e39c45eca089da5db",
+    "proof_url": "https://satohash.io/verify/96d4209201de7eda8a59c3d9891599223b1b3106ac44744e39c45eca089da5db",
+    "ots_path": "/proofs/paraguay-d31c88b62c96.ots",
+    "in_sync": false
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 7,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 6,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 7,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 80000,
+    "typical_investment_usd": 150000,
+    "history": [
+      {
+        "date": "2026-08-22",
+        "field": "legal_compliance.finance",
+        "usd": 2022,
+        "note": "Mining-regulation timeline 2022–2024 (framework, paused 180-day ban, Jul 2024 theft penalties, Dec 2024 registration); I"
+      }
+    ],
+    "pathways": [
+      {
+        "type": "suace",
+        "label": "SUACE investor residency",
+        "min_investment_usd": 70000
+      },
+      {
+        "type": "real_estate",
+        "label": "Real estate investment residency",
+        "min_investment_usd": 80000
+      },
+      {
+        "type": "rentista",
+        "label": "Rentista / passive income proof",
+        "min_investment_usd": 12000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 0,
+      "legal": 0,
+      "secondary": 2
+    },
+    "list": [
+      {
+        "name": "Initial research",
+        "tier": "secondary"
+      },
+      {
+        "name": "MotoPass research corpus · last_checked 2026-05-18 · block 958093",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.migraciones.gov.py",
+      "https://www.set.gov.py"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.migraciones.gov.py",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.set.gov.py",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "d31c88b62c960276627afd5ee833c131500103430312cd7d36b159ab6f31a17e"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "392fa04a3fcd90da",
+      "to": "re-anchored d31c88b62c960276 (stamp 9c1edb0e-d60)",
+      "hash": "d31c88b62c960276627afd5ee833c131500103430312cd7d36b159ab6f31a17e"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "d31c88b62c960276",
+      "to": "re-anchored 96d4209201de7eda (stamp cf44590e-d51)",
+      "hash": "96d4209201de7eda8a59c3d9891599223b1b3106ac44744e39c45eca089da5db"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance.finance",
+      "from": "corpus BUILD 72",
+      "to": "Mining-regulation timeline 2022–2024 (framework, paused 180-day ban, Jul 2024 theft penalties, Dec 2024 registration); Itaipu electricity ~$0.05–0.06/kWh; SUACE $70k/10yr verified; last_checked refreshed",
+      "hash": null
+    }
+  ],
+  "sovereignty": {
+    "score": 6,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": true,
+    "bitcoin_integration": "Low taxes, territorial system, and some of the world's cheapest electricity (Itaipu hydro, ~$0.05–0.06/kWh) make it a major Bitcoin-mining hub. Mining is legal and regulated; crypto adoption and interest growing."
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "CF",
+    "name": "Central African Republic",
+    "flag": "🇨🇫",
+    "region": "Africa",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.131Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T14:57:04.136Z",
+    "hash": "b5ff369da5887cf7ecf57eabf9bdc2d91647068faf0c7cf24ab11e645984cb1a",
+    "proof_url": "https://satohash.io/verify/b5ff369da5887cf7ecf57eabf9bdc2d91647068faf0c7cf24ab11e645984cb1a",
+    "ots_path": "/proofs/central-african-republic-27d7921d71cc.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 7,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 7,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 7,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 10,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 0,
+    "typical_investment_usd": 25000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 0,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "business_investment",
+        "label": "Economic activity / investor residency",
+        "min_investment_usd": 25000
+      },
+      {
+        "type": "bitcoin_legal_tender",
+        "label": "Bitcoin-integrated business operations",
+        "min_investment_usd": 10000
+      },
+      {
+        "type": "real_estate",
+        "label": "Property / agricultural investment",
+        "min_investment_usd": 50000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Government legislation 2022",
+        "tier": "official"
+      },
+      {
+        "name": "Our research",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://gouvernement.cf",
+      "https://www.finances.gouv.cf"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://gouvernement.cf",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      },
+      {
+        "url": "https://www.finances.gouv.cf",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "27d7921d71ccb5b5d2ab806576f74b044316f6c96dce44d71d05ad494f89fe2c"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "8e899cd0df7ecb97",
+      "to": "re-anchored 27d7921d71ccb5b5 (stamp 4cab0aaf-f9f)",
+      "hash": "27d7921d71ccb5b5d2ab806576f74b044316f6c96dce44d71d05ad494f89fe2c"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "27d7921d71ccb5b5",
+      "to": "re-anchored 3436be752d1dbe7c (stamp e1d03d09-4a0)",
+      "hash": "3436be752d1dbe7cd79fa580d15bd1d478fb96f5c52c0a967858768ab80193fe"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance.category",
+      "from": "corpus BUILD 72",
+      "to": "Reflect April 2023 repeal of Bitcoin legal-tender law; category legal_tender_bitcoin -> rbi_cbi; fields corrected to historical framing",
+      "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "3436be752d1dbe7c",
+      "to": "re-anchored b5ff369da5887cf7 (stamp fa6db16a-37e)",
+      "hash": "b5ff369da5887cf7ecf57eabf9bdc2d91647068faf0c7cf24ab11e645984cb1a"
+    }
+  ],
+  "sovereignty": {
+    "score": 7,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": true,
+    "bitcoin_integration": "Adopted Bitcoin as legal tender in April 2022 (Law 22.004/2022), the second country ever, but parliament agreed to repeal the legal-tender law in April 2023. Crypto activity is not prohibited and continues informally (mining pilots, fintech interest), but there is no legal-tender status and no formal crypto regulatory framework on file. Frontier jurisdiction with weak banking and infrastructure."
+  }
+}

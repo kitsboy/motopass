@@ -1,0 +1,201 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "IT",
+    "name": "Italy",
+    "flag": "🇮🇹",
+    "region": "Europe",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.142Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:22:36.433Z",
+    "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc",
+    "proof_url": "https://satohash.io/verify/383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc",
+    "ots_path": "/proofs/italy-100675521271.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 6,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 8,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 250000,
+    "typical_investment_usd": 500000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 250000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "elective_residence",
+        "label": "Elective residence (residenza elettiva)",
+        "min_investment_usd": 34000
+      },
+      {
+        "type": "investor_visa",
+        "label": "Investor Visa for Italy (startup route)",
+        "min_investment_usd": 275000
+      },
+      {
+        "type": "digital_nomad",
+        "label": "Digital nomad visa (visto per lavoratori remoti)",
+        "min_investment_usd": 30000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.interno.gov.it",
+      "https://investorvisa.mise.gov.it",
+      "https://www.agenziaentrate.gov.it"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.interno.gov.it",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://investorvisa.mise.gov.it",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.agenziaentrate.gov.it",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "10067552127100548b8f1f63cc1b77ac44c40faf2bcb8dab6337c40c92f2de79"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "c0d26db99af87366",
+      "to": "re-anchored 1006755212710054 (stamp e20a36fd-19f)",
+      "hash": "10067552127100548b8f1f63cc1b77ac44c40faf2bcb8dab6337c40c92f2de79"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "1006755212710054",
+      "to": "re-anchored 383ec285ae5e686d (stamp 3ea3cd84-f66)",
+      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://investorvisa.mise.gov.it",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://www.agenziaentrate.gov.it",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://investorvisa.mise.gov.it",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.agenziaentrate.gov.it",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
+    }
+  ],
+  "sovereignty": {
+    "score": 8,
+    "stacking_synergy": "medium",
+    "risk_level": "low",
+    "lightning_ready": false,
+    "bitcoin_integration": "Italy offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "DM",
+    "name": "Dominica",
+    "flag": "🇩🇲",
+    "region": "Caribbean",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.134Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T14:57:21.703Z",
+    "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c",
+    "proof_url": "https://satohash.io/verify/9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c",
+    "ots_path": "/proofs/dominica-5af844999b98.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 7,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 7,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 9,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 200000,
+    "typical_investment_usd": 250000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 200000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "edf_donation",
+        "label": "Economic Diversification Fund (EDF) donation",
+        "min_investment_usd": 200000
+      },
+      {
+        "type": "real_estate",
+        "label": "Approved real estate",
+        "min_investment_usd": 200000
+      },
+      {
+        "type": "alternative",
+        "label": "Alternative investment option",
+        "min_investment_usd": 200000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official CBI",
+        "tier": "official"
+      },
+      {
+        "name": "Industry reports",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://cbiu.gov.dm"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://cbiu.gov.dm",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "5af844999b98cd5887607fc7b51656ba66d7e599ba3856065dc4744dac179b3f"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "e7932ee15cefc0b7",
+      "to": "re-anchored 5af844999b98cd58 (stamp 217dfbe6-39e)",
+      "hash": "5af844999b98cd5887607fc7b51656ba66d7e599ba3856065dc4744dac179b3f"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "5af844999b98cd58",
+      "to": "re-anchored 0173506b5b8bb09b (stamp 2c384449-851)",
+      "hash": "0173506b5b8bb09b22fff4a2e2617b5f5a37637af1fe320a11d5a7b2ce6a4c9c"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "EDF $200k confirmed current; ECCIRA harmonization 2026; US visa restriction noted",
+      "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "0173506b5b8bb09b",
+      "to": "re-anchored 9098fd4e4d1a73f2 (stamp dc5dc26a-0cc)",
+      "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c"
+    }
+  ],
+  "sovereignty": {
+    "score": 7,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": true,
+    "bitcoin_integration": "Popular, cost-effective CBI. Accepts crypto in practice for qualified applicants. Affordable entry point with solid passport. Good MotoPass test case. Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10."
+  }
+}

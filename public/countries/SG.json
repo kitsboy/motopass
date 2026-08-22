@@ -1,0 +1,192 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "SG",
+    "name": "Singapore",
+    "flag": "🇸🇬",
+    "region": "Asia",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.134Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T14:57:31.799Z",
+    "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9",
+    "proof_url": "https://satohash.io/verify/33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9",
+    "ots_path": "/proofs/singapore-994c9ac4c70c.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 9,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 9,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 9,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 400000,
+    "typical_investment_usd": 600000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 400000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "gip",
+        "label": "Global Investor Programme (GIP)",
+        "min_investment_usd": 1800000
+      },
+      {
+        "type": "entrepass",
+        "label": "EntrePass / EP company director",
+        "min_investment_usd": 400000
+      },
+      {
+        "type": "family_office",
+        "label": "Single Family Office (SFO)",
+        "min_investment_usd": 5000000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 2,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "MAS guidelines",
+        "tier": "official"
+      },
+      {
+        "name": "Official GIP program",
+        "tier": "official"
+      },
+      {
+        "name": "Our research",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.edb.gov.sg",
+      "https://www.mas.gov.sg"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.edb.gov.sg",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.mas.gov.sg",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "994c9ac4c70ca766b2cde65fb88bd7e0b2320d4774f87a88f8f7bfe33a323b2d"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "c33cafa9586cac2b",
+      "to": "re-anchored 994c9ac4c70ca766 (stamp ed7eba7e-15e)",
+      "hash": "994c9ac4c70ca766b2cde65fb88bd7e0b2320d4774f87a88f8f7bfe33a323b2d"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "994c9ac4c70ca766",
+      "to": "re-anchored 837b0b631ca12cf3 (stamp 0bbfb2c5-508)",
+      "hash": "837b0b631ca12cf321fb66db83e54dbbe6dece279596b62e2788b7d553359b10"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://www.edb.gov.sg",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "837b0b631ca12cf321fb66db83e54dbbe6dece279596b62e2788b7d553359b10"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "PSA 2019 digital payment token framework confirmed; crypto legal in Singapore",
+      "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "837b0b631ca12cf3",
+      "to": "re-anchored 33606bf60e75ee2c (stamp c5d17f09-dbc)",
+      "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+    }
+  ],
+  "sovereignty": {
+    "score": 9,
+    "stacking_synergy": "high",
+    "risk_level": "low",
+    "lightning_ready": true,
+    "bitcoin_integration": "Clear, balanced regulation (MAS). Strong fintech and crypto scene. Excellent infrastructure. Residency via investment or Global Investor Programme."
+  }
+}

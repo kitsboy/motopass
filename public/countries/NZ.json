@@ -1,0 +1,174 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "NZ",
+    "name": "New Zealand",
+    "flag": "🇳🇿",
+    "region": "Oceania",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.141Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:20:29.448Z",
+    "hash": "810a6c67f96aec330d975265af920dcc8b41a8d02d82b6c771ca788d6b22bafe",
+    "proof_url": "https://satohash.io/verify/810a6c67f96aec330d975265af920dcc8b41a8d02d82b6c771ca788d6b22bafe",
+    "ots_path": "/proofs/new-zealand-abd953127e8a.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 4,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 9,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 2000000,
+    "typical_investment_usd": 3000000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 2000000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "active_investor",
+        "label": "Active Investor Plus (AIP)",
+        "min_investment_usd": 9000000
+      },
+      {
+        "type": "skilled_migrant",
+        "label": "Skilled Migrant Category (SMC)",
+        "min_investment_usd": 0
+      },
+      {
+        "type": "entrepreneur",
+        "label": "Entrepreneur Work Visa",
+        "min_investment_usd": 60000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.immigration.govt.nz",
+      "https://www.mbie.govt.nz"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.immigration.govt.nz",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.mbie.govt.nz",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T06:26:16.246Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "abd953127e8a0e8c124137064349a0d62e03b7423ffc48e70d92f8bd14ef0dce"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "ec6d2e23483b3772",
+      "to": "re-anchored abd953127e8a0e8c (stamp 47819681-158)",
+      "hash": "abd953127e8a0e8c124137064349a0d62e03b7423ffc48e70d92f8bd14ef0dce"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "abd953127e8a0e8c",
+      "to": "re-anchored 810a6c67f96aec33 (stamp 303eec12-9b7)",
+      "hash": "810a6c67f96aec330d975265af920dcc8b41a8d02d82b6c771ca788d6b22bafe"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.immigration.govt.nz",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "810a6c67f96aec330d975265af920dcc8b41a8d02d82b6c771ca788d6b22bafe"
+    }
+  ],
+  "sovereignty": {
+    "score": 9,
+    "stacking_synergy": "low",
+    "risk_level": "low",
+    "lightning_ready": false,
+    "bitcoin_integration": "New Zealand offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

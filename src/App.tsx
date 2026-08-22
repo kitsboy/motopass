@@ -24,60 +24,147 @@ import { ApplyPage } from './pages/ApplyPage'
 import { StackSimulatorPage } from './pages/StackSimulatorPage'
 import { PortfolioPage } from './pages/PortfolioPage'
 import { BtcMapPage } from './pages/BtcMapPage'
+import { TrustPage } from './pages/TrustPage'
 import { BlogPage } from './pages/BlogPage'
 import { BlogPostPage } from './pages/BlogPostPage'
 
-const DashboardPage = lazy(() => import('./pages/DashboardPage').then(m => ({ default: m.DashboardPage })))
-const RegisterPage = lazy(() => import('./pages/RegisterPage').then(m => ({ default: m.RegisterPage })))
-const ProfilePage = lazy(() => import('./pages/ProfilePage').then(m => ({ default: m.ProfilePage })))
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })))
+const DashboardPage = lazy(() =>
+  import('./pages/DashboardPage').then((m) => ({ default: m.DashboardPage })),
+)
+const RegisterPage = lazy(() =>
+  import('./pages/RegisterPage').then((m) => ({ default: m.RegisterPage })),
+)
+const ProfilePage = lazy(() =>
+  import('./pages/ProfilePage').then((m) => ({ default: m.ProfilePage })),
+)
+const NotFoundPage = lazy(() =>
+  import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })),
+)
 
 export default function App() {
   return (
     <ThemeProvider>
-    <ProgramsProvider>
-    <BlockHeightProvider>
-    <BtcPriceProvider>
-    <BtcMapDensityProvider>
-    <BtcMapAuthProvider>
-    <I18nProvider>
-    <DisplayCurrencyProvider>
-    <ToastProvider>
-      <UserProvider>
-        <BrowserRouter>
-          <ErrorBoundary>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route index element={<RouteSuspense count={1}><PitchPage /></RouteSuspense>} />
-              <Route path="portfolio" element={<RouteSuspense><PortfolioPage /></RouteSuspense>} />
-              <Route path="programs" element={<ProgramsPage />} />
-              <Route path="simulator" element={<StackSimulatorPage />} />
-              <Route path="compare" element={<RouteSuspense><FinanceComparePage /></RouteSuspense>} />
-              <Route path="btcmap" element={<RouteSuspense><BtcMapPage /></RouteSuspense>} />
-              <Route path="vault" element={<VaultPage />} />
-              <Route path="distressed" element={<DistressedPage />} />
-              <Route path="blog" element={<RouteSuspense><BlogPage /></RouteSuspense>} />
-              <Route path="blog/:slug" element={<RouteSuspense><BlogPostPage /></RouteSuspense>} />
-              <Route path="verify" element={<VerifyPage />} />
-              <Route path="agents" element={<AgentsPage />} />
-              <Route path="apply" element={<ApplyPage />} />
-              <Route path="register" element={<RouteSuspense><RegisterPage /></RouteSuspense>} />
-              <Route path="dashboard" element={<RouteSuspense><DashboardPage /></RouteSuspense>} />
-              <Route path="profile" element={<RouteSuspense><ProfilePage /></RouteSuspense>} />
-              <Route path="*" element={<RouteSuspense><NotFoundPage /></RouteSuspense>} />
-            </Route>
-          </Routes>
-          </ErrorBoundary>
-        </BrowserRouter>
-      </UserProvider>
-    </ToastProvider>
-    </DisplayCurrencyProvider>
-    </I18nProvider>
-    </BtcMapAuthProvider>
-    </BtcMapDensityProvider>
-    </BtcPriceProvider>
-    </BlockHeightProvider>
-    </ProgramsProvider>
+      <ProgramsProvider>
+        <BlockHeightProvider>
+          <BtcPriceProvider>
+            <BtcMapDensityProvider>
+              <BtcMapAuthProvider>
+                <I18nProvider>
+                  <DisplayCurrencyProvider>
+                    <ToastProvider>
+                      <UserProvider>
+                        <BrowserRouter>
+                          <ErrorBoundary>
+                            <Routes>
+                              <Route element={<Layout />}>
+                                <Route
+                                  index
+                                  element={
+                                    <RouteSuspense count={1}>
+                                      <PitchPage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route
+                                  path="portfolio"
+                                  element={
+                                    <RouteSuspense>
+                                      <PortfolioPage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route path="programs" element={<ProgramsPage />} />
+                                <Route path="simulator" element={<StackSimulatorPage />} />
+                                <Route
+                                  path="compare"
+                                  element={
+                                    <RouteSuspense>
+                                      <FinanceComparePage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route
+                                  path="btcmap"
+                                  element={
+                                    <RouteSuspense>
+                                      <BtcMapPage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route
+                                  path="trust"
+                                  element={
+                                    <RouteSuspense>
+                                      <TrustPage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route path="vault" element={<VaultPage />} />
+                                <Route path="distressed" element={<DistressedPage />} />
+                                <Route
+                                  path="blog"
+                                  element={
+                                    <RouteSuspense>
+                                      <BlogPage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route
+                                  path="blog/:slug"
+                                  element={
+                                    <RouteSuspense>
+                                      <BlogPostPage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route path="verify" element={<VerifyPage />} />
+                                <Route path="agents" element={<AgentsPage />} />
+                                <Route path="apply" element={<ApplyPage />} />
+                                <Route
+                                  path="register"
+                                  element={
+                                    <RouteSuspense>
+                                      <RegisterPage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route
+                                  path="dashboard"
+                                  element={
+                                    <RouteSuspense>
+                                      <DashboardPage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route
+                                  path="profile"
+                                  element={
+                                    <RouteSuspense>
+                                      <ProfilePage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route
+                                  path="*"
+                                  element={
+                                    <RouteSuspense>
+                                      <NotFoundPage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                              </Route>
+                            </Routes>
+                          </ErrorBoundary>
+                        </BrowserRouter>
+                      </UserProvider>
+                    </ToastProvider>
+                  </DisplayCurrencyProvider>
+                </I18nProvider>
+              </BtcMapAuthProvider>
+            </BtcMapDensityProvider>
+          </BtcPriceProvider>
+        </BlockHeightProvider>
+      </ProgramsProvider>
     </ThemeProvider>
   )
 }

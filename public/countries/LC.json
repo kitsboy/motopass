@@ -1,0 +1,161 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "LC",
+    "name": "St. Lucia",
+    "flag": "🇱🇨",
+    "region": "Caribbean",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.139Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:18:57.700Z",
+    "hash": "975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa",
+    "proof_url": "https://satohash.io/verify/975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa",
+    "ots_path": "/proofs/st-lucia-27d4e604e55a.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 6,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 6,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 100000,
+    "typical_investment_usd": 150000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 100000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "nef_donation",
+        "label": "National Economic Fund (NEF) donation",
+        "min_investment_usd": 240000
+      },
+      {
+        "type": "real_estate",
+        "label": "Approved real estate investment",
+        "min_investment_usd": 300000
+      },
+      {
+        "type": "government_bonds",
+        "label": "Government bonds option",
+        "min_investment_usd": 300000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.ciu.gov.lc"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.ciu.gov.lc",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "27d4e604e55abef2fb29cfb6e7b456f6d69a8249aa1cfea7bb32863d2e88cfb0"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "7f939a3e560b59c1",
+      "to": "re-anchored 27d4e604e55abef2 (stamp 5d801f3d-7e5)",
+      "hash": "27d4e604e55abef2fb29cfb6e7b456f6d69a8249aa1cfea7bb32863d2e88cfb0"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "27d4e604e55abef2",
+      "to": "re-anchored 975bf50ec82208b2 (stamp 8deb2c19-239)",
+      "hash": "975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa"
+    }
+  ],
+  "sovereignty": {
+    "score": 6,
+    "stacking_synergy": "medium",
+    "risk_level": "low",
+    "lightning_ready": false,
+    "bitcoin_integration": "St. Lucia offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

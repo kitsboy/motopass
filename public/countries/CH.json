@@ -1,0 +1,180 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "CH",
+    "name": "Switzerland",
+    "flag": "🇨🇭",
+    "region": "Europe",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.134Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T14:57:28.715Z",
+    "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151",
+    "proof_url": "https://satohash.io/verify/2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151",
+    "ots_path": "/proofs/switzerland-02caca688c68.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 9,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 9,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 9,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 7,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 300000,
+    "typical_investment_usd": 500000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 300000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "lump_sum_tax",
+        "label": "Lump-sum taxation (negotiated)",
+        "min_investment_usd": 250000
+      },
+      {
+        "type": "business",
+        "label": "Company + director residency",
+        "min_investment_usd": 100000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 0,
+      "legal": 1,
+      "secondary": 2
+    },
+    "list": [
+      {
+        "name": "Crypto Valley Association",
+        "tier": "secondary"
+      },
+      {
+        "name": "Cantonal rules",
+        "tier": "legal"
+      },
+      {
+        "name": "Our research",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.sem.admin.ch",
+      "https://www.zug.ch"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.sem.admin.ch",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://www.zug.ch",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "02caca688c68f420a9e38755f5064e8ab4e7a82d3eff5b169eb288e5b04aecc2"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "3467ebf7f83723db",
+      "to": "re-anchored 02caca688c68f420 (stamp 3fb32305-e7e)",
+      "hash": "02caca688c68f420a9e38755f5064e8ab4e7a82d3eff5b169eb288e5b04aecc2"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "02caca688c68f420",
+      "to": "re-anchored 427d012781ca45de (stamp c9a9f281-a7e)",
+      "hash": "427d012781ca45de7bce7a9268e6b0523f9a47f5da54cfae839c13f970eff22e"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "pathways.legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "Lump-sum tax verified: living-expenses basis, no gainful activity, ~5,000 payers, abolished in some cantons (Zurich 2010)",
+      "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "427d012781ca45de",
+      "to": "re-anchored 2a1287a7ea1c1d47 (stamp 760db661-c1a)",
+      "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
+    }
+  ],
+  "sovereignty": {
+    "score": 9,
+    "stacking_synergy": "high",
+    "risk_level": "low",
+    "lightning_ready": true,
+    "bitcoin_integration": "Crypto Valley (Zug) is legendary. Clear regulation, strong rule of law, excellent banking for crypto. Many Bitcoin companies headquartered here. Residency possible via investment or business."
+  }
+}

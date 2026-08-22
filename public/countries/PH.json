@@ -1,0 +1,194 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "PH",
+    "name": "Philippines",
+    "flag": "🇵🇭",
+    "region": "Asia",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.141Z",
+  "freshness": {
+    "status": "stale",
+    "days_stale": 51,
+    "verified_at": "2026-07-02",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "stale",
+      "days_stale": 52,
+      "last_checked": "2026-07-02"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-21T00:20:15.478Z",
+    "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae",
+    "proof_url": "https://satohash.io/verify/0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae",
+    "ots_path": "/proofs/philippines-081adedde8a1.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 6,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 5,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": null,
+        "present": false,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 75000,
+    "typical_investment_usd": 120000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 75000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "srrv",
+        "label": "SRRV (Special Resident Retiree's Visa)",
+        "min_investment_usd": 10000
+      },
+      {
+        "type": "immigrant",
+        "label": "13(a) immigrant / SIRV investor",
+        "min_investment_usd": 75000
+      },
+      {
+        "type": "digital_nomad",
+        "label": "Digital nomad (proposed / informal)",
+        "min_investment_usd": 0
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official immigration portals",
+        "tier": "official"
+      },
+      {
+        "name": "MotoPass research BUILD-011",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://pra.gov.ph",
+      "https://immigration.gov.ph",
+      "https://boi.gov.ph"
+    ]
+  },
+  "watch": {
+    "changed": true,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://pra.gov.ph",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://immigration.gov.ph",
+        "status": "changed",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      },
+      {
+        "url": "https://boi.gov.ph",
+        "status": "unreachable",
+        "last_probed": "2026-08-21T00:11:20.877Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "081adedde8a141dbb5a414b566d25cb02b342ef56e98ea6ac749a019459626f9"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "8b85074fd76f8bf3",
+      "to": "re-anchored 081adedde8a141db (stamp a2ec2197-b6f)",
+      "hash": "081adedde8a141dbb5a414b566d25cb02b342ef56e98ea6ac749a019459626f9"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "081adedde8a141db",
+      "to": "re-anchored 0e19cb46ab19e004 (stamp 27bc19ae-b26)",
+      "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "watch.https://pra.gov.ph",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://pra.gov.ph",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://immigration.gov.ph",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae"
+    }
+  ],
+  "sovereignty": {
+    "score": 5,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": false,
+    "bitcoin_integration": "Philippines offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+  }
+}

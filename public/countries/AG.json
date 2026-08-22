@@ -1,0 +1,175 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "AG",
+    "name": "Antigua and Barbuda",
+    "flag": "🇦🇬",
+    "region": "Caribbean",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-08-22T19:54:45.134Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": 958093,
+    "stamped_at": "2026-08-22T14:57:18.189Z",
+    "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e",
+    "proof_url": "https://satohash.io/verify/aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e",
+    "ots_path": "/proofs/antigua-and-barbuda-91a26594ae70.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 7,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 7,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 6,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 9,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 1,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": null,
+        "present": false,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": null,
+        "present": false,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+  },
+  "threshold": {
+    "min_investment_usd": 230000,
+    "typical_investment_usd": 280000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 230000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "ndf_donation",
+        "label": "National Development Fund (NDF) donation",
+        "min_investment_usd": 230000
+      },
+      {
+        "type": "real_estate",
+        "label": "Approved real estate",
+        "min_investment_usd": 300000
+      },
+      {
+        "type": "business",
+        "label": "Business investment",
+        "min_investment_usd": 400000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 1
+    },
+    "list": [
+      {
+        "name": "Official sources",
+        "tier": "official"
+      },
+      {
+        "name": "Our research",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://www.cip.gov.ag"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "urls": [
+      {
+        "url": "https://www.cip.gov.ag",
+        "status": "ok",
+        "last_probed": "2026-08-22T06:20:31.118Z"
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-08-20",
+      "field": "schema.v3",
+      "from": null,
+      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
+      "hash": "91a26594ae7015d5cb1b6ca08dd00e0f9c349b0c44399f6a03ee5f383fc2ef44"
+    },
+    {
+      "date": "2026-08-20",
+      "field": "proof",
+      "from": "b0080967535080db",
+      "to": "re-anchored 91a26594ae7015d5 (stamp 6a6dc159-dac)",
+      "hash": "91a26594ae7015d5cb1b6ca08dd00e0f9c349b0c44399f6a03ee5f383fc2ef44"
+    },
+    {
+      "date": "2026-08-21",
+      "field": "proof",
+      "from": "91a26594ae7015d5",
+      "to": "re-anchored 341c070a4384f648 (stamp 1f66f623-f26)",
+      "hash": "341c070a4384f648410ca060ba25f815a1ebbb2c539005c638cb404b6906be99"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "pathways.legal_compliance.critical_tests",
+      "from": "corpus BUILD 72",
+      "to": "Business route corrected $1.5M -> $400k share of $5M+ joint business; UWI $260k (families 6+); ECCIRA harmonization 2026; US visa restriction noted",
+      "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "proof",
+      "from": "341c070a4384f648",
+      "to": "re-anchored aa4c45f7a554951b (stamp 932a0976-606)",
+      "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e"
+    }
+  ],
+  "sovereignty": {
+    "score": 7,
+    "stacking_synergy": "medium",
+    "risk_level": "medium",
+    "lightning_ready": true,
+    "bitcoin_integration": "Well-regarded CBI program. Increasing openness to digital assets and fintech investors. Good for Bitcoin-funded applications. Strong passport for travel. Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10."
+  }
+}
