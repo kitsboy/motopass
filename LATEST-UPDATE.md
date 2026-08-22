@@ -1,3 +1,36 @@
+# motopass — Last Updated 2026-08-23 by Mimi
+Brief: Adv10B perf pass on /trust — code-split routes + lazy drawer charts + CLS fix; fixes the duplicate-entry crash loop
+Commit: 8c603f2 (perf/trust)
+Deploy: https://motopass.giveabit.io/trust · CF project motopass
+
+What landed:
+- Code-split ALL remaining routes in App.tsx -> critical-path index chunk 1678KB -> 964KB.
+  This also FIXES the ADV10A-filed duplicate app-entry bug: previously index.html loaded one
+  index-* copy while lazy chunks imported a second, duplicating React + DisplayCurrencyContext
+  and causing a "useDisplayCurrency must be used within DisplayCurrencyProvider" crash loop
+  (~151 console errors/load on live). Now ONE shared index chunk; every lazy route imports it.
+- TrustPage: drawer-only charts (ScorecardRadar, ThresholdSparkline, SourceTierStrip,
+  ProofBadge) are code-split and lazy-loaded ONLY on card tap / compare open — verified via
+  network trace (chunks fetched on drawer open, absent from initial grid paint).
+- TrustPage: replaced the 15,000px 50-card skeleton (inserted off-screen after first paint ->
+  ~1.0 CLS) with a compact spinner; real grid mounts in one pass. CLS 1.01 -> 0.0003.
+- Cards get a stable min-height; grid stays plain light DOM (content-visibility reverted:
+  measured it re-regressed CLS ~1.0 with no real node savings).
+
+Measured on /trust (mobile 390x844, playwright perf trace, median of 4-5 valid runs):
+  FCP  144ms -> 128ms · LCP 1572ms -> 1240ms (-21%)
+  CLS  1.0103 -> 0.0003 (CWV pass)
+  JS   616KB -> 415KB (-33%) · total 1472KB -> 1062KB (-28%)
+  DOM nodes 8830 -> 3091 (-65%) · scroll: 0 long tasks (was 1x52ms)
+All 48 test files / 247 tests pass; eslint clean on changed files.
+
+Live-verified: 50 cards + 50 rings render on live /trust · 0 DisplayCurrency crash errors
+(was ~151) · full content. One pre-existing non-fatal error remains (react-helmet-async
+"reading 'add'", ~3/load, caught by ErrorBoundary, present before AND after — page renders
+fully; not a perf regression, tracked for a future card).
+
+---
+
 # motopass — Last Updated 2026-08-23 by Ziggy/THOR
 Brief: Adv8f Hindi (hi) — FULL Hindi translation verified complete + live; i18n coverage audit confirms ALL 9 non-EN locales at 0 missing keys
 Commit: cdf8e1f (translation) · docs verified this pass
