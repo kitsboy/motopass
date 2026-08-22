@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Check, CheckCircle2, Copy, ExternalLink, MessageCircle, Radio, Rocket, Share2, X, Clock } from 'lucide-react'
 import { NostrConnect } from '../components/NostrConnect'
 import { hashApplicationPayload, satohashStampGuideUrl } from '../lib/satohash'
@@ -18,6 +18,7 @@ import { isOfficeHoursOpen, KIMI_TIMEZONE } from '../lib/agentOfficeHours'
 import { BUILD_ID } from '../lib/buildInfo'
 import { ApplyLaunchGatesDirectory } from '../components/apply/ApplyLaunchGatesDirectory'
 import { ApplyFormProgressStepper } from '../components/apply/ApplyFormProgressStepper'
+import { ApplicationFeeStep } from '../components/apply/ApplicationFeeStep'
 import { clearApplyDraft, loadApplyDraft, saveApplyDraft } from '../lib/applyDraftStorage'
 import { loadStampedDocuments, documentVerifyUrl, formatBytes } from '../lib/documentStamp'
 import type { StampedDocument } from '../lib/documentStamp'
@@ -52,7 +53,6 @@ function resolveApplyFields(programPrefill: string, proofPrefill: string) {
 
 export function ApplyPage() {
   const { t } = useI18n()
-  const navigate = useNavigate()
   const { report, loading, applicationsOpen, agentsMessagingOpen } = useLaunchGates({ refreshMs: LAUNCH_GATES_REFRESH_MS })
   const { toast } = useToast()
   const [searchParams] = useSearchParams()
@@ -121,14 +121,9 @@ export function ApplyPage() {
       clearApplyDraft()
       setResult({ hash, id })
       setCopied(false)
-      const agentParams = new URLSearchParams({
-        application: id,
-        program: program.trim(),
-        hash,
-      })
-      window.setTimeout(() => {
-        navigate(`/agents?${agentParams.toString()}`)
-      }, 2400)
+      // No auto-redirect: the application-fee payment step now follows the success
+      // card, so the applicant must stay on this page to complete the Lightning payment.
+      // "Meet agents" remains the manual next step (fee rail + receipt live on this page).
     } finally {
       setSubmitting(false)
     }
@@ -528,6 +523,9 @@ export function ApplyPage() {
           </Button>
         </Card>
       )}
+
+      {/* Application-fee commerce step — real Lightning payment on the MotoPass wallet (Seam B) */}
+      {result && <ApplicationFeeStep appHash={result.hash} appId={result.id} program={program} />}
 
       <p className="text-center font-chrome text-xs text-ink-muted mt-8">
         <Link to="/vault" className="text-mp-btc-text hover:underline underline-offset-2">Vault</Link>
