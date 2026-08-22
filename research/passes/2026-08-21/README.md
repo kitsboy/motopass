@@ -50,9 +50,16 @@ The web-search backend remained unavailable, but a Wikipedia-based pass
 - **Paraguay + Panama — STILL BLOCKED:** no source accessible for their
   visa thresholds / crypto-law status; corpus left unchanged and stale so the
   daily pipeline keeps flagging them. Re-run when search access returns.
+- **Re-attempt (same day):** web search still down; EN + ES Wikipedia checked
+  for Panama Law 697 veto details and Paraguay SUACE/mine-law status — no
+  coverage. Absence of coverage is not confirmation; no changes made.
+- **Bolivia bonus:** ES Wikipedia surfaced a 2025 election proposal for a
+  crypto-asset monetary-stabilization fund (unverified, not law) — logged in
+  the Bolivia brief for monitoring.
 
 Sources: `Legality of cryptocurrency by country or territory` (Wikipedia,
-revision 2026-08-21). Verified facts only — no fabricated rules.
+revision 2026-08-21) · EN + ES Wikipedia (fetched 2026-08-22). Verified
+facts only — no fabricated rules.
 
 ```bash
 npm run research:pass        # regenerate briefs

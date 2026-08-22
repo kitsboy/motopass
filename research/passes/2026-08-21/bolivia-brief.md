@@ -29,6 +29,7 @@
 |------|--------------|-----------|------------|------------|
 | 2026-08-22 | Crypto legality | Legal since Dec 2020 — 2014 ban (Res. 044) repealed by Central Bank Resolution 144 (15 Dec 2020) | https://en.wikipedia.org/wiki/Legality_of_cryptocurrency_by_country_or_territory | High |
 | 2026-08-22 | last_checked | refreshed to 2026-08-22 (ban-repeal fact verified) | https://en.wikipedia.org/wiki/Legality_of_cryptocurrency_by_country_or_territory | High |
+| 2026-08-22 | Policy signal (proposal, not law) | 2025 general election: candidate proposed a monetary-stabilization fund incorporating crypto assets amid high inflation and rising crypto use — monitor for enactment | https://es.wikipedia.org/wiki/Elecciones_generales_de_Bolivia_de_2025 | Low (political proposal) |
 
 ## Verdict after research
 

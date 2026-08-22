@@ -29,6 +29,7 @@
 | Date | Fact changed | New value | Source URL | Confidence |
 |------|--------------|-----------|------------|------------|
 | 2026-08-22 | Verification blocked | Web-search backend unavailable and official portals bot-blocked — no rule updates drafted, nothing fabricated | — | — |
+| 2026-08-22 | Re-attempt | Search still down; checked EN + ES Wikipedia — no coverage of Law 697 veto detail or 2021 Decree 226 thresholds; corpus unchanged | https://en.wikipedia.org/wiki/Panama · https://es.wikipedia.org | Low (absence of coverage, not confirmation) |
 
 ## Verdict after research
 
