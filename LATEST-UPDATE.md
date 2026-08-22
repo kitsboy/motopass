@@ -1,3 +1,17 @@
+# motopass — Last Updated 2026-08-23 by Ziggy/THOR
+Brief: Adv8d Arabic (ar) RTL — FULL Arabic translation shipped (CORE + long-tail), live-verified RTL rendering
+Commit: 163a94d
+Deploy: https://motopass.giveabit.io · CF project motopass
+
+What landed:
+- Complete Arabic (ar) translation for MotoPass: ar dict (209 keys) + pageKeysAr (766/766 page keys). Genuine Arabic, no gibberish. English remains source of truth.
+- RTL fully wired and live-verified: languages.ts ar dir:'rtl', I18nContext sets document.documentElement.dir=rtl, index.css [dir='rtl'] rules. Live browser check: ar → lang=ar, dir=rtl, CSS direction:rtl, nav/tagline/pitch/btcPrice/currency/trust/vault all render in Arabic.
+- HOTSPOT-safe: isolated ONLY the pageKeysAr hunk from sibling in-progress edits (es/fr/de/zh/hi/ja) in the shared working tree.
+
+Live-verified: vite build clean · preview server serves fresh bundle (22,839 Arabic chars) · browser probe on /, /trust, /vault confirms dir=rtl + Arabic CORE strings render · all trust CORE keys (fresh/stale/sovereignty/watch/risk/addToCompare/sovScoreTitle) present in ar sources.
+
+---
+
 # motopass — Last Updated 2026-08-22 by Ziggy/THOR
 Brief: Adv2 real onboarding — application-fee Lightning commerce loop wired end-to-end (Seam B)
 Commit: 5315226 (origin/main, pushed)
