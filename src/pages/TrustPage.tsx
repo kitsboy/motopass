@@ -7,6 +7,7 @@ import { ScorecardRadar } from '../components/trust/ScorecardRadar'
 import { ProofBadge } from '../components/trust/ProofBadge'
 import { ThresholdSparkline } from '../components/trust/ThresholdSparkline'
 import { SourceTierStrip } from '../components/trust/SourceTierStrip'
+import { BtcDualPrice } from '../components/BtcDualPrice'
 import { PageHeader } from '../components/ui/PageHeader'
 import { CardSkeleton } from '../components/LoadingSkeleton'
 import { SeoHead } from '../components/SeoHead'
@@ -174,12 +175,16 @@ export function TrustPage() {
                       sovereignty {c.sovereignty_score}/10
                     </span>
                   )}
-                  {c.min_investment_usd != null && (
-                    <span className="ml-auto font-mono text-[11px] text-mp-ink-secondary">
-                      ${c.min_investment_usd.toLocaleString()}
-                    </span>
-                  )}
                 </div>
+
+                {c.min_investment_usd != null && (
+                  <div className="mt-3 flex items-center justify-between gap-3 rounded-mp-lg border border-mp-border-subtle bg-mp-section/50 px-3 py-2">
+                    <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
+                      Min. invest
+                    </span>
+                    <BtcDualPrice usd={c.min_investment_usd} size="sm" layout="stack" className="items-end" />
+                  </div>
+                )}
 
                 <div className="mt-4 flex items-center gap-1.5 border-t border-mp-border-subtle pt-3 font-body text-[11px] text-mp-ink-tertiary">
                   {c.freshness_status === 'fresh'

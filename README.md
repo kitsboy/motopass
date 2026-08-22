@@ -8,7 +8,7 @@
 
 **Live:** https://motopass.giveabit.io
 
-Bitcoin-native platform for CBI/RBI programs, jurisdictional stacking, and sovereign mobility. **Prime directive:** “Truth You Can Verify.”
+Bitcoin-native platform for CBI/RBI programs, jurisdictional stacking, and sovereign mobility. **Live Data Engine:** 50-country trust cards — OTS-verified, Bitcoin-anchored, with freshness rings and honest staleness. **Prime directive:** “Truth You Can Verify.”
 
 ---
 

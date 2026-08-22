@@ -57,6 +57,8 @@ export type TranslationKey =
   | 'pitch.feature.nostr.sub'
   | 'pitch.feature.agents.title'
   | 'pitch.feature.agents.sub'
+  | 'pitch.feature.live.title'
+  | 'pitch.feature.live.sub'
   | 'pitch.stack.eyebrow'
   | 'pitch.stack.title'
   | 'pitch.stack.satohash.title'
@@ -200,7 +202,7 @@ const en: Dict = {
   tagline: 'Truth You Can Verify',
   'pitch.hero': 'The private OS for sovereign operators',
   'pitch.sub':
-    'Research 50 jurisdictions. Model stacks in ₿. Verify every claim on Bitcoin. Apply with Nostr — no email, no brochure trust.',
+    'Live Data Engine — 50-country trust cards, Bitcoin-anchored and freshness-checked. Research jurisdictions, model stacks in ₿, verify every claim on-chain, apply with Nostr — no email, no brochure trust.',
   'pitch.cta': 'Explore programs',
   'pitch.evolve': 'Living pitch — updated with every BUILD',
   'pitch.stackSimulator': 'Stack simulator',
@@ -226,6 +228,9 @@ const en: Dict = {
   'pitch.feature.nostr.sub': 'npub-native applications, no email',
   'pitch.feature.agents.title': 'Liaison agents',
   'pitch.feature.agents.sub': 'Country AI agents for real applicants',
+  'pitch.feature.live.title': 'Live Data Engine',
+  'pitch.feature.live.sub':
+    '50-country trust cards — freshness rings, Bitcoin proof badges, honest staleness. Verify before you trust.',
   'pitch.stack.eyebrow': 'THE STACK',
   'pitch.stack.title': 'Bitcoin rails for sovereign mobility',
   'pitch.stack.satohash.title': 'Satohash.io — Truth You Can Verify',
@@ -346,7 +351,8 @@ const es: Dict = {
   'nav.skip': 'Saltar al contenido',
   tagline: 'Verdad que puedes comprobar',
   'pitch.hero': 'Pasaportes soberanos sobre rieles Bitcoin',
-  'pitch.sub': 'Marca solicitudes. Conéctate vía Nostr. Verifica cada dato en cadena con Satohash.',
+  'pitch.sub':
+    'Motor de datos en vivo — tarjetas de confianza de 50 países con frescura anclada a Bitcoin. Investiga, modela stacks en ₿, verifica cada dato en cadena, aplica vía Nostr — sin correo, sin confianza de folleto.',
   'pitch.cta': 'Explorar programas',
   'pitch.evolve': 'Visión viva — actualizada en cada BUILD',
   'pitch.stackSimulator': 'Simulador de stack',
@@ -358,6 +364,9 @@ const es: Dict = {
   'pitch.feature.nostr.sub': 'Solicitudes con npub, sin correo',
   'pitch.feature.agents.title': 'Agentes de enlace',
   'pitch.feature.agents.sub': 'Agentes IA por país para solicitantes reales',
+  'pitch.feature.live.title': 'Motor de datos en vivo',
+  'pitch.feature.live.sub':
+    'Tarjetas de confianza de 50 países — anillos de frescura, sellos de prueba Bitcoin y caducidad honesta. Verifica antes de confiar.',
   'pitch.stack.eyebrow': 'EL STACK',
   'pitch.stack.title': 'Rieles Bitcoin para movilidad soberana',
   'pitch.stack.satohash.title': 'Satohash.io — Verdad que puedes comprobar',
@@ -478,7 +487,8 @@ const fr: Dict = {
   'nav.skip': 'Aller au contenu',
   tagline: 'Une vérité vérifiable',
   'pitch.hero': 'Passeports souverains sur rails Bitcoin',
-  'pitch.sub': 'Horodatez les demandes. Connectez-vous via Nostr. Vérifiez chaque donnée on-chain.',
+  'pitch.sub':
+    'Moteur de données en direct — cartes de confiance de 50 pays, fraîcheur ancrée sur Bitcoin. Modélisez en ₿, vérifiez chaque donnée on-chain, postulez via Nostr — sans e-mail, sans confiance de brochure.',
   'pitch.cta': 'Explorer les programmes',
   'pitch.evolve': 'Pitch vivant — mis à jour à chaque BUILD',
   'pitch.stackSimulator': 'Simulateur de stack',
@@ -490,6 +500,9 @@ const fr: Dict = {
   'pitch.feature.nostr.sub': 'Demandes via npub, sans e-mail',
   'pitch.feature.agents.title': 'Agents de liaison',
   'pitch.feature.agents.sub': 'Agents IA par pays pour les vrais candidats',
+  'pitch.feature.live.title': 'Moteur de données en direct',
+  'pitch.feature.live.sub':
+    'Cartes de confiance de 50 pays — anneaux de fraîcheur, badges de preuve Bitcoin et obsolescence honnête. Vérifiez avant de faire confiance.',
   'pitch.stack.eyebrow': 'LE STACK',
   'pitch.stack.title': 'Rails Bitcoin pour la mobilité souveraine',
   'pitch.stack.satohash.title': 'Satohash.io — Une vérité vérifiable',
@@ -618,7 +631,8 @@ const zh: Dict = {
   'nav.agents': '代理',
   'nav.apply': '申请',
   'pitch.hero': '基于比特币rails的主权护照',
-  'pitch.sub': '为申请加盖时间戳。通过Nostr连接。用Satohash链上验证。',
+  'pitch.sub':
+    '实时数据引擎 — 50个国家的信任卡片，锚定比特币并检查新鲜度。研究法域、用₿建模、链上验证每个数据、通过Nostr申请 — 无需邮箱，无需宣传册信任。',
 }
 
 const ar: Dict = {
@@ -632,7 +646,8 @@ const ar: Dict = {
   'nav.agents': 'وكلاء',
   'nav.apply': 'تقديم',
   'pitch.hero': 'جوازات سيادية على قضبان البيتكوين',
-  'pitch.sub': 'ختم الطلبات. الاتصال عبر Nostr. تحقق من كل بيان على السلسلة عبر Satohash.',
+  'pitch.sub':
+    'محرك بيانات مباشر — بطاقات ثقة لـ50 دولة موثّقة على البيتكوين ومُتحقَّق من حداثتها. ابحث، نمذج بالمكدسات في ₿، تحقق من كل بيان، وتقديم عبر Nostr — دون بريد، دون ثقة بمنشور.',
 }
 
 const sw: Dict = {
@@ -699,7 +714,7 @@ const ja: Dict = {
   'nav.skip': 'コンテンツへスキップ',
   'pitch.hero': '主権オペレーターのためのプライベートOS',
   'pitch.sub':
-    '50の法域を調査。₿でスタックをモデル化。Bitcoin上ですべての主張を検証。Nostrで申請 — メール不要、パンフレット信頼不要。',
+    'ライブデータエンジン — 50カ国のトラストカードをBitcoinにアンカーし鮮度をチェック。法域を調査、₿でスタックをモデル化、すべての主張を検証、Nostrで申請 — メール不要、パンフレット信頼不要。',
   'pitch.cta': 'プログラムを探索',
   'pitch.evolve': 'ライブピッチ — すべてのBUILDで更新',
   'pitch.stackSimulator': 'スタックシミュレーター',

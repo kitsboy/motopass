@@ -18,6 +18,7 @@ import {
   Compass,
   ShieldCheck,
   BookOpen,
+  Radar,
 } from 'lucide-react'
 import { useMemo } from 'react'
 import { motion } from 'motion/react'
@@ -61,6 +62,7 @@ const TAGLINE_KEYS = [
 ] as const
 
 const FEATURE_KEYS = [
+  { icon: Radar, titleKey: 'pitch.feature.live.title' as const, subKey: 'pitch.feature.live.sub' as const },
   { icon: Globe, titleKey: 'pitch.feature.jurisdictions.title' as const, subKey: 'pitch.feature.jurisdictions.sub' as const },
   { icon: Shield, titleKey: 'pitch.feature.satohash.title' as const, subKey: 'pitch.feature.satohash.sub' as const },
   { icon: Zap, titleKey: 'pitch.feature.nostr.title' as const, subKey: 'pitch.feature.nostr.sub' as const },
