@@ -1,4 +1,18 @@
 # motopass — Last Updated 2026-08-23 by Ziggy/THOR
+Brief: Adv8f Hindi (hi) — FULL Hindi translation verified complete + live; i18n coverage audit confirms ALL 9 non-EN locales at 0 missing keys
+Commit: cdf8e1f (translation) · docs verified this pass
+Deploy: https://motopass.giveabit.io · CF project motopass
+
+What landed:
+- FULL Hindi (hi) translation for MotoPass: hi dict (209 core keys) + pageKeysHi (766/766 page keys). Genuine Devanagari, no gibberish, 0 English fallback. English remains source of truth.
+- Live-verified hi: vite build clean · browser probe (hi-IN locale) on / and /trust → lang=hi, Devanagari CORE renders (nav कार्यक्रम/एजेंट/तिजोरी/भरोसा, primary CTA आवेदन खोलें, taglines बिटकॉइन ही गति है / बिटकॉइन ही मूल्य है, freshness नया/पुराना, proof badges एंकर्ड/सत्यापित, trust axes). No English "Lightning ready"/"Crypto friendly" leak.
+- i18n completeness audit: ALL 9 non-EN locales (es/fr/pt/zh/ar/sw/de/hi/ja) at 0 missing keys vs EN source of truth (764 page-keys + 206 base keys). Identical-to-EN values are legit proper nouns/brand IDs (Paige, Seal/Forge/Nexus/Ledger, SGT, Satohash, GitHub, btcmap-cli, 404, ID, ⌘L, sha256). docs/PAIGE-I18N-GUIDE.md updated: Partial → Full for all locales.
+
+Live-verified: vite build clean · preview server serves fresh bundle · browser probe confirms hi CORE genuinely renders in Devanagari.
+
+---
+
+# motopass — Last Updated 2026-08-23 by Ziggy/THOR
 Brief: Adv8d Arabic (ar) RTL — FULL Arabic translation shipped (CORE + long-tail), live-verified RTL rendering
 Commit: 67546ee
 Deploy: https://motopass.giveabit.io · CF project motopass

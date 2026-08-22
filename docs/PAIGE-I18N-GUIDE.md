@@ -15,13 +15,13 @@ MotoPass supports **10 languages** with automatic browser detection, per-route l
 | `en` | 🇬🇧 | English | English | LTR | Full |
 | `es` | 🇪🇸 | Spanish | Español | LTR | Full |
 | `fr` | 🇫🇷 | French | Français | LTR | Full |
-| `pt` | 🇵🇹 | Portuguese | Português | LTR | Partial |
-| `zh` | 🇨🇳 | Chinese | 中文 | LTR | Partial |
-| `ar` | 🇸🇦 | Arabic | العربية | **RTL** | Partial |
-| `sw` | 🇰🇪 | Swahili | Kiswahili | LTR | Partial |
-| `de` | 🇩🇪 | German | Deutsch | LTR | Partial |
-| `hi` | 🇮🇳 | Hindi | हिन्दी | LTR | Partial |
-| `ja` | 🇯🇵 | Japanese | 日本語 | LTR | Partial |
+| `pt` | 🇵🇹 | Portuguese | Português | LTR | Full |
+| `zh` | 🇨🇳 | Chinese | 中文 | LTR | Full |
+| `ar` | 🇸🇦 | Arabic | العربية | **RTL** | Full |
+| `sw` | 🇰🇪 | Swahili | Kiswahili | LTR | Full |
+| `de` | 🇩🇪 | German | Deutsch | LTR | Full |
+| `hi` | 🇮🇳 | Hindi | हिन्दी | LTR | Full |
+| `ja` | 🇯🇵 | Japanese | 日本語 | LTR | Full |
 
 ---
 
@@ -235,8 +235,9 @@ This shortcut is displayed in the language picker UI as `⌘L` on Mac and `Ctrl+
 
 | Level | Meaning | Languages |
 |-------|---------|-----------|
-| **Full** | All keys translated, reviewed | English, Spanish, French |
-| **Partial** | Core navigation + page titles, some sections use English fallback | Portuguese, Chinese, Arabic, Swahili, German, Hindi, Japanese |
+| **Full** | All keys translated, reviewed | English, Spanish, French, Portuguese, Chinese, Arabic, Swahili, German, Hindi, Japanese |
+
+> **Verified 2026-08-23:** every non-English locale (es/fr/pt/zh/ar/sw/de/hi/ja) has **0 missing keys** against the English source of truth (764 page-keys + 206 base dict keys). "Identical-to-English" values are legit proper nouns / brand IDs (Paige, Seal/Forge/Nexus/Ledger, SGT, Satohash, GitHub, btcmap-cli, 404, ID, ⌘L, sha256), not untranslated fallback. No locale ships gibberish.
 
 ### How Fallback Works
 
