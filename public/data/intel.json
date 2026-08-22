@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-22T14:10:41.374Z",
+  "generated_at": "2026-08-22T14:30:17.121Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
-    "fresh": 10,
+    "fresh": 16,
     "watch": 0,
-    "stale": 40,
-    "swept_at": "2026-08-22T14:10:41.374Z",
+    "stale": 34,
+    "swept_at": "2026-08-22T14:30:17.121Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -15,9 +15,9 @@
     "El Salvador": {
       "id": 1,
       "freshness": {
-        "status": "stale",
-        "days_stale": 79,
-        "last_checked": "2026-06-05"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -26,12 +26,19 @@
       },
       "proof": {
         "hash": "91427ffdd75bcd09ea333e683bf42eafc4f213102c57a19c15b10de35ba80fda",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:15:22.906Z",
         "stamp_id": "698e0012-ebe1-46e3-b137-708ccc1eb0e4"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "category.bitcoin_integration.finance.legal_compliance",
+          "from": "corpus BUILD 72 (legal_tender_bitcoin)",
+          "to": "Legal-tender status revoked Feb 2025 (IMF $1.4B deal; amendment Jan 29-30, 2025) — moved to rbi_cbi, reframed as historical pioneer with voluntary BTC",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -365,9 +372,9 @@
     "UAE (Dubai / Abu Dhabi)": {
       "id": 8,
       "freshness": {
-        "status": "stale",
-        "days_stale": 77,
-        "last_checked": "2026-06-07"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -376,12 +383,19 @@
       },
       "proof": {
         "hash": "cb5a3ac7d03452b4f75c83d835ffa3d189a62906cb74688de37526e54c23e133",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:15:47.581Z",
         "stamp_id": "421fc3c6-6fda-40b4-a749-7373916af9dc"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Regulator split confirmed (Oct 2025): VARA/DFSA/FSRA/CBUAE+SCA",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://u.ae",
@@ -413,9 +427,9 @@
     "Switzerland": {
       "id": 9,
       "freshness": {
-        "status": "stale",
-        "days_stale": 80,
-        "last_checked": "2026-06-04"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -424,12 +438,19 @@
       },
       "proof": {
         "hash": "427d012781ca45de7bce7a9268e6b0523f9a47f5da54cfae839c13f970eff22e",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:15:51.119Z",
         "stamp_id": "c9a9f281-a7e5-421f-8124-0e7e2bd874be"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "pathways.legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Lump-sum tax verified: living-expenses basis, no gainful activity, ~5,000 payers, abolished in some cantons (Zurich 2010)",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -455,9 +476,9 @@
     "Singapore": {
       "id": 10,
       "freshness": {
-        "status": "stale",
-        "days_stale": 78,
-        "last_checked": "2026-06-06"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -466,12 +487,19 @@
       },
       "proof": {
         "hash": "837b0b631ca12cf321fb66db83e54dbbe6dece279596b62e2788b7d553359b10",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:15:54.721Z",
         "stamp_id": "0bbfb2c5-5086-40f1-adfc-883f398eb301"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "PSA 2019 digital payment token framework confirmed; crypto legal in Singapore",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "watch.https://www.edb.gov.sg",
@@ -669,9 +697,9 @@
     "Georgia": {
       "id": 14,
       "freshness": {
-        "status": "stale",
-        "days_stale": 77,
-        "last_checked": "2026-06-07"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -680,12 +708,19 @@
       },
       "proof": {
         "hash": "d511ab16255dc8d6ef15a0358d4f520607940a1fa59f0f6d12395837003d412f",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:16:59.792Z",
         "stamp_id": "a15e668d-567d-45a5-ba50-d17f9536165a"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "2019 MoF decision confirmed — crypto not Georgia-sourced, 0% personal capital gains",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.rs.ge",
@@ -710,12 +745,6 @@
           "field": "proof",
           "from": "6f0a02af24f0841e",
           "to": "re-anchored 692d34157ac8b046 (stamp b6d2e73a-4fb)",
-          "hash": "692d34157ac8b046d436567147c426ee19fe6ecf9fecbab963d72dfd795a6050"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
           "hash": "692d34157ac8b046d436567147c426ee19fe6ecf9fecbab963d72dfd795a6050"
         }
       ]
@@ -772,9 +801,9 @@
     "Costa Rica": {
       "id": 16,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -783,12 +812,19 @@
       },
       "proof": {
         "hash": "e7f67a705c49a29d0b29c7b89aa01c34c0042f4a14a348d3476f46e786a9b585",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:17:09.498Z",
         "stamp_id": "128e7a70-e9a0-4a03-b18b-a2686f6803d6"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "BCCR Oct 2017 statement confirmed — crypto not currency, at own risk",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.hacienda.go.cr",
@@ -813,12 +849,6 @@
           "field": "proof",
           "from": "8d5621d63fb11590",
           "to": "re-anchored ec93289aa77e74cb (stamp c1582fd0-06a)",
-          "hash": "ec93289aa77e74cb14251c9e697e512efee306619e7726d0b67b8b348a7c0bbc"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
           "hash": "ec93289aa77e74cb14251c9e697e512efee306619e7726d0b67b8b348a7c0bbc"
         }
       ]

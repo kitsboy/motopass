@@ -3,25 +3,27 @@
     {
       "id": 1,
       "name": "El Salvador",
-      "category": "legal_tender_bitcoin",
+      "category": "rbi_cbi",
       "region": "Central America",
       "status": "Acquired - Pioneer",
-      "bitcoin_integration": "Bitcoin is legal tender (voluntary acceptance after 2025 reforms). Strong government support for Bitcoin ecosystem, Lightning network adoption, and crypto businesses. No capital gains tax on Bitcoin in many cases. Excellent for Bitcoin-native identity experiments and residency.",
+      "bitcoin_integration": "Bitcoin was legal tender 2021-2025 (status revoked Feb 2025 as an IMF $1.4B program condition); voluntary acceptance continues with strong government support for the Bitcoin ecosystem, Lightning adoption, and crypto businesses. No capital gains tax on Bitcoin in many cases. Excellent for Bitcoin-native identity experiments and residency.",
       "finance": {
         "min_investment_usd": 0,
         "typical_investment_usd": 30000,
         "gov_fees_usd": 5000,
         "processing_time_months": "1-4",
-        "tax_benefits": "Favorable crypto tax treatment; Bitcoin legal tender status provides strong sovereign signal. Potential residency pathways tied to economic contribution.",
+        "tax_benefits": "Favorable crypto tax treatment; legal-tender status revoked in Feb 2025 (IMF condition) — sovereign-signal framing is now historical, but no capital gains tax on Bitcoin in many cases remains.",
         "crypto_friendly_score": 9,
         "bitcoin_specific": "Direct Bitcoin payments accepted in many places. Government Bitcoin reserve and infrastructure. Ideal for MotoPass Bitcoin passport pilots."
       },
-      "details": "First country to make Bitcoin legal tender. Updated rules in 2025 for flexibility while remaining highly pro-Bitcoin. Strong fit for MotoPass sovereign passport and identity experiments.",
-      "last_checked": "2026-06-05",
+      "details": "First country to make Bitcoin legal tender (Ley Bitcoin passed 8 Jun 2021, effective 7 Sep 2021). Legal-tender status revoked in Feb 2025 under the $1.4B IMF program: merchants no longer obligated to accept BTC and taxes no longer payable in BTC, but BTC remains legal with voluntary use and the government continues holding. Still a strong fit for MotoPass Bitcoin identity experiments.",
+      "last_checked": "2026-08-22",
       "sources": [
-        "Official government announcements",
-        "Bitcoin Law updates 2025",
-        "Our research"
+        "Reuters (2025-01-30)",
+        "IMF Country Report 25/58",
+        "CoinDesk",
+        "Wikipedia (Bitcoin in El Salvador)",
+        "Official government announcements"
       ],
       "flag": "🇸🇻",
       "lightning_ready": true,
@@ -52,7 +54,7 @@
           "type": "economic_contribution",
           "label": "Economic contribution residency",
           "min_investment_usd": 0,
-          "notes": "Voluntary Bitcoin legal tender; pathways tied to economic activity and investment."
+          "notes": "Voluntary Bitcoin acceptance; pathways tied to economic activity and investment."
         },
         {
           "type": "business",
@@ -65,18 +67,18 @@
         "live_and_work": true,
         "scope_of_freedom": true,
         "dual_citizenship": true,
-        "notes": "Legal tender status; regional mobility via CA-4 for citizens."
+        "notes": "Legal tender 2021-2025 (revoked Feb 2025); regional mobility via CA-4 for citizens."
       },
       "legal_compliance": {
         "primary_laws": [
-          "Ley Bitcoin",
-          "2025 reform framework"
+          "Ley Bitcoin (2021)",
+          "Reforma Ley Bitcoin (Jan 2025)"
         ],
         "official_urls": [
           "https://www.presidencia.gob.sv"
         ],
         "property_foreign_ownership": "Generally permitted with standard restrictions.",
-        "recent_changes": "2025 reforms shifted to voluntary merchant acceptance while retaining pro-Bitcoin posture."
+        "recent_changes": "IMF-linked reforms (Jan 29-30, 2025) revoked legal-tender status: merchants no longer obligated to accept BTC and taxes no longer payable in BTC; BTC remains legal with voluntary use, government continues BTC accumulation."
       },
       "compliance_clock": {
         "renewal_interval_months": 24,
@@ -85,7 +87,7 @@
       },
       "paige_fields": {
         "common_questions": [
-          "Is Bitcoin still legal tender?",
+          "Is Bitcoin still legal tender? (No — revoked Feb 2025; voluntary use only)",
           "What are capital gains rules for BTC?"
         ],
         "red_flags": [
@@ -180,6 +182,14 @@
           "to": "re-anchored 91427ffdd75bcd09 (stamp 698e0012-ebe)",
           "source": "satohash-api",
           "hash": "91427ffdd75bcd09ea333e683bf42eafc4f213102c57a19c15b10de35ba80fda"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "category.bitcoin_integration.finance.legal_compliance",
+          "from": "corpus BUILD 72 (legal_tender_bitcoin)",
+          "to": "Legal-tender status revoked Feb 2025 (IMF $1.4B deal; amendment Jan 29-30, 2025) — moved to rbi_cbi, reframed as historical pioneer with voluntary BTC",
+          "source": "Wikipedia (rev 2026-08-22): Legality of cryptocurrency by country or territory · Lump sum tax · Bitcoin in El Salvador; Reuters (2025-01-30) · IMF (2025) · CoinDesk · BBC",
+          "hash": null
         }
       ]
     },
@@ -1505,7 +1515,7 @@
         "bitcoin_specific": "World-class for Bitcoin businesses and holders. VARA regulation provides clarity. Perfect MotoPass flagship jurisdiction."
       },
       "details": "Top global crypto hub. Ideal base for MotoPass operations, Bitcoin company incorporation, and high-end residency. Modeled minimum investment $500,000 (typical $750,000). Primary routes on file: Golden Visa (10-year), Free zone company + residency. Tax notes: 0% personal income tax, 0% capital gains on crypto. Golden Visa pathways via investment or business setup. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-06-07",
+      "last_checked": "2026-08-22",
       "sources": [
         "VARA Dubai",
         "Official immigration",
@@ -1565,7 +1575,7 @@
           "https://www.vara.ae"
         ],
         "property_foreign_ownership": "Freehold zones available for foreigners in designated areas.",
-        "recent_changes": "VARA framework strengthens crypto business licensing."
+        "recent_changes": "Regulated by jurisdiction (as of Oct 2025): VARA (Dubai incl. DMCC), DFSA (DIFC), FSRA (ADGM), CBUAE + SCA (onshore); VARA continues strengthening crypto business licensing."
       },
       "compliance_clock": {
         "renewal_interval_months": 24,
@@ -1689,6 +1699,14 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "cb5a3ac7d03452b4f75c83d835ffa3d189a62906cb74688de37526e54c23e133"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Regulator split confirmed (Oct 2025): VARA/DFSA/FSRA/CBUAE+SCA",
+          "source": "Wikipedia: Legality of cryptocurrency (rev 2026-08-22)",
+          "hash": null
         }
       ]
     },
@@ -1709,7 +1727,7 @@
         "bitcoin_specific": "Best-in-class infrastructure for Bitcoin companies and individuals. On-chain friendly. Top MotoPass European anchor."
       },
       "details": "Gold standard for crypto jurisdiction. High quality of life and stability. Excellent for serious Bitcoin sovereigns. Modeled minimum investment $300,000 (typical $500,000). Primary routes on file: Lump-sum taxation (negotiated), Company + director residency. Tax notes: Favorable lump-sum taxation in some cantons for high-net-worth. Crypto treated as asset class with clarity. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-06-04",
+      "last_checked": "2026-08-22",
       "sources": [
         "Crypto Valley Association",
         "Cantonal rules",
@@ -1744,7 +1762,7 @@
           "type": "lump_sum_tax",
           "label": "Lump-sum taxation (negotiated)",
           "min_investment_usd": 250000,
-          "notes": "Canton-negotiated annual tax for wealthy residents — popular HNW pathway."
+          "notes": "Canton-negotiated annual tax based on estimated living expenses (not income/assets) — requires no Swiss gainful activity and no Swiss citizenship; abolished in some cantons (Zurich 2010, Basel-Stadt, Schaffhausen, Appenzell AR), stricter in others; ~5,000 payers (2016)."
         },
         {
           "type": "business",
@@ -1769,7 +1787,7 @@
           "https://www.zug.ch"
         ],
         "property_foreign_ownership": "Permitted with cantonal restrictions for non-EU/EFTA in some cases.",
-        "recent_changes": "Crypto Valley continues as Bitcoin business hub; FINMA clarity for VASPs."
+        "recent_changes": "Crypto Valley continues as Bitcoin business hub; FINMA clarity for VASPs. Lump-sum tax confirmed active: based on living expenses, no gainful activity, ~5,000 payers; abolished in some cantons (Zurich 2010 et al.), national abolition rejected by referendum 2014."
       },
       "compliance_clock": {
         "renewal_interval_months": 12,
@@ -1886,6 +1904,14 @@
           "to": "re-anchored 427d012781ca45de (stamp c9a9f281-a7e)",
           "source": "satohash-api",
           "hash": "427d012781ca45de7bce7a9268e6b0523f9a47f5da54cfae839c13f970eff22e"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "pathways.legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Lump-sum tax verified: living-expenses basis, no gainful activity, ~5,000 payers, abolished in some cantons (Zurich 2010)",
+          "source": "Wikipedia: Lump sum tax (rev 2026-08-22) · FDF",
+          "hash": null
         }
       ]
     },
@@ -1906,7 +1932,7 @@
         "bitcoin_specific": "World-class for Bitcoin trading, custody, and business. Strict but predictable. Strong MotoPass Asia base."
       },
       "details": "Premier Asian hub. High trust, excellent connectivity, strong rule of law. Ideal for MotoPass regional headquarters. Modeled minimum investment $400,000 (typical $600,000). Primary routes on file: Global Investor Programme (GIP), EntrePass / EP company director, Single Family Office (SFO). Tax notes: No capital gains tax. Territorial tax system. Very attractive for Bitcoin holders and funds. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-06-06",
+      "last_checked": "2026-08-22",
       "sources": [
         "MAS guidelines",
         "Official GIP program",
@@ -1973,7 +1999,7 @@
           "https://www.mas.gov.sg"
         ],
         "property_foreign_ownership": "Foreigners may purchase private residential with ABSD surcharge (15–60% depending on profile); landed restricted.",
-        "recent_changes": "MAS continues tightening VASP licensing; GIP fund categories updated periodically — confirm eligible vehicles."
+        "recent_changes": "Legal (Payment Services Act 2019 — digital payment tokens); MAS continues tightening VASP licensing; GIP fund categories updated periodically — confirm eligible vehicles."
       },
       "compliance_clock": {
         "renewal_interval_months": 60,
@@ -2103,6 +2129,14 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "837b0b631ca12cf321fb66db83e54dbbe6dece279596b62e2788b7d553359b10"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "PSA 2019 digital payment token framework confirmed; crypto legal in Singapore",
+          "source": "Wikipedia: Legality of cryptocurrency (rev 2026-08-22)",
+          "hash": null
         }
       ]
     },
@@ -2811,7 +2845,7 @@
         "bitcoin_specific": "Fast, low-cost, crypto-positive. Strong emerging MotoPass candidate for Europe/Asia corridor."
       },
       "details": "Rising star for Bitcoiners seeking fast, affordable, friendly jurisdiction. High potential. Modeled minimum investment $50,000 (typical $100,000). Primary routes on file: Work residence via company registration, Real estate ownership residency, Remotely from Georgia. Tax notes: Low flat tax, territorial elements, crypto often favorably treated. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-06-07",
+      "last_checked": "2026-08-22",
       "sources": [
         "Recent policy updates",
         "Our research"
@@ -2877,7 +2911,7 @@
           "https://www.rs.ge"
         ],
         "property_foreign_ownership": "Foreigners may freely purchase land and apartments except agricultural land (restrictions apply).",
-        "recent_changes": "VASP licensing framework developing; personal crypto gains remain favorable. Remote work permit launched 2021."
+        "recent_changes": "2019 Ministry of Finance decision: crypto not 'Georgia-sourced' income → 0% capital gains tax on personal crypto trading; VASP licensing framework developing; remote work permit launched 2021."
       },
       "compliance_clock": {
         "renewal_interval_months": 12,
@@ -3014,6 +3048,14 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "d511ab16255dc8d6ef15a0358d4f520607940a1fa59f0f6d12395837003d412f"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "2019 MoF decision confirmed — crypto not Georgia-sourced, 0% personal capital gains",
+          "source": "Wikipedia: Legality of cryptocurrency (rev 2026-08-22)",
+          "hash": null
         }
       ]
     },
@@ -3255,7 +3297,7 @@
         "bitcoin_specific": "Nomad-friendly, Lightning cafes in San José"
       },
       "details": "Stable democracy, territorial tax appeal, rising Bitcoin community. Modeled minimum investment $50,000 (typical $100,000). Primary routes on file: Digital nomad visa (Law 9996), Rentista / fixed income, Inversionista (investor). Tax notes: Territorial elements Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-07-02",
+      "last_checked": "2026-08-22",
       "sources": [
         "Immigration rules",
         "MotoPass research corpus · last_checked 2026-07-02 · block 958093"
@@ -3322,7 +3364,7 @@
           "https://www.hacienda.go.cr"
         ],
         "property_foreign_ownership": "Foreigners may own urban and most rural property; beachfront concessions require special permits in maritime zone.",
-        "recent_changes": "2021 digital nomad law formalized remote work; 2024–2025 immigration processing times vary by consulate."
+        "recent_changes": "BCCR (Oct 2017): crypto not considered currency, not backed by law, excluded from national payment system — use at own risk; 2021 digital nomad law (Ley 9996) formalized remote work."
       },
       "compliance_clock": {
         "renewal_interval_months": 12,
@@ -3465,6 +3507,14 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "e7f67a705c49a29d0b29c7b89aa01c34c0042f4a14a348d3476f46e786a9b585"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "BCCR Oct 2017 statement confirmed — crypto not currency, at own risk",
+          "source": "Wikipedia: Legality of cryptocurrency (rev 2026-08-22) · BCCR (2017-10-09)",
+          "hash": null
         }
       ]
     },

@@ -40,7 +40,9 @@
 
 ## Tracking: 2025 draft crypto bill
 
-As of 2026-08-22 (per Lightspark 2026 guide, fetched today): the 2025 draft bill is **still under
-review in the National Assembly** — aims to license crypto service providers and formalize crypto
-payments; **not enacted**. Panama City already accepts crypto for some public services (2025).
+As of 2026-08-22 (re-confirmed twice today — Lightspark 2026 guide fetched again in the evening
+pass): the 2025 draft bill is **still under review in the National Assembly** — aims to license
+crypto service providers and formalize crypto payments; **not enacted**. Regulators (SBP, SMV, UAF)
+keep crypto outside direct competence; AML/KYC under Law 23/2015 applies. Panama City already
+accepts crypto for some public services (2025).
 **Revisit this entry if the bill passes** — it would move Panama from grey-area to regulated.
