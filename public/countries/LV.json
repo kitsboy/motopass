@@ -7,16 +7,16 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.143Z",
+  "generated_at": "2026-08-22T20:59:41.472Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "65c94892b6ed552bcd6d5bef08dfd18221abf7a20f5a66bdae9bc4615fe3ed56",
     "proof_url": "https://satohash.io/verify/65c94892b6ed552bcd6d5bef08dfd18221abf7a20f5a66bdae9bc4615fe3ed56",
     "ots_path": "/proofs/latvia-dc9725dec276.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -121,22 +121,22 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.pmlp.gov.lv",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.ur.gov.lv",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.fktk.lv",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
@@ -168,6 +168,20 @@
       "from": null,
       "to": "Official source content changed — manual rule review required",
       "hash": "65c94892b6ed552bcd6d5bef08dfd18221abf7a20f5a66bdae9bc4615fe3ed56"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.fktk.lv",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "65c94892b6ed552bcd6d5bef08dfd18221abf7a20f5a66bdae9bc4615fe3ed56"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "pathways.subordinated_capital",
+      "from": "corpus BUILD 72 (subordinated_capital $305k active)",
+      "to": "Material change found & corrected: subordinated-capital/bond TRP marked refused (LSM 2026-04-27)",
+      "hash": null
     }
   ],
   "sovereignty": {

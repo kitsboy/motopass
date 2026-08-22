@@ -7,7 +7,7 @@
     "region": "Asia",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.134Z",
+  "generated_at": "2026-08-22T20:59:41.459Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -124,17 +124,17 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.edb.gov.sg",
-        "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "status": "changed",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.mas.gov.sg",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
@@ -179,6 +179,13 @@
       "field": "proof",
       "from": "837b0b631ca12cf3",
       "to": "re-anchored 33606bf60e75ee2c (stamp c5d17f09-dbc)",
+      "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.edb.gov.sg",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
       "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
     }
   ],

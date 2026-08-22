@@ -7,16 +7,16 @@
     "region": "Africa",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.138Z",
+  "generated_at": "2026-08-22T20:59:41.467Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "6a9b4b43ee6852de5f20e65cfd1cdbbfde18adb2ab30dc745bf110083d03f4cb",
     "proof_url": "https://satohash.io/verify/6a9b4b43ee6852de5f20e65cfd1cdbbfde18adb2ab30dc745bf110083d03f4cb",
     "ots_path": "/proofs/seychelles-857993eee28c.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -121,22 +121,22 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.ics.gov.sc",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.investinseychelles.com",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.src.gov.sc",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
@@ -161,6 +161,13 @@
       "from": "857993eee28c3a56",
       "to": "re-anchored 6a9b4b43ee6852de (stamp 7a048d21-326)",
       "hash": "6a9b4b43ee6852de5f20e65cfd1cdbbfde18adb2ab30dc745bf110083d03f4cb"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "last_checked.freshness_sweep",
+      "from": "2026-07-02",
+      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+      "hash": null
     }
   ],
   "sovereignty": {

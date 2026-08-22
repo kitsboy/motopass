@@ -7,7 +7,7 @@
     "region": "Central America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.135Z",
+  "generated_at": "2026-08-22T20:59:41.459Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -120,17 +120,17 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.migracion.gob.pa",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.gacetaoficial.gob.pa",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
@@ -176,6 +176,13 @@
       "from": "corpus BUILD 72",
       "to": "Crypto grey-area status (2022 veto, 2023 Supreme Court strike-down, 2025 draft bill); Friendly Nations floor corrected $5k -> $200k (Decree 226/2021); Qualified Investor modalities (RE $300k / securities $500k / deposit $750k); last_checked refreshed",
       "hash": null
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.gacetaoficial.gob.pa",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe"
     }
   ],
   "sovereignty": {

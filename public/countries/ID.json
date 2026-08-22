@@ -7,16 +7,16 @@
     "region": "Asia",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.141Z",
+  "generated_at": "2026-08-22T20:59:41.469Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "d2a29c3428c168df12e8ddccb94cce80619c664bb280bda565cc71fdf0ba48a8",
     "proof_url": "https://satohash.io/verify/d2a29c3428c168df12e8ddccb94cce80619c664bb280bda565cc71fdf0ba48a8",
     "ots_path": "/proofs/indonesia-097602372f96.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -69,13 +69,13 @@
     "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
   },
   "threshold": {
-    "min_investment_usd": 250000,
+    "min_investment_usd": 130000,
     "typical_investment_usd": 350000,
     "history": [
       {
         "date": null,
         "field": "current",
-        "usd": 250000,
+        "usd": 130000,
         "note": "Current published minimum — no tracked change history yet."
       }
     ],
@@ -87,8 +87,8 @@
       },
       {
         "type": "investor",
-        "label": "KITAS investor (E28A / PT PMA)",
-        "min_investment_usd": 250000
+        "label": "Golden Visa (investor)",
+        "min_investment_usd": 350000
       },
       {
         "type": "nomad",
@@ -121,7 +121,7 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://evisa.imigrasi.go.id",
@@ -136,7 +136,7 @@
       {
         "url": "https://oss.go.id",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
@@ -168,6 +168,20 @@
       "from": null,
       "to": "Official source content changed — manual rule review required",
       "hash": "d2a29c3428c168df12e8ddccb94cce80619c664bb280bda565cc71fdf0ba48a8"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://oss.go.id",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "d2a29c3428c168df12e8ddccb94cce80619c664bb280bda565cc71fdf0ba48a8"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "pathways.investor",
+      "from": "corpus BUILD 72 (investor $250k)",
+      "to": "Material change found & corrected: investor route corrected to Golden Visa $350k min; corpus min set to Second Home $130k",
+      "hash": null
     }
   ],
   "sovereignty": {

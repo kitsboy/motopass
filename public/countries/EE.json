@@ -7,16 +7,16 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.143Z",
+  "generated_at": "2026-08-22T20:59:41.472Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "9b6a979d0e2a178e6546cbe6e03947906a0b7403f6b40238eecbd074b192cbb9",
     "proof_url": "https://satohash.io/verify/9b6a979d0e2a178e6546cbe6e03947906a0b7403f6b40238eecbd074b192cbb9",
     "ots_path": "/proofs/estonia-95a926817571.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -121,22 +121,22 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.politsei.ee",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "status": "ok",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.e-resident.gov.ee",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.rik.ee",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "status": "ok",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
@@ -161,6 +161,13 @@
       "from": "95a926817571fe54",
       "to": "re-anchored 9b6a979d0e2a178e (stamp befd4538-81e)",
       "hash": "9b6a979d0e2a178e6546cbe6e03947906a0b7403f6b40238eecbd074b192cbb9"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "last_checked.freshness_sweep",
+      "from": "2026-07-02",
+      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+      "hash": null
     }
   ],
   "sovereignty": {

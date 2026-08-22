@@ -7,16 +7,16 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.143Z",
+  "generated_at": "2026-08-22T20:59:41.472Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01",
     "proof_url": "https://satohash.io/verify/b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01",
     "ots_path": "/proofs/bulgaria-35b914b2cb35.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -121,40 +121,26 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.mvr.bg",
-        "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "status": "unreachable",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.bnb.bg",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.fsc.bg",
-        "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "status": "ok",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "aecc57bcdf9a10ae",
-      "to": "re-anchored 35b914b2cb350a3a (stamp 8fc8ee09-462)",
-      "hash": "35b914b2cb350a3a949d2ce1fb6d82aeefaedd56be3946717af95f5d63958687"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "35b914b2cb350a3a",
-      "to": "re-anchored abbaabdd8d4320d6 (stamp 8e24dbb5-71c)",
-      "hash": "abbaabdd8d4320d60f850ebed095c30f8b1c248d87d9d836cc03b9259fba9d79"
-    },
     {
       "date": "2026-08-21",
       "field": "watch.https://www.bnb.bg",
@@ -196,6 +182,20 @@
       "from": "abbaabdd8d4320d6",
       "to": "re-anchored b61f29cc0ee1e51d (stamp 5a7a3d48-2f4)",
       "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.bnb.bg",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "legal_compliance",
+      "from": "corpus BUILD 72",
+      "to": "Threshold confirmed BGN 1M; pending residency-requirement proposal flagged (monitor)",
+      "hash": null
     }
   ],
   "sovereignty": {

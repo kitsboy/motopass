@@ -7,16 +7,16 @@
     "region": "Asia",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.141Z",
+  "generated_at": "2026-08-22T20:59:41.469Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae",
     "proof_url": "https://satohash.io/verify/0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae",
     "ots_path": "/proofs/philippines-081adedde8a1.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -121,17 +121,17 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://pra.gov.ph",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://immigration.gov.ph",
-        "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "status": "ok",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://boi.gov.ph",
@@ -182,6 +182,20 @@
       "from": null,
       "to": "Official source content changed — manual rule review required",
       "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://pra.gov.ph",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "last_checked.freshness_sweep",
+      "from": "2026-07-02",
+      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+      "hash": null
     }
   ],
   "sovereignty": {

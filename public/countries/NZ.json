@@ -7,16 +7,16 @@
     "region": "Oceania",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.141Z",
+  "generated_at": "2026-08-22T20:59:41.470Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "810a6c67f96aec330d975265af920dcc8b41a8d02d82b6c771ca788d6b22bafe",
     "proof_url": "https://satohash.io/verify/810a6c67f96aec330d975265af920dcc8b41a8d02d82b6c771ca788d6b22bafe",
     "ots_path": "/proofs/new-zealand-abd953127e8a.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -120,17 +120,17 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.immigration.govt.nz",
-        "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "status": "ok",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.mbie.govt.nz",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T06:26:16.246Z"
+        "status": "ok",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
@@ -162,6 +162,13 @@
       "from": null,
       "to": "Official source content changed — manual rule review required",
       "hash": "810a6c67f96aec330d975265af920dcc8b41a8d02d82b6c771ca788d6b22bafe"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "last_checked.freshness_sweep",
+      "from": "2026-07-02",
+      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+      "hash": null
     }
   ],
   "sovereignty": {

@@ -1,15 +1,11 @@
 {
-  "generated_at": "2026-08-22T14:57:41.416Z",
+  "generated_at": "2026-08-22T20:59:34.045Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
-    "fresh": 24,
+    "fresh": 50,
     "watch": 0,
-    "stale": 26,
-    "swept_at": "2026-08-22T14:57:41.416Z",
-    "satohash_api": {
-      "status": "up",
-      "version": "5.0.0-ELITE"
-    }
+    "stale": 0,
+    "swept_at": "2026-08-22T20:59:34.045Z"
   },
   "programs": {
     "El Salvador": {
@@ -22,7 +18,7 @@
       "watch": {
         "changed": false,
         "probed": 1,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50",
@@ -132,7 +128,7 @@
         "last_checked": "2026-08-22"
       },
       "watch": {
-        "changed": false,
+        "changed": true,
         "probed": 2,
         "unreachable": 0
       },
@@ -144,6 +140,12 @@
         "stamp_id": "e0350760-c535-4b9a-a132-8a6501f96e00"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://www.minterior.gub.uy",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
+        },
         {
           "date": "2026-08-22",
           "field": "proof",
@@ -170,12 +172,6 @@
           "field": "proof",
           "from": "04c9417462f75268",
           "to": "re-anchored 9e3adfb544c1b648 (stamp f9b39c52-901)",
-          "hash": "9e3adfb544c1b648485a76090f9d97cf7b12c6fc50e866627a10272ec1ca6db1"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
           "hash": "9e3adfb544c1b648485a76090f9d97cf7b12c6fc50e866627a10272ec1ca6db1"
         }
       ]
@@ -259,6 +255,12 @@
       "recent_changes": [
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.ciu.gov.kn",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
+        },
+        {
+          "date": "2026-08-22",
           "field": "proof",
           "from": "8cecba069c0f4b40",
           "to": "re-anchored f2209308668869dc (stamp 41f66fcd-c03)",
@@ -283,13 +285,6 @@
           "from": "6a452e9aa0522016",
           "to": "re-anchored 8cecba069c0f4b40 (stamp 2e3f88b7-7d3)",
           "hash": "8cecba069c0f4b4059f56581900a2030efcdddfe19c2dea4262f8cde57e3893c"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "proof",
-          "from": "03027c9c0a995a2f",
-          "to": "re-anchored 6a452e9aa0522016 (stamp 1f59a490-61f)",
-          "hash": "6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2"
         }
       ]
     },
@@ -357,7 +352,7 @@
         "last_checked": "2026-08-22"
       },
       "watch": {
-        "changed": false,
+        "changed": true,
         "probed": 1,
         "unreachable": 0
       },
@@ -369,6 +364,12 @@
         "stamp_id": "dc5dc26a-0ccc-44dc-b1a7-c81645392428"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://cbiu.gov.dm",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c"
+        },
         {
           "date": "2026-08-22",
           "field": "proof",
@@ -396,12 +397,6 @@
           "from": "e7932ee15cefc0b7",
           "to": "re-anchored 5af844999b98cd58 (stamp 217dfbe6-39e)",
           "hash": "5af844999b98cd5887607fc7b51656ba66d7e599ba3856065dc4744dac179b3f"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "5af844999b98cd5887607fc7b51656ba66d7e599ba3856065dc4744dac179b3f"
         }
       ]
     },
@@ -425,6 +420,12 @@
         "stamp_id": "63145a39-1f6b-433c-9b01-bef9da543348"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://u.ae",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2"
+        },
         {
           "date": "2026-08-22",
           "field": "proof",
@@ -451,13 +452,6 @@
           "from": "3feeb56e33724b91",
           "to": "re-anchored cb5a3ac7d03452b4 (stamp 421fc3c6-6fd)",
           "hash": "cb5a3ac7d03452b4f75c83d835ffa3d189a62906cb74688de37526e54c23e133"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "proof",
-          "from": "81159d01063d9c39",
-          "to": "re-anchored 3feeb56e33724b91 (stamp 83b39743-a07)",
-          "hash": "3feeb56e33724b916386121e28fc4326102dd1700c230888929e3e4d6e143c73"
         }
       ]
     },
@@ -469,9 +463,9 @@
         "last_checked": "2026-08-22"
       },
       "watch": {
-        "changed": false,
+        "changed": true,
         "probed": 2,
-        "unreachable": 1
+        "unreachable": 0
       },
       "proof": {
         "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151",
@@ -481,6 +475,12 @@
         "stamp_id": "760db661-c1a7-42a4-801e-5c83da431718"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://www.sem.admin.ch",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
+        },
         {
           "date": "2026-08-22",
           "field": "proof",
@@ -508,12 +508,6 @@
           "from": "3467ebf7f83723db",
           "to": "re-anchored 02caca688c68f420 (stamp 3fb32305-e7e)",
           "hash": "02caca688c68f420a9e38755f5064e8ab4e7a82d3eff5b169eb288e5b04aecc2"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "02caca688c68f420a9e38755f5064e8ab4e7a82d3eff5b169eb288e5b04aecc2"
         }
       ]
     },
@@ -537,6 +531,12 @@
         "stamp_id": "c5d17f09-dbc2-4a58-b94f-83ebac8cf285"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://www.edb.gov.sg",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+        },
         {
           "date": "2026-08-22",
           "field": "proof",
@@ -563,13 +563,6 @@
           "from": "994c9ac4c70ca766",
           "to": "re-anchored 837b0b631ca12cf3 (stamp 0bbfb2c5-508)",
           "hash": "837b0b631ca12cf321fb66db83e54dbbe6dece279596b62e2788b7d553359b10"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "proof",
-          "from": "c33cafa9586cac2b",
-          "to": "re-anchored 994c9ac4c70ca766 (stamp ed7eba7e-15e)",
-          "hash": "994c9ac4c70ca766b2cde65fb88bd7e0b2320d4774f87a88f8f7bfe33a323b2d"
         }
       ]
     },
@@ -583,7 +576,7 @@
       "watch": {
         "changed": false,
         "probed": 2,
-        "unreachable": 1
+        "unreachable": 0
       },
       "proof": {
         "hash": "0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b",
@@ -706,6 +699,12 @@
       "recent_changes": [
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.gacetaoficial.gob.pa",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe"
+        },
+        {
+          "date": "2026-08-22",
           "field": "finance.pathways.legal_compliance",
           "from": "corpus BUILD 72",
           "to": "Crypto grey-area status (2022 veto, 2023 Supreme Court strike-down, 2025 draft bill); Friendly Nations floor corrected $5k -> $200k (Decree 226/2021); Qualified Investor modalities (RE $300k / securities $500k / deposit $750k); last_checked refreshed",
@@ -729,13 +728,6 @@
           "from": "f834d1ee5e418f43",
           "to": "re-anchored a20bb0c1ff960226 (stamp 85290ed3-e9f)",
           "hash": "a20bb0c1ff9602261475d1369130271f74b97c5e3066aea8cc9826cab4f1a4c8"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "proof",
-          "from": "be87377d1f95266c",
-          "to": "re-anchored f834d1ee5e418f43 (stamp 2cbba005-d46)",
-          "hash": "f834d1ee5e418f4384f709cb9f9699aa1b026a9b576a908055714b3fd6220c9e"
         }
       ]
     },
@@ -761,6 +753,12 @@
       "recent_changes": [
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.rs.ge",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
+        },
+        {
+          "date": "2026-08-22",
           "field": "legal_compliance",
           "from": "corpus BUILD 72",
           "to": "2019 MoF decision confirmed — crypto not Georgia-sourced, 0% personal capital gains",
@@ -784,13 +782,6 @@
           "from": "692d34157ac8b046",
           "to": "re-anchored d511ab16255dc8d6 (stamp a15e668d-567)",
           "hash": "d511ab16255dc8d6ef15a0358d4f520607940a1fa59f0f6d12395837003d412f"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "proof",
-          "from": "6f0a02af24f0841e",
-          "to": "re-anchored 692d34157ac8b046 (stamp b6d2e73a-4fb)",
-          "hash": "692d34157ac8b046d436567147c426ee19fe6ecf9fecbab963d72dfd795a6050"
         }
       ]
     },
@@ -865,6 +856,12 @@
       "recent_changes": [
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.hacienda.go.cr",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
+        },
+        {
+          "date": "2026-08-22",
           "field": "legal_compliance",
           "from": "corpus BUILD 72",
           "to": "BCCR Oct 2017 statement confirmed — crypto not currency, at own risk",
@@ -888,13 +885,6 @@
           "from": "ec93289aa77e74cb",
           "to": "re-anchored e7f67a705c49a29d (stamp 128e7a70-e9a)",
           "hash": "e7f67a705c49a29d0b29c7b89aa01c34c0042f4a14a348d3476f46e786a9b585"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "proof",
-          "from": "8d5621d63fb11590",
-          "to": "re-anchored ec93289aa77e74cb (stamp c1582fd0-06a)",
-          "hash": "ec93289aa77e74cb14251c9e697e512efee306619e7726d0b67b8b348a7c0bbc"
         }
       ]
     },
@@ -1235,6 +1225,12 @@
       "recent_changes": [
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.invest.gov.tr",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
+        },
+        {
+          "date": "2026-08-22",
           "field": "legal_compliance",
           "from": "corpus BUILD 72",
           "to": "Payment-tool ban since 30 Apr 2021 (CBRT) verified; trading legal, SPK oversight; $400k CBI unchanged",
@@ -1258,13 +1254,6 @@
           "from": "d837cfc89a7b3943",
           "to": "re-anchored 419d55339ea7ed5d (stamp 2b671442-126)",
           "hash": "419d55339ea7ed5d115ba881dade499ce233270fd7125c03221f01f4140ea2fd"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "54e443fd1293e3a1",
-          "to": "re-anchored d837cfc89a7b3943 (stamp 1549fd9e-d48)",
-          "hash": "d837cfc89a7b39433a2b931c24f67ebdb4a5e4eb06aa06239b83ae79833b4d7c"
         }
       ]
     },
@@ -1326,9 +1315,9 @@
     "Seychelles": {
       "id": 25,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -1337,12 +1326,19 @@
       },
       "proof": {
         "hash": "6a9b4b43ee6852de5f20e65cfd1cdbbfde18adb2ab30dc745bf110083d03f4cb",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:18:40.040Z",
         "stamp_id": "7a048d21-3260-4d3c-a6e8-76fc5e009909"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -1368,9 +1364,9 @@
     "Brazil": {
       "id": 26,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -1379,12 +1375,19 @@
       },
       "proof": {
         "hash": "d8e4ab5c9927b3d712e36aa2e1e6804198d2367dae62c88edf25025ffe53869e",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:18:43.891Z",
         "stamp_id": "fef533d6-4cd9-41bc-89d8-8693408e3337"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -1410,9 +1413,9 @@
     "Argentina": {
       "id": 27,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -1421,12 +1424,19 @@
       },
       "proof": {
         "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:18:47.068Z",
         "stamp_id": "a5b919e6-941f-43e4-b843-627681f48ed0"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.migraciones.gob.ar",
@@ -1440,33 +1450,25 @@
           "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84"
         },
         {
-          "date": "2026-08-21",
-          "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
+          "date": "2026-08-22",
+          "field": "watch.https://www.migraciones.gob.ar",
           "to": "Official source content changed — manual rule review required",
           "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84"
         },
         {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "36eb480827c95e98",
-          "to": "re-anchored 393ad5b1448f00fd (stamp a5b919e6-941)",
+          "date": "2026-08-22",
+          "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
+          "to": "Official source content changed — manual rule review required",
           "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "deb6a6ac56fd242b",
-          "to": "re-anchored 36eb480827c95e98 (stamp 9cc32569-3cc)",
-          "hash": "36eb480827c95e98fad6eff1f50416e18972716fc8d5f3307c51697a68ad28ce"
         }
       ]
     },
     "Chile": {
       "id": 28,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -1475,12 +1477,19 @@
       },
       "proof": {
         "hash": "fc01e17c7c97376a15590b855701094b0f8b50dcac410e4be7f1ad22592308ed",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:18:50.773Z",
         "stamp_id": "cceedee7-2494-42f1-b836-7ad3d03df5e1"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -1506,23 +1515,42 @@
     "Colombia": {
       "id": 29,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 3,
-        "unreachable": 1
+        "unreachable": 0
       },
       "proof": {
         "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:18:54.196Z",
         "stamp_id": "9fc93cd7-6c4c-4b62-a018-6b3e6c72b7ec"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://tramitesmre.cancilleria.gov.co",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0"
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.migracioncolombia.gov.co",
@@ -1534,34 +1562,15 @@
           "field": "watch.https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
           "to": "Official source content changed — manual rule review required",
           "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "watch.https://tramitesmre.cancilleria.gov.co",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "watch.https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "2cbd8718c3ec1393",
-          "to": "re-anchored 9c496a6a31f9303d (stamp 9fc93cd7-6c4)",
-          "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0"
         }
       ]
     },
     "St. Lucia": {
       "id": 30,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -1570,12 +1579,19 @@
       },
       "proof": {
         "hash": "975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:18:57.700Z",
         "stamp_id": "8deb2c19-239f-4daf-9d30-b2ed2dbe5b52"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -1601,9 +1617,9 @@
     "Grenada": {
       "id": 31,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -1612,12 +1628,19 @@
       },
       "proof": {
         "hash": "3fd2f2382bc608c040ea1848f58769024dff7fcf21ba6d13a4d4c786ceb2de97",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:19:53.028Z",
         "stamp_id": "50b33f77-232f-48b1-991c-cccc8892317c"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "pathways.real_estate",
+          "from": "corpus BUILD 72 (real_estate $220k)",
+          "to": "Material change found & corrected: real-estate minimum corrected $220k -> $270k (UNCTAD measure 5026)",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -1643,9 +1666,9 @@
     "Barbados": {
       "id": 32,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -1654,7 +1677,7 @@
       },
       "proof": {
         "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:19:58.371Z",
         "stamp_id": "d391ce3f-69a8-40b2-88db-59e060c0e826"
@@ -1662,6 +1685,13 @@
       "recent_changes": [
         {
           "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
           "field": "watch.https://barbadoswelcomestamp.bb",
           "to": "Official source content changed — manual rule review required",
           "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
@@ -1673,22 +1703,15 @@
           "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
         },
         {
-          "date": "2026-08-21",
+          "date": "2026-08-22",
           "field": "watch.https://barbadoswelcomestamp.bb",
           "to": "Official source content changed — manual rule review required",
           "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
         },
         {
-          "date": "2026-08-21",
+          "date": "2026-08-22",
           "field": "watch.https://www.immigration.gov.bb",
           "to": "Official source content changed — manual rule review required",
-          "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "40cba1605c68b8be",
-          "to": "re-anchored 8c927b218538b1ad (stamp d391ce3f-69a)",
           "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
         }
       ]
@@ -1696,9 +1719,9 @@
     "Bahamas": {
       "id": 33,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -1707,12 +1730,19 @@
       },
       "proof": {
         "hash": "30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:20:02.324Z",
         "stamp_id": "34f86875-6c13-4152-8663-4484ca012375"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "pathways.economic_permanent_residency",
+          "from": "corpus BUILD 72 (economic_permanent_residency $750k)",
+          "to": "Material change found & corrected: EPR threshold corrected $750k -> $1.0M (official Bahamas Immigration)",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -1738,9 +1768,9 @@
     "Belize": {
       "id": 34,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -1749,12 +1779,19 @@
       },
       "proof": {
         "hash": "48d103c25fdfc804c4fe64de0ae3e054ac4a7dbeefd75a2f8eea29d6df01b537",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:20:07.336Z",
         "stamp_id": "cb686d2a-706f-4a7f-9533-51fbbe170208"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -1780,9 +1817,9 @@
     "Cambodia": {
       "id": 35,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -1791,12 +1828,25 @@
       },
       "proof": {
         "hash": "999a3bcf5fe5de7b6b8036e0b89b77c1803ad9c05260592b10d9bd7839ea6260",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:20:11.490Z",
         "stamp_id": "022e13b6-4aa0-49d8-947a-4ac771501eb5"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://www.cdc.gov.kh",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "999a3bcf5fe5de7b6b8036e0b89b77c1803ad9c05260592b10d9bd7839ea6260"
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.cdc.gov.kh",
@@ -1815,28 +1865,15 @@
           "from": "b2c938d1c394a76c",
           "to": "re-anchored 999a3bcf5fe5de7b (stamp 022e13b6-4aa)",
           "hash": "999a3bcf5fe5de7b6b8036e0b89b77c1803ad9c05260592b10d9bd7839ea6260"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "e6b9dd530e62d67b",
-          "to": "re-anchored b2c938d1c394a76c (stamp 6c6e0d43-5db)",
-          "hash": "b2c938d1c394a76ce4c034c8380b03a9a50f941fec76ed99b1b64fb1833165db"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "b2c938d1c394a76ce4c034c8380b03a9a50f941fec76ed99b1b64fb1833165db"
         }
       ]
     },
     "Philippines": {
       "id": 36,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -1845,12 +1882,25 @@
       },
       "proof": {
         "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:20:15.478Z",
         "stamp_id": "27bc19ae-b265-46d4-8c53-31422583b3ad"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://pra.gov.ph",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae"
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://immigration.gov.ph",
@@ -1868,29 +1918,15 @@
           "field": "watch.https://pra.gov.ph",
           "to": "Official source content changed — manual rule review required",
           "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "081adedde8a141db",
-          "to": "re-anchored 0e19cb46ab19e004 (stamp 27bc19ae-b26)",
-          "hash": "0e19cb46ab19e0041f5248ee24e2d16997c02931bf6f18bb2a79554b684f58ae"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "8b85074fd76f8bf3",
-          "to": "re-anchored 081adedde8a141db (stamp a2ec2197-b6f)",
-          "hash": "081adedde8a141dbb5a414b566d25cb02b342ef56e98ea6ac749a019459626f9"
         }
       ]
     },
     "Malaysia": {
       "id": 37,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -1899,12 +1935,25 @@
       },
       "proof": {
         "hash": "6d7909b437d1eb090ed9a8f81d17ed4c7ac1d2238e2532bf65393e33570249ad",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:20:18.960Z",
         "stamp_id": "e94ee7f9-60eb-4def-8648-7dcabe26a3c2"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://www.mm2h.gov.my",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "6d7909b437d1eb090ed9a8f81d17ed4c7ac1d2238e2532bf65393e33570249ad"
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.mm2h.gov.my",
@@ -1923,28 +1972,15 @@
           "from": "411924bd12f5e68b",
           "to": "re-anchored 6d7909b437d1eb09 (stamp e94ee7f9-60e)",
           "hash": "6d7909b437d1eb090ed9a8f81d17ed4c7ac1d2238e2532bf65393e33570249ad"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "3d385fec34342d9e",
-          "to": "re-anchored 411924bd12f5e68b (stamp 9bb7fff9-39e)",
-          "hash": "411924bd12f5e68bb800fd4264d45f82cb71adbed04938d2c76d469559cf8231"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "411924bd12f5e68bb800fd4264d45f82cb71adbed04938d2c76d469559cf8231"
         }
       ]
     },
     "Indonesia": {
       "id": 38,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -1953,12 +1989,25 @@
       },
       "proof": {
         "hash": "d2a29c3428c168df12e8ddccb94cce80619c664bb280bda565cc71fdf0ba48a8",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:20:22.472Z",
         "stamp_id": "5931e170-6bb7-4548-bf68-955d6299d56f"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "pathways.investor",
+          "from": "corpus BUILD 72 (investor $250k)",
+          "to": "Material change found & corrected: investor route corrected to Golden Visa $350k min; corpus min set to Second Home $130k",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://oss.go.id",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "d2a29c3428c168df12e8ddccb94cce80619c664bb280bda565cc71fdf0ba48a8"
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://oss.go.id",
@@ -1978,21 +2027,15 @@
           "from": "04c1b6d493a65e03",
           "to": "re-anchored 097602372f96add6 (stamp 8bde44bb-e21)",
           "hash": "097602372f96add6d078882a683fc0d6b49de16dea8496ef64aec54198391bde"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "097602372f96add6d078882a683fc0d6b49de16dea8496ef64aec54198391bde"
         }
       ]
     },
     "Japan": {
       "id": 39,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -2001,12 +2044,19 @@
       },
       "proof": {
         "hash": "8d1027877e15770b3cd32e09e80e0a1cedc0a5d37a2a698b1add585af9a6f8f8",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:20:25.977Z",
         "stamp_id": "b8508f54-af2c-42d8-b869-3cb7ddf3e6b6"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -2032,23 +2082,30 @@
     "New Zealand": {
       "id": 40,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 2,
-        "unreachable": 1
+        "unreachable": 0
       },
       "proof": {
         "hash": "810a6c67f96aec330d975265af920dcc8b41a8d02d82b6c771ca788d6b22bafe",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:20:29.448Z",
         "stamp_id": "303eec12-9b74-4de4-8e42-e278ff0a599e"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.immigration.govt.nz",
@@ -2080,9 +2137,9 @@
     "Ireland": {
       "id": 41,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -2091,12 +2148,25 @@
       },
       "proof": {
         "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:22:29.176Z",
         "stamp_id": "0d2c76be-0c93-425f-873c-23ff95ee0634"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://enterprise.gov.ie",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.centralbank.ie",
@@ -2114,29 +2184,15 @@
           "field": "watch.https://enterprise.gov.ie",
           "to": "Official source content changed — manual rule review required",
           "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "42ae6c4ec985beaa",
-          "to": "re-anchored a510e269112f00c6 (stamp 0d2c76be-0c9)",
-          "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "8d8a7a5b02f47c2a",
-          "to": "re-anchored 42ae6c4ec985beaa (stamp 8c1a5c33-336)",
-          "hash": "42ae6c4ec985beaad72da5ea567019d7d1f950853cb5b9214ecd4dd613ba876c"
         }
       ]
     },
     "Spain": {
       "id": 42,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -2145,7 +2201,7 @@
       },
       "proof": {
         "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:22:32.694Z",
         "stamp_id": "f60c251d-f244-42e1-b1e4-cb6e071456aa"
@@ -2153,6 +2209,13 @@
       "recent_changes": [
         {
           "date": "2026-08-22",
+          "field": "pathways.golden_visa",
+          "from": "corpus BUILD 72 (golden_visa active, min $550k)",
+          "to": "Material change found & corrected: golden visa route marked CLOSED (abolished 2025-04-03, Organic Law 1/2025); no new applications",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
           "field": "watch.https://www.exteriores.gob.es",
           "to": "Official source content changed — manual rule review required",
           "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
@@ -2164,22 +2227,15 @@
           "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
         },
         {
-          "date": "2026-08-21",
+          "date": "2026-08-22",
           "field": "watch.https://www.exteriores.gob.es",
           "to": "Official source content changed — manual rule review required",
           "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
         },
         {
-          "date": "2026-08-21",
+          "date": "2026-08-22",
           "field": "watch.https://www.inclusion.gob.es",
           "to": "Official source content changed — manual rule review required",
-          "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "23329cd5b097d93c",
-          "to": "re-anchored 8c26088d885c5164 (stamp f60c251d-f24)",
           "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
         }
       ]
@@ -2187,9 +2243,9 @@
     "Italy": {
       "id": 43,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -2198,7 +2254,7 @@
       },
       "proof": {
         "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:22:36.433Z",
         "stamp_id": "3ea3cd84-f666-4ef0-b6f2-050668d6dcb9"
@@ -2206,6 +2262,13 @@
       "recent_changes": [
         {
           "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
           "field": "watch.https://www.agenziaentrate.gov.it",
           "to": "Official source content changed — manual rule review required",
           "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
@@ -2217,22 +2280,15 @@
           "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
         },
         {
-          "date": "2026-08-21",
+          "date": "2026-08-22",
           "field": "watch.https://www.agenziaentrate.gov.it",
           "to": "Official source content changed — manual rule review required",
           "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
         },
         {
-          "date": "2026-08-21",
+          "date": "2026-08-22",
           "field": "watch.https://investorvisa.mise.gov.it",
           "to": "Official source content changed — manual rule review required",
-          "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "1006755212710054",
-          "to": "re-anchored 383ec285ae5e686d (stamp 3ea3cd84-f66)",
           "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
         }
       ]
@@ -2240,9 +2296,9 @@
     "Latvia": {
       "id": 44,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -2251,12 +2307,25 @@
       },
       "proof": {
         "hash": "65c94892b6ed552bcd6d5bef08dfd18221abf7a20f5a66bdae9bc4615fe3ed56",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:22:40.497Z",
         "stamp_id": "e2a78597-aec2-43d7-b886-8f350b7a6a0f"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "pathways.subordinated_capital",
+          "from": "corpus BUILD 72 (subordinated_capital $305k active)",
+          "to": "Material change found & corrected: subordinated-capital/bond TRP marked refused (LSM 2026-04-27)",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://www.fktk.lv",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "65c94892b6ed552bcd6d5bef08dfd18221abf7a20f5a66bdae9bc4615fe3ed56"
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.fktk.lv",
@@ -2276,35 +2345,36 @@
           "from": "83e9ce9333b6139a",
           "to": "re-anchored dc9725dec2767022 (stamp ddc5c9eb-b98)",
           "hash": "dc9725dec2767022d7d49e77c2232a9f2523af5fe333a3262b5f49bc763de412"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "dc9725dec2767022d7d49e77c2232a9f2523af5fe333a3262b5f49bc763de412"
         }
       ]
     },
     "Estonia": {
       "id": 45,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
         "probed": 3,
-        "unreachable": 2
+        "unreachable": 0
       },
       "proof": {
         "hash": "9b6a979d0e2a178e6546cbe6e03947906a0b7403f6b40238eecbd074b192cbb9",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:22:43.685Z",
         "stamp_id": "befd4538-81e6-4f69-873e-27d9674e0d80"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -2330,23 +2400,36 @@
     "Bulgaria": {
       "id": 46,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 3,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-22T06:21:26.678Z",
         "stamp_id": "5a7a3d48-2f48-44e8-89dc-91a71d272571"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Threshold confirmed BGN 1M; pending residency-requirement proposal flagged (monitor)",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://www.bnb.bg",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01"
+        },
         {
           "date": "2026-08-22",
           "field": "proof",
@@ -2365,43 +2448,42 @@
           "field": "watch.https://www.bnb.bg",
           "to": "Official source content changed — manual rule review required",
           "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01"
-        },
-        {
-          "date": "2026-08-22",
-          "field": "finance.crypto_friendly_score",
-          "from": "6",
-          "to": "7",
-          "hash": "b61f29cc0ee1e51ddf0ed4dac00ec5c736fd50bb340e647ef7d0401b4a578c01"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "finance.crypto_friendly_score",
-          "from": "5",
-          "to": "6",
-          "hash": "06ab34e38d9c8fc200e5b18c151a4c565f291d4622d6012489d6e00bd540fb7c"
         }
       ]
     },
     "Croatia": {
       "id": 47,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 2,
-        "unreachable": 1
+        "unreachable": 0
       },
       "proof": {
         "hash": "4ba210f53d038befe6541c8f247fc7d6b1752a079bf3b2f299abfa2139fff378",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:22:50.524Z",
         "stamp_id": "6f8a6aa5-671a-43b7-9912-49d30be13eed"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://digitalnomadscroatia.mup.hr",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "4ba210f53d038befe6541c8f247fc7d6b1752a079bf3b2f299abfa2139fff378"
+        },
         {
           "date": "2026-08-21",
           "field": "watch.https://digitalnomadscroatia.mup.hr",
@@ -2421,21 +2503,15 @@
           "from": "de9df3aa7471b99b",
           "to": "re-anchored c84e459a68830e55 (stamp 454ea83b-0a1)",
           "hash": "c84e459a68830e554f4373fa4d372012136c4402a3de1ec6a4e34425d16ad721"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "c84e459a68830e554f4373fa4d372012136c4402a3de1ec6a4e34425d16ad721"
         }
       ]
     },
     "Gibraltar": {
       "id": 48,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -2444,12 +2520,25 @@
       },
       "proof": {
         "hash": "809717f2ae22b731264b94164e349de614329ca5ceacb54fe3d3982334a030d5",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:22:56.114Z",
         "stamp_id": "ee8c068f-b37e-4da7-9f1a-ffbf0fcb1cfe"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
+        {
+          "date": "2026-08-22",
+          "field": "watch.https://www.gibraltar.gov.gi",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "809717f2ae22b731264b94164e349de614329ca5ceacb54fe3d3982334a030d5"
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.gibraltar.gov.gi",
@@ -2468,28 +2557,15 @@
           "from": "8ce940491625438e",
           "to": "re-anchored 809717f2ae22b731 (stamp ee8c068f-b37)",
           "hash": "809717f2ae22b731264b94164e349de614329ca5ceacb54fe3d3982334a030d5"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "1e0d13236bb1a244",
-          "to": "re-anchored 8ce940491625438e (stamp 5bc10481-2af)",
-          "hash": "8ce940491625438eb7ea23c4676c0ebfbaae082adf2e633040c3968ad35c5fd5"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "8ce940491625438eb7ea23c4676c0ebfbaae082adf2e633040c3968ad35c5fd5"
         }
       ]
     },
     "Cayman Islands": {
       "id": 49,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -2498,12 +2574,19 @@
       },
       "proof": {
         "hash": "d653997903ce569a71337871bb4fc60a82340101f32d28cc8b1e4ed01d300c90",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T06:26:47.522Z",
         "stamp_id": "3c67a3b8-857d-4175-b69c-befb4e399b85"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.gov.ky",
@@ -2529,21 +2612,15 @@
           "from": "10252f994c99390b",
           "to": "re-anchored ee79229d8c1ef0a8 (stamp 691e1cad-c1b)",
           "hash": "ee79229d8c1ef0a85bb4a9b64f7ce33a642f522162a270e4cec18bfce52df072"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "ee79229d8c1ef0a85bb4a9b64f7ce33a642f522162a270e4cec18bfce52df072"
         }
       ]
     },
     "Andorra": {
       "id": 50,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -2552,12 +2629,19 @@
       },
       "proof": {
         "hash": "66da679de4006f6a22bd2133b8836388ab1c67bea53caf0234a91e484e274b4b",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T06:26:51.227Z",
         "stamp_id": "e1e7d322-1c3f-4b4b-b8fe-75ecaa8da584"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "last_checked.freshness_sweep",
+          "from": "2026-07-02",
+          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",

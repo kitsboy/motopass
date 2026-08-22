@@ -7,16 +7,16 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.142Z",
+  "generated_at": "2026-08-22T20:59:41.470Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407",
     "proof_url": "https://satohash.io/verify/8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407",
     "ots_path": "/proofs/spain-23329cd5b097.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -69,13 +69,13 @@
     "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
   },
   "threshold": {
-    "min_investment_usd": 500000,
+    "min_investment_usd": 32000,
     "typical_investment_usd": 750000,
     "history": [
       {
         "date": null,
         "field": "current",
-        "usd": 500000,
+        "usd": 32000,
         "note": "Current published minimum — no tracked change history yet."
       }
     ],
@@ -83,7 +83,7 @@
       {
         "type": "golden_visa",
         "label": "Golden Visa (residencia por inversión)",
-        "min_investment_usd": 550000
+        "min_investment_usd": null
       },
       {
         "type": "digital_nomad",
@@ -121,40 +121,26 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.inclusion.gob.es",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.exteriores.gob.es",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.cnmv.es",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "23329cd5b097d93c5385a364b6c4973ed10c1389bf839dd8a56a9bc21a171432"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "47d328057e8fbcb5",
-      "to": "re-anchored 23329cd5b097d93c (stamp 6b82ffc7-01b)",
-      "hash": "23329cd5b097d93c5385a364b6c4973ed10c1389bf839dd8a56a9bc21a171432"
-    },
     {
       "date": "2026-08-21",
       "field": "proof",
@@ -189,6 +175,27 @@
       "from": null,
       "to": "Official source content changed — manual rule review required",
       "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.inclusion.gob.es",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.exteriores.gob.es",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "pathways.golden_visa",
+      "from": "corpus BUILD 72 (golden_visa active, min $550k)",
+      "to": "Material change found & corrected: golden visa route marked CLOSED (abolished 2025-04-03, Organic Law 1/2025); no new applications",
+      "hash": null
     }
   ],
   "sovereignty": {

@@ -7,16 +7,16 @@
     "region": "Asia",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.141Z",
+  "generated_at": "2026-08-22T20:59:41.469Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "6d7909b437d1eb090ed9a8f81d17ed4c7ac1d2238e2532bf65393e33570249ad",
     "proof_url": "https://satohash.io/verify/6d7909b437d1eb090ed9a8f81d17ed4c7ac1d2238e2532bf65393e33570249ad",
     "ots_path": "/proofs/malaysia-411924bd12f5.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -121,12 +121,12 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.mm2h.gov.my",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://mdec.my/de-rantau",
@@ -136,7 +136,7 @@
       {
         "url": "https://www.imi.gov.my",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
@@ -175,6 +175,20 @@
       "from": null,
       "to": "Official source content changed — manual rule review required",
       "hash": "6d7909b437d1eb090ed9a8f81d17ed4c7ac1d2238e2532bf65393e33570249ad"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.mm2h.gov.my",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "6d7909b437d1eb090ed9a8f81d17ed4c7ac1d2238e2532bf65393e33570249ad"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "last_checked.freshness_sweep",
+      "from": "2026-07-02",
+      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+      "hash": null
     }
   ],
   "sovereignty": {

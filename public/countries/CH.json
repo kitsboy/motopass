@@ -7,7 +7,7 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.134Z",
+  "generated_at": "2026-08-22T20:59:41.458Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -118,18 +118,18 @@
     ]
   },
   "watch": {
-    "changed": false,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "changed": true,
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.sem.admin.ch",
-        "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "status": "changed",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.zug.ch",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "status": "ok",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
@@ -167,6 +167,13 @@
       "field": "proof",
       "from": "427d012781ca45de",
       "to": "re-anchored 2a1287a7ea1c1d47 (stamp 760db661-c1a)",
+      "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.sem.admin.ch",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
       "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
     }
   ],

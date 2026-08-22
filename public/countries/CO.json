@@ -7,16 +7,16 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.139Z",
+  "generated_at": "2026-08-22T20:59:41.467Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0",
     "proof_url": "https://satohash.io/verify/9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0",
     "ots_path": "/proofs/colombia-2cbd8718c3ec.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -121,40 +121,26 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.migracioncolombia.gov.co",
-        "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "status": "ok",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://tramitesmre.cancilleria.gov.co",
-        "status": "unreachable",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "status": "changed",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "2cbd8718c3ec1393e5c04c71cc89754cee07b07781bab74ff46cc2887050eb48"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "fa83ebd7e3500f1b",
-      "to": "re-anchored 2cbd8718c3ec1393 (stamp 46a3b687-9f3)",
-      "hash": "2cbd8718c3ec1393e5c04c71cc89754cee07b07781bab74ff46cc2887050eb48"
-    },
     {
       "date": "2026-08-21",
       "field": "proof",
@@ -189,6 +175,27 @@
       "from": null,
       "to": "Official source content changed — manual rule review required",
       "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://tramitesmre.cancilleria.gov.co",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "9c496a6a31f9303d11a5c742a452f50f449aec2e6f37f8ff7995bea5311be9f0"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "last_checked.freshness_sweep",
+      "from": "2026-07-02",
+      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+      "hash": null
     }
   ],
   "sovereignty": {

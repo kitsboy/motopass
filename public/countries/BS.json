@@ -7,16 +7,16 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.140Z",
+  "generated_at": "2026-08-22T20:59:41.468Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d",
     "proof_url": "https://satohash.io/verify/30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d",
     "ots_path": "/proofs/bahamas-8bd909d33fa9.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -83,7 +83,7 @@
       {
         "type": "economic_permanent_residency",
         "label": "Economic Permanent Residency (EPR)",
-        "min_investment_usd": 750000
+        "min_investment_usd": 1000000
       },
       {
         "type": "annual_residency",
@@ -120,7 +120,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.bahamas.gov.bs",
@@ -155,6 +155,13 @@
       "from": "8bd909d33fa96bda",
       "to": "re-anchored 30dca88964459f41 (stamp 34f86875-6c1)",
       "hash": "30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "pathways.economic_permanent_residency",
+      "from": "corpus BUILD 72 (economic_permanent_residency $750k)",
+      "to": "Material change found & corrected: EPR threshold corrected $750k -> $1.0M (official Bahamas Immigration)",
+      "hash": null
     }
   ],
   "sovereignty": {

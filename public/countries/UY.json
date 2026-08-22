@@ -7,7 +7,7 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.132Z",
+  "generated_at": "2026-08-22T20:59:41.455Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -119,18 +119,18 @@
     ]
   },
   "watch": {
-    "changed": false,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "changed": true,
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.gub.uy/tramites/residencia-legal",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.minterior.gub.uy",
-        "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "status": "changed",
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
@@ -168,6 +168,13 @@
       "field": "proof",
       "from": "b4e567c15db4a721",
       "to": "re-anchored 1e9993bb823a6b8f (stamp e0350760-c53)",
+      "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.minterior.gub.uy",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
       "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
     }
   ],

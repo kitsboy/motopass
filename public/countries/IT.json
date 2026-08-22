@@ -7,16 +7,16 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.142Z",
+  "generated_at": "2026-08-22T20:59:41.470Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc",
     "proof_url": "https://satohash.io/verify/383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc",
     "ots_path": "/proofs/italy-100675521271.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -121,40 +121,26 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.interno.gov.it",
         "status": "ok",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://investorvisa.mise.gov.it",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       },
       {
         "url": "https://www.agenziaentrate.gov.it",
         "status": "changed",
-        "last_probed": "2026-08-22T06:20:31.118Z"
+        "last_probed": "2026-08-22T20:46:59.447Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "10067552127100548b8f1f63cc1b77ac44c40faf2bcb8dab6337c40c92f2de79"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "c0d26db99af87366",
-      "to": "re-anchored 1006755212710054 (stamp e20a36fd-19f)",
-      "hash": "10067552127100548b8f1f63cc1b77ac44c40faf2bcb8dab6337c40c92f2de79"
-    },
     {
       "date": "2026-08-21",
       "field": "proof",
@@ -189,6 +175,27 @@
       "from": null,
       "to": "Official source content changed — manual rule review required",
       "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://investorvisa.mise.gov.it",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "watch.https://www.agenziaentrate.gov.it",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "last_checked.freshness_sweep",
+      "from": "2026-07-02",
+      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+      "hash": null
     }
   ],
   "sovereignty": {

@@ -7,16 +7,16 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T19:54:45.139Z",
+  "generated_at": "2026-08-22T20:59:41.468Z",
   "freshness": {
-    "status": "stale",
-    "days_stale": 51,
-    "verified_at": "2026-07-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-08-22",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "stale",
-      "days_stale": 52,
-      "last_checked": "2026-07-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-08-22"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa",
     "proof_url": "https://satohash.io/verify/975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa",
     "ots_path": "/proofs/st-lucia-27d4e604e55a.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -119,7 +119,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-08-22T06:20:31.118Z",
+    "last_probe_at": "2026-08-22T20:46:59.447Z",
     "urls": [
       {
         "url": "https://www.ciu.gov.lc",
@@ -149,6 +149,13 @@
       "from": "27d4e604e55abef2",
       "to": "re-anchored 975bf50ec82208b2 (stamp 8deb2c19-239)",
       "hash": "975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa"
+    },
+    {
+      "date": "2026-08-22",
+      "field": "last_checked.freshness_sweep",
+      "from": "2026-07-02",
+      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+      "hash": null
     }
   ],
   "sovereignty": {
