@@ -1,4 +1,4 @@
-import { useMemo, useState, lazy, Suspense } from 'react'
+import { useMemo, useState, useEffect, useRef, lazy, Suspense } from 'react'
 import type { ReactNode } from 'react'
 import { ArrowLeftRight, ShieldCheck, BadgeCheck, RotateCcw } from 'lucide-react'
 import { useTrustIndex, fetchCountryTrust } from '../lib/countryTrust'
@@ -89,6 +89,36 @@ export function TrustPage() {
     return list
   }, [index, filter])
 
+  // ADV10B: lazy-load the 50-card grid. Only the first batch mounts at first paint;
+  // an IntersectionObserver sentinel appends the rest in batches as the user scrolls.
+  // Below-fold cards never shift visible content, so this is CLS-safe (unlike a fixed
+  // skeleton or content-visibility, both measured and rejected). Resets on filter change.
+  const INITIAL_BATCH = 8
+  const STEP = 8
+  const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH)
+  const sentinelRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    setVisibleCount(INITIAL_BATCH)
+  }, [filter, index])
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current
+    if (!sentinel || visibleCount >= countries.length) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setVisibleCount((c) => Math.min(c + STEP, countries.length))
+        }
+      },
+      { rootMargin: '600px 0px' },
+    )
+    io.observe(sentinel)
+    return () => io.disconnect()
+  }, [visibleCount, countries.length])
+
+  const visibleCountries = useMemo(() => countries.slice(0, visibleCount), [countries, visibleCount])
+
   const filterPills = [
     { id: 'all' as const, label: formatT(t, 'trust.filterAll', { total }) },
     { id: 'fresh' as const, label: formatT(t, 'trust.filterFresh', { count: sweep.fresh }) },
@@ -169,8 +199,9 @@ export function TrustPage() {
             {t('trust.loading')}
           </div>
         ) : (
+          <>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {countries.map((c, i) => (
+            {visibleCountries.map((c, i) => (
               <button
                 key={c.iso2}
                     type="button"
@@ -239,6 +270,11 @@ export function TrustPage() {
                   </button>
                 ))}
           </div>
+          {/* Lazy-load sentinel — observed to append the next batch of trust cards. */}
+          {visibleCount < countries.length && (
+            <div ref={sentinelRef} className="h-4 w-full" aria-hidden="true" />
+          )}
+          </>
         )}
 
         {/* detail drawer */}
