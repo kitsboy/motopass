@@ -1,6 +1,6 @@
 # motopass — Last Updated 2026-08-23 by Ziggy/THOR
 Brief: Adv8d Arabic (ar) RTL — FULL Arabic translation shipped (CORE + long-tail), live-verified RTL rendering
-Commit: 163a94d
+Commit: 67546ee
 Deploy: https://motopass.giveabit.io · CF project motopass
 
 What landed:
