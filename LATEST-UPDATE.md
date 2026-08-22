@@ -1,4 +1,20 @@
 # motopass — Last Updated 2026-08-22 by Ziggy/THOR
+Brief: Adv2 real onboarding — application-fee Lightning commerce loop wired end-to-end (Seam B)
+Commit: 5315226 (origin/main, pushed)
+Deploy: https://motopass.giveabit.io · CF project motopass
+
+What landed:
+- ApplicationFeeStep.tsx — real Lightning application-fee step on the MotoPass wallet. Zero-knowledge: invoice keyed only by payment_hash; no name/email/npub ever sent. QR + BOLT11 copy + open-in-wallet + honest settlement polling (never fakes a landed payment).
+- applicationFee.ts — client for the Satohash public rail: GET /api/public/motopass/fee (128,247 sats), POST /api/public/motopass/invoice (real BOLT11, provider lnbits, mock:false), GET /api/public/motopass/status/:hash.
+- ApplyPage: removed auto-redirect to /agents so the applicant completes payment; fee step renders after the canonical hash is sealed; OTS stamp step preserved.
+- Server rail (Satohash, THOR, commit 07ea6a8): server/routes/motopass-fee.js + server/lib/lnbits.js — live-verified 2026-08-22 (fee config, real invoice, status poll all respond).
+- Honest constraint shown in-UI: LND has 0 open channels, so a real inbound settlement is blocked until channels open. Same invoice route works the moment channels open.
+
+Live-verified: fee config HTTP 200 (sats 128247, rail motopass@api.satohash.io:8443) · real BOLT11 invoice created (lnbc…, payment_hash, mock:false) · status endpoint returns {paid:false, pending, amount_msat:128247000} · live bundle contains fee-step strings · 48 test files / 247 tests pass · vite build clean.
+
+---
+
+# motopass — Last Updated 2026-08-22 by Ziggy/THOR
 Brief: Adv5 zero-knowledge persistence — real Nostr relay live on THOR (relay.motopass.giveabit.io), NIP-44 v2 encrypted state sync (zkNostrSync.ts), RUSTSEC-2026-0227 mitigation applied + verified
 Commit: a849bb2 (rebased onto origin/main)
 Deploy: https://motopass.giveabit.io · CF project motopass
