@@ -186,21 +186,21 @@
     {
       "id": 2,
       "name": "Central African Republic",
-      "category": "legal_tender_bitcoin",
+      "category": "rbi_cbi",
       "region": "Africa",
       "status": "Acquired - Pioneer",
-      "bitcoin_integration": "Bitcoin legal tender since 2022. Focus on financial inclusion via Bitcoin. Growing interest in crypto infrastructure.",
+      "bitcoin_integration": "Adopted Bitcoin as legal tender in April 2022 (Law 22.004/2022), the second country ever, but parliament agreed to repeal the legal-tender law in April 2023. Crypto activity is not prohibited and continues informally (mining pilots, fintech interest), but there is no legal-tender status and no formal crypto regulatory framework on file. Frontier jurisdiction with weak banking and infrastructure.",
       "finance": {
         "min_investment_usd": 0,
         "typical_investment_usd": 25000,
         "gov_fees_usd": 8000,
         "processing_time_months": "2-6",
-        "tax_benefits": "Bitcoin legal tender framework supports digital asset activity. Tax incentives for foreign investment in some cases.",
+        "tax_benefits": "No crypto-specific tax regime on file since the 2023 legal-tender repeal. Tax incentives for foreign investment in some cases.",
         "crypto_friendly_score": 7,
-        "bitcoin_specific": "Legal tender status enables direct Bitcoin use. Good testbed for MotoPass in emerging markets."
+        "bitcoin_specific": "Legal-tender status was repealed in April 2023; crypto is not legal tender today. Informal mining and fintech pilots continue — verify current guidance with Bangui counsel."
       },
-      "details": "Second country to adopt Bitcoin as legal tender. Focus on inclusion and sovereignty. Relevant for MotoPass global passport vision. Modeled minimum investment $0 (typical $25,000). Primary routes on file: Economic activity / investor residency, Bitcoin-integrated business operations, Property / agricultural investment. Tax notes: Bitcoin legal tender framework supports digital asset activity. Tax incentives for foreign investment in some cases. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-05-20",
+      "details": "Adopted Bitcoin as legal tender in April 2022 (Law 22.004/2022) — the second country to do so — but parliament agreed to repeal the legal-tender law in April 2023. Crypto activity continues informally (mining pilots, fintech interest) with no formal framework. Modeled minimum investment $0 (typical $25,000). Primary routes on file: Economic activity / investor residency, Bitcoin-integrated business operations, Property / agricultural investment. Tax notes: No crypto-specific tax regime on file; tax incentives for foreign investment in some cases. Verify every figure against primary sources and Satohash proofs before acting.",
+      "last_checked": "2026-08-22",
       "sources": [
         "Government legislation 2022",
         "Our research"
@@ -240,7 +240,7 @@
           "type": "bitcoin_legal_tender",
           "label": "Bitcoin-integrated business operations",
           "min_investment_usd": 10000,
-          "notes": "Second global Bitcoin legal-tender jurisdiction (Law 22.004/2022). Sango Zone and crypto-mining incentives proposed — implementation uneven. Strong MotoPass testbed but infrastructure still developing."
+          "notes": "Second jurisdiction to adopt Bitcoin as legal tender (Law 22.004/2022); parliament agreed to repeal the legal-tender law in April 2023. Sango Zone and mining incentives were proposed but rollout stalled — treat as frontier/experimental, not an active legal-tender route."
         },
         {
           "type": "real_estate",
@@ -253,11 +253,11 @@
         "live_and_work": true,
         "scope_of_freedom": null,
         "dual_citizenship": null,
-        "notes": "Bitcoin legal tender alongside CFA franc; Lightning adoption nascent. Security and governance risks elevated outside Bangui — not a lifestyle hub for most stackers."
+        "notes": "Bitcoin was legal tender 2022–2023 (repeal agreed April 2023); today crypto is legal but unregulated, alongside the CFA franc. Security and governance risks elevated outside Bangui — not a lifestyle hub for most stackers."
       },
       "legal_compliance": {
         "primary_laws": [
-          "Law No. 22.004/2022 (Bitcoin legal tender)",
+          "Law No. 22.004/2022 (Bitcoin legal tender — adopted Apr 2022, repeal agreed Apr 2023)",
           "Investment Charter / private-investment encouragement decrees",
           "Ordinance on entry and residence of foreigners"
         ],
@@ -266,7 +266,7 @@
           "https://www.finances.gouv.cf"
         ],
         "property_foreign_ownership": "Foreigners may acquire property with government authorization; rural and mining zones subject to additional permits. Title clarity varies — local counsel essential.",
-        "recent_changes": "2022 Bitcoin legal-tender law enacted; Sango digital-residency concepts announced but rollout incomplete. 2024–2025 focus on mining and fintech pilots — monitor official gazette for residency rule updates."
+        "recent_changes": "Adopted Bitcoin as legal tender April 2022 (Law 22.004/2022); parliament agreed to repeal the legal-tender adoption in April 2023. Sango digital-residency and crypto initiatives were announced but never fully rolled out. No formal crypto regulation since the repeal — monitor the official gazette."
       },
       "compliance_clock": {
         "renewal_interval_months": 12,
@@ -275,7 +275,7 @@
       },
       "paige_fields": {
         "common_questions": [
-          "Is Bitcoin still legal tender in CAR?",
+          "What happened to Bitcoin legal tender in CAR?",
           "Can I get residency through a Bitcoin business?",
           "Is CAR safe enough to base operations?"
         ],
@@ -286,7 +286,7 @@
           "Dual nationality rules unclear — confirm before naturalization planning"
         ],
         "optimization_tips": [
-          "Position as pioneer/legal-tender research leg, not primary residency hub",
+          "Position as pioneer and historical-legal-tender research leg, not a primary residency hub",
           "Pair with stable African anchor (Mauritius) if building an Africa stack",
           "Use Lightning-first merchant pilots where Bangui infrastructure allows"
         ],
@@ -322,12 +322,12 @@
           "verified_at": "2026-05-20"
         },
         {
-          "text": "Bitcoin: Legal tender status enables direct Bitcoin use.",
+          "text": "Bitcoin: historic pioneer — legal tender 2022–2023; crypto legal but unregulated today",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-05-20"
         },
         {
-          "text": "Tip: Position as pioneer/legal-tender research leg, not primary residency hub",
+          "text": "Tip: Position as pioneer and historical-legal-tender research leg, not a primary residency hub",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-05-20"
         },
@@ -402,6 +402,14 @@
           "to": "re-anchored 3436be752d1dbe7c (stamp e1d03d09-4a0)",
           "source": "satohash-api",
           "hash": "3436be752d1dbe7cd79fa580d15bd1d478fb96f5c52c0a967858768ab80193fe"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance.category",
+          "from": "corpus BUILD 72",
+          "to": "Reflect April 2023 repeal of Bitcoin legal-tender law; category legal_tender_bitcoin -> rbi_cbi; fields corrected to historical framing",
+          "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-21), fetched 2026-08-22",
+          "hash": null
         }
       ]
     },
@@ -607,18 +615,18 @@
       "category": "rbi_cbi",
       "region": "South America",
       "status": "Researching - Flagship",
-      "bitcoin_integration": "Emerging interest in crypto. Regulatory environment evolving. Potential for Bitcoin-friendly policies in coming years.",
+      "bitcoin_integration": "Crypto is legal: the 2014 ban (BCB Resolution 044) was repealed by Central Bank Resolution 144 of 15 Dec 2020. Policy still evolving and banking adoption gradual. Value/cost-distressed LatAm option for stacking.",
       "finance": {
         "min_investment_usd": 80000,
         "typical_investment_usd": 120000,
         "gov_fees_usd": 12000,
         "processing_time_months": "4-9",
-        "tax_benefits": "Research needed on crypto tax treatment and investment incentives.",
+        "tax_benefits": "No crypto-specific tax framework on file; tax treatment of crypto gains needs verification.",
         "crypto_friendly_score": 7,
         "bitcoin_specific": "Monitor for policy shifts. Potential future MotoPass candidate in Andes region."
       },
-      "details": "User to fill detailed research, current finance numbers, Bitcoin friendliness, and status update. Modeled minimum investment $80,000 (typical $120,000). Primary routes on file: Investor / company route, Low solvency / fixed deposit. Tax notes: Research needed on crypto tax treatment and investment incentives. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-05-15",
+      "details": "Budget LatAm option — crypto legal since Dec 2020 (2014 ban repealed), no pure CBI program. Modeled minimum investment $80,000 (typical $120,000). Primary routes on file: Investor / company route, Low solvency / fixed deposit. Tax notes: No crypto-specific tax framework on file — verify. Verify every figure against primary sources and Satohash proofs before acting.",
+      "last_checked": "2026-08-22",
       "sources": [
         "Initial scan",
         "User research pending"
@@ -676,7 +684,7 @@
           "https://www.migracion.gob.bo"
         ],
         "property_foreign_ownership": "Restrictions in border/security zones; urban RE often viable — legal review required.",
-        "recent_changes": "Crypto regulation evolving; monitor official gazette."
+        "recent_changes": "2014 crypto ban (Res. 044) repealed by Central Bank Resolution 144 of 15 Dec 2020 — crypto transactions legal since; regulatory framework still forming; monitor official gazette."
       },
       "compliance_clock": {
         "renewal_interval_months": 12,
@@ -692,7 +700,7 @@
         "red_flags": [
           "No pure CBI",
           "INRA land restrictions near borders",
-          "Bitcoin policy still forming"
+          "Crypto legal since Dec 2020 but no dedicated framework yet"
         ],
         "optimization_tips": [
           "Position as value/distressed stack leg, not primary hub"
@@ -723,7 +731,7 @@
           "verified_at": "2026-05-15"
         },
         {
-          "text": "Bitcoin: Monitor for policy shifts.",
+          "text": "Bitcoin: crypto legal since Dec 2020 (2014 ban repealed); policy still evolving",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-05-15"
         },
@@ -817,6 +825,14 @@
           "to": "re-anchored cb49ebf77a8b646a (stamp 489b5e57-38b)",
           "source": "satohash-api",
           "hash": "cb49ebf77a8b646af06753b503045a58cbb53d2babbcd6e60591c13452c95fd7"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Sourced 2014-ban repeal (BCB Resolution 144, 15 Dec 2020); bitcoin_integration, tax_benefits, details refreshed",
+          "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-21), fetched 2026-08-22",
+          "hash": null
         }
       ]
     },

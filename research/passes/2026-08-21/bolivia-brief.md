@@ -27,9 +27,10 @@
 
 | Date | Fact changed | New value | Source URL | Confidence |
 |------|--------------|-----------|------------|------------|
-| | | | | |
+| 2026-08-22 | Crypto legality | Legal since Dec 2020 — 2014 ban (Res. 044) repealed by Central Bank Resolution 144 (15 Dec 2020) | https://en.wikipedia.org/wiki/Legality_of_cryptocurrency_by_country_or_territory | High |
+| 2026-08-22 | last_checked | refreshed to 2026-08-22 (ban-repeal fact verified) | https://en.wikipedia.org/wiki/Legality_of_cryptocurrency_by_country_or_territory | High |
 
 ## Verdict after research
 
 - [ ] No material change — refresh `last_checked` and re-verify figures
-- [ ] Changes found — update `legal_compliance.recent_changes`, `finance`, `pathways`, `status` as needed, then re-stamp
+- [x] Changes found — 2020 ban repeal applied to `legal_compliance.recent_changes`, `bitcoin_integration`, `tax_benefits`, `details`, `paige_fields.red_flags`, `pros`; last_checked refreshed 2026-08-22. Pipeline will re-anchor on next intel run.

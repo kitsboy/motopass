@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-22T06:21:29.825Z",
+  "generated_at": "2026-08-22T13:49:46.368Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
-    "fresh": 0,
+    "fresh": 2,
     "watch": 0,
-    "stale": 50,
-    "swept_at": "2026-08-22T06:21:29.825Z",
+    "stale": 48,
+    "swept_at": "2026-08-22T13:49:46.368Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -16,7 +16,7 @@
       "id": 1,
       "freshness": {
         "status": "stale",
-        "days_stale": 78,
+        "days_stale": 79,
         "last_checked": "2026-06-05"
       },
       "watch": {
@@ -57,9 +57,9 @@
     "Central African Republic": {
       "id": 2,
       "freshness": {
-        "status": "stale",
-        "days_stale": 94,
-        "last_checked": "2026-05-20"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -68,12 +68,19 @@
       },
       "proof": {
         "hash": "3436be752d1dbe7cd79fa580d15bd1d478fb96f5c52c0a967858768ab80193fe",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:15:26.268Z",
         "stamp_id": "e1d03d09-4a0b-445a-a3bf-14c65f3630f2"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance.category",
+          "from": "corpus BUILD 72",
+          "to": "Reflect April 2023 repeal of Bitcoin legal-tender law; category legal_tender_bitcoin -> rbi_cbi; fields corrected to historical framing",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -100,7 +107,7 @@
       "id": 3,
       "freshness": {
         "status": "stale",
-        "days_stale": 82,
+        "days_stale": 83,
         "last_checked": "2026-06-01"
       },
       "watch": {
@@ -141,9 +148,9 @@
     "Bolivia": {
       "id": 4,
       "freshness": {
-        "status": "stale",
-        "days_stale": 99,
-        "last_checked": "2026-05-15"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -152,12 +159,19 @@
       },
       "proof": {
         "hash": "cb49ebf77a8b646af06753b503045a58cbb53d2babbcd6e60591c13452c95fd7",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-22T06:21:15.130Z",
         "stamp_id": "489b5e57-38bf-492b-b2a8-3f3ff655a538"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Sourced 2014-ban repeal (BCB Resolution 144, 15 Dec 2020); bitcoin_integration, tax_benefits, details refreshed",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "proof",
@@ -185,13 +199,6 @@
           "from": "c385b8dd4489e228",
           "to": "re-anchored b3a045e3235cb018 (stamp 65448252-e0f)",
           "hash": "b3a045e3235cb01834b4bf5046ad707836ff20b49de63d449f2404657bbf092f"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "proof",
-          "from": "feb51c2ddc784d3f",
-          "to": "re-anchored c385b8dd4489e228 (stamp 89b9da81-3cf)",
-          "hash": "c385b8dd4489e228d4e109eeae4ad332588e20e2d9bec31d9090e685c9d3719e"
         }
       ]
     },
@@ -199,7 +206,7 @@
       "id": 5,
       "freshness": {
         "status": "stale",
-        "days_stale": 80,
+        "days_stale": 81,
         "last_checked": "2026-06-03"
       },
       "watch": {
@@ -247,7 +254,7 @@
       "id": 6,
       "freshness": {
         "status": "stale",
-        "days_stale": 86,
+        "days_stale": 87,
         "last_checked": "2026-05-28"
       },
       "watch": {
@@ -289,7 +296,7 @@
       "id": 7,
       "freshness": {
         "status": "stale",
-        "days_stale": 81,
+        "days_stale": 82,
         "last_checked": "2026-06-02"
       },
       "watch": {
@@ -331,7 +338,7 @@
       "id": 8,
       "freshness": {
         "status": "stale",
-        "days_stale": 76,
+        "days_stale": 77,
         "last_checked": "2026-06-07"
       },
       "watch": {
@@ -379,7 +386,7 @@
       "id": 9,
       "freshness": {
         "status": "stale",
-        "days_stale": 79,
+        "days_stale": 80,
         "last_checked": "2026-06-04"
       },
       "watch": {
@@ -421,7 +428,7 @@
       "id": 10,
       "freshness": {
         "status": "stale",
-        "days_stale": 77,
+        "days_stale": 78,
         "last_checked": "2026-06-06"
       },
       "watch": {
@@ -469,7 +476,7 @@
       "id": 11,
       "freshness": {
         "status": "stale",
-        "days_stale": 84,
+        "days_stale": 85,
         "last_checked": "2026-05-30"
       },
       "watch": {
@@ -525,7 +532,7 @@
       "id": 12,
       "freshness": {
         "status": "stale",
-        "days_stale": 82,
+        "days_stale": 83,
         "last_checked": "2026-06-01"
       },
       "watch": {
@@ -573,7 +580,7 @@
       "id": 13,
       "freshness": {
         "status": "stale",
-        "days_stale": 89,
+        "days_stale": 90,
         "last_checked": "2026-05-25"
       },
       "watch": {
@@ -627,7 +634,7 @@
       "id": 14,
       "freshness": {
         "status": "stale",
-        "days_stale": 76,
+        "days_stale": 77,
         "last_checked": "2026-06-07"
       },
       "watch": {
@@ -681,7 +688,7 @@
       "id": 15,
       "freshness": {
         "status": "stale",
-        "days_stale": 96,
+        "days_stale": 97,
         "last_checked": "2026-05-18"
       },
       "watch": {
@@ -723,7 +730,7 @@
       "id": 16,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -777,7 +784,7 @@
       "id": 17,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -825,7 +832,7 @@
       "id": 18,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -867,7 +874,7 @@
       "id": 19,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -909,7 +916,7 @@
       "id": 20,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -951,7 +958,7 @@
       "id": 21,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -993,7 +1000,7 @@
       "id": 22,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1049,7 +1056,7 @@
       "id": 23,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1103,7 +1110,7 @@
       "id": 24,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1151,7 +1158,7 @@
       "id": 25,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1193,7 +1200,7 @@
       "id": 26,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1235,7 +1242,7 @@
       "id": 27,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1289,7 +1296,7 @@
       "id": 28,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1331,7 +1338,7 @@
       "id": 29,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1384,7 +1391,7 @@
       "id": 30,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1426,7 +1433,7 @@
       "id": 31,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1468,7 +1475,7 @@
       "id": 32,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1521,7 +1528,7 @@
       "id": 33,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1563,7 +1570,7 @@
       "id": 34,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1605,7 +1612,7 @@
       "id": 35,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1659,7 +1666,7 @@
       "id": 36,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1713,7 +1720,7 @@
       "id": 37,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1767,7 +1774,7 @@
       "id": 38,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1815,7 +1822,7 @@
       "id": 39,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1857,7 +1864,7 @@
       "id": 40,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1905,7 +1912,7 @@
       "id": 41,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -1959,7 +1966,7 @@
       "id": 42,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -2012,7 +2019,7 @@
       "id": 43,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -2065,7 +2072,7 @@
       "id": 44,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -2113,7 +2120,7 @@
       "id": 45,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -2155,7 +2162,7 @@
       "id": 46,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -2210,7 +2217,7 @@
       "id": 47,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -2258,7 +2265,7 @@
       "id": 48,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -2312,7 +2319,7 @@
       "id": 49,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {
@@ -2366,7 +2373,7 @@
       "id": 50,
       "freshness": {
         "status": "stale",
-        "days_stale": 51,
+        "days_stale": 52,
         "last_checked": "2026-07-02"
       },
       "watch": {

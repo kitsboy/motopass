@@ -28,9 +28,8 @@
 
 | Date | Fact changed | New value | Source URL | Confidence |
 |------|--------------|-----------|------------|------------|
-| | | | | |
+| 2026-08-22 | Verification blocked | Web-search backend unavailable and official portals bot-blocked — no rule updates drafted, nothing fabricated | — | — |
 
 ## Verdict after research
 
-- [ ] No material change — refresh `last_checked` and re-verify figures
-- [ ] Changes found — update `legal_compliance.recent_changes`, `finance`, `pathways`, `status` as needed, then re-stamp
+- [ ] Pending — verification blocked 2026-08-22; corpus left unchanged and stale so the daily pipeline keeps flagging it

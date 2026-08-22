@@ -33,8 +33,26 @@ proof the site is dead for humans.
 The 2026-08-20 live pass could not run: the web-search backend was down and
 government portals yield only nav boilerplate or unrelated gazette content to
 automated extraction. **No rule updates were drafted — nothing here is
-fabricated.** Briefs below are ready to fill the moment a source-enabled
-researcher (human, Kimi, Paige, or an agent with search access) runs:
+fabricated.**
+
+## Partial completion (2026-08-22, source-enabled researcher)
+
+The web-search backend remained unavailable, but a Wikipedia-based pass
+(`read_url` on en.wikipedia.org) verified two high-value corrections:
+
+- **Central African Republic — CORRECTED:** parliament agreed to repeal the
+  Bitcoin legal-tender law in **April 2023** (adopted Apr 2022, Law 22.004).
+  Corpus fields updated to historical framing and `category` moved
+  `legal_tender_bitcoin` → `rbi_cbi`. `last_checked` → 2026-08-22.
+- **Bolivia — UPDATED:** 2014 crypto ban (Res. 044) repealed by Central Bank
+  Resolution 144 (15 Dec 2020) — crypto legal since. Corpus fields updated;
+  `last_checked` → 2026-08-22.
+- **Paraguay + Panama — STILL BLOCKED:** no source accessible for their
+  visa thresholds / crypto-law status; corpus left unchanged and stale so the
+  daily pipeline keeps flagging them. Re-run when search access returns.
+
+Sources: `Legality of cryptocurrency by country or territory` (Wikipedia,
+revision 2026-08-21). Verified facts only — no fabricated rules.
 
 ```bash
 npm run research:pass        # regenerate briefs

@@ -4,7 +4,7 @@
 
 ## Current corpus facts (what we claim today)
 
-- **Bitcoin integration:** Bitcoin legal tender since 2022. Focus on financial inclusion via Bitcoin. Growing interest in crypto infrastructure.
+- **Bitcoin integration:** Adopted Bitcoin as legal tender Apr 2022 (Law 22.004); parliament agreed to repeal the legal-tender law Apr 2023. Crypto legal but unregulated today.
 - **Finance:** min $0 · typical $25000 · gov fees $8000 · processing 2-6 mo
 - **Crypto friendly score:** 7/10 · **Sovereignty:** 7/10 · **Lightning ready:** yes
 - **Tax:** Bitcoin legal tender framework supports digital asset activity. Tax incentives for foreign investment in some cases.
@@ -28,9 +28,11 @@
 
 | Date | Fact changed | New value | Source URL | Confidence |
 |------|--------------|-----------|------------|------------|
-| | | | | |
+| 2026-08-22 | Bitcoin legal-tender status | Adopted Apr 2022 (Law 22.004); parliament agreed to repeal Apr 2023 — not legal tender today | https://en.wikipedia.org/wiki/Legality_of_cryptocurrency_by_country_or_territory | High |
+| 2026-08-22 | Category | `legal_tender_bitcoin` → `rbi_cbi` (no active legal-tender status) | https://en.wikipedia.org/wiki/Legality_of_cryptocurrency_by_country_or_territory | High |
+| 2026-08-22 | last_checked | refreshed to 2026-08-22 (repeal fact verified) | https://en.wikipedia.org/wiki/Legality_of_cryptocurrency_by_country_or_territory | High |
 
 ## Verdict after research
 
 - [ ] No material change — refresh `last_checked` and re-verify figures
-- [ ] Changes found — update `legal_compliance.recent_changes`, `finance`, `pathways`, `status` as needed, then re-stamp
+- [x] Changes found — legal-tender repeal (Apr 2023) applied to `legal_compliance.recent_changes`, `bitcoin_integration`, `finance`, `pathways`, `critical_tests`, `details`, `category`, `paige_fields`, `pros`; last_checked refreshed 2026-08-22. Pipeline will re-anchor on next intel run.
