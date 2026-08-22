@@ -2521,18 +2521,18 @@
       "category": "rbi_cbi",
       "region": "Central America",
       "status": "Acquired - Friendly",
-      "bitcoin_integration": "Territorial tax system. Crypto generally treated favorably. Popular with Bitcoiners and digital nomads. Friendly residency programs.",
+      "bitcoin_integration": "Crypto is legal but largely unregulated (a grey area) — no comprehensive framework; the 2022 crypto bill (697) was partially vetoed (Jun 2022) and then declared unconstitutional by the Supreme Court (Jul 2023). A 2025 draft bill seeks to license crypto service providers and formalize crypto payments, and Panama City accepts crypto for some public services (2025). Territorial tax remains the core draw for Bitcoiners.",
       "finance": {
-        "min_investment_usd": 100000,
-        "typical_investment_usd": 200000,
+        "min_investment_usd": 200000,
+        "typical_investment_usd": 300000,
         "gov_fees_usd": 10000,
         "processing_time_months": "2-5",
         "tax_benefits": "Territorial taxation — foreign income often not taxed. Very attractive for Bitcoin holders.",
         "crypto_friendly_score": 8,
         "bitcoin_specific": "Popular Bitcoin jurisdiction in practice. Good cost-to-benefit for MotoPass LatAm strategy."
       },
-      "details": "Strong territorial tax + crypto friendly in practice. Excellent value residency option. Modeled minimum investment $100,000 (typical $200,000). Primary routes on file: Friendly Nations Visa, Qualified Investor Visa, Pensionado / fixed income. Tax notes: Territorial taxation — foreign income often not taxed. Very attractive for Bitcoin holders. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-05-25",
+      "details": "Territorial tax is the core draw; crypto is legal but unregulated (grey area) — the 2022 crypto law was vetoed and struck down, and a 2025 bill aims to formalize it. Modeled minimum investment $200,000 (typical $300,000). Primary routes on file: Friendly Nations Visa ($200k), Qualified Investor Visa ($300k+), Pensionado / fixed income. Tax notes: Territorial taxation — foreign income often not taxed. Verify every figure against primary sources and Satohash proofs before acting.",
+      "last_checked": "2026-08-22",
       "sources": [
         "Immigration rules",
         "Bitcoin community reports"
@@ -2565,14 +2565,14 @@
         {
           "type": "friendly_nations",
           "label": "Friendly Nations Visa",
-          "min_investment_usd": 5000,
-          "notes": "Economic ties + local bank deposit (~$5k) — fastest budget route for citizens of ~50 listed countries; verify list includes your nationality."
+          "min_investment_usd": 200000,
+          "notes": "Economic ties via $200,000 real estate or 3-year bank deposit (raised from ~$5k by Executive Decree 226, Jul 2021), or employment + work permit; citizens of ~50 listed countries (Decree 416/2012 as amended); 2-year provisional then permanent residency."
         },
         {
           "type": "qualified_investor",
           "label": "Qualified Investor Visa",
           "min_investment_usd": 300000,
-          "notes": "Real estate or fixed-term deposit at qualifying threshold — permanent residency track; thresholds reformed in 2021–2022."
+          "notes": "Real estate $300,000 (5-year hold), Panamanian securities $500,000, or 5-year fixed deposit $750,000 — immediate permanent residency (Executive Decree 722, Oct 2020); golden-visa real estate route per Decree 193 (Oct 2024)."
         },
         {
           "type": "pensionado",
@@ -2598,7 +2598,7 @@
           "https://www.gacetaoficial.gob.pa"
         ],
         "property_foreign_ownership": "Foreigners may own real estate freely; no general restrictions on urban property.",
-        "recent_changes": "2021 decree raised qualified investor thresholds; Friendly Nations remains popular for low-capital entrants."
+        "recent_changes": "Crypto Bill 697 approved Apr 2022, partially vetoed by President Cortizo Jun 2022 (AML/FATF concerns), declared unconstitutional by the Supreme Court Jul 2023. New draft bill in early 2025 to license crypto providers and formalize crypto payments; Panama City began accepting crypto for public services (2025). Friendly Nations thresholds raised by Executive Decree 226 (Jul 2021) from ~$5k to $200,000."
       },
       "compliance_clock": {
         "renewal_interval_months": 24,
@@ -2608,7 +2608,7 @@
       "paige_fields": {
         "common_questions": [
           "Does Panama tax my foreign Bitcoin gains?",
-          "Which visa for a $100k budget?",
+          "Which visa fits my budget?",
           "Can I get citizenship from residency?"
         ],
         "red_flags": [
@@ -2661,7 +2661,7 @@
           "verified_at": "2026-05-25"
         },
         {
-          "text": "Bitcoin: Popular Bitcoin jurisdiction in practice.",
+          "text": "Bitcoin: crypto legal but unregulated; Panama City accepts crypto payments (2025)",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-05-25"
         },
@@ -2735,6 +2735,14 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "a20bb0c1ff9602261475d1369130271f74b97c5e3066aea8cc9826cab4f1a4c8"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "finance.pathways.legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Crypto grey-area status (2022 veto, 2023 Supreme Court strike-down, 2025 draft bill); Friendly Nations floor corrected $5k -> $200k (Decree 226/2021); Qualified Investor modalities (RE $300k / securities $500k / deposit $750k); last_checked refreshed",
+          "source": "Brave Search (fetched 2026-08-22): Lightspark 2026 · Digital Policy Alert (Jun 2022) · Central Banking (Jul 2023) · Forbes (2025) · Kraemer & Kraemer · NTL Trust · GoParaguay · Paraguay Sovereign · Move to Paraguay",
+          "hash": null
         }
       ]
     },
@@ -2967,18 +2975,18 @@
       "category": "rbi_cbi",
       "region": "South America",
       "status": "Researching",
-      "bitcoin_integration": "Low taxes, crypto interest growing. Territorial tax system attractive. Bitcoin mining and adoption increasing.",
+      "bitcoin_integration": "Low taxes, territorial system, and some of the world's cheapest electricity (Itaipu hydro, ~$0.05–0.06/kWh) make it a major Bitcoin-mining hub. Mining is legal and regulated; crypto adoption and interest growing.",
       "finance": {
         "min_investment_usd": 80000,
         "typical_investment_usd": 150000,
         "gov_fees_usd": 10000,
         "processing_time_months": "3-6",
-        "tax_benefits": "Low tax jurisdiction. Potential for crypto incentives.",
+        "tax_benefits": "Territorial taxation — foreign-source income not taxed; mining taxed via corporate income tax (10% on distributed profits) and VAT (10%).",
         "crypto_friendly_score": 7,
-        "bitcoin_specific": "Watch for Bitcoin mining and adoption growth. Good cost-effective LatAm option."
+        "bitcoin_specific": "Among the cheapest industrial electricity globally (Itaipu hydro, ~$0.05–0.06/kWh) — significant mining sector; mining operations require registration and tax compliance."
       },
-      "details": "Emerging low-tax friendly jurisdiction. Add detailed finance and Bitcoin notes from latest research. Modeled minimum investment $80,000 (typical $150,000). Primary routes on file: SUACE investor residency, Real estate investment residency, Rentista / passive income proof. Tax notes: Low tax jurisdiction. Potential for crypto incentives. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-05-18",
+      "details": "Low-tax, cheap-power mining hub with territorial taxation. Modeled minimum investment $80,000 (typical $150,000); SUACE investor route verified at ~$70,000 over 10 years. Primary routes on file: SUACE investor residency, Real estate investment residency, Rentista / passive income proof. Tax notes: Territorial — foreign-source income not taxed; mining taxed at 10% CIT / 10% VAT. Verify every figure against primary sources and Satohash proofs before acting.",
+      "last_checked": "2026-08-22",
       "sources": [
         "Initial research",
         "MotoPass research corpus · last_checked 2026-05-18 · block 958093"
@@ -3012,7 +3020,7 @@
           "type": "suace",
           "label": "SUACE investor residency",
           "min_investment_usd": 70000,
-          "notes": "Simplified registry for foreign investors — business plan + capital commitment; verify current SUACE minimums with local counsel."
+          "notes": "Verified ~$70,000 minimum deployed over ~10 years through a Paraguayan operating company with a business plan and ~5 formal jobs; direct permanent residency (bypasses temporary phase); ~45 days–6 months processing."
         },
         {
           "type": "real_estate",
@@ -3044,7 +3052,7 @@
           "https://www.set.gov.py"
         ],
         "property_foreign_ownership": "Foreigners may own property; rural/agricultural land may have additional registration requirements.",
-        "recent_changes": "2022 migration law modernized residency categories; Bitcoin mining interest growing but regulatory framework still forming."
+        "recent_changes": "Law 6984/2022 modernized migration. Mining regulation evolved 2022–2024: legalization framework passed 2022–2023 (Senate Jun/Jul 2023); a 180-day mining ban was proposed Apr 2024 then paused; Jul 2024 law penalizes electricity theft for unauthorized mining (up to 10 years); Dec 2024 miner registration required; a May 2024 mining-AML bill remains under consideration."
       },
       "compliance_clock": {
         "renewal_interval_months": 24,
@@ -3059,7 +3067,7 @@
         ],
         "red_flags": [
           "Immigration bureaucracy can be slow and inconsistent",
-          "Bitcoin mining regulations still evolving",
+          "Mining rules shifted through 2024 (ban proposal, theft penalties, registration) — stay current",
           "Banking for crypto natives uneven"
         ],
         "optimization_tips": [
@@ -3172,6 +3180,14 @@
           "to": "re-anchored 96d4209201de7eda (stamp cf44590e-d51)",
           "source": "satohash-api",
           "hash": "96d4209201de7eda8a59c3d9891599223b1b3106ac44744e39c45eca089da5db"
+        },
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance.finance",
+          "from": "corpus BUILD 72",
+          "to": "Mining-regulation timeline 2022–2024 (framework, paused 180-day ban, Jul 2024 theft penalties, Dec 2024 registration); Itaipu electricity ~$0.05–0.06/kWh; SUACE $70k/10yr verified; last_checked refreshed",
+          "source": "Brave Search (fetched 2026-08-22): Lightspark 2026 · Digital Policy Alert (Jun 2022) · Central Banking (Jul 2023) · Forbes (2025) · Kraemer & Kraemer · NTL Trust · GoParaguay · Paraguay Sovereign · Move to Paraguay",
+          "hash": null
         }
       ]
     },

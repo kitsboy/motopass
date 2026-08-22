@@ -47,19 +47,23 @@ The web-search backend remained unavailable, but a Wikipedia-based pass
 - **Bolivia — UPDATED:** 2014 crypto ban (Res. 044) repealed by Central Bank
   Resolution 144 (15 Dec 2020) — crypto legal since. Corpus fields updated;
   `last_checked` → 2026-08-22.
-- **Paraguay + Panama — STILL BLOCKED:** no source accessible for their
-  visa thresholds / crypto-law status; corpus left unchanged and stale so the
-  daily pipeline keeps flagging them. Re-run when search access returns.
-- **Re-attempt (same day):** web search still down; EN + ES Wikipedia checked
-  for Panama Law 697 veto details and Paraguay SUACE/mine-law status — no
-  coverage. Absence of coverage is not confirmation; no changes made.
+- **Paraguay — COMPLETED (same day):** Brave Search came up as a fallback.
+  Verified mining-regulation timeline 2022–2024, Itaipu power economics
+  (~$0.05–0.06/kWh), and the SUACE threshold (~$70k/10yr). Corpus updated,
+  `last_checked` → 2026-08-22.
+- **Panama — COMPLETED (same day):** Verified crypto grey-area status (Bill
+  697 vetoed Jun 2022, Supreme Court strike-down Jul 2023, 2025 draft bill),
+  Friendly Nations floor raised $5k → $200k (Decree 226/2021), and Qualified
+  Investor modalities (RE $300k / securities $500k / deposit $750k). Corpus
+  updated, `last_checked` → 2026-08-22.
 - **Bolivia bonus:** ES Wikipedia surfaced a 2025 election proposal for a
   crypto-asset monetary-stabilization fund (unverified, not law) — logged in
   the Bolivia brief for monitoring.
 
 Sources: `Legality of cryptocurrency by country or territory` (Wikipedia,
-revision 2026-08-21) · EN + ES Wikipedia (fetched 2026-08-22). Verified
-facts only — no fabricated rules.
+revision 2026-08-21) · Brave Search + linked pages (Lightspark, Forbes,
+Central Banking, Kraemer & Kraemer, GoParaguay, Paraguay Sovereign, Move to
+Paraguay — all fetched 2026-08-22). Verified facts only — no fabricated rules.
 
 ```bash
 npm run research:pass        # regenerate briefs

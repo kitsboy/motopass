@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-22T13:49:46.368Z",
+  "generated_at": "2026-08-22T14:00:18.372Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
-    "fresh": 2,
+    "fresh": 4,
     "watch": 0,
-    "stale": 48,
-    "swept_at": "2026-08-22T13:49:46.368Z",
+    "stale": 46,
+    "swept_at": "2026-08-22T14:00:18.372Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -579,9 +579,9 @@
     "Panama": {
       "id": 13,
       "freshness": {
-        "status": "stale",
-        "days_stale": 90,
-        "last_checked": "2026-05-25"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -590,12 +590,19 @@
       },
       "proof": {
         "hash": "a20bb0c1ff9602261475d1369130271f74b97c5e3066aea8cc9826cab4f1a4c8",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:16:56.257Z",
         "stamp_id": "85290ed3-e9f7-4a5b-a9e7-f24d7b1858d1"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "finance.pathways.legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Crypto grey-area status (2022 veto, 2023 Supreme Court strike-down, 2025 draft bill); Friendly Nations floor corrected $5k -> $200k (Decree 226/2021); Qualified Investor modalities (RE $300k / securities $500k / deposit $750k); last_checked refreshed",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.gacetaoficial.gob.pa",
@@ -620,12 +627,6 @@
           "field": "proof",
           "from": "be87377d1f95266c",
           "to": "re-anchored f834d1ee5e418f43 (stamp 2cbba005-d46)",
-          "hash": "f834d1ee5e418f4384f709cb9f9699aa1b026a9b576a908055714b3fd6220c9e"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
           "hash": "f834d1ee5e418f4384f709cb9f9699aa1b026a9b576a908055714b3fd6220c9e"
         }
       ]
@@ -687,9 +688,9 @@
     "Paraguay": {
       "id": 15,
       "freshness": {
-        "status": "stale",
-        "days_stale": 97,
-        "last_checked": "2026-05-18"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -698,12 +699,19 @@
       },
       "proof": {
         "hash": "96d4209201de7eda8a59c3d9891599223b1b3106ac44744e39c45eca089da5db",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:17:05.878Z",
         "stamp_id": "cf44590e-d512-4515-adb5-74cb5c663775"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance.finance",
+          "from": "corpus BUILD 72",
+          "to": "Mining-regulation timeline 2022–2024 (framework, paused 180-day ban, Jul 2024 theft penalties, Dec 2024 registration); Itaipu electricity ~$0.05–0.06/kWh; SUACE $70k/10yr verified; last_checked refreshed",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",

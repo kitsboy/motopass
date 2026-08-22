@@ -4,11 +4,11 @@
 
 ## Current corpus facts (what we claim today)
 
-- **Bitcoin integration:** Territorial tax system. Crypto generally treated favorably. Popular with Bitcoiners and digital nomads. Friendly residency programs.
-- **Finance:** min $100000 · typical $200000 · gov fees $10000 · processing 2-5 mo
+- **Bitcoin integration:** Crypto legal but largely unregulated (grey area) — Bill 697 vetoed Jun 2022, struck down by Supreme Court Jul 2023; 2025 draft bill + Panama City crypto payments.
+- **Finance:** min $200000 · typical $300000 · gov fees $10000 · processing 2-5 mo
 - **Crypto friendly score:** 8/10 · **Sovereignty:** 8/10 · **Lightning ready:** yes
 - **Tax:** Territorial taxation — foreign income often not taxed. Very attractive for Bitcoin holders.
-- **Recent changes (on file):** 2021 decree raised qualified investor thresholds; Friendly Nations remains popular for low-capital entrants.
+- **Recent changes (on file):** Friendly Nations floor raised ~$5k → $200k by Decree 226 (Jul 2021); crypto grey-area status; 2025 bill to formalize crypto.
 
 ## What to verify (fill with sources)
 
@@ -28,9 +28,12 @@
 
 | Date | Fact changed | New value | Source URL | Confidence |
 |------|--------------|-----------|------------|------------|
-| 2026-08-22 | Verification blocked | Web-search backend unavailable and official portals bot-blocked — no rule updates drafted, nothing fabricated | — | — |
-| 2026-08-22 | Re-attempt | Search still down; checked EN + ES Wikipedia — no coverage of Law 697 veto detail or 2021 Decree 226 thresholds; corpus unchanged | https://en.wikipedia.org/wiki/Panama · https://es.wikipedia.org | Low (absence of coverage, not confirmation) |
+| 2026-08-22 | Crypto legal status | Legal but unregulated (grey area): Bill 697 vetoed Jun 2022 (AML/FATF); Supreme Court declared it unconstitutional Jul 2023; new draft bill 2025; Panama City accepts crypto for public services 2025 | https://lightspark.com/knowledge/is-crypto-legal-in-panama | High |
+| 2026-08-22 | Friendly Nations threshold | Raised ~$5k → $200,000 (real estate or 3-yr deposit) or employment by Executive Decree 226 (Jul 2021) | https://kraemerlaw.com · https://planbexpat.com | High |
+| 2026-08-22 | Qualified Investor modalities | Real estate $300k (5-yr) / securities $500k / 5-yr deposit $750k (Decree 722, Oct 2020) | https://kraemerlaw.com · https://globalresidenceindex.com | High |
+| 2026-08-22 | last_checked | refreshed 2026-08-22 | — | High |
 
 ## Verdict after research
 
-- [ ] Pending — verification blocked 2026-08-22; corpus left unchanged and stale so the daily pipeline keeps flagging it
+- [ ] No material change — refresh `last_checked` and re-verify figures
+- [x] Changes found — crypto grey-area status, Friendly Nations floor ($5k → $200k), Qualified Investor modalities applied to `legal_compliance.recent_changes`, `bitcoin_integration`, `finance`, `pathways`, `details`, `paige_fields`, `pros`; last_checked refreshed 2026-08-22. Pipeline will re-anchor on next intel run.
