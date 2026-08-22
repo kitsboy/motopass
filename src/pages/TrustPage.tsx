@@ -1,17 +1,43 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, lazy, Suspense } from 'react'
+import type { ReactNode } from 'react'
 import { ArrowLeftRight, ShieldCheck, BadgeCheck, RotateCcw } from 'lucide-react'
 import { useTrustIndex, fetchCountryTrust } from '../lib/countryTrust'
 import type { CountryTrustEnvelope } from '../types/countryTrust'
 import { FreshnessRing } from '../components/trust/FreshnessRing'
-import { ScorecardRadar } from '../components/trust/ScorecardRadar'
-import { ProofBadge } from '../components/trust/ProofBadge'
-import { ThresholdSparkline } from '../components/trust/ThresholdSparkline'
-import { SourceTierStrip } from '../components/trust/SourceTierStrip'
 import { BtcDualPrice } from '../components/BtcDualPrice'
 import { PageHeader } from '../components/ui/PageHeader'
 import { SeoHead } from '../components/SeoHead'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
+
+// Drawer-only charts (radar, sparkline, source tiers, proof badge) are code-split
+// and loaded ONLY when a card is tapped or compare is opened — they never touch the
+// initial grid paint. FreshnessRing + BtcDualPrice stay eager (used on every card).
+const ScorecardRadar = lazy(() =>
+  import('../components/trust/ScorecardRadar').then((m) => ({ default: m.ScorecardRadar })),
+)
+const ProofBadge = lazy(() =>
+  import('../components/trust/ProofBadge').then((m) => ({ default: m.ProofBadge })),
+)
+const ThresholdSparkline = lazy(() =>
+  import('../components/trust/ThresholdSparkline').then((m) => ({ default: m.ThresholdSparkline })),
+)
+const SourceTierStrip = lazy(() =>
+  import('../components/trust/SourceTierStrip').then((m) => ({ default: m.SourceTierStrip })),
+)
+
+/** Small Suspense fallback for the drawer charts. */
+const ChartSuspense = ({ children }: { children: ReactNode }) => (
+  <Suspense
+    fallback={
+      <div className="rounded-mp-lg border border-mp-border-subtle bg-mp-section/50 p-6 text-center font-body text-xs text-mp-ink-tertiary">
+        Loading chart…
+      </div>
+    }
+  >
+    {children}
+  </Suspense>
+)
 
 /**
  * TrustPage — the live trust-card surface (route /trust).
@@ -123,122 +149,95 @@ export function TrustPage() {
           ))}
         </div>
 
-        {loading ? (
+        {error ? (
+          <div className="rounded-mp-lg border border-mp-border bg-mp-card p-6 text-center font-body text-sm text-mp-ink-secondary">
+            {t('trust.error')}
+          </div>
+        ) : loading ? (
+          /* Lightweight loading state — NOT a 50-card skeleton grid. Inserting a
+             15,000px-tall skeleton AFTER first paint caused a ~1.0 CLS (Core Web Vital)
+             in ~50% of slow loads (async two-phase insert). A compact spinner avoids
+             the massive off-screen insertion; the real grid mounts in one pass when
+             the index arrives. */
           <div
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
             role="status"
             aria-busy="true"
             aria-label={t('trust.loading')}
+            className="flex items-center justify-center gap-3 rounded-mp-lg border border-mp-border-subtle bg-mp-card px-4 py-10 font-body text-sm text-mp-ink-secondary"
           >
-            {/* Skeleton reserves the SAME grid footprint as the live 50-card grid
-                (contentVisibility + containIntrinsicSize) so the skeleton->grid swap
-                is height-neutral — no layout shift when cards arrive. */}
-            {Array.from({ length: 50 }).map((_, i) => (
-              <div
-                key={i}
-                className="flex min-h-[255px] flex-col rounded-card border border-mp-border-subtle bg-mp-card p-5"
-                style={{
-                  animationDelay: `${Math.min(i, 6) * 50}ms`,
-                  contentVisibility: 'auto',
-                  containIntrinsicSize: 'auto 255px',
-                }}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex min-w-0 items-center gap-3">
-                    <span className="skeleton-shimmer h-8 w-8" />
-                    <div className="min-w-0 flex-1 space-y-2">
-                      <div className="skeleton-shimmer h-5 w-2/3" />
-                      <div className="skeleton-shimmer h-3 w-1/3" />
-                    </div>
-                  </div>
-                  <span className="skeleton-shimmer h-16 w-16 shrink-0 rounded-full" />
-                </div>
-                <div className="mt-4 flex gap-2">
-                  <div className="skeleton-shimmer h-6 w-24" />
-                  <div className="skeleton-shimmer h-6 w-20" />
-                </div>
-                <div className="mt-auto pt-4">
-                  <div className="skeleton-shimmer h-12 w-full" />
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : error ? (
-          <div className="rounded-mp-lg border border-mp-border bg-mp-card p-6 text-center font-body text-sm text-mp-ink-secondary">
-            {t('trust.error')}
+            <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-mp-btc/30 border-t-mp-btc" aria-hidden="true" />
+            {t('trust.loading')}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {countries.map((c, i) => (
               <button
                 key={c.iso2}
-                type="button"
-                onClick={() => openCountry(c.iso2)}
-                className="group relative w-full overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc"
-                style={{
-                  animationDelay: `${Math.min(i, 6) * 50}ms`,
-                  contentVisibility: 'auto',
-                  containIntrinsicSize: 'auto 255px',
-                }}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex min-w-0 items-center gap-3">
-                    <span className="text-3xl leading-none" aria-hidden="true">
-                      {c.flag ?? '🏳️'}
-                    </span>
-                    <div className="min-w-0">
-                      <h3 className="font-display text-lg leading-tight text-mp-ink">{c.name}</h3>
-                      <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
-                        {c.iso2}
+                    type="button"
+                    onClick={() => openCountry(c.iso2)}
+                    className="group relative flex min-h-[297px] w-full flex-col overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc"
+                    style={{
+                      animationDelay: `${Math.min(i, 6) * 50}ms`,
+                    }}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex min-w-0 items-center gap-3">
+                        <span className="text-3xl leading-none" aria-hidden="true">
+                          {c.flag ?? '🏳️'}
+                        </span>
+                        <div className="min-w-0">
+                          <h3 className="font-display text-lg leading-tight text-mp-ink">{c.name}</h3>
+                          <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
+                            {c.iso2}
+                          </span>
+                        </div>
+                      </div>
+                      <FreshnessRing
+                        status={c.freshness_status}
+                        daysStale={c.days_stale}
+                        verifiedAt={null}
+                        label={formatT(t, 'trust.freshnessLabel', { name: c.name })}
+                      />
+                    </div>
+
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      {c.proof_status === 'confirmed' ? (
+                        <span className="inline-flex items-center gap-1 rounded-chip border border-mp-proof/35 bg-mp-proof-soft px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-mp-proof">
+                          <BadgeCheck className="h-2.5 w-2.5" aria-hidden="true" /> {t('trust.bitcoinAnchored')}
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 rounded-chip border border-mp-ochre/40 bg-mp-btc-soft px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-mp-btc-text">
+                          {t('trust.proofPending')}
+                        </span>
+                      )}
+                      {c.sovereignty_score != null && (
+                        <span className="font-mono text-[10px] text-mp-ink-tertiary">
+                          {formatT(t, 'trust.sovereignty', { score: c.sovereignty_score })}
+                        </span>
+                      )}
+                    </div>
+
+                    {c.min_investment_usd != null && (
+                      <div className="mt-3 flex items-center justify-between gap-3 rounded-mp-lg border border-mp-border-subtle bg-mp-section/50 px-3 py-2">
+                        <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
+                          {t('trust.minInvest')}
+                        </span>
+                        <BtcDualPrice usd={c.min_investment_usd} size="sm" layout="stack" className="items-end" />
+                      </div>
+                    )}
+
+                    <div className="mt-auto flex items-center gap-1.5 border-t border-mp-border-subtle pt-3 font-body text-[11px] text-mp-ink-tertiary">
+                      {c.freshness_status === 'fresh'
+                        ? t('trust.cardFresh')
+                        : c.freshness_status === 'watch'
+                          ? t('trust.cardWatch')
+                          : t('trust.cardStale')}
+                      <span className="ml-auto font-mono text-[10px] uppercase tracking-wide text-mp-btc-text opacity-0 transition-opacity group-hover:opacity-100">
+                        {t('trust.details')} →
                       </span>
                     </div>
-                  </div>
-                  <FreshnessRing
-                    status={c.freshness_status}
-                    daysStale={c.days_stale}
-                    verifiedAt={null}
-                    label={formatT(t, 'trust.freshnessLabel', { name: c.name })}
-                  />
-                </div>
-
-                <div className="mt-3 flex flex-wrap items-center gap-2">
-                  {c.proof_status === 'confirmed' ? (
-                    <span className="inline-flex items-center gap-1 rounded-chip border border-mp-proof/35 bg-mp-proof-soft px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-mp-proof">
-                      <BadgeCheck className="h-2.5 w-2.5" aria-hidden="true" /> {t('trust.bitcoinAnchored')}
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1 rounded-chip border border-mp-ochre/40 bg-mp-btc-soft px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-mp-btc-text">
-                      {t('trust.proofPending')}
-                    </span>
-                  )}
-                  {c.sovereignty_score != null && (
-                    <span className="font-mono text-[10px] text-mp-ink-tertiary">
-                      {formatT(t, 'trust.sovereignty', { score: c.sovereignty_score })}
-                    </span>
-                  )}
-                </div>
-
-                {c.min_investment_usd != null && (
-                  <div className="mt-3 flex items-center justify-between gap-3 rounded-mp-lg border border-mp-border-subtle bg-mp-section/50 px-3 py-2">
-                    <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
-                      {t('trust.minInvest')}
-                    </span>
-                    <BtcDualPrice usd={c.min_investment_usd} size="sm" layout="stack" className="items-end" />
-                  </div>
-                )}
-
-                <div className="mt-4 flex items-center gap-1.5 border-t border-mp-border-subtle pt-3 font-body text-[11px] text-mp-ink-tertiary">
-                  {c.freshness_status === 'fresh'
-                    ? t('trust.cardFresh')
-                    : c.freshness_status === 'watch'
-                      ? t('trust.cardWatch')
-                      : t('trust.cardStale')}
-                  <span className="ml-auto font-mono text-[10px] uppercase tracking-wide text-mp-btc-text opacity-0 transition-opacity group-hover:opacity-100">
-                    {t('trust.details')} →
-                  </span>
-                </div>
-              </button>
-            ))}
+                  </button>
+                ))}
           </div>
         )}
 
@@ -275,11 +274,19 @@ export function TrustPage() {
               </div>
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <ScorecardRadar scorecard={selected.scorecard} />
+                <ChartSuspense>
+                  <ScorecardRadar scorecard={selected.scorecard} />
+                </ChartSuspense>
                 <div className="space-y-3">
-                  <ProofBadge proof={selected.proof} />
-                  <ThresholdSparkline threshold={selected.threshold} />
-                  <SourceTierStrip sources={selected.sources} />
+                  <ChartSuspense>
+                    <ProofBadge proof={selected.proof} />
+                  </ChartSuspense>
+                  <ChartSuspense>
+                    <ThresholdSparkline threshold={selected.threshold} />
+                  </ChartSuspense>
+                  <ChartSuspense>
+                    <SourceTierStrip sources={selected.sources} />
+                  </ChartSuspense>
                   <div className="rounded-mp-lg border border-mp-border-subtle bg-mp-section/60 p-3 font-body text-[12px] leading-relaxed text-mp-ink-secondary">
                     <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
                       {t('trust.auditTrail')}
@@ -375,9 +382,13 @@ export function TrustPage() {
                           ✕
                         </button>
                       </div>
-                      <ScorecardRadar scorecard={env.scorecard} />
+                      <ChartSuspense>
+                        <ScorecardRadar scorecard={env.scorecard} />
+                      </ChartSuspense>
                       <div className="mt-2">
-                        <SourceTierStrip sources={env.sources} />
+                        <ChartSuspense>
+                          <SourceTierStrip sources={env.sources} />
+                        </ChartSuspense>
                       </div>
                     </div>
                   ))}

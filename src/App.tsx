@@ -1,7 +1,6 @@
 import { lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { I18nProvider } from './i18n/I18nContext'
-import { PitchPage } from './pages/PitchPage'
 import { UserProvider } from './context/UserContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { ProgramsProvider } from './context/ProgramsContext'
@@ -14,18 +13,6 @@ import { Layout } from './components/Layout'
 import { RouteSuspense } from './components/RouteSuspense'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { ToastProvider } from './components/ui/Toast'
-import { FinanceComparePage } from './pages/FinanceComparePage'
-import { VerifyPage } from './pages/VerifyPage'
-import { ProgramsPage } from './pages/ProgramsPage'
-import { VaultPage } from './pages/VaultPage'
-import { DistressedPage } from './pages/DistressedPage'
-import { AgentsPage } from './pages/AgentsPage'
-import { ApplyPage } from './pages/ApplyPage'
-import { StackSimulatorPage } from './pages/StackSimulatorPage'
-import { PortfolioPage } from './pages/PortfolioPage'
-import { BtcMapPage } from './pages/BtcMapPage'
-import { BlogPage } from './pages/BlogPage'
-import { BlogPostPage } from './pages/BlogPostPage'
 
 const DashboardPage = lazy(() =>
   import('./pages/DashboardPage').then((m) => ({ default: m.DashboardPage })),
@@ -33,7 +20,6 @@ const DashboardPage = lazy(() =>
 const TrustPage = lazy(() =>
   import('./pages/TrustPage').then((m) => ({ default: m.TrustPage })),
 )
-
 const RegisterPage = lazy(() =>
   import('./pages/RegisterPage').then((m) => ({ default: m.RegisterPage })),
 )
@@ -42,6 +28,39 @@ const ProfilePage = lazy(() =>
 )
 const NotFoundPage = lazy(() =>
   import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })),
+)
+// Code-split the remaining static routes (batch adv10B perf): shrinks the
+// critical-path index chunk so /trust (and every route) mounts faster.
+// These were already lazy-prefetched by prefetchRoutes.ts — App was the only
+// thing keeping them in the main bundle.
+const PitchPage = lazy(() => import('./pages/PitchPage').then((m) => ({ default: m.PitchPage })))
+const FinanceComparePage = lazy(() =>
+  import('./pages/FinanceComparePage').then((m) => ({ default: m.FinanceComparePage })),
+)
+const ProgramsPage = lazy(() =>
+  import('./pages/ProgramsPage').then((m) => ({ default: m.ProgramsPage })),
+)
+const VaultPage = lazy(() => import('./pages/VaultPage').then((m) => ({ default: m.VaultPage })))
+const DistressedPage = lazy(() =>
+  import('./pages/DistressedPage').then((m) => ({ default: m.DistressedPage })),
+)
+const AgentsPage = lazy(() =>
+  import('./pages/AgentsPage').then((m) => ({ default: m.AgentsPage })),
+)
+const ApplyPage = lazy(() => import('./pages/ApplyPage').then((m) => ({ default: m.ApplyPage })))
+const StackSimulatorPage = lazy(() =>
+  import('./pages/StackSimulatorPage').then((m) => ({ default: m.StackSimulatorPage })),
+)
+const PortfolioPage = lazy(() =>
+  import('./pages/PortfolioPage').then((m) => ({ default: m.PortfolioPage })),
+)
+const BtcMapPage = lazy(() => import('./pages/BtcMapPage').then((m) => ({ default: m.BtcMapPage })))
+const BlogPage = lazy(() => import('./pages/BlogPage').then((m) => ({ default: m.BlogPage })))
+const BlogPostPage = lazy(() =>
+  import('./pages/BlogPostPage').then((m) => ({ default: m.BlogPostPage })),
+)
+const VerifyPage = lazy(() =>
+  import('./pages/VerifyPage').then((m) => ({ default: m.VerifyPage })),
 )
 
 export default function App() {
