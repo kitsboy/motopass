@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.08.20-72 · **Last updated:** 2026-08-20
+**BUILD:** 2026.08.20-72 · **Last updated:** 2026-08-22
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -12,6 +12,8 @@ Living record of what shipped, what's in progress, and where to find everything.
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
 | **React app** | ✅ 2026.08.20-72 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **Country intel** | ✅ 24 fresh / 26 stale | 24/50 programs deepened & verified (5 batches, Aug 21–22) |
+| **Research pipeline** | 📋 Blueprinted | `docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md` — source-trust engine spec |
 | **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
 | **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
 | **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
@@ -31,6 +33,12 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.08.22** | 2026-08-22 | `d9a86f6` | Claude research-pipeline prompt — source-trust engine blueprint (478-line spec) |
+| **2026.08.22** | 2026-08-22 | `806977f` | Batch 5 (Greece/Vanuatu/Turkey/Mauritius) + CIES/LTR thresholds + Satohash re-stamp 10/24 |
+| **2026.08.22** | 2026-08-22 | `0dc825f` | Batch 4 (HK/Thailand/Mexico/Cyprus) — Thailand payment-tool ban added |
+| **2026.08.22** | 2026-08-22 | `24c67e9` | Batch 3 — **El Salvador legal-tender revoked Feb 2025** + 5 verified |
+| **2026.08.21** | 2026-08-21 | `dfc8d11` | Batch 2 (Portugal/Malta/SKN/Antigua/Dominica/Uruguay) |
+| **2026.08.21** | 2026-08-21 | `a14704e` | Batch 1 (CAR/Bolivia/PY/PA) — Panama thresholds corrected |
 | **2026.08.20-72** | 2026-08-20 | `55d228d` | Eager remaining lazy routes (BTC Map / Portfolio / Blog), hero e2e selector fix |
 | **2026.08.18-71** | 2026-08-18 | `f85aa51` | Eager primary routes, honest distressed badges, signed-event verify, redacted hashes, no committed dist |
 | **2026.08.18-70** | 2026-08-18 | `1a99116` | Fix programs crash: dedupe react-router, eager programs/vault, route error boundary |
@@ -80,7 +88,9 @@ Living record of what shipped, what's in progress, and where to find everything.
 - [x] Playwright e2e in CI, sitemap, hreflang, bundle budget
 
 ### P1 — Next
-- [ ] Deepen all 50 countries to Uruguay flagship template depth
+- [ ] Deepen remaining 26 countries to Uruguay flagship template depth (**24/50 done** — 5 batches Aug 21–22; next batch: Seychelles, Brazil, Argentina, Chile, Colombia, St. Lucia)
+- [ ] Build the source-trust engine from `docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md` (source registry + discovery + Satohash-anchored source hashes)
+- [ ] Verify remaining unverified thresholds (Mexico INM, Cyprus 6.2, Singapore GIP — flagged in briefs)
 - [ ] Live Nostr relay + real npub auth (beyond BTC Map saves)
 - [x] Satohash stamp API + Nostr kind 30078 attestations (BUILD 68)
 - [ ] Paige AI backend (beyond simulated chat)

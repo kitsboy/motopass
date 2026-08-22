@@ -4,7 +4,28 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 ---
 
+## [2026-08-22] — Country-intel deepening blitz
 
+### Added
+- `docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md` — comprehensive prompt (478 lines) for Claude to build the source-trust engine: questionnaire, all 50 countries with hot-button items, source-criteria, free-first API table, build plan
+- 24 research briefs across `research/passes/2026-08-21/` and `research/passes/2026-08-22/`
+
+### Changed
+- 24/50 programs deepened & verified with dated sourced facts + `audit_trail` (5 batches, commits `a14704e` → `806977f`)
+- **El Salvador:** Bitcoin legal-tender revoked Feb 2025 (IMF deal) — moved to `rbi_cbi`
+- **Panama:** Friendly Nations threshold $5k → $200k (Decree 226); Qualified Investor RE $300k / securities $500k / deposit $750k
+- **Portugal:** naturalisation 7/10 yrs (Lei Orgânica 1/2026); compliance clock 5 → 10
+- **Malta:** CBI terminated (CJEU C-181/23 + Act XXI/2025); MPRP details updated
+- **St. Kitts:** SGF → SISC $250k; RE floor $400k → $325k
+- **Thailand:** payment-tool ban since 1 Apr 2022 added
+- **Vanuatu:** crypto ban lifted Jul 2021; **Turkey:** CBRT payment ban (30 Apr 2021)
+- CAR, Bolivia, Uruguay, Antigua, Dominica, HK, Mexico, Cyprus, Greece, Mauritius, Singapore, UAE, Georgia, Costa Rica, Switzerland verified/refreshed
+
+### Verified
+- HK CIES HK$30M incl. HK$3M CIES-IP; Thailand LTR (Wealthy = USD 1M + USD 500k Thai investment) — official sources
+- Satohash re-stamp 10/24 drifted programs (`validate:stamps` ✓)
+
+---
 
 ## [BUILD-2026.08.20-72] — 2026-08-20
 

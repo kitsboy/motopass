@@ -1,6 +1,6 @@
 # MotoPass Documentation Hub
 
-**BUILD:** 2026.08.20-72 · **Last updated:** 2026-08-20
+**BUILD:** 2026.08.20-72 · **Last updated:** 2026-08-22
 
 Official documentation for MotoPass. All long-form docs live here unless required at repo root (see [WORK-TREE.md](./WORK-TREE.md)).
 
@@ -20,6 +20,8 @@ Official documentation for MotoPass. All long-form docs live here unless require
 | System architecture & nav | [ARCHITECTURE.md](./ARCHITECTURE.md) · [DIRECTORY-MAP.md](./DIRECTORY-MAP.md) |
 | Agent context map | [.ai_docs/context_map.md](../.ai_docs/context_map.md) |
 | BTC Map integration details | [ARCHITECTURE.md](./ARCHITECTURE.md) · [DATA-MODEL.md](./DATA-MODEL.md) |
+| Upgrade the research pipeline | [CLAUDE-RESEARCH-PIPELINE-PROMPT.md](./CLAUDE-RESEARCH-PIPELINE-PROMPT.md) |
+| Country-intel freshness & passes | [COUNTRY-INTEL.md](./COUNTRY-INTEL.md) · `research/passes/` |
 
 ---
 
@@ -53,6 +55,8 @@ Official documentation for MotoPass. All long-form docs live here unless require
 - [DATA-MODEL.md](./DATA-MODEL.md) — includes BTC Map cache/density schemas
 - [BITCOIN-VERIFICATION.md](./BITCOIN-VERIFICATION.md)
 - [SECURITY-TIMESTAMP-NOSTR.md](./SECURITY-TIMESTAMP-NOSTR.md) — Nostr is gossip; Satohash/OTS is proof
+- [CLAUDE-RESEARCH-PIPELINE-PROMPT.md](./CLAUDE-RESEARCH-PIPELINE-PROMPT.md) — source-trust engine blueprint
+- [COUNTRY-INTEL.md](./COUNTRY-INTEL.md) — 50-jurisdiction self-healing pipeline
 - [PAIGE-AI.md](./PAIGE-AI.md)
 - [I18N.md](./I18N.md)
 

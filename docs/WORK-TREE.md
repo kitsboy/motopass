@@ -48,6 +48,8 @@ Root stubs (redirect only): `SOURCE-OF-TRUTH.md`, `DIRECTORY-MAP.md`, `DESIGN.md
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | System architecture & deploy |
 | [DATA-MODEL.md](./DATA-MODEL.md) | `countries.json` schema |
 | [BITCOIN-VERIFICATION.md](./BITCOIN-VERIFICATION.md) | OTS + Satohash flows |
+| [CLAUDE-RESEARCH-PIPELINE-PROMPT.md](./CLAUDE-RESEARCH-PIPELINE-PROMPT.md) | Source-trust engine blueprint |
+| [COUNTRY-INTEL.md](./COUNTRY-INTEL.md) | 50-jurisdiction self-healing pipeline |
 | [PAIGE-AI.md](./PAIGE-AI.md) | AI concierge spec |
 | [I18N.md](./I18N.md) | Internationalization |
 
@@ -108,6 +110,8 @@ src/
 |------|---------|
 | `countries.json` | **50 programs** — live data for app + demo |
 | `uruguay-flagship.md` | v2.0 deep template for expansion |
+| `passes/2026-08-21/` | Batch 1–2 briefs (CAR, Bolivia, PY, PA, Portugal, Malta, SKN, Antigua, Dominica, Uruguay) |
+| `passes/2026-08-22/` | Batch 3–5 briefs (El Salvador, CH, SG, UAE, GE, CR, HK, TH, MX, CY, Greece, Vanuatu, Turkey, Mauritius) |
 
 ---
 

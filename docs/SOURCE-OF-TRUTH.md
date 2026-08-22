@@ -1,9 +1,9 @@
 # SOURCE-OF-TRUTH — MotoPass
 
 **Project:** MotoPass  
-**Date:** 2026-08-20  
+**Date:** 2026-08-22  
 **BUILD:** 2026.08.20-72  
-**Commit:** `f5c575e` (BUILD 66 compare fix)
+**Commit:** `d9a86f6` (research-pipeline blueprint)
 
 ## Project overview
 
@@ -49,6 +49,8 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 - **Launch Engine** — `npm run launch:gate` → `public/launch-gates.json`
 - **Canonical nav** — `src/lib/navRoutes.ts` (8 links, mobile bottom + More sheet)
 - **Sovereign UI** — glass cards, BTC textures, dark default, motion polish
+- **Country intel deepened** — **24/50 programs** re-verified/corrected across 5 batches (Aug 21–22): El Salvador legal-tender revocation (Feb 2025), Panama threshold corrections, Portugal nationality reform, Malta CBI termination, Thailand payment-tool ban, + 19 more (see `docs/KIMI-HANDOFF.md` top entry)
+- **Research-pipeline blueprint** — `docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md`: questionnaire, 50-country hot-button map, source-criteria, free-first API table, build plan for the Satohash-anchored source-trust engine
 - **BTC Map layer** (`/btcmap`): Leaflet map, merchant list, area chips, program modal panel
 - **Merchant density badges** on program cards (sparse / moderate / dense)
 - **Nostr NIP-98** sign-in for BTC Map saved merchants (heart toggle)
@@ -62,11 +64,13 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 ## Gaps & next priorities
 
-1. **Bitcoin core** — Live Satohash stamp is shipped; Lightning BOLT11 mint still open
-2. **Nostr** — Attestations ship (BUILD 68); live MotoPass relay + npub-native routing still open
-3. **PSBT escrow** — Real 2-of-3 after legal sign-off
-4. **Paige AI** — Move from simulated to real concierge
-5. **CI** — Generate `dist/` in pipeline (not committed; weekly `btcmap:sync` already ships)
+1. **Country intel** — 26/50 still stale; unverified thresholds flagged (Mexico INM, Cyprus 6.2, Singapore GIP)
+2. **Source-trust engine** — Build the registry + discovery + Satohash-anchored source hashes from the Claude prompt spec
+3. **Bitcoin core** — Live Satohash stamp is shipped; Lightning BOLT11 mint still open
+4. **Nostr** — Attestations ship (BUILD 68); live MotoPass relay + npub-native routing still open
+5. **PSBT escrow** — Real 2-of-3 after legal sign-off
+6. **Paige AI** — Move from simulated to real concierge
+7. **CI** — Generate `dist/` in pipeline (not committed; weekly `btcmap:sync` already ships)
 
 ## Agent instructions
 

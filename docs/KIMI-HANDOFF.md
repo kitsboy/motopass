@@ -1,3 +1,29 @@
+## Session — 2026-08-22 (Grok/M3) — Country-intel deepening blitz (24 fresh/26 stale) + Claude research-pipeline prompt — BUILD 72
+
+**Done (user request: deepen the stalest countries batch-by-batch via the Wikipedia Legality page, verify thresholds, re-stamp, and hand off):**
+- **5 research batches completed this session** — 24 programs re-verified/corrected with dated, sourced facts + `audit_trail` entries. All gates pass; `intel.json` regenerated each batch; every push auto-deployed and **verified live** against `/research/countries.json`:
+  - **Batch 1 (2026-08-21):** CAR (repeal 2023 → `rbi_cbi`), Bolivia (BCB 144), Paraguay (Itaipu + SUACE $70k verified), Panama (Friendly Nations $5k→$200k correction, Qualified Investor RE $300k/securities $500k/deposit $750k, 2022 veto + 2023 SC strike-down) — `a14704e`
+  - **Batch 2:** Portugal (Lei Orgânica 1/2026 naturalisation 7/10yrs, clock 5→10), Malta (CBI terminated by CJEU C-181/23 + Act XXI/2025; MPRP details), St. Kitts (SISC $250k, RE floor $400k→$325k), Antigua (business route $400k share of $5M+), Dominica (EDF $200k), Uruguay (re-verified) — `dfc8d11`
+  - **Batch 3:** 🚨 **El Salvador — Bitcoin legal-tender REVOKED Feb 2025** (IMF $1.4B deal condition) → last `legal_tender_bitcoin` moved to `rbi_cbi`; Switzerland lump-sum tax verified; Singapore (PSA 2019); UAE (VARA/DFSA/FSRA/CBUAE+SCA as of Oct 2025); Georgia (2019 MoF 0% gains); Costa Rica (BCCR 2017) — `24c67e9`
+  - **Batch 4:** Hong Kong (VATP mid-2024), Thailand (payment-tool ban since 1 Apr 2022 — new fact), Mexico (FinTech Law), Cyprus (legal, CASP/MiCA for business) — `0dc825f`
+  - **Batch 5:** Greece, Vanuatu (ban lifted Jul 2021), Turkey (CBRT payment ban 30 Apr 2021), Mauritius (FSC Digital Asset under FSA 2007) — `806977f`
+- **Residency thresholds verified** (Brave Search, recovered after rate-limits): HK CIES HK$30M incl. mandatory HK$3M CIES-IP + RE cap HK$10M; Thailand LTR full official BOI requirements (Wealthy = USD 1M assets + **USD 500k Thai investment** — corpus corrected). **Honestly deferred (no fabrication):** Mexico INM + Cyprus 6.2 thresholds — Brave rate-limited, official sites block bots; flagged in briefs as monitoring items.
+- **Satohash re-stamp:** `intel:stamp` re-anchored 10/24 drifted programs before API throttle; remaining 14 heal on next daily run (incremental self-heal by design). `validate:stamps` ✓.
+- **`docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md`** (new, 478 lines, `d9a86f6`) — comprehensive prompt for Claude to improve the research pipeline: MotoPass mission, Satohash/OTS verification model, schema v3 data contract, the 6-question-per-country questionnaire, **all 50 countries with their known hot-button items**, 7-axis source-criteria, build plan (source registry / discovery tool / trust engine), free-first API table + paid shortlist, deliverables, and hard rules.
+- **Research passes:** `research/passes/2026-08-21/` (10 briefs: CAR, Bolivia, PY, PA + batch-2 six) and `research/passes/2026-08-22/` (14 briefs: batch-3 six, batch-4 four, batch-5 four) with per-pass READMEs.
+- **Verified:** all gates green (`validate:data` ✓, `validate:stamps` ✓, `intel:check` ✓), every deploy confirmed live (batch strings found in live `/research/countries.json`). Freshness: **24 fresh / 26 stale**.
+
+**Decisions:**
+- El Salvador treated like CAR (historical-pioneer reframe + `rbi_cbi` category) — never fabricate; unverifiable thresholds left flagged, not guessed.
+- New `docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md` is the blueprint for the next big push: build the source-trust engine (Satohash-anchored source content at fetch time).
+
+**Git State:**
+- Commits this session: `a14704e`, `dfc8d11`, `24c67e9`, `0dc825f`, `806977f`, `d9a86f6` (all pushed)
+- Working tree: see status below (docs handoff pending commit)
+- Branch: main
+
+---
+
 ## Session — 2026-08-21 (Grok/M3) — Paige knowledge-base wiring: RAG retrieval + knowledge search — BUILD 72
 
 **Done (user request: "Wire all three Paige knowledge JSONs into the RAG retrieval"):**

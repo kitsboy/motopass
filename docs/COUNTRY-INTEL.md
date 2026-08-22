@@ -8,6 +8,12 @@ trail, and re-stamps changed programs via the Satohash API.
 always human-reviewed (us / Kimi / Paige). `last_checked` is a human research
 date — the pipeline never rewrites it, so daily sweeps never trigger re-stamps.
 
+**Status (2026-08-22):** **24 fresh / 26 stale.** 24 programs deepened & verified
+across 5 research batches (Aug 21–22) — see `research/passes/2026-08-21/` and
+`research/passes/2026-08-22/` for per-country briefs. Blueprint for upgrading the
+whole pipeline (source registry, Satohash-anchored source hashes at fetch time):
+`docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md`.
+
 ---
 
 ## Data flow
