@@ -1,6 +1,6 @@
 # Freshness research pass — 2026-08-22 (batch 2)
 
-**Scope:** 6 programs (ranks 11–16 by staleness, after the 2026-08-21 batch).
+**Scope:** 10 programs (ranks 11–20 by staleness, after the 2026-08-21 batch).
 Filled with sourced findings, then `countries.json` updated and re-anchored.
 
 | Rank | Program | Stale (days) | Brief |
@@ -11,6 +11,10 @@ Filled with sourced findings, then `countries.json` updated and re-anchored.
 | 4 | UAE (Dubai / Abu Dhabi) | 75 | `uae-dubai-abu-dhabi-brief.md` |
 | 5 | Georgia | 75 | `georgia-brief.md` |
 | 6 | Costa Rica | 50 | `costa-rica-brief.md` |
+| 7 | Hong Kong | 50 | `hong-kong-brief.md` |
+| 8 | Thailand | 50 | `thailand-brief.md` |
+| 9 | Mexico | 50 | `mexico-brief.md` |
+| 10 | Cyprus | 50 | `cyprus-brief.md` |
 
 ## Method
 
@@ -44,10 +48,19 @@ Reuters/IMF coverage surfaced by the one Brave query that did succeed
   “Georgia-sourced”, personal crypto gains taxed at 0%.
 - **Costa Rica:** BCCR (Oct 2017) statement confirmed — crypto not considered
   currency, excluded from national payment system, use at own risk.
+- **Hong Kong:** legal since 2013 (HKMA: virtual commodity); VATP regulations
+  in force mid-2024 under the SFC “same activity, same risks, same
+  regulation” principle — confirms corpus SFC framing.
+- **Thailand:** legal to trade/hold, but **illegal as a payment tool since
+  1 Apr 2022** (banks cautioned) — new fact added to corpus.
+- **Mexico:** legal since 2017; FinTech Law regulates crypto as virtual
+  assets with case-by-case taxation — confirms corpus.
+- **Cyprus:** legal and unregulated for individual use; business activity
+  falls under CySEC CASP licensing + EU MiCA (from 2025).
 
 ## Result
 
-`intel.json` regenerated — **16 fresh / 0 watch / 34 stale** (was 10 fresh).
+`intel.json` regenerated — **20 fresh / 0 watch / 30 stale** (was 16 fresh).
 All gates pass (`validate:data`, `validate:stamps`, `intel:check`).
 
 Sources: `Legality of cryptocurrency by country or territory` (Wikipedia,

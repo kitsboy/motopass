@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-22T14:30:17.121Z",
+  "generated_at": "2026-08-22T14:32:58.711Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
-    "fresh": 16,
+    "fresh": 20,
     "watch": 0,
-    "stale": 34,
-    "swept_at": "2026-08-22T14:30:17.121Z",
+    "stale": 30,
+    "swept_at": "2026-08-22T14:32:58.711Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -856,9 +856,9 @@
     "Hong Kong": {
       "id": 17,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
@@ -867,12 +867,19 @@
       },
       "proof": {
         "hash": "d8a92c2d9cbbc542de1a5e16ff9a30561203f926395d6ed015073ffacf45aba3",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:17:14.441Z",
         "stamp_id": "943d564b-d674-4556-979e-2bd792e1fa43"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "VATP regs in force mid-2024 (SFC, same-activity-same-regulation); crypto legal in HK since 2013 (HKMA: virtual commodity)",
+          "hash": null
+        },
         {
           "date": "2026-08-22",
           "field": "watch.https://www.sfc.hk",
@@ -904,9 +911,9 @@
     "Thailand": {
       "id": 18,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -915,12 +922,19 @@
       },
       "proof": {
         "hash": "933e6a8cbf299b9e91a2545903a2fb57c017297e6c2ea83422a5012533f527e2",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:17:17.865Z",
         "stamp_id": "d9b48d05-1a79-4836-a948-a7f0eb4c4cd2"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Payment-tool ban since 1 Apr 2022 verified; holding/trading legal; banks cautioned",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -946,9 +960,9 @@
     "Mexico": {
       "id": 19,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -957,12 +971,19 @@
       },
       "proof": {
         "hash": "b08619ddb123a7521f25a0777c841d262971f254b4ffc4a76f14e6e3b57e5f37",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:17:21.308Z",
         "stamp_id": "50affa60-c6eb-42ba-bea5-e6754aa239f6"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Legal since 2017; FinTech Law regulates crypto as virtual assets (taxation case-by-case)",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
@@ -988,9 +1009,9 @@
     "Cyprus": {
       "id": 20,
       "freshness": {
-        "status": "stale",
-        "days_stale": 52,
-        "last_checked": "2026-07-02"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": false,
@@ -999,12 +1020,19 @@
       },
       "proof": {
         "hash": "623699c60b4f6370651aa79f65fac7d2ba3bb644b0a7a9e36ce794e568d22856",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-21T00:17:26.770Z",
         "stamp_id": "5e5671b5-762c-4b4b-a5a3-8457f86195ce"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-22",
+          "field": "legal_compliance",
+          "from": "corpus BUILD 72",
+          "to": "Use legal + unregulated for individuals; CySEC CASP + EU MiCA apply to business activity",
+          "hash": null
+        },
         {
           "date": "2026-08-21",
           "field": "proof",
