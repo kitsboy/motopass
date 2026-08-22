@@ -2,6 +2,8 @@ import { useId, useState } from 'react'
 import { useBtcPrice } from '../../context/BtcPriceContext'
 import { formatDualUsd, formatUsdCompact } from '../../lib/btcPrice'
 import type { CountryTrustEnvelope } from '../../types/countryTrust'
+import { useI18n } from '../../i18n/I18nContext'
+import { formatT } from '../../i18n/format'
 
 /**
  * ThresholdSparkline — min_investment_usd over time, BTC-first.
@@ -16,6 +18,7 @@ export function ThresholdSparkline({
 }: {
   threshold: CountryTrustEnvelope['threshold']
 }) {
+  const { t } = useI18n()
   const { rate } = useBtcPrice()
   const [active, setActive] = useState<number | null>(null)
   const id = useId()
@@ -49,7 +52,7 @@ export function ThresholdSparkline({
     <div className="w-full">
       <div className="mb-1 flex items-baseline justify-between gap-2">
         <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
-          Entry threshold
+          {t('trust.entryThreshold')}
         </span>
         {threshold.min_investment_usd != null && (
           <span className="font-mono text-sm font-semibold tabular-nums text-mp-btc-text">
@@ -66,7 +69,7 @@ export function ThresholdSparkline({
           viewBox={`0 0 ${W} ${H}`}
           className="w-full"
           role="img"
-          aria-label="Minimum investment threshold history"
+          aria-label={t('trust.thresholdAria')}
         >
           <defs>
             <linearGradient id={`${id}-area`} x1="0" y1="0" x2="0" y2="1">
@@ -120,7 +123,7 @@ export function ThresholdSparkline({
             <span className="ml-1.5 font-mono text-mp-ink-tertiary">
               {formatUsdCompact(activePoint.usd)}
             </span>
-            {activePoint.date && <span className="block mt-0.5">as of {activePoint.date}</span>}
+            {activePoint.date && <span className="block mt-0.5">{formatT(t, 'trust.asOf', { date: activePoint.date })}</span>}
             <span className="block mt-0.5 opacity-90">{activePoint.note}</span>
           </div>
         )}
@@ -128,8 +131,8 @@ export function ThresholdSparkline({
 
       <p className="mt-1 font-body text-[10px] leading-snug text-mp-ink-tertiary">
         {hasTrend
-          ? `${points.length} verified threshold changes · BTC shown at live rate`
-          : 'No tracked change history yet — single verified point. First pipeline change seeds the trend.'}
+          ? formatT(t, 'trust.thresholdChanges', { count: points.length })
+          : t('trust.noHistory')}
       </p>
     </div>
   )

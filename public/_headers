@@ -11,8 +11,9 @@
   # the boot guard enters a reload loop. static.cloudflareinsights.com is Cloudflare's auto
   # Web Analytics beacon injected into our HTML (allowlisted so it doesn't spam CSP violations).
   # connect-src needs api.btcmap.org (BTC Map) and wss://* (Nostr relays, incl. VITE_NOSTR_RELAY
-  # overrides — docs mandate wss: only, never http://).
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://analytics.giveabit.io https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.satohash.io https://mempool.space https://analytics.giveabit.io https://api.btcmap.org wss://*
+  # overrides — docs mandate wss: only, never http://). api.coingecko.com is the live BTC/fiat
+  # price source for the FX layer (falls back to an honest stale snapshot when unreachable).
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://analytics.giveabit.io https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://api.satohash.io https://mempool.space https://analytics.giveabit.io https://api.btcmap.org https://api.coingecko.com wss://*
 
 /index.html
   Cache-Control: no-store, must-revalidate

@@ -1,6 +1,8 @@
 import { motion, useReducedMotion } from 'motion/react'
 import { ChevronRight, Scale, ShieldCheck, Activity } from 'lucide-react'
 import type { CountryTrustEnvelope } from '../../types/countryTrust'
+import { useI18n } from '../../i18n/I18nContext'
+import { formatT } from '../../i18n/format'
 import { FreshnessRing } from './FreshnessRing'
 import { ProofBadge } from './ProofBadge'
 import { ScorecardRadar } from './ScorecardRadar'
@@ -22,6 +24,7 @@ export function TrustCard({
   onOpen?: (envelope: CountryTrustEnvelope) => void
   index?: number
 }) {
+  const { t } = useI18n()
   const reduceMotion = useReducedMotion()
   const { country, freshness, proof, sovereignty } = envelope
 
@@ -37,7 +40,7 @@ export function TrustCard({
             <h3 className="font-display text-lg leading-tight text-mp-ink">{country.name}</h3>
             <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
               {country.region ?? ''}
-              {sovereignty.risk_level ? ` · ${sovereignty.risk_level} risk` : ''}
+              {sovereignty.risk_level ? ` · ${formatT(t, 'trust.riskSuffix', { level: sovereignty.risk_level })}` : ''}
             </span>
           </div>
         </div>
@@ -45,7 +48,7 @@ export function TrustCard({
           status={freshness.status}
           daysStale={freshness.days_stale}
           verifiedAt={freshness.verified_at}
-          label={`${country.name} freshness`}
+          label={formatT(t, 'trust.freshnessLabel', { name: country.name })}
         />
       </div>
 
@@ -55,10 +58,10 @@ export function TrustCard({
         {sovereignty.score != null && (
           <span
             className="inline-flex items-center gap-1 rounded-chip border border-mp-btc/25 bg-mp-btc-soft px-2 py-1 font-mono text-[10px] uppercase tracking-[0.06em] text-mp-btc-text"
-            title={`Sovereignty score ${sovereignty.score}/10`}
+            title={formatT(t, 'trust.sovScoreTitle', { score: sovereignty.score })}
           >
             <ShieldCheck className="h-2.5 w-2.5 shrink-0" aria-hidden="true" />
-            sovereignty {sovereignty.score}/10
+            {formatT(t, 'trust.sovereignty', { score: sovereignty.score })}
           </span>
         )}
       </div>
@@ -83,14 +86,14 @@ export function TrustCard({
         <Activity className="h-3 w-3 shrink-0" aria-hidden="true" />
         <span>
           {freshness.status === 'fresh'
-            ? 'Verified recently and sealed into Bitcoin.'
+            ? t('trust.cardFresh')
             : freshness.status === 'watch'
-              ? 'Getting old — flagged before it goes stale.'
-              : 'Over 45 days unconfirmed — shown honestly, never hidden.'}
+              ? t('trust.cardWatch')
+              : t('trust.cardStale')}
         </span>
         {onOpen && (
           <span className="ml-auto inline-flex items-center gap-0.5 font-mono text-[10px] uppercase tracking-wide text-mp-btc-text">
-            details <ChevronRight className="h-3 w-3" aria-hidden="true" />
+            {t('trust.details')} <ChevronRight className="h-3 w-3" aria-hidden="true" />
           </span>
         )}
       </div>
@@ -126,6 +129,7 @@ export function TrustCard({
 
 /** Compact variant for the compare drawer / Paige — radar always visible. */
 export function TrustCardCompact({ envelope }: { envelope: CountryTrustEnvelope }) {
+  const { t } = useI18n()
   const { country } = envelope
   return (
     <div className="rounded-card border border-mp-border bg-mp-card p-4">
@@ -135,7 +139,7 @@ export function TrustCardCompact({ envelope }: { envelope: CountryTrustEnvelope 
         </span>
         <h4 className="font-display text-base text-mp-ink">{country.name}</h4>
         <span className="ml-auto inline-flex items-center gap-1 font-mono text-[10px] text-mp-ink-tertiary">
-          <Scale className="h-3 w-3" aria-hidden="true" /> trust
+          <Scale className="h-3 w-3" aria-hidden="true" /> {t('trust.trustLabel')}
         </span>
       </div>
       <div className="mt-3">

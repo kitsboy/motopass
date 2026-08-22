@@ -9,8 +9,9 @@ import { ThresholdSparkline } from '../components/trust/ThresholdSparkline'
 import { SourceTierStrip } from '../components/trust/SourceTierStrip'
 import { BtcDualPrice } from '../components/BtcDualPrice'
 import { PageHeader } from '../components/ui/PageHeader'
-import { CardSkeleton } from '../components/LoadingSkeleton'
 import { SeoHead } from '../components/SeoHead'
+import { useI18n } from '../i18n/I18nContext'
+import { formatT } from '../i18n/format'
 
 /**
  * TrustPage — the live trust-card surface (route /trust).
@@ -21,6 +22,7 @@ import { SeoHead } from '../components/SeoHead'
  * All honesty visuals are central and data-driven — nothing is invented here.
  */
 export function TrustPage() {
+  const { t } = useI18n()
   const { index, loading, error } = useTrustIndex()
   const [selected, setSelected] = useState<CountryTrustEnvelope | null>(null)
   const [compare, setCompare] = useState<CountryTrustEnvelope[]>([])
@@ -43,7 +45,7 @@ export function TrustPage() {
       return
     }
     if (compare.length >= 4) {
-      setCompareNote('Compare holds up to 4 countries — remove one first.')
+      setCompareNote(t('trust.compareMax'))
       return
     }
     const env = await fetchCountryTrust(iso2)
@@ -62,29 +64,29 @@ export function TrustPage() {
   }, [index, filter])
 
   const filterPills = [
-    { id: 'all' as const, label: `All (${total})` },
-    { id: 'fresh' as const, label: `Fresh (${sweep.fresh})` },
-    { id: 'stale' as const, label: `Stale (${sweep.stale})` },
+    { id: 'all' as const, label: formatT(t, 'trust.filterAll', { total }) },
+    { id: 'fresh' as const, label: formatT(t, 'trust.filterFresh', { count: sweep.fresh }) },
+    { id: 'stale' as const, label: formatT(t, 'trust.filterStale', { count: sweep.stale }) },
   ]
 
   return (
     <>
       <SeoHead
-        title="Live Trust Cards — verify every country claim yourself"
-        description="Every MotoPass country fact is traceable to a source and sealed into Bitcoin. Live freshness rings, proof badges, and interactive scorecards — honest staleness included."
+        title={t('trust.title')}
+        description={t('trust.sub')}
         path="/trust"
       />
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <PageHeader
-          eyebrow="Trust · honesty by design"
-          title="Live Trust Cards"
-          description="We would rather show you old truth than new lies. Every number below traces to a real source and is sealed into Bitcoin — and when a fact gets old, we show it as old, not pretend it's fresh."
+          eyebrow={t('trust.eyebrow')}
+          title={t('trust.title')}
+          description={t('trust.sub')}
           actions={
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 rounded-chip border border-mp-proof/35 bg-mp-proof-soft px-2.5 py-1.5 font-mono text-[11px] uppercase tracking-wide text-mp-proof">
                 <ShieldCheck className="h-3 w-3" aria-hidden="true" />
-                {sweep.fresh} fresh · {sweep.stale} stale
+                {formatT(t, 'trust.sweepFresh', { fresh: sweep.fresh, stale: sweep.stale })}
               </span>
               <button
                 type="button"
@@ -92,7 +94,7 @@ export function TrustPage() {
                 className="inline-flex items-center gap-1.5 rounded-chip border border-mp-btc/30 bg-mp-btc-soft px-2.5 py-1.5 font-chrome text-xs font-semibold text-mp-btc-text hover:border-mp-btc/50"
               >
                 <ArrowLeftRight className="h-3.5 w-3.5" aria-hidden="true" />
-                Compare
+                {t('trust.compare')}
               </button>
             </div>
           }
@@ -100,10 +102,7 @@ export function TrustPage() {
 
         {/* honesty banner */}
         <div className="mb-6 rounded-mp-lg border border-mp-border-subtle bg-mp-section/60 px-4 py-3 font-body text-[13px] leading-relaxed text-mp-ink-secondary">
-          <strong className="text-mp-ink">The honesty promise:</strong> a red ring means “we haven't
-          re-confirmed in over 45 days” — it doesn't mean the fact is wrong. We never paint a stale
-          fact green. Every “✓ Bitcoin-anchored” badge opens the real Satohash verification for that
-          country's proof. Nothing here is invented at render time.
+          <strong className="text-mp-ink">{t('trust.promise')}</strong> {t('trust.promiseBody')}
         </div>
 
         {/* filters */}
@@ -125,10 +124,48 @@ export function TrustPage() {
         </div>
 
         {loading ? (
-          <CardSkeleton count={6} />
+          <div
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            role="status"
+            aria-busy="true"
+            aria-label={t('trust.loading')}
+          >
+            {/* Skeleton reserves the SAME grid footprint as the live 50-card grid
+                (contentVisibility + containIntrinsicSize) so the skeleton->grid swap
+                is height-neutral — no layout shift when cards arrive. */}
+            {Array.from({ length: 50 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex min-h-[255px] flex-col rounded-card border border-mp-border-subtle bg-mp-card p-5"
+                style={{
+                  animationDelay: `${Math.min(i, 6) * 50}ms`,
+                  contentVisibility: 'auto',
+                  containIntrinsicSize: 'auto 255px',
+                }}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <span className="skeleton-shimmer h-8 w-8" />
+                    <div className="min-w-0 flex-1 space-y-2">
+                      <div className="skeleton-shimmer h-5 w-2/3" />
+                      <div className="skeleton-shimmer h-3 w-1/3" />
+                    </div>
+                  </div>
+                  <span className="skeleton-shimmer h-16 w-16 shrink-0 rounded-full" />
+                </div>
+                <div className="mt-4 flex gap-2">
+                  <div className="skeleton-shimmer h-6 w-24" />
+                  <div className="skeleton-shimmer h-6 w-20" />
+                </div>
+                <div className="mt-auto pt-4">
+                  <div className="skeleton-shimmer h-12 w-full" />
+                </div>
+              </div>
+            ))}
+          </div>
         ) : error ? (
           <div className="rounded-mp-lg border border-mp-border bg-mp-card p-6 text-center font-body text-sm text-mp-ink-secondary">
-            Trust envelopes unavailable right now.
+            {t('trust.error')}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -138,7 +175,11 @@ export function TrustPage() {
                 type="button"
                 onClick={() => openCountry(c.iso2)}
                 className="group relative w-full overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc"
-                style={{ animationDelay: `${Math.min(i, 6) * 50}ms` }}
+                style={{
+                  animationDelay: `${Math.min(i, 6) * 50}ms`,
+                  contentVisibility: 'auto',
+                  containIntrinsicSize: 'auto 255px',
+                }}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 items-center gap-3">
@@ -156,23 +197,23 @@ export function TrustPage() {
                     status={c.freshness_status}
                     daysStale={c.days_stale}
                     verifiedAt={null}
-                    label={`${c.name} freshness`}
+                    label={formatT(t, 'trust.freshnessLabel', { name: c.name })}
                   />
                 </div>
 
                 <div className="mt-3 flex flex-wrap items-center gap-2">
                   {c.proof_status === 'confirmed' ? (
                     <span className="inline-flex items-center gap-1 rounded-chip border border-mp-proof/35 bg-mp-proof-soft px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-mp-proof">
-                      <BadgeCheck className="h-2.5 w-2.5" aria-hidden="true" /> Bitcoin-anchored
+                      <BadgeCheck className="h-2.5 w-2.5" aria-hidden="true" /> {t('trust.bitcoinAnchored')}
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1 rounded-chip border border-mp-ochre/40 bg-mp-btc-soft px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-mp-btc-text">
-                      Proof pending
+                      {t('trust.proofPending')}
                     </span>
                   )}
                   {c.sovereignty_score != null && (
                     <span className="font-mono text-[10px] text-mp-ink-tertiary">
-                      sovereignty {c.sovereignty_score}/10
+                      {formatT(t, 'trust.sovereignty', { score: c.sovereignty_score })}
                     </span>
                   )}
                 </div>
@@ -180,7 +221,7 @@ export function TrustPage() {
                 {c.min_investment_usd != null && (
                   <div className="mt-3 flex items-center justify-between gap-3 rounded-mp-lg border border-mp-border-subtle bg-mp-section/50 px-3 py-2">
                     <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
-                      Min. invest
+                      {t('trust.minInvest')}
                     </span>
                     <BtcDualPrice usd={c.min_investment_usd} size="sm" layout="stack" className="items-end" />
                   </div>
@@ -188,12 +229,12 @@ export function TrustPage() {
 
                 <div className="mt-4 flex items-center gap-1.5 border-t border-mp-border-subtle pt-3 font-body text-[11px] text-mp-ink-tertiary">
                   {c.freshness_status === 'fresh'
-                    ? 'Verified recently and sealed into Bitcoin.'
+                    ? t('trust.cardFresh')
                     : c.freshness_status === 'watch'
-                      ? 'Getting old — flagged before it goes stale.'
-                      : 'Over 45 days unconfirmed — shown honestly.'}
+                      ? t('trust.cardWatch')
+                      : t('trust.cardStale')}
                   <span className="ml-auto font-mono text-[10px] uppercase tracking-wide text-mp-btc-text opacity-0 transition-opacity group-hover:opacity-100">
-                    details →
+                    {t('trust.details')} →
                   </span>
                 </div>
               </button>
@@ -227,7 +268,7 @@ export function TrustPage() {
                   type="button"
                   onClick={() => setSelected(null)}
                   className="rounded-full border border-mp-border p-1.5 text-mp-ink-tertiary hover:border-mp-border-strong hover:text-mp-ink"
-                  aria-label="Close"
+                  aria-label={t('nav.close')}
                 >
                   ✕
                 </button>
@@ -241,7 +282,7 @@ export function TrustPage() {
                   <SourceTierStrip sources={selected.sources} />
                   <div className="rounded-mp-lg border border-mp-border-subtle bg-mp-section/60 p-3 font-body text-[12px] leading-relaxed text-mp-ink-secondary">
                     <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
-                      Last audit trail
+                      {t('trust.auditTrail')}
                     </span>
                     <ul className="mt-1.5 space-y-1">
                       {selected.audit_trail.slice(-4).map((e, i) => (
@@ -272,7 +313,7 @@ export function TrustPage() {
                 className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-mp-lg border border-mp-btc/35 bg-mp-btc-soft px-4 py-2.5 font-chrome text-sm font-semibold text-mp-btc-text hover:border-mp-btc/55"
               >
                 <ArrowLeftRight className="h-4 w-4" aria-hidden="true" />
-                Add to compare
+                {t('trust.addToCompare')}
               </button>
             </div>
           </div>
@@ -289,20 +330,19 @@ export function TrustPage() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="mb-4 flex items-center justify-between gap-3">
-                <h2 className="font-display text-xl text-mp-ink">Compare trust</h2>
+                <h2 className="font-display text-xl text-mp-ink">{t('trust.compareTitle')}</h2>
                 <button
                   type="button"
                   onClick={() => setShowCompare(false)}
                   className="rounded-full border border-mp-border p-1.5 text-mp-ink-tertiary hover:border-mp-border-strong hover:text-mp-ink"
-                  aria-label="Close"
+                  aria-label={t('nav.close')}
                 >
                   ✕
                 </button>
               </div>
 
               <p className="mb-4 font-body text-[13px] text-mp-ink-secondary">
-                Pick up to 4 countries from the grid to overlay their scorecards. Tap a card's
-                ✓-proof row or “Add to compare” from a country's detail.
+                {t('trust.compareHint')}
               </p>
               {compareNote && (
                 <p className="mb-3 rounded-mp-lg border border-mp-ochre/40 bg-mp-btc-soft px-3 py-2 font-body text-[12px] text-mp-btc-text">
@@ -312,7 +352,7 @@ export function TrustPage() {
 
               {compare.length === 0 ? (
                 <div className="rounded-mp-lg border border-dashed border-mp-border-strong/50 p-8 text-center font-body text-sm text-mp-ink-tertiary">
-                  Nothing selected yet — open a country and choose “Add to compare”.
+                  {t('trust.compareEmpty')}
                 </div>
               ) : (
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -330,7 +370,7 @@ export function TrustPage() {
                           type="button"
                           onClick={() => toggleCompare(env.country.iso2)}
                           className="ml-auto rounded-full border border-mp-border p-1 text-mp-ink-tertiary hover:text-mp-ink"
-                          aria-label={`Remove ${env.country.name}`}
+                          aria-label={formatT(t, 'trust.removeCountry', { name: env.country.name })}
                         >
                           ✕
                         </button>
@@ -352,7 +392,7 @@ export function TrustPage() {
                 }}
                 className="mt-4 inline-flex items-center gap-2 rounded-mp-lg border border-mp-border px-4 py-2 font-chrome text-xs text-mp-ink-secondary hover:border-mp-border-strong hover:text-mp-ink"
               >
-                <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" /> Clear compare
+                <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" /> {t('trust.clearCompare')}
               </button>
             </div>
           </div>

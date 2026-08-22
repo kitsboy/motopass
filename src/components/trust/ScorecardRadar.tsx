@@ -1,7 +1,19 @@
 import { useId, useState } from 'react'
 import type { CountryTrustEnvelope } from '../../types/countryTrust'
+import { useI18n } from '../../i18n/I18nContext'
+import { formatT } from '../../i18n/format'
 
-const AXIS_ORDER = ['crypto_friendly', 'freedom', 'stability', 'tax', 'cost', 'mobility', 'banking']
+const AXIS_ORDER = ['crypto_friendly', 'freedom', 'stability', 'tax', 'cost', 'mobility', 'banking'] as const
+
+const AXIS_KEY: Record<(typeof AXIS_ORDER)[number], string> = {
+  crypto_friendly: 'trust.axis.cryptoFriendly',
+  freedom: 'trust.axis.freedom',
+  stability: 'trust.axis.stability',
+  tax: 'trust.axis.tax',
+  cost: 'trust.axis.cost',
+  mobility: 'trust.axis.mobility',
+  banking: 'trust.axis.banking',
+}
 
 /**
  * ScorecardRadar — 7-axis radar chart.
@@ -10,13 +22,15 @@ const AXIS_ORDER = ['crypto_friendly', 'freedom', 'stability', 'tax', 'cost', 'm
  * fabricated number — the honesty rule from the envelope.
  */
 export function ScorecardRadar({ scorecard }: { scorecard: CountryTrustEnvelope['scorecard'] }) {
+  const { t } = useI18n()
   const [active, setActive] = useState<string | null>(null)
   const id = useId()
 
   const axes = AXIS_ORDER.map((k, i) => ({
     key: k,
-    ...(scorecard.axes[k] ?? { value: null, present: false, label: k.replace(/_/g, ' ') }),
+    ...(scorecard.axes[k] ?? { value: null, present: false }),
     index: i,
+    label: t(AXIS_KEY[k] as never),
   }))
 
   const cx = 100
@@ -45,7 +59,7 @@ export function ScorecardRadar({ scorecard }: { scorecard: CountryTrustEnvelope[
         viewBox="0 0 200 200"
         className="mx-auto w-full max-w-[220px]"
         role="img"
-        aria-label="7-axis scorecard radar"
+        aria-label={t('trust.radarAria')}
       >
         <defs>
           <radialGradient id={`${id}-fill`} cx="50%" cy="50%" r="50%">
@@ -134,14 +148,16 @@ export function ScorecardRadar({ scorecard }: { scorecard: CountryTrustEnvelope[
             </span>
           ) : (
             <span>
-              <strong className="text-mp-ink-tertiary">{activeAxis.label}</strong> · pending
-              verification — never guessed
+              <strong className="text-mp-ink-tertiary">{activeAxis.label}</strong> ·{' '}
+              {t('trust.pendingVerify')}
             </span>
           )
         ) : (
           <span className="text-mp-ink-tertiary">
-            Hover an axis · {axes.filter((a) => a.present).length}/{n} verified · missing axes stay
-            honest-pending
+            {formatT(t, 'trust.hoverHint', {
+              verified: axes.filter((a) => a.present).length,
+              total: n,
+            })}
           </span>
         )}
       </div>

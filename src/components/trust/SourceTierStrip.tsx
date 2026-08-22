@@ -1,5 +1,7 @@
 import { Landmark, Scale, Newspaper } from 'lucide-react'
 import type { CountryTrustEnvelope } from '../../types/countryTrust'
+import { useI18n } from '../../i18n/I18nContext'
+import { formatT } from '../../i18n/format'
 
 /**
  * SourceTierStrip — Official / Legal / Trusted Secondary badges.
@@ -7,30 +9,31 @@ import type { CountryTrustEnvelope } from '../../types/countryTrust'
  * actual source names + official URLs behind that tier.
  */
 export function SourceTierStrip({ sources }: { sources: CountryTrustEnvelope['sources'] }) {
+  const { t } = useI18n()
   const tiers = [
     {
       key: 'official' as const,
-      label: 'Official',
+      label: t('trust.tierOfficial'),
       count: sources.tiers.official,
       Icon: Landmark,
       cls: 'border-mp-proof/35 bg-mp-proof-soft text-mp-proof',
-      desc: 'Government / regulator / official source',
+      desc: t('trust.tierOfficialDesc'),
     },
     {
       key: 'legal' as const,
-      label: 'Legal',
+      label: t('trust.tierLegal'),
       count: sources.tiers.legal,
       Icon: Scale,
       cls: 'border-mp-ochre/40 bg-mp-btc-soft text-mp-btc-text',
-      desc: 'Legislation, law, decree, or legal text',
+      desc: t('trust.tierLegalDesc'),
     },
     {
       key: 'secondary' as const,
-      label: 'Trusted Secondary',
+      label: t('trust.tierSecondary'),
       count: sources.tiers.secondary,
       Icon: Newspaper,
       cls: 'border-mp-border-strong/50 bg-mp-section text-mp-ink-secondary',
-      desc: 'Verified secondary reporting / research',
+      desc: t('trust.tierSecondaryDesc'),
     },
   ]
 
@@ -46,7 +49,7 @@ export function SourceTierStrip({ sources }: { sources: CountryTrustEnvelope['so
                   .filter((s) => s.tier === key)
                   .map((s) => s.name)
                   .join(' · ')}`
-              : `${desc} — none on record yet`
+              : formatT(t, 'trust.tierNone', { desc })
           }
         >
           <Icon className="h-2.5 w-2.5 shrink-0" aria-hidden="true" />
@@ -61,9 +64,9 @@ export function SourceTierStrip({ sources }: { sources: CountryTrustEnvelope['so
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 font-mono text-[10px] text-mp-ink-tertiary underline decoration-dotted underline-offset-2 hover:text-mp-btc-text"
-          title="Primary official source URL"
+          title={t('trust.officialUrlTitle')}
         >
-          official source ↗
+          {t('trust.officialSource')}
         </a>
       )}
     </div>

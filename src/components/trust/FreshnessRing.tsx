@@ -1,5 +1,7 @@
 import { useId, useState, type ReactNode } from 'react'
 import type { FreshnessStatus } from '../../types/countryTrust'
+import { useI18n } from '../../i18n/I18nContext'
+import { formatT } from '../../i18n/format'
 
 /**
  * FreshnessRing — the hero honesty visual.
@@ -21,6 +23,7 @@ export function FreshnessRing({
   size?: number
   label: ReactNode
 }) {
+  const { t } = useI18n()
   const [open, setOpen] = useState(false)
   const id = useId()
 
@@ -34,19 +37,19 @@ export function FreshnessRing({
       stroke: '#22c55e',
       soft: 'rgba(34,197,94,0.14)',
       text: 'text-[#16a34a]',
-      label: 'Fresh',
+      label: t('trust.fresh'),
     },
     watch: {
       stroke: '#f59e0b',
       soft: 'rgba(245,158,11,0.14)',
       text: 'text-[#b45309]',
-      label: 'Watch',
+      label: t('trust.watch'),
     },
     stale: {
       stroke: '#ef4444',
       soft: 'rgba(239,68,68,0.14)',
       text: 'text-[#b91c1c]',
-      label: 'Stale',
+      label: t('trust.stale'),
     },
   }[status]
 
@@ -59,6 +62,12 @@ export function FreshnessRing({
       onMouseLeave={() => setOpen(false)}
       onFocus={() => setOpen(true)}
       onBlur={() => setOpen(false)}
+      // Touch fallback: tap toggles the tooltip instead of opening the card drawer.
+      onClick={(e) => {
+        e.stopPropagation()
+        e.preventDefault()
+        setOpen((v) => !v)
+      }}
     >
       <span
         className="relative inline-flex items-center justify-center rounded-full"
@@ -69,7 +78,7 @@ export function FreshnessRing({
           height={size}
           viewBox="0 0 64 64"
           role="img"
-          aria-label={`Freshness: ${theme.label}, ${dayText} since last check`}
+          aria-label={formatT(t, 'trust.ringAria', { label: theme.label, days: dayText })}
           className="-rotate-90"
         >
           <circle cx="32" cy="32" r={R} fill="none" stroke={theme.soft} strokeWidth="5" />
@@ -103,30 +112,15 @@ export function FreshnessRing({
             {theme.label}
           </span>
           {daysStale == null ? (
-            <span className="block mt-0.5">
-              No verification date on record — treated as stale, never assumed fresh.
-            </span>
+            <span className="block mt-0.5">{t('trust.noDate')}</span>
           ) : (
             <>
               <span className="block mt-0.5">
-                Last checked <strong>{verifiedAt ?? '—'}</strong> ({Math.round(daysStale)}d ago).
+                {formatT(t, 'trust.lastChecked', { date: verifiedAt ?? '—', days: Math.round(daysStale) })}
               </span>
-              {status === 'fresh' && (
-                <span className="block mt-1 opacity-90">
-                  Checked recently and sealed into Bitcoin. This is the only state that shows green.
-                </span>
-              )}
-              {status === 'watch' && (
-                <span className="block mt-1 opacity-90">
-                  Getting old — 31-45 days since check. We flag it before it goes stale.
-                </span>
-              )}
-              {status === 'stale' && (
-                <span className="block mt-1 opacity-90">
-                  Probably still true, but unconfirmed for over 45 days. Honest stale beats
-                  confident wrong.
-                </span>
-              )}
+              {status === 'fresh' && <span className="block mt-1 opacity-90">{t('trust.freshExplain')}</span>}
+              {status === 'watch' && <span className="block mt-1 opacity-90">{t('trust.watchExplain')}</span>}
+              {status === 'stale' && <span className="block mt-1 opacity-90">{t('trust.staleExplain')}</span>}
             </>
           )}
         </span>
