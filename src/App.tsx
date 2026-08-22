@@ -24,13 +24,16 @@ import { ApplyPage } from './pages/ApplyPage'
 import { StackSimulatorPage } from './pages/StackSimulatorPage'
 import { PortfolioPage } from './pages/PortfolioPage'
 import { BtcMapPage } from './pages/BtcMapPage'
-import { TrustPage } from './pages/TrustPage'
 import { BlogPage } from './pages/BlogPage'
 import { BlogPostPage } from './pages/BlogPostPage'
 
 const DashboardPage = lazy(() =>
   import('./pages/DashboardPage').then((m) => ({ default: m.DashboardPage })),
 )
+const TrustPage = lazy(() =>
+  import('./pages/TrustPage').then((m) => ({ default: m.TrustPage })),
+)
+
 const RegisterPage = lazy(() =>
   import('./pages/RegisterPage').then((m) => ({ default: m.RegisterPage })),
 )

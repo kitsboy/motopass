@@ -58,8 +58,15 @@ export function FreshnessRing({
   return (
     <span
       className="relative inline-flex shrink-0"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      // Hover tooltip on pointer devices only. Guarding on pointerType means a
+      // synthesized mouseenter from a touch tap can't pre-open the tooltip and
+      // then have the click toggle it straight back closed.
+      onPointerEnter={(e) => {
+        if (e.pointerType === 'mouse') setOpen(true)
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType === 'mouse') setOpen(false)
+      }}
       onFocus={() => setOpen(true)}
       onBlur={() => setOpen(false)}
       // Touch fallback: tap toggles the tooltip instead of opening the card drawer.
