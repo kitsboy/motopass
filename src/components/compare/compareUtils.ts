@@ -1,5 +1,7 @@
 import type { Program } from '../../types/program'
 import type { CompareRow } from './types'
+import { formatSats, formatUsdCompact, usdToSats } from '../../lib/btcPrice'
+import { BTC_USD_AT_CAPTURE } from '../../data/btcPriceAtCapture'
 
 export function bestIndex(nums: (number | null)[], mode: 'min' | 'max'): Set<number> {
   const valid = nums.filter((n): n is number => n !== null)
@@ -10,6 +12,11 @@ export function bestIndex(nums: (number | null)[], mode: 'min' | 'max'): Set<num
     if (n === target) indices.add(i)
   })
   return indices
+}
+
+/** Sats-first plain-text figure for clipboard/markdown export: "388M sats (≈$300k)". */
+export function formatMoneyText(usd: number): string {
+  return `${formatSats(usdToSats(usd, BTC_USD_AT_CAPTURE))} (≈${formatUsdCompact(usd)})`
 }
 
 export function rowValuesDiffer(row: CompareRow, programs: Program[]): boolean {

@@ -145,8 +145,10 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
               <div className="flex flex-wrap items-center gap-3 mt-1.5">
                 <BtcDualPrice usd={f.minUsd} size="sm" />
                 {f.savingsVsTypical > 0 && (
-                  <span className="text-[10px] font-mono text-mp-proof">
-                    −${f.savingsVsTypical.toLocaleString()} vs typical
+                  <span className="text-[10px] font-mono text-mp-proof inline-flex items-center gap-1 flex-wrap">
+                    <span aria-hidden>−</span>
+                    <BtcDualPrice usd={f.savingsVsTypical} size="xs" layout="inline" showUsd />
+                    <span>vs typical</span>
                   </span>
                 )}
               </div>

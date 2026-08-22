@@ -33,6 +33,7 @@ import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
+import { useDisplayCurrency } from '../context/DisplayCurrencyContext'
 import { SeoHead } from '../components/SeoHead'
 import { absoluteUrl } from '../lib/seo'
 import { countActiveFilters, filtersFromSearchParams, filtersToSearchParams, isDefaultFilters } from '../lib/urlState'
@@ -62,6 +63,7 @@ const iconBtn = (active: boolean) =>
 
 export function ProgramsPage() {
   const { t } = useI18n()
+  const { priceFor } = useDisplayCurrency()
   const [searchParams, setSearchParams] = useSearchParams()
   const { programs: basePrograms, loading, error } = usePrograms()
   const { portfolio, toggle: togglePortfolio } = usePortfolio()
@@ -481,22 +483,27 @@ export function ProgramsPage() {
                 { labelKey: 'programs.minInvestment' as const, key: 'minInvestment' as const, max: 2000000, step: 25000 },
                 { labelKey: 'programs.maxInvestment' as const, key: 'maxInvestment' as const, max: 2000000, step: 50000 },
                 { labelKey: 'programs.minCryptoScore' as const, key: 'minCryptoScore' as const, max: 10, step: 1 },
-              ].map(({ labelKey, key, max, step }) => (
-                <div key={key}>
-                  <label className="text-xs font-medium text-ink-muted mb-1 block">
-                    {t(labelKey)}: {key === 'minCryptoScore' ? filters[key] : `$${filters[key].toLocaleString()}`}
-                  </label>
-                  <input
-                    type="range"
-                    min={0}
-                    max={max}
-                    step={step}
-                    value={filters[key]}
-                    onChange={(e) => patchFilters({ [key]: Number(e.target.value) } as Partial<ProgramFilters>)}
-                    className="w-full accent-btc-orange h-2"
-                  />
-                </div>
-              ))}
+              ].map(({ labelKey, key, max, step }) => {
+                const isMoney = key !== 'minCryptoScore'
+                const priced = isMoney ? priceFor(filters[key]) : null
+                const valueLabel = isMoney && priced ? `${priced.primary} (~${priced.secondary})` : String(filters[key])
+                return (
+                  <div key={key}>
+                    <label className="text-xs font-medium text-ink-muted mb-1 block">
+                      {t(labelKey)}: {valueLabel}
+                    </label>
+                    <input
+                      type="range"
+                      min={0}
+                      max={max}
+                      step={step}
+                      value={filters[key]}
+                      onChange={(e) => patchFilters({ [key]: Number(e.target.value) } as Partial<ProgramFilters>)}
+                      className="w-full accent-btc-orange h-2"
+                    />
+                  </div>
+                )
+              })}
             </div>
           )}
         </div>

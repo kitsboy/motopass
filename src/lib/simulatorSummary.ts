@@ -1,5 +1,7 @@
 import type { Program } from '../types/program'
 import { parseMonthsToDays } from './programAdapter'
+import { formatSats, formatUsdCompact, usdToSats } from './btcPrice'
+import { BTC_USD_AT_CAPTURE } from '../data/btcPriceAtCapture'
 
 export function formatStackSummary(stack: Program[]): string {
   if (!stack.length) return 'MotoPass stack: (empty)'
@@ -10,7 +12,7 @@ export function formatStackSummary(stack: Program[]): string {
   return [
     `MotoPass stack (${stack.length} programs)`,
     `Programs: ${names}`,
-    `Typical cost: $${totalCost.toLocaleString()}`,
+    `Typical cost: ${formatSats(usdToSats(totalCost, BTC_USD_AT_CAPTURE))} (≈${formatUsdCompact(totalCost)})`,
     `Avg sovereignty: ${sovereignty}/10`,
     `Longest timeline: ${months}mo`,
   ].join('\n')

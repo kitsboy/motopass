@@ -14,7 +14,7 @@ import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
 import { CompareMoneyCell } from '../components/CompareMoneyCell'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
-import { rowValuesDiffer } from '../components/compare/compareUtils'
+import { formatMoneyText, rowValuesDiffer } from '../components/compare/compareUtils'
 import type { CompareRow } from '../components/compare/types'
 import { CompareHero } from '../components/compare/CompareHero'
 import { ComparePicker } from '../components/compare/ComparePicker'
@@ -98,6 +98,7 @@ export function FinanceComparePage() {
         numeric: p => p.finance.min_investment_usd,
         valueKey: p => String(p.finance.min_investment_usd ?? ''),
         render: p => <CompareMoneyCell usd={p.finance.min_investment_usd ?? 0} />,
+        renderText: p => formatMoneyText(p.finance.min_investment_usd ?? 0),
       },
       {
         label: t('compare.typical'),
@@ -106,6 +107,7 @@ export function FinanceComparePage() {
         numeric: p => p.finance.typical_investment_usd,
         valueKey: p => String(p.finance.typical_investment_usd ?? ''),
         render: p => <CompareMoneyCell usd={p.finance.typical_investment_usd ?? 0} />,
+        renderText: p => formatMoneyText(p.finance.typical_investment_usd ?? 0),
       },
       {
         label: t('compare.govFees'),
@@ -114,6 +116,7 @@ export function FinanceComparePage() {
         numeric: p => p.finance.gov_fees_usd,
         valueKey: p => String(p.finance.gov_fees_usd ?? ''),
         render: p => <CompareMoneyCell usd={p.finance.gov_fees_usd ?? 0} />,
+        renderText: p => formatMoneyText(p.finance.gov_fees_usd ?? 0),
       },
       {
         label: t('compare.processing'),
@@ -215,7 +218,8 @@ export function FinanceComparePage() {
       valueKey: r.valueKey,
       render: (p: Program) => {
         const rendered = r.render(p)
-        return typeof rendered === 'string' || typeof rendered === 'number' ? String(rendered) : r.valueKey(p)
+        if (typeof rendered === 'string' || typeof rendered === 'number') return String(rendered)
+        return r.renderText ? r.renderText(p) : r.valueKey(p)
       },
     }))
     const md = compareDiffMarkdown(compare, mdRows, rowValuesDiffer)

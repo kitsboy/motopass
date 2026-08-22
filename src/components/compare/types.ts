@@ -8,6 +8,8 @@ export type CompareRow = {
   numeric: (p: Program) => number | null
   valueKey: (p: Program) => string
   render: (p: Program) => ReactNode
+  /** Plain-text sats-first rendering for clipboard/markdown export (React elements can't stringify). */
+  renderText?: (p: Program) => string
 }
 
 export const COMPARE_GROUPS = ['finance', 'timeline', 'scores', 'stack'] as const

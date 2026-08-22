@@ -31,11 +31,12 @@ describe('formatStackSummary', () => {
     expect(formatStackSummary([])).toContain('empty')
   })
 
-  it('includes program names and metrics', () => {
+  it('includes program names and metrics (sats-first cost)', () => {
     const text = formatStackSummary([base, { ...base, id: 2, name: 'Bolivia', sovereignty_score: 7 }])
     expect(text).toContain('Uruguay')
     expect(text).toContain('Bolivia')
-    expect(text).toContain('$300,000')
+    expect(text).toContain('sats')
+    expect(text).toContain('≈$300k')
     expect(text).toContain('Avg sovereignty: 8/10')
   })
 })
