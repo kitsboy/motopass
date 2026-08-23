@@ -1,3 +1,22 @@
+# motopass — Last Updated 2026-08-23 by Ziggy
+Brief: MotoPass stutter fix #2 — lazy-split i18n locales/pageKeys out of the critical bundle (bundle-slim)
+Commit: 8f07f27 (ziggy) · PUSHED to origin/main + LIVE (deploy verified)
+Deploy: LIVE · https://motopass.giveabit.io
+
+What landed:
+- Split the 10 non-English locale dicts + pageKeys into per-language lazy chunks
+  (import.meta.glob). Only the active locale's chunk loads; the other 9 leave the
+  first-paint path. English stays bundled (no network flash, no CLS).
+- MAIN JS BUNDLE: 1,068KB (index-sSMQZTPg) -> 446KB (index-DaETnX3Z) = -58% raw,
+  ~144KB gzipped over the wire.
+- FCP live-verified: desktop 340ms, mobile 256ms (real chromium).
+- Includes split tooling (scripts/split-i18n.mjs, split-pagekeys.mjs,
+  rewrite-translations.mjs, check-pagekeys-fidelity.mjs) + lazyLocales.test.ts (4/4).
+- Full suite: 49 files / 251 tests pass. HOTSPOT-clean (only src/i18n/* + scripts).
+- RESIDUAL: mobile CLS ~1.0 first-paint is the content-grid lazy-load swap — owned
+  by the concurrent CLS card (t_1280f432), still in flight; not this lane's files.
+
+---
 # motopass — Last Updated 2026-08-23 by Mimi
 Brief: MotoPass visual redesign (Cam's creative direction) — fuchsia identity accent, rich-info tooltips, tap-to-copy
 Commit: 35f68f0 (design/mimi) · LOCAL ONLY, push-pending (M3/Grok code-lane — THOR push needs Cam's explicit go)
