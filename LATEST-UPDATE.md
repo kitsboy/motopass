@@ -1,9 +1,28 @@
 # motopass — Last Updated 2026-08-23 by Mimi
-Brief: Adv10B perf pass on /trust — code-split routes + lazy drawer charts + CLS fix; fixes the duplicate-entry crash loop
-Commit: 8c603f2 (perf/trust)
-Deploy: https://motopass.giveabit.io/trust · CF project motopass
+Brief: MotoPass visual redesign (Cam's creative direction) — fuchsia identity accent, rich-info tooltips, tap-to-copy
+Commit: 35f68f0 (design/mimi) · LOCAL ONLY, push-pending (M3/Grok code-lane — THOR push needs Cam's explicit go)
+Deploy: pending · https://motopass.giveabit.io
 
 What landed:
+- Identity accent: added mp-accent-fuchsia tokens (light+dark) wired into tailwind —
+  design-tokens.json family contract (v2026-08-23) maps MotoPass identity accent =
+  fuchsia #e879f9. Applied to compare-matrix best cells/badges (token: "MotoPass ·
+  matrix"), hero gradient mesh, trust-card surface + hover glow, active nav underline.
+- Rich info everywhere: InfoTip now pointer-type-guarded hover + tap-to-toggle on touch;
+  wrapped simulator stats, value-fork stats, savings comparison bars + summary items,
+  compare summary strip + matrix cells (plain-English metric meanings), portfolio stat
+  cards + compliance-clock severity badge.
+- Tap-to-copy: npub copy + iris.to verify in NostrConnect; vault proof hash copy-pill +
+  satohash verify-this-yourself link.
+- Honesty micro-copy: "modeled for member evaluation" disclaimers on simulator, savings
+  graphs, compare — illustrative, not guaranteed. Trust cards use trust-card-surface
+  (jewel-tone gradient, never flat, per tokens RICH+ALIVE rule).
+- i18n: new keys (simulator.tip.*, simulator.modeled*, compare.modeled, portfolio.tip.*)
+  across all 10 locales; 0 missing keys.
+- Verified: vite build clean · 48 test files / 247 tests pass · eslint clean on changed
+  files · preview serves all scoped routes (200) · bundle carries fuchsia CSS + new strings.
+
+---
 - Code-split ALL remaining routes in App.tsx -> critical-path index chunk 1678KB -> 964KB.
   This also FIXES the ADV10A-filed duplicate app-entry bug: previously index.html loaded one
   index-* copy while lazy chunks imported a second, duplicating React + DisplayCurrencyContext
