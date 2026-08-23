@@ -1,3 +1,49 @@
+# motopass — Last Updated 2026-08-24 by Nova
+Brief: Enrich mobile hamburger menu into a real command center — live stats strip (BTC/block/freshness), program search, Stamp/Verify/Apply quick-actions, featured countries, honest trust summary. Function/content lane (Nova) + design/motion lane (Mimi).
+Commit: 39a11ae (nova content) + 57dfb44 (mimi design) · PUSHED to origin/main · live-verified on mobile
+Deploy: auto-deploy via GH→CF Pages (commit on main) · https://motopass.giveabit.io
+
+What landed (NOVA content lane):
+- MenuCommandCenter.tsx (top of drawer): live 3-up stats strip — BTC spot
+  (BtcPriceContext), block height (BlockHeightContext), freshness count
+  (intel ledger) — all REAL live data, never fabricated; unavailable renders
+  "…"/"—". Program search with live results (name/region/category, top 6) +
+  Enter or "All programs" → /programs?q=. Stamp/Verify/Apply one-tap quick
+  actions (vault/verify/apply).
+- MenuDiscover.tsx (bottom of drawer): featured countries = top-5 by
+  sovereignty_score (deterministic real data, not editorial picks), each with
+  flag + score/10, tap → program. Honest trust summary: real fresh/watch/stale
+  counts from the intel ledger, link to /trust.
+- i18n: all menu.* keys added to the TranslationKey union + en dict (locales
+  are Partial<Dict>, fall back to en).
+- Kept: language + currency quick-switch (already in the drawer footer).
+- Honesty: no fabricated numbers anywhere; every value is the app's existing
+  live source. Function/look split clean: Nova owns content, Mimi owns
+  look/motion (see mimi's design commit below).
+- Verified: vite build clean (~13-16s), live mobile chromium (390x844) on
+  motopass.giveabit.io — drawer opens, "BTC $78k BLOCK #963,776 FRESH 50",
+  quick-actions, featured+trust, search returns results for 'brazil', all present.
+
+LANDED TOGETHER WITH MIMI (design lane, t_602aefc1):
+- 57dfb44 design(nav): modernize mobile hamburger + More sheet — fuchsia
+  jewel-tone identity, snappy no-jank motion. Both committed and pushed in one
+  atomic history (57dfb44 → 39a11ae → ee47cbb), so CI never saw a broken
+  standalone design commit. HOTSPOT-clean: Nova bundled only her own files
+  (menu/, translations, buildInfo); Mimi's design files left as hers.
+
+HONEST LIVE VERIFY (real headless chromium, motopass.giveabit.io, 390x844):
+- Drawer opens on hamburger tap: PASS
+- Live stats: "BTC $78k BLOCK #963,776 FRESH 50" (real live data) — PASS
+- Quick-actions Stamp/Verify/Apply: PASS
+- Featured countries + trust summary: PASS
+- Language/currency switch surfaced: PASS
+- Search input + live results ('brazil' → results): PASS
+- Pre-existing note: landing page logs "useProgramsContext must be used within
+  ProgramsProvider" from the PitchPage chunk at initial load (fires before the
+  drawer opens; my menu demonstrably has provider access). Not introduced by
+  this change — untouched wiring; flagging honestly, out of scope here.
+
+---
 # motopass — Last Updated 2026-08-23 by Ziggy
 Brief: Self-hosted flag sprite (kill 18 flagcdn round-trips) + webp/srcset image optimization across ALL pages — smoothness epic (t_810e8b85)
 Commit: 1f1b86d (ziggy) · PUSHED to origin/main · live-verified (mobile + desktop)
