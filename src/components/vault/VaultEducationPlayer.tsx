@@ -38,7 +38,9 @@ export function VaultEducationPlayer() {
       className="relative mt-4 overflow-hidden rounded-mp-md border border-fuchsia/30 bg-mp-card shadow-lg shadow-fuchsia/10 ring-1 ring-white/10"
     >
       <div className="relative aspect-video w-full bg-black/90">
-        {/* The player — src injected lazily. No src until near viewport. */}
+        {/* The player — src injected lazily on the video element itself
+            (setting the src attr is more reliable than swapping a <source> child,
+            which can spuriously fire onError and latch the pending panel). */}
         <video
           className="absolute inset-0 h-full w-full object-contain"
           controls
@@ -46,10 +48,18 @@ export function VaultEducationPlayer() {
           preload="metadata"
           title="OpenTimestamps walkthrough — how proofs work"
           aria-label="OpenTimestamps walkthrough film — how proofs work"
-          onError={() => setFilmError(true)}
-          onLoadedData={() => setFilmReady(true)}
+          src={srcReady ? VIDEO_SRC : undefined}
+          onError={() => {
+            // Only show the honest pending panel if the source was actually
+            // requested; a transient/early error before in-view should not
+            // permanently latch the fallback. Retry once on next in-view.
+            if (srcReady) setFilmError(true)
+          }}
+          onLoadedData={() => {
+            setFilmError(false)
+            setFilmReady(true)
+          }}
         >
-          {srcReady && <source src={VIDEO_SRC} type="video/mp4" />}
           Your browser does not support HTML5 video.
         </video>
 
