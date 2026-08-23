@@ -1,5 +1,12 @@
-import { QRCodeSVG } from 'qrcode.react'
+import { lazy, Suspense } from 'react'
 import { useI18n } from '../../i18n/I18nContext'
+
+// Lazy-load the QR renderer so qrcode.react (~43KB source) leaves the
+// critical-path index chunk — it's only needed when a payment QR is actually
+// shown (server-costs / payment / apply modals), never on first paint.
+const QRCodeSVG = lazy(() =>
+  import('qrcode.react').then((m) => ({ default: m.QRCodeSVG })),
+)
 
 type Props = {
   value: string
@@ -13,15 +20,17 @@ export function PaymentQrCode({ value, label, temp }: Props) {
   return (
     <div className="flex flex-col items-center">
       <div className="p-3 sm:p-4 rounded-mp-xl bg-white border-2 border-mp shadow-card inline-block">
-        <QRCodeSVG
-          value={value}
-          size={168}
-          level="M"
-          marginSize={2}
-          bgColor="#ffffff"
-          fgColor="#18181b"
-          title={label}
-        />
+        <Suspense fallback={<div className="h-[168px] w-[168px]" aria-hidden />}>
+          <QRCodeSVG
+            value={value}
+            size={168}
+            level="M"
+            marginSize={2}
+            bgColor="#ffffff"
+            fgColor="#18181b"
+            title={label}
+          />
+        </Suspense>
       </div>
       <p className="text-[10px] font-mono text-ink-muted mt-3 text-center uppercase tracking-wider">
         {t('payment.scanToPay')} · {label}
