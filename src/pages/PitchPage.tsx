@@ -26,6 +26,7 @@ import { useI18n } from '../i18n/I18nContext'
 import { BlockHeight } from '../components/BlockHeight'
 import { BtcPriceTicker } from '../components/BtcPriceTicker'
 import { HeroMotionBackground } from '../components/pitch/HeroMotionBackground'
+import { MotoPassExplainer } from '../components/pitch/MotoPassExplainer'
 import { HeroCtaLink } from '../components/pitch/HeroCtaLink'
 import { EvolvingPitchRotator } from '../components/pitch/EvolvingPitchRotator'
 import { SavingsGraphs } from '../components/pitch/SavingsGraphs'
@@ -216,6 +217,9 @@ export function PitchPage() {
           )}
         </div>
       </section>
+
+      {/* ── 60s explainer film — prominent, above the fold ── */}
+      <MotoPassExplainer />
 
       <PitchTrustedStrip programs={programs} loading={loading} />
 
