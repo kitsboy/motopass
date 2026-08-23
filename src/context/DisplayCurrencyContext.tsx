@@ -86,8 +86,23 @@ export function DisplayCurrencyProvider({ children }: { children: ReactNode }) {
     setGen((g) => g + 1)
   }, [])
 
-  // Fetch FX for every fiat through the honest chain; refresh on a backoff timer.
+  // Fetch FX ONLY when a fiat display currency is actually active. The default
+  // is BTC-first (SAT/BTC), which needs NO fiat rates — so on a normal load we
+  // skip the coingecko/ECB/snapshot round-trips entirely (previously all 8 fiat
+  // chains fired on every page, hammering api.coingecko.com for nothing).
+  // When the user opts into a fiat, we fetch then. This keeps the live-FX
+  // machinery intact while removing it from the first-paint critical path.
+  const isFiatActive = currency !== 'BTC' && currency !== 'SAT'
+
   useEffect(() => {
+    if (!isFiatActive) {
+      // No fiat active — nothing to fetch. fx stays null; the BTC/sats figures
+      // are anchored to btc_price_at_capture and need no network.
+      setFxLoading(false)
+      if (timerRef.current) clearTimeout(timerRef.current)
+      return
+    }
+
     let cancelled = false
 
     const tick = async () => {
@@ -119,7 +134,7 @@ export function DisplayCurrencyProvider({ children }: { children: ReactNode }) {
       cancelled = true
       if (timerRef.current) clearTimeout(timerRef.current)
     }
-  }, [gen])
+  }, [gen, isFiatActive])
 
   const fx = currency !== 'BTC' && currency !== 'SAT' ? (quotes[currency] ?? null) : null
 
