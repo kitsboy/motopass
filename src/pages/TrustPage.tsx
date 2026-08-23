@@ -59,6 +59,20 @@ export function TrustPage() {
   const sweep = index?.sweep ?? { fresh: 0, watch: 0, stale: 0 }
   const total = index?.count ?? 0
 
+  // Body scroll-lock + view reset: when a detail/compare drawer opens, lock page
+  // scroll (same contract as the shared Modal) and reset the view to the top so the
+  // fixed panel is always findable — regardless of where the triggering card sits
+  // on the page (Cam's bug: drawer could open below the fold). Overflow restored on close.
+  useEffect(() => {
+    if (!selected && !showCompare) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.scrollTo({ top: 0, behavior: 'auto' })
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [selected, showCompare])
+
   const openCountry = async (iso2: string) => {
     const env = await fetchCountryTrust(iso2)
     if (env) setSelected(env)
