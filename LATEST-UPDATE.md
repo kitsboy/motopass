@@ -1,4 +1,41 @@
 # motopass — Last Updated 2026-08-23 by Ziggy
+Brief: Self-hosted flag sprite (kill 18 flagcdn round-trips) + webp/srcset image optimization across ALL pages — smoothness epic (t_810e8b85)
+Commit: 1f1b86d (ziggy) · PUSHED to origin/main · live-verified (mobile + desktop)
+Deploy: auto-deploy via GH→CF Pages (commit on main) · https://motopass.giveabit.io
+
+What landed:
+- FLAG STRIP: LazyFlagSprite now renders flags from ONE self-hosted sprite
+  (/images/flags-sprite.webp, 400x150, 50 program ISOs) instead of 18 separate
+  flagcdn.com round-trips. Still IntersectionObserver-gated: 0 flag requests on
+  first paint, exactly 1 sprite request when the trusted strip scrolls into view.
+  flagcdn is completely absent from the shipped bundles. Graceful emoji fallback
+  for any country not in the sprite. Verified live: firstPaint=0 flag reqs,
+  afterScroll=1 sprite req, 0 flagcdn; visual check confirms El Salvador /
+  Uruguay / Switzerland flags render correctly.
+- HERO: sovereignty.jpg (222KB) -> sovereignty.webp (44KB, -80%) + responsive
+  srcset (480w/800w/1280w) + width/height (no CLS). Above-the-fold so eager, not lazy.
+- IMAGES: kimi/passport/funding-flow/vault-archive -> .webp (40-70% smaller)
+  with width/height; below-fold stay loading=lazy. Remaining .jpg refs are only
+  OG/social meta (hero.jpg, kimi.jpg in siteJsonLd) — correctly kept.
+- Reproducibility: scripts/build-flag-sprite.py (regenerates sprite + offset map)
+  and scripts/optimize-images.py (webp/avif + srcset variants). measure-smoothness.mjs
+  = live before/after harness (mobile+desktop).
+- Verified: vite build clean (20s), 251 tests pass, all 10 routes return 200,
+  sprite covers all 50 program ISOs exactly, no flagcdn in any bundle.
+- HOTSPOT-clean: only this task's src/ + images + scripts committed. Left the
+  prior /trust CLS task's trust-*.mjs probe scripts untouched in the tree.
+
+HONEST BEFORE/AFTER (live, real chromium):
+- Flag requests on first paint: 0 -> 0 (both already lazy; flags below fold)
+- Flag requests on scroll-into-view: 18 flagcdn round-trips (up to) -> 1 sprite
+- Hero sovereignty: 222,204 B jpg -> 44,168 B webp (-80%); mobile serves 480w (7,134 B)
+- kimi.jpg 58,969 -> kimi.webp 17,934 (-70%)
+- flagcdn third-party requests: eliminated (0 in all bundles)
+- CLS on landing unchanged (1.0 mobile pre-existing, from hero/video area, NOT flags —
+  flag strip already lazy before this change; deferral task t_64288276 owns that area)
+
+---
+# motopass — Last Updated 2026-08-23 by Ziggy
 Brief: Defer heavy live-data fetches (mempool spot, block height, 531KB countries.json, btcmap density) to after-first-paint idle across ALL routes — smoothness epic (t_64288276)
 Commit: 78a84e9 (ziggy) · PUSHED to origin/main · live-verified
 Deploy: auto-deploy via GH→CF Pages (commit on main) · https://motopass.giveabit.io
