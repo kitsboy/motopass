@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
+import { afterIdle } from '../lib/idle'
 import {
   BTC_USD_REFERENCE,
   fetchBtcUsdPrice,
@@ -64,10 +65,13 @@ export function BtcPriceProvider({ children }: { children: ReactNode }) {
       timerRef.current = setTimeout(() => { void tick() }, backoffRef.current)
     }
 
-    void tick()
+    // Defer the first live fetch until the browser is idle (after first paint),
+    // so the mempool spot price doesn't load the main thread at startup on any route.
+    const cancelIdle = afterIdle(() => { if (!cancelled) void tick() })
 
     return () => {
       cancelled = true
+      cancelIdle()
       if (timerRef.current) clearTimeout(timerRef.current)
     }
   }, [pollGen])

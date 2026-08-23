@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import type { Program } from '../types/program'
+import { afterIdle } from '../lib/idle'
 import { BUILD_ID } from '../lib/buildInfo'
 
 type ProgramsContextValue = {
@@ -60,14 +61,26 @@ export function ProgramsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     let active = true
     const force = tick > 0
-    fetchProgramsOnce(force).then(result => {
+    const run = () => {
       if (!active) return
-      setPrograms(result.programs)
-      setError(result.error)
-      setLoading(false)
-    })
+      fetchProgramsOnce(force).then(result => {
+        if (!active) return
+        setPrograms(result.programs)
+        setError(result.error)
+        setLoading(false)
+      })
+    }
+    // Initial load (tick === 0) is the 531 KB countries snapshot — defer it until
+    // after first paint so it doesn't load the main thread at startup on any route.
+    // User-initiated refresh (force) runs immediately.
+    if (force) {
+      run()
+      return () => { active = false }
+    }
+    const cancelIdle = afterIdle(run)
     return () => {
       active = false
+      cancelIdle()
     }
   }, [tick])
 

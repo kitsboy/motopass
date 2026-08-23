@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
+import { afterIdle } from '../lib/idle'
 import { fetchBitcoinBlockHeight } from '../lib/satohash'
 
 type BlockHeightContextValue = {
@@ -42,10 +43,13 @@ export function BlockHeightProvider({ children }: { children: ReactNode }) {
       timerRef.current = setTimeout(() => { void tick() }, backoffRef.current)
     }
 
-    void tick()
+    // Defer the first block-height fetch until idle (after first paint) — the
+    // live height widget doesn't need to run at startup on any route.
+    const cancelIdle = afterIdle(() => { if (!cancelled) void tick() })
 
     return () => {
       cancelled = true
+      cancelIdle()
       if (timerRef.current) clearTimeout(timerRef.current)
     }
   }, [pollGen])
