@@ -1,10 +1,11 @@
-import { useId, useState, type ReactNode } from 'react'
+import { useId, useRef, useState, type ReactNode } from 'react'
 
 /**
  * Lightweight hover/focus tooltip — wraps any element and shows an
  * educational tip above it. The panel is pointer-events-none so it never
- * intercepts clicks on the wrapped control. Mobile: labels on the wrapped
- * control stay visible; the tip is enrichment for mouse users.
+ * intercepts clicks on the wrapped control.
+ * Desktop: hover / focus reveals the tip (pointer-guarded so a synthesized
+ * touch mouseenter can't pre-open it). Touch: tap toggles the tip open.
  */
 export function InfoTip({
   tip,
@@ -17,13 +18,29 @@ export function InfoTip({
 }) {
   const [open, setOpen] = useState(false)
   const id = useId()
+  const lastPointerRef = useRef<'mouse' | 'touch' | 'pen' | 'unknown'>('unknown')
   return (
     <span
       className={`relative inline-flex ${className}`}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onPointerDown={(e) => {
+        lastPointerRef.current = e.pointerType
+      }}
+      onPointerEnter={(e) => {
+        if (e.pointerType === 'mouse') setOpen(true)
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType === 'mouse') setOpen(false)
+      }}
       onFocus={() => setOpen(true)}
       onBlur={() => setOpen(false)}
+      onClick={(e) => {
+        // Touch fallback: tap toggles the tip (guard so desktop clicks that
+        // pass through to the wrapped control don't re-toggle it).
+        if (lastPointerRef.current === 'touch' || lastPointerRef.current === 'pen') {
+          e.stopPropagation()
+          setOpen((v) => !v)
+        }
+      }}
     >
       {children}
       {open && (

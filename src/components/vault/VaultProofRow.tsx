@@ -61,6 +61,7 @@ export function VaultProofRow({
   const [expanded, setExpanded] = useState(false)
   const [copiedUrl, setCopiedUrl] = useState(false)
   const [copiedEventId, setCopiedEventId] = useState<string | null>(null)
+  const [copiedHash, setCopiedHash] = useState(false)
   const [announceBusy, setAnnounceBusy] = useState(false)
 
   const proofs = program.satohash_proofs ?? []
@@ -68,6 +69,13 @@ export function VaultProofRow({
   const hash = primary ? proofHash(primary) : ''
   const isDemo = cinematic.proofStatus === 'demo'
   const verifyUrl = hash ? satohashVerifyUrl(hash) : ''
+
+  async function copyHash() {
+    if (!hash) return
+    await navigator.clipboard.writeText(hash)
+    setCopiedHash(true)
+    setTimeout(() => setCopiedHash(false), 2000)
+  }
 
   async function copyVerifyUrl() {
     if (!verifyUrl) return
@@ -205,12 +213,33 @@ export function VaultProofRow({
                   </span>
                 }
               >
-                <span className="inline-flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => void copyHash()}
+                  className="group inline-flex items-center gap-1.5 rounded-mp-md border border-mp/50 bg-card-muted/40 px-2 py-1 font-mono text-[11px] text-ink-muted transition-colors hover:border-mp-btc/40 hover:bg-mp-btc-soft/40"
+                  aria-label={t('vault.hashLabel') + ' — ' + t('vault.copyEventId')}
+                >
                   <Hash size={11} className="shrink-0" aria-hidden />
                   <span className="sr-only">{t('vault.hashLabel')}</span>
-                  <span className="text-ink-secondary">{hash.slice(0, 10)}…</span>
-                </span>
+                  <span className="text-ink-secondary">{copiedHash ? t('vault.copied') : `${hash.slice(0, 10)}…`}</span>
+                  {copiedHash ? (
+                    <Check size={11} className="shrink-0 text-status-green" aria-hidden />
+                  ) : (
+                    <Copy size={10} className="shrink-0 opacity-60 group-hover:opacity-100" aria-hidden />
+                  )}
+                </button>
               </InfoTip>
+            )}
+            {hash && verifyUrl && (
+              <a
+                href={verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-mono text-[10px] text-mp-btc-text underline decoration-dotted underline-offset-2 hover:no-underline"
+                title={t('vault.tip.satohash')}
+              >
+                ↗ {t('vault.satohashExternal')}
+              </a>
             )}
             {primary?.ots_path && (
               <InfoTip tip={t('vault.tip.ots')}>

@@ -18,6 +18,7 @@ import { ValueForksPanel } from '../components/simulator/ValueForksPanel'
 import { Card } from '../components/ui/Card'
 import { formatStackSummary } from '../lib/simulatorSummary'
 import { useToast } from '../components/ui/Toast'
+import { InfoTip } from '../components/ui/InfoTip'
 
 export function StackSimulatorPage() {
   const { t } = useI18n()
@@ -154,29 +155,44 @@ export function StackSimulatorPage() {
             <Card id="simulator-metrics" variant="elevated" className="border-l-4 border-l-btc-orange scroll-mt-header !p-6">
               <h3 className="font-display font-semibold text-ink mb-4">{t('simulator.metrics')}</h3>
               <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <span className="text-ink-muted text-xs">{t('simulator.stat.programs')}</span>
-                  <div className="text-2xl font-display font-semibold text-gradient-orange">{stack.length}</div>
-                </div>
-                <div>
-                  <span className="text-ink-muted text-xs">{t('simulator.stat.cost')}</span>
-                  <div className="mt-1">
-                    <BtcDualPrice usd={totalCost} size="md" layout="stack" />
+                <InfoTip tip={t('simulator.tip.programs')}>
+                  <div>
+                    <span className="text-ink-muted text-xs">{t('simulator.stat.programs')}</span>
+                    <div className="text-2xl font-display font-semibold text-gradient-orange">{stack.length}</div>
                   </div>
-                </div>
-                <div>
-                  <span className="text-ink-muted text-xs">{t('simulator.stat.sovereignty')}</span>
-                  <div className="text-2xl font-display font-semibold text-ink">{sovereignty}/10</div>
-                </div>
-                <div>
-                  <span className="text-ink-muted text-xs">{t('simulator.stat.timeline')}</span>
-                  <div className="text-2xl font-display font-semibold text-ink">{months}mo</div>
-                </div>
+                </InfoTip>
+                <InfoTip tip={t('simulator.tip.cost')}>
+                  <div>
+                    <span className="text-ink-muted text-xs">{t('simulator.stat.cost')}</span>
+                    <div className="mt-1">
+                      <BtcDualPrice usd={totalCost} size="md" layout="stack" />
+                    </div>
+                  </div>
+                </InfoTip>
+                <InfoTip tip={t('simulator.tip.sovereignty')}>
+                  <div>
+                    <span className="text-ink-muted text-xs">{t('simulator.stat.sovereignty')}</span>
+                    <div className="text-2xl font-display font-semibold text-ink">{sovereignty}/10</div>
+                  </div>
+                </InfoTip>
+                <InfoTip tip={t('simulator.tip.timeline')}>
+                  <div>
+                    <span className="text-ink-muted text-xs">{t('simulator.stat.timeline')}</span>
+                    <div className="text-2xl font-display font-semibold text-ink">{months}mo</div>
+                  </div>
+                </InfoTip>
               </div>
               {stack.length > 0 && (
                 <p className="mt-4 text-xs text-ink-muted">
                   {formatT(t, 'simulator.synergySummary', synergyCounts)}
                 </p>
+              )}
+              {stack.length > 0 && (
+                <InfoTip tip={t('simulator.modeled')} className="block mt-2">
+                  <p className="text-xs text-ink-muted underline decoration-dotted underline-offset-2">
+                    {t('simulator.modeledShort')} ↗
+                  </p>
+                </InfoTip>
               )}
               <div className="flex flex-wrap gap-2 mt-5">
                 {stack.map(p => <AnimatedBadge key={p.id} status="info">{p.name}</AnimatedBadge>)}

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Card } from '../ui/Card'
 import { BtcDualPrice } from '../BtcDualPrice'
 import { ProofBadge } from '../ui/ProofBadge'
+import { InfoTip } from '../ui/InfoTip'
 import { toCinematicProgram } from '../../lib/programAdapter'
 import type { Program } from '../../types/program'
 
@@ -97,22 +98,28 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
       </div>
 
       <div className="grid grid-cols-3 gap-2 mb-4 text-center">
-        <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
-          <div className="text-[9px] font-mono uppercase text-ink-muted">Fork savings</div>
-          <div className="mt-1">
-            <BtcDualPrice usd={forkSavings} size="sm" />
+        <InfoTip tip="Pathway-level capital savings — the difference between the lowest pathway minimum and the typical investment across your stack. Modeled for member evaluation." className="block">
+          <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
+            <div className="text-[9px] font-mono uppercase text-ink-muted">Fork savings</div>
+            <div className="mt-1">
+              <BtcDualPrice usd={forkSavings} size="sm" />
+            </div>
           </div>
-        </div>
-        <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
-          <div className="text-[9px] font-mono uppercase text-ink-muted">Avg sovereignty</div>
-          <div className="font-display font-semibold text-ink mt-1">{avgSovereignty}/10</div>
-        </div>
-        <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
-          <div className="text-[9px] font-mono uppercase text-ink-muted">Synergy</div>
-          <div className="font-mono text-[10px] text-ink-secondary mt-1">
-            {synergy.high}H · {synergy.medium}M · {synergy.low}L
+        </InfoTip>
+        <InfoTip tip="Average sovereignty score (0–10) across the programs in your stack — a higher score means more control over your path. Modeled for member evaluation." className="block">
+          <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
+            <div className="text-[9px] font-mono uppercase text-ink-muted">Avg sovereignty</div>
+            <div className="font-display font-semibold text-ink mt-1">{avgSovereignty}/10</div>
           </div>
-        </div>
+        </InfoTip>
+        <InfoTip tip="How well the programs in your stack reinforce each other — High / Medium / Low stacking synergy. Modeled for member evaluation." className="block">
+          <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
+            <div className="text-[9px] font-mono uppercase text-ink-muted">Synergy</div>
+            <div className="font-mono text-[10px] text-ink-secondary mt-1">
+              {synergy.high}H · {synergy.medium}M · {synergy.low}L
+            </div>
+          </div>
+        </InfoTip>
       </div>
 
       {forks.length === 0 ? (

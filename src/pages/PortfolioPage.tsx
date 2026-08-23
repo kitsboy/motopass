@@ -20,6 +20,7 @@ import { ComplianceClock } from '../components/portfolio/ComplianceClock'
 import { PaigeChat } from '../components/PaigeChat'
 import { NostrConnect } from '../components/NostrConnect'
 import { Card } from '../components/ui/Card'
+import { InfoTip } from '../components/ui/InfoTip'
 import { hasFlagshipDepth } from '../components/programs/types'
 import { decodePortfolioStackParam, portfolioShareUrl } from '../lib/urlState'
 import { savePortfolio } from '../lib/portfolioStorage'
@@ -163,10 +164,18 @@ export function PortfolioPage() {
       </Card>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
-        <StatCard value={acquired.length} label={t('portfolio.statPrograms')} accent icon={<Layers size={18} />} />
-        <StatCard value={<BtcDualPrice usd={totalInvest} size="md" layout="stack" />} label={t('portfolio.statInvest')} icon={<Wallet size={18} />} />
-        <StatCard value={avgScore.toFixed(1)} label={t('portfolio.statScore')} icon={<Zap size={18} />} />
-        <StatCard value={acquired.filter((p) => p.lightning_ready).length} label={t('portfolio.statLightning')} icon={<Radio size={18} />} />
+        <InfoTip tip={t('portfolio.tip.programs')} className="block">
+          <StatCard value={acquired.length} label={t('portfolio.statPrograms')} accent icon={<Layers size={18} />} />
+        </InfoTip>
+        <InfoTip tip={t('portfolio.tip.invest')} className="block">
+          <StatCard value={<BtcDualPrice usd={totalInvest} size="md" layout="stack" />} label={t('portfolio.statInvest')} icon={<Wallet size={18} />} />
+        </InfoTip>
+        <InfoTip tip={t('portfolio.tip.score')} className="block">
+          <StatCard value={avgScore.toFixed(1)} label={t('portfolio.statScore')} icon={<Zap size={18} />} />
+        </InfoTip>
+        <InfoTip tip={t('portfolio.tip.lightning')} className="block">
+          <StatCard value={acquired.filter((p) => p.lightning_ready).length} label={t('portfolio.statLightning')} icon={<Radio size={18} />} />
+        </InfoTip>
       </div>
 
       {error && <ProgramsLoadError message={error} />}

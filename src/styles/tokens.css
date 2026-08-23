@@ -67,6 +67,15 @@
   --mp-accent-copper: #A6693B;
   --mp-accent-wax: #8B2E1F;
 
+  /* Identity accent — design-tokens.json (family contract v2026-08-23):
+     fuchsia #e879f9 = MotoPass · matrix. Used for identity surfaces (matrix
+     best-cells, hero mesh, hover glows) while Bitcoin orange stays the
+     money/primary-CTA accent. */
+  --mp-accent-fuchsia: #e879f9;
+  --mp-accent-fuchsia-deep: #d946ef;
+  --mp-accent-fuchsia-text: #a21caf;
+  --mp-accent-fuchsia-soft: #fdf4ff;
+
   --mp-proof-green: #16A34A;
   --mp-proof-green-soft: #EFFAF3;
   --mp-nostr-violet: #7C3AED;
@@ -179,6 +188,8 @@
   --mp-accent-btc-text: #FFC870;
   --mp-accent-btc-soft: #2a1c0c;
   --mp-accent-electric-soft: #182438;
+  --mp-accent-fuchsia-soft: #2a102f;
+  --mp-accent-fuchsia-text: #f0abfc;
   --mp-proof-green-soft: #142820;
 
   --mp-shadow-1: 0 1px 2px hsla(228, 30%, 8%, 0.35);

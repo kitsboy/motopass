@@ -206,10 +206,11 @@ export function TrustPage() {
                 key={c.iso2}
                     type="button"
                     onClick={() => openCountry(c.iso2)}
-                    className="group relative flex min-h-[297px] w-full flex-col overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc"
+                    className="group relative flex min-h-[297px] w-full flex-col overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc trust-card-surface"
                     style={{
                       animationDelay: `${Math.min(i, 6) * 50}ms`,
                     }}
+                    title={`${c.name} — ${c.freshness_status === 'fresh' ? t('trust.cardFresh') : c.freshness_status === 'watch' ? t('trust.cardWatch') : t('trust.cardStale')}${c.sovereignty_score != null ? ` · ${formatT(t, 'trust.sovereignty', { score: c.sovereignty_score })}` : ''}`}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex min-w-0 items-center gap-3">

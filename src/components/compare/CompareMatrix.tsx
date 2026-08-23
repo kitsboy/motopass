@@ -26,6 +26,39 @@ function groupLabel(group: (typeof COMPARE_GROUPS)[number], t: (k: TranslationKe
   return t(map[group])
 }
 
+/** Plain-English "what does this metric mean" fallback shown on hover of any cell in that row. */
+const METRIC_MEANING: Record<string, string> = {
+  minInvestment: 'Minimum investment to start this program.',
+  typical: 'Typical investment most members make for this program.',
+  govFees: 'Government / filing fees charged by the jurisdiction.',
+  processing: 'Estimated processing time, in months.',
+  btcScore: 'Bitcoin-friendliness score (0–10).',
+  sovereignty: 'Sovereignty score (0–10) — how much control you keep over your path.',
+  synergy: 'How well this program stacks with others in the family.',
+  btcIntegration: 'Depth of Bitcoin-native integration in the program.',
+  risk: 'Risk level of the jurisdiction / program.',
+  lightning: 'Whether Lightning payments are supported.',
+}
+
+/** Resolve the row's plain-English meaning (explicit meaning, else label-keyed fallback). */
+function rowMeaning(r: CompareRow): string {
+  if (r.meaning) return r.meaning
+  const keys: [string, string][] = [
+    ['compare.minInvestment', 'minInvestment'],
+    ['compare.typical', 'typical'],
+    ['compare.govFees', 'govFees'],
+    ['compare.processing', 'processing'],
+    ['compare.btcScore', 'btcScore'],
+    ['compare.sovereignty', 'sovereignty'],
+    ['compare.synergy', 'synergy'],
+    ['compare.btcIntegration', 'btcIntegration'],
+    ['compare.risk', 'risk'],
+    ['compare.lightning', 'lightning'],
+  ]
+  const found = keys.find(([k]) => r.label === k)
+  return found ? METRIC_MEANING[found[1]] : 'Comparison figure shown for member evaluation.'
+}
+
 export function CompareMatrix({ programs, rows, onOpenProgram, toCinematic }: CompareMatrixProps) {
   const { t } = useI18n()
   const reduceMotion = useReducedMotion()
@@ -87,6 +120,7 @@ export function CompareMatrix({ programs, rows, onOpenProgram, toCinematic }: Co
                             <td
                               key={p.id}
                               className={`fc-matrix__cell${bests.has(i) ? ' fc-matrix__cell--best' : ''}`}
+                              title={`${r.label} — ${rowMeaning(r)}`}
                             >
                               {bests.has(i) && (
                                 <span className="fc-matrix__best-badge">{t('compare.best')}</span>
@@ -153,6 +187,7 @@ export function CompareMatrix({ programs, rows, onOpenProgram, toCinematic }: Co
                           <div
                             key={r.label}
                             className={`fc-scroll-matrix__value${isBest ? ' fc-scroll-matrix__value--best' : ''}`}
+                            title={`${r.label} — ${rowMeaning(r)}`}
                           >
                             {isBest && <span className="fc-scroll-matrix__best">{t('compare.best')}</span>}
                             {r.render(p)}

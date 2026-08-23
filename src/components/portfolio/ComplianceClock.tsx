@@ -1,6 +1,7 @@
 import { Clock, Shield, AlertTriangle, CheckCircle2 } from 'lucide-react'
 import type { Program } from '../programs/types'
 import { hasFlagshipDepth } from '../programs/types'
+import { InfoTip } from '../ui/InfoTip'
 
 type ComplianceClockProps = {
   program: Program
@@ -71,9 +72,11 @@ export function ComplianceClock({ program, acquiredAt }: ComplianceClockProps) {
         <span className="font-chrome text-[11px] uppercase tracking-[0.14em] text-ink-muted">
           Compliance clock
         </span>
-        <span className={`ml-auto rounded-chip border px-2 py-0.5 text-[9px] font-mono uppercase ${styles.badge}`}>
-          {severity}
-        </span>
+        <InfoTip tip={severity === 'critical' ? 'Renewal is due within 30 days — act now to keep compliance current.' : severity === 'warning' ? 'Renewal due within 90 days — plan the renewal soon.' : 'Compliance current — no renewal action needed right now.'} className="ml-auto">
+          <span className={`inline-flex items-center rounded-chip border px-2 py-0.5 text-[9px] font-mono uppercase ${styles.badge}`}>
+            {severity}
+          </span>
+        </InfoTip>
       </div>
       <p className="font-display text-sm font-semibold text-ink mb-3">{program.country}</p>
       <dl className="grid grid-cols-2 gap-3 text-xs">

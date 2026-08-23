@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { LogOut, Zap } from 'lucide-react'
+import { Check, Copy, ExternalLink, LogOut, Zap } from 'lucide-react'
 import { connectNostr, hasNostrExtension, type NostrSession } from '../lib/nostr'
 import { useI18n } from '../i18n/I18nContext'
 
@@ -16,6 +16,7 @@ export function NostrConnect({
     return saved ? { npub: saved, pubkey: '' } : null
   })
   const [loading, setLoading] = useState(false)
+  const [copiedNpub, setCopiedNpub] = useState(false)
 
   const connect = async () => {
     if (!hasNostrExtension()) {
@@ -39,6 +40,13 @@ export function NostrConnect({
     onConnect?.(null)
   }
 
+  const copyNpub = async () => {
+    if (!session?.npub) return
+    await navigator.clipboard.writeText(session.npub)
+    setCopiedNpub(true)
+    setTimeout(() => setCopiedNpub(false), 2000)
+  }
+
   if (session) {
     return (
       <div className="flex items-center gap-1">
@@ -50,6 +58,25 @@ export function NostrConnect({
           <Zap size={12} className="shrink-0 fill-nostr-violet/20" aria-hidden="true" />
           <span className="truncate font-mono text-[10px]" aria-hidden="true">{session.npub.slice(0, 8)}…</span>
         </div>
+        <button
+          type="button"
+          onClick={() => void copyNpub()}
+          className="nav-btn nav-btn-icon"
+          aria-label="Copy npub"
+          title={copiedNpub ? 'Copied' : 'Copy npub'}
+        >
+          {copiedNpub ? <Check size={14} className="text-status-green" /> : <Copy size={14} />}
+        </button>
+        <a
+          href={`https://iris.to/${session.npub}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nav-btn nav-btn-icon"
+          aria-label="Verify npub in a Nostr client"
+          title="Verify on Nostr (iris.to)"
+        >
+          <ExternalLink size={14} />
+        </a>
         <button type="button" onClick={disconnect} className="nav-btn nav-btn-icon" aria-label="Disconnect Nostr" title="Disconnect">
           <LogOut size={14} />
         </button>
