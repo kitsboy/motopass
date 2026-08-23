@@ -296,7 +296,7 @@ export const pageKeysEs: Partial<Record<PageKey, string>> = {
   'vault.satohashExternal': 'Abrir verificación Satohash',
   'vault.educationEyebrow': 'Educación de la Bóveda',
   'vault.educationTitle': 'Cómo funcionan las pruebas OpenTimestamps',
-  'vault.educationBody': 'Breve recorrido sobre hasear datos de programas, subir recibos .ots y confirmar anclas en Bitcoin — el video llega en un BUILD futuro.',
+  'vault.educationBody': 'Breve recorrido sobre hasear datos de programas, subir recibos .ots y confirmar anclas en Bitcoin — mire el video de 60 segundos de arriba y luego verifique usted mismo.',
   'vault.educationStub': 'Ver recorrido (próximamente)',
   'vault.educationStubHint': 'Placeholder de video — stub de recorrido con cámara',
   'vault.doc.title': 'Sella tus propios documentos',

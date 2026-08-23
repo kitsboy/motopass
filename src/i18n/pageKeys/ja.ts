@@ -660,7 +660,7 @@ export const pageKeysJa: Partial<Record<PageKey, string>> = {
   'vault.doc.subtitle': '任意のファイル（パスポートスキャン、契約書、申請書）をドロップ — ローカルでハッシュ化され、SHA-256がSatohash API経由でBitcoinにアンカーされます。ファイル自体はこのデバイスから出ることはありません。',
   'vault.doc.title': '自分の書類を刻印',
   'vault.doc.verify': 'Satohashで検証',
-  'vault.educationBody': 'プログラムデータのハッシュ化、.otsレシートのアップロード、Bitcoin上のアンカー確認の短いチュートリアル — ビデオは今後のBUILDで提供予定です。',
+  'vault.educationBody': 'プログラムデータのハッシュ化、.otsレシートのアップロード、Bitcoin上のアンカー確認の短いチュートリアル — 上の60秒の動画をご覧いただき、ご自身で証明を確認してください。',
   'vault.educationEyebrow': 'Vault教育',
   'vault.educationStub': 'チュートリアルを見る（近日公開）',
   'vault.educationStubHint': 'ビデオのプレースホルダー — カメラチュートリアルスタブ',

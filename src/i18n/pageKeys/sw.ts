@@ -715,7 +715,7 @@ export const pageKeysSw: Partial<Record<PageKey, string>> = {
   'vault.doc.subtitle': 'Dondosha faili yoyote (skana ya pasipoti, mkataba, ombi) — inahesabiwa hash ndani na SHA-256 inafungwa kwenye Bitcoin kupitia API ya Satohash. Faili lenyewe kamwe halitoki kwenye kifaa hiki.',
   'vault.doc.title': 'Funga muhuri nyaraka zako mwenyewe',
   'vault.doc.verify': 'Thibitisha kwenye Satohash',
-  'vault.educationBody': 'Maelezo mafupi ya kuhesabu hash ya data ya programu, kupakia risiti za .ots, na kuthibitisha nanga kwenye Bitcoin — video itatolewa katika BUILD ijayo.',
+  'vault.educationBody': 'Maelezo mafupi ya kuhesabu hash ya data ya programu, kupakia risiti za .ots, na kuthibitisha nanga kwenye Bitcoin — tazama filamu ya sekunde 60 hapo juu, kisha uthibitishe uthibitisho mwenyewe.',
   'vault.educationEyebrow': 'Elimu ya Kuba',
   'vault.educationStub': 'Tazama maelezo (inakuja hivi karibuni)',
   'vault.educationStubHint': 'Pahala pa video — maelezo ya kamera',

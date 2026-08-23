@@ -713,7 +713,7 @@ export const pageKeysAr: Partial<Record<PageKey, string>> = {
   'vault.doc.subtitle': 'أفلت أي ملف (مسح جواز سفر، عقد، طلب) — يُجزَّأ محلياً وتُرسى SHA-256 على بيتكوين عبر واجهة Satohash API. الملف نفسه لا يغادر هذا الجهاز أبداً.',
   'vault.doc.title': 'اختم مستنداتك الخاصة',
   'vault.doc.verify': 'تحقق على Satohash',
-  'vault.educationBody': 'جولة سريعة حول تجزئة بيانات البرامج ورفع إيصالات .ots وتأكيد الإرساءات على بيتكوين — سيُطرح فيديو في BUILD قادم.',
+  'vault.educationBody': 'جولة سريعة حول تجزئة بيانات البرامج ورفع إيصالات .ots وتأكيد الإرساءات على بيتكوين — شاهد الفيديو القصير (60 ثانية) بالأعلى، ثم تحقق من دليل بنفسك.',
   'vault.educationEyebrow': 'التعليم في الخزنة',
   'vault.educationStub': 'شاهد الجولة (قريباً)',
   'vault.educationStubHint': 'عنصر نائب للفيديو — نموذج جولة كاميرا',

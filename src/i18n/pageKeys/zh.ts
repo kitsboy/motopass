@@ -566,7 +566,7 @@ export const pageKeysZh: Partial<Record<PageKey, string>> = {
   'vault.doc.privacyNote': '文件绝不上传或存储——只有哈希被盖章。已确认的印章证明该文件在那个比特币区块时点确实存在。此登记处仅保存在本设备上。',
   'vault.educationEyebrow': '金库教学',
   'vault.educationTitle': 'OpenTimestamps证明如何运作',
-  'vault.educationBody': '简要介绍如何哈希项目数据、上传.ots收据并在比特币上确认锚定——视频将在未来的BUILD中上线。',
+  'vault.educationBody': '简要介绍如何哈希项目数据、上传.ots收据并在比特币上确认锚定——观看上方60秒短片，然后亲自验证证明。',
   'vault.educationStub': '观看演示（即将推出）',
   'vault.educationStubHint': '视频占位——摄像头演示存根',
   'vault.copyVerifyUrl': '复制验证URL',

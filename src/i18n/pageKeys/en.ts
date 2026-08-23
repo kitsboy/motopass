@@ -559,7 +559,7 @@ export const pageKeysEn: Record<PageKey, string> = {
   'vault.doc.privacyNote': 'Files are never uploaded or stored — only the hash is stamped. A confirmed stamp proves this exact file existed at that Bitcoin block. This registry is stored on this device only.',
   'vault.educationEyebrow': 'Vault education',
   'vault.educationTitle': 'How OpenTimestamps proofs work',
-  'vault.educationBody': 'Short walkthrough on hashing program data, uploading .ots receipts, and confirming anchors on Bitcoin — video ships in a future BUILD.',
+  'vault.educationBody': 'Short walkthrough on hashing program data, uploading .ots receipts, and confirming anchors on Bitcoin — watch the 60-second film above, then verify a proof yourself.',
   'vault.educationStub': 'Watch walkthrough (coming soon)',
   'vault.educationStubHint': 'Video placeholder — camera walkthrough stub',
   'vault.copyVerifyUrl': 'Copy verify URL',
