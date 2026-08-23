@@ -9,17 +9,21 @@ export function RouteSuspense({
   children,
   count = 2,
   minH,
+  minHClass,
 }: {
   children: ReactNode
   count?: number
   /** min-height (px) reserved while the route chunk loads. 0 = no reserve. */
   minH?: number
+  /** Responsive Tailwind min-height class (e.g. `min-h-[4300px] lg:min-h-[3200px]`).
+   *  Takes precedence over `minH` when both are set. */
+  minHClass?: string
 }) {
-  const style = minH ? { minHeight: `${minH}px` } : undefined
+  const style = minH && !minHClass ? { minHeight: `${minH}px` } : undefined
   return (
     <Suspense
       fallback={
-        <div className="p-6 max-w-7xl mx-auto" style={style}>
+        <div className={`p-6 max-w-7xl mx-auto ${minHClass ?? ''}`} style={style}>
           <CardSkeleton count={count} />
         </div>
       }

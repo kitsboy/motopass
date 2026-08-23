@@ -4,7 +4,7 @@ import { addPortfolioIds, loadCompareIds, saveCompareIds } from '../lib/portfoli
 import { usePortfolio } from '../hooks/usePortfolio'
 import { usePrograms } from '../hooks/usePrograms'
 import { useDebouncedValue } from '../hooks/useDebouncedValue'
-import { CardSkeleton } from '../components/LoadingSkeleton'
+import { CompareChartSkeleton } from '../components/compare/CompareChartSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { useI18n } from '../i18n/I18nContext'
 import { parseIdList, serializeIdList } from '../lib/urlState'
@@ -244,44 +244,60 @@ export function FinanceComparePage() {
 
         {error && <ProgramsLoadError message={error} />}
 
-        <ComparePicker
-          ids={ids}
-          selected={compare}
-          filtered={filtered}
-          search={search}
-          listOpen={listOpen}
-          listId={listId}
-          debouncedSearch={debouncedSearch}
-          programsLoading={loading}
-          allInStack={allInStack}
-          stackAdded={stackAdded}
-          onSearchChange={v => {
-            setSearch(v)
-            setListOpen(true)
-          }}
-          onSearchFocus={() => setListOpen(true)}
-          onSearchBlur={() => setTimeout(() => setListOpen(false), 150)}
-          onToggle={toggle}
-          onRemove={remove}
-          onClearAll={() => setIdsSynced([])}
-          onAddAllToStack={handleAddAllToStack}
-        />
+        <div
+          className={
+            ids.length > 0 && compare.length === 0
+              ? 'fc-compare-picker-reserve min-h-[277px] lg:min-h-[247px]'
+              : undefined
+          }
+        >
+          <ComparePicker
+            ids={ids}
+            selected={compare}
+            filtered={filtered}
+            search={search}
+            listOpen={listOpen}
+            listId={listId}
+            debouncedSearch={debouncedSearch}
+            programsLoading={loading}
+            allInStack={allInStack}
+            stackAdded={stackAdded}
+            onSearchChange={v => {
+              setSearch(v)
+              setListOpen(true)
+            }}
+            onSearchFocus={() => setListOpen(true)}
+            onSearchBlur={() => setTimeout(() => setListOpen(false), 150)}
+            onToggle={toggle}
+            onRemove={remove}
+            onClearAll={() => setIdsSynced([])}
+            onAddAllToStack={handleAddAllToStack}
+          />
+        </div>
 
-        {compare.length > 0 ? (
-          loading ? (
-            <CardSkeleton count={2} />
-          ) : (
-            <>
-              <CompareSummaryStrip programs={compare} rows={rows} />
-              <CompareMatrix
-                programs={compare}
-                rows={rows}
-                onOpenProgram={setModalProgram}
-                toCinematic={toCinematicProgram}
-              />
-              <CompareDiffSection programs={compare} diffRows={diffRows} onExport={handleExportMarkdown} />
-            </>
-          )
+        {ids.length > 0 ? (
+          <div
+            className={
+              ids.length >= 2
+                ? 'fc-compare-reserve min-h-[2270px] lg:min-h-[1570px]'
+                : 'fc-compare-reserve min-h-[880px] lg:min-h-[840px]'
+            }
+          >
+            {compare.length > 0 ? (
+              <>
+                <CompareSummaryStrip programs={compare} rows={rows} />
+                <CompareMatrix
+                  programs={compare}
+                  rows={rows}
+                  onOpenProgram={setModalProgram}
+                  toCinematic={toCinematicProgram}
+                />
+                <CompareDiffSection programs={compare} diffRows={diffRows} onExport={handleExportMarkdown} />
+              </>
+            ) : (
+              <CompareChartSkeleton programCount={ids.length} />
+            )}
+          </div>
         ) : (
           <CompareEmptyState
             showSuggested={!loading && !!suggestedPair}

@@ -106,7 +106,7 @@ export default function App() {
                                 <Route
                                   path="compare"
                                   element={
-                                    <RouteSuspense minH={885}>
+                                    <RouteSuspense minHClass="min-h-[2930px] lg:min-h-[2250px]">
                                       <FinanceComparePage />
                                     </RouteSuspense>
                                   }

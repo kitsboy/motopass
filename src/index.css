@@ -1616,6 +1616,17 @@ html.mp-header-collapsed {
   margin-bottom: 1rem;
 }
 
+/* Skeleton stand-in for the selected-chips row, rendered while deferred program
+   data loads so the search field below never shifts (CLS guard). Height matches
+   a real chip (measured 46px). */
+.fc-picker__chip-placeholder {
+  display: inline-flex;
+  align-items: center;
+  width: 7.5rem;
+  height: 2.875rem;
+  border-radius: 14px;
+}
+
 .fc-chip {
   display: inline-flex;
   align-items: center;

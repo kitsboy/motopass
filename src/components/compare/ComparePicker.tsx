@@ -57,6 +57,17 @@ export function ComparePicker({
       transition={{ duration: 0.5, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="fc-picker__panel">
+        {selected.length === 0 && ids.length > 0 && (
+          <div className="fc-picker__selected" aria-hidden>
+            {/* Reserved from first paint: the selected chips appear only when deferred
+                program data arrives, so without this placeholder they'd pop in above the
+                search field and shift the whole /compare stack (CLS). ids is known from
+                the URL, so we can reserve the same 46px row + gap up front. */}
+            {ids.map(i => (
+              <span key={i} className="fc-picker__chip-placeholder skeleton-shimmer" />
+            ))}
+          </div>
+        )}
         {selected.length > 0 && (
           <div className="fc-picker__selected">
             {selected.map((p, i) => (
