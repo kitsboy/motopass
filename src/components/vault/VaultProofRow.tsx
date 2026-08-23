@@ -36,6 +36,43 @@ function proofHash(proof: { content_hash?: string; proof_url?: string }): string
   return normalizeSha256(tail) ?? ''
 }
 
+/**
+ * A titled proof-fact cell — the canonical "anchor proof" field layout.
+ * Every value in the anchored-proof card is shown as a labeled cell
+ * (small uppercase title + readable value) so the card reads like a
+ * dossier, never a raw token dump. Wrapped in InfoTip so hovering the
+ * whole cell explains what the field means.
+ */
+function ProofFactCell({
+  icon,
+  label,
+  tip,
+  children,
+  className = '',
+}: {
+  icon: React.ReactNode
+  label: string
+  tip: React.ReactNode
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <div className={`rounded-mp-md border border-mp/50 bg-card-muted/40 px-3 py-2 min-w-0 ${className}`}>
+      <InfoTip tip={tip}>
+        <span className="block">
+          <span className="flex items-center gap-1.5 font-chrome text-[9px] font-semibold uppercase tracking-[0.14em] text-ink-muted">
+            {icon}
+            {label}
+          </span>
+          <span className="mt-1 block text-[13px] font-mono text-ink-secondary font-medium leading-snug">
+            {children}
+          </span>
+        </span>
+      </InfoTip>
+    </div>
+  )
+}
+
 export function VaultProofRow({
   program,
   cinematic,
@@ -150,6 +187,7 @@ export function VaultProofRow({
         aria-controls={hasLineage ? detailsId : undefined}
       >
         <div className="min-w-0 flex-1">
+          {/* Title row — program identity */}
           <div className="flex flex-wrap items-center gap-2">
             {onToggleSelect && (
               <input
@@ -161,7 +199,7 @@ export function VaultProofRow({
                 aria-label={formatT(t, 'vault.selectProof', { name: program.name })}
               />
             )}
-            <div className="font-display font-semibold text-ink">
+            <div className="font-display text-lg font-semibold text-ink sm:text-xl">
               {program.flag} {program.name}
             </div>
             <InfoTip
@@ -183,76 +221,8 @@ export function VaultProofRow({
               </span>
             )}
           </div>
-
-          <div className="mt-2.5 flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-mp-md border border-mp/50 bg-card-muted/40 px-3 py-2 font-mono text-[11px] text-ink-muted">
-            {primary?.block_height != null && (
-              <InfoTip tip={t('vault.tip.block')}>
-                <span className="inline-flex items-center gap-1.5">
-                  <Anchor size={11} className="text-mp-proof shrink-0" aria-hidden />
-                  <span className="sr-only">{t('vault.blockLabel')}</span>
-                  <span className="text-ink-secondary font-semibold">#{primary.block_height}</span>
-                </span>
-              </InfoTip>
-            )}
-            {program.last_checked && (
-              <InfoTip tip={t('vault.tip.checked')}>
-                <span className="inline-flex items-center gap-1.5">
-                  <CalendarDays size={11} className="shrink-0" aria-hidden />
-                  <span className="sr-only">{t('modal.lastChecked')}</span>
-                  <span>{program.last_checked}</span>
-                </span>
-              </InfoTip>
-            )}
-            {hash && (
-              <InfoTip
-                tip={
-                  <span>
-                    {t('vault.tip.hash')}
-                    <br />
-                    <code className="mt-1 block break-all font-mono text-[9px] text-ink-muted">{hash}</code>
-                  </span>
-                }
-              >
-                <button
-                  type="button"
-                  onClick={() => void copyHash()}
-                  className="group inline-flex items-center gap-1.5 rounded-mp-md border border-mp/50 bg-card-muted/40 px-2 py-1 font-mono text-[11px] text-ink-muted transition-colors hover:border-mp-btc/40 hover:bg-mp-btc-soft/40"
-                  aria-label={t('vault.hashLabel') + ' — ' + t('vault.copyEventId')}
-                >
-                  <Hash size={11} className="shrink-0" aria-hidden />
-                  <span className="sr-only">{t('vault.hashLabel')}</span>
-                  <span className="text-ink-secondary">{copiedHash ? t('vault.copied') : `${hash.slice(0, 10)}…`}</span>
-                  {copiedHash ? (
-                    <Check size={11} className="shrink-0 text-status-green" aria-hidden />
-                  ) : (
-                    <Copy size={10} className="shrink-0 opacity-60 group-hover:opacity-100" aria-hidden />
-                  )}
-                </button>
-              </InfoTip>
-            )}
-            {hash && verifyUrl && (
-              <a
-                href={verifyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 font-mono text-[10px] text-mp-btc-text underline decoration-dotted underline-offset-2 hover:no-underline"
-                title={t('vault.tip.satohash')}
-              >
-                ↗ {t('vault.satohashExternal')}
-              </a>
-            )}
-            {primary?.ots_path && (
-              <InfoTip tip={t('vault.tip.ots')}>
-                <span className="inline-flex items-center gap-1.5">
-                  <FileCheck2 size={11} className="text-mp-proof shrink-0" aria-hidden />
-                  <span className="sr-only">{t('vault.otsLabel')}</span>
-                  <span className="break-all">{primary.ots_path}</span>
-                </span>
-              </InfoTip>
-            )}
-          </div>
         </div>
-        <div className="flex gap-2 flex-wrap shrink-0 items-center">
+        <div className="flex flex-wrap gap-2 shrink-0 items-center">
           {hash && (
             <InfoTip tip={t('vault.tip.useProof')}>
               <button
@@ -278,78 +248,154 @@ export function VaultProofRow({
               </button>
             </InfoTip>
           )}
-          {safeSatohashHref(primary?.proof_url) && (
-            <InfoTip tip={t('vault.tip.satohash')}>
-              <a
-                href={safeSatohashHref(primary?.proof_url)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
-                aria-label={t('vault.satohashExternal')}
-              >
-                <ExternalLink size={14} className="text-btc-orange shrink-0" aria-hidden />
-                <span className="sr-only sm:not-sr-only">Satohash</span>
-              </a>
-            </InfoTip>
-          )}
-          {sanitizeOtsPath(primary?.ots_path ?? '') && (
-            <InfoTip tip={t('vault.tip.otsDownload')}>
-              <a
-                href={sanitizeOtsPath(primary?.ots_path ?? '') ?? undefined}
-                download
-                className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
-                aria-label={t('vault.otsLabel')}
-              >
-                <FileDown size={13} aria-hidden />
-                .ots
-              </a>
-            </InfoTip>
-          )}
-          {inPortfolio && (
-            <Link to="/portfolio" className="btn-secondary text-xs !py-1.5 !px-3">
-              {t('vault.inPortfolio')}
-            </Link>
-          )}
-          <InfoTip tip={t('vault.tip.apply')}>
-            <Link
-              to={`/apply?program=${encodeURIComponent(program.name)}${hash ? `&proof=${encodeURIComponent(hash)}` : ''}`}
-              className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
-            >
-              Apply
-              <ArrowRight size={13} aria-hidden />
-            </Link>
-          </InfoTip>
-          <InfoTip tip={t('vault.tip.nostr')}>
+        </div>
+      </div>
+
+      {/* Proof facts — full-width titled grid (the readable dossier). Each field
+          is a labeled cell, mobile-first: 1 col → 2 cols → 4 cols on desktop. */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 px-5 pb-3 pt-1">
+        {primary?.block_height != null && (
+          <ProofFactCell
+            icon={<Anchor size={10} className="text-mp-proof shrink-0" aria-hidden />}
+            label={t('vault.blockLabel')}
+            tip={t('vault.tip.block')}
+          >
+            <span className="inline-flex items-center gap-1.5">
+              <span className="text-ink font-semibold">#{primary.block_height}</span>
+            </span>
+          </ProofFactCell>
+        )}
+        {program.last_checked && (
+          <ProofFactCell
+            icon={<CalendarDays size={10} className="text-ink-muted shrink-0" aria-hidden />}
+            label={t('modal.lastChecked')}
+            tip={t('vault.tip.checked')}
+          >
+            <span>{program.last_checked}</span>
+          </ProofFactCell>
+        )}
+        {hash && (
+          <ProofFactCell
+            icon={<Hash size={10} className="text-mp-btc shrink-0" aria-hidden />}
+            label={t('vault.hashLabel')}
+            tip={
+              <span>
+                {t('vault.tip.hash')}
+                <br />
+                <code className="mt-1 block break-all font-mono text-[9px] text-ink-muted">{hash}</code>
+              </span>
+            }
+          >
             <button
               type="button"
-              onClick={() => void announceNostr()}
-              disabled={announceBusy}
-              className="chip text-xs !text-nostr-violet !border-nostr-violet/30 hover:!bg-nostr-violet-soft inline-flex items-center gap-1 disabled:opacity-60"
+              onClick={() => void copyHash()}
+              className="group inline-flex w-full items-center gap-1.5 rounded-mp-md border border-mp/50 bg-card px-2 py-1 font-mono text-[11px] text-ink-muted transition-colors hover:border-mp-btc/40 hover:bg-mp-btc-soft/40"
+              aria-label={t('vault.hashLabel') + ' — ' + t('vault.copyEventId')}
             >
-              <Radio size={12} aria-hidden />
-              {announceBusy ? t('verify.nostrAnnouncing') : t('vault.nostrPublish')}
+              <span className="text-ink-secondary break-all text-left">{copiedHash ? t('vault.copied') : hash}</span>
+              {copiedHash ? (
+                <Check size={11} className="shrink-0 text-status-green" aria-hidden />
+              ) : (
+                <Copy size={10} className="shrink-0 opacity-60 group-hover:opacity-100" aria-hidden />
+              )}
+            </button>
+          </ProofFactCell>
+        )}
+        {primary?.ots_path && (
+          <ProofFactCell
+            icon={<FileCheck2 size={10} className="text-mp-proof shrink-0" aria-hidden />}
+            label={t('vault.otsLabel')}
+            tip={t('vault.tip.ots')}
+          >
+            <span className="inline-flex items-center gap-1.5 break-all">{primary.ots_path}</span>
+          </ProofFactCell>
+        )}
+      </div>
+
+      {/* Action footer — full-width row of secondary tools */}
+      <div className="flex flex-wrap items-center gap-2 border-t border-mp/40 px-5 py-3 bg-card-muted/20">
+        {hash && verifyUrl && (
+          <a
+            href={verifyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 font-chrome text-[11px] text-mp-btc-text underline decoration-dotted underline-offset-2 hover:no-underline"
+            title={t('vault.tip.satohash')}
+          >
+            ↗ {t('vault.satohashExternal')}
+          </a>
+        )}
+        {safeSatohashHref(primary?.proof_url) && (
+          <InfoTip tip={t('vault.tip.satohash')}>
+            <a
+              href={safeSatohashHref(primary?.proof_url)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
+              aria-label={t('vault.satohashExternal')}
+            >
+              <ExternalLink size={14} className="text-btc-orange shrink-0" aria-hidden />
+              <span className="sr-only sm:not-sr-only">Satohash</span>
+            </a>
+          </InfoTip>
+        )}
+        {sanitizeOtsPath(primary?.ots_path ?? '') && (
+          <InfoTip tip={t('vault.tip.otsDownload')}>
+            <a
+              href={sanitizeOtsPath(primary?.ots_path ?? '') ?? undefined}
+              download
+              className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
+              aria-label={t('vault.otsLabel')}
+            >
+              <FileDown size={13} aria-hidden />
+              .ots
+            </a>
+          </InfoTip>
+        )}
+        {inPortfolio && (
+          <Link to="/portfolio" className="btn-secondary text-xs !py-1.5 !px-3">
+            {t('vault.inPortfolio')}
+          </Link>
+        )}
+        <InfoTip tip={t('vault.tip.apply')}>
+          <Link
+            to={`/apply?program=${encodeURIComponent(program.name)}${hash ? `&proof=${encodeURIComponent(hash)}` : ''}`}
+            className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
+          >
+            Apply
+            <ArrowRight size={13} aria-hidden />
+          </Link>
+        </InfoTip>
+        <InfoTip tip={t('vault.tip.nostr')}>
+          <button
+            type="button"
+            onClick={() => void announceNostr()}
+            disabled={announceBusy}
+            className="chip text-xs !text-nostr-violet !border-nostr-violet/30 hover:!bg-nostr-violet-soft inline-flex items-center gap-1 disabled:opacity-60"
+          >
+            <Radio size={12} aria-hidden />
+            {announceBusy ? t('verify.nostrAnnouncing') : t('vault.nostrPublish')}
+          </button>
+        </InfoTip>
+        {proofs.length > 1 && (
+          <InfoTip tip={t('vault.tip.lineage')}>
+            <button
+              type="button"
+              aria-expanded={expanded}
+              aria-controls={detailsId}
+              onClick={() => setExpanded(v => !v)}
+              className="chip text-xs inline-flex items-center gap-1"
+            >
+              <GitBranch size={12} aria-hidden />
+              {expanded ? t('vault.collapseLineage') : t('vault.expandLineage')}
+              <ChevronDown
+                size={12}
+                className={`transition-transform duration-fast ${expanded ? 'rotate-180' : ''}`}
+                aria-hidden
+              />
             </button>
           </InfoTip>
-          {proofs.length > 1 && (
-            <InfoTip tip={t('vault.tip.lineage')}>
-              <button
-                type="button"
-                aria-expanded={expanded}
-                aria-controls={detailsId}
-                onClick={() => setExpanded(v => !v)}
-                className="chip text-xs inline-flex items-center gap-1"
-              >
-                <GitBranch size={12} aria-hidden />
-                {expanded ? t('vault.collapseLineage') : t('vault.expandLineage')}
-                <ChevronDown
-                  size={12}
-                  className={`transition-transform duration-fast ${expanded ? 'rotate-180' : ''}`}
-                  aria-hidden
-                />
-              </button>
-            </InfoTip>
-          )}
-        </div>
+        )}
       </div>
 
       <AnimatePresence initial={false}>
