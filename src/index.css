@@ -127,6 +127,21 @@ body {
   animation: trust-card-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Trust loading skeleton pulse — gentle opacity shimmer on placeholder blocks.
+   Non-essential decoration; disabled for prefers-reduced-motion below. */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+
 /* Freshness ring progress arc — sweeps only when days_stale actually changes
    (live data refresh), never on mount. Class-based so reduced-motion can kill it. */
 .freshness-ring-progress {
@@ -135,6 +150,9 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .trust-card-enter {
+    animation: none;
+  }
+  .skeleton-pulse {
     animation: none;
   }
   .freshness-ring-progress {

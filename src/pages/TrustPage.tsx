@@ -112,9 +112,15 @@ export function TrustPage() {
   const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH)
   const sentinelRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
+  // Reset the lazy-load batch back to the first batch whenever the filter changes
+  // or a new index arrives. Done via adjust-state-during-render (not an effect) so
+  // React re-renders in the same pass instead of cascading — behavior is identical,
+  // and it keeps the "reset batching on filter/index change" contract from ADV10B.
+  const [resetKey, setResetKey] = useState({ filter, index })
+  if (resetKey.filter !== filter || resetKey.index !== index) {
+    setResetKey({ filter, index })
     setVisibleCount(INITIAL_BATCH)
-  }, [filter, index])
+  }
 
   useEffect(() => {
     const sentinel = sentinelRef.current
@@ -198,19 +204,46 @@ export function TrustPage() {
             {t('trust.error')}
           </div>
         ) : loading ? (
-          /* Lightweight loading state — NOT a 50-card skeleton grid. Inserting a
-             15,000px-tall skeleton AFTER first paint caused a ~1.0 CLS (Core Web Vital)
-             in ~50% of slow loads (async two-phase insert). A compact spinner avoids
-             the massive off-screen insertion; the real grid mounts in one pass when
-             the index arrives. */
+          /* Loading skeleton — reserves the EXACT height the loaded first batch
+             will occupy (8 cards × min-h-[297px] in the same responsive grid), so
+             the async swap from placeholder to real grid is height-matched and the
+             full-viewport ~1.0 CLS is eliminated. The real cards mount into the
+             same layout with identical min-height, so no cumulative shift. The
+             lazy-load sentinel still appends later batches below the fold
+             (CLS-safe) — lazy-loading is NOT regressed. Skeleton pulse is
+             non-essential decoration and is skipped under prefers-reduced-motion. */
           <div
             role="status"
             aria-busy="true"
             aria-label={t('trust.loading')}
-            className="flex items-center justify-center gap-3 rounded-mp-lg border border-mp-border-subtle bg-mp-card px-4 py-10 font-body text-sm text-mp-ink-secondary"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
-            <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-mp-btc/30 border-t-mp-btc" aria-hidden="true" />
-            {t('trust.loading')}
+            {Array.from({ length: INITIAL_BATCH }).map((_, i) => (
+              <div
+                key={i}
+                className="flex min-h-[297px] w-full flex-col rounded-card border border-mp-border-subtle bg-mp-card p-5"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <span className="h-9 w-9 rounded bg-mp-border-subtle/70 skeleton-pulse" aria-hidden="true" />
+                    <div className="min-w-0 flex-1 space-y-2">
+                      <div className="h-4 w-28 rounded bg-mp-border-subtle/70 skeleton-pulse" aria-hidden="true" />
+                      <div className="h-2.5 w-10 rounded bg-mp-border-subtle/50 skeleton-pulse" aria-hidden="true" />
+                    </div>
+                  </div>
+                  <div className="h-9 w-9 rounded-full bg-mp-border-subtle/70 skeleton-pulse" aria-hidden="true" />
+                </div>
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <div className="h-5 w-24 rounded-chip bg-mp-border-subtle/70 skeleton-pulse" aria-hidden="true" />
+                  <div className="h-3.5 w-16 rounded bg-mp-border-subtle/50 skeleton-pulse" aria-hidden="true" />
+                </div>
+                <div className="mt-3 h-12 w-full rounded-mp-lg bg-mp-border-subtle/60 skeleton-pulse" aria-hidden="true" />
+                <div className="mt-auto flex items-center gap-2 border-t border-mp-border-subtle pt-3">
+                  <div className="h-3 w-20 rounded bg-mp-border-subtle/50 skeleton-pulse" aria-hidden="true" />
+                </div>
+              </div>
+            ))}
+            <span className="sr-only">{t('trust.loading')}</span>
           </div>
         ) : (
           <>

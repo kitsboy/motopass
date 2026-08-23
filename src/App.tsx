@@ -11,6 +11,7 @@ import { BtcMapDensityProvider } from './context/BtcMapDensityContext'
 import { BtcMapAuthProvider } from './context/BtcMapAuthContext'
 import { Layout } from './components/Layout'
 import { RouteSuspense } from './components/RouteSuspense'
+import { TrustRouteSuspense } from './components/TrustRouteSuspense'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { ToastProvider } from './components/ui/Toast'
 
@@ -116,9 +117,9 @@ export default function App() {
                                 <Route
                                   path="trust"
                                   element={
-                                    <RouteSuspense>
+                                    <TrustRouteSuspense>
                                       <TrustPage />
-                                    </RouteSuspense>
+                                    </TrustRouteSuspense>
                                   }
                                 />
                                 <Route path="vault" element={<VaultPage />} />
