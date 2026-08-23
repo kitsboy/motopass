@@ -1,18 +1,23 @@
 /**
  * Cinematic full-bleed hero — sovereignty.jpg (Imagine) with header-elite fallback,
  * CSS Ken Burns + dual fog drift. Motion is always on via CSS keyframes.
+ * Optimized: webp + responsive srcset (above-the-fold, so eager with srcset, not lazy).
  */
 export function HeroMotionBackground() {
   return (
     <div className="hero-elite-stage absolute inset-0 overflow-hidden" aria-hidden="true">
       <img
-        src="/images/sovereignty.jpg"
+        src="/images/sovereignty.webp"
+        srcSet="/images/sovereignty-480w.webp 480w, /images/sovereignty-800w.webp 800w, /images/sovereignty.webp 1280w"
+        sizes="100vw"
         alt=""
+        width={1280}
+        height={720}
         className="hero-elite-photo hero-elite-photo--animate absolute -left-[6%] -top-[6%] inset-0 h-[112%] w-[112%] max-w-none object-cover"
         onError={(e) => {
           const img = e.currentTarget
-          if (!img.src.endsWith('header-elite.jpg')) {
-            img.src = '/images/header-elite.jpg'
+          if (!img.src.endsWith('header-elite.webp')) {
+            img.src = '/images/header-elite.webp'
           }
         }}
       />

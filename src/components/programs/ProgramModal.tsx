@@ -141,7 +141,7 @@ function ProgramModalBody({
       >
       <div className="mb-4 overflow-hidden rounded-mp-lg border border-mp-border/60">
         <img
-          src="/images/passport.jpg"
+          src="/images/passport.webp"
           alt=""
           className="h-28 w-full object-cover object-center sm:h-32"
           loading="lazy"

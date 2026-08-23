@@ -327,7 +327,7 @@ export function VaultPage() {
         <div id="vault-archive" className="space-y-3 scroll-mt-header">
           <div className="relative mb-4 overflow-hidden rounded-mp-xl border border-mp-border/50">
             <img
-              src="/images/vault-archive.jpg"
+              src="/images/vault-archive.webp"
               alt=""
               className="h-36 w-full object-cover object-center sm:h-44"
               loading="lazy"

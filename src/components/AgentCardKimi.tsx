@@ -18,7 +18,7 @@ export function AgentCardKimi() {
         <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
           <div className="relative shrink-0">
             <img
-              src="/images/kimi.jpg"
+              src="/images/kimi.webp"
               alt="Kimi — MotoPass liaison agent"
               className="w-24 h-24 sm:w-28 sm:h-28 rounded-mp-lg object-cover border-2 border-nostr-violet/25 shadow-card"
             />

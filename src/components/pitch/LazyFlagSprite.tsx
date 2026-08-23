@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { flagSpriteUrl } from '../../lib/countryCode'
+import { programCountryCode } from '../../lib/countryCode'
+import { FLAG_SPRITE_OFFSETS, FLAG_SPRITE_TILE } from '../../lib/flagSprite'
 
 type LazyFlagSpriteProps = {
   countryName: string
@@ -9,14 +10,23 @@ type LazyFlagSpriteProps = {
 
 const IO_SUPPORTED = typeof IntersectionObserver !== 'undefined'
 
-/** Lazy-load flag sprite from CDN; emoji fallback when image unavailable (item 728). */
+/**
+ * Lazy-load flags from ONE self-hosted sprite (all program flags in a single
+ * image — /images/flags-sprite.webp). Zero third-party flagcdn round-trips:
+ * the whole trusted strip is one request, fetched only when scrolled into view.
+ * Emoji fallback when the country isn't in the sprite or IntersectionObserver
+ * is unavailable.
+ */
 export function LazyFlagSprite({ countryName, emojiFallback, className = '' }: LazyFlagSpriteProps) {
   const ref = useRef<HTMLSpanElement>(null)
   const [visible, setVisible] = useState(!IO_SUPPORTED)
-  const [failed, setFailed] = useState(false)
+
+  const iso = programCountryCode(countryName).toLowerCase()
+  const tile = FLAG_SPRITE_OFFSETS[iso]
+  const showSprite = !!tile
 
   useEffect(() => {
-    if (!IO_SUPPORTED) return
+    if (!IO_SUPPORTED || !tile) return
     const el = ref.current
     if (!el) return
 
@@ -31,28 +41,34 @@ export function LazyFlagSprite({ countryName, emojiFallback, className = '' }: L
     )
     io.observe(el)
     return () => io.disconnect()
-  }, [])
+  }, [tile])
 
-  if (failed) {
+  // Country not in sprite → emoji fallback, always visible.
+  if (!showSprite) {
     return (
-      <span ref={ref} className={`text-xl leading-none ${className}`} aria-hidden>
+      <span className={`text-xl leading-none ${className}`} aria-hidden>
         {emojiFallback}
       </span>
     )
   }
 
+  // Sprite tile is FLAG_SPRITE_TILE.w x FLAG_SPRITE_TILE.h px, displayed at 20x15.
+  const scale = 20 / FLAG_SPRITE_TILE.w
+  const bgW = Math.round(FLAG_SPRITE_TILE.cols * FLAG_SPRITE_TILE.w * scale)
+  const bgH = Math.round(FLAG_SPRITE_TILE.rows * FLAG_SPRITE_TILE.h * scale)
+  const posX = Math.round(tile.x * scale)
+  const posY = Math.round(tile.y * scale)
+
   return (
-    <span ref={ref} className={`inline-flex h-5 w-5 shrink-0 items-center justify-center ${className}`} aria-hidden>
+    <span ref={ref} className={`inline-flex h-[15px] w-5 shrink-0 items-center justify-center ${className}`} aria-hidden>
       {visible ? (
-        <img
-          src={flagSpriteUrl(countryName)}
-          alt=""
-          width={20}
-          height={15}
-          loading="lazy"
-          decoding="async"
-          className="h-[15px] w-5 rounded-[2px] object-cover shadow-sm"
-          onError={() => setFailed(true)}
+        <span
+          className="h-[15px] w-5 rounded-[2px] shadow-sm"
+          style={{
+            backgroundImage: 'url(/images/flags-sprite.webp)',
+            backgroundSize: `${bgW}px ${bgH}px`,
+            backgroundPosition: `-${posX}px -${posY}px`,
+          }}
         />
       ) : (
         <span className="h-[15px] w-5 rounded-[2px] bg-mp-section/80 animate-pulse" />
