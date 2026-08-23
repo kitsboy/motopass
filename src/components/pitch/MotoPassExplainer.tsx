@@ -35,9 +35,6 @@ export function MotoPassExplainer() {
   const [filmError, setFilmError] = useState(false)
   const [filmReady, setFilmReady] = useState(false)
 
-  const poster = POSTER_SRC
-  const posterAvailable = filmReady || !filmError
-
   return (
     <section
       ref={sectionRef}
@@ -90,7 +87,7 @@ export function MotoPassExplainer() {
               controls
               playsInline
               preload="metadata"
-              poster={filmReady ? POSTER_SRC : undefined}
+              poster={POSTER_SRC}
               title="MotoPass — 60 second explainer"
               aria-label="MotoPass 60 second explainer film"
               onError={() => setFilmError(true)}
@@ -129,7 +126,7 @@ export function MotoPassExplainer() {
           {/* Player footer strip */}
           <div className="flex items-center justify-between gap-3 border-t border-white/10 bg-mp-section/60 px-4 py-3">
             <span className="font-mono text-[11px] text-ink-muted">
-              {posterAvailable ? 'MOTOPASS · 60s · 16:9' : 'MOTOPASS · EXPLAINER'}
+              {filmReady ? 'MOTOPASS · 60s · 16:9' : 'MOTOPASS · EXPLAINER'}
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-lg border border-fuchsia/30 bg-fuchsia-soft/40 px-2.5 py-1 font-mono text-[10px] text-fuchsia-text">
               <Clapperboard size={11} /> Truth you can verify
