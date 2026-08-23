@@ -998,7 +998,7 @@ html.mp-header-collapsed {
   width: 2.375rem;
   height: 2.375rem;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(232, 121, 249, 0.22);
   background: rgba(10, 10, 15, 0.65);
   color: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(14px) saturate(1.3);
@@ -1011,20 +1011,20 @@ html.mp-header-collapsed {
 }
 
 .elite-hamburger:hover {
-  border-color: rgba(255, 149, 0, 0.35);
-  background: rgba(255, 149, 0, 0.08);
-  color: #ffc46e;
-  box-shadow: 0 0 18px rgba(255, 149, 0, 0.12);
+  border-color: rgba(232, 121, 249, 0.45);
+  background: rgba(232, 121, 249, 0.1);
+  color: #f0abfc;
+  box-shadow: 0 0 20px rgba(232, 121, 249, 0.16);
 }
 
 .elite-hamburger--open {
-  border-color: rgba(255, 149, 0, 0.42);
-  background: rgba(255, 149, 0, 0.1);
-  color: #ffc46e;
+  border-color: rgba(232, 121, 249, 0.5);
+  background: rgba(232, 121, 249, 0.12);
+  color: #f0abfc;
 }
 
 .elite-hamburger:focus-visible {
-  outline: 2px solid rgba(255, 149, 0, 0.55);
+  outline: 2px solid rgba(232, 121, 249, 0.6);
   outline-offset: 2px;
 }
 
@@ -1059,13 +1059,21 @@ html.mp-header-collapsed {
   flex-direction: column;
   width: min(100%, 22.5rem);
   pointer-events: auto;
+  /* Rich jewel-tone: warm btc-orange radial + MotoPass fuchsia identity radial over glass,
+     matching the trust-card-surface design language. Blur + translateZ keep it on the GPU. */
   background:
-    radial-gradient(ellipse 80% 40% at 100% 0%, rgba(255, 149, 0, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 42% at 100% 0%, rgba(255, 149, 0, 0.12) 0%, transparent 52%),
+    radial-gradient(ellipse 46% 36% at 8% 18%, rgba(232, 121, 249, 0.1) 0%, transparent 62%),
+    radial-gradient(ellipse 120% 120% at 96% 96%, rgba(77, 159, 255, 0.06) 0%, transparent 55%),
     linear-gradient(180deg, rgba(14, 14, 20, 0.98) 0%, rgba(10, 10, 15, 0.99) 100%);
-  border-left: 1px solid rgba(255, 149, 0, 0.14);
-  box-shadow: -24px 0 80px rgba(0, 0, 0, 0.45);
+  border-left: 1px solid rgba(232, 121, 249, 0.16);
+  box-shadow:
+    -24px 0 80px rgba(0, 0, 0, 0.45),
+    inset 1px 0 0 rgba(255, 149, 0, 0.06);
   backdrop-filter: blur(28px) saturate(1.4);
   -webkit-backdrop-filter: blur(28px) saturate(1.4);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .elite-mobile-drawer__header {
@@ -1090,8 +1098,9 @@ html.mp-header-collapsed {
   height: 2rem;
   object-fit: contain;
   border-radius: 10px;
-  border: 1px solid rgba(255, 149, 0, 0.28);
+  border: 1px solid rgba(232, 121, 249, 0.32);
   background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 14px rgba(232, 121, 249, 0.1);
 }
 
 .elite-mobile-drawer__brand-name {
@@ -1124,6 +1133,7 @@ html.mp-header-collapsed {
   font-weight: 500;
   letter-spacing: -0.02em;
   color: rgba(255, 255, 255, 0.72);
+  will-change: background-color, color;
   transition:
     color 0.22s ease,
     background 0.22s ease,
@@ -1133,7 +1143,9 @@ html.mp-header-collapsed {
 
 .elite-drawer-link:hover {
   color: rgba(255, 255, 255, 0.95);
-  background: rgba(255, 255, 255, 0.04);
+  background:
+    radial-gradient(120% 160% at 0% 50%, rgba(232, 121, 249, 0.1) 0%, transparent 48%),
+    rgba(255, 255, 255, 0.04);
 }
 
 .elite-drawer-link:active {
@@ -1141,12 +1153,14 @@ html.mp-header-collapsed {
 }
 
 .elite-drawer-link--active {
-  color: #ffc46e;
+  color: #f0abfc;
   font-weight: 600;
-  background: rgba(255, 149, 0, 0.1);
+  background:
+    radial-gradient(140% 180% at 0% 50%, rgba(232, 121, 249, 0.16) 0%, transparent 55%),
+    rgba(232, 121, 249, 0.06);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 149, 0, 0.24),
-    0 0 20px rgba(255, 149, 0, 0.1);
+    inset 0 0 0 1px rgba(232, 121, 249, 0.3),
+    0 0 24px rgba(232, 121, 249, 0.14);
 }
 
 .elite-drawer-link:focus-visible {
@@ -1244,13 +1258,13 @@ html.mp-header-collapsed {
   @apply flex items-center justify-center min-h-[2.75rem] px-2 py-2.5 rounded-2xl border border-mp/70 font-chrome text-[11px] font-medium text-ink-secondary text-center transition-all duration-fast;
   background: var(--mp-glass-bg);
   backdrop-filter: blur(12px);
-  @apply hover:border-btc-orange/35 hover:text-ink hover:scale-[1.01] active:scale-[0.98];
+  @apply hover:border-mp-fuchsia hover:text-ink hover:scale-[1.01] active:scale-[0.98];
 }
 
 .nav-mobile-tile-active {
-  @apply border-btc-orange/45 text-mp-btc-text font-semibold;
-  background: rgba(255, 149, 0, 0.1);
-  box-shadow: inset 0 0 0 1px rgba(255, 149, 0, 0.2), 0 0 16px rgba(255, 149, 0, 0.08);
+  @apply border-mp-fuchsia text-mp-fuchsia-text font-semibold;
+  background: rgba(232, 121, 249, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(232, 121, 249, 0.24), 0 0 18px rgba(232, 121, 249, 0.1);
 }
 
 .nav-tab {
@@ -2524,6 +2538,13 @@ body::before {
   display: flex;
   flex-direction: column;
   max-height: calc(100dvh - env(safe-area-inset-top, 0px) - 0.5rem);
+  /* Jewel-tone identity on the More sheet — fuchsia radial + warm orange, GPU-friendly. */
+  background:
+    radial-gradient(ellipse 90% 40% at 12% 0%, rgba(232, 121, 249, 0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 46% at 96% 6%, rgba(255, 149, 0, 0.08) 0%, transparent 50%),
+    var(--mp-glass-bg);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .page-header-accent::before {

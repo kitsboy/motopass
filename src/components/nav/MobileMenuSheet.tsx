@@ -8,6 +8,8 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useI18n } from '../../i18n/I18nContext'
 import { LanguageDropdown } from './LanguageDropdown'
 import { CurrencyDropdown } from './CurrencyDropdown'
+import { MenuCommandCenter } from './menu/MenuCommandCenter'
+import { MenuDiscover } from './menu/MenuDiscover'
 import { MAIN_NAV_ROUTES, eliteDrawerLinkClass } from '../../lib/navRoutes'
 
 export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -34,6 +36,19 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
     ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
     : { initial: { x: '100%' }, animate: { x: 0 }, exit: { x: '100%' } }
 
+  // Fast, premium, transform-only (x/opacity — never layout-affecting props, so no CLS).
+  // Uses the design system's own snappy settle curve (--spring-snappy). Quick open with a
+  // slight overshoot, quick tween close so it snaps shut — no lag, no lingering exit.
+  const panelTransition = reduceMotion
+    ? { duration: 0 }
+    : {
+        default: { duration: 0.34, ease: [0.34, 1.56, 0.64, 1] as const },
+        exit: { duration: 0.2, ease: [0.4, 0, 0.2, 1] as const },
+      }
+  const backdropTransition = reduceMotion
+    ? { duration: 0 }
+    : { duration: 0.18, ease: [0.22, 1, 0.36, 1] as const }
+
   return (
     <AnimatePresence initial={false}>
       {open && (
@@ -45,7 +60,7 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            transition={backdropTransition}
             onClick={onClose}
           />
 
@@ -55,7 +70,8 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
             aria-modal="true"
             aria-label={t('nav.menu')}
             {...panelMotion}
-            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            transition={panelTransition}
+            style={{ willChange: 'transform', transform: 'translateZ(0)' }}
           >
             <header className="elite-mobile-drawer__header">
               <Link to="/" className="elite-mobile-drawer__brand" onClick={onClose}>
@@ -80,12 +96,19 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
             </header>
 
             <nav className="elite-mobile-drawer__nav" aria-label="Main navigation">
+              <MenuCommandCenter onClose={onClose} />
               {MAIN_NAV_ROUTES.filter(n => !n.apply).map((n, i) => (
                 <motion.div
                   key={n.to}
-                  initial={reduceMotion ? false : { opacity: 0, x: 16 }}
+                  initial={reduceMotion ? false : { opacity: 0, x: 18 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 + i * 0.04, duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    delay: reduceMotion ? 0 : 0.03 + i * 0.035,
+                    type: reduceMotion ? 'tween' : 'spring',
+                    stiffness: 380,
+                    damping: 30,
+                    mass: 0.7,
+                  }}
                 >
                   <PrefetchNavLink
                     to={n.to}
@@ -97,6 +120,7 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
                   </PrefetchNavLink>
                 </motion.div>
               ))}
+              <MenuDiscover onClose={onClose} />
             </nav>
 
             <footer className="elite-mobile-drawer__footer">

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { X } from 'lucide-react'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import { useI18n } from '../../i18n/I18nContext'
@@ -13,37 +13,26 @@ const SWIPE_CLOSE_THRESHOLD = 72
 export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { t } = useI18n()
   const panelRef = useRef<HTMLDivElement>(null)
-  const swipeStartY = useRef<number | null>(null)
-  const [dragY, setDragY] = useState(0)
   const reduced = useReducedMotion()
   useFocusTrap(panelRef, open, onClose)
 
   const instant = { duration: 0 } as const
-  const panelTransition = reduced ? instant : { type: 'spring' as const, damping: 30, stiffness: 340 }
-
-  const resetSwipe = () => {
-    swipeStartY.current = null
-    setDragY(0)
-  }
+  // Snappy settle curve (--spring-snappy) for open; quick tween for close — no jank, no lingering exit.
+  const panelTransition = reduced
+    ? instant
+    : {
+        default: { duration: 0.34, ease: [0.34, 1.56, 0.64, 1] as const },
+        exit: { duration: 0.2, ease: [0.4, 0, 0.2, 1] as const },
+      }
 
   useEffect(() => {
-    if (!open) resetSwipe()
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = prev
+    }
   }, [open])
-
-  const onSwipeStart = (clientY: number) => {
-    swipeStartY.current = clientY
-    setDragY(0)
-  }
-
-  const onSwipeMove = (clientY: number) => {
-    if (swipeStartY.current == null) return
-    setDragY(Math.max(0, clientY - swipeStartY.current))
-  }
-
-  const onSwipeEnd = () => {
-    if (dragY >= SWIPE_CLOSE_THRESHOLD) onClose()
-    resetSwipe()
-  }
 
   return (
     <AnimatePresence>
@@ -56,7 +45,7 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={reduced ? instant : { duration: 0.18 }}
+            transition={reduced ? instant : { duration: 0.18, ease: [0.22, 1, 0.36, 1] as const }}
             onClick={onClose}
           />
           <motion.div
@@ -66,22 +55,20 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
             aria-label={t('nav.more')}
             className="absolute inset-x-0 bottom-0 mobile-nav-glass rounded-t-2xl safe-bottom more-nav-sheet-panel"
             initial={reduced ? { y: 0, opacity: 1 } : { y: '100%' }}
-            animate={{ y: dragY, opacity: 1 }}
+            animate={{ y: 0, opacity: 1 }}
             exit={reduced ? { y: 0, opacity: 0 } : { y: '100%' }}
             transition={panelTransition}
-            onPointerDown={(e) => {
-              if (e.pointerType === 'mouse' && e.button !== 0) return
-              onSwipeStart(e.clientY)
+            drag={reduced ? false : 'y'}
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={{ top: 0, bottom: 0.6 }}
+            onDragEnd={(_, info) => {
+              if (info.offset.y >= SWIPE_CLOSE_THRESHOLD || info.velocity.y > 600) onClose()
             }}
-            onPointerMove={(e) => {
-              if (swipeStartY.current == null) return
-              onSwipeMove(e.clientY)
-            }}
-            onPointerUp={onSwipeEnd}
-            onPointerCancel={resetSwipe}
+            style={{ willChange: 'transform', transform: 'translateZ(0)', touchAction: 'pan-y' }}
           >
             <div
-              className="mx-auto w-10 h-1 rounded-full bg-btc-orange/30 mt-2 mb-1 touch-none"
+              className="mx-auto w-10 h-1 rounded-full mt-2 mb-1 touch-none"
+              style={{ background: 'rgba(232, 121, 249, 0.3)' }}
               aria-hidden="true"
               data-swipe-handle
             />
@@ -95,15 +82,27 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
               </button>
             </div>
             <nav className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 p-3 pb-5 overflow-y-auto overscroll-contain min-h-0" aria-label="More navigation">
-              {MORE_ROUTES.map(n => (
-                <PrefetchNavLink
+              {MORE_ROUTES.map((n, i) => (
+                <motion.div
                   key={n.to}
-                  to={n.to}
-                  onClick={onClose}
-                  className={({ isActive }) => navTileClass(isActive)}
+                  initial={reduced ? false : { opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    delay: reduced ? 0 : 0.03 + i * 0.028,
+                    type: reduced ? 'tween' : 'spring',
+                    stiffness: 380,
+                    damping: 30,
+                    mass: 0.7,
+                  }}
                 >
-                  {t(n.key)}
-                </PrefetchNavLink>
+                  <PrefetchNavLink
+                    to={n.to}
+                    onClick={onClose}
+                    className={({ isActive }) => navTileClass(isActive)}
+                  >
+                    {t(n.key)}
+                  </PrefetchNavLink>
+                </motion.div>
               ))}
             </nav>
           </motion.div>
