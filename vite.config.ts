@@ -1,16 +1,13 @@
-import { cpSync, createReadStream, existsSync, mkdirSync, readdirSync, readFileSync, statSync } from 'node:fs'
+import { cpSync, createReadStream, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { extname, resolve } from 'node:path'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
+import { renderBuildInfo, resolveBuild } from './scripts/gen-build-info.mjs'
 
-/** Bust poisoned CDN asset URLs after SPA-fallback cache incidents */
-function readBuildSalt() {
-  const info = readFileSync(resolve(__dirname, 'src/lib/buildInfo.ts'), 'utf8')
-  const m = info.match(/BUILD_ID\s*=\s*'([^']+)'/)
-  return (m?.[1] ?? 'dev').replace(/[^a-zA-Z0-9-]/g, '')
-}
-const BUILD_SALT = readBuildSalt()
+/** Build identity auto-derived from git + date — never stale, no manual bump. */
+const BUILD = resolveBuild()
+const BUILD_SALT = BUILD.id.replace(/[^a-zA-Z0-9-]/g, '')
 
 const STATIC_DIRS = ['research', 'website', 'images'] as const
 // public/ is served automatically by Vite (logo.png, images/kimi.jpg, sitemap, robots)
@@ -79,6 +76,18 @@ window.addEventListener("unhandledrejection",function(e){if(poisoned(e.reason&&e
 })();
 </script>`
 
+/** Regenerate src/lib/buildInfo.ts from git + date at the start of every build. */
+function generateBuildInfo(): Plugin {
+  return {
+    name: 'motopass-build-info',
+    buildStart() {
+      const b = resolveBuild()
+      writeFileSync(resolve(__dirname, 'src/lib/buildInfo.ts'), renderBuildInfo(b), 'utf8')
+      this.info(`buildInfo -> BUILD ${b.id}`)
+    },
+  }
+}
+
 function injectBootGuard(): Plugin {
   return {
     name: 'motopass-boot-guard',
@@ -146,7 +155,7 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), injectBootGuard(), safeAssetLoader(), motopassStaticAssets()],
+  plugins: [react(), generateBuildInfo(), injectBootGuard(), safeAssetLoader(), motopassStaticAssets()],
   server: {
     fs: {
       strict: false,
