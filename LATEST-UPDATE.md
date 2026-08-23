@@ -1,6 +1,6 @@
 # motopass — Last Updated 2026-08-23 by Mimi
 Brief: Vault proof-list pagination — show ~10 most-recent stamps by default + "View all N" (Cam UX)
-Commit: <PENDING> (mimi) · <PUSH_STATE> — see CODE-LANE NOTE below
+Commit: 03fb1a9 (mimi) · PUSHED to origin/main (verified via GH API) — see CODE-LANE NOTE below
 Deploy: auto-deploy via GH→CF Pages (commit on main) · https://motopass.giveabit.io
 
 What landed:
