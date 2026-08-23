@@ -167,7 +167,8 @@ export function PitchPage() {
             </p>
             <PitchHeroSubline />
 
-            {stats && (
+            {/* Reserved space for live-stats chips so the hero doesn't grow when data arrives */}
+            {stats ? (
               <div className="mt-6 flex flex-wrap gap-2">
                 <span className="rounded-xl border border-white/15 bg-white/8 px-3 py-1.5 font-mono text-[11px] text-mp-on-hero-secondary backdrop-blur-sm">
                   {stats.programCount} jurisdictions
@@ -180,6 +181,12 @@ export function PitchPage() {
                     {stats.lightningCount} Lightning-ready
                   </span>
                 )}
+              </div>
+            ) : (
+              <div className="mt-6 flex flex-wrap gap-2" aria-hidden>
+                <span className="skeleton-shimmer h-7 w-28" />
+                <span className="skeleton-shimmer h-7 w-44" />
+                <span className="skeleton-shimmer h-7 w-24" />
               </div>
             )}
 
@@ -199,7 +206,7 @@ export function PitchPage() {
               </HeroCtaLink>
             </div>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-mp-on-hero-muted">
+            <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-mp-on-hero-muted min-h-[138px] sm:min-h-0">
               <BlockHeight variant="hero" />
               <BtcPriceTicker variant="hero" />
               <span className="font-mono text-mp-btc/90 flex items-center gap-1">
@@ -213,7 +220,21 @@ export function PitchPage() {
             <EvolvingPitchRotator metrics={metrics} taglines={taglines} proofTimestamp={proofTs} />
           )}
           {loading && (
-            <div className="w-full max-w-md h-72 rounded-panel bg-mp-modal/50 animate-pulse skeleton-shimmer" aria-hidden />
+            <div
+              className="hero-glass-panel relative w-full max-w-md rounded-panel border border-white/12 bg-mp-modal/40 p-6 sm:p-8 backdrop-blur-md"
+              role="status"
+              aria-busy="true"
+              aria-label="Loading live sovereignty metrics"
+            >
+              <span className="skeleton-shimmer block h-4 w-32" />
+              <span className="skeleton-shimmer block h-4 w-44 mt-3" />
+              <div className="mt-6 space-y-4">
+                <span className="skeleton-shimmer block h-10 w-full" />
+                <span className="skeleton-shimmer block h-10 w-full" />
+                <span className="skeleton-shimmer block h-10 w-full" />
+                <span className="skeleton-shimmer block h-10 w-full" />
+              </div>
+            </div>
           )}
         </div>
       </section>

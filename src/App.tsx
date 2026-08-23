@@ -34,6 +34,11 @@ const NotFoundPage = lazy(() =>
 // critical-path index chunk so /trust (and every route) mounts faster.
 // These were already lazy-prefetched by prefetchRoutes.ts — App was the only
 // thing keeping them in the main bundle.
+// NOTE: entry routes stay LAZY — eager-ing them balloons the critical index
+// bundle ~145k->264k gzip and reintroduces startup jank (the stutter the
+// bundle-slim epic just fixed). Their lazy-mount CLS is instead prevented by the
+// RouteSuspense `minH` reserves below, which hold the above-fold space so the
+// page mounts in-place instead of popping the viewport.
 const PitchPage = lazy(() => import('./pages/PitchPage').then((m) => ({ default: m.PitchPage })))
 const FinanceComparePage = lazy(() =>
   import('./pages/FinanceComparePage').then((m) => ({ default: m.FinanceComparePage })),
@@ -83,7 +88,7 @@ export default function App() {
                                 <Route
                                   index
                                   element={
-                                    <RouteSuspense count={1}>
+                                    <RouteSuspense count={1} minH={1415}>
                                       <PitchPage />
                                     </RouteSuspense>
                                   }
@@ -91,7 +96,7 @@ export default function App() {
                                 <Route
                                   path="portfolio"
                                   element={
-                                    <RouteSuspense>
+                                    <RouteSuspense minH={1462}>
                                       <PortfolioPage />
                                     </RouteSuspense>
                                   }
@@ -101,7 +106,7 @@ export default function App() {
                                 <Route
                                   path="compare"
                                   element={
-                                    <RouteSuspense>
+                                    <RouteSuspense minH={885}>
                                       <FinanceComparePage />
                                     </RouteSuspense>
                                   }
@@ -109,7 +114,7 @@ export default function App() {
                                 <Route
                                   path="btcmap"
                                   element={
-                                    <RouteSuspense>
+                                    <RouteSuspense minH={2212}>
                                       <BtcMapPage />
                                     </RouteSuspense>
                                   }
@@ -122,7 +127,14 @@ export default function App() {
                                     </TrustRouteSuspense>
                                   }
                                 />
-                                <Route path="vault" element={<VaultPage />} />
+                                <Route
+                                  path="vault"
+                                  element={
+                                    <RouteSuspense minH={900}>
+                                      <VaultPage />
+                                    </RouteSuspense>
+                                  }
+                                />
                                 <Route path="distressed" element={<DistressedPage />} />
                                 <Route
                                   path="blog"

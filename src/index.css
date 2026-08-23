@@ -2262,6 +2262,9 @@ html.mp-header-collapsed {
   border-radius: clamp(18px, 2.5vw, 26px);
   border: 1px dashed rgba(255, 149, 0, 0.22);
   background: rgba(10, 10, 15, 0.55);
+  /* Reserve the suggested-pair block so it mounts in-place when live data
+     arrives instead of growing the box and shifting the viewport. */
+  min-height: 19.5rem;
 }
 
 .fc-empty__icon-wrap {
@@ -3297,6 +3300,15 @@ body,
   .savings-v3-panels {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Reserve the savings section's LOADED height on mobile so the deferred
+     skeleton→real swap is layout-stable (no CLS pop when live data arrives).
+     Real content is static modeled values, so this floor is stable. */
+  .savings-dashboard-v3 > .mx-auto {
+    min-height: 1577px;
   }
 }
 

@@ -179,7 +179,11 @@ export function PortfolioPage() {
       </div>
 
       {error && <ProgramsLoadError message={error} />}
-      {loading && !error && <CardSkeleton />}
+      {loading && !error && (
+        <div role="status" aria-busy="true" aria-label="Loading portfolio">
+          <CardSkeleton count={3} />
+        </div>
+      )}
       {!loading && acquired.length === 0 && (
         <div className="text-center py-16 rounded-card border border-mp-border bg-mp-card shadow-mp-2 max-w-md mx-auto">
           <p className="text-ink-secondary mb-6">{t('portfolio.empty')}</p>

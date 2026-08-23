@@ -185,11 +185,33 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
       <section id="pitch-savings" className="savings-dashboard-v3 scroll-mt-header" aria-busy="true">
         <div className="savings-dashboard-v3__ambient" aria-hidden />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-14 sm:py-20">
-          <div className="h-10 w-56 rounded-xl bg-white/5 animate-pulse mb-6" />
-          <div className="h-14 w-full max-w-xl rounded-xl bg-white/5 animate-pulse mb-10" />
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5">
-            {[1, 2, 3].map(i => (
-              <div key={i} className="h-72 rounded-[20px] bg-white/5 animate-pulse" />
+          {/* Structurally identical skeleton: same containers/grids as the loaded
+              section so the swap is layout-stable (mobile CLS stays ~0). */}
+          <header className="savings-v3-header">
+            <div className="savings-v3-header__brand">
+              <span className="skeleton-shimmer h-[52px] w-[52px] rounded-[14px]" />
+              <div className="space-y-2">
+                <span className="skeleton-shimmer block h-3 w-32" />
+                <span className="skeleton-shimmer block h-5 w-56" />
+              </div>
+            </div>
+            <span className="skeleton-shimmer block h-8 w-full max-w-md" />
+          </header>
+          <div className="savings-v3-summary" aria-hidden>
+            {[0, 1, 2].map(i => (
+              <div key={i} className="savings-v3-summary__item">
+                <span className="skeleton-shimmer block h-7 w-24 mx-auto sm:mx-0" />
+                <span className="skeleton-shimmer block h-3 w-32 mx-auto sm:mx-0" />
+              </div>
+            ))}
+          </div>
+          <div className="savings-v3-panels" aria-hidden>
+            {[0, 1, 2].map(i => (
+              <div key={i} className="savings-v3-panel">
+                <span className="skeleton-shimmer block h-4 w-1/2" />
+                <span className="skeleton-shimmer block h-14 w-full mt-1" />
+                <span className="skeleton-shimmer block h-8 w-full" />
+              </div>
             ))}
           </div>
         </div>

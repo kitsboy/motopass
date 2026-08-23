@@ -27,7 +27,7 @@ import { ProgramCard } from '../components/programs/ProgramCard'
 import { ProgramsTable } from '../components/programs/ProgramsTable'
 import { ProgramModal } from '../components/programs/ProgramModal'
 import { IntelWatchStrip } from '../components/intel/IntelWatchStrip'
-import { CardSkeleton, RowSkeleton } from '../components/LoadingSkeleton'
+import { RowSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
@@ -352,6 +352,44 @@ export function ProgramsPage() {
           </>
         )}
 
+        {/* Reserved-space shimmer for the deferred flagship/compliance sections so they
+            load in-place below the header instead of mounting and shifting the viewport */}
+        {loading && (
+          <div aria-hidden role="status" aria-busy="true" aria-label="Loading programs">
+            <section className="mb-10" aria-hidden>
+              <div className="mb-5 max-w-2xl">
+                <span className="skeleton-shimmer block h-3 w-32" />
+                <span className="skeleton-shimmer block h-6 w-64 mt-2" />
+                <span className="skeleton-shimmer block h-4 w-full max-w-md mt-2" />
+              </div>
+              {/* Match real GoldStandardSpotlight cards on mobile: 1-col below md,
+                  each card ~239px tall. Reserving the same height keeps the swap stable. */}
+              <div className="grid gap-4 md:grid-cols-2">
+                <span className="skeleton-shimmer min-h-[239px]" />
+                <span className="skeleton-shimmer min-h-[239px]" />
+              </div>
+            </section>
+            <section className="mb-10" aria-hidden>
+              <div className="mb-4 flex items-end justify-between gap-3">
+                <div>
+                  <span className="skeleton-shimmer block h-3 w-28" />
+                  <span className="skeleton-shimmer block h-6 w-48 mt-1.5" />
+                </div>
+                <span className="skeleton-shimmer block h-4 w-32" />
+              </div>
+              {/* Match the real ComplianceClock grid: on mobile (below sm) it stacks
+                  up to 4 flagship cards vertically (~266px each). Reserving the same
+                  stacked height keeps the swap layout-stable instead of growing ~800px
+                  and shoving the search + grid down. */}
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[0, 1, 2, 3].map(i => (
+                  <span key={i} className="skeleton-shimmer block min-h-[250px] w-full" />
+                ))}
+              </div>
+            </section>
+          </div>
+        )}
+
         <div className="mb-6">
           <IntelWatchStrip />
         </div>
@@ -508,7 +546,39 @@ export function ProgramsPage() {
           )}
         </div>
 
-        {loading && (view === 'table' ? <RowSkeleton count={6} /> : <CardSkeleton />)}
+        {loading &&
+          (view === 'table' ? (
+            <>
+              {/* Desktop table view loads a tall table, so reserve table height on sm+.
+                  On mobile (<640px) the real grid is ALWAYS shown even in table view
+                  (table is `hidden sm:block`, grid only `sm:hidden`), so mobile gets the
+                  full grid reserve to keep the swap height-stable. */}
+              <div className="hidden sm:block">
+                <RowSkeleton count={6} />
+              </div>
+              <div
+                className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 sm:hidden"
+                role="status"
+                aria-busy="true"
+                aria-label="Loading programs"
+              >
+                {Array.from({ length: 50 }).map((_, i) => (
+                  <div key={i} className="skeleton-shimmer min-h-[251px] rounded-card" />
+                ))}
+              </div>
+            </>
+          ) : (
+            <div
+              className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+              role="status"
+              aria-busy="true"
+              aria-label="Loading programs"
+            >
+              {Array.from({ length: 50 }).map((_, i) => (
+                <div key={i} className="skeleton-shimmer min-h-[251px] rounded-card" />
+              ))}
+            </div>
+          ))}
 
         {!loading && (
           <div className="grid min-w-0 gap-8 lg:grid-cols-[200px_1fr]">

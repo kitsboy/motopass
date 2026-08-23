@@ -31,14 +31,15 @@ export function PitchTrustedStrip({ programs, loading }: PitchTrustedStripProps)
 
   if (loading) {
     return (
-      <div
-        className="border-y border-mp/40 bg-mp-section/30 py-4"
+      <section
+        className="border-y border-mp/40 bg-mp-section/30 py-4 overflow-hidden"
         aria-hidden
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="h-8 rounded-lg bg-card-muted/50 animate-pulse" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+          <span className="skeleton-shimmer h-3 w-20 shrink-0" />
+          <div className="skeleton-shimmer h-8 w-full max-w-xl flex-1" />
         </div>
-      </div>
+      </section>
     )
   }
 
