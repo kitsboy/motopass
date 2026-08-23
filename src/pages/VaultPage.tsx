@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { Shield, Copy, Check, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio, Download } from 'lucide-react'
+import { Shield, Copy, Check, FileCheck, Loader2, Hash, BadgeCheck, Search, Radio, Download, ChevronDown } from 'lucide-react'
 import { downloadVaultCredentials } from '../lib/vaultCredentialExport'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
@@ -26,6 +26,9 @@ import { DocumentStamper } from '../components/vault/DocumentStamper'
 type VaultFilter = 'all' | 'verified' | 'demo'
 
 const VAULT_FILTERS: VaultFilter[] = ['all', 'verified', 'demo']
+
+/** Default proof-card page size — the ~10 most-recent stamps shown before "View all". */
+const PROOF_PAGE_SIZE = 10
 
 function proofHash(proof: { content_hash?: string; proof_url?: string }): string {
   if (proof.content_hash) return proof.content_hash
@@ -55,6 +58,7 @@ export function VaultPage() {
   const [selectedFile, setSelectedFile] = useState<string | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const filterTabRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const [showAll, setShowAll] = useState(false)
 
   const stamped = programs
     .filter(p => p.satohash_proofs?.length)
@@ -72,6 +76,13 @@ export function VaultPage() {
   const verifiedCount = stamped.filter(s => s.cinematic.proofStatus === 'recorded' || s.cinematic.proofStatus === 'verified').length
   const demoCount = stamped.filter(s => s.cinematic.proofStatus === 'demo').length
   const otsCount = stamped.filter(s => s.program.satohash_proofs?.[0]?.ots_path).length
+
+  // Pagination: show the ~10 most-recent stamps by default (stamped is already
+  // sorted newest-first above), reveal the full filtered list on "View all".
+  // A deep link to a specific proof (?proof=…) always expands so the target renders.
+  const revealAll = showAll || Boolean(highlightProof)
+  const visible = revealAll ? displayed : displayed.slice(0, PROOF_PAGE_SIZE)
+  const hiddenCount = displayed.length - visible.length
 
   async function handleHashVerify() {
     setVerifyBusy(true)
@@ -407,7 +418,7 @@ export function VaultPage() {
             </>
           )}
 
-          {displayed.map(({ program: p, cinematic }, i) => (
+          {visible.map(({ program: p, cinematic }, i) => (
             <VaultProofRow
               key={p.id}
               program={p}
@@ -427,6 +438,38 @@ export function VaultPage() {
               onNostrStub={setNostrEvent}
             />
           ))}
+
+          {/* Pagination control — reveal the full list in place, no reload.
+              Full-width & thumb-friendly on mobile, contained on desktop. */}
+          {hiddenCount > 0 && !revealAll && (
+            <div className="pt-1 flex flex-col items-stretch sm:items-center">
+              <button
+                type="button"
+                onClick={() => setShowAll(true)}
+                className="btn-secondary w-full sm:w-auto min-w-[16rem] !py-3.5 text-sm"
+                aria-expanded={false}
+              >
+                {formatT(t, 'vault.viewAllProofs', { count: displayed.length })}
+                <ChevronDown size={15} aria-hidden />
+              </button>
+              <span className="mt-2 text-center text-[10px] font-chrome uppercase tracking-[0.14em] text-ink-muted">
+                {formatT(t, 'vault.anchored', { count: displayed.length })}
+              </span>
+            </div>
+          )}
+          {revealAll && displayed.length > PROOF_PAGE_SIZE && !highlightProof && (
+            <div className="pt-2 text-center">
+              <button
+                type="button"
+                onClick={() => setShowAll(false)}
+                className="chip text-xs inline-flex items-center gap-1"
+                aria-expanded={true}
+              >
+                <ChevronDown size={12} className="rotate-180" aria-hidden />
+                {t('vault.showRecentProofs')}
+              </button>
+            </div>
+          )}
           {stamped.length === 0 && (
             <Card className="text-center py-12 text-mp-ink-tertiary font-body">
               {t('vault.empty')}
