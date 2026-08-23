@@ -232,6 +232,20 @@ export type TranslationKey =
   | 'trust.auditTrail'
   | 'trust.minInvest'
   | 'nav.languageRecent'
+  | 'menu.live'
+  | 'menu.liveBTC'
+  | 'menu.liveBlock'
+  | 'menu.liveFresh'
+  | 'menu.quickActions'
+  | 'menu.stamp'
+  | 'menu.verify'
+  | 'menu.apply'
+  | 'menu.searchNoResults'
+  | 'menu.searchAll'
+  | 'menu.featured'
+  | 'menu.trustSummary'
+  | 'menu.trustPending'
+  | 'menu.viewTrust'
   | PageKey
 
 export type Dict = Record<TranslationKey, string>
@@ -264,6 +278,20 @@ const en: Dict = {
   'nav.explore': 'Explore',
   'nav.tools': 'Tools',
   'nav.skip': 'Skip to content',
+  'menu.live': 'Live',
+  'menu.liveBTC': 'BTC',
+  'menu.liveBlock': 'Block',
+  'menu.liveFresh': 'Fresh',
+  'menu.quickActions': 'Quick actions',
+  'menu.stamp': 'Stamp',
+  'menu.verify': 'Verify',
+  'menu.apply': 'Apply',
+  'menu.searchNoResults': 'No programs match "{q}"',
+  'menu.searchAll': 'All programs',
+  'menu.featured': 'Featured',
+  'menu.trustSummary': '{fresh} fresh · {watch} watch · {stale} stale',
+  'menu.trustPending': 'Trust data pending…',
+  'menu.viewTrust': 'Live trust',
   tagline: 'Truth You Can Verify',
   'pitch.hero': 'The private OS for sovereign operators',
   'pitch.sub':
