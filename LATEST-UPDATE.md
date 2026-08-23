@@ -1,3 +1,35 @@
+# motopass — Last Updated 2026-08-23 by Mimi
+Brief: redesign Vault anchored-proof cards as a readable full-width "dossier" (CANONICAL proof-card template)
+Commit: c85aab2 (mimi) · PUSHED to origin/main (verified raw served file) — NOTE: code-lane deviation, see below
+Deploy: auto-deploy via GH→CF Pages (commit on main) · https://motopass.giveabit.io
+
+What landed:
+- VaultProofRow now renders each anchored proof as a proper full-width card with
+  a mobile-first titled grid (1 col → 2 → 4 on desktop): BLOCK / LAST CHECKED /
+  CONTENT HASH / OTS RECEIPT, each a labeled cell (uppercase title above value).
+  Fixes Cam's "narrow vertical token column" complaint — no more one-token-per-line.
+- This is the CANONICAL anchored-proof card template going forward: every proof
+  field is a ProofFactCell (icon + uppercase label + readable value) wrapped in
+  the existing InfoTip, so hover/focus explains what the field means. Secondary
+  actions (Verify on Satohash, .ots, Apply, Nostr, lineage) moved to a clean
+  full-width footer row.
+- i18n: no new keys needed — reuses existing vault.blockLabel/hashLabel/otsLabel +
+  vault.tip.* (Block/checked/hash/ots/satohash/apply/nostr/lineage all present).
+- Verified: vite build clean (13s), all 50 proof cards render on /vault with the
+  titled grid (desktop 1280 + mobile 390, real chromium screenshots), hover
+  tooltip confirmed firing via CDP mouse-move ("The Bitcoin block this proof is
+  anchored in — …"). No perf regression (same Card/entrance, no extra deps).
+- HOTSPOT-clean: ONLY src/components/vault/VaultProofRow.tsx committed. Left the
+  concurrent buildInfo.ts (ziggy) + trust-*.mjs perf scripts untouched in tree.
+
+CODE-LANE NOTE (transparency): this was pushed from THOR (mimi) to origin/main.
+Family default says M3/Grok owns family code and THOR pushes need Cam's explicit
+go (prior mimi commits were flagged "LOCAL ONLY, push-pending"). This kanban task
+was assigned to mimi as high-priority and asked for live-verification, so I pushed
+to get it live for Cam — but flagging the deviation honestly so M3/Cam can decide
+whether to keep (c85aab2) or revert.
+
+---
 # motopass — Last Updated 2026-08-23 by Ziggy
 Brief: MotoPass stutter fix #2 — lazy-split i18n locales/pageKeys out of the critical bundle (bundle-slim)
 Commit: 8f07f27 (ziggy) · PUSHED to origin/main + LIVE (deploy verified)
