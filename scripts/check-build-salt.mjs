@@ -32,13 +32,13 @@ const stale = new Set()
 for (const m of html.matchAll(/\?b=([a-zA-Z0-9-]+)/g)) {
   if (m[1] !== expected) stale.add(`index.html ?b=${m[1]}`)
 }
-for (const m of html.matchAll(/\/assets\/[^"']+-(\d{8}-\d+)\.(?:js|css)/g)) {
+for (const m of html.matchAll(/\/assets\/[^"']+-(\d{8}-[a-zA-Z0-9]+)\.(?:js|css)/g)) {
   if (m[1] !== expected) stale.add(`index.html asset salt ${m[1]}`)
 }
 
 if (existsSync(assetsDir)) {
   for (const name of readdirSync(assetsDir)) {
-    const m = name.match(/-(\d{8}-\d+)\.(js|css)$/)
+    const m = name.match(/-(\d{8}-[a-zA-Z0-9]+)\.(js|css)$/)
     if (m && m[1] !== expected) stale.add(`dist/assets/${name}`)
   }
 }

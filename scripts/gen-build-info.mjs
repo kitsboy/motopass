@@ -2,7 +2,8 @@
  * Auto-derive MotoPass build identity from git + build date.
  *
  * Single source of truth for the BUILD_* constants. This script:
- *   - computes BUILD_ID = `<YYYY.MM.DD>-<commit count>` (deterministic per commit),
+ *   - computes BUILD_ID = `<YYYY.MM.DD>-<sha7>` (deterministic per commit, and
+ *     robust to shallow clones where `git rev-list --count` yields 1),
  *     BUILD_DATE = build date, BUILD_LABEL = latest commit subject
  *   - writes src/lib/buildInfo.ts (imported by the app at compile time)
  *
@@ -45,7 +46,7 @@ export function resolveBuild() {
     label = 'non-git build'
   }
 
-  return { date, count, sha, label, id: `${date}-${count}` }
+  return { date, count, sha, label, id: `${date}-${sha}` }
 }
 
 /** Render the generated buildInfo.ts module contents. */
