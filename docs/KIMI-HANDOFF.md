@@ -1,3 +1,24 @@
+## Session — 2026-08-23 (Ziggy) — Defer heavy live-data fetches to after first paint (smoothness epic)
+
+**Done (task t_64288276 — defer heavy elements + code-split routes, all MotoPass pages):**
+- New `src/lib/idle.ts` — `afterIdle()` (requestIdleCallback + setTimeout fallback) to run a callback once the browser is idle after first paint.
+- The four app-wide live-data providers now defer their initial fetch to idle instead of firing on mount for every route: **BtcPriceContext** (mempool spot), **BlockHeightContext** (mempool block height), **BtcMapDensityContext** (density snapshot), **ProgramsContext** (the 531KB `/research/countries.json` — the big one). Consumers already render loading/fallback, so pages are solid at first paint and live numbers fill in after. User refresh stays immediate. No features stripped.
+- Routes were already `React.lazy` code-split (verified in build output — each of the 10 pages loads its own bundle); heavy video (`MotoPassExplainer`, `VaultEducationPlayer`) and animated charts (`SavingsGraphs`) were already in-view-deferred.
+
+**Verified:**
+- Build clean; boots with no runtime errors; live A/B vs origin/main confirms the deferral. Live sweep (mobile 390 + desktop 1440): FCP 200-450ms on all 10 routes, each route loads only its own bundle, live-data fetches fire after first paint.
+- HOTSPOT: committed ONLY my 5 files (`src/lib/idle.ts` + 4 context providers) as `78a84e9`; pushed to origin/main; live deploy confirmed (bundle salt `78a84e9`). Sibling ziggy task t_810e8b85 (lazy flags/images) has UNCOMMITTED edits in the shared checkout — left untouched, not staged.
+
+**Decisions:**
+- Defer to idle (not remove): live data still arrives, just after first paint, preserving the honesty visuals + interactive hover graphs.
+- Honest numbers: on a fast localhost harness the A/B TBT delta is small (Chrome queues these fetches behind route chunks anyway); the real win is architectural — the 531KB `countries.json` fetch + JSON.parse is off the critical path, which matters on real mobile/slow networks.
+
+**Git State:**
+- SHA: `78a84e9` (pushed to origin/main, live-verified)
+- Pre-existing (NOT mine): caught `useProgramsContext must be used within ProgramsProvider` ErrorBoundary console error — verified identical on origin/main before-build. Page renders fine; flag for a separate root-cause card (likely duplicate context module across split chunks).
+
+---
+
 ## Session — 2026-08-22 (Grok/M3) — Country-intel deepening blitz (24 fresh/26 stale) + Claude research-pipeline prompt — BUILD 72
 
 **Done (user request: deepen the stalest countries batch-by-batch via the Wikipedia Legality page, verify thresholds, re-stamp, and hand off):**

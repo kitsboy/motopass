@@ -1,5 +1,41 @@
-# motopass — Last Updated 2026-08-23 by Mimi
-Brief: Vault proof-list pagination — show ~10 most-recent stamps by default + "View all N" (Cam UX)
+# motopass — Last Updated 2026-08-23 by Ziggy
+Brief: Defer heavy live-data fetches (mempool spot, block height, 531KB countries.json, btcmap density) to after-first-paint idle across ALL routes — smoothness epic (t_64288276)
+Commit: 78a84e9 (ziggy) · PUSHED to origin/main · live-verified
+Deploy: auto-deploy via GH→CF Pages (commit on main) · https://motopass.giveabit.io
+
+What landed:
+- New src/lib/idle.ts — afterIdle(): run a callback once the browser is idle
+  after first paint (requestIdleCallback + setTimeout fallback).
+- The four app-wide live-data providers now defer their initial fetch to
+  idle instead of firing on mount for every route:
+  - BtcPriceContext (mempool.space spot price)
+  - BlockHeightContext (mempool.space block height)
+  - BtcMapDensityContext (50-country density snapshot)
+  - ProgramsContext (the 531KB /research/countries.json — the big one)
+- Consumers already render loading/fallback states, so every page is solid
+  at first paint and the live numbers fill in right after. User-initiated
+  refresh still runs immediately. No features stripped.
+- Routes were already React.lazy code-split (verified: each of the 10 pages
+  loads its own bundle). Heavy video + animated charts were already
+  in-view-deferred (MotoPassExplainer, VaultEducationPlayer, SavingsGraphs).
+
+Verified:
+- Local A/B (origin/main vs this change): live-data fetches now start at
+  idle; on a fast localhost the win is architectural (removing the heavy
+  fetch + 531KB JSON.parse from the critical path) rather than a large TBT
+  delta. Live: FCP 200-450ms on all routes, mobile+desktop; each route loads
+  only its own bundle.
+
+NOTE (pre-existing, NOT introduced here): a caught ErrorBoundary
+"useProgramsContext must be used within ProgramsProvider" console error
+exists on origin/main too (verified identical on the before build). Page
+renders fine; worth a separate root-cause card (likely duplicate context
+module across split chunks).
+
+---
+
+## Previous — 2026-08-23 (Mimi) — Vault proof-list pagination
+
 Commit: 03fb1a9 (mimi) · PUSHED to origin/main (verified via GH API) — see CODE-LANE NOTE below
 Deploy: auto-deploy via GH→CF Pages (commit on main) · https://motopass.giveabit.io
 
