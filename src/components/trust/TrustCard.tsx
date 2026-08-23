@@ -115,10 +115,10 @@ export function TrustCard({
     <motion.button
       type="button"
       onClick={() => onOpen(envelope)}
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-8%' }}
-      transition={{ duration: 0.45, delay: Math.min(index, 6) * 0.05, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.35, delay: Math.min(index, 6) * 0.05, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -2 }}
       className={cardClass}
     >

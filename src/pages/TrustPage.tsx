@@ -220,7 +220,7 @@ export function TrustPage() {
                 key={c.iso2}
                     type="button"
                     onClick={() => openCountry(c.iso2)}
-                    className="group relative flex min-h-[297px] w-full flex-col overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc trust-card-surface"
+                    className="group relative flex min-h-[297px] w-full flex-col overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc trust-card-surface trust-card-enter"
                     style={{
                       animationDelay: `${Math.min(i, 6) * 50}ms`,
                     }}
