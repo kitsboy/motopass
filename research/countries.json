@@ -107,13 +107,13 @@
         "urls": [
           {
             "url": "https://www.presidencia.gob.sv",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "c77d57c9c24b8f459f42bee21c2d5c3cdee6419f5b251ed2dd8a2f5322f0af43",
-            "status": "unreachable"
+            "status": "ok"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -325,13 +325,13 @@
           },
           {
             "url": "https://www.finances.gouv.cf",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "2fa499d6f069b6f59939021e6c42ac75077ec2a1d2f8865fae64a20db9d29975",
             "status": "ok"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -551,19 +551,19 @@
         "urls": [
           {
             "url": "https://www.gub.uy/tramites/residencia-legal",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "cac636aa5a110c3f94fa9903b58683f9e3cca4a485ff43c8bc23e153d2db4655",
-            "status": "ok"
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "7402af4190d3fa01414f1559f7f9ed7b425c7fdeb046097dee4ae0651808cb9c",
+            "status": "changed"
           },
           {
             "url": "https://www.minterior.gub.uy",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "a6f24b40ffd3bf391b29fecc556e9ace15506dc0ea863bb47fbf7215a838d402",
-            "status": "changed"
+            "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -652,6 +652,13 @@
         {
           "date": "2026-08-22",
           "field": "watch.https://www.minterior.gub.uy",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.gub.uy/tramites/residencia-legal",
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
@@ -771,7 +778,7 @@
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -1006,13 +1013,13 @@
         "urls": [
           {
             "url": "https://www.ciu.gov.kn",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "413414dde5901f98d3b90287deaa056a00c4598087584ee1430280190a683ed2",
-            "status": "changed"
+            "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -1237,13 +1244,13 @@
         "urls": [
           {
             "url": "https://www.cip.gov.ag",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "d4f63e1a4549c3cd2bf72faf1077ede6e0b3f0e0d4dc52659efcec3d070da502",
             "status": "ok"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -1459,13 +1466,13 @@
         "urls": [
           {
             "url": "https://cbiu.gov.dm",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "5e1ac31ca33bcdd81cd0e59b7af57e0b568d4dfe86e484d4dd56204e58bd38ec",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "75362d3eff70f402d656e8236d6f21dbbf7235f47c42d076d1893e1a94260ad1",
             "status": "changed"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -1568,6 +1575,13 @@
         },
         {
           "date": "2026-08-22",
+          "field": "watch.https://cbiu.gov.dm",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c"
+        },
+        {
+          "date": "2026-08-23",
           "field": "watch.https://cbiu.gov.dm",
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
@@ -1683,19 +1697,19 @@
         "urls": [
           {
             "url": "https://u.ae",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "08efa9d8127adcf4cfcd5ecf7461c9a9d7d9e548637b6cac8897bb4ca4675a8e",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "bc651f5c030cd9d1032c50c18e6b974f6b72548c582d3761a1da6fed41e03e2d",
             "status": "changed"
           },
           {
             "url": "https://www.vara.ae",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "7cb3ec36c73e8a6dd02b548f3524960b8700484ef06262a909d488664533c7af",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -1795,6 +1809,13 @@
         },
         {
           "date": "2026-08-22",
+          "field": "watch.https://u.ae",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2"
+        },
+        {
+          "date": "2026-08-23",
           "field": "watch.https://u.ae",
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
@@ -1910,19 +1931,19 @@
         "urls": [
           {
             "url": "https://www.sem.admin.ch",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "86c3927150d14de45fb81965b1f4ac77e4fc081e6087afd45a9ae14ef7ea2e18",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "4a08dcb999487c2f286053b8c46eaae658e6ba0bc983caa3d3cc9e20e2b1323f",
             "status": "changed"
           },
           {
             "url": "https://www.zug.ch",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "864fedc07cf7397e3dc72897395a4c2294a71d758b111c325d8f728b26ca2541",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -2015,6 +2036,13 @@
         },
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.sem.admin.ch",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
+        },
+        {
+          "date": "2026-08-23",
           "field": "watch.https://www.sem.admin.ch",
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
@@ -2138,19 +2166,19 @@
         "urls": [
           {
             "url": "https://www.edb.gov.sg",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "aed39afd5752c10254bb32b15516b6c99c25401553fa3ba0f66a7dd15fa8f926",
             "status": "changed"
           },
           {
             "url": "https://www.mas.gov.sg",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "207b68778e6e7d26dc091cb25c0846016b882bab5fed9037ddf783662cedc1f1",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -2255,6 +2283,13 @@
         },
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.edb.gov.sg",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+        },
+        {
+          "date": "2026-08-23",
           "field": "watch.https://www.edb.gov.sg",
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
@@ -2370,19 +2405,19 @@
         "urls": [
           {
             "url": "https://imigrante.sef.pt",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "290e95c1a47d8d2a7b992e220dc63ed898cef99849a101ea0abb12f808bcc267",
             "status": "ok"
           },
           {
             "url": "https://www.portugal.gov.pt",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "b3f7dd012b8d6f548ec5232c19945abe5f0f42d5bfa6a74717ac5a20b75ae7ae",
             "status": "ok"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -2610,9 +2645,9 @@
         "urls": [
           {
             "url": "https://residencymalta.gov.mt",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "6aa2cb3244c031bfa076563a1b8c5bb689a2531476415e0ddc397c0bd532a8aa",
-            "status": "ok"
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "20ce70cfb93013a4b5b5ce2c65038b4de9d2942e1473d1b9e003c16089f3333e",
+            "status": "changed"
           },
           {
             "url": "https://www.mfsa.mt",
@@ -2622,7 +2657,7 @@
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -2716,6 +2751,13 @@
           "to": "CBI terminated (CJEU C-181/23, 29 Apr 2025; Act XXI/2025) — no EU CBI remains; MPRP ~€99k + property updated; critical_tests clarified",
           "source": "Brave Search (fetched 2026-08-22): Get Golden Visa · Global Residence Index · Nomad Capitalist · Arton Capital · CIVITAS/globalcitizenship.co · NTL · The Golden Portugal · Immigrant Invest · Chetcuti Cauchi · Passportivity · Ancova · IMI Daily",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://residencymalta.gov.mt",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
         }
       ]
     },
@@ -2834,19 +2876,19 @@
         "urls": [
           {
             "url": "https://www.migracion.gob.pa",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "84c80bd0e0d2c8c286ccce35a422591ca957dbdfbebf5755a333990df0dbb187",
             "status": "ok"
           },
           {
             "url": "https://www.gacetaoficial.gob.pa",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "9f182ffef2c4b75565a3bd7aad5172f3d83894a8c1830b58af857c33defb18bd",
             "status": "changed"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -2950,6 +2992,13 @@
         },
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.gacetaoficial.gob.pa",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe"
+        },
+        {
+          "date": "2026-08-23",
           "field": "watch.https://www.gacetaoficial.gob.pa",
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
@@ -3072,19 +3121,19 @@
         "urls": [
           {
             "url": "https://sda.gov.ge",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "1d93cad8e8f9545a7e54857cb545d81aeebf21723a95bb04e7f06d03198bc3e1",
             "status": "ok"
           },
           {
             "url": "https://www.rs.ge",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "5a250db0ccf63f3d70fc4dc302f1562cd7fc2cb5d63b33b6631613003ba5ad65",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "d756f6c9c340386b8031083e7869bcbf39018caf52caf8c4f7ff44fea4135e79",
             "status": "changed"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -3188,6 +3237,13 @@
         },
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.rs.ge",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
+        },
+        {
+          "date": "2026-08-23",
           "field": "watch.https://www.rs.ge",
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
@@ -3310,19 +3366,19 @@
         "urls": [
           {
             "url": "https://www.migraciones.gov.py",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "db670c18247f936864b24806f0e05bb7687a988b7b84c4fbbf82a7e5c4e92908",
             "status": "ok"
           },
           {
             "url": "https://www.set.gov.py",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "023aca22a92123acd39c72cb5d2b324059f36f9dcf5077616a0c10d1cf0c7e18",
             "status": "ok"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -3539,13 +3595,13 @@
           },
           {
             "url": "https://www.hacienda.go.cr",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "5225093e7b553337a9af9a682b9c6e5ea4ce2283c490b7729423969ed1189cef",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "c23b5c4c0cc5642f2784e4c4358631cc739005cc3fbedc9a4a43d87aa5eb3f26",
             "status": "changed"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -3654,6 +3710,13 @@
         },
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.hacienda.go.cr",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
+        },
+        {
+          "date": "2026-08-23",
           "field": "watch.https://www.hacienda.go.cr",
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
@@ -3777,19 +3840,19 @@
         "urls": [
           {
             "url": "https://www.immd.gov.hk",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "e7074bf6941e0d93b9820e0aaa0e5fa4eb1bb8a8013c73b30f1be15336d5cd6e",
             "status": "ok"
           },
           {
             "url": "https://www.sfc.hk",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "3eae54eeda7d0d28c69737403723b7395592692e5c8900c3e38860a144ea2ce1",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -4010,7 +4073,7 @@
         "urls": [
           {
             "url": "https://ltr.boi.go.th",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "18ee3e9644cf0dfddbd4e9a502ecc51b4c24242ab48ec84884cb437ceb7ef653",
             "status": "ok"
           },
@@ -4022,7 +4085,7 @@
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -4245,7 +4308,7 @@
         "urls": [
           {
             "url": "https://www.inm.gob.mx",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "b1f5b9c329d8f4c9bb9d4b2dc820419b8a277e2886af023777a399c9ec187a2c",
             "status": "ok"
           },
@@ -4257,7 +4320,7 @@
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -4480,7 +4543,7 @@
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -4693,7 +4756,7 @@
         "urls": [
           {
             "url": "https://migration.gov.gr",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "3f308d697f5ed32b02c0e65c3fbae85ec36c36667182481d64093ae5c1db8a7f",
             "status": "ok"
           },
@@ -4705,7 +4768,7 @@
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -4929,13 +4992,13 @@
           },
           {
             "url": "https://immigration.gov.vu",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "89809a4f8eecf8cbf1a7a1cdd2f75f90fe0b7a6ccb47e5b8fd30ca3642be456d",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -5177,19 +5240,19 @@
         "urls": [
           {
             "url": "https://www.goc.gov.tr",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "f4398fd3daa537a839ccbbcaced93828cae4d3e40d017e36ce99a872e949beae",
             "status": "ok"
           },
           {
             "url": "https://www.invest.gov.tr",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "26f22dd15b6bc34330fd9a388a27161ea44103abfc3ba6512bda7ee18c90ea5c",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "c72b03d09d12ca869bf0f2f87634b971c8e37af6a724126bcd229d6cc1c39085",
             "status": "changed"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -5303,6 +5366,13 @@
         },
         {
           "date": "2026-08-22",
+          "field": "watch.https://www.invest.gov.tr",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
+        },
+        {
+          "date": "2026-08-23",
           "field": "watch.https://www.invest.gov.tr",
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
@@ -5430,7 +5500,7 @@
         "urls": [
           {
             "url": "https://www.edbmauritius.org",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "c1958aefff9bd04dbb971c5503ae17c1ac82ab7ae05b67cafa21cfa2bda3f6ba",
             "status": "ok"
           },
@@ -5442,7 +5512,7 @@
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -5669,25 +5739,25 @@
         "urls": [
           {
             "url": "https://www.ics.gov.sc",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "275fea9fcb699941b4216db88623e2e831770095ecfc1a084fd238d69e353453",
             "status": "ok"
           },
           {
             "url": "https://www.investinseychelles.com",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "5f8004f258b0d446228379346652a00d7fb2bf62fd59a3c37b349891e8d9775a",
             "status": "ok"
           },
           {
             "url": "https://www.src.gov.sc",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "1fb80dd673452b44cae847e65b3b5e319ab7cd8d32bb07f69f4f97873ddd6e83",
             "status": "ok"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -5907,15 +5977,15 @@
         "urls": [
           {
             "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "3f4e464735e2e91c5717b3b04e13b71c994ac3086513ab205c5bcace7ad9a8ba",
             "status": "ok"
           },
           {
             "url": "https://www.gov.br/pf/pt-br/assuntos/imigracao",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "8c90a4d54aa9f781b813280a3fafb4d91012f75a430a2c1ddd004b1acfce0326",
-            "status": "ok"
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "10c5bdd03ed6f6e16cf38212c7da7e38113a74fbca60405d41c1669c698ae187",
+            "status": "changed"
           },
           {
             "url": "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
@@ -5924,8 +5994,8 @@
             "status": "unreachable"
           }
         ],
-        "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "changed": true,
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -6022,6 +6092,13 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.gov.br/pf/pt-br/assuntos/imigracao",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "c8ebeb294bf2dae739dbf64b3e6053f601de99c4acf9aa9b768874caab2643c5"
         }
       ]
     },
@@ -6146,25 +6223,25 @@
         "urls": [
           {
             "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "1af5781eac0e1d2cb1b1948139aba46bd2b5bfd6f507e3a034a091f3fa546a94",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "960e479348798faa6967327043e90c6ad6b4cc8b68bda65f306a8223e634c34b",
             "status": "changed"
           },
           {
             "url": "https://www.migraciones.gob.ar",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "f766e351efb8958c92bd5cf57aed50c475a1612b31f7fd02a3adda392b06be5f",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "df1babe6cc66f5ecc886caaf74efa2787c6b9cae51e42922ddd2b632e4790b96",
             "status": "changed"
           },
           {
             "url": "https://www.boletinoficial.gob.ar",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "6d52c3ac5ea239b7a6088b468c21882563a599bb6d24e1d743d9053f3a52cc1e",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -6296,6 +6373,20 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.migraciones.gob.ar",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
         }
       ]
     },
@@ -6419,25 +6510,25 @@
         "urls": [
           {
             "url": "https://serviciomigraciones.cl",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "d0ac8eeda11108e371e4a01a64d0add40aa52f6c5dc43cf4ceddbe1e9524c723",
             "status": "ok"
           },
           {
             "url": "https://www.investchile.gob.cl",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "7bbd3b120ce9e15ff197de2570b044c914cbd503b75345797cfaa512f6f6c15b",
             "status": "ok"
           },
           {
             "url": "https://startupchile.org",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "98163d5a2873d5954118bd0298acb5645e159805db19fe8fd99e539d890102fe",
             "status": "ok"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -6657,25 +6748,25 @@
         "urls": [
           {
             "url": "https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "f6e116a3074a62ef3174b08a79bbc3088eaaddab62dd9c3206e87bc677720580",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "c05074aa8bf9c586c3b758093753001258378806aec54604ca65aff2ff028ca9",
             "status": "changed"
           },
           {
             "url": "https://www.migracioncolombia.gov.co",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "d5c068a1be0c4ba396dd01649feda2ce0bde41dffd151bddd1b62210cf2a3a53",
             "status": "ok"
           },
           {
             "url": "https://tramitesmre.cancilleria.gov.co",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "a239a8b75a4e4ee9b76bb468d004fdae00d389ea97ebd9c510911a10bf825ab1",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "b9d6f8b985c8fe27cac77280b4c493d3d2f52abebc716d0e90e2a30cc7721e4d",
             "status": "changed"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -6814,6 +6905,20 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://tramitesmre.cancilleria.gov.co",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
         }
       ]
     },
@@ -6937,7 +7042,7 @@
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -7140,13 +7245,13 @@
         "urls": [
           {
             "url": "https://www.cbi.gov.gd",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "ca5e37ee1499908b7f84143753bc00ee030b5b3a2319fcd51362f5c60e81740e",
             "status": "ok"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -7351,19 +7456,19 @@
         "urls": [
           {
             "url": "https://www.immigration.gov.bb",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "42403700924f157a8e6412a02692e6aa9964c3654b26854f70a54bacbde23644",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "f0f1524002f2e4f1f697db95dab8f749d8f00415d865683b838200ab58bb9993",
             "status": "changed"
           },
           {
             "url": "https://barbadoswelcomestamp.bb",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "c1ffd0d7a80a0a6b6bb2a6198925cebee571875d3520008a2c61fde255f07046",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "1ea52ac969b7ae0cedf6a1e996427a63c6547234f42499694809786b5a1ff3b9",
             "status": "changed"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -7492,6 +7597,20 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.immigration.gov.bb",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://barbadoswelcomestamp.bb",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
         }
       ]
     },
@@ -7623,7 +7742,7 @@
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -7840,13 +7959,13 @@
           },
           {
             "url": "https://www.tourism.gov.bz",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "c3bf5c7b5291871076e1e106bb3e3e9b525e81197d5f26e3136161ae89fc2fbd",
             "status": "ok"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -8064,13 +8183,13 @@
           },
           {
             "url": "https://www.cdc.gov.kh",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "ead3027fcef1e112c7976f7589a781176d77ffbb1fad55bcef1940731c930a16",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "6ff6840353c0583f1138dd76e07339532a76187b60a06ede1397b15b2f6c09cc",
             "status": "changed"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -8183,6 +8302,13 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.cdc.gov.kh",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003"
         }
       ]
     },
@@ -8303,13 +8429,13 @@
         "urls": [
           {
             "url": "https://pra.gov.ph",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "08a4915ed6b430469bf486694b5458fe8c3d6e6995efd5bf13bd14a89c5a99c1",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "32a657aea8ef2687dbc3ff0b16595390423d9fadac8e2a18a83f4c972bf00cde",
             "status": "changed"
           },
           {
             "url": "https://immigration.gov.ph",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "70fe5ede597b39d7aa47c3ec3a8add579719191775d3bc05332edd4c2d6c0dfc",
             "status": "ok"
           },
@@ -8321,7 +8447,7 @@
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -8446,6 +8572,13 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://pra.gov.ph",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "096f22c4c42048477d582f11a5d16b185afa13641293fc3088f3a94adb98e289"
         }
       ]
     },
@@ -8567,8 +8700,8 @@
         "urls": [
           {
             "url": "https://www.mm2h.gov.my",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "7c35dd86169d4efeb3f105f14e18ccc02f55ae278eea889977dcb0a9ac72f91b",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "deeb58293e985255e3c3e162ed98750d5d90ef742d04f52170cf044396b66ec8",
             "status": "changed"
           },
           {
@@ -8579,13 +8712,13 @@
           },
           {
             "url": "https://www.imi.gov.my",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "972519eb8cde3edb6fba415573233cc6fb4133e2150624116d612f8b2e91800f",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -8698,6 +8831,13 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.mm2h.gov.my",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "8bdae69208189ed559ddac12da6816ecad583caffcb0ccc5d42b7af1f931621d"
         }
       ]
     },
@@ -8831,13 +8971,13 @@
           },
           {
             "url": "https://oss.go.id",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "c7a5632beaceaffc75593b0962f1f95c02f698ba5e1180fe9f174a9a76c879a9",
-            "status": "changed"
+            "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -9069,7 +9209,7 @@
         "urls": [
           {
             "url": "https://www.moj.go.jp/isa",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "2fbeb4a05a468f3e101db4c0a03bfbdcc052c1d2791cca55e84bf03a932ccb04",
             "status": "ok"
           },
@@ -9081,13 +9221,13 @@
           },
           {
             "url": "https://www.fsa.go.jp",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "ba06a9c2ce40f0db6976c02938bd340e7d123767368f3c40f0eae1f1c1fbf702",
             "status": "ok"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -9301,19 +9441,19 @@
         "urls": [
           {
             "url": "https://www.immigration.govt.nz",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "4b4f623ece404a42b73f2c8eb5f48b3fd005411363638a38c31cdc28b0fc3209",
-            "status": "ok"
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "905ec8d88db247cdaee7ebe5761b14cedb5de2ae18029634ed315bd09130fcca",
+            "status": "changed"
           },
           {
             "url": "https://www.mbie.govt.nz",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d",
-            "status": "ok"
+            "status": "unreachable"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -9412,6 +9552,13 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.immigration.govt.nz",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "d110ba00453d8d87664fd21c9d68e2e17d72da4a7cf49638d249f5a7c44c5fc1"
         }
       ]
     },
@@ -9533,25 +9680,25 @@
         "urls": [
           {
             "url": "https://www.irishimmigration.ie",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "d9c84a63fa3008211da5f88e5ee2bd2ace4c1cff2a75e1da14e16e032f69725c",
-            "status": "ok"
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "307dc7ec871e1d6046361c352fc6658c5ee509c013669a8bb7e093e76ab1a597",
+            "status": "changed"
           },
           {
             "url": "https://enterprise.gov.ie",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "1feb55141c54cbd0d82a15dd903db69bf8d298b95beef6936c87f34050317805",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "300f2bfa9eebcf15bd2aa619a4dff9a16fadc659009b4af5002feba8c144983b",
             "status": "changed"
           },
           {
             "url": "https://www.centralbank.ie",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "7b48dabbeeace677c864ec042c4aef5da9a0a0b04500af238f4fbd72497967e3",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -9666,6 +9813,20 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.irishimmigration.ie",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://enterprise.gov.ie",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
         }
       ]
     },
@@ -9786,25 +9947,25 @@
         "urls": [
           {
             "url": "https://www.inclusion.gob.es",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "3472ce555a3cf2dfdb050de7769e446fdc5bdd0667dfdc09b9409f231f2ee907",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "54234f2e0b1624dc170a8c3b1df093acf37fad358bf7e84a4a97c71f57cfd848",
             "status": "changed"
           },
           {
             "url": "https://www.exteriores.gob.es",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "d664e929afdee319850301ba1be219a74bd12173f33a5fd1e489ce9a0f0635e6",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "feebe94b48631e8df766477ff756c049d5f4315675043d6ae78b8f253eb57574",
             "status": "changed"
           },
           {
             "url": "https://www.cnmv.es",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "11c1dd42ae5afb1a469159628d3db4cb922dfb41231c16cd04f9aecf6dc10967",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -9933,6 +10094,20 @@
           "to": "Material change found & corrected: golden visa route marked CLOSED (abolished 2025-04-03, Organic Law 1/2025); no new applications",
           "source": "IMI Daily 2026-08-21 · Echeverria Abogados 2025-04-03 · Wise · Pellicer & Heredia · El País 2025-04-03",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.inclusion.gob.es",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.exteriores.gob.es",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
         }
       ]
     },
@@ -10053,25 +10228,25 @@
         "urls": [
           {
             "url": "https://www.interno.gov.it",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "c1a30c7a94a9daab2a363f01012aadf241f46335015fd47ead2f528412b37f2d",
             "status": "ok"
           },
           {
             "url": "https://investorvisa.mise.gov.it",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "8cf3a9788a38adf8b658ebffb01a4b318398d5dd43fd099f8ab1c33bb23e3882",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "85fffa0dae3c2643cf983e6a298689d9b0e1b5642715d8f5dcf9f8c7da31c3f3",
             "status": "changed"
           },
           {
             "url": "https://www.agenziaentrate.gov.it",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "128fe86d0a9cad339a4549dfa108846f4263bffabb5390d54ca2ba7e0f1a9a38",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "55abf8d92810e6b7aaea554696ec54768474979b01dd2df64aa1b4bff0cf9183",
             "status": "changed"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -10200,6 +10375,20 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://investorvisa.mise.gov.it",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.agenziaentrate.gov.it",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
         }
       ]
     },
@@ -10320,25 +10509,25 @@
         "urls": [
           {
             "url": "https://www.pmlp.gov.lv",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "a65ed5c2550362fe3e2e04a2d8c6f28fc577d3da74799c3fc9614bb493f61bbe",
             "status": "ok"
           },
           {
             "url": "https://www.ur.gov.lv",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "f13f94cf256ed3da5804ffc5632edaab6bde18bb18e79dd10cd51cd686fec2e8",
             "status": "ok"
           },
           {
             "url": "https://www.fktk.lv",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "553a613754d50df5e6489667f05dae0958155071a50cfe7b90ccb1abd93c01af",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "9d0b1f0c01e2160689647462bf8fc340f0705eff43b67dd3918536cd8c162770",
             "status": "changed"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -10444,6 +10633,13 @@
           "to": "Material change found & corrected: subordinated-capital/bond TRP marked refused (LSM 2026-04-27)",
           "source": "LSM eng.lsm.lv 2026-04-27 · Henley & Partners · Fragomen",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.fktk.lv",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "d8e91c6fda03f353c62715cbf35b0c8ee7712f92eaa107e29a138fda622834c9"
         }
       ]
     },
@@ -10564,25 +10760,25 @@
         "urls": [
           {
             "url": "https://www.politsei.ee",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "9d6d09ea0f14ff3ae99fff0abec87f54b32778106694462d5f65923cd07d087f",
-            "status": "ok"
+            "status": "unreachable"
           },
           {
             "url": "https://www.e-resident.gov.ee",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "bf24c68d0fcba2efd4def66e5bf092959f988dd033b8e24624436e4aebe1e34e",
             "status": "ok"
           },
           {
             "url": "https://www.rik.ee",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "4c194c0eba47109690d5c524b0deec8e5c530ce0f83925815f3ba134ff466612",
-            "status": "ok"
+            "status": "unreachable"
           }
         ],
         "changed": false,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -10794,25 +10990,25 @@
         "urls": [
           {
             "url": "https://www.mvr.bg",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "fb4dcc7377f644ee0e83c910d5f4fbb57521665bb2df703cf9cea105ea38769b",
-            "status": "unreachable"
+            "status": "ok"
           },
           {
             "url": "https://www.bnb.bg",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "1ab135c3104906fa117a4363dd44a9e13bbd34669b9af8e64fc5f7b587b6ded9",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "402c4533bc5acc9ecbda6ec110e1e928a982eb1a910c7d849ec65ffbc0663382",
             "status": "changed"
           },
           {
             "url": "https://www.fsc.bg",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "c6aa6d965806050f509a5863e5062324a9a453445856250fcf806cd76c5c0a6b",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -10956,6 +11152,13 @@
           "to": "Threshold confirmed BGN 1M; pending residency-requirement proposal flagged (monitor)",
           "source": "IMI Daily 2026-08-21 (Bulgaria proposes residency requirement) · Henley & Partners · consiliojus.com",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.bnb.bg",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
         }
       ]
     },
@@ -11081,19 +11284,19 @@
         "urls": [
           {
             "url": "https://mup.gov.hr",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "b29d73178847c861c10b40b84da48842378f867c2bb921edf8d858cc96f442c9",
             "status": "ok"
           },
           {
             "url": "https://digitalnomadscroatia.mup.hr",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "4a971e64f17a9ca793d7316ec3d866fa52c3befa02cc3261b933395a1877d729",
-            "status": "changed"
+            "status": "unreachable"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -11313,8 +11516,8 @@
         "urls": [
           {
             "url": "https://www.gibraltar.gov.gi",
-            "last_probed": "2026-08-22T20:46:59.447Z",
-            "last_hash": "c32643850914620d90d0295f8638757ae6d3cf7473b37302cbde654ad92b63c3",
+            "last_probed": "2026-08-23T06:22:20.592Z",
+            "last_hash": "14786e22426d49b542676fca469e321c5ac7ca004163eec934bdd7d9c40d2b89",
             "status": "changed"
           },
           {
@@ -11325,7 +11528,7 @@
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -11433,6 +11636,13 @@
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "source": "Wikipedia: Legality of cryptocurrency by country or territory (rev 2026-08-22) · IMI Daily feed (2026-08-21) · official source probe (2026-08-22)",
           "hash": null
+        },
+        {
+          "date": "2026-08-23",
+          "field": "watch.https://www.gibraltar.gov.gi",
+          "to": "Official source content changed — manual rule review required",
+          "source": "source-probe",
+          "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac"
         }
       ]
     },
@@ -11552,7 +11762,7 @@
         "urls": [
           {
             "url": "https://www.gov.ky",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "c364be91880aea66f378a9aa1c2c1f29ecccc735acca198393682a408d41d619",
             "status": "ok"
           },
@@ -11564,7 +11774,7 @@
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
@@ -11784,19 +11994,19 @@
         "urls": [
           {
             "url": "https://www.govern.ad",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "a8c3d997712a108e40396aacd78670b14d919f53dc23d45be69e7f197f1abe01",
             "status": "ok"
           },
           {
             "url": "https://www.afa.ad",
-            "last_probed": "2026-08-22T20:46:59.447Z",
+            "last_probed": "2026-08-23T06:22:20.592Z",
             "last_hash": "efad9da67c8d26782994a7be9d3ed54bb3e81ef55f9f6017cbf0d61f5e121297",
             "status": "ok"
           }
         ],
         "changed": true,
-        "last_probe_at": "2026-08-22T20:46:59.447Z"
+        "last_probe_at": "2026-08-23T06:22:20.592Z"
       },
       "pros": [
         {
