@@ -1,3 +1,21 @@
+# motopass — Last Updated 2026-08-24 by Ziggy
+Brief: /compare CLS smoothness card — reserve the chart stack (summary/matrix/diff) + picker
+selected-chips row so deferred data loads IN-PLACE (no pop-in / viewport jump).
+Commit: baad803 (ziggy perf cls) · PUSHED to origin/main · CF Pages deploy success · live-verified
+Deploy: auto-deploy via GH→CF Pages (commit on main) · https://motopass.giveabit.io
+
+What landed (ZIGGY perf/cls lane, t_27415d5b):
+- Root cause: deferred program/chart data arrived with no reserved space → /compare chart
+  stack popped in and jumped the viewport post-first-paint (CLS 0.4567 mobile / 0.1966 desktop).
+- Fix: min-height reserve around the chart stack + matching shimmer skeleton in-place
+  (CompareChartSkeleton.tsx); reserved the picker selected-chips row from first paint
+  (ids known from URL) so the search field never shifts when data lands.
+- Kept: charts stay deferred/in-view (main-thread win preserved); rich fuchsia identity intact.
+- Verified LIVE (real chromium, PerformanceObserver, mobile+desktop):
+  mobile CLS 0.4567 → 0.0004 (99.9%), desktop 0.1966 → 0.0026 (98.7%).
+  Charts load in-place with reserved space; jank stays low (LT totals ~400ms, no regression).
+- Suite: 49 files / 251 tests pass. Coordinate with Nova verify card t_a9e02f74.
+
 # motopass — Last Updated 2026-08-24 by Nova
 Brief: Enrich mobile hamburger menu into a real command center — live stats strip (BTC/block/freshness), program search, Stamp/Verify/Apply quick-actions, featured countries, honest trust summary. Function/content lane (Nova) + design/motion lane (Mimi).
 Commit: 39a11ae (nova content) + 57dfb44 (mimi design) · PUSHED to origin/main · live-verified on mobile
