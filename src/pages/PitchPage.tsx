@@ -183,10 +183,13 @@ export function PitchPage() {
                 )}
               </div>
             ) : (
-              <div className="mt-6 flex flex-wrap gap-2" aria-hidden>
-                <span className="skeleton-shimmer h-7 w-28" />
-                <span className="skeleton-shimmer h-7 w-44" />
-                <span className="skeleton-shimmer h-7 w-24" />
+              <div className="mt-6 flex flex-wrap gap-2 min-h-[108px] sm:min-h-[31px]" aria-hidden>
+                {/* Reserved min-height matches the loaded chips container (3 rows @ 31px
+                    on mobile, 1 row on desktop) so the hero copy doesn't grow when
+                    deferred stats arrive — no pop-in / CLS. Chips are decorative. */}
+                <span className="skeleton-shimmer h-[31px] w-28" />
+                <span className="skeleton-shimmer h-[31px] w-44" />
+                <span className="skeleton-shimmer h-[31px] w-24" />
               </div>
             )}
 
@@ -221,7 +224,7 @@ export function PitchPage() {
           )}
           {loading && (
             <div
-              className="hero-glass-panel relative w-full max-w-md rounded-panel border border-white/12 bg-mp-modal/40 p-6 sm:p-8 backdrop-blur-md"
+              className="hero-glass-panel relative w-full max-w-md rounded-panel border border-white/12 bg-mp-modal/40 p-6 sm:p-8 backdrop-blur-md min-h-[370px] sm:min-h-[493px]"
               role="status"
               aria-busy="true"
               aria-label="Loading live sovereignty metrics"

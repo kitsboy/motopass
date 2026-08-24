@@ -11,6 +11,7 @@ import { BtcMapDensityProvider } from './context/BtcMapDensityContext'
 import { BtcMapAuthProvider } from './context/BtcMapAuthContext'
 import { Layout } from './components/Layout'
 import { RouteSuspense } from './components/RouteSuspense'
+import { PitchHeroSkeleton } from './components/pitch/PitchHeroSkeleton'
 import { TrustRouteSuspense } from './components/TrustRouteSuspense'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { ToastProvider } from './components/ui/Toast'
@@ -88,7 +89,7 @@ export default function App() {
                                 <Route
                                   index
                                   element={
-                                    <RouteSuspense count={1} minH={1415}>
+                                    <RouteSuspense minH={1415} fallback={<PitchHeroSkeleton />}>
                                       <PitchPage />
                                     </RouteSuspense>
                                   }

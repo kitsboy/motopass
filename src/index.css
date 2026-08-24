@@ -2387,8 +2387,12 @@ html.mp-header-collapsed {
 .sovereign-canvas {
   position: relative;
   isolation: isolate;
-  perspective: 1400px;
-  perspective-origin: 50% 12%;
+  /* NOTE: no `perspective` here. `perspective`/transform/filter on an ancestor
+     creates a containing block for `position: fixed` descendants (CSS spec), so
+     the fixed ::before/::after/ambient layers would resolve against the growing
+     document instead of the viewport → they resize as deferred content loads and
+     register large CLS (the +0.53 shifts measured on the landing + /portfolio).
+     The 3D parallax illusion is preserved by the layered transforms + animation. */
   /* Fixed ::before/::after parallax layers must not extend scrollHeight past footer */
   overflow: clip;
 }
