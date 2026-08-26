@@ -330,6 +330,7 @@ const sw: Partial<Dict> = {
   'portfolio.complianceClock': 'Saa ya kufuata',
   'portfolio.loadingAria': 'Inapakia kwingineko',
   'portfolio.nostrIdentity': 'Utambulisho wa Nostr',
+  'portfolio.nostrHint': 'Unganisha npub kabla ya kuomba — mawakala huelekeza vyumba vya mikataba na masasisho ya uthibitisho kupitia ufunguo wako huru.',
   'portfolio.renewalWindow': 'Dirisha la kufanyia upya',
   'portfolio.residencyTarget': 'Lengo la ukaaji',
   'programs.flagshipDepth': 'KINA KIKUU',

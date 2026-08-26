@@ -2,6 +2,7 @@ import { Clock, Shield, AlertTriangle, CheckCircle2 } from 'lucide-react'
 import type { Program } from '../programs/types'
 import { hasFlagshipDepth } from '../programs/types'
 import { InfoTip } from '../ui/InfoTip'
+import { useI18n } from '../../i18n/I18nContext'
 
 type ComplianceClockProps = {
   program: Program
@@ -51,6 +52,7 @@ const SEVERITY_STYLES: Record<
 }
 
 export function ComplianceClock({ program, acquiredAt }: ComplianceClockProps) {
+  const { t } = useI18n()
   if (!hasFlagshipDepth(program) || !program.complianceClock) return null
   const clock = program.complianceClock
   const daysIn = daysSince(acquiredAt)
@@ -63,6 +65,12 @@ export function ComplianceClock({ program, acquiredAt }: ComplianceClockProps) {
     ? Math.min(100, Math.round((daysIn / (clock.citizenship_eligibility_years * 365)) * 100))
     : null
 
+  const SEVERITY_TIP: Record<ComplianceSeverity, string> = {
+    critical: t('compliance.criticalTip'),
+    warning: t('compliance.warningTip'),
+    healthy: t('compliance.healthyTip'),
+  }
+
   return (
     <div
       className={`glass-card !p-4 border-l-4 ${styles.border} hover:border-btc-orange/30 hover:-translate-y-0.5 transition-all duration-base`}
@@ -70,28 +78,28 @@ export function ComplianceClock({ program, acquiredAt }: ComplianceClockProps) {
       <div className="flex items-center gap-2 mb-3">
         <SeverityIcon size={14} className={styles.iconClass} aria-hidden />
         <span className="font-chrome text-[11px] uppercase tracking-[0.14em] text-ink-muted">
-          Compliance clock
+          {t('portfolio.complianceClock')}
         </span>
-        <InfoTip tip={severity === 'critical' ? 'Renewal is due within 30 days — act now to keep compliance current.' : severity === 'warning' ? 'Renewal due within 90 days — plan the renewal soon.' : 'Compliance current — no renewal action needed right now.'} className="ml-auto">
+        <InfoTip tip={SEVERITY_TIP[severity]} className="ml-auto">
           <span className={`inline-flex items-center rounded-chip border px-2 py-0.5 text-[9px] font-mono uppercase ${styles.badge}`}>
-            {severity}
+            {t(`compliance.${severity}`)}
           </span>
         </InfoTip>
       </div>
       <p className="font-display text-sm font-semibold text-ink mb-3">{program.country}</p>
       <dl className="grid grid-cols-2 gap-3 text-xs">
         <div className="card-muted">
-          <dt className="text-ink-muted uppercase tracking-wide text-[10px]">Renewal window</dt>
+          <dt className="text-ink-muted uppercase tracking-wide text-[10px]">{t('portfolio.renewalWindow')}</dt>
           <dd className="font-mono text-ink mt-1">~{daysToRenewal}d</dd>
         </div>
         <div className="card-muted">
-          <dt className="text-ink-muted uppercase tracking-wide text-[10px]">Residency target</dt>
+          <dt className="text-ink-muted uppercase tracking-wide text-[10px]">{t('portfolio.residencyTarget')}</dt>
           <dd className="font-mono text-ink mt-1">{clock.residency_day_count_target}d</dd>
         </div>
         {citizenshipPct != null && (
           <div className="col-span-2 card-muted">
             <dt className="text-ink-muted uppercase tracking-wide text-[10px] flex items-center gap-1">
-              <Shield size={10} /> Citizenship track
+              <Shield size={10} /> {t('portfolio.citizenshipTrack')}
             </dt>
             <dd className="mt-2">
               <div className="h-2 rounded-chip bg-section overflow-hidden">

@@ -124,6 +124,26 @@ describe('lazy i18n locales', () => {
     expect(dict!['menu.quickActions']).toBe('Vitendo vya haraka')
     expect(dict!['menu.viewTrust']).toBe('Uaminifu wa moja kwa moja')
     expect(dict!['trust.title']).toBe('Kadi za uaminifu za moja kwa moja')
+    // /portfolio page must be FULL Swahili — every portfolio key resolves, and the
+    // hardcoded-English leak (nostrHint) is genuinely localized, not an en fallback.
+    const portfolioKeys = [
+      'portfolio.eyebrow', 'portfolio.title', 'portfolio.subtitle', 'portfolio.empty',
+      'portfolio.explore', 'portfolio.nostrIdentity', 'portfolio.nostrHint',
+      'portfolio.statPrograms', 'portfolio.statInvest', 'portfolio.statScore',
+      'portfolio.statLightning', 'portfolio.tip.programs', 'portfolio.tip.invest',
+      'portfolio.tip.score', 'portfolio.tip.lightning', 'portfolio.sortBy',
+      'portfolio.sortOrder', 'portfolio.sortName', 'portfolio.sortScore',
+      'portfolio.sortInvest', 'portfolio.removeAll', 'portfolio.removeAllTitle',
+      'portfolio.removeAllConfirm', 'portfolio.shareUrl', 'portfolio.shareCopied',
+      'portfolio.reorderSaved',
+    ] as const
+    for (const key of portfolioKeys) {
+      expect(swKeys.has(key), `sw /portfolio key ${key} missing — would fall back to English`).toBe(true)
+    }
+    expect(dict!['portfolio.nostrHint']).toContain('npub')
+    expect(dict!['portfolio.nostrHint']).toContain('funguo')
+    expect(dict!['pitch.stackSimulator']).toBe('Kiigizo cha stack')
+    expect(dict!['pitch.btcmapCta']).toBe('Wafanyabiashara wa Ramani ya BTC')
   })
 
   it('sw localizes the command-center menu keys (no English fallback)', async () => {

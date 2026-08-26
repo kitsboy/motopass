@@ -157,7 +157,7 @@ export function PortfolioPage() {
         <div className="min-w-0">
           <p className="font-chrome text-xs font-semibold text-mp-btc-text uppercase tracking-wide">{t('portfolio.nostrIdentity')}</p>
           <p className="text-sm text-ink-secondary mt-1 leading-relaxed">
-            Connect npub before Apply — agents route deal rooms and proof updates through your sovereign key.
+            {t('portfolio.nostrHint')}
           </p>
         </div>
         <NostrConnect />
@@ -201,8 +201,8 @@ export function PortfolioPage() {
       {acquired.length > 0 && (
         <div className="mb-6 grid gap-4 lg:grid-cols-[1fr_minmax(0,20rem)] lg:items-start">
           <div className="flex flex-wrap gap-3">
-            <Link to="/simulator" className="chip text-xs text-accent hover:underline">Stack simulator →</Link>
-            <Link to="/btcmap" className="chip text-xs text-mp-btc-text hover:underline">BTC Map merchants →</Link>
+            <Link to="/simulator" className="chip text-xs text-accent hover:underline">{t('pitch.stackSimulator')} →</Link>
+            <Link to="/btcmap" className="chip text-xs text-mp-btc-text hover:underline">{t('pitch.btcmapCta')} →</Link>
           </div>
           <PaigeChat compact />
         </div>

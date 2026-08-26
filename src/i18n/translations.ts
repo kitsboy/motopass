@@ -271,6 +271,7 @@ export type TranslationKey =
   | 'programs.flagshipDepth'
   | 'programs.loadingAria'
   | 'portfolio.nostrIdentity'
+  | 'portfolio.nostrHint'
   | 'portfolio.loadingAria'
   | 'portfolio.renewalWindow'
   | 'portfolio.residencyTarget'
@@ -414,6 +415,7 @@ const en: Dict = {
   'programs.flagshipDepth': 'FLAGSHIP DEPTH',
   'programs.loadingAria': 'Loading programs',
   'portfolio.nostrIdentity': 'Nostr identity',
+  'portfolio.nostrHint': 'Connect npub before Apply — agents route deal rooms and proof updates through your sovereign key.',
   'portfolio.loadingAria': 'Loading portfolio',
   'portfolio.renewalWindow': 'Renewal window',
   'portfolio.residencyTarget': 'Residency target',
