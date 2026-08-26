@@ -1,9 +1,7 @@
-import { pageKeysEn } from '../pageKeys/en'
 import { pageKeysPt } from '../pageKeys/pt'
 import type { Dict } from '../translations'
 
 const pt: Partial<Dict> = {
-  ...pageKeysEn,
   'nav.pitch': 'Visão',
   'nav.portfolio': 'Portfólio',
   'nav.programs': 'Programas',
@@ -29,6 +27,20 @@ const pt: Partial<Dict> = {
   'nav.explore': 'Explorar',
   'nav.tools': 'Ferramentas',
   'nav.skip': 'Saltar para o conteúdo',
+  'menu.live': 'Ao vivo',
+  'menu.liveBTC': 'BTC',
+  'menu.liveBlock': 'Bloco',
+  'menu.liveFresh': 'Fresco',
+  'menu.quickActions': 'Ações rápidas',
+  'menu.stamp': 'Selar',
+  'menu.verify': 'Verificar',
+  'menu.apply': 'Candidatar-se',
+  'menu.searchNoResults': 'Nenhum programa corresponde a "{q}"',
+  'menu.searchAll': 'Todos os programas',
+  'menu.featured': 'Destaques',
+  'menu.trustSummary': '{fresh} frescos · {watch} em vigilância · {stale} desatualizados',
+  'menu.trustPending': 'Dados de confiança pendentes…',
+  'menu.viewTrust': 'Confiança ao vivo',
   'tagline': 'Verdade que pode verificar',
   'pitch.hero': 'O sistema operativo privado para operadores soberanos',
   'pitch.sub': 'Motor de dados ao vivo — cartões de confiança de 50 países, ancorados em Bitcoin e com frescura verificada. Pesquise jurisdições, modele stacks em ₿, verifique cada alegação on-chain, candidate-se com Nostr — sem e-mail, sem confiança de brochura.',
@@ -220,7 +232,6 @@ const pt: Partial<Dict> = {
   'trust.auditTrail': 'Última trilha de auditoria',
   'trust.minInvest': 'Invest. mín.',
   'trust.loading': 'A carregar envelopes de confiança…',
-  ...pageKeysEn,
   ...pageKeysPt,
 }
 

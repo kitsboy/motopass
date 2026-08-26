@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { t, registerDict } from './translations'
 import { loadLocale } from './locales'
+import { pageKeysEn } from './pageKeys/en'
 
 // Verifies the perf refactor (per-locale lazy loading): a non-English locale is a
 // separate chunk loaded on demand, and `t` resolves it with English fallback for
@@ -40,5 +41,37 @@ describe('lazy i18n locales', () => {
       registerDict(lang as never, dict!)
       expect(t(lang as never, 'nav.pitch')).toBeTruthy()
     }
+  })
+
+  it('pt fully localizes every page key — no English fallback', async () => {
+    const dict = await loadLocale('pt')
+    expect(dict).toBeTruthy()
+    registerDict('pt', dict!)
+    // The pt dict no longer spreads pageKeysEn — it must *define* every page key
+    // itself. A missing key here would silently fall back to English.
+    const ptKeys = new Set(Object.keys(dict!))
+    for (const key of Object.keys(pageKeysEn)) {
+      expect(ptKeys.has(key), `pt page key ${key} missing — would fall back to English`).toBe(true)
+    }
+  })
+
+  it('pt localizes the command-center menu keys (no English fallback)', async () => {
+    const dict = await loadLocale('pt')
+    expect(dict).toBeTruthy()
+    registerDict('pt', dict!)
+    const menuKeys = [
+      'menu.live', 'menu.liveBTC', 'menu.liveBlock', 'menu.liveFresh', 'menu.quickActions',
+      'menu.stamp', 'menu.verify', 'menu.apply', 'menu.searchNoResults', 'menu.searchAll',
+      'menu.featured', 'menu.trustSummary', 'menu.trustPending', 'menu.viewTrust',
+    ] as const
+    const ptKeys = new Set(Object.keys(dict!))
+    for (const key of menuKeys) {
+      expect(ptKeys.has(key), `pt ${key} missing — would fall back to English`).toBe(true)
+    }
+    // Spot-check a few genuinely translated phrases (canonical terms like BTC stay identical).
+    expect(dict!['menu.quickActions']).toBe('Ações rápidas')
+    expect(dict!['menu.viewTrust']).toBe('Confiança ao vivo')
+    expect(dict!['menu.trustSummary']).toContain('frescos')
+    expect(dict!['menu.searchNoResults']).toContain('Nenhum programa')
   })
 })

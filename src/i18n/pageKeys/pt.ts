@@ -639,6 +639,8 @@ export const pageKeysPt: Partial<Record<PageKey, string>> = {
   'vault.verify.resultsExplainerOk': 'Parece bem localmente — o formato do hash é válido ou o seu ficheiro .ots carregou. Abra o Satohash para confirmar que a prova está ancorada em Bitcoin; o MotoPass não substitui a verificação independente.',
   'vault.verify.resultsExplainerFail': 'Este controlo falhou localmente — corrija o hash ou tente outro ficheiro .ots. O MotoPass apenas valida o formato aqui; o Satohash confirma se existe uma prova em Bitcoin.',
   'vault.inPortfolio': 'No portfólio →',
+  'vault.viewAllProofs': 'Ver todas as {count} provas ancoradas',
+  'vault.showRecentProofs': 'Mostrar provas recentes',
   'block.error': 'Altura de bloco indisponível',
   'block.retry': 'Repetir',
   'common.close': 'Fechar',
