@@ -717,6 +717,8 @@ export const pageKeysJa: Partial<Record<PageKey, string>> = {
   'vault.title': 'タイムスタンプ証明',
   'vault.useProof': 'この証明を使用',
   'vault.verified': '{count}件検証済み',
+  'vault.viewAllProofs': '全{count}件のアンカー証明を表示',
+  'vault.showRecentProofs': '最近の証明を表示',
   'vault.verify.resultsExplainerFail': 'このチェックはローカルで失敗しました — ハッシュを修正するか、別の.otsファイルを試してください。MotoPassはここで形式のみを検証します。Bitcoin上に証明が存在するかどうかはSatohashが確認します。',
   'vault.verify.resultsExplainerOk': 'ローカルでは問題ありません — ハッシュ形式は有効、または.otsファイルが読み込まれました。Satohashを開いて証明がBitcoinにアンカーされていることを確認してください。MotoPassは独立検証の代わりにはなりません。',
   'verify.apiChecking': 'Satohash APIを確認中…',
