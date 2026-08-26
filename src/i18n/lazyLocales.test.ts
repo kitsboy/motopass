@@ -109,4 +109,56 @@ describe('lazy i18n locales', () => {
       expect(val).toMatch(/[\u0600-\u06FF]/)
     }
   })
+
+  it('sw fully localizes every page key — no English fallback', async () => {
+    const dict = await loadLocale('sw')
+    expect(dict).toBeTruthy()
+    registerDict('sw', dict!)
+    // The sw dict must define every page key itself (no pageKeysEn spread fallback).
+    const swKeys = new Set(Object.keys(dict!))
+    for (const key of Object.keys(pageKeysEn)) {
+      expect(swKeys.has(key), `sw page key ${key} missing — would fall back to English`).toBe(true)
+    }
+    // Canonical terms stay as-is (Bitcoin, Nostr); genuine phrases must be Swahili.
+    expect(dict!['nav.pitch']).toBe('Dira')
+    expect(dict!['menu.quickActions']).toBe('Vitendo vya haraka')
+    expect(dict!['menu.viewTrust']).toBe('Uaminifu wa moja kwa moja')
+    expect(dict!['trust.title']).toBe('Kadi za uaminifu za moja kwa moja')
+  })
+
+  it('sw localizes the command-center menu keys (no English fallback)', async () => {
+    const dict = await loadLocale('sw')
+    expect(dict).toBeTruthy()
+    registerDict('sw', dict!)
+    const menuKeys = [
+      'menu.live', 'menu.liveBTC', 'menu.liveBlock', 'menu.liveFresh', 'menu.quickActions',
+      'menu.stamp', 'menu.verify', 'menu.apply', 'menu.searchNoResults', 'menu.searchAll',
+      'menu.featured', 'menu.trustSummary', 'menu.trustPending', 'menu.viewTrust',
+    ] as const
+    const swKeys = new Set(Object.keys(dict!))
+    for (const key of menuKeys) {
+      expect(swKeys.has(key), `sw ${key} missing — would fall back to English`).toBe(true)
+    }
+    expect(dict!['menu.trustSummary']).toContain('mpya')
+    expect(dict!['menu.searchNoResults']).toContain('programu')
+  })
+
+  it('sw localizes the hero tagline — no English leaks into the h1', async () => {
+    const dict = await loadLocale('sw')
+    expect(dict).toBeTruthy()
+    registerDict('sw', dict!)
+    const heroKeys = [
+      'pitch.heroTagline.line1', 'pitch.heroTagline.line2prefix',
+      'pitch.heroTagline.line2accent', 'pitch.heroTagline.line3neg',
+      'pitch.heroTagline.line3struck',
+    ] as const
+    for (const key of heroKeys) {
+      const val = dict![key]
+      expect(typeof val).toBe('string')
+      if (val) {
+        expect(val.trim().length).toBeGreaterThan(0)
+        expect(val).not.toMatch(/\b(True citizenship|Stamped|bureaucracy|time|Not)\b/)
+      }
+    }
+  })
 })

@@ -743,6 +743,8 @@ export const pageKeysSw: Partial<Record<PageKey, string>> = {
   'vault.how.step4.title': 'Shiriki mnasaba wa uthibitisho',
   'vault.how.title': 'Kwa nini Kuba ipo — na jinsi ya kuitumia',
   'vault.inPortfolio': 'Kwenye kwingineko →',
+  'vault.viewAllProofs': 'Tazama uthibitisho {count} yote yaliyofungwa muhuri',
+  'vault.showRecentProofs': 'Onyesha uthibitisho wa hivi karibuni',
   'vault.lineageTitle': 'Mnasaba wa uthibitisho',
   'vault.nostrPublish': 'Tangaza kwenye Nostr',
   'vault.nostrStub': 'Tukio la muda la Nostr',
