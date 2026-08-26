@@ -82,6 +82,7 @@ export type TranslationKey =
   | 'programs.minCryptoScore'
   | 'programs.region'
   | 'programs.noMatch'
+  | 'programs.all'
   | 'programs.inStack'
   | 'portfolio.empty'
   | 'portfolio.explore'
@@ -269,6 +270,13 @@ export type TranslationKey =
   | 'programs.tableAria'
   | 'programs.inPortfolio'
   | 'programs.flagshipDepth'
+  | 'programs.goldStandardTitle'
+  | 'programs.goldStandardSub'
+  | 'programs.openResearch'
+  | 'programs.pathwaysCount'
+  | 'programs.residencyClocks'
+  | 'programs.trackInPortfolio'
+  | 'programs.complianceEyebrow'
   | 'programs.loadingAria'
   | 'portfolio.nostrIdentity'
   | 'portfolio.nostrHint'
@@ -413,6 +421,14 @@ const en: Dict = {
   'programs.tableAria': 'Residency and citizenship programs',
   'programs.inPortfolio': 'In portfolio',
   'programs.flagshipDepth': 'FLAGSHIP DEPTH',
+  'programs.goldStandardTitle': 'Gold standard jurisdictions',
+  'programs.goldStandardSub':
+    'Uruguay and Bolivia anchor MotoPass research templates — pathways, compliance clocks, and Satohash proofs other programs inherit.',
+  'programs.openResearch': 'Open research',
+  'programs.pathwaysCount': '{count} pathways',
+  'programs.residencyClocks': 'Residency clocks',
+  'programs.trackInPortfolio': 'Track in portfolio →',
+  'programs.complianceEyebrow': 'COMPLIANCE',
   'programs.loadingAria': 'Loading programs',
   'portfolio.nostrIdentity': 'Nostr identity',
   'portfolio.nostrHint': 'Connect npub before Apply — agents route deal rooms and proof updates through your sovereign key.',
@@ -528,6 +544,7 @@ const en: Dict = {
   'programs.minCryptoScore': 'Min crypto score',
   'programs.region': 'Region',
   'programs.noMatch': 'No programs match your filters.',
+  'programs.all': 'All',
   'programs.inStack': 'in your stack',
   'portfolio.empty': 'No programs in your portfolio yet.',
   'portfolio.explore': 'Explore programs',
