@@ -477,7 +477,7 @@ export function ProgramsPage() {
                   className="select-field"
                 >
                   {categories.map((c) => (
-                    <option key={c}>{c}</option>
+                    <option key={c}>{c === 'All' ? t('programs.all') : c}</option>
                   ))}
                 </select>
                 <label className="flex items-center gap-2 text-sm text-ink-secondary sm:col-span-2">
@@ -590,7 +590,7 @@ export function ProgramsPage() {
                 {regions.map((r) => (
                   <Chip
                     key={r}
-                    label={r}
+                    label={r === 'All' ? t('programs.all') : r}
                     active={regionFilter === r}
                     onClick={() => patchFilters({ region: r })}
                     count={regionCounts[r] ?? 0}

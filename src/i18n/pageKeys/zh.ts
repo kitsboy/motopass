@@ -493,6 +493,7 @@ export const pageKeysZh: Partial<Record<PageKey, string>> = {
   'modal.verifyBlock': '验证区块',
   'modal.legalStatus': '状态',
   'modal.lastChecked': '最后检查',
+  'modal.verified': '已验证',
   'modal.legalDisclaimer': '仅供参考——非法律建议。',
   'modal.noSources': '尚未列出来源。',
   'modal.flagship': '旗舰项目',

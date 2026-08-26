@@ -444,6 +444,7 @@ export const pageKeysAr: Partial<Record<PageKey, string>> = {
   'modal.verifyBlock': 'تحقق من البلوك',
   'modal.legalStatus': 'الحالة',
   'modal.lastChecked': 'آخر فحص',
+  'modal.verified': 'تم التحقق',
   'modal.legalDisclaimer': 'إعلامي فقط — وليس نصيحة قانونية.',
   'modal.noSources': 'لا مصادر مدرجة بعد.',
   'modal.flagship': 'برنامج رائد',

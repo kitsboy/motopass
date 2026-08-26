@@ -349,6 +349,7 @@ export const pageKeysJa: Partial<Record<PageKey, string>> = {
   'modal.intelPros': 'メリット',
   'modal.intelScorecard': 'スコアカード',
   'modal.lastChecked': '最終確認',
+  'modal.verified': '検証済み',
   'modal.legalDisclaimer': '参考情報のみ — 法的助言ではありません。',
   'modal.legalStatus': 'ステータス',
   'modal.lightning': 'Lightning',

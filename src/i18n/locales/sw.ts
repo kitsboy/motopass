@@ -91,6 +91,7 @@ const sw: Partial<Dict> = {
   'programs.minCryptoScore': 'Alama ya chini ya crypto',
   'programs.region': 'Eneo',
   'programs.noMatch': 'Hakuna programu inayolingana na vichujio vyako.',
+  'programs.all': 'Zote',
   'programs.inStack': 'kwenye stack yako',
   'portfolio.empty': 'Hakuna programu kwenye kwingineko yako bado.',
   'portfolio.explore': 'Chunguza programu',

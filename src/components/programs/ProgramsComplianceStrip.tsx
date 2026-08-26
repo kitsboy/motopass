@@ -5,10 +5,12 @@ import { toCinematicPrograms } from '../../lib/programAdapter'
 import { ComplianceClock } from '../portfolio/ComplianceClock'
 import { hasFlagshipDepth } from './types'
 import { Card } from '../ui/Card'
+import { useI18n } from '../../i18n/I18nContext'
 
 const SPOTLIGHT = new Set(['Uruguay', 'Bolivia', 'El Salvador', 'UAE'])
 
 export function ProgramsComplianceStrip() {
+  const { t } = useI18n()
   const { programs, loading } = usePrograms()
 
   const flagship = useMemo(() => {
@@ -24,13 +26,13 @@ export function ProgramsComplianceStrip() {
     <section className="mb-10" aria-labelledby="programs-compliance-heading">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <span className="club-eyebrow block mb-1.5">COMPLIANCE</span>
+          <span className="club-eyebrow block mb-1.5">{t('programs.complianceEyebrow')}</span>
           <h2 id="programs-compliance-heading" className="font-display text-h3 font-semibold tracking-tight text-ink">
-            Residency clocks
+            {t('programs.residencyClocks')}
           </h2>
         </div>
         <Link to="/portfolio" className="text-xs font-chrome text-mp-btc-text hover:underline">
-          Track in portfolio →
+          {t('programs.trackInPortfolio')}
         </Link>
       </div>
       <Card variant="elevated" className="!p-4 sm:!p-5">

@@ -58,22 +58,22 @@ export function ProgramsTable({
   return (
     <table
       className={`w-full border-separate border-spacing-0 text-start programs-table-sticky mp-table-zebra ${compact ? 'programs-table-compact' : 'programs-table-comfortable'}`}
-      aria-label="Residency and citizenship programs"
+      aria-label={t('programs.tableAria')}
     >
-      <caption className="sr-only">Residency and citizenship programs by jurisdiction</caption>
+      <caption className="sr-only">{t('programs.tableSubtitle')}</caption>
       <thead>
         <tr className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">
           {onTogglePortfolio && (
             <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-2 font-medium w-10`}>
-              <span className="sr-only">In portfolio</span>
+              <span className="sr-only">{t('programs.inPortfolio')}</span>
             </th>
           )}
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>Jurisdiction</th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>Tier</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>{t('programs.jurisdiction')}</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>{t('programs.tier')}</th>
           <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>
-            <span className="text-mp-btc-text">₿</span> Min. invest
+            <span className="text-mp-btc-text">₿</span> {t('programs.minInvest')}
           </th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>Timeline</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>{t('programs.timeline')}</th>
           <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>
             <button
               type="button"
@@ -81,13 +81,13 @@ export function ProgramsTable({
               className="inline-flex items-center gap-1 hover:text-mp-btc-text transition-colors"
               aria-label={t('programs.sortSovereignty')}
             >
-              Score
+              {t('programs.score')}
               {scoreSort === 'desc' && <ChevronDown size={12} aria-hidden="true" />}
               {scoreSort === 'asc' && <ChevronUp size={12} aria-hidden="true" />}
             </button>
           </th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>Proof</th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-2 font-medium`}>Intel</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>{t('programs.proof')}</th>
+          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-2 font-medium`}>{t('programs.intel')}</th>
         </tr>
       </thead>
       <tbody>

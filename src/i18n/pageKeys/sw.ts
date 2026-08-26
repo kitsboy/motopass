@@ -444,6 +444,7 @@ export const pageKeysSw: Partial<Record<PageKey, string>> = {
   'modal.verifyBlock': 'Thibitisha block',
   'modal.legalStatus': 'Hali',
   'modal.lastChecked': 'Ilikaguliwa mwisho',
+  'modal.verified': 'imethibitishwa',
   'modal.legalDisclaimer': 'Taarifa pekee — si ushauri wa kisheria.',
   'modal.noSources': 'Hakuna vyanzo vilivyoorodheshwa bado.',
   'modal.flagship': 'Programu ya mfano',

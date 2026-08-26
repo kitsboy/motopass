@@ -6,11 +6,14 @@ import { ProofBadge } from '../ui/ProofBadge'
 import { toCinematicProgram } from '../../lib/programAdapter'
 import { computePitchStats } from '../../lib/pitchStats'
 import type { Program } from '../../types/program'
+import { useI18n } from '../../i18n/I18nContext'
+import { formatT } from '../../i18n/format'
 
 const GOLD_STANDARD_NAMES = ['Uruguay', 'Bolivia'] as const
 const IDLE_CYCLE_MS = 30_000
 
 export function GoldStandardSpotlight({ programs }: { programs: Program[] }) {
+  const { t } = useI18n()
   const stats = useMemo(() => computePitchStats(programs), [programs])
   const candidates = useMemo(() => {
     return GOLD_STANDARD_NAMES.map(name => programs.find(p => p.name === name)).filter(
@@ -53,13 +56,12 @@ export function GoldStandardSpotlight({ programs }: { programs: Program[] }) {
   return (
     <section className="mb-10" aria-labelledby="gold-standard-heading">
       <div className="mb-5 max-w-2xl">
-        <span className="club-eyebrow block mb-2">FLAGSHIP DEPTH</span>
+        <span className="club-eyebrow block mb-2">{t('programs.flagshipDepth')}</span>
         <h2 id="gold-standard-heading" className="font-display text-h3 font-semibold text-ink tracking-tight">
-          Gold standard jurisdictions
+          {t('programs.goldStandardTitle')}
         </h2>
         <p className="mt-2 font-body text-sm text-ink-secondary leading-relaxed">
-          Uruguay and Bolivia anchor MotoPass research templates — pathways, compliance clocks, and Satohash proofs
-          other programs inherit.
+          {t('programs.goldStandardSub')}
         </p>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
@@ -84,21 +86,21 @@ export function GoldStandardSpotlight({ programs }: { programs: Program[] }) {
                 <p className="text-sm text-ink-secondary leading-relaxed line-clamp-3">{p.details}</p>
                 <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-mono">
                   <span className="rounded-chip border border-mp-proof/30 bg-mp-proof/10 px-2 py-0.5 text-mp-proof inline-flex items-center gap-1">
-                    <ShieldCheck size={10} /> {pathwayCount} pathways
+                    <ShieldCheck size={10} /> {formatT(t, 'programs.pathwaysCount', { count: pathwayCount })}
                   </span>
                   {p.flagship_depth && (
                     <span className="rounded-chip border border-btc-orange/30 bg-btc-orange-soft/50 px-2 py-0.5 text-mp-btc-text">
-                      flagship_depth
+                      {t('programs.flagshipDepth')}
                     </span>
                   )}
                   {p.sovereignty_score != null && (
                     <span className="rounded-chip border border-mp/60 px-2 py-0.5 text-ink-muted">
-                      sovereignty {p.sovereignty_score}/10
+                      {formatT(t, 'trust.sovereignty', { score: p.sovereignty_score })}
                     </span>
                   )}
                 </div>
                 <span className="mt-4 inline-flex items-center gap-1 text-xs font-chrome font-medium text-mp-btc-text opacity-0 group-hover:opacity-100 transition-opacity">
-                  Open research <ArrowRight size={12} />
+                  {t('programs.openResearch')} <ArrowRight size={12} />
                 </span>
               </Card>
             </Link>

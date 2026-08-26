@@ -131,7 +131,7 @@ function ProgramCardContent({
               {program.lightningReady && (
                 <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-btc/30 bg-mp-btc-soft px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-btc-text">
                   <Zap size={9} aria-hidden="true" />
-                  Lightning
+                  {t('modal.lightning')}
                 </span>
               )}
               <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />
@@ -168,17 +168,17 @@ function ProgramCardContent({
 
       <dl className="mt-4 grid grid-cols-3 gap-2 border-t border-mp-border-subtle pt-4">
         <div>
-          <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">Min. invest</dt>
+          <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.minInvest')}</dt>
           <dd className="text-mp-ink">
             <BtcDualPrice usd={program.minInvestment} size="xs" layout="stack" />
           </dd>
         </div>
         <div>
-          <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">Timeline</dt>
+          <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.timeline')}</dt>
           <dd className="font-mono text-sm text-mp-ink">{program.timelineDays}d</dd>
         </div>
         <div>
-          <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">Score</dt>
+          <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.score')}</dt>
           <dd>
             <SovereigntyScoreTooltip program={program} score={program.sovereigntyScore} isFlagship={isFlagship} />
           </dd>

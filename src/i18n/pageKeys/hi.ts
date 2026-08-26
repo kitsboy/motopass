@@ -576,6 +576,7 @@ export const pageKeysHi: Partial<Record<PageKey, string>> = {
   'modal.verifyBlock': 'ब्लॉक सत्यापित करें',
   'modal.legalStatus': 'स्थिति',
   'modal.lastChecked': 'अंतिम जाँच',
+  'modal.verified': 'सत्यापित',
   'modal.legalDisclaimer': 'केवल सूचनात्मक — कानूनी सलाह नहीं।',
   'modal.noSources': 'अभी कोई स्रोत सूचीबद्ध नहीं।',
   'modal.flagship': 'फ्लैगशिप कार्यक्रम',

@@ -309,7 +309,7 @@ function ProgramModalBody({
                     <Check size={13} className="mt-0.5 shrink-0 text-mp-proof" aria-hidden="true" />
                     <span>
                       {p.text}
-                      {p.verified_at && <span className="block font-mono text-[10px] text-mp-ink-muted">verified {p.verified_at}</span>}
+                      {p.verified_at && <span className="block font-mono text-[10px] text-mp-ink-muted">{t('modal.verified')} {p.verified_at}</span>}
                     </span>
                   </li>
                 ))}
@@ -325,7 +325,7 @@ function ProgramModalBody({
                     <XIcon size={13} className="mt-0.5 shrink-0 text-mp-wax" aria-hidden="true" />
                     <span>
                       {c.text}
-                      {c.verified_at && <span className="block font-mono text-[10px] text-mp-ink-muted">verified {c.verified_at}</span>}
+                      {c.verified_at && <span className="block font-mono text-[10px] text-mp-ink-muted">{t('modal.verified')} {c.verified_at}</span>}
                     </span>
                   </li>
                 ))}
@@ -356,7 +356,7 @@ function ProgramModalBody({
                       <span className="truncate">{e.from ? `${e.from} → ` : ''}{e.to}</span>
                       {verifyHref && (
                         <a href={verifyHref} target="_blank" rel="noopener noreferrer" className="font-mono text-mp-btc-text hover:underline underline-offset-2">
-                          verify ↗
+                          {t('verify.verifyProof')} ↗
                         </a>
                       )}
                     </li>

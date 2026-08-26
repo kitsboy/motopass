@@ -563,6 +563,7 @@ export const pageKeysDe: Partial<Record<PageKey, string>> = {
   'modal.verifyBlock': 'Block prüfen',
   'modal.legalStatus': 'Status',
   'modal.lastChecked': 'Zuletzt geprüft',
+  'modal.verified': 'verifiziert',
   'modal.legalDisclaimer': 'Nur informativ — keine Rechtsberatung.',
   'modal.noSources': 'Noch keine Quellen aufgelistet.',
   'modal.flagship': 'Flaggschiff-Programm',

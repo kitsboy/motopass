@@ -572,6 +572,7 @@ export const pageKeysPt: Partial<Record<PageKey, string>> = {
   'modal.verifyBlock': 'Verificar bloco',
   'modal.legalStatus': 'Estado',
   'modal.lastChecked': 'Última verificação',
+  'modal.verified': 'verificado',
   'modal.legalDisclaimer': 'Apenas informativo — não aconselhamento jurídico.',
   'modal.noSources': 'Ainda sem fontes listadas.',
   'modal.flagship': 'Programa emblemático',
