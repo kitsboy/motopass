@@ -18,7 +18,9 @@ import { Clapperboard, Play, Film } from 'lucide-react'
  *    video errors -> we show an on-brand "film in production" panel instead of
  *    faking playback. Once the file is live the player just works (no code change).
  */
-const VIDEO_SRC = '/video/motopass-ots-walkthrough.mp4'
+// Film offloaded to Cloudflare R2 (videos.giveabit.io) to keep the site bundle light.
+// Lazy src injection on the <video> element is preserved.
+const VIDEO_SRC = 'https://videos.giveabit.io/video/motopass-ots-walkthrough.mp4'
 
 export function VaultEducationPlayer() {
   const wrapRef = useRef<HTMLDivElement>(null)

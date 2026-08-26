@@ -18,7 +18,9 @@ import { useI18n } from '../../i18n/I18nContext'
  *    video fails to load -> we show an on-brand "film in production" panel instead of
  *    faking playback. Once the file is live, the player just works (no code change).
  */
-const VIDEO_SRC = '/video/motopass-explainer.mp4'
+// Film is offloaded to Cloudflare R2 (videos.giveabit.io) so the site bundle stays light.
+// Poster stays local (tiny) for fast first paint. Lazy src injection + preload=metadata preserved.
+const VIDEO_SRC = 'https://videos.giveabit.io/video/motopass-explainer.mp4'
 const POSTER_SRC = '/video/motopass-explainer-poster.jpg'
 
 export function MotoPassExplainer() {
@@ -62,17 +64,16 @@ export function MotoPassExplainer() {
           className="text-center mb-8"
         >
           <span className="club-eyebrow inline-flex items-center gap-2 text-fuchsia mb-3">
-            <Film size={13} /> Watch · 60-second explainer
+            <Film size={13} /> {t('pitch.explainer.eyebrow')}
           </span>
           <h2
             id="pitch-film-heading"
             className="font-display text-2xl sm:text-4xl font-semibold text-ink tracking-tight"
           >
-            MotoPass in sixty seconds
+            {t('pitch.explainer.title')}
           </h2>
           <p className="mt-3 font-body text-body text-ink-secondary leading-relaxed max-w-2xl mx-auto">
-            Truth you can verify, on Bitcoin — how MotoPass turns sovereign residency
-            into a provable, self-custodied passport.
+            {t('pitch.explainer.body')}
           </p>
         </motion.div>
 
@@ -90,13 +91,13 @@ export function MotoPassExplainer() {
               playsInline
               preload="metadata"
               poster={POSTER_SRC}
-              title="MotoPass — 60 second explainer"
+              title={t('pitch.explainer.videoTitle')}
               aria-label={t('pitch.explainerAria')}
               onError={() => setFilmError(true)}
               onLoadedData={() => setFilmReady(true)}
             >
               {srcReady && <source src={VIDEO_SRC} type="video/mp4" />}
-              Your browser does not support HTML5 video.
+              {t('pitch.explainer.unsupported')}
             </video>
 
             {/* On-brand overlay chrome */}
@@ -115,11 +116,10 @@ export function MotoPassExplainer() {
                   <Clapperboard size={24} />
                 </div>
                 <div className="font-display text-lg sm:text-xl font-semibold text-ink">
-                  The 60-second explainer is in production
+                  {t('pitch.explainer.pendingTitle')}
                 </div>
                 <p className="max-w-md text-sm text-ink-muted leading-relaxed">
-                  Our film is being cut right now. Check back shortly — it will play
-                  right here. Meanwhile, explore the platform below.
+                  {t('pitch.explainer.pendingBody')}
                 </p>
               </div>
             )}
