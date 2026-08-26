@@ -227,7 +227,7 @@ export function PitchPage() {
               className="hero-glass-panel relative w-full max-w-md rounded-panel border border-white/12 bg-mp-modal/40 p-6 sm:p-8 backdrop-blur-md min-h-[370px] sm:min-h-[493px]"
               role="status"
               aria-busy="true"
-              aria-label="Loading live sovereignty metrics"
+              aria-label={t('pitch.loadingMetricsAria')}
             >
               <span className="skeleton-shimmer block h-4 w-32" />
               <span className="skeleton-shimmer block h-4 w-44 mt-3" />

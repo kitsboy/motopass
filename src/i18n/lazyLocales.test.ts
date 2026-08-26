@@ -74,4 +74,39 @@ describe('lazy i18n locales', () => {
     expect(dict!['menu.trustSummary']).toContain('frescos')
     expect(dict!['menu.searchNoResults']).toContain('Nenhum programa')
   })
+
+  it('ar fully localizes every page key — no English fallback', async () => {
+    const dict = await loadLocale('ar')
+    expect(dict).toBeTruthy()
+    registerDict('ar', dict!)
+    // The ar dict no longer spreads pageKeysEn — it must *define* every page key
+    // itself. A missing key here would silently fall back to English.
+    const arKeys = new Set(Object.keys(dict!))
+    for (const key of Object.keys(pageKeysEn)) {
+      expect(arKeys.has(key), `ar page key ${key} missing — would fall back to English`).toBe(true)
+    }
+    // Canonical terms stay as-is (BTC, GitHub); genuine phrases must be Arabic script.
+    const AR = /[\u0600-\u06FF]/
+    expect(dict!['nav.pitch']).toBe('الرؤية')
+    expect(dict!['menu.quickActions']).toBe('إجراءات سريعة')
+    expect(dict!['menu.viewTrust']).toBe('ثقة مباشرة')
+    expect(dict!['trust.title']).toMatch(AR)
+  })
+
+  it('ar renders in RTL (document dir=rtl) and hero tagline localizes', async () => {
+    const dict = await loadLocale('ar')
+    expect(dict).toBeTruthy()
+    registerDict('ar', dict!)
+    // ar must localize every hero-tagline fragment so no English leaks into the h1.
+    const heroKeys = [
+      'pitch.heroTagline.line1', 'pitch.heroTagline.line2prefix',
+      'pitch.heroTagline.line2accent', 'pitch.heroTagline.line3neg',
+      'pitch.heroTagline.line3struck',
+    ] as const
+    for (const key of heroKeys) {
+      const val = dict![key]
+      expect(typeof val).toBe('string')
+      expect(val).toMatch(/[\u0600-\u06FF]/)
+    }
+  })
 })

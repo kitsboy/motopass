@@ -741,6 +741,8 @@ export const pageKeysAr: Partial<Record<PageKey, string>> = {
   'vault.how.step4.title': 'شارك سلسلة الإثبات',
   'vault.how.title': 'لماذا توجد الخزنة — وكيف تستخدمها',
   'vault.inPortfolio': 'في المحفظة ←',
+  'vault.viewAllProofs': 'عرض كل الأدلة المُرساة ({count})',
+  'vault.showRecentProofs': 'عرض الأدلة الحديثة',
   'vault.lineageTitle': 'سلسلة الإثبات',
   'vault.nostrPublish': 'أعلن على Nostr',
   'vault.nostrStub': 'حدث طابع زمني على Nostr',

@@ -355,7 +355,7 @@ export function ProgramsPage() {
         {/* Reserved-space shimmer for the deferred flagship/compliance sections so they
             load in-place below the header instead of mounting and shifting the viewport */}
         {loading && (
-          <div aria-hidden role="status" aria-busy="true" aria-label="Loading programs">
+          <div aria-hidden role="status" aria-busy="true" aria-label={t('programs.loadingAria')}>
             <section className="mb-10" aria-hidden>
               <div className="mb-5 max-w-2xl">
                 <span className="skeleton-shimmer block h-3 w-32" />
@@ -560,7 +560,7 @@ export function ProgramsPage() {
                 className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 sm:hidden"
                 role="status"
                 aria-busy="true"
-                aria-label="Loading programs"
+                aria-label={t('programs.loadingAria')}
               >
                 {Array.from({ length: 50 }).map((_, i) => (
                   <div key={i} className="skeleton-shimmer min-h-[251px] rounded-card" />
@@ -572,7 +572,7 @@ export function ProgramsPage() {
               className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
               role="status"
               aria-busy="true"
-              aria-label="Loading programs"
+              aria-label={t('programs.loadingAria')}
             >
               {Array.from({ length: 50 }).map((_, i) => (
                 <div key={i} className="skeleton-shimmer min-h-[251px] rounded-card" />

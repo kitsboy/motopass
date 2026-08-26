@@ -109,7 +109,7 @@ export function PitchFaqAccordion({ eyebrow, title }: PitchFaqAccordionProps) {
                     href={`#${anchorId}`}
                     className="shrink-0 self-center mr-3 rounded-lg p-2 text-ink-muted hover:text-mp-btc-text hover:bg-section/60 transition-colors"
                     aria-label={`${t(q)} — permalink`}
-                    title="Copy link to this question"
+                    title={t('pitch.faq.copyLink')}
                     onClick={e => e.stopPropagation()}
                   >
                     <Link2 size={14} aria-hidden />

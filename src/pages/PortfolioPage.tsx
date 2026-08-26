@@ -155,7 +155,7 @@ export function PortfolioPage() {
 
       <Card variant="banner" animate className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="min-w-0">
-          <p className="font-chrome text-xs font-semibold text-mp-btc-text uppercase tracking-wide">Nostr identity</p>
+          <p className="font-chrome text-xs font-semibold text-mp-btc-text uppercase tracking-wide">{t('portfolio.nostrIdentity')}</p>
           <p className="text-sm text-ink-secondary mt-1 leading-relaxed">
             Connect npub before Apply — agents route deal rooms and proof updates through your sovereign key.
           </p>
@@ -180,7 +180,7 @@ export function PortfolioPage() {
 
       {error && <ProgramsLoadError message={error} />}
       {loading && !error && (
-        <div role="status" aria-busy="true" aria-label="Loading portfolio">
+        <div role="status" aria-busy="true" aria-label={t('portfolio.loadingAria')}>
           <CardSkeleton count={3} />
         </div>
       )}

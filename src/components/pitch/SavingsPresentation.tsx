@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { X } from 'lucide-react'
 import { DASHBOARD_METRICS, type MetricUnit } from '../../lib/savingsDashboardMetrics'
+import { useI18n } from '../../i18n/I18nContext'
 
 const LOGO_SRC = '/images/motopass-logo.png'
 
@@ -124,9 +125,10 @@ function CostComparisonCard({
   currentPhase: Phase
   run: boolean
 }) {
+  const { t } = useI18n()
   return (
     <CardShell cardPhase="cost" currentPhase={currentPhase} className="ds-card--cost">
-      <h3 className="ds-card__title">Cost Comparison</h3>
+      <h3 className="ds-card__title">{t('pitch.savings.costComparison')}</h3>
 
       <div className="ds-cost-bars" aria-hidden>
         {COST_BARS.map((h, i) => (
@@ -220,10 +222,11 @@ function TimeComparisonCard({
 }) {
   const tradPath = 'M 6 78 C 22 62, 36 48, 52 38 S 78 22, 94 16'
   const motoPath = 'M 6 82 C 22 72, 36 62, 52 54 S 78 46, 94 42'
+  const { t } = useI18n()
 
   return (
     <CardShell cardPhase="time" currentPhase={currentPhase} className="ds-card--time">
-      <h3 className="ds-card__title">Time Comparison</h3>
+      <h3 className="ds-card__title">{t('pitch.savings.timeComparison')}</h3>
 
       <svg className="ds-line-chart" viewBox="0 0 100 90" aria-hidden>
         <defs>
@@ -420,11 +423,12 @@ function SummaryCard({
   currentPhase: Phase
   run: boolean
 }) {
+  const { t } = useI18n()
   return (
     <CardShell cardPhase="savings" currentPhase={currentPhase} className="ds-card--summary">
       <div className="ds-card__brand">
         <img src={LOGO_SRC} alt="" className="ds-card__brand-logo" width={22} height={22} aria-hidden />
-        <span className="ds-card__brand-name">Modeled delta</span>
+        <span className="ds-card__brand-name">{t('pitch.savings.modeledDelta')}</span>
       </div>
 
       <div className="ds-summary-grid">
@@ -444,7 +448,7 @@ function SummaryCard({
           transition={{ delay: 0.45, duration: 0.45 }}
         >
           <CountUp value={42} unit="days" run={run} tone="gold" delay={500} />
-          <span className="ds-summary-grid__label">Days faster</span>
+          <span className="ds-summary-grid__label">{t('pitch.savings.daysFaster')}</span>
         </motion.div>
         <motion.div
           className="ds-summary-grid__item"
@@ -476,6 +480,7 @@ function Dashboard({ phase }: { phase: Phase }) {
 }
 
 export function SavingsPresentation({ open, onClose, title }: SavingsPresentationProps) {
+  const { t } = useI18n()
   const [phase, setPhase] = useState<Phase>('intro')
   const panelRef = useRef<HTMLDivElement>(null)
   const phaseIndex = PHASES.indexOf(phase)
@@ -554,7 +559,7 @@ export function SavingsPresentation({ open, onClose, title }: SavingsPresentatio
             type="button"
             className="savings-presentation__close"
             onClick={onClose}
-            aria-label="Close presentation"
+            aria-label={t('pitch.savings.closeAria')}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.4 }}

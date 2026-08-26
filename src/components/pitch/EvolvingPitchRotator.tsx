@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence, useInView, useReducedMotion } from 'motion/react';
 import { ProofBadge } from '../ui/ProofBadge';
 import { BtcDualPrice } from '../BtcDualPrice';
+import { useI18n } from '../../i18n/I18nContext';
 
 export interface StackMetric {
   label: string;
@@ -105,6 +106,7 @@ function TaglineAnnouncer({ tagline }: { tagline: string }) {
 }
 
 export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, proofTimestamp }: EvolvingPitchRotatorProps) {
+  const { t } = useI18n()
   const [tagIndex, setTagIndex] = useState(0);
   const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLElement>(null);
@@ -128,7 +130,7 @@ export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, pro
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
       className="hero-glass-panel relative w-full max-w-md rounded-panel border p-6 shadow-mp-4 backdrop-blur-md sm:p-8"
-      aria-label="Live sovereignty metrics"
+      aria-label={t('pitch.liveMetricsAria')}
     >
       <TaglineAnnouncer tagline={taglines[tagIndex]} />
       <div className="flex items-center justify-between gap-3">

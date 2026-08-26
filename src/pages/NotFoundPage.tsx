@@ -65,7 +65,7 @@ export function NotFoundPage() {
         </button>
       </form>
 
-      <nav className="flex flex-wrap gap-3" aria-label="Helpful links">
+      <nav className="flex flex-wrap gap-3" aria-label={t('nav.helpfulLinks')}>
         {QUICK_LINK_KEYS.map((link) => (
           <Link
             key={link.to}

@@ -246,6 +246,103 @@ export type TranslationKey =
   | 'menu.trustSummary'
   | 'menu.trustPending'
   | 'menu.viewTrust'
+  | 'pitch.savings.costComparison'
+  | 'pitch.savings.timeComparison'
+  | 'pitch.savings.modeledDelta'
+  | 'pitch.savings.daysFaster'
+  | 'pitch.savings.closeAria'
+  | 'pitch.savings.summaryAria'
+  | 'pitch.explainerAria'
+  | 'pitch.heroTaglineAria'
+  | 'pitch.heroTagline.line1'
+  | 'pitch.heroTagline.line2prefix'
+  | 'pitch.heroTagline.line2accent'
+  | 'pitch.heroTagline.line3neg'
+  | 'pitch.heroTagline.line3struck'
+  | 'pitch.liveMetricsAria'
+  | 'pitch.loadingMetricsAria'
+  | 'pitch.faq.copyLink'
+  | 'programs.minInvest'
+  | 'programs.timeline'
+  | 'programs.score'
+  | 'programs.tableSubtitle'
+  | 'programs.tableAria'
+  | 'programs.inPortfolio'
+  | 'programs.flagshipDepth'
+  | 'programs.loadingAria'
+  | 'portfolio.nostrIdentity'
+  | 'portfolio.loadingAria'
+  | 'portfolio.renewalWindow'
+  | 'portfolio.residencyTarget'
+  | 'vault.hashPlaceholder'
+  | 'verify.hashPlaceholder'
+  | 'compare.loadingAria'
+  | 'trust.loadingAria'
+  | 'simulator.valueForks'
+  | 'simulator.forkSavings'
+  | 'simulator.avgSovereignty'
+  | 'nav.mainNavigation'
+  | 'nav.moreNavigation'
+  | 'nav.mobileTabBar'
+  | 'nav.bitcoinSpotPrice'
+  | 'nav.siteTools'
+  | 'nav.helpfulLinks'
+  | 'nostr.copyNpub'
+  | 'nostr.verifyNpub'
+  | 'nostr.verifyOn'
+  | 'nostr.disconnectAria'
+  | 'nostr.disconnect'
+  | 'paige.askAria'
+  | 'paige.comingPhase2'
+  | 'paige.notAvailable'
+  | 'distressed.redFlags'
+  | 'distressed.playsTitle'
+  | 'blog.postNotFound'
+  | 'apply.invoiceUnavailable'
+  | 'fileUpload.tapToBrowse'
+  | 'toast.dismissAria'
+  | 'careers.join'
+  | 'careers.niceToHave'
+  | 'legal.termsTitle'
+  | 'serverCosts.title'
+  | 'serverCosts.subtitle'
+  | 'intel.watchAria'
+  | 'dashboard.verifyProof'
+  | 'dashboard.alertFilters'
+  | 'dashboard.paigeDismiss'
+  | 'programs.jurisdiction'
+  | 'programs.tier'
+  | 'programs.proof'
+  | 'programs.intel'
+  | 'portfolio.complianceClock'
+  | 'portfolio.citizenshipTrack'
+  | 'compliance.critical'
+  | 'compliance.warning'
+  | 'compliance.healthy'
+  | 'compliance.criticalTip'
+  | 'compliance.warningTip'
+  | 'compliance.healthyTip'
+  | 'simulator.synergy'
+  | 'simulator.vsTypical'
+  | 'simulator.sideBySide'
+  | 'trust.researchPending'
+  | 'pitch.savings.legalDelta'
+  | 'pitch.savings.legal'
+  | 'pitch.savings.methodology'
+  | 'pitch.savings.phase.opening'
+  | 'pitch.savings.phase.cost'
+  | 'pitch.savings.phase.time'
+  | 'pitch.savings.phase.jurisdictions'
+  | 'pitch.savings.phase.savings'
+  | 'pitch.savings.phase.summary'
+  | 'error.somethingWrong'
+  | 'apply.feeRailUnreachable'
+  | 'dashboard.paigePolicy'
+  | 'vault.educationPlayerTitle'
+  | 'vault.educationPlayerAria'
+  | 'intel.statusChanged'
+  | 'intel.statusReanchoring'
+  | 'paige.conciergeAria'
   | PageKey
 
 export type Dict = Record<TranslationKey, string>
@@ -292,6 +389,72 @@ const en: Dict = {
   'menu.trustSummary': '{fresh} fresh · {watch} watch · {stale} stale',
   'menu.trustPending': 'Trust data pending…',
   'menu.viewTrust': 'Live trust',
+  'pitch.savings.costComparison': 'Cost Comparison',
+  'pitch.savings.timeComparison': 'Time Comparison',
+  'pitch.savings.modeledDelta': 'Modeled delta',
+  'pitch.savings.daysFaster': 'Days faster',
+  'pitch.savings.closeAria': 'Close presentation',
+  'pitch.savings.summaryAria': 'Modeled savings summary',
+  'pitch.explainerAria': 'MotoPass 60 second explainer film',
+  'pitch.heroTaglineAria': 'True citizenship Stamped in time Not bureaucracy',
+  'pitch.heroTagline.line1': 'True citizenship',
+  'pitch.heroTagline.line2prefix': 'Stamped in ',
+  'pitch.heroTagline.line2accent': 'time',
+  'pitch.heroTagline.line3neg': 'Not',
+  'pitch.heroTagline.line3struck': 'bureaucracy',
+  'pitch.liveMetricsAria': 'Live sovereignty metrics',
+  'pitch.loadingMetricsAria': 'Loading live sovereignty metrics',
+  'pitch.faq.copyLink': 'Copy link to this question',
+  'programs.minInvest': 'Min. invest',
+  'programs.timeline': 'Timeline',
+  'programs.score': 'Score',
+  'programs.tableSubtitle': 'Residency and citizenship programs by jurisdiction',
+  'programs.tableAria': 'Residency and citizenship programs',
+  'programs.inPortfolio': 'In portfolio',
+  'programs.flagshipDepth': 'FLAGSHIP DEPTH',
+  'programs.loadingAria': 'Loading programs',
+  'portfolio.nostrIdentity': 'Nostr identity',
+  'portfolio.loadingAria': 'Loading portfolio',
+  'portfolio.renewalWindow': 'Renewal window',
+  'portfolio.residencyTarget': 'Residency target',
+  'vault.hashPlaceholder': 'SHA-256 content hash (64 hex)',
+  'verify.hashPlaceholder': 'SHA-256 content hash (optional)',
+  'compare.loadingAria': 'Loading comparison',
+  'trust.loadingAria': 'Loading trust page',
+  'simulator.valueForks': 'Value forks',
+  'simulator.forkSavings': 'Fork savings',
+  'simulator.avgSovereignty': 'Avg sovereignty',
+  'nav.mainNavigation': 'Main navigation',
+  'nav.moreNavigation': 'More navigation',
+  'nav.mobileTabBar': 'Mobile tab bar',
+  'nav.bitcoinSpotPrice': 'Bitcoin spot price',
+  'nav.siteTools': 'Site tools',
+  'nav.helpfulLinks': 'Helpful links',
+  'nostr.copyNpub': 'Copy npub',
+  'nostr.verifyNpub': 'Verify npub in a Nostr client',
+  'nostr.verifyOn': 'Verify on Nostr (iris.to)',
+  'nostr.disconnectAria': 'Disconnect Nostr',
+  'nostr.disconnect': 'Disconnect',
+  'paige.askAria': 'Ask Paige',
+  'paige.comingPhase2': 'Coming Phase 2',
+  'paige.notAvailable':
+    'Paige AI is not available yet. See docs for the Phase 2 spec.',
+  'distressed.redFlags': 'Red flags',
+  'distressed.playsTitle': 'Distressed sovereign plays',
+  'blog.postNotFound': 'Post not found',
+  'apply.invoiceUnavailable': 'Invoice unavailable',
+  'fileUpload.tapToBrowse': 'Tap to browse or scan with camera',
+  'toast.dismissAria': 'Dismiss notification',
+  'careers.join': 'Join MotoPass',
+  'careers.niceToHave': 'Nice to have',
+  'legal.termsTitle': 'Terms & EU Liability',
+  'serverCosts.title': 'Server Costs',
+  'serverCosts.subtitle':
+    'Voluntary tips offset hosting, research CDN, and stamping infra',
+  'intel.watchAria': 'Country intel watch',
+  'dashboard.verifyProof': 'Verify proof',
+  'dashboard.alertFilters': 'Alert filters',
+  'dashboard.paigeDismiss': 'Dismiss Paige proof policy notice',
   tagline: 'Truth You Can Verify',
   'pitch.hero': 'The private OS for sovereign operators',
   'pitch.sub':

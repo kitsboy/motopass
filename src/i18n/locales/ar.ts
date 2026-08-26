@@ -1,9 +1,7 @@
-import { pageKeysEn } from '../pageKeys/en'
 import { pageKeysAr } from '../pageKeys/ar'
 import type { Dict } from '../translations'
 
 const ar: Partial<Dict> = {
-  ...pageKeysEn,
   'nav.pitch': 'الرؤية',
   'nav.portfolio': 'المحفظة',
   'nav.programs': 'البرامج',
@@ -220,7 +218,97 @@ const ar: Partial<Dict> = {
   'trust.auditTrail': 'آخر سجل تدقيق',
   'trust.minInvest': 'الحد الأدنى للاستثمار',
   'trust.loading': 'جارٍ تحميل بيانات الثقة…',
-  ...pageKeysEn,
+  // ── Command-center menu (mobile drawer) ───────────────────────────────
+  'menu.live': 'مباشر',
+  'menu.liveBTC': 'BTC',
+  'menu.liveBlock': 'البلوك',
+  'menu.liveFresh': 'حديث',
+  'menu.quickActions': 'إجراءات سريعة',
+  'menu.stamp': 'اختم',
+  'menu.verify': 'تحقق',
+  'menu.apply': 'قدّم',
+  'menu.searchNoResults': 'لا برامج تطابق "{q}"',
+  'menu.searchAll': 'كل البرامج',
+  'menu.featured': 'مميّزة',
+  'menu.trustSummary': '{fresh} حديثة · {watch} مراقبة · {stale} قديمة',
+  'menu.trustPending': 'بيانات الثقة قيد الانتظار…',
+  'menu.viewTrust': 'ثقة مباشرة',
+  // ── Pitch / savings presentation ──────────────────────────────────────
+  'pitch.savings.costComparison': 'مقارنة التكلفة',
+  'pitch.savings.timeComparison': 'مقارنة الوقت',
+  'pitch.savings.modeledDelta': 'الفرق النموذجي',
+  'pitch.savings.daysFaster': 'أيام أسرع',
+  'pitch.savings.closeAria': 'إغلاق العرض',
+  'pitch.savings.summaryAria': 'ملخص الادخار النموذجي',
+  'pitch.explainerAria': 'فيلم MotoPass التوضيحي 60 ثانية',
+  'pitch.heroTaglineAria': 'مواطنة حقيقية · مختومة في الزمن · لا بيروقراطية',
+  'pitch.heroTagline.line1': 'مواطنة حقيقية',
+  'pitch.heroTagline.line2prefix': 'مختومة في ',
+  'pitch.heroTagline.line2accent': 'الزمن',
+  'pitch.heroTagline.line3neg': 'لا',
+  'pitch.heroTagline.line3struck': 'بيروقراطية',
+  'pitch.liveMetricsAria': 'مؤشرات السيادة المباشرة',
+  'pitch.loadingMetricsAria': 'جارٍ تحميل مؤشرات السيادة المباشرة',
+  'pitch.faq.copyLink': 'انسخ رابط هذا السؤال',
+  // ── Programs ──────────────────────────────────────────────────────────
+  'programs.minInvest': 'الحد الأدنى للاستثمار',
+  'programs.timeline': 'الجدول الزمني',
+  'programs.score': 'الدرجة',
+  'programs.tableSubtitle': 'برامج الإقامة والجنسية حسب الاختصاص',
+  'programs.tableAria': 'برامج الإقامة والجنسية',
+  'programs.inPortfolio': 'في المحفظة',
+  'programs.flagshipDepth': 'عمق الرائد',
+  'programs.loadingAria': 'جارٍ تحميل البرامج',
+  // ── Portfolio ─────────────────────────────────────────────────────────
+  'portfolio.nostrIdentity': 'هوية Nostr',
+  'portfolio.loadingAria': 'جارٍ تحميل المحفظة',
+  'portfolio.renewalWindow': 'نافذة التجديد',
+  'portfolio.residencyTarget': 'هدف الإقامة',
+  // ── Hash placeholders ─────────────────────────────────────────────────
+  'vault.hashPlaceholder': 'هاش SHA-256 للمحتوى (64 سداسياً)',
+  'verify.hashPlaceholder': 'هاش SHA-256 للمحتوى (اختياري)',
+  // ── Loading aria ──────────────────────────────────────────────────────
+  'compare.loadingAria': 'جارٍ تحميل المقارنة',
+  'trust.loadingAria': 'جارٍ تحميل صفحة الثقة',
+  // ── Simulator value-forks ─────────────────────────────────────────────
+  'simulator.valueForks': 'تشعّبات القيمة',
+  'simulator.forkSavings': 'وفورات التشعب',
+  'simulator.avgSovereignty': 'متوسط السيادة',
+  // ── Nav / a11y landmarks ──────────────────────────────────────────────
+  'nav.mainNavigation': 'التنقل الرئيسي',
+  'nav.moreNavigation': 'تنقل إضافي',
+  'nav.mobileTabBar': 'شريط التبويب للجوال',
+  'nav.bitcoinSpotPrice': 'سعر بيتكوين الفوري',
+  'nav.siteTools': 'أدوات الموقع',
+  'nav.helpfulLinks': 'روابط مفيدة',
+  // ── Nostr ─────────────────────────────────────────────────────────────
+  'nostr.copyNpub': 'انسخ npub',
+  'nostr.verifyNpub': 'تحقق من npub في عميل Nostr',
+  'nostr.verifyOn': 'تحقق على Nostr (iris.to)',
+  'nostr.disconnectAria': 'قطع اتصال Nostr',
+  'nostr.disconnect': 'قطع الاتصال',
+  // ── Paige ─────────────────────────────────────────────────────────────
+  'paige.askAria': 'اسأل Paige',
+  'paige.comingPhase2': 'قادم في المرحلة 2',
+  'paige.notAvailable': 'Paige AI غير متاح بعد. راجع المستندات لمواصفات المرحلة 2.',
+  // ── Distressed / blog / apply / upload ────────────────────────────────
+  'distressed.redFlags': 'أعلام حمراء',
+  'distressed.playsTitle': 'صفقات السيادة المتعثرة',
+  'blog.postNotFound': 'المنشور غير موجود',
+  'apply.invoiceUnavailable': 'الفاتورة غير متاحة',
+  'fileUpload.tapToBrowse': 'انقر للتصفح أو المسح بالكاميرا',
+  'toast.dismissAria': 'تجاهل الإشعار',
+  // ── Careers / legal / server costs ────────────────────────────────────
+  'careers.join': 'انضم إلى MotoPass',
+  'careers.niceToHave': 'ميزة إضافية',
+  'legal.termsTitle': 'الشروط ومسؤولية الاتحاد الأوروبي',
+  'serverCosts.title': 'تكاليف الخادم',
+  'serverCosts.subtitle': 'الإكراميات الطوعية تغطي الاستضافة وشبكة توزيع المحتوى والبنية التحتية للختم',
+  // ── Intel / dashboard ─────────────────────────────────────────────────
+  'intel.watchAria': 'مراقبة معلومات الدولة',
+  'dashboard.verifyProof': 'تحقق من الإثبات',
+  'dashboard.alertFilters': 'مرشحات التنبيهات',
+  'dashboard.paigeDismiss': 'تجاهل إشعار سياسة إثبات Paige',
   ...pageKeysAr,
 }
 

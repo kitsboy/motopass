@@ -267,7 +267,7 @@ export function VaultPage() {
             type="text"
             value={hashInput}
             onChange={e => setHashInput(e.target.value)}
-            placeholder="SHA-256 content hash (64 hex)"
+            placeholder={t('vault.hashPlaceholder')}
             className="input-field flex-1 font-mono text-xs"
             spellCheck={false}
           />

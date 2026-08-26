@@ -56,6 +56,7 @@ function ListingModal({
   listing: DistressedListing | null
   onClose: () => void
 }) {
+  const { t } = useI18n()
   if (!listing) return null
 
   return (
@@ -86,7 +87,7 @@ function ListingModal({
 
         {listing.red_flags.length > 0 && (
           <div>
-            <h4 className="font-chrome text-xs font-semibold text-status-amber mb-1">Red flags</h4>
+            <h4 className="font-chrome text-xs font-semibold text-status-amber mb-1">{t('distressed.redFlags')}</h4>
             <ul className="font-body text-xs text-ink-muted list-disc pl-4 space-y-0.5">
               {listing.red_flags.map(f => (
                 <li key={f}>{f}</li>
@@ -229,7 +230,7 @@ export function DistressedPage() {
     <div className="page-container px-4 sm:px-6 py-8 max-w-6xl mx-auto">
       <PageHeader
         eyebrow="MEMBERS · FORGE · MARKETPLACE"
-        title="Distressed sovereign plays"
+        title={t('distressed.playsTitle')}
         subtitle="Proof-gated listings — curated by Kimi or permissionless with Satohash + OTS. ₿ asks, template escrow only."
       />
 

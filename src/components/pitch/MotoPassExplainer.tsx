@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
 import { Clapperboard, Play, Film } from 'lucide-react'
+import { useI18n } from '../../i18n/I18nContext'
 
 /**
  * MotoPassExplainer — the 60-second explainer film player on the front landing page.
@@ -21,6 +22,7 @@ const VIDEO_SRC = '/video/motopass-explainer.mp4'
 const POSTER_SRC = '/video/motopass-explainer-poster.jpg'
 
 export function MotoPassExplainer() {
+  const { t } = useI18n()
   const sectionRef = useRef<HTMLDivElement>(null)
   const inView = useInView(sectionRef, { once: true, margin: '20% 0px' })
   const reduceMotion = useReducedMotion()
@@ -89,7 +91,7 @@ export function MotoPassExplainer() {
               preload="metadata"
               poster={POSTER_SRC}
               title="MotoPass — 60 second explainer"
-              aria-label="MotoPass 60 second explainer film"
+              aria-label={t('pitch.explainerAria')}
               onError={() => setFilmError(true)}
               onLoadedData={() => setFilmReady(true)}
             >

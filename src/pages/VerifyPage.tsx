@@ -468,7 +468,7 @@ export function VerifyPage() {
           type="text"
           value={otsHash}
           onChange={e => setOtsHash(e.target.value)}
-          placeholder="SHA-256 content hash (optional)"
+          placeholder={t('verify.hashPlaceholder')}
           className="input-field font-mono text-xs"
           spellCheck={false}
         />

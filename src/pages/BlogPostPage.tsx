@@ -11,7 +11,7 @@ import { DEFAULT_OG_IMAGE } from '../lib/seo'
 
 export function BlogPostPage() {
   const { slug } = useParams()
-  const { lang } = useI18n()
+  const { lang, t } = useI18n()
   const post = BLOG_POSTS.find(p => p.slug === slug)
 
   const readingMinutes = useMemo(() => {
@@ -44,7 +44,7 @@ export function BlogPostPage() {
   if (!post) {
     return (
       <div className="px-4 sm:px-6 py-8 max-w-3xl mx-auto">
-        <PageHeader title="Post not found" eyebrow="INSIGHTS" />
+        <PageHeader title={t('blog.postNotFound')} eyebrow="INSIGHTS" />
         <div className="text-center">
           <Link to="/blog" className="text-accent font-medium hover:underline">← Back to Insights</Link>
         </div>

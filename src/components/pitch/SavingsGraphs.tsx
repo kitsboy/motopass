@@ -268,7 +268,7 @@ export function SavingsGraphs({ title = 'Cost & time, modeled — not promised',
             </button>
           </header>
 
-          <div className="savings-v3-summary" aria-label="Modeled savings summary">
+          <div className="savings-v3-summary" aria-label={t('pitch.savings.summaryAria')}>
             <ModeledSummaryItem
               value="$77,100"
               label="Legal delta"

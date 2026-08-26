@@ -86,11 +86,11 @@ export function MenuDiscover({ onClose }: { onClose: () => void }) {
             {sweep ? (
               <span className="text-[12px] text-white/85 tabular-nums">
                 <span className="font-semibold text-[#4ade80]">{sweep.fresh}</span>
-                <span className="text-white/40"> fresh · </span>
+                <span className="text-white/40"> {t('trust.fresh')} · </span>
                 <span className="font-semibold text-[#fbbf24]">{sweep.watch}</span>
-                <span className="text-white/40"> watch · </span>
+                <span className="text-white/40"> {t('trust.watch')} · </span>
                 <span className="font-semibold text-[#f87171]">{sweep.stale}</span>
-                <span className="text-white/40"> stale</span>
+                <span className="text-white/40"> {t('trust.stale')}</span>
               </span>
             ) : (
               <span className="text-[12px] text-white/50">{t('menu.trustPending')}</span>
