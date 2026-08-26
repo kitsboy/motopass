@@ -160,7 +160,7 @@ export function PitchPage() {
           >
             <PitchHeroTagline />
             <span className="hero-elite-eyebrow club-eyebrow mt-6 inline-block text-white/75">
-              MEMBERS · {t('tagline')}
+              {t('pitch.hero.members')} · {t('tagline')}
             </span>
             <p className="mt-4 max-w-lg font-body text-lg2 text-white/88 leading-relaxed hero-elite-sub">
               {t('pitch.hero')}
@@ -171,14 +171,14 @@ export function PitchPage() {
             {stats ? (
               <div className="mt-6 flex flex-wrap gap-2">
                 <span className="rounded-xl border border-white/15 bg-white/8 px-3 py-1.5 font-mono text-[11px] text-mp-on-hero-secondary backdrop-blur-sm">
-                  {stats.programCount} jurisdictions
+                  {t('pitch.hero.jurisdictionsChip').replace('{count}', String(stats.programCount))}
                 </span>
                 <span className="rounded-xl border border-btc-orange/35 bg-btc-orange/12 px-3 py-1.5 font-mono text-[11px] text-mp-btc drop-shadow-sm">
-                  ~{formatUsd(stats.costSavingsUsd)} avg. advisory savings
+                  {t('pitch.hero.advisorySavingsChip').replace('{amount}', formatUsd(stats.costSavingsUsd))}
                 </span>
                 {stats.lightningCount > 0 && (
                   <span className="rounded-xl border border-electric/30 bg-electric-soft/40 px-3 py-1.5 font-mono text-[11px] text-electric backdrop-blur-sm">
-                    {stats.lightningCount} Lightning-ready
+                    {t('pitch.hero.lightningChip').replace('{count}', String(stats.lightningCount))}
                   </span>
                 )}
               </div>
@@ -298,7 +298,7 @@ export function PitchPage() {
                 <h3 className="font-display font-semibold text-ink mb-2">{t(titleKey)}</h3>
                 <p className="text-sm text-ink-muted leading-relaxed">{t(subKey)}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-xs font-chrome font-medium text-mp-btc-text opacity-0 group-hover:opacity-100 transition-opacity">
-                  Explore <ArrowRight size={12} />
+                  {t('pitch.explorer')} <ArrowRight size={12} />
                 </span>
               </Card>
             </Link>
