@@ -81,7 +81,7 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
                 <X size={18} />
               </button>
             </div>
-            <nav className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 p-3 pb-5 overflow-y-auto overscroll-contain min-h-0" aria-label="More navigation">
+            <nav className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 p-3 pb-5 overflow-y-auto overscroll-contain min-h-0" aria-label={t('nav.moreNavigation')}>
               {MORE_ROUTES.map((n, i) => (
                 <motion.div
                   key={n.to}

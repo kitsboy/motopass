@@ -252,14 +252,14 @@ export function VaultPage() {
       <Card id="vault-verify" variant="proof" animate className="mb-8 scroll-mt-header" aria-labelledby="vault-verify-heading">
         <h2 id="vault-verify-heading" className="font-chrome text-sm font-semibold text-ink flex items-center gap-2 mb-3">
           <FileCheck size={16} className="text-btc-orange" aria-hidden />
-          Verify OTS proof
+          {t('vault.verifyTitle')}
         </h2>
         <p className="font-body text-xs text-ink-muted mb-4 leading-relaxed">
-          Paste a content hash, upload a <code className="font-mono text-mp-btc-text">.ots</code> file, or select a program below.
+          {t('vault.verifyBody')}
         </p>
 
         <label htmlFor="vault-hash" className="sr-only">
-          Content hash
+          {t('vault.hashLabel')}
         </label>
         <div className="flex flex-col sm:flex-row gap-2 mb-3">
           <input
@@ -278,7 +278,7 @@ export function VaultPage() {
             disabled={verifyBusy || !hashInput.trim()}
             className="shrink-0 min-w-[7rem]"
           >
-            {verifyBusy ? <Loader2 size={14} className="animate-spin" /> : 'Verify hash'}
+            {verifyBusy ? <Loader2 size={14} className="animate-spin" /> : t('vault.verifyHash')}
           </Button>
         </div>
 

@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { useInView } from 'motion/react'
 import { Clapperboard, Play, Film } from 'lucide-react'
+import { useI18n } from '../../i18n/I18nContext'
 
 /**
  * VaultEducationPlayer — the OpenTimestamps walkthrough film player
@@ -23,6 +24,7 @@ import { Clapperboard, Play, Film } from 'lucide-react'
 const VIDEO_SRC = 'https://videos.giveabit.io/video/motopass-ots-walkthrough.mp4'
 
 export function VaultEducationPlayer() {
+  const { t } = useI18n()
   const wrapRef = useRef<HTMLDivElement>(null)
   const inView = useInView(wrapRef, { once: true, margin: '20% 0px' })
 
@@ -48,8 +50,8 @@ export function VaultEducationPlayer() {
           controls
           playsInline
           preload="metadata"
-          title="OpenTimestamps walkthrough — how proofs work"
-          aria-label="OpenTimestamps walkthrough film — how proofs work"
+          title={t('vault.educationFilmTitle')}
+          aria-label={t('vault.educationFilmAria')}
           src={srcReady ? VIDEO_SRC : undefined}
           onError={() => {
             // Only show the honest pending panel if the source was actually
@@ -62,7 +64,7 @@ export function VaultEducationPlayer() {
             setFilmReady(true)
           }}
         >
-          Your browser does not support HTML5 video.
+          {t('pitch.explainer.unsupported')}
         </video>
 
         {/* On-brand overlay chrome — clear tap-to-play cue until film starts */}
@@ -81,12 +83,10 @@ export function VaultEducationPlayer() {
               <Clapperboard size={24} />
             </div>
             <div className="font-display text-lg sm:text-xl font-semibold text-ink">
-              The OpenTimestamps walkthrough is in production
+              {t('vault.educationPendingTitle')}
             </div>
             <p className="max-w-md text-sm text-ink-muted leading-relaxed">
-              Our walkthrough on hashing, OpenTimestamps receipts and confirming
-              anchors on Bitcoin is being cut right now. Check back shortly — it
-              will play right here.
+              {t('vault.educationPendingBody')}
             </p>
           </div>
         )}
@@ -95,10 +95,10 @@ export function VaultEducationPlayer() {
       {/* Player footer strip */}
       <div className="flex items-center justify-between gap-3 border-t border-white/10 bg-mp-section/60 px-4 py-3">
         <span className="font-mono text-[11px] text-ink-muted">
-          OPENTIMESTAMPS · 60s · 16:9
+          {t('vault.educationFilmStatus')}
         </span>
         <span className="inline-flex items-center gap-1.5 rounded-lg border border-fuchsia/30 bg-fuchsia-soft/40 px-2.5 py-1 font-mono text-[10px] text-fuchsia-text">
-          <Film size={11} /> Proof you can verify
+          <Film size={11} /> {t('vault.educationBadge')}
         </span>
       </div>
     </div>

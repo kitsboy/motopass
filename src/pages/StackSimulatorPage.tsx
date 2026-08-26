@@ -87,7 +87,7 @@ export function StackSimulatorPage() {
       { id: 'simulator-picker', label: t('subnav.simulator.picker') },
       { id: 'simulator-metrics', label: t('subnav.simulator.metrics') },
       { id: 'simulator-saved', label: t('subnav.simulator.saved') },
-      { id: 'simulator-value-forks', label: 'Value forks' },
+      { id: 'simulator-value-forks', label: t('simulator.valueForks') },
     ],
     [t],
   )

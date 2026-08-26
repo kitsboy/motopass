@@ -95,7 +95,7 @@ export function MobileMenuSheet({ open, onClose }: { open: boolean; onClose: () 
               </button>
             </header>
 
-            <nav className="elite-mobile-drawer__nav" aria-label="Main navigation">
+            <nav className="elite-mobile-drawer__nav" aria-label={t('nav.mainNavigation')}>
               <MenuCommandCenter onClose={onClose} />
               {MAIN_NAV_ROUTES.filter(n => !n.apply).map((n, i) => (
                 <motion.div

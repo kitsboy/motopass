@@ -362,7 +362,7 @@ export function VaultProofRow({
             to={`/apply?program=${encodeURIComponent(program.name)}${hash ? `&proof=${encodeURIComponent(hash)}` : ''}`}
             className="btn-secondary text-xs !py-1.5 !px-3 inline-flex items-center gap-1.5"
           >
-            Apply
+            {t('nav.apply')}
             <ArrowRight size={13} aria-hidden />
           </Link>
         </InfoTip>

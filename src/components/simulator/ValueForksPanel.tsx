@@ -6,9 +6,11 @@ import { BtcDualPrice } from '../BtcDualPrice'
 import { ProofBadge } from '../ui/ProofBadge'
 import { InfoTip } from '../ui/InfoTip'
 import { toCinematicProgram } from '../../lib/programAdapter'
+import { useI18n } from '../../i18n/I18nContext'
 import type { Program } from '../../types/program'
 
 export function ValueForksPanel({ stack }: { stack: Program[] }) {
+  const { t } = useI18n()
   const { forks, stackMin, stackTypical, avgSovereignty, synergy } = useMemo(() => {
     const rows: {
       programId: number
@@ -90,7 +92,7 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
           <GitFork size={18} aria-hidden />
         </div>
         <div className="min-w-0">
-          <h3 className="font-display font-semibold text-ink tracking-tight">Value forks</h3>
+          <h3 className="font-display font-semibold text-ink tracking-tight">{t('simulator.valueForks')}</h3>
           <p className="text-xs text-ink-muted mt-1 leading-relaxed font-body">
             Pathway-level capital forks — minimums, proof status, and stacking synergy across your sovereign stack.
           </p>
@@ -100,7 +102,7 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
       <div className="grid grid-cols-3 gap-2 mb-4 text-center">
         <InfoTip tip="Pathway-level capital savings — the difference between the lowest pathway minimum and the typical investment across your stack. Modeled for member evaluation." className="block">
           <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
-            <div className="text-[9px] font-mono uppercase text-ink-muted">Fork savings</div>
+            <div className="text-[9px] font-mono uppercase text-ink-muted">{t('simulator.forkSavings')}</div>
             <div className="mt-1">
               <BtcDualPrice usd={forkSavings} size="sm" />
             </div>
@@ -108,13 +110,13 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
         </InfoTip>
         <InfoTip tip="Average sovereignty score (0–10) across the programs in your stack — a higher score means more control over your path. Modeled for member evaluation." className="block">
           <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
-            <div className="text-[9px] font-mono uppercase text-ink-muted">Avg sovereignty</div>
+            <div className="text-[9px] font-mono uppercase text-ink-muted">{t('simulator.avgSovereignty')}</div>
             <div className="font-display font-semibold text-ink mt-1">{avgSovereignty}/10</div>
           </div>
         </InfoTip>
         <InfoTip tip="How well the programs in your stack reinforce each other — High / Medium / Low stacking synergy. Modeled for member evaluation." className="block">
           <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
-            <div className="text-[9px] font-mono uppercase text-ink-muted">Synergy</div>
+            <div className="text-[9px] font-mono uppercase text-ink-muted">{t('simulator.synergy')}</div>
             <div className="font-mono text-[10px] text-ink-secondary mt-1">
               {synergy.high}H · {synergy.medium}M · {synergy.low}L
             </div>
@@ -155,7 +157,7 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
                   <span className="text-[10px] font-mono text-mp-proof inline-flex items-center gap-1 flex-wrap">
                     <span aria-hidden>−</span>
                     <BtcDualPrice usd={f.savingsVsTypical} size="xs" layout="inline" showUsd />
-                    <span>vs typical</span>
+                    <span>{t('simulator.vsTypical')}</span>
                   </span>
                 )}
               </div>
@@ -170,7 +172,7 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
           to={`/compare?ids=${stack.map(p => p.id).join(',')}`}
           className="mt-4 inline-flex items-center gap-1 text-xs font-chrome font-medium text-mp-btc-text hover:underline"
         >
-          Side-by-side compare <ArrowRight size={12} />
+          {t('simulator.sideBySide')} {t('nav.compare')} <ArrowRight size={12} />
         </Link>
       )}
     </Card>

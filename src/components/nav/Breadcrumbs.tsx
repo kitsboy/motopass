@@ -22,6 +22,7 @@ const ROUTE_LABELS: Record<string, TranslationKey> = {
   register: 'nav.register',
   dashboard: 'nav.dashboard',
   profile: 'nav.profile',
+  trust: 'nav.trust',
 }
 
 const HIDE_ON = new Set(['/', ''])

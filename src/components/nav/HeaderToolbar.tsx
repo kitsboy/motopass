@@ -12,10 +12,10 @@ export function HeaderToolbar({ collapsed: _collapsed = false }: { collapsed?: b
 
   return (
     <>
-    <div className="flex lg:hidden items-center shrink-0 mr-1" aria-label="Bitcoin spot price">
+    <div className="flex lg:hidden items-center shrink-0 mr-1" aria-label={t('nav.bitcoinSpotPrice')}>
       <BtcPriceTicker variant="compact" />
     </div>
-    <div className="hidden lg:flex items-center gap-1 shrink-0" role="toolbar" aria-label="Site tools">
+    <div className="hidden lg:flex items-center gap-1 shrink-0" role="toolbar" aria-label={t('nav.siteTools')}>
       <div className="flex items-center gap-1 pr-1 border-r border-mp/70">
         <BlockHeight />
         <BtcPriceTicker />
