@@ -1,3 +1,12 @@
+## Session — 2026-08-27 · Breez Server Costs donate (Grok M3)
+
+**Done:**
+- `src/data/serverCosts.ts` — Layer 1 `bc1pucgsh…lpscgy`, Layer 2 `motopass@breez.tips` (`lightning:motopass@breez.tips`). TEMP `motopass-server@giveabit.io` removed.
+- Live-verified: Server Costs → Layer 2 shows Breez Spark + `motopass@breez.tips`.
+
+**Git State:** SHA `570060f` on `origin/main`.
+
+---
 ## Session — 2026-08-23 (Ziggy) — Defer heavy live-data fetches to after first paint (smoothness epic)
 
 **Done (task t_64288276 — defer heavy elements + code-split routes, all MotoPass pages):**
