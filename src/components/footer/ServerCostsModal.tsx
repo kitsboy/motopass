@@ -57,7 +57,7 @@ export function ServerCostsModal({ open, onClose, returnFocusRef }: Props) {
       </div>
 
       <CopyField
-        label={tab === 'layer1' ? 'On-chain address (bech32)' : 'Lightning address (TEMP)'}
+        label={tab === 'layer1' ? 'On-chain address (bech32)' : 'Lightning address'}
         value={active.address}
       />
 

@@ -4,18 +4,17 @@ export const SERVER_COSTS = {
   layer1: {
     label: 'Bitcoin · Layer 1',
     hint: 'On-chain',
-    address: 'bc1qhm5ndfjhqxdk3cx0pngyps4f5nnwdckulmge6c8keyf2pk0neqtshjn8ad',
-    qrPayload: 'bitcoin:bc1qhm5ndfjhqxdk3cx0pngyps4f5nnwdckulmge6c8keyf2pk0neqtshjn8ad',
+    address: 'bc1pucgsh9g0vyzc9zn8e4up5d08vmk56rsk7em7gwzcv79hk0dkulaslpscgy',
+    qrPayload: 'bitcoin:bc1pucgsh9g0vyzc9zn8e4up5d08vmk56rsk7em7gwzcv79hk0dkulaslpscgy',
     description:
-      'On-chain donations help cover Cloudflare Pages, research hosting, and Satohash stamping infrastructure. Confirmations typically 10–60 minutes.',
+      'On-chain donations help cover Cloudflare Pages, research hosting, and Satohash stamping infrastructure. Confirmations typically 10–60 minutes. Breez Spark deposit (Config A).',
   },
   layer2: {
     label: 'Lightning · Layer 2',
     hint: 'Instant sats',
-    address: 'motopass-server@giveabit.io',
-    qrPayload: 'lightning:motopass-server@giveabit.io',
-    temp: true,
+    address: 'motopass@breez.tips',
+    qrPayload: 'lightning:motopass@breez.tips',
     description:
-      'TEMP Lightning address for server-cost tips — live BOLT11 coming soon. Scan with any Lightning wallet that supports Lightning Addresses.',
+      'Lightning Address via Breez Spark (non-custodial). Scan with any Lightning wallet that supports Lightning Addresses.',
   },
 } as const
