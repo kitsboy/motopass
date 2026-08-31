@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-30T10:53:30.736Z",
+  "generated_at": "2026-08-31T12:05:40.129Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
     "fresh": 50,
     "watch": 0,
     "stale": 0,
-    "swept_at": "2026-08-30T10:53:30.736Z",
+    "swept_at": "2026-08-31T12:05:40.129Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -16,7 +16,7 @@
       "id": 1,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -72,7 +72,7 @@
       "id": 2,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -128,7 +128,7 @@
       "id": 3,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -180,7 +180,7 @@
       "id": 4,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -237,7 +237,7 @@
       "id": 5,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -253,6 +253,12 @@
         "stamp_id": "41f66fcd-c033-49d5-8879-229136db8125"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.ciu.gov.kn",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
+        },
         {
           "date": "2026-08-29",
           "field": "watch.https://www.ciu.gov.kn",
@@ -276,12 +282,6 @@
           "field": "watch.https://www.ciu.gov.kn",
           "to": "Official source content changed — manual rule review required",
           "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
-        },
-        {
-          "date": "2026-08-25",
-          "field": "watch.https://www.ciu.gov.kn",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
         }
       ]
     },
@@ -289,7 +289,7 @@
       "id": 6,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -345,7 +345,7 @@
       "id": 7,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -397,13 +397,13 @@
       "id": 8,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 2,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2",
@@ -449,13 +449,13 @@
       "id": 9,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 2,
-        "unreachable": 1
+        "unreachable": 0
       },
       "proof": {
         "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151",
@@ -501,7 +501,7 @@
       "id": 10,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -517,6 +517,12 @@
         "stamp_id": "c5d17f09-dbc2-4a58-b94f-83ebac8cf285"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.edb.gov.sg",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+        },
         {
           "date": "2026-08-23",
           "field": "watch.https://www.edb.gov.sg",
@@ -542,12 +548,6 @@
           "from": "corpus BUILD 72",
           "to": "PSA 2019 digital payment token framework confirmed; crypto legal in Singapore",
           "hash": null
-        },
-        {
-          "date": "2026-08-21",
-          "field": "watch.https://www.edb.gov.sg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "837b0b631ca12cf321fb66db83e54dbbe6dece279596b62e2788b7d553359b10"
         }
       ]
     },
@@ -555,13 +555,13 @@
       "id": 11,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 2,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "f37c397dbe7479ecd7c927a3f0332df9276ae17dc87b1cb58b27598987c12089",
@@ -611,7 +611,7 @@
       "id": 12,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -664,7 +664,7 @@
       "id": 13,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -680,6 +680,12 @@
         "stamp_id": "29256a5b-8391-413a-a196-4626c1689432"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.gacetaoficial.gob.pa",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe"
+        },
         {
           "date": "2026-08-30",
           "field": "watch.https://www.gacetaoficial.gob.pa",
@@ -704,12 +710,6 @@
           "from": "a20bb0c1ff960226",
           "to": "re-anchored 08f2bedb94ea4bc1 (stamp 29256a5b-839)",
           "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe"
-        },
-        {
-          "date": "2026-08-27",
-          "field": "watch.https://www.gacetaoficial.gob.pa",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe"
         }
       ]
     },
@@ -717,7 +717,7 @@
       "id": 14,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -733,6 +733,12 @@
         "stamp_id": "bbc29c24-a84d-4351-8f7a-904b45ae5ec1"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.rs.ge",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
+        },
         {
           "date": "2026-08-30",
           "field": "watch.https://www.rs.ge",
@@ -757,12 +763,6 @@
           "from": "d511ab16255dc8d6",
           "to": "re-anchored 22d13d8f9c33f15d (stamp bbc29c24-a84)",
           "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
-        },
-        {
-          "date": "2026-08-27",
-          "field": "watch.https://www.rs.ge",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
         }
       ]
     },
@@ -770,7 +770,7 @@
       "id": 15,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -826,7 +826,7 @@
       "id": 16,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -842,6 +842,12 @@
         "stamp_id": "700ef2d3-da4b-4acc-8b83-ff332c101c28"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.hacienda.go.cr",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
+        },
         {
           "date": "2026-08-30",
           "field": "watch.https://www.hacienda.go.cr",
@@ -866,12 +872,6 @@
           "field": "watch.https://www.hacienda.go.cr",
           "to": "Official source content changed — manual rule review required",
           "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
-        },
-        {
-          "date": "2026-08-27",
-          "field": "watch.https://www.hacienda.go.cr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
         }
       ]
     },
@@ -879,7 +879,7 @@
       "id": 17,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -934,7 +934,7 @@
       "id": 18,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -991,7 +991,7 @@
       "id": 19,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1007,6 +1007,12 @@
         "stamp_id": "9d7b68de-4aec-43f2-8e69-a6ffc052cec1"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.gob.mx",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "478df2fad8e25bad6119e9b8d2d75a8a0262785574ec860bcf67ce3fc20a13d2"
+        },
         {
           "date": "2026-08-30",
           "field": "watch.https://www.gob.mx",
@@ -1031,13 +1037,6 @@
           "field": "watch.https://www.gob.mx",
           "to": "Official source content changed — manual rule review required",
           "hash": "478df2fad8e25bad6119e9b8d2d75a8a0262785574ec860bcf67ce3fc20a13d2"
-        },
-        {
-          "date": "2026-08-22",
-          "field": "legal_compliance",
-          "from": "corpus BUILD 72",
-          "to": "Legal since 2017; FinTech Law regulates crypto as virtual assets (taxation case-by-case)",
-          "hash": null
         }
       ]
     },
@@ -1045,7 +1044,7 @@
       "id": 20,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1101,7 +1100,7 @@
       "id": 21,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1156,7 +1155,7 @@
       "id": 22,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1172,6 +1171,12 @@
         "stamp_id": "b43f3de3-092b-4a51-a7d6-609ce2845bc9"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://immigration.gov.vu",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
+        },
         {
           "date": "2026-08-29",
           "field": "proof",
@@ -1198,13 +1203,6 @@
           "from": "83771c5faafe612a",
           "to": "re-anchored 3012b5f3857415cc (stamp b2c92368-b0f)",
           "hash": "3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "finance.tax_benefits",
-          "from": "No income tax",
-          "to": "No personal income tax (Wikipedia)",
-          "hash": "3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34"
         }
       ]
     },
@@ -1212,7 +1210,7 @@
       "id": 23,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1228,6 +1226,12 @@
         "stamp_id": "daa86743-a825-4222-96a9-38d060a0de17"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.invest.gov.tr",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
+        },
         {
           "date": "2026-08-30",
           "field": "watch.https://www.invest.gov.tr",
@@ -1252,12 +1256,6 @@
           "field": "watch.https://www.invest.gov.tr",
           "to": "Official source content changed — manual rule review required",
           "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
-        },
-        {
-          "date": "2026-08-27",
-          "field": "watch.https://www.invest.gov.tr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
         }
       ]
     },
@@ -1265,7 +1263,7 @@
       "id": 24,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1321,7 +1319,7 @@
       "id": 25,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1337,6 +1335,12 @@
         "stamp_id": "835bf8c3-e6f5-4a29-9b7b-07f2427b9954"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.investinseychelles.com",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "8e7f0477438aff10be4d4886bdf910610af79510efcaf2ce04ffb562426f3606"
+        },
         {
           "date": "2026-08-30",
           "field": "watch.https://www.investinseychelles.com",
@@ -1361,12 +1365,6 @@
           "field": "watch.https://www.src.gov.sc",
           "to": "Official source content changed — manual rule review required",
           "hash": "8e7f0477438aff10be4d4886bdf910610af79510efcaf2ce04ffb562426f3606"
-        },
-        {
-          "date": "2026-08-27",
-          "field": "watch.https://www.investinseychelles.com",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8e7f0477438aff10be4d4886bdf910610af79510efcaf2ce04ffb562426f3606"
         }
       ]
     },
@@ -1374,7 +1372,7 @@
       "id": 26,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1427,7 +1425,7 @@
       "id": 27,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1443,6 +1441,18 @@
         "stamp_id": "04a8a17c-88fe-4a42-98bf-f48eeb26ee43"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.migraciones.gob.ar",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
+        },
         {
           "date": "2026-08-30",
           "field": "proof",
@@ -1461,18 +1471,6 @@
           "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
           "to": "Official source content changed — manual rule review required",
           "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
-        },
-        {
-          "date": "2026-08-29",
-          "field": "watch.https://www.migraciones.gob.ar",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
-        },
-        {
-          "date": "2026-08-29",
-          "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
         }
       ]
     },
@@ -1480,7 +1478,7 @@
       "id": 28,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1536,7 +1534,7 @@
       "id": 29,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1552,6 +1550,18 @@
         "stamp_id": "2ad00391-f8bc-4d45-b6d3-3ca0218fde14"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://tramitesmre.cancilleria.gov.co",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
+        },
         {
           "date": "2026-08-30",
           "field": "proof",
@@ -1570,18 +1580,6 @@
           "field": "watch.https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
           "to": "Official source content changed — manual rule review required",
           "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
-        },
-        {
-          "date": "2026-08-29",
-          "field": "watch.https://tramitesmre.cancilleria.gov.co",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
-        },
-        {
-          "date": "2026-08-29",
-          "field": "watch.https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
         }
       ]
     },
@@ -1589,7 +1587,7 @@
       "id": 30,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1645,7 +1643,7 @@
       "id": 31,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1654,13 +1652,20 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "3fd2f2382bc608c040ea1848f58769024dff7fcf21ba6d13a4d4c786ceb2de97",
-        "in_sync": false,
+        "hash": "1d8ca3ece897aaee01d73b2240f5f5f7217fc674aa084596ab7915017ebdf2c4",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:19:53.028Z",
-        "stamp_id": "50b33f77-232f-48b1-991c-cccc8892317c"
+        "stamped_at": "2026-08-31T12:05:20.898Z",
+        "stamp_id": "6f915b1e-3538-4a72-adf2-5308d001d75d"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "proof",
+          "from": "3fd2f2382bc608c0",
+          "to": "re-anchored 1d8ca3ece897aaee (stamp 6f915b1e-353)",
+          "hash": "1d8ca3ece897aaee01d73b2240f5f5f7217fc674aa084596ab7915017ebdf2c4"
+        },
         {
           "date": "2026-08-22",
           "field": "pathways.real_estate",
@@ -1694,7 +1699,7 @@
       "id": 32,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1703,14 +1708,33 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b",
-        "in_sync": false,
+        "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:19:58.371Z",
-        "stamp_id": "d391ce3f-69a8-40b2-88db-59e060c0e826"
+        "stamped_at": "2026-08-31T12:05:24.821Z",
+        "stamp_id": "470466cc-7016-4c91-86c8-e63daf9e7a9d"
       },
       "recent_changes": [
         {
+          "date": "2026-08-31",
+          "field": "proof",
+          "from": "8c927b218538b1ad",
+          "to": "re-anchored 4c4117a6eecbc2c3 (stamp 470466cc-701)",
+          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://barbadoswelcomestamp.bb",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.immigration.gov.bb",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
+        },
+        {
           "date": "2026-08-30",
           "field": "watch.https://barbadoswelcomestamp.bb",
           "to": "Official source content changed — manual rule review required",
@@ -1719,24 +1743,6 @@
         {
           "date": "2026-08-30",
           "field": "watch.https://www.immigration.gov.bb",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
-        },
-        {
-          "date": "2026-08-29",
-          "field": "watch.https://barbadoswelcomestamp.bb",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
-        },
-        {
-          "date": "2026-08-29",
-          "field": "watch.https://www.immigration.gov.bb",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
-        },
-        {
-          "date": "2026-08-28",
-          "field": "watch.https://barbadoswelcomestamp.bb",
           "to": "Official source content changed — manual rule review required",
           "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
         }
@@ -1746,7 +1752,7 @@
       "id": 33,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1755,13 +1761,20 @@
         "unreachable": 2
       },
       "proof": {
-        "hash": "30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d",
-        "in_sync": false,
+        "hash": "5896afee50c283a000b75dcd53190b2c7f79a41afa03a4829bf01fff10c14f0f",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:20:02.324Z",
-        "stamp_id": "34f86875-6c13-4152-8663-4484ca012375"
+        "stamped_at": "2026-08-31T12:05:28.750Z",
+        "stamp_id": "b223ea62-b76e-45b6-9313-fc7ad5c5872a"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "proof",
+          "from": "30dca88964459f41",
+          "to": "re-anchored 5896afee50c283a0 (stamp b223ea62-b76)",
+          "hash": "5896afee50c283a000b75dcd53190b2c7f79a41afa03a4829bf01fff10c14f0f"
+        },
         {
           "date": "2026-08-22",
           "field": "pathways.economic_permanent_residency",
@@ -1795,22 +1808,35 @@
       "id": 34,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
-        "changed": false,
+        "changed": true,
         "probed": 2,
         "unreachable": 1
       },
       "proof": {
-        "hash": "48d103c25fdfc804c4fe64de0ae3e054ac4a7dbeefd75a2f8eea29d6df01b537",
-        "in_sync": false,
+        "hash": "60fa3e554c78458bea71e324dc0668c70a32ee2a3cae26c7246f383fb9d323a0",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:20:07.336Z",
-        "stamp_id": "cb686d2a-706f-4a7f-9533-51fbbe170208"
+        "stamped_at": "2026-08-31T12:05:32.440Z",
+        "stamp_id": "0093eda0-e687-43fd-8198-e2af2bcd18bb"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "proof",
+          "from": "48d103c25fdfc804",
+          "to": "re-anchored 60fa3e554c78458b (stamp 0093eda0-e68)",
+          "hash": "60fa3e554c78458bea71e324dc0668c70a32ee2a3cae26c7246f383fb9d323a0"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.tourism.gov.bz",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "60fa3e554c78458bea71e324dc0668c70a32ee2a3cae26c7246f383fb9d323a0"
+        },
         {
           "date": "2026-08-22",
           "field": "last_checked.freshness_sweep",
@@ -1831,12 +1857,6 @@
           "from": "ee600d1c53ae4b44",
           "to": "re-anchored c97ba4040054ee02 (stamp 0b913721-104)",
           "hash": "c97ba4040054ee025dea54f423455f281613879761666356b86e697ae6cf33b3"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "c97ba4040054ee025dea54f423455f281613879761666356b86e697ae6cf33b3"
         }
       ]
     },
@@ -1844,7 +1864,7 @@
       "id": 35,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1853,13 +1873,26 @@
         "unreachable": 1
       },
       "proof": {
-        "hash": "999a3bcf5fe5de7b6b8036e0b89b77c1803ad9c05260592b10d9bd7839ea6260",
-        "in_sync": false,
+        "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003",
+        "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-21T00:20:11.490Z",
-        "stamp_id": "022e13b6-4aa0-49d8-947a-4ac771501eb5"
+        "stamped_at": "2026-08-31T12:05:36.859Z",
+        "stamp_id": "8a5f49d1-ef5d-4b07-8ba3-76993f55de44"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "proof",
+          "from": "999a3bcf5fe5de7b",
+          "to": "re-anchored 8738e1c6e0f16dba (stamp 8a5f49d1-ef5)",
+          "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.cdc.gov.kh",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003"
+        },
         {
           "date": "2026-08-30",
           "field": "watch.https://www.cdc.gov.kh",
@@ -1877,18 +1910,6 @@
           "field": "watch.https://www.cdc.gov.kh",
           "to": "Official source content changed — manual rule review required",
           "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003"
-        },
-        {
-          "date": "2026-08-27",
-          "field": "watch.https://www.cdc.gov.kh",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003"
-        },
-        {
-          "date": "2026-08-26",
-          "field": "watch.https://www.cdc.gov.kh",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003"
         }
       ]
     },
@@ -1896,7 +1917,7 @@
       "id": 36,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1913,6 +1934,12 @@
       },
       "recent_changes": [
         {
+          "date": "2026-08-31",
+          "field": "watch.https://pra.gov.ph",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "096f22c4c42048477d582f11a5d16b185afa13641293fc3088f3a94adb98e289"
+        },
+        {
           "date": "2026-08-30",
           "field": "watch.https://pra.gov.ph",
           "to": "Official source content changed — manual rule review required",
@@ -1935,12 +1962,6 @@
           "field": "watch.https://pra.gov.ph",
           "to": "Official source content changed — manual rule review required",
           "hash": "096f22c4c42048477d582f11a5d16b185afa13641293fc3088f3a94adb98e289"
-        },
-        {
-          "date": "2026-08-26",
-          "field": "watch.https://pra.gov.ph",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "096f22c4c42048477d582f11a5d16b185afa13641293fc3088f3a94adb98e289"
         }
       ]
     },
@@ -1948,7 +1969,7 @@
       "id": 37,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1965,6 +1986,12 @@
       },
       "recent_changes": [
         {
+          "date": "2026-08-31",
+          "field": "watch.https://www.mm2h.gov.my",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "8bdae69208189ed559ddac12da6816ecad583caffcb0ccc5d42b7af1f931621d"
+        },
+        {
           "date": "2026-08-30",
           "field": "watch.https://www.mm2h.gov.my",
           "to": "Official source content changed — manual rule review required",
@@ -1987,12 +2014,6 @@
           "field": "watch.https://www.mm2h.gov.my",
           "to": "Official source content changed — manual rule review required",
           "hash": "8bdae69208189ed559ddac12da6816ecad583caffcb0ccc5d42b7af1f931621d"
-        },
-        {
-          "date": "2026-08-26",
-          "field": "watch.https://www.mm2h.gov.my",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8bdae69208189ed559ddac12da6816ecad583caffcb0ccc5d42b7af1f931621d"
         }
       ]
     },
@@ -2000,7 +2021,7 @@
       "id": 38,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2052,7 +2073,7 @@
       "id": 39,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2101,7 +2122,7 @@
       "id": 40,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2117,6 +2138,12 @@
         "stamp_id": "303eec12-9b74-4de4-8e42-e278ff0a599e"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.immigration.govt.nz",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "d110ba00453d8d87664fd21c9d68e2e17d72da4a7cf49638d249f5a7c44c5fc1"
+        },
         {
           "date": "2026-08-29",
           "field": "watch.https://www.immigration.govt.nz",
@@ -2141,12 +2168,6 @@
           "from": "2026-07-02",
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "hash": null
-        },
-        {
-          "date": "2026-08-22",
-          "field": "watch.https://www.immigration.govt.nz",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "810a6c67f96aec330d975265af920dcc8b41a8d02d82b6c771ca788d6b22bafe"
         }
       ]
     },
@@ -2154,7 +2175,7 @@
       "id": 41,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2171,6 +2192,18 @@
       },
       "recent_changes": [
         {
+          "date": "2026-08-31",
+          "field": "watch.https://www.centralbank.ie",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://enterprise.gov.ie",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
+        },
+        {
           "date": "2026-08-30",
           "field": "watch.https://enterprise.gov.ie",
           "to": "Official source content changed — manual rule review required",
@@ -2184,18 +2217,6 @@
         },
         {
           "date": "2026-08-28",
-          "field": "watch.https://www.centralbank.ie",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
-        },
-        {
-          "date": "2026-08-28",
-          "field": "watch.https://enterprise.gov.ie",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
-        },
-        {
-          "date": "2026-08-27",
           "field": "watch.https://www.centralbank.ie",
           "to": "Official source content changed — manual rule review required",
           "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
@@ -2206,13 +2227,13 @@
       "id": 42,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 3,
-        "unreachable": 2
+        "unreachable": 0
       },
       "proof": {
         "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407",
@@ -2222,6 +2243,18 @@
         "stamp_id": "f60c251d-f244-42e1-b1e4-cb6e071456aa"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.exteriores.gob.es",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.inclusion.gob.es",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
+        },
         {
           "date": "2026-08-30",
           "field": "watch.https://www.exteriores.gob.es",
@@ -2239,18 +2272,6 @@
           "field": "watch.https://www.exteriores.gob.es",
           "to": "Official source content changed — manual rule review required",
           "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
-        },
-        {
-          "date": "2026-08-28",
-          "field": "watch.https://www.inclusion.gob.es",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
-        },
-        {
-          "date": "2026-08-27",
-          "field": "watch.https://www.exteriores.gob.es",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
         }
       ]
     },
@@ -2258,7 +2279,7 @@
       "id": 43,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2275,6 +2296,24 @@
       },
       "recent_changes": [
         {
+          "date": "2026-08-31",
+          "field": "watch.https://www.agenziaentrate.gov.it",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://investorvisa.mise.gov.it",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.interno.gov.it",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
+        },
+        {
           "date": "2026-08-30",
           "field": "watch.https://www.agenziaentrate.gov.it",
           "to": "Official source content changed — manual rule review required",
@@ -2283,24 +2322,6 @@
         {
           "date": "2026-08-30",
           "field": "watch.https://investorvisa.mise.gov.it",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
-        },
-        {
-          "date": "2026-08-29",
-          "field": "watch.https://www.agenziaentrate.gov.it",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
-        },
-        {
-          "date": "2026-08-29",
-          "field": "watch.https://investorvisa.mise.gov.it",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
-        },
-        {
-          "date": "2026-08-28",
-          "field": "watch.https://www.agenziaentrate.gov.it",
           "to": "Official source content changed — manual rule review required",
           "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
         }
@@ -2310,7 +2331,7 @@
       "id": 44,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2362,7 +2383,7 @@
       "id": 45,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2378,6 +2399,12 @@
         "stamp_id": "befd4538-81e6-4f69-873e-27d9674e0d80"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.e-resident.gov.ee",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "ed923b43cde6e4436500c090ef2d82272c450ceb821b24483631a6ae3556b74b"
+        },
         {
           "date": "2026-08-27",
           "field": "watch.https://www.e-resident.gov.ee",
@@ -2402,13 +2429,6 @@
           "from": "2026-07-02",
           "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
           "hash": null
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "95a926817571fe54",
-          "to": "re-anchored 9b6a979d0e2a178e (stamp befd4538-81e)",
-          "hash": "9b6a979d0e2a178e6546cbe6e03947906a0b7403f6b40238eecbd074b192cbb9"
         }
       ]
     },
@@ -2416,7 +2436,7 @@
       "id": 46,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2433,6 +2453,18 @@
       },
       "recent_changes": [
         {
+          "date": "2026-08-31",
+          "field": "watch.https://www.bnb.bg",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
+        },
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.mvr.bg",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
+        },
+        {
           "date": "2026-08-30",
           "field": "watch.https://www.bnb.bg",
           "to": "Official source content changed — manual rule review required",
@@ -2449,18 +2481,6 @@
           "field": "watch.https://www.bnb.bg",
           "to": "Official source content changed — manual rule review required",
           "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
-        },
-        {
-          "date": "2026-08-28",
-          "field": "watch.https://www.mvr.bg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
-        },
-        {
-          "date": "2026-08-27",
-          "field": "watch.https://www.bnb.bg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
         }
       ]
     },
@@ -2468,7 +2488,7 @@
       "id": 47,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2485,6 +2505,12 @@
       },
       "recent_changes": [
         {
+          "date": "2026-08-31",
+          "field": "watch.https://digitalnomadscroatia.mup.hr",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "09a099f0935059099e15a740914de4cdb5c112a3e748bccc9170fd79b09b30da"
+        },
+        {
           "date": "2026-08-30",
           "field": "watch.https://digitalnomadscroatia.mup.hr",
           "to": "Official source content changed — manual rule review required",
@@ -2507,12 +2533,6 @@
           "field": "watch.https://digitalnomadscroatia.mup.hr",
           "to": "Official source content changed — manual rule review required",
           "hash": "09a099f0935059099e15a740914de4cdb5c112a3e748bccc9170fd79b09b30da"
-        },
-        {
-          "date": "2026-08-26",
-          "field": "watch.https://digitalnomadscroatia.mup.hr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "09a099f0935059099e15a740914de4cdb5c112a3e748bccc9170fd79b09b30da"
         }
       ]
     },
@@ -2520,13 +2540,13 @@
       "id": 48,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 2,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "809717f2ae22b731264b94164e349de614329ca5ceacb54fe3d3982334a030d5",
@@ -2536,6 +2556,12 @@
         "stamp_id": "ee8c068f-b37e-4da7-9f1a-ffbf0fcb1cfe"
       },
       "recent_changes": [
+        {
+          "date": "2026-08-31",
+          "field": "watch.https://www.gibraltar.gov.gi",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac"
+        },
         {
           "date": "2026-08-30",
           "field": "watch.https://www.gfsc.gi",
@@ -2559,12 +2585,6 @@
           "field": "watch.https://www.gibraltar.gov.gi",
           "to": "Official source content changed — manual rule review required",
           "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac"
-        },
-        {
-          "date": "2026-08-27",
-          "field": "watch.https://www.gibraltar.gov.gi",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac"
         }
       ]
     },
@@ -2572,7 +2592,7 @@
       "id": 49,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2625,7 +2645,7 @@
       "id": 50,
       "freshness": {
         "status": "fresh",
-        "days_stale": 8,
+        "days_stale": 10,
         "last_checked": "2026-08-22"
       },
       "watch": {
