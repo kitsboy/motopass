@@ -8,6 +8,7 @@ import type {
   ProgramFreshness,
   ProgramPathway,
   ProgramScorecard,
+  WatchUrl,
 } from '../../types/program';
 
 export type ProgramModalTab =
@@ -61,6 +62,9 @@ export interface Program {
   /** Schema v3 intel — surfaced from the daily Country Intel pipeline. */
   freshness?: ProgramFreshness;
   watchChanged?: boolean;
+  /** Veritas v1 — per-source probe results from the watchdog pipeline. */
+  watchUrls?: WatchUrl[];
+  watchProbedAt?: string | null;
   pros?: IntelClaim[];
   cons?: IntelClaim[];
   scorecard?: ProgramScorecard;

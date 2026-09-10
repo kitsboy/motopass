@@ -94,6 +94,8 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     // the useIntel hook, never derived here.
     freshness: p.freshness,
     watchChanged: p.watch?.changed === true,
+    watchUrls: p.watch?.urls,
+    watchProbedAt: p.watch?.last_probe_at ?? null,
     pros: p.pros,
     cons: p.cons,
     scorecard: p.scorecard,

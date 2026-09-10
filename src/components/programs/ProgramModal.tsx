@@ -20,6 +20,7 @@ import { SeoHead } from '../SeoHead';
 import { programDetailJsonLd } from '../../lib/siteJsonLd';
 import { safeSatohashHref } from '../../lib/satohash';
 import { ScorecardBars } from '../intel/ScorecardBars';
+import { VeritasSourcePanel } from '../intel/VeritasSourcePanel';
 
 interface ProgramModalProps {
   program: Program | null;
@@ -457,11 +458,16 @@ function ProgramModalBody({
       )}
 
       {tab === 'Sources' && (
-        <ul className="text-sm space-y-2">
-          {(program.sources?.length ? program.sources : [t('modal.noSources')]).map((s) => (
-            <li key={s} className="text-mp-ink-secondary flex gap-2"><span className="text-mp-btc">•</span> {s}</li>
-          ))}
-        </ul>
+        <div className="space-y-4">
+          {program.watchUrls && program.watchUrls.length > 0 && (
+            <VeritasSourcePanel urls={program.watchUrls} probedAt={program.watchProbedAt} />
+          )}
+          <ul className="text-sm space-y-2">
+            {(program.sources?.length ? program.sources : [t('modal.noSources')]).map((s) => (
+              <li key={s} className="text-mp-ink-secondary flex gap-2"><span className="text-mp-btc">•</span> {s}</li>
+            ))}
+          </ul>
+        </div>
       )}
       </div>
 
