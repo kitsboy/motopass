@@ -87,11 +87,7 @@ export async function verifyOtsInBrowser(
     }
   }
 
-  // OpenTimestamps detached files are non-empty binary; confirm load + hash pairing
-  const hashHex = Array.from(bytes.slice(0, Math.min(bytes.length, 128)))
-    .map(b => b.toString(16).padStart(2, '0'))
-    .join('')
-
+  // OpenTimestamps detached files are non-empty binary; confirm load
   const looksLikeOts = bytes.length >= 64 && (bytes[0] !== 0x7b) // not raw JSON
 
   if (!looksLikeOts) {

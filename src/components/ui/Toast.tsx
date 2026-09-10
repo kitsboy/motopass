@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
-import { Check, X } from 'lucide-react'
+import { AlertTriangle, Check, X } from 'lucide-react'
 
 type ToastVariant = 'default' | 'success' | 'error'
 
@@ -53,6 +53,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             }`}
           >
             {item.variant === 'success' && <Check size={16} className="text-mp-proof shrink-0 mt-0.5" aria-hidden />}
+            {item.variant === 'error' && <AlertTriangle size={16} className="text-status-red shrink-0 mt-0.5" aria-hidden />}
             <span className="flex-1 font-chrome leading-snug">{item.message}</span>
             <button
               type="button"

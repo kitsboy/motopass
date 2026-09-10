@@ -1,3 +1,30 @@
+## Session — 2026-09-10 (Buffy/Freebuff) — UX polish batches + working-tree restore
+
+**Done (user request: restore deleted images, continue upgrade batches, honest GUI polish):**
+- **Restored 13 deleted image files** in working tree via `git checkout -- .` (education, incubator, flags-sprite, funding-flow, header-elite, kimi, passport, sovereignty×3, vault-archive, explainer poster) — tree now clean.
+- **Batch A — interaction & mobile polish:**
+  - `src/index.css`: `.input-field` 16px font floor on mobile (`text-[16px] md:text-sm`) — kills iOS Safari auto-zoom on every form (Apply, Register, Verify, Profile).
+  - Global `:focus-visible` keyboard focus ring (BTC orange, 2px offset) — WCAG 2.4.7 parity across all interactive elements, invisible for mouse/touch.
+  - Global `prefers-reduced-motion` kill-switch (0.01ms durations) — belt-and-braces layer under per-component guards.
+  - Toast error variant now shows `AlertTriangle` icon (parity with success ✓).
+- **Batch B — proof & loading polish:**
+  - `FreshnessBadge` tooltip: human date + raw ISO (`Last checked · 12 Aug 2026 (2026-08-12)`).
+  - `CardSkeleton`/`RowSkeleton` rise-in staggered entrance — no abrupt pop-in.
+- **Batch C — quality:** fixed `prefer-const` (BtcMapMerchantDirectory) + removed unused `hashHex` (vaultVerify) + unused `SeoKeywords` import (seo.ts). The `react-hooks/set-state-in-effect` error class deliberately deferred — riskier than its value.
+
+**Verified:** tsc 38 errors vs 40 baseline (zero new, two fixed) · **260/260 unit** · build green (index 462.5 KB, gzip 150 KB) · e2e 23/26 with 2 pre-existing failures on main (`BUILD version visible`, `Uruguay flagship modal` — fail identically with changes stashed) + 1 known RTL flake.
+
+**Git State:**
+- Base SHA: `6466b9d` · Batch commit follows
+- Branch: main
+
+**Not done / next agent:**
+- Pre-existing e2e failures need a dedicated fix card (BUILD-visibility selector + Uruguay modal Pathways tab)
+- `set-state-in-effect` sweep (careful, per-component)
+- Full translation parity ja/hi/sw · LNbits mint · hosted grounded Paige · live Nostr relay (standing backlog)
+
+---
+
 ## Session — 2026-08-27 · Breez Server Costs donate (Grok M3)
 
 **Done:**

@@ -40,7 +40,7 @@ export function FreshnessBadge({ lastChecked, proofStampedAt, compact = false, l
     <span
       className={`inline-flex items-center gap-1 rounded-chip border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.06em] ${LEVEL_STYLES[level]}`}
       role="status"
-      title={`${sourceLabel} · ${iso}`}
+      title={`${sourceLabel} · ${dateLabel} (${iso})`}
     >
       <CalendarClock className="h-2.5 w-2.5 shrink-0" aria-hidden="true" />
       <span>{compact ? dateLabel : `${levelLabel} · ${dateLabel}`}</span>

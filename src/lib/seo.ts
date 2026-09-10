@@ -98,7 +98,7 @@ export function formatPageTitle(title: string): string {
 }
 
 /** Per-locale meta overrides — RouteSeo + page-level SeoHead should use this helper. */
-import { getSeoKeywords, type SeoKeywords } from './seoKeywords'
+import { getSeoKeywords } from './seoKeywords'
 
 /**
  * Per-locale meta overrides — pulled from the keyword map.

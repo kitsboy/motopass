@@ -29,7 +29,7 @@ export function BtcMapMerchantDirectory({
   const categories = useMemo(() => btcMapCategoryFilters(places), [places])
 
   const filtered = useMemo(() => {
-    let result = filterPlacesByCategory(places, categoryId)
+    const result = filterPlacesByCategory(places, categoryId)
     if (!debounced) return result
     return result.filter(p => {
       const hay = [p.name, p.address].filter(Boolean).join(' ').toLowerCase()

@@ -1,3 +1,11 @@
+# motopass — Last Updated 2026-09-10 by Buffy (Freebuff)
+
+**Brief:** UX polish batches — iOS input-zoom fix, global focus ring, reduced-motion guard, toast parity, proof-badge + skeleton polish, lint cleanup.
+
+**Commit:** pending push (base `6466b9d`)
+
+---
+
 # motopass — Last Updated 2026-08-27 by Grok (M3)
 
 **Brief:** Server Costs donate is Breez Spark (`motopass@breez.tips`).
