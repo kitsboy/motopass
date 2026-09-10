@@ -276,6 +276,13 @@ export const pageKeysZh: Partial<Record<PageKey, string>> = {
   'simulator.openCompare': '在比较中打开',
   'simulator.deleteStack': '删除',
   'simulator.duplicateName': '已存在同名组合',
+  'simulator.presetsLabel': '试试示例组合',
+  'simulator.preset.budget': '低预算入门',
+  'simulator.preset.budgetTip': '最低准入成本 — 萨尔瓦多、中非、格鲁吉亚',
+  'simulator.preset.speed': '最快护照',
+  'simulator.preset.speedTip': '数月办结，而非数年',
+  'simulator.preset.sovereign': '主权最大化',
+  'simulator.preset.sovereignTip': '三大区域最高评分项目',
   'simulator.copySummary': '复制组合摘要',
   'simulator.summaryCopied': '组合摘要已复制',
 

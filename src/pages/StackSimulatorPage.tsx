@@ -15,6 +15,7 @@ import { BtcDualPrice } from '../components/BtcDualPrice'
 import { parseIdList, serializeIdList } from '../lib/urlState'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { ValueForksPanel } from '../components/simulator/ValueForksPanel'
+import { SimulatorPresets } from '../components/simulator/SimulatorPresets'
 import { Card } from '../components/ui/Card'
 import { formatStackSummary } from '../lib/simulatorSummary'
 import { useToast } from '../components/ui/Toast'
@@ -127,6 +128,7 @@ export function StackSimulatorPage() {
         <div className="grid lg:grid-cols-2 gap-6">
           <Card id="simulator-picker" variant="elevated" className="max-h-[60vh] flex flex-col scroll-mt-header !p-6">
             <h3 className="font-display font-semibold text-ink mb-3">{t('simulator.selectPrograms')}</h3>
+            <SimulatorPresets onSelect={setSelectedSynced} activeIds={selected} />
             <div className="relative mb-3">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted pointer-events-none" />
               <input
