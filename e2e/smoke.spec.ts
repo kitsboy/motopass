@@ -14,9 +14,10 @@ test.describe('smoke', () => {
 
   test('BUILD version is visible in chrome or footer', async ({ page }) => {
     await page.goto('/', gotoOpts)
-    const build = page.getByText(expectedBuildPattern()).first()
-    await build.scrollIntoViewIfNeeded()
-    await expect(build).toBeVisible()
+    // Auto-waiting assertion only: the version chip re-mounts when live deploy
+    // health resolves, so scrollIntoViewIfNeeded can race a detached node —
+    // toBeVisible re-resolves the locator on every retry instead.
+    await expect(page.getByText(expectedBuildPattern()).first()).toBeVisible({ timeout: 20_000 })
   })
 
   test('btcmap page loads with program selector', async ({ page }) => {
