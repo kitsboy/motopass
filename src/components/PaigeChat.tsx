@@ -173,6 +173,7 @@ export function PaigeChat({ compact = false }: { compact?: boolean }) {
     if (hydrated || !programs.length) return
     const stored = loadPaigeHistory()
     if (stored.length) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time localStorage hydration; users see the greeting until programs load
       setMessages(hydrateStoredMessages(stored, programs, greeting))
     }
     setHydrated(true)
@@ -196,6 +197,7 @@ export function PaigeChat({ compact = false }: { compact?: boolean }) {
     if (!streaming) return
 
     if (isStreamComplete(streaming.displayed, streaming.text.length)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- reaction to async stream progression, not a cascading init render
       setMessages((prev) =>
         prev.map((m) =>
           m.role === 'paige' && m.kind === 'streaming'

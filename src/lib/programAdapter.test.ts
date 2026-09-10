@@ -64,6 +64,9 @@ const baseProgram: Program = {
   name: 'Uruguay',
   region: 'Americas',
   category: 'residency_by_investment',
+  status: 'active',
+  bitcoin_integration: 'test',
+  last_checked: '2026-08-01',
   flag: '🇺🇾',
   details: 'Test program',
   sovereignty_score: 8.5,
@@ -74,6 +77,9 @@ const baseProgram: Program = {
     typical_investment_usd: 150000,
     processing_time_months: '6-12',
     crypto_friendly_score: 9,
+    gov_fees_usd: 0,
+    tax_benefits: 'test',
+    bitcoin_specific: 'test',
   },
   satohash_proofs: [],
 }
@@ -98,9 +104,9 @@ describe('isStubProofUrl', () => {
 
 describe('proofStatus honesty', () => {
   it('marks allowlisted non-stub URL as recorded, not verified', () => {
-    const withUrl = {
+    const withUrl: Program = {
       ...baseProgram,
-      satohash_proofs: [{ proof_url: 'https://satohash.io/verify/deadbeefcafebabe', block_height: 800000 }],
+      satohash_proofs: [{ field: 'test', proof_url: 'https://satohash.io/verify/deadbeefcafebabe', block_height: 800000 }],
     }
     expect(toCinematicProgram(withUrl).proofStatus).toBe('recorded')
   })
@@ -115,9 +121,9 @@ describe('toCinematicProgram', () => {
     expect(toCinematicProgram(baseProgram).proofStatus).toBe('pending')
   })
   it('marks stub proof as demo', () => {
-    const withStub = {
+    const withStub: Program = {
       ...baseProgram,
-      satohash_proofs: [{ proof_url: 'https://satohash.io/verify/aaaa1111bbbb2222', block_height: 800000 }],
+      satohash_proofs: [{ field: 'test', proof_url: 'https://satohash.io/verify/aaaa1111bbbb2222', block_height: 800000 }],
     }
     expect(toCinematicProgram(withStub).proofStatus).toBe('demo')
   })

@@ -8,7 +8,11 @@ export function useRouteLangMemory() {
   const { pathname } = useLocation()
   const { langPreference, setLang, setRoutePath } = useI18n()
   const langRef = useRef(langPreference)
-  langRef.current = langPreference
+
+  // Keep the ref current outside render — refs must never be written during render.
+  useEffect(() => {
+    langRef.current = langPreference
+  }, [langPreference])
 
   useEffect(() => {
     setRoutePath(pathname)

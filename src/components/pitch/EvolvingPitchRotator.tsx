@@ -39,6 +39,7 @@ function CountUpAnimated({
 
   useEffect(() => {
     if (!active) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- counter reset on deactivate; converges after one render
       setDisplay(0);
       return;
     }

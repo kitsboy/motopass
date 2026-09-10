@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
-import { BUILD_ID } from '../src/lib/buildInfo'
+import { expectedBuildPattern } from './support/build'
+const BUILD_ID = expectedBuildPattern()
 
 type FooterGapMetrics = {
   footerDocBottom: number

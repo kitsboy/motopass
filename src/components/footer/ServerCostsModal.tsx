@@ -39,11 +39,6 @@ export function ServerCostsModal({ open, onClose, returnFocusRef }: Props) {
       <div className="flex items-center gap-2 mb-4">
         {tab === 'layer1' ? <Bitcoin size={18} className="text-btc-orange" /> : <Zap size={18} className="text-btc-orange" />}
         <span className="font-display font-semibold text-ink">{active.label}</span>
-        {'temp' in active && active.temp && (
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
-            TEMP
-          </span>
-        )}
       </div>
 
       <p className="text-sm text-ink-secondary mb-6 leading-relaxed">{active.description}</p>
@@ -52,7 +47,6 @@ export function ServerCostsModal({ open, onClose, returnFocusRef }: Props) {
         <PaymentQrCode
           value={active.qrPayload}
           label={tab === 'layer1' ? 'Layer 1 · Bitcoin' : 'Layer 2 · Lightning'}
-          temp={'temp' in active && active.temp}
         />
       </div>
 

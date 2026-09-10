@@ -335,9 +335,6 @@ export type TranslationKey =
   | 'simulator.vsTypical'
   | 'simulator.sideBySide'
   | 'trust.researchPending'
-  | 'pitch.savings.legalDelta'
-  | 'pitch.savings.legal'
-  | 'pitch.savings.methodology'
   | 'pitch.savings.phase.opening'
   | 'pitch.savings.phase.cost'
   | 'pitch.savings.phase.time'
@@ -352,6 +349,89 @@ export type TranslationKey =
   | 'intel.statusChanged'
   | 'intel.statusReanchoring'
   | 'paige.conciergeAria'
+  | 'nav.languageSystem'
+  | 'nav.languageShortcut'
+  | 'nav.languageRecent'
+  | 'nav.backToTop'
+  | 'nav.pageSections'
+  | 'dashboard.alertsTitle'
+  | 'dashboard.alertsSub'
+  | 'dashboard.alertsPortfolio'
+  | 'dashboard.alertsEmpty'
+  | 'dashboard.alertsShowMore'
+  | 'dashboard.alertsShowLess'
+  | 'dashboard.alertsSource'
+  | 'dashboard.alertsBrowse'
+  | 'block.retry'
+  | 'programs.jurisdiction'
+  | 'programs.tier'
+  | 'programs.proof'
+  | 'programs.intel'
+  | 'portfolio.complianceClock'
+  | 'portfolio.citizenshipTrack'
+  | 'compliance.critical'
+  | 'compliance.warning'
+  | 'compliance.healthy'
+  | 'compliance.criticalTip'
+  | 'compliance.warningTip'
+  | 'compliance.healthyTip'
+  | 'simulator.synergy'
+  | 'simulator.vsTypical'
+  | 'simulator.sideBySide'
+  | 'trust.researchPending'
+  | 'pitch.hero.members'
+  | 'pitch.hero.jurisdictionsChip'
+  | 'pitch.hero.advisorySavingsChip'
+  | 'pitch.hero.lightningChip'
+  | 'pitch.explorer'
+  | 'pitch.metric.jurisdictions'
+  | 'pitch.metric.avgSavings'
+  | 'pitch.metric.avgDays'
+  | 'pitch.metric.flagshipDepth'
+  | 'pitch.savings.title'
+  | 'pitch.savings.headerCopy'
+  | 'pitch.savings.headerTip'
+  | 'pitch.savings.membersEyebrow'
+  | 'pitch.savings.traditional'
+  | 'pitch.savings.motopass'
+  | 'pitch.savings.footnote'
+  | 'pitch.savings.unitDays'
+  | 'pitch.savings.savingsBrand'
+  | 'pitch.savings.modeledLegalDelta'
+  | 'pitch.savings.barMeaningDefault'
+  | 'pitch.savings.ctaPresentation'
+  | 'pitch.savings.moreJurisdictions'
+  | 'pitch.savings.moreJurisdictionsMeaning'
+  | 'pitch.savings.daysFasterMeaning'
+  | 'pitch.savings.legalDeltaMeaning'
+  // NOTE: 'pitch.savings.legal', 'pitch.savings.legalDelta', 'pitch.savings.methodology'
+  // are dead keys (no component usage) — removed from the union; sw-only copies pruned.
+  | 'pitch.savings.metric.legal'
+  | 'pitch.savings.metric.time'
+  | 'pitch.savings.metric.jurisdictions'
+  | 'pitch.savings.metric.legalMeaning'
+  | 'pitch.savings.metric.timeMeaning'
+  | 'pitch.savings.metric.jurisdictionsMeaning'
+  | 'pitch.savings.delta.legal'
+  | 'pitch.savings.delta.time'
+  | 'pitch.savings.delta.jurisdictions'
+  | 'pitch.products.applicationsOpen'
+  | 'pitch.explainer.badge'
+  | 'pitch.explainer.filmStatusReady'
+  | 'pitch.explainer.filmStatusPending'
+  | 'pitch.live.thisWeek'
+  | 'pitch.live.lastAnchored'
+  | 'pitch.explainer.eyebrow'
+  | 'pitch.explainer.title'
+  | 'pitch.explainer.body'
+  | 'pitch.explainer.videoTitle'
+  | 'pitch.explainer.unsupported'
+  | 'pitch.explainer.pendingTitle'
+  | 'pitch.explainer.pendingBody'
+  | 'proofBadge.verified'
+  | 'proofBadge.recorded'
+  | 'proofBadge.demo'
+  | 'proofBadge.pending'
   | PageKey
 
 export type Dict = Record<TranslationKey, string>
@@ -683,6 +763,88 @@ const en: Dict = {
   'trust.axis.banking': 'Banking',
   'trust.auditTrail': 'Last audit trail',
   'trust.minInvest': 'Min. invest',
+  // ——— Keys recovered from orphaned sw-only copy + component usage (2026-09-10) ———
+  'programs.jurisdiction': 'Jurisdiction',
+  'programs.tier': 'Tier',
+  'programs.proof': 'Proof',
+  'programs.intel': 'Intel',
+  'portfolio.complianceClock': 'Compliance clock',
+  'portfolio.citizenshipTrack': 'Citizenship track',
+  'compliance.critical': 'Critical',
+  'compliance.warning': 'Watch',
+  'compliance.healthy': 'Healthy',
+  'compliance.criticalTip': 'Action needed soon — a requirement in this stack is close to expiring or failing.',
+  'compliance.warningTip': 'Watch item — one or more requirements need attention within weeks, not months.',
+  'compliance.healthyTip': 'On track — no stack requirement is close to a deadline.',
+  'simulator.synergy': 'Stack synergy',
+  'simulator.vsTypical': 'vs. typical',
+  'simulator.sideBySide': 'Open in',
+  'trust.researchPending': 'Research pending',
+  'pitch.hero.members': 'MEMBERS',
+  'pitch.hero.jurisdictionsChip': '{count} jurisdictions',
+  'pitch.hero.advisorySavingsChip': '~{amount} avg advisory savings',
+  'pitch.hero.lightningChip': '{count} Lightning ready',
+  'pitch.explorer': 'Explore',
+  'pitch.metric.jurisdictions': 'Jurisdictions tracked',
+  'pitch.metric.avgSavings': 'Avg. stack savings',
+  'pitch.metric.avgDays': 'Avg. days to residency',
+  'pitch.metric.flagshipDepth': '50/50 flagship depth',
+  'pitch.savings.title': 'Cost & time, modeled — not promised',
+  'pitch.savings.headerCopy': 'Modeled comparison of a sovereignty stack — boutique-advisory creation, not a guarantee. Real USD figures and day math, shown transparently.',
+  'pitch.savings.headerTip': 'Modeled for member evaluation only — modeled stack economics, not a guarantee. Real USD figures and day math, shown transparently.',
+  'pitch.savings.membersEyebrow': 'Members · Modeled economics',
+  'pitch.savings.traditional': 'Traditional',
+  'pitch.savings.motopass': 'MotoPass',
+  'pitch.savings.footnote': 'Modeled for member evaluation only. Traditional assumes boutique advisors in three jurisdictions; MotoPass reflects modeled stack economics via the platform at current program depth.',
+  'pitch.savings.unitDays': 'days',
+  'pitch.savings.savingsBrand': 'Savings',
+  'pitch.savings.modeledLegalDelta': 'modeled legal delta',
+  'pitch.savings.barMeaningDefault': 'Modeled estimates shown for member evaluation.',
+  'pitch.savings.ctaPresentation': 'Modeled savings presentation',
+  'pitch.savings.moreJurisdictions': 'More jurisdictions',
+  'pitch.savings.moreJurisdictionsMeaning': 'Additional sovereignty options from stacking programs, vs. a single traditional engagement.',
+  'pitch.savings.daysFasterMeaning': 'Modeled time advantage of the platform route vs. boutique advisory.',
+  'pitch.savings.legalDeltaMeaning': 'Modeled savings vs. a traditional advisory baseline — modeled, not guaranteed.',
+  'pitch.savings.metric.legal': 'Legal & advisory',
+  'pitch.savings.metric.time': 'Time to approval',
+  'pitch.savings.metric.jurisdictions': 'Jurisdictions',
+  'pitch.savings.metric.legalMeaning': 'Total modeled for the same citizenship goals via international boutique advisors — the comparison baseline.',
+  'pitch.savings.metric.timeMeaning': 'Modeled months from first engagement to passport in hand for each route.',
+  'pitch.savings.metric.jurisdictionsMeaning': 'How many sovereignty options each route opens — MotoPass stacks programs where traditional advisory typically restricts to one.',
+  'pitch.savings.delta.legal': '−$77,100 modeled',
+  'pitch.savings.delta.time': '−42 days modeled',
+  'pitch.savings.delta.jurisdictions': '+47 jurisdictions modeled',
+  'pitch.savings.phase.opening': 'Opening',
+  'pitch.savings.phase.cost': 'Cost',
+  'pitch.savings.phase.time': 'Time',
+  'pitch.savings.phase.jurisdictions': 'Jurisdictions',
+  'pitch.savings.phase.savings': 'Savings',
+  'pitch.savings.phase.summary': 'Summary',
+  'pitch.products.applicationsOpen': 'Applications open · {gates} gates',
+  'pitch.explainer.badge': 'Truth You Can Verify',
+  'pitch.explainer.filmStatusReady': 'MOTOPASS · 60s · 16:9',
+  'pitch.explainer.filmStatusPending': 'MOTOPASS · GUIDE',
+  'pitch.live.thisWeek': 'Live · This week',
+  'pitch.live.lastAnchored': 'Last anchored {proof} · OpenTimestamps',
+  'pitch.explainer.eyebrow': 'Watch · 60-second guide',
+  'pitch.explainer.title': 'MotoPass in 60 seconds',
+  'pitch.explainer.body': 'Truth you can verify, on Bitcoin — how MotoPass turns sovereign residency into a verifiable, self-custody passport.',
+  'pitch.explainer.videoTitle': 'MotoPass — 60-second guide',
+  'pitch.explainer.unsupported': 'Your browser does not support HTML5 video.',
+  'pitch.explainer.pendingTitle': 'The 60-second guide is in production',
+  'pitch.explainer.pendingBody': 'Our film is being cut right now. Check back soon — it will play right here. Meanwhile, explore the platform below.',
+  'proofBadge.verified': 'Bitcoin-verified',
+  'proofBadge.recorded': 'Proof on file',
+  'proofBadge.demo': 'Demo anchor',
+  'proofBadge.pending': 'Anchor pending',
+  'error.somethingWrong': 'Something went wrong — please try again.',
+  'apply.feeRailUnreachable': 'Fee rail unreachable — try again shortly.',
+  'dashboard.paigePolicy': 'Paige stays grounded: answers come from the verified corpus only — no speculation, no outside claims.',
+  'vault.educationPlayerTitle': 'MotoPass — 60-second guide',
+  'vault.educationPlayerAria': 'Educational video player',
+  'intel.statusChanged': 'Watch changed',
+  'intel.statusReanchoring': 'Re-anchoring',
+  'paige.conciergeAria': 'Open the Paige concierge chat',
   ...pageKeysEn,
 }
 

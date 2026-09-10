@@ -7,7 +7,7 @@ export function VaultEducationCard() {
   const { t } = useI18n()
 
   return (
-    <Card variant="muted" animate className="mb-8 overflow-hidden">
+    <Card variant="default" animate className="mb-8 overflow-hidden">
       <div className="flex flex-col sm:flex-row gap-4">
         <div
           className="relative flex h-28 sm:h-auto sm:w-40 shrink-0 items-center justify-center rounded-mp-md border border-mp/60 bg-gradient-to-br from-card-muted/80 via-section/60 to-btc-orange-soft/30"

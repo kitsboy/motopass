@@ -32,6 +32,7 @@ export function MotoPassExplainer() {
   // Inject the real source only once the player is near the viewport.
   const [srcReady, setSrcReady] = useState(false)
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- latch: flips once when the film scrolls near; converges after one render
     if (inView) setSrcReady(true)
   }, [inView])
 

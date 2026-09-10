@@ -98,6 +98,7 @@ export function DisplayCurrencyProvider({ children }: { children: ReactNode }) {
     if (!isFiatActive) {
       // No fiat active — nothing to fetch. fx stays null; the BTC/sats figures
       // are anchored to btc_price_at_capture and need no network.
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- settling the no-network default state; converges immediately
       setFxLoading(false)
       if (timerRef.current) clearTimeout(timerRef.current)
       return

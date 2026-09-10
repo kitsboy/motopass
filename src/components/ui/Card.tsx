@@ -1,5 +1,5 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
-import { motion, useReducedMotion } from 'motion/react'
+import { motion, useReducedMotion, type HTMLMotionProps } from 'motion/react'
 
 export type CardVariant = 'default' | 'elevated' | 'interactive' | 'banner' | 'proof'
 
@@ -43,7 +43,9 @@ export function Card({
       animate={{ y: 0 }}
       transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
       className={cls}
-      {...props}
+      /* same DOM props as the plain-div branch — motion's HTMLMotionProps is a superset;
+         the cast only reconciles the two overloads' prop containers. */
+      {...(props as HTMLMotionProps<'div'>)}
     >
       {children}
     </motion.div>

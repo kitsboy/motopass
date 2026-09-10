@@ -8,6 +8,6 @@ export const MOTOPASS_NOSTR_STUB_PUBKEY = '0'.repeat(64)
 export function nostrEventIdStub(event: EventTemplate | ProgramUpdateEvent): string {
   return getEventHash({
     ...event,
-    pubkey: 'pubkey' in event && event.pubkey ? event.pubkey : MOTOPASS_NOSTR_STUB_PUBKEY,
+    pubkey: ('pubkey' in event && event.pubkey ? event.pubkey : MOTOPASS_NOSTR_STUB_PUBKEY) as string,
   })
 }

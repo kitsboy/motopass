@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { BUILD_ID } from '../src/lib/buildInfo'
+import { expectedBuildPattern } from './support/build'
 
 /** Lazy routes need domcontentloaded + content wait (not full load). */
 const gotoOpts = { waitUntil: 'domcontentloaded' as const }
@@ -13,8 +13,8 @@ test.describe('smoke', () => {
   })
 
   test('BUILD version is visible in chrome or footer', async ({ page }) => {
-    await page.goto('/')
-    const build = page.getByText(`BUILD ${BUILD_ID}`, { exact: false }).first()
+    await page.goto('/', gotoOpts)
+    const build = page.getByText(expectedBuildPattern()).first()
     await build.scrollIntoViewIfNeeded()
     await expect(build).toBeVisible()
   })
@@ -163,11 +163,13 @@ test.describe('smoke', () => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto('/programs', gotoOpts)
     await expect(page.locator('input[type="search"]').first()).toBeVisible({ timeout: 15_000 })
-    const uruguay = page.getByText('Uruguay', { exact: true }).first()
-    if (await uruguay.isVisible()) {
-      await uruguay.click()
-      await expect(page.getByText('Pathways')).toBeVisible()
-    }
+    // Click the interactive card button (role=button), not a heading/span text match —
+    // "Uruguay" appears in 5+ elements across the spotlight strip and table.
+    const uruguayCard = page.getByRole('button', { name: /Uruguay/ }).first()
+    await uruguayCard.click({ timeout: 15_000 })
+    const dialog = page.getByRole('dialog')
+    await expect(dialog).toBeVisible({ timeout: 10_000 })
+    await expect(dialog.getByText('Pathways')).toBeVisible()
   })
 
   test('dashboard redirects logged-out users to register with next', async ({ page }) => {

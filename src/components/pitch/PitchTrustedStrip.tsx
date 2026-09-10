@@ -18,8 +18,8 @@ export function PitchTrustedStrip({ programs, loading }: PitchTrustedStripProps)
     const sorted = [...programs]
       .filter(p => p.flag)
       .sort((a, b) => (b.sovereignty_score ?? 0) - (a.sovereignty_score ?? 0))
-    const seen = new Set<string>()
-    const out: { id: string; flag: string; name: string }[] = []
+    const seen = new Set<number | string>()
+    const out: { id: number | string; flag: string; name: string }[] = []
     for (const p of sorted) {
       if (!p.flag || seen.has(p.id)) continue
       seen.add(p.id)

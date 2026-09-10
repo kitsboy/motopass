@@ -141,5 +141,6 @@ export function latestProofTimestamp(programs: import('../types/program').Progra
     .map(p => p.last_checked)
     .filter(Boolean)
     .sort()
-  return dates.at(-1) ? `${dates.at(-1)}T12:00:00Z` : undefined
+  const last = dates[dates.length - 1]
+  return last ? `${last}T12:00:00Z` : undefined
 }

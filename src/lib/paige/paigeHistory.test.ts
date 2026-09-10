@@ -24,7 +24,7 @@ describe('paigeHistory', () => {
   it('trims to last 10 messages', () => {
     const msgs = Array.from({ length: 12 }, (_, i) => ({ role: 'user' as const, text: `m${i}` }))
     expect(trimPaigeHistory(msgs)).toHaveLength(PAIGE_HISTORY_MAX)
-    expect(trimPaigeHistory(msgs)[0].text).toBe('m2')
+    expect((trimPaigeHistory(msgs)[0] as { text: string }).text).toBe('m2')
   })
 
   it('persists and loads valid history', () => {

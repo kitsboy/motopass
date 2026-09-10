@@ -520,7 +520,9 @@ export async function savingsGraphToPdfBlob(
   const jpeg = await canvasToJpegBytes(canvas)
   if (!jpeg) return null
   const pdfBytes = buildPdfFromJpeg(jpeg, canvas.width, canvas.height)
-  return new Blob([pdfBytes], { type: 'application/pdf' })
+  // pdfBytes is a plain byte array produced by buildPdfFromJpeg — a valid BlobPart at runtime;
+  // the cast silences the ArrayBufferLike variance strictness only.
+  return new Blob([pdfBytes as BlobPart], { type: 'application/pdf' })
 }
 
 /** Download premium modeled savings chart as print-ready PDF. */

@@ -97,7 +97,9 @@ export function ProgramsPage() {
     const raw = programs.find(p => p.id === id)
     if (!raw) return
     const cinematicProgram = toCinematicPrograms([raw])[0]
-    if (cinematicProgram) setActive(cinematicProgram)
+    if (cinematicProgram)
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- deep-link: the URL ?program= IS the render input for the modal, not a cascading side effect
+      setActive(cinematicProgram)
   }, [searchParams, programs, loading])
 
   useEffect(() => {

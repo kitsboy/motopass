@@ -86,6 +86,7 @@ export function FinanceComparePage() {
   const compare = programs.filter(p => ids.includes(p.id))
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- chip state resets when the comparison selection changes; converges after one render
     setStackAdded(false)
   }, [ids.join(',')])
 
@@ -216,13 +217,18 @@ export function FinanceComparePage() {
     const mdRows = rows.map(r => ({
       label: r.label,
       valueKey: r.valueKey,
-      render: (p: Program) => {
+      render: (p: Program): string => {
         const rendered = r.render(p)
         if (typeof rendered === 'string' || typeof rendered === 'number') return String(rendered)
         return r.renderText ? r.renderText(p) : r.valueKey(p)
       },
     }))
-    const md = compareDiffMarkdown(compare, mdRows, rowValuesDiffer)
+    const md = compareDiffMarkdown(
+      compare,
+      mdRows,
+      // structural adapter: compareMarkdown's DiffRow is the string-render projection of CompareRow
+      rowValuesDiffer as (row: typeof mdRows[number], programs: Program[]) => boolean,
+    )
     if (!md) return
     try {
       await navigator.clipboard.writeText(md)

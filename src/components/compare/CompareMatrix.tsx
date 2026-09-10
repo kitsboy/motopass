@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import type { Program } from '../../types/program'
-import type { CinematicProgram } from '../programs/types'
+import type { Program as CinematicProgram } from '../programs/types'
 import type { CompareRow } from './types'
 import { COMPARE_GROUPS } from './types'
 import { bestIndex } from './compareUtils'

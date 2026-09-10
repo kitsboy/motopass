@@ -57,6 +57,7 @@ export function ApplicationFeeStep({ appHash, appId, program }: Props) {
   }, [])
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- fetch resolves asynchronously; state is never set synchronously in the effect body
     void loadConfig()
   }, [loadConfig])
 

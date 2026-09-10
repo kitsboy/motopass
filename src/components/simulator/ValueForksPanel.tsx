@@ -24,7 +24,7 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
       sovereignty: number
       synergy: string
       hasProof: boolean
-      proofStatus: 'verified' | 'recorded' | 'demo' | 'none'
+      proofStatus: 'verified' | 'recorded' | 'demo' | 'none' | 'pending'
       savingsVsTypical: number
     }[] = []
 

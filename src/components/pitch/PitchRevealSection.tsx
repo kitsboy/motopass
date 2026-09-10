@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode, Ref } from 'react'
 import { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'motion/react'
 
@@ -25,7 +25,9 @@ export function PitchRevealSection({
 
   return (
     <Tag
-      ref={ref}
+      /* union of motion.section/motion.div collapses ref to HTMLDivElement; the
+         runtime element is the real tag (HTMLElement for section) — safe at runtime. */
+      ref={ref as Ref<HTMLDivElement>}
       id={id}
       className={className}
       initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 28 }}

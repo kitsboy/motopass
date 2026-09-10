@@ -66,9 +66,9 @@ export function DashboardPage() {
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-4xl mx-auto">
       <PageHeader
-        title={formatT(t, 'dashboard.welcomeBack', { name: profile.displayName })}
+        title={formatT(t, 'dashboard.welcomeBack', { name: profile.displayName ?? '' })}
         eyebrow={t('dashboard.eyebrow')}
-        subtitle={truncateNpub(profile.npub)}
+        subtitle={profile.npub ? truncateNpub(profile.npub) : undefined}
         actions={
           <button type="button" onClick={() => setLogoutOpen(true)} className="chip text-xs hover:!border-status-red/40 hover:!text-status-red">
             {t('dashboard.logout')}

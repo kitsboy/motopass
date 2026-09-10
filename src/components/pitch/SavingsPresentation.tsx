@@ -51,6 +51,7 @@ function CountUp({
 
   useEffect(() => {
     if (!run) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- counter reset; converges after one render
       setDisplay(reduceMotion ? value : 0)
       return
     }
@@ -489,6 +490,7 @@ export function SavingsPresentation({ open, onClose, title }: SavingsPresentatio
 
   useEffect(() => {
     if (!open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- modal lifecycle: phase resets on every open/close; one converging render by design
       reset()
       return
     }

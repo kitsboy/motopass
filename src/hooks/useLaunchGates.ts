@@ -17,6 +17,7 @@ export function useLaunchGates(options?: { refreshMs?: number | false }) {
 
   useEffect(() => {
     let cancelled = false
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- refresh() always sets state asynchronously (post-await); the linter cannot see through the promise
     void refresh().then(() => {
       if (cancelled) return
     })
