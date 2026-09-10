@@ -1,6 +1,8 @@
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ExternalLink, Zap, Check, X as XIcon, Link2, Bell } from 'lucide-react';
+import { useTabSwipe } from '../../hooks/useTabSwipe';
+import { loadLastModalTab, saveLastModalTab } from '../../lib/modalTabMemory';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 import { loadCompareIds } from '../../lib/portfolioStorage';
 import { serializeIdList } from '../../lib/urlState';
@@ -54,6 +56,22 @@ export function ProgramModal({
   );
 }
 
+type Translate = (key: Parameters<ReturnType<typeof useI18n>['t']>[0]) => string
+
+function buildModalTabs(t: Translate, deep: boolean, hasIntel: boolean, hasPaige: boolean): { id: ProgramModalTab; label: string }[] {
+  return [
+    { id: 'Overview', label: t('modal.tabOverview') },
+    ...(deep ? [{ id: 'Pathways' as const, label: t('modal.tabPathways') }] : []),
+    { id: 'Finance', label: t('modal.tabFinance') },
+    { id: 'Bitcoin', label: t('modal.tabBitcoin') },
+    ...(deep ? [{ id: 'Critical' as const, label: t('modal.tabCritical') }] : []),
+    { id: 'Legal', label: t('modal.tabLegal') },
+    ...(hasIntel ? [{ id: 'Intel' as const, label: t('modal.tabIntel') }] : []),
+    ...(hasPaige ? [{ id: 'Paige' as const, label: t('modal.tabPaige') }] : []),
+    { id: 'Sources', label: t('modal.tabSources') },
+  ];
+}
+
 function TestBadge({ pass, label }: { pass: boolean | null | undefined; label: string }) {
   const pending = pass == null
   return (
@@ -86,7 +104,21 @@ function ProgramModalBody({
 }) {
   const { t } = useI18n();
   const openerRef = useRef<HTMLElement | null>(null);
-  const [tab, setTab] = useState<ProgramModalTab>(initialTab);
+  const [tab, setTab] = useState<ProgramModalTab>(() => {
+    // Remembered preference first — a returning user lands where they left
+    // off. Clamped to the tabs this program actually offers (deep-only tabs
+    // don't exist on template-tier programs), else the deep-link tab, else
+    // Overview.
+    const remembered = loadLastModalTab();
+    const offered = buildModalTabs(
+      t,
+      hasFlagshipDepth(program),
+      !!(program.pros?.length || program.cons?.length || program.scorecard),
+      !!program.paigeFields,
+    );
+    if (remembered && offered.some(x => x.id === remembered)) return remembered as ProgramModalTab;
+    return initialTab;
+  });
   const [shareCopied, setShareCopied] = useState(false);
 
   useLayoutEffect(() => {
@@ -121,20 +153,31 @@ function ProgramModalBody({
   };
 
   const hasIntel = !!(program.pros?.length || program.cons?.length || program.scorecard)
-  const TABS = useMemo(() => {
-    const base = [
-      { id: 'Overview' as const, label: t('modal.tabOverview') },
-      ...(deep ? [{ id: 'Pathways' as const, label: t('modal.tabPathways') }] : []),
-      { id: 'Finance' as const, label: t('modal.tabFinance') },
-      { id: 'Bitcoin' as const, label: t('modal.tabBitcoin') },
-      ...(deep ? [{ id: 'Critical' as const, label: t('modal.tabCritical') }] : []),
-      { id: 'Legal' as const, label: t('modal.tabLegal') },
-      ...(hasIntel ? [{ id: 'Intel' as const, label: t('modal.tabIntel') }] : []),
-      ...(program.paigeFields ? [{ id: 'Paige' as const, label: t('modal.tabPaige') }] : []),
-      { id: 'Sources' as const, label: t('modal.tabSources') },
-    ];
-    return base;
-  }, [t, deep, program.paigeFields, hasIntel]);
+  const TABS = useMemo(
+    () => buildModalTabs(t, deep, hasIntel, !!program.paigeFields),
+    [t, deep, hasIntel, program.paigeFields],
+  );
+  const tabExists = TABS.some(x => x.id === tab);
+
+  const changeTab = useCallback(
+    (next: ProgramModalTab) => {
+      setTab(next);
+      saveLastModalTab(next);
+    },
+    [],
+  );
+
+  // Mobile: flick left/right on the body to move between tabs.
+  const swipe = useTabSwipe({
+    onNext: () => {
+      const i = TABS.findIndex(x => x.id === tab);
+      if (i >= 0 && i < TABS.length - 1) changeTab(TABS[i + 1].id);
+    },
+    onPrev: () => {
+      const i = TABS.findIndex(x => x.id === tab);
+      if (i > 0) changeTab(TABS[i - 1].id);
+    },
+  });
 
   const programJsonLd = useMemo(() => programDetailJsonLd(program), [program])
 
@@ -189,7 +232,7 @@ function ProgramModalBody({
         )}
       </div>
 
-      <ModalTabs tabs={TABS} active={tab} onChange={setTab} />
+      <ModalTabs tabs={TABS} active={tab} onChange={changeTab} />
 
       {deep && program.complianceClock && (
         <div className="mb-4">
@@ -197,6 +240,7 @@ function ProgramModalBody({
         </div>
       )}
 
+      <div key={tabExists ? tab : 'reset'} className="tab-panel-in" {...swipe}>
       {tab === 'Overview' && (
         <div className="space-y-4 text-sm text-mp-ink-secondary">
           <p className="leading-relaxed">{program.summary}</p>
@@ -419,6 +463,7 @@ function ProgramModalBody({
           ))}
         </ul>
       )}
+      </div>
 
       <div className="mt-6 flex flex-col gap-3 border-t border-mp-border-subtle pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="font-mono text-[11px] text-mp-ink-tertiary">{t('modal.figuresNote')}</p>
