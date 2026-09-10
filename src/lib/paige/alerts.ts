@@ -32,6 +32,8 @@ export interface PaigeAlert {
   blockHeight?: number
   /** Whether this alert is relevant to the user's portfolio */
   inPortfolio?: boolean
+  /** Whether the user watches this program (watch-list gets alerts pinned first) */
+  watched?: boolean
 }
 
 // ── Classification ───────────────────────────────────────────────────────────
@@ -160,8 +162,10 @@ export function buildAllAlerts(
   programs: Program[],
   portfolioIds?: number[],
   limit = 20,
+  watchlistIds: number[] = [],
 ): PaigeAlert[] {
   const portfolioSet = portfolioIds ? new Set(portfolioIds) : null
+  const watchSet = new Set(watchlistIds)
 
   const allAlerts: PaigeAlert[] = []
   for (const program of programs) {
@@ -170,12 +174,19 @@ export function buildAllAlerts(
       if (portfolioSet) {
         alert.inPortfolio = portfolioSet.has(program.id)
       }
+      alert.watched = watchSet.has(program.id)
       allAlerts.push(alert)
     }
   }
 
   return allAlerts
-    .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
+    // Watched programs' alerts pin to the top within the same date —
+    // the user explicitly asked to follow those jurisdictions.
+    .sort((a, b) => {
+      const byDate = (b.date ?? '').localeCompare(a.date ?? '')
+      if (byDate !== 0) return byDate
+      return (b.watched ? 1 : 0) - (a.watched ? 1 : 0)
+    })
     .slice(0, limit)
 }
 

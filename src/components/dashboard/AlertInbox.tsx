@@ -13,10 +13,11 @@ import {
   type PaigeAlert,
   type AlertType,
 } from '../../lib/paige/alerts'
+import { useWatchlist } from '../../hooks/useWatchlist'
 
-type FilterType = 'all' | AlertType
+type FilterType = 'all' | 'watched' | AlertType
 
-const FILTER_OPTIONS: FilterType[] = ['all', 'rule-change', 'proof-update', 'freshness-stale', 'new-pathway', 'pathway-closed']
+const FILTER_OPTIONS: FilterType[] = ['all', 'watched', 'rule-change', 'proof-update', 'freshness-stale', 'new-pathway', 'pathway-closed']
 
 function alertBg(alertType: AlertType): string {
   switch (alertType) {
@@ -48,6 +49,11 @@ function AlertRow({ alert }: { alert: PaigeAlert }) {
             {alert.inPortfolio && (
               <span className="text-[9px] font-mono uppercase tracking-wide px-1.5 py-0.5 rounded-chip border border-mp-proof/30 bg-mp-proof/10 text-mp-proof">
                 in portfolio
+              </span>
+            )}
+            {alert.watched && (
+              <span className="text-[9px] font-mono uppercase tracking-wide px-1.5 py-0.5 rounded-chip border border-btc-orange/30 bg-btc-orange-soft/50 text-btc-orange">
+                👁 watched
               </span>
             )}
           </div>
@@ -86,18 +92,20 @@ export function AlertInbox() {
   const { t } = useI18n()
   const { programs } = usePrograms()
   const { portfolio } = usePortfolio()
+  const { watchlist } = useWatchlist()
   const [filter, setFilter] = useState<FilterType>('all')
   const [showAll, setShowAll] = useState(false)
 
   const allAlerts = useMemo(
-    () => buildAllAlerts(programs, portfolio, showAll ? 50 : 15),
-    [programs, portfolio, showAll],
+    () => buildAllAlerts(programs, portfolio, showAll ? 50 : 15, watchlist),
+    [programs, portfolio, showAll, watchlist],
   )
 
   const counts = useMemo(() => countAlertsByType(allAlerts), [allAlerts])
 
   const filtered = useMemo(() => {
     if (filter === 'all') return allAlerts
+    if (filter === 'watched') return allAlerts.filter(a => a.watched)
     return allAlerts.filter(a => a.alertType === filter)
   }, [allAlerts, filter])
 
@@ -142,7 +150,7 @@ export function AlertInbox() {
                   : 'border-mp/70 text-ink-muted hover:border-btc-orange/25 hover:text-ink'
               }`}
             >
-              {f === 'all' ? 'All' : ALERT_TYPE_META[f as AlertType].label}
+              {f === 'all' ? 'All' : f === 'watched' ? '👁 Watched' : ALERT_TYPE_META[f as AlertType].label}
               <span className="ml-1 font-mono opacity-70">{count}</span>
             </button>
           )

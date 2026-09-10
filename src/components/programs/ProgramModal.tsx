@@ -1,6 +1,6 @@
 import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, Zap, Check, X as XIcon, Link2 } from 'lucide-react';
+import { ExternalLink, Zap, Check, X as XIcon, Link2, Bell } from 'lucide-react';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 import { loadCompareIds } from '../../lib/portfolioStorage';
 import { serializeIdList } from '../../lib/urlState';
@@ -25,6 +25,8 @@ interface ProgramModalProps {
   onAddToStack?: (program: Program) => void;
   inPortfolio?: boolean;
   initialTab?: ProgramModalTab;
+  watched?: boolean;
+  onToggleWatch?: (program: Program) => void;
 }
 
 export function ProgramModal({
@@ -33,6 +35,8 @@ export function ProgramModal({
   onAddToStack,
   inPortfolio = false,
   initialTab = 'Overview',
+  watched = false,
+  onToggleWatch,
 }: ProgramModalProps) {
   if (!program) return null;
 
@@ -43,6 +47,8 @@ export function ProgramModal({
       onClose={onClose}
       onAddToStack={onAddToStack}
       inPortfolio={inPortfolio}
+      watched={watched}
+      onToggleWatch={onToggleWatch}
       initialTab={initialTab}
     />
   );
@@ -67,12 +73,16 @@ function ProgramModalBody({
   onAddToStack,
   inPortfolio,
   initialTab,
+  watched = false,
+  onToggleWatch,
 }: {
   program: Program;
   onClose: () => void;
   onAddToStack?: (program: Program) => void;
   inPortfolio: boolean;
   initialTab: ProgramModalTab;
+  watched?: boolean;
+  onToggleWatch?: (program: Program) => void;
 }) {
   const { t } = useI18n();
   const openerRef = useRef<HTMLElement | null>(null);
@@ -152,6 +162,22 @@ function ProgramModalBody({
 
       <div className="mb-4 flex items-center gap-3 flex-wrap">
         <ProofBadge status={program.proofStatus} txHint={program.proofRef} />
+        {onToggleWatch && (
+          <button
+            type="button"
+            onClick={() => onToggleWatch(program)}
+            aria-pressed={watched}
+            aria-label={watched ? 'Remove from watch-list' : 'Watch this program for changes'}
+            className={`inline-flex items-center gap-1.5 rounded-chip border px-2.5 py-1 font-chrome text-[11px] transition-all duration-fast ${
+              watched
+                ? 'border-btc-orange/45 bg-btc-orange-soft/60 text-btc-orange shadow-[0_0_10px_rgba(255,149,0,0.15)]'
+                : 'border-mp-border bg-mp-section text-mp-ink-tertiary hover:border-btc-orange/30 hover:text-btc-orange'
+            }`}
+          >
+            <Bell size={12} strokeWidth={watched ? 2.5 : 2} aria-hidden />
+            {watched ? 'Watching' : 'Watch'}
+          </button>
+        )}
         {isFlagship && (
           <span className="font-mono text-[11px] uppercase tracking-wide text-mp-btc-text">{t('modal.flagship')}</span>
         )}

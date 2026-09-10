@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { Check, Zap } from 'lucide-react';
+import { Bell, Check, Zap } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
 import { LazyFlagSprite } from '../pitch/LazyFlagSprite';
 import { FreshnessBadge } from '../ui/FreshnessBadge';
@@ -19,6 +19,8 @@ interface ProgramCardProps {
   index?: number;
   inPortfolio?: boolean;
   onTogglePortfolio?: (program: Program) => void;
+  watched?: boolean;
+  onToggleWatch?: (program: Program) => void;
 }
 
 /**
@@ -35,6 +37,8 @@ export const ProgramCard = memo(function ProgramCard({
   index = 0,
   inPortfolio = false,
   onTogglePortfolio,
+  watched = false,
+  onToggleWatch,
 }: ProgramCardProps) {
   const weight = scoreWeight(program.sovereigntyScore);
   const isFlagship = weight === 'flagship';
@@ -49,6 +53,11 @@ export const ProgramCard = memo(function ProgramCard({
     onTogglePortfolio?.(program);
   };
 
+  const handleWatchToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onToggleWatch?.(program);
+  };
+
   if (reduceMotion) {
     return (
       <button type="button" onClick={() => onSelect(program)} className={cardClassName}>
@@ -57,6 +66,8 @@ export const ProgramCard = memo(function ProgramCard({
           isFlagship={isFlagship}
           inPortfolio={inPortfolio}
           onTogglePortfolio={onTogglePortfolio ? handleToggle : undefined}
+          watched={watched}
+          onToggleWatch={onToggleWatch ? handleWatchToggle : undefined}
         />
       </button>
     );
@@ -78,6 +89,8 @@ export const ProgramCard = memo(function ProgramCard({
         isFlagship={isFlagship}
         inPortfolio={inPortfolio}
         onTogglePortfolio={onTogglePortfolio ? handleToggle : undefined}
+        watched={watched}
+        onToggleWatch={onToggleWatch ? handleWatchToggle : undefined}
       />
     </motion.button>
   );
@@ -88,11 +101,15 @@ function ProgramCardContent({
   isFlagship,
   inPortfolio,
   onTogglePortfolio,
+  watched,
+  onToggleWatch,
 }: {
   program: Program;
   isFlagship: boolean;
   inPortfolio: boolean;
   onTogglePortfolio?: (e: React.MouseEvent) => void;
+  watched?: boolean;
+  onToggleWatch?: (e: React.MouseEvent) => void;
 }) {
   const { t } = useI18n();
   const freshnessLabels = {
@@ -146,6 +163,21 @@ function ProgramCardContent({
           </div>
         </div>
         <div className="flex items-center gap-2">
+          {onToggleWatch && (
+            <button
+              type="button"
+              onClick={onToggleWatch}
+              aria-label={watched ? 'Remove from watch-list' : 'Watch for changes'}
+              title={watched ? 'Remove from watch-list' : 'Watch for changes'}
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-fast ${
+                watched
+                  ? 'border-btc-orange/45 bg-btc-orange-soft/60 text-btc-orange shadow-[0_0_10px_rgba(255,149,0,0.15)]'
+                  : 'border-mp-border bg-mp-section text-mp-ink-tertiary hover:border-btc-orange/30 hover:text-btc-orange'
+              }`}
+            >
+              <Bell size={13} strokeWidth={watched ? 2.5 : 2} />
+            </button>
+          )}
           {onTogglePortfolio && (
             <button
               type="button"

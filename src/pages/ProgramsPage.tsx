@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import { Download, Upload, Plus, Table, LayoutGrid, Link2, Rows3, Zap } from 'lucide-react'
 import { usePrograms } from '../hooks/usePrograms'
 import { usePortfolio } from '../hooks/usePortfolio'
+import { useWatchlist } from '../hooks/useWatchlist'
 import { filterPrograms, DEFAULT_FILTERS, type ProgramFilters } from '../lib/programFilter'
 import {
   loadSavedFilters,
@@ -67,6 +68,7 @@ export function ProgramsPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   const { programs: basePrograms, loading, error } = usePrograms()
   const { portfolio, toggle: togglePortfolio } = usePortfolio()
+  const { watchlist, toggle: toggleWatchlist } = useWatchlist()
   const [addedPrograms, setAddedPrograms] = useState<Program[]>([])
   const programs = useMemo(() => [...basePrograms, ...addedPrograms], [basePrograms, addedPrograms])
   const filters = useMemo(() => filtersFromSearchParams(searchParams), [searchParams])
@@ -261,6 +263,13 @@ export function ProgramsPage() {
 
   const isInPortfolio = (program: CinematicProgram) =>
     portfolio.includes(cinematicIdToNumber(program.id))
+
+  const handleToggleWatch = (program: CinematicProgram) => {
+    toggleWatchlist(cinematicIdToNumber(program.id))
+  }
+
+  const isWatchedProgram = (program: CinematicProgram) =>
+    watchlist.includes(cinematicIdToNumber(program.id))
 
   const programsJsonLd = useMemo(() => {
     const items = programs.slice(0, 50)
@@ -651,6 +660,8 @@ export function ProgramsPage() {
                         index={i}
                         inPortfolio={isInPortfolio(p)}
                         onTogglePortfolio={handleTogglePortfolio}
+                        watched={isWatchedProgram(p)}
+                        onToggleWatch={handleToggleWatch}
                       />
                     ))}
                   </div>
@@ -672,6 +683,8 @@ export function ProgramsPage() {
         onClose={() => setActive(null)}
         onAddToStack={handleAddToStack}
         inPortfolio={active ? isInPortfolio(active) : false}
+        watched={active ? isWatchedProgram(active) : false}
+        onToggleWatch={handleToggleWatch}
       />
 
       <ClassyModal
