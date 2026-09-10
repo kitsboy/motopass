@@ -115,7 +115,9 @@
   --mp-accent-fuchsia-text: #a21caf;
   --mp-accent-fuchsia-soft: #fdf4ff;
 
-  --mp-proof-green: #16A34A;
+  /* green-700 — darkened from #16A34A so 10px badge text clears WCAG AA
+     (≥4.5:1) on the #EFFAF3 soft background in light mode. */
+  --mp-proof-green: #15803D;
   --mp-proof-green-soft: #EFFAF3;
   --mp-nostr-violet: #7C3AED;
 

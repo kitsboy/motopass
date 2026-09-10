@@ -23,7 +23,7 @@ interface FreshnessBadgeProps {
 const LEVEL_STYLES: Record<FreshnessLevel, string> = {
   fresh: 'border-mp-proof/30 bg-mp-proof-soft text-mp-proof',
   recent: 'border-mp-ochre/40 bg-mp-btc-soft text-mp-btc-text',
-  stale: 'border-mp-border-strong bg-mp-section text-mp-ink-tertiary',
+  stale: 'border-mp-border-strong bg-mp-section text-mp-ink-secondary',
 }
 
 export function FreshnessBadge({ lastChecked, proofStampedAt, compact = false, labels }: FreshnessBadgeProps) {

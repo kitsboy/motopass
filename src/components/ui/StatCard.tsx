@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { motion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 
 type LegacyProps = {
   value: ReactNode
@@ -42,13 +42,14 @@ export function StatCard(props: LegacyProps | CinematicProps) {
   }
 
   const { label, value, delta, index = 0 } = props as CinematicProps
+  const reduceMotion = useReducedMotion()
   return (
     <motion.div
-      initial={{ opacity: 0, y: 14 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-10%' }}
       transition={{ duration: 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ y: -2 }}
+      whileHover={reduceMotion ? undefined : { y: -2 }}
       className="group glass-card flex items-center justify-between gap-4 !p-4 transition-[box-shadow,border-color] duration-base ease-spring-gentle hover:border-btc-orange/35 hover:shadow-mp-glow sm:block sm:!p-5"
     >
       <span className="block font-chrome text-[11px] uppercase tracking-[0.14em] text-mp-ink-tertiary">

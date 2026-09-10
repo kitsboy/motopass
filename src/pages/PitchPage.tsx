@@ -37,6 +37,7 @@ import { PitchFaqAccordion } from '../components/pitch/PitchFaqAccordion'
 import { PitchHeroSubline } from '../components/pitch/PitchHeroSubline'
 import { PitchHeroTagline } from '../components/pitch/PitchHeroTagline'
 import { Card } from '../components/ui/Card'
+import { CountUp } from '../components/ui/CountUp'
 import { HowItWorksSection } from '../components/ui/HowItWorksSection'
 import { IntelWatchStrip } from '../components/intel/IntelWatchStrip'
 import { usePrograms } from '../hooks/usePrograms'
@@ -113,6 +114,19 @@ const ROADMAP_LINKS: { key: TranslationKey; to: string; external?: boolean }[] =
   { key: 'pitch.roadmap.agents', to: '/agents' },
 ]
 
+/** Hero chip whose {count} placeholder renders as a count-up number. */
+function ChipCount({ text, count }: { text: string; count: number }) {
+  const i = text.indexOf('{count}')
+  if (i === -1) return <>{text}</>
+  return (
+    <>
+      {text.slice(0, i)}
+      <CountUp value={count} />
+      {text.slice(i + '{count}'.length)}
+    </>
+  )
+}
+
 export function PitchPage() {
   const { t } = useI18n()
   const { programs, loading } = usePrograms()
@@ -171,14 +185,14 @@ export function PitchPage() {
             {stats ? (
               <div className="mt-6 flex flex-wrap gap-2">
                 <span className="rounded-xl border border-white/15 bg-white/8 px-3 py-1.5 font-mono text-[11px] text-mp-on-hero-secondary backdrop-blur-sm">
-                  {t('pitch.hero.jurisdictionsChip').replace('{count}', String(stats.programCount))}
+                  <ChipCount text={t('pitch.hero.jurisdictionsChip')} count={stats.programCount} />
                 </span>
                 <span className="rounded-xl border border-btc-orange/35 bg-btc-orange/12 px-3 py-1.5 font-mono text-[11px] text-mp-btc drop-shadow-sm">
                   {t('pitch.hero.advisorySavingsChip').replace('{amount}', formatUsd(stats.costSavingsUsd))}
                 </span>
                 {stats.lightningCount > 0 && (
                   <span className="rounded-xl border border-electric/30 bg-electric-soft/40 px-3 py-1.5 font-mono text-[11px] text-electric backdrop-blur-sm">
-                    {t('pitch.hero.lightningChip').replace('{count}', String(stats.lightningCount))}
+                    <ChipCount text={t('pitch.hero.lightningChip')} count={stats.lightningCount} />
                   </span>
                 )}
               </div>
