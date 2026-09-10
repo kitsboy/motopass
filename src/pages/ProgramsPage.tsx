@@ -20,6 +20,7 @@ import {
 import { useDebouncedValue } from '../hooks/useDebouncedValue'
 import { toCinematicPrograms, cinematicIdToNumber } from '../lib/programAdapter'
 import { PageHeader } from '../components/ui/PageHeader'
+import { ProgramsOnboarding } from '../components/programs/ProgramsOnboarding'
 import { GoldStandardSpotlight } from '../components/programs/GoldStandardSpotlight'
 import { ProgramsComplianceStrip } from '../components/programs/ProgramsComplianceStrip'
 import { Chip } from '../components/ui/Chip'
@@ -355,6 +356,8 @@ export function ProgramsPage() {
             </>
           }
         />
+
+        <ProgramsOnboarding />
 
         {!loading && !error && programs.length > 0 && (
           <>

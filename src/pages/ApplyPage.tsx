@@ -19,6 +19,7 @@ import { BUILD_ID } from '../lib/buildInfo'
 import { ApplyLaunchGatesDirectory } from '../components/apply/ApplyLaunchGatesDirectory'
 import { ApplyFormProgressStepper } from '../components/apply/ApplyFormProgressStepper'
 import { ApplicationFeeStep } from '../components/apply/ApplicationFeeStep'
+import { ApplyFlowMap, type ApplyFlowStep } from '../components/apply/ApplyFlowMap'
 import { clearApplyDraft, loadApplyDraft, saveApplyDraft } from '../lib/applyDraftStorage'
 import { loadStampedDocuments, documentVerifyUrl, formatBytes } from '../lib/documentStamp'
 import type { StampedDocument } from '../lib/documentStamp'
@@ -61,6 +62,7 @@ export function ApplyPage() {
 
   const initialFields = resolveApplyFields(programPrefill, proofPrefill)
   const [nostr, setNostr] = useState<NostrSession | null>(null)
+  const [feePaid, setFeePaid] = useState(false)
   const [name, setName] = useState(initialFields.name)
   const [program, setProgram] = useState(initialFields.program)
   const [notes, setNotes] = useState(initialFields.notes)
@@ -150,6 +152,15 @@ export function ApplyPage() {
       )}
 
       <PageHeader eyebrow="MEMBERS · APPLICATIONS" title={t('apply.title')} subtitle={t('apply.sub')} />
+
+      <ApplyFlowMap
+        steps={[
+          { id: 'connect', done: !!nostr, active: !nostr },
+          { id: 'details', done: !!(name.trim() && program.trim()), active: !!nostr && !(name.trim() && program.trim()) },
+          { id: 'submit', done: !!result, active: !result && !!nostr && !!name.trim() && !!program.trim() },
+          { id: 'fee', done: feePaid, active: !!result && !feePaid },
+        ] satisfies ApplyFlowStep[]}
+      />
 
       {applicationsOpen && !agentsMessagingOpen && (
         <Card animate delay={0.03} className="mb-6 flex items-start gap-3 border-nostr-violet/25">
@@ -525,7 +536,7 @@ export function ApplyPage() {
       )}
 
       {/* Application-fee commerce step — real Lightning payment on the MotoPass wallet (Seam B) */}
-      {result && <ApplicationFeeStep appHash={result.hash} appId={result.id} program={program} />}
+      {result && <ApplicationFeeStep appHash={result.hash} appId={result.id} program={program} onPaid={() => setFeePaid(true)} />}
 
       <p className="text-center font-chrome text-xs text-ink-muted mt-8">
         <Link to="/vault" className="text-mp-btc-text hover:underline underline-offset-2">Vault</Link>

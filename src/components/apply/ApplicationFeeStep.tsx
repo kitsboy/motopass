@@ -29,12 +29,14 @@ type Props = {
   appHash: string
   appId: string
   program: string
+  /** Fired once when the Lightning fee settles — drives the flow-map stepper. */
+  onPaid?: () => void
 }
 
 const POLL_MS = 4000
 const POLL_MAX = 45 // ~3 min before giving up on live poll
 
-export function ApplicationFeeStep({ appHash, appId, program }: Props) {
+export function ApplicationFeeStep({ appHash, appId, program, onPaid }: Props) {
   const { toast } = useToast()
   const [config, setConfig] = useState<ApplicationFeeConfig | null>(null)
   const [invoice, setInvoice] = useState<{
@@ -97,6 +99,7 @@ export function ApplicationFeeStep({ appHash, appId, program }: Props) {
         if (st.ok && st.paid) {
           setPollState('paid')
           stopPolling()
+          onPaid?.()
           return
         }
         if (st.ok && st.status === 'error') {
