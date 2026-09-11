@@ -476,3 +476,8 @@ or a research view.
    contract — hand them to a coding agent alongside the repo.
 4. The country list and "hot-button items" in Section 5 are a living
    snapshot (2026-08-22 research state) — update them as the corpus heals.
+5. **Batch 1 work order (2026-09-10):** 75d+ cohort — El Salvador (77d),
+   Georgia (75d), UAE (75d), Singapore (76d), Switzerland (78d). Section 4
+   questionnaire per country; apply only medium+ confidence, sourced,
+   audited changes to `research/countries.json`; unverifiable = "unverified",
+   country stays stale.

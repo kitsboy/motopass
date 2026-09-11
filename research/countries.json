@@ -14,16 +14,20 @@
         "processing_time_months": "1-4",
         "tax_benefits": "Favorable crypto tax treatment; legal-tender status revoked in Feb 2025 (IMF condition) — sovereign-signal framing is now historical, but no capital gains tax on Bitcoin in many cases remains.",
         "crypto_friendly_score": 9,
-        "bitcoin_specific": "Direct Bitcoin payments accepted in many places. Government Bitcoin reserve and infrastructure. Ideal for MotoPass Bitcoin passport pilots."
+        "bitcoin_specific": "Bitcoin legal with voluntary acceptance since Jan 2025 reforms. Government Strategic Bitcoin Reserve continues accumulating (~7,762 BTC as of Sep 2026); Chivo wallet ownership and operation transferred to a private operator (IMF-confirmed, Sep 2026). Freedom Visa anchors the investment-migration offer."
       },
       "details": "First country to make Bitcoin legal tender (Ley Bitcoin passed 8 Jun 2021, effective 7 Sep 2021). Legal-tender status revoked in Feb 2025 under the $1.4B IMF program: merchants no longer obligated to accept BTC and taxes no longer payable in BTC, but BTC remains legal with voluntary use and the government continues holding. Still a strong fit for MotoPass Bitcoin identity experiments.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-10",
       "sources": [
         "Reuters (2025-01-30)",
         "IMF Country Report 25/58",
         "CoinDesk",
         "Wikipedia (Bitcoin in El Salvador)",
-        "Official government announcements"
+        "Official government announcements",
+        "IMI Daily (2026-04-15)",
+        "Passportivity legal review (2026-07-02)",
+        "IMF statement (2026-09-03)",
+        "news.bitcoin.com reserve tracker (2026-09-02)"
       ],
       "flag": "🇸🇻",
       "lightning_ready": true,
@@ -61,6 +65,12 @@
           "label": "Bitcoin business establishment",
           "min_investment_usd": 30000,
           "notes": "Strong fit for Lightning-native operators and crypto founders."
+        },
+        {
+          "type": "freedom_visa",
+          "label": "Freedom Visa (Adopting El Salvador)",
+          "min_investment_usd": 1000000,
+          "notes": "Adopted Dec 2024, operating through 2026: USD 1,000,000 in BTC or USDt (government-designated) → residency + fast-track citizenship eligibility; capped at 1,000 main applicants/yr; spouse and children under 18 included. Sources: IMI Daily (2026-04-15, program continues despite Jan 2025 Bitcoin-law reforms); Passportivity legal review (2026-07-02); official Adopting El Salvador programme page."
         }
       ],
       "critical_tests": {
@@ -140,6 +150,16 @@
           "text": "Tip: Use Lightning-first business footprint in San Salvador",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-06-05"
+        },
+        {
+          "text": "Government Strategic Bitcoin Reserve continues to accumulate (~7,762 BTC, Sep 2026) even under the IMF programme.",
+          "source": "news.bitcoin.com (2026-09-02); Reuters reserve coverage",
+          "verified_at": "2026-09-10"
+        },
+        {
+          "text": "Freedom Visa: USD 1M in BTC/USDt → residency with fast-track citizenship track (1,000/yr cap).",
+          "source": "IMI Daily (2026-04-15); Passportivity lawyer-verified (2026-07-02)",
+          "verified_at": "2026-09-10"
         }
       ],
       "cons": [
@@ -147,6 +167,11 @@
           "text": "Verify current reform details before structuring",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-06-05"
+        },
+        {
+          "text": "Chivo wallet privatized (IMF-confirmed Sep 2026) — state-run Bitcoin retail rails are winding down; rely on private wallets/exchanges.",
+          "source": "IMF statement via TradingView/CryptoBriefing (2026-09-03)",
+          "verified_at": "2026-09-10"
         }
       ],
       "scorecard": {
@@ -212,6 +237,27 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.freedom_visa",
+          "from": "(absent)",
+          "to": "added: $1M BTC/USDt, 1,000/yr cap, family incl.",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.bitcoin_specific",
+          "from": "Direct Bitcoin payments accepted in many places. Government Bitcoin reserve and infrastructure. Ideal for MotoPass Bitcoin passport pilots.",
+          "to": "Bitcoin legal with voluntary acceptance since Jan 2025 reforms. Government Strategic Bitcoin Reserve continues accumulating (~7,762 BTC as of Sep 2026); Chivo wallet ownership and operation transferred to a private operator (IMF-confirmed, Sep 2026). Freedom Visa anchors the investment-migration offer.",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
         }
       ]
     },
@@ -1886,11 +1932,13 @@
         "bitcoin_specific": "World-class for Bitcoin businesses and holders. VARA regulation provides clarity. Perfect MotoPass flagship jurisdiction."
       },
       "details": "Top global crypto hub. Ideal base for MotoPass operations, Bitcoin company incorporation, and high-end residency. Modeled minimum investment $500,000 (typical $750,000). Primary routes on file: Golden Visa (10-year), Free zone company + residency. Tax notes: 0% personal income tax, 0% capital gains on crypto. Golden Visa pathways via investment or business setup. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-10",
       "sources": [
         "VARA Dubai",
         "Official immigration",
-        "Our research"
+        "Our research",
+        "u.ae — Golden Visa (official, updated 2026-07-28)",
+        "adro.gov.ae — Abu Dhabi Golden Visa investors"
       ],
       "flag": "🇦🇪",
       "lightning_ready": true,
@@ -1919,9 +1967,9 @@
       "pathways": [
         {
           "type": "golden_visa",
-          "label": "Golden Visa (10-year)",
+          "label": "Golden Visa (10-yr public investment / 5-yr real estate)",
           "min_investment_usd": 544000,
-          "notes": "Property or investment threshold in AED equivalent; VARA clarity for crypto businesses."
+          "notes": "Official federal terms (u.ae, updated 2026-07-28): minimum capital AED 2,000,000 (≈USD 545k) via property ownership, public investment, or contribution to an establishment paying ≥AED 250,000/yr in taxes. Real-estate route grants 5-year renewable residency; public-investment route grants 10 years. Abu Dhabi (adro.gov.ae) mirrors the AED 2M bar."
         },
         {
           "type": "free_zone",
@@ -1934,7 +1982,7 @@
         "live_and_work": true,
         "scope_of_freedom": true,
         "dual_citizenship": false,
-        "notes": "UAE does not offer citizenship by investment; residency + tax efficiency is the play."
+        "notes": "UAE offers no citizenship by investment; residency + tax efficiency is the play. Golden Visa tenure: 10 years (public investment) or 5 years (real estate), both renewable."
       },
       "legal_compliance": {
         "primary_laws": [
@@ -1946,7 +1994,7 @@
           "https://www.vara.ae"
         ],
         "property_foreign_ownership": "Freehold zones available for foreigners in designated areas.",
-        "recent_changes": "Regulated by jurisdiction (as of Oct 2025): VARA (Dubai incl. DMCC), DFSA (DIFC), FSRA (ADGM), CBUAE + SCA (onshore); VARA continues strengthening crypto business licensing."
+        "recent_changes": "Regulated by jurisdiction (as of Oct 2025): VARA (Dubai incl. DMCC), DFSA (DIFC), FSRA (ADGM), CBUAE + SCA (onshore). Golden Visa federal terms re-verified on u.ae (updated 2026-07-28): AED 2M minimum; real-estate route now 5-year tenure (10-year tenure reserved for public investments); tax-contributor route (≥AED 250k/yr) explicitly listed."
       },
       "compliance_clock": {
         "renewal_interval_months": 24,
@@ -2011,6 +2059,11 @@
           "text": "Tip: VARA-licensed structure for crypto treasury; Lightning-friendly free zones",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Golden Visa accepts a tax-contribution route: ≥AED 250,000/yr corporate tax payments can qualify alongside the AED 2M capital bar.",
+          "source": "u.ae Golden Visa page (updated 2026-07-28)",
+          "verified_at": "2026-09-10"
         }
       ],
       "cons": [
@@ -2028,6 +2081,11 @@
           "text": "Free zone vs mainland entity choice matters",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Real-estate Golden Visa grants 5-year (not 10-year) residency per official u.ae terms — 10-year tenure is for public investments.",
+          "source": "u.ae Golden Visa page (updated 2026-07-28, fetched 2026-09-10)",
+          "verified_at": "2026-09-10"
         }
       ],
       "scorecard": {
@@ -2212,6 +2270,41 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.golden_visa.label",
+          "from": "Golden Visa (10-year)",
+          "to": "Golden Visa (10-yr public investment / 5-yr real estate)",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.golden_visa.notes",
+          "from": "Property or investment threshold in AED equivalent; VARA clarity for crypto businesses.",
+          "to": "Official federal terms (u.ae, updated 2026-07-28): minimum capital AED 2,000,000 (≈USD 545k) via property ownership, public investment, or contribution to an establishment paying ≥AED 250,000/yr in taxes. Real-estate route grants 5-year renewable residency; public-investment route grants 10 years. Abu Dhabi (adro.gov.ae) mirrors the AED 2M bar.",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Regulated by jurisdiction (as of Oct 2025): VARA (Dubai incl. DMCC), DFSA (DIFC), FSRA (ADGM), CBUAE + SCA (onshore); VARA continues strengthening crypto business licensing.",
+          "to": "Regulated by jurisdiction (as of Oct 2025): VARA (Dubai incl. DMCC), DFSA (DIFC), FSRA (ADGM), CBUAE + SCA (onshore). Golden Visa federal terms re-verified on u.ae (updated 2026-07-28): AED 2M minimum; real-estate route now 5-year tenure (10-year tenure reserved for public investments); tax-contributor route (≥AED 250k/yr) explicitly listed.",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "critical_tests.notes",
+          "from": "UAE does not offer citizenship by investment; residency + tax efficiency is the play.",
+          "to": "UAE offers no citizenship by investment; residency + tax efficiency is the play. Golden Visa tenure: 10 years (public investment) or 5 years (real estate), both renewable.",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
         }
       ]
     },
@@ -2224,7 +2317,7 @@
       "bitcoin_integration": "Crypto Valley (Zug) is legendary. Clear regulation, strong rule of law, excellent banking for crypto. Many Bitcoin companies headquartered here. Residency possible via investment or business.",
       "finance": {
         "min_investment_usd": 300000,
-        "typical_investment_usd": 500000,
+        "typical_investment_usd": 550000,
         "gov_fees_usd": 25000,
         "processing_time_months": "4-12",
         "tax_benefits": "Favorable lump-sum taxation in some cantons for high-net-worth. Crypto treated as asset class with clarity.",
@@ -2232,11 +2325,14 @@
         "bitcoin_specific": "Best-in-class infrastructure for Bitcoin companies and individuals. On-chain friendly. Top MotoPass European anchor."
       },
       "details": "Gold standard for crypto jurisdiction. High quality of life and stability. Excellent for serious Bitcoin sovereigns. Modeled minimum investment $300,000 (typical $500,000). Primary routes on file: Lump-sum taxation (negotiated), Company + director residency. Tax notes: Favorable lump-sum taxation in some cantons for high-net-worth. Crypto treated as asset class with clarity. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-10",
       "sources": [
         "Crypto Valley Association",
         "Cantonal rules",
-        "Our research"
+        "Our research",
+        "Taxolution — Moving to Switzerland (updated 2026-02)",
+        "TaxFreeResidency — Swiss lump-sum 2026 guide",
+        "Deloitte — Living & Working in Switzerland 2026-27"
       ],
       "flag": "🇨🇭",
       "lightning_ready": true,
@@ -2266,8 +2362,8 @@
         {
           "type": "lump_sum_tax",
           "label": "Lump-sum taxation (negotiated)",
-          "min_investment_usd": 250000,
-          "notes": "Canton-negotiated annual tax based on estimated living expenses (not income/assets) — requires no Swiss gainful activity and no Swiss citizenship; abolished in some cantons (Zurich 2010, Basel-Stadt, Schaffhausen, Appenzell AR), stricter in others; ~5,000 payers (2016)."
+          "min_investment_usd": 300000,
+          "notes": "Forfait fiscal / Pauschalbesteuerung: tax negotiated on Swiss living expenditure, not worldwide income. Federal minimum taxable base CHF 435,000 for 2026 (up from CHF 400,000); 21 of 26 cantons still offer the regime (Zurich, Basel-City et al. abolished); Geneva applies ~CHF 1M minimum in practice. Requires B permit, no gainful employment in Switzerland, first-time or 10+yr-returning residents; ~183 days/yr expected. Sources: Taxolution (updated 2026-02); TaxFreeResidency 2026 guide; Deloitte Living & Working in Switzerland 2026-27."
         },
         {
           "type": "business",
@@ -2292,7 +2388,7 @@
           "https://www.zug.ch"
         ],
         "property_foreign_ownership": "Permitted with cantonal restrictions for non-EU/EFTA in some cases.",
-        "recent_changes": "Crypto Valley continues as Bitcoin business hub; FINMA clarity for VASPs. Lump-sum tax confirmed active: based on living expenses, no gainful activity, ~5,000 payers; abolished in some cantons (Zurich 2010 et al.), national abolition rejected by referendum 2014."
+        "recent_changes": "Lump-sum confirmed active for 2026: federal minimum base CHF 435,000 (2026), 21 retaining cantons, national abolition rejected by referendum (2014). Crypto Valley (Zug) continues; FINMA VASP clarity unchanged. 0% federal/private capital-gains on movable assets (incl. private crypto holdings) confirmed across 2026 guides."
       },
       "compliance_clock": {
         "renewal_interval_months": 12,
@@ -2362,6 +2458,11 @@
           "text": "Tip: Zug for Bitcoin treasury companies; lump-sum in low-tax cantons",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-06-04"
+        },
+        {
+          "text": "Private capital gains — including privately-held crypto — taxed at 0% federally; lump-sum base CHF 435,000 federal floor for 2026.",
+          "source": "TaxFreeResidency 2026 guide; Taxolution (2026-02)",
+          "verified_at": "2026-09-10"
         }
       ],
       "cons": [
@@ -2374,6 +2475,11 @@
           "text": "Canton selection drives tax outcome",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-06-04"
+        },
+        {
+          "text": "Only 21 of 26 cantons offer lump-sum; Geneva effectively requires ~CHF 1M/yr minimum tax.",
+          "source": "TaxFreeResidency 2026 guide",
+          "verified_at": "2026-09-10"
         }
       ],
       "scorecard": {
@@ -2516,6 +2622,41 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.min_investment_usd",
+          "from": "300000",
+          "to": "300000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — ≈CHF 250k living-expense base; federal base CHF 435k (2026)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": "500000",
+          "to": "550000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — Geneva-class forfait ≈CHF 500k all-in"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.lump_sum_tax.min_investment_usd",
+          "from": "250000",
+          "to": "300000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Crypto Valley continues as Bitcoin business hub; FINMA clarity for VASPs. Lump-sum tax confirmed active: based on living expenses, no gainful activity, ~5,000 payers; abolished in some cantons (Zurich 2010 et al.), national abolition rejected by referendum 2014.",
+          "to": "Lump-sum confirmed active for 2026: federal minimum base CHF 435,000 (2026), 21 retaining cantons, national abolition rejected by referendum (2014). Crypto Valley (Zug) continues; FINMA VASP clarity unchanged. 0% federal/private capital-gains on movable assets (incl. private crypto holdings) confirmed across 2026 guides.",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
         }
       ]
     },
@@ -2527,20 +2668,24 @@
       "status": "Acquired - Top Hub",
       "bitcoin_integration": "Clear, balanced regulation (MAS). Strong fintech and crypto scene. Excellent infrastructure. Residency via investment or Global Investor Programme.",
       "finance": {
-        "min_investment_usd": 400000,
-        "typical_investment_usd": 600000,
-        "gov_fees_usd": 35000,
-        "processing_time_months": "3-8",
+        "min_investment_usd": 7500000,
+        "typical_investment_usd": 11000000,
+        "gov_fees_usd": 15000,
+        "processing_time_months": "9-14",
         "tax_benefits": "No capital gains tax. Territorial tax system. Very attractive for Bitcoin holders and funds.",
         "crypto_friendly_score": 9,
         "bitcoin_specific": "World-class for Bitcoin trading, custody, and business. Strict but predictable. Strong MotoPass Asia base."
       },
       "details": "Premier Asian hub. High trust, excellent connectivity, strong rule of law. Ideal for MotoPass regional headquarters. Modeled minimum investment $400,000 (typical $600,000). Primary routes on file: Global Investor Programme (GIP), EntrePass / EP company director, Single Family Office (SFO). Tax notes: No capital gains tax. Territorial tax system. Very attractive for Bitcoin holders and funds. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-10",
       "sources": [
         "MAS guidelines",
         "Official GIP program",
-        "Our research"
+        "Our research",
+        "E&H Immigration — GIP 2026 guide (2026-08-28)",
+        "Withers — SPR under enhanced GIP (2023-03-02)",
+        "Duane Morris Selvam (2023-03-02)",
+        "Singapore parliamentary GIP update (2026-02)"
       ],
       "flag": "🇸🇬",
       "lightning_ready": true,
@@ -2570,20 +2715,20 @@
         {
           "type": "gip",
           "label": "Global Investor Programme (GIP)",
-          "min_investment_usd": 1800000,
-          "notes": "S$2.5M+ in approved business, fund, or family office — premier HNW residency route; verify current MAS-approved categories."
+          "min_investment_usd": 7500000,
+          "notes": "Option A: ≥S$10M in a new/existing Singapore business (incl. paid-up capital), 30% shareholding, C-suite/board role, Annex B industry, 5-year business plan. (Option B: ≥S$25M in a GIP-select fund. Option C: SFO with AUM ≥S$200M + ≥S$50M deployed in EDB-specified investments.) Application fee S$20,000 (from 2025-05-05); ~12 months processing. Sources: E&H Immigration GIP 2026 guide (2026-08-28); Withers (2023-03-02); Duane Morris (2023-03-02); Feb 2026 parliamentary update (450 PRs granted)."
         },
         {
           "type": "entrepass",
-          "label": "EntrePass / EP company director",
+          "label": "Employment Pass — company director",
           "min_investment_usd": 400000,
-          "notes": "Incorporate Singapore entity with meaningful local activity; lower capital than GIP but requires operational substance."
+          "notes": "EntrePass tightened/wound down in favor of EP via owned company: min-committed local spend and business substance reviewed by MOM; salary thresholds apply. Not an investment threshold — capital needs are business-plan-driven (practically ≥USD 250k for credible applications)."
         },
         {
           "type": "family_office",
           "label": "Single Family Office (SFO)",
-          "min_investment_usd": 5000000,
-          "notes": "MAS-licensed SFO pathway for crypto treasury families — strict AML but no capital gains tax on personal holdings."
+          "min_investment_usd": 15000000,
+          "notes": "Single Family Office route via GIP Option C: establish a Singapore SFO with AUM ≥S$200M (excl. real estate), transfer and deploy ≥S$50M in EDB-specified investments within 12 months of final approval; principals need ≥S$200M net investible assets and 5+ yrs track record. S$ figure ≈ USD 15M recorded as the practical entry commitment."
         }
       ],
       "critical_tests": {
@@ -2603,7 +2748,7 @@
           "https://www.mas.gov.sg"
         ],
         "property_foreign_ownership": "Foreigners may purchase private residential with ABSD surcharge (15–60% depending on profile); landed restricted.",
-        "recent_changes": "Legal (Payment Services Act 2019 — digital payment tokens); MAS continues tightening VASP licensing; GIP fund categories updated periodically — confirm eligible vehicles."
+        "recent_changes": "GIP 2023 quanta verified current through 2026: S$10M business / S$25M GIP-select fund / SFO S$200M AUM + S$50M deployment. Application fee S$20,000 (2025-05-05). PSA 2019 digital-payment-token regime continues under MAS licensing; MAS keeps tightening VASP supervision. Feb 2026 parliamentary update: 450 individuals have secured PR via GIP."
       },
       "compliance_clock": {
         "renewal_interval_months": 60,
@@ -2669,6 +2814,11 @@
           "text": "Tip: Structure for PR + tax efficiency, not passport; use VCC for fund vehicles",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-06-06"
+        },
+        {
+          "text": "Only ~450 GIP PRs granted (Feb 2026 parliamentary figure) — scarce but proven route with published quanta.",
+          "source": "Singapore parliamentary update via The Peak (2026-02)",
+          "verified_at": "2026-09-10"
         }
       ],
       "cons": [
@@ -2691,6 +2841,16 @@
           "text": "ABSD adds cost to property route",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-06-06"
+        },
+        {
+          "text": "GIP entry bar is now S$10M+ (Options A–C, 2023 overhaul verified current 2026) — the S$2.5M era is over.",
+          "source": "E&H Immigration (2026-08-28); Withers (2023-03-02)",
+          "verified_at": "2026-09-10"
+        },
+        {
+          "text": "GIP business-owner track requires ≥S$200M company turnover and ≥30% ownership; founders need a ≥S$500M-valuation company.",
+          "source": "E&H Immigration GIP 2026 guide (2026-08-28)",
+          "verified_at": "2026-09-10"
         }
       ],
       "scorecard": {
@@ -2840,6 +3000,69 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.gip.min_investment_usd",
+          "from": "1800000",
+          "to": "7500000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.family_office.min_investment_usd",
+          "from": "5000000",
+          "to": "15000000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.entrepass.label+notes",
+          "from": "EntrePass / EP company director",
+          "to": "Employment Pass — company director — EntrePass tightened/wound down in favor of EP via owned comp…",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.min_investment_usd",
+          "from": "400000",
+          "to": "7500000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": "600000",
+          "to": "11000000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — S$15M practical midpoint across Options A–C"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.gov_fees_usd",
+          "from": "35000",
+          "to": "15000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — S$20,000 application fee (2025-05-05 revision) + professional costs"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.processing_time_months",
+          "from": "3-8",
+          "to": "9-14",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — ~12 months per E&H GIP 2026 guide"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Legal (Payment Services Act 2019 — digital payment tokens); MAS continues tightening VASP licensing; GIP fund categories updated periodically — confirm eligible vehicles.",
+          "to": "GIP 2023 quanta verified current through 2026: S$10M business / S$25M GIP-select fund / SFO S$200M AUM + S$50M deployment. Application fee S$20,000 (2025-05-05). PSA 2019 digital-payment-token regime continues under MAS licensing; MAS keeps tightening VASP supervision. Feb 2026 parliamentary update: 450 individuals have secured PR via GIP.",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
         }
       ]
     },
@@ -3822,8 +4045,8 @@
       "status": "Acquired - Rising Star",
       "bitcoin_integration": "Very crypto-friendly policies in recent years. Low taxes, fast residency, growing Bitcoin scene. Attractive for digital asset holders.",
       "finance": {
-        "min_investment_usd": 50000,
-        "typical_investment_usd": 100000,
+        "min_investment_usd": 150000,
+        "typical_investment_usd": 160000,
         "gov_fees_usd": 8000,
         "processing_time_months": "1-3",
         "tax_benefits": "Low flat tax, territorial elements, crypto often favorably treated.",
@@ -3831,10 +4054,15 @@
         "bitcoin_specific": "Fast, low-cost, crypto-positive. Strong emerging MotoPass candidate for Europe/Asia corridor."
       },
       "details": "Rising star for Bitcoiners seeking fast, affordable, friendly jurisdiction. High potential. Modeled minimum investment $50,000 (typical $100,000). Primary routes on file: Work residence via company registration, Real estate ownership residency, Remotely from Georgia. Tax notes: Low flat tax, territorial elements, crypto often favorably treated. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-10",
       "sources": [
         "Recent policy updates",
-        "Our research"
+        "Our research",
+        "legal.ge legislative analysis (2025-12-30)",
+        "IMI Daily (2026-02-02)",
+        "IBCCS Tax Georgia guide (2026-09)",
+        "National Bank of Georgia — VASPs page",
+        "icon.partners licensing guide (2026)"
       ],
       "flag": "🇬🇪",
       "lightning_ready": true,
@@ -3870,8 +4098,8 @@
         {
           "type": "real_estate",
           "label": "Real estate ownership residency",
-          "min_investment_usd": 100000,
-          "notes": "Property investment pathway — verify current minimum thresholds with counsel; Tbilisi market accessible."
+          "min_investment_usd": 150000,
+          "notes": "USD 150,000 certified property value (multiple properties may combine) for the renewable short-term residence permit — raised from USD 100,000 effective 1 Mar 2026 (Law on Legal Status of Aliens amendments, Jun 2025; Arts. 15(j), 7(d.e)). Pre-deadline $100k holders renew under old terms while ownership continues. Sources: legal.ge analysis (2025-12-30); IMI Daily (2026-02-02); IBCCS Tax 2026 guide (2026-09)."
         },
         {
           "type": "remote_work",
@@ -3890,14 +4118,14 @@
         "primary_laws": [
           "Law on Legal Status of Foreigners",
           "Tax Code of Georgia",
-          "Virtual Asset Service Providers draft framework"
+          "NBG Virtual Asset Service Provider registration regime (in force since Jan 2023)"
         ],
         "official_urls": [
           "https://sda.gov.ge",
           "https://www.rs.ge"
         ],
         "property_foreign_ownership": "Foreigners may freely purchase land and apartments except agricultural land (restrictions apply).",
-        "recent_changes": "2019 Ministry of Finance decision: crypto not 'Georgia-sourced' income → 0% capital gains tax on personal crypto trading; VASP licensing framework developing; remote work permit launched 2021."
+        "recent_changes": "Real-estate residence threshold raised $100k → $150k effective 1 Mar 2026 (Jun 2025 amendments). VASP registration with the National Bank of Georgia mandatory since Jan 2023 (GEL 5,000 registration fee; AML obligations). Mandatory work-permit regime for foreign employees from 1 Mar 2026; new IT-sector residence permit launched Sep 2025. 2019 MoF position unchanged: personal crypto gains 0% (non-Georgia-sourced)."
       },
       "compliance_clock": {
         "renewal_interval_months": 12,
@@ -3968,6 +4196,11 @@
           "text": "Tip: Company + remote work combo for lowest cost; Tbilisi as BTC operational base",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Crypto businesses operate under a live NBG VASP registration regime (since Jan 2023) — regulatory clarity, not a gray zone.",
+          "source": "nbg.gov.ge VASP page; icon.partners (2026)",
+          "verified_at": "2026-09-10"
         }
       ],
       "cons": [
@@ -3985,6 +4218,11 @@
           "text": "Citizenship takes 10 years",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-06-07"
+        },
+        {
+          "text": "Real-estate residency now costs USD 150,000 (since 1 Mar 2026) — 50% above the long-standing $100k entry.",
+          "source": "legal.ge (2025-12-30); IMI Daily (2026-02-02)",
+          "verified_at": "2026-09-10"
         }
       ],
       "scorecard": {
@@ -4190,6 +4428,48 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.real_estate.min_investment_usd",
+          "from": "100000",
+          "to": "150000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.min_investment_usd",
+          "from": "50000",
+          "to": "150000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": "100000",
+          "to": "160000",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — RE threshold + registration/appraisal costs"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.primary_laws[vasp]",
+          "from": "NBG Virtual Asset Service Provider registration regime (in force since Jan 2023) (was: draft framework)",
+          "to": "NBG Virtual Asset Service Provider registration regime (in force since Jan 2023)",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "2019 Ministry of Finance decision: crypto not 'Georgia-sourced' income → 0% capital gains tax on personal crypto trading; VASP licensing framework developing; remote work permit launched 2021.",
+          "to": "Real-estate residence threshold raised $100k → $150k effective 1 Mar 2026 (Jun 2025 amendments). VASP registration with the National Bank of Georgia mandatory since Jan 2023 (GEL 5,000 registration fee; AML obligations). Mandatory work-permit regime for foreign employees from 1 Mar 2026; new IT-sector residence permit launched Sep 2025. 2019 MoF position unchanged: personal crypto gains 0% (non-Georgia-sourced).",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10",
+          "source": "Batch 1 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
         }
       ]
     },
