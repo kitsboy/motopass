@@ -369,6 +369,7 @@ export const pageKeysJa: Partial<Record<PageKey, string>> = {
   'veritas.probeNote': 'インテルパイプラインが毎日プローブ',
   'veritas.changedCount': '件が変更',
   'veritas.downCount': '件がダウン',
+  'veritas.mirror': 'アーカイブ',
   'modal.officialSources': '公式ソース',
   'modal.openCompare': '比較で開く',
   'modal.paigeEscalate': 'エスカレーションのタイミング',

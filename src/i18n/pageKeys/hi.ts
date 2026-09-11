@@ -610,6 +610,7 @@ export const pageKeysHi: Partial<Record<PageKey, string>> = {
   'veritas.probeNote': 'इंटेल पाइपलाइन द्वारा दैनिक जांचा गया',
   'veritas.changedCount': 'बदले',
   'veritas.downCount': 'डाउन',
+  'veritas.mirror': 'संग्रह',
   'modal.flagship': 'फ्लैगशिप कार्यक्रम',
   'modal.flagshipDeep': 'गहरा फ्लैगशिप',
   'modal.flagshipTemplate': 'टेम्पलेट गहराई',

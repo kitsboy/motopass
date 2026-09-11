@@ -477,6 +477,7 @@ export const pageKeysSw: Partial<Record<PageKey, string>> = {
   'veritas.probeNote': 'Hupimwa kila siku na mtiririko wa akili',
   'veritas.changedCount': 'vimabadilika',
   'veritas.downCount': 'vimekoma',
+  'veritas.mirror': 'Failo',
   'modal.flagship': 'Programu ya mfano',
   'modal.flagshipDeep': 'Mfano wa kina',
   'modal.flagshipTemplate': 'Kina cha kiolezo',

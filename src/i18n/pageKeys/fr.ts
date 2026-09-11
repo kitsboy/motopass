@@ -597,6 +597,7 @@ export const pageKeysFr: Partial<Record<PageKey, string>> = {
   'veritas.probeNote': 'Sondé chaque jour par le pipeline intel',
   'veritas.changedCount': 'modifiée(s)',
   'veritas.downCount': 'hors ligne',
+  'veritas.mirror': 'Archives',
   'modal.flagship': 'Programme fleuron',
   'modal.flagshipDeep': 'Fleuron approfondi',
   'modal.flagshipTemplate': 'Profondeur modèle',

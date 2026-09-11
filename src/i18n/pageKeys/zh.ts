@@ -527,6 +527,7 @@ export const pageKeysZh: Partial<Record<PageKey, string>> = {
   'veritas.probeNote': '情报管道每日探测',
   'veritas.changedCount': '个已变更',
   'veritas.downCount': '个无法访问',
+  'veritas.mirror': '存档',
   'modal.flagship': '旗舰项目',
   'modal.flagshipDeep': '深度旗舰',
   'modal.flagshipTemplate': '模板深度',

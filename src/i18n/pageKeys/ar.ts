@@ -477,6 +477,7 @@ export const pageKeysAr: Partial<Record<PageKey, string>> = {
   'veritas.probeNote': 'يُفحص يوميًا عبر خط المعاملات الاستخبارية',
   'veritas.changedCount': 'تغيّرت',
   'veritas.downCount': 'معطلة',
+  'veritas.mirror': 'الأرشيف',
   'modal.flagship': 'برنامج رائد',
   'modal.flagshipDeep': 'رائد معمّق',
   'modal.flagshipTemplate': 'عمق النموذج',

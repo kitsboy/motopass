@@ -597,6 +597,7 @@ export const pageKeysEs: Partial<Record<PageKey, string>> = {
   'veritas.probeNote': 'Sondeado a diario por el pipeline de intel',
   'veritas.changedCount': 'cambiaron',
   'veritas.downCount': 'caídas',
+  'veritas.mirror': 'Archivo',
   'modal.flagship': 'Programa insignia',
   'modal.flagshipDeep': 'Insignia profunda',
   'modal.flagshipTemplate': 'Profundidad de plantilla',
