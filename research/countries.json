@@ -1497,7 +1497,7 @@
     "live_and_work": true,
     "scope_of_freedom": true,
     "dual_citizenship": true,
-    "notes": "Strong passport mobility (150+ visa-free incl. Schengen); 5-day physical presence in first 5 years required; mandatory virtual interview for applicants 16+; no capital gains tax."
+    "notes": "Strong passport mobility (150+ visa-free incl. Schengen); 5-day physical presence in first 5 years required; mandatory virtual interview for applicants 16+; no capital gains tax. US Proclamation 10998 (eff. 1 Jan 2026): partial restriction implemented as a B-1/B-2 visa-validity cut for Antiguan and Barbudan nationals (10-year visas reduced) — entry not banned."
    },
    "legal_compliance": {
     "primary_laws": [
@@ -1667,6 +1667,13 @@
      "from": "2026-08-22",
      "to": "2026-09-10",
      "source": "Batch 3 research pass (docs/CLAUDE-RESEARCH-PROMPT work order, 80–98d tail) — NDF tier correction"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "critical_tests.notes",
+     "from": "Strong passport mobility (150+ visa-free incl. Schengen); 5-day physical presence in first 5 years required; mandatory virtual interview for applicants 16+; no capital gains tax.",
+     "to": "Strong passport mobility (150+ visa-free incl. Schengen); 5-day physical presence in first 5 years required; mandatory virtual interview for applicants 16+; no capital gains tax. US Proclamation 10998 (eff. 1 Jan 2026): partial restriction implemented as a B-1/B-2 visa-validity cut for Antiguan and Barbudan nationals (10-year visas reduced) — entry not banned.",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — CitizenX 2026-08-03 · State Dept travel.state.gov (P-10998, 39-country partial list)"
     }
    ]
   },
@@ -1740,7 +1747,7 @@
     "live_and_work": true,
     "scope_of_freedom": true,
     "dual_citizenship": true,
-    "notes": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents."
+    "notes": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents. US Proclamation 10998 (eff. 1 Jan 2026): partial restriction implemented as a B-1/B-2 visa-validity cut for Dominica nationals (10-year visas reduced) — entry not banned."
    },
    "legal_compliance": {
     "primary_laws": [
@@ -2008,6 +2015,13 @@
      "from": "corpus sweep 2026-08-22",
      "to": "re-verified, no material change — EDF $200k + ECCIRA 2026 harmonization confirmed current (ketencilaw 2026-09-10); no material change",
      "source": "Batch 3 research pass (docs/CLAUDE-RESEARCH-PROMPT work order, 80–98d tail)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "critical_tests.notes",
+     "from": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents.",
+     "to": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents. US Proclamation 10998 (eff. 1 Jan 2026): partial restriction implemented as a B-1/B-2 visa-validity cut for Dominica nationals (10-year visas reduced) — entry not banned.",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — CitizenX 2026-08-03 · State Dept travel.state.gov (P-10998, 39-country partial list)"
     }
    ]
   },
@@ -9816,8 +9830,8 @@
    "status": "Acquired - Researching",
    "bitcoin_integration": "St. Lucia offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
    "finance": {
-    "min_investment_usd": 100000,
-    "typical_investment_usd": 150000,
+    "min_investment_usd": 240000,
+    "typical_investment_usd": 250000,
     "gov_fees_usd": 25000,
     "processing_time_months": "3-6",
     "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
@@ -9825,7 +9839,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for St. Lucia. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -9889,7 +9903,7 @@
      "https://www.ciu.gov.lc"
     ],
     "property_foreign_ownership": "Foreigners may purchase approved CBI real estate and other property with standard conveyancing; Alien Landholding License may apply for non-approved land.",
-    "recent_changes": "NEF donation and bond options remain active; industry-wide enhanced due diligence post-2024 Caribbean CBI summit commitments."
+    "recent_changes": "NEF donation and bond options remain active; industry-wide enhanced due diligence post-2024 Caribbean CBI summit commitments. 2026-09-10 verification: NEF $240k (single or family of up to 4), RE $300k, bonds $300k + $50k admin — all current; page-level finance floor aligned to NEF. US Proclamation 10998 partial restrictions name Antigua and Dominica — St. Lucia not listed (CitizenX, Aug 2026)."
    },
    "compliance_clock": {
     "renewal_interval_months": null,
@@ -10023,6 +10037,34 @@
      "to": "re-anchored 5688e8f7fe631e39 (stamp 60e35d29-1e9)",
      "source": "satohash-api",
      "hash": "5688e8f7fe631e39f055cc83973ab4b7fd3caaa4158ef8c48763ca3385fc79a9"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.min_investment_usd",
+     "from": 100000,
+     "to": 240000,
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — globallawexperts 2026-07-11 · NTL Trust 2026 · directcitizenship 2026-08-09 (NEF $240k single/family-of-4)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.typical_investment_usd",
+     "from": 150000,
+     "to": 250000,
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — modeled all-in single applicant (NEF $240k + DD/admin)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "NEF donation and bond options remain active; industry-wide enhanced due diligence post-2024 Caribbean CBI summit commitments.",
+     "to": "NEF donation and bond options remain active; industry-wide enhanced due diligence post-2024 Caribbean CBI summit commitments. 2026-09-10 verification: NEF $240k (single or family of up to 4), RE $300k, bonds $300k + $50k admin — all current; page-level finance floor aligned to NEF. US Proclamation 10998 partial restrictions name Antigua and Dominica — St. Lucia not listed (CitizenX, Aug 2026).",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — globallawexperts · NTL · CitizenX 2026-08-03"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — thresholds verified, finance floor corrected"
     }
    ]
   },
@@ -10034,8 +10076,8 @@
    "status": "Researching",
    "bitcoin_integration": "Grenada offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
    "finance": {
-    "min_investment_usd": 150000,
-    "typical_investment_usd": 200000,
+    "min_investment_usd": 235000,
+    "typical_investment_usd": 245000,
     "gov_fees_usd": 30000,
     "processing_time_months": "4-8",
     "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
@@ -10043,7 +10085,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Grenada. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -10076,8 +10118,8 @@
     {
      "type": "ntf_donation",
      "label": "National Transformation Fund (NTF) donation",
-     "min_investment_usd": 150000,
-     "notes": "Single applicant minimum — among lowest CBI donation thresholds; processing fees additional."
+     "min_investment_usd": 235000,
+     "notes": "$235,000 non-refundable contribution — flat for a single applicant or a family of up to 4 (2026 GIS announcement); processing fees additional; single applicant all-in ≈ $242.5k incl. due diligence."
     },
     {
      "type": "real_estate",
@@ -10107,7 +10149,7 @@
      "https://www.cbi.gov.gd"
     ],
     "property_foreign_ownership": "Foreigners may purchase approved CBI real estate; Alien Landholding License required for other property.",
-    "recent_changes": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged."
+    "recent_changes": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged. NTF donation raised $150k -> $235k (single or family of up to 4; GIS Grenada 2026, multi-source corroborated 2025-09 through 2026-08). US Proclamation 10998 partial restrictions name Antigua and Dominica — Grenada not listed; E-2 treaty differentiator unaffected."
    },
    "compliance_clock": {
     "renewal_interval_months": null,
@@ -10240,6 +10282,48 @@
      "to": "re-anchored 1d8ca3ece897aaee (stamp 6f915b1e-353)",
      "source": "satohash-api",
      "hash": "1d8ca3ece897aaee01d73b2240f5f5f7217fc674aa084596ab7915017ebdf2c4"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.ntf_donation.min_investment_usd",
+     "from": 150000,
+     "to": 235000,
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — GIS Grenada 2026 (via globallawexperts) · immigrantinvest 2025-09-07 · globalcitizensolutions · goldenharbors 2026-07-01"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.ntf_donation.notes",
+     "from": "Single applicant minimum — among lowest CBI donation thresholds; processing fees additional.",
+     "to": "$235,000 non-refundable contribution — flat for a single applicant or a family of up to 4 (2026 GIS announcement); processing fees additional; single applicant all-in ≈ $242.5k incl. due diligence.",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — imin-caribbean 2026 (all-in breakdown)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.min_investment_usd",
+     "from": 150000,
+     "to": 235000,
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — GIS Grenada 2026 announcement (multi-source corroborated)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.typical_investment_usd",
+     "from": 200000,
+     "to": 245000,
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — modeled all-in single applicant ≈ $242.5k (imin-caribbean)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged.",
+     "to": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged. NTF donation raised $150k -> $235k (single or family of up to 4; GIS Grenada 2026, multi-source corroborated 2025-09 through 2026-08). US Proclamation 10998 partial restrictions name Antigua and Dominica — Grenada not listed; E-2 treaty differentiator unaffected.",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — GIS Grenada 2026 · CitizenX 2026-08-03"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — NTF $235k hike applied"
     }
    ]
   },
@@ -10260,7 +10344,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Barbados. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -10294,7 +10378,7 @@
      "type": "welcome_stamp",
      "label": "Barbados Welcome Stamp",
      "min_investment_usd": 50000,
-     "notes": "~$50k/year remote income proof (~$100k with dependents); 12-month renewable permit for location-independent workers — not a path to citizenship."
+     "notes": "$50,000/year remote income proof over the 12-month permit period; fees $2,000 individual / $3,000 family (official visitbarbados.org); 12-month renewable permit for location-independent workers — not a path to citizenship."
     },
     {
      "type": "special_entry",
@@ -10773,6 +10857,20 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.welcome_stamp.notes",
+     "from": "~$50k/year remote income proof (~$100k with dependents); 12-month renewable permit for location-independent workers — not a path to citizenship.",
+     "to": "$50,000/year remote income proof over the 12-month permit period; fees $2,000 individual / $3,000 family (official visitbarbados.org); 12-month renewable permit for location-independent workers — not a path to citizenship.",
+     "source": "Official visitbarbados.org Welcome Stamp page (accessed 2026-09-10) · taxesforexpats 2026-09"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — verification pass: both watch URLs flagged changed; rule review found no threshold change (Welcome Stamp $50k/yr + fees confirmed official)"
     }
    ]
   },
@@ -10784,8 +10882,8 @@
    "status": "Researching",
    "bitcoin_integration": "Bahamas offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
    "finance": {
-    "min_investment_usd": 500000,
-    "typical_investment_usd": 750000,
+    "min_investment_usd": 1000000,
+    "typical_investment_usd": 1200000,
     "gov_fees_usd": 40000,
     "processing_time_months": "6-14",
     "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
@@ -10793,7 +10891,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Bahamas. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -10879,9 +10977,9 @@
     ],
     "optimization_tips": [
      "Zero personal income tax makes Bahamas strong for BTC holders who become tax residents",
-     "Home Owner's Card for lifestyle base; EPR for permanent status at $750k+"
+     "Home Owner's Card for lifestyle base; EPR for permanent status at $1M+"
     ],
-    "escalate_when": "EPR $750k+ structuring, Speedy Permit tier selection, or property purchase with crypto source-of-funds"
+    "escalate_when": "EPR $1M+ structuring, Speedy Permit tier selection, or property purchase with crypto source-of-funds"
    },
    "freshness": {
     "status": "stale",
@@ -11004,6 +11102,41 @@
      "to": "re-anchored 5896afee50c283a0 (stamp b223ea62-b76)",
      "source": "satohash-api",
      "hash": "5896afee50c283a000b75dcd53190b2c7f79a41afa03a4829bf01fff10c14f0f"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.min_investment_usd",
+     "from": 500000,
+     "to": 1000000,
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — official immigration.gov.bs/residence/permanent-residence ($1.0M, accessed 2026-09-10) · dupuchrealestate 2026-07-18 (raised from $750k eff. 2025-01-01)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.typical_investment_usd",
+     "from": 750000,
+     "to": 1200000,
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — modeled all-in (EPR $1.0M + fees/DV processing)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "paige_fields.optimization_tips",
+     "from": "Home Owner's Card for lifestyle base; EPR for permanent status at $750k+",
+     "to": "Home Owner's Card for lifestyle base; EPR for permanent status at $1M+",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "paige_fields.escalate_when",
+     "from": "EPR $750k+ structuring, Speedy Permit tier selection, or property purchase with crypto source-of-funds",
+     "to": "EPR $1M+ structuring, Speedy Permit tier selection, or property purchase with crypto source-of-funds",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 4 research pass (Caribbean CBI cluster, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — page-level finance aligned to corrected EPR $1.0M"
     }
    ]
   },

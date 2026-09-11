@@ -1,3 +1,16 @@
+## Session — 2026-09-10 (Buffy/Freebuff) — Batch 4 research pass: Caribbean CBI cluster healed
+
+**Done (user work order: Batch 4 — St. Lucia, Grenada, Barbados, Bahamas + cross-cluster P-10998 refinement):**
+- **Grenada — MATERIAL:** NTF donation raised **$150k → $235k** (single or family of up to 4; GIS Grenada 2026 announcement, corroborated across 2025-09 → 2026-08 sources); all-in single ≈ $242.5k. RE share $270k unchanged. Finance floor aligned.
+- **St. Lucia — CORRECTION:** page-level finance floor $100k → **$240k** (NEF is the true minimum; pathways were already right at $240k/$300k/$300k). Thresholds verified current.
+- **Bahamas — CORRECTION:** page-level min $500k → **$1.0M** / typical → $1.2M (aligned to the already-corrected EPR $1.0M official figure; old $750k remnants purged from Paige fields too).
+- **Barbados — VERIFICATION PASS:** both official watch URLs flagged "changed" for weeks — rule review found NO threshold change (Welcome Stamp $50k/yr + $2k/$3k fees confirmed official; SERP stays counsel-dependent, no verified number to apply).
+- **Antigua + Dominica — P-10998 RESOLVED:** the Proclamation's mechanism is a **B-1/B-2 visa-validity cut** for their nationals (10-yr visas reduced, eff. 1 Jan 2026), not an entry ban (CitizenX 2026-08-03). St. Lucia and Grenada are NOT on the restricted list.
+- **Method:** `scripts/research-batch4-caribbean.mjs` — same audited pattern; last_checked=2026-09-10 on all six touched entries.
+- **Gates:** validate-data ✓ · check-intel ✓ · trust envelopes ✓ · tsc 0 · 268/268 unit.
+
+---
+
 ## Session — 2026-09-10 (Buffy/Freebuff) — Batch 3 research pass: 80–98d tail healed
 
 **Done (user work order: Batch 3 — Bolivia, Paraguay, CAR, Panama, Antigua, Portugal, Uruguay, Dominica, St. Kitts):**
