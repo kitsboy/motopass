@@ -1,3 +1,16 @@
+## Session — 2026-09-10 (Buffy/Freebuff) — Batch 5 research pass: LatAm tier healed
+
+**Done (user work order: Batch 5 — Brazil, Argentina, Chile, Colombia, Belize):**
+- **Colombia — MATERIAL (SMMLV re-pricing):** SMMLV 2026 = **COP 1,750,905** (corpus carried COP 2,000,000). Every threshold moved: nomad/pensionado 3× = COP 5,252,715 ≈ **$1,350/mo** (was $900–1,000); M investor = **100× SMMLV** (company, ≈$35–45k) vs **350× SMMLV** (real estate, ≈$157–163k) — the old single $100k figure matched neither route. Sources: colombiavisas 2026-01-01 · Res. 5477 art. 57 · medellinadvisors · expatgroup.
+- **Brazil — CORRECTION + addition:** page floor $150k → **$95k** (VITEM IX R$500k is the true minimum); **R$150k startup tier documented** (oliveiralawyers 2026); VITEM XIV alt: **$1,500/mo OR ~$18k savings** (zsassociados · riotimes).
+- **Chile — CORRECTION:** page floor $200k → **$500k** (inversionista confirmed + INVESTCHILE sponsorship); rentista re-anchored to **1× Chilean minimum wage (~$650/mo)** from conservative $1,000 (immi.legal 2026-04-26).
+- **Argentina — index re-anchor:** rentista = 5× SMVM, SMVM Aug 2026 = ARS 376,600 → 5× = ARS 1,883,000 ≈ **$1,400–1,500/mo**; sourced peso anchor added so users verify the week they file (goldenharbors 2026-08-05 · immi.legal).
+- **Belize — VERIFICATION PASS:** QRP $2,000/mo confirmed official (BTB upd. 2026-07-27); age conflict recorded (BTB 45+ vs law-firm guides 40+) — no change on weak signals, flag for BTB confirmation.
+- **Method:** `scripts/research-batch5-latam.mjs` — same audited pattern; last_checked=2026-09-10 on all five.
+- **Gates:** validate-data ✓ · check-intel ✓ · trust envelopes ✓ · tsc 0 · 268/268 unit.
+
+---
+
 ## Session — 2026-09-10 (Buffy/Freebuff) — Batch 4 research pass: Caribbean CBI cluster healed
 
 **Done (user work order: Batch 4 — St. Lucia, Grenada, Barbados, Bahamas + cross-cluster P-10998 refinement):**

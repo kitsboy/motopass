@@ -8131,8 +8131,8 @@
    "status": "Researching",
    "bitcoin_integration": "Brazil offers residency or citizenship pathways with growing crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
    "finance": {
-    "min_investment_usd": 150000,
-    "typical_investment_usd": 250000,
+    "min_investment_usd": 95000,
+    "typical_investment_usd": 100000,
     "gov_fees_usd": 12000,
     "processing_time_months": "4-10",
     "tax_benefits": "Favorable territorial or low-rate treatment for foreign income in many structures.",
@@ -8140,7 +8140,7 @@
     "bitcoin_specific": "Active Bitcoin community; Lightning adoption in fintech corridors."
    },
    "details": "Flagship-depth research entry for Brazil. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -8174,7 +8174,7 @@
      "type": "investor",
      "label": "Investor visa (VITEM IX)",
      "min_investment_usd": 95000,
-     "notes": "VITEM IX temporary visa for foreign investors — minimum R$500,000 capital investment in Brazilian company or productive activity per CNI Normative Resolutions. Renewable residence authorization via Polícia Federal after entry."
+     "notes": "VITEM IX temporary visa for foreign investors — minimum R$500,000 capital investment in Brazilian company or productive activity per CNI Normative Resolutions. Renewable residence authorization via Polícia Federal after entry. Startups: reduced R$150,000 tier available for qualifying technology startups (2026)."
     },
     {
      "type": "retirement",
@@ -8186,7 +8186,7 @@
      "type": "digital_nomad",
      "label": "Digital nomad visa (VITEM XIV)",
      "min_investment_usd": 1500,
-     "notes": "VITEM XIV temporary visa under Brazilian immigration policy for remote workers employed or contracted abroad — proof of foreign income (~$1,500/month minimum cited in consular guidance). 1-year renewable authorization; does not grant immediate permanent residence."
+     "notes": "VITEM XIV temporary visa under Brazilian immigration policy for remote workers employed or contracted abroad — proof of foreign income (~$1,500/month minimum cited in consular guidance). 1-year renewable authorization; does not grant immediate permanent residence. Alternative: ~$18,000 lump sum / R$100,000 bank balance accepted in place of monthly income (2026 consular guidance)."
     }
    ],
    "critical_tests": {
@@ -8207,7 +8207,7 @@
      "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm"
     ],
     "property_foreign_ownership": "Foreigners may purchase urban real estate freely; rural land near borders restricted. Coastal properties follow standard civil registry rules — fideicomiso not required.",
-    "recent_changes": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs."
+    "recent_changes": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs. 2026-09-10 verification: VITEM IX R$500k current (+R$150k startup tier); VITEM XIV $1,500/mo or ~$18k savings; retirement $2,000/mo. Page-level finance floor aligned to VITEM IX."
    },
    "compliance_clock": {
     "renewal_interval_months": 24,
@@ -8422,6 +8422,48 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "c8ebeb294bf2dae739dbf64b3e6053f601de99c4acf9aa9b768874caab2643c5"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.min_investment_usd",
+     "from": 150000,
+     "to": 95000,
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — VITEM IX R$500k ≈ $95k (libertymundo 2026 · oliveiralawyers 2026)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.typical_investment_usd",
+     "from": 250000,
+     "to": 100000,
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — R$500k ≈ $100k (libertymundo 2026)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.investor.notes",
+     "from": "VITEM IX temporary visa for foreign investors — minimum R$500,000 capital investment in Brazilian company or productive activity per CNI Normative Resolutions. Renewable residence authorization via Polícia Federal after entry.",
+     "to": "VITEM IX temporary visa for foreign investors — minimum R$500,000 capital investment in Brazilian company or productive activity per CNI Normative Resolutions. Renewable residence authorization via Polícia Federal after entry. Startups: reduced R$150,000 tier available for qualifying technology startups (2026).",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — oliveiralawyers 2026 (R$150k startup tier)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.digital_nomad.notes",
+     "from": "VITEM XIV temporary visa under Brazilian immigration policy for remote workers employed or contracted abroad — proof of foreign income (~$1,500/month minimum cited in consular guidance). 1-year renewable authorization; does not grant immediate permanent residence.",
+     "to": "VITEM XIV temporary visa under Brazilian immigration policy for remote workers employed or contracted abroad — proof of foreign income (~$1,500/month minimum cited in consular guidance). 1-year renewable authorization; does not grant immediate permanent residence. Alternative: ~$18,000 lump sum / R$100,000 bank balance accepted in place of monthly income (2026 consular guidance).",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — zsassociados 2026-04-05 · riotimesonline 2026-03-05 · getbrazilvisa"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs.",
+     "to": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs. 2026-09-10 verification: VITEM IX R$500k current (+R$150k startup tier); VITEM XIV $1,500/mo or ~$18k savings; retirement $2,000/mo. Page-level finance floor aligned to VITEM IX.",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — finance floor corrected, startup tier documented"
     }
    ]
   },
@@ -8442,7 +8484,7 @@
     "bitcoin_specific": "Active Bitcoin community; Lightning adoption in fintech corridors."
    },
    "details": "Flagship-depth research entry for Argentina. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -8476,7 +8518,7 @@
      "type": "rentista",
      "label": "Rentista (passive income)",
      "min_investment_usd": 1500,
-     "notes": "Temporary residence (1 year, renewable) for income from foreign assets — minimum rent equivalent to 5× Salario Mínimo Vital y Móvil (~$1,500/month USD equivalent). Funds must enter via BCRA-authorized institutions; personal employment income excluded."
+     "notes": "Temporary residence (1 year, renewable) for income from foreign assets — minimum rent equivalent to 5× Salario Mínimo Vital y Móvil — indexed monthly; Aug 2026 SMVM ARS 376,600 → 5× = ARS 1,883,000/mo ≈ $1,400–1,500 USD at prevailing rates (verify the peso figure the week you file). Funds must enter via BCRA-authorized institutions; personal employment income excluded."
     },
     {
      "type": "investor",
@@ -8510,7 +8552,7 @@
      "https://www.boletinoficial.gob.ar"
     ],
     "property_foreign_ownership": "Foreigners may own urban property with few restrictions; rural land in border/security zones subject to prior authorization. Rentista route does not require property purchase.",
-    "recent_changes": "2022 digital-nomad disposición formalized 180-day remote-work category. 2023–2024 rentista income thresholds tied to SMVM index — verify current peso equivalent before filing. Milei-era FX liberalization improved crypto-to-bank pathways but documentation still strict."
+    "recent_changes": "2022 digital-nomad disposición formalized 180-day remote-work category. 2023–2024 rentista income thresholds tied to SMVM index — verify current peso equivalent before filing. Milei-era FX liberalization improved crypto-to-bank pathways but documentation still strict. 2026-09-10 verification: rentista 5× SMVM re-anchored (ARS 376,600 Aug 2026); investor $50k unchanged; Milei-era FX liberalization still favorable for crypto-to-bank funding."
    },
    "compliance_clock": {
     "renewal_interval_months": 12,
@@ -8977,6 +9019,27 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.rentista.notes",
+     "from": "Temporary residence (1 year, renewable) for income from foreign assets — minimum rent equivalent to 5× Salario Mínimo Vital y Móvil (~$1,500/month USD equivalent). Funds must enter via BCRA-authorized institutions; personal employment income excluded.",
+     "to": "Temporary residence (1 year, renewable) for income from foreign assets — minimum rent equivalent to 5× Salario Mínimo Vital y Móvil — indexed monthly; Aug 2026 SMVM ARS 376,600 → 5× = ARS 1,883,000/mo ≈ $1,400–1,500 USD at prevailing rates (verify the peso figure the week you file). Funds must enter via BCRA-authorized institutions; personal employment income excluded.",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — goldenharbors 2026-08-05 (SMVM ARS 376,600) · riotimesonline 2026-09 · immi.legal 2026-08-13 (60-day credit at 5× SMVM)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "2022 digital-nomad disposición formalized 180-day remote-work category. 2023–2024 rentista income thresholds tied to SMVM index — verify current peso equivalent before filing. Milei-era FX liberalization improved crypto-to-bank pathways but documentation still strict.",
+     "to": "2022 digital-nomad disposición formalized 180-day remote-work category. 2023–2024 rentista income thresholds tied to SMVM index — verify current peso equivalent before filing. Milei-era FX liberalization improved crypto-to-bank pathways but documentation still strict. 2026-09-10 verification: rentista 5× SMVM re-anchored (ARS 376,600 Aug 2026); investor $50k unchanged; Milei-era FX liberalization still favorable for crypto-to-bank funding.",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — SMVM index re-anchored"
     }
    ]
   },
@@ -8988,8 +9051,8 @@
    "status": "Researching",
    "bitcoin_integration": "Chile offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
    "finance": {
-    "min_investment_usd": 200000,
-    "typical_investment_usd": 350000,
+    "min_investment_usd": 500000,
+    "typical_investment_usd": 520000,
     "gov_fees_usd": 15000,
     "processing_time_months": "6-12",
     "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
@@ -8997,7 +9060,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Chile. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -9036,8 +9099,8 @@
     {
      "type": "rentista",
      "label": "Rentista / retired or leaser",
-     "min_investment_usd": 12000,
-     "notes": "Subcategory 11 for retirees with pension or leasers with regular income from real estate/financial assets sufficient to cover basic needs per Ministry of Social Development benchmarks — lower capital than investor route; apostilled income proofs required."
+     "min_investment_usd": 7800,
+     "notes": "Subcategory 11 for retirees with lifetime pension or leasers with constant income ≥ the Chilean minimum wage (~$650/mo in 2026) sufficient to cover basic needs per MSD benchmarks; apostilled income proofs required."
     },
     {
      "type": "startup",
@@ -9064,7 +9127,7 @@
      "https://startupchile.org"
     ],
     "property_foreign_ownership": "Foreigners may purchase urban property with standard registry; no general ban on foreign ownership. Investor route requires documented capital deployment, not merely property purchase.",
-    "recent_changes": "2025 SERMIG portal updates standardized investor and rentista subcategory requirements. CMF fintech registry maturing for crypto custodians. Start-Up Chile continues visa support for international founders."
+    "recent_changes": "2025 SERMIG portal updates standardized investor and rentista subcategory requirements. CMF fintech registry maturing for crypto custodians. Start-Up Chile continues visa support for international founders. 2026-09-10 verification: investor $500k + INVESTCHILE sponsorship confirmed current; rentista anchored to 1× Chilean minimum wage (~$650/mo); page-level finance aligned to investor route."
    },
    "compliance_clock": {
     "renewal_interval_months": 24,
@@ -9237,6 +9300,48 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "11593520c91505d297899098ac532495ba042c12f59add6ecd51f014d0fed685"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.min_investment_usd",
+     "from": 200000,
+     "to": 500000,
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — investor route $500k (goldenharbors 2026-08-13 · goldenvisas.com · investchile.gob.cl)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.typical_investment_usd",
+     "from": 350000,
+     "to": 520000,
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — modeled all-in (investor $500k + sponsorship/fees)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.rentista.min_investment_usd",
+     "from": 12000,
+     "to": 7800,
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — pension ≥ Chilean minimum wage ~$650/mo ≈ $7.8k/yr (immi.legal 2026-04-26)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.rentista.notes",
+     "from": "Subcategory 11 for retirees with pension or leasers with regular income from real estate/financial assets sufficient to cover basic needs per Ministry of Social Development benchmarks — lower capital than investor route; apostilled income proofs required.",
+     "to": "Subcategory 11 for retirees with lifetime pension or leasers with constant income ≥ the Chilean minimum wage (~$650/mo in 2026) sufficient to cover basic needs per MSD benchmarks; apostilled income proofs required.",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — immi.legal 2026-04-26 · serviciomigraciones.cl subcategories page"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "2025 SERMIG portal updates standardized investor and rentista subcategory requirements. CMF fintech registry maturing for crypto custodians. Start-Up Chile continues visa support for international founders.",
+     "to": "2025 SERMIG portal updates standardized investor and rentista subcategory requirements. CMF fintech registry maturing for crypto custodians. Start-Up Chile continues visa support for international founders. 2026-09-10 verification: investor $500k + INVESTCHILE sponsorship confirmed current; rentista anchored to 1× Chilean minimum wage (~$650/mo); page-level finance aligned to investor route.",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — finance floor corrected, rentista re-anchored"
     }
    ]
   },
@@ -9248,8 +9353,8 @@
    "status": "Researching",
    "bitcoin_integration": "Colombia offers residency or citizenship pathways with growing crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
    "finance": {
-    "min_investment_usd": 100000,
-    "typical_investment_usd": 180000,
+    "min_investment_usd": 45000,
+    "typical_investment_usd": 160000,
     "gov_fees_usd": 10000,
     "processing_time_months": "4-9",
     "tax_benefits": "Favorable territorial or low-rate treatment for foreign income in many structures.",
@@ -9257,7 +9362,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Colombia. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -9290,20 +9395,20 @@
     {
      "type": "m_investor",
      "label": "M visa (investor / direct investment)",
-     "min_investment_usd": 100000,
-     "notes": "Migrant visa for foreign direct investment in Colombian company, productive project, or qualifying real-estate development — capital thresholds tied to SMMLV multiples under Resolución 5477. Up to 3-year renewable temporary resident status."
+     "min_investment_usd": 45000,
+     "notes": "Migrant visa for foreign direct investment — two routes under Resolución 5477 art. 57: company/productive project at 100× SMMLV (COP 175,090,500 in 2026, ≈$35–45k by FX route) or qualifying real estate at 350× SMMLV (COP 612,816,750, ≈$157–163k). Up to 3-year renewable migrant status."
     },
     {
      "type": "pensionado",
      "label": "M visa (pensionado / rentista)",
-     "min_investment_usd": 900,
-     "notes": "Migrant visa for retirees or rentistas with monthly passive income ≥ 3× SMMLV (~$900–1,000/month USD equivalent at 2026 rates) from pension, dividends, or rentals — popular Medellín/Bogotá route for remote Bitcoin income earners."
+     "min_investment_usd": 1350,
+     "notes": "Migrant visa for retirees or rentistas with monthly passive income ≥ 3× SMMLV (COP 5,252,715 in 2026, ≈$1,350/month; rises every January) from pension, dividends, or rentals — popular Medellín/Bogotá route for remote Bitcoin income earners."
     },
     {
      "type": "digital_nomad",
      "label": "V visa (digital nomad)",
-     "min_investment_usd": 900,
-     "notes": "Visitor visa for remote workers with foreign employer/clients — proof of income ≥ 3× SMMLV and health insurance. Up to 2-year validity; does not automatically convert to M visa without separate application."
+     "min_investment_usd": 1350,
+     "notes": "Visitor visa for remote workers with foreign employer/clients — proof of income ≥ 3× SMMLV (COP 5,252,715 in 2026, ≈$1,350/month) and health insurance. Up to 2-year validity; does not automatically convert to M visa without separate application."
     }
    ],
    "critical_tests": {
@@ -9324,7 +9429,7 @@
      "https://tramitesmre.cancilleria.gov.co"
     ],
     "property_foreign_ownership": "Foreigners may acquire urban real estate; direct investment visa may bundle property in approved projects. Standard purchases require registry and tax ID (RUT).",
-    "recent_changes": "2022 Resolución 5477 consolidated M and V visa categories including digital nomad. 2026 SMMLV at COP 2,000,000/month raises income-proof thresholds — recalculate 3× minimum before applying."
+    "recent_changes": "2022 Resolución 5477 consolidated M and V visa categories including digital nomad. SMMLV 2026 = COP 1,750,905/month — all thresholds re-priced 2026-09-10: nomad/pensionado 3× ≈ $1,350/mo; M investor 100× (company, ≈$35–45k) vs 350× (real estate, ≈$157–163k). Thresholds rise every January — verify before filing."
    },
    "compliance_clock": {
     "renewal_interval_months": 36,
@@ -9819,6 +9924,76 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.min_investment_usd",
+     "from": 100000,
+     "to": 45000,
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — M investor company route 100× SMMLV (Res. 5477 art. 57 · medellinadvisors 2026)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.typical_investment_usd",
+     "from": 180000,
+     "to": 160000,
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — real-estate route 350× SMMLV ≈ $157–163k (expatgroup · goresident 2026)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.m_investor.min_investment_usd",
+     "from": 100000,
+     "to": 45000,
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — 100× SMMLV company route (Res. 5477 art. 57 · medellinadvisors 2026)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.m_investor.notes",
+     "from": "Migrant visa for foreign direct investment in Colombian company, productive project, or qualifying real-estate development — capital thresholds tied to SMMLV multiples under Resolución 5477. Up to 3-year renewable temporary resident status.",
+     "to": "Migrant visa for foreign direct investment — two routes under Resolución 5477 art. 57: company/productive project at 100× SMMLV (COP 175,090,500 in 2026, ≈$35–45k by FX route) or qualifying real estate at 350× SMMLV (COP 612,816,750, ≈$157–163k). Up to 3-year renewable migrant status.",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — Res. 5477 art. 57 · medellinadvisors 2026 · expatgroup 2026"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.pensionado.min_investment_usd",
+     "from": 900,
+     "to": 1350,
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — 3× SMMLV 2026 = COP 5,252,715 ≈ $1,350/mo (colombiavisas 2026-01-01)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.pensionado.notes",
+     "from": "Migrant visa for retirees or rentistas with monthly passive income ≥ 3× SMMLV (~$900–1,000/month USD equivalent at 2026 rates) from pension, dividends, or rentals — popular Medellín/Bogotá route for remote Bitcoin income earners.",
+     "to": "Migrant visa for retirees or rentistas with monthly passive income ≥ 3× SMMLV (COP 5,252,715 in 2026, ≈$1,350/month; rises every January) from pension, dividends, or rentals — popular Medellín/Bogotá route for remote Bitcoin income earners.",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — colombiavisas 2026-01-01 · goresident 2026 (~$1,400/mo)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.digital_nomad.min_investment_usd",
+     "from": 900,
+     "to": 1350,
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — 3× SMMLV 2026 = COP 5,252,715 (colombiavisas 2026-01-01)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.digital_nomad.notes",
+     "from": "Visitor visa for remote workers with foreign employer/clients — proof of income ≥ 3× SMMLV and health insurance. Up to 2-year validity; does not automatically convert to M visa without separate application.",
+     "to": "Visitor visa for remote workers with foreign employer/clients — proof of income ≥ 3× SMMLV (COP 5,252,715 in 2026, ≈$1,350/month) and health insurance. Up to 2-year validity; does not automatically convert to M visa without separate application.",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — colombiavisas 2026-01-01 · colombiamove 2026-03-30"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "2022 Resolución 5477 consolidated M and V visa categories including digital nomad. 2026 SMMLV at COP 2,000,000/month raises income-proof thresholds — recalculate 3× minimum before applying.",
+     "to": "2022 Resolución 5477 consolidated M and V visa categories including digital nomad. SMMLV 2026 = COP 1,750,905/month — all thresholds re-priced 2026-09-10: nomad/pensionado 3× ≈ $1,350/mo; M investor 100× (company, ≈$35–45k) vs 350× (real estate, ≈$157–163k). Thresholds rise every January — verify before filing.",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — colombiavisas 2026-01-01 (SMMLV COP 1,750,905) · medellinadvisors · expatgroup"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — SMMLV 2026 re-pricing applied"
     }
    ]
   },
@@ -11157,7 +11332,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Belize. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -11223,7 +11398,7 @@
      "https://www.tourism.gov.bz"
     ],
     "property_foreign_ownership": "Foreigners may own land and property in most zones; some coastal and island areas require special licenses.",
-    "recent_changes": "QRP remains primary retiree route; permanent residency processing timelines vary — budget 6–12 months after qualifying residence period."
+    "recent_changes": "QRP remains primary retiree route; permanent residency processing timelines vary — budget 6–12 months after qualifying residence period. 2026-09-10 verification: QRP $2,000/mo foreign income confirmed official (BTB, upd. 2026-07-27); age criteria show a 45+ (BTB) vs 40+ (law-firm guides) conflict — confirm current rule with BTB before filing."
    },
    "compliance_clock": {
     "renewal_interval_months": 12,
@@ -11389,6 +11564,20 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "60fa3e554c78458bea71e324dc0668c70a32ee2a3cae26c7246f383fb9d323a0"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "QRP remains primary retiree route; permanent residency processing timelines vary — budget 6–12 months after qualifying residence period.",
+     "to": "QRP remains primary retiree route; permanent residency processing timelines vary — budget 6–12 months after qualifying residence period. 2026-09-10 verification: QRP $2,000/mo foreign income confirmed official (BTB, upd. 2026-07-27); age criteria show a 45+ (BTB) vs 40+ (law-firm guides) conflict — confirm current rule with BTB before filing.",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — belizetourismboard.org (accessed 2026-09-10) · lawbelize.bz · taxesforexpats 2025-10-02"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 5 research pass (LatAm tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — QRP verified, age-rule conflict recorded"
     }
    ]
   },
