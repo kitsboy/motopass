@@ -6,6 +6,7 @@ import { GiveABitLogoLink } from './footer/GiveABitLogoLink'
 import { FooterVerifyLink } from './footer/FooterVerifyLink'
 import { FooterActionBar } from './footer/FooterActionBar'
 import { FooterApplyLink } from './footer/FooterApplyLink'
+import { SatohashStampWidget } from './SatohashStampWidget'
 import { BUILD_ID, BUILD_LABEL, FOOTER_VERSION } from '../lib/buildInfo'
 import { useLiveDeployHealth } from '../hooks/useLiveDeployHealth'
 import type { LiveDeployHealthState } from '../hooks/useLiveDeployHealth'
@@ -69,6 +70,9 @@ export function Footer() {
                 </a>
                 {t('footer.descriptionAfter')}
               </p>
+              <div className="mb-7">
+                <SatohashStampWidget />
+              </div>
               <nav className="space-y-4" aria-label="Footer">
                 <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm font-chrome">
                   {MAIN_NAV_ROUTES.map(l =>
