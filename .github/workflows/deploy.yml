@@ -54,7 +54,8 @@ jobs:
           MARKER="MotoPass"
           for attempt in $(seq 1 24); do
             HTML=$(curl -fsSL --max-time 20 "$URL" || true)
-            if [ -n "$HTML" ] && printf '%s' "$HTML" | grep -q "$MARKER"; then
+            printf '%s' "$HTML" > /tmp/prod-page.html
+            if [ -s /tmp/prod-page.html ] && grep -q "$MARKER" /tmp/prod-page.html; then
               echo "OK — $URL live with marker '$MARKER' (attempt $attempt) for $GITHUB_SHA"
               exit 0
             fi
