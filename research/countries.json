@@ -4761,10 +4761,13 @@
         "bitcoin_specific": "Nomad-friendly, Lightning cafes in San José"
       },
       "details": "Stable democracy, territorial tax appeal, rising Bitcoin community. Modeled minimum investment $50,000 (typical $100,000). Primary routes on file: Digital nomad visa (Law 9996), Rentista / fixed income, Inversionista (investor). Tax notes: Territorial elements Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-10",
       "sources": [
         "Immigration rules",
-        "MotoPass research corpus · last_checked 2026-07-02 · block 958093"
+        "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "TaxesForExpats Costa Rica 2026 guide (2026-02-17)",
+        "GoldenHarbors rentista guide (2026-08-26)",
+        "Riotimes Costa Rica residency (2026-09)"
       ],
       "id": 16,
       "flag": "🇨🇷",
@@ -4802,13 +4805,13 @@
           "type": "rentista",
           "label": "Rentista / fixed income",
           "min_investment_usd": 60000,
-          "notes": "~$2,500/month guaranteed for 2+ years from investments, dividends, or rentals — apostilled income proof required."
+          "notes": "USD 2,500/month guaranteed passive income for 2+ years (investments, dividends, rentals) — apostilled proof required. Alternative: a USD 60,000 deposit in an approved Costa Rican bank qualifies. Sources: GoldenHarbors rentista guide (2026-08-26); Riotimes residency guide (2026-09); TaxesForExpats 2026 guide (2026-02-17)."
         },
         {
           "type": "inversionista",
           "label": "Inversionista (investor)",
           "min_investment_usd": 150000,
-          "notes": "$150k+ in qualifying business, securities, or real estate — permanent residency track; verify approved project categories."
+          "notes": "USD 150,000+ in qualifying business, securities, or real estate — verified current for 2026 (Law 9996-era criteria unchanged); leads to temporary residency then permanent. Sources: TaxesForExpats 2026 guide (2026-02-17); Riotimes (2026-09); LottaLingo 2026 visa guide."
         }
       ],
       "critical_tests": {
@@ -4900,6 +4903,11 @@
           "text": "Tip: Stack with Panama Friendly Nations for Central America mobility",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-07-02"
+        },
+        {
+          "text": "All three residency thresholds ($150k invest / $2,500/mo rentista / ~$3k nomad) re-verified current for 2026 — no surprise changes.",
+          "source": "Batch 2 verification pass (2026-09-10) across 2026 guides",
+          "verified_at": "2026-09-10"
         }
       ],
       "cons": [
@@ -5127,6 +5135,27 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.rentista.notes",
+          "from": "~$2,500/month guaranteed for 2+ years from investments, dividends, or rentals — apostilled income proof required.",
+          "to": "USD 2,500/month guaranteed passive income for 2+ years (investments, dividends, rentals) — apostilled proof required. Alternative: a USD 60,000 deposit in an approved Costa Rican bank qualifies. Sources: GoldenHarbors rentista guide (2026-08-26); Riotimes residency guide (2026-09); TaxesForExpats 2026 guide (2026-02-17).",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.inversionista.notes",
+          "from": "$150k+ in qualifying business, securities, or real estate — permanent residency track; verify approved project categories.",
+          "to": "USD 150,000+ in qualifying business, securities, or real estate — verified current for 2026 (Law 9996-era criteria unchanged); leads to temporary residency then permanent. Sources: TaxesForExpats 2026 guide (2026-02-17); Riotimes (2026-09); LottaLingo 2026 visa guide.",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — verification pass, no numeric drift found"
         }
       ]
     },
@@ -5146,10 +5175,14 @@
         "bitcoin_specific": "Licensed exchanges, institutional BTC custody"
       },
       "details": "Gateway to Asia capital markets with maturing crypto regulation. Modeled minimum investment $500,000 (typical $800,000). Primary routes on file: Capital Investment Entrant Scheme (CIES), Top Talent Pass Scheme, Investment as Entrepreneurs / GEP. Tax notes: Low tax territory Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-10",
       "sources": [
         "SFC",
-        "MotoPass research corpus · last_checked 2026-07-02 · block 958093"
+        "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "newcies.gov.hk — official investment requirement page (fetched 2026-09-10)",
+        "SCMP CIES relaxation (2025-09-17)",
+        "IMI Daily (2025-09-19)",
+        "immd.gov.hk — TTPS official page (fetched 2026-09-10)"
       ],
       "id": 17,
       "flag": "🇭🇰",
@@ -5181,13 +5214,13 @@
           "type": "cies",
           "label": "Capital Investment Entrant Scheme (CIES)",
           "min_investment_usd": 3800000,
-          "notes": "HK$30M minimum in permissible assets (incl. mandatory HK$3M into the HKIC Investment Portfolio) + HK$30M net assets for 6 months prior — 2-year visa, extendable to 7-year PR track. Real estate capped at HK$10M of the HK$27M; launched Mar 2024, 800+ applications by Jan 2025."
+          "notes": "HK$30M net minimum (official New CIES site): HK$27M into permissible financial assets and/or real estate + mandatory HK$3M CIES Investment Portfolio (HKIC); HK$30M net assets held 6 months prior. Residential real estate: single property must transact at ≥HK$30M (lowered from HK$50M effective 17 Sep 2025, 2025 Policy Address); residential investment cap remains HK$10M; aggregate real-estate cap raised to HK$15M. CD subcap HK$3M (10%). Launched Mar 2024; 2-year visa, PR track at 7 years. Sources: newcies.gov.hk investment-requirement page (fetched 2026-09-10); SCMP (2025-09-17); IMI Daily (2025-09-19); newcies.gov.hk scheme-rules PDF."
         },
         {
           "type": "ttps",
           "label": "Top Talent Pass Scheme",
           "min_investment_usd": 500000,
-          "notes": "High-income professionals (HK$2.5M+ annual income in prior year) or top-university graduates — 2-year open work visa, no employer sponsor."
+          "notes": "Category A: HK$2.5M+ annual income (year immediately preceding application) → 36-month initial stay (ImmD official). Categories B/C: top-100 university graduates (B: 3+ yrs experience; C: quota-capped recent grads) → 24 months. No employer sponsor required; no offer of employment needed. Source: immd.gov.hk TTPS page (fetched 2026-09-10)."
         },
         {
           "type": "entrepreneur",
@@ -5213,7 +5246,7 @@
           "https://www.sfc.hk"
         ],
         "property_foreign_ownership": "Foreigners may purchase private residential; Buyer's Stamp Duty and Additional BSD surcharges apply (up to 30%+ for non-permanent residents).",
-        "recent_changes": "Virtual Asset Trading Platform (VATP) regulations came into force mid-2024 under the SFC 'same activity, same risks, same regulation' principle (policy embrace announced late 2022); CIES reinstated March 2024 at HK$30M threshold."
+        "recent_changes": "VATP regime in force under SFC licensing since mid-2024. CIES enhancements: residential RE permitted from 2024-10-16 (single property ≥HK$50M then); threshold lowered to HK$30M and aggregate RE cap raised to HK$15M effective 2025-09-17 (2025 Policy Address); eligible wholly-owned private company investments counted from 2025-03-01. TTPS Cat A grants 36 months (official)."
       },
       "compliance_clock": {
         "renewal_interval_months": 24,
@@ -5280,6 +5313,11 @@
           "text": "Tip: Pair with Singapore GIP only if capital exceeds single-jurisdiction needs",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-07-02"
+        },
+        {
+          "text": "CIES residential threshold halved (HK$50M → HK$30M, Sep 2025) and non-residential room increased — property route materially more accessible.",
+          "source": "IMI Daily (2025-09-19); 2025 Policy Address",
+          "verified_at": "2026-09-10"
         }
       ],
       "cons": [
@@ -5302,6 +5340,11 @@
           "text": "BSD surcharges add significant property cost for non-PR holders",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-07-02"
+        },
+        {
+          "text": "CIES residential route needs a single property transacting at ≥HK$30M (2025-09-17 relaxation) — still far above the HK$10M cap that counts toward the HK$30M total.",
+          "source": "SCMP (2025-09-17); newcies.gov.hk rules",
+          "verified_at": "2026-09-10"
         }
       ],
       "scorecard": {
@@ -5403,6 +5446,34 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "08f1b657dd1cc2564fccc42b32dea4e4b7ecfe1de3bbcf2e9f3687b39a40c080"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.cies.notes",
+          "from": "HK$30M minimum in permissible assets (incl. mandatory HK$3M into the HKIC Investment Portfolio) + HK$30M net assets for 6 months prior — 2-year visa, extendable to 7-year PR track. Real estate capped at HK$10M of the HK$27M; launched Mar 2024, 800+ applications by Jan 2025.",
+          "to": "HK$30M net minimum (official New CIES site): HK$27M into permissible financial assets and/or real estate + mandatory HK$3M CIES Investment Portfolio (HKIC); HK$30M net assets held 6 months prior. Residential real estate: single property must transact at ≥HK$30M (lowered from HK$50M effective 17 Sep 2025, 2025 Policy Address); residential investment cap remains HK$10M; aggregate real-estate cap raised to HK$15M. CD subcap HK$3M (10%). Launched Mar 2024; 2-year visa, PR track at 7 years. Sources: newcies.gov.hk investment-requirement page (fetched 2026-09-10); SCMP (2025-09-17); IMI Daily (2025-09-19); newcies.gov.hk scheme-rules PDF.",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.ttps.notes",
+          "from": "High-income professionals (HK$2.5M+ annual income in prior year) or top-university graduates — 2-year open work visa, no employer sponsor.",
+          "to": "Category A: HK$2.5M+ annual income (year immediately preceding application) → 36-month initial stay (ImmD official). Categories B/C: top-100 university graduates (B: 3+ yrs experience; C: quota-capped recent grads) → 24 months. No employer sponsor required; no offer of employment needed. Source: immd.gov.hk TTPS page (fetched 2026-09-10).",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Virtual Asset Trading Platform (VATP) regulations came into force mid-2024 under the SFC 'same activity, same risks, same regulation' principle (policy embrace announced late 2022); CIES reinstated March 2024 at HK$30M threshold.",
+          "to": "VATP regime in force under SFC licensing since mid-2024. CIES enhancements: residential RE permitted from 2024-10-16 (single property ≥HK$50M then); threshold lowered to HK$30M and aggregate RE cap raised to HK$15M effective 2025-09-17 (2025 Policy Address); eligible wholly-owned private company investments counted from 2025-03-01. TTPS Cat A grants 36 months (official).",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
         }
       ]
     },
@@ -5422,10 +5493,14 @@
         "bitcoin_specific": "LTR visa popular with Bitcoiners"
       },
       "details": "Lifestyle + residency combo with improving crypto clarity. Modeled minimum investment $60,000 (typical $120,000). Primary routes on file: Long-Term Resident (LTR) visa, Thailand Elite residence, Non-Immigrant B / BOI company. Tax notes: Territorial for foreign income Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-10",
       "sources": [
         "BOI Thailand",
-        "MotoPass research corpus · last_checked 2026-07-02 · block 958093"
+        "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "Siam Legal — foreign income remittance revision (2025-05)",
+        "Expattaxthailand — 2026 remittance update (2026-01-11)",
+        "Siam Legal — Thailand Privilege 2026 GSSA guide (2026-09-08)",
+        "thailandprivilege.co.th — official tiers"
       ],
       "id": 18,
       "flag": "🇹🇭",
@@ -5457,13 +5532,13 @@
           "type": "ltr",
           "label": "Long-Term Resident (LTR) visa",
           "min_investment_usd": 80000,
-          "notes": "Four categories (verified from official BOI): Wealthy Global Citizen = USD 1M assets + USD 500k Thai investment (gov bonds 5yr+ / direct investment / property); Wealthy Pensioner (50+) = USD 80k/yr passive income (or 40k + USD 250k investment); Work-from-Thailand = USD 80k/yr (or 40k + master's); High-Skilled = USD 80k/yr (or 40k + master's in STEM). 10-year visa (5+5 renewable), digital work permit, 17% PIT for skilled, overseas-income tax exemption."
+          "notes": "Four categories (official BOI criteria re-verified current for 2026): Wealthy Global Citizen = USD 1M assets + USD 500k Thai investment (gov bonds 5yr+ / direct investment / property); Wealthy Pensioner (50+) = USD 80k/yr passive (or 40k + USD 250k investment); Work-from-Thailand = USD 80k/yr (or 40k + master’s); High-Skilled = USD 80k/yr (or 40k + STEM master’s). 10-year visa (5+5), digital work permit, 17% PIT for skilled professionals. Sources: BOI criteria via 2026 LTR guides; Pattaya News LTR 2026 discussion (2026)."
         },
         {
           "type": "elite",
-          "label": "Thailand Elite residence",
-          "min_investment_usd": 15000,
-          "notes": "Membership packages from ~$15k (5 years) to ~$60k (20 years) — lifestyle residency without income proof; popular stacker shortcut."
+          "label": "Thailand Privilege residence (ex-Elite)",
+          "min_investment_usd": 20000,
+          "notes": "Rebranded Thailand Privilege (2024). Official tiers (GSSA-verified 2026-09-08): Bronze ฿650,000 / 5 yr (extended to 30 Sep 2026); Gold ฿900,000 / 5 yr; Platinum ฿1,500,000 / 10 yr; Diamond ฿2,500,000 / 15 yr; Reserve ฿5,000,000 / 20 yr. Lifestyle membership — no income proof, no work authorization. Family add-on ฿750,000 promo until 30 Sep 2026. Sources: thailandprivilege.co.th tiers; Siam Legal GSSA guide (2026-09-08)."
         },
         {
           "type": "business",
@@ -5476,7 +5551,7 @@
         "live_and_work": true,
         "scope_of_freedom": true,
         "dual_citizenship": false,
-        "notes": "2024+ territorial tax reforms may tax foreign income remitted to Thailand — structure carefully. Citizenship rare for foreigners; PR after 3 consecutive years on qualifying visas."
+        "notes": "Foreign-income remittance rule clarified (May 2025 draft legislation): foreign income remitted to Thailand in the year earned or the following year is exempt from Thai tax; remitted later, it is assessable (rules apply to income earned from 1 Jan 2024). 180-day tax residency; citizenship rare; PR possible after 3 years on qualifying visas. Structure remittances within the 1-year window."
       },
       "legal_compliance": {
         "primary_laws": [
@@ -5489,7 +5564,7 @@
           "https://www.immigration.go.th"
         ],
         "property_foreign_ownership": "Foreigners may own condominiums up to 49% of building units; land ownership prohibited — leasehold or Thai-company structures common.",
-        "recent_changes": "Since 1 Apr 2022 crypto cannot be used to pay for goods/services (Bank of Thailand/SEC rules); owning and trading remain legal; commercial banks cautioned against direct digital-asset involvement. LTR launched 2022; 2024 Revenue Department guidance on foreign-sourced income remittance created tax uncertainty for nomads."
+        "recent_changes": "Crypto payments banned since 1 Apr 2022 (BoT/SEC); owning/trading legal. LTR (2022) thresholds re-verified current. Remittance tax: 2024 strict remittance rule superseded by May 2025 draft legislation — same-year/next-year remittance exempt, later remittance taxable (income from 2024 onward). Thailand Privilege (ex-Elite) pricing updated 2026."
       },
       "compliance_clock": {
         "renewal_interval_months": 12,
@@ -5561,6 +5636,11 @@
           "text": "Tip: Avoid remitting crypto gains to Thai accounts until tax counsel confirms treatment",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Remittance-tax clarity (May 2025 draft): foreign income remitted within ~1 year of earning is tax-exempt — restores nomad/BTCer planning certainty.",
+          "source": "Siam Legal (2025-05); Expattaxthailand (2026-01-11)",
+          "verified_at": "2026-09-10"
         }
       ],
       "cons": [
@@ -5588,6 +5668,11 @@
           "text": "Work permit required for any local employment activity",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Crypto cannot be used for payments (2022 ban) — spending BTC locally requires off-ramp to THB first.",
+          "source": "Bank of Thailand/SEC rules (2022, unchanged)",
+          "verified_at": "2026-09-10"
         }
       ],
       "scorecard": {
@@ -5654,6 +5739,41 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "7bcce7bcfb0cf45d6dc59cb1bc736221af152e0b13e127b6c330ea3ad8120cde"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.elite.label+min+notes",
+          "from": "15000 / old pricing",
+          "to": "20000 / Thailand Privilege residence (ex-Elite) / new tiers",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.ltr.notes",
+          "from": "Four categories (verified from official BOI): Wealthy Global Citizen = USD 1M assets + USD 500k Thai investment (gov bonds 5yr+ / direct investment / property); Wealthy Pensioner (50+) = USD 80k/yr passive income (or 40k + USD 250k investment); Work-from-Thailand = USD 80k/yr (or 40k + master's); High-Skilled = USD 80k/yr (or 40k + master's in STEM). 10-year visa (5+5 renewable), digital work permit, 17% PIT for skilled, overseas-income tax exemption.",
+          "to": "Four categories (official BOI criteria re-verified current for 2026): Wealthy Global Citizen = USD 1M assets + USD 500k Thai investment (gov bonds 5yr+ / direct investment / property); Wealthy Pensioner (50+) = USD 80k/yr passive (or 40k + USD 250k investment); Work-from-Thailand = USD 80k/yr (or 40k + master’s); High-Skilled = USD 80k/yr (or 40k + STEM master’s). 10-year visa (5+5), digital work permit, 17% PIT for skilled professionals. Sources: BOI criteria via 2026 LTR guides; Pattaya News LTR 2026 discussion (2026).",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "critical_tests.notes",
+          "from": "2024+ territorial tax reforms may tax foreign income remitted to Thailand — structure carefully. Citizenship rare for foreigners; PR after 3 consecutive years on qualifying visas.",
+          "to": "Foreign-income remittance rule clarified (May 2025 draft legislation): foreign income remitted to Thailand in the year earned or the following year is exempt from Thai tax; remitted later, it is assessable (rules apply to income earned from 1 Jan 2024). 180-day tax residency; citizenship rare; PR possible after 3 years on qualifying visas. Structure remittances within the 1-year window.",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Since 1 Apr 2022 crypto cannot be used to pay for goods/services (Bank of Thailand/SEC rules); owning and trading remain legal; commercial banks cautioned against direct digital-asset involvement. LTR launched 2022; 2024 Revenue Department guidance on foreign-sourced income remittance created tax uncertainty for nomads.",
+          "to": "Crypto payments banned since 1 Apr 2022 (BoT/SEC); owning/trading legal. LTR (2022) thresholds re-verified current. Remittance tax: 2024 strict remittance rule superseded by May 2025 draft legislation — same-year/next-year remittance exempt, later remittance taxable (income from 2024 onward). Thailand Privilege (ex-Elite) pricing updated 2026.",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
         }
       ]
     },
@@ -5664,8 +5784,8 @@
       "status": "Researching",
       "bitcoin_integration": "Temporary and permanent residency paths, active Bitcoin community. Bitcoin circular economies in CDMX and beach towns Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10.",
       "finance": {
-        "min_investment_usd": 40000,
-        "typical_investment_usd": 80000,
+        "min_investment_usd": 74000,
+        "typical_investment_usd": 120000,
         "gov_fees_usd": 3000,
         "processing_time_months": "1-3",
         "tax_benefits": "Territorial for non-Mexico income",
@@ -5673,10 +5793,13 @@
         "bitcoin_specific": "Bitcoin circular economies in CDMX and beach towns"
       },
       "details": "Accessible North American residency with territorial tax benefits. Modeled minimum investment $40,000 (typical $80,000). Primary routes on file: Temporary resident (economic solvency), Investor visa (capital investment), Permanent resident (after 4 years temporary). Tax notes: Territorial for non-Mexico income Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-10",
       "sources": [
         "INM",
-        "MotoPass research corpus · last_checked 2026-07-02 · block 958093"
+        "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "Mexperience — Financial criteria for residency 2026 (fetched 2026-09-10)",
+        "MexLaw — 2026 economic solvency & UMA (2026-01-28)",
+        "Consulmex Tucson / Las Vegas 2026 visa pages"
       ],
       "id": 19,
       "flag": "🇲🇽",
@@ -5707,14 +5830,14 @@
         {
           "type": "temporary_resident",
           "label": "Temporary resident (economic solvency)",
-          "min_investment_usd": 40000,
-          "notes": "Bank balances or income proof (~$2,600/month or ~$43k balance) — 1–4 year renewable; most accessible North American route."
+          "min_investment_usd": 74000,
+          "notes": "2026 economic solvency (July 2025 consular guidelines; UMA 2026 = 117.31 MXN): EITHER ~US$4,400/month net income over the last 6–12 months OR ~US$74,000 in savings/investments maintained for 12 months (consulates vary ±5–10%; e.g. Tucson $73,215, Las Vegas $78,025). 1–4 year renewable. Crypto and precious metals are NOT accepted as proof. Sources: Mexperience 2026 criteria (fetched 2026-09-10); MexLaw UMA calc (2026-01-28); consulate pages (2025-12/2026)."
         },
         {
           "type": "investor",
           "label": "Investor visa (capital investment)",
-          "min_investment_usd": 250000,
-          "notes": "Mexican business or property investment at qualifying threshold — path to permanent residency; verify current MXN equivalent."
+          "min_investment_usd": 300000,
+          "notes": "Capital investment route: MXN 5,378,664 (≈US$300,000 at 18 MXN/USD, 2026) into a Mexican company or listed securities — qualifies for temporary residency (permanent via 4-year upgrade or direct solvency). Property-ownership route also exists: residential property valued ≥MXN 10,758,500 (≈US$598,000), lien-free, in Mexico. Source: Mexperience 2026 investment criteria (fetched 2026-09-10)."
         },
         {
           "type": "permanent_resident",
@@ -5740,7 +5863,7 @@
           "https://www.gob.mx"
         ],
         "property_foreign_ownership": "Foreigners may own property except in restricted coastal/border zones (fideicomiso required within ~50km of coast).",
-        "recent_changes": "Bitcoin legal since 2017; FinTech Law (Ley para Regular las Instituciones de Tecnología Financiera) regulates crypto as virtual assets with case-by-case taxation. 2024-2025 digital nomad interest surged; INM processing times vary by consulate."
+        "recent_changes": "July 2025 consular guidelines moved solvency calculations to UMA-based formulas (UMA 2026 = 117.31 MXN, +3.69% YoY) — temporary-resident bars roughly doubled in USD terms as the peso appreciated (~18 MXN/USD). Crypto/precious metals explicitly excluded from solvency proof. Bitcoin legal since 2017; FinTech Law virtual-asset regime unchanged; INM fees up for 2026 (PR card MXN 13,578.96)."
       },
       "compliance_clock": {
         "renewal_interval_months": 48,
@@ -5833,6 +5956,16 @@
           "text": "Cartel/security considerations in some regions — location matters",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-07-02"
+        },
+        {
+          "text": "Solvency bars roughly doubled in USD for 2026: ~$4,400/mo income or ~$74k balance for temporary residency (was ~$2,600/$43k).",
+          "source": "Mexperience 2026 criteria (2026-09); MexLaw UMA calc (2026-01-28)",
+          "verified_at": "2026-09-10"
+        },
+        {
+          "text": "Crypto holdings are explicitly NOT accepted as solvency proof — residency funds must sit in fiat accounts.",
+          "source": "Mexperience 2026 criteria (fetched 2026-09-10)",
+          "verified_at": "2026-09-10"
         }
       ],
       "scorecard": {
@@ -5975,6 +6108,48 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "478df2fad8e25bad6119e9b8d2d75a8a0262785574ec860bcf67ce3fc20a13d2"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.temporary_resident.min+notes",
+          "from": "40000 / ~$2,600/mo or ~$43k balance",
+          "to": "74000 / ~$4,400/mo or ~$74k balance (2026 UMA)",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.investor.min+notes",
+          "from": "250000 / verify MXN equivalent",
+          "to": "300000 / MXN 5,378,664 fixed (2026)",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.min_investment_usd",
+          "from": "40000",
+          "to": "74000",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — tracks temporary-resident savings bar (2026 UMA)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": "80000",
+          "to": "120000",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — solvency buffer + setup costs"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Bitcoin legal since 2017; FinTech Law (Ley para Regular las Instituciones de Tecnología Financiera) regulates crypto as virtual assets with case-by-case taxation. 2024-2025 digital nomad interest surged; INM processing times vary by consulate.",
+          "to": "July 2025 consular guidelines moved solvency calculations to UMA-based formulas (UMA 2026 = 117.31 MXN, +3.69% YoY) — temporary-resident bars roughly doubled in USD terms as the peso appreciated (~18 MXN/USD). Crypto/precious metals explicitly excluded from solvency proof. Bitcoin legal since 2017; FinTech Law virtual-asset regime unchanged; INM fees up for 2026 (PR card MXN 13,578.96).",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
         }
       ]
     },
@@ -5994,10 +6169,13 @@
         "bitcoin_specific": "EU passport path, crypto service providers licensed"
       },
       "details": "EU access with non-dom tax optimization for HNW. Modeled minimum investment $300,000 (typical $400,000). Primary routes on file: Permanent residency (Regulation 6.2), Digital nomad visa, Non-dom tax residency. Tax notes: Non-dom 17 years Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-10",
       "sources": [
         "Cyprus investment program",
-        "MotoPass research corpus · last_checked 2026-07-02 · block 958093"
+        "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "Erotocritou LLC — Reg 6(2) amendments (2025-03-05)",
+        "Global Residence Index — Cyprus Golden Visa 2026 (2026-01-16)",
+        "CRMD — Civil Registry & Migration Department practice notes"
       ],
       "id": 20,
       "flag": "🇨🇾",
@@ -6029,7 +6207,7 @@
           "type": "permanent_residency",
           "label": "Permanent residency (Regulation 6.2)",
           "min_investment_usd": 300000,
-          "notes": "€300k+ in new residential property + €30k bank deposit + clean record — fast EU permanent residency (~2 months); no minimum stay requirement."
+          "notes": "Regulation 6(2) fast-track PR (criteria since 2 May 2023, verified 2025-03 & 2026-01): €300,000 (plus VAT where applicable) in ONE of four categories — (A) first-sale house/apartment, (B) other real estate incl. resale (offices, shops, hotels), (C) €300k share capital in a Cyprus company with physical presence + 5 employees, (D) units in Cyprus AIF/AIFLNP/RAIF. PLUS secured annual income of €50,000 (€15,000 spouse; €10,000 per minor child) — Category A income must be foreign-sourced. Criminal record + health insurance mandatory; annual compliance declarations to CRMD; PR card renews every 10 years; visit at least once every 2 years. ~2-month processing. Sources: Erotocritou LLC (2025-03-05); Global Residence Index 2026 guide (2026-01-16); CRMD practice."
         },
         {
           "type": "digital_nomad",
@@ -6048,7 +6226,7 @@
         "live_and_work": true,
         "scope_of_freedom": true,
         "dual_citizenship": true,
-        "notes": "EU member; citizenship after 7 years (or 5 with Greek proficiency). Golden passport (CBI) scheme closed 2020 — do not confuse with 6.2 PR."
+        "notes": "EU member. 6.2 PR: no minimum stay, but visit ≥ once every 2 years and annual compliance declarations. Citizenship: ~7 years of presence (2,655 days — typically 8 calendar years), B1 Greek + civic test; final year near-continuous residence. Golden passport (CBI) closed Nov 2020 — do not confuse with 6.2 PR."
       },
       "legal_compliance": {
         "primary_laws": [
@@ -6061,10 +6239,10 @@
           "https://www.mof.gov.cy"
         ],
         "property_foreign_ownership": "Foreigners may purchase property; 6.2 route requires new-build residential at qualifying threshold. No general land restrictions for EU-route investors.",
-        "recent_changes": "Bitcoin/crypto use is legal and not specifically regulated for individuals; business activity falls under CySEC CASP licensing and the EU MiCA framework (fully applicable from 2025). Golden passport programme terminated 2020; 6.2 fast-track PR remains active; Schengen accession negotiations ongoing."
+        "recent_changes": "6.2 PR criteria revised 2 May 2023 (in force): four investment categories (residential first-sale / other RE incl. resale / company / funds) + €50k secured annual income (+€15k spouse, +€10k minor child) — the 2021-era €30k bank deposit requirement no longer applies. Golden passport terminated Nov 2020. Individuals: crypto legal, unregulated; business activity under CySEC CASP + EU MiCA. Schengen accession talks ongoing."
       },
       "compliance_clock": {
-        "renewal_interval_months": 60,
+        "renewal_interval_months": 120,
         "citizenship_eligibility_years": 7,
         "residency_day_count_target": 2555
       },
@@ -6133,6 +6311,11 @@
           "text": "Tip: 6.2 PR for zero-stay EU base; non-dom for 17-year foreign-gains shield",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-07-02"
+        },
+        {
+          "text": "6.2 investment menu widened (2023): resale commercial property, company share capital, and fund units all qualify — not just new-build residential.",
+          "source": "Erotocritou LLC (2025-03-05)",
+          "verified_at": "2026-09-10"
         }
       ],
       "cons": [
@@ -6155,6 +6338,11 @@
           "text": "Non-dom requires careful day-count and remittance planning",
           "source": "MotoPass corpus (BUILD 72 research)",
           "verified_at": "2026-07-02"
+        },
+        {
+          "text": "6.2 requires €50,000/yr secured income on top of the €300k investment (+€15k spouse, +€10k per minor child) — and Category A (residential) income must come from abroad.",
+          "source": "Erotocritou LLC (2025-03-05); GRI 2026 guide (2026-01-16)",
+          "verified_at": "2026-09-10"
         }
       ],
       "scorecard": {
@@ -6206,6 +6394,41 @@
           "to": "re-anchored 15107f440fa8a9d8 (stamp 24b98c0a-397)",
           "source": "satohash-api",
           "hash": "15107f440fa8a9d8c5bff77d884d62798ee2e7120f2432a242ec4e4843952ee3"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.permanent_residency.notes",
+          "from": "€300k+ in new residential property + €30k bank deposit + clean record — fast EU permanent residency (~2 months); no minimum stay requirement. (€30k deposit, new-build only)",
+          "to": "Regulation 6(2) fast-track PR (criteria since 2 May 2023, verified 2025-03 & 2026-01): €300,000 (plus VAT where applicable) in ONE of four categories — (A) first-sale house/apartment, (B) other real estate incl. resale (offices, shops, hotels), (C) €300k share capital in a Cyprus company with physical presence + 5 employees, (D) units in Cyprus AIF/AIFLNP/RAIF. PLUS secured annual income of €50,000 (€15,000 spouse; €10,000 per minor child) — Category A income must be foreign-sourced. Criminal record + health insurance mandatory; annual compliance declarations to CRMD; PR card renews every 10 years; visit at least once every 2 years. ~2-month processing. Sources: Erotocritou LLC (2025-03-05); Global Residence Index 2026 guide (2026-01-16); CRMD practice.",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Bitcoin/crypto use is legal and not specifically regulated for individuals; business activity falls under CySEC CASP licensing and the EU MiCA framework (fully applicable from 2025). Golden passport programme terminated 2020; 6.2 fast-track PR remains active; Schengen accession negotiations ongoing.",
+          "to": "6.2 PR criteria revised 2 May 2023 (in force): four investment categories (residential first-sale / other RE incl. resale / company / funds) + €50k secured annual income (+€15k spouse, +€10k minor child) — the 2021-era €30k bank deposit requirement no longer applies. Golden passport terminated Nov 2020. Individuals: crypto legal, unregulated; business activity under CySEC CASP + EU MiCA. Schengen accession talks ongoing.",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "compliance_clock.renewal_interval_months",
+          "from": "60",
+          "to": "120",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — 6.2 PR card renews every 10 years (visit ≥ every 2 yrs)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "critical_tests.notes",
+          "from": "(see audit)",
+          "to": "EU member. 6.2 PR: no minimum stay, but visit ≥ once every 2 years and annual compliance declarations. Citizenship: ~7 years of presence (2,655 days — typically 8 calendar years), B1 Greek + civic test; final year near-continuous residence. Golden passport (CBI) closed Nov 2020 — do not confuse with 6.2 PR.",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10",
+          "source": "Batch 2 research pass (docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
         }
       ]
     },
