@@ -1,3 +1,21 @@
+## Session — 2026-09-10 (Buffy/Freebuff) — Batch 6 research pass: Europe golden-visa tier healed
+
+**Done (user work order: Batch 6 — Spain, Greece, Italy, Turkey, Latvia, Estonia, Bulgaria, Croatia, Gibraltar, Andorra):**
+- **Greece — MATERIAL:** golden-visa tier structure corrected — zones are **€800k (high-density) / €400k (rest of country) / €250k (heritage + new 2026 startup route)**; the "€500k most regions" tier on file doesn't exist. Plus: planned **15% transfer tax on non-EU buyers from Jul 2027** (up to ~€96k) added as a con. Sources: getgoldenvisa 2026 · buygreece · itciland 2026-01-19 · goldenvisas.com.
+- **Croatia — phantom pathway removed:** the €300k "real-estate residency" route had **no legal basis** (property purchase grants no residence right in Croatia); removed, page floor re-anchored to DNV (EUR 3,622.50/mo / €43,470/12mo — confirmed official mup.gov.hr). Sources: mup.gov.hr · taxesforexpats 2026-07-31.
+- **Turkey — deposit route un-suspended:** bank-deposit CBI is **ACTIVE at $500k/3-yr** (was wrongly marked suspended); property $400k confirmed via official invest.gov.tr. Sources: globalresidenceindex 2026-01-16 · legal500 · serkalaw.
+- **Italy — flat-tax correction:** HNW new-resident flat tax is **€300,000/yr** (was €100k on file — 3× understated); investor tiers €250k/500k/1M/2M verified against the official programme site. Source: Fragomen 2026-04-28 · investorvisa.mise.gov.it.
+- **Gibraltar — Cat 2 re-anchored:** official ITO figures — **£118k assessable cap** (not £105k), **£37k minimum** tax (not "~£37k max" — the min/max direction was inverted!), max ~£44.7k; **2026 residency-criteria overhaul** ahead of UK–EU treaty noted. Sources: gibraltar.gov.gi · sovereigngroup 2026-07-07.
+- **Bulgaria — bonds route closed:** bond-based investment route cancelled (Feb 2021 Citizenship Act amendments); only the company/jobs PR route (BGN 1M ≈ €511k + 10 jobs) remains active; **euro adopted 1 Jan 2026** noted.
+- **Spain — SMI re-anchor:** DNV = 200% SMI 2026 = **€2,849/mo (€34,188/yr)** (was €2,160–2,646 band); NLV €28,800 confirmed; abolition stands.
+- **Latvia — risk signal:** €50k company route verified lowest-in-EU (+€10k state fee); **€10M golden-visa fraud probe** (FIU flagged 20+ companies) added as a con.
+- **Andorra — refinement:** Jan 2026 reform details — general €1M / reduced €400k Housing Fund routes + €50k AFA deposit structure; page floor aligned to the reduced route.
+- **Estonia — verification pass:** no material change (nomad ~€3,504/mo, startup, e-Residency, VASP all consistent).
+- **Method:** `scripts/research-batch6-europe.mjs` — same audited pattern; last_checked=2026-09-10 on all ten.
+- **Gates:** validate-data ✓ · check-intel ✓ · trust envelopes ✓ · tsc 0 · 268/268 unit.
+
+---
+
 ## Session — 2026-09-10 (Buffy/Freebuff) — Batch 5 research pass: LatAm tier healed
 
 **Done (user work order: Batch 5 — Brazil, Argentina, Chile, Colombia, Belize):**

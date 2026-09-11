@@ -6579,7 +6579,7 @@
     "bitcoin_specific": "EU mobility, monitor crypto tax rules"
    },
    "details": "Golden visa EU access at competitive thresholds. Modeled minimum investment $250,000 (typical $300,000). Primary routes on file: Golden Visa (real estate), Financially independent persons (FIP), Digital nomad visa. Tax notes: Non-dom available Verify every figure against primary sources and Satohash proofs before acting.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Greek MFA",
     "MotoPass research corpus · last_checked 2026-07-02 · block 958093"
@@ -6613,8 +6613,8 @@
     {
      "type": "golden_visa",
      "label": "Golden Visa (real estate)",
-     "min_investment_usd": 250000,
-     "notes": "€250k minimum in designated lower-demand areas; €500k in most regions; €800k in Athens, Thessaloniki, Mykonos, Santorini, and other high-demand zones (2024 reform). 5-year renewable PR; family included."
+     "min_investment_usd": 435000,
+     "notes": "Three-zone structure (2024 reform, current 2026): EUR 800k high-density zones (Athens, Thessaloniki, Mykonos, Santorini, islands >3,100/km²); EUR 400k rest of country; EUR 250k only for listed-heritage buildings OR the new 2026 startup-investment route. Short-term rental forbidden; 5-year renewable PR; family included."
     },
     {
      "type": "financial_independence",
@@ -6646,7 +6646,7 @@
      "https://www.mfa.gr"
     ],
     "property_foreign_ownership": "Foreigners may freely purchase real estate; golden visa requires qualifying residential investment in approved areas. Agricultural land restrictions apply in border zones.",
-    "recent_changes": "Crypto legal — no specific bitcoin legislation exists (use not regulated by dedicated law); EU MiCA framework applies to CASPs from 2025. September 2024 golden visa threshold hike to EUR 800k in premium zones; EUR 250k route narrowed to specific lower-demand municipalities. Digital nomad and FIP routes remain active alternatives."
+    "recent_changes": "September 2024 golden-visa reform: three zones EUR 800k / EUR 400k / EUR 250k (heritage + 2026 startup route only) — no EUR 500k tier exists. Planned: 15% transfer tax on non-EU real-estate buyers from July 2027 (adds up to ~EUR 96k on a golden-visa purchase). Crypto legal, unregulated by dedicated law; EU MiCA applies to CASPs from 2025."
    },
    "compliance_clock": {
     "renewal_interval_months": 60,
@@ -6747,6 +6747,11 @@
      "text": "Property due diligence essential — undeclared building violations common",
      "source": "MotoPass corpus (BUILD 72 research)",
      "verified_at": "2026-07-02"
+    },
+    {
+     "text": "15% transfer tax planned for non-EU property buyers from July 2027 — factor into golden-visa purchase economics",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — goldenvisas.com (accessed 2026-09-10)",
+     "verified_at": "2026-09-10"
     }
    ],
    "scorecard": {
@@ -6826,6 +6831,34 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "c6600ab5bbf49cc80a3287b3b7f840d280ec9e098267fa55f63b860cae2eb9b9"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.golden_visa.min_investment_usd",
+     "from": 250000,
+     "to": 435000,
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — Zone B EUR 400k is the general-country floor (~$435k); Zone A EUR 800k / heritage+startup EUR 250k"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.golden_visa.notes",
+     "from": "€250k minimum in designated lower-demand areas; €500k in most regions; €800k in Athens, Thessaloniki, Mykonos, Santorini, and other high-demand zones (2024 reform). 5-year renewable PR; family included.",
+     "to": "Three-zone structure (2024 reform, current 2026): EUR 800k high-density zones (Athens, Thessaloniki, Mykonos, Santorini, islands >3,100/km²); EUR 400k rest of country; EUR 250k only for listed-heritage buildings OR the new 2026 startup-investment route. Short-term rental forbidden; 5-year renewable PR; family included.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — getgoldenvisa 2026 · buygreece.us 2026 · itciland 2026-01-19 (startup route) · IMI 2024-03-21"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "Crypto legal — no specific bitcoin legislation exists (use not regulated by dedicated law); EU MiCA framework applies to CASPs from 2025. September 2024 golden visa threshold hike to EUR 800k in premium zones; EUR 250k route narrowed to specific lower-demand municipalities. Digital nomad and FIP routes remain active alternatives.",
+     "to": "September 2024 golden-visa reform: three zones EUR 800k / EUR 400k / EUR 250k (heritage + 2026 startup route only) — no EUR 500k tier exists. Planned: 15% transfer tax on non-EU real-estate buyers from July 2027 (adds up to ~EUR 96k on a golden-visa purchase). Crypto legal, unregulated by dedicated law; EU MiCA applies to CASPs from 2025.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — getgoldenvisa 2026 · goldenvisas.com (transfer-tax plan)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — golden-visa tier structure corrected"
     }
    ]
   },
@@ -7127,7 +7160,7 @@
     "bitcoin_specific": "High retail BTC adoption"
    },
    "details": "Citizenship via property with bridge geography. Modeled minimum investment $400,000 (typical $450,000). Primary routes on file: Citizenship by property investment, Work permit + residence, Company establishment + investor residence. Tax notes: Monitor crypto tax Verify every figure against primary sources and Satohash proofs before acting.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Turkish citizenship by investment",
     "MotoPass research corpus · last_checked 2026-07-02 · block 958093"
@@ -7194,7 +7227,7 @@
      "https://www.invest.gov.tr"
     ],
     "property_foreign_ownership": "Foreigners may purchase real estate with military-clearance check; land area limits apply per foreign national. CBI requires title deed (tapu) at qualifying valuation.",
-    "recent_changes": "CBRT regulation (16 Apr 2021, effective 30 Apr 2021) bans crypto as a payment tool for goods/services; holding and trading remain legal but exchanges operate under SPK oversight (2024-2025 tightening). CBI property threshold stable at $400k since 2022 hike (from $250k). Bank-deposit CBI route suspended."
+    "recent_changes": "CBRT regulation (2021) bans crypto as a payment tool; holding/trading legal, exchanges under SPK oversight. CBI thresholds current 2026: property $400k (3-yr hold, official invest.gov.tr) and bank deposit $500k (3-yr hold) — deposit route ACTIVE (was incorrectly marked suspended); other $500k alternatives include capital investment and government bonds."
    },
    "compliance_clock": {
     "renewal_interval_months": 12,
@@ -7501,6 +7534,27 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "CBRT regulation (16 Apr 2021, effective 30 Apr 2021) bans crypto as a payment tool for goods/services; holding and trading remain legal but exchanges operate under SPK oversight (2024-2025 tightening). CBI property threshold stable at $400k since 2022 hike (from $250k). Bank-deposit CBI route suspended.",
+     "to": "CBRT regulation (2021) bans crypto as a payment tool; holding/trading legal, exchanges under SPK oversight. CBI thresholds current 2026: property $400k (3-yr hold, official invest.gov.tr) and bank deposit $500k (3-yr hold) — deposit route ACTIVE (was incorrectly marked suspended); other $500k alternatives include capital investment and government bonds.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — invest.gov.tr · globalresidenceindex 2026-01-16 · legal500 2026-03-09 · serkalaw 2026 · goldenharbors 2026-07"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.typical_investment_usd",
+     "from": 450000,
+     "to": 450000,
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — property $400k + costs; deposit alternative $500k (verified 2026)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — deposit route status corrected"
     }
    ]
   },
@@ -14194,7 +14248,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Spain. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -14233,8 +14287,8 @@
     {
      "type": "digital_nomad",
      "label": "International teleworkers visa (Ley de Startups)",
-     "min_investment_usd": 29000,
-     "notes": "~€2,160–2,646/month foreign income (200% Spanish minimum wage); remote work for non-Spanish employer or clients — 1-year renewable, popular Barcelona/Málaga nomad route."
+     "min_investment_usd": 37000,
+     "notes": "EUR 2,849/month foreign income (200% of the 2026 Spanish minimum wage; EUR 34,188/year) — remote work for non-Spanish employer or clients; max 20% Spanish-source income; 1-year renewable, popular Barcelona/Málaga nomad route."
     },
     {
      "type": "non_lucrative",
@@ -14261,7 +14315,7 @@
      "https://www.cnmv.es"
     ],
     "property_foreign_ownership": "Foreigners may freely purchase urban real estate; golden visa RE route requires €500k+ qualifying purchase (no mortgage financing on minimum portion).",
-    "recent_changes": "Golden visa ABOLISHED 2025-04-03 (Organic Law 1/2025) — real-estate/investment residence route closed; digital nomad (Ley de Startups) + non-lucrative residence remain active alternatives."
+    "recent_changes": "Golden visa ABOLISHED 2025-04-03 (Organic Law 1/2025) — real-estate/investment residence route closed; digital nomad (Ley de Startups) + non-lucrative residence remain active alternatives. 2026-09-10 verification: DNV threshold re-anchored to 200% SMI 2026 (EUR 2,849/mo); NLV EUR 28,800 confirmed; golden-visa abolition (Law 1/2025) stands."
    },
    "compliance_clock": {
     "renewal_interval_months": 24,
@@ -14694,6 +14748,34 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.digital_nomad.min_investment_usd",
+     "from": 29000,
+     "to": 37000,
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — 200% SMI 2026 = EUR 2,849/mo = EUR 34,188/yr (~$37k; greenback 2026-06-04)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.digital_nomad.notes",
+     "from": "~€2,160–2,646/month foreign income (200% Spanish minimum wage); remote work for non-Spanish employer or clients — 1-year renewable, popular Barcelona/Málaga nomad route.",
+     "to": "EUR 2,849/month foreign income (200% of the 2026 Spanish minimum wage; EUR 34,188/year) — remote work for non-Spanish employer or clients; max 20% Spanish-source income; 1-year renewable, popular Barcelona/Málaga nomad route.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — greenback 2026-06-04 · movingtospain 2026-09 · citizenremote 2026-02-17"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "Golden visa ABOLISHED 2025-04-03 (Organic Law 1/2025) — real-estate/investment residence route closed; digital nomad (Ley de Startups) + non-lucrative residence remain active alternatives.",
+     "to": "Golden visa ABOLISHED 2025-04-03 (Organic Law 1/2025) — real-estate/investment residence route closed; digital nomad (Ley de Startups) + non-lucrative residence remain active alternatives. 2026-09-10 verification: DNV threshold re-anchored to 200% SMI 2026 (EUR 2,849/mo); NLV EUR 28,800 confirmed; golden-visa abolition (Law 1/2025) stands.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — SMI 2026 index re-anchor"
     }
    ]
   },
@@ -14714,7 +14796,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Italy. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -14767,7 +14849,7 @@
     "live_and_work": true,
     "scope_of_freedom": true,
     "dual_citizenship": true,
-    "notes": "EU Schengen access; elective residence prohibits local work. Citizenship after 10 years residence (4 years for EU nationals, 3 for Italian-descent in some cases). Flat €100k tax incentive (new residents) may apply — verify current decree."
+    "notes": "EU Schengen access; elective residence prohibits local work. Citizenship after 10 years residence (4 years for EU nationals, 3 for Italian-descent in some cases). Flat EUR 300k/yr tax incentive (new residents) may apply — verify current decree."
    },
    "legal_compliance": {
     "primary_laws": [
@@ -14781,7 +14863,7 @@
      "https://www.agenziaentrate.gov.it"
     ],
     "property_foreign_ownership": "Foreigners may purchase residential property; elective residence requires proof of accommodation (rental or ownership) but no minimum investment in RE.",
-    "recent_changes": "2024 digital nomad visa launched; investor visa startup route at €250k remains most popular for founders. 2025 discussions on streamlining Nulla Osta processing — timelines still 3–6 months."
+    "recent_changes": "2024 digital nomad visa launched; investor visa startup route at €250k remains most popular for founders. 2025 discussions on streamlining Nulla Osta processing — timelines still 3–6 months. 2026-09-10 verification: investor tiers EUR 250k/500k/1M/2M confirmed current (investorvisa.mise.gov.it); HNW flat tax corrected EUR 100k -> EUR 300k/yr (Fragomen 2026-04-28); digital-nomad EUR 28k route unchanged."
    },
    "compliance_clock": {
     "renewal_interval_months": 24,
@@ -15277,6 +15359,27 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "critical_tests.notes",
+     "from": "EU Schengen access; elective residence prohibits local work. Citizenship after 10 years residence (4 years for EU nationals, 3 for Italian-descent in some cases). Flat €100k tax incentive (new residents) may apply — verify current decree.",
+     "to": "EU Schengen access; elective residence prohibits local work. Citizenship after 10 years residence (4 years for EU nationals, 3 for Italian-descent in some cases). Flat EUR 300k/yr tax incentive (new residents) may apply — verify current decree.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — Fragomen 2026-04-28 (EUR 300,000 flat-tax regime for HNW new residents)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "2024 digital nomad visa launched; investor visa startup route at €250k remains most popular for founders. 2025 discussions on streamlining Nulla Osta processing — timelines still 3–6 months.",
+     "to": "2024 digital nomad visa launched; investor visa startup route at €250k remains most popular for founders. 2025 discussions on streamlining Nulla Osta processing — timelines still 3–6 months. 2026-09-10 verification: investor tiers EUR 250k/500k/1M/2M confirmed current (investorvisa.mise.gov.it); HNW flat tax corrected EUR 100k -> EUR 300k/yr (Fragomen 2026-04-28); digital-nomad EUR 28k route unchanged.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — flat-tax correction + tier verification"
     }
    ]
   },
@@ -15297,7 +15400,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Latvia. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -15331,7 +15434,7 @@
      "type": "company_investment",
      "label": "Temporary residence via company investment",
      "min_investment_usd": 55000,
-     "notes": "€50k+ equity in Latvian company paying taxes and employing staff — business-substance route; real estate investment TRP for non-EU buyers largely suspended 2022."
+     "notes": "€50k+ equity in Latvian company paying taxes and employing staff — business-substance route; real estate investment TRP for non-EU buyers largely suspended 2022. Plus ~EUR 10,000 state fee (2026)."
     },
     {
      "type": "real_estate",
@@ -15464,6 +15567,11 @@
      "text": "Dual citizenship not permitted except limited cases",
      "source": "MotoPass corpus (BUILD 72 research)",
      "verified_at": "2026-07-02"
+    },
+    {
+     "text": "EUR 10M golden-visa fraud probe: FIU flagged 20+ companies running fake investment schemes — vet any Latvian investment vehicle carefully",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — etias.com (accessed 2026-09-10)",
+     "verified_at": "2026-09-10"
     }
    ],
    "scorecard": {
@@ -15662,6 +15770,20 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "d8e91c6fda03f353c62715cbf35b0c8ee7712f92eaa107e29a138fda622834c9"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.company_investment.notes",
+     "from": "€50k+ equity in Latvian company paying taxes and employing staff — business-substance route; real estate investment TRP for non-EU buyers largely suspended 2022.",
+     "to": "€50k+ equity in Latvian company paying taxes and employing staff — business-substance route; real estate investment TRP for non-EU buyers largely suspended 2022. Plus ~EUR 10,000 state fee (2026).",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — ntltrust (EUR 10k state fee)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — verified; fraud-probe risk signal added"
     }
    ]
   },
@@ -15682,7 +15804,7 @@
     "bitcoin_specific": "Active Bitcoin community; Lightning adoption in fintech corridors."
    },
    "details": "Flagship-depth research entry for Estonia. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -15749,7 +15871,7 @@
      "https://www.rik.ee"
     ],
     "property_foreign_ownership": "Foreigners may freely purchase apartments and land with no general restrictions; same rights as Estonian citizens for urban property.",
-    "recent_changes": "2020–2022 FIU tightened crypto licensing — many VASPs exited. Digital nomad visa launched 2020; startup visa remains active for endorsed founders."
+    "recent_changes": "2020–2022 FIU tightened crypto licensing — many VASPs exited. Digital nomad visa launched 2020; startup visa remains active for endorsed founders. 2026-09-10 verification: no material change found — nomad EUR ~3,504/mo, startup route, e-Residency, VASP licensing all consistent with corpus."
    },
    "compliance_clock": {
     "renewal_interval_months": 12,
@@ -15963,6 +16085,20 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "ed923b43cde6e4436500c090ef2d82272c450ceb821b24483631a6ae3556b74b"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "2020–2022 FIU tightened crypto licensing — many VASPs exited. Digital nomad visa launched 2020; startup visa remains active for endorsed founders.",
+     "to": "2020–2022 FIU tightened crypto licensing — many VASPs exited. Digital nomad visa launched 2020; startup visa remains active for endorsed founders. 2026-09-10 verification: no material change found — nomad EUR ~3,504/mo, startup route, e-Residency, VASP licensing all consistent with corpus.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — verification pass, no material change"
     }
    ]
   },
@@ -15983,7 +16119,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Bulgaria. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -16029,7 +16165,7 @@
      "type": "government_bonds",
      "label": "Government bonds (legacy investor route)",
      "min_investment_usd": 285000,
-     "notes": "BGN 512k (~€256k) in Bulgarian government bonds held 5 years previously qualified for investor residence — route status changed in several reforms; confirm with counsel whether bonds tier still active or superseded by BGN 1M company rule."
+     "notes": "CLOSED: the bond-based investment route was cancelled by the Feb 2021 Citizenship Act amendments and subsequent reforms — no longer a residence or citizenship qualifying route (2026). Kept for historical reference only; do not plan around it."
     }
    ],
    "critical_tests": {
@@ -16050,7 +16186,7 @@
      "https://www.fsc.bg"
     ],
     "property_foreign_ownership": "Non-EU foreigners may purchase buildings and apartments but not agricultural land; property alone does not trigger investor PR — company investment route is the primary HNW pathway.",
-    "recent_changes": "Investor PR threshold BGN 1M (~EUR 511k) confirmed; Parliament considering adding a physical-residency requirement to the golden visa (proposal, not law) — monitor IMI."
+    "recent_changes": "Investor PR (company route BGN 1M ≈ EUR 511k + 10 jobs in 2.5 yrs) remains the active investment-residence track; citizenship-by-investment schemes (incl. bonds) abolished 2021–2022. Parliament physical-residency proposal for golden visa still pending, not law. Bulgaria adopted the euro on 1 Jan 2026 — BGN pegged at 1.95583, thresholds now effectively EUR-denominated."
    },
    "compliance_clock": {
     "renewal_interval_months": null,
@@ -16421,6 +16557,27 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.government_bonds.notes",
+     "from": "BGN 512k (~€256k) in Bulgarian government bonds held 5 years previously qualified for investor residence — route status changed in several reforms; confirm with counsel whether bonds tier still active or superseded by BGN 1M company rule.",
+     "to": "CLOSED: the bond-based investment route was cancelled by the Feb 2021 Citizenship Act amendments and subsequent reforms — no longer a residence or citizenship qualifying route (2026). Kept for historical reference only; do not plan around it.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — bulgarian-citizenship.com 2026-06-04 · aegirglobal 2026-08-07 · bulgarian.llc 2025-09-10"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "Investor PR threshold BGN 1M (~EUR 511k) confirmed; Parliament considering adding a physical-residency requirement to the golden visa (proposal, not law) — monitor IMI.",
+     "to": "Investor PR (company route BGN 1M ≈ EUR 511k + 10 jobs in 2.5 yrs) remains the active investment-residence track; citizenship-by-investment schemes (incl. bonds) abolished 2021–2022. Parliament physical-residency proposal for golden visa still pending, not law. Bulgaria adopted the euro on 1 Jan 2026 — BGN pegged at 1.95583, thresholds now effectively EUR-denominated.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — bulgarian-citizenship.com 2026-06-04 · aegirglobal 2026-08-07 · UNCTAD monitor 2331"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — bonds route closed, euro adoption noted"
     }
    ]
   },
@@ -16432,8 +16589,8 @@
    "status": "Researching",
    "bitcoin_integration": "Croatia offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
    "finance": {
-    "min_investment_usd": 300000,
-    "typical_investment_usd": 450000,
+    "min_investment_usd": 44000,
+    "typical_investment_usd": 46000,
     "gov_fees_usd": 18000,
     "processing_time_months": "5-10",
     "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
@@ -16441,7 +16598,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Croatia. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -16484,12 +16641,6 @@
      "notes": "Representative of a Croatian d.o.o. or branch — requires local company registration, work permit linkage, and operational substance; popular EU-adjacent base for founders."
     },
     {
-     "type": "real_estate",
-     "label": "Property investment residency",
-     "min_investment_usd": 300000,
-     "notes": "€300k+ qualifying real estate purchase — temporary then permanent residency track; verify current property thresholds and municipal registration rules."
-    },
-    {
      "type": "rentista",
      "label": "Rentista / passive income",
      "min_investment_usd": 30000,
@@ -16513,7 +16664,7 @@
      "https://digitalnomadscroatia.mup.hr"
     ],
     "property_foreign_ownership": "EU/EEA nationals have broad rights; third-country nationals may acquire with reciprocity checks — coastal and agricultural land can have extra restrictions.",
-    "recent_changes": "2026 digital nomad income thresholds indexed to Croatian Bureau of Statistics; Schengen accession expanded mobility for residents."
+    "recent_changes": "2026 digital nomad income thresholds confirmed official (EUR 3,622.50/mo · EUR 43,470/12mo · EUR 65,205/18mo; mup.gov.hr). Property purchase alone does NOT confer residence — the previously-listed EUR 300k real-estate pathway was removed on 2026-09-10 verification as unsourced. Residency grounds: work permit, company (d.o.o.), family, independent means."
    },
    "compliance_clock": {
     "renewal_interval_months": 12,
@@ -16779,6 +16930,41 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "09a099f0935059099e15a740914de4cdb5c112a3e748bccc9170fd79b09b30da"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.real_estate",
+     "from": "{\"type\":\"real_estate\",\"label\":\"Property investment residency\",\"min_investment_usd\":300000,\"notes\":\"€300k+ qualifying real estate purchase — temporary then permanent residency track; verify current property thresholds and municipal registration rules.\"}",
+     "to": "REMOVED — no qualifying-property residence route exists in Croatian law (2026 verification)",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — mup.gov.hr residence grounds · taxesforexpats 2026-07-31"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.min_investment_usd",
+     "from": 300000,
+     "to": 44000,
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — re-anchored to DNV 12-month lump sum EUR 43,470 (official mup.gov.hr)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.typical_investment_usd",
+     "from": 450000,
+     "to": 46000,
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — DNV EUR 43,470 + fees (2026)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "2026 digital nomad income thresholds indexed to Croatian Bureau of Statistics; Schengen accession expanded mobility for residents.",
+     "to": "2026 digital nomad income thresholds confirmed official (EUR 3,622.50/mo · EUR 43,470/12mo · EUR 65,205/18mo; mup.gov.hr). Property purchase alone does NOT confer residence — the previously-listed EUR 300k real-estate pathway was removed on 2026-09-10 verification as unsourced. Residency grounds: work permit, company (d.o.o.), family, independent means.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — mup.gov.hr (accessed 2026-09-10) · taxesforexpats 2026-07-31"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — phantom RE pathway removed, DNV anchor confirmed"
     }
    ]
   },
@@ -16799,7 +16985,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Gibraltar. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -16833,7 +17019,7 @@
      "type": "cat2",
      "label": "Category 2 Individual (tax residency)",
      "min_investment_usd": 900000,
-     "notes": "Capped tax on first £105k assessable income (~£37k max annual tax); requires approved residential property purchase/lease and net-worth proof — premier offshore HNW route."
+     "notes": "Capped-tax regime (official ITO 2026): tax on first GBP 118,000 assessable income — minimum GBP 37,000/yr, maximum ~GBP 44,740/yr. Requires GBP 2M+ net worth, approved residential property purchase/lease, and annual Hub/reports compliance. 2026 residency-criteria overhaul tightened requirements ahead of the UK-EU treaty."
     },
     {
      "type": "hepps",
@@ -16865,7 +17051,7 @@
      "https://www.gfsc.gi"
     ],
     "property_foreign_ownership": "Foreigners may purchase residential property subject to Housing Act restrictions; Cat 2 requires qualifying approved accommodation.",
-    "recent_changes": "GFSC DLT framework remains active for crypto firms; Cat 2 property and wealth tests periodically reviewed by Gibraltar Immigration Advisory Board."
+    "recent_changes": "GFSC DLT framework remains active for crypto firms. 2026: Gibraltar introduced new residency criteria and updated Cat 2 requirements ahead of the imminent provisional application of the UK-EU treaty (Sovereign 2026-07-07); Cat 2 tax bands re-anchored to official ITO figures (GBP 118k cap; GBP 37k min / ~GBP 44.7k max)."
    },
    "compliance_clock": {
     "renewal_interval_months": 12,
@@ -17215,6 +17401,27 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.cat2.notes",
+     "from": "Capped tax on first £105k assessable income (~£37k max annual tax); requires approved residential property purchase/lease and net-worth proof — premier offshore HNW route.",
+     "to": "Capped-tax regime (official ITO 2026): tax on first GBP 118,000 assessable income — minimum GBP 37,000/yr, maximum ~GBP 44,740/yr. Requires GBP 2M+ net worth, approved residential property purchase/lease, and annual Hub/reports compliance. 2026 residency-criteria overhaul tightened requirements ahead of the UK-EU treaty.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — gibraltar.gov.gi/income-tax-office · gibraltarlaw.com · npestates · sovereigngroup 2026-07-07"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "legal_compliance.recent_changes",
+     "from": "GFSC DLT framework remains active for crypto firms; Cat 2 property and wealth tests periodically reviewed by Gibraltar Immigration Advisory Board.",
+     "to": "GFSC DLT framework remains active for crypto firms. 2026: Gibraltar introduced new residency criteria and updated Cat 2 requirements ahead of the imminent provisional application of the UK-EU treaty (Sovereign 2026-07-07); Cat 2 tax bands re-anchored to official ITO figures (GBP 118k cap; GBP 37k min / ~GBP 44.7k max).",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — sovereigngroup 2026-07-07 · gibraltar.gov.gi (accessed 2026-09-10)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — Cat 2 figures re-anchored, 2026 overhaul noted"
     }
    ]
   },
@@ -17543,8 +17750,8 @@
    "status": "Researching",
    "bitcoin_integration": "Andorra offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
    "finance": {
-    "min_investment_usd": 400000,
-    "typical_investment_usd": 600000,
+    "min_investment_usd": 440000,
+    "typical_investment_usd": 1180000,
     "gov_fees_usd": 20000,
     "processing_time_months": "4-8",
     "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
@@ -17552,7 +17759,7 @@
     "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
    },
    "details": "Flagship-depth research entry for Andorra. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-   "last_checked": "2026-08-22",
+   "last_checked": "2026-09-10",
    "sources": [
     "Official immigration portals",
     "MotoPass research BUILD-011"
@@ -17585,8 +17792,8 @@
     {
      "type": "passive_residency",
      "label": "Passive residency (residència passiva)",
-     "min_investment_usd": 400000,
-     "notes": "€400k+ into Andorran Housing Fund (Fons d'Habitatge) route, or €1M in broader qualifying assets + €50k AFA fee — 90-day minimum stay; no local employment permitted."
+     "min_investment_usd": 440000,
+     "notes": "Two routes after the Jan 2026 reform: general — EUR 1,000,000 invested in Andorran assets (real estate, company shares, bonds, funds, deposits; real-estate units >EUR 800k) ; reduced — EUR 400,000+ via the Housing Fund / exceptional-interest route. Plus EUR 50,000 AFA refundable deposit (+EUR 10,000/dependent) and 90-day minimum annual stay; no local employment permitted."
     },
     {
      "type": "active_business",
@@ -17805,6 +18012,41 @@
      "to": "Official source content changed — manual rule review required",
      "source": "source-probe",
      "hash": "e1296fb7537946466a763b34a700ab0f789511a0250546cc45cfbf2a93fff6d0"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.passive_residency.notes",
+     "from": "€400k+ into Andorran Housing Fund (Fons d'Habitatge) route, or €1M in broader qualifying assets + €50k AFA fee — 90-day minimum stay; no local employment permitted.",
+     "to": "Two routes after the Jan 2026 reform: general — EUR 1,000,000 invested in Andorran assets (real estate, company shares, bonds, funds, deposits; real-estate units >EUR 800k) ; reduced — EUR 400,000+ via the Housing Fund / exceptional-interest route. Plus EUR 50,000 AFA refundable deposit (+EUR 10,000/dependent) and 90-day minimum annual stay; no local employment permitted.",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — IMI 2026-01-24 · engage.ad 2026-08-04 · livinginandorra 2026-08-14 · elysiumconsultingfirm (deposit structure)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "pathways.passive_residency.min_investment_usd",
+     "from": 400000,
+     "to": 440000,
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — reduced Housing Fund route EUR 400k ≈ $440k remains the lowest entry; general route EUR 1M"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.min_investment_usd",
+     "from": 400000,
+     "to": 440000,
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — aligned to the reduced EUR 400k route floor"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "finance.typical_investment_usd",
+     "from": 600000,
+     "to": 1180000,
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — general route EUR 1M + deposits (2026 standard)"
+    },
+    {
+     "date": "2026-09-10",
+     "field": "last_checked",
+     "from": "2026-08-22",
+     "to": "2026-09-10",
+     "source": "Batch 6 research pass (Europe tier, docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md work order) — Jan 2026 reform details refined"
     }
    ]
   }
