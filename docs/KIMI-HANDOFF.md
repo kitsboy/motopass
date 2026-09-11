@@ -1,3 +1,25 @@
+## Session — 2026-09-10 (Buffy/Freebuff) — Batch 1 research pass: 75d+ cohort healed
+
+**Done (user work order: first research batch via the Claude pipeline prompt):**
+- **Cohort:** El Salvador (77d), Georgia (75d), UAE (75d), Singapore (76d), Switzerland (78d) — all re-verified against 2026 sources, `413e023`.
+- **Headline corrections (all sourced + audited):**
+  - **Georgia:** RE residency $100k → **$150k effective 2026-03-01** (Jun 2025 law, Arts. 15(j)/7(d.e)); VASP regime is LIVE at NBG since Jan 2023 (was recorded as "draft"). min_investment 50k→150k, typical→160k.
+  - **UAE (official u.ae, upd. 2026-07-28):** real-estate Golden Visa = **5 years, not 10** (10-yr is public investments); AED 2M bar confirmed; NEW: tax-contribution route (≥AED 250k/yr) listed.
+  - **Singapore:** GIP 2023 quanta confirmed current — **S$10M business / S$25M fund / SFO AUM ≥S$200M + S$50M deployed**; app fee S$20k (2025-05-05); ~12mo processing. Old corpus ($400k min, GIP $1.8M, SFO $5M) was badly stale — the largest correction in the batch.
+  - **El Salvador:** Freedom Visa pathway ADDED ($1M BTC/USDt → residency + fast-track citizenship, 1,000/yr cap, operating per IMI 2026-04 + lawyer-verified 2026-07); reserve ~7,762 BTC (2026-09-02); Chivo privatized (IMF-confirmed 2026-09-03).
+  - **Switzerland:** forfait federal base **CHF 435,000 (2026)**, 21/26 cantons retain it, Geneva ~CHF 1M practice minimum; 0% private crypto capital gains confirmed.
+- **Method:** `scripts/research-batch1-cohort.mjs` (rerunnable one-shot) — every change appended to `audit_trail` with date/field/from/to/source; `last_checked=2026-09-10`; pros/cons refreshed with dated citations; freshness/watch/satohash untouched (pipeline-owned).
+- **Gates:** validate-data ✓ · check-intel ✓ · trust envelopes ✓ · tsc 0 · 268/268 unit.
+
+**Git State:** `413e023` pushed; tree clean.
+
+**Not done / next agent:**
+- Batch 2 candidates (50d tier): Costa Rica, Hong Kong, Thailand, Mexico, Cyprus — then the 80–98d tail (Bolivia, Paraguay, CAR, Panama, Portugal, Malta)
+- Satohash re-stamp will pick these five up automatically as the canonical slice changed (daily self-heal)
+- Prompt doc's Section 5 hot-button list updated as batches land
+
+---
+
 ## Session — 2026-09-10 (Buffy/Freebuff) — continuation batch: UX depth + Veritas v2
 
 **Done (follow-up round after the 15-item mission):**
