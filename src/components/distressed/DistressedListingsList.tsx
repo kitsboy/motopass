@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Lock, ExternalLink, Bookmark } from 'lucide-react'
+import { Lock, ExternalLink, Bookmark, RotateCcw } from 'lucide-react'
 import { toggleDistressedBookmark, isDistressedBookmarked } from '../../lib/distressedBookmarkStorage'
 import { DistressedKimiTierTooltip } from './DistressedKimiTierTooltip'
 import { BtcDualPrice } from '../BtcDualPrice'
@@ -25,6 +25,7 @@ export function DistressedListingsList({
   loading,
   error,
   onSelect,
+  onReset,
 }: {
   listings: DistressedListing[]
   allListings: DistressedListing[]
@@ -33,6 +34,7 @@ export function DistressedListingsList({
   loading: boolean
   error: string | null
   onSelect: (listing: DistressedListing) => void
+  onReset?: () => void
 }) {
   const { t } = useI18n()
   const [unlocked, setUnlocked] = useState<Set<string>>(() => new Set())
@@ -50,12 +52,20 @@ export function DistressedListingsList({
     return (
       <div className="px-3 py-8 text-center space-y-3">
         <p className="text-sm text-ink-muted">{t('distressed.noListings')}</p>
-        <Link
-          to="/apply#apply-gates-heading"
-          className="inline-flex items-center gap-1 text-xs text-mp-btc-text hover:underline underline-offset-2 font-chrome"
-        >
-          {t('distressed.gateExplainerLink')}
-        </Link>
+        {onReset && (
+          <button type="button" onClick={onReset} className="btn-secondary text-xs inline-flex items-center gap-1.5 mx-auto">
+            <RotateCcw size={12} aria-hidden />
+            {t('distressed.resetFilters')}
+          </button>
+        )}
+        <p>
+          <Link
+            to="/apply#apply-gates-heading"
+            className="inline-flex items-center gap-1 text-xs text-mp-btc-text hover:underline underline-offset-2 font-chrome"
+          >
+            {t('distressed.gateExplainerLink')}
+          </Link>
+        </p>
       </div>
     )
   }

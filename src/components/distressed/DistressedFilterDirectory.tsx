@@ -79,6 +79,15 @@ export function DistressedFilterDirectory({
     })
   }, [listings, debounced])
 
+  // One-click escape hatch from the empty state: clears the transient search
+  // query plus every lane/filter back to defaults (mirrors page DEFAULT_FILTERS).
+  const handleResetFilters = () => {
+    setQuery('')
+    setSheetOpen(false)
+    onLaneChange('all')
+    onFiltersChange({ region: 'all', minScore: 1, maxBtcUsd: 0, proofGatedOnly: false, bookmarksOnly: false })
+  }
+
   const laneLabel = (l: DistressedLane) => {
     if (l === 'all') return t('distressed.laneAll')
     if (l === 'curated') return t('distressed.laneCurated')
@@ -269,6 +278,7 @@ export function DistressedFilterDirectory({
           loading={loading}
           error={error}
           onSelect={onSelectListing}
+          onReset={handleResetFilters}
         />
       </div>
     </div>

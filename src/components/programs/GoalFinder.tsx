@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { Compass, RotateCcw, Target, Clock, Wallet, Shield } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
+import { Compass, RotateCcw, Target, Clock, Wallet, Shield, Share2, Check } from 'lucide-react'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import type { Program } from '../../types/program'
 import { parseMonthsToDays } from '../../lib/programAdapter'
@@ -23,12 +24,43 @@ const TIMELINE_CAPS: Record<Exclude<Timeline, 'any'>, number> = { '6mo': 183, '1
  * programs ranked by sovereignty. Pure client-side scoring over the live
  * corpus — no network, no state beyond the URL-free local inputs.
  */
+function parseBudget(v: string | null): Budget {
+  return v === '50k' || v === '150k' || v === '500k' ? v : 'any'
+}
+function parseTimeline(v: string | null): Timeline {
+  return v === '6mo' || v === '12mo' || v === '24mo' ? v : 'any'
+}
+function parseGoal(v: string | null): Goal {
+  return v === 'citizenship' || v === 'fastest' ? v : 'residency'
+}
+
 export function GoalFinder({ programs, onOpenProgram }: GoalFinderProps) {
   const { t } = useI18n()
   const reduceMotion = useReducedMotion()
-  const [budget, setBudget] = useState<Budget>('any')
-  const [timeline, setTimeline] = useState<Timeline>('any')
-  const [goal, setGoal] = useState<Goal>('residency')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [shareCopied, setShareCopied] = useState(false)
+
+  // URL-backed inputs: ?gf-budget=150k&gf-timeline=12mo&gf-goal=fastest —
+  // shareable goal queries without touching the programs filters.
+  const budget = parseBudget(searchParams.get('gf-budget'))
+  const timeline = parseTimeline(searchParams.get('gf-timeline'))
+  const goal = parseGoal(searchParams.get('gf-goal'))
+
+  const patchGoal = (patch: { budget?: Budget; timeline?: Timeline; goal?: Goal }) => {
+    setSearchParams(
+      p => {
+        const next = { budget, timeline, goal, ...patch }
+        if (next.budget !== 'any') p.set('gf-budget', next.budget)
+        else p.delete('gf-budget')
+        if (next.timeline !== 'any') p.set('gf-timeline', next.timeline)
+        else p.delete('gf-timeline')
+        if (next.goal !== 'residency') p.set('gf-goal', next.goal)
+        else p.delete('gf-goal')
+        return p
+      },
+      { replace: true },
+    )
+  }
 
   const active = budget !== 'any' || timeline !== 'any' || goal !== 'residency'
 
@@ -86,7 +118,7 @@ export function GoalFinder({ programs, onOpenProgram }: GoalFinderProps) {
             </p>
             <div className="flex flex-wrap gap-1.5">
               {(['any', '50k', '150k', '500k'] as Budget[]).map(b => (
-                <button key={b} type="button" onClick={() => setBudget(b)} className={chip(budget === b)} aria-pressed={budget === b}>
+                <button key={b} type="button" onClick={() => patchGoal({ budget: b })} className={chip(budget === b)} aria-pressed={budget === b}>
                   {b === 'any' ? t('programs.goalFinder.any') : `$${b.replace('k', 'k')}`}
                 </button>
               ))}
@@ -98,7 +130,7 @@ export function GoalFinder({ programs, onOpenProgram }: GoalFinderProps) {
             </p>
             <div className="flex flex-wrap gap-1.5">
               {(['any', '6mo', '12mo', '24mo'] as Timeline[]).map(tl => (
-                <button key={tl} type="button" onClick={() => setTimeline(tl)} className={chip(timeline === tl)} aria-pressed={timeline === tl}>
+                <button key={tl} type="button" onClick={() => patchGoal({ timeline: tl })} className={chip(timeline === tl)} aria-pressed={timeline === tl}>
                   {tl === 'any' ? t('programs.goalFinder.any') : `≤ ${tl.replace('mo', '')} ${t('programs.goalFinder.months')}`}
                 </button>
               ))}
@@ -110,7 +142,7 @@ export function GoalFinder({ programs, onOpenProgram }: GoalFinderProps) {
             </p>
             <div className="flex flex-wrap gap-1.5">
               {(['residency', 'citizenship', 'fastest'] as Goal[]).map(g => (
-                <button key={g} type="button" onClick={() => setGoal(g)} className={chip(goal === g)} aria-pressed={goal === g}>
+                <button key={g} type="button" onClick={() => patchGoal({ goal: g })} className={chip(goal === g)} aria-pressed={goal === g}>
                   {t(`programs.goalFinder.goal.${g}`)}
                 </button>
               ))}
@@ -128,9 +160,28 @@ export function GoalFinder({ programs, onOpenProgram }: GoalFinderProps) {
               className="overflow-hidden"
             >
               <div className="mt-4 pt-4 border-t border-mp/60">
-                <p className="text-xs text-ink-muted mb-2">
-                  {results.length} {t('programs.goalFinder.matches')}
-                </p>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <p className="text-xs text-ink-muted">
+                    {results.length} {t('programs.goalFinder.matches')}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      try {
+                        await navigator.clipboard.writeText(`${window.location.origin}/programs?${searchParams.toString()}`)
+                        setShareCopied(true)
+                        window.setTimeout(() => setShareCopied(false), 2000)
+                      } catch {
+                        setShareCopied(false)
+                      }
+                    }}
+                    className="inline-flex items-center gap-1 text-[11px] font-chrome text-ink-muted hover:text-mp-btc-text transition-colors"
+                    title={t('programs.goalFinder.share')}
+                  >
+                    {shareCopied ? <Check size={12} className="text-mp-proof" aria-hidden /> : <Share2 size={12} aria-hidden />}
+                    {shareCopied ? t('programs.goalFinder.shared') : t('programs.goalFinder.share')}
+                  </button>
+                </div>
                 <ul className="grid gap-2 sm:grid-cols-2">
                   {results.map(({ program: p, sov, days, min }) => (
                     <li key={p.id}>
