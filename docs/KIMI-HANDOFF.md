@@ -1,3 +1,23 @@
+## Session — 2026-09-10 (Buffy/Freebuff) — Batch 2 research pass: 50d tier healed
+
+**Done (user work order: Batch 2 — Costa Rica, Hong Kong, Thailand, Mexico, Cyprus):** `210abb0`
+- **Mexico — deferred INM item RESOLVED:** July 2025 consular guidelines + UMA 2026 (117.31 MXN) roughly doubled solvency bars: temp = ~$4,400/mo or ~$74k balance (was $2,600/$43k); PR = ~$7,400/mo or ~$298k; house route MXN 10.76M (~$598k); investment route MXN 5,378,664 ≈ **$300k** (was $250k). **Crypto explicitly NOT accepted** as solvency proof. Consulates vary ±5–10%.
+- **Cyprus — deferred 6.2 item RESOLVED:** criteria since 2 May 2023 — four investment categories (first-sale residential / other RE incl. resale / company +5 employees / AIF funds), **€50k/yr secured income** (+€15k spouse, +€10k minor child); the 2021 €30k bank-deposit requirement is GONE. PR card renews every 10 yrs; visit ≥ every 2 yrs; annual CRMD compliance declarations. Citizenship ~7 presence-yrs (2,655 days), B1 Greek.
+- **Hong Kong:** CIES residential single-property threshold **lowered HK$50M → HK$30M (eff. 2025-09-17**, 2025 Policy Address), residential cap stays HK$10M, aggregate RE cap → HK$15M; eligible wholly-owned private company investments count from 2025-03-01. TTPS Cat A = 36-month stay (ImmD official; was recorded 24).
+- **Thailand:** remittance-tax uncertainty RESOLVED — May 2025 draft legislation: foreign income remitted in year earned or following year is exempt (taxable only when remitted later; applies to income from 2024). Elite rebranded **Thailand Privilege**: Bronze ฿650k/5yr (promo to 30 Sep 2026), Gold ฿900k, Platinum ฿1.5M/10yr, Diamond ฿2.5M/15yr, Reserve ฿5M/20yr. LTR thresholds re-verified current.
+- **Costa Rica:** verification pass — all thresholds current ($150k inversionista / $2,500/mo rentista + $60k CD alternative / ~$3k nomad). No numeric drift.
+- **Method:** `scripts/research-batch2-tier50.mjs` — same audited pattern as Batch 1; last_checked=2026-09-10 across all five.
+- **Gates:** validate-data ✓ · check-intel ✓ · envelopes ✓ · tsc 0 · 268/268 unit.
+
+**Git State:** `210abb0` pushed; tree clean.
+
+**Not done / next agent:**
+- Batch 3 (80–98d tail): Bolivia (98d), Paraguay (95d), CAR (93d), Panama (88d), Antigua (85d), Portugal (83d), Uruguay (81d), Dominica/St. Kitts/Switzerland-class remainder
+- Both deferred items from the old backlog (Mexico INM, Cyprus 6.2) are now CLOSED — remove from any stale-task lists
+- Satohash re-stamp will pick up all ten batch-1+2 programs automatically
+
+---
+
 ## Session — 2026-09-10 (Buffy/Freebuff) — Batch 1 research pass: 75d+ cohort healed
 
 **Done (user work order: first research batch via the Claude pipeline prompt):**
