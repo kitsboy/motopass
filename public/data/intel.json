@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-10T10:13:21.411Z",
+  "generated_at": "2026-09-11T10:10:58.970Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
-    "fresh": 0,
-    "watch": 50,
+    "fresh": 38,
+    "watch": 12,
     "stale": 0,
-    "swept_at": "2026-09-10T10:13:21.411Z",
+    "swept_at": "2026-09-11T10:10:58.970Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -15,9 +15,9 @@
     "El Salvador": {
       "id": 1,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -25,54 +25,52 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50",
+        "hash": "a94cfd8248e94b41ae8bc2d5a9dbcfe146f8585bb17784b1437d62571dbcae43",
         "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-22T14:57:00.700Z",
-        "stamp_id": "a25cef33-2c75-4f6e-9dcd-9ed1cc979953"
+        "stamped_at": "2026-09-11T10:10:37.985Z",
+        "stamp_id": "8176aafc-b442-4cb7-9b9b-8d2652bcd5aa"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-11",
+          "field": "proof",
+          "from": "279fb4c4cd5d2d69",
+          "to": "re-anchored a94cfd8248e94b41 (stamp 8176aafc-b44)",
+          "hash": "a94cfd8248e94b41ae8bc2d5a9dbcfe146f8585bb17784b1437d62571dbcae43"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.bitcoin_specific",
+          "from": "Direct Bitcoin payments accepted in many places. Government Bitcoin reserve and infrastructure. Ideal for MotoPass Bitcoin passport pilots.",
+          "to": "Bitcoin legal with voluntary acceptance since Jan 2025 reforms. Government Strategic Bitcoin Reserve continues accumulating (~7,762 BTC as of Sep 2026); Chivo wallet ownership and operation transferred to a private operator (IMF-confirmed, Sep 2026). Freedom Visa anchors the investment-migration offer."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.freedom_visa",
+          "from": "(absent)",
+          "to": "added: $1M BTC/USDt, 1,000/yr cap, family incl."
+        },
         {
           "date": "2026-09-02",
           "field": "watch.https://www.presidencia.gob.sv",
           "to": "Official source content changed — manual rule review required",
           "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
-        },
-        {
-          "date": "2026-08-27",
-          "field": "watch.https://www.presidencia.gob.sv",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
-        },
-        {
-          "date": "2026-08-22",
-          "field": "proof",
-          "from": "91427ffdd75bcd09",
-          "to": "re-anchored 279fb4c4cd5d2d69 (stamp a25cef33-2c7)",
-          "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
-        },
-        {
-          "date": "2026-08-22",
-          "field": "category.bitcoin_integration.finance.legal_compliance",
-          "from": "corpus BUILD 72 (legal_tender_bitcoin)",
-          "to": "Legal-tender status revoked Feb 2025 (IMF $1.4B deal; amendment Jan 29-30, 2025) — moved to rbi_cbi, reframed as historical pioneer with voluntary BTC",
-          "hash": null
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "d509c5268fd43f6b",
-          "to": "re-anchored 91427ffdd75bcd09 (stamp 698e0012-ebe)",
-          "hash": "91427ffdd75bcd09ea333e683bf42eafc4f213102c57a19c15b10de35ba80fda"
         }
       ]
     },
     "Central African Republic": {
       "id": 2,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -80,13 +78,32 @@
         "unreachable": 1
       },
       "proof": {
-        "hash": "b5ff369da5887cf7ecf57eabf9bdc2d91647068faf0c7cf24ab11e645984cb1a",
+        "hash": "5fcce6d45a682f1e29e34476bdd591a1529bc8a814d7df819cc101f936abfe42",
         "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-22T14:57:04.136Z",
-        "stamp_id": "fa6db16a-37e1-4304-adf8-f035e0ca071d"
+        "stamped_at": "2026-09-11T10:10:43.094Z",
+        "stamp_id": "6fe85970-01b5-4b9f-a21c-d92f51443b62"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-11",
+          "field": "proof",
+          "from": "b5ff369da5887cf7",
+          "to": "re-anchored 5fcce6d45a682f1e (stamp 6fe85970-01b)",
+          "hash": "5fcce6d45a682f1e29e34476bdd591a1529bc8a814d7df819cc101f936abfe42"
+        },
+        {
+          "date": "2026-09-11",
+          "field": "watch.https://www.finances.gouv.cf",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "5fcce6d45a682f1e29e34476bdd591a1529bc8a814d7df819cc101f936abfe42"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "verification",
+          "from": "corpus sweep 2026-08-22",
+          "to": "re-verified, no material change — Legal-tender repeal (Apr 2023) framing confirmed; Sango still stalled; no formal framework since (africansecurityanalysis 2026-09-10)"
+        },
         {
           "date": "2026-09-10",
           "field": "watch.https://www.finances.gouv.cf",
@@ -98,36 +115,15 @@
           "field": "watch.https://www.finances.gouv.cf",
           "to": "Official source content changed — manual rule review required",
           "hash": "b5ff369da5887cf7ecf57eabf9bdc2d91647068faf0c7cf24ab11e645984cb1a"
-        },
-        {
-          "date": "2026-08-22",
-          "field": "proof",
-          "from": "3436be752d1dbe7c",
-          "to": "re-anchored b5ff369da5887cf7 (stamp fa6db16a-37e)",
-          "hash": "b5ff369da5887cf7ecf57eabf9bdc2d91647068faf0c7cf24ab11e645984cb1a"
-        },
-        {
-          "date": "2026-08-22",
-          "field": "legal_compliance.category",
-          "from": "corpus BUILD 72",
-          "to": "Reflect April 2023 repeal of Bitcoin legal-tender law; category legal_tender_bitcoin -> rbi_cbi; fields corrected to historical framing",
-          "hash": null
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "27d7921d71ccb5b5",
-          "to": "re-anchored 3436be752d1dbe7c (stamp e1d03d09-4a0)",
-          "hash": "3436be752d1dbe7cd79fa580d15bd1d478fb96f5c52c0a967858768ab80193fe"
         }
       ]
     },
     "Uruguay": {
       "id": 3,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -135,51 +131,52 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4",
+        "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6",
         "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-22T14:57:07.682Z",
-        "stamp_id": "e0350760-c535-4b9a-a132-8a6501f96e00"
+        "stamped_at": "2026-09-11T10:10:47.629Z",
+        "stamp_id": "8bc9645f-55b4-4043-9bb0-6f8f42b839bd"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "proof",
+          "from": "1e9993bb823a6b8f",
+          "to": "re-anchored 97d5230a45b78ff2 (stamp 8bc9645f-55b)",
+          "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
+        },
+        {
+          "date": "2026-09-11",
+          "field": "watch.https://www.minterior.gub.uy",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.minterior.gub.uy",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-06",
-          "field": "watch.https://www.gub.uy/tramites/residencia-legal",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "2025–2026 digital nomad and investor pathways streamlined.",
+          "to": "2025–2026 digital nomad and investor pathways streamlined. Tax reform effective 1 Jan 2026 (Law 20.446 as amended): foreign-income holiday preserved at 11 years, then 12% on most foreign investment income; tax-residency real-estate threshold ~US$2M."
         },
         {
-          "date": "2026-09-05",
-          "field": "watch.https://www.minterior.gub.uy",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
-        },
-        {
-          "date": "2026-09-04",
-          "field": "watch.https://www.minterior.gub.uy",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
-        },
-        {
-          "date": "2026-08-30",
-          "field": "watch.https://www.gub.uy/tramites/residencia-legal",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
+          "date": "2026-09-10",
+          "field": "finance.tax_benefits",
+          "from": "Territorial tax system attractive for high-net-worth. Crypto gains often favorably treated. Strong residency pathway.",
+          "to": "Territorial system, reformed 1 Jan 2026 (Law 20.446 as amended): 11-year tax holiday on foreign-source income for new tax residents preserved; after the holiday most foreign investment income is taxed at 12% (pensions and Social Security exempt). Tax-residency-via-RE threshold now ~US$2M."
         }
       ]
     },
     "Bolivia": {
       "id": 4,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": false,
@@ -187,56 +184,53 @@
         "unreachable": 1
       },
       "proof": {
-        "hash": "c1a4ea09d99674bbc1fce88bf400c10f6bc1c36b73296654a2bcdbf6006d9306",
+        "hash": "0cef4b2194b2ca4950c4bf721bdc3b3c80b21a5795fe654e646acf65b7acc775",
         "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-22T14:57:11.291Z",
-        "stamp_id": "1706033e-780d-4aa8-bfc7-2b2e9bc53bb6"
+        "stamped_at": "2026-09-11T10:10:51.728Z",
+        "stamp_id": "7dd2c0b7-cb3f-4134-ab9c-5b9860d8ebe4"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-11",
+          "field": "proof",
+          "from": "c1a4ea09d99674bb",
+          "to": "re-anchored 0cef4b2194b2ca49 (stamp 7dd2c0b7-cb3)",
+          "hash": "0cef4b2194b2ca4950c4bf721bdc3b3c80b21a5795fe654e646acf65b7acc775"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "2014 crypto ban (Res. 044) repealed by Central Bank Resolution 144 of 15 Dec 2020 — crypto transactions legal since; regulatory framework still forming; monitor official gazette.",
+          "to": "2014 crypto ban partially relaxed Dec 2020 (BCB Res. 144); fully lifted 25 Jun 2024 by the Central Bank — crypto legal, not legal tender; no dedicated framework yet. Post-election (Paz, Nov 2025): floating FX, Investment Law bill before the Assembly (Aug 2026) — monitor official gazette."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "bitcoin_integration",
+          "from": "Crypto is legal: the 2014 ban (BCB Resolution 044) was repealed by Central Bank Resolution 144 of 15 Dec 2020. Policy still evolving and banking adoption gradual. Value/cost-distressed LatAm option for stacking.",
+          "to": "Crypto is legal, not legal tender: 2014 ban partially relaxed Dec 2020 (BCB Res. 144, transactions via regulated entities) and fully lifted 25 Jun 2024 by the Central Bank. Volumes surged +530% to $430M+ amid the dollar crunch (Reuters, Jun 2025). President Rodrigo Paz (won Oct 2025 runoff) runs a market-oriented agenda: floating exchange rate (~9–9.5 BOB/USD), Investment Law bill sent to the Assembly Aug 2026, blockchain-government plans. Framework still forming — high-upside frontier leg."
+        },
         {
           "date": "2026-08-22",
           "field": "proof",
           "from": "cb49ebf77a8b646a",
           "to": "re-anchored c1a4ea09d99674bb (stamp 1706033e-780)",
           "hash": "c1a4ea09d99674bbc1fce88bf400c10f6bc1c36b73296654a2bcdbf6006d9306"
-        },
-        {
-          "date": "2026-08-22",
-          "field": "legal_compliance",
-          "from": "corpus BUILD 72",
-          "to": "Sourced 2014-ban repeal (BCB Resolution 144, 15 Dec 2020); bitcoin_integration, tax_benefits, details refreshed",
-          "hash": null
-        },
-        {
-          "date": "2026-08-22",
-          "field": "proof",
-          "from": "b3a045e3235cb018",
-          "to": "re-anchored cb49ebf77a8b646a (stamp 489b5e57-38b)",
-          "hash": "cb49ebf77a8b646af06753b503045a58cbb53d2babbcd6e60591c13452c95fd7"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "finance.crypto_friendly_score",
-          "from": "6",
-          "to": "7",
-          "hash": "cb49ebf77a8b646af06753b503045a58cbb53d2babbcd6e60591c13452c95fd7"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "finance.crypto_friendly_score",
-          "from": "5",
-          "to": "6",
-          "hash": "c2d495b13191f53ff76cc6c0852ed360a68dde5763261ba6ac92cfcb3e714b35"
         }
       ]
     },
     "St. Kitts and Nevis": {
       "id": 5,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -244,39 +238,40 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248",
+        "hash": "e0f6d701ac8f0963a3a71c64e39949cfe7a2d6c467f9a2e6be4fe43990388901",
         "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-08-22T14:57:14.776Z",
-        "stamp_id": "41f66fcd-c033-49d5-8879-229136db8125"
+        "stamped_at": "2026-09-11T10:10:55.633Z",
+        "stamp_id": "a236d963-f87a-4eaf-8abe-1d0d6d3ad792"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "proof",
+          "from": "f2209308668869dc",
+          "to": "re-anchored e0f6d701ac8f0963 (stamp a236d963-f87)",
+          "hash": "e0f6d701ac8f0963a3a71c64e39949cfe7a2d6c467f9a2e6be4fe43990388901"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.ciu.gov.kn",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.ciu.gov.kn",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Sustainable Growth Fund (SGF) renamed Sustainable Island State Contribution (SISC), $250k; the 2026 framework adds mandatory applicant interviews and proposes a 30-day visit requirement within 5 years; US visa restriction on St Kitts and Nevis nationals (Presidential Proclamation 10998, Jan 2026) — monitor US access impact.",
+          "to": "Sustainable Growth Fund (SGF) renamed Sustainable Island State Contribution (SISC), $250k; the 2026 framework adds mandatory applicant interviews and proposes a 30-day visit requirement within 5 years; US visa restriction on St Kitts and Nevis nationals (Presidential Proclamation 10998, Jan 2026) — monitor US access impact."
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://www.ciu.gov.kn",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
+          "date": "2026-09-10",
+          "field": "critical_tests.notes",
+          "from": "Premium Caribbean passport (~150+ visa-free); no personal income, capital gains, or inheritance tax. No residency requirement today, but a 30-day visit within 5 years is proposed under the 2026 framework — monitor.",
+          "to": "Premium Caribbean passport (~150+ visa-free); no personal income, capital gains, or inheritance tax. No residency requirement in force today — the proposed 30-day visit within 5 years is NOT yet law (Aug 2026); mandatory interviews already apply; 2026 overhaul plans genuine-link rules and phasing out donation-only citizenship."
         },
         {
-          "date": "2026-09-06",
-          "field": "watch.https://www.ciu.gov.kn",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
-        },
-        {
-          "date": "2026-09-05",
+          "date": "2026-09-10",
           "field": "watch.https://www.ciu.gov.kn",
           "to": "Official source content changed — manual rule review required",
           "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
@@ -286,9 +281,9 @@
     "Antigua and Barbuda": {
       "id": 6,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -297,12 +292,30 @@
       },
       "proof": {
         "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-22T14:57:18.189Z",
         "stamp_id": "932a0976-606b-46aa-adeb-0f5d23bed0cb"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-10",
+          "field": "critical_tests.notes",
+          "from": "Strong passport mobility (150+ visa-free incl. Schengen); 5-day physical presence in first 5 years required; mandatory virtual interview for applicants 16+; no capital gains tax.",
+          "to": "Strong passport mobility (150+ visa-free incl. Schengen); 5-day physical presence in first 5 years required; mandatory virtual interview for applicants 16+; no capital gains tax. US Proclamation 10998 (eff. 1 Jan 2026): partial restriction implemented as a B-1/B-2 visa-validity cut for Antiguan and Barbudan nationals (10-year visas reduced) — entry not banned."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.ndf_donation.notes",
+          "from": "National Development Fund: $230,000 for a family of up to 4; single-applicant tier may be lower (~$100k) — verify current tier pricing with a licensed agent.",
+          "to": "National Development Fund: $230,000 non-refundable contribution — flat for a single applicant or a family of up to 4 (official CIU); processing fees $10,000 single / $20,000 family of 4."
+        },
         {
           "date": "2026-09-02",
           "field": "watch.https://www.cip.gov.ag",
@@ -315,36 +328,15 @@
           "from": "341c070a4384f648",
           "to": "re-anchored aa4c45f7a554951b (stamp 932a0976-606)",
           "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e"
-        },
-        {
-          "date": "2026-08-22",
-          "field": "pathways.legal_compliance.critical_tests",
-          "from": "corpus BUILD 72",
-          "to": "Business route corrected $1.5M -> $400k share of $5M+ joint business; UWI $260k (families 6+); ECCIRA harmonization 2026; US visa restriction noted",
-          "hash": null
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "91a26594ae7015d5",
-          "to": "re-anchored 341c070a4384f648 (stamp 1f66f623-f26)",
-          "hash": "341c070a4384f648410ca060ba25f815a1ebbb2c539005c638cb404b6906be99"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "proof",
-          "from": "b0080967535080db",
-          "to": "re-anchored 91a26594ae7015d5 (stamp 6a6dc159-dac)",
-          "hash": "91a26594ae7015d5cb1b6ca08dd00e0f9c349b0c44399f6a03ee5f383fc2ef44"
         }
       ]
     },
     "Dominica": {
       "id": 7,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -353,12 +345,24 @@
       },
       "proof": {
         "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-22T14:57:21.703Z",
         "stamp_id": "dc5dc26a-0ccc-44dc-b1a7-c81645392428"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-10",
+          "field": "critical_tests.notes",
+          "from": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents.",
+          "to": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents. US Proclamation 10998 (eff. 1 Jan 2026): partial restriction implemented as a B-1/B-2 visa-validity cut for Dominica nationals (10-year visas reduced) — entry not banned."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "verification",
+          "from": "corpus sweep 2026-08-22",
+          "to": "re-verified, no material change — EDF $200k + ECCIRA 2026 harmonization confirmed current (ketencilaw 2026-09-10); no material change"
+        },
         {
           "date": "2026-09-10",
           "field": "watch.https://cbiu.gov.dm",
@@ -373,18 +377,6 @@
         },
         {
           "date": "2026-09-08",
-          "field": "watch.https://cbiu.gov.dm",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c"
-        },
-        {
-          "date": "2026-09-07",
-          "field": "watch.https://cbiu.gov.dm",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c"
-        },
-        {
-          "date": "2026-09-06",
           "field": "watch.https://cbiu.gov.dm",
           "to": "Official source content changed — manual rule review required",
           "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c"
@@ -394,9 +386,9 @@
     "UAE (Dubai / Abu Dhabi)": {
       "id": 8,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -405,50 +397,50 @@
       },
       "proof": {
         "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-22T14:57:25.299Z",
         "stamp_id": "63145a39-1f6b-433c-9b01-bef9da543348"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://u.ae",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "b34719c0d2142d778d4cdd5cb1ebd6187cca58afb4a1a688d183e907666cf2af"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://u.ae",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://u.ae",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2"
+          "date": "2026-09-10",
+          "field": "critical_tests.notes",
+          "from": "UAE does not offer citizenship by investment; residency + tax efficiency is the play.",
+          "to": "UAE offers no citizenship by investment; residency + tax efficiency is the play. Golden Visa tenure: 10 years (public investment) or 5 years (real estate), both renewable."
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://u.ae",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Regulated by jurisdiction (as of Oct 2025): VARA (Dubai incl. DMCC), DFSA (DIFC), FSRA (ADGM), CBUAE + SCA (onshore); VARA continues strengthening crypto business licensing.",
+          "to": "Regulated by jurisdiction (as of Oct 2025): VARA (Dubai incl. DMCC), DFSA (DIFC), FSRA (ADGM), CBUAE + SCA (onshore). Golden Visa federal terms re-verified on u.ae (updated 2026-07-28): AED 2M minimum; real-estate route now 5-year tenure (10-year tenure reserved for public investments); tax-contributor route (≥AED 250k/yr) explicitly listed."
         },
         {
-          "date": "2026-09-07",
-          "field": "watch.https://u.ae",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2"
-        },
-        {
-          "date": "2026-09-06",
-          "field": "watch.https://u.ae",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "d742ba3e4c25028abe900ccbf34d3181c0fcfadcca95a679f7f0dc1a99aa3ac2"
+          "date": "2026-09-10",
+          "field": "pathways.golden_visa.notes",
+          "from": "Property or investment threshold in AED equivalent; VARA clarity for crypto businesses.",
+          "to": "Official federal terms (u.ae, updated 2026-07-28): minimum capital AED 2,000,000 (≈USD 545k) via property ownership, public investment, or contribution to an establishment paying ≥AED 250,000/yr in taxes. Real-estate route grants 5-year renewable residency; public-investment route grants 10 years. Abu Dhabi (adro.gov.ae) mirrors the AED 2M bar."
         }
       ]
     },
     "Switzerland": {
       "id": 9,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -457,50 +449,50 @@
       },
       "proof": {
         "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-22T14:57:28.715Z",
         "stamp_id": "760db661-c1a7-42a4-801e-5c83da431718"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.sem.admin.ch",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "80b00c6bbfd85ecca82598968ce86ee266952c2b24f617ae2b69da2d09f4db56"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.sem.admin.ch",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.sem.admin.ch",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Crypto Valley continues as Bitcoin business hub; FINMA clarity for VASPs. Lump-sum tax confirmed active: based on living expenses, no gainful activity, ~5,000 payers; abolished in some cantons (Zurich 2010 et al.), national abolition rejected by referendum 2014.",
+          "to": "Lump-sum confirmed active for 2026: federal minimum base CHF 435,000 (2026), 21 retaining cantons, national abolition rejected by referendum (2014). Crypto Valley (Zug) continues; FINMA VASP clarity unchanged. 0% federal/private capital-gains on movable assets (incl. private crypto holdings) confirmed across 2026 guides."
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://www.sem.admin.ch",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
+          "date": "2026-09-10",
+          "field": "pathways.lump_sum_tax.min_investment_usd",
+          "from": "250000",
+          "to": "300000"
         },
         {
-          "date": "2026-09-07",
-          "field": "watch.https://www.sem.admin.ch",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
-        },
-        {
-          "date": "2026-09-03",
-          "field": "watch.https://www.sem.admin.ch",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "2a1287a7ea1c1d472a7aafc368ad3e010d7d1a4ac349a98306d7084a2272a151"
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": "500000",
+          "to": "550000"
         }
       ]
     },
     "Singapore": {
       "id": 10,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -509,50 +501,50 @@
       },
       "proof": {
         "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-22T14:57:31.799Z",
         "stamp_id": "c5d17f09-dbc2-4a58-b94f-83ebac8cf285"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.edb.gov.sg",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "44d0a33eb98f08bea649a9fd3ae9e262e2c08feff5a10bb4208aa549798d181f"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.edb.gov.sg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.edb.gov.sg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Legal (Payment Services Act 2019 — digital payment tokens); MAS continues tightening VASP licensing; GIP fund categories updated periodically — confirm eligible vehicles.",
+          "to": "GIP 2023 quanta verified current through 2026: S$10M business / S$25M GIP-select fund / SFO S$200M AUM + S$50M deployment. Application fee S$20,000 (2025-05-05). PSA 2019 digital-payment-token regime continues under MAS licensing; MAS keeps tightening VASP supervision. Feb 2026 parliamentary update: 450 individuals have secured PR via GIP."
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://www.edb.gov.sg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+          "date": "2026-09-10",
+          "field": "finance.processing_time_months",
+          "from": "3-8",
+          "to": "9-14"
         },
         {
-          "date": "2026-09-07",
-          "field": "watch.https://www.edb.gov.sg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
-        },
-        {
-          "date": "2026-09-06",
-          "field": "watch.https://www.edb.gov.sg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "33606bf60e75ee2cb67e270119106b849af00b98e227ceb93d8916de0fe7eba9"
+          "date": "2026-09-10",
+          "field": "finance.gov_fees_usd",
+          "from": "35000",
+          "to": "15000"
         }
       ]
     },
     "Portugal": {
       "id": 11,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -561,12 +553,24 @@
       },
       "proof": {
         "hash": "f37c397dbe7479ecd7c927a3f0332df9276ae17dc87b1cb58b27598987c12089",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-27T17:02:37.035Z",
         "stamp_id": "1f5ec0a6-7159-4e5c-bf94-4e7571e21356"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-11",
+          "field": "watch.https://www.portugal.gov.pt",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "verification",
+          "from": "corpus sweep 2026-08-22",
+          "to": "re-verified, no material change — Golden-visa fund route €500k + Lei Orgânica 1/2026 naturalisation (7y EU-CPLP / 10y others) confirmed current (bitizenship 2026-09-10); no new golden-visa threshold change verified"
+        },
         {
           "date": "2026-09-10",
           "field": "watch.https://www.portugal.gov.pt",
@@ -581,18 +585,6 @@
         },
         {
           "date": "2026-09-08",
-          "field": "watch.https://www.portugal.gov.pt",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "f37c397dbe7479ecd7c927a3f0332df9276ae17dc87b1cb58b27598987c12089"
-        },
-        {
-          "date": "2026-09-06",
-          "field": "watch.https://www.portugal.gov.pt",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "f37c397dbe7479ecd7c927a3f0332df9276ae17dc87b1cb58b27598987c12089"
-        },
-        {
-          "date": "2026-09-05",
           "field": "watch.https://www.portugal.gov.pt",
           "to": "Official source content changed — manual rule review required",
           "hash": "f37c397dbe7479ecd7c927a3f0332df9276ae17dc87b1cb58b27598987c12089"
@@ -603,7 +595,7 @@
       "id": 12,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -654,9 +646,9 @@
     "Panama": {
       "id": 13,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -665,12 +657,24 @@
       },
       "proof": {
         "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-27T17:02:44.745Z",
         "stamp_id": "29256a5b-8391-413a-a196-4626c1689432"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-11",
+          "field": "watch.https://www.gacetaoficial.gob.pa",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "verification",
+          "from": "corpus sweep 2026-08-22",
+          "to": "re-verified, no material change — Friendly Nations $200k / QI $300k / pensionado $1k confirmed; 2025 draft crypto-provider bill still the latest on file (globalcitizensolutions, pfser 2026-09-10)"
+        },
         {
           "date": "2026-09-10",
           "field": "watch.https://www.gacetaoficial.gob.pa",
@@ -685,18 +689,6 @@
         },
         {
           "date": "2026-09-08",
-          "field": "watch.https://www.gacetaoficial.gob.pa",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe"
-        },
-        {
-          "date": "2026-09-07",
-          "field": "watch.https://www.gacetaoficial.gob.pa",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe"
-        },
-        {
-          "date": "2026-09-06",
           "field": "watch.https://www.gacetaoficial.gob.pa",
           "to": "Official source content changed — manual rule review required",
           "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe"
@@ -706,9 +698,9 @@
     "Georgia": {
       "id": 14,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -717,50 +709,50 @@
       },
       "proof": {
         "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-27T17:02:48.738Z",
         "stamp_id": "bbc29c24-a84d-4351-8f7a-904b45ae5ec1"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.rs.ge",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "19f3a4006876b52679f97069da614ed63911f36ccb46fd2ebd6ff0bc7cf82597"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.rs.ge",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.rs.ge",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "2019 Ministry of Finance decision: crypto not 'Georgia-sourced' income → 0% capital gains tax on personal crypto trading; VASP licensing framework developing; remote work permit launched 2021.",
+          "to": "Real-estate residence threshold raised $100k → $150k effective 1 Mar 2026 (Jun 2025 amendments). VASP registration with the National Bank of Georgia mandatory since Jan 2023 (GEL 5,000 registration fee; AML obligations). Mandatory work-permit regime for foreign employees from 1 Mar 2026; new IT-sector residence permit launched Sep 2025. 2019 MoF position unchanged: personal crypto gains 0% (non-Georgia-sourced)."
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://www.rs.ge",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
+          "date": "2026-09-10",
+          "field": "legal_compliance.primary_laws[vasp]",
+          "from": "NBG Virtual Asset Service Provider registration regime (in force since Jan 2023) (was: draft framework)",
+          "to": "NBG Virtual Asset Service Provider registration regime (in force since Jan 2023)"
         },
         {
-          "date": "2026-09-07",
-          "field": "watch.https://www.rs.ge",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
-        },
-        {
-          "date": "2026-09-06",
-          "field": "watch.https://www.rs.ge",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "22d13d8f9c33f15d3ac6857d97ce60f57c24c10de0fd239c25c0920d04348c89"
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": "100000",
+          "to": "160000"
         }
       ]
     },
     "Paraguay": {
       "id": 15,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -769,12 +761,18 @@
       },
       "proof": {
         "hash": "2a2ac831db799876559bdfa8e66c57447cf3bc2f7e5c574cdc1c4f6b58c33642",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-27T17:02:52.744Z",
         "stamp_id": "78fbd489-e1b2-414e-aba0-db12a8e684ef"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-10",
+          "field": "verification",
+          "from": "corpus sweep 2026-08-22",
+          "to": "re-verified, no material change — SUACE ~$70k/10yr, rentista ~$1,200/mo, Law 6984/2022 confirmed current (goldenharbors 2026-09-10); no material change"
+        },
         {
           "date": "2026-09-10",
           "field": "watch.https://www.set.gov.py",
@@ -798,21 +796,15 @@
           "field": "watch.https://www.set.gov.py",
           "to": "Official source content changed — manual rule review required",
           "hash": "2a2ac831db799876559bdfa8e66c57447cf3bc2f7e5c574cdc1c4f6b58c33642"
-        },
-        {
-          "date": "2026-09-03",
-          "field": "watch.https://www.migraciones.gov.py",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "2a2ac831db799876559bdfa8e66c57447cf3bc2f7e5c574cdc1c4f6b58c33642"
         }
       ]
     },
     "Costa Rica": {
       "id": 16,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -821,38 +813,38 @@
       },
       "proof": {
         "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-28T17:51:21.723Z",
         "stamp_id": "700ef2d3-da4b-4acc-8b83-ff332c101c28"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.hacienda.go.cr",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "9223b0cf9c88876686925acbdbfa898c11f47d9254e76bebb07b5c2be86f1967"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.hacienda.go.cr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.hacienda.go.cr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
+          "date": "2026-09-10",
+          "field": "pathways.inversionista.notes",
+          "from": "$150k+ in qualifying business, securities, or real estate — permanent residency track; verify approved project categories.",
+          "to": "USD 150,000+ in qualifying business, securities, or real estate — verified current for 2026 (Law 9996-era criteria unchanged); leads to temporary residency then permanent. Sources: TaxesForExpats 2026 guide (2026-02-17); Riotimes (2026-09); LottaLingo 2026 visa guide."
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://www.hacienda.go.cr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
+          "date": "2026-09-10",
+          "field": "pathways.rentista.notes",
+          "from": "~$2,500/month guaranteed for 2+ years from investments, dividends, or rentals — apostilled income proof required.",
+          "to": "USD 2,500/month guaranteed passive income for 2+ years (investments, dividends, rentals) — apostilled proof required. Alternative: a USD 60,000 deposit in an approved Costa Rican bank qualifies. Sources: GoldenHarbors rentista guide (2026-08-26); Riotimes residency guide (2026-09); TaxesForExpats 2026 guide (2026-02-17)."
         },
         {
-          "date": "2026-09-07",
-          "field": "watch.https://www.hacienda.go.cr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
-        },
-        {
-          "date": "2026-09-06",
+          "date": "2026-09-10",
           "field": "watch.https://www.hacienda.go.cr",
           "to": "Official source content changed — manual rule review required",
           "hash": "c71ae0575c58df744e7f87cf8787eceb15e192a1e358d22ae2b6e81b633d2c9f"
@@ -862,9 +854,9 @@
     "Hong Kong": {
       "id": 17,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -873,39 +865,38 @@
       },
       "proof": {
         "hash": "08f1b657dd1cc2564fccc42b32dea4e4b7ecfe1de3bbcf2e9f3687b39a40c080",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-28T17:51:25.542Z",
         "stamp_id": "97e4016b-c806-4c31-a040-625de5f48c57"
       },
       "recent_changes": [
         {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Virtual Asset Trading Platform (VATP) regulations came into force mid-2024 under the SFC 'same activity, same risks, same regulation' principle (policy embrace announced late 2022); CIES reinstated March 2024 at HK$30M threshold.",
+          "to": "VATP regime in force under SFC licensing since mid-2024. CIES enhancements: residential RE permitted from 2024-10-16 (single property ≥HK$50M then); threshold lowered to HK$30M and aggregate RE cap raised to HK$15M effective 2025-09-17 (2025 Policy Address); eligible wholly-owned private company investments counted from 2025-03-01. TTPS Cat A grants 36 months (official)."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.ttps.notes",
+          "from": "High-income professionals (HK$2.5M+ annual income in prior year) or top-university graduates — 2-year open work visa, no employer sponsor.",
+          "to": "Category A: HK$2.5M+ annual income (year immediately preceding application) → 36-month initial stay (ImmD official). Categories B/C: top-100 university graduates (B: 3+ yrs experience; C: quota-capped recent grads) → 24 months. No employer sponsor required; no offer of employment needed. Source: immd.gov.hk TTPS page (fetched 2026-09-10)."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.cies.notes",
+          "from": "HK$30M minimum in permissible assets (incl. mandatory HK$3M into the HKIC Investment Portfolio) + HK$30M net assets for 6 months prior — 2-year visa, extendable to 7-year PR track. Real estate capped at HK$10M of the HK$27M; launched Mar 2024, 800+ applications by Jan 2025.",
+          "to": "HK$30M net minimum (official New CIES site): HK$27M into permissible financial assets and/or real estate + mandatory HK$3M CIES Investment Portfolio (HKIC); HK$30M net assets held 6 months prior. Residential real estate: single property must transact at ≥HK$30M (lowered from HK$50M effective 17 Sep 2025, 2025 Policy Address); residential investment cap remains HK$10M; aggregate real-estate cap raised to HK$15M. CD subcap HK$3M (10%). Launched Mar 2024; 2-year visa, PR track at 7 years. Sources: newcies.gov.hk investment-requirement page (fetched 2026-09-10); SCMP (2025-09-17); IMI Daily (2025-09-19); newcies.gov.hk scheme-rules PDF."
+        },
+        {
           "date": "2026-09-09",
-          "field": "watch.https://www.sfc.hk",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "08f1b657dd1cc2564fccc42b32dea4e4b7ecfe1de3bbcf2e9f3687b39a40c080"
-        },
-        {
-          "date": "2026-09-07",
-          "field": "watch.https://www.sfc.hk",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "08f1b657dd1cc2564fccc42b32dea4e4b7ecfe1de3bbcf2e9f3687b39a40c080"
-        },
-        {
-          "date": "2026-09-01",
-          "field": "watch.https://www.sfc.hk",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "08f1b657dd1cc2564fccc42b32dea4e4b7ecfe1de3bbcf2e9f3687b39a40c080"
-        },
-        {
-          "date": "2026-08-28",
-          "field": "proof",
-          "from": "d8a92c2d9cbbc542",
-          "to": "re-anchored 08f1b657dd1cc256 (stamp 97e4016b-c80)",
-          "hash": "08f1b657dd1cc2564fccc42b32dea4e4b7ecfe1de3bbcf2e9f3687b39a40c080"
-        },
-        {
-          "date": "2026-08-28",
           "field": "watch.https://www.sfc.hk",
           "to": "Official source content changed — manual rule review required",
           "hash": "08f1b657dd1cc2564fccc42b32dea4e4b7ecfe1de3bbcf2e9f3687b39a40c080"
@@ -915,9 +906,9 @@
     "Thailand": {
       "id": 18,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -926,54 +917,50 @@
       },
       "proof": {
         "hash": "7bcce7bcfb0cf45d6dc59cb1bc736221af152e0b13e127b6c330ea3ad8120cde",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-28T17:51:29.318Z",
         "stamp_id": "251827b6-95f3-4c88-b031-a026ffe8f9a5"
       },
       "recent_changes": [
         {
-          "date": "2026-09-01",
-          "field": "watch.https://ltr.boi.go.th",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "7bcce7bcfb0cf45d6dc59cb1bc736221af152e0b13e127b6c330ea3ad8120cde"
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-08-28",
-          "field": "proof",
-          "from": "933e6a8cbf299b9e",
-          "to": "re-anchored 7bcce7bcfb0cf45d (stamp 251827b6-95f)",
-          "hash": "7bcce7bcfb0cf45d6dc59cb1bc736221af152e0b13e127b6c330ea3ad8120cde"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Since 1 Apr 2022 crypto cannot be used to pay for goods/services (Bank of Thailand/SEC rules); owning and trading remain legal; commercial banks cautioned against direct digital-asset involvement. LTR launched 2022; 2024 Revenue Department guidance on foreign-sourced income remittance created tax uncertainty for nomads.",
+          "to": "Crypto payments banned since 1 Apr 2022 (BoT/SEC); owning/trading legal. LTR (2022) thresholds re-verified current. Remittance tax: 2024 strict remittance rule superseded by May 2025 draft legislation — same-year/next-year remittance exempt, later remittance taxable (income from 2024 onward). Thailand Privilege (ex-Elite) pricing updated 2026."
         },
         {
-          "date": "2026-08-22",
-          "field": "pathways.ltr",
-          "from": "corpus BUILD 72 ($80k income or $1M assets)",
-          "to": "LTR verified from official BOI: 4 categories — Wealthy Global Citizen USD 1M assets + USD 500k Thai investment; pensioner/remote/skilled USD 80k (or 40k + quals); 10yr visa (5+5)",
-          "hash": null
+          "date": "2026-09-10",
+          "field": "critical_tests.notes",
+          "from": "2024+ territorial tax reforms may tax foreign income remitted to Thailand — structure carefully. Citizenship rare for foreigners; PR after 3 consecutive years on qualifying visas.",
+          "to": "Foreign-income remittance rule clarified (May 2025 draft legislation): foreign income remitted to Thailand in the year earned or the following year is exempt from Thai tax; remitted later, it is assessable (rules apply to income earned from 1 Jan 2024). 180-day tax residency; citizenship rare; PR possible after 3 years on qualifying visas. Structure remittances within the 1-year window."
         },
         {
-          "date": "2026-08-22",
-          "field": "legal_compliance",
-          "from": "corpus BUILD 72",
-          "to": "Payment-tool ban since 1 Apr 2022 verified; holding/trading legal; banks cautioned",
-          "hash": null
+          "date": "2026-09-10",
+          "field": "pathways.ltr.notes",
+          "from": "Four categories (verified from official BOI): Wealthy Global Citizen = USD 1M assets + USD 500k Thai investment (gov bonds 5yr+ / direct investment / property); Wealthy Pensioner (50+) = USD 80k/yr passive income (or 40k + USD 250k investment); Work-from-Thailand = USD 80k/yr (or 40k + master's); High-Skilled = USD 80k/yr (or 40k + master's in STEM). 10-year visa (5+5 renewable), digital work permit, 17% PIT for skilled, overseas-income tax exemption.",
+          "to": "Four categories (official BOI criteria re-verified current for 2026): Wealthy Global Citizen = USD 1M assets + USD 500k Thai investment (gov bonds 5yr+ / direct investment / property); Wealthy Pensioner (50+) = USD 80k/yr passive (or 40k + USD 250k investment); Work-from-Thailand = USD 80k/yr (or 40k + master’s); High-Skilled = USD 80k/yr (or 40k + STEM master’s). 10-year visa (5+5), digital work permit, 17% PIT for skilled professionals. Sources: BOI criteria via 2026 LTR guides; Pattaya News LTR 2026 discussion (2026)."
         },
         {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "b72a6e34f7b7f348",
-          "to": "re-anchored 933e6a8cbf299b9e (stamp d9b48d05-1a7)",
-          "hash": "933e6a8cbf299b9e91a2545903a2fb57c017297e6c2ea83422a5012533f527e2"
+          "date": "2026-09-10",
+          "field": "pathways.elite.label+min+notes",
+          "from": "15000 / old pricing",
+          "to": "20000 / Thailand Privilege residence (ex-Elite) / new tiers"
         }
       ]
     },
     "Mexico": {
       "id": 19,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -982,50 +969,50 @@
       },
       "proof": {
         "hash": "478df2fad8e25bad6119e9b8d2d75a8a0262785574ec860bcf67ce3fc20a13d2",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-28T17:51:32.542Z",
         "stamp_id": "9d7b68de-4aec-43f2-8e69-a6ffc052cec1"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.gob.mx",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "4db3d9b39f44851374f2ce2877583f2b4f0c0658e4a23a8a81e59a828df1b026"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.gob.mx",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "478df2fad8e25bad6119e9b8d2d75a8a0262785574ec860bcf67ce3fc20a13d2"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://www.gob.mx",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "478df2fad8e25bad6119e9b8d2d75a8a0262785574ec860bcf67ce3fc20a13d2"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Bitcoin legal since 2017; FinTech Law (Ley para Regular las Instituciones de Tecnología Financiera) regulates crypto as virtual assets with case-by-case taxation. 2024-2025 digital nomad interest surged; INM processing times vary by consulate.",
+          "to": "July 2025 consular guidelines moved solvency calculations to UMA-based formulas (UMA 2026 = 117.31 MXN, +3.69% YoY) — temporary-resident bars roughly doubled in USD terms as the peso appreciated (~18 MXN/USD). Crypto/precious metals explicitly excluded from solvency proof. Bitcoin legal since 2017; FinTech Law virtual-asset regime unchanged; INM fees up for 2026 (PR card MXN 13,578.96)."
         },
         {
-          "date": "2026-09-07",
-          "field": "watch.https://www.gob.mx",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "478df2fad8e25bad6119e9b8d2d75a8a0262785574ec860bcf67ce3fc20a13d2"
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": "80000",
+          "to": "120000"
         },
         {
-          "date": "2026-09-06",
-          "field": "watch.https://www.gob.mx",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "478df2fad8e25bad6119e9b8d2d75a8a0262785574ec860bcf67ce3fc20a13d2"
-        },
-        {
-          "date": "2026-09-05",
-          "field": "watch.https://www.gob.mx",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "478df2fad8e25bad6119e9b8d2d75a8a0262785574ec860bcf67ce3fc20a13d2"
+          "date": "2026-09-10",
+          "field": "finance.min_investment_usd",
+          "from": "40000",
+          "to": "74000"
         }
       ]
     },
     "Cyprus": {
       "id": 20,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": false,
@@ -1034,54 +1021,50 @@
       },
       "proof": {
         "hash": "15107f440fa8a9d8c5bff77d884d62798ee2e7120f2432a242ec4e4843952ee3",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-28T17:51:36.343Z",
         "stamp_id": "24b98c0a-397c-4ec1-bb7a-dd6eec2d3250"
       },
       "recent_changes": [
         {
-          "date": "2026-08-28",
-          "field": "proof",
-          "from": "623699c60b4f6370",
-          "to": "re-anchored 15107f440fa8a9d8 (stamp 24b98c0a-397)",
-          "hash": "15107f440fa8a9d8c5bff77d884d62798ee2e7120f2432a242ec4e4843952ee3"
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-08-22",
-          "field": "legal_compliance",
-          "from": "corpus BUILD 72",
-          "to": "Use legal + unregulated for individuals; CySEC CASP + EU MiCA apply to business activity",
-          "hash": null
+          "date": "2026-09-10",
+          "field": "critical_tests.notes",
+          "from": "(see audit)",
+          "to": "EU member. 6.2 PR: no minimum stay, but visit ≥ once every 2 years and annual compliance declarations. Citizenship: ~7 years of presence (2,655 days — typically 8 calendar years), B1 Greek + civic test; final year near-continuous residence. Golden passport (CBI) closed Nov 2020 — do not confuse with 6.2 PR."
         },
         {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "d973ba0673408f0a",
-          "to": "re-anchored 623699c60b4f6370 (stamp 5e5671b5-762)",
-          "hash": "623699c60b4f6370651aa79f65fac7d2ba3bb644b0a7a9e36ce794e568d22856"
+          "date": "2026-09-10",
+          "field": "compliance_clock.renewal_interval_months",
+          "from": "60",
+          "to": "120"
         },
         {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "e9534cf41612c2f1",
-          "to": "re-anchored d973ba0673408f0a (stamp 2374b29e-0a9)",
-          "hash": "d973ba0673408f0a368146844f3ef31bdd4b7baf69d256f5118d3fb6567876bf"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Bitcoin/crypto use is legal and not specifically regulated for individuals; business activity falls under CySEC CASP licensing and the EU MiCA framework (fully applicable from 2025). Golden passport programme terminated 2020; 6.2 fast-track PR remains active; Schengen accession negotiations ongoing.",
+          "to": "6.2 PR criteria revised 2 May 2023 (in force): four investment categories (residential first-sale / other RE incl. resale / company / funds) + €50k secured annual income (+€15k spouse, +€10k minor child) — the 2021-era €30k bank deposit requirement no longer applies. Golden passport terminated Nov 2020. Individuals: crypto legal, unregulated; business activity under CySEC CASP + EU MiCA. Schengen accession talks ongoing."
         },
         {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "d973ba0673408f0a368146844f3ef31bdd4b7baf69d256f5118d3fb6567876bf"
+          "date": "2026-09-10",
+          "field": "pathways.permanent_residency.notes",
+          "from": "€300k+ in new residential property + €30k bank deposit + clean record — fast EU permanent residency (~2 months); no minimum stay requirement. (€30k deposit, new-build only)",
+          "to": "Regulation 6(2) fast-track PR (criteria since 2 May 2023, verified 2025-03 & 2026-01): €300,000 (plus VAT where applicable) in ONE of four categories — (A) first-sale house/apartment, (B) other real estate incl. resale (offices, shops, hotels), (C) €300k share capital in a Cyprus company with physical presence + 5 employees, (D) units in Cyprus AIF/AIFLNP/RAIF. PLUS secured annual income of €50,000 (€15,000 spouse; €10,000 per minor child) — Category A income must be foreign-sourced. Criminal record + health insurance mandatory; annual compliance declarations to CRMD; PR card renews every 10 years; visit at least once every 2 years. ~2-month processing. Sources: Erotocritou LLC (2025-03-05); Global Residence Index 2026 guide (2026-01-16); CRMD practice."
         }
       ]
     },
     "Greece": {
       "id": 21,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -1090,39 +1073,38 @@
       },
       "proof": {
         "hash": "c6600ab5bbf49cc80a3287b3b7f840d280ec9e098267fa55f63b860cae2eb9b9",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-29T11:56:13.507Z",
         "stamp_id": "7519e792-9c30-447c-89d9-8a717af3042e"
       },
       "recent_changes": [
         {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Crypto legal — no specific bitcoin legislation exists (use not regulated by dedicated law); EU MiCA framework applies to CASPs from 2025. September 2024 golden visa threshold hike to EUR 800k in premium zones; EUR 250k route narrowed to specific lower-demand municipalities. Digital nomad and FIP routes remain active alternatives.",
+          "to": "September 2024 golden-visa reform: three zones EUR 800k / EUR 400k / EUR 250k (heritage + 2026 startup route only) — no EUR 500k tier exists. Planned: 15% transfer tax on non-EU real-estate buyers from July 2027 (adds up to ~EUR 96k on a golden-visa purchase). Crypto legal, unregulated by dedicated law; EU MiCA applies to CASPs from 2025."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.golden_visa.notes",
+          "from": "€250k minimum in designated lower-demand areas; €500k in most regions; €800k in Athens, Thessaloniki, Mykonos, Santorini, and other high-demand zones (2024 reform). 5-year renewable PR; family included.",
+          "to": "Three-zone structure (2024 reform, current 2026): EUR 800k high-density zones (Athens, Thessaloniki, Mykonos, Santorini, islands >3,100/km²); EUR 400k rest of country; EUR 250k only for listed-heritage buildings OR the new 2026 startup-investment route. Short-term rental forbidden; 5-year renewable PR; family included."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.golden_visa.min_investment_usd",
+          "from": 250000,
+          "to": 435000
+        },
+        {
           "date": "2026-09-09",
-          "field": "watch.https://migration.gov.gr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c6600ab5bbf49cc80a3287b3b7f840d280ec9e098267fa55f63b860cae2eb9b9"
-        },
-        {
-          "date": "2026-09-04",
-          "field": "watch.https://migration.gov.gr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c6600ab5bbf49cc80a3287b3b7f840d280ec9e098267fa55f63b860cae2eb9b9"
-        },
-        {
-          "date": "2026-08-29",
-          "field": "proof",
-          "from": "fbf0b01ae365582b",
-          "to": "re-anchored c6600ab5bbf49cc8 (stamp 7519e792-9c3)",
-          "hash": "c6600ab5bbf49cc80a3287b3b7f840d280ec9e098267fa55f63b860cae2eb9b9"
-        },
-        {
-          "date": "2026-08-29",
-          "field": "watch.https://migration.gov.gr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c6600ab5bbf49cc80a3287b3b7f840d280ec9e098267fa55f63b860cae2eb9b9"
-        },
-        {
-          "date": "2026-08-27",
           "field": "watch.https://migration.gov.gr",
           "to": "Official source content changed — manual rule review required",
           "hash": "c6600ab5bbf49cc80a3287b3b7f840d280ec9e098267fa55f63b860cae2eb9b9"
@@ -1133,7 +1115,7 @@
       "id": 22,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1186,9 +1168,9 @@
     "Turkey": {
       "id": 23,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -1197,38 +1179,38 @@
       },
       "proof": {
         "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-29T11:56:21.199Z",
         "stamp_id": "daa86743-a825-4222-96a9-38d060a0de17"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.invest.gov.tr",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "1627b22f7dcdf519a1fc3888f9aac23421e3231485a596938975615c1bb36f96"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.invest.gov.tr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.invest.gov.tr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": 450000,
+          "to": 450000
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://www.invest.gov.tr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "CBRT regulation (16 Apr 2021, effective 30 Apr 2021) bans crypto as a payment tool for goods/services; holding and trading remain legal but exchanges operate under SPK oversight (2024-2025 tightening). CBI property threshold stable at $400k since 2022 hike (from $250k). Bank-deposit CBI route suspended.",
+          "to": "CBRT regulation (2021) bans crypto as a payment tool; holding/trading legal, exchanges under SPK oversight. CBI thresholds current 2026: property $400k (3-yr hold, official invest.gov.tr) and bank deposit $500k (3-yr hold) — deposit route ACTIVE (was incorrectly marked suspended); other $500k alternatives include capital investment and government bonds."
         },
         {
-          "date": "2026-09-07",
-          "field": "watch.https://www.invest.gov.tr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
-        },
-        {
-          "date": "2026-09-06",
+          "date": "2026-09-10",
           "field": "watch.https://www.invest.gov.tr",
           "to": "Official source content changed — manual rule review required",
           "hash": "8fe49edf7781ee7572009207440379391d2ea956d32389d5fdd22e87b2dc04d5"
@@ -1239,7 +1221,7 @@
       "id": 24,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1294,7 +1276,7 @@
       "id": 25,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1345,9 +1327,9 @@
     "Brazil": {
       "id": 26,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -1356,51 +1338,50 @@
       },
       "proof": {
         "hash": "c8ebeb294bf2dae739dbf64b3e6053f601de99c4acf9aa9b768874caab2643c5",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-30T10:53:11.841Z",
         "stamp_id": "1f50506f-beb1-4ffe-8752-fd6264148c2e"
       },
       "recent_changes": [
         {
-          "date": "2026-09-05",
-          "field": "watch.https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c8ebeb294bf2dae739dbf64b3e6053f601de99c4acf9aa9b768874caab2643c5"
-        },
-        {
-          "date": "2026-09-04",
-          "field": "watch.https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c8ebeb294bf2dae739dbf64b3e6053f601de99c4acf9aa9b768874caab2643c5"
-        },
-        {
-          "date": "2026-08-30",
-          "field": "proof",
-          "from": "d8e4ab5c9927b3d7",
-          "to": "re-anchored c8ebeb294bf2dae7 (stamp 1f50506f-beb)",
-          "hash": "c8ebeb294bf2dae739dbf64b3e6053f601de99c4acf9aa9b768874caab2643c5"
-        },
-        {
-          "date": "2026-08-30",
+          "date": "2026-09-11",
           "field": "watch.https://www.gov.br/pf/pt-br/assuntos/imigracao",
           "to": "Official source content changed — manual rule review required",
-          "hash": "c8ebeb294bf2dae739dbf64b3e6053f601de99c4acf9aa9b768874caab2643c5"
+          "hash": "147d90ee590acce8e02b521b275481f11c94cc55ffb617c99fe592a460c7b5d0"
         },
         {
-          "date": "2026-08-28",
-          "field": "watch.https://www.gov.br/pf/pt-br/assuntos/imigracao",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c8ebeb294bf2dae739dbf64b3e6053f601de99c4acf9aa9b768874caab2643c5"
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs.",
+          "to": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs. 2026-09-10 verification: VITEM IX R$500k current (+R$150k startup tier); VITEM XIV $1,500/mo or ~$18k savings; retirement $2,000/mo. Page-level finance floor aligned to VITEM IX."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.digital_nomad.notes",
+          "from": "VITEM XIV temporary visa under Brazilian immigration policy for remote workers employed or contracted abroad — proof of foreign income (~$1,500/month minimum cited in consular guidance). 1-year renewable authorization; does not grant immediate permanent residence.",
+          "to": "VITEM XIV temporary visa under Brazilian immigration policy for remote workers employed or contracted abroad — proof of foreign income (~$1,500/month minimum cited in consular guidance). 1-year renewable authorization; does not grant immediate permanent residence. Alternative: ~$18,000 lump sum / R$100,000 bank balance accepted in place of monthly income (2026 consular guidance)."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.investor.notes",
+          "from": "VITEM IX temporary visa for foreign investors — minimum R$500,000 capital investment in Brazilian company or productive activity per CNI Normative Resolutions. Renewable residence authorization via Polícia Federal after entry.",
+          "to": "VITEM IX temporary visa for foreign investors — minimum R$500,000 capital investment in Brazilian company or productive activity per CNI Normative Resolutions. Renewable residence authorization via Polícia Federal after entry. Startups: reduced R$150,000 tier available for qualifying technology startups (2026)."
         }
       ]
     },
     "Argentina": {
       "id": 27,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -1409,50 +1390,50 @@
       },
       "proof": {
         "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-30T10:53:15.654Z",
         "stamp_id": "04a8a17c-88fe-4a42-98bf-f48eeb26ee43"
       },
       "recent_changes": [
         {
-          "date": "2026-09-10",
+          "date": "2026-09-11",
           "field": "watch.https://www.migraciones.gob.ar",
           "to": "Official source content changed — manual rule review required",
-          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
+          "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
+        },
+        {
+          "date": "2026-09-11",
+          "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
         },
         {
           "date": "2026-09-10",
-          "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.migraciones.gob.ar",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "2022 digital-nomad disposición formalized 180-day remote-work category. 2023–2024 rentista income thresholds tied to SMVM index — verify current peso equivalent before filing. Milei-era FX liberalization improved crypto-to-bank pathways but documentation still strict.",
+          "to": "2022 digital-nomad disposición formalized 180-day remote-work category. 2023–2024 rentista income thresholds tied to SMVM index — verify current peso equivalent before filing. Milei-era FX liberalization improved crypto-to-bank pathways but documentation still strict. 2026-09-10 verification: rentista 5× SMVM re-anchored (ARS 376,600 Aug 2026); investor $50k unchanged; Milei-era FX liberalization still favorable for crypto-to-bank funding."
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
-        },
-        {
-          "date": "2026-09-08",
-          "field": "watch.https://www.boletinoficial.gob.ar",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "c7eba821b75c0d695263b9e2ee79808b43df22e092149f289e1f118432d432a8"
+          "date": "2026-09-10",
+          "field": "pathways.rentista.notes",
+          "from": "Temporary residence (1 year, renewable) for income from foreign assets — minimum rent equivalent to 5× Salario Mínimo Vital y Móvil (~$1,500/month USD equivalent). Funds must enter via BCRA-authorized institutions; personal employment income excluded.",
+          "to": "Temporary residence (1 year, renewable) for income from foreign assets — minimum rent equivalent to 5× Salario Mínimo Vital y Móvil — indexed monthly; Aug 2026 SMVM ARS 376,600 → 5× = ARS 1,883,000/mo ≈ $1,400–1,500 USD at prevailing rates (verify the peso figure the week you file). Funds must enter via BCRA-authorized institutions; personal employment income excluded."
         }
       ]
     },
     "Chile": {
       "id": 28,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -1461,53 +1442,50 @@
       },
       "proof": {
         "hash": "11593520c91505d297899098ac532495ba042c12f59add6ecd51f014d0fed685",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-30T10:53:19.587Z",
         "stamp_id": "ced100de-683e-4c6c-9394-95f0249b5b01"
       },
       "recent_changes": [
         {
-          "date": "2026-09-04",
-          "field": "watch.https://serviciomigraciones.cl",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "11593520c91505d297899098ac532495ba042c12f59add6ecd51f014d0fed685"
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-08-30",
-          "field": "proof",
-          "from": "fc01e17c7c97376a",
-          "to": "re-anchored 11593520c91505d2 (stamp ced100de-683)",
-          "hash": "11593520c91505d297899098ac532495ba042c12f59add6ecd51f014d0fed685"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "2025 SERMIG portal updates standardized investor and rentista subcategory requirements. CMF fintech registry maturing for crypto custodians. Start-Up Chile continues visa support for international founders.",
+          "to": "2025 SERMIG portal updates standardized investor and rentista subcategory requirements. CMF fintech registry maturing for crypto custodians. Start-Up Chile continues visa support for international founders. 2026-09-10 verification: investor $500k + INVESTCHILE sponsorship confirmed current; rentista anchored to 1× Chilean minimum wage (~$650/mo); page-level finance aligned to investor route."
         },
         {
-          "date": "2026-08-29",
-          "field": "watch.https://serviciomigraciones.cl",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "11593520c91505d297899098ac532495ba042c12f59add6ecd51f014d0fed685"
+          "date": "2026-09-10",
+          "field": "pathways.rentista.notes",
+          "from": "Subcategory 11 for retirees with pension or leasers with regular income from real estate/financial assets sufficient to cover basic needs per Ministry of Social Development benchmarks — lower capital than investor route; apostilled income proofs required.",
+          "to": "Subcategory 11 for retirees with lifetime pension or leasers with constant income ≥ the Chilean minimum wage (~$650/mo in 2026) sufficient to cover basic needs per MSD benchmarks; apostilled income proofs required."
         },
         {
-          "date": "2026-08-22",
-          "field": "last_checked.freshness_sweep",
-          "from": "2026-07-02",
-          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
-          "hash": null
+          "date": "2026-09-10",
+          "field": "pathways.rentista.min_investment_usd",
+          "from": 12000,
+          "to": 7800
         },
         {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "34efcf0221693dfc",
-          "to": "re-anchored fc01e17c7c97376a (stamp cceedee7-249)",
-          "hash": "fc01e17c7c97376a15590b855701094b0f8b50dcac410e4be7f1ad22592308ed"
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": 350000,
+          "to": 520000
         }
       ]
     },
     "Colombia": {
       "id": 29,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -1516,50 +1494,50 @@
       },
       "proof": {
         "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-30T10:53:23.585Z",
         "stamp_id": "2ad00391-f8bc-4d45-b6d3-3ca0218fde14"
       },
       "recent_changes": [
         {
-          "date": "2026-09-10",
+          "date": "2026-09-11",
           "field": "watch.https://tramitesmre.cancilleria.gov.co",
           "to": "Official source content changed — manual rule review required",
-          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
+          "hash": "1693f3ac939557e96c8448bfd120d549f49bfa81258106bd95ef6151ef805f52"
         },
         {
-          "date": "2026-09-10",
+          "date": "2026-09-11",
           "field": "watch.https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
           "to": "Official source content changed — manual rule review required",
-          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
+          "hash": "1693f3ac939557e96c8448bfd120d549f49bfa81258106bd95ef6151ef805f52"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://tramitesmre.cancilleria.gov.co",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "2022 Resolución 5477 consolidated M and V visa categories including digital nomad. 2026 SMMLV at COP 2,000,000/month raises income-proof thresholds — recalculate 3× minimum before applying.",
+          "to": "2022 Resolución 5477 consolidated M and V visa categories including digital nomad. SMMLV 2026 = COP 1,750,905/month — all thresholds re-priced 2026-09-10: nomad/pensionado 3× ≈ $1,350/mo; M investor 100× (company, ≈$35–45k) vs 350× (real estate, ≈$157–163k). Thresholds rise every January — verify before filing."
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://tramitesmre.cancilleria.gov.co",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "a05b14c2ce82b77556e0b5520435cf3223927fb8f4ea1eae27ce825c9f6680a8"
+          "date": "2026-09-10",
+          "field": "pathways.digital_nomad.notes",
+          "from": "Visitor visa for remote workers with foreign employer/clients — proof of income ≥ 3× SMMLV and health insurance. Up to 2-year validity; does not automatically convert to M visa without separate application.",
+          "to": "Visitor visa for remote workers with foreign employer/clients — proof of income ≥ 3× SMMLV (COP 5,252,715 in 2026, ≈$1,350/month) and health insurance. Up to 2-year validity; does not automatically convert to M visa without separate application."
         }
       ]
     },
     "St. Lucia": {
       "id": 30,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": false,
@@ -1568,54 +1546,51 @@
       },
       "proof": {
         "hash": "5688e8f7fe631e39f055cc83973ab4b7fd3caaa4158ef8c48763ca3385fc79a9",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-30T10:53:27.478Z",
         "stamp_id": "60e35d29-1e97-434a-9fdf-bdadafac5c29"
       },
       "recent_changes": [
         {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "NEF donation and bond options remain active; industry-wide enhanced due diligence post-2024 Caribbean CBI summit commitments.",
+          "to": "NEF donation and bond options remain active; industry-wide enhanced due diligence post-2024 Caribbean CBI summit commitments. 2026-09-10 verification: NEF $240k (single or family of up to 4), RE $300k, bonds $300k + $50k admin — all current; page-level finance floor aligned to NEF. US Proclamation 10998 partial restrictions name Antigua and Dominica — St. Lucia not listed (CitizenX, Aug 2026)."
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": 150000,
+          "to": 250000
+        },
+        {
+          "date": "2026-09-10",
+          "field": "finance.min_investment_usd",
+          "from": 100000,
+          "to": 240000
+        },
+        {
           "date": "2026-08-30",
           "field": "proof",
           "from": "975bf50ec82208b2",
           "to": "re-anchored 5688e8f7fe631e39 (stamp 60e35d29-1e9)",
           "hash": "5688e8f7fe631e39f055cc83973ab4b7fd3caaa4158ef8c48763ca3385fc79a9"
-        },
-        {
-          "date": "2026-08-22",
-          "field": "last_checked.freshness_sweep",
-          "from": "2026-07-02",
-          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
-          "hash": null
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "27d4e604e55abef2",
-          "to": "re-anchored 975bf50ec82208b2 (stamp 8deb2c19-239)",
-          "hash": "975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa"
-        },
-        {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "7f939a3e560b59c1",
-          "to": "re-anchored 27d4e604e55abef2 (stamp 5d801f3d-7e5)",
-          "hash": "27d4e604e55abef2fb29cfb6e7b456f6d69a8249aa1cfea7bb32863d2e88cfb0"
-        },
-        {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "27d4e604e55abef2fb29cfb6e7b456f6d69a8249aa1cfea7bb32863d2e88cfb0"
         }
       ]
     },
     "Grenada": {
       "id": 31,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": false,
@@ -1624,54 +1599,50 @@
       },
       "proof": {
         "hash": "1d8ca3ece897aaee01d73b2240f5f5f7217fc674aa084596ab7915017ebdf2c4",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-31T12:05:20.898Z",
         "stamp_id": "6f915b1e-3538-4a72-adf2-5308d001d75d"
       },
       "recent_changes": [
         {
-          "date": "2026-08-31",
-          "field": "proof",
-          "from": "3fd2f2382bc608c0",
-          "to": "re-anchored 1d8ca3ece897aaee (stamp 6f915b1e-353)",
-          "hash": "1d8ca3ece897aaee01d73b2240f5f5f7217fc674aa084596ab7915017ebdf2c4"
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-08-22",
-          "field": "pathways.real_estate",
-          "from": "corpus BUILD 72 (real_estate $220k)",
-          "to": "Material change found & corrected: real-estate minimum corrected $220k -> $270k (UNCTAD measure 5026)",
-          "hash": null
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged.",
+          "to": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged. NTF donation raised $150k -> $235k (single or family of up to 4; GIS Grenada 2026, multi-source corroborated 2025-09 through 2026-08). US Proclamation 10998 partial restrictions name Antigua and Dominica — Grenada not listed; E-2 treaty differentiator unaffected."
         },
         {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "387e77668217d7b2",
-          "to": "re-anchored 3fd2f2382bc608c0 (stamp 50b33f77-232)",
-          "hash": "3fd2f2382bc608c040ea1848f58769024dff7fcf21ba6d13a4d4c786ceb2de97"
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": 200000,
+          "to": 245000
         },
         {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "505c960e50a28d52",
-          "to": "re-anchored 387e77668217d7b2 (stamp 30c9c754-68d)",
-          "hash": "387e77668217d7b25f4f0c9960abb8ce9318a683bd57533dce4ef2860a191ff2"
+          "date": "2026-09-10",
+          "field": "finance.min_investment_usd",
+          "from": 150000,
+          "to": 235000
         },
         {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "387e77668217d7b25f4f0c9960abb8ce9318a683bd57533dce4ef2860a191ff2"
+          "date": "2026-09-10",
+          "field": "pathways.ntf_donation.notes",
+          "from": "Single applicant minimum — among lowest CBI donation thresholds; processing fees additional.",
+          "to": "$235,000 non-refundable contribution — flat for a single applicant or a family of up to 4 (2026 GIS announcement); processing fees additional; single applicant all-in ≈ $242.5k incl. due diligence."
         }
       ]
     },
     "Barbados": {
       "id": 32,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -1680,38 +1651,38 @@
       },
       "proof": {
         "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-31T12:05:24.821Z",
         "stamp_id": "470466cc-7016-4c91-86c8-e63daf9e7a9d"
       },
       "recent_changes": [
         {
-          "date": "2026-09-10",
+          "date": "2026-09-11",
           "field": "watch.https://barbadoswelcomestamp.bb",
           "to": "Official source content changed — manual rule review required",
-          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
+          "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
+        },
+        {
+          "date": "2026-09-11",
+          "field": "watch.https://www.immigration.gov.bb",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
         },
         {
           "date": "2026-09-10",
-          "field": "watch.https://www.immigration.gov.bb",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://barbadoswelcomestamp.bb",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
+          "date": "2026-09-10",
+          "field": "pathways.welcome_stamp.notes",
+          "from": "~$50k/year remote income proof (~$100k with dependents); 12-month renewable permit for location-independent workers — not a path to citizenship.",
+          "to": "$50,000/year remote income proof over the 12-month permit period; fees $2,000 individual / $3,000 family (official visitbarbados.org); 12-month renewable permit for location-independent workers — not a path to citizenship."
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.immigration.gov.bb",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
-        },
-        {
-          "date": "2026-09-08",
+          "date": "2026-09-10",
           "field": "watch.https://barbadoswelcomestamp.bb",
           "to": "Official source content changed — manual rule review required",
           "hash": "4c4117a6eecbc2c3cd321b76fd45804b76703994a66629dead2cdd06dd5a5942"
@@ -1721,9 +1692,9 @@
     "Bahamas": {
       "id": 33,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": false,
@@ -1732,54 +1703,50 @@
       },
       "proof": {
         "hash": "5896afee50c283a000b75dcd53190b2c7f79a41afa03a4829bf01fff10c14f0f",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-31T12:05:28.750Z",
         "stamp_id": "b223ea62-b76e-45b6-9313-fc7ad5c5872a"
       },
       "recent_changes": [
         {
-          "date": "2026-08-31",
-          "field": "proof",
-          "from": "30dca88964459f41",
-          "to": "re-anchored 5896afee50c283a0 (stamp b223ea62-b76)",
-          "hash": "5896afee50c283a000b75dcd53190b2c7f79a41afa03a4829bf01fff10c14f0f"
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-08-22",
-          "field": "pathways.economic_permanent_residency",
-          "from": "corpus BUILD 72 (economic_permanent_residency $750k)",
-          "to": "Material change found & corrected: EPR threshold corrected $750k -> $1.0M (official Bahamas Immigration)",
-          "hash": null
+          "date": "2026-09-10",
+          "field": "paige_fields.escalate_when",
+          "from": "EPR $750k+ structuring, Speedy Permit tier selection, or property purchase with crypto source-of-funds",
+          "to": "EPR $1M+ structuring, Speedy Permit tier selection, or property purchase with crypto source-of-funds"
         },
         {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "8bd909d33fa96bda",
-          "to": "re-anchored 30dca88964459f41 (stamp 34f86875-6c1)",
-          "hash": "30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d"
+          "date": "2026-09-10",
+          "field": "paige_fields.optimization_tips",
+          "from": "Home Owner's Card for lifestyle base; EPR for permanent status at $750k+",
+          "to": "Home Owner's Card for lifestyle base; EPR for permanent status at $1M+"
         },
         {
-          "date": "2026-08-21",
-          "field": "proof",
-          "from": "1b572825a4eff8e6",
-          "to": "re-anchored 8bd909d33fa96bda (stamp 8cc36135-c7d)",
-          "hash": "8bd909d33fa96bda4c87823838357304eb439cac62ceccd8a3ea429ed170b243"
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": 750000,
+          "to": 1200000
         },
         {
-          "date": "2026-08-20",
-          "field": "schema.v3",
-          "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-          "hash": "8bd909d33fa96bda4c87823838357304eb439cac62ceccd8a3ea429ed170b243"
+          "date": "2026-09-10",
+          "field": "finance.min_investment_usd",
+          "from": 500000,
+          "to": 1000000
         }
       ]
     },
     "Belize": {
       "id": 34,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -1788,12 +1755,24 @@
       },
       "proof": {
         "hash": "60fa3e554c78458bea71e324dc0668c70a32ee2a3cae26c7246f383fb9d323a0",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-08-31T12:05:32.440Z",
         "stamp_id": "0093eda0-e687-43fd-8198-e2af2bcd18bb"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "QRP remains primary retiree route; permanent residency processing timelines vary — budget 6–12 months after qualifying residence period.",
+          "to": "QRP remains primary retiree route; permanent residency processing timelines vary — budget 6–12 months after qualifying residence period. 2026-09-10 verification: QRP $2,000/mo foreign income confirmed official (BTB, upd. 2026-07-27); age criteria show a 45+ (BTB) vs 40+ (law-firm guides) conflict — confirm current rule with BTB before filing."
+        },
         {
           "date": "2026-09-04",
           "field": "watch.https://www.tourism.gov.bz",
@@ -1812,19 +1791,6 @@
           "from": "48d103c25fdfc804",
           "to": "re-anchored 60fa3e554c78458b (stamp 0093eda0-e68)",
           "hash": "60fa3e554c78458bea71e324dc0668c70a32ee2a3cae26c7246f383fb9d323a0"
-        },
-        {
-          "date": "2026-08-31",
-          "field": "watch.https://www.tourism.gov.bz",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "60fa3e554c78458bea71e324dc0668c70a32ee2a3cae26c7246f383fb9d323a0"
-        },
-        {
-          "date": "2026-08-22",
-          "field": "last_checked.freshness_sweep",
-          "from": "2026-07-02",
-          "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
-          "hash": null
         }
       ]
     },
@@ -1832,7 +1798,7 @@
       "id": 35,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1849,6 +1815,12 @@
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.cdc.gov.kh",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003"
+        },
+        {
           "date": "2026-09-10",
           "field": "watch.https://www.cdc.gov.kh",
           "to": "Official source content changed — manual rule review required",
@@ -1871,12 +1843,6 @@
           "field": "watch.https://www.cdc.gov.kh",
           "to": "Official source content changed — manual rule review required",
           "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003"
-        },
-        {
-          "date": "2026-09-06",
-          "field": "watch.https://www.cdc.gov.kh",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003"
         }
       ]
     },
@@ -1884,7 +1850,7 @@
       "id": 36,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1901,6 +1867,12 @@
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://pra.gov.ph",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "096f22c4c42048477d582f11a5d16b185afa13641293fc3088f3a94adb98e289"
+        },
+        {
           "date": "2026-09-10",
           "field": "watch.https://pra.gov.ph",
           "to": "Official source content changed — manual rule review required",
@@ -1923,12 +1895,6 @@
           "field": "watch.https://pra.gov.ph",
           "to": "Official source content changed — manual rule review required",
           "hash": "096f22c4c42048477d582f11a5d16b185afa13641293fc3088f3a94adb98e289"
-        },
-        {
-          "date": "2026-09-06",
-          "field": "watch.https://pra.gov.ph",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "096f22c4c42048477d582f11a5d16b185afa13641293fc3088f3a94adb98e289"
         }
       ]
     },
@@ -1936,7 +1902,7 @@
       "id": 37,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1953,6 +1919,12 @@
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.mm2h.gov.my",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "8bdae69208189ed559ddac12da6816ecad583caffcb0ccc5d42b7af1f931621d"
+        },
+        {
           "date": "2026-09-10",
           "field": "watch.https://www.mm2h.gov.my",
           "to": "Official source content changed — manual rule review required",
@@ -1975,12 +1947,6 @@
           "field": "watch.https://www.mm2h.gov.my",
           "to": "Official source content changed — manual rule review required",
           "hash": "8bdae69208189ed559ddac12da6816ecad583caffcb0ccc5d42b7af1f931621d"
-        },
-        {
-          "date": "2026-09-06",
-          "field": "watch.https://www.mm2h.gov.my",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "8bdae69208189ed559ddac12da6816ecad583caffcb0ccc5d42b7af1f931621d"
         }
       ]
     },
@@ -1988,7 +1954,7 @@
       "id": 38,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2004,6 +1970,12 @@
         "stamp_id": "08a72246-c113-4bcf-b535-c18b4995f839"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-11",
+          "field": "watch.https://oss.go.id",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "374bdecee70ee650831df9d29ec7dd1299ee786ff3ce89fb500a8e87f7292eba"
+        },
         {
           "date": "2026-09-08",
           "field": "watch.https://oss.go.id",
@@ -2027,12 +1999,6 @@
           "field": "watch.https://oss.go.id",
           "to": "Official source content changed — manual rule review required",
           "hash": "374bdecee70ee650831df9d29ec7dd1299ee786ff3ce89fb500a8e87f7292eba"
-        },
-        {
-          "date": "2026-09-04",
-          "field": "watch.https://oss.go.id",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "374bdecee70ee650831df9d29ec7dd1299ee786ff3ce89fb500a8e87f7292eba"
         }
       ]
     },
@@ -2040,7 +2006,7 @@
       "id": 39,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2096,7 +2062,7 @@
       "id": 40,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2113,6 +2079,12 @@
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.immigration.govt.nz",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "d110ba00453d8d87664fd21c9d68e2e17d72da4a7cf49638d249f5a7c44c5fc1"
+        },
+        {
           "date": "2026-09-10",
           "field": "watch.https://www.immigration.govt.nz",
           "to": "Official source content changed — manual rule review required",
@@ -2135,12 +2107,6 @@
           "field": "watch.https://www.immigration.govt.nz",
           "to": "Official source content changed — manual rule review required",
           "hash": "d110ba00453d8d87664fd21c9d68e2e17d72da4a7cf49638d249f5a7c44c5fc1"
-        },
-        {
-          "date": "2026-09-05",
-          "field": "watch.https://www.immigration.govt.nz",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "d110ba00453d8d87664fd21c9d68e2e17d72da4a7cf49638d249f5a7c44c5fc1"
         }
       ]
     },
@@ -2148,7 +2114,7 @@
       "id": 41,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2165,6 +2131,18 @@
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.centralbank.ie",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
+        },
+        {
+          "date": "2026-09-11",
+          "field": "watch.https://enterprise.gov.ie",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
+        },
+        {
           "date": "2026-09-10",
           "field": "watch.https://www.centralbank.ie",
           "to": "Official source content changed — manual rule review required",
@@ -2178,18 +2156,6 @@
         },
         {
           "date": "2026-09-09",
-          "field": "watch.https://www.centralbank.ie",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
-        },
-        {
-          "date": "2026-09-09",
-          "field": "watch.https://enterprise.gov.ie",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
-        },
-        {
-          "date": "2026-09-08",
           "field": "watch.https://www.centralbank.ie",
           "to": "Official source content changed — manual rule review required",
           "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
@@ -2199,61 +2165,61 @@
     "Spain": {
       "id": 42,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
         "probed": 3,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-09-02T10:08:46.738Z",
         "stamp_id": "818e5234-6715-4eb4-9e73-0af038a56f47"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.exteriores.gob.es",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.exteriores.gob.es",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
           "date": "2026-09-10",
-          "field": "watch.https://www.inclusion.gob.es",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
+          "field": "legal_compliance.recent_changes",
+          "from": "Golden visa ABOLISHED 2025-04-03 (Organic Law 1/2025) — real-estate/investment residence route closed; digital nomad (Ley de Startups) + non-lucrative residence remain active alternatives.",
+          "to": "Golden visa ABOLISHED 2025-04-03 (Organic Law 1/2025) — real-estate/investment residence route closed; digital nomad (Ley de Startups) + non-lucrative residence remain active alternatives. 2026-09-10 verification: DNV threshold re-anchored to 200% SMI 2026 (EUR 2,849/mo); NLV EUR 28,800 confirmed; golden-visa abolition (Law 1/2025) stands."
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.exteriores.gob.es",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
+          "date": "2026-09-10",
+          "field": "pathways.digital_nomad.notes",
+          "from": "~€2,160–2,646/month foreign income (200% Spanish minimum wage); remote work for non-Spanish employer or clients — 1-year renewable, popular Barcelona/Málaga nomad route.",
+          "to": "EUR 2,849/month foreign income (200% of the 2026 Spanish minimum wage; EUR 34,188/year) — remote work for non-Spanish employer or clients; max 20% Spanish-source income; 1-year renewable, popular Barcelona/Málaga nomad route."
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.inclusion.gob.es",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
-        },
-        {
-          "date": "2026-09-08",
-          "field": "watch.https://www.exteriores.gob.es",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "671696e0460a6ad853b2f20aadea5714dd9a568c8a8c1cc8c95d3c882b39e343"
+          "date": "2026-09-10",
+          "field": "pathways.digital_nomad.min_investment_usd",
+          "from": 29000,
+          "to": 37000
         }
       ]
     },
     "Italy": {
       "id": 43,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -2262,50 +2228,50 @@
       },
       "proof": {
         "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-09-02T10:08:50.739Z",
         "stamp_id": "89af0394-2bea-471d-aebe-d6e88135646b"
       },
       "recent_changes": [
         {
-          "date": "2026-09-10",
+          "date": "2026-09-11",
           "field": "watch.https://www.agenziaentrate.gov.it",
           "to": "Official source content changed — manual rule review required",
-          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
+          "hash": "3ca27b9a7ab32911922a4fb71ff45a93dfb9f4ee5a47ac4de03fcc29d8430590"
+        },
+        {
+          "date": "2026-09-11",
+          "field": "watch.https://investorvisa.mise.gov.it",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "3ca27b9a7ab32911922a4fb71ff45a93dfb9f4ee5a47ac4de03fcc29d8430590"
         },
         {
           "date": "2026-09-10",
-          "field": "watch.https://investorvisa.mise.gov.it",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
           "date": "2026-09-10",
-          "field": "watch.https://www.interno.gov.it",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
+          "field": "legal_compliance.recent_changes",
+          "from": "2024 digital nomad visa launched; investor visa startup route at €250k remains most popular for founders. 2025 discussions on streamlining Nulla Osta processing — timelines still 3–6 months.",
+          "to": "2024 digital nomad visa launched; investor visa startup route at €250k remains most popular for founders. 2025 discussions on streamlining Nulla Osta processing — timelines still 3–6 months. 2026-09-10 verification: investor tiers EUR 250k/500k/1M/2M confirmed current (investorvisa.mise.gov.it); HNW flat tax corrected EUR 100k -> EUR 300k/yr (Fragomen 2026-04-28); digital-nomad EUR 28k route unchanged."
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.agenziaentrate.gov.it",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
-        },
-        {
-          "date": "2026-09-09",
-          "field": "watch.https://investorvisa.mise.gov.it",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "bd89b05fe04c773662a0ecfaea501661f5abaf4e0ff11dfa9c6fed0064fd5f95"
+          "date": "2026-09-10",
+          "field": "critical_tests.notes",
+          "from": "EU Schengen access; elective residence prohibits local work. Citizenship after 10 years residence (4 years for EU nationals, 3 for Italian-descent in some cases). Flat €100k tax incentive (new residents) may apply — verify current decree.",
+          "to": "EU Schengen access; elective residence prohibits local work. Citizenship after 10 years residence (4 years for EU nationals, 3 for Italian-descent in some cases). Flat EUR 300k/yr tax incentive (new residents) may apply — verify current decree."
         }
       ]
     },
     "Latvia": {
       "id": 44,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -2314,12 +2280,30 @@
       },
       "proof": {
         "hash": "d8e91c6fda03f353c62715cbf35b0c8ee7712f92eaa107e29a138fda622834c9",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-09-02T10:08:54.762Z",
         "stamp_id": "dfae0be3-c982-4cba-bdb5-1f79b2b94ccc"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-11",
+          "field": "watch.https://www.fktk.lv",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "7e87c630985a292f85c03f12f0ec76715db3db6b15e431c55c7610fd377bc750"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.company_investment.notes",
+          "from": "€50k+ equity in Latvian company paying taxes and employing staff — business-substance route; real estate investment TRP for non-EU buyers largely suspended 2022.",
+          "to": "€50k+ equity in Latvian company paying taxes and employing staff — business-substance route; real estate investment TRP for non-EU buyers largely suspended 2022. Plus ~EUR 10,000 state fee (2026)."
+        },
         {
           "date": "2026-09-10",
           "field": "watch.https://www.fktk.lv",
@@ -2331,33 +2315,15 @@
           "field": "watch.https://www.fktk.lv",
           "to": "Official source content changed — manual rule review required",
           "hash": "d8e91c6fda03f353c62715cbf35b0c8ee7712f92eaa107e29a138fda622834c9"
-        },
-        {
-          "date": "2026-09-08",
-          "field": "watch.https://www.fktk.lv",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "d8e91c6fda03f353c62715cbf35b0c8ee7712f92eaa107e29a138fda622834c9"
-        },
-        {
-          "date": "2026-09-04",
-          "field": "watch.https://www.ur.gov.lv",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "d8e91c6fda03f353c62715cbf35b0c8ee7712f92eaa107e29a138fda622834c9"
-        },
-        {
-          "date": "2026-09-04",
-          "field": "watch.https://www.pmlp.gov.lv",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "d8e91c6fda03f353c62715cbf35b0c8ee7712f92eaa107e29a138fda622834c9"
         }
       ]
     },
     "Estonia": {
       "id": 45,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -2366,12 +2332,24 @@
       },
       "proof": {
         "hash": "ed923b43cde6e4436500c090ef2d82272c450ceb821b24483631a6ae3556b74b",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-09-02T10:08:58.928Z",
         "stamp_id": "49505cf0-7115-40b6-acb2-578dd7568bc4"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
+        },
+        {
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "2020–2022 FIU tightened crypto licensing — many VASPs exited. Digital nomad visa launched 2020; startup visa remains active for endorsed founders.",
+          "to": "2020–2022 FIU tightened crypto licensing — many VASPs exited. Digital nomad visa launched 2020; startup visa remains active for endorsed founders. 2026-09-10 verification: no material change found — nomad EUR ~3,504/mo, startup route, e-Residency, VASP licensing all consistent with corpus."
+        },
         {
           "date": "2026-09-07",
           "field": "watch.https://www.e-resident.gov.ee",
@@ -2386,19 +2364,6 @@
         },
         {
           "date": "2026-09-04",
-          "field": "watch.https://www.e-resident.gov.ee",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "ed923b43cde6e4436500c090ef2d82272c450ceb821b24483631a6ae3556b74b"
-        },
-        {
-          "date": "2026-09-02",
-          "field": "proof",
-          "from": "9b6a979d0e2a178e",
-          "to": "re-anchored ed923b43cde6e443 (stamp 49505cf0-711)",
-          "hash": "ed923b43cde6e4436500c090ef2d82272c450ceb821b24483631a6ae3556b74b"
-        },
-        {
-          "date": "2026-09-02",
           "field": "watch.https://www.e-resident.gov.ee",
           "to": "Official source content changed — manual rule review required",
           "hash": "ed923b43cde6e4436500c090ef2d82272c450ceb821b24483631a6ae3556b74b"
@@ -2408,9 +2373,9 @@
     "Bulgaria": {
       "id": 46,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -2419,38 +2384,38 @@
       },
       "proof": {
         "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-09-03T10:19:51.548Z",
         "stamp_id": "7652a2f0-d075-4f3f-86d7-92a7a6e323d3"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.bnb.bg",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "3eb118797ed9c482abf84767eb7377a468f54413e9dc7cbd6c537dbabab504db"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.bnb.bg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.bnb.bg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "Investor PR threshold BGN 1M (~EUR 511k) confirmed; Parliament considering adding a physical-residency requirement to the golden visa (proposal, not law) — monitor IMI.",
+          "to": "Investor PR (company route BGN 1M ≈ EUR 511k + 10 jobs in 2.5 yrs) remains the active investment-residence track; citizenship-by-investment schemes (incl. bonds) abolished 2021–2022. Parliament physical-residency proposal for golden visa still pending, not law. Bulgaria adopted the euro on 1 Jan 2026 — BGN pegged at 1.95583, thresholds now effectively EUR-denominated."
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://www.bnb.bg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
+          "date": "2026-09-10",
+          "field": "pathways.government_bonds.notes",
+          "from": "BGN 512k (~€256k) in Bulgarian government bonds held 5 years previously qualified for investor residence — route status changed in several reforms; confirm with counsel whether bonds tier still active or superseded by BGN 1M company rule.",
+          "to": "CLOSED: the bond-based investment route was cancelled by the Feb 2021 Citizenship Act amendments and subsequent reforms — no longer a residence or citizenship qualifying route (2026). Kept for historical reference only; do not plan around it."
         },
         {
-          "date": "2026-09-07",
-          "field": "watch.https://www.bnb.bg",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
-        },
-        {
-          "date": "2026-09-06",
+          "date": "2026-09-10",
           "field": "watch.https://www.bnb.bg",
           "to": "Official source content changed — manual rule review required",
           "hash": "1a637b5f6b30405f982567250f32ec4894843013f7080a83ae48ddb5272556bb"
@@ -2460,18 +2425,18 @@
     "Croatia": {
       "id": 47,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
         "probed": 2,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "09a099f0935059099e15a740914de4cdb5c112a3e748bccc9170fd79b09b30da",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-09-03T10:19:55.269Z",
         "stamp_id": "ab517f24-b6ce-4c15-b167-8736904e1526"
@@ -2479,42 +2444,42 @@
       "recent_changes": [
         {
           "date": "2026-09-10",
-          "field": "watch.https://digitalnomadscroatia.mup.hr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "09a099f0935059099e15a740914de4cdb5c112a3e748bccc9170fd79b09b30da"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://digitalnomadscroatia.mup.hr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "09a099f0935059099e15a740914de4cdb5c112a3e748bccc9170fd79b09b30da"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "2026 digital nomad income thresholds indexed to Croatian Bureau of Statistics; Schengen accession expanded mobility for residents.",
+          "to": "2026 digital nomad income thresholds confirmed official (EUR 3,622.50/mo · EUR 43,470/12mo · EUR 65,205/18mo; mup.gov.hr). Property purchase alone does NOT confer residence — the previously-listed EUR 300k real-estate pathway was removed on 2026-09-10 verification as unsourced. Residency grounds: work permit, company (d.o.o.), family, independent means."
         },
         {
-          "date": "2026-09-07",
-          "field": "watch.https://digitalnomadscroatia.mup.hr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "09a099f0935059099e15a740914de4cdb5c112a3e748bccc9170fd79b09b30da"
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": 450000,
+          "to": 46000
         },
         {
-          "date": "2026-09-06",
-          "field": "watch.https://digitalnomadscroatia.mup.hr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "09a099f0935059099e15a740914de4cdb5c112a3e748bccc9170fd79b09b30da"
+          "date": "2026-09-10",
+          "field": "finance.min_investment_usd",
+          "from": 300000,
+          "to": 44000
         },
         {
-          "date": "2026-09-05",
-          "field": "watch.https://digitalnomadscroatia.mup.hr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "09a099f0935059099e15a740914de4cdb5c112a3e748bccc9170fd79b09b30da"
+          "date": "2026-09-10",
+          "field": "pathways.real_estate",
+          "from": "{\"type\":\"real_estate\",\"label\":\"Property investment residency\",\"min_investment_usd\":300000,\"notes\":\"€300k+ qualifying real estate purchase — temporary then permanent residency track; verify current property thresholds and municipal registration rules.\"}",
+          "to": "REMOVED — no qualifying-property residence route exists in Croatian law (2026 verification)"
         }
       ]
     },
     "Gibraltar": {
       "id": 48,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -2523,38 +2488,38 @@
       },
       "proof": {
         "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-09-03T10:19:59.277Z",
         "stamp_id": "2b5c67ea-d5e4-4967-9b39-11fba836dde0"
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.gibraltar.gov.gi",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "774b7595b3ef3d2c748540ae9023c1e363aa106959cbe794ec64b813b3d4e89b"
+        },
+        {
           "date": "2026-09-10",
-          "field": "watch.https://www.gibraltar.gov.gi",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac"
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.gfsc.gi",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac"
+          "date": "2026-09-10",
+          "field": "legal_compliance.recent_changes",
+          "from": "GFSC DLT framework remains active for crypto firms; Cat 2 property and wealth tests periodically reviewed by Gibraltar Immigration Advisory Board.",
+          "to": "GFSC DLT framework remains active for crypto firms. 2026: Gibraltar introduced new residency criteria and updated Cat 2 requirements ahead of the imminent provisional application of the UK-EU treaty (Sovereign 2026-07-07); Cat 2 tax bands re-anchored to official ITO figures (GBP 118k cap; GBP 37k min / ~GBP 44.7k max)."
         },
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.gibraltar.gov.gi",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac"
+          "date": "2026-09-10",
+          "field": "pathways.cat2.notes",
+          "from": "Capped tax on first £105k assessable income (~£37k max annual tax); requires approved residential property purchase/lease and net-worth proof — premier offshore HNW route.",
+          "to": "Capped-tax regime (official ITO 2026): tax on first GBP 118,000 assessable income — minimum GBP 37,000/yr, maximum ~GBP 44,740/yr. Requires GBP 2M+ net worth, approved residential property purchase/lease, and annual Hub/reports compliance. 2026 residency-criteria overhaul tightened requirements ahead of the UK-EU treaty."
         },
         {
-          "date": "2026-09-08",
-          "field": "watch.https://www.gfsc.gi",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac"
-        },
-        {
-          "date": "2026-09-08",
+          "date": "2026-09-10",
           "field": "watch.https://www.gibraltar.gov.gi",
           "to": "Official source content changed — manual rule review required",
           "hash": "e7144fdc883ae17f4d2377a57bfa2a9a74352f30c76bcea174fb7348114a92ac"
@@ -2565,7 +2530,7 @@
       "id": 49,
       "freshness": {
         "status": "watch",
-        "days_stale": 19,
+        "days_stale": 20,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2582,6 +2547,12 @@
       },
       "recent_changes": [
         {
+          "date": "2026-09-11",
+          "field": "watch.https://www.gov.ky",
+          "to": "Official source content changed — manual rule review required",
+          "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
+        },
+        {
           "date": "2026-09-10",
           "field": "watch.https://www.gov.ky",
           "to": "Official source content changed — manual rule review required",
@@ -2604,22 +2575,15 @@
           "field": "watch.https://www.gov.ky",
           "to": "Official source content changed — manual rule review required",
           "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
-        },
-        {
-          "date": "2026-09-03",
-          "field": "proof",
-          "from": "d653997903ce569a",
-          "to": "re-anchored 67fe1219912c44a0 (stamp 880d453b-d64)",
-          "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
         }
       ]
     },
     "Andorra": {
       "id": 50,
       "freshness": {
-        "status": "watch",
-        "days_stale": 19,
-        "last_checked": "2026-08-22"
+        "status": "fresh",
+        "days_stale": 1,
+        "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
@@ -2628,42 +2592,41 @@
       },
       "proof": {
         "hash": "e1296fb7537946466a763b34a700ab0f789511a0250546cc45cfbf2a93fff6d0",
-        "in_sync": true,
+        "in_sync": false,
         "block": 958093,
         "stamped_at": "2026-09-03T10:20:07.911Z",
         "stamp_id": "197b6659-819f-4b0b-a1e2-27dc0bd6cb9c"
       },
       "recent_changes": [
         {
-          "date": "2026-09-09",
-          "field": "watch.https://www.govern.ad",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "e1296fb7537946466a763b34a700ab0f789511a0250546cc45cfbf2a93fff6d0"
-        },
-        {
-          "date": "2026-09-08",
+          "date": "2026-09-11",
           "field": "watch.https://www.afa.ad",
           "to": "Official source content changed — manual rule review required",
-          "hash": "e1296fb7537946466a763b34a700ab0f789511a0250546cc45cfbf2a93fff6d0"
+          "hash": "8eed32cfc1079f2ac425b9adb2ee659a04ef9af14971a605dfff0f6ca317ff74"
         },
         {
-          "date": "2026-09-05",
-          "field": "watch.https://www.afa.ad",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "e1296fb7537946466a763b34a700ab0f789511a0250546cc45cfbf2a93fff6d0"
+          "date": "2026-09-10",
+          "field": "last_checked",
+          "from": "2026-08-22",
+          "to": "2026-09-10"
         },
         {
-          "date": "2026-09-03",
-          "field": "proof",
-          "from": "66da679de4006f6a",
-          "to": "re-anchored e1296fb753794646 (stamp 197b6659-819)",
-          "hash": "e1296fb7537946466a763b34a700ab0f789511a0250546cc45cfbf2a93fff6d0"
+          "date": "2026-09-10",
+          "field": "finance.typical_investment_usd",
+          "from": 600000,
+          "to": 1180000
         },
         {
-          "date": "2026-08-30",
-          "field": "watch.https://www.afa.ad",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "e1296fb7537946466a763b34a700ab0f789511a0250546cc45cfbf2a93fff6d0"
+          "date": "2026-09-10",
+          "field": "finance.min_investment_usd",
+          "from": 400000,
+          "to": 440000
+        },
+        {
+          "date": "2026-09-10",
+          "field": "pathways.passive_residency.min_investment_usd",
+          "from": 400000,
+          "to": 440000
         }
       ]
     }
