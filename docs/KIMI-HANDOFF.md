@@ -1,3 +1,26 @@
+## Session — 2026-09-10 (Buffy/Freebuff) — continuation batch: UX depth + Veritas v2
+
+**Done (follow-up round after the 15-item mission):**
+- **Distressed empty-state reset** (`415f2fb`): one-click "Reset all filters" (lane + region + score + ask + proof/bookmark toggles + transient search) beside the gate-explainer link.
+- **GoalFinder shareable URLs** (`415f2fb`): `?gf-budget=150k&gf-timeline=12mo&gf-goal=fastest` — URL-backed chips, share button copies the permalink, back-button safe (replace:true).
+- **Veritas v2 — Wayback mirrors** (`ab2dfe5`): sources with status `unreachable`/`changed` now show an "Archive" link → `web.archive.org/web/{probe-date}/{url}` — a down source no longer breaks the inspectable trail.
+
+**Architecture finding — freshness is honest and two-layered (do NOT 'fix' by stamping):**
+- `research/countries.json` freshness = **research-claim age** (50–98d — when a human/agent last verified the claims). Reads stale, correctly.
+- `public/countries/{ISO}.json` + index (gab.country-trust.v1) = **daily probe freshness** (0–1d, pipeline-stamped). The machine layer is fresh.
+- The research-claim layer needs **human-quality batch research** (prompt ready in `CLAUDE-RESEARCH-PIPELINE-PROMPT.md`), not a script — freshness flags exist precisely to call this out.
+
+**Verified:** tsc 0 · 268/268 unit · 26/26 e2e · build green (469KB / 152KB gzip).
+
+**Git State:** commits `415f2fb`, `ab2dfe5` pushed to main; tree clean.
+
+**Not done / next agent:**
+- Research-claim freshness: run 2–3 country research batches against the Claude prompt (prioritize the 75d+ cohort: UAE, Georgia, El Salvador, Singapore, Switzerland, Thailand)
+- Veritas v3 idea: surface per-country trust-envelope freshness in ProgramsPage cards (data already ships in `public/countries/`)
+- Standing backlog unchanged: LNbits BOLT12 mint · hosted grounded Paige · live Nostr relay sync · 14 proofs re-stamp convergence
+
+---
+
 ## Session — 2026-09-10 (Buffy/Freebuff) — 15-item mission complete: all waves shipped
 
 **Done (user request: finish all 15 improvement items end-to-end, commit+push in batches, weave exceptional design polish):**
