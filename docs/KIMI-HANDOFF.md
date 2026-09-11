@@ -1,3 +1,45 @@
+## Session — 2026-09-10 (Buffy/Freebuff) — 15-item mission complete: all waves shipped
+
+**Done (user request: finish all 15 improvement items end-to-end, commit+push in batches, weave exceptional design polish):**
+
+*Wave 1 — fixes & quality:*
+- **tsc 38→0** — entire backlog cleared: 82 i18n keys restored (34 union-missing + 48 sw-orphans), component type fixes, test-file typing (Vite `?raw` for hero test + `@types/node` shim).
+- **eslint 13→0** — two real refactors (`useRouteLangMemory` ref-write, `LazyFlag` lazy-init), rest documented suppressions.
+- **26/26 e2e green (first fully passing suite)** — deterministic git-derived build-id helper (`e2e/support/build.ts`), role-based Uruguay card locator, auto-waiting visibility assert replaces `scrollIntoView` race.
+
+*Wave 2 — features (all with full 9–10-locale parity):*
+- **Watch-lists** (`38cb2e8`): bell toggle on cards/modal, localStorage-backed `watchlistStorage`, watched-filter chip in AlertInbox, pinned watched alerts.
+- **Apply flow-map** (`24c8b13`): 5-step visual stepper above the form, fee step reflects `onPaid`; **Programs onboarding strip**: first-visit 3-chip explainer (proofs/freshness/watch), dismissed stays dismissed.
+- **Simulator demo presets** (`4d7b17e`): Budget/Fastest/Max-Sovereignty one-click stacks over real corpus IDs.
+- **Modal tab memory + swipe** (`bf76102`): last tab remembered per user (clamped to tabs the program offers), horizontal-flick navigation via `useTabSwipe` (never fights vertical scroll), 220ms tab-panel rise.
+- **Goal-based path finder** (`422e16f`): budget × timeline × goal chips → ranked matches by sovereignty, opens program modal. The flagship UX differentiator.
+- **Veritas source-trust v1** (`85b404a`): per-source probe panel in modal Sources tab — live watchdog statuses (OK/Changed/Down/Pending) with probe dates + healthy-count. Source trust is now *inspectable*, not asserted.
+- **Sats conversion**: verified already live on every money surface (no duplication).
+- **Per-country chunking**: evaluated and consciously skipped — corpus is one intentionally-atomic research file, deferred off critical path, 152KB gzip total index; chunking adds failure modes for no real user win.
+
+*Wave 3 — design polish (reduced-motion safe throughout):*
+- **Hero count-ups** (`f0734c9`): `CountUp` component (easeOutExpo, fires once in view) animates jurisdictions/lightning chips.
+- **WCAG AA badge contrast**: proof-green `#16A34A`→`#15803D` (light mode 10px text), FreshnessBadge stale tier to ink-secondary.
+- **StatCard reduced-motion guard** on entrance + hover lift.
+
+*Wave 4 — i18n:*
+- **FULL PARITY: 820/820 keys × 10 locales** (`2889eb4`) — closed the last 11 vault keys in hi/de/fr/es/zh.
+
+**Verified:** tsc 0 · eslint 0 · 268/268 unit · 26/26 e2e · build green (index 469KB / 152KB gzip).
+
+**Git State:**
+- 9 commits pushed: `4c87384 6080a99(→424a8ed) 38cb2e8 24c8b13 4d7b17e bf76102 f0734c9 422e16f 85b404a 2889eb4`
+- Branch: main, clean tree, CI auto-deploys to motopass.giveabit.io
+
+**Not done / next agent:**
+- Standalone ChunkedData plan deliberately archived — revisit only if corpus >1MB or per-country deep-links emerge
+- Veritas v2: extend panel with per-claim source diffs + Wayback snapshots for unreachable sources
+- GoalFinder v2: persist goals in URL, share permalinks for goal queries
+- Standing backlog: LNbits BOLT12 mint · hosted grounded Paige · live Nostr relay/portfolio sync · 14 proofs re-stamp convergence (self-heals daily)
+- Research war: 26 stale countries (freshness sweep keeps running; batch research prompt ready in `CLAUDE-RESEARCH-PIPELINE-PROMPT.md`)
+
+---
+
 ## Session — 2026-09-10 (Buffy/Freebuff) — UX polish batches + working-tree restore
 
 **Done (user request: restore deleted images, continue upgrade batches, honest GUI polish):**
