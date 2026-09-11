@@ -1,3 +1,16 @@
+## Session — 2026-09-10 (Buffy/Freebuff) — Batch 3 research pass: 80–98d tail healed
+
+**Done (user work order: Batch 3 — Bolivia, Paraguay, CAR, Panama, Antigua, Portugal, Uruguay, Dominica, St. Kitts):**
+- **Uruguay — MATERIAL (2026 tax reform, Law 20.446 as amended, eff. 1 Jan 2026):** 11-year foreign-income holiday PRESERVED, then **12% on most foreign investment income** (pensions/Social Security exempt); tax-residency-via-RE threshold now **~US$2M**. Residency pathways (RE $100k / rentista ~$1,500/mo) unchanged — $2M is the tax-residency threshold, not general residency. Sources: PwC Tax Summaries · IMI Daily 2026-02-25 · Greenback 2026-04-17.
+- **Antigua — CORRECTION (official CIU):** NDF is **$230,000 flat — single applicant OR family of up to 4** (fees $10k/$20k); removed the speculatory "single tier may be ~$100k" note. Sources: cip.gov.ag/investment-options/ndf · Ancova 2026-07-21.
+- **St. Kitts — STATUS:** proposed 30-day-visit rule **still not law** (verified Aug 2026); mandatory interviews in effect; 2026 overhaul plans genuine-link rules + phasing out donation-only citizenship. Sources: getgoldenvisa 2026-08-21 · IMI Daily 2026-01-04.
+- **Bolivia — UPDATE:** crypto ban timeline clarified (partial Dec 2020 via Res. 144, **fully lifted 25 Jun 2024**); volumes +530% to $430M+ (Reuters 2025-06-27); Paz government (Oct 2025 runoff): floating FX ~9–9.5 BOB/USD, Investment Law bill in Assembly (Aug 2026). Crypto legal, NOT legal tender; framework forming.
+- **Verification passes (no material change, recorded for the honesty trail):** Dominica (EDF $200k + ECCIRA current) · Panama (FN $200k / QI $300k / pensionado; 2025 draft crypto bill still latest) · Portugal (€500k fund route + Lei Orgânica 1/2026 confirmed) · Paraguay (SUACE $70k/10yr current) · CAR (repeal framing + Sango stalled confirmed).
+- **Method:** `scripts/research-batch3-tail.mjs` — same audited pattern as Batches 1–2; last_checked=2026-09-10 on all nine.
+- **Gates:** validate-data ✓ · check-intel ✓ · tsc 0 · 268/268 unit.
+
+---
+
 ## Session — 2026-09-10 (Buffy/Freebuff) — Batch 2 research pass: 50d tier healed
 
 **Done (user work order: Batch 2 — Costa Rica, Hong Kong, Thailand, Mexico, Cyprus):** `210abb0`
