@@ -10,9 +10,7 @@
   },
   "health": {
     "status": "green",
-    "message": "Origin metrics.json published — program KPIs from research/countries.json + public/proofs; Umami visitors fill once analytics host is public",
-    "latencyMs": null,
-    "uptimePct24h": null,
+    "message": "Static snapshot (curated 2026-07-21; refreshed when research/countries.json or public/proofs change) — program KPIs from research/countries.json + public/proofs; Umami visitors fill once analytics host is public. No live uptime probe on this origin, so uptimePct24h/latencyMs are omitted rather than reported as null.",
     "dependencies": [
       {
         "id": "countries-json",
@@ -187,7 +185,7 @@
       "id": "metrics_v1",
       "title": "Product metrics v1",
       "for": ["hq"],
-      "status": "live",
+      "status": "ga",
       "endpoint": "GET /metrics.json",
       "hint": "gab.product-metrics.v1 for HQ cards"
     }
@@ -252,6 +250,6 @@
     "cheapest_program_name": "Central African Republic",
     "umamiWebsiteId": "dd982c5b-f27a-40e3-924b-4ea1e64d5f8a",
     "umamiPending": true,
-    "note": "Static product metrics for HQ. Visitor funnel fills from Umami once analytics host is public. Regenerate when countries.json or proofs change."
+    "note": "Static product metrics for HQ — a curated snapshot (not build-generated), last refreshed 2026-07-21. Regenerate when countries.json or proofs change. Visitor funnel fills from Umami once analytics host is public."
   }
 }
