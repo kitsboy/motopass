@@ -5,10 +5,9 @@
 
 # Thank-you pages — real static pages (200, not the SPA shell) so applicants
 # never bounce to the homepage or a dead end.
-/thank-you      /thank-you.html   200
-/thanks         /thank-you.html   200
-/thankyou       /thank-you.html   200
-/success        /thank-you.html   200
-/apply/thank-you /thank-you.html 200
+# NOTE: served by Cloudflare Pretty URLs — `thank-you.html` auto-resolves at the
+# extensionless `/thank-you` (same as sherpacarta.org). Do NOT add
+# `/thank-you /thank-you.html 200` rewrites: they collide with Pretty-URL
+# .html-stripping into a self-308 loop (verified 2026-09-13).
 
 /*           /index.html       200
