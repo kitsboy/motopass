@@ -21,6 +21,8 @@ const KNOWN_ROUTES = [
   /^\/verify\/?$/,
   /^\/agents\/?$/,
   /^\/apply\/?$/,
+  /^\/thank-you\/?$/, /^\/thanks\/?$/, /^\/thankyou\/?$/, /^\/success\/?$/,
+  /^\/apply\/thank-you\/?$/,
   /^\/register\/?$/,
   /^\/dashboard\/?$/,
   /^\/profile\/?$/,
