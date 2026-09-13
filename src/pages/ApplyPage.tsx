@@ -496,6 +496,13 @@ export function ApplyPage() {
             <a href={satohashStampGuideUrl(result.hash)} target="_blank" rel="noopener noreferrer" className="btn-primary w-full inline-flex items-center justify-center gap-2">
               {t('apply.stampSatohash')} <ExternalLink size={14} />
             </a>
+            <Link
+              to="/thank-you"
+              className="btn-primary w-full inline-flex items-center justify-center gap-2"
+              aria-label={t('thankYou.title')}
+            >
+              {t('thankYou.title')}
+            </Link>
             <button
               type="button"
               className="btn-secondary w-full inline-flex items-center justify-center gap-2"

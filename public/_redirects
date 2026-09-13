@@ -2,4 +2,13 @@
 /website/*   /website/:splat   200
 /research/*  /research/:splat  200
 /images/*    /images/:splat    200
+
+# Thank-you pages — real static pages (200, not the SPA shell) so applicants
+# never bounce to the homepage or a dead end.
+/thank-you      /thank-you.html   200
+/thanks         /thank-you.html   200
+/thankyou       /thank-you.html   200
+/success        /thank-you.html   200
+/apply/thank-you /thank-you.html 200
+
 /*           /index.html       200

@@ -55,6 +55,9 @@ const AgentsPage = lazy(() =>
   import('./pages/AgentsPage').then((m) => ({ default: m.AgentsPage })),
 )
 const ApplyPage = lazy(() => import('./pages/ApplyPage').then((m) => ({ default: m.ApplyPage })))
+const ThankYouPage = lazy(() =>
+  import('./pages/ThankYouPage').then((m) => ({ default: m.ThankYouPage })),
+)
 const StackSimulatorPage = lazy(() =>
   import('./pages/StackSimulatorPage').then((m) => ({ default: m.StackSimulatorPage })),
 )
@@ -156,6 +159,8 @@ export default function App() {
                                 <Route path="verify" element={<VerifyPage />} />
                                 <Route path="agents" element={<AgentsPage />} />
                                 <Route path="apply" element={<ApplyPage />} />
+                                <Route path="thank-you" element={<ThankYouPage />} />
+                                <Route path="apply/thank-you" element={<ThankYouPage />} />
                                 <Route
                                   path="register"
                                   element={

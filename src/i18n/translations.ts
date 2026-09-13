@@ -150,6 +150,19 @@ export type TranslationKey =
   | 'apply.title'
   | 'apply.sub'
   | 'apply.submit'
+  | 'thankYou.title'
+  | 'thankYou.metaDescription'
+  | 'thankYou.sub'
+  | 'thankYou.done'
+  | 'thankYou.doneSub'
+  | 'thankYou.nextHeading'
+  | 'thankYou.stepFee'
+  | 'thankYou.stepVault'
+  | 'thankYou.stepStamp'
+  | 'thankYou.backToApply'
+  | 'thankYou.openVault'
+  | 'thankYou.meetAgents'
+  | 'thankYou.privacyNote'
   | 'nostr.connect'
   | 'nostr.connected'
   | 'block.live'
@@ -686,6 +699,21 @@ const en: Dict = {
   'apply.title': 'Passport application tracker',
   'apply.sub': 'Register interest, timestamp your application hash, connect your npub',
   'apply.submit': 'Register & timestamp',
+  'thankYou.title': 'Thank you.',
+  'thankYou.metaDescription':
+    'Your MotoPass application is submitted. Here is what happens next — complete the fee, meet the agents, and your application is on the table.',
+  'thankYou.sub': 'Your application has been recorded and stamped. Here is exactly what happens next.',
+  'thankYou.done': 'Application submitted',
+  'thankYou.doneSub':
+    'Your details are recorded and a cryptographic fingerprint was created so nothing can be altered after the fact.',
+  'thankYou.nextHeading': 'What happens next',
+  'thankYou.stepFee': 'Complete the application fee — one real Lightning payment (or your chosen rail) opens the door.',
+  'thankYou.stepVault': 'Your application hash and stamped documents stay in your Vault — self-custody, no middleman.',
+  'thankYou.stepStamp': 'Stamp your application on Bitcoin via Satohash for permanent, independent proof.',
+  'thankYou.backToApply': 'Continue your application',
+  'thankYou.openVault': 'Open your vault',
+  'thankYou.meetAgents': 'Meet the agents',
+  'thankYou.privacyNote': 'Bitcoin-only · self-custody · no KYC · no tracking pixels',
   'nostr.connect': 'Connect Nostr',
   'nostr.connected': 'Connected',
   'block.live': 'Bitcoin block',
