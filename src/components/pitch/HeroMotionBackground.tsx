@@ -11,6 +11,7 @@ export function HeroMotionBackground() {
         srcSet="/images/sovereignty-480w.webp 480w, /images/sovereignty-800w.webp 800w, /images/sovereignty.webp 1280w"
         sizes="100vw"
         alt=""
+        aria-hidden="true"
         width={1280}
         height={720}
         className="hero-elite-photo hero-elite-photo--animate absolute -left-[6%] -top-[6%] inset-0 h-[112%] w-[112%] max-w-none object-cover"
