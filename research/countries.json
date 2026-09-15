@@ -7229,6 +7229,13 @@
           "to": "RETRACTED (t_54b89ced, harness owner): false rule flag. The text that confirmed was a PARTIAL RENDER, not a rule edit — the baseline held the page's FULL rule set, and the \"new\" text was that same text cut off mid-sentence at \"Attention :\" with its leading block (\"10 years visa for long term residents\") missing. The same render carried NO `main` scope at all, which every full render of this page has. www.thaievisa.go.th is a JS-heavy e-Visa SPA (it also previously served an \"Acknowledge (9s)\" load countdown) and had already been layout-drifting on 3 consecutive runs. Baseline restored to the full-render hash so nothing re-fires; the partial-render class is carded separately and is NOT fixed by v8.",
           "source": "manual review (source-probe v8 follow-up)",
           "hash": "9f5fdc3c6a20d167"
+        },
+        {
+          "date": "2026-09-15",
+          "field": "watch.https://www.thaievisa.go.th",
+          "to": "CLOSED BY MEASUREMENT (t_239f6996, harness owner) — the partial-render mechanism in the retraction above is fixed in scripts/probe-sources.mjs v9 and no longer reproduces. Measured with 250ms sampling on this URL (3 loads): the pre-hydration shell is the site chrome only (raw 628 chars) and carries NO `main` container; it persists ~0.9-1.9s after DOMContentLoaded, and TWO READS 986 MS APART RETURNED THE IDENTICAL SHELL TEXT — that is exactly why the old read could baseline it and why a \"read twice and agree\" test alone would not have caught it. The settled render has main=1461 of 2583-2584 chars. v9 accepts a rendered read only when (a) a second read SETTLE_CONFIRM_MS=700 later agrees on the filtered page text AND (b) the read is not provably incomplete against this URL's last settled render (the `main` container it had is empty, or the container/page text is below 60% of it); separately, a rule read that is a strict SUBSET of the stored rule text is re-probed at settle 6s and accepted only if it reproduces. Shadow pair on the live 130-URL corpus: rule-changed 0 on both runs, this URL kept rule hash 9f5fdc3c6a20d167 with no pending and no shell baseline, and the gate reported \"Thailand [incomplete-render, recovered]\" — i.e. it caught this exact shape on the live corpus and baselined the settled render instead. EXTRACT_V deliberately unchanged at 7 (probe quality, not extraction); self-test now 84/84 with a fixture that serves this shell shape (it FAILS on the pre-v9 harness).",
+          "source": "source-probe v9 (self-test shell fixture + live-corpus shadow pair)",
+          "hash": "9f5fdc3c6a20d167"
         }
       ]
     },
