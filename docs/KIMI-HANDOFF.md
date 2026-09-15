@@ -1,3 +1,40 @@
+## Session — 2026-09-15 · CI hygiene: action-runtime deadline, a phantom red, and a retry that re-reds a fixed commit (Kimi, `t_a8bc8947`)
+
+Cam reported CI as red on `kitsboy/motopass` (`CI` #76, `2c1bcb0`): `2 errors and 11 warnings`, "Re-run triggered
+25 minutes ago". Three separate things were behind that screen, and **none of them was still broken**.
+
+**1. The failure itself was already fixed — and the retry cron re-ran it anyway.** #76 died on
+`e2e/smoke.spec.ts:153 › smoke › Arabic sets RTL document direction` (`Expected "ar" Received "en"`, 13 retries, both
+attempts). That is the real bug fixed 26 minutes later by `881cbcd` (route→lang persisted in an *unmount* cleanup,
+overwritten while `<I18nLoading />` unmounted the hook). But `~/.hermes/scripts/gh-actions-retry.sh` re-ran the failed
+run at 19:20Z **against the superseded SHA**, so it could only come back red — and left a permanent red X at a commit
+whose bug no longer existed. Fixed at the source: the script now resolves each repo's current `main` head and retries
+**only** a failure whose `head_sha` == that head, and only the newest run of that workflow at that SHA. Verified with a
+negative test — candidates are `[35010360271]` when head is `2c1bcb0`, and `[]` once head moved on.
+
+**2. Node 20 runtime deadline (2026-09-23).** The annotation is not cosmetic: `actions/cache@v4` and
+`actions/upload-artifact@v4` still declare `runs.using: node20`, and the runner removes that runtime on
+**2026-09-23** — after which the action stops running. Both were being forced onto Node 24 meanwhile.
+`stefanzweifel/git-auto-commit-action@v5` is the same runtime and drives **both scheduled workflows** (`daily-intel`,
+`btcmap-sync`), so it would have gone down silently on the same date with no push to notice it. → `cache@v6`,
+`upload-artifact@v7`, `git-auto-commit-action@v7`. Read every checked-out tag's `action.yml` rather than guessing which
+majors are already `node24`: **`checkout@v5` and `setup-node@v5` already are** (not flagged, correctly left alone), and
+`git-auto-commit-action@v6` has *no* `node24` runtime (**it is still `node20`**) — v7 is the first safe one — while v6
+also *removes* `skip_fetch` that v7 restores, so `v5 → v7` is the only correct hop for a workflow passing
+`skip_fetch: true`. Do NOT conflate this with `node-version: '20'` (the app toolchain, a different axis, EOL but working).
+
+**3. The phantom error that hid the real one.** `prettier:check` is warn-only by design (`continue-on-error: true`,
+355 src files predate the check), but `prettier --check` exits 1 on drift and **GitHub still attaches an ERROR-level
+annotation** (`Process completed with exit code 1.`, path `.github#365`) to the run. So every green run on main showed
+`1 error and 10 warnings` in its header — and that is exactly the counter Cam read as "2 errors". A warn-only step must
+not exit non-zero: the step now captures its own exit code and emits a real `::warning::prettier drift in N src files`
+(ANSI-stripped count). Verified on `75d7181`: build-test **success**, annotations = **11 warnings, 0 errors**.
+
+**Verified live, not relayed:** CI + Deploy green at `e319b6e`, `0636589` and `75d7181`;
+`https://motopass.giveabit.io/` → 200. Remaining, non-blocking: 10 real lint advisories
+(`react-refresh/only-export-components` ×6, `react-hooks/exhaustive-deps` ×4) — a code refactor, so it belongs to the
+code lane; the repo-wide `prettier --write src` stays deferred so it cannot stomp in-flight cards.
+
 ## Session — 2026-09-15 · Source-watchdog v9 — a render read while the page is still hydrating must not be baselined (Ziggy, `t_239f6996`)
 
 Follow-up to `t_54b89ced` (v8). `scripts/probe-sources.mjs` is a declared hotspot — claimed in a card comment before editing,

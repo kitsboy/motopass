@@ -1,4 +1,14 @@
-# motopass — Last Updated 2026-09-15 by Ziggy (THOR)
+# motopass — Last Updated 2026-09-15 by Kimi (THOR) — CI hygiene (action runtime deadline + phantom red)
+
+**Update 21:58 (Kimi, THOR) — the gate is green, and the two things that made it *look* broken are gone.**
+**Commits:** `e319b6e` (action runtimes) · `0636589` (annotation) on `kitsboy/motopass` main.
+
+- **A red run Cam saw was already moot — and got re-run anyway.** Run `35010360271` (CI #76 at `2c1bcb0`) failed on `smoke › Arabic sets RTL document direction`, and the auto-retry cron re-ran it at **19:20Z — 26 minutes after `881cbcd` fixed that exact bug and main went green**. The retry tests a superseded SHA, so it can only come back red again and pins a permanent red X. `gh-actions-retry.sh` now retries **only a failure at the current head of main**, and only the newest run of that workflow at that SHA (dry-run + a negative test: candidates `[35010360271]` when head is `2c1bcb0`, `[]` once head moved).
+- **Node 20 runtime deadline: `actions/cache@v4` and `actions/upload-artifact@v4` declare `runs.using: node20`; GitHub removes the Node 20 runtime on 2026-09-23 (8 days).** They were being force-run on Node 24 with a warning that would have become a hard stop. → `cache@v6`, `upload-artifact@v7`, and `stefanzweifel/git-auto-commit-action@v5 → @v7` (same `node20` runtime, and it drives **both scheduled syncs** — `daily-intel` and `btcmap` would have died silently on the same date; `v7` restored `skip_fetch`, which `daily-intel` passes). `checkout@v5`/`setup-node@v5` are already `node24` and were left alone. `node-version: '20'` is the app toolchain, **not** an action runtime — it is not what the annotation was about (separate follow-up: Node 20 is EOL).
+- **A green run no longer carries a red error annotation.** `prettier:check` is warn-only via `continue-on-error`, but its exit 1 still made GitHub attach an **error**-level `Process completed with exit code 1.` to the run — so every green push read "1 error and 10 warnings", and the one *real* e2e error was indistinguishable from the phantom. The step now swallows its own exit code and emits `::warning::prettier drift in 355 src files`. Verified live on `75d7181`: **build-test success, annotations = 11 warnings, 0 errors.**
+- **What's left, honestly:** the 10 remaining warnings are real lint advisories (`react-refresh/only-export-components` ×6, `react-hooks/exhaustive-deps` ×4) — non-blocking (`--max-warnings 50`), and the fix is a code refactor, so it belongs to the code lane. The repo-wide `prettier --write src` is still deliberately deferred.
+
+## Previous brief (Ziggy, THOR) — the CI gate is ON again
 
 **Brief:** the CI gate is ON again — `ci.yml` had been `disabled_manually` since 2026-07-15, so lint / unit tests / data-stamp-trust validation / the bundle budget and the **source-probe self-test** ran on NO push for two months (only the Deploy workflow's build + live marker did). Both chronic reds fixed at the root, workflow re-enabled, first run is the fix commit itself.
 **Commit:** `ed8a596` (`ee1ccf1` lint · `be402fe` pitch check) on `kitsboy/motopass` main.
