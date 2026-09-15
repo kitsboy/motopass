@@ -64,17 +64,23 @@ export function GoalFinder({ programs, onOpenProgram }: GoalFinderProps) {
 
   const active = budget !== 'any' || timeline !== 'any' || goal !== 'residency'
 
+  // Caps are derived once, outside the memo: listing `budget`/`timeline`
+  // themselves in the dependency array made the memo depend on values its body
+  // never reads (only the caps are read), so it recomputed on unrelated changes
+  // and the React Compiler could not verify the deps.
+  const budgetCap: number = budget === 'any' ? Infinity : BUDGET_CAPS[budget]
+  const timelineCapDays: number = timeline === 'any' ? Infinity : TIMELINE_CAPS[timeline]
+
   const results = useMemo(() => {
     if (!active) return []
-    const budgetCap = budget === 'any' ? Infinity : BUDGET_CAPS[budget]
-    const daysCap = timeline === 'any' ? Infinity : TIMELINE_CAPS[timeline]
 
     const scored = programs
       .filter(p => {
         if (p.status && p.status.toLowerCase() !== 'active') return false
         const min = p.finance.min_investment_usd ?? p.finance.typical_investment_usd ?? 0
+        const minDays = parseMonthsToDays(p.finance.processing_time_months)
         if (min > budgetCap) return false
-        if (parseMonthsToDays(p.finance.processing_time_months) > daysCap) return false
+        if (minDays > timelineCapDays) return false
         if (goal === 'citizenship' && !p.category.includes('citizenship') && !p.category.includes('rbi_cbi')) return false
         if (goal === 'residency' && p.category.includes('citizenship') && !p.category.includes('rbi_cbi') && !p.category.includes('residency')) return false
         return true
@@ -92,7 +98,7 @@ export function GoalFinder({ programs, onOpenProgram }: GoalFinderProps) {
       .sort((a, b) => b.score - a.score)
       .slice(0, 4)
     return scored
-  }, [programs, budget, timeline, goal, active])
+  }, [programs, budgetCap, timelineCapDays, goal, active])
 
   const chip = (selected: boolean) =>
     `px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${

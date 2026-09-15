@@ -1,6 +1,4 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from 'react'
-import { connectNostr } from '../lib/nostr'
-import { clearProfile, loadProfile, saveProfile } from '../lib/userStorage'
+import { createContext, useContext } from 'react'
 import type { UserProfile } from '../types/user'
 
 interface UserContextValue {
@@ -12,53 +10,12 @@ interface UserContextValue {
   refresh: () => void
 }
 
-const UserContext = createContext<UserContextValue | null>(null)
-
-export function UserProvider({ children }: { children: React.ReactNode }) {
-  const [profile, setProfileState] = useState<UserProfile | null>(() => {
-    const p = loadProfile()
-    if (p?.npub) sessionStorage.setItem('motopass-npub', p.npub)
-    return p
-  })
-
-  const refresh = useCallback(() => {
-    setProfileState(loadProfile())
-  }, [])
-
-  const login = useCallback(async () => {
-    const session = await connectNostr()
-    if (!session) return false
-    const existing = loadProfile()
-    if (existing?.npub === session.npub) {
-      setProfileState(existing)
-      return true
-    }
-    return false
-  }, [])
-
-  const logout = useCallback(() => {
-    clearProfile()
-    sessionStorage.removeItem('motopass-npub')
-    setProfileState(null)
-  }, [])
-
-  const setProfile = useCallback((p: UserProfile) => {
-    saveProfile(p)
-    setProfileState(p)
-    sessionStorage.setItem('motopass-npub', p.npub)
-  }, [])
-
-  const value = useMemo(() => ({
-    profile,
-    isLoggedIn: !!profile,
-    login,
-    logout,
-    setProfile,
-    refresh,
-  }), [profile, login, logout, setProfile, refresh])
-
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>
-}
+/**
+ * Context object + consumer hook only — the provider lives in
+ * `./UserProvider` (see the note in ThemeContext.tsx for why:
+ * `react-refresh/only-export-components`, with consumer import paths unchanged).
+ */
+export const UserContext = createContext<UserContextValue | null>(null)
 
 export function useUser() {
   const ctx = useContext(UserContext)

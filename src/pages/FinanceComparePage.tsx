@@ -85,10 +85,14 @@ export function FinanceComparePage() {
 
   const compare = programs.filter(p => ids.includes(p.id))
 
+  // A stable, statically-checkable key for "the selection changed" (the rule
+  // cannot verify a computed expression like `ids.join(',')` in a dep array).
+  const idsKey = ids.join(',')
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- chip state resets when the comparison selection changes; converges after one render
     setStackAdded(false)
-  }, [ids.join(',')])
+  }, [idsKey])
 
   const rows = useMemo(
     (): CompareRow[] => [

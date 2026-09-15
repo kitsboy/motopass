@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Bitcoin, Check, ChevronDown, Coins, RefreshCw, TriangleAlert } from 'lucide-react'
 import { useDisplayCurrency } from '../../context/DisplayCurrencyContext'
@@ -28,27 +28,34 @@ export function CurrencyDropdown({ size = 'compact' }: { size?: 'compact' | 'men
   const panelRef = useRef<HTMLUListElement>(null)
   const listId = useId()
 
-  const rows: Array<{ kind: 'btc' | 'sat' | 'sep' | 'fiat' | 'suggest'; code?: string }> = []
-  if (suggested && suggested !== currency) rows.push({ kind: 'suggest', code: suggested })
-  rows.push({ kind: 'sat' })
-  rows.push({ kind: 'btc' })
-  rows.push({ kind: 'sep' })
-  for (const f of FIATS) rows.push({ kind: 'fiat', code: f.code })
+  // `rows` is rebuilt on every render, so as a raw local it re-created the keydown
+  // effect (and its listeners) on every render. Memoising it on the only two
+  // inputs that can change its contents keeps the effect subscription stable.
+  const rows = useMemo(() => {
+    const out: Array<{ kind: 'btc' | 'sat' | 'sep' | 'fiat' | 'suggest'; code?: string }> = []
+    if (suggested && suggested !== currency) out.push({ kind: 'suggest', code: suggested })
+    out.push({ kind: 'sat' })
+    out.push({ kind: 'btc' })
+    out.push({ kind: 'sep' })
+    for (const f of FIATS) out.push({ kind: 'fiat', code: f.code })
+    return out
+  }, [suggested, currency])
   const optionCount = rows.length
 
-  const pick = (c: DisplayCurrency) => {
+  // Stable: listed as a real dependency by the keydown effect below.
+  const pick = useCallback((c: DisplayCurrency) => {
     setCurrency(c)
     setOpen(false)
-  }
+  }, [setCurrency])
 
-  const updateMenuPos = () => {
+  const updateMenuPos = useCallback(() => {
     const trigger = triggerRef.current
     if (!trigger) return
     const rect = trigger.getBoundingClientRect()
     const width = size === 'menu' ? rect.width : PANEL_WIDTH
     const left = size === 'menu' ? rect.left : Math.min(rect.right - width, window.innerWidth - width - 8)
     setMenuPos({ top: rect.bottom + 6, left: Math.max(8, left), width })
-  }
+  }, [size])
 
   useLayoutEffect(() => {
     if (!open) return
@@ -59,7 +66,7 @@ export function CurrencyDropdown({ size = 'compact' }: { size?: 'compact' | 'men
       window.removeEventListener('resize', updateMenuPos)
       window.removeEventListener('scroll', updateMenuPos, true)
     }
-  }, [open, size])
+  }, [open, updateMenuPos])
 
   useEffect(() => {
     if (!open) return
@@ -95,7 +102,7 @@ export function CurrencyDropdown({ size = 'compact' }: { size?: 'compact' | 'men
       document.removeEventListener('mousedown', onDoc)
       document.removeEventListener('keydown', onKey)
     }
-  }, [open, highlight, optionCount, rows])
+  }, [open, highlight, optionCount, rows, pick])
 
   const isFiat = currency !== 'BTC' && currency !== 'SAT'
   const staleActive = isFiat && (fx?.stale ?? false)

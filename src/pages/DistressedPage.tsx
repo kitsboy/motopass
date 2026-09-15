@@ -214,7 +214,9 @@ export function DistressedPage() {
       curated: base.filter(l => l.lane === 'curated').length,
       permissionless: base.filter(l => l.lane === 'permissionless').length,
     }
-  }, [allListings, filters])
+    // `bookmarks` is read inside filterListings (bookmarked-only filtering) — it
+    // belongs here or the lane counts go stale the moment a listing is saved.
+  }, [allListings, filters, bookmarks])
 
   const curatedCount = allListings.filter(l => l.lane === 'curated').length
 

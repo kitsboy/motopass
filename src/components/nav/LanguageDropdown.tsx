@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Check, ChevronDown, Globe, Monitor } from 'lucide-react'
 import { LANGUAGES, detectBrowserLang, type LangPreference } from '../../i18n/languages'
@@ -27,13 +27,16 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
 
   const recentLangs = loadRecentLangs()
 
-  const pick = (pref: LangPreference) => {
+  // Callbacks are stable so the two effects below can list them as real
+  // dependencies instead of capturing a fresh closure every render (which is
+  // what `exhaustive-deps` was warning about).
+  const pick = useCallback((pref: LangPreference) => {
     if (pref !== 'system') rememberRecentLang(pref)
     setLang(pref)
     setOpen(false)
-  }
+  }, [setLang])
 
-  const updateMenuPos = () => {
+  const updateMenuPos = useCallback(() => {
     const trigger = triggerRef.current
     if (!trigger) return
     const rect = trigger.getBoundingClientRect()
@@ -44,7 +47,7 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
       left: Math.max(8, left),
       width,
     })
-  }
+  }, [size])
 
   useLayoutEffect(() => {
     if (!open) return
@@ -55,7 +58,7 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
       window.removeEventListener('resize', updateMenuPos)
       window.removeEventListener('scroll', updateMenuPos, true)
     }
-  }, [open, size])
+  }, [open, updateMenuPos])
 
   useEffect(() => {
     if (!open) return
@@ -87,7 +90,7 @@ export function LanguageDropdown({ size = 'compact' }: { size?: 'compact' | 'men
       document.removeEventListener('mousedown', onDoc)
       document.removeEventListener('keydown', onKey)
     }
-  }, [open, highlight, optionCount])
+  }, [open, highlight, optionCount, pick])
 
   const triggerClass =
     size === 'menu'

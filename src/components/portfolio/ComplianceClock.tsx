@@ -3,25 +3,18 @@ import type { Program } from '../programs/types'
 import { hasFlagshipDepth } from '../programs/types'
 import { InfoTip } from '../ui/InfoTip'
 import { useI18n } from '../../i18n/I18nContext'
+import { complianceSeverity, type ComplianceSeverity } from '../../lib/compliance'
 
 type ComplianceClockProps = {
   program: Program
   acquiredAt?: string
 }
 
-export type ComplianceSeverity = 'critical' | 'warning' | 'healthy'
-
 function daysSince(iso?: string): number {
   if (!iso) return 0
   const t = new Date(iso).getTime()
   if (Number.isNaN(t)) return 0
   return Math.max(0, Math.floor((Date.now() - t) / 86_400_000))
-}
-
-export function complianceSeverity(daysToRenewal: number): ComplianceSeverity {
-  if (daysToRenewal <= 30) return 'critical'
-  if (daysToRenewal <= 90) return 'warning'
-  return 'healthy'
 }
 
 const SEVERITY_STYLES: Record<
