@@ -51,7 +51,18 @@ const root = resolve(__dirname, '..')
 const countriesPath = resolve(root, 'research/countries.json')
 const intelDir = resolve(root, 'public/data')
 const manifestPath = resolve(intelDir, 'source-monitor.json')
+const eventsPath = resolve(intelDir, 'source-events.json')
+const snapsPath = resolve(intelDir, 'source-snapshots.json')
+const EVENTS_CAP = 200
 const DRY_RUN = process.argv.includes('--dry-run')
+
+function loadJson(path, def) {
+  try { return JSON.parse(readFileSync(path, 'utf8')) } catch { return def }
+}
+function shortDiff(before, after, n = 200) {
+  // Best-effort line diff for the change feed. Returns trimmed before/after.
+  return { before: (before || '').slice(0, n), after: (after || '').slice(0, n) }
+}
 
 const PROBE_TIMEOUT_MS = Number(process.env.PROBE_TIMEOUT_MS ?? 12_000)
 const CONCURRENCY = Number(process.env.PROBE_CONCURRENCY ?? 6)
@@ -125,15 +136,20 @@ async function httpProbe(url) {
                whole: hashBytes(buf), rule: null, main: null }
     }
     const text = buf.toString('utf8')
-    // Some servers return a 200 with a JS-only shell (empty innerText). Treat
-    // a near-empty page as needing the browser.
+    // A real page must yield actual rule text. If the http response is a JS
+    // shell, a cookie-banner-only page, or yields no rule-bearing sentences,
+    // we cannot trust it as a baseline — escalate to the browser so we hash
+    // real rendered text. (A cookie banner next to real content is fine and
+    // stays on http — its volatile noise is already filtered downstream.)
+    const rule = ruleSentences(text)
     const stripped = text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
-    if (stripped.length < 60) {
+    if (stripped.length < 60 || rule.length < 8) {
       return { ok: true, mode: 'http', bytes: buf.length, needsBrowser: true,
-               whole: hashText(text), rule: null, main: null }
+               whole: hashText(text), rule: null, main: null, ruleText: null }
     }
     return { ok: true, mode: 'http', bytes: buf.length, pdf: false,
-             whole: hashText(text), rule: hashText(ruleSentences(text)), main: null }
+             whole: hashText(text), rule: hashText(rule), main: null,
+             ruleText: rule.slice(0, 800) }
   } catch (err) {
     return { ok: false, error: err instanceof Error ? err.message : 'fetch failed' }
   } finally {
@@ -193,6 +209,7 @@ async function browserProbe(url) {
       ok: true, mode: 'browser', bytes: Buffer.byteLength(whole),
       pdf: false, botWalled,
       whole: hashText(whole), rule: hashText(ruleSentences(whole)), main: main ? hashText(main) : null,
+      ruleText: ruleSentences(whole).slice(0, 800),
     }
   } finally {
     await context.close().catch(() => {})
@@ -251,6 +268,9 @@ async function main() {
   const data = JSON.parse(readFileSync(countriesPath, 'utf8'))
   const nowIso = new Date().toISOString()
   const today = nowIso.slice(0, 10)
+  const SNAP = loadJson(snapsPath, {})
+  const EVENTS = loadJson(eventsPath, [])
+  const newEvents = []
 
   const targets = []
   for (const p of data.programs) {
@@ -282,15 +302,24 @@ async function main() {
       const isBlocked = result.cloudflare === true
       const status = isBlocked ? 'blocked' : 'unreachable'
       report[isBlocked ? 'cloudflare_blocked' : 'unreachable']++
+      // start / keep the coverage clock whenever the URL is failing
+      entry.status_since = entry.status_since || nowIso
       if (entry.status !== status) {
         entry.status = status
         entry.last_probed = nowIso
         entry.last_error = result.error
+        if (entry.scopes && entry.scopes.whole?.last_hash) {
+          newEvents.push({ id: `${nowIso}-${entry.url.slice(-8)}-${status}`, ts: nowIso, date: today,
+                           country: p.name, program_id: p.id, url: entry.url, kind: 'coverage',
+                           status, before: null, after: null })
+        }
       }
       const row = { program_id: p.id, name: p.name, url: entry.url, error: result.error }
       ;(isBlocked ? report.blocked_urls : report.unreachable_urls).push(row)
       continue
     }
+
+    delete entry.status_since // recovered / probing fine
 
     report.ok++
     entry.last_probed = nowIso
@@ -316,6 +345,7 @@ async function main() {
     let ruleChanged = false
     let layoutChanged = false
     const changedScopes = []
+    const oldRuleHash = entry.scopes.rule?.last_hash
     for (const s of scopes) {
       const st = entry.scopes[s.key]
       const prev = st?.last_hash
@@ -326,6 +356,22 @@ async function main() {
       // rule / main scope moved — confirm before alerting
       if (pend === s.newHash) { ruleChanged = true; st.last_hash = s.newHash; delete st.pending_hash; changedScopes.push(s.label) }
       else { st.pending_hash = s.newHash }
+    }
+
+    // ---- rule-text snapshot + change event (the diff the feed shows) ----
+    if (result.ruleText != null) {
+      const snap = (SNAP[entry.url] = SNAP[entry.url] || {})
+      const before = (ruleChanged && snap.rule && snap.rule.hash === oldRuleHash) ? snap.rule.text : null
+      if (ruleChanged) {
+        newEvents.push({
+          id: `${nowIso}-${entry.url.slice(-8)}-rule`, ts: nowIso, date: today,
+          country: p.name, program_id: p.id, url: entry.url, kind: 'rule',
+          scopes: changedScopes, before, after: result.ruleText.slice(0, 220),
+        })
+      }
+      if (!(snap.rule && snap.rule.hash === oldRuleHash && !ruleChanged)) {
+        snap.rule = { hash: entry.scopes.rule.last_hash, text: result.ruleText }
+      }
     }
 
     if (isBaseline) {
@@ -362,24 +408,41 @@ async function main() {
 
   // ---- manifest for the presentation layer ----
   const byCountry = []
+  let coverageGapCountries = 0
+  function gapDays(since) {
+    if (!since) return 0
+    try { return Math.max(0, Math.round((Date.now() - new Date(since).getTime()) / 86400000)) } catch { return 0 }
+  }
   for (const p of data.programs) {
     const urls = (p.watch?.urls || []).map(u => ({
       url: u.url, status: u.status, mode: u.mode || null,
       last_probed: u.last_probed || null,
       baselined_at: u.baselined_at || null,
+      status_since: u.status_since || null,
+      coverage_gap_days: gapDays(u.status_since),
       scopes: Object.fromEntries(Object.entries(u.scopes || {}).map(([k, v]) => [k, { label: v.label || k, last_hash: v.last_hash?.slice(0, 12), changed: v.changed || false }])),
       last_error: u.last_error || null,
     }))
-    byCountry.push({ program_id: p.id, name: p.name, changed: p.watch?.changed === true, urls })
+    const gap = Math.max(0, ...urls.map(u => u.coverage_gap_days || 0))
+    if (gap > 0) coverageGapCountries++
+    byCountry.push({ program_id: p.id, name: p.name, changed: p.watch?.changed === true,
+                     coverage_gap_days: gap, urls })
   }
   report.by_country = byCountry
+  report.coverage_gap_count = coverageGapCountries
   report.ok_count = report.ok; report.changed_count = report.changed
   report.layout_changed_count = report.layout_changed
+
+  // ---- persist events + snapshots (rolling) ----
+  const allEvents = [...newEvents, ...EVENTS].slice(0, EVENTS_CAP)
+  report.last_events = allEvents.slice(0, 8)
 
   if (!DRY_RUN) {
     writeFileSync(countriesPath, JSON.stringify(data, null, 2) + '\n')
     mkdirSync(intelDir, { recursive: true })
     writeFileSync(manifestPath, JSON.stringify(report, null, 2) + '\n')
+    writeFileSync(eventsPath, JSON.stringify(allEvents, null, 2) + '\n')
+    writeFileSync(snapsPath, JSON.stringify(SNAP, null, 2) + '\n')
   }
 
   console.log(`✓ Source probe v2 — ${targets.length} URLs · ok ${report.ok} · rule-changed ${report.changed} · ` +
