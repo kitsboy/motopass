@@ -1,3 +1,57 @@
+## Session — 2026-09-15 · Source-watchdog v6 — layout churn attributed and killed, HK pinned to its rules pages (Ziggy)
+
+Card `t_50cbc2d3` (follow-up to `t_4336aaae`). `scripts/probe-sources.mjs` is a declared hotspot — claimed in a
+card comment before editing; `git status` clean at start. Both events in the v5 feed were the churn class the v5
+work set out to kill. Both are fixed at the root, and `layout_changed` is now attributable from the report alone.
+
+**1. `immd.gov.hk`'s rule event was a rotating headline.** The homepage is browser-pinned and its rule scope
+comes from a "What's New" rail (the headlines match `fee|residenc*|visa`), so the rail entering/leaving the scope
+read as a rule change. No filter can separate a headline that *announces* a fee change from a fee change itself,
+so HK's homepage is retired as a watch URL (option b on the card) and HK now watches the two RULES pages that
+headline points at: `/eng/specifiedschemes.html` + `/eng/services/fee-tables/`. Both probe `ok` over plain HTTP,
+both carry a rule scope, and a fee edit (`1,300` → `1,400`) moves BOTH scopes — mutation-tested on the real
+pages. `immd.gov.hk` stays in `legal_compliance.official_urls` as a citation. `watch.changed` reset to false;
+the false event was retracted from the rolling feed; the audit trail records why.
+
+**2. `layout_changed` 0 → 16/18: six causes, each measured with a block-level diff (two probes of the same URL).**
+
+| class | pages | the varying block, verbatim | fix |
+|---|---|---|---|
+| per-request machine stamp | Cyprus moi/mof, Philippines boi, Spain inclusion, Bulgaria bnb/mfa | `20260915T155544Z-r1b89f57c95…` · `8fe74e64e143c03fad5081e1e50beac3` · `0.cf8c655f.1789487834.29261e58` · `The incident ID is: 7675314743632885536.` | `isVolatileStamp()` |
+| load countdown | Thailand thaievisa.go.th | `Acknowledge (9s)` → `Acknowledge (10s)` | `STAMP_COUNTDOWN_RE` |
+| the page's own live clock | Bulgaria mfa.bg, Costa Rica rree.go.cr, Andorra govern.ad | `September 15 2026, 15:57:41 UTC` · `Costa Rica, Martes 15 de Setiembre de 2026 6:19:41 p.m.` · `Dimarts, 15 de setembre del 2026 ǀ 18:19:45` | `isClockStamp()` — whole scope only, so a rule sentence that carries a deadline time still counts |
+| order-only rotation | Mauritius edbmauritius.org | 177 vs 177 blocks, identical SET, different ORDER (sector marquee) | `whole` = the sorted SET of blocks |
+| counter ticker | Bolivia cancilleria.gob.bo | `3,463,022` → `3,463,035` | bare figures stay churn; only the RULE scope exempts money |
+| **the page is not content at all** | Cyprus moi/mof, Philippines boi, Bulgaria bnb/mfa, Spain inclusion | bot challenge · `You reached this page when trying to access …` (Radware) · `Error Error Error This page can't be displayed … incident ID …` · `Acceso denegado … Dirección IP: …` | `isBotWall()` → reported `blocked`, never baselined as `ok` content |
+
+Class 6 is why classes 1 and 3 existed at all on those URLs: **v5 had baselined WAF/challenge pages as `ok` page
+content**, so their "content" was a challenge string plus a per-request token. Naming the wall is the root-cause
+fix — a token filter alone would have kept watching a page we cannot read. One more artefact class is fixed too:
+a URL whose probe path flips between HTML extraction and a render now gets a silent WHOLE-scope re-baseline
+(`applyScopes(..., wholeRebaseline)`), because the two paths produce different texts; that flip was itself a
+per-run layout change (edb.gov.sg: 0 blocks via http, 11 via the render). The rule scope keeps its own
+pending→confirmed gate, so the flip cannot swallow a rule alert either.
+
+**3. `layout_changed_urls[]` + `layout_change_streak`** — `public/data/source-monitor.json` now names every
+drifted URL, its scope and how many consecutive runs it has moved (`layout_changed_repeat_count` counts the
+repeats); the probe prints the same list on stdout. The next observer no longer has to re-probe 127 URLs to
+attribute a drift.
+
+**4. Naming the walls moved the coverage numbers — reported, not hidden.** `ok` 114 → 109 and
+`cloudflare-blocked` 7 → 13: `moi.gov.cy`/`mof.gov.cy`, `boi.gov.ph`, `bnb.bg`/`mfa.bg`, `inclusion.gob.es`
+were never readable content. **Cyprus now has 0 readable official sources from THOR** (its rule scope was
+already empty in v5, so nothing protective was lost — the country simply learns both its URLs are walled);
+Bulgaria keeps `fsc.bg`, Spain keeps `exteriores.gob.es` + `cnmv.es`, Philippines keeps `pra.gov.ph` +
+`immigration.gov.ph`. Follow-up: a sourcing card for Rosa.
+
+**Verified:** `node scripts/probe-sources.mjs --self-test` 44/44 (was 18). Full probe in a shadow tree, twice
+back-to-back on the SAME baselines (run 1 re-baselines v5→v6 silently, so run 2 is the real churn test):
+127 URLs · ok 109 · **rule-changed 0 in both runs** · layout-changed 0 in the re-baseline run and 7 on the
+consecutive run, down from 16/18 anonymous drifts before · blocked 13 · unreachable 5 · no-rule-scope 64 ·
+`npm run validate:data` clean. The 7 are all `streak: 1` (first movement since the baseline) and block-level
+attribution shows rotating announcement/news rails — real page movement of non-rule content, now named in the
+report instead of anonymous. Rule detection is unaffected: `rule-changed 0` on a corpus that is not changing.
+
 ## Session — 2026-09-15 · Source curation: 12 probe-able official alternates for the empty/403 renders (Rosa)
 
 Card `t_4336aaae` (follow-up to `t_1202f120`). v5 stopped accepting a zero-text render as `ok`, which

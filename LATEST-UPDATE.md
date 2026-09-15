@@ -1,3 +1,8 @@
+# motopass — Last Updated 2026-09-15 by Ziggy (THOR)
+
+**Brief:** source-watchdog v6 — layout churn attributed and mostly killed (per-request stamps, live datelines, marquee order, counters, and WAF/challenge pages that v5 had baselined as `ok` content). `layout_changed_urls[]` + `layout_change_streak` now name every drifted page in `public/data/source-monitor.json`, and Hong Kong's watch is pinned to its two ImmD RULES pages instead of the rotating homepage rail.
+**Commit:** pending push (127 URLs · ok 109 · rule-changed 0 · layout-changed 7 attributed on the consecutive run, down from 16/18 anonymous · blocked 13 · self-test 44/44)
+
 # motopass — Last Updated 2026-09-15 by Rosa (THOR)
 
 **Brief:** 12 verified probe-able official alternates for the sources v5 honestly reports unreachable (empty/403 renders). Old failing URLs kept in `watch`; 12/12 new URLs baseline `ok`, 10 with `rule_scope: present`.

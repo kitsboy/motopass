@@ -26,6 +26,21 @@
  *     to no text is reported `unreachable` instead of `ok`. Changing the
  *     extraction pipeline (EXTRACT_V) re-baselines silently once, so a pipeline
  *     upgrade can never fire a corpus-wide rule alarm.
+ *   - v6 (2026-09-15): five fixes, all measured against the live corpus:
+ *     · `whole` is a SET of content blocks, not a sequence — a marquee/rotating
+ *       rail that re-serves the same blocks in another order is not a page change
+ *       (edbmauritius.org's sector ticker: identical block set, new hash per load);
+ *     · machine stamps are churn — request/incident/correlation tokens, WAF and
+ *       CDN cache-busters, compact ISO request stamps, load countdowns;
+ *     · a page's own DATELINE (live clock, in any of the watched languages) is not
+ *       content, while a rule sentence that carries a deadline time is;
+ *     · WAF / bot-challenge pages are named as walls (`blocked`) instead of being
+ *       baselined as `ok` content with a per-request token in the hash;
+ *     · money figures reach the RULE scope, so a fee-table edit is visible there
+ *       instead of being dropped as "a bare number";
+ *     · every whole-scope move is attributed per-URL in the report
+ *       (`layout_changed_urls` + a consecutive-run streak), so the next observer
+ *       can see WHICH page drifted without re-probing the corpus.
  *   - Scopes per URL: `whole` (full page), `rule` (sentences carrying fee /
  *     threshold / requirement / eligibility terms), `main` (dominant content
  *     container, when browser-rendered). Any scope changing = a detected
@@ -66,7 +81,7 @@ const DRY_RUN = process.argv.includes('--dry-run')
 // Extraction-pipeline version. Bump it whenever the text pipeline below changes
 // meaning (new stripping, new filters): stored baselines are then re-written
 // silently once instead of being read as content changes.
-const EXTRACT_V = 5
+const EXTRACT_V = 6
 // A page whose extracted text is shorter than this carries no usable content —
 // it is not a baseline. Matches the "real page" threshold httpProbe already used.
 const MIN_TEXT_LEN = 60
@@ -121,6 +136,100 @@ function hashBytes(buf) {
 const VOLATILE_RE =
   /(last (updated|modified|reviewed|checked)|updated (just|a moment|now|moments|less than)|©|copyright|\b(as of|live|refresh(?:ed|ing)?|loading|demo|beta)\b|min(?:utes)? ago|second(s)? ago|hour(s)? ago|day(s)? ago|block ?#?\d|\d{4}$)/i
 const PURE_NUMERIC_RE = /^[\d$€£.,%+\-≈~\s]+$/
+// Money and money-shaped figures are rule content, not ticker noise: a fee table
+// publishes the amount as its own block ("$ 1,300" / "1,300"), and dropping it
+// made a fee change invisible to the RULE scope — mutation-tested on the Hong Kong
+// ImmD fee pages 2026-09-15. It stays churn for the whole-page scope: a bare
+// thousands-separated figure there is usually a counter (cancilleria.gob.bo's
+// "3,463,022" ticker), which drifts on every run.
+const AMOUNT_RE = /[$€£₿¥]|\d{1,3}(?:,\d{3})+(?:\.\d+)?/
+// Machine-generated stamps that carry no rule text and change on EVERY request:
+// request / incident / correlation ids, WAF + CDN cache-busters, compact ISO
+// request stamps and live clocks. Measured on 6 URLs in the 2026-09-15 daily run
+// (Cyprus moi/mof, Philippines boi, Spain inclusion, Bulgaria bnb/mfa).
+const STAMP_HEX_RE = /^[0-9a-f]{16,}$/i
+const STAMP_UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+const STAMP_ISO_RE = /^\d{8}T\d{6}(?:\.\d+)?Z?(?:$|[\s-])/
+const STAMP_CDN_RE = /^\d+\.[0-9a-f]{4,}\.\d{6,}(?:\.[0-9a-z]+)?$/i
+// An id sentence only counts when it actually CARRIES the token — a rule
+// sentence that merely says "a reference number issued by the office" is rule
+// text, so the token must contain a digit.
+const STAMP_ID_RE = /\b(?:incident|request|session|trace|correlation|reference|event|transaction|support)\s+(?:id|no|number|ref)\b[^0-9]{0,12}[A-Za-z0-9-]*\d[A-Za-z0-9-]{6,}/i
+// A countdown the page renders while it loads ("Acknowledge (9s)",
+// thaievisa.go.th) is a load artefact, not content.
+const STAMP_COUNTDOWN_RE = /\(\s*\d+\s*s(?:ec(?:onds?)?)?\s*\)/i
+// A clock must DOMINATE its block (≤40 chars) — a real rule sentence that
+// happens to carry a deadline time is rule content, not a live clock.
+const STAMP_CLOCK_RE = /\b\d{1,2}:\d{2}:\d{2}\b|\b\d{1,2}:\d{2}\s?(?:UTC|GMT|CET|CEST|BST|am|pm)\b/i
+function isVolatileStamp(line) {
+  const s = String(line ?? '').trim()
+  if (!s) return false
+  if (STAMP_HEX_RE.test(s) || STAMP_UUID_RE.test(s) || STAMP_CDN_RE.test(s)) return true
+  if (STAMP_ISO_RE.test(s) || STAMP_COUNTDOWN_RE.test(s)) return true
+  if (s.length <= 120 && STAMP_ID_RE.test(s)) return true
+  if (s.length <= 40 && STAMP_CLOCK_RE.test(s)) return true
+  return false
+}
+
+// A page's own clock / dateline is not content either, and the LIVE clock cases
+// are longer than the narrow stamp rule above: "Costa Rica, Martes 15 de Setiembre
+// de 2026 6:19:41 p.m." / "Dimarts, 15 de setembre del 2026 | 18:19:45". They
+// carry no rule terms, but they moved the whole-page hash every run. Recognised by
+// STRIPPING the date/time vocabulary (months, weekdays, glue words, digits,
+// punctuation) across the languages we watch: what is left of a dateline is little
+// more than a place name. Only the whole-page scope uses this — a rule sentence
+// that carries a deadline time is rule text and still counts.
+const DATE_TOKEN_RE = new RegExp(`\\b(?:${
+  [
+    // months
+    'january|february|march|april|may|june|july|august|september|october|november|december',
+    'enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre',
+    'gener|febrer|març|abril|maig|juny|juliol|agost|setembre|octubre|novembre|desembre',
+    'janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|octobre|novembre|décembre|decembre',
+    'januar|februar|märz|maerz|juni|juli|oktober|dezember',
+    'gennaio|febbraio|aprile|maggio|giugno|luglio|settembre|ottobre|dicembre',
+    'janeiro|fevereiro|março|marco|maio|junho|julho|setembro|outubro|novembro|dezembro',
+    // weekdays
+    'monday|tuesday|wednesday|thursday|friday|saturday|sunday|mon|tue|wed|thu|fri|sat|sun',
+    'lunes|martes|miércoles|miercoles|jueves|viernes|sábado|sabado|domingo',
+    'dilluns|dimarts|dimecres|dijous|divendres|dissabte|diumenge',
+    'lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche',
+    'montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag',
+    'lunedì|lunedi|martedì|martedi|mercoledì|mercoledi|giovedì|giovedi|venerdì|venerdi|sabato|domenica',
+    'segunda|terça|terca|quarta|quinta|sexta',
+    // glue, zones, units
+    'de|del|of|the|at|on|in|am|pm|utc|gmt|cet|cest|bst|est|edt|pst|h|hrs|hr|seg|min',
+  ].join('|')
+})\\b\\.?`, 'giu')
+function isClockStamp(line) {
+  const s = String(line ?? '').trim()
+  if (s.length > 90) return false
+  if (!/\d{1,2}:\d{2}/.test(s)) return false // must carry an actual clock
+  const rest = s
+    .replace(/[0-9]+/g, ' ')
+    .replace(DATE_TOKEN_RE, ' ')
+    .replace(/[^\p{L}\s]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+  return rest.length <= 16
+}
+
+// A bot / WAF challenge page is NOT content and NOT a page change: the challenge
+// text is fixed and the token next to it is per-request, so a page that silently
+// becomes `ok` on a challenge moves its hash on every run. Observed live
+// 2026-09-15, all baselined as `ok` content by v5:
+//   · "One moment, we're checking you're not a bot." + token — Cyprus moi/mof.gov.cy, Philippines boi.gov.ph
+//   · "You reached this page when trying to access … from <ip> on <date>" — Bulgaria mfa.bg (Radware)
+//   · "Error Error Error This page can't be displayed … The incident ID is: …" — Bulgaria bnb.bg
+//   · "Acceso denegado … Dirección IP: …" — Spain inclusion.gob.es
+const BOT_WALL_RE = /just a moment|attention required|enable javascript (?:and cookies|to (?:view|continue))|cf-challenge|cf_chl|ddos protection|checking you'?re not a bot|verifying you are human|are you a robot|hcaptcha|recaptcha|radware error page|perfdrive\.com|this page can'?t be displayed|you reached this page when trying to access|request rejected by the security/i
+// A block page in another language still names the denial AND the technical
+// detail it hands the visitor — that pairing is what makes it a wall page rather
+// than prose that happens to mention access being denied.
+const WAF_CONTEXT_RE = /(access denied|acceso denegado|zugriff verweigert|acc[eè]s refus[ée]|acesso negado|accesso negato)[\s\S]{0,240}(ip address|direcci[oó]n ip|c[oó]digo de error|error code|incident id|reference id|request id)/i
+function isBotWall(text) {
+  return BOT_WALL_RE.test(text) || WAF_CONTEXT_RE.test(text)
+}
 
 // sha256 of the empty string — what a scope hashes to when nothing was
 // extracted. It is the absence of a scope, not a baseline: two empty hashes
@@ -184,6 +293,7 @@ function contentBlocks(html) {
 function isChurn(line) {
   if (!line) return true
   return (
+    isVolatileStamp(line) ||
     PURE_NUMERIC_RE.test(line) ||
     VOLATILE_RE.test(line) ||
     CHROME_RE.test(line) ||
@@ -191,10 +301,14 @@ function isChurn(line) {
     CODE_RE.test(line)
   )
 }
-// `whole` scope — content blocks minus churn, so a rotating news rail or a live
-// ticker no longer registers as a page change.
+// `whole` scope — the SET of content blocks a page carries, minus churn and the
+// page's own clock. Order-insensitive on purpose: a marquee / rotating rail that
+// re-serves the same blocks in a different order (edbmauritius.org's sector
+// ticker — measured 2026-09-15: identical block set, different sequence, new hash
+// on every load) is not a page change. Adding, removing or editing a block still
+// moves the hash.
 function wholeText(html) {
-  return contentBlocks(html).filter(l => !isChurn(l)).join(' ')
+  return [...new Set(contentBlocks(html).filter(l => !isChurn(l) && !isClockStamp(l)))].sort().join(' ')
 }
 // Sentence splitter: `[.!?]` + the CJK terminators (。．！？；) that an
 // English-only splitter never saw, so a Japanese render produced one giant
@@ -226,9 +340,12 @@ function ruleSentences(html) {
       const p = raw.trim()
       if (!p) continue
       // CJK sentences carry more meaning per character than Latin ones.
-      if (p.length <= (CJK_RE.test(p) ? 6 : 12)) continue
+      // A money figure is rule text however short it is: fee tables publish the
+      // amount as its own block ("$ 1,300", "HK$600"), and the length guard
+      // otherwise discarded exactly the number a fee change moves.
+      if (p.length <= (CJK_RE.test(p) ? 6 : 12) && !AMOUNT_RE.test(p)) continue
       if (!hasRuleTerm(p)) continue
-      if (VOLATILE_RE.test(p) || PURE_NUMERIC_RE.test(p)) continue
+      if (VOLATILE_RE.test(p) || (PURE_NUMERIC_RE.test(p) && !AMOUNT_RE.test(p))) continue
       if (CODE_RE.test(p) || NAV_RE.test(p)) continue
       if (isNavFragment(p)) continue
       candidates.push(p)
@@ -247,7 +364,16 @@ function ruleSentences(html) {
 // ---------------------------------------------------------------------------
 // HTTP probe
 // ---------------------------------------------------------------------------
-const CF_MARKERS = /just a moment|attention required|cloudflare|cf-challenge|checking your browser|enable javascript and cookies|ddos protection/i
+// CF_MARKERS is the 403-response variant: it may also lean on the words
+// "cloudflare" / "checking your browser" / a bare "access denied", which are too
+// loose to test against a rendered body (a footer can mention Cloudflare, and a
+// rule page can say that access is denied).
+const CF_MARKERS = new RegExp(`${BOT_WALL_RE.source}|cloudflare|checking your browser|access denied`, 'i')
+// A bot challenge is not content. Observed 2026-09-15: three of the 16
+// whole-scope drifters were challenge pages ("One moment, we're checking you're
+// not a bot." + a per-request token) that had been baselined as `ok` CONTENT —
+// Cyprus moi/mof.gov.cy and Philippines boi.gov.ph — so their hash moved on
+// every run. Naming the wall is the honest classification: blocked, not ok.
 async function httpProbe(url) {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), PROBE_TIMEOUT_MS)
@@ -365,7 +491,7 @@ async function browserProbe(url, settleMs = 2500) {
     const main = rendered.main
     // Detect a Cloudflare / bot wall
     const bodyText = whole.toLowerCase()
-    const botWalled = /just a moment|attention required|enable javascript and cookies|cf-challenge|access denied/i.test(bodyText)
+    const botWalled = isBotWall(bodyText)
     const pageText = wholeText(whole)
     const rule = ruleSentences(whole)
     const mainText = wholeText(main)
@@ -415,7 +541,7 @@ function classifyProbeResult(result) {
   }
   if (result.botWalled) {
     // Browser hit a wall — treat as probe-failure (unreachable-ish), not content.
-    return { ok: false, error: 'bot-walled (Cloudflare/access challenge)', cloudflare: true }
+    return { ok: false, error: 'bot-walled (WAF/challenge page — no readable content)', cloudflare: true }
   }
   if (!result.pdf && !(Number(result.textLen) >= MIN_TEXT_LEN)) {
     return { ok: false, error: `empty render (${Number(result.textLen) || 0} chars of text)` }
@@ -479,7 +605,27 @@ async function probeTarget(entry) {
  * Scopes absent from this probe are DELETED — a URL with no rule text must not
  * keep an empty rule baseline lying around to be "confirmed" later.
  */
-function applyScopes(entry, scopes, rebaseline) {
+/**
+ * Attribution for a whole-scope move. Layout drift is informational and never
+ * alerts — but a page that moves on CONSECUTIVE runs is churn, not news, so the
+ * URL plus its streak is written into the report (`layout_changed_urls`) instead
+ * of leaving the next observer to re-probe 126 URLs to find out which page drifted.
+ * `moved` is the same condition the report counts as `layout_changed` (a page
+ * whose whole scope moved *and* whose rule scope changed reports itself as a rule
+ * change instead).
+ */
+function noteLayout(report, p, entry, moved, changedScopes, nowIso) {
+  if (!moved) { delete entry.layout_change_streak; return }
+  entry.last_layout_change = nowIso
+  entry.layout_change_streak = (entry.layout_change_streak || 0) + 1
+  if (entry.layout_change_streak > 1) report.layout_changed_repeat_count++
+  report.layout_changed_urls.push({
+    program_id: p.id, name: p.name, url: entry.url,
+    scopes: changedScopes || [], streak: entry.layout_change_streak,
+  })
+}
+
+function applyScopes(entry, scopes, rebaseline, wholeRebaseline = false) {
   entry.scopes = entry.scopes || {}
   const present = new Set(scopes.map(s => s.key))
   for (const key of ['rule', 'main']) {
@@ -492,7 +638,11 @@ function applyScopes(entry, scopes, rebaseline) {
     const st = (entry.scopes[s.key] = entry.scopes[s.key] || {})
     const prev = st.last_hash
     const pend = st.pending_hash
-    if (prev == null || rebaseline) { st.last_hash = s.newHash; delete st.pending_hash; continue }
+    // `wholeRebaseline` re-writes ONLY the whole-page baseline: a probe-path
+    // switch is a new measurement basis for the layout scope, but the rule scope
+    // keeps its own comparison (its pending→confirmed gate already stops a
+    // flapping page from ever confirming a rule change).
+    if (prev == null || rebaseline || (wholeRebaseline && s.key === 'whole')) { st.last_hash = s.newHash; delete st.pending_hash; continue }
     if (s.newHash === prev) { delete st.pending_hash; continue }
     if (s.key === 'whole') { layoutChanged = true; st.last_hash = s.newHash; changedScopes.push(s.label); continue }
     // rule / main scope moved — confirm before alerting
@@ -532,6 +682,10 @@ async function main() {
     interval_hours: 24,
     total_urls: targets.length,
     ok: 0, changed: 0, layout_changed: 0, unreachable: 0, cloudflare_blocked: 0,
+    // Which URLs the `layout_changed` count is made of, with a consecutive-run
+    // streak, so drift is attributable from the report alone.
+    layout_changed_urls: [],
+    layout_changed_repeat_count: 0,
     changed_countries: [],
     blocked_urls: [],
     unreachable_urls: [],
@@ -588,6 +742,12 @@ async function main() {
     // `rule_scope: "none"`, never baselined, never alerted on.
     const stage = entry.scopes || {}
     const isBaseline = !stage.whole?.last_hash && !entry.last_hash
+    // The path this probe actually used (HTML extraction vs rendered text). The
+    // whole-page hash is only comparable WITHIN a path: a URL that alternates
+    // between the two reports a layout change every run (edb.gov.sg, 2026-09-15 —
+    // 0 blocks via http, 11 via the render).
+    const probePath = result.mode || entry.mode || 'http'
+    const pathSwitched = !isBaseline && entry.probe_path != null && entry.probe_path !== probePath
     // A pipeline change is a new measurement basis, not a content change:
     // re-baseline silently once so EXTRACT_V can never fire a corpus-wide alarm.
     const rebaseline = !isBaseline && entry.extract_v !== EXTRACT_V
@@ -608,7 +768,8 @@ async function main() {
     // A rule scope only ALERTS once the same new value is seen on two
     // consecutive probes (pending → confirmed). Live tickers, "last updated"
     // stamps and rotating banners settle out instead of firing every run.
-    const { ruleChanged, layoutChanged, changedScopes } = applyScopes(entry, scopes, rebaseline)
+    const { ruleChanged, layoutChanged, changedScopes } = applyScopes(entry, scopes, rebaseline, pathSwitched)
+    entry.probe_path = probePath
 
     // Gaining a rule scope where there was none is information, not an alert —
     // there was no baseline to change from.
@@ -660,6 +821,9 @@ async function main() {
     } else {
       entry.status = 'ok'
     }
+    // Attribute the whole-scope move (or clear the streak) — this is what makes
+    // `layout_changed` actionable without a follow-up probe run.
+    noteLayout(report, p, entry, layoutChanged && !ruleChanged, changedScopes, nowIso)
 
     // keep the whole-page hash in sync (used by older consumers / fallback)
     entry.last_hash = entry.scopes.whole?.last_hash
@@ -730,6 +894,10 @@ async function main() {
   if (report.unreachable_urls.length) {
     console.log('  UNREACHABLE:', report.unreachable_urls.map(u => `${u.name} [${u.error}]`).join(', '))
   }
+  if (report.layout_changed_urls.length) {
+    console.log(`  LAYOUT-CHANGED (informational — which pages drifted${report.layout_changed_repeat_count ? `, ${report.layout_changed_repeat_count} on a consecutive run` : ''}): ` +
+      report.layout_changed_urls.map(u => `${u.name} [${u.url.replace(/^https?:\/\//, '')}${u.streak > 1 ? ` ×${u.streak}` : ''}]`).join(', '))
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -739,6 +907,14 @@ async function main() {
 // failure modes fixed on 2026-09-15 cannot silently come back:
 //   A. an empty rule/main scope was baselined, then "confirmed" as a rule change
 //   B. a page that rendered to zero text was written as `ok`
+// v6 additions (2026-09-15 layout-churn attribution):
+//   C. a marquee that only re-orders identical blocks is not a page change
+//   D. machine stamps (request ids, WAF incident ids, CDN cache-busters, load
+//      countdowns) are churn; a rule sentence carrying a deadline time is not
+//   E. a dateline (live clock in EN/ES/CA/FR/DE/IT/PT) leaves the whole scope
+//   F. a fee-table amount reaches the rule scope; a bare figure stays churn
+//   G. a WAF / bot-challenge page is reported blocked, never baselined as content
+//   H. `layout_changed_urls` names the drifted URL and its consecutive-run streak
 // No network. The last check runs a loopback fixture and skips without Chromium.
 let failures = 0
 function check(name, cond, detail) {
@@ -823,6 +999,98 @@ async function selfTest() {
   const entryD = { url: 'https://v', extract_v: EXTRACT_V, scopes: { whole: { last_hash: 'w0' }, rule: { last_hash: 'r0', pending_hash: 'r1' } }, last_hash: 'w0' }
   const rD = applyScopes(entryD, [{ key: 'whole', label: 'Full page', newHash: 'w0' }, { key: 'rule', label: 'Rule terms', newHash: 'r1' }], false)
   check('a confirmed rule movement still alerts', rD.ruleChanged === true && entryD.scopes.rule.last_hash === 'r1', rD)
+
+  // A probe-path switch (http ↔ render) is a new measurement basis for the layout
+  // scope only: the whole baseline is re-written silently, while the rule scope
+  // keeps comparing.
+  const entryP = { url: 'https://p2', extract_v: EXTRACT_V, probe_path: 'http', scopes: { whole: { last_hash: 'w0' }, rule: { last_hash: 'r0' } } }
+  const rP = applyScopes(entryP,
+    [{ key: 'whole', label: 'Full page', newHash: 'w1' }, { key: 'rule', label: 'Rule terms', newHash: 'r0' }], false, true)
+  check('a probe-path switch re-baselines the whole scope without a layout event',
+    rP.layoutChanged === false && entryP.scopes.whole.last_hash === 'w1', rP)
+  const rP2 = applyScopes(entryP,
+    [{ key: 'whole', label: 'Full page', newHash: 'w2' }, { key: 'rule', label: 'Rule terms', newHash: 'r1' }], false, false)
+  check('…while a real whole-scope move on a stable path still counts',
+    rP2.layoutChanged === true && entryP.scopes.rule.pending_hash === 'r1', rP2)
+
+  // --- v6: churn classes measured on the live corpus (t_50cbc2d3) ----------
+  // C. order-only rotation (edbmauritius.org's sector marquee) is not a change.
+  const orderA = wholeText('<html><body><div>Alpha team</div><div>Bravo team</div><div>Charlie team</div></body></html>')
+  const orderB = wholeText('<html><body><div>Charlie team</div><div>Alpha team</div><div>Bravo team</div></body></html>')
+  check('a rail that only re-orders identical blocks is NOT a page change',
+    orderA === orderB && hashText(orderA) === hashText(orderB), { orderA, orderB })
+  check('…adding or removing a block still moves the whole scope',
+    wholeText('<html><body><div>Alpha team</div></body></html>') !==
+    wholeText('<html><body><div>Alpha team</div><div>Bravo team</div></body></html>'))
+
+  // D. machine stamps are churn — every string below was observed live on
+  // 2026-09-15 and moved the whole-scope hash between two back-to-back probes.
+  const stamps = [
+    ['WP nonce (boi.gov.ph)', '8fe74e64e143c03fad5081e1e50beac3'],
+    ['request stamp (moi/mof.gov.cy)', '20260915T155544Z-r1b89f57c95lbsm9hC1FRA47t00000001du000000000bp31'],
+    ['CDN cache-buster (inclusion.gob.es)', '0.cf8c655f.1789487834.29261e58'],
+    ['WAF incident id (bnb.bg)', 'The incident ID is: 7675314743632885536.'],
+    ['load countdown (thaievisa.go.th)', 'Acknowledge (9s)'],
+  ]
+  for (const [label, s] of stamps) check(`churn: ${label}`, isChurn(s) === true, s)
+  check('…a rule sentence that carries a deadline time is NOT churn',
+    isChurn('Applications close on 30 November 2026 at 23:59:59 CET for the golden visa') === false)
+  check('…a rule sentence naming an incident/reference is NOT churn',
+    isChurn('The applicant must submit a reference number issued by the immigration office with the application') === false)
+  // …and the LIVE CLOCK variants (a dateline, not a stamp) never reach the whole scope.
+  const datelines = [
+    ['mfa.bg', '<div>September 15 2026, 15:57:41 UTC</div>'],
+    ['rree.go.cr', '<div>Costa Rica, Martes 15 de Setiembre de 2026 6:19:41 p.m.</div>'],
+    ['govern.ad', '<div>Dimarts, 15 de setembre del 2026 | 18:19:45</div>'],
+  ]
+  for (const [label, html] of datelines) {
+    check(`whole scope drops the live clock on ${label}`, wholeText(html) === '', wholeText(html))
+  }
+  check('…but a rule sentence that carries a deadline time stays in the whole scope',
+    /Applications close/.test(wholeText('<div>Applications close on 30 November 2026 at 23:59:59 CET for the golden visa</div>')),
+    wholeText('<div>Applications close on 30 November 2026 at 23:59:59 CET for the golden visa</div>'))
+
+  // G. a bot challenge / WAF block page is not content and not a page change.
+  const walls = [
+    ["One moment, we're checking you're not a bot.", 'moi/mof.gov.cy'],
+    ['Just a moment...', 'cloudflare'],
+    ['You reached this page when trying to access https://www.mfa.bg/ from 169.58.32.160 on September 15 2026, 16:19:33 UTC', 'mfa.bg (Radware)'],
+    ["Error Error Error This page can't be displayed. Contact support for additional information. The incident ID is: 7675314743632904247.", 'bnb.bg'],
+    ['Acceso denegado 🚫 Por favor, intente de nuevo. Código de error: 0.cf8c655f.1789489435.29492f84 Dirección IP: 2a02:c207:2344:6772::1', 'inclusion.gob.es'],
+  ]
+  for (const [text, label] of walls) check(`wall: ${label}`, isBotWall(text.toLowerCase()) === true, text)
+  check('…an ordinary rule page is not mistaken for a wall',
+    isBotWall('Applicants must show a minimum investment and pay the application fee. Access denied to the platform is appealable.'.toLowerCase()) === false &&
+    isBotWall('access denied') === false &&
+    isBotWall('access denied — ip address: 2a02:c207::1, error code: 123') === true)
+  const walled = classifyProbeResult({ ok: true, pdf: false, textLen: 44, whole: 'w', botWalled: true })
+  check('…and is reported blocked, not as a content baseline',
+    walled.ok === false && walled.cloudflare === true, walled)
+
+  // E. money figures are rule content in the RULE scope; a bare figure stays
+  // churn in the whole scope (counters drift, fee labels do not).
+  const feePage = '<html><body><div>Application fee for a specified scheme: $ 1,300</div>' +
+    '<div>Issuance fee (over 180 days)</div><div>HK$600</div><div>3,463,022</div><div>2.25%</div></body></html>'
+  check('a bare figure and a rate are churn, a fee amount reaches the rule scope',
+    isChurn('3,463,022') === true && isChurn('2.25%') === true && isChurn('1.0865') === true &&
+    /\$ 1,300/.test(ruleSentences(feePage)), { rule: ruleSentences(feePage) })
+  check('…a fee edit moves both scopes',
+    wholeText(feePage) !== wholeText(feePage.replace('$ 1,300', '$ 1,400')) &&
+    ruleSentences(feePage) !== ruleSentences(feePage.replace('$ 1,300', '$ 1,400')))
+
+  // F. layout drift is attributed per URL, with a consecutive-run streak.
+  const rep = { layout_changed_urls: [], layout_changed_repeat_count: 0 }
+  const pale = { url: 'https://p' }
+  const prow = { id: 7, name: 'Testland' }
+  noteLayout(rep, prow, pale, true, ['Full page'], 'T1')
+  noteLayout(rep, prow, pale, true, ['Full page'], 'T2')
+  noteLayout(rep, prow, pale, false, null, 'T3')
+  check('a clean run clears the layout streak', pale.layout_change_streak === undefined, pale)
+  noteLayout(rep, prow, pale, true, ['Full page'], 'T4')
+  check('layout_changed_urls names the URL, the scope and the streak',
+    rep.layout_changed_urls.length === 3 && rep.layout_changed_urls.every(r => r.url === 'https://p' && r.name === 'Testland') &&
+    rep.layout_changed_urls[0].streak === 1 && rep.layout_changed_urls[1].streak === 2 &&
+    rep.layout_changed_urls[2].streak === 1 && rep.layout_changed_repeat_count === 1, rep)
 
   // --- end-to-end: a live fixture that renders to nothing -------------------
   try {
