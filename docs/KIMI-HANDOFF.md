@@ -1,3 +1,12 @@
+## Session — 2026-09-15 · Source Monitor page LIVE at /sources
+
+- Client page `src/pages/SourceMonitorPage.tsx` (lazy) fetching `/data/source-monitor.json` + `/data/source-events.json`; route wired (`fe27e64`), SPA-fallback allowlist + sitemap updated (`18fe983`).
+- **Live-verified in a real browser**: `motopass.giveabit.io/sources` → 200, renders hero / countries / honesty disclosure, 0 JS errors, page title set.
+- Data feeds served by the v2.1 watchdog cron (diffs, change events, coverage gaps).
+- Prior stale background-probe run was harmless testing noise — the committed/live data is the clean state (0 rule-changes, 107 ok).
+
+**Follow-ups (named, not blocking):** nav link + `nav.sources` i18n label (8+ locale files — separate polish); per-country freshness badge on program cards; OTS-strip full anchor integration (manifest hash stamp on the daily cycle); watch/Nostr alerts (needs the MotoPass Nostr key decision); Rosa curation of the 7 Cloudflare-blocked + Colombia.
+
 ## Session addendum — 2026-09-15 · Watchdog v2.1 (diffs · events · coverage gaps)
 
 Pushed `50d009b`. Adds to v2.0:
