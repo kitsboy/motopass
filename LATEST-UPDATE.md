@@ -1,3 +1,8 @@
+# motopass — Last Updated 2026-09-15 by Kimi (THOR)
+
+**Brief:** applications are NOT open — the launch gate no longer derives a business decision from a green build.
+**Commit:** `a64ed6e` (pushed)
+
 # motopass — Last Updated 2026-09-10 by Buffy (Freebuff)
 
 **Brief:** UX polish batches — iOS input-zoom fix, global focus ring, reduced-motion guard, toast parity, proof-badge + skeleton polish, lint cleanup.

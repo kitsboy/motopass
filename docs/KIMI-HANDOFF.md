@@ -1,3 +1,22 @@
+## Session — 2026-09-15 · Truth fix: "Applications open" was a build result, not a decision
+
+**Done:**
+- The live site announced **"Applications open"** (nav, footer, pitch CTA band, Apply banner) while the footer and legal copy said **"Not accepting applications"**. Cam confirmed the truth: **we are not accepting applications yet**.
+- **Root cause — a design flaw, not a copy typo:** `scripts/launch-gate-check.mjs` computed `applications_open = gates.every(g => g.pass)`. Five green **technical** gates (Seal OTS, Forge UI, Nexus relay, Ledger oracle, Ops CI) were being treated as a decision to accept applications. Any green build announced applications open, automatically and permanently.
+- `public/launch-gates.json` → `applications_open: false` (the served report said `true`, generated **2026-07-16** and stale since). The in-code `FALLBACK_LAUNCH_GATES` already defaulted to `false`, so the served report was the single wrong source.
+- `scripts/launch-gate-check.mjs` → explicit **HUMAN GATE**: `applications_open = gates.every(pass) && HUMAN_GATE_ACCEPTING_APPLICATIONS`, with a scorecard note when the gates are green but the human gate is shut. Reopen deliberately: `LAUNCH_APPLICATIONS_OPEN=1 node scripts/launch-gate-check.mjs`.
+- No UI or API logic changed — the components already render from this data. `ApplyPage.tsx:139` renders the "Launch Engine complete — applications open" banner only inside `{applicationsOpen && …}`, and `:187` holds the pre-launch branch, so the corrected flag is what switches the page.
+
+**Decisions:**
+- A green technical scorecard must never again publish a commercial decision. Both conditions are now required, and the closed state is the default.
+- The stale `generated_at` (July) was left as-is rather than rewritten — the report should not look fresher than it is. Regenerating it is a separate job.
+
+**Verified live:** served `launch-gates.json` reads `applications_open: false`; the deployed bundle carries the new commit id (`index-BM1Zst5a-20260915-a64ed6e.js`).
+
+**Lane note:** this touched motopass code, which is normally the M3/Grok lane. Flagged to Cam so Grok can rebase.
+
+**Git State:** HEAD == `origin/main` (`a64ed6e`).
+
 ## Session — 2026-09-10 (Buffy/Freebuff) — Batch 6 research pass: Europe golden-visa tier healed
 
 **Done (user work order: Batch 6 — Spain, Greece, Italy, Turkey, Latvia, Estonia, Bulgaria, Croatia, Gibraltar, Andorra):**
