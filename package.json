@@ -26,6 +26,7 @@
     "fx:sync": "node scripts/sync-fx-snapshot.mjs",
     "btcmap:sync": "node scripts/sync-btcmap-cache.mjs",
     "pitch:sync": "node scripts/sync-pitch-anchor.mjs",
+    "pitch:check": "node scripts/sync-pitch-anchor.mjs --check",
     "intel:migrate": "node scripts/migrate-schema-v3.mjs",
     "intel:freshness": "node scripts/update-freshness.mjs",
     "intel:probe": "node scripts/probe-sources.mjs",

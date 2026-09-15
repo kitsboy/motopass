@@ -5,13 +5,13 @@
 | Field | Value |
 |-------|-------|
 | Generated | 2026-07-15T05:25:02.821Z |
-| BUILD | 2026.07.14-33 |
+| BUILD | 2026.09.10-415f2fb |
 | BTC spot | ₿1.00 · $65k (mempool.space) |
 | Programs | 50 |
-| Avg stack savings | ₿1.20 · $77k (95%) |
-| Traditional advisory (modeled) | ₿1.26 · $81k |
-| MotoPass advisory (modeled) | ₿0.0602 · $3.9k |
-| Avg typical investment | ₿6.56 · $424k |
+| Avg stack savings | ₿1.58 · $102k (96%) |
+| Traditional advisory (modeled) | ₿1.64 · $106k |
+| MotoPass advisory (modeled) | ₿0.0597 · $3.9k |
+| Avg typical investment | ₿10.10 · $653k |
 
 ## Uruguay 🇺🇾
 - RE min: ₿1.55 · $100k
