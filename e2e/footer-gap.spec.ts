@@ -67,7 +67,20 @@ test.describe('footer gap (layout regression)', () => {
     await expect(footer).toBeVisible({ timeout: 10_000 })
     await expect(footer.locator('[data-build-version]')).toContainText(BUILD_ID)
 
-    const metrics = await collectFooterGapMetrics(page)
+    // The homepage mounts its sections progressively, so the document can still grow
+    // after the first scroll lands — measuring then reports a phantom void (observed:
+    // gapBelowFooter 2017px → green on retry). Re-scroll until the document height is
+    // stable across two consecutive reads, then measure. The assertions below stay
+    // strict: a real footer void still fails, it just no longer fails at random.
+    let metrics: FooterGapMetrics | null = null
+    let previousDocHeight = -1
+    for (let attempt = 0; attempt < 12; attempt++) {
+      await scrollToDocumentBottom(page)
+      metrics = await collectFooterGapMetrics(page)
+      if (metrics && metrics.docHeight === previousDocHeight && metrics.gapBelowFooter < 4) break
+      previousDocHeight = metrics?.docHeight ?? -1
+      await page.waitForTimeout(250)
+    }
 
     expect(metrics).not.toBeNull()
     if (metrics) {

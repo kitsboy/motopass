@@ -1,3 +1,51 @@
+## Session — 2026-09-15 · CI is ON again: `main` has a real gate (Ziggy, `t_a8bc8947`)
+
+`.github/workflows/ci.yml` was `disabled_manually` on 2026-07-15 and never re-enabled. For two months the ONLY check on a
+push to `main` was `Deploy motopass to Cloudflare Pages` (build + live marker), so `npm run lint`, `npm test`, the
+data/stamp/trust validators, the bundle budget and the **source-probe self-test** ran on NO push — the v5/v6/v7 harness
+assertions existed only as hand-runs on THOR. The workflow is re-enabled, with both chronic reds fixed at the root so the
+re-enabled run is green instead of red on arrival.
+
+**1. `npm run lint` — 11 errors in 4 files (the July killer).**
+- `src/components/ui/StatCard.tsx` — `useReducedMotion()` was called after two early returns, i.e. a conditional hook.
+  Hoisted to the top of the component (hooks must run on every render).
+- `src/components/ui/CountUp.tsx` — the reduced-motion branch called `setDisplay(value)` synchronously inside an effect
+  (cascading render). The final value is now rendered directly: `format(reduceMotion ? value : display)`.
+- `src/pages/SourceMonitorPage.tsx` — five `any` escapes typed for real (`MonitorManifest`, `Status`,
+  `Record<Status, string>`), and `document.title` moved out of `useMemo` (a render-phase side effect) into `useEffect`.
+- `src/components/programs/GoalFinder.tsx` — three `react-hooks/preserve-manual-memoization` errors. That is a React
+  Compiler diagnostic, and this build does NOT enable the compiler (no `babel-plugin-react-compiler` in `vite.config.ts`).
+  The rule is `warn` in `eslint.config.js` **with the reason written next to it** — promote it back to `error` on the same
+  commit that switches the compiler on.
+
+**2. The pitch-anchor step was red by construction on every push.** It ran `pitch:sync` and then
+`git diff --exit-code research/pitch-anchor.json docs/pitch/ANCHOR-SNAPSHOT.md`. `BUILD_ID` is `<date>-<sha7>` **of the
+commit being built** (`scripts/gen-build-info.mjs`), so the id inside a committed snapshot can never equal the id computed
+while checking that same commit — the sha does not exist yet when the file is written. Replaced by ONE canonical check,
+`npm run pitch:check` (`node scripts/sync-pitch-anchor.mjs --check` — the same script that writes the files): it pins spot
+price + timestamp to the committed anchor, normalises the volatile `build` field, and still fails the moment the published
+figures stop matching `research/countries.json`. Proven both directions: stale anchor → exit 1 · after `pitch:sync` → 0 ·
+build-id-only change → 0 (does not fire) · one `gov_fees_usd` edit → 1.
+
+The anchor pair was also **two months stale** (BUILD 2026.07.14-33, "Avg stack savings ₿1.20 · $77k"). Regenerated at the
+pinned spot/timestamp: **₿1.58 · $102k (96%)**, 50 programs — the published pitch figures had been ~30% low since July.
+
+**3. Deliberately still NOT blocking: `prettier:check` (`continue-on-error: true`).** 354 of 382 files under `src/` are not
+prettier-formatted — the check was added 2026-07-02 and `prettier --write` was never run, so it failed from its first day
+and took the whole workflow down with it. A repo-wide reformat is deferred on purpose (it would rewrite nearly every
+`src/` file while sibling cards work in the same tree). It stays visible as a run annotation; a one-shot
+`npx prettier --write src` in a quiet window flips it back to blocking.
+
+**4. One flaky spec hardened while proving the gate.** `e2e/footer-gap.spec.ts` "mobile footer sits flush with tab bar"
+measured `gapBelowFooter` **2017px** on its first attempt and was green on retry: the homepage mounts sections
+progressively, so the document can still grow after the first `scrollTo` lands and the footer is then below the viewport.
+It now re-scrolls until the document height is stable across two consecutive reads before measuring; the assertions are
+unchanged and still strict.
+
+**Which gate protects `main`, plainly:** `CI` (lint · data/stamps/trust · pitch anchor · unit tests · build · build-salt ·
+bundle budget · a11y (warn) · source-probe self-test · e2e) **plus** `Deploy motopass to Cloudflare Pages` (build + live
+marker; the CF Pages git integration is the one deployer). `Daily Country Intel (self-heal)` runs the self-test daily too.
+
 ## Session — 2026-09-15 · Source-watchdog v7 — a WAF challenge is a STATE to wait out, not a page (Ziggy, `t_8b9ff3c4`)
 
 Follow-up to `t_a8d32e10` (Rosa). `scripts/probe-sources.mjs` is a declared hotspot — claimed in a card comment before
