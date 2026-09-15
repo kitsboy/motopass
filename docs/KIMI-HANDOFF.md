@@ -9,6 +9,27 @@ Current verified state (harness v6, `extract v6`):
 
 Open coverage work (Rosa): Cyprus + the walled URLs (El Salvador, Malta, Costa Rica, Thailand, Greece, Gibraltar, Cyprus, Philippines, Spain, Bulgaria).
 
+## Session — 2026-09-15 · Cyprus sourcing: 2 probe-able official alternates + 3 false rule flags retracted (Rosa, `t_a8d32e10`)
+
+Follow-up to Ziggy's v6 card (`t_50cbc2d3`). `scripts/probe-sources.mjs` NOT touched (declared hotspot) — curation-side only.
+Method: skill `motopass-source-curation` — curl (probe UA `motopass-intel-probe/2.0`) → shadow tree `/tmp/mp-shadow` with the real engine → real run.
+
+**1. Cyprus had 0 readable sources; now 2, both `rule_scope: present`.**
+- `https://residence-documents.service.gov.cy/ForeignInterestsCompanies/Start` — Migration Dept online service, `ok` on **plain HTTP**, rule text = the permit-renewal window ("from 90 up to 30 days before the expiry date").
+- `https://www.investcyprus.org.cy/relocate-your-business-to-cyprus/` — National Investment Promotion Authority (state agency, `investcyprus.org.cy`, WordPress/static), `ok` on HTTP, rule text = TCN work/residence permits ≤3 years, Digital Nomad Visa, "€2,500/month", 50% non-dom exemption "≥ €55.000".
+- Both added to `legal_compliance.official_urls` **and** `watch.urls`; `moi.gov.cy` + `mof.gov.cy` kept as the honest record of the wall.
+- Dead ends measured, do not re-probe: every `www.gov.cy/*`, `moi.gov.cy/*`, `mof.gov.cy/*`, `pio.gov.cy`, `mfa.gov.cy`, `police.gov.cy`, `bfu.gov.cy`, `www.service.gov.cy` (502), `www.parliament.cy` (Cloudflare check), `www.tax.gov.cy`, `www.dls.moi.gov.cy` and every `*.moi.gov.cy`/`*.mof.gov.cy` sub-host (NXDOMAIN), `www.crmd.*` (NXDOMAIN), `www.cyprustrade.gov.cy` (meta-refresh only). Reachable with the probe UA but **not** rule-relevant to 6(2): `www.centralbank.cy`, `www.cysec.gov.cy`, `www.cystat.gov.cy`, `www.companies.gov.cy`, `www.data.gov.cy` (no CKAN API).
+
+**2. The authoritative Regulation 6(2) page renders from THOR but the harness cannot see it.**
+`https://www.gov.cy/mip-md/en/documents/companies-investors-permanent-residence-3/immigration-permits-for-investors/` → with the probe's exact UA a real Chromium **passes the Azure WAF JS challenge** (URL gains `?afd_azwaf_tok=…`) and renders 19,965 chars of real content: *"In line with the provisions of Regulation 6(2) of the Aliens and Immigration Regulations…"*. The engine's `httpProbe` gets the WAF 403 first, matches `CF_MARKERS`, and returns `blocked` **without browser escalation** — so the one page that states the sanctioned criteria is unreachable to the watchdog. Carded to the harness owner.
+
+**3. Retracted three false change flags produced by the confirmation pass (`rule-changed 3`).**
+- Turkey `invest.gov.tr`: the **rule** scope hash moved only because two rule sentences swapped document order ("Sizeable domestic market…" ↔ "Young and dynamic population…"); the sorted whole-page scope did NOT move. Root cause: `wholeText()` sorts, `ruleSentences()` joins in DOM order — the marquee-order defect class v6 fixed for `whole` only.
+- Bahamas (33) + Indonesia (38): only `Full page · Main content` moved, on sources with **no rule scope** (no rule text, no rule event pushed).
+- `watch.changed` reset to `false` on all three, the Turkey `rule` event removed from `public/data/source-events.json`, reasoning appended to each `audit_trail` (mirrors Ziggy's HK precedent in `187d610`). Baselines kept at their new values so nothing re-fires.
+
+**Verified:** shadow tree 4 URLs → 2 ok/rule present, 2 blocked (moi/mof); real runs 129 URLs · run 1 ok 109/rule-changed 3 → run 2 **ok 111 · rule-changed 0** · blocked 13 · unreachable 5 · self-test 44/44 · `npm run validate:data` clean.
+
 ## Session — 2026-09-15 · Source-watchdog v6 — layout churn attributed and killed, HK pinned to its rules pages (Ziggy)
 
 Card `t_50cbc2d3` (follow-up to `t_4336aaae`). `scripts/probe-sources.mjs` is a declared hotspot — claimed in a

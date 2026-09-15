@@ -9,6 +9,19 @@ Current verified state (harness v6, `extract v6`):
 
 Open coverage work (Rosa): Cyprus + the walled URLs (El Salvador, Malta, Costa Rica, Thailand, Greece, Gibraltar, Cyprus, Philippines, Spain, Bulgaria).
 
+# motopass — Last Updated 2026-09-15 by Rosa (THOR)
+
+**Brief:** Cyprus coverage gap CLOSED — 2 probe-able official alternates baselined `ok` with `rule_scope: present`, so the country is finally watched (card `t_a8d32e10`). Also retracted 3 false rule-change flags (see below).
+**Commit:** see `research/countries.json` — 129 URLs · ok 111 · **rule-changed 0** on the consecutive run · 13 blocked · 5 unreachable · self-test 44/44 · validate:data clean.
+
+**Cyprus (program 20).** `moi.gov.cy` / `mof.gov.cy` stay in `watch` as the honest record of the wall, but they are bot-walled to THOR (Azure WAF JS challenge on `gov.cy`; `moi.gov.cy` renders `One moment, we're checking you're not a bot.`), so Cyprus had **0 readable sources**. Added:
+- `residence-documents.service.gov.cy/ForeignInterestsCompanies/Start` — Migration Department online service (official `*.service.gov.cy`), `ok` over plain HTTP, rule scope present: permit-renewal window *"from 90 up to 30 days before the expiry date"*.
+- `www.investcyprus.org.cy/relocate-your-business-to-cyprus/` — Cyprus' National Investment Promotion Authority (state agency), `ok`, rule scope present: TCN residence permits up to 3 years, Digital Nomad Visa, *"€2,500/month"* spouse-work threshold, 50% non-dom exemption *"≥ €55.000"*.
+
+**The authoritative 6(2) page is NOT watchable yet.** `gov.cy/mip-md/en/documents/companies-investors-permanent-residence-3/immigration-permits-for-investors/` (Migration Department, "Immigration Permits for Investors", 4th Revision May 2023) renders a 19,965-char page — including the Regulation 6(2) criteria — in a real Chromium from THOR, but the harness's HTTP path sees the WAF's 403 first and classifies it `blocked` **without trying the browser**. Harness fix carded to Ziggy.
+
+**Retracted (not my lane's semantics, but a false alert must not ship).** The confirmation pass fired `rule-changed 3`: Turkey's rule hash moved **only because two rule sentences swapped document order** on `invest.gov.tr` (the sorted whole-page scope did not move) — the same marquee-order defect class v6 fixed for the whole scope; the rule scope still joins sentences in DOM order. Bahamas + Indonesia moved only `Full page · Main content` on sources with **no rule scope**. All three flags reset to `false`, the Turkey rule event removed from `source-events.json`, reasoning in `audit_trail`. Carded to Ziggy.
+
 # motopass — Last Updated 2026-09-15 by Ziggy (THOR)
 
 **Brief:** source-watchdog v6 — layout churn attributed and mostly killed (per-request stamps, live datelines, marquee order, counters, and WAF/challenge pages that v5 had baselined as `ok` content). `layout_changed_urls[]` + `layout_change_streak` now name every drifted page in `public/data/source-monitor.json`, and Hong Kong's watch is pinned to its two ImmD RULES pages instead of the rotating homepage rail.
