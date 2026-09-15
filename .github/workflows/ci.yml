@@ -44,11 +44,24 @@ jobs:
       - run: npm run sync:build
       - run: npm run lint
       # warn-only: the repo predates this check (354 src files are not prettier-formatted).
-      # Keep it visible as a run annotation without blocking the gate; a one-shot
-      # `npx prettier --write src` cleanup flips it back to blocking.
+      # `prettier --check` exits 1 on drift, and `continue-on-error` keeps the JOB green but
+      # GitHub still attaches an ERROR-level annotation ("Process completed with exit code 1.")
+      # to the run — so a fully green run read as "1 error" on the commit. The check now
+      # swallows its own exit code and reports the drift as a warning annotation with a real
+      # count. A one-shot `npx prettier --write src` cleanup flips it back to blocking.
       - name: Prettier (warn-only until the repo-wide reformat lands)
-        run: npm run prettier:check
-        continue-on-error: true
+        run: |
+          set +e
+          OUT=$(npm run prettier:check 2>&1)
+          RC=$?
+          set -e
+          N=$(printf '%s\n' "$OUT" | sed 's/\x1b\[[0-9;]*m//g' | grep -c '^\[warn\]' || true)
+          if [ "$RC" -ne 0 ]; then
+            echo "::warning::prettier drift in $N src files — warn-only, repo-wide reformat deliberately deferred"
+            echo "prettier drift: $N file(s) would be reformatted (not blocking)"
+          else
+            echo "prettier: clean"
+          fi
       - run: npm run validate:data
       - run: npm run validate:stamps
       - run: npm run trust:check
