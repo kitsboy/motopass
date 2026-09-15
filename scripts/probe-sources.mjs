@@ -405,6 +405,91 @@ function ruleSentences(html) {
 }
 
 // ---------------------------------------------------------------------------
+// v9 — the render-settle gate: a read that is provably NOT the page yet
+// ---------------------------------------------------------------------------
+// Card t_239f6996 — the event v8 retracted, and a class v8 does not cover: the
+// path was stable and the scope that moved was `rule`, so neither of the v8
+// mechanisms (a derived `main`, a probe-path flip) applies.
+//
+// Measured on www.thaievisa.go.th with the engine's own Chromium, three separate
+// loads at 250 ms resolution:
+//   · ~0.9 s after DOMContentLoaded the body carries the site chrome only
+//     (628 chars of raw text, ending at the copyright line) and the `main`
+//     container is EMPTY — whole=628, main=0;
+//   · that shell persists ~1.0 s: two reads 986 ms apart returned the IDENTICAL
+//     shell text, so "read twice and agree" ALONE would accept it;
+//   · `main` first carries text at ~2.2 s (main=1461 of 2584 chars); the settled
+//     page reads 2583-2584 chars.
+// The v8 run read the page at settleMs=2500 under 3-way browser load, got the
+// shell, and baselined it: its rule text was the settled text cut off
+// mid-sentence at "Attention :" with the leading block ("10 years visa for long
+// term residents") missing. The pending→confirm gate cannot stop that, because a
+// truncated render that repeats looks exactly like a settled value.
+//
+// So a rendered read is accepted only when BOTH hold:
+//   (a) two reads SETTLE_CONFIRM_MS apart agree on the filtered page text — the
+//       v7 challenge shape, generalised; and
+//   (b) the read is not PROVABLY INCOMPLETE against the previous settled read:
+//       the `main` container it had is now empty, or the container/page text is a
+//       fraction of its previous size.
+// The measurement above is why (b) exists: (a) alone accepts the shell. The gate
+// only ever WAITS and re-reads — it never discards a render — so it can delay a
+// baseline but cannot hide one: a page that genuinely shrank is accepted when the
+// cap expires, and the timeout is reported (see `suspect_reads`).
+// Comparison is on wholeText() (the filtered block set we actually hash), not the
+// raw innerText, so a page whose only movement is its own live clock settles on
+// the first confirm instead of burning the cap.
+const SETTLE_CONFIRM_MS = Number(process.env.SETTLE_CONFIRM_MS ?? 700)
+const SETTLE_WAIT_MS = Number(process.env.SETTLE_WAIT_MS ?? 9000)
+const RENDER_SHRINK_RATIO = Number(process.env.RENDER_SHRINK_RATIO ?? 0.6)
+
+function measureRead(read) {
+  const whole = wholeText(read?.whole ?? '')
+  const main = wholeText(read?.main ?? '')
+  return { whole, main, textLen: whole.length, mainLen: main.length }
+}
+
+/**
+ * Is this measured render provably not the page yet?
+ * `expect` is what the last SETTLED render of the same URL measured
+ * (`{ hadMain, mainLen, textLen }`), carried on the entry between runs; a first
+ * baseline has no expectation and therefore nothing is provably incomplete.
+ */
+function looksUnsettled(measured, expect) {
+  if (!measured || !expect) return false
+  if (expect.hadMain && measured.mainLen === 0) return true
+  if (expect.mainLen > 0 && measured.mainLen > 0 && measured.mainLen < expect.mainLen * RENDER_SHRINK_RATIO) return true
+  if (expect.textLen > 0 && measured.textLen < expect.textLen * RENDER_SHRINK_RATIO) return true
+  return false
+}
+
+/**
+ * Is a rule read a strict SUBSET of the stored rule text?
+ *
+ * The cheap detector the truncated render trips: a page cannot lose its own
+ * leading block by being edited, so a rule read whose sentences all occur inside
+ * the stored rule text, and which is strictly shorter, is a suspect READ (a
+ * partial render) rather than a change. Measured shape (thaievisa.go.th): the
+ * stored text's sentences are present, the leading block is gone and the tail is
+ * cut mid-sentence at "Attention :".
+ *
+ * This deliberately does NOT discard the read: a genuine deletion is a subset
+ * too, so a suspect read is re-probed with a longer settle and accepted if it
+ * reproduces (see the caller). Missing one cycle of a real deletion is a worse
+ * failure than one extra probe; a false "rules changed" in front of Cam is worse
+ * than both.
+ */
+function isRuleTextSubset(newText, storedText) {
+  const fresh = normalizeText(newText)
+  const stored = normalizeText(storedText)
+  if (!fresh || !stored || fresh.length >= stored.length) return false
+  if (stored.includes(fresh)) return true
+  const sentences = splitSentences(fresh).map(s => normalizeText(s)).filter(Boolean)
+  if (!sentences.some(s => s.length >= 12)) return false
+  return sentences.every(s => stored.includes(s))
+}
+
+// ---------------------------------------------------------------------------
 // HTTP probe
 // ---------------------------------------------------------------------------
 // CF_MARKERS is the 403-response variant: it may also lean on the words
@@ -579,11 +664,48 @@ async function awaitChallengeClearance(page, initial) {
   return rendered
 }
 
-async function browserProbe(url, settleMs = 2500) {
-  return withBrowserSlot(() => browserProbeUnbounded(url, settleMs))
+function expectationFor(entry) {
+  return {
+    hadMain: entry.scopes?.main?.last_hash != null,
+    mainLen: Number(entry.last_main_len) || 0,
+    textLen: Number(entry.last_text_len) || 0,
+  }
 }
 
-async function browserProbeUnbounded(url, settleMs = 2500) {
+/**
+ * v9 — wait until the render is the page, not a mid-hydration state.
+ *
+ * Returns the first read that (a) agrees with the previous read on the filtered
+ * page text and (b) is not provably incomplete against the last settled render.
+ * Bounded by SETTLE_WAIT_MS; on timeout the LAST read is returned, because a long
+ * wait must never turn into a lost source (`classifyProbeResult` still vets it and
+ * the caller reports the timeout).
+ */
+async function awaitSettledRender(page, initial, expect) {
+  const deadline = Date.now() + SETTLE_WAIT_MS
+  let rendered = initial
+  let measured = measureRead(rendered)
+  while (Date.now() < deadline) {
+    await page.waitForTimeout(SETTLE_CONFIRM_MS)
+    const next = await readRendered(page).catch(() => null)
+    if (!next) continue
+    // A wall will not settle into content: spend no more time on it, and let
+    // classifyProbeResult report it blocked (v7's challenge rule still applies).
+    if (looksLikeChallengePage(next.whole, next.main)) return next
+    const nextMeasured = measureRead(next)
+    const agrees = nextMeasured.whole === measured.whole
+    rendered = next
+    measured = nextMeasured
+    if (agrees && !looksUnsettled(nextMeasured, expect)) return rendered
+  }
+  return rendered
+}
+
+async function browserProbe(url, settleMs = 2500, expect = null) {
+  return withBrowserSlot(() => browserProbeUnbounded(url, settleMs, expect))
+}
+
+async function browserProbeUnbounded(url, settleMs = 2500, expect = null) {
   const { browser, context } = await launchBrowser()
   try {
     const page = await context.newPage()
@@ -600,6 +722,15 @@ async function browserProbeUnbounded(url, settleMs = 2500) {
     if (looksLikeChallengePage(rendered.whole, rendered.main)) {
       rendered = await awaitChallengeClearance(page, rendered)
     }
+    // v9 — the threshold render is not automatically the page: require a read
+    // that (a) agrees with a second read SETTLE_CONFIRM_MS later and (b) is not
+    // provably incomplete against this URL's last settled render. Measured: the
+    // pre-hydration shell of www.thaievisa.go.th repeats identically for ~1 s, so
+    // (a) alone accepts it; (b) is what refuses it.
+    const firstRead = rendered
+    const firstReadUnsettled = looksUnsettled(measureRead(firstRead), expect)
+    rendered = await awaitSettledRender(page, rendered, expect)
+    const settled = !looksUnsettled(measureRead(rendered), expect)
     const whole = rendered.whole
     const main = rendered.main
     // Detect a Cloudflare / bot wall
@@ -611,10 +742,16 @@ async function browserProbeUnbounded(url, settleMs = 2500) {
     return {
       ok: true, mode: 'browser', bytes: Buffer.byteLength(whole), pdf: false, botWalled,
       textLen: pageText.length,
+      mainTextLen: mainText.length,
       whole: hashText(pageText),
       rule: rule ? hashText(rule) : null,
       main: mainText ? hashText(mainText) : null,
       ruleText: rule ? rule.slice(0, 800) : null,
+      // v9 diagnostics — was the first read provably incomplete, and did waiting
+      // fix it? Reported in `suspect_reads` so the class is observable.
+      unsettledInitial: firstReadUnsettled,
+      settledAfterWait: firstReadUnsettled && settled && rendered.whole !== firstRead.whole,
+      settled,
     }
   } finally {
     await context.close().catch(() => {})
@@ -687,7 +824,7 @@ function classifyProbeResult(result) {
 // ---------------------------------------------------------------------------
 // Probe orchestration per URL
 // ---------------------------------------------------------------------------
-async function probeOnce(entry, settleMs = 2500) {
+async function probeOnce(entry, settleMs = 2500, expect = null) {
   // Pin the mode on first baseline to prevent a http↔browser flip from reading
   // as a content change. Browser is the default for anything that ever needed it.
   const wantBrowser = entry.mode === 'browser'
@@ -698,7 +835,7 @@ async function probeOnce(entry, settleMs = 2500) {
     // RENDERED page. It must still be probed — a pinned entry that skips the
     // browser produces `result === null` and can only ever report
     // `probe failed`, permanently, no matter how healthy the source is.
-    try { result = await browserProbe(entry.url, settleMs) } catch (e) { result = { ok: false, error: 'browser: ' + (e?.message || e) } }
+    try { result = await browserProbe(entry.url, settleMs, expect) } catch (e) { result = { ok: false, error: 'browser: ' + (e?.message || e) } }
   } else {
     result = await httpProbeWithRetry(entry.url)
     if (result.cloudflare) {
@@ -707,21 +844,21 @@ async function probeOnce(entry, settleMs = 2500) {
     }
     if (!result.ok || result.needsBrowser) {
       // escalate: try the browser (covers bot-gated / JS-only hosts)
-      try { result = await browserProbe(entry.url, settleMs) } catch (e) { result = { ok: false, error: 'browser: ' + (e?.message || e) } }
+      try { result = await browserProbe(entry.url, settleMs, expect) } catch (e) { result = { ok: false, error: 'browser: ' + (e?.message || e) } }
     }
   }
   if (!result || !result.ok) return { ok: false, error: result?.error || 'probe failed', cloudflare: result?.cloudflare }
   return classifyProbeResult(result)
 }
 
-async function probeTarget(entry) {
-  let result = await probeOnce(entry)
+async function probeTarget(entry, expect = null) {
+  let result = await probeOnce(entry, 2500, expect)
   // An empty render is very often transient — a CDN hiccup, a slow hydration, a
   // redirect that never completed. Only reclassify a URL as unreachable when it
   // renders nothing twice, and give the second attempt longer to hydrate.
   if (!result.ok && /^empty render/.test(result.error || '')) {
     await new Promise(r => setTimeout(r, 2500))
-    const retry = await probeOnce(entry, 6000)
+    const retry = await probeOnce(entry, 6000, expect)
     if (retry.ok) result = retry
   }
   // A bot wall is a STATE too, and it is the one failure mode a WAF can clear by
@@ -733,7 +870,7 @@ async function probeTarget(entry) {
   // attempts (the cheap Cloudflare short-circuit is just re-fetched).
   if (!result.ok && result.cloudflare === true) {
     await new Promise(r => setTimeout(r, 2500))
-    const retry = await probeOnce(entry, 6000)
+    const retry = await probeOnce(entry, 6000, expect)
     if (retry.ok) result = retry
   }
   return result
@@ -871,7 +1008,9 @@ async function main() {
   }
 
   // Browser sessions are expensive → do the whole batch with bounded concurrency.
-  const results = await mapWithConcurrency(targets, CONCURRENCY, ({ entry }) => probeTarget(entry))
+  // Each probe carries this URL's last SETTLED render as an expectation, so the
+  // v9 settle gate can tell "still hydrating" from "genuinely smaller page".
+  const results = await mapWithConcurrency(targets, CONCURRENCY, ({ entry }) => probeTarget(entry, expectationFor(entry)))
 
   const report = {
     schema: 'gab.motopass.source-monitor.v1',
@@ -897,12 +1036,35 @@ async function main() {
     // and `rule` are re-baselined silently. Listed here so the basis change is
     // visible in the report instead of being silent.
     path_switched_urls: [],
+    // v9 — reads that were refused as provably-not-the-page-yet (a mid-hydration
+    // shell) or re-probed as a suspect subset rule read. `recovered: false` means
+    // the shape reproduced on the re-probe, i.e. the page really shows it.
+    suspect_reads: [],
     extract_v: EXTRACT_V,
   }
 
   for (let i = 0; i < targets.length; i++) {
     const { p, watch, entry } = targets[i]
-    const result = results[i]
+    let result = results[i]
+
+    // v9 — a rule read that is a strict SUBSET of the stored rule text is a
+    // SUSPECT read, not a change. Measured shape (www.thaievisa.go.th, v8's false
+    // flag): the settled rule text with its leading block dropped and the tail cut
+    // off mid-sentence. A page cannot lose its leading block by being edited, so
+    // the first read is not trusted on its own — but it is not discarded either: a
+    // genuine deletion is a subset too, so it is re-probed with a longer settle and
+    // accepted when it reproduces.
+    const storedRuleText = SNAP[entry.url]?.rule?.text || null
+    if (result.ok && isRuleTextSubset(result.ruleText, storedRuleText)) {
+      const retry = await probeOnce(entry, 6000, expectationFor(entry))
+      const recovered = retry.ok && !isRuleTextSubset(retry.ruleText, storedRuleText)
+      report.suspect_reads.push({ program_id: p.id, name: p.name, url: entry.url, kind: 'rule-subset', recovered })
+      if (retry.ok) result = retry
+    }
+    if (result.ok && result.unsettledInitial) {
+      report.suspect_reads.push({ program_id: p.id, name: p.name, url: entry.url,
+                                  kind: 'incomplete-render', recovered: result.settledAfterWait === true })
+    }
 
     if (!result.ok) {
       const isBlocked = result.cloudflare === true
@@ -935,6 +1097,10 @@ async function main() {
     report.ok++
     entry.last_probed = nowIso
     entry.mode = entry.mode || result.mode
+    // v9 — the settled render's sizes become this URL's expectation for the next
+    // run, which is what makes a mid-hydration shell provably incomplete.
+    entry.last_text_len = Number(result.textLen) || 0
+    entry.last_main_len = Number(result.mainTextLen) || 0
     delete entry.last_error
 
     // ---- which scopes this probe actually carries (whole / rule / main) ----
@@ -1091,6 +1257,10 @@ async function main() {
     `no-rule-scope ${report.no_rule_scope_count} · rebaselined ${report.rebaselined_count}${DRY_RUN ? ' (dry-run)' : ''}`)
   if (report.changed_countries.length) {
     console.log('  RULE CHANGED:', report.changed_countries.map(c => `${c.name} [${c.scopes.join('|')}]`).join(', '))
+  }
+  if (report.suspect_reads.length) {
+    console.log('  SUSPECT READS (a read that was not the page yet / a subset rule read — re-probed, not alerted): ' +
+      report.suspect_reads.map(s => `${s.name} [${s.kind}${s.recovered ? ', recovered' : ', reproduced'}]`).join(', '))
   }
   if (report.blocked_urls.length) {
     console.log('  CLOUDFLARE-BLOCKED (need alternate official source):', report.blocked_urls.map(u => u.name).join(', '))
@@ -1287,6 +1457,54 @@ async function selfTest() {
   check('…and a scope that was already there is not "added"',
     shouldEmitRuleScopeAdded({ hadRuleScope: true, hasRule: true, rebaseline: false, pathSwitched: false }) === false)
 
+  // --- v9: a render read while the page is still hydrating (t_239f6996) ----
+  // Measured on www.thaievisa.go.th 2026-09-15/16 (3 loads, 250 ms sampling):
+  // the shell render is whole=628 / main=0 and persists ~1.0 s — during which TWO
+  // READS 986 ms APART RETURNED THE SAME SHELL, so agreement alone accepts it.
+  // The settled render is whole=2583-2584 / main=1461.
+  const pad = n => 'page text '.repeat(Math.ceil(n / 10) + 1).slice(0, n)
+  const thaiExpect = { hadMain: true, mainLen: 1461, textLen: 2584 }
+  check('a render whose `main` container is empty while the last settled read had one is NOT settled',
+    looksUnsettled(measureRead({ whole: pad(2000), main: '' }), thaiExpect) === true,
+    measureRead({ whole: pad(2000), main: '' }))
+  check('…and the measured shell (628 chars, no main) is NOT settled',
+    looksUnsettled(measureRead({ whole: pad(628), main: '' }), thaiExpect) === true)
+  check('…while the settled full render IS settled',
+    looksUnsettled(measureRead({ whole: pad(2583), main: pad(1461) }), thaiExpect) === false)
+  check('…a page that never had a main container is not judged incomplete',
+    looksUnsettled(measureRead({ whole: pad(4000), main: '' }), { hadMain: false, mainLen: 0, textLen: 3800 }) === false)
+  check('…and a first baseline (nothing to compare against) is never "unsettled"',
+    looksUnsettled(measureRead({ whole: pad(300), main: '' }), null) === false)
+  check('the settle expectation comes from the entry\'s last settled render',
+    JSON.stringify(expectationFor({ scopes: { main: { last_hash: 'M' } }, last_text_len: 2584, last_main_len: 1461 })) ===
+    JSON.stringify({ hadMain: true, mainLen: 1461, textLen: 2584 }))
+  check('…and a URL with no main baseline is not expected to have one',
+    expectationFor({ scopes: { whole: { last_hash: 'W' } } }).hadMain === false)
+
+  // The exact texts. `stored` is the baseline snapshot preserved in
+  // public/data/source-snapshots.json for www.thaievisa.go.th; `partial` is that
+  // text with the leading block dropped and the tail cut mid-sentence at
+  // "Attention :" — the shape quoted in the v8 retraction entry on Thailand in
+  // research/countries.json.
+  const storedThaiRule = '10 years visa for long term residents After the e-Visa application has been approved, a confirmation e-mail will be sent to applicants, which can be printed out for presenting to airlines and Thai immigration officials when traveling to Thailand. Attention : E-Visa applicants are no longer required to submit passports and supporting documents in person at the Royal Thai Embassy/Consulate-General. Please also note that the visa fees are non-refundable. Submission of a visa application does not necessarily mean that a visa will be granted.'
+  const partialThaiRule = 'After the e-Visa application has been approved, a confirmation e-mail will be sent to applicants, which can be printed out for presenting to airlines and Thai immigration officials when traveling to Thailand. Attention :'
+  check('a rule read that is a strict SUBSET of the stored rule text is a SUSPECT read',
+    isRuleTextSubset(partialThaiRule, storedThaiRule) === true, isRuleTextSubset(partialThaiRule, storedThaiRule))
+  check('…so the measured thaievisa.go.th partial render is not a change',
+    isRuleTextSubset(partialThaiRule, storedThaiRule) === true)
+  check('…while a real edit that swaps the rule text is NOT a subset',
+    isRuleTextSubset(storedThaiRule.replace('10 years visa for long term residents', '10 years visa for retired residents'), storedThaiRule) === false)
+  check('…and a rule read that GREW is not a subset',
+    isRuleTextSubset(`${storedThaiRule} The fee must be paid in full.`, storedThaiRule) === false)
+  check('…nor is an identical read',
+    isRuleTextSubset(storedThaiRule, storedThaiRule) === false)
+  check('…and an ordinary unrelated rule page is not a subset of it',
+    isRuleTextSubset('The minimum investment is EUR 300,000 and applicants must reside 30 days per year.', storedThaiRule) === false)
+  // Documented trade-off: a genuine deletion is a subset too, which is exactly
+  // why the caller RE-PROBES a suspect read instead of discarding it.
+  check('…a genuine rule deletion also reads as a subset (hence the re-probe, not a discard)',
+    isRuleTextSubset('Attention : E-Visa applicants are no longer required to submit passports and supporting documents in person at the Royal Thai Embassy/Consulate-General.', storedThaiRule) === true)
+
   // --- v6: churn classes measured on the live corpus (t_50cbc2d3) ----------
   // C. order-only rotation (edbmauritius.org's sector marquee) is not a change.
   const orderA = wholeText('<html><body><div>Alpha team</div><div>Bravo team</div><div>Charlie team</div></body></html>')
@@ -1471,6 +1689,38 @@ async function selfTest() {
       check('…and the fixture really did serve the challenge first', challengeServed === true)
     }
     server2.close()
+
+    // --- end-to-end: a page that hands back a SHELL before it hydrates (v9) ---
+    // The shape measured on www.thaievisa.go.th: the first render carries the site
+    // chrome only and an EMPTY `main`; the content container hydrates seconds
+    // later. The harness read it at settleMs=2500 under browser load, baselined
+    // the shell as content, and the next run's full render looked like a change.
+    // The expectation object is what the entry carries from its last settled
+    // render (hadMain + the previous sizes), which is how the shell is provably
+    // incomplete rather than merely early.
+    const shellExpect = { hadMain: true, mainLen: 120, textLen: 300 }
+    let shellServed = false
+    const server3 = httpMod.createServer((_req, res) => {
+      shellServed = true
+      res.writeHead(200, { 'content-type': 'text/html' })
+      res.end('<html><head><title>e-Visa</title></head><body>' +
+        '<div>Please wait while the portal prepares your session. The service pages are being assembled for display and will appear shortly.</div>' +
+        '<div id="app"></div>' +
+        '<script>setTimeout(function(){document.getElementById("app").innerHTML=' +
+        '"<main><p>In line with Regulation 6(2), the minimum investment is EUR 300,000 and the required annual income is EUR 50,000.</p></main>"' +
+        '},4000)</script></body></html>')
+    })
+    await new Promise(r => server3.listen(0, '127.0.0.1', r))
+    const shellUrl = `http://127.0.0.1:${server3.address().port}/`
+    if (!browserReady) {
+      console.log('  skip shell fixture assertion — no Chromium available')
+    } else {
+      const sh = await probeTarget({ url: shellUrl }, shellExpect)
+      check('live: a shell render that dropped the previously-baselined `main` container is NOT baselined as content',
+        sh.ok === true && /300,000/.test(sh.ruleText || ''), sh)
+      check('…and the fixture really served the shell first', shellServed === true)
+    }
+    server3.close()
   } catch (err) {
     console.log('  skip loopback fixture assertion —', err?.message || err)
   }

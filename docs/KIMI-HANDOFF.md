@@ -1,3 +1,61 @@
+## Session — 2026-09-15 · Source-watchdog v9 — a render read while the page is still hydrating must not be baselined (Ziggy, `t_239f6996`)
+
+Follow-up to `t_54b89ced` (v8). `scripts/probe-sources.mjs` is a declared hotspot — claimed in a card comment before editing,
+kept backed up outside the repo (`/tmp/mp-v9-harness.mjs`), only my own paths committed. `EXTRACT_V` is **NOT** bumped
+(still **7**): this is probe-quality/change-detection, not extraction, so no baseline re-fires and the corpus stays
+comparable. **This commit is the harness only** — `research/countries.json` + `public/data/source-*.json` in the shared
+worktree belong to Rosa's `t_53267a90` (Cyprus gov.cy 6(2) curation); she re-runs the full probe on this committed harness
+and commits the corpus + feed.
+
+**The card's class (v8's retracted Thailand flag, a THIRD mechanism).** v8 closed a derived scope (`main`) reaching the rule
+gate and a scope comparing across a probe-path flip. Neither applies here: the path was stable (`path_switched_urls` empty)
+and the scope that moved was `rule`. The mechanism is a **browser render read while the page is still hydrating, then
+baselined as content** — the pending→confirm gate cannot filter it, because a truncated render that repeats is
+indistinguishable from a settled value.
+
+**Measured first (250 ms sampling with the engine's own Chromium, www.thaievisa.go.th, 3 loads):**
+- ~0.9 s after DOMContentLoaded the body is site chrome only — raw text **628 chars, `main` EMPTY**;
+- the shell persists **~1.0 s**, and **two reads 986 ms apart returned the IDENTICAL shell text** — so "read twice and
+  agree" *alone* accepts it (measured, not assumed);
+- `main` first carries text at **~2.2 s** (`main`=1461 of 2584 chars); the settled page reads **2583-2584** chars.
+The v8 run read at `settleMs=2500` under 3-way browser load, got the shell, and baselined the settled rule text cut off
+mid-sentence at `Attention :` with the leading block gone.
+
+**Decision (two layers, both measured against what the flapping URLs need):**
+1. **Settle gate** (`awaitSettledRender`, `SETTLE_CONFIRM_MS`=700 / `SETTLE_WAIT_MS`=9000 / `RENDER_SHRINK_RATIO`=0.6) — a
+   rendered read is accepted only when (a) a second read `SETTLE_CONFIRM_MS` later agrees **on the filtered page text**
+   (`wholeText`, so a page whose only movement is its own live clock settles on the first confirm) **and** (b) it is not
+   **provably incomplete** against this URL's last settled render: the `main` container that render had is empty, or the
+   container/page text is below `RENDER_SHRINK_RATIO` of it. (a) alone is insufficient — that is the measurement above.
+   The gate only ever WAITS and re-reads; on cap it accepts the last read, so a page that genuinely shrank is never hidden.
+   `entry.last_text_len` / `entry.last_main_len` carry the expectation between runs (new additive fields).
+2. **Subset rule read = suspect, re-probed, not discarded** (`isRuleTextSubset`). A rule read whose sentences all occur
+   inside the stored rule text and which is strictly shorter is a partial render, not an edit — a page cannot lose its own
+   leading block by being edited. It is re-probed once with `settleMs=6000` and **accepted if it reproduces**, because a
+   genuine deletion is a subset too. New additive report field `suspect_reads` (`incomplete-render` / `rule-subset`,
+   `recovered` true/false) plus a console `SUSPECT READS` line.
+
+**Acceptance evidence.** Failing check FIRST: a loopback fixture that serves a shell (no `main`, 126 chars) and hydrates the
+content container at 4 s — before the wiring the self-test reported
+`FAIL live: a shell render that dropped the previously-baselined main container is NOT baselined as content — {"ok":true,…,`
+`"textLen":126,…,"rule":null,"main":null,"ruleText":null}` (1 FAIL of 84). After wiring: **84/84 green** (was 68/68 at v8;
+the fixture needed a shell that survives `VOLATILE_RE`/`CHROME_RE` — *"copyright"* is churn, and a churn-filtered shell is
+caught by the pre-existing empty-render retry instead, which is why the first fixture version passed and had to be fixed).
+Shadow pair on the real corpus (**130 URLs**, Rosa's Cyprus URL included), `/tmp/mp-shadow9`, harness byte-identical:
+- run 1: `ok 117 · rule-changed 0 · layout-changed 9 · blocked 8 · unreachable 5`;
+- run 2: `ok 118 · **rule-changed 0** · layout-changed 7 · blocked 8 · unreachable 4`;
+- **`www.thaievisa.go.th` (browser path) kept its rule hash `9f5fdc3c6a20…` across both runs — the exact full-render hash
+  the v8 retraction restored — with no pending and no shell baseline.** The gate fired on the live corpus and recovered:
+  run 1 `Bolivia [incomplete-render, recovered]`, `Thailand [incomplete-render, recovered]`; run 2 the same plus
+  `UAE (Dubai / Abu Dhabi)`, `Singapore`, and `Paraguay [rule-subset, reproduced]`.
+- `npm run validate:data` clean (50 programs, schema v3 blocks present).
+
+**Measured, NOT fixed here (curation's call, as the card says).** Two live instances of "the rule scope is a rotating
+content rail", both of which sit `pending` after the shadow and would confirm on the next run:
+`https://www.set.gov.py` (Paraguay, **http path** — a rotating DNIT news rail; `rule-subset, reproduced` proves it is real
+page rotation, not a partial render: an http fetch returns the whole document) and `https://u.ae` (UAE — `whole` and `rule`
+moved together, so a real page move, not a container artifact). Carded for curation rather than patched in the harness.
+
 ## Session — 2026-09-15 · Source-watchdog v8 — change-detection scopes must not compare across two measurement bases (Ziggy, `t_54b89ced`)
 
 Follow-up to `t_8b9ff3c4` (v7). `scripts/probe-sources.mjs` is a declared hotspot — claimed in a card comment before editing,
