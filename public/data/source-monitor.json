@@ -1,0 +1,2386 @@
+{
+  "schema": "gab.motopass.source-monitor.v1",
+  "generated_at": "2026-09-15T13:28:34.562Z",
+  "interval_hours": 24,
+  "total_urls": 108,
+  "ok": 79,
+  "changed": 0,
+  "layout_changed": 0,
+  "unreachable": 23,
+  "cloudflare_blocked": 6,
+  "changed_countries": [],
+  "blocked_urls": [
+    {
+      "program_id": 1,
+      "name": "El Salvador",
+      "url": "https://www.presidencia.gob.sv",
+      "error": "HTTP 403 — Cloudflare bot wall"
+    },
+    {
+      "program_id": 12,
+      "name": "Malta",
+      "url": "https://www.mfsa.mt",
+      "error": "HTTP 403 — Cloudflare bot wall"
+    },
+    {
+      "program_id": 16,
+      "name": "Costa Rica",
+      "url": "https://www.migracion.go.cr",
+      "error": "HTTP 403 — Cloudflare bot wall"
+    },
+    {
+      "program_id": 18,
+      "name": "Thailand",
+      "url": "https://www.immigration.go.th",
+      "error": "HTTP 403 — Cloudflare bot wall"
+    },
+    {
+      "program_id": 46,
+      "name": "Bulgaria",
+      "url": "https://www.mvr.bg",
+      "error": "HTTP 403 — Cloudflare bot wall"
+    },
+    {
+      "program_id": 48,
+      "name": "Gibraltar",
+      "url": "https://www.gfsc.gi",
+      "error": "HTTP 403 — Cloudflare bot wall"
+    }
+  ],
+  "unreachable_urls": [
+    {
+      "program_id": 2,
+      "name": "Central African Republic",
+      "url": "https://gouvernement.cf",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 4,
+      "name": "Bolivia",
+      "url": "https://www.migracion.gob.bo",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 17,
+      "name": "Hong Kong",
+      "url": "https://www.immd.gov.hk",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 19,
+      "name": "Mexico",
+      "url": "https://www.inm.gob.mx",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 20,
+      "name": "Cyprus",
+      "url": "https://www.moi.gov.cy",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 20,
+      "name": "Cyprus",
+      "url": "https://www.mof.gov.cy",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 21,
+      "name": "Greece",
+      "url": "https://www.mfa.gr",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 22,
+      "name": "Vanuatu",
+      "url": "https://cilc.vu",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 24,
+      "name": "Mauritius",
+      "url": "https://immigration.govmu.org",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 26,
+      "name": "Brazil",
+      "url": "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 30,
+      "name": "St. Lucia",
+      "url": "https://www.ciu.gov.lc",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 33,
+      "name": "Bahamas",
+      "url": "https://www.bahamas.gov.bs",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 33,
+      "name": "Bahamas",
+      "url": "https://www.bahamaschamber.com",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 34,
+      "name": "Belize",
+      "url": "https://www.belizeinvest.org.bz",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 35,
+      "name": "Cambodia",
+      "url": "https://www.cambodiaimmigration.gov.kh",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 36,
+      "name": "Philippines",
+      "url": "https://boi.gov.ph",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 37,
+      "name": "Malaysia",
+      "url": "https://mdec.my/de-rantau",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 38,
+      "name": "Indonesia",
+      "url": "https://evisa.imigrasi.go.id",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 38,
+      "name": "Indonesia",
+      "url": "https://www.imigrasi.go.id",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 39,
+      "name": "Japan",
+      "url": "https://www.meti.go.jp",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 40,
+      "name": "New Zealand",
+      "url": "https://www.mbie.govt.nz",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 42,
+      "name": "Spain",
+      "url": "https://www.inclusion.gob.es",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    },
+    {
+      "program_id": 49,
+      "name": "Cayman Islands",
+      "url": "https://www.ciregistry.gov.ky",
+      "error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+    }
+  ],
+  "by_country": [
+    {
+      "program_id": 1,
+      "name": "El Salvador",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.presidencia.gob.sv",
+          "status": "blocked",
+          "mode": null,
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": "HTTP 403 — Cloudflare bot wall"
+        }
+      ]
+    },
+    {
+      "program_id": 2,
+      "name": "Central African Republic",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://gouvernement.cf",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://www.finances.gouv.cf",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "f8dc8b914dab",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 3,
+      "name": "Uruguay",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.gub.uy/tramites/residencia-legal",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "2995ee4ec6c2",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.minterior.gub.uy",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "1a21a3479b91",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 4,
+      "name": "Bolivia",
+      "changed": false,
+      "urls": [
+        {
+          "url": "https://www.migracion.gob.bo",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 5,
+      "name": "St. Kitts and Nevis",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.ciu.gov.kn",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "02b2ca9f5b3a",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "fdde499dbfa8",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 6,
+      "name": "Antigua and Barbuda",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.cip.gov.ag",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "bdc9e653eac7",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "4fd13c310485",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 7,
+      "name": "Dominica",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://cbiu.gov.dm",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "bf696deef15c",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "fab719638c06",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 8,
+      "name": "UAE (Dubai / Abu Dhabi)",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://u.ae",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "983aef36404a",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "15c2b470797d",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.vara.ae",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "be9b28c752f8",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "f57c16c8dc13",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 9,
+      "name": "Switzerland",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.sem.admin.ch",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "dc659d71fbb6",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.zug.ch",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "32511cb9832f",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 10,
+      "name": "Singapore",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.edb.gov.sg",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "36ca830d7cec",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.mas.gov.sg",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "f7373b69a161",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 11,
+      "name": "Portugal",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://imigrante.sef.pt",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "cad5f3d13c0b",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "f725f6dd5e5b",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.portugal.gov.pt",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "9a3a2e93cda2",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 12,
+      "name": "Malta",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://residencymalta.gov.mt",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "887954b3fff4",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e2a6fb5ed1f5",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.mfsa.mt",
+          "status": "blocked",
+          "mode": null,
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": "HTTP 403 — Cloudflare bot wall"
+        }
+      ]
+    },
+    {
+      "program_id": 13,
+      "name": "Panama",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.migracion.gob.pa",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "af6c03e5f8a1",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "adecec9e1442",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.gacetaoficial.gob.pa",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "53ff0f47b2f3",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 14,
+      "name": "Georgia",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://sda.gov.ge",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "f1e7ba488fa3",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.rs.ge",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "d1c6cbc72db1",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "56aab185462e",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 15,
+      "name": "Paraguay",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.migraciones.gov.py",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "cb854a2d00b8",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "824b34c0da6c",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.set.gov.py",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "a4424d00690f",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "ceac1fc2720e",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 16,
+      "name": "Costa Rica",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.migracion.go.cr",
+          "status": "blocked",
+          "mode": null,
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": "HTTP 403 — Cloudflare bot wall"
+        },
+        {
+          "url": "https://www.hacienda.go.cr",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "e66589871da7",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 17,
+      "name": "Hong Kong",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.immd.gov.hk",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+        },
+        {
+          "url": "https://www.sfc.hk",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "675388730974",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "389afc1ab838",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 18,
+      "name": "Thailand",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://ltr.boi.go.th",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "455abd99b719",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "a3e982413d91",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.immigration.go.th",
+          "status": "blocked",
+          "mode": null,
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": "HTTP 403 — Cloudflare bot wall"
+        }
+      ]
+    },
+    {
+      "program_id": 19,
+      "name": "Mexico",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.inm.gob.mx",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": "browser: browserType.launch: Failed to launch chromium because executable doesn't exist at /root/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+        },
+        {
+          "url": "https://www.gob.mx",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "8e243f6bab40",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e4787e4275c1",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 20,
+      "name": "Cyprus",
+      "changed": false,
+      "urls": [
+        {
+          "url": "https://www.moi.gov.cy",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://www.mof.gov.cy",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 21,
+      "name": "Greece",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://migration.gov.gr",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "d6e379c0a0c4",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "885b2a7945e3",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.mfa.gr",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 22,
+      "name": "Vanuatu",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://cilc.vu",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://immigration.gov.vu",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "697e1f74f65e",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "9c352c99cac2",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 23,
+      "name": "Turkey",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.goc.gov.tr",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "ef8948676093",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "bcce14982a59",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.invest.gov.tr",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "12621c687664",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "dad0942bfbe1",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 24,
+      "name": "Mauritius",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.edbmauritius.org",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "6cc693f8c43c",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "657a8eeb916d",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://immigration.govmu.org",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 25,
+      "name": "Seychelles",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.ics.gov.sc",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "c73c08a719f3",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "6d3162ffbc0e",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.investinseychelles.com",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "98bf34e2773f",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "9ee04c694e2c",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.src.gov.sc",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "3c0e387f903f",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "5c4290167526",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 26,
+      "name": "Brazil",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "b4e209aed5a2",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "efb17babaf06",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.gov.br/pf/pt-br/assuntos/imigracao",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "be596537e712",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "9afa06149bbe",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 27,
+      "name": "Argentina",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "453a87152fcb",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "3a49df6c4a00",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.migraciones.gob.ar",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "364a330b2b47",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.boletinoficial.gob.ar",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "a5dc766b9ce1",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 28,
+      "name": "Chile",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://serviciomigraciones.cl",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "c4ff95029d63",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "78a65db6864d",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.investchile.gob.cl",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "b529d4be97b1",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "201414278991",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://startupchile.org",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "bae7277946bc",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "859e18c6a627",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 29,
+      "name": "Colombia",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "0b7f1c7246f2",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "dbbf4336f266",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.migracioncolombia.gov.co",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "61afded336b8",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://tramitesmre.cancilleria.gov.co",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "5b60fc49c668",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 30,
+      "name": "St. Lucia",
+      "changed": false,
+      "urls": [
+        {
+          "url": "https://www.ciu.gov.lc",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 31,
+      "name": "Grenada",
+      "changed": false,
+      "urls": [
+        {
+          "url": "https://www.cbi.gov.gd",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "0d521e2edb6a",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "a08b472f749d",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 32,
+      "name": "Barbados",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.immigration.gov.bb",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "de61d064a377",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://barbadoswelcomestamp.bb",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "a20bf1a5e4fc",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "308dcef6a8f0",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 33,
+      "name": "Bahamas",
+      "changed": false,
+      "urls": [
+        {
+          "url": "https://www.bahamas.gov.bs",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://www.bahamaschamber.com",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 34,
+      "name": "Belize",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.belizeinvest.org.bz",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://www.tourism.gov.bz",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "5ae6c042a473",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "8f40f0d4718f",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 35,
+      "name": "Cambodia",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.cambodiaimmigration.gov.kh",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://www.cdc.gov.kh",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "cbfb5e77a80c",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "2903d5961696",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 36,
+      "name": "Philippines",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://pra.gov.ph",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "6af5d54b035e",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "15a161d878ae",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://immigration.gov.ph",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "a547a28385a7",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "288c19a091cb",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://boi.gov.ph",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 37,
+      "name": "Malaysia",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.mm2h.gov.my",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "e6be790aa930",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "1d586f8bbff5",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://mdec.my/de-rantau",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://www.imi.gov.my",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "85a4b47c8f0b",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "85a4b47c8f0b",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 38,
+      "name": "Indonesia",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://evisa.imigrasi.go.id",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://www.imigrasi.go.id",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://oss.go.id",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "f8e179b183a0",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "01d061590b3f",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 39,
+      "name": "Japan",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.moj.go.jp/isa",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "29e6d9524063",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.meti.go.jp",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://www.fsa.go.jp",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "6644ba8ef034",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 40,
+      "name": "New Zealand",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.immigration.govt.nz",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "d7dd90215059",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "23acc652411e",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.mbie.govt.nz",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-23T06:22:20.592Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 41,
+      "name": "Ireland",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.irishimmigration.ie",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "8a5450eb0031",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "8ca325a9c4c8",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://enterprise.gov.ie",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "cb9e91581769",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "ee1240581880",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.centralbank.ie",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "dbe84017209a",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "0564a11c7f02",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 42,
+      "name": "Spain",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.inclusion.gob.es",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-09-11T10:09:58.310Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        },
+        {
+          "url": "https://www.exteriores.gob.es",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "3da3088b3932",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "a5a235b83a78",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.cnmv.es",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "39bd86059a90",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 43,
+      "name": "Italy",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.interno.gov.it",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "211fa64fed6d",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "47e82698bee8",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://investorvisa.mise.gov.it",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "4bb422498dd6",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "2dbe69f7ea69",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.agenziaentrate.gov.it",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "17ebfa956271",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "67ab15d15706",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 44,
+      "name": "Latvia",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.pmlp.gov.lv",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "0c9dec2e2d48",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "26874164faf2",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.ur.gov.lv",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "8f1177835e85",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.fktk.lv",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "661d90e2fa16",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "02d4efae18d3",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 45,
+      "name": "Estonia",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.politsei.ee",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "cf8be90db61f",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.e-resident.gov.ee",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "b185d43891f6",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "d417a54d5546",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.rik.ee",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "aa28b4c7bbb0",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 46,
+      "name": "Bulgaria",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.mvr.bg",
+          "status": "blocked",
+          "mode": null,
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": "HTTP 403 — Cloudflare bot wall"
+        },
+        {
+          "url": "https://www.bnb.bg",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "6964b25cee8b",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.fsc.bg",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "baddc294df76",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "612c13419047",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 47,
+      "name": "Croatia",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://mup.gov.hr",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "0be2f43f99c6",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://digitalnomadscroatia.mup.hr",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "c4347e7f0c0a",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "c98b4284c5ae",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 48,
+      "name": "Gibraltar",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.gibraltar.gov.gi",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "e990b2644f0f",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "62930053b059",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.gfsc.gi",
+          "status": "blocked",
+          "mode": null,
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": "HTTP 403 — Cloudflare bot wall"
+        }
+      ]
+    },
+    {
+      "program_id": 49,
+      "name": "Cayman Islands",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.gov.ky",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "a8cc5f73c77c",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "4a7d3b566599",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.ciregistry.gov.ky",
+          "status": "unreachable",
+          "mode": null,
+          "last_probed": "2026-08-21T00:11:20.877Z",
+          "baselined_at": null,
+          "scopes": {},
+          "last_error": null
+        }
+      ]
+    },
+    {
+      "program_id": 50,
+      "name": "Andorra",
+      "changed": true,
+      "urls": [
+        {
+          "url": "https://www.govern.ad",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "1817b551aabd",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "2a520af20e8f",
+              "changed": false
+            }
+          },
+          "last_error": null
+        },
+        {
+          "url": "https://www.afa.ad",
+          "status": "ok",
+          "mode": "http",
+          "last_probed": "2026-09-15T13:28:34.562Z",
+          "baselined_at": null,
+          "scopes": {
+            "whole": {
+              "label": "whole",
+              "last_hash": "b4cb2d8f8449",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "e3b0c44298fc",
+              "changed": false
+            }
+          },
+          "last_error": null
+        }
+      ]
+    }
+  ],
+  "ok_count": 79,
+  "changed_count": 0,
+  "layout_changed_count": 0
+}
