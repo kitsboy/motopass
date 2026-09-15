@@ -1,3 +1,8 @@
+# motopass — Last Updated 2026-09-15 by Rosa (THOR)
+
+**Brief:** 12 verified probe-able official alternates for the sources v5 honestly reports unreachable (empty/403 renders). Old failing URLs kept in `watch`; 12/12 new URLs baseline `ok`, 10 with `rule_scope: present`.
+**Commit:** `f4b7568` (pushed — live feed 126 URLs, ok 114)
+
 # motopass — Last Updated 2026-09-15 by Kimi (THOR)
 
 **Brief:** official-source watchdog v2 — browser-backed, per-country rule scopes, layout-vs-rule classification, 24h cron, live manifest.
