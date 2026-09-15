@@ -26,6 +26,7 @@ const KNOWN_ROUTES = [
   /^\/register\/?$/,
   /^\/dashboard\/?$/,
   /^\/profile\/?$/,
+  /^\/sources\/?$/,
 ]
 
 function isKnownRoute(pathname) {

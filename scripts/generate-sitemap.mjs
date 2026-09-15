@@ -37,6 +37,7 @@ const ROUTES = [
   { path: '/register', priority: '0.9', changefreq: 'weekly' },
   { path: '/dashboard', priority: '0.8', changefreq: 'daily' },
   { path: '/profile', priority: '0.7', changefreq: 'weekly' },
+  { path: '/sources', priority: '0.7', changefreq: 'daily' },
 ]
 
 const BLOG_SLUGS = [
