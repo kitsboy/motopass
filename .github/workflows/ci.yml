@@ -48,6 +48,8 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - name: Source-probe self-test (empty content must never become an ok baseline)
+        run: npm run intel:probe:selftest
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: failure()

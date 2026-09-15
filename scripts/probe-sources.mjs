@@ -18,6 +18,14 @@
  *     never actually down, just bot-gated.
  *   - Hashes are computed over NORMALISED text (whitespace-collapsed), so
  *     formatting/encoding drift does not false-fire.
+ *   - v3 (2026-09-15): every scope is built from CONTENT BLOCKS. <script>,
+ *     <style>, <head> and JSON-LD are stripped before extraction, and nav menus,
+ *     press/news rails, cookie modals, rates tickers and inline CSS are dropped
+ *     as chrome. sha256('') is NOT a baseline: a URL with no rule text is
+ *     recorded as "no rule scope" and never alerted on, and a page that renders
+ *     to no text is reported `unreachable` instead of `ok`. Changing the
+ *     extraction pipeline (EXTRACT_V) re-baselines silently once, so a pipeline
+ *     upgrade can never fire a corpus-wide rule alarm.
  *   - Scopes per URL: `whole` (full page), `rule` (sentences carrying fee /
  *     threshold / requirement / eligibility terms), `main` (dominant content
  *     container, when browser-rendered). Any scope changing = a detected
@@ -33,7 +41,7 @@
  *   - updates research/countries.json (watch.* + audit_trail on rule change)
  *   - writes public/data/source-monitor.json (the presentation layer reads this)
  *
- * Usage: node scripts/probe-sources.mjs [--dry-run]
+ * Usage: node scripts/probe-sources.mjs [--dry-run] [--self-test]
  * Env:   PLAYWRIGHT_EXECUTABLE  chromium path (auto-detect if unset)
  *        PLAYWRIGHT_MODULE_DIR   dir to resolve playwright from (default /root/hq)
  *        PROBE_CONCURRENCY       http concurrency (default 6)
@@ -55,6 +63,13 @@ const eventsPath = resolve(intelDir, 'source-events.json')
 const snapsPath = resolve(intelDir, 'source-snapshots.json')
 const EVENTS_CAP = 200
 const DRY_RUN = process.argv.includes('--dry-run')
+// Extraction-pipeline version. Bump it whenever the text pipeline below changes
+// meaning (new stripping, new filters): stored baselines are then re-written
+// silently once instead of being read as content changes.
+const EXTRACT_V = 5
+// A page whose extracted text is shorter than this carries no usable content —
+// it is not a baseline. Matches the "real page" threshold httpProbe already used.
+const MIN_TEXT_LEN = 60
 
 function loadJson(path, def) {
   try { return JSON.parse(readFileSync(path, 'utf8')) } catch { return def }
@@ -69,11 +84,19 @@ const CONCURRENCY = Number(process.env.PROBE_CONCURRENCY ?? 6)
 const BROWSER_CONCURRENCY = Number(process.env.PROBE_BROWSER_CONCURRENCY ?? 3)
 const UA = 'motopass-intel-probe/2.0 (+https://motopass.giveabit.io)'
 
-// Rule-bearing keyword set — any paragraph/sentence carrying one of these is
-// treated as "rule text" and hashed separately. Language-agnostic enough to work
-// across every country's portal without hand-crafting 50 selector lists.
+// Rule-bearing keyword set — any sentence carrying one of these is treated as
+// "rule text" and hashed separately. Language-agnostic on purpose: these portals
+// publish in EN/ES/IT/PT/FR/DE/JP, and an English-only term set made every
+// non-English page yield ZERO rule sentences (2026-09-15 rule-event verification).
+// Three regexes because \b is ASCII-based and never matches inside a CJK run, and
+// a bare currency symbol next to a figure is a rule signal on its own.
 const RULE_TERM_RE =
-  /\b(\$|€|£|₿|sats?|USD|EUR|GBP|CAD|AUD|CHF|million|minimum|max(?:imum)?|threshold|invest(?:ment)?|require(?:d|ment)?|fee|citizen|citizenship|residen(?:cy|ce|t)?|permit|visa|amount|deposit|qualify|eligible|application|donation|economic|years?|duration)\b/i
+  /\b(sats?|usd|eur|gbp|cad|aud|chf|jpy|aed|million|billion|minimum|max(?:imum)?|threshold|invest(?:ment|ments|or|ors)?|require(?:d|ment|ments|s)?|fees?|citizen(?:ship)?|residen(?:cy|ce|t|ts)?|permit|visa|amount|deposit|qualify|eligible|application|donations?|economic|years?|duration|tarifas?|requisitos?|residencia|inversi[oó]n|inversionistas?|inversor(?:es)?|monto|dep[oó]sitos?|solicitud(?:es)?|ciudadan[ií]a|nacionalidad(?:es)?|elegibles?|a[nñ]os|m[ií]nimos?|m[áa]ximos?|d[oó]lares|plazos?|impuestos?|arraigo|vistos?|investimento|importi?|domandas?|cittadinanza|idone[oi]|anni|minim[oi]|massim[oi]|frais|exigences?|r[eé]sidence|investissement|montants?|d[eé]p[oô]ts?|demandes?|citoyennet[eé]|ann[eé]es|taxas?|resid[eê]ncia|valores?|pedidos?|cidadania|eleg[ií]vel|geb[uü]hr(?:en)?|anforderungen?|aufenthalt(?:stitel|s)?|visum|investition(?:en)?|betrag|antrag|staatsangeh[oö]rigkeit|jahre|permanent|naturaliz)\b/i
+// CJK rule terms actually in use by the watched Japanese program (ISA).
+const RULE_TERM_CJK_RE =
+  /(手数料|在留|査証|ビザ|申請|要件|必要|収入|資産|期間|永住|帰化|投資|移民|料金|許可|延長|納付|更新|万円|円)/
+const CURRENCY_SYM_RE = /[$€£₿¥]/
+const CJK_RE = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]/
 
 // ---------------------------------------------------------------------------
 // Hashing (normalised text → stable digest)
@@ -93,18 +116,131 @@ function hashBytes(buf) {
   return createHash('sha256').update(buf).digest('hex')
 }
 // Lines that are volatile and NOT rule text — live tickers, "last updated"
-// stamps, copyright, datelines. Dropped from the rule-scope hash so a currency
-// ticker or an "updated 2 min ago" line never fires a rule-change alert.
+// stamps, copyright, datelines. Dropped from BOTH scopes so a currency ticker or
+// an "updated 2 min ago" line never fires a change alert.
 const VOLATILE_RE =
   /(last (updated|modified|reviewed|checked)|updated (just|a moment|now|moments|less than)|©|copyright|\b(as of|live|refresh(?:ed|ing)?|loading|demo|beta)\b|min(?:utes)? ago|second(s)? ago|hour(s)? ago|day(s)? ago|block ?#?\d|\d{4}$)/i
 const PURE_NUMERIC_RE = /^[\d$€£.,%+\-≈~\s]+$/
 
-function ruleSentences(text) {
-  const clean = normalizeText(text)
-  const parts = clean.split(/(?<=[.!?])\s+/)
-  return parts
-    .filter(p => RULE_TERM_RE.test(p) && p.length > 12)
-    .filter(p => !VOLATILE_RE.test(p) && !PURE_NUMERIC_RE.test(p))
+// sha256 of the empty string — what a scope hashes to when nothing was
+// extracted. It is the absence of a scope, not a baseline: two empty hashes
+// "matching" says nothing, and empty→text reads as a change every time.
+const EMPTY_SHA = hashText('')
+
+// Chrome / boilerplate that carries rule-ish words by accident: nav menus,
+// press-release rails, cookie modals, ECB-style rates tickers, promo CTAs.
+// Observed 2026-09-15 — enterprise.gov.ie (nav), centralbank.ie (nav + a press
+// rail dated the same day + a rates ticker), interno.gov.it (cookie modal).
+const CHROME_RE =
+  /\b(press release|news release|media release|read more|learn more|find out more|latest news|in the news|report finds|findings? (?:of|from) the|announces|announced|appoints|appointment of|appointment to|speech by|statement by|skip to (main )?content|accept (all )?cookies|cookies?|consent|subscribe|newsletter|follow us|share (this|on)|back to top|director of|chief executive|opening hours|our services|sitemap|accessibility|privacy (policy|statement)|terms of use|all rights reserved|log ?in|sign ?in|contact us|about us|careers|deposit facility|main refinancing|lending facility|exchange rates?|interest rates?|reference rate)\b/i
+// A line that is nothing but nav labels — "Publications Legislation
+// Consultations FAQs" / "Home | Services Downloads Requirements FAQs Contact Us".
+const NAV_WORD =
+  '(?:home|about(?: us)?|contact(?: us)?|news|events?|publications?|legislation|consultations?|faqs?|search|menu|log ?in|sign ?in|register|careers?|media|services|resources|downloads?|requirements|online services|our offices|language|english|espa[nñ]ol)'
+const NAV_RE = new RegExp(`^${NAV_WORD}(?:\\s*[|·>»/–-]?\\s*${NAV_WORD})*[|·>»/–-]?$`, 'i')
+// Serialised CSS / JSON-LD / JS that leaked into the text stream (WordPress,
+// Elementor, escaped cookie-compliance markup).
+const CODE_RE =
+  /(\{\s*[-a-z]+\s*:|;\s*[-a-z-]+\s*:|\}\s*[.,;]|::?[-a-z-]+\s*\{|--wp--|\.wp-|elementor-|window\.|document\.|function\s*\(|=>\s*\{|\\u00[0-9a-f]{2}|&lt;|&quot;|&amp;lt;|application\/ld\+json|"@(?:type|context|id)"|var\s+--)/i
+
+// ---------------------------------------------------------------------------
+// Text extraction (v3) — script/style/head/JSON-LD stripped, markup reduced to
+// content blocks, chrome dropped. Both scopes are built from the same blocks.
+// ---------------------------------------------------------------------------
+function stripNonContent(html) {
+  return String(html ?? '')
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')   // includes JSON-LD blocks
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/gi, ' ')
+    .replace(/<template\b[^>]*>[\s\S]*?<\/template>/gi, ' ')
+    .replace(/<svg\b[^>]*>[\s\S]*?<\/svg>/gi, ' ')
+    .replace(/<head\b[^>]*>[\s\S]*?<\/head>/gi, ' ')
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+}
+const BLOCK_END_RE =
+  /<\/(p|div|li|tr|h[1-6]|section|article|header|footer|nav|ul|ol|table|form|button|blockquote|figure|dd|dt|a)>/gi
+// Structural site chrome — dropped whole, before any text extraction. Nav bars,
+// headers and footers are where "Apply for an employment permit" /
+// "Notification Requirement for Payment Service Providers" come from.
+function stripStructuralChrome(html) {
+  return String(html ?? '')
+    .replace(/<nav\b[^>]*>[\s\S]*?<\/nav>/gi, ' ')
+    .replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/gi, ' ')
+    .replace(/<header\b[^>]*>[\s\S]*?<\/header>/gi, ' ')
+    .replace(/<aside\b[^>]*>[\s\S]*?<\/aside>/gi, ' ')
+}
+// Block-level text units. Splitting on block ends and on </a> (a link is almost
+// always a nav/menu item) — but not on <span>/<td> — keeps a table row as one
+// unit instead of shredding rule sentences into fragments.
+function contentBlocks(html) {
+  return stripStructuralChrome(stripNonContent(html))
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(BLOCK_END_RE, '\n')
+    .replace(/<[^>]+>/g, ' ')
+    .split(/\r?\n/)
+    .map(l => normalizeText(l))
+    .filter(Boolean)
+}
+function isChurn(line) {
+  if (!line) return true
+  return (
+    PURE_NUMERIC_RE.test(line) ||
+    VOLATILE_RE.test(line) ||
+    CHROME_RE.test(line) ||
+    NAV_RE.test(line) ||
+    CODE_RE.test(line)
+  )
+}
+// `whole` scope — content blocks minus churn, so a rotating news rail or a live
+// ticker no longer registers as a page change.
+function wholeText(html) {
+  return contentBlocks(html).filter(l => !isChurn(l)).join(' ')
+}
+// Sentence splitter: `[.!?]` + the CJK terminators (。．！？；) that an
+// English-only splitter never saw, so a Japanese render produced one giant
+// fragment that then failed the term test.
+function splitSentences(line) {
+  return line.split(/(?<=[.!?])\s+|(?<=[\u3002\uff0e\uff01\uff1f\uff1b])/)
+}
+function hasRuleTerm(p) {
+  return RULE_TERM_RE.test(p) || RULE_TERM_CJK_RE.test(p) || CURRENCY_SYM_RE.test(p)
+}
+// A short, figure-free, non-declarative candidate is a nav label or a call to
+// action that merely contains a rule word — "Apply for an employment permit",
+// "Do you require special assistance?", "Management of Investment Assets".
+// Real rule statements either carry a figure (fee, threshold, duration) or read
+// as a sentence.
+function isNavFragment(p) {
+  if (p.length >= 60) return false
+  if (/\d/.test(p) || CURRENCY_SYM_RE.test(p)) return false
+  return !/[.。]$/.test(p)
+}
+// `rule` scope — sentences that actually state a fee / threshold / requirement /
+// eligibility term, harvested only from non-chrome blocks. Repeated figure-free
+// candidates are site chrome (the same menu rendered twice) and are dropped.
+function ruleSentences(html) {
+  const candidates = []
+  for (const block of contentBlocks(html)) {
+    if (isChurn(block)) continue
+    for (const raw of splitSentences(block)) {
+      const p = raw.trim()
+      if (!p) continue
+      // CJK sentences carry more meaning per character than Latin ones.
+      if (p.length <= (CJK_RE.test(p) ? 6 : 12)) continue
+      if (!hasRuleTerm(p)) continue
+      if (VOLATILE_RE.test(p) || PURE_NUMERIC_RE.test(p)) continue
+      if (CODE_RE.test(p) || NAV_RE.test(p)) continue
+      if (isNavFragment(p)) continue
+      candidates.push(p)
+    }
+  }
+  const counts = new Map()
+  for (const p of candidates) {
+    const key = p.toLowerCase()
+    counts.set(key, (counts.get(key) || 0) + 1)
+  }
+  return candidates
+    .filter(p => (counts.get(p.toLowerCase()) === 1 || /\d|[$€£₿¥]/.test(p)))
     .join(' ')
 }
 
@@ -136,23 +272,23 @@ async function httpProbe(url) {
                whole: hashBytes(buf), rule: null, main: null }
     }
     const text = buf.toString('utf8')
-    // A real page must yield actual rule text. If the http response is a JS
+    // A real page must yield actual content text. If the http response is a JS
     // shell, a cookie-banner-only page, or yields no rule-bearing sentences,
     // we cannot trust it as a baseline — escalate to the browser so we hash
     // real rendered text. (A cookie banner next to real content is fine and
     // stays on http — its volatile noise is already filtered downstream.)
     const rule = ruleSentences(text)
-    const stripped = text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
-    // Reject JS-code / SPA-shell junk masquerading as rule text (e.g. a JS app
-    // bundle served as "text" containing `typeof window`). If the rule scope
-    // smells like code, treat it as no-rule → escalate to the browser.
+    const page = wholeText(text)
+    // v2.2 guard, kept: rule text that smells like a JS app bundle is not rule
+    // text — treat it as no-rule and escalate to the browser. The extraction
+    // pipeline already filters code-like candidates, so this is belt-and-braces.
     const smellsLikeCode = /function\s*\(|=>\s*\{|\btypeof\b|\bdocument\.|\bwindow\.|\.getElementById|import\s*\{|console\./m.test(rule)
-    if (stripped.length < 60 || rule.length < 8 || smellsLikeCode) {
-      return { ok: true, mode: 'http', bytes: buf.length, needsBrowser: true,
-               whole: hashText(text), rule: null, main: null, ruleText: null }
+    if (page.length < MIN_TEXT_LEN || rule.length < 8 || smellsLikeCode) {
+      return { ok: true, mode: 'http', bytes: buf.length, needsBrowser: true, textLen: page.length,
+               whole: hashText(page), rule: null, main: null, ruleText: null }
     }
-    return { ok: true, mode: 'http', bytes: buf.length, pdf: false,
-             whole: hashText(text), rule: hashText(rule), main: null,
+    return { ok: true, mode: 'http', bytes: buf.length, pdf: false, textLen: page.length,
+             whole: hashText(page), rule: hashText(rule), main: null,
              ruleText: rule.slice(0, 800) }
   } catch (err) {
     return { ok: false, error: err instanceof Error ? err.message : 'fetch failed' }
@@ -185,7 +321,35 @@ async function launchBrowser() {
   return { browser, context: await browser.newContext({ userAgent: UA }) }
 }
 
-async function browserProbe(url) {
+// Read the rendered text. A late client-side redirect destroys the JS execution
+// context mid-evaluate ("Execution context was destroyed") — that is a navigation
+// race, not a dead source, so wait for the navigation to settle and read again
+// instead of reporting a false `unreachable`.
+async function readRendered(page) {
+  let lastErr
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const whole = await page.evaluate(() => (document.body ? document.body.innerText : ''))
+      const main = await page.evaluate(() => {
+        const sels = ['main', 'article', '[role="main"]', '#content', '.content', '.main-content', '#main-content']
+        let best = null, bestLen = 0
+        for (const s of sels) {
+          const el = document.querySelector(s)
+          if (el) { const t = (el.innerText || '').length; if (t > bestLen) { best = el; bestLen = t } }
+        }
+        return best ? best.innerText : ''
+      })
+      return { whole, main }
+    } catch (e) {
+      lastErr = e
+      await page.waitForLoadState('domcontentloaded', { timeout: PROBE_TIMEOUT_MS }).catch(() => {})
+      await page.waitForTimeout(1500)
+    }
+  }
+  throw lastErr || new Error('render read failed')
+}
+
+async function browserProbe(url, settleMs = 2500) {
   const { browser, context } = await launchBrowser()
   try {
     const page = await context.newPage()
@@ -195,25 +359,23 @@ async function browserProbe(url) {
     } catch (e) {
       // page may have partially loaded; still try to read content
     }
-    await page.waitForTimeout(2500) // let JS settle
-    const whole = await page.evaluate(() => document.body ? document.body.innerText : '')
-    const main = await page.evaluate(() => {
-      const sels = ['main', 'article', '[role="main"]', '#content', '.content', '.main-content', '#main-content']
-      let best = null, bestLen = 0
-      for (const s of sels) {
-        const el = document.querySelector(s)
-        if (el) { const t = (el.innerText || '').length; if (t > bestLen) { best = el; bestLen = t } }
-      }
-      return best ? best.innerText : ''
-    })
+    await page.waitForTimeout(settleMs) // let JS settle
+    const rendered = await readRendered(page)
+    const whole = rendered.whole
+    const main = rendered.main
     // Detect a Cloudflare / bot wall
     const bodyText = whole.toLowerCase()
     const botWalled = /just a moment|attention required|enable javascript and cookies|cf-challenge|access denied/i.test(bodyText)
+    const pageText = wholeText(whole)
+    const rule = ruleSentences(whole)
+    const mainText = wholeText(main)
     return {
-      ok: true, mode: 'browser', bytes: Buffer.byteLength(whole),
-      pdf: false, botWalled,
-      whole: hashText(whole), rule: hashText(ruleSentences(whole)), main: main ? hashText(main) : null,
-      ruleText: ruleSentences(whole).slice(0, 800),
+      ok: true, mode: 'browser', bytes: Buffer.byteLength(whole), pdf: false, botWalled,
+      textLen: pageText.length,
+      whole: hashText(pageText),
+      rule: rule ? hashText(rule) : null,
+      main: mainText ? hashText(mainText) : null,
+      ruleText: rule ? rule.slice(0, 800) : null,
     }
   } finally {
     await context.close().catch(() => {})
@@ -232,9 +394,42 @@ async function mapWithConcurrency(items, limit, fn) {
 }
 
 // ---------------------------------------------------------------------------
+// Baseline gate — what a probe result must be before it may be written as `ok`
+// ---------------------------------------------------------------------------
+/**
+ * The single gate every probe result passes before it can become a baseline.
+ *
+ * Two failure modes are rejected here (both proven against the live monitor on
+ * 2026-09-15):
+ *   - a render with no measurable text: 4 URLs sat at `status: ok` with an EMPTY
+ *     whole-page hash, so the next successful render read as a change in every
+ *     scope (Panama and Mexico both fired rule events off exactly these);
+ *   - an empty rule/main scope: sha256('') is the ABSENCE of a scope, not a
+ *     baseline. 48 of 114 URLs carried it, so any future render that produced
+ *     text read as a rule change and any return to empty read as another one.
+ * A result that fails the gate is reported unreachable/needs-review instead.
+ */
+function classifyProbeResult(result) {
+  if (!result || !result.ok) {
+    return { ok: false, error: result?.error || 'probe failed', cloudflare: result?.cloudflare }
+  }
+  if (result.botWalled) {
+    // Browser hit a wall — treat as probe-failure (unreachable-ish), not content.
+    return { ok: false, error: 'bot-walled (Cloudflare/access challenge)', cloudflare: true }
+  }
+  if (!result.pdf && !(Number(result.textLen) >= MIN_TEXT_LEN)) {
+    return { ok: false, error: `empty render (${Number(result.textLen) || 0} chars of text)` }
+  }
+  const out = { ...result }
+  if (out.rule === EMPTY_SHA) out.rule = null
+  if (out.main === EMPTY_SHA) out.main = null
+  return out
+}
+
+// ---------------------------------------------------------------------------
 // Probe orchestration per URL
 // ---------------------------------------------------------------------------
-async function probeTarget(entry) {
+async function probeOnce(entry, settleMs = 2500) {
   // Pin the mode on first baseline to prevent a http↔browser flip from reading
   // as a content change. Browser is the default for anything that ever needed it.
   const wantBrowser = entry.mode === 'browser'
@@ -245,7 +440,7 @@ async function probeTarget(entry) {
     // RENDERED page. It must still be probed — a pinned entry that skips the
     // browser produces `result === null` and can only ever report
     // `probe failed`, permanently, no matter how healthy the source is.
-    try { result = await browserProbe(entry.url) } catch (e) { result = { ok: false, error: 'browser: ' + (e?.message || e) } }
+    try { result = await browserProbe(entry.url, settleMs) } catch (e) { result = { ok: false, error: 'browser: ' + (e?.message || e) } }
   } else {
     result = await httpProbeWithRetry(entry.url)
     if (result.cloudflare) {
@@ -254,15 +449,60 @@ async function probeTarget(entry) {
     }
     if (!result.ok || result.needsBrowser) {
       // escalate: try the browser (covers bot-gated / JS-only hosts)
-      try { result = await browserProbe(entry.url) } catch (e) { result = { ok: false, error: 'browser: ' + (e?.message || e) } }
+      try { result = await browserProbe(entry.url, settleMs) } catch (e) { result = { ok: false, error: 'browser: ' + (e?.message || e) } }
     }
   }
   if (!result || !result.ok) return { ok: false, error: result?.error || 'probe failed', cloudflare: result?.cloudflare }
-  if (result.botWalled) {
-    // Browser hit a wall — treat as probe-failure (unreachable-ish), not content.
-    return { ok: false, error: 'bot-walled (Cloudflare/access challenge)', cloudflare: true }
+  return classifyProbeResult(result)
+}
+
+async function probeTarget(entry) {
+  let result = await probeOnce(entry)
+  // An empty render is very often transient — a CDN hiccup, a slow hydration, a
+  // redirect that never completed. Only reclassify a URL as unreachable when it
+  // renders nothing twice, and give the second attempt longer to hydrate.
+  if (!result.ok && /^empty render/.test(result.error || '')) {
+    await new Promise(r => setTimeout(r, 2500))
+    const retry = await probeOnce(entry, 6000)
+    if (retry.ok) result = retry
   }
   return result
+}
+
+// ---------------------------------------------------------------------------
+// Scope bookkeeping — write baselines, decide change vs re-baseline
+// ---------------------------------------------------------------------------
+/**
+ * Apply a probe's scopes to an entry's stored baselines.
+ * `rebaseline` writes every scope silently (used once when EXTRACT_V changes, so
+ * a pipeline upgrade is never read as a corpus-wide rule change).
+ * Scopes absent from this probe are DELETED — a URL with no rule text must not
+ * keep an empty rule baseline lying around to be "confirmed" later.
+ */
+function applyScopes(entry, scopes, rebaseline) {
+  entry.scopes = entry.scopes || {}
+  const present = new Set(scopes.map(s => s.key))
+  for (const key of ['rule', 'main']) {
+    if (!present.has(key)) delete entry.scopes[key]
+  }
+  const changedScopes = []
+  let ruleChanged = false
+  let layoutChanged = false
+  for (const s of scopes) {
+    const st = (entry.scopes[s.key] = entry.scopes[s.key] || {})
+    const prev = st.last_hash
+    const pend = st.pending_hash
+    if (prev == null || rebaseline) { st.last_hash = s.newHash; delete st.pending_hash; continue }
+    if (s.newHash === prev) { delete st.pending_hash; continue }
+    if (s.key === 'whole') { layoutChanged = true; st.last_hash = s.newHash; changedScopes.push(s.label); continue }
+    // rule / main scope moved — confirm before alerting
+    if (pend === s.newHash) { ruleChanged = true; st.last_hash = s.newHash; delete st.pending_hash; changedScopes.push(s.label) }
+    else { st.pending_hash = s.newHash }
+  }
+  entry.rule_scope = present.has('rule') ? 'present' : 'none'
+  entry.main_scope = present.has('main') ? 'present' : 'none'
+  entry.extract_v = EXTRACT_V
+  return { ruleChanged, layoutChanged, changedScopes }
 }
 
 // ---------------------------------------------------------------------------
@@ -296,6 +536,13 @@ async function main() {
     blocked_urls: [],
     unreachable_urls: [],
     by_country: [],
+    // v3 bookkeeping — how many URLs carry no rule scope at all, and how many
+    // baselines were silently re-written because the extraction pipeline moved.
+    no_rule_scope_count: 0,
+    no_rule_scope_urls: [],
+    rebaselined_count: 0,
+    rebaselined_urls: [],
+    extract_v: EXTRACT_V,
   }
 
   for (let i = 0; i < targets.length; i++) {
@@ -318,6 +565,11 @@ async function main() {
                            status, before: null, after: null })
         }
       }
+      // A stored baseline of sha256('') is not content — drop it so it can never
+      // be compared against a real render later.
+      const stage = entry.scopes || {}
+      if (stage.whole?.last_hash === EMPTY_SHA) { delete stage.whole; delete entry.last_hash }
+      if (stage.rule?.last_hash === EMPTY_SHA) delete stage.rule
       const row = { program_id: p.id, name: p.name, url: entry.url, error: result.error }
       ;(isBlocked ? report.blocked_urls : report.unreachable_urls).push(row)
       continue
@@ -330,40 +582,44 @@ async function main() {
     entry.mode = entry.mode || result.mode
     delete entry.last_error
 
-    // ---- normalise scopes on the entry (whole / rule / main) ----
-    entry.scopes = entry.scopes || {}
-    entry.scopes.whole = entry.scopes.whole || {}
-    entry.scopes.rule = entry.scopes.rule || {}
-    if (result.main != null) entry.scopes.main = entry.scopes.main || {}
+    // ---- which scopes this probe actually carries (whole / rule / main) ----
+    // An empty rule/main scope never gets here (classifyProbeResult drops it), so
+    // a page with no rule text simply HAS no rule scope: recorded as
+    // `rule_scope: "none"`, never baselined, never alerted on.
+    const stage = entry.scopes || {}
+    const isBaseline = !stage.whole?.last_hash && !entry.last_hash
+    // A pipeline change is a new measurement basis, not a content change:
+    // re-baseline silently once so EXTRACT_V can never fire a corpus-wide alarm.
+    const rebaseline = !isBaseline && entry.extract_v !== EXTRACT_V
+    const hadRuleScope = stage.rule?.last_hash != null
+    const oldRuleHash = stage.rule?.last_hash
 
     const scopes = []
     scopes.push({ key: 'whole', label: 'Full page', newHash: result.whole })
     if (result.rule != null) scopes.push({ key: 'rule', label: 'Rule terms (fees · thresholds · requirements)', newHash: result.rule })
     if (result.main != null) scopes.push({ key: 'main', label: 'Main content', newHash: result.main })
 
+    if (rebaseline) {
+      report.rebaselined_count++
+      report.rebaselined_urls.push({ program_id: p.id, name: p.name, url: entry.url })
+    }
+
     // ---- baseline vs change (with volatility suppression) ----
     // A rule scope only ALERTS once the same new value is seen on two
     // consecutive probes (pending → confirmed). Live tickers, "last updated"
     // stamps and rotating banners settle out instead of firing every run.
-    const isBaseline = !entry.scopes.whole?.last_hash && !entry.last_hash
-    let ruleChanged = false
-    let layoutChanged = false
-    const changedScopes = []
-    const oldRuleHash = entry.scopes.rule?.last_hash
-    for (const s of scopes) {
-      const st = entry.scopes[s.key]
-      const prev = st?.last_hash
-      const pend = st?.pending_hash
-      if (prev == null) { st.last_hash = s.newHash; delete st.pending_hash; continue }
-      if (s.newHash === prev) { delete st.pending_hash; continue }
-      if (s.key === 'whole') { layoutChanged = true; st.last_hash = s.newHash; changedScopes.push(s.label); continue }
-      // rule / main scope moved — confirm before alerting
-      if (pend === s.newHash) { ruleChanged = true; st.last_hash = s.newHash; delete st.pending_hash; changedScopes.push(s.label) }
-      else { st.pending_hash = s.newHash }
+    const { ruleChanged, layoutChanged, changedScopes } = applyScopes(entry, scopes, rebaseline)
+
+    // Gaining a rule scope where there was none is information, not an alert —
+    // there was no baseline to change from.
+    if (!hadRuleScope && result.rule != null) {
+      newEvents.push({ id: `${nowIso}-${entry.url.slice(-8)}-rule-scope`, ts: nowIso, date: today,
+                       country: p.name, program_id: p.id, url: entry.url, kind: 'coverage',
+                       status: 'rule scope added', before: null, after: result.ruleText?.slice(0, 220) || null })
     }
 
     // ---- rule-text snapshot + change event (the diff the feed shows) ----
-    if (result.ruleText != null) {
+    if (result.ruleText != null && result.rule != null) {
       const snap = (SNAP[entry.url] = SNAP[entry.url] || {})
       const before = (ruleChanged && snap.rule && snap.rule.hash === oldRuleHash) ? snap.rule.text : null
       if (ruleChanged) {
@@ -373,9 +629,12 @@ async function main() {
           scopes: changedScopes, before, after: result.ruleText.slice(0, 220),
         })
       }
-      if (!(snap.rule && snap.rule.hash === oldRuleHash && !ruleChanged)) {
+      if (rebaseline || !(snap.rule && snap.rule.hash === oldRuleHash && !ruleChanged)) {
         snap.rule = { hash: entry.scopes.rule.last_hash, text: result.ruleText }
       }
+    } else {
+      // No rule scope → whatever was stored as "rule text" was chrome or nothing.
+      delete SNAP[entry.url]
     }
 
     if (isBaseline) {
@@ -425,10 +684,20 @@ async function main() {
       status_since: u.status_since || null,
       coverage_gap_days: gapDays(u.status_since),
       scopes: Object.fromEntries(Object.entries(u.scopes || {}).map(([k, v]) => [k, { label: v.label || k, last_hash: v.last_hash?.slice(0, 12), changed: v.changed || false }])),
+      // Explicit, so "this URL has no rule text" is visible rather than inferred
+      // from an empty hash.
+      rule_scope: u.rule_scope || (u.scopes?.rule?.last_hash ? 'present' : 'none'),
+      extract_v: u.extract_v || null,
       last_error: u.last_error || null,
     }))
     const gap = Math.max(0, ...urls.map(u => u.coverage_gap_days || 0))
     if (gap > 0) coverageGapCountries++
+    for (const u of urls) {
+      if (u.rule_scope !== 'present') {
+        report.no_rule_scope_count++
+        report.no_rule_scope_urls.push({ program_id: p.id, name: p.name, url: u.url, status: u.status || null })
+      }
+    }
     byCountry.push({ program_id: p.id, name: p.name, changed: p.watch?.changed === true,
                      coverage_gap_days: gap, urls })
   }
@@ -449,8 +718,9 @@ async function main() {
     writeFileSync(snapsPath, JSON.stringify(SNAP, null, 2) + '\n')
   }
 
-  console.log(`✓ Source probe v2 — ${targets.length} URLs · ok ${report.ok} · rule-changed ${report.changed} · ` +
-    `layout-changed ${report.layout_changed} · cloudflare-blocked ${report.cloudflare_blocked} · unreachable ${report.unreachable}${DRY_RUN ? ' (dry-run)' : ''}`)
+  console.log(`✓ Source probe v2 (extract v${EXTRACT_V}) — ${targets.length} URLs · ok ${report.ok} · rule-changed ${report.changed} · ` +
+    `layout-changed ${report.layout_changed} · cloudflare-blocked ${report.cloudflare_blocked} · unreachable ${report.unreachable} · ` +
+    `no-rule-scope ${report.no_rule_scope_count} · rebaselined ${report.rebaselined_count}${DRY_RUN ? ' (dry-run)' : ''}`)
   if (report.changed_countries.length) {
     console.log('  RULE CHANGED:', report.changed_countries.map(c => `${c.name} [${c.scopes.join('|')}]`).join(', '))
   }
@@ -458,8 +728,131 @@ async function main() {
     console.log('  CLOUDFLARE-BLOCKED (need alternate official source):', report.blocked_urls.map(u => u.name).join(', '))
   }
   if (report.unreachable_urls.length) {
-    console.log('  UNREACHABLE:', report.unreachable_urls.map(u => u.name).join(', '))
+    console.log('  UNREACHABLE:', report.unreachable_urls.map(u => `${u.name} [${u.error}]`).join(', '))
   }
+}
+
+// ---------------------------------------------------------------------------
+// Self-test — `node scripts/probe-sources.mjs --self-test`
+// ---------------------------------------------------------------------------
+// Pure assertions over the extraction pipeline and the baseline gate, so the two
+// failure modes fixed on 2026-09-15 cannot silently come back:
+//   A. an empty rule/main scope was baselined, then "confirmed" as a rule change
+//   B. a page that rendered to zero text was written as `ok`
+// No network. The last check runs a loopback fixture and skips without Chromium.
+let failures = 0
+function check(name, cond, detail) {
+  if (cond) {
+    console.log(`  ok   ${name}`)
+  } else {
+    failures++
+    console.log(`  FAIL ${name}${detail === undefined ? '' : ` — ${JSON.stringify(detail)}`}`)
+  }
+}
+
+async function selfTest() {
+  console.log(`probe-sources self-test (extract v${EXTRACT_V})`)
+  check('sha256("") is the empty-scope sentinel',
+    EMPTY_SHA === 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+
+  // --- the gate -----------------------------------------------------------
+  const empty = classifyProbeResult({ ok: true, mode: 'browser', pdf: false, textLen: 0, whole: EMPTY_SHA, rule: EMPTY_SHA, main: EMPTY_SHA, ruleText: null })
+  check('an empty render is NOT ok', empty.ok === false && /empty render/.test(empty.error || ''), empty)
+  const thin = classifyProbeResult({ ok: true, pdf: false, textLen: 12, whole: 'x', rule: null, main: null })
+  check('text below the threshold is NOT ok', thin.ok === false && /empty render/.test(thin.error || ''), thin)
+  const noRule = classifyProbeResult({ ok: true, pdf: false, textLen: 5000, whole: 'w', rule: EMPTY_SHA, main: EMPTY_SHA, ruleText: '' })
+  check('an empty rule/main scope becomes "no scope"', noRule.ok === true && noRule.rule === null && noRule.main === null, noRule)
+  const pdf = classifyProbeResult({ ok: true, pdf: true, mode: 'http', bytes: 900, whole: 'p', rule: null, main: null })
+  check('a PDF is still a valid baseline (no text-length check)', pdf.ok === true, pdf)
+  const wall = classifyProbeResult({ ok: true, pdf: false, textLen: 900, whole: 'w', botWalled: true })
+  check('a bot wall is still a probe failure', wall.ok === false && wall.cloudflare === true, wall)
+
+  // --- extraction ---------------------------------------------------------
+  const chromePage = `<html><head><title>t</title><style>.wp-block-button__link{color:#fff}</style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite"}</script></head>
+    <body><nav><ul><li>Publications</li><li>Legislation</li><li>Consultations</li><li>FAQs</li></ul></nav>
+    <div class="eu-cookie-compliance-more-button">Accept all cookies</div>
+    <div>Central Bank announces appointment of new Director of Strategy and Governance 15 September 2026 • Press Release</div>
+    <div>2.25% Deposit Facility · 2.40% Main Refinancing Operations</div></body></html>`
+  const chromeRule = ruleSentences(chromePage)
+  check('a chrome-only page yields NO rule scope', chromeRule === '', chromeRule)
+  check('CSS / JSON-LD / nav never reach the whole scope',
+    !/wp-block-button|schema\.org|Publications/.test(wholeText(chromePage)), wholeText(chromePage))
+
+  const jp = `<html><body><p>令和８年１０月１日から在留資格の変更の許可及び永住許可に係る手数料の額が改定されます。</p>
+    <p>在留期間の更新の許可については、手数料が必要です。</p></body></html>`
+  const jpRule = ruleSentences(jp)
+  check('a Japanese render yields rule text (CJK splitter + terms)', jpRule.length > 0 && /手数料/.test(jpRule), jpRule)
+  check('…and its sentences are split on 。', jpRule.split('。').length >= 2, jpRule)
+
+  const rulePage = `<html><body><p>The minimum investment is USD 250,000 for the golden visa, and applicants must reside 30 days per year.</p>
+    <div>Gebühr: 100 EUR</div><p>La tarifa de solicitud es de 250 euros y el monto mínimo de inversión es 500.000 dólares.</p></body></html>`
+  const ruleText = ruleSentences(rulePage)
+  check('EN / DE / ES rule sentences are kept',
+    /250,000/.test(ruleText) && /Gebühr/.test(ruleText) && /inversión/.test(ruleText), ruleText)
+
+  const navOnly = ruleSentences('<html><body><nav><a>Apply for an employment permit</a></nav><a>Management of Investment Assets</a><a>Notification Requirement for Payment Service Providers</a></body></html>')
+  check('nav labels that merely contain a rule word are dropped', navOnly === '', navOnly)
+  const repeatedChrome = ruleSentences(`<html><body>
+    <p>Applications for citizenship must be submitted in person at the designated office</p>
+    <p>Applications for citizenship must be submitted in person at the designated office</p>
+    <p>The minimum investment is USD 250,000.</p></body></html>`)
+  check('repeated site chrome is dropped while a stated rule survives',
+    /250,000/.test(repeatedChrome) && !/Applications for citizenship/.test(repeatedChrome), repeatedChrome)
+
+  // --- the writer ---------------------------------------------------------
+  // FIX A — a URL whose only rule baseline is sha256('') must lose that baseline.
+  const entryA = { url: 'https://x', scopes: { whole: { last_hash: 'w0' }, rule: { last_hash: EMPTY_SHA } }, last_hash: 'w0' }
+  const rA = applyScopes(entryA, [{ key: 'whole', label: 'Full page', newHash: 'w0' }], false)
+  check('an empty rule baseline is deleted, never confirmed',
+    entryA.scopes.rule === undefined && entryA.rule_scope === 'none' && rA.ruleChanged === false, entryA.scopes)
+
+  // FIX C/D — chrome-only rule text (nav, CSS) disappearing must not alert.
+  const entryC = { url: 'https://y', scopes: { whole: { last_hash: 'w0' }, rule: { last_hash: 'nav-v1' } }, last_hash: 'w0' }
+  const rC = applyScopes(entryC, [{ key: 'whole', label: 'Full page', newHash: 'w0' }], false)
+  check('losing a chrome-only rule scope cannot fire a rule change',
+    rC.ruleChanged === false && entryC.rule_scope === 'none', rC)
+
+  // A pipeline upgrade re-baselines silently instead of firing once per URL.
+  const entryB = { url: 'https://z', extract_v: 2, scopes: { whole: { last_hash: 'old' }, rule: { last_hash: 'oldr' } }, last_hash: 'old' }
+  const rB = applyScopes(entryB, [{ key: 'whole', label: 'Full page', newHash: 'new' }, { key: 'rule', label: 'Rule terms', newHash: 'newr' }], true)
+  check('an EXTRACT_V change re-baselines silently, never alerts',
+    rB.ruleChanged === false && rB.layoutChanged === false && entryB.scopes.rule.last_hash === 'newr' && entryB.extract_v === EXTRACT_V, rB)
+
+  // A real rule movement still alerts once confirmed.
+  const entryD = { url: 'https://v', extract_v: EXTRACT_V, scopes: { whole: { last_hash: 'w0' }, rule: { last_hash: 'r0', pending_hash: 'r1' } }, last_hash: 'w0' }
+  const rD = applyScopes(entryD, [{ key: 'whole', label: 'Full page', newHash: 'w0' }, { key: 'rule', label: 'Rule terms', newHash: 'r1' }], false)
+  check('a confirmed rule movement still alerts', rD.ruleChanged === true && entryD.scopes.rule.last_hash === 'r1', rD)
+
+  // --- end-to-end: a live fixture that renders to nothing -------------------
+  try {
+    const httpMod = await import('node:http')
+    const server = httpMod.createServer((_req, res) => {
+      res.writeHead(200, { 'content-type': 'text/html' })
+      res.end('<html><head><title>fixture</title></head><body></body></html>')
+    })
+    await new Promise(r => server.listen(0, '127.0.0.1', r))
+    const url = `http://127.0.0.1:${server.address().port}/`
+    let browserReady = true
+    try { const b = await launchBrowser(); await b.browser.close() } catch { browserReady = false }
+    if (!browserReady) {
+      console.log('  skip loopback fixture assertion — no Chromium available')
+    } else {
+      const res = await probeTarget({ url })
+      check('live: a page that renders to nothing is NOT ok', res.ok === false && /empty render/.test(res.error || ''), res)
+    }
+    server.close()
+  } catch (err) {
+    console.log('  skip loopback fixture assertion —', err?.message || err)
+  }
+
+  console.log(failures === 0 ? '✓ self-test passed' : `✗ self-test FAILED (${failures})`)
+  return failures
+}
+
+if (process.argv.includes('--self-test')) {
+  const failed = await selfTest()
+  process.exit(failed === 0 ? 0 : 1)
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

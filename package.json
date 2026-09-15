@@ -29,6 +29,7 @@
     "intel:migrate": "node scripts/migrate-schema-v3.mjs",
     "intel:freshness": "node scripts/update-freshness.mjs",
     "intel:probe": "node scripts/probe-sources.mjs",
+    "intel:probe:selftest": "node scripts/probe-sources.mjs --self-test",
     "intel:stamp": "node scripts/stamp-changed.mjs",
     "intel:write": "node scripts/write-intel.mjs",
     "intel:fetch": "node scripts/intel-fetch.mjs",

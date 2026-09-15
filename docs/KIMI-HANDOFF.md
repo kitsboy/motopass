@@ -1,3 +1,52 @@
+## Session — 2026-09-15 · Watchdog harness v5: `sha256('')` is not a baseline, an empty render is not `ok` (Ziggy)
+
+Card `t_1202f120` (verification: `t_f2368b83`). Fixes both structural causes of the 11 false "rule-scope
+confirmations", plus the chrome that made the rule scope meaningless on 7 URLs.
+
+**The v2.2 re-baseline did not touch either defect — it grew them.** The harness still wrote `sha256('')`
+as a rule baseline and still accepted a zero-text render as `ok`, so across it:
+`scopes.rule.last_hash = e3b0c442…` went **48 → 63 of 114**, and `status: ok` with an EMPTY whole-page hash
+went **4 → 9**. Those are the numbers this change takes to zero.
+
+**A — an empty scope is not a baseline.** `classifyProbeResult()` drops an empty `rule`/`main` scope before
+anything is written, and `applyScopes()` DELETES a scope the probe no longer carries. The URL is recorded as
+`rule_scope: "none"` (also surfaced per-URL in the manifest, plus `report.no_rule_scope_count` / `_urls`),
+can never be baselined, and can never alert — empty→text and text→empty used to read as two rule changes.
+If a page later GAINS real rule text it emits an informational `rule scope added` coverage event, not a rule
+alert. Live: **63 → 0**.
+
+**B — a page that renders to no text is not `ok`.** Any result whose extracted text is under the existing
+60-char threshold now returns `{ ok: false, error: 'empty render (N chars of text)' }` → reported
+`unreachable`, never baselined. It is retried once (longer render settle) before reclassification, and the
+redirect race that used to crash the read (`Execution context was destroyed`) is retried rather than
+reported. Live: **9 → 0** ok-with-empty-whole.
+
+**C/D — the rule scope was mostly chrome.** Extraction now strips `<script>/<style>/<head>/<noscript>`
+(JSON-LD included) and `<nav>/<header>/<footer>/<aside>` blocks, splits the page into content blocks, and
+drops churn — nav labels, press/news rails, cookie modals, rates tickers, repeated site chrome, serialised
+CSS/JSON-LD. The term set and sentence splitter are language-agnostic (CJK `。` terminator; JP/ES/IT/PT/FR/DE
+terms), so `moj.go.jp/isa` — which previously yielded ZERO rule sentences — now yields Japanese rule text.
+The churn filter applies to `whole` as well as `rule`: layout drift in the reported run was **0** (34 before).
+
+**Silent re-baseline.** `EXTRACT_V` (5) marks the pipeline version; when it changes, every scope is
+re-written silently once, so a pipeline upgrade can never fire a corpus-wide rule alarm. This run:
+`rebaselined 102 · rule-changed 0`.
+
+**Verified (live clone, two engines):** `node scripts/probe-sources.mjs --self-test` → 18 assertions over
+the extraction pipeline, the baseline gate, the scope writer, plus a loopback fixture that renders to
+nothing (skips without Chromium). Wired into CI as `npm run intel:probe:selftest` after the Playwright
+install. v2.2's `smellsLikeCode` escalation guard is kept.
+
+**Reported run:** 114 URLs · ok 102 · unreachable 5 · cloudflare-blocked 7 · rule-changed 0 · layout-changed 0
+· no-rule-scope 63 · rebaselined 102. Rule-text snapshots 107 → 56 (chrome-only "rule text" purged).
+
+**Honest caveat (needs curation, not more harness).** Five sources render nothing usable from our probe:
+`bahamas.gov.bs` literally renders `403 Forbidden` (13 chars), `consular.mfa.go.th` renders only
+"ข้ามไปยังเนื้อหาหลัก" / "skip to main content" (20 chars), `inm.gob.mx` renders 0 chars, and
+`migracioncolombia.gov.co` / `migraciones.gov.py` time out. They are now reported unreachable with the char
+count instead of being baselined `ok` on nothing — so the ok/unreachable split moves from 107/0 to ~102/5 and
+will shift by a couple of URLs run to run until those sources are curated (carded for Rosa).
+
 ## Session — 2026-09-15 · Watchdog v2.2: false-alarm class fixed + full re-baseline
 
 Investigated the rule-scope events that fired during the repair window (and after the two board cards verified them as 0 substantive — corpus stands). Three fresh flags (Indonesia oss.go.id, New Zealand mbie.govt.nz, Barbados) were proven FALSE by inspecting their diffs:
