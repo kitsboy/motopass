@@ -1,3 +1,38 @@
+## Session — 2026-09-15 · Source curation: 12 probe-able official alternates for the empty/403 renders (Rosa)
+
+Card `t_4336aaae` (follow-up to `t_1202f120`). v5 stopped accepting a zero-text render as `ok`, which
+honestly surfaced 5-6 sources that had been "watched" on an empty baseline. Nothing was broken — those pages
+deliver no readable content to a THOR probe. `scripts/probe-sources.mjs` was NOT touched (declared hotspot);
+only `research/countries.json` + the probe's own feed outputs.
+
+**Per-URL outcome** (verified with the real engine, not a rough fetch):
+
+| was unreachable | what ships now | result |
+|---|---|---|
+| `bahamas.gov.bs` (13 chars: "403 Forbidden") | `immigration.gov.bs` (Dept. of Immigration) + `laws.bahamas.gov.bs` (legislation/gazette portal) | ok · rule scope present / none |
+| `consular.mfa.go.th` (20 chars: skip-to-content shell) | `www.mfa.go.th/en/page/issuance-of-visa` (consular visa rules + Baht fees) | ok · rule scope present |
+| `www.inm.gob.mx` (0 chars) | `www.inm.gob.mx/tramites/publico/solicitud_estancia.html` (INM trámites microsite) + `dof.gob.mx` (Diario Oficial) | ok · rule scope present (both) |
+| `www.migracioncolombia.gov.co` (0 chars / flapping) | `portal.migracioncolombia.gov.co/tramites-y-servicios/todos` + `…/tarifas/tarifas-vigentes` (Resolución 0599/2026 fees) | ok · rule scope present (both) |
+| `www.migraciones.gov.py` (0 chars / goto timeout) | `migraciones.gov.py/residencia-temporal/` + `migraciones.gov.py/aranceles-migratorios/` | ok · rule scope present (both) |
+| **flapping** `u.ae` / Singapore / Bolivia | `icp.gov.ae/en/` · `ica.gov.sg` · `cancilleria.gob.bo` | ok · rule scope present (UAE, SG) / none (BO) |
+
+All 12 were added to BOTH `legal_compliance.official_urls` and `watch.urls`; the old failing URLs stay in
+`watch.urls` on purpose (house style — their status stays visible in the feed instead of being hidden).
+`www.migracioncolombia.gov.co` and `www.migraciones.gov.py` came back `ok` in the run that baselined the
+alternates, which is exactly the flapping the card describes; the alternates are what make both countries
+covered even on the runs where the root host renders nothing.
+
+**Explicit no-source statements (nothing invented):** the INM root (`inm.gob.mx`) itself has no probe-able
+render from THOR — its `tramites/publico/…` page does. `consular.mfa.go.th` is a JS shell and
+`immigration.go.th` is a Cloudflare wall, so Thailand's probe-able official sources are `thaievisa.go.th`,
+`ltr.boi.go.th` and the new MFA fee page. `mre.gov.py` is Cloudflare-blocked to our probe UA (403 → the
+harness correctly refuses to escalate), so Paraguay's coverage comes from `set.gov.py` + the two DNM pages.
+
+**Verified:** `node scripts/probe-sources.mjs` full run — 126 URLs · ok 114 · unreachable 5 (the same old
+URLs, plus `u.ae` on its off-run) · cloudflare-blocked 7 · rule-changed 0 (except the pre-existing HK
+headline churn) · no-rule-scope 65 (63 + 2 new no-rule URLs, both deliberate). `--self-test` 18/18.
+`npm run validate:data` clean. 12/12 new URLs baseline `ok`, 10 of 12 with `rule_scope: present`.
+
 ## Session — 2026-09-15 · Watchdog harness v5: `sha256('')` is not a baseline, an empty render is not `ok` (Ziggy)
 
 Card `t_1202f120` (verification: `t_f2368b83`). Fixes both structural causes of the 11 false "rule-scope
