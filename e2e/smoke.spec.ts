@@ -158,6 +158,15 @@ test.describe('smoke', () => {
     await page.getByRole('option').filter({ hasText: 'العربية' }).click()
     await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
     await expect(page.locator('html')).toHaveAttribute('lang', 'ar')
+
+    // Regression guard: the switch must STICK, not just flash. The route-language
+    // memory used to persist the PRE-switch value while the locale chunk loaded
+    // (this hook unmounts behind <I18nLoading />), so the app reverted to English
+    // ~500 ms after the click — the exact reason this test flapped. Assert again
+    // after the dust settles.
+    await page.waitForTimeout(1200)
+    await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
+    await expect(page.locator('html')).toHaveAttribute('lang', 'ar')
   })
 
   test('Uruguay flagship modal shows Pathways tab when visible', async ({ page }) => {

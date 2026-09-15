@@ -53,6 +53,42 @@ committed state `rule-changed 0` both runs (`ok 114 → 116`, layout 9 → 8, al
 **no `Main content` anywhere in `layout_changed_urls`** · real runs `rule-changed 0` (after the retraction) at
 `129 urls · ok 114 · blocked 8 · unreachable 7 · layout 6` · `npm run validate:data` clean · live feed verified at
 `https://motopass.giveabit.io/data/source-monitor.json`.
+
+## Session — 2026-09-15 · The new CI gate paid for itself within one push: picking a lazy language reverted itself (Ziggy, `t_a8bc8947`)
+
+The re-enabled `CI` went red on its second push — `Arabic sets RTL document direction`, both attempts. That test was
+RIGHT: it had been flapping against a real, timing-dependent app bug that nothing else in the suite could see.
+
+**What a user experienced:** pick العربية (any language whose dictionary is still a lazy chunk) for the first time on a
+route, and the app flips to RTL… then **silently flips back to the previous language ~500 ms later**. Measured on the
+production build with a probe sampling `documentElement.lang`/`dir` + localStorage every 200 ms:
+
+```
+0 ms    lang=ar dir=rtl  pref=ar      routeMap {"/":"system"}   ← the switch is live
+400 ms  lang=ar dir=rtl  pref=system  routeMap {"/":"system"}   ← setLang("system") re-applied from the route map
+600 ms  lang=en dir=ltr  pref=system                            ← the user's choice is undone
+```
+
+**Root cause, one hook.** `src/hooks/useRouteLangMemory.ts` remembered the route→language map in an **unmount cleanup**
+(`return () => saveRouteLang(pathname, langRef.current)`). Switching to a not-yet-loaded locale makes `I18nProvider`
+render `<I18nLoading />` for a beat, which unmounts the whole consumer tree — this hook included — and the cleanup ran
+before the ref-update effect, so it wrote the **pre-switch** value (`"system"`) into the map for the current route. On
+remount the restore effect read that stale value straight back and called `setLang("system")`, overriding the user. It
+only fires while a locale chunk is cold (the module-level `loadedLangs` set makes later switches instant), which is
+exactly why it was intermittent — on CI and on THOR (12 local repeats: 1 failure + its retry also failed).
+
+**Fix.** Persist declaratively on change instead of on unmount: the map is written by a
+`useEffect(..., [pathname, langPreference])`, restore unchanged, and `saveRouteLang` inside `setLang` still writes
+immediately when the user picks. No lifecycle-order dependence remains.
+
+**Verified:** probe after the fix — `lang=ar dir=rtl pref=ar routeMap {"/":"ar"}` stable for 4 s+ · the `Arabic` spec
+**12/12** (was 11/12 with a double failure before the fix) · the spec now also asserts dir/lang are *still* RTL/`ar`
+**1.2 s later**, so a re-introduced revert fails immediately instead of flapping.
+
+**Also hardened in the same pass:** `src/i18n/lazyLocales.test.ts`'s nine-chunk loop runs on vitest's 5 s default and
+timed out once under concurrent load (the assertions are instant; the dynamic-import graph is the cost) — it now carries
+an explicit 60 s budget.
+
 ## Session — 2026-09-15 · CI is ON again: `main` has a real gate (Ziggy, `t_a8bc8947`)
 
 `.github/workflows/ci.yml` was `disabled_manually` on 2026-07-15 and never re-enabled. For two months the ONLY check on a

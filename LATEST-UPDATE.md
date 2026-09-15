@@ -8,6 +8,7 @@
 - **`prettier:check` is warn-only** until a one-shot `npx prettier --write src` lands (354 of 382 `src/` files predate the check); deliberately deferred so it cannot stomp in-flight cards.
 - **Gate protection, plainly:** `CI` + `Deploy motopass to Cloudflare Pages` (build + live marker; CF Pages git integration is the one deployer). `Daily Country Intel (self-heal)` runs the self-test daily as well.
 - Full CI step list reproduced locally on the fixed tree before pushing — **every step PASS**; e2e 25 passed with 1 flaky footer spec, since hardened (12/12 clean over 3 repeats).
+- **The gate earned its keep on its second push:** `Arabic sets RTL document direction` went red twice in a row — and it was right. Picking العربية (or any lazy-loaded locale) for the first time flipped the app to RTL and **silently reverted it to the previous language ~500 ms later** (`src/hooks/useRouteLangMemory.ts` saved the route→language map in an *unmount cleanup* reading a stale ref; the locale-chunk loading screen unmounts that hook). Fixed by persisting on change instead of on unmount; probe now shows `lang=ar dir=rtl pref=ar` stable, and the spec asserts the switch is still RTL 1.2 s later (12/12).
 
 ## RESOLVED — 2026-09-15 · coverage IS 50/50 (Cyprus sourced) — supersedes the 49/50 note below
 

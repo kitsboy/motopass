@@ -34,6 +34,9 @@ describe('lazy i18n locales', () => {
     expect(t('fr', 'pitch.hero')).not.toBe('pitch.hero')
   })
 
+  // Explicit budget: the assertions are instant, the cost is dynamically importing
+  // nine locale chunks (vitest's 5s default is charged for the import graph, and it
+  // is tight on a loaded machine — measured timeout under concurrent e2e load).
   it('every locale chunk loads and registers without throwing', async () => {
     for (const lang of ['es', 'fr', 'pt', 'zh', 'ar', 'sw', 'de', 'hi', 'ja']) {
       const dict = await loadLocale(lang)
@@ -41,7 +44,7 @@ describe('lazy i18n locales', () => {
       registerDict(lang as never, dict!)
       expect(t(lang as never, 'nav.pitch')).toBeTruthy()
     }
-  })
+  }, 60_000)
 
   it('pt fully localizes every page key — no English fallback', async () => {
     const dict = await loadLocale('pt')
