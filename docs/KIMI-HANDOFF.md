@@ -1,3 +1,15 @@
+## Session addendum — 2026-09-15 · Watchdog v2.1 (diffs · events · coverage gaps)
+
+Pushed `50d009b`. Adds to v2.0:
+- **Per-URL rule-text snapshots** → a confirmed rule change now records a before/after diff in `source-events.json` (rolling, cap 200) and in the manifest's `last_events`.
+- **Coverage gaps** — `status_since` per URL; each country carries `coverage_gap_days`; `report.coverage_gap_count`.
+- **Escalation tuned**: browser escalation now only fires when http yields a JS shell OR no rule text (was over-escalating on any cookie banner). Runtime 8min → **2min**. Re-baseline recovered **106/114** official sources (was 77).
+- **Verified stable**: 0 false rule-changes across consecutive runs; 34 whole-page layout drifts reported as informational only. Rule scope correctly re-baselines and will flag a page that later gains rule text.
+
+**Live:** `motopass.giveabit.io/data/source-monitor.json` (107 ok · 7 Cloudflare-blocked · 0 unreachable · 0 rule-changed) · `source-events.json` (200) · `source-snapshots.json`. Manifest now carries `last_events` + per-country `coverage_gap_days` for the presentation layer.
+
+**Next (presentation):** wire the Source Monitor page into the motopass SPA — per-country cards (freshness ring, source status, coverage gap), a change/activity feed with diffs, most-researched panel (Umami), OTS-proof strip of the manifest hash. Mock rendered; awaiting Cam's look-approval to wire.
+
 ## Session — 2026-09-15 (later) · SECOND bug found and fixed: a browser-pinned source was never probed (Rosa)
 
 **`probeTarget()` used the pinned mode to SKIP the probe.** `wantBrowser = entry.mode === 'browser'` then:
