@@ -1,3 +1,58 @@
+## Session — 2026-09-15 · Source-watchdog v8 — change-detection scopes must not compare across two measurement bases (Ziggy, `t_54b89ced`)
+
+Follow-up to `t_8b9ff3c4` (v7). `scripts/probe-sources.mjs` is a declared hotspot — claimed in a card comment before editing,
+kept backed up outside the repo, only my own paths committed. `EXTRACT_V` is **NOT** bumped (still 7): this changes
+change-detection, not extraction, so no baseline re-fires and Rosa's queued curation (`t_53267a90`) stays comparable.
+
+**The card's class: a `main`-scope-only move confirmed into a false `rule-changed`.** Reproduced **first as a unit test**
+(two consecutive `applyScopes` calls with a moved `main`) — 3 FAILs against the committed harness, with the exact Colombia
+shape: `mainR2.ruleChanged === true`, `changedScopes ["Main content"]`, on a URL whose `rule_scope` is `none`. Root cause:
+`main` is **derived**, `wholeText(one container)` while `whole` is `wholeText(the body)`, so the body's block set is a
+superset of the container's and `main` **cannot move without `whole` moving**. The only mechanisms left are the container
+SELECTION changing (`main`/`article`/`[role=main]`/`#content`/… longest text wins) or a partial render — never content.
+Fed into the pending→confirm rule gate it also fired **one run later** on any layout drift that moves `main` (the drift
+reports as layout, `main` goes pending, the next run confirms it). `main` is now re-baselined silently and is diagnostics
+only (`main_scope` + the stored baseline are still written and still reported; nothing detects on them).
+
+- **Measured on the live corpus:** 5 URLs were carrying an armed `main` `pending_hash`, and on `www.gov.ky` that pending
+  hash **equalled its own `whole.last_hash`** — one stable run away from a false "rules changed" alert. All 5 are defused
+  by this change (verified: `main` pendings armed 5 → 0 across the shadow pair).
+
+**Second defect, found by attributing the shadow run instead of accepting `rule-changed 0` by luck: a probe-path flip is a
+new measurement basis for the `rule` scope too.** v7 deliberately left `rule` comparing across an http ↔ render switch,
+on the stated assumption that *"its pending→confirm gate already stops a flapping page from ever confirming a rule change."*
+**That assumption is measured FALSE.** The gate stops a value that flaps *every* run; a path that flips **once** and then
+holds still for two probes confirms normally. `icp.gov.ae/en/` (browser → http) went pending on the http render and
+confirmed on the next run, firing a `rule-changed` whose entire diff was the two paths' different extractions
+(`"1,953,786 Million 22,071,418 Million 4,520,694 Million"` → the same text plus a service description). `rule` now takes
+the same silent re-baseline as `whole`, and **every switch is written to the new `path_switched_urls` report field** so the
+basis change is visible rather than silent. Flip rate, so nobody has to guess: **3 of 129 URLs flipped inside a single
+10-minute window** (`icp.gov.ae/en/`, `portugal.gov.pt`, `www.gov.ky`).
+
+**Third: a coverage event needs a stable basis.** `rule scope added` is no longer pushed when the scope appears because the
+measurement basis moved (`shouldEmitRuleScopeAdded()`, gated on `rebaseline` / `pathSwitched`) — only when the page gained
+it on a stable basis. `www.gov.ky` pushed the **same rotating news headline** as its "rule text" **twice in 16 minutes**
+across flips (`"…in preparation for this year's United Kingdom (UK) Joint Mini…"`, matching the `years?` term); Portugal's
+was a health headline. Neither could alert, but the feed should not have to explain them. This is the harness half of the
+`immd.gov.hk` class from `t_50cbc2d3`; the URL-curation half stays with Rosa.
+
+**Retracted, not published.** The real run pair produced one `rule-changed` (Thailand `www.thaievisa.go.th`) and it is a
+**false flag from a partial render**, not a rule edit: the baseline held the page's FULL rule set and the "new" text was
+that same text **cut off mid-sentence at `Attention :`** with its leading block (`10 years visa for long term residents`)
+missing — and that same render carried **no `main` scope at all**, which every full render of that page has. The URL is a
+JS-heavy e-Visa SPA (it previously served an `Acknowledge (9s)` load countdown) and had already been layout-drifting on 3
+consecutive runs. `watch.changed` cleared for Thailand, the false event removed from `source-events.json`, the rule
+snapshot restored to the full-render text, and an `audit_trail` entry added naming the measurement. **This is a third,
+distinct root cause — a browser render baselined while it is still hydrating — and it is explicitly NOT fixed by v8**
+(carded separately as **`t_239f6996`**, with the measured before/after text and the missing-`main` tell so it is not
+re-derived). Both retractions in this line of work came from the same discipline: attribute every count before believing it.
+
+**Verified.** `--self-test` **68/68**, no skips (13 new checks: the `main`-only defect both ways, the layout-drift variant,
+the real-rule-move guard, the path-flip rule re-baseline, and the coverage-event predicate) · shadow pair from the
+committed state `rule-changed 0` both runs (`ok 114 → 116`, layout 9 → 8, all attributed) with `main` pendings 5 → 0 and
+**no `Main content` anywhere in `layout_changed_urls`** · real runs `rule-changed 0` (after the retraction) at
+`129 urls · ok 114 · blocked 8 · unreachable 7 · layout 6` · `npm run validate:data` clean · live feed verified at
+`https://motopass.giveabit.io/data/source-monitor.json`.
 ## Session — 2026-09-15 · CI is ON again: `main` has a real gate (Ziggy, `t_a8bc8947`)
 
 `.github/workflows/ci.yml` was `disabled_manually` on 2026-07-15 and never re-enabled. For two months the ONLY check on a

@@ -55,10 +55,32 @@
  *       never enforced, so six Chromium instances ran at once and the load itself
  *       made solvable WAF challenges time out. A bot wall is now also retried
  *       once on a fresh session before it counts as final.
+ *   - v8 (2026-09-15): change-detection scopes must not compare across two
+ *     measurement bases (card t_54b89ced, found + measured while landing v7).
+ *     · `main` is DERIVED — wholeText(one container) while `whole` is wholeText(the
+ *       body) — so the body's block set is a superset of the container's and main
+ *       can never move without whole moving. Tracked in the pending→confirm rule
+ *       gate it fired a false `rule-changed` on a url whose `rule_scope` is `none`
+ *       (Colombia migracioncolombia.gov.co: the main hash moved with whole
+ *       identical, and the new main hash EQUALLED the whole hash — a different
+ *       container won the longest-text selection) and, one run later, on any
+ *       stable layout drift that moves main too. `main` is now re-baselined
+ *       silently and is diagnostics only (`main_scope`).
+ *     · a probe-path flip (http ↔ render) is a new basis too, so `rule` is now
+ *       re-baselined with `whole` instead of comparing across the switch. v7 left
+ *       `rule` comparing because the pending→confirm gate was assumed to stop it;
+ *       measured FALSE — a path that flips once and then holds still confirms
+ *       (icp.gov.ae/en/ browser→http fired a rule-changed whose diff was purely the
+ *       two paths' extractions). Every switch is reported in `path_switched_urls`.
+ *     · a `rule scope added` coverage event is not pushed when the scope appears
+ *       because the measurement basis moved (EXTRACT_V upgrade, path flip) rather
+ *       than the page (www.gov.ky's rotating news headline, the immd.gov.hk class).
+ *     `EXTRACT_V` is deliberately NOT bumped: change-detection, not extraction.
+ *
  *   - Scopes per URL: `whole` (full page), `rule` (sentences carrying fee /
  *     threshold / requirement / eligibility terms), `main` (dominant content
- *     container, when browser-rendered). Any scope changing = a detected
- *     change; `rule`/`main` changing is a RULE change, `whole` alone is layout.
+ *     container, when browser-rendered; diagnostics only, never alerts). `rule`
+ *     changing is a RULE change, `whole` alone is layout.
  *   - A URL's probe mode (http vs browser) is pinned on its first baseline so a
  *     mode flip can never look like a content change.
  *
@@ -747,7 +769,26 @@ function noteLayout(report, p, entry, moved, changedScopes, nowIso) {
   })
 }
 
-function applyScopes(entry, scopes, rebaseline, wholeRebaseline = false) {
+/**
+ * Should this probe push a `rule scope added` coverage event?
+ *
+ * A scope appearing where there was none is information, not an alert — but it is
+ * only information about the PAGE when the measurement basis held still. On an
+ * EXTRACT_V upgrade every URL is re-baselined, and on a probe-path flip
+ * (http ↔ render) the harness is reading a different document entirely; both used
+ * to announce a "rule scope added" whose `after` text was whatever the new path
+ * happened to surface. Measured (t_8b9ff3c4 / t_54b89ced): www.gov.ky alternates
+ * an http path whose rule scope is a rotating news headline ("…this year's…"
+ * matching the `years?` term) with a browser path carrying no rule scope, so every
+ * flip pushed coverage whose "rule text" was a news statement — the immd.gov.hk
+ * headline class from t_50cbc2d3. The event cannot alert (the rule scope needs two
+ * identical probes), but the feed should not have to explain it.
+ */
+function shouldEmitRuleScopeAdded({ hadRuleScope, hasRule, rebaseline, pathSwitched }) {
+  return !hadRuleScope && hasRule && !rebaseline && !pathSwitched
+}
+
+function applyScopes(entry, scopes, rebaseline, pathRebaseline = false) {
   entry.scopes = entry.scopes || {}
   const present = new Set(scopes.map(s => s.key))
   for (const key of ['rule', 'main']) {
@@ -760,14 +801,48 @@ function applyScopes(entry, scopes, rebaseline, wholeRebaseline = false) {
     const st = (entry.scopes[s.key] = entry.scopes[s.key] || {})
     const prev = st.last_hash
     const pend = st.pending_hash
-    // `wholeRebaseline` re-writes ONLY the whole-page baseline: a probe-path
-    // switch is a new measurement basis for the layout scope, but the rule scope
-    // keeps its own comparison (its pending→confirmed gate already stops a
-    // flapping page from ever confirming a rule change).
-    if (prev == null || rebaseline || (wholeRebaseline && s.key === 'whole')) { st.last_hash = s.newHash; delete st.pending_hash; continue }
+    // A probe-path switch (http ↔ render) is a NEW MEASUREMENT BASIS, not a page
+    // change: the two paths read different documents (measured 2026-09-15, 3 of
+    // 129 urls flip inside a single 10-minute window — icp.gov.ae/en/,
+    // portugal.gov.pt, www.gov.ky). `whole` AND `rule` are therefore re-baselined
+    // silently on a switch; `main` always is (see below).
+    //
+    // v7 deliberately left `rule` comparing, on the assumption that "its
+    // pending→confirm gate already stops a flapping page from ever confirming a
+    // rule change". That assumption is MEASURED FALSE (t_54b89ced): the gate only
+    // stops a value that flaps every run — a path that flips once and then holds
+    // still for two probes confirms. On icp.gov.ae/en/ (browser → http) the rule
+    // scope went pending on the http render and confirmed on the next run, firing
+    // a `rule-changed` whose diff was purely the two paths' different extractions
+    // ("1,953,786 Million … 4,520,694 Million" → the same text plus a service
+    // description). A false "rules changed" in front of Cam is worse than a
+    // missing one, so the rule scope now takes the same re-baseline as `whole`;
+    // every switch is reported in `path_switched_urls` so the basis change is
+    // visible rather than silent.
+    if (prev == null || rebaseline || (pathRebaseline && (s.key === 'whole' || s.key === 'rule'))) { st.last_hash = s.newHash; delete st.pending_hash; continue }
     if (s.newHash === prev) { delete st.pending_hash; continue }
     if (s.key === 'whole') { layoutChanged = true; st.last_hash = s.newHash; changedScopes.push(s.label); continue }
-    // rule / main scope moved — confirm before alerting
+    // `main` is DERIVED, not independent: it is wholeText(one container) while
+    // `whole` is wholeText(the body), so the body's block set is a SUPERSET of the
+    // container's and main can never move without whole moving. A main-set move
+    // with an unchanged whole set is therefore impossible for real content
+    // movement — the only mechanisms left are the container SELECTION changing
+    // (longest-text wins among main/article/[role=main]/#content/…) or a partial
+    // render. Tracked in the pending→confirm rule gate it did worse than nothing:
+    //  · measured on Colombia (migracioncolombia.gov.co, t_54b89ced): a main-only
+    //    move with whole identical confirmed into a `rule-changed` on a url whose
+    //    `rule_scope` is `none` — the new main hash EQUALLED the whole hash, i.e.
+    //    a different container won the selection;
+    //  · and when whole really drifts, whole already reports it (layoutChanged) —
+    //    but main went pending and the NEXT run confirmed it, so a stable layout
+    //    drift fired a rule change on a page with no rule text at all.
+    // So main is re-baselined silently, the same shape as the pathSwitched whole
+    // rebaseline above, and can never reach the rule gate. It is still written and
+    // still reported (`main_scope`, the `Main content` baseline) — diagnostics
+    // only, no detection. This does NOT warrant an EXTRACT_V bump: it changes
+    // change-detection, not extraction.
+    if (s.key === 'main') { st.last_hash = s.newHash; delete st.pending_hash; continue }
+    // rule scope moved — confirm before alerting
     if (pend === s.newHash) { ruleChanged = true; st.last_hash = s.newHash; delete st.pending_hash; changedScopes.push(s.label) }
     else { st.pending_hash = s.newHash }
   }
@@ -818,6 +893,10 @@ async function main() {
     no_rule_scope_urls: [],
     rebaselined_count: 0,
     rebaselined_urls: [],
+    // v8 — a probe-path flip (http ↔ render) is a new measurement basis, so `whole`
+    // and `rule` are re-baselined silently. Listed here so the basis change is
+    // visible in the report instead of being silent.
+    path_switched_urls: [],
     extract_v: EXTRACT_V,
   }
 
@@ -870,6 +949,9 @@ async function main() {
     // 0 blocks via http, 11 via the render).
     const probePath = result.mode || entry.mode || 'http'
     const pathSwitched = !isBaseline && entry.probe_path != null && entry.probe_path !== probePath
+    if (pathSwitched) {
+      report.path_switched_urls.push({ program_id: p.id, name: p.name, url: entry.url, from: entry.probe_path, to: probePath })
+    }
     // A pipeline change is a new measurement basis, not a content change:
     // re-baseline silently once so EXTRACT_V can never fire a corpus-wide alarm.
     const rebaseline = !isBaseline && entry.extract_v !== EXTRACT_V
@@ -895,7 +977,7 @@ async function main() {
 
     // Gaining a rule scope where there was none is information, not an alert —
     // there was no baseline to change from.
-    if (!hadRuleScope && result.rule != null) {
+    if (shouldEmitRuleScopeAdded({ hadRuleScope, hasRule: result.rule != null, rebaseline, pathSwitched })) {
       newEvents.push({ id: `${nowIso}-${entry.url.slice(-8)}-rule-scope`, ts: nowIso, date: today,
                        country: p.name, program_id: p.id, url: entry.url, kind: 'coverage',
                        status: 'rule scope added', before: null, after: result.ruleText?.slice(0, 220) || null })
@@ -1134,6 +1216,76 @@ async function selfTest() {
     [{ key: 'whole', label: 'Full page', newHash: 'w2' }, { key: 'rule', label: 'Rule terms', newHash: 'r1' }], false, false)
   check('…while a real whole-scope move on a stable path still counts',
     rP2.layoutChanged === true && entryP.scopes.rule.pending_hash === 'r1', rP2)
+
+  // v8 — the `rule` scope takes the SAME basis re-baseline as `whole`.
+  // Measured on icp.gov.ae/en/ (browser → http): v7 left `rule` comparing across
+  // the switch, so the http render went pending and the NEXT run confirmed it into
+  // a `rule-changed` whose diff was purely the two paths' extractions.
+  const entryQ = { url: 'https://icp', extract_v: EXTRACT_V, probe_path: 'browser', scopes: { whole: { last_hash: 'Wb' }, rule: { last_hash: 'Rb' } } }
+  const rQ = applyScopes(entryQ,
+    [{ key: 'whole', label: 'Full page', newHash: 'Wh' }, { key: 'rule', label: 'Rule terms', newHash: 'Rh' }], false, true)
+  const rQ2 = applyScopes(entryQ,
+    [{ key: 'whole', label: 'Full page', newHash: 'Wh' }, { key: 'rule', label: 'Rule terms', newHash: 'Rh' }], false, false)
+  check('a probe-path flip re-baselines the rule scope instead of comparing two documents',
+    rQ.ruleChanged === false && entryQ.scopes.rule.last_hash === 'Rh' && entryQ.scopes.rule.pending_hash === undefined, rQ)
+  check('…so the next run on the new, stable basis cannot confirm it (UAE icp.gov.ae)',
+    rQ2.ruleChanged === false, rQ2)
+  const entryS = { url: 'https://stable', extract_v: EXTRACT_V, probe_path: 'http', scopes: { whole: { last_hash: 'W0' }, rule: { last_hash: 'R0' } } }
+  const rS1 = applyScopes(entryS, [{ key: 'whole', label: 'Full page', newHash: 'W0' }, { key: 'rule', label: 'Rule terms', newHash: 'R1' }], false, false)
+  const rS2 = applyScopes(entryS, [{ key: 'whole', label: 'Full page', newHash: 'W0' }, { key: 'rule', label: 'Rule terms', newHash: 'R1' }], false, false)
+  check('…while a rule move on a stable basis still alerts on the second run',
+    rS1.ruleChanged === false && rS2.ruleChanged === true && rS2.changedScopes.join('|') === 'Rule terms', { rS1, rS2 })
+
+  // --- v8: `main` is a DERIVED scope — it can never be a change source ------
+  // (t_54b89ced, found + measured while landing v7.) Run 3 of the live corpus
+  // reported `rule-changed 1`: Colombia (migracioncolombia.gov.co), scope
+  // `Main content` ONLY, on a url whose `rule_scope` is `none`. The `main`
+  // container hash moved bfdce0c9… → 9a2bda81… while the `whole` hash did not —
+  // and the new main hash EQUALLED the whole hash, i.e. a different container won
+  // the "longest text" selection. main ⊆ whole, so a main-set move with an
+  // unchanged whole set is impossible for real content movement: it is a
+  // selector change or a partial render.
+  const mainA = { url: 'https://colombia', extract_v: EXTRACT_V, scopes: { whole: { last_hash: 'W' }, main: { last_hash: 'H0' } } }
+  const mainR1 = applyScopes(mainA, [{ key: 'whole', label: 'Full page', newHash: 'W' }, { key: 'main', label: 'Main content', newHash: 'W' }], false)
+  const mainR2 = applyScopes(mainA, [{ key: 'whole', label: 'Full page', newHash: 'W' }, { key: 'main', label: 'Main content', newHash: 'W' }], false)
+  check('a main-scope-only move (whole unchanged) never confirms into a rule change',
+    mainR1.ruleChanged === false && mainR2.ruleChanged === false &&
+    mainA.rule_scope === 'none' && !mainR2.changedScopes.includes('Main content'), { mainR1, mainR2 })
+  check('…and the main baseline is re-baselined silently, so it cannot confirm later either',
+    mainA.scopes.main.last_hash === 'W' && mainA.scopes.main.pending_hash === undefined, mainA.scopes.main)
+
+  // The same defect, one run later: whole-drift that also moves `main` used to
+  // leave main pending, and the NEXT run (whole now stable) confirmed it — so a
+  // stable layout drift fired a rule change on a page with no rule text.
+  const mainB = { url: 'https://drift', extract_v: EXTRACT_V, scopes: { whole: { last_hash: 'W0' }, main: { last_hash: 'M0' } } }
+  const mainB1 = applyScopes(mainB, [{ key: 'whole', label: 'Full page', newHash: 'W1' }, { key: 'main', label: 'Main content', newHash: 'M1' }], false)
+  const mainB2 = applyScopes(mainB, [{ key: 'whole', label: 'Full page', newHash: 'W1' }, { key: 'main', label: 'Main content', newHash: 'M1' }], false)
+  check('a layout drift that also moves main is layout, never a rule change',
+    mainB1.layoutChanged === true && mainB1.ruleChanged === false && mainB2.ruleChanged === false, { mainB1, mainB2 })
+
+  // Guard: main becoming unfalsifiable must not weaken the REAL rule signal.
+  const mainC = { url: 'https://rule', extract_v: EXTRACT_V, scopes: { whole: { last_hash: 'W0' }, rule: { last_hash: 'R0', pending_hash: 'R1' }, main: { last_hash: 'M0' } } }
+  const mainC1 = applyScopes(mainC, [{ key: 'whole', label: 'Full page', newHash: 'W0' }, { key: 'rule', label: 'Rule terms', newHash: 'R1' }, { key: 'main', label: 'Main content', newHash: 'M1' }], false)
+  check('…while a real rule movement still alerts, even when main moves too',
+    mainC1.ruleChanged === true && mainC1.changedScopes.join('|') === 'Rule terms', mainC1)
+  check('…and the main scope is still tracked as present for diagnostics',
+    mainC1.ruleChanged === true && mainC.main_scope === 'present' && mainC.scopes.main.last_hash === 'M1', mainC.main_scope)
+
+  // --- v8: a coverage event needs a stable measurement basis -----------------
+  // www.gov.ky alternates an http path (rule scope = a rotating news headline)
+  // with a browser path (no rule scope): the scope "appearing" is a property of
+  // the probe path, not news about the page, and the same is true of the
+  // EXTRACT_V re-baseline that re-writes every URL at once.
+  check('a rule scope appearing on a probe-path flip is not a coverage event',
+    shouldEmitRuleScopeAdded({ hadRuleScope: false, hasRule: true, rebaseline: false, pathSwitched: true }) === false)
+  check('…nor on a pipeline (EXTRACT_V) re-baseline',
+    shouldEmitRuleScopeAdded({ hadRuleScope: false, hasRule: true, rebaseline: true, pathSwitched: false }) === false)
+  check('…but a genuinely new rule scope on a stable basis is still announced',
+    shouldEmitRuleScopeAdded({ hadRuleScope: false, hasRule: true, rebaseline: false, pathSwitched: false }) === true)
+  check('…a URL with no rule text never announces one',
+    shouldEmitRuleScopeAdded({ hadRuleScope: false, hasRule: false, rebaseline: false, pathSwitched: false }) === false)
+  check('…and a scope that was already there is not "added"',
+    shouldEmitRuleScopeAdded({ hadRuleScope: true, hasRule: true, rebaseline: false, pathSwitched: false }) === false)
 
   // --- v6: churn classes measured on the live corpus (t_50cbc2d3) ----------
   // C. order-only rotation (edbmauritius.org's sector marquee) is not a change.
