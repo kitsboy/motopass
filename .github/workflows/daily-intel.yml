@@ -37,6 +37,10 @@ jobs:
           NODE_OPTIONS: '--max-old-space-size=512'
 
       # 4) Official-source watchdog — detects rule-page changes (baselines first run)
+      - name: Source-probe self-test
+        # An empty render / empty rule scope must never become an "ok" baseline.
+        # Pure assertions always run; the browser fixture self-skips here (no Chromium).
+        run: npm run intel:probe:selftest
       - name: Probe official sources
         run: npm run intel:probe
         env:
