@@ -143,7 +143,11 @@ async function httpProbe(url) {
     // stays on http — its volatile noise is already filtered downstream.)
     const rule = ruleSentences(text)
     const stripped = text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
-    if (stripped.length < 60 || rule.length < 8) {
+    // Reject JS-code / SPA-shell junk masquerading as rule text (e.g. a JS app
+    // bundle served as "text" containing `typeof window`). If the rule scope
+    // smells like code, treat it as no-rule → escalate to the browser.
+    const smellsLikeCode = /function\s*\(|=>\s*\{|\btypeof\b|\bdocument\.|\bwindow\.|\.getElementById|import\s*\{|console\./m.test(rule)
+    if (stripped.length < 60 || rule.length < 8 || smellsLikeCode) {
       return { ok: true, mode: 'http', bytes: buf.length, needsBrowser: true,
                whole: hashText(text), rule: null, main: null, ruleText: null }
     }

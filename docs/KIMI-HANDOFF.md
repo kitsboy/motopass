@@ -1,3 +1,16 @@
+## Session — 2026-09-15 · Watchdog v2.2: false-alarm class fixed + full re-baseline
+
+Investigated the rule-scope events that fired during the repair window (and after the two board cards verified them as 0 substantive — corpus stands). Three fresh flags (Indonesia oss.go.id, New Zealand mbie.govt.nz, Barbados) were proven FALSE by inspecting their diffs:
+- Indonesia's "rule text" was literal **JavaScript code** (`typeof window`, scroll-restoration) from a JS app bundle served as page text — not rules.
+- New Zealand's was a **news headline** ("Northland cycle trail receives funding boost" — a gov homepage), not an immigration rule.
+- Barbados was a polluted-baseline relic from the iterative fix.
+
+Root cause fixed permanently: the http probe now detects **JS/SPA-shell code** in the rule scope and escalates to the real browser (so a JS bundle can never baseline as rule text). Then a **full re-baseline** of all 114 URLs from the corrected engine — no more whack-a-mole of mixed baselines.
+
+**Verified across two clean consecutive runs: 107 ok · 0 rule-changed · 0 events · 7 Cloudflare-blocked · 0 unreachable.** The change feed is now trustworthy: it will only fire on a genuinely confirmed rule-text change.
+
+Note: run times can reach 3-5 min because many gov portals now render in the real browser — acceptable on the 24h cron.
+
 ## Session — 2026-09-15 · Source Monitor page LIVE at /sources
 
 - Client page `src/pages/SourceMonitorPage.tsx` (lazy) fetching `/data/source-monitor.json` + `/data/source-events.json`; route wired (`fe27e64`), SPA-fallback allowlist + sitemap updated (`18fe983`).
