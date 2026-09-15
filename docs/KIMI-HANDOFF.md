@@ -1,3 +1,16 @@
+## RESOLVED — 2026-09-15 · coverage IS 50/50 (Cyprus sourced) — supersedes the 49/50 note below
+
+The "49/50" figure in the CORRECTION block below was accurate when measured (v6 run, ~19:20Z) but was **superseded within the hour** by card `t_a8d32e10` — commit `6218dd3` added **2 probe-able official Cyprus alternates**, both with rule scopes:
+- `https://residence-documents.service.gov.cy/ForeignInterestsCompanies/Start`
+- `https://www.investcyprus.org.cy/relocate-your-business-to-cyprus/`
+
+**Current verified state** (harness v6, `extract v6`; verified against the LIVE feed `https://motopass.giveabit.io/data/source-monitor.json`):
+- Country coverage: **50 / 50 — 0 gaps**
+- 129 URLs · **111 ok** · **0 rule-changed** · 13 cloudflare-blocked · 5 empty-render
+- Cyprus: its 2 bot-walled URLs remain `blocked` (correct) alongside the 2 working alternates
+
+**Lesson:** the coverage figure moves as curation lands — always re-verify against the live feed, never quote the last number you said. Do not read the CORRECTION block below as current state.
+
 ## CORRECTION — 2026-09-15 (Kimi)
 
 Commit `670248e` stated "50/50 countries now covered by ≥1 probe-able official source — 0 coverage gaps". **That was wrong.** The accurate figure is **49/50**: **Cyprus** has no probe-able official source (both `moi.gov.cy` and `mof.gov.cy` return a Cloudflare 403 bot-wall). The 50/50 claim came from a coverage check that ran against a transiently-healthy probe state; re-verified from the committed feed it is 49/50.
