@@ -1,3 +1,14 @@
+## CORRECTION — 2026-09-15 (Kimi)
+
+Commit `670248e` stated "50/50 countries now covered by ≥1 probe-able official source — 0 coverage gaps". **That was wrong.** The accurate figure is **49/50**: **Cyprus** has no probe-able official source (both `moi.gov.cy` and `mof.gov.cy` return a Cloudflare 403 bot-wall). The 50/50 claim came from a coverage check that ran against a transiently-healthy probe state; re-verified from the committed feed it is 49/50.
+
+Current verified state (harness v6, `extract v6`):
+- 127 URLs · 108 ok · **0 rule-changed** · 13 cloudflare-blocked · 6 empty-render
+- Country coverage: **49/50** (gap: Cyprus)
+- The Cloudflare-blocked set is **stable**, not flapping (0 newly-blocked / 0 recovered between consecutive runs) — v6 detects it more accurately than earlier harnesses, which had been counting some walled pages as "ok".
+
+Open coverage work (Rosa): Cyprus + the walled URLs (El Salvador, Malta, Costa Rica, Thailand, Greece, Gibraltar, Cyprus, Philippines, Spain, Bulgaria).
+
 ## Session — 2026-09-15 · Source-watchdog v6 — layout churn attributed and killed, HK pinned to its rules pages (Ziggy)
 
 Card `t_50cbc2d3` (follow-up to `t_4336aaae`). `scripts/probe-sources.mjs` is a declared hotspot — claimed in a
