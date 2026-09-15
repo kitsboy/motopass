@@ -1,5 +1,10 @@
 # motopass — Last Updated 2026-09-15 by Kimi (THOR)
 
+**Brief:** official-source watchdog v2 — browser-backed, per-country rule scopes, layout-vs-rule classification, 24h cron, live manifest.
+**Commit:** `fb0501d`
+
+# motopass — Last Updated 2026-09-15 by Kimi (THOR)
+
 **Brief:** applications are NOT open — the launch gate no longer derives a business decision from a green build.
 **Commit:** `a64ed6e` (pushed)
 

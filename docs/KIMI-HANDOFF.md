@@ -1,3 +1,14 @@
+## Session — 2026-09-15 · Official-source watchdog v2 (the "rules changed?" detector)
+
+**Done (Cam-directed build, approved as complete/robust/reliable):**
+- Rebuilt `scripts/probe-sources.mjs`: browser escalation (Playwright chromium) recovers JS / bot-gated gov portals; Cloudflare bot walls are classified `blocked` (not retried pointlessly). Per-URL scopes: `whole` (full page) / `rule` (fees·thresholds·requirements·eligibility terms) / `main` (dominant content container). A rule scope only ALERTS after the same value is seen on two consecutive probes (pending→confirmed); volatile lines (live tickers, "last updated", ©) are stripped. Whole-page-only drift = `layout_changed` (informational), never a rule change. Writes `public/data/source-monitor.json`. Detection facts only — never auto-rewrites a rule.
+- Baseline established for all 108 official source URLs: 77 ok · 6 Cloudflare-blocked · 25 unreachable (curation queue below).
+- Cron `10511cbe573d` (daily 07:00, no_agent, silent when clean, delivers on a confirmed rule change) via `~/.hermes/scripts/motopass-source-watch.sh` → commits the fresh feed + manifest to main and pushes.
+
+**Open (curation):** 6 Cloudflare-blocked (El Salvador, Malta, Costa Rica, Thailand, Bulgaria, Gibraltar) + 25 unreachable (CAR, Bolivia, UAE, Hong Kong, Mexico, Cyprus×2, Greece, Vanuatu, Mauritius, Brazil, St. Lucia, Bahamas×2, Belize, Cambodia, Philippines, Malaysia, Indonesia×2, Japan, New Zealand, Spain, Cayman Islands) → each needs a probe-able alternate official source, verified before adding. Rosa's lane.
+
+**Presentation:** manifest is live at `/data/source-monitor.json` (50 countries, per-URL status + change history). Site display layer is the next phase (Cam's design direction pending).
+
 ## Session — 2026-09-15 · Truth fix: "Applications open" was a build result, not a decision
 
 **Done:**
