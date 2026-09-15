@@ -18,7 +18,16 @@ export const DEFAULT_FILTERS: ProgramFilters = {
   region: 'All',
   category: 'All',
   minInvestment: 0,
-  maxInvestment: 2_000_000,
+  /**
+   * No default cost ceiling — the unfiltered view must show the WHOLE catalog.
+   * 15,000,000 covers the largest figure anywhere in the corpus (Singapore's
+   * Single Family Office pathway at $15M; its top-level GIP min is $7.5M, the
+   * highest top-level value of all 50 programs). A lower cap silently hides
+   * expensive programs (it did: $2M hid Singapore from /programs entirely).
+   * Tightening cost is a user choice via the advanced sliders or a preset —
+   * never a default.
+   */
+  maxInvestment: 15_000_000,
   minCryptoScore: 0,
   minSovereignty: 0,
   maxSovereignty: 10,

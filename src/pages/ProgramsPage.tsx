@@ -543,8 +543,8 @@ export function ProgramsPage() {
                 </div>
               </div>
               {[
-                { labelKey: 'programs.minInvestment' as const, key: 'minInvestment' as const, max: 2000000, step: 25000 },
-                { labelKey: 'programs.maxInvestment' as const, key: 'maxInvestment' as const, max: 2000000, step: 50000 },
+                { labelKey: 'programs.minInvestment' as const, key: 'minInvestment' as const, max: 15000000, step: 25000 },
+                { labelKey: 'programs.maxInvestment' as const, key: 'maxInvestment' as const, max: 15000000, step: 50000 },
                 { labelKey: 'programs.minCryptoScore' as const, key: 'minCryptoScore' as const, max: 10, step: 1 },
               ].map(({ labelKey, key, max, step }) => {
                 const isMoney = key !== 'minCryptoScore'

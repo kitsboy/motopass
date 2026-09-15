@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { filterPrograms, DEFAULT_FILTERS } from './programFilter'
 import type { Program } from '../types/program'
+import catalogJson from '../../research/countries.json'
 
 const sample: Program[] = [
   {
@@ -59,5 +60,29 @@ describe('programFilter', () => {
     const r = filterPrograms(sample, { ...DEFAULT_FILTERS, minSovereignty: 9, maxSovereignty: 10 })
     expect(r).toHaveLength(1)
     expect(r[0].name).toBe('El Salvador')
+  })
+})
+
+/**
+ * Regression guard: the unfiltered /programs view must show the WHOLE catalog.
+ * A default cost cap previously hid Singapore ($7.5M GIP) from every visitor.
+ * If someone re-introduces a narrowing default, this fails loudly.
+ */
+describe('DEFAULT_FILTERS hide nothing', () => {
+  const catalog = (catalogJson as unknown as { programs: Program[] }).programs
+
+  it('loads the real catalog', () => {
+    expect(catalog.length).toBeGreaterThan(0)
+  })
+
+  it('returns every program in the catalog (no hidden cards)', () => {
+    const out = filterPrograms(catalog, DEFAULT_FILTERS)
+    const hidden = catalog.filter((p) => !out.includes(p)).map((p) => p.name)
+    expect(hidden).toEqual([])
+  })
+
+  it('the default cost cap covers the most expensive program', () => {
+    const max = Math.max(...catalog.map((p) => p.finance?.min_investment_usd ?? 0))
+    expect(DEFAULT_FILTERS.maxInvestment).toBeGreaterThanOrEqual(max)
   })
 })
