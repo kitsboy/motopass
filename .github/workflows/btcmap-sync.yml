@@ -19,7 +19,7 @@ jobs:
       - run: npm ci
       - run: npm run btcmap:density
       - run: npm run btcmap:sync
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore: weekly btcmap density + cache sync'
           file_pattern: 'public/data/btcmap*'

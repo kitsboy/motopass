@@ -65,7 +65,7 @@ jobs:
         run: npm run a11y:check
         continue-on-error: true
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
@@ -74,14 +74,14 @@ jobs:
       - name: Source-probe self-test (empty content must never become an ok baseline)
         run: npm run intel:probe:selftest
       - run: npm run test:e2e
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: footer-gap-screenshots
           path: artifacts/playwright/
           retention-days: 7
           if-no-files-found: ignore
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist/
@@ -132,7 +132,7 @@ jobs:
           node-version: '20'
       - run: npm ci
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         id: playwright-cache-live
         with:
           path: ~/.cache/ms-playwright
@@ -143,7 +143,7 @@ jobs:
         if: always()
         run: node scripts/deploy-summary.mjs --out artifacts/deploy-summary.json
         continue-on-error: true
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: deploy-summary

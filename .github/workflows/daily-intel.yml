@@ -65,7 +65,7 @@ jobs:
 
       # 7) Auto-commit DETECTION + re-anchors + research changes (facts, never invented rules)
       - name: Commit intel sweep
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore(intel): daily freshness sweep + source probe + satohash re-stamp'
           file_pattern: 'research/countries.json public/data/intel.json public/proofs/*'
