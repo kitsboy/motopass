@@ -24,6 +24,20 @@ const RELAY_WSS = process.env.NOSTR_RELAY || 'wss://relay.motopass.giveabit.io'
 const FAKE_RELAY = process.env.LAUNCH_FAKE_RELAY !== '0'
 const BUILD_ID = readBuildId()
 
+/**
+ * HUMAN GATE — the decision to accept applications, not a technical scorecard result.
+ *
+ * Until 2026-09-15 this was `applications_open = gates.every(g => g.pass)`, so five
+ * green TECHNICAL gates announced "applications open" on the public site while the
+ * footer and legal copy said "Not accepting applications" — a contradiction Cam
+ * confirmed was wrong (we are not accepting applications yet).
+ *
+ * A green build is not a decision to accept applications. Both are now required:
+ * all technical gates pass AND a human has flipped this flag deliberately.
+ * Set LAUNCH_APPLICATIONS_OPEN=1 (or flip the default below) only when Cam says so.
+ */
+const HUMAN_GATE_ACCEPTING_APPLICATIONS = process.env.LAUNCH_APPLICATIONS_OPEN === '1'
+
 const STUB_RE = /aaaa|placeholder|stub|demo|0000000/i
 const SHA64 = /^[a-f0-9]{64}$/i
 
@@ -236,6 +250,11 @@ function printScorecard(report) {
   console.log(report.applications_open
     ? '\x1b[32mAPPLICATIONS OPEN\x1b[0m — Apply form may be enabled'
     : '\x1b[33mPRE-LAUNCH\x1b[0m — Apply form stays disabled')
+  if (gates.every(g => g.pass) && !report.applications_open) {
+    console.log('\x1b[33mnote\x1b[0m — all technical gates pass, but the HUMAN GATE is closed.')
+    console.log('       Applications stay closed until Cam deliberately opens them.')
+    console.log('       Open with: LAUNCH_APPLICATIONS_OPEN=1 node scripts/launch-gate-check.mjs')
+  }
   console.log(`\nWrote ${outPath}\n`)
 }
 
@@ -249,7 +268,7 @@ async function main() {
     checkG5Ops(),
   ]
 
-  const applications_open = gates.every(g => g.pass)
+  const applications_open = gates.every(g => g.pass) && HUMAN_GATE_ACCEPTING_APPLICATIONS
   const report = {
     generated_at: new Date().toISOString(),
     build_id: BUILD_ID,
