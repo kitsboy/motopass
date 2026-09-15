@@ -40,6 +40,7 @@ const ja: Partial<Dict> = {
   'nav.apply': '申請',
   'nav.blog': 'インサイト',
   'nav.btcmap': 'BTCマップ',
+  'nav.sources': '情報源',
   'nav.close': '閉じる',
   'nav.compare': '比較',
   'nav.dashboard': 'ダッシュボード',

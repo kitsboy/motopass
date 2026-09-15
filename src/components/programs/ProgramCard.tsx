@@ -5,6 +5,7 @@ import { ProofBadge } from '../ui/ProofBadge';
 import { LazyFlagSprite } from '../pitch/LazyFlagSprite';
 import { FreshnessBadge } from '../ui/FreshnessBadge';
 import { IntelStatusBadge } from '../intel/IntelStatusBadge';
+import { SourceStatusBadge } from './SourceStatusBadge';
 import { useI18n } from '../../i18n/I18nContext';
 import { MerchantDensityBadge } from '../btcmap/MerchantDensityBadge';
 import { BtcDualPrice } from '../BtcDualPrice';
@@ -153,6 +154,7 @@ function ProgramCardContent({
               )}
               <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />
               <IntelStatusBadge programName={program.country} compact />
+              <SourceStatusBadge programName={program.country} />
               <FreshnessBadge
                 lastChecked={program.lastChecked}
                 proofStampedAt={program.proofStampedAt}

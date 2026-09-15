@@ -19,6 +19,7 @@ export type TranslationKey =
   | 'nav.dashboardShort'
   | 'nav.profile'
   | 'nav.btcmap'
+  | 'nav.sources'
   | 'nav.demo'
   | 'nav.more'
   | 'nav.language'
@@ -317,6 +318,15 @@ export type TranslationKey =
   | 'nav.siteTools'
   | 'nav.helpfulLinks'
   | 'nostr.copyNpub'
+  | 'source.ok'
+  | 'source.changed'
+  | 'source.walled'
+  | 'source.tooltip'
+  | 'source.readable'
+  | 'source.checked'
+  | 'source.gap'
+  | 'source.watchTitle'
+  | 'source.watchSub'
   | 'nostr.verifyNpub'
   | 'nostr.verifyOn'
   | 'nostr.disconnectAria'
@@ -471,8 +481,19 @@ const en: Dict = {
   'nav.dashboardShort': 'Dash',
   'nav.profile': 'Profile',
   'nav.btcmap': 'BTC Map',
+  'nav.sources': 'Sources',
   'nav.blog': 'Insights',
   'nav.verify': 'Verify',
+  // Official-source watchdog (Source Monitor)
+  'source.ok': 'Source live',
+  'source.changed': 'Source changed',
+  'source.walled': 'Source walled',
+  'source.tooltip': 'Official source, re-checked every 24h',
+  'source.readable': 'readable',
+  'source.checked': 'checked',
+  'source.gap': 'gap',
+  'source.watchTitle': 'Official source changes',
+  'source.watchSub': 'Confirmed rule changes on the official sources of the countries you watch.',
   'nav.trust': 'Trust',
   'nav.agents': 'Agents',
   'nav.apply': 'Apply',

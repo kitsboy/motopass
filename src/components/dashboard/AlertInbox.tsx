@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Bell, ExternalLink, ChevronDown } from 'lucide-react'
 import { usePrograms } from '../../hooks/usePrograms'
@@ -8,12 +8,15 @@ import { formatT } from '../../i18n/format'
 import { Card } from '../ui/Card'
 import {
   buildAllAlerts,
+  buildSourceAlerts,
   countAlertsByType,
   ALERT_TYPE_META,
   type PaigeAlert,
   type AlertType,
+  type SourceChangeEvent,
 } from '../../lib/paige/alerts'
 import { useWatchlist } from '../../hooks/useWatchlist'
+import { loadSourceEvents } from '../../hooks/useSourceMonitor'
 
 type FilterType = 'all' | 'watched' | AlertType
 
@@ -95,11 +98,26 @@ export function AlertInbox() {
   const { watchlist } = useWatchlist()
   const [filter, setFilter] = useState<FilterType>('all')
   const [showAll, setShowAll] = useState(false)
+  const [sourceEvents, setSourceEvents] = useState<SourceChangeEvent[]>([])
 
-  const allAlerts = useMemo(
-    () => buildAllAlerts(programs, portfolio, showAll ? 50 : 15, watchlist),
-    [programs, portfolio, showAll, watchlist],
-  )
+  // Live official-source watchdog feed — confirmed rule changes only.
+  useEffect(() => {
+    let live = true
+    loadSourceEvents().then((e) => {
+      if (live) setSourceEvents(e)
+    })
+    return () => {
+      live = false
+    }
+  }, [])
+
+  const allAlerts = useMemo(() => {
+    const limit = showAll ? 50 : 15
+    return [
+      ...buildSourceAlerts(sourceEvents, watchlist, limit),
+      ...buildAllAlerts(programs, portfolio, limit, watchlist),
+    ].slice(0, limit)
+  }, [programs, portfolio, showAll, watchlist, sourceEvents])
 
   const counts = useMemo(() => countAlertsByType(allAlerts), [allAlerts])
 

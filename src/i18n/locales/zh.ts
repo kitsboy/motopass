@@ -16,6 +16,7 @@ const zh: Partial<Dict> = {
   'nav.dashboardShort': '面板',
   'nav.profile': '个人资料',
   'nav.btcmap': 'BTC地图',
+  'nav.sources': '来源',
   'nav.blog': '洞察',
   'nav.verify': '验证',
   'nav.trust': '信任',

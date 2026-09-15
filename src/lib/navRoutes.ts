@@ -26,6 +26,7 @@ export const MAIN_NAV_PATHS = MAIN_NAV_ROUTES.map((r) => r.to)
 export const OVERFLOW_NAV_ROUTES: readonly NavRoute[] = [
   { to: '/compare', key: 'nav.compare' },
   { to: '/trust', key: 'nav.trust' },
+  { to: '/sources', key: 'nav.sources' },
   { to: '/portfolio', key: 'nav.portfolio' },
   { to: '/verify', key: 'nav.verify' },
 ] as const

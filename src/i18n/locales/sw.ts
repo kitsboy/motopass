@@ -14,6 +14,7 @@ const sw: Partial<Dict> = {
   'nav.dashboardShort': 'Dashibodi',
   'nav.profile': 'Wasifu',
   'nav.btcmap': 'Ramani ya BTC',
+  'nav.sources': 'Vyanzo',
   'nav.blog': 'Uchambuzi',
   'nav.verify': 'Thibitisha',
   'nav.trust': 'Uaminifu',

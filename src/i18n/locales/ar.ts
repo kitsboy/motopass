@@ -14,6 +14,7 @@ const ar: Partial<Dict> = {
   'nav.dashboardShort': 'اللوحة',
   'nav.profile': 'الملف الشخصي',
   'nav.btcmap': 'خريطة BTC',
+  'nav.sources': 'المصادر',
   'nav.blog': 'رؤى',
   'nav.verify': 'تحقق',
   'nav.trust': 'الثقة',

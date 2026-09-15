@@ -14,6 +14,7 @@ const pt: Partial<Dict> = {
   'nav.dashboardShort': 'Painel',
   'nav.profile': 'Perfil',
   'nav.btcmap': 'Mapa BTC',
+  'nav.sources': 'Fontes',
   'nav.blog': 'Análises',
   'nav.verify': 'Verificar',
   'nav.trust': 'Confiança',

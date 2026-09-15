@@ -16,6 +16,7 @@ const hi: Partial<Dict> = {
   'nav.dashboardShort': 'डैशबोर्ड',
   'nav.profile': 'प्रोफ़ाइल',
   'nav.btcmap': 'BTC मानचित्र',
+  'nav.sources': 'स्रोत',
   'nav.blog': 'अंतर्दृष्टि',
   'nav.verify': 'सत्यापित करें',
   'nav.trust': 'भरोसा',

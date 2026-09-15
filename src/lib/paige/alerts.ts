@@ -208,6 +208,69 @@ export function countAlertsByType(alerts: PaigeAlert[]): Record<AlertType, numbe
 }
 
 /**
+ * A confirmed change/coverage event from the MotoPass official-source watchdog
+ * feed (/data/source-events.json). Structurally compatible with `SourceEvent`
+ * in hooks/useSourceMonitor.ts — declared here so this module stays dependency-free.
+ */
+export interface SourceChangeEvent {
+  id: string
+  ts?: string
+  date: string
+  country: string
+  program_id?: number
+  url: string
+  kind?: string
+  status: string
+  before?: string | null
+  after?: string | null
+}
+
+function hostOf(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '')
+  } catch {
+    return url
+  }
+}
+
+/**
+ * Build alerts from the live official-source watchdog feed.
+ *
+ * Only CONFIRMED rule changes (`kind === 'rule'` && `status === 'changed'`)
+ * become alerts — that is exactly the promise the Source Monitor makes. Raw
+ * probe noise, retries and coverage notes never reach the user's inbox.
+ *
+ * Watched countries pin to the top (same rule as buildAllAlerts).
+ */
+export function buildSourceAlerts(
+  events: SourceChangeEvent[],
+  watchlistIds: number[] = [],
+  limit = 20,
+): PaigeAlert[] {
+  const watchSet = new Set(watchlistIds)
+
+  return events
+    .filter((e) => e.kind === 'rule' && e.status === 'changed')
+    .map<PaigeAlert>((e) => ({
+      id: `source-${e.id}`,
+      programName: e.country,
+      alertType: 'rule-change',
+      summary: `Official source changed — ${hostOf(e.url)} re-checked and the rule text moved.`,
+      source: hostOf(e.url),
+      date: e.date,
+      proofUrl: '/sources',
+      inPortfolio: false,
+      watched: e.program_id != null && watchSet.has(e.program_id),
+    }))
+    .sort((a, b) => {
+      const byDate = (b.date ?? '').localeCompare(a.date ?? '')
+      if (byDate !== 0) return byDate
+      return (b.watched ? 1 : 0) - (a.watched ? 1 : 0)
+    })
+    .slice(0, limit)
+}
+
+/**
  * Alert type metadata for UI rendering.
  */
 export const ALERT_TYPE_META: Record<AlertType, { label: string; color: string; icon: string }> = {
