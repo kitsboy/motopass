@@ -1,3 +1,19 @@
+## Session — 2026-09-15 (later) · SECOND bug found and fixed: a browser-pinned source was never probed (Rosa)
+
+**`probeTarget()` used the pinned mode to SKIP the probe.** `wantBrowser = entry.mode === 'browser'` then:
+`let result = wantBrowser ? null : await httpProbeWithRetry(url)` and the escalation guarded by `if (!wantBrowser)`.
+So for any URL whose mode was pinned to `browser`, `result` stayed `null` and the entry returned **`probe failed`** — every run, forever, no matter how healthy the source.
+
+**Consequence:** the moment a URL baselined successfully through Chromium, its mode was pinned to `browser` and the *next* run reported it unreachable. **21 of the 114 sources were trapped** — Bolivia, Hong Kong, Mexico, UAE, Zug, Cyprus, Greece `mfa.gr`, Vanuatu, Mauritius, Brazil *planalto*, Argentina *boletin*, St. Lucia, Bahamas, Belize, Cambodia, Philippines `boi`, Malaysia `mdec`, Indonesia ×2, Japan `meti`, Spain `inclusion`, Cayman `ciregistry`. (This is also why the browser-binary fix alone looked like it "wore off" between two runs.) Fixed in `27c3b52`: a pinned-browser URL now runs the browser directly; an unpinned URL keeps http-then-browser escalation; Cloudflare 403 walls are still short-circuited.
+
+**Verified after the fix (three consecutive real runs): 114 URLs · ok 107 · unreachable 0 · cloudflare-blocked 7 · rule-changed 0.** Committed as `e9dbbc0`.
+
+**Rule-change events during the repair window were NOT published.** 11 `source-probe-v2` rule-scope movements fired while the harness itself was broken (UAE ×2, Paraguay, Chile, Barbados, Japan, Ireland ×3, Italy ×3). There is no text-level snapshot behind them, they all landed inside a 3-hour pipeline-repair window, and a 2.5-hour "rule change" on `enterprise.gov.ie` is not credible. `watch.changed` was cleared for the 6 affected countries and each audit entry now states why it was re-baselined instead of silently disappearing. **They need a rule-text diff before anyone treats them as real** — that is the gap the v3 snapshot feed (in flight on this repo) closes.
+
+**Observation for the v3 feed:** the `whole` scope drifted on **37–39 of 114 URLs within 20 minutes** on every run — the full-page hash is dominated by volatile elements (news rails, tickers, "last updated"). Rule scope is stable. If layout events are going to be shown to a human, filter the volatile lines out of `whole` the way `rule` already does, or the feed will be noise.
+
+**Hotspot:** `scripts/probe-sources.mjs` was being edited by a concurrent session in this same working clone (`/root/motopass`) while this card ran — an uncommitted coverage-clock + rule-text-snapshot feature. I staged my one-hunk fix with `git apply --cached` so none of the other session's unreleased work was committed by me, and left their working-tree changes intact. Anyone else touching this file should coordinate first.
+
 ## Session — 2026-09-15 · Source curation DONE + watchdog root-cause fix (Rosa)
 
 **Root cause of the "25 unreachable" (biggest finding):** it was never the URLs. `probe-sources.mjs` escalates to Playwright chromium when a page is bot-gated/JS-only, but the pinned browser build (`chromium-1243`, required by playwright 1.63.0 in `/root/hq`) was missing from `~/.cache/ms-playwright` — every browser escalation died with `browserType.launch: executable doesn't exist`. Reinstalled via `npx playwright install chromium` (from `/root/hq`). **Result: 25 of the 31 "failing" sources were false negatives — they probe clean.**
