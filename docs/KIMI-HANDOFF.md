@@ -1,3 +1,30 @@
+## Session — 2026-09-15 · Source curation DONE + watchdog root-cause fix (Rosa)
+
+**Root cause of the "25 unreachable" (biggest finding):** it was never the URLs. `probe-sources.mjs` escalates to Playwright chromium when a page is bot-gated/JS-only, but the pinned browser build (`chromium-1243`, required by playwright 1.63.0 in `/root/hq`) was missing from `~/.cache/ms-playwright` — every browser escalation died with `browserType.launch: executable doesn't exist`. Reinstalled via `npx playwright install chromium` (from `/root/hq`). **Result: 25 of the 31 "failing" sources were false negatives — they probe clean.**
+
+- Post-fix full probe: **114 URLs · ok 107 · rule-changed 0 · layout-changed 35 · cloudflare-blocked 7 · unreachable 0**.
+- Every one of the 50 programs now has ≥1 probe-able official source. **Zero countries unwatched.**
+- If this ever recurs, the symptom is `unreachable` counts jumping in one run with `browserType.launch` in `last_error` — run `npx playwright install chromium` in `/root/hq`.
+
+**Curation (6 verified alternates added — 5 countries, blocked-by-Cloudflare set).** All verified **PROBE-ABLE (HTTP 200, real content, mode pinned `http`, scopes `whole`+`rule`, baselined 2026-09-15T13:52Z)**, added to both `legal_compliance.official_urls` and `watch.urls`:
+
+| Country | Added alternate (official authority) | Why |
+|---|---|---|
+| El Salvador | `https://www.migracion.gob.sv` | DGME — the immigration authority (only source; was the sole country with zero ok URLs) |
+| Malta | `https://www.identita.gov.mt` | Identità — citizenship/identity agency |
+| Costa Rica | `https://www.rree.go.cr` | Foreign Ministry (consular/visa) |
+| Thailand | `https://consular.mfa.go.th` · `https://www.thaievisa.go.th` | Consular Dept (visa rules) + official e-visa portal |
+| Bulgaria | `https://www.mfa.bg` | Foreign Ministry (visa/consular) |
+
+Existing working sources were kept. The 7 Cloudflare-walled URLs stay in `watch.urls` (indexed, so a future un-walling is detected) but are **no longer any country's only source**.
+
+**Still Cloudflare-walled, no probe-able alternate exists (documented, not invented):**
+- Greece `https://www.mfa.gr` — bot-walled on every variant (`/en/`, apex, `www.gov.gr` all return "Access Denied" via browser). **Greece is covered** by `https://migration.gov.gr` (Ministry of Migration & Asylum, ok).
+- Gibraltar `https://www.gfsc.gi` — GFSC is the financial regulator; **Gibraltar is covered** by `https://www.gibraltar.gov.gi` (HM Government of Gibraltar, ok).
+- El Salvador `presidencia.gob.sv`, Malta `mfsa.mt`, Costa Rica `migracion.go.cr`, Thailand `immigration.go.th`, Bulgaria `mvr.bg` — all 403 Cloudflare bot walls from a datacenter IP; alternates above carry the watch.
+
+**Rejected candidates (checked, NOT added — empty shell / parked / dead-end):** `cancilleria.gob.sv` & `gob.sv` (115-byte shell), `communitymalta.gov.mt` (116-byte), `dgme.go.cr`, `gobernacion.go.cr`, `www.gov.gr` (Access Denied). Nothing was added that isn't an official government host.
+
 ## Session — 2026-09-15 · Official-source watchdog v2 (the "rules changed?" detector)
 
 **Done (Cam-directed build, approved as complete/robust/reliable):**
