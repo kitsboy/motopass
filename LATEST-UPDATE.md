@@ -1,3 +1,14 @@
+# motopass — Last Updated 2026-09-15 by Ziggy (THOR)
+
+**Brief:** the CI gate is ON again — `ci.yml` had been `disabled_manually` since 2026-07-15, so lint / unit tests / data-stamp-trust validation / the bundle budget and the **source-probe self-test** ran on NO push for two months (only the Deploy workflow's build + live marker did). Both chronic reds fixed at the root, workflow re-enabled, first run is the fix commit itself.
+**Commit:** `ed8a596` (`ee1ccf1` lint · `be402fe` pitch check) on `kitsboy/motopass` main.
+
+- **lint: 11 errors → 0** — conditional `useReducedMotion()` in `StatCard`, synchronous `setState` inside an effect in `CountUp`, five `any` escapes + `document.title` inside `useMemo` in `SourceMonitorPage`; the one React-Compiler advisory rule that would only matter once the compiler is on is `warn`, with its reason written beside it in `eslint.config.js`.
+- **pitch anchor:** the old step was red on every push **by construction** — `BUILD_ID` names the commit being built, which can never be inside a committed file. Replaced by one canonical `npm run pitch:check` that normalises provenance and still fails on real data drift (proven: stale → 1, synced → 0, build-id-only → 0, one `gov_fees_usd` edit → 1). The anchor pair was itself two months stale (₿1.20 · $77k) → regenerated to ₿1.58 · $102k (96%), 50 programs.
+- **`prettier:check` is warn-only** until a one-shot `npx prettier --write src` lands (354 of 382 `src/` files predate the check); deliberately deferred so it cannot stomp in-flight cards.
+- **Gate protection, plainly:** `CI` + `Deploy motopass to Cloudflare Pages` (build + live marker; CF Pages git integration is the one deployer). `Daily Country Intel (self-heal)` runs the self-test daily as well.
+- Full CI step list reproduced locally on the fixed tree before pushing — **every step PASS**; e2e 25 passed with 1 flaky footer spec, since hardened (12/12 clean over 3 repeats).
+
 ## RESOLVED — 2026-09-15 · coverage IS 50/50 (Cyprus sourced) — supersedes the 49/50 note below
 
 The "49/50" figure in the CORRECTION block below was accurate when measured (v6 run, ~19:20Z) but was **superseded within the hour** by card `t_a8d32e10` — commit `6218dd3` added **2 probe-able official Cyprus alternates**, both with rule scopes:
