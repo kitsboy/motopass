@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
  * MotoPass · Source Monitor
@@ -8,8 +8,8 @@ import { useEffect, useState, useMemo } from 'react'
  * Self-contained styles so it renders independently of the app theme.
  */
 
-const COLORS = { ok: '#2ee6a8', blocked: '#ffb648', unreachable: '#ff5c5c' }
-const LABELS = { ok: 'healthy', blocked: 'blocked', unreachable: 'unreachable' }
+const COLORS: Record<Status, string> = { ok: '#2ee6a8', blocked: '#ffb648', unreachable: '#ff5c5c' }
+const LABELS: Record<Status, string> = { ok: 'healthy', blocked: 'blocked', unreachable: 'unreachable' }
 
 function host(u) {
   try { return new URL(u).hostname.replace(/^www\./, '') } catch { return u }
@@ -54,9 +54,12 @@ const s = {
 type Url = { url: string; status: string; last_probed: string | null; coverage_gap_days?: number; last_error?: string | null }
 type Country = { program_id: number; name: string; changed: boolean; coverage_gap_days?: number; urls: Url[] }
 type Ev = { kind: string; country: string; url: string; status?: string; scopes?: string[]; ts: string; before?: string; after?: string }
+/** /data/source-monitor.json (written by scripts/write-intel.mjs). */
+type MonitorManifest = { generated_at: string; total_urls: number; by_country?: Country[] }
+type Status = 'ok' | 'blocked' | 'unreachable'
 
 export function SourceMonitorPage() {
-  const [manifest, setManifest] = useState<any>(null)
+  const [manifest, setManifest] = useState<MonitorManifest | null>(null)
   const [events, setEvents] = useState<Ev[]>([])
   const [err, setErr] = useState<string | null>(null)
   const [filter, setFilter] = useState('all')
@@ -70,13 +73,15 @@ export function SourceMonitorPage() {
     return () => c.abort()
   }, [])
 
-  const best = (c: Country) => c.urls.some(u => u.status === 'ok') ? 'ok' : (c.urls.some(u => u.status === 'blocked') ? 'blocked' : 'unreachable')
+  const best = (c: Country): Status => c.urls.some(u => u.status === 'ok') ? 'ok' : (c.urls.some(u => u.status === 'blocked') ? 'blocked' : 'unreachable')
   const countries: Country[] = manifest?.by_country || []
   const filtered = countries.filter(c => filter === 'all' || best(c) === filter)
   const counts = { ok: countries.filter(c => best(c) === 'ok').length, blocked: countries.filter(c => best(c) === 'blocked').length, unreachable: countries.filter(c => best(c) === 'unreachable').length }
   const feed = events.slice(0, 10)
 
-  useMemo(() => { document.title = 'Source Monitor · MotoPass' }, [])
+  useEffect(() => {
+    document.title = 'Source Monitor · MotoPass'
+  }, [])
 
   if (err) return <div style={s.err}>Source monitor unavailable — {err}</div>
   if (!manifest) return <div style={{ padding: 40, color: '#c99aab' }}>Loading live sources…</div>
@@ -92,7 +97,7 @@ export function SourceMonitorPage() {
 
       <div style={s.chips}>
         {[['ok', 'Sources healthy', counts.ok], ['blocked', 'Blocked (bot-wall)', counts.blocked], ['unreachable', 'Unreachable', counts.unreachable]].map(([k, l, n]) => (
-          <div key={k} style={s.chip}><div style={{ ...s.chipN, color: (COLORS as any)[k] }}>{n}</div><div style={s.chipL}>{l}</div></div>
+          <div key={k} style={s.chip}><div style={{ ...s.chipN, color: COLORS[k as Status] }}>{n}</div><div style={s.chipL}>{l}</div></div>
         ))}
         <div style={s.chip}><div style={s.chipN}>{manifest.total_urls}</div><div style={s.chipL}>Official URLs watched</div></div>
       </div>
@@ -109,12 +114,12 @@ export function SourceMonitorPage() {
               const b = best(c)
               const gap = c.coverage_gap_days || 0
               return (
-                <div key={c.program_id} style={{ ...s.card, borderColor: b === 'ok' ? '#2a1220' : (COLORS as any)[b] }}>
-                  <div style={{ float: 'right', width: 11, height: 11, borderRadius: 11, background: (COLORS as any)[b] }}></div>
+                <div key={c.program_id} style={{ ...s.card, borderColor: b === 'ok' ? '#2a1220' : COLORS[b] }}>
+                  <div style={{ float: 'right', width: 11, height: 11, borderRadius: 11, background: COLORS[b] }}></div>
                   <div style={{ fontWeight: 700, fontSize: 14.5 }}>{c.name}<span style={{ ...s.muted, marginLeft: 6, fontSize: 10 }}>{c.program_id}</span>{c.changed ? <span style={{ background: COLORS.unreachable, color: '#fff', fontSize: 9.5, fontWeight: 800, padding: '2px 7px', borderRadius: 999, marginLeft: 8 }}>CHANGED</span> : null}</div>
                   <div style={{ ...s.muted, marginTop: 5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.urls.map(u => host(u.url)).join(' · ')}</div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 10, fontSize: 11.5, color: '#8a5f70' }}>
-                    <span style={{ color: (COLORS as any)[b], fontWeight: 700, textTransform: 'uppercase', fontSize: 10, letterSpacing: '.04em' }}>{LABELS[b]}</span>
+                    <span style={{ color: COLORS[b], fontWeight: 700, textTransform: 'uppercase', fontSize: 10, letterSpacing: '.04em' }}>{LABELS[b]}</span>
                     <span style={{ marginLeft: 'auto' }}>{gap ? `⚠ ${gapLabel(gap)}` : `${ago(c.urls[0]?.last_probed)}· fresh`}</span>
                   </div>
                 </div>

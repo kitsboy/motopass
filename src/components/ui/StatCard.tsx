@@ -20,6 +20,9 @@ type CinematicProps = {
 }
 
 export function StatCard(props: LegacyProps | CinematicProps) {
+  // Hooks must run on every render — before any early return below.
+  const reduceMotion = useReducedMotion()
+
   if ('icon' in props && props.icon !== undefined) {
     const { value, label, accent, icon } = props
     return (
@@ -42,7 +45,6 @@ export function StatCard(props: LegacyProps | CinematicProps) {
   }
 
   const { label, value, delta, index = 0 } = props as CinematicProps
-  const reduceMotion = useReducedMotion()
   return (
     <motion.div
       initial={reduceMotion ? false : { opacity: 0, y: 14 }}

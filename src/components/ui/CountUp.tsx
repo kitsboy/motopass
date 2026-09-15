@@ -20,15 +20,14 @@ export function CountUp({ value, format = v => v.toLocaleString(), durationMs = 
   const reduceMotion = useReducedMotion()
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: '0px 0px -10% 0px' })
-  const [display, setDisplay] = useState(reduceMotion ? value : 0)
+  const [display, setDisplay] = useState(0)
   const fromRef = useRef(0)
 
   useEffect(() => {
     if (!inView) return
-    if (reduceMotion) {
-      setDisplay(value)
-      return
-    }
+    // Reduced motion renders the final value directly (see below) — never set
+    // state synchronously inside an effect, it cascades an extra render.
+    if (reduceMotion) return
     const from = fromRef.current
     const start = performance.now()
     let raf = 0
@@ -46,7 +45,7 @@ export function CountUp({ value, format = v => v.toLocaleString(), durationMs = 
 
   return (
     <span ref={ref} className={className}>
-      {format(display)}
+      {format(reduceMotion ? value : display)}
     </span>
   )
 }

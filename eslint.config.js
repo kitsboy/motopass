@@ -14,6 +14,12 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      // React Compiler diagnostic, not a correctness rule: this build does NOT enable
+      // the compiler (no babel-plugin-react-compiler in vite.config.ts), so "Existing
+      // memoization could not be preserved" (GoalFinder's manual useMemo over program
+      // data) is an advisory that would only matter once the compiler is switched on.
+      // Keep it visible as a warning; promote it back to error together with the compiler.
+      'react-hooks/preserve-manual-memoization': 'warn',
     },
   },
 )
