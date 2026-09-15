@@ -1,3 +1,27 @@
+## Session — 2026-09-15 · Curation: retire www.set.gov.py (Paraguay) + u.ae (UAE) from watch (Rosa, `t_95a8142e`)
+
+Retired two rotating-content-rail URLs from the watchdog watch list (the `t_50cbc2d3` / `immd.gov.hk`
+precedent; the v9 harness left this class to curation, `t_239f6996`). Both had a rules-bearing sibling
+already watched, so rule coverage survives intact:
+
+- **`https://www.set.gov.py` (Paraguay, id 15)** — rule scope was a **rotating DNIT news/courier rail**
+  (harvested: a firearms-seizure press item, a tax-education talks item); it produced repeated false
+  "Rule-bearing content confirmed changed" audit entries and a live `rule` event (cleared here). Removed
+  from `watch.urls`, kept in `legal_compliance.official_urls`. Rule coverage now rests on the already-watched
+  `migraciones.gov.py/residencia-temporal/` and `/aranceles-migratorios/` (both rule_scope present). Its
+  orphaned `source-snapshots.json` key was deleted; the false rule event removed from `source-events.json`;
+  Paraguay `watch.changed` cleared.
+- **`https://u.ae` (UAE / Dubai / Abu Dhabi, id 8)** — portal homepage rotates whole page + rule rail
+  together (real page move, not render artifact; now rule_scope none); repeated "content changed" audits.
+  Removed from `watch.urls`, kept in `official_urls`. Rule coverage rests on already-watched `www.vara.ae`
+  and `icp.gov.ae/en/` (both rule_scope present). No snapshot/event orphan existed for it.
+
+Each country got a top-level `audit_trail` entry (date 2026-09-15, source `curation (t_95a8142e)`)
+recording the retire + reasoning so the next observer doesn't re-derive it. Verified with the real engine
+in a trimmed shadow (5 URLs, rule-changed 0) then a full real run: **128 URLs (was 130) · ok 116 ·
+rule-changed 0 · rebaselined 0**; neither retired URL appears in the live monitor; `npm run validate:data`
+clean. Commit follows (data + docs only; `scripts/probe-sources.mjs` untouched — harness hotspot).
+
 ## Session — 2026-09-15 · CI hygiene: action-runtime deadline, a phantom red, and a retry that re-reds a fixed commit (Kimi, `t_a8bc8947`)
 
 Cam reported CI as red on `kitsboy/motopass` (`CI` #76, `2c1bcb0`): `2 errors and 11 warnings`, "Re-run triggered

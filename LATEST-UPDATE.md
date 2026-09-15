@@ -1,4 +1,16 @@
-# motopass — Last Updated 2026-09-15 by Kimi (THOR) — CI hygiene (action runtime deadline + phantom red)
+# motopass — Last Updated 2026-09-15 by Rosa (THOR) — retire two rotating-rail watch URLs (Paraguay set.gov.py + UAE u.ae)
+
+**Update 22:45 (Rosa, THOR) — curation `t_95a8142e`.** Retired `https://www.set.gov.py` (Paraguay) and
+`https://u.ae` (UAE) from the watchdog watch list — both were the `immd.gov.hk`-class rotating content rail
+whose rule scope generated repeated false "content changed" events. Each was kept in `legal_compliance.official_urls`
+and its rules coverage now rests on already-watched rules-bearing siblings (Paraguay: `migraciones.gov.py/residencia-temporal/`
++ `/aranceles-migratorios/`; UAE: `www.vara.ae` + `icp.gov.ae/en/` — all rule_scope present). Per-URL `audit_trail`
+entries record the retire. Feed regenerated on the v9 harness: **128 URLs (was 130) · ok 116 · rule-changed 0 ·
+rebaselined 0**; live `source-monitor.json` carries neither retired URL; orphaned `set.gov.py` snapshot key and its
+one false `rule` event were cleared; `npm run validate:data` clean (50 programs, schema v3). No harness change —
+`scripts/probe-sources.mjs` untouched.
+
+## Previous — Last Updated 2026-09-15 by Kimi (THOR) — CI hygiene (action runtime deadline + phantom red)
 
 **Update 21:58 (Kimi, THOR) — the gate is green, and the two things that made it *look* broken are gone.**
 **Commits:** `e319b6e` (action runtimes) · `0636589` (annotation) on `kitsboy/motopass` main.
