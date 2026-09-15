@@ -1,3 +1,66 @@
+## Session — 2026-09-15 · Source-watchdog v7 — a WAF challenge is a STATE to wait out, not a page (Ziggy, `t_8b9ff3c4`)
+
+Follow-up to `t_a8d32e10` (Rosa). `scripts/probe-sources.mjs` is a declared hotspot — claimed in a card comment before
+editing. Both carded defects are fixed at the root, plus one aggravator the measurements exposed. `extract v7`
+re-baselines silently once, so no existing baseline re-fires.
+
+**1. `browserProbe()` read the WAF challenge as the page.** Azure Front Door serves the interstitial with a 403, its
+script solves it in-page, and the SAME url is re-requested with `?afd_azwaf_tok=…` — only that second request is the
+real page. The harness read once at `settleMs = 2500` and classified the wall, so Cyprus's authoritative
+Regulation 6(2) page (readable from THOR at ~8 s) could never be seen; `probeTarget()` only retried `empty render`.
+Now a recognised challenge interstitial (Azure WAF / CF markers / "checking you're not a bot") is waited out —
+poll + a confirm-read that must agree twice — capped by `CHALLENGE_WAIT_MS` (30 s), and classified after. A wall that
+never clears still returns its last render and is still `blocked`.
+
+- Shadow tree, Cyprus entryset + the 6(2) url: **5/5 ok**, and the harvested rule text is the real thing —
+  *"2.1 … invest at least €300,000 in one of the following investment categories: 2.2 … personal secure annual
+  income of at least €50,000"* — i.e. `rule_scope: present` on the page that states the rule.
+- **The card's premise for `moi.gov.cy` / `mof.gov.cy` ("their challenge does not clear for a datacenter IP") is
+  measured FALSE.** Both clear in 7.2–8.8 s and now classify `ok` (Greek ministry homepages: `rule_scope: none`,
+  `main` scope present, `layout-changed 0` across consecutive runs). Verified twice, serial and under 3-way browser
+  concurrency. Keeping them `blocked` would have required hard-coding a lie about what the harness actually saw.
+  `boi.gov.ph` (Philippines) clears the same way and is `ok` with a rule scope. `moi`/`mof` stay in
+  `legal_compliance.official_urls` either way; which of the three to keep watching is curation's call.
+- `CF_MARKERS` still does NOT match the Azure 403 body, so the browser escalation still runs. A self-test asserts
+  this, because folding the Azure markers into `BOT_WALL_RE` would have made the wall terminal again.
+
+**2. The `rule` scope is a sorted SET, so an order-only swap is no longer a rule change.** `wholeText()` sorted,
+`ruleSentences()` joined in DOM order — the defect class v6 fixed for `whole` only, measured on Turkey
+`invest.gov.tr` (two rule sentences swapped). Now deduped + sorted; membership and every filter are unchanged, so an
+edited fee/threshold still moves the scope (the self-test asserts both directions).
+
+**3. Aggravator found while verifying (also fixed): the browser fan-out ignored `BROWSER_CONCURRENCY`.** Browser work
+ran on the HTTP fan-out — up to 6 concurrent Chromium — and that load itself stretched the WAF challenge to 17–21 s,
+past the first cap, which made the newly-solvable urls flap `ok`/`blocked` between two consecutive full runs (Cyprus
+moi/mof, Philippines boi). Browser probes are now gated on `BROWSER_CONCURRENCY` (3), and a bot wall gets ONE retry
+on a fresh session before it counts as final.
+
+**Verified.** `--self-test` **55/55**, no skips (incl. a live fixture that serves the challenge, navigates to the real
+page and asserts the CONTENT is baselined — not the wall — plus a cap-and-release assertion for the browser gate) ·
+shadow 2 runs (Cyprus: 5 ok · rule-changed 0 · layout-changed 0) · real runs 129 urls · `npm run validate:data`
+clean:
+- run 1 (the silent `extract v7` re-baseline): ok 115 · blocked 10 · unreachable 4 · layout 0 · rebaselined 115
+- run 2 (consecutive — the first real comparison): ok 113 · blocked 13 · layout 9. Cyprus moi/mof and Philippines boi
+  flapped back to `blocked` here; that is how item 3 was found
+- run 3 (after item 3): ok 115 · blocked 10 · unreachable 4 · layout 14, every url attributed (7 on a consecutive
+  run) — the rotating news rails the v6 notes call unfilterable, now including the two newly-readable urls
+- `rule-changed 0` on runs 1–2. Run 3 flagged one, retracted (below).
+
+**One false flag retracted — it was not a rule change.** Run 3 reported `rule-changed 1`: Colombia
+`www.migracioncolombia.gov.co`, scope `Main content` only, on a url with **no rule scope** (`rule_scope: none`). A
+`main` container move cannot be new content while the whole-page hash is unchanged (main is a SET of blocks ⊆ the
+whole page's set), and the url renders EMPTY right now (3/3 probes, 0 chars) — a partially-rendered page, not a rule
+edit. `watch.changed` reset to false, the audit trail records the retraction, baselines left at their new values so
+nothing re-fires. The class itself (`main`-only moves can confirm into a "rule change") is carded separately rather
+than folded into this pass.
+
+**Observed, deliberately NOT fixed here (curation lane).** `www.gov.ky` alternates between the http path — where its
+rule scope becomes a rotating news headline ("…in preparation for this year's…" matches the `years?` term) — and the
+browser path with no rule scope, so a `rule scope added` coverage event was pushed whose "rule text" is a news
+statement. It is informational (`kind: coverage`, and a rule *alert* can never fire from it: a rule scope only
+confirms after two identical probes) but it is the `immd.gov.hk` headline class again. `boi.gov.ph` now carries the
+same shape. Retiring or replacing those urls is a curation decision, not a harness one.
+
 ## RESOLVED — 2026-09-15 · coverage IS 50/50 (Cyprus sourced) — supersedes the 49/50 note below
 
 The "49/50" figure in the CORRECTION block below was accurate when measured (v6 run, ~19:20Z) but was **superseded within the hour** by card `t_a8d32e10` — commit `6218dd3` added **2 probe-able official Cyprus alternates**, both with rule scopes:

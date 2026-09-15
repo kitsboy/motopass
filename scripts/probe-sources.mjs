@@ -41,6 +41,20 @@
  *     · every whole-scope move is attributed per-URL in the report
  *       (`layout_changed_urls` + a consecutive-run streak), so the next observer
  *       can see WHICH page drifted without re-probing the corpus.
+ *   - v7 (2026-09-15): two defects, both measured (card t_8b9ff3c4):
+ *     · a WAF JS challenge is a STATE, not a verdict. The browser path read the
+ *       interstitial once at `settleMs` and classified the wall as the page, so
+ *       Cyprus's authoritative Regulation 6(2) page — readable from THOR after
+ *       ~8 s — could never be seen. The browser path now waits the challenge out
+ *       (poll + confirm-read, capped by CHALLENGE_WAIT_MS) before classifying;
+ *       a wall that never clears still reports `blocked`;
+ *     · the `rule` scope is a sorted SET of sentences, like `whole`, so an
+ *       order-only re-order of rule sentences is no longer a rule change
+ *       (measured on invest.gov.tr: two rule sentences swapped, false flags);
+ *     · the browser fan-out honours BROWSER_CONCURRENCY — it was declared and
+ *       never enforced, so six Chromium instances ran at once and the load itself
+ *       made solvable WAF challenges time out. A bot wall is now also retried
+ *       once on a fresh session before it counts as final.
  *   - Scopes per URL: `whole` (full page), `rule` (sentences carrying fee /
  *     threshold / requirement / eligibility terms), `main` (dominant content
  *     container, when browser-rendered). Any scope changing = a detected
@@ -62,6 +76,7 @@
  *        PROBE_CONCURRENCY       http concurrency (default 6)
  *        PROBE_BROWSER_CONCURRENCY  browser concurrency (default 3)
  *        PROBE_TIMEOUT_MS        per-request timeout (default 12000)
+ *        CHALLENGE_WAIT_MS       how long to wait out a WAF JS challenge (default 30000)
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
@@ -81,7 +96,7 @@ const DRY_RUN = process.argv.includes('--dry-run')
 // Extraction-pipeline version. Bump it whenever the text pipeline below changes
 // meaning (new stripping, new filters): stored baselines are then re-written
 // silently once instead of being read as content changes.
-const EXTRACT_V = 6
+const EXTRACT_V = 7
 // A page whose extracted text is shorter than this carries no usable content —
 // it is not a baseline. Matches the "real page" threshold httpProbe already used.
 const MIN_TEXT_LEN = 60
@@ -332,6 +347,12 @@ function isNavFragment(p) {
 // `rule` scope — sentences that actually state a fee / threshold / requirement /
 // eligibility term, harvested only from non-chrome blocks. Repeated figure-free
 // candidates are site chrome (the same menu rendered twice) and are dropped.
+//
+// Like `whole`, the result is a sorted SET of sentences, never a DOM-ordered
+// join: a rail/accordion that re-orders its rule sentences is not a rule change.
+// Measured on invest.gov.tr 2026-09-15 (Turkey): two rule sentences swapped by
+// the page, the sorted whole scope stayed put, and only the rule scope moved —
+// which fired a false rule-change on a page whose rules had not changed.
 function ruleSentences(html) {
   const candidates = []
   for (const block of contentBlocks(html)) {
@@ -356,9 +377,9 @@ function ruleSentences(html) {
     const key = p.toLowerCase()
     counts.set(key, (counts.get(key) || 0) + 1)
   }
-  return candidates
-    .filter(p => (counts.get(p.toLowerCase()) === 1 || /\d|[$€£₿¥]/.test(p)))
-    .join(' ')
+  // Order-insensitive (see the comment above): dedupe, then sort, so a page that
+  // merely re-orders the same rule sentences keeps its rule hash.
+  return [...new Set(candidates.filter(p => (counts.get(p.toLowerCase()) === 1 || /\d|[$€£₿¥]/.test(p))))].sort().join(' ')
 }
 
 // ---------------------------------------------------------------------------
@@ -436,6 +457,38 @@ async function httpProbeWithRetry(url) {
 // ---------------------------------------------------------------------------
 // Browser probe (Playwright chromium) — recovers bot-gated / JS gov portals
 // ---------------------------------------------------------------------------
+// A WAF JS challenge is a STATE, not a verdict. The interstitial is served with
+// a 403, its script solves the challenge, and the SAME page is then re-requested
+// with an auth token — the origin only answers on that second request. Measured
+// from THOR 2026-09-15 with the engine's own Chromium + UA (card t_8b9ff3c4):
+//   · gov.cy/mip-md/…/immigration-permits-for-investors/ — at settleMs=2500 the
+//     body is "One moment, we're checking you're not a bot." + a per-request
+//     stamp (title "Azure WAF"); the token navigation lands at ~5.7 s and the
+//     real page (20,278 chars, Regulation 6(2)) is readable at ~8.6 s;
+//   · www.moi.gov.cy / www.mof.gov.cy — same challenge, cleared at 7.2–8.8 s in
+//     two independent runs.
+// Reading once at settleMs therefore records the wall as the page forever.
+// Wait it out, then read again; a wall that never clears returns its last render
+// and is still classified `blocked`.
+//
+// How long to wait was MEASURED, not guessed (2026-09-15): the same challenge
+// settles in ~8 s with one Chromium, 11-19 s with three at once, and 17-21 s
+// with the harness's own fan-out — which was using the HTTP limit (6) instead of
+// BROWSER_CONCURRENCY (3), below. A 15 s cap therefore made solvable walls
+// flap `ok`/`blocked` between runs (measured across two full corpus runs), so the
+// cap is 30 s and the browser fan-out is now actually gated.
+const CHALLENGE_WAIT_MS = Number(process.env.CHALLENGE_WAIT_MS ?? 30_000)
+// Markers of the interstitial itself. Deliberately NOT added to BOT_WALL_RE:
+// CF_MARKERS is derived from it and a 403 that matched there would short-circuit
+// httpProbe to `cloudflare` and skip the browser escalation — the one path that
+// can actually solve the challenge.
+const CHALLENGE_PAGE_RE =
+  /azure waf|afd_azwaf|please enable javascript to run this application|an unexpected error occured|checking you'?re not a bot|just a moment|cf-chl|cf_chl|challenge-platform|__cf_chl|verifying you are human/i
+function looksLikeChallengePage(whole, main) {
+  const blob = `${whole || ''}\n${main || ''}`.toLowerCase().trim()
+  if (!blob) return false
+  return isBotWall(blob) || CHALLENGE_PAGE_RE.test(blob)
+}
 const requirePw = createRequire(process.env.PLAYWRIGHT_MODULE_DIR || '/root/hq/')
 async function launchBrowser() {
   const pw = requirePw('playwright')
@@ -475,7 +528,40 @@ async function readRendered(page) {
   throw lastErr || new Error('render read failed')
 }
 
+/**
+ * Wait out a WAF JS challenge, then return the first render that is no longer
+ * one. Polling (not a navigation event) on purpose: the challenge reload is
+ * initiated by the interstitial's own script, and some WAFs clear in place.
+ *
+ * A candidate is accepted only when it is (a) not a challenge page and (b)
+ * identical to the next read — a challenge clears WITH a navigation, so a read
+ * that races it can catch a half-hydrated body, and baselining that would make
+ * every later full render look like a change. When the wall never clears we
+ * return the LAST render, so `classifyProbeResult` still reports `blocked`.
+ */
+async function awaitChallengeClearance(page, initial) {
+  const deadline = Date.now() + CHALLENGE_WAIT_MS
+  let rendered = initial
+  while (Date.now() < deadline) {
+    await page.waitForTimeout(Math.min(1000, Math.max(1, deadline - Date.now())))
+    let candidate
+    try { candidate = await readRendered(page) } catch { continue }
+    rendered = candidate
+    if (looksLikeChallengePage(candidate.whole, candidate.main)) continue
+    await page.waitForTimeout(700)
+    const confirm = await readRendered(page).catch(() => null)
+    if (!confirm) continue
+    rendered = confirm
+    if (!looksLikeChallengePage(confirm.whole, confirm.main) && confirm.whole === candidate.whole) return rendered
+  }
+  return rendered
+}
+
 async function browserProbe(url, settleMs = 2500) {
+  return withBrowserSlot(() => browserProbeUnbounded(url, settleMs))
+}
+
+async function browserProbeUnbounded(url, settleMs = 2500) {
   const { browser, context } = await launchBrowser()
   try {
     const page = await context.newPage()
@@ -486,7 +572,12 @@ async function browserProbe(url, settleMs = 2500) {
       // page may have partially loaded; still try to read content
     }
     await page.waitForTimeout(settleMs) // let JS settle
-    const rendered = await readRendered(page)
+    let rendered = await readRendered(page)
+    // A challenge page is not the page: wait it out and read once more before
+    // classifying. Without this a solvable WAF wall is permanent `blocked`.
+    if (looksLikeChallengePage(rendered.whole, rendered.main)) {
+      rendered = await awaitChallengeClearance(page, rendered)
+    }
     const whole = rendered.whole
     const main = rendered.main
     // Detect a Cloudflare / bot wall
@@ -512,6 +603,25 @@ async function browserProbe(url, settleMs = 2500) {
 // ---------------------------------------------------------------------------
 // Concurrency helpers
 // ---------------------------------------------------------------------------
+// A browser escalation is expensive AND self-defeating under load: measured
+// 2026-09-15, the same Azure WAF challenge settles in ~8 s for a lone Chromium
+// but 11-19 s with three at once and 17-21 s under the harness's fan-out, which
+// used the HTTP limit (PROBE_CONCURRENCY, 6) for browser work too — so
+// BROWSER_CONCURRENCY (3) was declared and never enforced. Gating the fan-out
+// keeps challenge clearing inside CHALLENGE_WAIT_MS and keeps the run's cost
+// predictable.
+let browserSlots = BROWSER_CONCURRENCY
+const browserQueue = []
+async function withBrowserSlot(fn) {
+  if (browserSlots > 0) browserSlots--
+  else await new Promise(r => browserQueue.push(r))
+  try { return await fn() } finally {
+    const next = browserQueue.shift()
+    if (next) next()
+    else browserSlots++
+  }
+}
+
 async function mapWithConcurrency(items, limit, fn) {
   const out = new Array(items.length); let next = 0
   async function worker() { while (next < items.length) { const i = next++; out[i] = await fn(items[i], i) } }
@@ -588,6 +698,18 @@ async function probeTarget(entry) {
   // redirect that never completed. Only reclassify a URL as unreachable when it
   // renders nothing twice, and give the second attempt longer to hydrate.
   if (!result.ok && /^empty render/.test(result.error || '')) {
+    await new Promise(r => setTimeout(r, 2500))
+    const retry = await probeOnce(entry, 6000)
+    if (retry.ok) result = retry
+  }
+  // A bot wall is a STATE too, and it is the one failure mode a WAF can clear by
+  // simply being asked again on a fresh session. Measured: an Azure WAF challenge
+  // under 3-way browser load settles at 17-21 s, so a single attempt used to make
+  // solvable walls flap `ok`/`blocked` between consecutive runs (Cyprus moi/mof,
+  // Philippines boi.gov.ph — 2026-09-15). One retry with the longer settle and
+  // the full cap; a wall that is genuinely closed stays `blocked` on both
+  // attempts (the cheap Cloudflare short-circuit is just re-fetched).
+  if (!result.ok && result.cloudflare === true) {
     await new Promise(r => setTimeout(r, 2500))
     const retry = await probeOnce(entry, 6000)
     if (retry.ok) result = retry
@@ -1023,6 +1145,58 @@ async function selfTest() {
     wholeText('<html><body><div>Alpha team</div></body></html>') !==
     wholeText('<html><body><div>Alpha team</div><div>Bravo team</div></body></html>'))
 
+  // --- v7: the RULE scope is a sorted set too (t_8b9ff3c4) ------------------
+  // Same defect class as the marquee-order one above, but for `rule`: the scope
+  // was joined in DOM order, so a page that re-ordered two rule sentences moved
+  // the rule hash and fired a false rule-changed (measured on invest.gov.tr).
+  const ruleOrderA = ruleSentences('<html><body>' +
+    '<p>The minimum investment is USD 250,000 and applicants must reside 30 days per year.</p>' +
+    '<p>The application fee is 100 EUR.</p></body></html>')
+  const ruleOrderB = ruleSentences('<html><body>' +
+    '<p>The application fee is 100 EUR.</p>' +
+    '<p>The minimum investment is USD 250,000 and applicants must reside 30 days per year.</p></body></html>')
+  check('a re-ordered rule sentence is NOT a rule change',
+    ruleOrderA.length > 0 && ruleOrderA === ruleOrderB && hashText(ruleOrderA) === hashText(ruleOrderB),
+    { ruleOrderA, ruleOrderB })
+  check('…editing a rule figure still moves the rule scope',
+    ruleSentences('<html><body>' +
+      '<p>The minimum investment is USD 350,000 and applicants must reside 30 days per year.</p>' +
+      '<p>The application fee is 100 EUR.</p></body></html>') !== ruleOrderA)
+
+  // --- v7: the WAF challenge is a STATE to wait out, not a page -------------
+  // Azure WAF serves exactly this body at settleMs=2500 on the Cyprus Migration
+  // Department's Regulation 6(2) page; the challenge clears at ~8 s.
+  const challengeBody = "One moment, we're checking you're not a bot.\n20260915T174343Z-r1b89f57c95twsglhC1FRAwh5000000004zg000000006sd4"
+  check('the WAF challenge interstitial is recognised as a page to wait out',
+    looksLikeChallengePage(challengeBody, '') === true, challengeBody)
+  check('…an empty render is not a challenge (it has its own retry path)',
+    looksLikeChallengePage('', '') === false)
+  check('…the cleared gov.cy render is not a challenge',
+    looksLikeChallengePage('Skip to main content\nCookies on gov.cy', 'Criteria for granting an Immigration Permit') === false)
+  check('…and an ordinary rule page is never mistaken for one',
+    looksLikeChallengePage('Applicants must show a minimum investment of EUR 300,000. Access denied to the platform is appealable.', '') === false)
+  // The trap this guards: folding the Azure markers into BOT_WALL_RE would make
+  // CF_MARKERS match the 403 and skip the browser escalation in probeOnce —
+  // i.e. the wall would be terminal again, the exact defect being fixed.
+  const azure403Body = '<html><head><title>Azure WAF</title></head><body>' +
+    '<p>Please enable JavaScript to run this application. An unexpected error occured.</p>' +
+    '<span id="azure-ref">20260915T174018Z-r1b89f57c95dndwmhC1FRA3wg40000000bcg00000000krg9</span></body></html>'
+  check('…an Azure 403 body still escalates to the browser',
+    CF_MARKERS.test(azure403Body.slice(0, 4000)) === false &&
+    looksLikeChallengePage('Please enable JavaScript to run this application.', '') === true)
+  // v7 — browser work is gated on the DECLARED limit. It used to run on the HTTP
+  // fan-out (6), and that load is what made the WAF challenge exceed the wait.
+  let inFlight = 0, maxInFlight = 0
+  await Promise.all(Array.from({ length: BROWSER_CONCURRENCY + 3 }, () => withBrowserSlot(async () => {
+    inFlight++; maxInFlight = Math.max(maxInFlight, inFlight)
+    await new Promise(r => setTimeout(r, 25))
+    inFlight--
+  })))
+  check(`browser probes are capped at BROWSER_CONCURRENCY (${BROWSER_CONCURRENCY})`,
+    maxInFlight === BROWSER_CONCURRENCY && inFlight === 0 && browserQueue.length === 0, { maxInFlight })
+  check('…and the slots are released, so a later probe still runs',
+    await withBrowserSlot(async () => true) === true)
+
   // D. machine stamps are churn — every string below was observed live on
   // 2026-09-15 and moved the whole-scope hash between two back-to-back probes.
   const stamps = [
@@ -1110,6 +1284,41 @@ async function selfTest() {
       check('live: a page that renders to nothing is NOT ok', res.ok === false && /empty render/.test(res.error || ''), res)
     }
     server.close()
+
+    // --- end-to-end: a WAF challenge that CLEARS by navigation --------------
+    // The shape of the Azure WAF challenge, measured on the Cyprus Migration
+    // Department's page: 403 + a JS interstitial, then the same URL with an auth
+    // token returns the real page. The engine's first read at settleMs sees the
+    // wall; the fix must wait it out and baseline the CONTENT.
+    let challengeServed = false
+    const server2 = httpMod.createServer((req, res) => {
+      const u = new URL(req.url, 'http://127.0.0.1')
+      if (u.pathname !== '/') { res.writeHead(204); res.end(); return }
+      if (!u.searchParams.get('afd_azwaf_tok')) {
+        challengeServed = true
+        res.writeHead(403, { 'content-type': 'text/html' })
+        res.end('<html><head><title>Azure WAF</title></head><body>' +
+          '<p>Please enable JavaScript to run this application. An unexpected error occured.</p>' +
+          '<span>20260915T174343Z-r1b89f57c95fixture000000000000</span>' +
+          '<script>setTimeout(function(){location.replace("/?afd_azwaf_tok=fixture")},4000)</script></body></html>')
+      } else {
+        res.writeHead(200, { 'content-type': 'text/html' })
+        res.end('<html><head><title>Immigration Permits for Investors</title></head><body><main>' +
+          '<p>In line with Regulation 6(2), the minimum investment is EUR 300,000 and the required annual income is EUR 50,000.</p>' +
+          '</main></body></html>')
+      }
+    })
+    await new Promise(r => server2.listen(0, '127.0.0.1', r))
+    const chUrl = `http://127.0.0.1:${server2.address().port}/`
+    if (!browserReady) {
+      console.log('  skip challenge fixture assertion — no Chromium available')
+    } else {
+      const ch = await probeTarget({ url: chUrl })
+      check('live: a challenge that clears is baselined as CONTENT, not as a wall',
+        ch.ok === true && ch.botWalled === false && /300,000/.test(ch.ruleText || ''), ch)
+      check('…and the fixture really did serve the challenge first', challengeServed === true)
+    }
+    server2.close()
   } catch (err) {
     console.log('  skip loopback fixture assertion —', err?.message || err)
   }
