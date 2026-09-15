@@ -21329,6 +21329,13 @@
           "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
           "source": "source-probe-v2",
           "hash": "f39fd6ca09acad01"
+        },
+        {
+          "date": "2026-09-15",
+          "field": "watch.https://www.gov.ky",
+          "to": "Two duplicate `rule scope added` coverage events REMOVED (t_54b89ced, harness owner). Both carried the same rotating news headline as their \"rule text\" (\"André Ebanks and his fellow Caribbean Overseas Territories Leaders have concluded their 2026 Caucus meeting in Hamilton, Bermuda … in preparation for this year's United Kingdom (UK) Joint Mini…\"), 16 minutes apart — the url alternates an http path whose rule scope is a news headline with a browser path that has no rule scope, so every probe-path flip re-announced the same non-rule text. Neither could alert (a rule scope needs two identical probes). The harness no longer emits this event on a probe-path flip or an EXTRACT_V re-baseline (v8, shouldEmitRuleScopeAdded); these two were pre-fix noise the feed should not have to explain. The `after` texts are preserved here rather than deleted silently. Whether to keep watching www.gov.ky at all (a headline-bearing rule scope) stays a curation decision — see t_239f6996 and t_50cbc2d3.",
+          "source": "manual review (source-probe v8 follow-up)",
+          "hash": null
         }
       ]
     },
