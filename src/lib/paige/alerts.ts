@@ -236,21 +236,30 @@ function hostOf(url: string): string {
 /**
  * Build alerts from the live official-source watchdog feed.
  *
- * Only CONFIRMED rule changes (`kind === 'rule'` && `status === 'changed'`)
- * become alerts — that is exactly the promise the Source Monitor makes. Raw
- * probe noise, retries and coverage notes never reach the user's inbox.
+ * CONFIRMATION RULE — and why it is not a `status` check:
+ * the harness writes `kind:'rule'` events with NO `status` field (see
+ * `scripts/probe-sources.mjs`: the object is pushed only when `ruleChanged`
+ * is true and carries id/ts/date/country/program_id/url/kind/scopes/before/after
+ * — no status). An earlier version of this function filtered on
+ * `status === 'changed'`, which could therefore NEVER match and silently
+ * disabled the whole path. The confirmation signal is the MANIFEST: a country is
+ * alerted on only while its own entry reports a confirmed change.
  *
- * Watched countries pin to the top (same rule as buildAllAlerts).
+ * It fails CLOSED: no manifest / no confirmed countries → no alerts. Never the
+ * other way round — a false "rules changed" alert to a customer is far worse
+ * than a quiet feed.
  */
 export function buildSourceAlerts(
   events: SourceChangeEvent[],
+  confirmedChangedCountries: Iterable<string> = [],
   watchlistIds: number[] = [],
   limit = 20,
 ): PaigeAlert[] {
   const watchSet = new Set(watchlistIds)
+  const confirmed = new Set(confirmedChangedCountries)
 
   return events
-    .filter((e) => e.kind === 'rule' && e.status === 'changed')
+    .filter((e) => e.kind === 'rule' && confirmed.has(e.country))
     .map<PaigeAlert>((e) => ({
       id: `source-${e.id}`,
       programName: e.country,

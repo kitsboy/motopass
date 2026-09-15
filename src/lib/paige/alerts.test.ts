@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildAllAlerts, buildProgramAlerts } from './alerts'
+import { buildAllAlerts, buildProgramAlerts, buildSourceAlerts } from './alerts'
 import type { Program } from '../../types/program'
 
 function programWithTrail(overrides: Partial<Program> & { id: number; name: string }): Program {
@@ -70,5 +70,58 @@ describe('buildAllAlerts watch-list integration', () => {
   it('works without a watch list (backwards compatible)', () => {
     const alerts = buildAllAlerts(programs, [], 20)
     expect(alerts.every(a => a.watched === false)).toBe(true)
+  })
+})
+
+/**
+ * Regression guard for the source-watchdog alerts.
+ *
+ * The fixture deliberately mirrors the shape the harness ACTUALLY writes for a
+ * rule event (`scripts/probe-sources.mjs`): id/ts/date/country/program_id/url/
+ * kind/scopes/before/after — and NO `status` field. An earlier version filtered
+ * on `status === 'changed'`, so it could never match and the whole path was
+ * silently dead. If someone reintroduces a status-based filter, these fail.
+ */
+describe('buildSourceAlerts', () => {
+  const realRuleEvent = {
+    id: '2026-09-15T20:07:26.184Z-t.gov.py-rule',
+    ts: '2026-09-15T20:07:26.184Z',
+    date: '2026-09-15',
+    country: 'Paraguay',
+    program_id: 7,
+    url: 'https://www.set.gov.py',
+    kind: 'rule',
+    before: 'old rule text',
+    after: 'new rule text',
+  }
+
+  it('surfaces a rule event for a confirmed-changed country (harness shape, no status)', () => {
+    const alerts = buildSourceAlerts([realRuleEvent], ['Paraguay'], [], 20)
+    expect(alerts).toHaveLength(1)
+    expect(alerts[0].alertType).toBe('rule-change')
+    expect(alerts[0].programName).toBe('Paraguay')
+    expect(alerts[0].source).toBe('set.gov.py')
+    expect(alerts[0].proofUrl).toBe('/sources')
+  })
+
+  it('fails CLOSED for an unconfirmed country (no false alerts)', () => {
+    const alerts = buildSourceAlerts([realRuleEvent], ['Mexico'], [], 20)
+    expect(alerts).toHaveLength(0)
+  })
+
+  it('fails CLOSED when no confirmed set is supplied at all', () => {
+    expect(buildSourceAlerts([realRuleEvent])).toHaveLength(0)
+  })
+
+  it('never surfaces a coverage event, even for a confirmed country', () => {
+    const coverage = { ...realRuleEvent, id: 'cov-1', kind: 'coverage', status: 'unreachable' }
+    expect(buildSourceAlerts([coverage], ['Paraguay'], [], 20)).toHaveLength(0)
+  })
+
+  it('pins a watched country ahead of an unwatched one on the same date', () => {
+    const mexico = { ...realRuleEvent, id: 'mx-1', country: 'Mexico', program_id: 8, url: 'https://dof.gob.mx' }
+    const alerts = buildSourceAlerts([realRuleEvent, mexico], ['Paraguay', 'Mexico'], [8], 20)
+    expect(alerts[0].watched).toBe(true)
+    expect(alerts[0].programName).toBe('Mexico')
   })
 })

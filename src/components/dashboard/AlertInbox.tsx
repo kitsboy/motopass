@@ -16,7 +16,7 @@ import {
   type SourceChangeEvent,
 } from '../../lib/paige/alerts'
 import { useWatchlist } from '../../hooks/useWatchlist'
-import { loadSourceEvents } from '../../hooks/useSourceMonitor'
+import { loadSourceEvents, useSourceMonitor } from '../../hooks/useSourceMonitor'
 
 type FilterType = 'all' | 'watched' | AlertType
 
@@ -96,11 +96,13 @@ export function AlertInbox() {
   const { programs } = usePrograms()
   const { portfolio } = usePortfolio()
   const { watchlist } = useWatchlist()
+  const { byCountry } = useSourceMonitor()
   const [filter, setFilter] = useState<FilterType>('all')
   const [showAll, setShowAll] = useState(false)
   const [sourceEvents, setSourceEvents] = useState<SourceChangeEvent[]>([])
 
-  // Live official-source watchdog feed — confirmed rule changes only.
+  // Live official-source watchdog feed — rule events are only surfaced for a
+  // country whose manifest entry currently reports a CONFIRMED change.
   useEffect(() => {
     let live = true
     loadSourceEvents().then((e) => {
@@ -111,13 +113,21 @@ export function AlertInbox() {
     }
   }, [])
 
+  const confirmedChanged = useMemo(() => {
+    const set = new Set<string>()
+    byCountry.forEach((health, name) => {
+      if (health.changed) set.add(name)
+    })
+    return set
+  }, [byCountry])
+
   const allAlerts = useMemo(() => {
     const limit = showAll ? 50 : 15
     return [
-      ...buildSourceAlerts(sourceEvents, watchlist, limit),
+      ...buildSourceAlerts(sourceEvents, confirmedChanged, watchlist, limit),
       ...buildAllAlerts(programs, portfolio, limit, watchlist),
     ].slice(0, limit)
-  }, [programs, portfolio, showAll, watchlist, sourceEvents])
+  }, [programs, portfolio, showAll, watchlist, sourceEvents, confirmedChanged])
 
   const counts = useMemo(() => countAlertsByType(allAlerts), [allAlerts])
 
