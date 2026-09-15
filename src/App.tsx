@@ -72,6 +72,9 @@ const BlogPostPage = lazy(() =>
 const VerifyPage = lazy(() =>
   import('./pages/VerifyPage').then((m) => ({ default: m.VerifyPage })),
 )
+const SourceMonitorPage = lazy(() =>
+  import('./pages/SourceMonitorPage').then((m) => ({ default: m.SourceMonitorPage })),
+)
 
 export default function App() {
   return (
@@ -157,6 +160,7 @@ export default function App() {
                                   }
                                 />
                                 <Route path="verify" element={<VerifyPage />} />
+                                <Route path="sources" element={<SourceMonitorPage />} />
                                 <Route path="agents" element={<AgentsPage />} />
                                 <Route path="apply" element={<ApplyPage />} />
                                 <Route path="thank-you" element={<ThankYouPage />} />
