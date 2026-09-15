@@ -218,18 +218,25 @@ async function probeTarget(entry) {
   // as a content change. Browser is the default for anything that ever needed it.
   const wantBrowser = entry.mode === 'browser'
 
-  let result = wantBrowser ? null : await httpProbeWithRetry(entry.url)
-  if (result && result.cloudflare) {
-    // Active bot wall — not passable from a datacenter IP; skip the browser.
-    return { ok: false, error: result.error, cloudflare: true }
-  }
-  if (!result || !result.ok || result.needsBrowser) {
-    if (!wantBrowser) {
+  let result
+  if (wantBrowser) {
+    // The mode is pinned to browser because this URL was baselined from a
+    // RENDERED page. It must still be probed — a pinned entry that skips the
+    // browser produces `result === null` and can only ever report
+    // `probe failed`, permanently, no matter how healthy the source is.
+    try { result = await browserProbe(entry.url) } catch (e) { result = { ok: false, error: 'browser: ' + (e?.message || e) } }
+  } else {
+    result = await httpProbeWithRetry(entry.url)
+    if (result.cloudflare) {
+      // Active bot wall — not passable from a datacenter IP; skip the browser.
+      return { ok: false, error: result.error, cloudflare: true }
+    }
+    if (!result.ok || result.needsBrowser) {
       // escalate: try the browser (covers bot-gated / JS-only hosts)
       try { result = await browserProbe(entry.url) } catch (e) { result = { ok: false, error: 'browser: ' + (e?.message || e) } }
     }
-    if (!result || !result.ok) return { ok: false, error: result?.error || 'probe failed', cloudflare: result?.cloudflare }
   }
+  if (!result || !result.ok) return { ok: false, error: result?.error || 'probe failed', cloudflare: result?.cloudflare }
   if (result.botWalled) {
     // Browser hit a wall — treat as probe-failure (unreachable-ish), not content.
     return { ok: false, error: 'bot-walled (Cloudflare/access challenge)', cloudflare: true }
