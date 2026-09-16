@@ -106,6 +106,23 @@ export function Footer() {
                   </a>
                 </div>
               </nav>
+              <p className="mt-6 text-[11px] font-chrome text-ink-muted/80 leading-relaxed">
+                <a href="/privacy" className="hover:text-mp-btc-text transition-colors duration-fast">
+                  Privacy
+                </a>
+                <span className="mx-1.5 opacity-50" aria-hidden>
+                  ·
+                </span>
+                <a href="/terms" className="hover:text-mp-btc-text transition-colors duration-fast">
+                  Terms
+                </a>
+                <span className="mx-1.5 opacity-50" aria-hidden>
+                  ·
+                </span>
+                <span>
+                  No cookies. We use self-hosted, cookie-less analytics. Nothing to consent to.
+                </span>
+              </p>
             </div>
             <AgentCardKimi />
           </div>
