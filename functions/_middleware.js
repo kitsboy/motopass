@@ -29,8 +29,14 @@ const KNOWN_ROUTES = [
   /^\/sources\/?$/,
 ]
 
+// Real static pages shipped in public/ (Cloudflare Pretty URLs serve the
+// extensionless path from the .html file). They are NOT client routes — the
+// middleware has to let them through so the asset, not the SPA shell or this
+// 404, answers the request. Published 2026-09-16 (family legal pass).
+const STATIC_PAGE_ROUTES = [/^\/privacy\/?$/, /^\/terms\/?$/]
+
 function isKnownRoute(pathname) {
-  return KNOWN_ROUTES.some((re) => re.test(pathname))
+  return KNOWN_ROUTES.some((re) => re.test(pathname)) || STATIC_PAGE_ROUTES.some((re) => re.test(pathname))
 }
 
 function isPageRequest(pathname) {
