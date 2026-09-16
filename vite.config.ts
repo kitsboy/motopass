@@ -100,22 +100,32 @@ function injectBootGuard(): Plugin {
   }
 }
 
-/** Cache-bust all /assets/ URLs and load entry via dynamic import (retry on poison). */
+/**
+ * Load the entry via a dynamic import with a poisoned-import retry hook so a
+ * stale cached deploy can self-recover (see BOOT_GUARD above).
+ *
+ * Deliberately does NOT append a ?b= cache-bust query to module URLs. Chunk
+ * filenames already embed a content hash + build salt (unique per build), so
+ * the query is redundant — and worse, it BREAKS module identity: the index
+ * chunk (which holds react-dom, every provider, and every Context object) is
+ * loaded from the HTML as /assets/index-*.js?b=… while every lazy page chunk
+ * statically imports it as the bare /assets/index-*.js URL. The browser treats
+ * those as two different modules, so the ENTIRE entry graph re-evaluates:
+ * a second react-dom + a second createRoot() mount on #root. Two React roots on
+ * one container is what surfaces as provider-context hooks reading null
+ * (useToast / useNavigate / useDisplayCurrency ErrorBoundary errors on
+ * /simulator and /vault) and the second root's commit throwing removeChild
+ * (Swahili-only render race). One URL per module is the actual fix.
+ */
 function safeAssetLoader(): Plugin {
-  const bust = BUILD_SALT
   return {
     name: 'motopass-safe-assets',
     enforce: 'post',
     transformIndexHtml(html) {
-      let out = html.replace(
-        /(<(?:script|link)[^>]+(?:src|href)=")(\/assets\/[^"?]+)(")/g,
-        `$1$2?b=${bust}$3`,
+      return html.replace(
+        /<script type="module" crossorigin src="(\/assets\/index-[^"]+\.js)"><\/script>/,
+        `<script type="module">import("$1").catch(function(e){window.__mpRetryLoad&&window.__mpRetryLoad(e);});</script>`,
       )
-      out = out.replace(
-        /<script type="module" crossorigin src="(\/assets\/index-[^"]+\.js)\?b=[^"]+"><\/script>/,
-        `<script type="module">import("$1?b=${bust}").catch(function(e){window.__mpRetryLoad&&window.__mpRetryLoad(e);});</script>`,
-      )
-      return out
     },
   }
 }
