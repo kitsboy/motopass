@@ -1,10 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { AlertTriangle, Check, X } from 'lucide-react'
 import { ToastContext, type ToastItem, type ToastVariant } from './Toast'
+import { useI18n } from '../../i18n/I18nContext'
 
 let toastId = 0
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
+  const { t } = useI18n()
   const [items, setItems] = useState<ToastItem[]>([])
 
   const dismiss = useCallback((id: number) => {
@@ -46,7 +48,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               type="button"
               onClick={() => dismiss(item.id)}
               className="shrink-0 p-0.5 rounded-mp-sm text-ink-muted hover:text-ink"
-              aria-label="Dismiss notification"
+              aria-label={t('toast.dismissAria')}
             >
               <X size={14} />
             </button>

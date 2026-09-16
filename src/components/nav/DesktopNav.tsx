@@ -11,7 +11,7 @@ export function DesktopNav() {
   const { isLoggedIn } = useUser()
 
   return (
-    <nav className="elite-desktop-nav" aria-label="Main navigation">
+    <nav className="elite-desktop-nav" aria-label={t('nav.mainNavigation')}>
       <div className="elite-desktop-nav__inner max-w-7xl mx-auto px-4 sm:px-6">
         <div className="elite-desktop-nav__links">
           {PRIMARY_ROUTES.map(n => (
