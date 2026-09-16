@@ -355,8 +355,22 @@ const sw: Partial<Dict> = {
   'serverCosts.title': 'Gharama za seva',
   'simulator.avgSovereignty': 'Uhuru wa wastani',
   'simulator.forkSavings': 'Uokoaji wa fork',
-  'simulator.sideBySide': 'Bega kwa bega',
+  'simulator.sideBySide': 'Fungua kwa',
   'simulator.synergy': 'Muingiliano',
+  // ——— CORE Swahili lane (t_d198053c) — /simulator + /vault + shared chrome keys
+  // that were hardcoded English in the components before this change.
+  'simulator.forksSub':
+    'Migawanyiko ya mtaji kwa kila njia — viwango vya chini, hali ya uthibitisho, na muunganisho wa kurundika katika stack yako huru.',
+  'simulator.forksEmpty': 'Ongeza mamlaka kuu (Uruguay, Bolivia) kwa uchanganuzi wa migawanyiko ya njia.',
+  'simulator.tip.forkSavings':
+    'Uokoaji wa mtaji kwa kila njia — tofauti kati ya kiwango cha chini cha njia ya chini kabisa na uwekezaji wa kawaida katika stack yako. Mfano kwa tathmini ya wanachama.',
+  'simulator.tip.avgSovereignty':
+    'Alama ya wastani ya uhuru (0–10) ya programu katika stack yako — alama ya juu inamaanisha udhibiti zaidi wa njia yako. Mfano kwa tathmini ya wanachama.',
+  'simulator.tip.synergy':
+    'Jinsi programu katika stack yako zinavyoimarishana — muunganisho wa kurundika wa Juu / Kati / Chini. Mfano kwa tathmini ya wanachama.',
+  'vault.how.step3.link': 'Funga muhuri hash yako',
+  'vault.how.step4.link': 'Fungua maombi',
+  'layout.loadingAria': 'Inapakia',
   'simulator.valueForks': 'Foks za thamani',
   'simulator.vsTypical': 'dhidi ya kawaida',
   'toast.dismissAria': 'Funga arifa',

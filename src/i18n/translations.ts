@@ -462,6 +462,17 @@ export type TranslationKey =
   | 'proofBadge.recorded'
   | 'proofBadge.demo'
   | 'proofBadge.pending'
+  // ——— CORE Swahili lane (t_d198053c): keys recovered from hardcoded English on
+  // /vault + /simulator + shared chrome. Declared inline (not as PageKeys) so the
+  // per-locale PageKey parity tests stay owned by their own lanes.
+  | 'simulator.forksSub'
+  | 'simulator.forksEmpty'
+  | 'simulator.tip.forkSavings'
+  | 'simulator.tip.avgSovereignty'
+  | 'simulator.tip.synergy'
+  | 'vault.how.step3.link'
+  | 'vault.how.step4.link'
+  | 'layout.loadingAria'
   | PageKey
 
 export type Dict = Record<TranslationKey, string>
@@ -898,6 +909,16 @@ const en: Dict = {
   'dashboard.paigePolicy': 'Paige stays grounded: answers come from the verified corpus only — no speculation, no outside claims.',
   'vault.educationPlayerTitle': 'MotoPass — 60-second guide',
   'vault.educationPlayerAria': 'Educational video player',
+  // ——— CORE Swahili lane (t_d198053c) — English source for keys that were
+  // hardcoded on /vault, /simulator and shared chrome before this change.
+  'simulator.forksSub': 'Pathway-level capital forks — minimums, proof status, and stacking synergy across your sovereign stack.',
+  'simulator.forksEmpty': 'Add flagship jurisdictions (Uruguay, Bolivia) for pathway fork analysis.',
+  'simulator.tip.forkSavings': 'Pathway-level capital savings — the difference between the lowest pathway minimum and the typical investment across your stack. Modeled for member evaluation.',
+  'simulator.tip.avgSovereignty': 'Average sovereignty score (0–10) across the programs in your stack — a higher score means more control over your path. Modeled for member evaluation.',
+  'simulator.tip.synergy': 'How well the programs in your stack reinforce each other — High / Medium / Low stacking synergy. Modeled for member evaluation.',
+  'vault.how.step3.link': 'Stamp your own hash',
+  'vault.how.step4.link': 'Open applications',
+  'layout.loadingAria': 'Loading',
   'intel.statusChanged': 'Watch changed',
   'intel.statusReanchoring': 'Re-anchoring',
   'paige.conciergeAria': 'Open the Paige concierge chat',

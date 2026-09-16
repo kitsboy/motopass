@@ -94,13 +94,13 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
         <div className="min-w-0">
           <h3 className="font-display font-semibold text-ink tracking-tight">{t('simulator.valueForks')}</h3>
           <p className="text-xs text-ink-muted mt-1 leading-relaxed font-body">
-            Pathway-level capital forks — minimums, proof status, and stacking synergy across your sovereign stack.
+            {t('simulator.forksSub')}
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-3 gap-2 mb-4 text-center">
-        <InfoTip tip="Pathway-level capital savings — the difference between the lowest pathway minimum and the typical investment across your stack. Modeled for member evaluation." className="block">
+        <InfoTip tip={t('simulator.tip.forkSavings')} className="block">
           <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
             <div className="text-[9px] font-mono uppercase text-ink-muted">{t('simulator.forkSavings')}</div>
             <div className="mt-1">
@@ -108,13 +108,13 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
             </div>
           </div>
         </InfoTip>
-        <InfoTip tip="Average sovereignty score (0–10) across the programs in your stack — a higher score means more control over your path. Modeled for member evaluation." className="block">
+        <InfoTip tip={t('simulator.tip.avgSovereignty')} className="block">
           <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
             <div className="text-[9px] font-mono uppercase text-ink-muted">{t('simulator.avgSovereignty')}</div>
             <div className="font-display font-semibold text-ink mt-1">{avgSovereignty}/10</div>
           </div>
         </InfoTip>
-        <InfoTip tip="How well the programs in your stack reinforce each other — High / Medium / Low stacking synergy. Modeled for member evaluation." className="block">
+        <InfoTip tip={t('simulator.tip.synergy')} className="block">
           <div className="rounded-xl border border-mp/50 bg-card-muted/30 px-2 py-2">
             <div className="text-[9px] font-mono uppercase text-ink-muted">{t('simulator.synergy')}</div>
             <div className="font-mono text-[10px] text-ink-secondary mt-1">
@@ -126,7 +126,7 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
 
       {forks.length === 0 ? (
         <p className="text-sm text-ink-muted font-body">
-          Add flagship jurisdictions (Uruguay, Bolivia) for pathway fork analysis.
+          {t('simulator.forksEmpty')}
         </p>
       ) : (
         <ul className="space-y-2">

@@ -234,14 +234,14 @@ export function VaultPage() {
             title: t('vault.how.step3.title'),
             body: t('vault.how.step3.body'),
             icon: Search,
-            link: { to: '/verify', label: 'Stamp your own hash' },
+            link: { to: '/verify', label: t('vault.how.step3.link') },
           },
           {
             n: '04',
             title: t('vault.how.step4.title'),
             body: t('vault.how.step4.body'),
             icon: Radio,
-            link: { to: '/apply', label: 'Open applications' },
+            link: { to: '/apply', label: t('vault.how.step4.link') },
           },
         ]}
       />
