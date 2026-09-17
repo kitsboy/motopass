@@ -1,4 +1,5 @@
 import type { VerifyResult } from '../../types/proof'
+import { verifyHashOnChain } from '../chainVerify'
 
 export { satohashVerifyUrl } from '../satohash'
 
@@ -21,7 +22,14 @@ export function parseHashLines(input: string): string[] {
   return hashes
 }
 
-/** Paste a content hash — validates format, pings Satohash API health, links to verify */
+/**
+ * Ask the family verifier whether a content hash is Bitcoin-anchored.
+ *
+ * Chain-backed (t_edc1bd27): the verdict comes from POST /api/verify — method
+ * ('bitcoind'|'esplora') + resolved block height when verified — and registry
+ * status is never presented as proof. An unreachable verifier is reported as
+ * "could not check" (offline), which is NOT the same as "not proven".
+ */
 export async function verifyHashPaste(hashInput: string): Promise<VerifyResult> {
   const hash = normalizeHash(hashInput)
   if (!hash) {
@@ -34,24 +42,53 @@ export async function verifyHashPaste(hashInput: string): Promise<VerifyResult> 
     }
   }
 
-  // Best-effort API liveness — does not prove the hash is stamped, but surfaces plane status.
-  let apiNote = ''
-  try {
-    const { getApiHealth } = await import('../satohash')
-    const health = await getApiHealth()
-    apiNote = health.ok
-      ? ' · Satohash API online'
-      : ' · Satohash API offline (use satohash.io deep link)'
-  } catch {
-    /* ignore */
+  const result = await verifyHashOnChain(hash)
+
+  if (!result.ok) {
+    return {
+      verified: false,
+      hash,
+      mode: 'failed',
+      blockTime: null,
+      chainState: null,
+      offline: result.offline,
+      message: result.offline
+        ? `Could not reach the Bitcoin verifier — nothing was proven or disproven. (${result.error})`
+        : result.error,
+    }
   }
 
+  const v = result.verdict
+  if (v.verified) {
+    return {
+      verified: true,
+      hash,
+      mode: 'chain',
+      blockTime: v.block_time != null ? new Date(v.block_time * 1000).toISOString() : null,
+      chainState: 'confirmed',
+      verifiedMethod: v.verified_method,
+      blockHeight: v.bitcoin_block_height,
+      otsUrl: v.ots_download_url ?? undefined,
+      message: v.verified_method === 'esplora'
+        ? `Bitcoin-anchored (public explorer) · block ${v.bitcoin_block_height}`
+        : `Bitcoin-anchored (own node) · block ${v.bitcoin_block_height}`,
+    }
+  }
+
+  const pending = v.reason === 'no_block_attestation'
   return {
     verified: false,
     hash,
-    mode: 'hash-only',
+    mode: 'chain',
     blockTime: null,
-    message: `Valid content hash — not Bitcoin-verified. Open Satohash to confirm the stamp${apiNote}`,
+    chainState: pending ? 'pending' : 'not-proven',
+    verifiedMethod: null,
+    blockHeight: null,
+    otsUrl: v.ots_download_url ?? undefined,
+    reason: v.reason ?? v.error ?? undefined,
+    message: pending
+      ? 'Recorded, not yet anchored to Bitcoin — check again after the next blocks.'
+      : `Not proven${v.error ? ` — ${v.error}` : v.reason ? ` — ${v.reason}` : ' against a Bitcoin block'}`,
   }
 }
 

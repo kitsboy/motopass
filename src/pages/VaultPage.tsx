@@ -19,6 +19,7 @@ import type { VerifyResult } from '../types/proof'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { estimateReadingMinutes } from '../lib/utils'
 import { VerifyResultsExplainer } from '../components/verify/VerifyResultsExplainer'
+import { ProofStatusBadge } from '../components/trust/ProofStatusBadge'
 import { VaultOtsDropZone } from '../components/vault/VaultOtsDropZone'
 import { VaultProofRow } from '../components/vault/VaultProofRow'
 import { DocumentStamper } from '../components/vault/DocumentStamper'
@@ -54,6 +55,7 @@ export function VaultPage() {
   const [copied, setCopied] = useState(false)
   const [hashInput, setHashInput] = useState(() => highlightProof ?? '')
   const [verifyResult, setVerifyResult] = useState<VerifyResult | null>(null)
+  const [verifyCheckedAt, setVerifyCheckedAt] = useState<string | null>(null)
   const [verifyBusy, setVerifyBusy] = useState(false)
   const [selectedFile, setSelectedFile] = useState<string | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
@@ -88,6 +90,7 @@ export function VaultPage() {
     setVerifyBusy(true)
     try {
       setVerifyResult(await verifyHashPaste(hashInput))
+      setVerifyCheckedAt(new Date().toISOString())
     } finally {
       setVerifyBusy(false)
     }
@@ -292,10 +295,34 @@ export function VaultPage() {
             className={`mt-4 rounded-mp-md border px-4 py-3 text-xs font-mono backdrop-blur-sm ${
               verifyResult.verified
                 ? 'border-mp-proof/40 bg-mp-proof/10 text-mp-proof'
-                : 'border-status-amber/40 bg-status-amber/10 text-status-amber'
+                : verifyResult.chainState === 'not-proven'
+                  ? 'border-status-red/40 bg-status-red/10 text-status-red'
+                  : 'border-status-amber/40 bg-status-amber/10 text-status-amber'
             }`}
           >
             <div>{verifyResult.message}</div>
+            {verifyResult.verified && (
+              <div className="mt-1 flex flex-wrap items-center gap-2">
+                <span>
+                  {verifyResult.verifiedMethod ?? 'chain'}
+                  {verifyResult.blockHeight != null ? ` · block ${verifyResult.blockHeight}` : ''}
+                </span>
+                {verifyResult.otsUrl && (
+                  <a
+                    href={verifyResult.otsUrl}
+                    data-testid="vault-ots-download"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:opacity-80"
+                  >
+                    {t('verify.otsDownload')} ↗
+                  </a>
+                )}
+              </div>
+            )}
+            {!verifyResult.verified && verifyResult.chainState === 'not-proven' && (
+              <div className="mt-1">{t('verify.notProven')}</div>
+            )}
             <div className="mt-1 text-ink-muted opacity-80">
               mode: {verifyResult.mode}
               {verifyResult.hash && satohashVerifyUrl(verifyResult.hash) && (
@@ -314,6 +341,40 @@ export function VaultPage() {
             </div>
             <VerifyResultsExplainer
               messageKey={verifyResult.verified ? 'vault.verify.resultsExplainerOk' : 'vault.verify.resultsExplainerFail'}
+            />
+          </div>
+        )}
+        {verifyResult?.mode === 'chain' && (
+          <div className="mt-3">
+            <ProofStatusBadge
+              verdict={
+                verifyResult.chainState === 'confirmed' && verifyResult.verified
+                  ? {
+                      verified: true,
+                      verified_method: verifyResult.verifiedMethod ?? null,
+                      bitcoin_block_height: verifyResult.blockHeight ?? null,
+                      block_time: verifyResult.blockTime ? new Date(verifyResult.blockTime).getTime() / 1000 : null,
+                      block_hash: null,
+                      ots_download_url: verifyResult.otsUrl ?? null,
+                      explainer: null,
+                      reason: null,
+                      error: null,
+                      registry_status: null,
+                      source: null,
+                    }
+                  : null
+              }
+              live="unconfirmed"
+              checkedAt={verifyCheckedAt}
+              labels={{
+                provenConfirmed: t('verify.provenConfirmed'),
+                provenNotProven: t('verify.notProven'),
+                validUnconfirmed: t('verify.validityUnconfirmed'),
+                validCurrent: t('verify.validityCurrent'),
+                validRevoked: t('verify.validityRevoked'),
+                unknown: t('verify.validityUnknown'),
+                splitNote: t('verify.splitNote'),
+              }}
             />
           </div>
         )}

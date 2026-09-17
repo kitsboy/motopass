@@ -18,6 +18,9 @@ import { verifyOtsPasteContent } from '../lib/verifyOtsPaste'
 import { loadHashHistory, pushHashHistory } from '../lib/verifyHashHistory'
 import { BlockHeight } from '../components/BlockHeight'
 import { VerifyResultsExplainer } from '../components/verify/VerifyResultsExplainer'
+import HowProofWorks from '../components/trust/HowProofWorks'
+import { ProofStatusBadge } from '../components/trust/ProofStatusBadge'
+import { verifyHashOnChain, type ChainVerdict } from '../lib/chainVerify'
 import { useI18n } from '../i18n/I18nContext'
 import { PageHeader } from '../components/ui/PageHeader'
 import { useToast } from '../components/ui/Toast'
@@ -59,6 +62,10 @@ export function VerifyPage() {
   const [batchBusy, setBatchBusy] = useState(false)
   const [batchProgress, setBatchProgress] = useState(0)
   const [batchCopied, setBatchCopied] = useState(false)
+  const [chainVerdict, setChainVerdict] = useState<ChainVerdict | null>(null)
+  const [chainBusy, setChainBusy] = useState(false)
+  const [chainError, setChainError] = useState<string | null>(null)
+  const [chainCheckedAt, setChainCheckedAt] = useState<string | null>(null)
   const [otsPaste, setOtsPaste] = useState('')
   const [otsHash, setOtsHash] = useState('')
   const [otsResult, setOtsResult] = useState<VerifyResult | null>(null)
@@ -170,6 +177,32 @@ export function VerifyPage() {
   async function reverify(entryHash: string) {
     setHash(entryHash)
     setHistory(pushHashHistory(entryHash))
+  }
+
+  async function runChainVerify() {
+    if (!hash || chainBusy) return
+    setChainBusy(true)
+    setChainError(null)
+    setChainVerdict(null)
+    setChainCheckedAt(null)
+    try {
+      const res = await verifyHashOnChain(hash)
+      if (!res.ok) {
+        setChainError(res.error)
+        return
+      }
+      setChainVerdict(res.verdict)
+      setChainCheckedAt(new Date().toISOString())
+      if (res.verdict.verified) {
+        toast(formatT(t, 'verify.chainAnchored', { block: res.verdict.bitcoin_block_height ?? 0 }), 'success')
+      } else if (res.verdict.reason === 'no_block_attestation') {
+        toast(t('verify.chainPending'), 'default')
+      } else {
+        toast(t('verify.notProven'), 'error')
+      }
+    } finally {
+      setChainBusy(false)
+    }
   }
 
   async function runBatchVerify() {
@@ -415,6 +448,74 @@ export function VerifyPage() {
         )}
       </div>
 
+      <div className="card-elevated mt-6 space-y-4 border-l-4 border-l-mp-proof">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="font-chrome text-sm font-semibold text-ink flex items-center gap-2">
+              <Shield size={14} className="text-mp-proof" aria-hidden />
+              {t('verify.proofPanel')}
+            </h2>
+            <p className="mt-1 text-xs text-ink-muted leading-relaxed">
+              {t('verify.proofPanelHint')}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => void runChainVerify()}
+            disabled={!hash || chainBusy}
+            className="btn-primary inline-flex items-center justify-center gap-2"
+          >
+            {chainBusy ? (
+              <>
+                <Loader2 size={14} className="animate-spin" aria-hidden /> {t('verify.chainChecking')}
+              </>
+            ) : chainVerdict ? (
+              <>{t('verify.chainRecheck')}</>
+            ) : (
+              <>{t('verify.chainVerify')}</>
+            )}
+          </button>
+        </div>
+
+        {chainError && (
+          <div
+            role="status"
+            className="rounded-mp-md border border-status-amber/40 bg-status-amber/10 px-3 py-2.5 text-xs space-y-1"
+          >
+            <p className="font-chrome font-semibold text-status-amber">{t('verify.chainOffline')}</p>
+            <p className="text-ink-muted font-mono break-all">{chainError}</p>
+          </div>
+        )}
+
+        {chainVerdict && (
+          <div className="space-y-4">
+            <ProofStatusBadge
+              verdict={chainVerdict}
+              live="unconfirmed"
+              checkedAt={chainCheckedAt}
+              labels={{
+                provenNowHeading: t('verify.statusBadge'),
+                validNowHeading: t('verify.statusBadge'),
+                provenConfirmed: t('verify.provenConfirmed'),
+                provenNotProven: t('verify.notProven'),
+                validUnconfirmed: t('verify.validityUnconfirmed'),
+                validCurrent: t('verify.validityCurrent'),
+                validRevoked: t('verify.validityRevoked'),
+                unknown: t('verify.validityUnknown'),
+                splitNote: t('verify.splitNote'),
+              }}
+            />
+            <HowProofWorks verdict={chainVerdict} hash={hash} otsUrl={chainVerdict.ots_download_url} />
+          </div>
+        )}
+
+        {!chainVerdict && !chainError && (
+          <p className="text-[11px] text-ink-muted leading-relaxed">
+            {hash ? t('verify.proofPanelEmpty') : t('verify.proofPanelNoHash')}
+          </p>
+        )}
+      </div>
+
       {history.length > 0 && (
         <div className="card-muted mt-6 space-y-3">
           <h2 className="font-chrome text-sm font-semibold text-ink flex items-center gap-2">
@@ -587,11 +688,35 @@ export function VerifyPage() {
                 className={`rounded-mp-md border px-3 py-2 text-xs font-mono ${
                   result.verified
                     ? 'border-mp-proof/40 bg-mp-proof/10 text-mp-proof'
-                    : 'border-status-amber/40 bg-status-amber/10 text-status-amber'
+                    : result.chainState === 'not-proven'
+                      ? 'border-status-red/40 bg-status-red/10 text-status-red'
+                      : 'border-status-amber/40 bg-status-amber/10 text-status-amber'
                 }`}
               >
                 <div className="break-all">{result.hash.slice(0, 24)}…</div>
                 <div className="mt-1 opacity-80">{result.message}</div>
+                {result.verified && (
+                  <div className="mt-1 flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center gap-1">
+                      {result.verifiedMethod ?? 'chain'}
+                      {result.blockHeight != null ? ` · block ${result.blockHeight}` : ''}
+                    </span>
+                    {result.otsUrl && (
+                      <a
+                        href={result.otsUrl}
+                        data-testid="batch-verify-ots"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline hover:opacity-80"
+                      >
+                        {t('verify.otsDownload')} ↗
+                      </a>
+                    )}
+                  </div>
+                )}
+                {!result.verified && result.chainState === 'not-proven' && (
+                  <div className="mt-1">{t('verify.notProven')}</div>
+                )}
               </li>
             ))}
           </ul>

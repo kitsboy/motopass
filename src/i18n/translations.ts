@@ -146,6 +146,25 @@ export type TranslationKey =
   | 'verify.title'
   | 'verify.sub'
   | 'verify.stamp'
+  | 'verify.chainVerify'
+  | 'verify.chainChecking'
+  | 'verify.chainRecheck'
+  | 'verify.chainAnchored'
+  | 'verify.chainPending'
+  | 'verify.chainOffline'
+  | 'verify.proofPanelHint'
+  | 'verify.proofPanelEmpty'
+  | 'verify.proofPanelNoHash'
+  | 'verify.proofPanel'
+  | 'verify.statusBadge'
+  | 'verify.otsDownload'
+  | 'verify.notProven'
+  | 'verify.validityUnknown'
+  | 'verify.validityUnconfirmed'
+  | 'verify.validityCurrent'
+  | 'verify.validityRevoked'
+  | 'verify.provenConfirmed'
+  | 'verify.splitNote'
   | 'agents.title'
   | 'agents.sub'
   | 'apply.title'
@@ -726,6 +745,27 @@ const en: Dict = {
   'verify.title': 'Verify on Bitcoin',
   'verify.sub': 'Every MotoPass data point anchors to OpenTimestamps via Satohash.io',
   'verify.stamp': 'Stamp application',
+  'verify.chainVerify': 'Check this hash on Bitcoin',
+  'verify.chainChecking': 'Checking against Bitcoin…',
+  'verify.chainRecheck': 'Check again',
+  'verify.chainAnchored': 'Anchored to Bitcoin · block {block}',
+  'verify.chainPending': 'Recorded — Bitcoin has not confirmed it yet',
+  'verify.chainOffline': 'Could not reach the Bitcoin verifier — nothing was proven or disproven.',
+  'verify.proofPanelHint':
+    'Ask the family verifier whether this hash is anchored to a real Bitcoin block. It tells you HOW it checked — our own node (bitcoind) or a public explorer (esplora) — and always offers the .ots proof so you can audit without trusting us.',
+  'verify.proofPanelEmpty': 'Hash is ready — run the check to see the verdict.',
+  'verify.proofPanelNoHash': 'Generate or paste a hash above, then check it here.',
+  'verify.proofPanel': 'Proof & status',
+  'verify.statusBadge': 'Status',
+  'verify.otsDownload': 'Download proof (.ots)',
+  'verify.notProven': 'Not proven',
+  'verify.validityUnknown': 'Live validity not checked yet',
+  'verify.validityUnconfirmed': 'Unconfirmed as of {checked} — check the live registry',
+  'verify.validityCurrent': 'Current as of {checked}',
+  'verify.validityRevoked': 'Revoked / expired',
+  'verify.provenConfirmed': 'Anchored to Bitcoin · block {block}',
+  'verify.splitNote':
+    'The proof never expires — it only ever says when this existed. Whether it is still valid today is a separate, live check, and MotoPass never merges the two.',
   'agents.title': 'Country liaison agents',
   'agents.sub': 'AI-assisted passport office liaisons — reachable on Nostr for verified applicants',
   'apply.title': 'Passport application tracker',

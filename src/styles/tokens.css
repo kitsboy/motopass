@@ -273,3 +273,31 @@
     --stagger-base: 0ms;
   }
 }
+
+/* ==========================================================================
+   FAMILY TRUST-UI TOKEN ALIASES  (t_da054829 deliverable 3 · t_edc1bd27)
+   The shared family component src/components/trust/HowProofWorks.jsx — ported
+   byte-for-byte from kitsboy/satohash — reads the FAMILY token names so it
+   inherits each offering's theme. MotoPass's semantic layer is --mp-*; these
+   aliases map family -> MotoPass (paper #F4EFE4 / ink #0E1B2A / brass, BTC
+   orange). Without them the component would fall back to its inline hexes and
+   its (fallback-less) var(--border)/var(--bg-secondary) would render unstyled.
+   ========================================================================== */
+:root {
+  --accent-gold: var(--mp-accent-ochre);
+  --accent-success: var(--mp-proof-green);
+  --accent-alert: #c2410c;
+  --border: var(--mp-border-default);
+  --text-primary: var(--mp-ink-primary);
+  --text-secondary: var(--mp-ink-secondary);
+  --bg-secondary: var(--mp-surface-section);
+  --surface-raised: var(--mp-surface-elevated);
+}
+
+.dark {
+  /* ochre #B5651D is too dark on the #1a1a28 section surface — use the dark
+     hero gold for the eyebrow + .ots link, and an orange-400 alert for
+     "Not proven" so 10px badge text keeps >=4.5:1 contrast. */
+  --accent-gold: var(--mp-hero-headline);
+  --accent-alert: #fb923c;
+}
