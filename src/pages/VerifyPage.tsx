@@ -494,8 +494,8 @@ export function VerifyPage() {
               live="unconfirmed"
               checkedAt={chainCheckedAt}
               labels={{
-                provenNowHeading: t('verify.statusBadge'),
-                validNowHeading: t('verify.statusBadge'),
+                provenNowHeading: t('verify.provenThen'),
+                validNowHeading: t('verify.validNow'),
                 provenConfirmed: t('verify.provenConfirmed'),
                 provenNotProven: t('verify.notProven'),
                 validUnconfirmed: t('verify.validityUnconfirmed'),

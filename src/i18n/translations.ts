@@ -157,6 +157,8 @@ export type TranslationKey =
   | 'verify.proofPanelNoHash'
   | 'verify.proofPanel'
   | 'verify.statusBadge'
+  | 'verify.provenThen'
+  | 'verify.validNow'
   | 'verify.otsDownload'
   | 'verify.notProven'
   | 'verify.validityUnknown'
@@ -757,6 +759,11 @@ const en: Dict = {
   'verify.proofPanelNoHash': 'Generate or paste a hash above, then check it here.',
   'verify.proofPanel': 'Proof & status',
   'verify.statusBadge': 'Status',
+  // The two halves of the honesty split need DIFFERENT headings — labelling both
+  // rows "Status" reads as "Status X ≠ Status Y" and hides the whole point
+  // (proven then is permanent, valid now is revocable).
+  'verify.provenThen': 'Proven then',
+  'verify.validNow': 'Valid now',
   'verify.otsDownload': 'Download proof (.ots)',
   'verify.notProven': 'Not proven',
   'verify.validityUnknown': 'Live validity not checked yet',
