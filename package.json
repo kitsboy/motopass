@@ -62,7 +62,8 @@
     "deploy:summary": "node scripts/deploy-summary.mjs",
     "predeploy:push": "npm test && npm run test:e2e",
     "deploy:check": "test -n \"$CLOUDFLARE_API_TOKEN\" && echo 'CF token set' || echo 'Set CLOUDFLARE_API_TOKEN in .env.local for manual wrangler deploy'",
-    "deploy:all": "npm run validate:data && npm run validate:stamps && npm run validate:seal && LAUNCH_SKIP_OPS=1 LAUNCH_WRITE_ONLY=1 npm run launch:gate && npm run lint && npm run build:info && npm run sync:build && npm run build && npm run bundle:check && npm run check:build-salt && npm run predeploy:push && npm run deploy:safe && node scripts/wait-live-app.mjs"
+    "deploy:all": "npm run validate:data && npm run validate:stamps && npm run validate:seal && LAUNCH_SKIP_OPS=1 LAUNCH_WRITE_ONLY=1 npm run launch:gate && npm run lint && npm run build:info && npm run sync:build && npm run build && npm run bundle:check && npm run check:build-salt && npm run predeploy:push && npm run deploy:safe && node scripts/wait-live-app.mjs",
+    "check:security": "node scripts/check-secret-hygiene.mjs"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",
