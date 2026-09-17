@@ -118,16 +118,16 @@
         "urls": [
           {
             "url": "https://www.presidencia.gob.sv",
-            "status": "blocked",
+            "status": "unreachable",
             "status_since": "2026-09-15T14:52:53.898Z",
-            "last_probed": "2026-09-17T05:01:32.562Z",
-            "last_error": "HTTP 403 — Cloudflare bot wall"
+            "last_probed": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.migracion.gob.sv",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "bd1c5b79b7619cdfd64ea8f79059b8535aa09997c72dc2f6b1d187cc0384dbac"
@@ -141,10 +141,12 @@
             "probe_path": "browser",
             "last_layout_change": "2026-09-15T19:37:10.714Z",
             "last_text_len": 1073,
-            "last_main_len": 0
+            "last_main_len": 0,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -416,9 +418,9 @@
         "urls": [
           {
             "url": "https://gouvernement.cf",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "de0e89ec8cd9c32c3726e08c84950a4c26850d1556eb49e20e70cb24424b4117"
@@ -434,13 +436,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 88,
-            "last_main_len": 64
+            "last_main_len": 64,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.finances.gouv.cf",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "65f8aa1ff52b6215a7acb6fd497af8ad5e1f87f73264a49386daf42e2536e0ae"
@@ -459,7 +463,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -717,7 +721,7 @@
             "url": "https://www.gub.uy/tramites/residencia-legal",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "b211ce93995e55d45dcef02019b025262d69a190cd0b5b5adcba8f8c1faeee22"
@@ -737,9 +741,9 @@
           },
           {
             "url": "https://www.minterior.gub.uy",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "5cfaf7edd4287c07809694161c752db9b2a15bb06208074931d86e74abef1b20"
@@ -761,10 +765,12 @@
             "last_text_len": 4544,
             "last_main_len": 3522,
             "last_layout_change": "2026-09-17T05:01:32.562Z",
-            "layout_change_streak": 2
+            "layout_change_streak": 2,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -1085,9 +1091,9 @@
         "urls": [
           {
             "url": "https://www.migracion.gob.bo",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "de0e89ec8cd9c32c3726e08c84950a4c26850d1556eb49e20e70cb24424b4117"
@@ -1105,11 +1111,13 @@
             "last_layout_change": "2026-09-17T05:01:32.562Z",
             "last_text_len": 88,
             "last_main_len": 64,
-            "layout_change_streak": 4
+            "layout_change_streak": 4,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.cancilleria.gob.bo",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "browser",
             "scopes": {
               "whole": {
@@ -1122,17 +1130,19 @@
             "rule_scope": "none",
             "main_scope": "present",
             "extract_v": 7,
-            "status": "ok",
+            "status": "unreachable",
             "baselined_at": "2026-09-15T15:44:46.649Z",
             "last_hash": "00de7f58a8e11e654d0572bbb0016b3f6a04ce95b3b792570c7bfd4c1dd14f39",
             "probe_path": "browser",
             "last_text_len": 1387,
             "last_main_len": 1167,
             "last_layout_change": "2026-09-17T05:01:32.562Z",
-            "layout_change_streak": 1
+            "layout_change_streak": 1,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -1406,7 +1416,7 @@
             "url": "https://www.ciu.gov.kn",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "9554cb480bfba338dc2ff8da04613342da0e15d413cd33f7dffe8ae5dd1f8bb8"
@@ -1426,7 +1436,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -1787,7 +1797,7 @@
             "url": "https://www.cip.gov.ag",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "9d861565bbda534e566d3ee60cae14f3c6555fe559fa5d8504b6b14ae6264938"
@@ -1806,7 +1816,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -2067,7 +2077,7 @@
             "url": "https://cbiu.gov.dm",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "38de7c44b8ee9add1a38db6dfe82222962d0f412513cfb6dd48c38a8177fb2a7"
@@ -2084,11 +2094,10 @@
             "extract_v": 7,
             "probe_path": "http",
             "last_text_len": 3012,
-            "last_main_len": 0,
-            "layout_change_streak": 2
+            "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -2474,7 +2483,7 @@
             "url": "https://www.vara.ae",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "4a514c97424ecd0a13a13d235f13a90b41d6e0aabee4cb68e9145589331da256"
@@ -2494,7 +2503,7 @@
           },
           {
             "url": "https://icp.gov.ae/en/",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -2516,7 +2525,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -2963,9 +2972,9 @@
         "urls": [
           {
             "url": "https://www.sem.admin.ch",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "ee54a8c3a9156c79686e97fcf49f782cb8b898aaeaebde817dc06e3c982931d9"
@@ -2981,13 +2990,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 2477,
-            "last_main_len": 1413
+            "last_main_len": 1413,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.zug.ch",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "af3a8d07e6391ce3f7800a25fa2be57819c777439d13b90307ff3814cf54825a"
@@ -3002,10 +3013,12 @@
             "last_layout_change": "2026-09-17T05:01:32.562Z",
             "last_text_len": 740,
             "last_main_len": 0,
-            "layout_change_streak": 2
+            "layout_change_streak": 2,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -3377,9 +3390,9 @@
         "urls": [
           {
             "url": "https://www.edb.gov.sg",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "9c497cf215b2b2c0cd036834599d6e8cf56abe53947bc2608a57e0af66a65bf4"
@@ -3397,13 +3410,15 @@
             "probe_path": "browser",
             "last_text_len": 1092,
             "last_main_len": 880,
-            "layout_change_streak": 2
+            "layout_change_streak": 2,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.mas.gov.sg",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "9cff6edd203c017739cb718cfc002591b6e4411fd0beb31832a34c6cd986b096"
@@ -3420,11 +3435,13 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 205,
-            "last_main_len": 45
+            "last_main_len": 45,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.ica.gov.sg",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -3445,7 +3462,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -3878,9 +3895,9 @@
         "urls": [
           {
             "url": "https://imigrante.sef.pt",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "cb24cef103e00007cb7b0ecc3600258318c72bc5dfce9c11ec72fb7700674f22"
@@ -3893,13 +3910,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 216,
-            "last_main_len": 0
+            "last_main_len": 0,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.portugal.gov.pt",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "bb5c18c4c1fa0a91944f3740e2bd33f7807ac8ea899ec23fd9fde0f1618d427b"
@@ -3916,10 +3935,12 @@
             "last_layout_change": "2026-09-15T18:07:59.129Z",
             "probe_path": "browser",
             "last_text_len": 1339,
-            "last_main_len": 893
+            "last_main_len": 893,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -4257,7 +4278,7 @@
             "url": "https://residencymalta.gov.mt",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "512961f748ec99e126ffea303940167c65a24a6dec691755b05c5af74e999533"
@@ -4287,7 +4308,7 @@
             "url": "https://www.identita.gov.mt",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "b0c51232d8ed025f2f48517aedbb30e6294d66cc6a63cbb4d7c433ab3968bd29"
@@ -4307,7 +4328,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -4621,7 +4642,7 @@
             "url": "https://www.migracion.gob.pa",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "81be003e18436295a57a3abe8912094e39fc24b74186c64fe35ab2841a6d9612"
@@ -4638,14 +4659,13 @@
             "extract_v": 7,
             "probe_path": "http",
             "last_text_len": 2271,
-            "last_main_len": 0,
-            "layout_change_streak": 1
+            "last_main_len": 0
           },
           {
             "url": "https://www.gacetaoficial.gob.pa",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "c5eedf81b69774710fbd7901ffc91e10cf9e47400e9b903e6d01aeae71a23226"
@@ -4659,10 +4679,12 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 1939,
-            "last_main_len": 0
+            "last_main_len": 0,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -5084,9 +5106,9 @@
         "urls": [
           {
             "url": "https://sda.gov.ge",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "ccb75ede48a7653f4ee6ff8f283fd0219a7c46ddde37184c68a615c6770334d0"
@@ -5102,13 +5124,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 1064,
-            "last_main_len": 149
+            "last_main_len": 149,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.rs.ge",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "f2783b84e9a5d087c315f4c4fda9cd6ddaad5bdeb96d13206b2da621f860180e"
@@ -5125,10 +5149,12 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 6058,
-            "last_main_len": 5346
+            "last_main_len": 5346,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -5514,11 +5540,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/13369038ca42720fc1d26f8e32f0c3c1000be48551b69edb35e78c758d78c85b",
-          "content_hash": "13369038ca42720fc1d26f8e32f0c3c1000be48551b69edb35e78c758d78c85b",
+          "proof_url": "https://satohash.io/verify/5911b4c8ced9fa68fbacf38e71269826ae82e521526f879430f16772b3471a81",
+          "content_hash": "5911b4c8ced9fa68fbacf38e71269826ae82e521526f879430f16772b3471a81",
           "ots_path": "/proofs/paraguay-d31c88b62c96.ots",
-          "stamped_at": "2026-09-13T10:46:45.588Z",
-          "stamp_id": "2f0d81c3-aaf7-4174-94b3-cdc2d4b90b39"
+          "stamped_at": "2026-09-17T10:37:09.520Z",
+          "stamp_id": "e34e0c1e-adde-4626-abd0-5b13ca065ef7"
         },
         {
           "field": "pathways",
@@ -5623,7 +5649,7 @@
           },
           {
             "url": "https://migraciones.gov.py/residencia-temporal/",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -5645,7 +5671,7 @@
           },
           {
             "url": "https://migraciones.gov.py/aranceles-migratorios/",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -5666,7 +5692,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": false
       },
       "pros": [
@@ -5866,6 +5892,14 @@
           "from": "watch.url (rotating rail as rule scope)",
           "to": "Retired from watch per t_50cbc2d3 immd.gov.hk precedent — rotating DNIT news rail (nav + press items) is the rule scope, generates false rule events daily. Rules coverage retained by already-watched migraciones.gov.py/residencia-temporal/ and /aranceles-migratorios/ (both rule_scope present).",
           "source": "curation (t_95a8142e)"
+        },
+        {
+          "date": "2026-09-17",
+          "field": "proof",
+          "from": "13369038ca42720f",
+          "to": "re-anchored 5911b4c8ced9fa68 (stamp e34e0c1e-add)",
+          "source": "satohash-api",
+          "hash": "5911b4c8ced9fa68fbacf38e71269826ae82e521526f879430f16772b3471a81"
         }
       ]
     },
@@ -5904,11 +5938,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/9223b0cf9c88876686925acbdbfa898c11f47d9254e76bebb07b5c2be86f1967",
-          "content_hash": "9223b0cf9c88876686925acbdbfa898c11f47d9254e76bebb07b5c2be86f1967",
+          "proof_url": "https://satohash.io/verify/909202bd14fceaceda4514160cb4ac5ab330bf4f6f7e25abb7e6d3dfbd778726",
+          "content_hash": "909202bd14fceaceda4514160cb4ac5ab330bf4f6f7e25abb7e6d3dfbd778726",
           "ots_path": "/proofs/costa-rica-ec93289aa77e.ots",
-          "stamped_at": "2026-09-13T10:46:49.713Z",
-          "stamp_id": "6de3a0b5-5c1c-4986-a60b-a7d9a4199add"
+          "stamped_at": "2026-09-17T10:37:15.173Z",
+          "stamp_id": "5a6d304e-2545-4f8d-a209-9109cfc00d46"
         },
         {
           "field": "pathways",
@@ -5989,8 +6023,8 @@
         "urls": [
           {
             "url": "https://www.migracion.go.cr",
-            "status": "ok",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "status": "unreachable",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "browser",
             "scopes": {
               "whole": {
@@ -6009,13 +6043,15 @@
             "last_layout_change": "2026-09-17T05:01:32.562Z",
             "layout_change_streak": 9,
             "last_text_len": 265,
-            "last_main_len": 193
+            "last_main_len": 193,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.hacienda.go.cr",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "be0eea0cdfb1a97c32b50f690dae777645b5cf5c14f0ada18bd5f399203a0fed"
@@ -6028,13 +6064,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 751,
-            "last_main_len": 0
+            "last_main_len": 0,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.rree.go.cr",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "361f7e4028ceb5b44e9659ac21b9587a82268815fd5397b2f3a1d6978525d957"
@@ -6052,10 +6090,12 @@
             "probe_path": "browser",
             "last_text_len": 5229,
             "last_main_len": 1125,
-            "layout_change_streak": 1
+            "layout_change_streak": 1,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -6378,6 +6418,14 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "9223b0cf9c88876686925acbdbfa898c11f47d9254e76bebb07b5c2be86f1967"
+        },
+        {
+          "date": "2026-09-17",
+          "field": "proof",
+          "from": "9223b0cf9c888766",
+          "to": "re-anchored 909202bd14fceace (stamp 5a6d304e-254)",
+          "source": "satohash-api",
+          "hash": "909202bd14fceaceda4514160cb4ac5ab330bf4f6f7e25abb7e6d3dfbd778726"
         }
       ]
     },
@@ -6501,7 +6549,7 @@
         "urls": [
           {
             "url": "https://www.immd.gov.hk/eng/specifiedschemes.html",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -6523,7 +6571,7 @@
           },
           {
             "url": "https://www.immd.gov.hk/eng/services/fee-tables/",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -6547,27 +6595,28 @@
             "url": "https://www.sfc.hk",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
-                "last_hash": "5a78a5b802029be34d423e8d92edc7a366c988885578461cd4b14078c3518c5c"
+                "last_hash": "22817800ad14b75cc79b8fda20ced8d4b3dec275e65ab545e79c14f0c943dcba"
               },
               "rule": {
                 "last_hash": "b0be7874111d8607af6c38ee77e0ff4f4ce1e9340247ed5ec7c9c7bc2cb51361"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "5a78a5b802029be34d423e8d92edc7a366c988885578461cd4b14078c3518c5c",
-            "last_layout_change": "2026-09-15T14:57:07.990Z",
+            "last_hash": "22817800ad14b75cc79b8fda20ced8d4b3dec275e65ab545e79c14f0c943dcba",
+            "last_layout_change": "2026-09-17T10:36:30.327Z",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
             "probe_path": "http",
-            "last_text_len": 3983,
-            "last_main_len": 0
+            "last_text_len": 4047,
+            "last_main_len": 0,
+            "layout_change_streak": 1
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": false
       },
       "pros": [
@@ -6833,11 +6882,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/a13294d7cacdeb3ab2108196a323bc8ae285f86cf512dab6871b54de6f9ee382",
-          "content_hash": "a13294d7cacdeb3ab2108196a323bc8ae285f86cf512dab6871b54de6f9ee382",
+          "proof_url": "https://satohash.io/verify/2278126dfb665a8e0b5eb86025bb53d0791e2d9380d8243cafd4b50c1618b5eb",
+          "content_hash": "2278126dfb665a8e0b5eb86025bb53d0791e2d9380d8243cafd4b50c1618b5eb",
           "ots_path": "/proofs/thailand-b72a6e34f7b7.ots",
-          "stamped_at": "2026-09-14T11:11:46.902Z",
-          "stamp_id": "6d569cbe-3706-426a-bda7-68109522e1b7"
+          "stamped_at": "2026-09-17T10:37:19.121Z",
+          "stamp_id": "d28999b3-69bd-4f54-acbc-8b207b821897"
         },
         {
           "field": "pathways",
@@ -6922,7 +6971,7 @@
             "url": "https://ltr.boi.go.th",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "1a814e14cce5f3c8b590d95d043e737c98bea21ccebd903d9852536543c77256"
@@ -6943,8 +6992,8 @@
           },
           {
             "url": "https://www.immigration.go.th",
-            "status": "ok",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "status": "unreachable",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "browser",
             "scopes": {
               "whole": {
@@ -6963,7 +7012,9 @@
             "last_layout_change": "2026-09-17T05:01:32.562Z",
             "layout_change_streak": 8,
             "last_text_len": 267,
-            "last_main_len": 195
+            "last_main_len": 195,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://consular.mfa.go.th",
@@ -6982,9 +7033,9 @@
           },
           {
             "url": "https://www.thaievisa.go.th",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "505191a0cc28ef78f673a7d2db6b1ee68a764a8a443e89687a5c3cd771923107"
@@ -7004,15 +7055,17 @@
             "last_layout_change": "2026-09-15T19:31:31.225Z",
             "probe_path": "browser",
             "last_text_len": 2105,
-            "last_main_len": 1317
+            "last_main_len": 1317,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.mfa.go.th/en/page/issuance-of-visa",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
-                "last_hash": "6c6711dc15bb9663b1cbaf6c00cda841059e39090d0d8c26fb7a370bd19468f0"
+                "last_hash": "743e028a2f39c32bb23c716697a1df1a914945310edc2b7ef31d2e975e5d8fde"
               },
               "rule": {
                 "last_hash": "3aef0290995f7ab20292ee0873583e54e61a8e73424e36872465c7a805cee7b0"
@@ -7023,15 +7076,15 @@
             "extract_v": 7,
             "status": "ok",
             "baselined_at": "2026-09-15T15:44:46.649Z",
-            "last_hash": "6c6711dc15bb9663b1cbaf6c00cda841059e39090d0d8c26fb7a370bd19468f0",
+            "last_hash": "743e028a2f39c32bb23c716697a1df1a914945310edc2b7ef31d2e975e5d8fde",
             "probe_path": "http",
-            "last_layout_change": "2026-09-17T05:01:32.562Z",
+            "last_layout_change": "2026-09-17T10:36:30.327Z",
             "last_text_len": 13413,
             "last_main_len": 0,
-            "layout_change_streak": 3
+            "layout_change_streak": 4
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": false
       },
       "pros": [
@@ -7248,6 +7301,14 @@
           "to": "CLOSED BY MEASUREMENT (t_239f6996, harness owner) — the partial-render mechanism in the retraction above is fixed in scripts/probe-sources.mjs v9 and no longer reproduces. Measured with 250ms sampling on this URL (3 loads): the pre-hydration shell is the site chrome only (raw 628 chars) and carries NO `main` container; it persists ~0.9-1.9s after DOMContentLoaded, and TWO READS 986 MS APART RETURNED THE IDENTICAL SHELL TEXT — that is exactly why the old read could baseline it and why a \"read twice and agree\" test alone would not have caught it. The settled render has main=1461 of 2583-2584 chars. v9 accepts a rendered read only when (a) a second read SETTLE_CONFIRM_MS=700 later agrees on the filtered page text AND (b) the read is not provably incomplete against this URL's last settled render (the `main` container it had is empty, or the container/page text is below 60% of it); separately, a rule read that is a strict SUBSET of the stored rule text is re-probed at settle 6s and accepted only if it reproduces. Shadow pair on the live 130-URL corpus: rule-changed 0 on both runs, this URL kept rule hash 9f5fdc3c6a20d167 with no pending and no shell baseline, and the gate reported \"Thailand [incomplete-render, recovered]\" — i.e. it caught this exact shape on the live corpus and baselined the settled render instead. EXTRACT_V deliberately unchanged at 7 (probe quality, not extraction); self-test now 84/84 with a fixture that serves this shell shape (it FAILS on the pre-v9 harness).",
           "source": "source-probe v9 (self-test shell fixture + live-corpus shadow pair)",
           "hash": "9f5fdc3c6a20d167"
+        },
+        {
+          "date": "2026-09-17",
+          "field": "proof",
+          "from": "a13294d7cacdeb3a",
+          "to": "re-anchored 2278126dfb665a8e (stamp d28999b3-69b)",
+          "source": "satohash-api",
+          "hash": "2278126dfb665a8e0b5eb86025bb53d0791e2d9380d8243cafd4b50c1618b5eb"
         }
       ]
     },
@@ -7286,11 +7347,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/4db3d9b39f44851374f2ce2877583f2b4f0c0658e4a23a8a81e59a828df1b026",
-          "content_hash": "4db3d9b39f44851374f2ce2877583f2b4f0c0658e4a23a8a81e59a828df1b026",
+          "proof_url": "https://satohash.io/verify/94f9beba31b597a1c1a62653b0b7aff41499561ddf47344dd356febfd42c26e5",
+          "content_hash": "94f9beba31b597a1c1a62653b0b7aff41499561ddf47344dd356febfd42c26e5",
           "ots_path": "/proofs/mexico-c336294e6264.ots",
-          "stamped_at": "2026-09-14T11:11:50.800Z",
-          "stamp_id": "6339e80b-4135-422e-8319-8d4360465889"
+          "stamped_at": "2026-09-17T10:37:23.189Z",
+          "stamp_id": "2a547e8c-751c-4319-9d2c-b38de9a3a313"
         },
         {
           "field": "pathways",
@@ -7381,9 +7442,9 @@
           },
           {
             "url": "https://www.gob.mx",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "016418613c3d19d42175d95c670867e0ac3aaecd5dac2844cf2e07b4b8c84103"
@@ -7399,11 +7460,13 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 1044,
-            "last_main_len": 684
+            "last_main_len": 684,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -7425,14 +7488,15 @@
           },
           {
             "url": "https://dof.gob.mx",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
-                "last_hash": "681323458c3d36b65f42324088201f86966a4281d9734618c9d21c807132c729"
+                "last_hash": "d6c9424d9e13eead6f525aed340a64a768b5500c7605cbcf8f46e4a5672d0f5a"
               },
               "rule": {
-                "last_hash": "1a903cbef4e94b466486605c4e6e89ede7576445ec8886a5011b0b5f9586ae37"
+                "last_hash": "1a903cbef4e94b466486605c4e6e89ede7576445ec8886a5011b0b5f9586ae37",
+                "pending_hash": "2eadbc064859de6443707ace5797abe4d3cec2987a945e873c56e16bc33643d6"
               }
             },
             "rule_scope": "present",
@@ -7440,15 +7504,15 @@
             "extract_v": 7,
             "status": "ok",
             "baselined_at": "2026-09-15T15:44:46.649Z",
-            "last_hash": "681323458c3d36b65f42324088201f86966a4281d9734618c9d21c807132c729",
+            "last_hash": "d6c9424d9e13eead6f525aed340a64a768b5500c7605cbcf8f46e4a5672d0f5a",
             "probe_path": "http",
-            "last_text_len": 9304,
+            "last_text_len": 10025,
             "last_main_len": 0,
-            "last_layout_change": "2026-09-17T05:01:32.562Z",
-            "layout_change_streak": 1
+            "last_layout_change": "2026-09-17T10:36:30.327Z",
+            "layout_change_streak": 2
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": true
       },
       "pros": [
@@ -7749,6 +7813,14 @@
           "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
           "source": "source-probe-v2",
           "hash": "8093bd1d0b00be57"
+        },
+        {
+          "date": "2026-09-17",
+          "field": "proof",
+          "from": "4db3d9b39f448513",
+          "to": "re-anchored 94f9beba31b597a1 (stamp 2a547e8c-751)",
+          "source": "satohash-api",
+          "hash": "94f9beba31b597a1c1a62653b0b7aff41499561ddf47344dd356febfd42c26e5"
         }
       ]
     },
@@ -7787,11 +7859,11 @@
         {
           "field": "program_snapshot",
           "block_height": 958093,
-          "proof_url": "https://satohash.io/verify/682d76e3e70d4113e4aebdcf717cbfc3ecd32e10e9476bf3637297cfff84a45d",
-          "content_hash": "682d76e3e70d4113e4aebdcf717cbfc3ecd32e10e9476bf3637297cfff84a45d",
+          "proof_url": "https://satohash.io/verify/9a8cf0b93e7b8c35ef7933ac662168ffc082e3d902b95d52cec608ce5e6b4786",
+          "content_hash": "9a8cf0b93e7b8c35ef7933ac662168ffc082e3d902b95d52cec608ce5e6b4786",
           "ots_path": "/proofs/cyprus-d973ba067340.ots",
-          "stamped_at": "2026-09-14T11:11:54.820Z",
-          "stamp_id": "f4f433e7-f56e-488f-9b28-f68536e3f32f"
+          "stamped_at": "2026-09-17T10:37:29.578Z",
+          "stamp_id": "459d6c9b-0d25-4e4b-b94c-de87570e3818"
         },
         {
           "field": "pathways",
@@ -7874,9 +7946,9 @@
         "urls": [
           {
             "url": "https://www.moi.gov.cy",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "3d8782cd543769bb0580e53bfd789abcca76e0a86f8b51ab563379041e0554d9"
@@ -7894,13 +7966,15 @@
             "probe_path": "browser",
             "last_text_len": 1352,
             "last_main_len": 1062,
-            "layout_change_streak": 1
+            "layout_change_streak": 1,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.mof.gov.cy",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "f560d8b629f695a07451721bb5a55e17a67bf11beb43bd3c932221cb77060835"
@@ -7918,11 +7992,13 @@
             "probe_path": "browser",
             "last_text_len": 1393,
             "last_main_len": 934,
-            "layout_change_streak": 1
+            "layout_change_streak": 1,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://residence-documents.service.gov.cy/ForeignInterestsCompanies/Start",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -7935,7 +8011,7 @@
                 "last_hash": "2496eeef92b640e5e5f3101b7173a02f543b1b3b22cb73dbb03bd5777057963c"
               }
             },
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "rule_scope": "present",
             "main_scope": "present",
             "extract_v": 7,
@@ -7943,7 +8019,9 @@
             "baselined_at": "2026-09-15T17:13:31.087Z",
             "last_hash": "bf471dd79b3148859387bc9fe866f6973ab52547c8df19097a6483ed15eb2e64",
             "last_text_len": 2227,
-            "last_main_len": 2169
+            "last_main_len": 2169,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.investcyprus.org.cy/relocate-your-business-to-cyprus/",
@@ -7957,7 +8035,7 @@
                 "last_hash": "1a73e7e88b94d5bc1277344a2d266f415edc3015cbc421044ade582d93092d96"
               }
             },
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
@@ -7970,7 +8048,7 @@
           {
             "url": "https://www.gov.cy/mip-md/en/documents/companies-investors-permanent-residence-3/immigration-permits-for-investors/",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "343bb0c76d35b985c3c97a2c920c78e9d2f03226b77456ef10036d1f0933fa11"
@@ -7988,13 +8066,15 @@
             "main_scope": "present",
             "extract_v": 7,
             "probe_path": "browser",
-            "status": "ok",
+            "status": "unreachable",
             "last_text_len": 19142,
             "last_main_len": 18878,
-            "last_layout_change": "2026-09-16T05:00:20.374Z"
+            "last_layout_change": "2026-09-16T05:00:20.374Z",
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -8155,6 +8235,14 @@
           "to": "added gov.cy Migration Dept Reg 6(2) expedited-PR criteria page (authoritative, browser-readable under v8 harness)",
           "source": "gov.cy (Civil Registry & Migration Department) 4th Revision May 2023; verified readable from THOR 2026-09-15",
           "hash": null
+        },
+        {
+          "date": "2026-09-17",
+          "field": "proof",
+          "from": "682d76e3e70d4113",
+          "to": "re-anchored 9a8cf0b93e7b8c35 (stamp 459d6c9b-0d2)",
+          "source": "satohash-api",
+          "hash": "9a8cf0b93e7b8c35ef7933ac662168ffc082e3d902b95d52cec608ce5e6b4786"
         }
       ]
     },
@@ -8276,9 +8364,9 @@
         "urls": [
           {
             "url": "https://migration.gov.gr",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "ffa1ab79b003ffced2778ef60fe0ddb299ca9589bc49cb03050e26c34dc47191"
@@ -8296,7 +8384,9 @@
             "probe_path": "browser",
             "last_text_len": 4152,
             "last_main_len": 3426,
-            "layout_change_streak": 1
+            "layout_change_streak": 1,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.mfa.gr",
@@ -8306,7 +8396,7 @@
             "last_error": "bot-walled (Cloudflare/access challenge)"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -8608,9 +8698,9 @@
         "urls": [
           {
             "url": "https://cilc.vu",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "8bb480f6f57de40f55b01ce3866b63c949315724a4db39d8a6695ef6827f5928"
@@ -8626,13 +8716,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 98,
-            "last_main_len": 98
+            "last_main_len": 98,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://immigration.gov.vu",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "7eba8831720532860a86e7263a5ec20b168e3122193abbadb6a44d15240c7756"
@@ -8651,7 +8743,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -8936,9 +9028,9 @@
         "urls": [
           {
             "url": "https://www.goc.gov.tr",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "53b8b2bfa72817909bee260f34de52dfe36e0d9a416f9a68148796dde9c5fd02"
@@ -8953,13 +9045,15 @@
             "probe_path": "browser",
             "last_text_len": 14361,
             "last_main_len": 0,
-            "layout_change_streak": 1
+            "layout_change_streak": 1,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.invest.gov.tr",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "9acdb31904df17d065e0de70d9cabdeb327fb77b94bd704cef2e1e354424110c"
@@ -8979,7 +9073,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": false
       },
       "pros": [
@@ -9448,7 +9542,7 @@
             "url": "https://www.edbmauritius.org",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "5357ab6940c6f90c05bb6a2f4c4a037fe4cc9e81b01ab985449540d8216a759e"
@@ -9469,9 +9563,9 @@
           },
           {
             "url": "https://immigration.govmu.org",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "14b5b1bc7bf47ad04504da2d1bf6bbb797c7f7d08093799ea50460b0576b7cab"
@@ -9487,10 +9581,12 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 112,
-            "last_main_len": 112
+            "last_main_len": 112,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -9741,7 +9837,7 @@
             "url": "https://www.ics.gov.sc",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "27c1a2c417058ec4a3c48eb178c7f02883dea68f5f5270489def6e186d7503e3"
@@ -9764,7 +9860,7 @@
             "url": "https://www.investinseychelles.com",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "31a3fb53d11d3f01856e80e79c9f8b5af5ea272e850ee7cc05aaabbc22b4216e"
@@ -9785,9 +9881,9 @@
           },
           {
             "url": "https://www.src.gov.sc",
-            "status": "changed",
+            "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "b5fda7b31b10ef185f66608ac96ea00429d2c3c2797fe9b4e83d4cc212fe3f64"
@@ -9807,7 +9903,7 @@
             "last_layout_change": "2026-09-16T10:27:04.952Z"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": true
       },
       "pros": [
@@ -10199,7 +10295,7 @@
             "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "4ec9c68aba5afb873134c2d1cb766b009a61a6cee3f24b90100ceab40abb3a27"
@@ -10219,9 +10315,9 @@
           },
           {
             "url": "https://www.gov.br/pf/pt-br/assuntos/imigracao",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "80559d29b03982f6ae2aef10f52fba3ab7d4ee8c65bf2e88fe70b760abd78a7b"
@@ -10238,13 +10334,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 2269,
-            "last_main_len": 33
+            "last_main_len": 33,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "08647a76cea82b8360d6e2da06e3e3d897b1dcd2446d8e88bc9f24f584b5e1df"
@@ -10260,10 +10358,12 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 153,
-            "last_main_len": 153
+            "last_main_len": 153,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -10628,7 +10728,7 @@
             "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "28e0fbef8d3828232fc9863f899db55ed2674e7104defd7f3cd193e9b3e3d39e"
@@ -10651,7 +10751,7 @@
             "url": "https://www.migraciones.gob.ar",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "d45f25a0c8ef1a6d2264b117c65141b4ba4656d197049aac9bce1988787f83b9"
@@ -10671,9 +10771,9 @@
           },
           {
             "url": "https://www.boletinoficial.gob.ar",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "ed4f520657ae4743090d032dfe1355605884a64f6874558095167b7fc11fc267"
@@ -10690,10 +10790,12 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 1709,
-            "last_main_len": 124
+            "last_main_len": 124,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -11337,7 +11439,7 @@
             "url": "https://serviciomigraciones.cl",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "4cd46e6d5c309b0424d63dd6dac0dc356b0d5d18018eb800271796b1ab439b6a"
@@ -11360,30 +11462,32 @@
             "url": "https://www.investchile.gob.cl",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
-                "last_hash": "f5b3f325ea36568181364a4229af88c1a84d57a84b10e303f10201286d9ba513"
+                "last_hash": "214f709269bc1f478aab025f56c32218a131a8cc598ceaa157cdd6e96526638e"
               },
               "rule": {
-                "last_hash": "fe701b2dfbb4e3250bfe27f06a8f3aea270152745282a7b307eb7ceedf2528b6"
+                "last_hash": "fe701b2dfbb4e3250bfe27f06a8f3aea270152745282a7b307eb7ceedf2528b6",
+                "pending_hash": "a45a913436b81af4e724364881353193f414b41d458918e1d9fbc619d0fd5210"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "f5b3f325ea36568181364a4229af88c1a84d57a84b10e303f10201286d9ba513",
-            "last_layout_change": "2026-09-15T14:57:07.990Z",
+            "last_hash": "214f709269bc1f478aab025f56c32218a131a8cc598ceaa157cdd6e96526638e",
+            "last_layout_change": "2026-09-17T10:36:30.327Z",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
             "probe_path": "http",
-            "last_text_len": 5054,
-            "last_main_len": 0
+            "last_text_len": 5065,
+            "last_main_len": 0,
+            "layout_change_streak": 1
           },
           {
             "url": "https://startupchile.org",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "b4952d5d8b0717de6b2d38227d92fa995627ba435c5c8b4e68d13eb6b94f63ac"
@@ -11402,7 +11506,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -11705,7 +11809,7 @@
             "url": "https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "b6d925bc8015c8762030241d4cc0e015535e6a16d90fe0dcb5f1d7b8624df7ad"
@@ -11725,9 +11829,9 @@
           },
           {
             "url": "https://www.migracioncolombia.gov.co",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "9a2bda81b3f15a2033a8c9a9a11016a6dbb133ad501442b17062fa9f8eaddaa1"
@@ -11745,13 +11849,15 @@
             "last_layout_change": "2026-09-17T05:01:32.562Z",
             "layout_change_streak": 2,
             "last_text_len": 100,
-            "last_main_len": 100
+            "last_main_len": 100,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://tramitesmre.cancilleria.gov.co",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "30a7e8cd2f3c735804dcf1574f638a081f2835840e8f0f2dfcc499a2b853ee3e"
@@ -11767,11 +11873,13 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 134,
-            "last_main_len": 37
+            "last_main_len": 37,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://portal.migracioncolombia.gov.co/tramites-y-servicios/todos",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -11793,7 +11901,7 @@
           },
           {
             "url": "https://portal.migracioncolombia.gov.co/tramites-y-servicios/tarifas/tarifas-vigentes",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -11814,7 +11922,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": false
       },
       "pros": [
@@ -12543,9 +12651,9 @@
         "urls": [
           {
             "url": "https://www.ciu.gov.lc",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "3614984c05f005fdaeaabf1f98244bf92fbcb7554b8ece08149976385882c802"
@@ -12561,10 +12669,12 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 105,
-            "last_main_len": 105
+            "last_main_len": 105,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -12805,7 +12915,7 @@
             "url": "https://www.cbi.gov.gd",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "4249ea3131c5fcc1ee41ae856d700268b9a9d55db9bb936ea1f465919e939a20"
@@ -12824,7 +12934,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -13088,7 +13198,7 @@
             "url": "https://www.immigration.gov.bb",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "7ebea7b9cbf44396bdf171829d15166dbd512e5e0092f6d562b799c6a0b02a73"
@@ -13110,7 +13220,7 @@
             "url": "https://barbadoswelcomestamp.bb",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "a0cda1db3af8af1368614541065274c2326ae31cf4c0553dac00bb220d430a92"
@@ -13130,7 +13240,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -13760,9 +13870,9 @@
           },
           {
             "url": "https://www.bahamaschamber.com",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "b95cdc9d98357dc106dc93d7aab7ef9ac996980b7b5b095991be0cae0f3d8967"
@@ -13778,11 +13888,13 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 187,
-            "last_main_len": 187
+            "last_main_len": 187,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.immigration.gov.bs",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -13804,7 +13916,7 @@
           },
           {
             "url": "https://laws.bahamas.gov.bs",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "mode": "browser",
             "scopes": {
               "whole": {
@@ -13817,17 +13929,19 @@
             "rule_scope": "none",
             "main_scope": "present",
             "extract_v": 7,
-            "status": "ok",
+            "status": "unreachable",
             "baselined_at": "2026-09-15T15:44:46.649Z",
             "last_hash": "1e14f49363ec34a8f7e94731089bfdc88bd645cefb8a79f6f5f6cd1448ebd122",
             "last_layout_change": "2026-09-17T05:01:32.562Z",
             "probe_path": "browser",
             "last_text_len": 1089,
             "last_main_len": 1089,
-            "layout_change_streak": 1
+            "layout_change_streak": 1,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": false
       },
       "pros": [
@@ -14095,9 +14209,9 @@
         "urls": [
           {
             "url": "https://www.belizeinvest.org.bz",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "db4a748f8370259dbff87293cbe2303d19d1f3228c8cb9fa629c1bf403ffd3ac"
@@ -14113,13 +14227,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 114,
-            "last_main_len": 114
+            "last_main_len": 114,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.tourism.gov.bz",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "4bd35e04e98e8aca7e715913553c51819b1dea182c1573821ca219cd219a5d04"
@@ -14138,7 +14254,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -14393,9 +14509,9 @@
         "urls": [
           {
             "url": "https://www.cambodiaimmigration.gov.kh",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "d65299565bc2eb027837e4bde23ab3897ad5498de8860144d843c1aa2fdeddc7"
@@ -14411,20 +14527,21 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 121,
-            "last_main_len": 121
+            "last_main_len": 121,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.cdc.gov.kh",
-            "status": "ok",
+            "status": "changed",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "3db015b5ff040ac36b1b89bae2a803705c5abb68dd8dba09c434a24e5fbf95f9"
               },
               "rule": {
-                "last_hash": "d0f6f1d753c8b55596a3f9657ee4199319a8ab18e2d1a21208be9947d56a749e",
-                "pending_hash": "eb3daa9c186d8b78d3d400847e1d90d0045670d9c61addb3dc80ffa2d321dfc7"
+                "last_hash": "eb3daa9c186d8b78d3d400847e1d90d0045670d9c61addb3dc80ffa2d321dfc7"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
@@ -14435,11 +14552,11 @@
             "probe_path": "http",
             "last_text_len": 3123,
             "last_main_len": 0,
-            "last_layout_change": "2026-09-17T05:01:32.562Z",
-            "layout_change_streak": 1
+            "last_layout_change": "2026-09-17T05:01:32.562Z"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
+        "changed": true
       },
       "pros": [
         {
@@ -14728,6 +14845,13 @@
           "to": "Official source content changed — manual rule review required",
           "source": "source-probe",
           "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003"
+        },
+        {
+          "date": "2026-09-17",
+          "field": "watch.https://www.cdc.gov.kh",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "source": "source-probe-v2",
+          "hash": "3db015b5ff040ac3"
         }
       ]
     },
@@ -14850,29 +14974,29 @@
             "url": "https://pra.gov.ph",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
-                "last_hash": "08647a76cea82b8360d6e2da06e3e3d897b1dcd2446d8e88bc9f24f584b5e1df"
+                "last_hash": "d105c779f454e476175a007cc1eb0b224848284b58c8e4d4a8c0998e507e3dff"
               },
-              "main": {
-                "last_hash": "08647a76cea82b8360d6e2da06e3e3d897b1dcd2446d8e88bc9f24f584b5e1df"
+              "rule": {
+                "last_hash": "14e0cdff16edd0b448d7d8797c032db387276376e50cd41b3574ff00666fce9f"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "08647a76cea82b8360d6e2da06e3e3d897b1dcd2446d8e88bc9f24f584b5e1df",
-            "rule_scope": "none",
-            "main_scope": "present",
+            "last_hash": "d105c779f454e476175a007cc1eb0b224848284b58c8e4d4a8c0998e507e3dff",
+            "rule_scope": "present",
+            "main_scope": "none",
             "extract_v": 7,
-            "probe_path": "browser",
-            "last_text_len": 153,
-            "last_main_len": 153
+            "probe_path": "http",
+            "last_text_len": 5821,
+            "last_main_len": 0
           },
           {
             "url": "https://immigration.gov.ph",
-            "status": "changed",
+            "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "ab297cd111bbe386ceb1a743292ba01be4d87261f773c251a63fc7eee447f317"
@@ -14893,9 +15017,9 @@
           },
           {
             "url": "https://boi.gov.ph",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "de14dc80855170be75f706a8cb0f347d044b46f614e7c43be3ce63d760cfc09c"
@@ -14917,10 +15041,12 @@
             "probe_path": "browser",
             "last_text_len": 2465,
             "last_main_len": 420,
-            "layout_change_streak": 1
+            "layout_change_streak": 1,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": true
       },
       "pros": [
@@ -15380,7 +15506,7 @@
             "url": "https://www.mm2h.gov.my",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "758ee6a83fa09763ed22076b241fd36e76307df8f6ee4c5ff174089e8edeae9d"
@@ -15400,9 +15526,9 @@
           },
           {
             "url": "https://mdec.my/de-rantau",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "a34485ec7172e094de5931c286349b7840fdbbdcfcd4efd3b99a531dc3f19f96"
@@ -15418,13 +15544,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 347,
-            "last_main_len": 179
+            "last_main_len": 179,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.imi.gov.my",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "78e1073979d46ac495c11cab90531a7d0151793364faa20c5d716eae85cf87c1"
@@ -15444,7 +15572,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -15868,9 +15996,9 @@
         "urls": [
           {
             "url": "https://evisa.imigrasi.go.id",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "1377c81d8ce2da15a5766db0da5279beb5dacf8da4b6a4578a5de4fbde223b6c"
@@ -15886,13 +16014,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 336,
-            "last_main_len": 213
+            "last_main_len": 213,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.imigrasi.go.id",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "1377c81d8ce2da15a5766db0da5279beb5dacf8da4b6a4578a5de4fbde223b6c"
@@ -15908,13 +16038,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 336,
-            "last_main_len": 213
+            "last_main_len": 213,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://oss.go.id",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "9e16dd401e60813b2305049e09bdad231838e4e5e3a6f7b23f635639f8316664"
@@ -15931,10 +16063,12 @@
             "last_layout_change": "2026-09-15T20:00:41.302Z",
             "probe_path": "browser",
             "last_text_len": 1888,
-            "last_main_len": 1314
+            "last_main_len": 1314,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": false
       },
       "pros": [
@@ -16295,29 +16429,32 @@
             "url": "https://www.moj.go.jp/isa",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
-                "last_hash": "4c49e2af07cdfd95b1af9aedcadc770142a61881dd283528a0acc6d9bd37e0ef"
+                "last_hash": "3bcc9fc2453ebe484a95ffc987b136d690e097f61a0dafe54d78f74b940329dd"
               },
               "rule": {
-                "last_hash": "d37a1f76d309b05ceffd015759c8da5951cf9084d079b6659f462ae4f2e21e9b"
+                "last_hash": "d37a1f76d309b05ceffd015759c8da5951cf9084d079b6659f462ae4f2e21e9b",
+                "pending_hash": "27f626e3981851d12884dd5f67202e885c345c07c8df0829a1471a0e138d608e"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "4c49e2af07cdfd95b1af9aedcadc770142a61881dd283528a0acc6d9bd37e0ef",
+            "last_hash": "3bcc9fc2453ebe484a95ffc987b136d690e097f61a0dafe54d78f74b940329dd",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
             "probe_path": "http",
-            "last_text_len": 1918,
-            "last_main_len": 0
+            "last_text_len": 1940,
+            "last_main_len": 0,
+            "last_layout_change": "2026-09-17T10:36:30.327Z",
+            "layout_change_streak": 1
           },
           {
             "url": "https://www.meti.go.jp",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "8c089644fb3e5f0162bc4a635010e5eea0bd07dcd2c50c52408dd02364fe4b49"
@@ -16330,13 +16467,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 743,
-            "last_main_len": 0
+            "last_main_len": 0,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.fsa.go.jp",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "85c3c500c9fcbf68cae2dc87ec88d15d91712a3336712567b68eafbd6d2b3a7a"
@@ -16358,10 +16497,12 @@
             "last_text_len": 2051,
             "last_main_len": 1832,
             "last_layout_change": "2026-09-17T05:01:32.562Z",
-            "layout_change_streak": 2
+            "layout_change_streak": 2,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -16598,16 +16739,15 @@
         "urls": [
           {
             "url": "https://www.immigration.govt.nz",
-            "status": "ok",
+            "status": "changed",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "528d6f14173862a4ea05943198bff6ef9f13d3aabd132c317eee2601a868e4ab"
               },
               "rule": {
-                "last_hash": "422a3280e63d91e40eb12c7794c8f6cd262491be5826a5cdadc454788d5d74fa",
-                "pending_hash": "3f317bd25fad53e908c02bd5b35f59b58aea5280e8fd188baa83c234687f5370"
+                "last_hash": "3f317bd25fad53e908c02bd5b35f59b58aea5280e8fd188baa83c234687f5370"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
@@ -16618,14 +16758,13 @@
             "probe_path": "http",
             "last_text_len": 2376,
             "last_main_len": 0,
-            "last_layout_change": "2026-09-17T05:01:32.562Z",
-            "layout_change_streak": 1
+            "last_layout_change": "2026-09-17T05:01:32.562Z"
           },
           {
             "url": "https://www.mbie.govt.nz",
-            "status": "changed",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "82b1f033adc410cec6c2ef7b1ed1d3d17edea4dabfdf54bfec5c8bcd47c118ad"
@@ -16645,10 +16784,12 @@
             "probe_path": "browser",
             "last_text_len": 2094,
             "last_main_len": 1764,
-            "last_layout_change": "2026-09-16T05:00:20.374Z"
+            "last_layout_change": "2026-09-16T05:00:20.374Z",
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z",
+        "last_probe_at": "2026-09-17T10:36:30.327Z",
         "changed": true
       },
       "pros": [
@@ -16875,6 +17016,13 @@
           "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
           "source": "source-probe-v2",
           "hash": "82b1f033adc410ce"
+        },
+        {
+          "date": "2026-09-17",
+          "field": "watch.https://www.immigration.govt.nz",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "source": "source-probe-v2",
+          "hash": "528d6f14173862a4"
         }
       ]
     },
@@ -16996,9 +17144,9 @@
         "urls": [
           {
             "url": "https://www.irishimmigration.ie",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "acc32be91ee0693030bc791617bfbb85ee9cbc890f72f4d9429d5add79d5047f"
@@ -17015,13 +17163,15 @@
             "probe_path": "browser",
             "last_layout_change": "2026-09-15T18:07:59.129Z",
             "last_text_len": 1260,
-            "last_main_len": 591
+            "last_main_len": 591,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://enterprise.gov.ie",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "7b517c3fd776b310f3b09ec3897649a6c72a8412ce8f857981df3e8a0adccc84"
@@ -17042,9 +17192,9 @@
           },
           {
             "url": "https://www.centralbank.ie",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "c00c1b819ccc88d1e39b3128ea5d19d398dd79a03db5ec6a6e5c7754af6cd79d"
@@ -17066,10 +17216,12 @@
             "last_text_len": 2335,
             "last_main_len": 1871,
             "last_layout_change": "2026-09-17T05:01:32.562Z",
-            "layout_change_streak": 2
+            "layout_change_streak": 2,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -17648,9 +17800,9 @@
         "urls": [
           {
             "url": "https://www.inclusion.gob.es",
-            "status": "blocked",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "27a32349cec5241a40915107cffddd4690e70c2e24cbadb3e22e946e561352f4"
@@ -17663,13 +17815,13 @@
             "main_scope": "none",
             "extract_v": 5,
             "status_since": "2026-09-15T16:57:36.441Z",
-            "last_error": "bot-walled (WAF/challenge page — no readable content)"
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.exteriores.gob.es",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "1de75ead64bd152088de32d67a6f5452dade8dd9460c995fc58d3366edca51e1"
@@ -17686,13 +17838,15 @@
             "probe_path": "browser",
             "last_layout_change": "2026-09-15T19:31:31.225Z",
             "last_text_len": 2084,
-            "last_main_len": 1383
+            "last_main_len": 1383,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.cnmv.es",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "f6a08a311eea7e624e4a1908188fab632f353308fb86a6e675dd681bef021281"
@@ -17711,7 +17865,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -18285,31 +18439,31 @@
             "url": "https://www.interno.gov.it",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
-                "last_hash": "bc761b8ba5e53685f2163c77a3fb1832d50b11fe8703dfab92fc6cb5439f462d"
+                "last_hash": "495689dc0659d20cd72551592c3fcf87f050e05186fb563ef7d20c86aab8120a"
               },
               "rule": {
                 "last_hash": "3c0202a46d6b5be0207e5ee0f82c30493db5cf04d1e410d3e40185a499b609b8"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "bc761b8ba5e53685f2163c77a3fb1832d50b11fe8703dfab92fc6cb5439f462d",
+            "last_hash": "495689dc0659d20cd72551592c3fcf87f050e05186fb563ef7d20c86aab8120a",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
             "probe_path": "http",
-            "last_text_len": 3745,
+            "last_text_len": 3632,
             "last_main_len": 0,
-            "last_layout_change": "2026-09-17T05:01:32.562Z",
-            "layout_change_streak": 1
+            "last_layout_change": "2026-09-17T10:36:30.327Z",
+            "layout_change_streak": 2
           },
           {
             "url": "https://investorvisa.mise.gov.it",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "4a93f329d074cf912e44d2d70f100afe7aa5b2358099938c838b0675b8fc9f0b"
@@ -18331,7 +18485,7 @@
             "url": "https://www.agenziaentrate.gov.it",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "90c0c8748cd40ad7eeb9d32c4373dfa4937981fc51d365d1f0cf6b08ca03ca4d"
@@ -18350,7 +18504,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -19055,9 +19209,9 @@
         "urls": [
           {
             "url": "https://www.pmlp.gov.lv",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "fa86ced269768627b7c6b9f7c80386599a148efa4fd48b7b531aeb13c5348302"
@@ -19073,13 +19227,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 2750,
-            "last_main_len": 1725
+            "last_main_len": 1725,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.ur.gov.lv",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "2c3f0ed0a89713c96c324b22a7a1dad9308e73efa7705a587771f209032feefa"
@@ -19095,32 +19251,34 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 2566,
-            "last_main_len": 1908
+            "last_main_len": 1908,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.fktk.lv",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
-                "last_hash": "24a07403c502eb8c60751fefbcb07ff8c5ce2efdd140cf27b42d278fd6ae07fd"
+                "last_hash": "3cc21f1fce0307c86dd827035ea1e2626a2d90ea0eb1839f880172b39309a9fa"
               },
-              "main": {
-                "last_hash": "6b017c8bd805700deddf6752b4e96dd7e0be6a907bab652cfbe04dd1d11806e8"
+              "rule": {
+                "last_hash": "4c3aa12dff7a680c8e49f2c99f993dd419a2a85757030d992698f6efac770f47"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "24a07403c502eb8c60751fefbcb07ff8c5ce2efdd140cf27b42d278fd6ae07fd",
-            "rule_scope": "none",
-            "main_scope": "present",
+            "last_hash": "3cc21f1fce0307c86dd827035ea1e2626a2d90ea0eb1839f880172b39309a9fa",
+            "rule_scope": "present",
+            "main_scope": "none",
             "extract_v": 7,
-            "probe_path": "browser",
-            "last_text_len": 3330,
-            "last_main_len": 1102
+            "probe_path": "http",
+            "last_text_len": 2814,
+            "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -19527,9 +19685,9 @@
         "urls": [
           {
             "url": "https://www.politsei.ee",
-            "status": "ok",
+            "status": "blocked",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "04fa05022d139eee0e1d1e4f9d9073a139416bff5eeb8695dfa7ef3fb17ae3ad"
@@ -19545,13 +19703,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 1932,
-            "last_main_len": 836
+            "last_main_len": 836,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "HTTP 403 — Cloudflare bot wall"
           },
           {
             "url": "https://www.e-resident.gov.ee",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "8aceae62a5ede5480b0153d19133ef168756123e058f83d2b37a95d59efd4ae8"
@@ -19572,9 +19732,9 @@
           },
           {
             "url": "https://www.rik.ee",
-            "status": "ok",
+            "status": "blocked",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "a6f3ea79247cf647dbdf33fbefba1b3a97273f28e1619dc9d9aa0ebaa42c4201"
@@ -19590,10 +19750,12 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 785,
-            "last_main_len": 673
+            "last_main_len": 673,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "HTTP 403 — Cloudflare bot wall"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -19905,9 +20067,9 @@
           },
           {
             "url": "https://www.bnb.bg",
-            "status": "blocked",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "ee58f1ddf78917307a782dc4275fcf68f57bd1eb58378eaf90e4b22b61e51ad8"
@@ -19920,13 +20082,13 @@
             "main_scope": "none",
             "extract_v": 5,
             "status_since": "2026-09-15T16:57:36.441Z",
-            "last_error": "bot-walled (WAF/challenge page — no readable content)"
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.fsc.bg",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "ba1059815d9bbaddea50ffb0121abc57722af7e5d7d5636e2be161e72eb3b1c8"
@@ -19939,13 +20101,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 836,
-            "last_main_len": 0
+            "last_main_len": 0,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.mfa.bg",
-            "status": "blocked",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "8cd5a78a0589ed42abfb93c806c6d1b5514497f9bb9d16ea661a5159a47a3ee6"
@@ -19958,10 +20122,10 @@
             "main_scope": "none",
             "extract_v": 5,
             "status_since": "2026-09-15T16:57:36.441Z",
-            "last_error": "bot-walled (WAF/challenge page — no readable content)"
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -20463,9 +20627,9 @@
         "urls": [
           {
             "url": "https://mup.gov.hr",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "415c7706b15278a45f6a84691aa60d271b923d671e50cddbb7c23a43654a03c8"
@@ -20481,13 +20645,15 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 2845,
-            "last_main_len": 2058
+            "last_main_len": 2058,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://digitalnomadscroatia.mup.hr",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "802abd7b48b2928c9c99e69eb7a5159b5a7c7e5fbbe84181516da428a8e7f605"
@@ -20506,7 +20672,7 @@
             "last_main_len": 0
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -20911,7 +21077,7 @@
             "url": "https://www.gibraltar.gov.gi",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "2483d6a18ff2f1199b645125825fc6524805233c8dc61951bb917247e6df634c"
@@ -20938,7 +21104,7 @@
             "last_error": "HTTP 403 — Cloudflare bot wall"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -21432,9 +21598,9 @@
         "urls": [
           {
             "url": "https://www.gov.ky",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "8d8f4f41b1c0ba50d63506c1fdfbc868f97051c6d0893cd41ab01a74cf7abbc4"
@@ -21451,13 +21617,15 @@
             "last_layout_change": "2026-09-15T18:55:10.026Z",
             "probe_path": "http",
             "last_text_len": 2179,
-            "last_main_len": 0
+            "last_main_len": 0,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.ciregistry.gov.ky",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "browser",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "50645801df96cd1770794cca6ab6dcfe8f94bd429609a68848187b3b44632d78"
@@ -21473,10 +21641,12 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 121,
-            "last_main_len": 121
+            "last_main_len": 121,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
@@ -21816,9 +21986,9 @@
         "urls": [
           {
             "url": "https://www.govern.ad",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "7234e3dee3897eff12f64b26ab12a738f4f23c9cc4c319d084e3938ecf3106bc"
@@ -21836,13 +22006,15 @@
             "probe_path": "browser",
             "last_text_len": 5255,
             "last_main_len": 3583,
-            "layout_change_streak": 1
+            "layout_change_streak": 1,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           },
           {
             "url": "https://www.afa.ad",
-            "status": "ok",
+            "status": "unreachable",
             "mode": "http",
-            "last_probed": "2026-09-17T05:01:32.562Z",
+            "last_probed": "2026-09-17T10:36:30.327Z",
             "scopes": {
               "whole": {
                 "last_hash": "7dd15296c7128da41becea5a61cb28f7a4765b343062e9cdd3c7220710bbda78"
@@ -21858,10 +22030,12 @@
             "extract_v": 7,
             "probe_path": "browser",
             "last_text_len": 2165,
-            "last_main_len": 20
+            "last_main_len": 20,
+            "status_since": "2026-09-17T10:36:30.327Z",
+            "last_error": "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js"
           }
         ],
-        "last_probe_at": "2026-09-17T05:01:32.562Z"
+        "last_probe_at": "2026-09-17T10:36:30.327Z"
       },
       "pros": [
         {
