@@ -61,9 +61,5 @@ export const STATUS_STEPS: { key: ApplicationStatus; label: string }[] = [
 
 export const PAYMENT_RAILS: { id: PaymentRail; label: string; desc: string }[] = [
   { id: 'bitcoin', label: 'Bitcoin', desc: 'On-chain BTC' },
-  { id: 'liquid', label: 'Liquid Bitcoin', desc: 'L-BTC confidential' },
   { id: 'lightning', label: 'Lightning', desc: 'Instant L2 sats' },
-  { id: 'bolt12', label: 'BOLT12', desc: 'Offer-based Lightning' },
-  { id: 'silent', label: 'Silent Payments', desc: 'BIP352 private receive' },
-  { id: 'pynym', label: 'PYNYM', desc: 'Privacy payment layer' },
 ]

@@ -81,12 +81,8 @@ export function PaymentMethods({
               {lastInvoice.demo ? ` · ${t('payments.demoBadge')}` : ` · ${t('payments.liveBadge')}`}
             </div>
             {lastInvoice.lightningAddress && <div>LN Address: {lastInvoice.lightningAddress}</div>}
-            {lastInvoice.bolt11 && <div>BOLT11: {lastInvoice.bolt11}</div>}
-            {lastInvoice.bolt12Offer && <div>BOLT12: {lastInvoice.bolt12Offer}</div>}
-            {lastInvoice.liquidAddress && <div>Liquid: {lastInvoice.liquidAddress}</div>}
+            {lastInvoice.bolt11 && !lastInvoice.demo && <div>BOLT11: {lastInvoice.bolt11}</div>}
             {lastInvoice.onchainAddress && <div>BTC: {lastInvoice.onchainAddress}</div>}
-            {lastInvoice.silentPaymentAddress && <div>Silent: {lastInvoice.silentPaymentAddress}</div>}
-            {lastInvoice.pynymHandle && <div>PYNYM: {lastInvoice.pynymHandle}</div>}
           </div>
         </div>
       )}
