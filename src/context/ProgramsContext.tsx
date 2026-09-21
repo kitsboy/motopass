@@ -17,8 +17,20 @@ type ProgramsContextValue = {
  */
 export const ProgramsContext = createContext<ProgramsContextValue | null>(null)
 
+const EMPTY_PROGRAMS: ProgramsContextValue = {
+  programs: [],
+  loading: false,
+  error: null,
+  byId: () => undefined,
+  refresh: () => {}
+}
+
 export function useProgramsContext() {
   const ctx = useContext(ProgramsContext)
-  if (!ctx) throw new Error('useProgramsContext must be used within ProgramsProvider')
+  if (!ctx) {
+    // Duplicate-chunk / menu-outside-provider used to throw and trip ErrorBoundary
+    // on first paint even though ProgramsProvider wraps the app. Stay quiet.
+    return EMPTY_PROGRAMS
+  }
   return ctx
 }
