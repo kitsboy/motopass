@@ -14,10 +14,10 @@ import { useI18n } from '../../i18n/I18nContext'
  *  - preload="metadata" so the browser pulls just the movie header.
  *  - Mobile-first: playsInline + tap-to-play native controls, responsive 16:9.
  *
- * HONEST PENDING STATE:
- *  - Until Mimi's final.mp4 lands at /video/motopass-ots-walkthrough.mp4 the
- *    video errors -> we show an on-brand "film in production" panel instead of
- *    faking playback. Once the file is live the player just works (no code change).
+ * HONEST FALLBACK:
+ *  - The film IS live (offloaded to Cloudflare R2 at videos.giveabit.io). If the
+ *    video ever fails to load we show an on-brand "film in production" panel instead
+ *    of faking playback, so a broken stream is never presented as working video.
  */
 // Film offloaded to Cloudflare R2 (videos.giveabit.io) to keep the site bundle light.
 // Lazy src injection on the <video> element is preserved.
@@ -76,7 +76,7 @@ export function VaultEducationPlayer() {
           )}
         </div>
 
-        {/* HONEST pending state — film not built yet, no fake playback */}
+        {/* HONEST fallback — film failed to load, no fake playback */}
         {filmError && (
           <div className="absolute inset-0 z-[2] flex flex-col items-center justify-center gap-3 bg-gradient-to-b from-mp-card/95 to-mp-card/90 px-6 text-center">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-fuchsia/40 bg-fuchsia-soft text-fuchsia">
