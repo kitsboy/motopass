@@ -66,6 +66,7 @@
     "check:security": "node scripts/check-secret-hygiene.mjs"
   },
   "dependencies": {
+    "@sentry/react": "^8.55.2",
     "@types/leaflet": "^1.9.21",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.511.0",
