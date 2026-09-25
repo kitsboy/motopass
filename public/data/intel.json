@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-24T10:43:08.002Z",
+  "generated_at": "2026-09-25T10:46:32.273Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
-    "fresh": 38,
-    "watch": 12,
+    "fresh": 0,
+    "watch": 50,
     "stale": 0,
-    "swept_at": "2026-09-24T10:43:08.002Z",
+    "swept_at": "2026-09-25T10:46:32.273Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -15,8 +15,8 @@
     "El Salvador": {
       "id": 1,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -69,8 +69,8 @@
     "Central African Republic": {
       "id": 2,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -122,8 +122,8 @@
     "Uruguay": {
       "id": 3,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -175,8 +175,8 @@
     "Bolivia": {
       "id": 4,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -229,8 +229,8 @@
     "St. Kitts and Nevis": {
       "id": 5,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -282,8 +282,8 @@
     "Antigua and Barbuda": {
       "id": 6,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -335,14 +335,14 @@
     "Dominica": {
       "id": 7,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
         "probed": 1,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec",
@@ -387,8 +387,8 @@
     "UAE (Dubai / Abu Dhabi)": {
       "id": 8,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -440,8 +440,8 @@
     "Switzerland": {
       "id": 9,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -493,8 +493,8 @@
     "Singapore": {
       "id": 10,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -547,8 +547,8 @@
     "Portugal": {
       "id": 11,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -564,6 +564,12 @@
         "stamp_id": "be0d6712-2c14-4c14-a4e0-d08952db972f"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-25",
+          "field": "watch.https://www.portugal.gov.pt",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "073387d49817e6b6"
+        },
         {
           "date": "2026-09-24",
           "field": "watch.https://www.portugal.gov.pt",
@@ -588,12 +594,6 @@
           "from": "f37c397dbe7479ec",
           "to": "re-anchored f3e40457dce4d625 (stamp be0d6712-2c1)",
           "hash": "f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db"
-        },
-        {
-          "date": "2026-09-12",
-          "field": "watch.https://www.portugal.gov.pt",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db"
         }
       ]
     },
@@ -601,7 +601,7 @@
       "id": 12,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -653,14 +653,14 @@
     "Panama": {
       "id": 13,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
-        "changed": false,
+        "changed": true,
         "probed": 2,
-        "unreachable": 1
+        "unreachable": 0
       },
       "proof": {
         "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b",
@@ -670,6 +670,12 @@
         "stamp_id": "0ecb7ddc-a1c0-4533-acc8-643623beeaa3"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-25",
+          "field": "watch.https://www.migracion.gob.pa",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "75f4799c21656d0f"
+        },
         {
           "date": "2026-09-15",
           "field": "watch.https://www.migracion.gob.pa",
@@ -694,20 +700,14 @@
           "from": "08f2bedb94ea4bc1",
           "to": "re-anchored bb1f6135c1c7e559 (stamp 0ecb7ddc-a1c)",
           "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
-        },
-        {
-          "date": "2026-09-13",
-          "field": "watch.https://www.gacetaoficial.gob.pa",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
         }
       ]
     },
     "Georgia": {
       "id": 14,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -759,14 +759,14 @@
     "Paraguay": {
       "id": 15,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
         "probed": 3,
-        "unreachable": 1
+        "unreachable": 3
       },
       "proof": {
         "hash": "5911b4c8ced9fa68fbacf38e71269826ae82e521526f879430f16772b3471a81",
@@ -812,8 +812,8 @@
     "Costa Rica": {
       "id": 16,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -866,8 +866,8 @@
     "Hong Kong": {
       "id": 17,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -918,8 +918,8 @@
     "Thailand": {
       "id": 18,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -972,8 +972,8 @@
     "Mexico": {
       "id": 19,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1025,8 +1025,8 @@
     "Cyprus": {
       "id": 20,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1080,8 +1080,8 @@
     "Greece": {
       "id": 21,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1134,7 +1134,7 @@
       "id": 22,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1186,12 +1186,12 @@
     "Turkey": {
       "id": 23,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
-        "changed": false,
+        "changed": true,
         "probed": 2,
         "unreachable": 1
       },
@@ -1203,6 +1203,12 @@
         "stamp_id": "9eb4f241-b6e5-4af3-add6-5ef8ebc392ce"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-25",
+          "field": "watch.https://www.invest.gov.tr",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "167257e85af6b077"
+        },
         {
           "date": "2026-09-15",
           "field": "watch.changed",
@@ -1226,12 +1232,6 @@
           "from": "8fe49edf7781ee75",
           "to": "re-anchored 1627b22f7dcdf519 (stamp 9eb4f241-b6e)",
           "hash": "1627b22f7dcdf519a1fc3888f9aac23421e3231485a596938975615c1bb36f96"
-        },
-        {
-          "date": "2026-09-15",
-          "field": "watch.https://www.invest.gov.tr",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "1627b22f7dcdf519a1fc3888f9aac23421e3231485a596938975615c1bb36f96"
         }
       ]
     },
@@ -1239,7 +1239,7 @@
       "id": 24,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1293,13 +1293,13 @@
       "id": 25,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 3,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "8e7f0477438aff10be4d4886bdf910610af79510efcaf2ce04ffb562426f3606",
@@ -1344,8 +1344,8 @@
     "Brazil": {
       "id": 26,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1397,8 +1397,8 @@
     "Argentina": {
       "id": 27,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1450,8 +1450,8 @@
     "Chile": {
       "id": 28,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1503,8 +1503,8 @@
     "Colombia": {
       "id": 29,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1558,8 +1558,8 @@
     "St. Lucia": {
       "id": 30,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1611,8 +1611,8 @@
     "Grenada": {
       "id": 31,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1664,8 +1664,8 @@
     "Barbados": {
       "id": 32,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1717,8 +1717,8 @@
     "Bahamas": {
       "id": 33,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1769,8 +1769,8 @@
     "Belize": {
       "id": 34,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -1823,13 +1823,13 @@
       "id": 35,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
         "changed": true,
         "probed": 2,
-        "unreachable": 1
+        "unreachable": 2
       },
       "proof": {
         "hash": "8738e1c6e0f16dbafb192c67511d1dd3e930b7848b320b02db5490c7ee86c003",
@@ -1875,7 +1875,7 @@
       "id": 36,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1927,7 +1927,7 @@
       "id": 37,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -1979,7 +1979,7 @@
       "id": 38,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2030,7 +2030,7 @@
       "id": 39,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2046,6 +2046,12 @@
         "stamp_id": "9e6f7416-b008-4203-bd91-34b5027de30f"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-25",
+          "field": "watch.https://www.moj.go.jp/isa",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "eecc3fee546a702c"
+        },
         {
           "date": "2026-09-20",
           "field": "watch.https://www.fsa.go.jp",
@@ -2070,13 +2076,6 @@
           "field": "watch.https://www.moj.go.jp/isa",
           "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
           "hash": "3bcc9fc2453ebe48"
-        },
-        {
-          "date": "2026-09-15",
-          "field": "legal_compliance.recent_changes",
-          "from": "HSP points table periodically updated; Business Manager scrutiny increased for shell companies; Japan remains major regulated crypto market with FSA oversight.",
-          "to": "HSP points table periodically updated; Business Manager scrutiny increased for shell companies; Japan remains major regulated crypto market with FSA oversight. 2026-09-15 verification: residence-permit fee amounts (在留許可手数料) are revised from 2026-10-01 under the cabinet order amending the Immigration Control and Refugee Recognition Act enforcement order (改正入管法施行令) — fees for permission to change status of residence, to extend the period of stay, and for permanent residence are now set according to the period of stay granted; applications filed on or after 2026-10-01 pay the revised amounts, while applications accepted on or before 2026-09-30 pay the pre-revision fees even where the permission is granted later; online applications move from revenue stamps to convenience-store/bank payment, and a reduction/exemption scheme applies to those in financial hardship (Immigration Services Agency, https://www.moj.go.jp/isa/01_00644.html; first Wayback accession 2026-09-09). Investment / HSP / Business Manager pathway figures are unaffected.",
-          "hash": "4a76d9bf851de23fb63823f1b5d6ab34901d3e9083ab778095e6b47d25af9d08"
         }
       ]
     },
@@ -2084,7 +2083,7 @@
       "id": 40,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2100,6 +2099,12 @@
         "stamp_id": "38e41ea6-f3b4-4cc1-be69-4bf358b25fb9"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-25",
+          "field": "watch.https://www.immigration.govt.nz",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "fe7f236a4e669dd4"
+        },
         {
           "date": "2026-09-24",
           "field": "watch.https://www.mbie.govt.nz",
@@ -2123,12 +2128,6 @@
           "field": "watch.https://www.immigration.govt.nz",
           "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
           "hash": "528d6f14173862a4"
-        },
-        {
-          "date": "2026-09-17",
-          "field": "watch.https://www.mbie.govt.nz",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "82b1f033adc410ce"
         }
       ]
     },
@@ -2136,7 +2135,7 @@
       "id": 41,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2152,6 +2151,12 @@
         "stamp_id": "062d74ff-b5a0-41bc-ab3e-3a1a2e30fdfb"
       },
       "recent_changes": [
+        {
+          "date": "2026-09-25",
+          "field": "watch.https://enterprise.gov.ie",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "b175b5bf4a91bbbf"
+        },
         {
           "date": "2026-09-20",
           "field": "watch.https://www.centralbank.ie",
@@ -2175,20 +2180,14 @@
           "field": "watch.https://enterprise.gov.ie",
           "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
           "hash": "ac12f1581c6c88ce"
-        },
-        {
-          "date": "2026-09-15",
-          "field": "watch.https://www.centralbank.ie",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
         }
       ]
     },
     "Spain": {
       "id": 42,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -2240,14 +2239,14 @@
     "Italy": {
       "id": 43,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": true,
         "probed": 3,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "3ca27b9a7ab32911922a4fb71ff45a93dfb9f4ee5a47ac4de03fcc29d8430590",
@@ -2293,8 +2292,8 @@
     "Latvia": {
       "id": 44,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -2346,8 +2345,8 @@
     "Estonia": {
       "id": 45,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -2399,14 +2398,14 @@
     "Bulgaria": {
       "id": 46,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": false,
         "probed": 4,
-        "unreachable": 3
+        "unreachable": 4
       },
       "proof": {
         "hash": "d920efa5ab82a1093d2ade03daf5c536289795e5e077df80e7e9a9b8f5a4937f",
@@ -2452,8 +2451,8 @@
     "Croatia": {
       "id": 47,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
@@ -2505,14 +2504,14 @@
     "Gibraltar": {
       "id": 48,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
         "changed": false,
         "probed": 2,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "774b7595b3ef3d2c748540ae9023c1e363aa106959cbe794ec64b813b3d4e89b",
@@ -2559,7 +2558,7 @@
       "id": 49,
       "freshness": {
         "status": "watch",
-        "days_stale": 33,
+        "days_stale": 34,
         "last_checked": "2026-08-22"
       },
       "watch": {
@@ -2610,8 +2609,8 @@
     "Andorra": {
       "id": 50,
       "freshness": {
-        "status": "fresh",
-        "days_stale": 14,
+        "status": "watch",
+        "days_stale": 15,
         "last_checked": "2026-09-10"
       },
       "watch": {
