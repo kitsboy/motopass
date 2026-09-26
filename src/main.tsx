@@ -6,7 +6,7 @@ import './index.css'
 
 declare global {
   interface Window {
-    __MOTOPASS_SENTRY__?: any
+    __MOTOPASS_SENTRY__?: unknown
   }
 }
 
