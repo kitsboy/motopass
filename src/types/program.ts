@@ -148,6 +148,10 @@ export interface Program {
   satohash_proofs?: SatohashProof[]
   /** Flagship v2 depth — Uruguay template */
   flagship_depth?: boolean
+  /** Research highlight: country mentions Bitcoin/crypto in policy/law. */
+  policy_mentions_btc?: boolean
+  /** Research highlight: country is genuinely BTC/crypto-friendly. */
+  highlight_btc_friendly?: boolean
   /** `template` = seeded scaffold; omit = researched deep flagship */
   flagship_tier?: 'template' | 'deep'
   pathways?: ProgramPathway[]

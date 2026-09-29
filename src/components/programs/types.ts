@@ -49,6 +49,10 @@ export interface Program {
   stackingSynergy?: string;
   riskLevel?: string;
   lightningReady?: boolean;
+  /** BTC/crypto mentioned in official policy/law (research highlight). */
+  policyMentionsBtc?: boolean;
+  /** Genuinely BTC/crypto-friendly jurisdiction (research highlight). */
+  highlightBtcFriendly?: boolean;
   sources?: string[];
   proofUrl?: string;
   proofBlockHeight?: number;

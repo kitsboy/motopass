@@ -143,6 +143,12 @@ export function ProgramsTable({
                     className={compact ? 'h-5 w-5' : 'h-6 w-6'}
                   />
                   <span className={`font-display text-mp-ink ${compact ? 'text-xs' : 'text-sm'}`}>{p.country}</span>
+                  {p.highlightBtcFriendly && (
+                    <span className="inline-flex items-center rounded-chip border border-mp-btc/50 bg-mp-btc-soft px-1 py-px font-mono text-[8px] uppercase tracking-wide text-mp-btc-text" title="BTC/crypto-friendly jurisdiction">₿</span>
+                  )}
+                  {!p.highlightBtcFriendly && p.policyMentionsBtc && (
+                    <span className="inline-flex items-center rounded-chip border border-mp-copper/30 px-1 py-px font-mono text-[8px] uppercase tracking-wide text-mp-copper" title="Mentions BTC/crypto in policy">₿</span>
+                  )}
                 </div>
               </td>
               <td

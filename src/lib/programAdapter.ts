@@ -84,6 +84,8 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     proofBlockHeight: proof?.block_height,
     flagshipDepth: p.flagship_depth,
     flagshipTier: p.flagship_tier ?? (p.flagship_depth ? 'deep' : undefined),
+    policyMentionsBtc: !!p.policy_mentions_btc,
+    highlightBtcFriendly: !!p.highlight_btc_friendly,
     pathways: p.pathways,
     criticalTests: p.critical_tests,
     legalCompliance: p.legal_compliance,

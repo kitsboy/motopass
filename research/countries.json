@@ -6,28 +6,25 @@
       "category": "rbi_cbi",
       "region": "Central America",
       "status": "Acquired - Pioneer",
-      "bitcoin_integration": "Bitcoin was legal tender 2021-2025 (status revoked Feb 2025 as an IMF $1.4B program condition); voluntary acceptance continues with strong government support for the Bitcoin ecosystem, Lightning adoption, and crypto businesses. No capital gains tax on Bitcoin in many cases. Excellent for Bitcoin-native identity experiments and residency.",
+      "bitcoin_integration": "El Salvador was the first country to make Bitcoin legal tender (Sept 7, 2021). Under a $1.4bn / 40-month IMF program (Dec 2024), Legislative Decree No. 199 was gazetted Jan 30 2025 and took effect ~May 1 2025, dismantling the compulsory framework: merchant acceptance of Bitcoin is now voluntary (not mandatory), the government's Chivo wallet participation is being phased out (by end-July 2025 per IMF terms), and the state does not voluntarily accumulate more Bitcoin. As of 2026 Bitcoin is effectively voluntary tender — most analysts treat the compulsory 'legal tender' obligation as rescinded while the USD remains the dominant currency for wages, prices and taxes; the state retains its existing Bitcoin holdings. The country remains strongly crypto-promotional at the government level despite the legal rollback.",
       "finance": {
         "min_investment_usd": 0,
         "typical_investment_usd": 30000,
         "gov_fees_usd": 5000,
         "processing_time_months": "1-4",
-        "tax_benefits": "Favorable crypto tax treatment; legal-tender status revoked in Feb 2025 (IMF condition) — sovereign-signal framing is now historical, but no capital gains tax on Bitcoin in many cases remains.",
+        "tax_benefits": "Favorable crypto tax treatment; legal-tender status revoked in Feb 2025 (IMF condition) — sovereign-signal framing is now historical, but no capital gains tax on Bitcoin in many cases remains.\n\nCrypto/Bitcoin tax: No capital gains tax on Bitcoin exchanges — the 2025 Decree No. 199 reform explicitly retains/exempts Bitcoin exchanges from capital gains tax (Bloomberg Tax). Since the reform, taxes and government monetary obligations must be paid in US dollars (Bitcoin is no longer accepted for taxes, and the state's automatic USD conversion obligation was removed); the country is dollarized. El Salvador uses a territorial tax system focused on domestic-source income.",
         "crypto_friendly_score": 9,
-        "bitcoin_specific": "Bitcoin legal with voluntary acceptance since Jan 2025 reforms. Government Strategic Bitcoin Reserve continues accumulating (~7,762 BTC as of Sep 2026); Chivo wallet ownership and operation transferred to a private operator (IMF-confirmed, Sep 2026). Freedom Visa anchors the investment-migration offer."
+        "bitcoin_specific": "Yes — but only for the government's Freedom Visa citizenship-by-investment contribution: the ~USD 1 million development-fund contribution can be paid in Bitcoin or USDT. Since the 2025 reform, taxes and general government fees/obligations are payable in US dollars only, not Bitcoin. General visa/immigration fees are in USD."
       },
       "details": "First country to make Bitcoin legal tender (Ley Bitcoin passed 8 Jun 2021, effective 7 Sep 2021). Legal-tender status revoked in Feb 2025 under the $1.4B IMF program: merchants no longer obligated to accept BTC and taxes no longer payable in BTC, but BTC remains legal with voluntary use and the government continues holding. Still a strong fit for MotoPass Bitcoin identity experiments.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Reuters (2025-01-30)",
-        "IMF Country Report 25/58",
-        "CoinDesk",
-        "Wikipedia (Bitcoin in El Salvador)",
-        "Official government announcements",
-        "IMI Daily (2026-04-15)",
-        "Passportivity legal review (2026-07-02)",
-        "IMF statement (2026-09-03)",
-        "news.bitcoin.com reserve tracker (2026-09-02)"
+        "Bloomberg Tax (Daily Tax Report International) — https://news.bloombergtax.com/daily-tax-report-international/el-salvador-gazettes-decree-amending-bitcoin-law",
+        "International Monetary Fund — https://www.imf.org/en/publications/cr/issues/2025/03/19/el-salvador-selected-issues-565394",
+        "France24 / AFP — https://www.france24.com/en/live-news/20250130-el-salvador-merchants-no-longer-obliged-to-accept-bitcoin",
+        "CryptoSlate — https://cryptoslate.com/crypto-laws/el-salvador-bitcoin-law/",
+        "APEX Capital Partners — https://apexcapital.partners/your-guide-to-el-salvador-citizenship-by-investment/",
+        "Official — https://www.rree.gob.sv/"
       ],
       "flag": "🇸🇻",
       "lightning_ready": true,
@@ -85,8 +82,11 @@
           "Reforma Ley Bitcoin (Jan 2025)"
         ],
         "official_urls": [
+          "https://adoptingelsalvador.gob.sv",
+          "https://www.migracion.gob.sv",
+          "https://www.migracion.gob.sv/",
           "https://www.presidencia.gob.sv",
-          "https://www.migracion.gob.sv"
+          "https://www.rree.gob.sv/"
         ],
         "property_foreign_ownership": "Generally permitted with standard restrictions.",
         "recent_changes": "IMF-linked reforms (Jan 29-30, 2025) revoked legal-tender status: merchants no longer obligated to accept BTC and taxes no longer payable in BTC; BTC remains legal with voluntary use, government continues BTC accumulation."
@@ -110,9 +110,9 @@
         "escalate_when": "Large corporate relocation or mining operations"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 77,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -142,6 +142,18 @@
             "last_layout_change": "2026-09-15T19:37:10.714Z",
             "last_text_len": 1073,
             "last_main_len": 0
+          },
+          {
+            "url": "https://www.rree.gob.sv/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.migracion.gob.sv/",
+            "mode": "http"
+          },
+          {
+            "url": "https://adoptingelsalvador.gob.sv",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -296,7 +308,9 @@
           "source": "satohash-api",
           "hash": "c9a0a52e503612c2ddd9b95e994b5a500662355bdf505df831b7daf4bac58b92"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": true
     },
     {
       "id": 2,
@@ -304,21 +318,25 @@
       "category": "rbi_cbi",
       "region": "Europe",
       "status": "Researching - Policy Shift",
-      "bitcoin_integration": "Was very crypto-friendly (NHR regime). Recent changes to tax rules for crypto. Still attractive but monitor updates. Golden Visa evolving.",
+      "bitcoin_integration": "Bitcoin is legal and unregulated as a currency in Portugal. Portugal was historically one of the most crypto-friendly jurisdictions in the EU (tax-free crypto until 2023). Since 1 January 2023 (State Budget Law 24-D/2022) a crypto-asset tax regime applies: capital gains on crypto held for less than 365 days are taxed as Category G gains at a flat 28% (or included in aggregated income), while gains on crypto held for 365 days or more are excluded from tax for most residents. The Portuguese Tax Authority (Autoridade Tributária) issued official guidance and binding rulings (e.g. Processo 29052) confirming this.",
       "finance": {
         "min_investment_usd": 250000,
         "typical_investment_usd": 400000,
         "gov_fees_usd": 20000,
         "processing_time_months": "6-12",
-        "tax_benefits": "Changes in 2023-2025 reduced some benefits. Still territorial elements and quality of life high.",
+        "tax_benefits": "Changes in 2023-2025 reduced some benefits. Still territorial elements and quality of life high.\n\nCrypto/Bitcoin tax: Since 2023, short-term crypto capital gains (<365 days holding) taxed at flat 28% (Category G); residents may elect aggregation into progressive income brackets. Long-term gains (>=365 days) tax-exempt in most cases (exclusion under Art. 10(19) CIRS applies to transactions with EU/EEA or info-exchange countries). Category E capital income from crypto taxed at special 28% rate; mining/validation treated as business income (Category B). Crypto holdings must be declared annually (Portaria 39-B/2024). No capital gains tax on long-held bitcoin is the key favourable feature.",
         "crypto_friendly_score": 7,
-        "bitcoin_specific": "Monitor closely. Previously excellent; now more neutral. Good lifestyle option if rules stabilize."
+        "bitcoin_specific": "No official acceptance of BTC for golden-visa or government/immigration fees; all AIMA application and visa fees are payable in EUR (standard and 25%-reduced digital rates). Qualifying golden-visa investments (funds, research, company capital, cultural donation) must be in EUR. A privately proposed crypto-backed fund route (e.g. Unbound Fund marketing 'bitcoin-backed golden visa') has not been approved or confirmed by Portuguese authorities."
       },
       "details": "Lifestyle + residency strong, but tax/crypto policy has shifted. Requires fresh research for MotoPass. Modeled minimum investment $250,000 (typical $400,000). Primary routes on file: Golden Visa (investment fund route), D7 passive income. Tax notes: Changes in 2023-2025 reduced some benefits. Still territorial elements and quality of life high. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official updates",
-        "Industry analysis"
+        "Autoridade Tributária e Aduaneira (AT) - Portugal Tax Authority — https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Criptoativos.pdf",
+        "Autoridade Tributária e Aduaneira (AT) — https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/informacoes_vinculativas/rendimento/cirs/Documents/PIV_29052.pdf",
+        "Get Golden Visa — https://getgoldenvisa.com/portugal-golden-visa-program",
+        "Moving2.com — https://movingto.com/b/portugal-golden-visa-property-to-private-capital",
+        "Official — https://www.portaldasfinancas.gov.pt/",
+        "Official — https://www.portugal.gov.pt/"
       ],
       "flag": "🇵🇹",
       "lightning_ready": false,
@@ -370,9 +388,13 @@
           "Golden Visa amendments 2023+"
         ],
         "official_urls": [
+          "https://aima.gov.pt",
+          "https://aima.gov.pt/pt/a-aima/perguntas-frequentes-faqs/autorizacao-de-residencia-para-investimento-ari/faq-residence-permit-for-investment-activity-ari",
+          "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a",
           "https://imigrante.sef.pt",
+          "https://www.portaldasfinancas.gov.pt/",
           "https://www.portugal.gov.pt",
-          "https://aima.gov.pt"
+          "https://www.portugal.gov.pt/"
         ],
         "property_foreign_ownership": "Permitted; golden visa real estate route restricted/reformed — verify current rules.",
         "recent_changes": "SEF wound down (2023); residency applications processed by AIMA with a digital platform rollout. Housing-route golden visa closed (Oct 2023); fund route at €500k remains. Nationality law reformed (Lei Orgânica 1/2026, in force 19 May 2026): naturalisation 7 years (EU/CPLP) / 10 years (others), counted from first residence card."
@@ -398,9 +420,9 @@
         "escalate_when": "NHR + crypto treasury structuring"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 83,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -445,6 +467,22 @@
             "probe_path": "http",
             "last_text_len": 517,
             "last_main_len": 0
+          },
+          {
+            "url": "https://www.portaldasfinancas.gov.pt/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.portugal.gov.pt/",
+            "mode": "http"
+          },
+          {
+            "url": "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a",
+            "mode": "http"
+          },
+          {
+            "url": "https://aima.gov.pt/pt/a-aima/perguntas-frequentes-faqs/autorizacao-de-residencia-para-investimento-ari/faq-residence-permit-for-investment-activity-ari",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z",
@@ -680,7 +718,9 @@
           "source": "source-probe-v2",
           "hash": "073387d49817e6b6"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": true
     },
     {
       "id": 3,
@@ -688,21 +728,25 @@
       "category": "rbi_cbi",
       "region": "Europe",
       "status": "Researching",
-      "bitcoin_integration": "Italy offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
+      "bitcoin_integration": "Bitcoin and crypto ('cripto-attività') are legal in Italy and recognized as an autonomous asset class under Article 67(1)(c-sexies) of the TUIR since 1 January 2023 (2023 Budget Law 197/2022). Italy's stance is neutral-to-sceptical: gains are taxed and the Agenzia delle Entrate has automated oversight; there is no special crypto-industry incentive and no official bitcoin-friendly policy.",
       "finance": {
         "min_investment_usd": 250000,
         "typical_investment_usd": 500000,
         "gov_fees_usd": 28000,
         "processing_time_months": "6-12",
-        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
+        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.\n\nCrypto/Bitcoin tax: Italian tax residents pay a flat substitute tax on realized crypto capital gains - 26% for gains realized 2023-2025, rising to 33% for gains realized from 1 January 2026 (Law 207/2024 / 2025 Budget Law; per several 2026 guides), with no EUR 2,000 exemption from 2026 (taxable from first euro). A 26% carve-out applies to MiCAR-compliant euro-denominated e-money-token stablecoins. Foreign-held crypto is subject to a 0.2% wealth tax and Quadro RW declaration (no de minimis). Staking/mining income is treated as personal income (IRPEF). DAC8 (D.Lgs. 194/2025) obliges crypto service providers to report Italian users from 1 January 2026. CAVEAT: sources disagree on the effective timing of the 33% rate - some date it from 1 Jan 2026, others cite a rise planned for 2027; verify against Agenzia delle Entrate.",
         "crypto_friendly_score": 6,
-        "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
+        "bitcoin_specific": "No official acceptance of BTC for Italian visa, residence-permit, or Investor Visa ('golden visa') fees; visa, stamp and permit charges are paid in EUR. Qualifying investments (startup, company, bonds, donation) must be made in EUR through Italian financial channels. Bitcoin cannot be used to satisfy any investor-visa route."
       },
       "details": "Flagship-depth research entry for Italy. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration portals",
-        "MotoPass research BUILD-011"
+        "MIMIT - Ministry of Enterprises and Made in Italy (Investor Visa for Italy) — https://investorvisa.mise.gov.it/index.php/en",
+        "Plisio — https://plisio.net/tax/italy-crypto-tax",
+        "Wag3s — https://wag3s.io/blog/crypto-tax-italy",
+        "Domicila — https://domicila.net/italy-golden-visa-cost",
+        "Official — https://www.esteri.it/",
+        "Official — https://www.agenziaentrate.gov.it/"
       ],
       "flag": "🇮🇹",
       "lightning_ready": false,
@@ -761,9 +805,12 @@
           "Lavoratori remoti da paese terzo (digital nomad decree 2024)"
         ],
         "official_urls": [
-          "https://www.interno.gov.it",
           "https://investorvisa.mise.gov.it",
-          "https://www.agenziaentrate.gov.it"
+          "https://investorvisa.mise.gov.it/index.php/en",
+          "https://www.agenziaentrate.gov.it",
+          "https://www.agenziaentrate.gov.it/",
+          "https://www.esteri.it/",
+          "https://www.interno.gov.it"
         ],
         "property_foreign_ownership": "Foreigners may purchase residential property; elective residence requires proof of accommodation (rental or ownership) but no minimum investment in RE.",
         "recent_changes": "2024 digital nomad visa launched; investor visa startup route at €250k remains most popular for founders. 2025 discussions on streamlining Nulla Osta processing — timelines still 3–6 months. 2026-09-10 verification: investor tiers EUR 250k/500k/1M/2M confirmed current (investorvisa.mise.gov.it); HNW flat tax corrected EUR 100k -> EUR 300k/yr (Fragomen 2026-04-28); digital-nomad EUR 28k route unchanged."
@@ -791,9 +838,9 @@
         "escalate_when": "Investor Visa Nulla Osta application, flat-tax election, or €250k+ startup capital deployment"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -864,6 +911,18 @@
             "last_text_len": 3043,
             "last_main_len": 0,
             "last_layout_change": "2026-09-22T10:31:42.824Z"
+          },
+          {
+            "url": "https://www.esteri.it/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.agenziaentrate.gov.it/",
+            "mode": "http"
+          },
+          {
+            "url": "https://investorvisa.mise.gov.it/index.php/en",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z",
@@ -1468,7 +1527,9 @@
           "source": "source-probe-v2",
           "hash": "932633c4ad04f0d4"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": false
     },
     {
       "id": 4,
@@ -1476,21 +1537,24 @@
       "category": "rbi_cbi",
       "region": "South America",
       "status": "Flagship - Verified Template",
-      "bitcoin_integration": "Growing crypto-friendly environment. Stable democracy with interest in digital assets and fintech. Potential for Bitcoin residency incentives.",
+      "bitcoin_integration": "Crypto legal to hold/trade, not legal tender (peso only). Virtual Assets Law 20.345 (2024) regulates VASPs under Central Bank (BCU); BCU approved VASP regs July 2025. No El-Salvador-style adoption.",
       "finance": {
         "min_investment_usd": 100000,
         "typical_investment_usd": 150000,
         "gov_fees_usd": 15000,
         "processing_time_months": "3-8",
-        "tax_benefits": "Territorial system, reformed 1 Jan 2026 (Law 20.446 as amended): 11-year tax holiday on foreign-source income for new tax residents preserved; after the holiday most foreign investment income is taxed at 12% (pensions and Social Security exempt). Tax-residency-via-RE threshold now ~US$2M.",
+        "tax_benefits": "Territorial system, reformed 1 Jan 2026 (Law 20.446 as amended): 11-year tax holiday on foreign-source income for new tax residents preserved; after the holiday most foreign investment income is taxed at 12% (pensions and Social Security exempt). Tax-residency-via-RE threshold now ~US$2M.\n\nCrypto/Bitcoin tax: No dedicated individual capital-gains tax on crypto today; treatment evolving under 2025-2029 budget reform (Law 20.446). New-resident foreign-source income taxed 12% IRPF after tax holiday.",
         "crypto_friendly_score": 8,
-        "bitcoin_specific": "Stable jurisdiction for Bitcoin holders. Good base for MotoPass Latin America hub."
+        "bitcoin_specific": "No. Government, immigration and visa fees payable in pesos/fiat only; Bitcoin not accepted for state fees."
       },
       "details": "Popular for residency. High quality of life, stable politics, and increasing openness to crypto and remote workers. Excellent candidate for MotoPass Bitcoin residency program.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration sites",
-        "Our detailed research"
+        "Legalink — https://www.legalink.net/en/publications/newsletters/virtual-assets-law/4203/",
+        "Ecija — https://www.ecija.com/en/news-and-insights/uruguays-central-bank-approves-regulations-for-virtual-asset-service-providers-vasps/",
+        "Official — https://embassyofuruguay.us/",
+        "Official — https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
+        "Official — https://www.gub.uy/tramites/residencia-legal-temporaria"
       ],
       "flag": "🇺🇾",
       "lightning_ready": true,
@@ -1548,8 +1612,11 @@
           "Decreto 394/022"
         ],
         "official_urls": [
+          "https://embassyofuruguay.us/",
           "https://www.gub.uy/tramites/residencia-legal",
-          "https://www.minterior.gub.uy"
+          "https://www.gub.uy/tramites/residencia-legal-temporaria",
+          "https://www.minterior.gub.uy",
+          "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements"
         ],
         "property_foreign_ownership": "Foreigners may own beachfront and rural land with few restrictions.",
         "recent_changes": "2025–2026 digital nomad and investor pathways streamlined. Tax reform effective 1 Jan 2026 (Law 20.446 as amended): foreign-income holiday preserved at 11 years, then 12% on most foreign investment income; tax-residency real-estate threshold ~US$2M."
@@ -1574,9 +1641,9 @@
         "escalate_when": "Complex tax structuring or $500k+ investments"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 81,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -1627,6 +1694,18 @@
             "last_text_len": 4487,
             "last_main_len": 3465,
             "last_layout_change": "2026-09-25T05:00:19.548Z"
+          },
+          {
+            "url": "https://embassyofuruguay.us/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -1840,7 +1919,9 @@
           "source": "source-probe",
           "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": false
     },
     {
       "id": 5,
@@ -1848,21 +1929,24 @@
       "category": "rbi_cbi",
       "region": "Caribbean",
       "status": "Acquired - Strong Candidate",
-      "bitcoin_integration": "Well-regarded CBI program. Increasing openness to digital assets and fintech investors. Good for Bitcoin-funded applications. Strong passport for travel. Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10.",
+      "bitcoin_integration": "Most crypto-permissive of the Caribbean bloc. Digital Assets Business Act 2020 requires FSRC licence for crypto businesses; crypto legal privately, not legal tender; crypto accepted as source-of-funds proof for CBI, but not as direct fee payment.",
       "finance": {
         "min_investment_usd": 230000,
         "typical_investment_usd": 280000,
         "gov_fees_usd": 20000,
         "processing_time_months": "3-6",
-        "tax_benefits": "No capital gains or inheritance tax. Territorial elements attractive.",
+        "tax_benefits": "No capital gains or inheritance tax. Territorial elements attractive.\n\nCrypto/Bitcoin tax: No capital-gains tax and no personal income tax (abolished 2016); no wealth tax. No crypto-specific rule; crypto capital gains untaxed for individuals.",
         "crypto_friendly_score": 7,
-        "bitcoin_specific": "Good for Bitcoin-funded applications. Strong passport for travel."
+        "bitcoin_specific": "No official BTC channel; NDF (US$230k) payable in fiat. Authorities accept crypto as source-of-funds/proof-of-funds; licensed agents may accept crypto off-channel and remit USD."
       },
       "details": "Solid Caribbean option with good reputation and Bitcoin holder friendliness. Modeled minimum investment $230,000 (typical $280,000). Primary routes on file: National Development Fund (NDF) donation, Approved real estate, Business investment. Tax notes: No capital gains or inheritance tax. Territorial elements attractive. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official sources",
-        "Our research"
+        "Antigua CIP unit (official) — https://cip.gov.ag/citizenship/",
+        "FSRC (official law) — https://www.fsrc.gov.ag/images/pdf/digital-assets/No.-16-of-2020-Digital-Assets-Business-Act-2020.pdf",
+        "Eastern Caribbean Central Bank — https://www.eccb-centralbank.org/blogs/understanding-cryptocurrency-in-the-eccu",
+        "Official — https://ab.gov.ag/",
+        "Official — https://cip.gov.ag/investment-options/ndf/"
       ],
       "flag": "🇦🇬",
       "lightning_ready": true,
@@ -1920,6 +2004,10 @@
           "Antigua and Barbuda Citizenship by Investment Unit Regulations"
         ],
         "official_urls": [
+          "https://ab.gov.ag/",
+          "https://cip.gov.ag/",
+          "https://cip.gov.ag/citizenship/",
+          "https://cip.gov.ag/investment-options/ndf/",
           "https://www.cip.gov.ag"
         ],
         "property_foreign_ownership": "Foreigners may own property; CBI requires approved development purchase.",
@@ -1947,9 +2035,9 @@
         "escalate_when": "Family applications or complex crypto wealth tracing"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 85,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -1974,6 +2062,22 @@
             "probe_path": "http",
             "last_text_len": 1418,
             "last_main_len": 0
+          },
+          {
+            "url": "https://ab.gov.ag/",
+            "mode": "http"
+          },
+          {
+            "url": "https://cip.gov.ag/",
+            "mode": "http"
+          },
+          {
+            "url": "https://cip.gov.ag/citizenship/",
+            "mode": "http"
+          },
+          {
+            "url": "https://cip.gov.ag/investment-options/ndf/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -2120,7 +2224,9 @@
           "source": "source-probe-v2",
           "hash": "a26ba4514a028890"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": false
     },
     {
       "id": 6,
@@ -2128,21 +2234,23 @@
       "category": "rbi_cbi",
       "region": "Caribbean",
       "status": "Acquired - Strong Candidate",
-      "bitcoin_integration": "One of the oldest and most respected CBI programs. Crypto-friendly in practice for high-net-worth applicants. Accepts digital asset investments in some cases.",
+      "bitcoin_integration": "Bitcoin/crypto legal to hold privately but NOT legal tender (EC dollar only). ECCB cautious; harmonised Virtual Asset Business Act requires crypto businesses to register + AML/CFT. No BTC legal-tender law; no official Bitcoin adoption.",
       "finance": {
         "min_investment_usd": 250000,
         "typical_investment_usd": 300000,
         "gov_fees_usd": 25000,
         "processing_time_months": "2-6",
-        "tax_benefits": "No personal income, capital gains, or inheritance tax. Very attractive for Bitcoin holders.",
+        "tax_benefits": "No personal income, capital gains, or inheritance tax. Very attractive for Bitcoin holders.\n\nCrypto/Bitcoin tax: No capital gains tax, wealth tax or inheritance tax; non-resident/CBI foreign income generally untaxed. No dedicated crypto-tax statute; crypto capital gains effectively untaxed.",
         "crypto_friendly_score": 8,
-        "bitcoin_specific": "Program accepts real estate or donation; some flexibility for crypto-sourced funds. Strong passport mobility."
+        "bitcoin_specific": "No. SISC/PBO contribution (US$250k) and all government fees payable in fiat USD/EC$; CIU does not accept BTC. Agents may accept crypto off-channel but no official BTC payment route."
       },
       "details": "Premium Caribbean CBI. Excellent passport strength and tax neutrality. Top-tier for MotoPass Bitcoin sovereign citizens. Modeled minimum investment $250,000 (typical $300,000). Primary routes on file: Sustainable Growth Fund (SGF) donation, Approved real estate investment, Public Good Project Option (PGPO). Tax notes: No personal income, capital gains, or inheritance tax. Very attractive for Bitcoin holders. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official CBI unit",
-        "Our research"
+        "CBI Unit (official) — https://ciu.gov.kn/cbi-options/",
+        "Eastern Caribbean Central Bank — https://www.eccb-centralbank.org/blogs/understanding-cryptocurrency-in-the-eccu",
+        "Henley & Partners — https://www.henleyglobal.com/citizenship-investment/st-kitts-nevis",
+        "Official — https://www.gov.kn/"
       ],
       "flag": "🇰🇳",
       "lightning_ready": true,
@@ -2200,7 +2308,10 @@
           "St. Kitts and Nevis Citizenship by Investment Unit regulations"
         ],
         "official_urls": [
-          "https://www.ciu.gov.kn"
+          "https://ciu.gov.kn/",
+          "https://ciu.gov.kn/cbi-options/",
+          "https://www.ciu.gov.kn",
+          "https://www.gov.kn/"
         ],
         "property_foreign_ownership": "Foreigners may purchase approved CBI real estate and other property with standard conveyancing.",
         "recent_changes": "Sustainable Growth Fund (SGF) renamed Sustainable Island State Contribution (SISC), $250k; the 2026 framework adds mandatory applicant interviews and proposes a 30-day visit requirement within 5 years; US visa restriction on St Kitts and Nevis nationals (Presidential Proclamation 10998, Jan 2026) — monitor US access impact."
@@ -2227,9 +2338,9 @@
         "escalate_when": "Crypto source-of-funds documentation or family application >4 dependents"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 79,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -2255,6 +2366,18 @@
             "probe_path": "http",
             "last_text_len": 4859,
             "last_main_len": 0
+          },
+          {
+            "url": "https://www.gov.kn/",
+            "mode": "http"
+          },
+          {
+            "url": "https://ciu.gov.kn/",
+            "mode": "http"
+          },
+          {
+            "url": "https://ciu.gov.kn/cbi-options/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z",
@@ -2509,7 +2632,9 @@
           "source": "source-probe-v2",
           "hash": "32e4c22815693f8f"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": false
     },
     {
       "id": 7,
@@ -2517,21 +2642,23 @@
       "category": "rbi_cbi",
       "region": "Caribbean",
       "status": "Acquired - Strong Candidate",
-      "bitcoin_integration": "Popular, cost-effective CBI. Accepts crypto in practice for qualified applicants. Affordable entry point with solid passport. Good MotoPass test case. Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10.",
+      "bitcoin_integration": "Crypto legal privately but not legal tender (EC dollar only). Virtual Asset Business Act No. 1 of 2022 requires VASP registration with FSU (AML/CFT). Oct 2022 designated TRON protocol as blockchain infrastructure (TRX/stables) — not Bitcoin — for token business.",
       "finance": {
         "min_investment_usd": 200000,
         "typical_investment_usd": 250000,
         "gov_fees_usd": 15000,
         "processing_time_months": "2-5",
-        "tax_benefits": "No income or capital gains tax on foreign income for many applicants.",
+        "tax_benefits": "No income or capital gains tax on foreign income for many applicants.\n\nCrypto/Bitcoin tax: CBIU states absence of capital-gains, wealth and inheritance taxes; crypto capital gains effectively untaxed in Dominica.",
         "crypto_friendly_score": 7,
-        "bitcoin_specific": "Affordable entry point with solid passport. Good MotoPass test case."
+        "bitcoin_specific": "No. EDF donation (US$200k single / US$250k family-4) and real-estate route payable in fiat USD; CBIU does not accept BTC."
       },
       "details": "One of the more accessible premium CBI programs. Strong value for Bitcoiners. Modeled minimum investment $200,000 (typical $250,000). Primary routes on file: Economic Diversification Fund (EDF) donation, Approved real estate, Alternative investment option. Tax notes: No income or capital gains tax on foreign income for many applicants. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official CBI",
-        "Industry reports"
+        "Dominica CBIU (official) — https://www.cbiu.gov.dm/",
+        "Eastern Caribbean Central Bank — https://www.eccb-centralbank.org/blogs/understanding-cryptocurrency-in-the-eccu",
+        "Official — https://dominica.gov.dm/",
+        "Official — https://www.cbiu.gov.dm/investment-options/"
       ],
       "flag": "🇩🇲",
       "lightning_ready": true,
@@ -2589,7 +2716,10 @@
           "CBIU Regulations"
         ],
         "official_urls": [
-          "https://cbiu.gov.dm"
+          "https://cbiu.gov.dm",
+          "https://dominica.gov.dm/",
+          "https://www.cbiu.gov.dm/",
+          "https://www.cbiu.gov.dm/investment-options/"
         ],
         "property_foreign_ownership": "Foreigners may purchase approved CBI real estate; standard restrictions on non-approved land.",
         "recent_changes": "EDF $200,000 (single) remains the primary route; OECS CBI harmonization (ECCIRA) rolls out 2026 — biometrics, mandatory interviews, annual application caps; US visa restriction on Dominica nationals (Presidential Proclamation 10998, Jan 2026) — monitor US access."
@@ -2616,9 +2746,9 @@
         "escalate_when": "Comparing Dominica vs Grenada for E-2 treaty access (Grenada only)"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 80,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -2644,6 +2774,18 @@
             "probe_path": "http",
             "last_text_len": 3019,
             "last_main_len": 0
+          },
+          {
+            "url": "https://dominica.gov.dm/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.cbiu.gov.dm/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.cbiu.gov.dm/investment-options/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z",
@@ -2924,7 +3066,9 @@
           "source": "source-probe-v2",
           "hash": "b3d576701a6e6f67"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": false
     },
     {
       "id": 8,
@@ -2932,21 +3076,23 @@
       "category": "rbi_cbi",
       "region": "Caribbean",
       "status": "Acquired - Researching",
-      "bitcoin_integration": "St. Lucia offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
+      "bitcoin_integration": "Crypto legal privately, not legal tender (EC dollar). No standalone crypto statute; operates under harmonised ECCB VASP framework (register + AML/CFT). ECCB cautious; no Bitcoin-adoption policy.",
       "finance": {
         "min_investment_usd": 240000,
         "typical_investment_usd": 250000,
         "gov_fees_usd": 25000,
         "processing_time_months": "3-6",
-        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
+        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.\n\nCrypto/Bitcoin tax: No capital-gains, wealth or inheritance tax; non-residents untaxed on worldwide income. No crypto-specific rule; crypto capital gains untaxed.",
         "crypto_friendly_score": 6,
-        "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
+        "bitcoin_specific": "No. NEF (US$240k), real estate and National Action Bonds payable in fiat USD; CIP does not accept BTC."
       },
       "details": "Flagship-depth research entry for St. Lucia. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration portals",
-        "MotoPass research BUILD-011"
+        "St Lucia CIP (official) — https://www.cipsaintlucia.com/citizenship-by-investment",
+        "St Lucia official gazette — https://www.cipsaintlucia.com/s/gazettejuly92024.pdf",
+        "Eastern Caribbean Central Bank — https://www.eccb-centralbank.org/blogs/understanding-cryptocurrency-in-the-eccu",
+        "Official — https://www.govt.lc/"
       ],
       "flag": "🇱🇨",
       "lightning_ready": false,
@@ -3004,7 +3150,10 @@
           "St. Lucia Citizenship by Investment Unit regulations"
         ],
         "official_urls": [
-          "https://www.ciu.gov.lc"
+          "https://www.cipsaintlucia.com/",
+          "https://www.cipsaintlucia.com/citizenship-by-investment",
+          "https://www.ciu.gov.lc",
+          "https://www.govt.lc/"
         ],
         "property_foreign_ownership": "Foreigners may purchase approved CBI real estate and other property with standard conveyancing; Alien Landholding License may apply for non-approved land.",
         "recent_changes": "NEF donation and bond options remain active; industry-wide enhanced due diligence post-2024 Caribbean CBI summit commitments. 2026-09-10 verification: NEF $240k (single or family of up to 4), RE $300k, bonds $300k + $50k admin — all current; page-level finance floor aligned to NEF. US Proclamation 10998 partial restrictions name Antigua and Dominica — St. Lucia not listed (CitizenX, Aug 2026)."
@@ -3032,9 +3181,9 @@
         "escalate_when": "Bond-route structuring, family applications >4 dependents, or complex crypto source-of-funds documentation"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -3059,6 +3208,18 @@
             "probe_path": "browser",
             "last_text_len": 105,
             "last_main_len": 105
+          },
+          {
+            "url": "https://www.govt.lc/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.cipsaintlucia.com/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.cipsaintlucia.com/citizenship-by-investment",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -3193,7 +3354,9 @@
           "source": "satohash-api",
           "hash": "65f26a589f96d644c7d5edab7eff4e8faed72df8aa685b82a22b501baa9c0bcf"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": false
     },
     {
       "id": 9,
@@ -3201,21 +3364,23 @@
       "category": "rbi_cbi",
       "region": "Caribbean",
       "status": "Researching",
-      "bitcoin_integration": "Grenada offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
+      "bitcoin_integration": "Virtual Asset Business Act No.7/2021 (regs S.R.O. 9/2024): crypto businesses must register with GARFIN + AML/CFT. Crypto legal, not legal tender (EC dollar). E-2 US treaty eligibility is the key CBI differentiator.",
       "finance": {
         "min_investment_usd": 235000,
         "typical_investment_usd": 245000,
         "gov_fees_usd": 30000,
         "processing_time_months": "4-8",
-        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
+        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.\n\nCrypto/Bitcoin tax: No capital-gains, wealth or inheritance tax; CBI citizens untaxed on worldwide income. Crypto capital gains effectively untaxed.",
         "crypto_friendly_score": 6,
-        "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
+        "bitcoin_specific": "No. NTF donation (US$235k) and real-estate route payable in fiat USD; IMA/Grenada does not accept BTC."
       },
       "details": "Flagship-depth research entry for Grenada. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration portals",
-        "MotoPass research BUILD-011"
+        "Investment Migration Agency (official) — https://imagrenada.gd/citizenship-by-investment/",
+        "Govt of Grenada (official gazette) — https://grenadaparliament.gd/wp-content/uploads/2024/06/S.R.O.-9-of-2024-Virtual-Asset-Business-Regulations-2024.pdf",
+        "Eastern Caribbean Central Bank — https://www.eccb-centralbank.org/blogs/understanding-cryptocurrency-in-the-eccu",
+        "Official — https://www.gov.gd/"
       ],
       "flag": "🇬🇩",
       "lightning_ready": false,
@@ -3273,7 +3438,10 @@
           "Grenada Citizenship by Investment Committee regulations"
         ],
         "official_urls": [
-          "https://www.cbi.gov.gd"
+          "https://imagrenada.gd/",
+          "https://imagrenada.gd/citizenship-by-investment/",
+          "https://www.cbi.gov.gd",
+          "https://www.gov.gd/"
         ],
         "property_foreign_ownership": "Foreigners may purchase approved CBI real estate; Alien Landholding License required for other property.",
         "recent_changes": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged. NTF donation raised $150k -> $235k (single or family of up to 4; GIS Grenada 2026, multi-source corroborated 2025-09 through 2026-08). US Proclamation 10998 partial restrictions name Antigua and Dominica — Grenada not listed; E-2 treaty differentiator unaffected."
@@ -3300,9 +3468,9 @@
         "escalate_when": "E-2 treaty business planning or comparing NTF vs RE hold-period economics"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -3327,6 +3495,18 @@
             "probe_path": "browser",
             "last_text_len": 105,
             "last_main_len": 105
+          },
+          {
+            "url": "https://www.gov.gd/",
+            "mode": "http"
+          },
+          {
+            "url": "https://imagrenada.gd/",
+            "mode": "http"
+          },
+          {
+            "url": "https://imagrenada.gd/citizenship-by-investment/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -3482,7 +3662,9 @@
           "source": "satohash-api",
           "hash": "53a087ece38e8ceea3347152d081451c86c69177dfee78798a6406dfff8b6bad"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": false
     },
     {
       "id": 10,
@@ -3490,21 +3672,24 @@
       "category": "rbi_cbi",
       "region": "Caribbean",
       "status": "Researching",
-      "bitcoin_integration": "Bahamas offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
+      "bitcoin_integration": "Crypto is legal and actively regulated. The Bahamas pioneered a bespoke digital-asset regime: the Digital Assets and Registered Exchanges (DARE) Act 2020, superseded by the DARE Act 2024 (in force 31 July 2024), administered by the Securities Commission of The Bahamas. It licenses/registers digital-asset exchanges, custodians and token issuers and covers stablecoins and staking disclosure. The central bank has also piloted a CBDC (the 'Sand Dollar'). Bitcoin and other digital assets are therefore lawful subject to SCB registration/licensing.",
       "finance": {
         "min_investment_usd": 1000000,
         "typical_investment_usd": 1200000,
         "gov_fees_usd": 40000,
         "processing_time_months": "6-14",
-        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
+        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.\n\nCrypto/Bitcoin tax: No personal income tax, no capital gains tax, and no wealth/inheritance tax in The Bahamas, so individuals pay no tax on Bitcoin gains or crypto holdings. Sellers/issuers operating regulated digital-asset business pay SCB application and annual fees. Stamp duties, property tax, and 10% VAT apply to some transactions but not to personal crypto capital gains.",
         "crypto_friendly_score": 5,
-        "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
+        "bitcoin_specific": "No. Official immigration fees must be paid in fiat (cash, credit/debit card, bank manager's cheque, or postal/money order to the Public Treasury / Department of Immigration). No source indicates government residency/CBI application fees can be paid in Bitcoin or crypto."
       },
       "details": "Flagship-depth research entry for Bahamas. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration portals",
-        "MotoPass research BUILD-011"
+        "Bahamas Immigration Department (official) — https://www.immigration.gov.bs/residence/permanent-residence/",
+        "Government of The Bahamas (official) — https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
+        "Lexology (ParrisWhittaker) — https://www.lexology.com/library/detail.aspx?g=444f767c-7830-4a31-85be-fde704bbe52a",
+        "Global Law Experts — https://globallawexperts.com/dare-act-digital-asset-licence-bahamas/",
+        "Investopedia — https://www.investopedia.com/ask/answers/060516/why-bahamas-considered-tax-haven.asp"
       ],
       "flag": "🇧🇸",
       "lightning_ready": false,
@@ -3563,10 +3748,13 @@
           "International Persons Landholding Act"
         ],
         "official_urls": [
+          "https://laws.bahamas.gov.bs",
           "https://www.bahamas.gov.bs",
+          "https://www.bahamas.gov.bs/",
+          "https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
           "https://www.bahamaschamber.com",
           "https://www.immigration.gov.bs",
-          "https://laws.bahamas.gov.bs"
+          "https://www.immigration.gov.bs/residence/permanent-residence/"
         ],
         "property_foreign_ownership": "Foreigners may purchase property with International Persons Landholding Act registration; certain cays and sensitive areas restricted.",
         "recent_changes": "EPR threshold corrected to $1.0M (official immigration.gov.bs; real estate or zero-coupon bonds, 10-yr hold). Annual Residency (Home Owner's Card) and Speedy/accelerated tiers unchanged."
@@ -3594,9 +3782,9 @@
         "escalate_when": "EPR $1M+ structuring, Speedy Permit tier selection, or property purchase with crypto source-of-funds"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -3681,6 +3869,18 @@
             "probe_path": "browser",
             "last_text_len": 1114,
             "last_main_len": 1114
+          },
+          {
+            "url": "https://www.bahamas.gov.bs/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.immigration.gov.bs/residence/permanent-residence/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z",
@@ -3841,7 +4041,9 @@
           "source": "satohash-api",
           "hash": "a10d23fac00a1c92394b2bf1d7eed2aa8ba4dd5026518c1137d7ad573d4851f1"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": true
     },
     {
       "id": 11,
@@ -3849,21 +4051,25 @@
       "category": "rbi_cbi",
       "region": "Caribbean",
       "status": "Researching",
-      "bitcoin_integration": "Barbados offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
+      "bitcoin_integration": "Neutral-to-permissive but no bespoke crypto law. Barbados has no specific Bitcoin/crypto licensing statute; crypto is not banned and operates in a guidance/sandbox environment. The Central Bank of Barbados and Financial Services Commission ran a Regulatory Sandbox (Bitt was the first entrant to exit) and Barbados piloted a central-bank digital currency (DCash). No official statement designates Bitcoin as legal tender, and there is no dedicated crypto-asset regulatory framework equivalent to the Bahamas' DARE Act or Cayman's VASP Act.",
       "finance": {
         "min_investment_usd": 200000,
         "typical_investment_usd": 300000,
         "gov_fees_usd": 35000,
         "processing_time_months": "6-12",
-        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
+        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.\n\nCrypto/Bitcoin tax: No capital gains tax in Barbados, so crypto capital gains are not directly taxed. However, Barbados does levy personal income tax on residents (Worldwide/territorial income-tax system applies to resident individuals), and crypto trading gains may be taxable as ordinary income depending on the activity; the position is not clearly codified. Barbadian Welcome Stamp holders are deemed NOT tax resident and pay no Barbados income tax for the 12-month period. Zero/no wealth tax.",
         "crypto_friendly_score": 5,
-        "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
+        "bitcoin_specific": "No. The Welcome Stamp application fee (US$2,000/US$3,000) is paid by card online through the official portal; fees are payable in USD to the Chief Immigration Officer. No source indicates government visa/residency fees can be paid in Bitcoin or crypto."
       },
       "details": "Flagship-depth research entry for Barbados. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration portals",
-        "MotoPass research BUILD-011"
+        "Barbados Welcome Stamp (official government program) — https://barbadoswelcomestamp.bb/",
+        "PwC Barbados — https://www.pwc.com/bb/en/services/pdf/12-month-barbados-welcome-stamp.pdf",
+        "Central Bank of Barbados (official) — https://www.centralbank.org.bb/financial-stability-and-financial-regulation/cbob-regulatory-sandbox",
+        "TaxAtlas — https://taxatlas.io/calculator/crypto-tax/barbados",
+        "Official — https://www.visitbarbados.org/",
+        "Official — https://www.immigration.gov.bb/"
       ],
       "flag": "🇧🇧",
       "lightning_ready": false,
@@ -3921,8 +4127,11 @@
           "Barbados Welcome Stamp programme guidelines"
         ],
         "official_urls": [
+          "https://barbadoswelcomestamp.bb",
+          "https://barbadoswelcomestamp.bb/",
           "https://www.immigration.gov.bb",
-          "https://barbadoswelcomestamp.bb"
+          "https://www.immigration.gov.bb/",
+          "https://www.visitbarbados.org/"
         ],
         "property_foreign_ownership": "Foreigners may purchase residential and commercial property; Alien Landholding License required for non-Caribbean nationals in most cases.",
         "recent_changes": "Welcome Stamp extended as primary nomad route; SEP thresholds and investment categories subject to periodic immigration policy review."
@@ -3950,9 +4159,9 @@
         "escalate_when": "SEP application, $500k+ property purchase, or long-term citizenship naturalization planning"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -4000,6 +4209,18 @@
             "probe_path": "http",
             "last_text_len": 12323,
             "last_main_len": 0
+          },
+          {
+            "url": "https://www.visitbarbados.org/",
+            "mode": "http"
+          },
+          {
+            "url": "https://barbadoswelcomestamp.bb/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.immigration.gov.bb/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -4505,7 +4726,9 @@
           "source": "satohash-api",
           "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
         }
-      ]
+      ],
+      "policy_mentions_btc": false,
+      "highlight_btc_friendly": false
     },
     {
       "id": 12,
@@ -4513,21 +4736,25 @@
       "category": "rbi_cbi",
       "region": "Caribbean",
       "status": "Researching",
-      "bitcoin_integration": "Cayman Islands offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
+      "bitcoin_integration": "Crypto is legal and actively regulated by the Cayman Islands Monetary Authority (CIMA) under the Virtual Asset (Service Providers) Act (2020, revised to 2024 Revision). Registration for VASPs began 31 October 2020; from 1 April 2025 virtual-asset custody and virtual-asset trading-platform operators must obtain a full CIMA VASP licence, with AML/Travel Rule (FATF Rec. 16) compliance. This is one of the pioneering, well-developed crypto-regulatory regimes in the Caribbean/offshore space.",
       "finance": {
         "min_investment_usd": 1000000,
         "typical_investment_usd": 2000000,
         "gov_fees_usd": 50000,
         "processing_time_months": "4-10",
-        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
+        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.\n\nCrypto/Bitcoin tax: Zero direct taxation: the Cayman Islands impose no income tax, no corporate tax, no capital-gains tax, and no wealth/inheritance tax. Bitcoin and other virtual-asset gains and holdings carried by individuals are therefore not taxed locally. VASP operators pay CIMA registration/licence and annual fees, and there is stamp duty on property and import/tourism fees, but personal crypto gains are untaxed.",
         "crypto_friendly_score": 5,
-        "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
+        "bitcoin_specific": "No for immigration; not generally for regulatory fees. CIMA states payment is accepted via online bank transfer, wire transfer, cheque, or bank draft from a local commercial bank (no crypto). Cayman government immigration fees (Caymanian Protection (Fees) Regulations 2026) are payable in Cayman Islands Dollars via bank. No source indicates residency/CBI or VASP application fees can be paid in Bitcoin or crypto."
       },
       "details": "Flagship-depth research entry for Cayman Islands. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration portals",
-        "MotoPass research BUILD-011"
+        "Cayman Islands Government / MCEI (official) — https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
+        "Cayman Islands Monetary Authority (official) — https://www.cima.ky/vasp-faq",
+        "Mourant (law firm) — https://www.mourant.com/guides/the-cayman-islands-virtual-asset-service-providers-regime/",
+        "PwC Worldwide Tax Summaries — https://taxsummaries.pwc.com/cayman-islands",
+        "Cayman Resident — https://caymanresident.com/move/immigration/extended-residence/persons-of-independent-means-investors/certificate-of-permanent-residency",
+        "Official — https://www.gov.ky/"
       ],
       "flag": "🇰🇾",
       "lightning_ready": false,
@@ -4586,8 +4813,11 @@
           "Mutual Funds Act / Private Funds Act"
         ],
         "official_urls": [
+          "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
+          "https://www.ciregistry.gov.ky",
           "https://www.gov.ky",
-          "https://www.ciregistry.gov.ky"
+          "https://www.gov.ky/",
+          "https://www.immigration.gov.ky/"
         ],
         "property_foreign_ownership": "Foreigners may purchase developed real estate; GCC and residency certificate routes require qualifying property or approved investment vehicles.",
         "recent_changes": "GCC launched 2021 as post-pandemic HNW route; CIMA and registrar continue tightening substance rules for crypto-adjacent fund structures."
@@ -4615,9 +4845,9 @@
         "escalate_when": "$2.4M+ real estate certificate, exempted company fund structuring, or staffing-plan compliance review"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -4666,6 +4896,18 @@
             "probe_path": "browser",
             "last_text_len": 121,
             "last_main_len": 121
+          },
+          {
+            "url": "https://www.gov.ky/",
+            "mode": "http"
+          },
+          {
+            "url": "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.immigration.gov.ky/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -4890,7 +5132,9 @@
           "source": "manual review (source-probe v8 follow-up)",
           "hash": null
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": true
     },
     {
       "id": 13,
@@ -4898,21 +5142,25 @@
       "category": "rbi_cbi",
       "region": "Europe",
       "status": "Acquired - Researching",
-      "bitcoin_integration": "Spain offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
+      "bitcoin_integration": "Bitcoin is legal in Spain. The Agencia Estatal de Administración Tributaria (AEAT) classifies cryptocurrencies and crypto-assets as digital assets (treated like securities/investment property, not currency) and holds that all gains and income from crypto are taxable. Spain is compliance-focused: AEAT requires disclosure of foreign crypto holdings and implements DAC8; there is no dedicated crypto-industry incentive and no bitcoin-friendly special regime.",
       "finance": {
         "min_investment_usd": 32000,
         "typical_investment_usd": 750000,
         "gov_fees_usd": 35000,
         "processing_time_months": "6-14",
-        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
+        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.\n\nCrypto/Bitcoin tax: Crypto capital gains are taxed as savings income ('ganancias y pérdidas patrimoniales') declared on the annual IRPF return (Modelo 100) at progressive rates of roughly 19%-28% (higher brackets); crypto income (mining, staking, payments) generally taxed as savings/income. Wealth tax may apply to crypto held in Spain. Foreign-held crypto over EUR 50,000 must be disclosed via Modelo 721. Crypto service providers report under DAC8. Spanish residents are taxed worldwide; expat/non-resident treatment differs.",
         "crypto_friendly_score": 6,
-        "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
+        "bitcoin_specific": "No official acceptance of BTC for Spanish visa, residency, or (historically) golden-visa fees; all government fees are paid in EUR. The golden visa, which previously accepted investment routes (property, bank deposits, bonds, shares), is closed anyway. Bitcoin cannot be used to satisfy any current Spanish residency-by-investment requirement."
       },
       "details": "Flagship-depth research entry for Spain. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration portals",
-        "MotoPass research BUILD-011"
+        "Agencia Estatal de Administración Tributaria (AEAT) — https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
+        "SpainExpat — https://spainexpat.com/information/golden-visa-spain-ended",
+        "Granfield Estate — https://granfield-estate.com/blog/golden-visa-spain-2026-status",
+        "Blockpit — https://www.blockpit.io/tax-guides/crypto-tax-spain",
+        "Official — https://www.exteriores.gob.es/",
+        "Official — https://www.inclusion.gob.es/"
       ],
       "flag": "🇪🇸",
       "lightning_ready": false,
@@ -4971,9 +5219,13 @@
           "Ley Orgánica 4/2000 de extranjería (non-lucrative)"
         ],
         "official_urls": [
-          "https://www.inclusion.gob.es",
+          "https://sede.agenciatributaria.gob.es/",
+          "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
+          "https://www.cnmv.es",
           "https://www.exteriores.gob.es",
-          "https://www.cnmv.es"
+          "https://www.exteriores.gob.es/",
+          "https://www.inclusion.gob.es",
+          "https://www.inclusion.gob.es/"
         ],
         "property_foreign_ownership": "Foreigners may freely purchase urban real estate; golden visa RE route requires €500k+ qualifying purchase (no mortgage financing on minimum portion).",
         "recent_changes": "Golden visa ABOLISHED 2025-04-03 (Organic Law 1/2025) — real-estate/investment residence route closed; digital nomad (Ley de Startups) + non-lucrative residence remain active alternatives. 2026-09-10 verification: DNV threshold re-anchored to 200% SMI 2026 (EUR 2,849/mo); NLV EUR 28,800 confirmed; golden-visa abolition (Law 1/2025) stands."
@@ -5001,9 +5253,9 @@
         "escalate_when": "€500k+ golden visa property selection, Beckham Law election, or citizenship planning within 10-year window"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -5070,6 +5322,22 @@
             "probe_path": "http",
             "last_text_len": 191,
             "last_main_len": 0
+          },
+          {
+            "url": "https://www.exteriores.gob.es/",
+            "mode": "http"
+          },
+          {
+            "url": "https://sede.agenciatributaria.gob.es/",
+            "mode": "http"
+          },
+          {
+            "url": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.inclusion.gob.es/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -5533,7 +5801,9 @@
           "source": "satohash-api",
           "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": false
     },
     {
       "id": 14,
@@ -5541,21 +5811,25 @@
       "category": "rbi_cbi",
       "region": "Europe",
       "status": "Researching",
-      "bitcoin_integration": "Ireland offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
+      "bitcoin_integration": "Bitcoin (and crypto) is legal in Ireland and fully recognized in tax law, but Receipt of Revenue guidance is neutral and non-promotional: there are no special tax rules for crypto-assets, and they are treated under general income tax, Capital Gains Tax and CAT principles. Revenue endorsed the CJEU Hedqvist ruling that bitcoin is exempt from VAT as a currency-like negotiable instrument. Ireland is aligned with EU DAC8/CARF automatic reporting of crypto from 1 January 2026; there is no bitcoin-friendly tax incentive.",
       "finance": {
         "min_investment_usd": 500000,
         "typical_investment_usd": 1000000,
         "gov_fees_usd": 30000,
         "processing_time_months": "6-12",
-        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.",
+        "tax_benefits": "Standard OECD-aligned framework; specialist planning recommended.\n\nCrypto/Bitcoin tax: Revenue applies no crypto-specific regime: (1) profits from selling crypto are generally capital gains taxable at the standard CGT rate (33%) for Irish-resident individuals; gains may be subject to income tax (through IRPF-style treatment) if trading amounts to a business/trade. (2) Crypto income (e.g. mining or payment for services, where in the course of a trade/profession) is taxable income. (3) Gifts/inheritance of crypto fall under Capital Acquisitions Tax (33% threshold-based). (4) Bitcoin is VAT-exempt (Hedqvist C-264/14); VAT applies to goods/services sold for bitcoin at the euro value. (5) From 1 January 2026 reporting crypto-asset service providers must report Irish clients under CARF/DAC8. No exemption for long-term holdings exists (unlike Portugal).",
         "crypto_friendly_score": 5,
-        "bitcoin_specific": "Bitcoin accepted indirectly via banking partners; verify local rules."
+        "bitcoin_specific": "No official acceptance of BTC for Irish visa, residence-permit, or any government/immigration fees; all charges are in EUR. The Immigrant Investor Programme (the former investment-linked residency route) is closed, and its fees/investments were in EUR only. Bitcoin cannot be used to obtain any Irish residency permission."
       },
       "details": "Flagship-depth research entry for Ireland. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration portals",
-        "MotoPass research BUILD-011"
+        "Revenue (Irish Tax and Customs) — https://www.revenue.ie/en/companies-and-charities/financial-services/cryptocurrencies/index.aspx",
+        "Revenue (Tax and Duty Manual Part 02-01-03) — https://www.revenue.ie/en/tax-professionals/tdm/income-tax-capital-gains-tax-corporation-tax/part-02/02-01-03.pdf",
+        "Department of Justice (gov.ie) — https://gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
+        "Citizens Information (statutory body) — https://citizensinformation.ie/en/money-and-tax/personal-finance/savings-and-investments/crypto/",
+        "Official — https://www.dfa.ie/",
+        "Official — https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme"
       ],
       "flag": "🇮🇪",
       "lightning_ready": false,
@@ -5615,9 +5889,13 @@
           "Start-up Entrepreneur Programme guidelines"
         ],
         "official_urls": [
-          "https://www.irishimmigration.ie",
           "https://enterprise.gov.ie",
-          "https://www.centralbank.ie"
+          "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
+          "https://www.centralbank.ie",
+          "https://www.dfa.ie/",
+          "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
+          "https://www.irishimmigration.ie",
+          "https://www.revenue.ie/"
         ],
         "property_foreign_ownership": "Foreigners may purchase residential and commercial property freely; no general restriction on non-EU buyers.",
         "recent_changes": "IIP formally closed January 2021 after EU scrutiny — only legacy IIP Stamp 4 holders remain. 2024–2025 focus shifted to Critical Skills and startup routes for tech talent; Central Bank VASP registration applies to custodial crypto businesses."
@@ -5645,9 +5923,9 @@
         "escalate_when": "STEP endorsement application, Critical Skills permit strategy, or citizenship naturalization with reckonable residence planning"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -5719,6 +5997,22 @@
             "last_text_len": 1748,
             "last_main_len": 0,
             "last_layout_change": "2026-09-25T05:00:19.548Z"
+          },
+          {
+            "url": "https://www.dfa.ie/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.revenue.ie/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
+            "mode": "http"
+          },
+          {
+            "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z",
@@ -6203,7 +6497,9 @@
           "source": "source-probe-v2",
           "hash": "a0fd50caa8f77b72"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": false
     },
     {
       "id": 15,
@@ -6211,21 +6507,25 @@
       "category": "rbi_cbi",
       "region": "South America",
       "status": "Researching",
-      "bitcoin_integration": "Argentina offers residency or citizenship pathways with growing crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
+      "bitcoin_integration": "Pro-Bitcoin under Milei: Bitcoin contracts legalised 2023, free currency circulation championed; BTC still NOT legal tender (Constitution reserves currency issuance to central bank). VASP registration under CNV + AML (Law 27,739).",
       "finance": {
         "min_investment_usd": 50000,
         "typical_investment_usd": 100000,
         "gov_fees_usd": 8000,
         "processing_time_months": "3-8",
-        "tax_benefits": "Favorable territorial or low-rate treatment for foreign income in many structures.",
+        "tax_benefits": "Favorable territorial or low-rate treatment for foreign income in many structures.\n\nCrypto/Bitcoin tax: Crypto gains taxable: individual Argentine-source 5% (pesos) or 15% (foreign currency); foreign-source 15%; unrealized exchange gains NOT taxed; mining taxed. Annual declaration + blanqueo regime.",
         "crypto_friendly_score": 8,
-        "bitcoin_specific": "Active Bitcoin community; Lightning adoption in fintech corridors."
+        "bitcoin_specific": "Partially (city level): City of Buenos Aires (CABA) since Aug 2025 accepts crypto QR for certain municipal taxes (ABL, Patentes, Ingresos Brutos). Federal/immigration fees in pesos, not BTC."
       },
       "details": "Flagship-depth research entry for Argentina. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration portals",
-        "MotoPass research BUILD-011"
+        "AFIP/ARCA (official tax authority) — https://www.afip.gob.ar/economia-digital/criptoactivos/impuesto-a-las-ganancias.asp",
+        "CNV (official securities regulator) — https://www.argentina.gob.ar/cnv",
+        "Official — https://eeeuu.cancilleria.gob.ar/",
+        "Official — https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
+        "Official — https://www.argentina.gob.ar/migraciones/residencias",
+        "Official — https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista"
       ],
       "flag": "🇦🇷",
       "lightning_ready": true,
@@ -6285,9 +6585,13 @@
           "Disposición DNM 1.732/2023 (rentista, as amended)"
         ],
         "official_urls": [
+          "https://eeeuu.cancilleria.gob.ar/",
+          "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
+          "https://www.argentina.gob.ar/migraciones/residencias",
+          "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
           "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-          "https://www.migraciones.gob.ar",
-          "https://www.boletinoficial.gob.ar"
+          "https://www.boletinoficial.gob.ar",
+          "https://www.migraciones.gob.ar"
         ],
         "property_foreign_ownership": "Foreigners may own urban property with few restrictions; rural land in border/security zones subject to prior authorization. Rentista route does not require property purchase.",
         "recent_changes": "2022 digital-nomad disposición formalized 180-day remote-work category. 2023–2024 rentista income thresholds tied to SMVM index — verify current peso equivalent before filing. Milei-era FX liberalization improved crypto-to-bank pathways but documentation still strict. 2026-09-10 verification: rentista 5× SMVM re-anchored (ARS 376,600 Aug 2026); investor $50k unchanged; Milei-era FX liberalization still favorable for crypto-to-bank funding."
@@ -6318,9 +6622,9 @@
         "escalate_when": "Inversor business structuring, rentista fund-source documentation, or citizenship within 2-year window"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -6391,6 +6695,22 @@
             "probe_path": "browser",
             "last_text_len": 1709,
             "last_main_len": 124
+          },
+          {
+            "url": "https://eeeuu.cancilleria.gob.ar/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.argentina.gob.ar/migraciones/residencias",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -6913,7 +7233,9 @@
           "source": "source-probe-v2",
           "hash": "91451ce7cd5c52de"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": true
     },
     {
       "id": 16,
@@ -6921,21 +7243,25 @@
       "category": "rbi_cbi",
       "region": "South America",
       "status": "Researching",
-      "bitcoin_integration": "Brazil offers residency or citizenship pathways with growing crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions.",
+      "bitcoin_integration": "Comprehensive crypto law: Marco Legal dos Ativos Virtuais (Law 14.478/2022), BCB as VASP regulator (Decree 11,563/2023), VASP auth resolutions effective Feb 2026. Crypto legal, NOT legal tender. Regulatory/taxing stance, a leading adoption market.",
       "finance": {
         "min_investment_usd": 95000,
         "typical_investment_usd": 100000,
         "gov_fees_usd": 12000,
         "processing_time_months": "4-10",
-        "tax_benefits": "Favorable territorial or low-rate treatment for foreign income in many structures.",
+        "tax_benefits": "Favorable territorial or low-rate treatment for foreign income in many structures.\n\nCrypto/Bitcoin tax: Crypto capital gains taxed 15% to 22.5% progressively (by gain band) with R$35k monthly exemption on domestic exchanges; offshore/self-custody held assets taxed 15% annual (Law 14,754/2023). Reporting via IN 1,888/2019 (DeCripto from Jul 2026).",
         "crypto_friendly_score": 7,
-        "bitcoin_specific": "Active Bitcoin community; Lightning adoption in fintech corridors."
+        "bitcoin_specific": "No. Government, immigration and visa fees payable in reais only; Bitcoin not accepted for state/federal fees."
       },
       "details": "Flagship-depth research entry for Brazil. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Official immigration portals",
-        "MotoPass research BUILD-011"
+        "Receita Federal (official revenue service) — https://gov.br/receitafederal",
+        "Bank for Crypto — https://banksforcrypto.com/crypto-taxes-brazil",
+        "Where Legal Crypto — https://wherelegalcrypto.com/brazil",
+        "Official — https://www.gov.br/mre/en",
+        "Official — https://brsb.itamaraty.gov.br/en-us/",
+        "Official — https://www.gov.br/mj/en/"
       ],
       "flag": "🇧🇷",
       "lightning_ready": true,
@@ -6994,9 +7320,13 @@
           "CNI Normative Resolutions (investor visa thresholds)"
         ],
         "official_urls": [
+          "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
+          "https://brsb.itamaraty.gov.br/en-us/",
+          "https://www.gov.br/mj/en/",
+          "https://www.gov.br/mre/en",
           "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
           "https://www.gov.br/pf/pt-br/assuntos/imigracao",
-          "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm"
+          "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13445.htm"
         ],
         "property_foreign_ownership": "Foreigners may purchase urban real estate freely; rural land near borders restricted. Coastal properties follow standard civil registry rules — fideicomiso not required.",
         "recent_changes": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs. 2026-09-10 verification: VITEM IX R$500k current (+R$150k startup tier); VITEM XIV $1,500/mo or ~$18k savings; retirement $2,000/mo. Page-level finance floor aligned to VITEM IX."
@@ -7027,9 +7357,9 @@
         "escalate_when": "R$500k+ investor capital deployment, crypto-to-BRL banking, or citizenship within 4-year window"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -7099,6 +7429,22 @@
             "probe_path": "browser",
             "last_text_len": 153,
             "last_main_len": 153
+          },
+          {
+            "url": "https://www.gov.br/mre/en",
+            "mode": "http"
+          },
+          {
+            "url": "https://brsb.itamaraty.gov.br/en-us/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.gov.br/mj/en/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13445.htm",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -7341,7 +7687,9 @@
           "source": "source-probe-v2",
           "hash": "4600b67fa4ebcd9b"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": false
     },
     {
       "id": 17,
@@ -7349,21 +7697,25 @@
       "category": "rbi_cbi",
       "region": "Europe",
       "status": "Acquired - EU Hub",
-      "bitcoin_integration": "Crypto-friendly EU member with clear licensing (MFSA). Good for Bitcoin businesses seeking EU passporting. Residency options available.",
+      "bitcoin_integration": "Malta is the EU's most crypto-forward jurisdiction, self-branded the 'Blockchain Island' since 2018. The MFSA has regulated crypto assets since 2018 under the Virtual Financial Assets Act (Chapter 590) via the VFA framework (categories determined by the Financial Instrument Test), supplemented by the MTAS/MDIA and ITAS legislation. Since 2024-2026 the EU Markets in Crypto-Assets Regulation (MiCA) is the primary framework (Markets in Crypto-Assets Act, Ch. 647); the VFA regime is transitional and phasing out as crypto-asset service providers (CASPs) migrate to MiCA (roughly by mid-2026). Official stance is pro-innovation and welcoming; Bitcoin and other cryptocurrencies qualify as Virtual Financial Assets and are licencable. BTC is not legal tender (euro is the currency).",
       "finance": {
         "min_investment_usd": 200000,
         "typical_investment_usd": 350000,
         "gov_fees_usd": 18000,
         "processing_time_months": "4-8",
-        "tax_benefits": "Favorable corporate tax regime. Crypto licensing clarity.",
+        "tax_benefits": "Favorable corporate tax regime. Crypto licensing clarity.\n\nCrypto/Bitcoin tax: Generally favourable: no capital-gains tax on most individual crypto holdings - crypto-to-crypto exchanges and long-term holdings realised to fiat are typically exempt; professional/frequent traders may be taxed on gains at 15-35% (possibly treated as trading/business income), and staking/yield/liquidity farming can be charged as income. Official CFR (Inland Revenue) guidance covers income tax, stamp duty and VAT on DLT assets. Standard corporate tax rate is 35% (with a full imputation/refund system). Resident vs non-resident treatment differs.",
         "crypto_friendly_score": 8,
-        "bitcoin_specific": "Strong for regulated Bitcoin activity in EU. Good MotoPass EU bridge."
+        "bitcoin_specific": "No - official citizenship/investment programme and government fees are payable via bank transfer in euro; no documented or official Bitcoin/crypto payment channel exists for the MEIN programme."
       },
       "details": "Solid EU option with crypto regulation maturity. Useful for MotoPass compliance and passport mobility. Modeled minimum investment $200,000 (typical $350,000). Primary routes on file: Malta Permanent Residence Programme (MPRP), Nomad Residence Permit (NRP), VFA business + director residency. Tax notes: Favorable corporate tax regime. Crypto licensing clarity. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-29",
       "sources": [
-        "MFSA",
-        "Our research"
+        "MFSA (official regulator) — https://www.mfsa.mt/our-work/virtual-financial-assets/",
+        "CMS Law — https://cms.law/en/int/expert-guides/cms-expert-guide-to-crypto-regulation/malta",
+        "Charltons Quantum — https://charltonsquantum.com/malta-virtual-assets-regulation/",
+        "Legal 500 — https://www.legal500.com/intelligence/malta/immigration/maltese-citizenship-by-naturalisation-for-exceptional-services",
+        "Global Law Experts — https://globallawexperts.com/the-maltese-citizenship-by-naturalisation-for-exceptional-services-by-direct-investment/",
+        "MaltaToday — https://www.maltatoday.com.mt/sponsored/sponsored/130377/understanding_cryptocurrency_taxation_in_malta"
       ],
       "flag": "🇲🇹",
       "lightning_ready": true,
@@ -7423,8 +7775,10 @@
         ],
         "official_urls": [
           "https://residencymalta.gov.mt",
+          "https://www.gov.mt",
+          "https://www.identita.gov.mt",
           "https://www.mfsa.mt",
-          "https://www.identita.gov.mt"
+          "https://www.mfsa.mt/our-work/virtual-financial-assets/"
         ],
         "property_foreign_ownership": "Foreigners may acquire property; MPRP requires qualifying lease or purchase.",
         "recent_changes": "Citizenship-by-investment terminated: the CJEU ruled Malta's Exceptional Investor Naturalisation (MEIN) illegal on 29 Apr 2025 (Case C-181/23) and Malta discontinued it via Act XXI of 2025 — no EU citizenship-by-investment remains. MPRP (permanent residence) stays active: ~€99k mandatory government fees/contributions plus qualifying property. MFSA VFA framework mature but compliance-heavy."
@@ -7451,9 +7805,9 @@
         "escalate_when": "MFSA licensing application or citizenship naturalization planning"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 81,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -7509,6 +7863,14 @@
             "probe_path": "http",
             "last_text_len": 2773,
             "last_main_len": 0
+          },
+          {
+            "url": "https://www.gov.mt",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.mfsa.mt/our-work/virtual-financial-assets/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -7706,28 +8068,34 @@
           "source": "satohash-api",
           "hash": "1ce9eb8bd293fd5d759ff1f180dadb265c857abfd21020dbf8ca7967900b4f66"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": true
     },
     {
       "name": "Vanuatu",
       "category": "rbi_cbi",
       "region": "Oceania",
       "status": "Researching",
-      "bitcoin_integration": "Fast CBI program, accepts crypto payments in practice. Fast passport, Bitcoin-friendly agents Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10.",
+      "bitcoin_integration": "Emerging but business-friendly framework: Vanuatu passed the Virtual Asset Service Providers (VASP) Act No. 3 of 2025 (passed 26 March 2025, in force 12 May 2025), which explicitly references Bitcoin and gives the VFSC licensing/supervision authority over crypto businesses (exchanges, custodians, token offerings, a fintech sandbox), aligning with FATF travel-rule and APG/IOSCO standards. Owning, buying, selling and using Bitcoin is legal for individuals, but crypto is NOT legal tender (the national currency is the vatu, VUV); the VFSC warns there is no statutory compensation for crypto losses and steers retail investors away without full risk awareness.",
       "finance": {
         "min_investment_usd": 130000,
         "typical_investment_usd": 150000,
         "gov_fees_usd": 10000,
         "processing_time_months": "1-3",
-        "tax_benefits": "No personal income tax (Wikipedia)",
+        "tax_benefits": "No personal income tax (Wikipedia)\n\nCrypto/Bitcoin tax: Zero-direct-tax regime: no personal income tax, no corporate income tax, no capital gains tax and no inheritance tax, so gains on Bitcoin and other cryptocurrencies are not taxed by Vanuatu - this reflects the general low-tax system, not a crypto-specific carve-out. A 15% VAT applies to taxable supplies. CRS and CARF (crypto-asset reporting framework) disclosure may still apply, and an investor's home country will typically still tax crypto gains; a passport alone does not change tax residence.",
         "crypto_friendly_score": 7,
-        "bitcoin_specific": "Fast passport, Bitcoin-friendly agents"
+        "bitcoin_specific": "No - the official Vanuatu Citizenship Office has stated it 'does not recognize and will not accept any payments made under these Programs by Bitcoin or Cryptocurrency'; the Citizenship Act's regulations name the US dollar as the only accepted currency for program payments."
       },
       "details": "One of fastest citizenship-by-investment programs globally. Modeled minimum investment $130,000 (typical $150,000). Primary routes on file: DSP citizenship (donation), Approved real estate CBI, Investor / business residency permit. Tax notes: No income tax Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-08-22",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Vanuatu DSP",
-        "MotoPass research corpus · last_checked 2026-07-02 · block 958093"
+        "Vanuatu Citizenship Office & Commission (official) — https://vancitizenship.gov.vu/",
+        "Vanuatu Financial Services Commission (official) — https://www.vfsc.vu/virtual-asset-service-provider/",
+        "Financial Center Association of Vanuatu — https://fca.vu/vanuatu-passes-virtual-asset-service-providers-vasp-act/",
+        "IMI Daily — https://www.imidaily.com/analysis/citizenship-with-bitcoin-source-of-funds/",
+        "WikiCrypto (2026 Guide) — https://wikicrypto.news/regulation/vanuatu/",
+        "Vanuatu Passport (licensed CBI agent) — https://www.vanuatupassport.vu/vanuatu-citizenship-program/"
       ],
       "id": 18,
       "flag": "🇻🇺",
@@ -7788,7 +8156,10 @@
         ],
         "official_urls": [
           "https://cilc.vu",
-          "https://immigration.gov.vu"
+          "https://immigration.gov.vu",
+          "https://vancitizenship.gov.vu/",
+          "https://www.gov.vu",
+          "https://www.vfsc.vu/virtual-asset-service-provider/"
         ],
         "property_foreign_ownership": "Foreigners may lease land (customary title system) and purchase leasehold interests; freehold rare. CBI real estate must be govt-approved project.",
         "recent_changes": "Crypto legalized — a prior crypto ban was lifted July 2021 (legal since). VCP donation minimum raised to $130k (from $80k prior tier). EU visa-waiver suspension history — monitor Schengen access status. Agents increasingly accept crypto-sourced funds with enhanced due diligence."
@@ -7818,9 +8189,9 @@
         "escalate_when": "Crypto source-of-funds documentation, family application >3 dependents, or comparing DSP vs Caribbean CBI economics"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -7867,6 +8238,18 @@
             "probe_path": "http",
             "last_text_len": 2931,
             "last_main_len": 0
+          },
+          {
+            "url": "https://www.gov.vu",
+            "mode": "http"
+          },
+          {
+            "url": "https://vancitizenship.gov.vu/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.vfsc.vu/virtual-asset-service-provider/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z"
@@ -8033,7 +8416,9 @@
           "source": "source-probe-v2",
           "hash": "421bef18e0bea0c1"
         }
-      ]
+      ],
+      "policy_mentions_btc": true,
+      "highlight_btc_friendly": true
     },
     {
       "id": 19,
@@ -8041,21 +8426,25 @@
       "category": "rbi_cbi",
       "region": "Central America",
       "status": "Acquired - Friendly",
-      "bitcoin_integration": "Crypto is legal but largely unregulated (a grey area) — no comprehensive framework; the 2022 crypto bill (697) was partially vetoed (Jun 2022) and then declared unconstitutional by the Supreme Court (Jul 2023). A 2025 draft bill seeks to license crypto service providers and formalize crypto payments, and Panama City accepts crypto for some public services (2025). Territorial tax remains the core draw for Bitcoiners.",
+      "bitcoin_integration": "Panama has NO enacted comprehensive crypto law and Bitcoin is NOT legal tender. Its constitution 'Monetary Freedom' (Article 262) forbids compulsory legal tender, meaning any currency — including crypto — can circulate by private agreement but the state does not give Bitcoin legal-tender status. Bill No. 697 (2021) passed the National Assembly in April 2022 but was vetoed by President Cortizo in June 2022 over AML/oversight and constitutional concerns. A successor, Bill No. 247 (introduced 2025), would create a FATF-aligned registration/licensing regime for Virtual Asset Service Providers (VASPs), recognize crypto as a valid medium of exchange by agreement, and set up a public registry and suspicious-operation reporting; it remained pending (not enacted) as of 2026. Panama positions itself as a permissive, business-friendly crypto jurisdiction (regional hub for tokenization/real-estate) but without dedicated legislation in force.",
       "finance": {
         "min_investment_usd": 200000,
         "typical_investment_usd": 300000,
         "gov_fees_usd": 10000,
         "processing_time_months": "2-5",
-        "tax_benefits": "Territorial taxation — foreign income often not taxed. Very attractive for Bitcoin holders.",
+        "tax_benefits": "Territorial taxation — foreign income often not taxed. Very attractive for Bitcoin holders.\n\nCrypto/Bitcoin tax: Panama applies a territorial tax system: only income sourced within Panama is taxed; income from foreign sources (including global crypto trading, staking, or token issuance to non-Panamanian users) is generally treated as foreign-sourced and not taxed. There is no specific crypto-tax statute; crypto gains derived from offshore activity are generally not subject to Panamanian income tax. Bitcoin/crypto is commonly regarded as not taxed on foreign-source capital gains.",
         "crypto_friendly_score": 8,
-        "bitcoin_specific": "Popular Bitcoin jurisdiction in practice. Good cost-to-benefit for MotoPass LatAm strategy."
+        "bitcoin_specific": "No — immigration/visa/legalization fees for the Friendly Nations Visa and other government procedures are payable in US dollars (Panamanian balboa at par) by certified check; Bitcoin is not accepted for government fees. Some ~41 private establishments (mostly in Panama City) accept crypto as payment, but this is private, not government."
       },
       "details": "Territorial tax is the core draw; crypto is legal but unregulated (grey area) — the 2022 crypto law was vetoed and struck down, and a 2025 bill aims to formalize it. Modeled minimum investment $200,000 (typical $300,000). Primary routes on file: Friendly Nations Visa ($200k), Qualified Investor Visa ($300k+), Pensionado / fixed income. Tax notes: Territorial taxation — foreign income often not taxed. Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "Immigration rules",
-        "Bitcoin community reports"
+        "Legal Nodes — https://legalnodes.com/article/panama-crypto-regulations-insights-for-web3-founders-in-2025",
+        "LawZana (migration law analysis) — https://lawzana.com/articles/panama/panama-friendly-nations-visa-2026-requirements-costs-routes-348",
+        "Nomad Almanac — https://nomadalmanac.com/countries/panama/residency",
+        "Legalys (Panamanian immigration law firm) — https://panama.legalys.com/en/blog/paises-amigos-7/how-to-get-the-panama-friendly-nations-visa-in-2026-updated-guide-21",
+        "Official — https://www.mire.gob.pa/",
+        "Official — https://www.migracion.gob.pa"
       ],
       "flag": "🇵🇦",
       "lightning_ready": true,
@@ -8114,8 +8503,9 @@
           "Tax Code (territorial principle)"
         ],
         "official_urls": [
+          "https://www.gacetaoficial.gob.pa",
           "https://www.migracion.gob.pa",
-          "https://www.gacetaoficial.gob.pa"
+          "https://www.mire.gob.pa/"
         ],
         "property_foreign_ownership": "Foreigners may own real estate freely; no general restrictions on urban property.",
         "recent_changes": "Crypto Bill 697 approved Apr 2022, partially vetoed by President Cortizo Jun 2022 (AML/FATF concerns), declared unconstitutional by the Supreme Court Jul 2023. New draft bill in early 2025 to license crypto providers and formalize crypto payments; Panama City began accepting crypto for public services (2025). Friendly Nations thresholds raised by Executive Decree 226 (Jul 2021) from ~$5k to $200,000."
@@ -8142,9 +8532,9 @@
         "escalate_when": "Crypto fund source documentation for banking or $300k+ qualified investor structuring"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 88,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -8193,6 +8583,10 @@
             "probe_path": "browser",
             "last_text_len": 3737,
             "last_main_len": 0
+          },
+          {
+            "url": "https://www.mire.gob.pa/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z",
@@ -8510,31 +8904,34 @@
           "source": "source-probe-v2",
           "hash": "a1d11a672e6b8903"
         }
-      ]
+      ],
+      "policy_mentions_btc": false,
+      "highlight_btc_friendly": false
     },
     {
       "name": "Mexico",
       "category": "rbi_cbi",
       "region": "North America",
       "status": "Researching",
-      "bitcoin_integration": "Temporary and permanent residency paths, active Bitcoin community. Bitcoin circular economies in CDMX and beach towns Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10.",
+      "bitcoin_integration": "Mexico regulates crypto under the 2018 Law to Regulate Financial Technology Institutions ('Fintech Law' / LRITF) which defines 'virtual assets', elaborated by Banxico Circular 4/2019. Virtual assets are NOT legal tender (Article 30 LRITF explicitly states they are neither legal tender nor foreign currency, reaffirmed by Banxico/SHCP/CNBV 2021 warning). Financial entities may only engage in virtual-asset operations for internal purposes with prior Banxico authorization and are prohibited from offering exchange/custody/transfer services to customers. Non-financial individuals and companies may legally own, hold, trade and exchange crypto and operate exchanges/custodians without a specific license (subject to AML obligations; a July 16 2025 AML-law reform classifies VASPs as Designated Non-Financial Businesses with travel-rule, KYC and transaction-reporting duties). Stance is widely described as 'permissive yet conservative,' the central bank keeping a 'healthy distance' between crypto and the financial system. No CBDC launched.",
       "finance": {
         "min_investment_usd": 74000,
         "typical_investment_usd": 120000,
         "gov_fees_usd": 3000,
         "processing_time_months": "1-3",
-        "tax_benefits": "Territorial for non-Mexico income",
+        "tax_benefits": "Territorial for non-Mexico income\n\nCrypto/Bitcoin tax: There is no dedicated crypto tax regime; crypto gains fall under Mexico's general Income Tax (ISR) and Value-Added Tax rules. Buying and holding is not taxed. Profits from the purchase/sale of crypto are taxable: corporations at 30% corporate income tax; individuals at progressive ISR rates of 1.92% to 35% (gains = sale price minus inflation-adjusted acquisition cost). Crypto transactions are generally subject to VAT unless a statutory exemption applies. Tax authority is SAT (Servicio de Administracion Tributaria).",
         "crypto_friendly_score": 7,
-        "bitcoin_specific": "Bitcoin circular economies in CDMX and beach towns"
+        "bitcoin_specific": "No — Mexico does not accept Bitcoin for any government visa/immigration/residency fees (payable in Mexican pesos; DHL Rights/Derechos per the Federal Fees Law Article 22). Financial solvency for residency must be proven with fiat bank statements/income; cryptocurrency is generally NOT accepted by consulates to evidence solvency. There is no Bitcoin-based visa or citizenship route."
       },
       "details": "Accessible North American residency with territorial tax benefits. Modeled minimum investment $40,000 (typical $80,000). Primary routes on file: Temporary resident (economic solvency), Investor visa (capital investment), Permanent resident (after 4 years temporary). Tax notes: Territorial for non-Mexico income Verify every figure against primary sources and Satohash proofs before acting.",
-      "last_checked": "2026-09-10",
+      "last_checked": "2026-09-29",
       "sources": [
-        "INM",
-        "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
-        "Mexperience — Financial criteria for residency 2026 (fetched 2026-09-10)",
-        "MexLaw — 2026 economic solvency & UMA (2026-01-28)",
-        "Consulmex Tucson / Las Vegas 2026 visa pages"
+        "Global Legal Insights (Mexico chapter by Ramos, Ripoll & Schuster) — https://www.globallegalinsights.com/practice-areas/blockchain-cryptocurrency-laws-and-regulations/mexico/",
+        "Lightspark — https://www.lightspark.com/knowledge/is-crypto-legal-in-mexico",
+        "CMS (international law firm) — https://cms.law/en/int/expert-guides/cms-expert-guide-to-crypto-regulation/mexico",
+        "Viamexico (Mexico immigration advisory) — https://viamexico.com/all-articles/mexico-residency-financial-requirements",
+        "TaxAtlas — https://taxatlas.io/country/mexico/crypto-tax",
+        "Official — https://www.gob.mx/sre"
       ],
       "id": 20,
       "flag": "🇲🇽",
@@ -8594,10 +8991,13 @@
           "Código Fiscal (territorial elements)"
         ],
         "official_urls": [
-          "https://www.inm.gob.mx",
+          "https://dof.gob.mx",
+          "https://embamex.sre.gob.mx/eua/",
           "https://www.gob.mx",
-          "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html",
-          "https://dof.gob.mx"
+          "https://www.gob.mx/sre",
+          "https://www.inm.gob.mx",
+          "https://www.inm.gob.mx/",
+          "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html"
         ],
         "property_foreign_ownership": "Foreigners may own property except in restricted coastal/border zones (fideicomiso required within ~50km of coast).",
         "recent_changes": "July 2025 consular guidelines moved solvency calculations to UMA-based formulas (UMA 2026 = 117.31 MXN, +3.69% YoY) — temporary-resident bars roughly doubled in USD terms as the peso appreciated (~18 MXN/USD). Crypto/precious metals explicitly excluded from solvency proof. Bitcoin legal since 2017; FinTech Law virtual-asset regime unchanged; INM fees up for 2026 (PR card MXN 13,578.96)."
@@ -8624,9 +9024,9 @@
         "escalate_when": "Fideicomiso structuring, investor visa capital deployment, or citizenship naturalization"
       },
       "freshness": {
-        "status": "stale",
-        "days_stale": 50,
-        "last_sweep": null
+        "status": "fresh",
+        "days_stale": 0,
+        "last_sweep": "2026-09-29"
       },
       "watch": {
         "urls": [
@@ -8707,6 +9107,18 @@
             "last_text_len": 7366,
             "last_main_len": 0,
             "last_layout_change": "2026-09-27T05:00:33.513Z"
+          },
+          {
+            "url": "https://www.gob.mx/sre",
+            "mode": "http"
+          },
+          {
+            "url": "https://embamex.sre.gob.mx/eua/",
+            "mode": "http"
+          },
+          {
+            "url": "https://www.inm.gob.mx/",
+            "mode": "http"
           }
         ],
         "last_probe_at": "2026-09-28T05:00:36.010Z",
@@ -9033,7 +9445,9 @@
           "source": "source-probe-v2",
           "hash": "e11ae6b52327e299"
         }
-      ]
+      ],
+      "policy_mentions_btc": false,
+      "highlight_btc_friendly": false
     },
     {
       "id": 21,
@@ -9041,23 +9455,23 @@
       "category": "rbi_cbi",
       "region": "Africa",
       "status": "Researching",
-      "bitcoin_integration": "Small island nation in the Gulf of Guinea offering a citizenship-by-investment program via contribution fund. Not a Bitcoin- or crypto-first jurisdiction; standard fiat/bank transfer expected for the CBI donation. Relevant to MotoPass as an affordable, fast, fully-remote CBI option rather than a Bitcoin-native one.",
+      "bitcoin_integration": "Minimal/no formal crypto policy. The new CBI programme (Decreto-Lei n.º 07/2025 under Nationality Law n.º 07/2022) requires the USD 90,000+ contribution to be made into the National Transformation Fund's bank account, nominally in US dollars (the national currency is the dobra, STN). In September 2025 the CIU announced a partnership to make the program 'the world's first blockchain-enabled citizenship-by-investment program' (a technical/process innovation), and crypto assets are accepted as PROOF OF SOURCE OF FUNDS - but there is no official government stance on Bitcoin as policy, and neither Bitcoin nor crypto is legal tender.",
       "finance": {
         "min_investment_usd": 90000,
         "typical_investment_usd": 95000,
         "gov_fees_usd": 5000,
         "processing_time_months": "1.5",
-        "tax_benefits": "Low-key tax regime on a small island economy; seek specialist planning. No substance requirement beyond the contribution under the CBI program as marketed by licensed agents.",
+        "tax_benefits": "Low-key tax regime on a small island economy; seek specialist planning. No substance requirement beyond the contribution under the CBI program as marketed by licensed agents.\n\nCrypto/Bitcoin tax: Territorial/limited-tax regime favourable to non-residents: non-residents are taxed only on income sourced within the country and pay no tax on foreign-source income, capital gains, inheritance or wealth; residents face 0-32% on worldwide income; corporate tax ~25% (10% for priority development sectors); VAT 15%. There is no dedicated Bitcoin/crypto tax rule documented - crypto gains of non-residents are not domestically taxed, but this reflects the broad territorial regime and an absence of crypto-specific law rather than an explicit crypto policy.",
         "crypto_friendly_score": 3,
-        "bitcoin_specific": "Bitcoin not widely accepted locally; the CBI contribution is expected in fiat via bank. No BTC-specific framework identified yet."
+        "bitcoin_specific": "Indirect only - official contributions and CIU fees are payable to the National Transformation Fund's bank account in US dollars; licensed agents may accept cryptocurrency as proof of source of funds (and in practice some agents settle in crypto on the client's behalf before paying authorities in USD), but there is no official direct-Bitcoin payment route."
       },
-      "details": "São Tomé and Príncipe operates a Citizenship by Investment programme via a contribution to the national development fund: minimum ~USD 90,000–95,000 single applicant, fully remote with NO residence, physical-presence, travel or language requirement. Processing advertised at around six weeks. Applicants must be 18+, in good health, with clean criminal record and a provable source of funds; a USD ~5,000 submission fee applies (USD ~5,000 per additional dependent). Program is newer and smaller than the Caribbean CBI bloc; rules should be verified against official/embassy channels before structuring. MotoPass entry is honest and tagged Researching — not yet Satohash-stamped.",
+      "details": "São Tomé and Príncipe operates a Citizenship by Investment programme via a contribution to the national development fund: minimum ~USD 90,000–95,000 single applicant, fully remote with NO residence, physical-presence, travel or language requirement. Processing advertised at around six weeks. Applicants must be 18+, in good health, with clean criminal record and a provable source of funds; a USD ~5,000 submission fee applies (USD ~5,000 per additional dependent). Program is newer and smaller than the Caribbean CBI bloc; rules should be verified against official/embassy channels before structuring. MotoPass entry is honest and tagged Researching — not yet Satohash-stamped.\n\nVERIFIED 2026: New CBI program (Decreto-Lei 07/2025, gazetted 1 Aug 2025, under Nationality Law 07/2022); applications since Sep 2025; run by govt CIU (cip.gov.st) with Dubai back office. Single route = non-refundable National Transformation Fund contribution USD 90,000 single / 95,000 family of 2-4 / +5,000 per extra dependent; +5,000 due-diligence fee. Fully remote (no residency/visit/language/interview); dual citizenship; CPLP mobility (Portugal, Brazil). Restrictions (Apr 2026): applicants with 3+ foreign nationalities barred; naturalised citizens acquiring a 4th lose nationality; adult-dependent passport issuance frozen. Licensed agents only. Advertised 6-8 wks; real-world 4-6+ months.",
       "last_checked": "2026-09-29",
       "sources": [
-        "Henley & Partners — São Tomé and Príncipe Citizenship by Investment",
-        "La Vida Golden Visas — São Tomé and Príncipe CBI (min US$90,000, ~6 weeks)",
-        "Global Residence Index — São Tomé & Príncipe CBI (2026)",
-        "NTL Trust — São Tomé and Príncipe CBI"
+        "São Tomé PRNID CIU — https://cip.gov.st/",
+        "NTL Trust — https://ntltrust.com/citizenship-by-investment/sao-tome-and-principe/",
+        "Get Golden Visa — https://getgoldenvisa.com/sao-tome-and-principe-citizenship-by-investment",
+        "Henley & Partners — https://www.henleyglobal.com/citizenship-investment/sao-tome-principe"
       ],
       "flag": "🇸🇹",
       "lightning_ready": false,
@@ -9086,7 +9500,10 @@
           "Citizenship by Investment framework (São Tomé and Príncipe)",
           "Immigration Law"
         ],
-        "official_urls": [],
+        "official_urls": [
+          "https://cip.gov.st/",
+          "https://www.gov.st"
+        ],
         "property_foreign_ownership": "Island real estate may be purchased with standard registration; independent legal advice recommended.",
         "recent_changes": "CBI programme marketed via licensed agents (Henley, GoldenVisas, NTL) with min contribution ~USD 90k; use of program tightened for transparency; 2026-09-29 data captured from agency sources — official/embassy verification still outstanding."
       },
@@ -9118,7 +9535,16 @@
         "last_sweep": "2026-09-29"
       },
       "watch": {
-        "urls": [],
+        "urls": [
+          {
+            "url": "https://www.gov.st",
+            "mode": "http"
+          },
+          {
+            "url": "https://cip.gov.st/",
+            "mode": "http"
+          }
+        ],
         "last_probe_at": null
       },
       "pros": [
@@ -9166,7 +9592,9 @@
           "field": "schema.v3",
           "to": "new entry — full v3 schema, agency-sourced, proof pending"
         }
-      ]
+      ],
+      "policy_mentions_btc": false,
+      "highlight_btc_friendly": false
     }
   ],
   "project": "MotoPass",
