@@ -690,7 +690,7 @@ export const pageKeysEs: Partial<Record<PageKey, string>> = {
   'pitch.pillar.nexus.title': 'Nexus',
   'pitch.pillar.nexus.sub': 'Identidad nativa Nostr y enrutamiento de relay para solicitudes — sin correo, el npub es tu cuenta.',
   'pitch.pillar.ledger.title': 'Ledger',
-  'pitch.pillar.ledger.sub': 'Oráculo de 50 jurisdicciones desde countries.json — compara, simula stacks y modela el costo en tiempo real.',
+  'pitch.pillar.ledger.sub': 'Oráculo de 21 jurisdicciones desde countries.json — compara, simula stacks y modela el costo en tiempo real.',
   'pitch.products.eyebrow': 'PLATAFORMA',
   'pitch.products.title': 'Construido para operadores, no para turistas',
   'pitch.product.programs.title': 'Programas',

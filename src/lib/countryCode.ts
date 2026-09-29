@@ -64,6 +64,7 @@ const ISO_BY_NAME: Record<string, string> = {
   Croatia: 'HR',
   'Cayman Islands': 'KY',
   Andorra: 'AD',
+  'São Tomé and Príncipe': 'ST',
 }
 
 /** Resolve ISO alpha-2 for flag sprite URLs; falls back to initials. */

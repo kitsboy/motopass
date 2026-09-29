@@ -692,7 +692,7 @@ export const pageKeysZh: Partial<Record<PageKey, string>> = {
   'pitch.pillar.nexus.title': 'Nexus',
   'pitch.pillar.nexus.sub': 'Nostr原生身份和申请中继路由——无需邮箱，npub就是你的账户。',
   'pitch.pillar.ledger.title': 'Ledger',
-  'pitch.pillar.ledger.sub': '来自countries.json的50辖区预言机——实时比较、模拟组合并建模成本。',
+  'pitch.pillar.ledger.sub': '来自countries.json的21辖区预言机——实时比较、模拟组合并建模成本。',
   'pitch.products.eyebrow': '平台',
   'pitch.products.title': '为运营者打造，而非游客',
   'pitch.product.programs.title': '项目',

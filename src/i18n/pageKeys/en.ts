@@ -1001,7 +1001,7 @@ export const pageKeysEn: Record<PageKey, string> = {
   'pitch.guide.title': 'One platform, four pillars, zero brochure trust',
   'pitch.guide.intro': 'MotoPass is the private operating system for sovereign operators — research jurisdictions, verify claims on Bitcoin, track your stack, and coordinate through Nostr. Here is the full journey, left to right.',
   'pitch.guide.step1.title': 'Forge — discover & model',
-  'pitch.guide.step1.body': 'Start in Programs: filter 50 jurisdictions, run the stack simulator, compare fees, and check BTC Map merchant density. Distressed surfaces proof-gated value plays when you want capital-efficient routes.',
+  'pitch.guide.step1.body': 'Start in Programs: filter 21 jurisdictions, run the stack simulator, compare fees, and check BTC Map merchant density. Distressed surfaces proof-gated value plays when you want capital-efficient routes.',
   'pitch.guide.step2.title': 'Seal — verify on Bitcoin',
   'pitch.guide.step2.body': 'Every material claim should anchor to a Bitcoin block. The Vault lets you paste hashes, upload .ots files, and audit proofs independently via Satohash.io — Truth You Can Verify.',
   'pitch.guide.step3.title': 'Ledger — track your stack',

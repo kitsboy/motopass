@@ -58,8 +58,8 @@ export const PROGRAM_COORDS: Record<string, ProgramCoord> = {
   Gibraltar: { lat: 36.1408, lon: -5.3536, radiusKm: 10 },
   'Cayman Islands': { lat: 19.2869, lon: -81.3674, radiusKm: 15 },
   Andorra: { lat: 42.5063, lon: 1.5218, radiusKm: 15 },
+  'São Tomé and Príncipe': { lat: 0.3365, lon: 6.7273, radiusKm: 30 },
 }
-
 export function getProgramCoord(name: string): ProgramCoord | null {
   return PROGRAM_COORDS[name] ?? null
 }

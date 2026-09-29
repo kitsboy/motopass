@@ -647,7 +647,7 @@ const en: Dict = {
   'currency.fxUnavailable': 'FX unavailable',
   'currency.degradedTitle':
     'Live FX feed unreachable — showing last known good rates (stale) or BTC-only.',
-  'pitch.feature.jurisdictions.title': '50 jurisdictions',
+  'pitch.feature.jurisdictions.title': '21 jurisdictions',
   'pitch.feature.jurisdictions.sub': 'CBI, RBI & Bitcoin-native pathways',
   'pitch.feature.satohash.title': 'Satohash proofs',
   'pitch.feature.satohash.sub': 'OpenTimestamps on every material claim',
@@ -680,7 +680,7 @@ const en: Dict = {
   'pitch.roadmap.btcmap': 'BTC Map merchant layer per jurisdiction',
   'pitch.roadmap.lightning': 'Lightning fee rails for premium stamping',
   'pitch.roadmap.relay': 'Live Nostr relay at relay.motopass.giveabit.io',
-  'pitch.roadmap.uruguay': 'Uruguay flagship depth across all 50 countries',
+  'pitch.roadmap.uruguay': 'Uruguay flagship depth across all 21 countries',
   'pitch.roadmap.agents': 'Official liaison agent onboarding per jurisdiction',
   'blog.title': 'Sovereign insights',
   'blog.filter': 'Filter by topic',

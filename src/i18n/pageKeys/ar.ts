@@ -557,7 +557,7 @@ export const pageKeysAr: Partial<Record<PageKey, string>> = {
   'pitch.pillar.nexus.title': 'Nexus',
   'pitch.pillar.nexus.sub': 'هوية أصلية Nostr وتوجيه مرحّلات للطلبات — بلا بريد، npub هو حسابك.',
   'pitch.pillar.ledger.title': 'Ledger',
-  'pitch.pillar.ledger.sub': 'نبي 50 اختصاصاً من countries.json — قارن وحاكِ المحافظ ونمذج التكلفة في الوقت الفعلي.',
+  'pitch.pillar.ledger.sub': 'نبي 21 اختصاصاً من countries.json — قارن وحاكِ المحافظ ونمذج التكلفة في الوقت الفعلي.',
   'pitch.products.eyebrow': 'المنصة',
   'pitch.products.title': 'مبني للمشغّلين، لا للسياح',
   'pitch.product.programs.title': 'البرامج',
