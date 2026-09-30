@@ -211,6 +211,11 @@ export function countAlertsByType(alerts: PaigeAlert[]): Record<AlertType, numbe
  * A confirmed change/coverage event from the MotoPass official-source watchdog
  * feed (/data/source-events.json). Structurally compatible with `SourceEvent`
  * in hooks/useSourceMonitor.ts — declared here so this module stays dependency-free.
+ *
+ * `status` is OPTIONAL deliberately: the harness writes `kind:'rule'` events
+ * WITHOUT a status field (see `buildSourceAlerts` below), and coverage events
+ * carry one ('unreachable' / 'blocked' / …). Required here would make every
+ * rule event from the live feed fail the type.
  */
 export interface SourceChangeEvent {
   id: string
@@ -220,7 +225,7 @@ export interface SourceChangeEvent {
   program_id?: number
   url: string
   kind?: string
-  status: string
+  status?: string
   before?: string | null
   after?: string | null
 }
