@@ -4,24 +4,22 @@
 
 | Field | Value |
 |-------|-------|
-| Generated | 2026-07-15T05:25:02.821Z |
-| BUILD | 2026.09.10-415f2fb |
-| BTC spot | ₿1.00 · $65k (mempool.space) |
-| Programs | 50 |
-| Avg stack savings | ₿1.58 · $102k (96%) |
-| Traditional advisory (modeled) | ₿1.64 · $106k |
-| MotoPass advisory (modeled) | ₿0.0597 · $3.9k |
-| Avg typical investment | ₿10.10 · $653k |
+| Generated | 2026-09-30T19:02:01.450Z |
+| BUILD | 2026.09.17-d6eb831 |
+| BTC spot | ₿1.00 · $84k (mempool.space) |
+| Programs | 21 |
+| Avg stack savings | ₿0.9261 · $78k (95%) |
+| Traditional advisory (modeled) | ₿0.9747 · $82k |
+| MotoPass advisory (modeled) | ₿0.0485 · $4.1k |
+| Avg typical investment | ₿5.03 · $422k |
 
 ## Uruguay 🇺🇾
-- RE min: ₿1.55 · $100k
-- Rentista ~₿0.0232/mo · $1.5k/mo
-- Gov fees: ₿0.2321 · $15k
+- RE min: ₿1.19 · $100k
+- Rentista ~₿0.0179/mo · $1.5k/mo
+- Gov fees: ₿0.1788 · $15k
 
 ## Bolivia 🇧🇴
-- Min (stub): ₿1.24 · $80k
-- Status: Researching - Flagship
-- Investor/company route — no pure CBI; verify solvency thresholds
+- (not in dataset)
 
 ---
 *Bitcoin-first display policy: ₿ primary, USD secondary. Safe Harbour · Give A Bit.*

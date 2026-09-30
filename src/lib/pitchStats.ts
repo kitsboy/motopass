@@ -82,6 +82,11 @@ export function formatUsd(n: number): string {
 
 export type PitchMetric = {
   label: string
+  /**
+   * i18n key overriding `label` at render time — set when the label must
+   * localize (components resolve via t()). Falls back to `label`.
+   */
+  labelKey?: 'pitch.metric.flagshipDepth'
   value: number
   suffix?: string
   prefix?: string
@@ -105,7 +110,8 @@ export function pitchStatsToMetrics(stats: PitchStats): PitchMetric[] {
   if (stats.flagshipCount > 0) {
     const depthValue = stats.deepCount > 0 ? stats.deepCount : stats.flagshipCount
     metrics.push({
-      label: '50/50 flagship depth',
+      label: 'Flagship depth',
+      labelKey: 'pitch.metric.flagshipDepth',
       value: depthValue,
       suffix: `/${stats.programCount}`,
     })

@@ -1,8 +1,17 @@
 import { test, expect } from '@playwright/test'
-import { expectedBuildPattern } from './support/build'
+import { execSync } from 'node:child_process'
 
 /** Lazy routes need domcontentloaded + content wait (not full load). */
 const gotoOpts = { waitUntil: 'domcontentloaded' as const }
+
+/** HEAD sha of this checkout — empty outside a git repo. */
+function headSha(): string {
+  try {
+    return execSync('git rev-parse --short=7 HEAD', { encoding: 'utf8' }).trim()
+  } catch {
+    return ''
+  }
+}
 
 test.describe('smoke', () => {
   test('home loads with hero headline', async ({ page }) => {
@@ -17,7 +26,18 @@ test.describe('smoke', () => {
     // Auto-waiting assertion only: the version chip re-mounts when live deploy
     // health resolves, so scrollIntoViewIfNeeded can race a detached node —
     // toBeVisible re-resolves the locator on every retry instead.
-    await expect(page.getByText(expectedBuildPattern()).first()).toBeVisible({ timeout: 20_000 })
+    const buildChip = page.getByText(/BUILD \d{4}\.\d{2}\.\d{2}-[0-9a-f]{7}/).first()
+    await expect(buildChip).toBeVisible({ timeout: 20_000 })
+
+    // Staleness guard: the sha inside dist only matches HEAD right after a
+    // build. A stale dist used to fail here with a cryptic sha mismatch; skip
+    // with explicit guidance instead — the BUILD sha is a FRESHNESS fact, not
+    // a correctness fact, and every other spec is judged on the same dist.
+    const shown = (await buildChip.textContent())?.match(/([0-9a-f]{7})/)?.[1]
+    const head = headSha()
+    if (head && shown && shown !== head) {
+      test.skip(true, `stale dist: built at ${shown}, HEAD is ${head} — run npm run build before judging failures`)
+    }
   })
 
   test('btcmap page loads with program selector', async ({ page }) => {

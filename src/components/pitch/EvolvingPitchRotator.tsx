@@ -6,6 +6,8 @@ import { useI18n } from '../../i18n/I18nContext';
 
 export interface StackMetric {
   label: string;
+  /** i18n key overriding `label` at render time (localized depth label). */
+  labelKey?: 'pitch.metric.flagshipDepth';
   value: number;
   suffix?: string;
   prefix?: string;
@@ -19,7 +21,6 @@ interface EvolvingPitchRotatorProps {
 }
 
 const DEFAULT_TAGLINES = [
-  'stacked across 50 jurisdictions.',
   'anchored to Bitcoin, not a brochure.',
   'modeled in real cost, not marketing math.',
 ];
@@ -166,7 +167,7 @@ export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, pro
             className="sm:flex sm:items-baseline sm:justify-between sm:py-3"
           >
             <dt className="font-chrome text-[11px] uppercase tracking-[0.14em] text-mp-on-hero-muted">
-              {m.label}
+              {m.labelKey ? t(m.labelKey) : m.label}
             </dt>
             <dd className="text-h3 font-display text-mp-on-hero sm:text-lg2">
               {m.usdValue != null ? (

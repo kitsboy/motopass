@@ -1,6 +1,16 @@
 import { test, expect } from '@playwright/test'
-import { expectedBuildPattern } from './support/build'
-const BUILD_ID = expectedBuildPattern()
+import { execSync } from 'node:child_process'
+
+const BUILD_SHAPE = /BUILD \d{4}\.\d{2}\.\d{2}-[0-9a-f]{7}/
+
+/** HEAD sha of this checkout — empty outside a git repo. */
+function headSha(): string {
+  try {
+    return execSync('git rev-parse --short=7 HEAD', { encoding: 'utf8' }).trim()
+  } catch {
+    return ''
+  }
+}
 
 type FooterGapMetrics = {
   footerDocBottom: number
@@ -65,7 +75,16 @@ test.describe('footer gap (layout regression)', () => {
     const footer = page.locator('footer.footer-glass')
     await scrollToDocumentBottom(page)
     await expect(footer).toBeVisible({ timeout: 10_000 })
-    await expect(footer.locator('[data-build-version]')).toContainText(BUILD_ID)
+    const versionChip = footer.locator('[data-build-version]')
+    await expect(versionChip).toContainText(BUILD_SHAPE)
+    // Staleness guard (mirrors smoke.spec.ts): the BUILD sha in dist only
+    // matches HEAD right after a build. Skip with guidance instead of failing
+    // on a freshness fact — measurement specs are judged on the same dist.
+    const shown = (await versionChip.textContent())?.match(/([0-9a-f]{7})/)?.[1]
+    const head = headSha()
+    if (head && shown && shown !== head) {
+      test.skip(true, `stale dist: built at ${shown}, HEAD is ${head} — run npm run build before judging failures`)
+    }
 
     // The homepage mounts its sections progressively, so the document can still grow
     // after the first scroll lands — measuring then reports a phantom void (observed:

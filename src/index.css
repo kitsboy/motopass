@@ -2880,6 +2880,44 @@ body::before {
   animation: hero-elite-fog-b 18s ease-in-out infinite alternate-reverse;
 }
 
+/* ── Hero live stat band + scroll cue ────────────────────────────────────── */
+
+.hero-stat-cell {
+  position: relative;
+  transition: background-color 0.25s ease;
+}
+
+.hero-stat-cell:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.hero-scroll-cue {
+  animation: hero-scroll-cue 2.6s ease-in-out infinite;
+}
+
+@keyframes hero-scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-cue {
+    animation: none;
+    opacity: 0.7;
+  }
+
+  .hero-stat-cell {
+    transition: none;
+  }
+}
+
 .hero-gradient-mesh {
   opacity: 0.42;
   background:
