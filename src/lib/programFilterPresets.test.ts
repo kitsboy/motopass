@@ -28,7 +28,9 @@ describe('programFilterPresets', () => {
   it('detects active presets', () => {
     expect(isFilterPresetActive('under100k', { ...DEFAULT_FILTERS, maxInvestment: 100_000 })).toBe(true)
     expect(isFilterPresetActive('lightning', { ...DEFAULT_FILTERS, lightningOnly: true })).toBe(true)
-    expect(isFilterPresetActive('bitcoinFriendly', { ...DEFAULT_FILTERS, minCryptoScore: 7 })).toBe(true)
+    expect(isFilterPresetActive('bitcoinFriendly', { ...DEFAULT_FILTERS, bitcoinTier: 'friendly' })).toBe(true)
+    expect(isFilterPresetActive('bitcoinPolicy', { ...DEFAULT_FILTERS, bitcoinTier: 'policy' })).toBe(true)
+    expect(isFilterPresetActive('bitcoinFriendly', { ...DEFAULT_FILTERS, minCryptoScore: 7 })).toBe(false)
   })
 
   it('toggles presets on and off', () => {
@@ -36,6 +38,9 @@ describe('programFilterPresets', () => {
     expect(
       toggleFilterPreset('under100k', { ...DEFAULT_FILTERS, maxInvestment: 100_000 }),
     ).toEqual({ maxInvestment: DEFAULT_FILTERS.maxInvestment })
+    expect(toggleFilterPreset('bitcoinFriendly', DEFAULT_FILTERS)).toEqual({ bitcoinTier: 'friendly' })
+    expect(toggleFilterPreset('bitcoinPolicy', DEFAULT_FILTERS)).toEqual({ bitcoinTier: 'policy' })
+    expect(toggleFilterPreset('bitcoinPolicy', { ...DEFAULT_FILTERS, bitcoinTier: 'policy' })).toEqual({ bitcoinTier: 'all' })
   })
 
   it('applies lightning preset in one click without toggling off', () => {

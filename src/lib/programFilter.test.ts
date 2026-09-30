@@ -11,6 +11,7 @@ const sample: Program[] = [
     finance: { min_investment_usd: 0, typical_investment_usd: 30000, gov_fees_usd: 5000,
       processing_time_months: '1-4', tax_benefits: 'Favorable', crypto_friendly_score: 9, bitcoin_specific: 'BTC' },
     details: 'Bitcoin nation', last_checked: '2026-07-02',
+    highlight_btc_friendly: true, policy_mentions_btc: false,
   },
   {
     id: 2, name: 'Uruguay', category: 'rbi_cbi', region: 'South America',
@@ -19,6 +20,7 @@ const sample: Program[] = [
     finance: { min_investment_usd: 100000, typical_investment_usd: 150000, gov_fees_usd: 15000,
       processing_time_months: '3-8', tax_benefits: 'Territorial', crypto_friendly_score: 8, bitcoin_specific: 'Stable' },
     details: 'Territorial tax', last_checked: '2026-07-02',
+    highlight_btc_friendly: false, policy_mentions_btc: true,
   },
 ]
 
@@ -56,6 +58,19 @@ describe('programFilter', () => {
     expect(r).toHaveLength(0)
   })
 
+  it('filters by curated Bitcoin-friendly and policy flags independently', () => {
+    const friendly = filterPrograms(sample, { ...DEFAULT_FILTERS, bitcoinTier: 'friendly' })
+    const policy = filterPrograms(sample, { ...DEFAULT_FILTERS, bitcoinTier: 'policy' })
+    expect(friendly.map((program) => program.name)).toEqual(['El Salvador'])
+    expect(policy.map((program) => program.name)).toEqual(['Uruguay'])
+  })
+
+  it('allows a program to appear in both curated BTC tiers', () => {
+    const overlap = { ...sample[0], highlight_btc_friendly: true, policy_mentions_btc: true }
+    expect(filterPrograms([overlap], { ...DEFAULT_FILTERS, bitcoinTier: 'friendly' })).toEqual([overlap])
+    expect(filterPrograms([overlap], { ...DEFAULT_FILTERS, bitcoinTier: 'policy' })).toEqual([overlap])
+  })
+
   it('filters by sovereignty score range', () => {
     const r = filterPrograms(sample, { ...DEFAULT_FILTERS, minSovereignty: 9, maxSovereignty: 10 })
     expect(r).toHaveLength(1)
@@ -79,6 +94,15 @@ describe('DEFAULT_FILTERS hide nothing', () => {
     const out = filterPrograms(catalog, DEFAULT_FILTERS)
     const hidden = catalog.filter((p) => !out.includes(p)).map((p) => p.name)
     expect(hidden).toEqual([])
+  })
+
+  it('matches curated BTC tier filter counts to the source flags', () => {
+    const friendlyCount = catalog.filter((program) => program.highlight_btc_friendly === true).length
+    const policyCount = catalog.filter((program) => program.policy_mentions_btc === true).length
+    expect(filterPrograms(catalog, { ...DEFAULT_FILTERS, bitcoinTier: 'friendly' })).toHaveLength(friendlyCount)
+    expect(filterPrograms(catalog, { ...DEFAULT_FILTERS, bitcoinTier: 'policy' })).toHaveLength(policyCount)
+    expect(friendlyCount).toBeGreaterThan(0)
+    expect(policyCount).toBeGreaterThan(0)
   })
 
   it('the default cost cap covers the most expensive program', () => {

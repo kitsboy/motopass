@@ -2,7 +2,6 @@ import { CalendarClock } from 'lucide-react'
 import {
   formatFreshnessLabel,
   freshnessLevel,
-  resolveFreshnessDate,
   type FreshnessLevel,
 } from '../../lib/programFreshness'
 
@@ -27,23 +26,31 @@ const LEVEL_STYLES: Record<FreshnessLevel, string> = {
 }
 
 export function FreshnessBadge({ lastChecked, proofStampedAt, compact = false, labels }: FreshnessBadgeProps) {
-  const iso = resolveFreshnessDate(lastChecked, proofStampedAt)
-  if (!iso) return null
+  const checkedIso = lastChecked?.slice(0, 10) || null
+  const proofIso = proofStampedAt?.slice(0, 10) || null
+  if (!checkedIso && !proofIso) return null
 
-  const level = freshnessLevel(iso)
-  const fromProof = !!proofStampedAt?.slice(0, 10)
-  const dateLabel = formatFreshnessLabel(iso)
-  const levelLabel = labels[level]
-  const sourceLabel = fromProof ? labels.proof : labels.checked
+  const level = checkedIso ? freshnessLevel(checkedIso) : null
+  const levelLabel = level ? labels[level] : null
+  const displayIso = checkedIso ?? proofIso!
+  const dateLabel = formatFreshnessLabel(displayIso)
+  const titleParts = [
+    checkedIso && `${labels.checked} · ${formatFreshnessLabel(checkedIso)} (${checkedIso})`,
+    proofIso && `${labels.proof} · ${formatFreshnessLabel(proofIso)} (${proofIso})`,
+  ].filter(Boolean)
+  const title = titleParts.join(' · ')
+  const badgeLabel = levelLabel ? `${levelLabel} · ${dateLabel}` : `${labels.proof} · ${dateLabel}`
+  const style = level ? LEVEL_STYLES[level] : 'border-mp-border-strong bg-mp-section text-mp-ink-secondary'
 
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-chip border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.06em] ${LEVEL_STYLES[level]}`}
+      className={`inline-flex items-center gap-1 rounded-chip border px-1.5 py-0.5 font-mono uppercase tracking-[0.06em] ${compact ? 'text-[9px]' : 'text-[10px]'} ${style}`}
       role="status"
-      title={`${sourceLabel} · ${dateLabel} (${iso})`}
+      title={title}
+      aria-label={title}
     >
       <CalendarClock className="h-2.5 w-2.5 shrink-0" aria-hidden="true" />
-      <span>{compact ? dateLabel : `${levelLabel} · ${dateLabel}`}</span>
+      <span>{badgeLabel}</span>
     </span>
   )
 }

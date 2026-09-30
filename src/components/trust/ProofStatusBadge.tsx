@@ -1,4 +1,5 @@
 import { stateFromVerdict } from './HowProofWorks'
+import { DEFAULT_PROOF_STATUS_LABELS, type ProofStatusLabels } from './proofStatusLabels'
 import type { ChainVerdict } from '../../lib/chainVerify'
 
 /**
@@ -23,35 +24,6 @@ import type { ChainVerdict } from '../../lib/chainVerify'
  * ./HowProofWorks.jsx) owns the proof half; this component owns the validity
  * half. Candidate for backport into the shared trust kit.
  */
-
-export interface ProofStatusLabels {
-  provenNowHeading: string
-  validNowHeading: string
-  provenConfirmed: string
-  provenPending: string
-  provenNotProven: string
-  validCurrent: string
-  validUnconfirmed: string
-  validRevoked: string
-  asOf: string
-  splitNote: string
-  unknown: string
-}
-
-export const DEFAULT_PROOF_STATUS_LABELS: ProofStatusLabels = {
-  provenNowHeading: 'Proven then',
-  validNowHeading: 'Valid now',
-  provenConfirmed: 'Anchored to Bitcoin · block {block}',
-  provenPending: 'Recorded, not yet anchored',
-  provenNotProven: 'Not proven',
-  validCurrent: 'Current as of {checked}',
-  validUnconfirmed: 'Unconfirmed as of {checked} — check the live registry',
-  validRevoked: 'Revoked / expired',
-  asOf: 'as of {checked}',
-  splitNote:
-    'The proof never expires — it only ever says when this existed. Whether it is still valid today is a separate, live check, and MotoPass never merges the two.',
-  unknown: 'not checked yet',
-}
 
 /** What the live registry says RIGHT NOW. Anything unknown stays unconfirmed. */
 export type LiveValidity = 'current' | 'unconfirmed' | 'revoked'

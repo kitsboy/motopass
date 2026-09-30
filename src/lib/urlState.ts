@@ -23,6 +23,7 @@ export function filtersFromSearchParams(params: URLSearchParams): ProgramFilters
   const crypto = params.get('crypto')
   const minSov = params.get('minSov')
   const maxSov = params.get('maxSov')
+  const bitcoinTier = params.get('btcTier')
 
   return {
     ...DEFAULT_FILTERS,
@@ -30,6 +31,9 @@ export function filtersFromSearchParams(params: URLSearchParams): ProgramFilters
     region: region && region.length > 0 ? decodeURIComponent(region) : DEFAULT_FILTERS.region,
     category: category && category.length > 0 ? decodeURIComponent(category) : DEFAULT_FILTERS.category,
     lightningOnly: params.get('lightning') === '1',
+    bitcoinTier: bitcoinTier === 'friendly' || bitcoinTier === 'policy'
+      ? bitcoinTier
+      : DEFAULT_FILTERS.bitcoinTier,
     minInvestment: minInv ? Number(minInv) || 0 : DEFAULT_FILTERS.minInvestment,
     maxInvestment: maxInv ? Number(maxInv) || DEFAULT_FILTERS.maxInvestment : DEFAULT_FILTERS.maxInvestment,
     minCryptoScore: crypto ? Number(crypto) || 0 : DEFAULT_FILTERS.minCryptoScore,
@@ -45,6 +49,7 @@ export function filtersToSearchParams(filters: ProgramFilters, view?: 'table' | 
   if (filters.region !== 'All') p.set('region', filters.region)
   if (filters.category !== 'All') p.set('category', filters.category)
   if (filters.lightningOnly) p.set('lightning', '1')
+  if (filters.bitcoinTier && filters.bitcoinTier !== 'all') p.set('btcTier', filters.bitcoinTier)
   if (filters.minInvestment > 0) p.set('minInv', String(filters.minInvestment))
   if (filters.maxInvestment < DEFAULT_FILTERS.maxInvestment) p.set('maxInv', String(filters.maxInvestment))
   if (filters.minCryptoScore > 0) p.set('crypto', String(filters.minCryptoScore))
@@ -61,6 +66,7 @@ export function countActiveFilters(f: ProgramFilters): number {
   if (f.region !== 'All') n++
   if (f.category !== 'All') n++
   if (f.lightningOnly) n++
+  if (f.bitcoinTier && f.bitcoinTier !== 'all') n++
   if (f.minInvestment > 0) n++
   if (f.maxInvestment < DEFAULT_FILTERS.maxInvestment) n++
   if (f.minCryptoScore > 0) n++

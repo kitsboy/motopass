@@ -1,15 +1,16 @@
 import { DEFAULT_FILTERS, type ProgramFilters } from './programFilter'
 
-export type FilterPresetId = 'under100k' | 'lightning' | 'bitcoinFriendly'
+export type FilterPresetId = 'under100k' | 'lightning' | 'bitcoinFriendly' | 'bitcoinPolicy'
 
 const PRESET_SESSION_KEY = 'motopass-filter-presets'
 
-export const FILTER_PRESET_IDS: FilterPresetId[] = ['under100k', 'lightning', 'bitcoinFriendly']
+export const FILTER_PRESET_IDS: FilterPresetId[] = ['under100k', 'lightning', 'bitcoinFriendly', 'bitcoinPolicy']
 
 export const FILTER_PRESET_PATCH: Record<FilterPresetId, Partial<ProgramFilters>> = {
   under100k: { maxInvestment: 100_000 },
   lightning: { lightningOnly: true },
-  bitcoinFriendly: { minCryptoScore: 7 },
+  bitcoinFriendly: { bitcoinTier: 'friendly' },
+  bitcoinPolicy: { bitcoinTier: 'policy' },
 }
 
 export function isFilterPresetActive(id: FilterPresetId, filters: ProgramFilters): boolean {
@@ -19,7 +20,9 @@ export function isFilterPresetActive(id: FilterPresetId, filters: ProgramFilters
     case 'lightning':
       return filters.lightningOnly
     case 'bitcoinFriendly':
-      return filters.minCryptoScore >= 7
+      return filters.bitcoinTier === 'friendly'
+    case 'bitcoinPolicy':
+      return filters.bitcoinTier === 'policy'
     default:
       return false
   }
@@ -36,7 +39,8 @@ export function toggleFilterPreset(
       case 'lightning':
         return { lightningOnly: false }
       case 'bitcoinFriendly':
-        return { minCryptoScore: 0 }
+      case 'bitcoinPolicy':
+        return { bitcoinTier: 'all' }
       default:
         return {}
     }

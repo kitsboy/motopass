@@ -30,6 +30,17 @@ describe('urlState', () => {
     expect(out.get('view')).toBe('card')
   })
 
+  it('round-trips curated BTC tier filter state', () => {
+    for (const bitcoinTier of ['friendly', 'policy'] as const) {
+      const filters = { ...DEFAULT_FILTERS, bitcoinTier }
+      const params = filtersToSearchParams(filters)
+      expect(params.get('btcTier')).toBe(bitcoinTier)
+      expect(filtersFromSearchParams(params).bitcoinTier).toBe(bitcoinTier)
+      expect(countActiveFilters(filtersFromSearchParams(params))).toBe(1)
+    }
+    expect(filtersFromSearchParams(new URLSearchParams('btcTier=invalid')).bitcoinTier).toBe('all')
+  })
+
   it('returns defaults for empty params', () => {
     const f = filtersFromSearchParams(new URLSearchParams())
     expect(f.region).toBe(DEFAULT_FILTERS.region)

@@ -10,6 +10,7 @@ export interface ProgramFilters {
   minSovereignty: number
   maxSovereignty: number
   lightningOnly: boolean
+  bitcoinTier: 'all' | 'friendly' | 'policy'
   status: string
 }
 
@@ -32,6 +33,7 @@ export const DEFAULT_FILTERS: ProgramFilters = {
   minSovereignty: 0,
   maxSovereignty: 10,
   lightningOnly: false,
+  bitcoinTier: 'all',
   status: 'All',
 }
 
@@ -49,6 +51,8 @@ export function filterPrograms(programs: Program[], filters: ProgramFilters): Pr
   if (filters.category !== 'All') result = result.filter(p => p.category === filters.category)
   if (filters.status !== 'All') result = result.filter(p => p.status.includes(filters.status))
   if (filters.lightningOnly) result = result.filter(p => p.lightning_ready)
+  if (filters.bitcoinTier === 'friendly') result = result.filter(p => p.highlight_btc_friendly === true)
+  if (filters.bitcoinTier === 'policy') result = result.filter(p => p.policy_mentions_btc === true)
   if (filters.minCryptoScore > 0) {
     result = result.filter(p => (p.finance.crypto_friendly_score ?? 0) >= filters.minCryptoScore)
   }

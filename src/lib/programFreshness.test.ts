@@ -9,7 +9,7 @@ import {
 describe('programFreshness', () => {
   const now = new Date('2026-07-15T12:00:00Z')
 
-  it('prefers proof stamped_at over last_checked', () => {
+  it('resolves the preferred display date from proof stamped_at', () => {
     expect(resolveFreshnessDate('2026-05-01', '2026-07-10T04:20:27.950Z')).toBe('2026-07-10')
   })
 
