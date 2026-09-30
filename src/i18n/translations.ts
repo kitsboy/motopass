@@ -701,7 +701,7 @@ const en: Dict = {
   'programs.inStack': 'in your stack',
   'portfolio.empty': 'No programs in your portfolio yet.',
   'portfolio.explore': 'Explore programs',
-  'compare.empty': 'Select programs to compare',
+  'compare.empty': 'Choose programs above—or start with Uruguay vs Portugal—to compare investment, fees, processing time, Bitcoin score, sovereignty, and risk side by side. Your selection is saved in this browser and can be shared by URL.',
   'vault.empty': 'No stamped proofs yet.',
   'dashboard.connectPrompt': 'Connect your Nostr account to view progress.',
   'dashboard.registerCta': 'Register with Nostr',

@@ -43,6 +43,9 @@ describe('lazy i18n locales', () => {
       expect(dict, `${lang} should load`).toBeTruthy()
       registerDict(lang as never, dict!)
       expect(t(lang as never, 'nav.pitch')).toBeTruthy()
+      expect(t(lang as never, 'programs.presetBitcoinFriendly')).not.toBe('programs.presetBitcoinFriendly')
+      expect(t(lang as never, 'programs.presetBitcoinPolicy')).not.toBe('programs.presetBitcoinPolicy')
+      expect(t(lang as never, 'programs.btcTierNote')).not.toBe('programs.btcTierNote')
     }
   }, 60_000)
 

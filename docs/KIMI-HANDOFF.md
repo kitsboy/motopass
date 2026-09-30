@@ -1,3 +1,29 @@
+## Session — 2026-09-29 · CI corpus validation, Compare onboarding, shared page framing (Buffy)
+
+**Done:** Fixed CI's actual blocker by aligning both catalog schemas to the current complete 21-country data corpus; improved `/compare` with a usable Uruguay–Portugal starter selection, working suggested pair, browser-persisted restore/clear behavior, and smoke tests. Unified page frame/top spacing/header width across Programs, Vault, Distressed, BTC Map, Simulator, and Agents (responsive gutters retained), and moved ProofStatusBadge shared constants to remove the Fast Refresh warning. Earlier Programs BTC-ledger tier/freshness upgrades remain included in the same uncommitted worktree.
+
+**Verification:** `npm run validate:data` passes (21 programs); Vitest 305 passed / 2 skipped; lint passes with one pre-existing GoalFinder React Compiler warning; production build passes after `npm ci`; focused Compare E2E 4/4 plus route and mobile smoke E2E 4/4. TypeScript no-emit still reports existing errors in `paige/alerts.test.ts`, `SourceMonitorPage.tsx`, and `ThankYouPage.tsx`. CI's warn-only repo-wide Prettier drift remains by design. Nothing deployed.
+
+**Decisions:** The latest catalog is intentionally 21 records, not an incomplete 50-record historical data export, so the blocking minimum is set to 21 instead of inventing missing programs. Default compare pair is Uruguay + Portugal, both present in this dataset; clearing it leaves the picker/empty state available and does not force a new pair during that page session.
+
+**Git State:**
+- Branch: `docs/meridian-ledger-brief`; changes uncommitted; no push performed. This branch starts at current `origin/main` SHA `460ad30` and must be committed/pushed as a feature branch (never push main directly).
+- SHA: `6df8b74d84adc289cd4cc85bb81dc3beb163fe29`
+- Unpushed commits vs origin/main: `6df8b74 docs: ground sovereign design brief in MotoPass reality` (pre-existing branch commit).
+
+## Session — 2026-09-29 · Programs ledger BTC tiers and proof/freshness scanability (Buffy)
+
+**Done:** Replaced the misleading BTC-friendly score-threshold preset with curated `highlight_btc_friendly` filtering; added a separate `policy_mentions_btc` tier, URL state, overlap-safe card markers, contextual counts, and localized explanatory copy. Programs cards/table now show research freshness separately from proof status and keep proof dates explicitly identified. Added filter, preset, URL, and locale coverage tests.
+
+**Verification:** Full Vitest suite: 303 passed, 2 skipped; scoped ESLint clean. `tsc --noEmit` and production build remain blocked by existing repository issues, including missing `@sentry/react` and unrelated type errors (`paige/alerts.test.ts`, `SourceMonitorPage.tsx`, `ThankYouPage.tsx`). No build artifact was retained.
+
+**Decisions:** BTC tier booleans are independent curated research flags and may overlap. Chip counts honor all other filters. A proof stamp is not treated as proof that research itself is fresh.
+
+**Git State:**
+- Branch: `docs/meridian-ledger-brief`; code edits are uncommitted; no push performed.
+- SHA: `6df8b74d84adc289cd4cc85bb81dc3beb163fe29`
+- Unpushed commits vs origin/main: `6df8b74 docs: ground sovereign design brief in MotoPass reality` (existing branch history; this task is still uncommitted).
+
 ## Session — 2026-09-15 · Curation: retire www.set.gov.py (Paraguay) + u.ae (UAE) from watch (Rosa, `t_95a8142e`)
 
 Retired two rotating-content-rail URLs from the watchdog watch list (the `t_50cbc2d3` / `immd.gov.hk`

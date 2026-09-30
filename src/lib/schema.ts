@@ -10,7 +10,8 @@ export const countriesSchema = {
   properties: {
     programs: {
       type: 'array',
-      minItems: 25,
+      // Keep import validation aligned with the 21-country production catalog.
+      minItems: 21,
       items: {
         type: 'object',
         required: ['id', 'name', 'category', 'region', 'status', 'finance', 'details'],

@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-09-15 by Rosa (THOR) — retire two rotating-rail watch URLs (Paraguay set.gov.py + UAE u.ae)
+# motopass — Last Updated 2026-09-29 by Buffy — CI validation, Compare onboarding, consistent page framing
+
+Fixed the GitHub CI blocker for the current 21-program catalog, improved Compare defaults/restore/clear flows, unified the six requested page headers/frames, and retained the earlier Programs BTC-tier/freshness upgrades. Uncommitted on `docs/meridian-ledger-brief` (base `6df8b74`); validate:data, 305 unit tests, lint, production build, and focused Playwright checks pass. Typecheck has unrelated existing errors; no push/deployment performed.
+
+## Previous update — 2026-09-15 by Rosa (THOR) — retire two rotating-rail watch URLs (Paraguay set.gov.py + UAE u.ae)
 
 **Update 22:45 (Rosa, THOR) — curation `t_95a8142e`.** Retired `https://www.set.gov.py` (Paraguay) and
 `https://u.ae` (UAE) from the watchdog watch list — both were the `immd.gov.hk`-class rotating content rail

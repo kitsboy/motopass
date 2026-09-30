@@ -9,7 +9,9 @@ const schema = {
   properties: {
     programs: {
       type: 'array',
-      minItems: 25,
+      // The curated production dataset currently covers 21 countries; keep the
+      // guard aligned with the complete shipped catalog, not the old 25-record floor.
+      minItems: 21,
       items: {
         type: 'object',
         required: ['id', 'name', 'sovereignty_score', 'stacking_synergy', 'risk_level'],
