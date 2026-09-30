@@ -1,6 +1,6 @@
 # motopass — Last Updated 2026-09-30 by Buffy — typecheck debt cleared, repo typechecks clean
 
-`tsc --noEmit` now exits 0 (was 13 pre-existing errors): `SourceChangeEvent.status` made optional to match the watchdog feed's real rule-event shape, SourceMonitor helpers/styles typed, ThankYou switched to `SeoHead path`. Vitest 305/2 skip, lint, validate:data, build — all pass. Pushed through `3fd1e31` on `docs/meridian-ledger-brief`; PR into `main` still waits on Cam's GitHub credentials (branch is on origin, nothing blocked).
+`tsc --noEmit` now exits 0 (was 13 pre-existing errors): `SourceChangeEvent.status` made optional to match the watchdog feed's real rule-event shape, SourceMonitor helpers/styles typed, ThankYou switched to `SeoHead path`. Vitest 305/2 skip, lint, validate:data pass; **full Playwright suite 34/34** incl. new route coverage for `/sources` and `/thank-you` (`e2e/routes-sources-thankyou.spec.ts`, 7 tests — note: E2E is build-staleness-sensitive, rebuild before judging). Pushed on `docs/meridian-ledger-brief`; PR into `main` still waits on Cam's GitHub credentials (branch is on origin, nothing blocked).
 
 ## Previous update — 2026-09-29 by Buffy — CI validation, Compare onboarding, consistent page framing
 
