@@ -2,6 +2,7 @@ import { useMemo, useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { motion } from 'motion/react';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
+import { FreshnessBadge } from '../ui/FreshnessBadge';
 import { IntelStatusBadge } from '../intel/IntelStatusBadge';
 import { LazyFlagSprite } from '../pitch/LazyFlagSprite';
 import { BtcDualPrice } from '../BtcDualPrice';
@@ -42,6 +43,13 @@ export function ProgramsTable({
   const compact = density === 'compact';
   const cellPad = compact ? 'py-2' : 'py-3';
   const toggleSize = compact ? 'h-6 w-6' : 'h-7 w-7';
+  const freshnessLabels = {
+    fresh: t('programs.freshnessFresh'),
+    recent: t('programs.freshnessRecent'),
+    stale: t('programs.freshnessStale'),
+    proof: t('programs.freshnessProof'),
+    checked: t('programs.freshnessChecked'),
+  };
 
   const sortedPrograms = useMemo(() => {
     if (!scoreSort) return programs;
@@ -144,10 +152,10 @@ export function ProgramsTable({
                   />
                   <span className={`font-display text-mp-ink ${compact ? 'text-xs' : 'text-sm'}`}>{p.country}</span>
                   {p.highlightBtcFriendly && (
-                    <span className="inline-flex items-center rounded-chip border border-mp-btc/50 bg-mp-btc-soft px-1 py-px font-mono text-[8px] uppercase tracking-wide text-mp-btc-text" title="BTC/crypto-friendly jurisdiction">₿</span>
+                    <span className="inline-flex items-center rounded-chip border border-mp-btc/50 bg-mp-btc-soft px-1 py-px font-mono text-[8px] uppercase tracking-wide text-mp-btc-text" title={t('programs.presetBitcoinFriendly')}>₿</span>
                   )}
-                  {!p.highlightBtcFriendly && p.policyMentionsBtc && (
-                    <span className="inline-flex items-center rounded-chip border border-mp-copper/30 px-1 py-px font-mono text-[8px] uppercase tracking-wide text-mp-copper" title="Mentions BTC/crypto in policy">₿</span>
+                  {p.policyMentionsBtc && (
+                    <span className="inline-flex items-center rounded-chip border border-mp-copper/30 px-1 py-px font-mono text-[8px] uppercase tracking-wide text-mp-copper" title={t('programs.presetBitcoinPolicy')}>₿</span>
                   )}
                 </div>
               </td>
@@ -167,7 +175,15 @@ export function ProgramsTable({
                 <SovereigntyScoreTooltip program={p} score={p.sovereigntyScore} isFlagship={isFlagship} />
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4`}>
-                <ProofBadge status={p.proofStatus} compact />
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <ProofBadge status={p.proofStatus} compact />
+                  <FreshnessBadge
+                    lastChecked={p.lastChecked}
+                    proofStampedAt={p.proofStampedAt}
+                    compact
+                    labels={freshnessLabels}
+                  />
+                </div>
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-2`}>
                 <IntelStatusBadge programName={p.country} compact />

@@ -117,7 +117,7 @@ export function StackSimulatorPage() {
   }
 
   return (
-    <div className="page-container px-4 sm:px-6 py-8 max-w-7xl mx-auto">
+    <div className="page-container mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 py-8 sm:py-12">
       <PageHeader eyebrow={t('simulator.eyebrow')} title={t('simulator.title')} subtitle={t('simulator.subtitle')} />
 
       <PageAnchorNav items={simulatorAnchors} />

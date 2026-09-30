@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { addPortfolioIds, loadCompareIds, saveCompareIds } from '../lib/portfolioStorage'
 import { usePortfolio } from '../hooks/usePortfolio'
@@ -25,6 +25,8 @@ import { CompareEmptyState } from '../components/compare/CompareEmptyState'
 import { compareDiffMarkdown } from '../lib/compareMarkdown'
 import { useToast } from '../components/ui/Toast'
 
+const COMPARE_STARTER_DISMISSED_KEY = 'motopass-compare-starter-dismissed'
+
 export function FinanceComparePage() {
   const { t } = useI18n()
   const { toast } = useToast()
@@ -32,6 +34,10 @@ export function FinanceComparePage() {
   const { programs, loading, error } = usePrograms()
   const { portfolio, setPortfolio } = usePortfolio()
   const [stackAdded, setStackAdded] = useState(false)
+  const [emptyByUser, setEmptyByUser] = useState(false)
+  const restoreAttempted = useRef(false)
+  const seedStarterOnFirstVisit = useRef(false)
+  const starterAttempted = useRef(false)
   const ids = useMemo(() => parseIdList(searchParams.get('ids')), [searchParams])
   const [search, setSearch] = useState('')
   const debouncedSearch = useDebouncedValue(search, 150)
@@ -40,23 +46,46 @@ export function FinanceComparePage() {
   const listId = 'compare-program-list'
 
   useEffect(() => {
-    saveCompareIds(ids)
-  }, [ids])
-
-  useEffect(() => {
-    if (searchParams.get('ids')) return
-    const saved = loadCompareIds()
-    if (saved.length) {
-      setSearchParams(p => {
-        p.set('ids', serializeIdList(saved))
-        return p
-      }, { replace: true })
+    // Restore before persisting: writing the initial empty URL state first used
+    // to erase a saved comparison on every fresh visit.
+    if (searchParams.get('ids')) {
+      restoreAttempted.current = true
+      localStorage.removeItem(COMPARE_STARTER_DISMISSED_KEY)
+      saveCompareIds(ids)
+      return
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    if (!restoreAttempted.current) {
+      restoreAttempted.current = true
+      const saved = loadCompareIds()
+      if (saved.length) {
+        queueMicrotask(() => {
+          setSearchParams(p => {
+            p.set('ids', serializeIdList(saved))
+            return p
+          }, { replace: true })
+        })
+        return
+      }
+      if (
+        !loadCompareIds().length &&
+        !emptyByUser &&
+        localStorage.getItem(COMPARE_STARTER_DISMISSED_KEY) !== 'true'
+      ) {
+        seedStarterOnFirstVisit.current = true
+      }
+    }
+  }, [searchParams, ids, setSearchParams, emptyByUser])
 
   const setIdsSynced = useCallback(
     (next: number[]) => {
       saveCompareIds(next)
+      if (next.length) {
+        setEmptyByUser(false)
+        localStorage.removeItem(COMPARE_STARTER_DISMISSED_KEY)
+      } else {
+        setEmptyByUser(true)
+        localStorage.setItem(COMPARE_STARTER_DISMISSED_KEY, 'true')
+      }
       setSearchParams(p => {
         if (next.length) p.set('ids', serializeIdList(next))
         else p.delete('ids')
@@ -207,10 +236,23 @@ export function FinanceComparePage() {
 
   const suggestedPair = useMemo(() => {
     const uy = programs.find(p => p.name === 'Uruguay')
-    const bo = programs.find(p => p.name === 'Bolivia')
-    if (!uy || !bo) return null
-    return [uy, bo] as const
+    const pt = programs.find(p => p.name === 'Portugal')
+    if (!uy || !pt) return null
+    return [uy, pt] as const
   }, [programs])
+
+  useEffect(() => {
+    if (!seedStarterOnFirstVisit.current || starterAttempted.current || loading || error || !suggestedPair) return
+    starterAttempted.current = true
+    queueMicrotask(() => {
+      if (emptyByUser || localStorage.getItem(COMPARE_STARTER_DISMISSED_KEY) === 'true') return
+      setSearchParams(p => {
+        if (!p.has('ids')) p.set('ids', serializeIdList([suggestedPair[0].id, suggestedPair[1].id]))
+        return p
+      }, { replace: true })
+      if (!searchParams.get('ids')) saveCompareIds([suggestedPair[0].id, suggestedPair[1].id])
+    })
+  }, [loading, error, suggestedPair, searchParams, setSearchParams, emptyByUser])
 
   const applySuggestedPair = () => {
     if (!suggestedPair) return

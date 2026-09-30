@@ -28,7 +28,7 @@ export function CompareEmptyState({ onSuggestedPair, showSuggested }: CompareEmp
           <p className="fc-empty__suggest-label">{t('compare.suggestPairs')}</p>
           <button type="button" onClick={onSuggestedPair} className="fc-empty__suggest-btn">
             <Sparkles size={16} aria-hidden />
-            {t('compare.suggestUruguayBolivia')}
+            {t('compare.suggestUruguayPortugal')}
           </button>
         </div>
       )}

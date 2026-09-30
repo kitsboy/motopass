@@ -191,7 +191,7 @@ export function AgentsPage() {
   }
 
   return (
-    <div className="page-container px-4 sm:px-6 py-8 max-w-7xl mx-auto">
+    <div className="page-container mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 py-8 sm:py-12">
       <SeoHead jsonLd={kimiPersonJsonLd()} jsonLdOnly />
       <PageHeader eyebrow={t('agents.eyebrow')} title={t('agents.title')} subtitle={t('agents.sub')} />
 

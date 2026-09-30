@@ -20,21 +20,21 @@ export function PageHeader({
   const headerProps = reduceMotion
     ? {
         className:
-          'page-header-accent flex flex-col gap-6 border-b border-mp-border-subtle/60 pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
+          'page-header-accent flex w-full min-w-0 flex-col gap-6 border-b border-mp-border-subtle/60 pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
       }
     : {
         initial: { opacity: 0, y: 18 },
         animate: { opacity: 1, y: 0 },
         transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
         className:
-          'page-header-accent flex flex-col gap-6 border-b border-mp-border-subtle/60 pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
+          'page-header-accent flex w-full min-w-0 flex-col gap-6 border-b border-mp-border-subtle/60 pb-8 mb-8 sm:flex-row sm:items-end sm:justify-between',
       }
 
   const Header = reduceMotion ? 'header' : motion.header
 
   return (
     <Header {...headerProps}>
-      <div className="max-w-2xl min-w-0">
+      <div className="min-w-0 flex-1">
         {eyebrow && <span className="club-eyebrow block mb-3">{eyebrow}</span>}
         <h1 className="display-heading text-h2 sm:text-h1">{title}</h1>
         {body && (

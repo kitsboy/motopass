@@ -154,12 +154,12 @@ function ProgramCardContent({
               )}
               {program.highlightBtcFriendly && (
                 <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-btc/50 bg-mp-btc-soft px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-btc-text">
-                  ₿ BTC&#8209;friendly
+                  ₿ {t('programs.presetBitcoinFriendly')}
                 </span>
               )}
-              {!program.highlightBtcFriendly && program.policyMentionsBtc && (
+              {program.policyMentionsBtc && (
                 <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-copper/30 bg-mp-section px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-copper">
-                  ₿ BTC policy
+                  ₿ {t('programs.presetBitcoinPolicy')}
                 </span>
               )}
               <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />

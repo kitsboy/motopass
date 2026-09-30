@@ -51,10 +51,11 @@ import {
   applyLightningPreset,
 } from '../lib/programFilterPresets'
 
-const FILTER_PRESETS: { id: FilterPresetId; labelKey: 'programs.presetUnder100k' | 'programs.presetLightning' | 'programs.presetBitcoinFriendly' }[] = [
+const FILTER_PRESETS: { id: FilterPresetId; labelKey: 'programs.presetUnder100k' | 'programs.presetLightning' | 'programs.presetBitcoinFriendly' | 'programs.presetBitcoinPolicy' }[] = [
   { id: 'under100k', labelKey: 'programs.presetUnder100k' },
   { id: 'lightning', labelKey: 'programs.presetLightning' },
   { id: 'bitcoinFriendly', labelKey: 'programs.presetBitcoinFriendly' },
+  { id: 'bitcoinPolicy', labelKey: 'programs.presetBitcoinPolicy' },
 ]
 
 const iconBtn = (active: boolean) =>
@@ -111,7 +112,7 @@ export function ProgramsPage() {
     const saved = loadSavedFilters<ProgramFilters>()
     const savedView = loadProgramsView()
     const sessionPresets = loadSessionFilterPresets()
-    const baseFilters = saved ?? DEFAULT_FILTERS
+    const baseFilters = { ...DEFAULT_FILTERS, ...saved }
     const hydratedFilters = sessionPresets.length ? applyFilterPresets(baseFilters, sessionPresets) : baseFilters
     if (saved || savedView || sessionPresets.length) {
       setSearchParams(filtersToSearchParams(hydratedFilters, savedView ?? 'table'), { replace: true })
@@ -139,6 +140,14 @@ export function ProgramsPage() {
   const cinematic = useMemo(() => toCinematicPrograms(filtered), [filtered])
   const regions = ['All', ...Array.from(new Set(programs.map((p) => p.region)))]
   const categories = ['All', ...Array.from(new Set(programs.map((p) => p.category)))]
+
+  const btcTierCounts = useMemo(() => {
+    const base = filterPrograms(programs, { ...filters, bitcoinTier: 'all' })
+    return {
+      friendly: base.filter((program) => program.highlight_btc_friendly === true).length,
+      policy: base.filter((program) => program.policy_mentions_btc === true).length,
+    }
+  }, [programs, filters])
 
   const regionFilter = filters.region === 'All' ? 'All' : filters.region
   const regionCounts = useMemo(() => {
@@ -300,7 +309,7 @@ export function ProgramsPage() {
       onDrop={handleImportDrop}
     >
       <SeoHead jsonLd={programsJsonLd} jsonLdOnly />
-      <div className="mx-auto max-w-6xl min-w-0 px-4 sm:px-6 py-8 sm:py-14">
+      <div className="mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 py-8 sm:py-12">
         <PageHeader
           eyebrow={formatT(t, 'programs.eyebrow', { count: programs.length })}
           title={t('programs.title')}
@@ -469,9 +478,12 @@ export function ProgramsPage() {
                 className={isFilterPresetActive(id, filters) ? 'chip-active text-xs' : 'chip text-xs'}
               >
                 {t(labelKey)}
+                {!loading && !error && id === 'bitcoinFriendly' && <span className="ms-1 font-mono text-[10px] opacity-70">{btcTierCounts.friendly}</span>}
+                {!loading && !error && id === 'bitcoinPolicy' && <span className="ms-1 font-mono text-[10px] opacity-70">{btcTierCounts.policy}</span>}
               </button>
             ))}
           </div>
+          <p className="mb-3 text-[11px] text-mp-ink-tertiary">{t('programs.btcTierNote')}</p>
           <div className="flex flex-wrap items-center gap-2">
             <button
               type="button"
