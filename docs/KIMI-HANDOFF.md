@@ -1,3 +1,15 @@
+## Session — 2026-09-30 · Typecheck debt cleared — `tsc --noEmit` is now 0 errors (Buffy)
+
+**Done:** Fixed the long-standing pre-existing type errors recorded in the sessions below: made `SourceChangeEvent.status` optional (the watchdog's `kind:'rule'` events carry no `status`; the required field made every real rule event fail the type — `AlertInbox` never reads it, the manifest remains the confirmation signal), typed the fixture in `alerts.test.ts` as `SourceChangeEvent` so feed-shape drift now fails at the type level, typed `SourceMonitorPage.tsx` helpers/styles (`CSSProperties` record, `Status`/types hoisted above first use, media-query string moved to its own constant), and switched `ThankYouPage.tsx` to `SeoHead`'s `path` prop (absolute URL derived from `VITE_SITE_URL`).
+
+**Verification:** `tsc --noEmit` **0 errors** (was 13); Vitest **305 passed / 2 skipped**; lint clean (same single pre-existing GoalFinder React Compiler warning); `validate:data` ok (21 programs); production build ok. No behavioral change — types only, plus ThankYou's SEO URL now correctly built from the site env var instead of a hard-coded literal. Local sanity sweep done; no CI/PR action possible (credentials with Cam — see the Git State note below).
+
+**Decisions:** The feed type was lying, not the test fixture — the harness has never written `status` on rule events, so the interface was corrected rather than the data. Build-stamp churn in `src/lib/buildInfo.ts` (generated `BUILD_ID`) is restored after local builds to keep the tree clean.
+
+**Git State:**
+- Branch: `docs/meridian-ledger-brief`; pushed through `3fd1e31 fix(types): resolve last 13 tsc errors`; working tree clean.
+- PR into `main` still pending Cam's credentials/2FA (see 2026-09-29 entry below).
+
 ## Session — 2026-09-29 · CI corpus validation, Compare onboarding, shared page framing (Buffy)
 
 **Done:** Fixed CI's actual blocker by aligning both catalog schemas to the current complete 21-country data corpus; improved `/compare` with a usable Uruguay–Portugal starter selection, working suggested pair, browser-persisted restore/clear behavior, and smoke tests. Unified page frame/top spacing/header width across Programs, Vault, Distressed, BTC Map, Simulator, and Agents (responsive gutters retained), and moved ProofStatusBadge shared constants to remove the Fast Refresh warning. Earlier Programs BTC-ledger tier/freshness upgrades remain included in the same uncommitted worktree.

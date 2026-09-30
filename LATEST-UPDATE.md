@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-09-29 by Buffy — CI validation, Compare onboarding, consistent page framing
+# motopass — Last Updated 2026-09-30 by Buffy — typecheck debt cleared, repo typechecks clean
+
+`tsc --noEmit` now exits 0 (was 13 pre-existing errors): `SourceChangeEvent.status` made optional to match the watchdog feed's real rule-event shape, SourceMonitor helpers/styles typed, ThankYou switched to `SeoHead path`. Vitest 305/2 skip, lint, validate:data, build — all pass. Pushed through `3fd1e31` on `docs/meridian-ledger-brief`; PR into `main` still waits on Cam's GitHub credentials (branch is on origin, nothing blocked).
+
+## Previous update — 2026-09-29 by Buffy — CI validation, Compare onboarding, consistent page framing
 
 Fixed the GitHub CI blocker for the current 21-program catalog, improved Compare defaults/restore/clear flows, unified the six requested page headers/frames, and retained the earlier Programs BTC-tier/freshness upgrades. Uncommitted on `docs/meridian-ledger-brief` (base `6df8b74`); validate:data, 305 unit tests, lint, production build, and focused Playwright checks pass. Typecheck has unrelated existing errors; no push/deployment performed.
 
