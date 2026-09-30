@@ -1,3 +1,22 @@
+## Session — 2026-09-30 · PR #1 merged → live deploy verified in rendered DOM (Buffy)
+
+**Merged:** PR #1 → `main` as `4c878b4` (Cam, via GitHub UI — this M3 box has no `gh`/token; on THOR, `gh pr merge` is the path per the new workflow rules). All six checks green on the merge commit: build-test · build_and_verify · **Cloudflare Pages · deploy · live-health success**.
+
+**Live verification (rendered DOM via headless Chromium on M3 — THOR has no browser, this box does; bundles cross-checked):**
+- Freshness proof: live HTML references `index-CA7Dt3Po-20260930-4c878b4.js` — **bundle salt matches the merge commit**.
+- Hero: tagline unchanged by design ("True citizenship / Stamped in time / Not bureaucracy"); **"Flagship depth 21/21"** in both chip and stat band (settled); "21 jurisdictions"; zero "50-country"/"50/50" strings in the live bundle.
+- `/agents`: **HERMES 0 hits, no content M4 hits** (asset-filename hash false-positives excluded), Kimi card reads "Strategic orchestrator · Give A Bit".
+- São Tomé: live in deployed `research/countries.json` (21/21 flagships) and trust index (ST, fresh); **stamp `50c12a92` CONFIRMED on-chain at block 969342** (backfilled into the record).
+
+**Post-merge heal (same session):** the stamp self-heal loop found drift accumulated since the 2026-09-29 schema alignment (per-run cap deferred it) — ran paced heal runs against the live Satohash API: **19/21 programs re-anchored** to current content hashes; Barbados defers on API fetch failures and heals on the next daily cron. Also root-fixed `stamp-changed.mjs`: pending stamps now get their block height backfilled automatically once Bitcoin confirms (was previously only reachable via a content change). Branch carries 2 commits ahead of main (docs `11a7efa` + intel fix `a3237ce`) — needs a quick PR → main next session (gh on THOR, or compare URL).
+- Mobile: no horizontal overflow; zero page errors.
+
+**Sampling lesson (2nd of its kind):** DOM number reads must SETTLE before reporting — first read showed 0/21 (pre-data), second 19/21 (mid-CountUp animation), stable third read 21/21. Same discipline as the footer-gap re-scroll.
+
+**Workflow:** Cam's 9 rules from the 2026-09-30 merge lesson are absorbed as the operating standard: gh-first on THOR (check `gh auth status`, don't assume), never push main, verify branch math (`rev-list --count origin/main..`), CI-green + `mergeStateStatus: CLEAN` before `gh pr merge --delete-branch`, verify deploys via bundle-salt = merge-sha + content greps (exclude asset-hash hits), SPA curl trap, no promised-check rubber-stamping, honest reporting.
+
+**Git State:** branch `docs/meridian-ledger-brief` fully merged; `origin/main` at `4c878b4`. Live site current.
+
 ## Session — 2026-09-30 · STP flagship 21/21, M4/HERMES privacy scrub, stat-band localization, visual check (Buffy)
 
 **Done:** São Tomé and Príncipe promoted to flagship — corpus now **21/21 flagship depth**. Processing time corrected to 3–4 months (official June 2026 memorandum; agency backlog reports noted), gov fees ~$10k (submission+issuance), first Bitcoin proof anchored (Satohash stamp `50c12a92`, pending → block height backfills like the other 20; local OTS receipt via `seal:stamp`), audit trail records provenance. **Privacy scrub:** zero M4/HERMES mentions anywhere user-visible — `agents.how.step2.body` + `agents.kimi.sub` cleaned in all 10 languages, script infra-path comment neutralized, new E2E regression pins the agents page clean forever. Hero stat band localized in all 9 locales. Three more stale-50 gates fixed: `check-intel` (corpus equality), `gen-trust-envelopes` (missing ST ISO2 entry produced a mojibake filename; orphaned retired-corpus envelopes purged — 21/21 now), launch gates regenerated 5/5. New `hero-visual.spec.ts`: layout integrity + screenshots at 390/768/1280, depth asserted **21/21 from live data**, agents privacy scrub.
