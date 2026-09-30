@@ -6,7 +6,9 @@
 - Freshness proof: live HTML references `index-CA7Dt3Po-20260930-4c878b4.js` — **bundle salt matches the merge commit**.
 - Hero: tagline unchanged by design ("True citizenship / Stamped in time / Not bureaucracy"); **"Flagship depth 21/21"** in both chip and stat band (settled); "21 jurisdictions"; zero "50-country"/"50/50" strings in the live bundle.
 - `/agents`: **HERMES 0 hits, no content M4 hits** (asset-filename hash false-positives excluded), Kimi card reads "Strategic orchestrator · Give A Bit".
-- São Tomé: live in deployed `research/countries.json` (21/21 flagships) and trust index (ST, fresh); Satohash stamp `50c12a92` pending until Bitcoin confirms, as every stamp.
+- São Tomé: live in deployed `research/countries.json` (21/21 flagships) and trust index (ST, fresh); **stamp `50c12a92` CONFIRMED on-chain at block 969342** (backfilled into the record).
+
+**Post-merge heal (same session):** the stamp self-heal loop found drift accumulated since the 2026-09-29 schema alignment (per-run cap deferred it) — ran paced heal runs against the live Satohash API: **19/21 programs re-anchored** to current content hashes; Barbados defers on API fetch failures and heals on the next daily cron. Also root-fixed `stamp-changed.mjs`: pending stamps now get their block height backfilled automatically once Bitcoin confirms (was previously only reachable via a content change). Branch carries 2 commits ahead of main (docs `11a7efa` + intel fix `a3237ce`) — needs a quick PR → main next session (gh on THOR, or compare URL).
 - Mobile: no horizontal overflow; zero page errors.
 
 **Sampling lesson (2nd of its kind):** DOM number reads must SETTLE before reporting — first read showed 0/21 (pre-data), second 19/21 (mid-CountUp animation), stable third read 21/21. Same discipline as the footer-gap re-scroll.
