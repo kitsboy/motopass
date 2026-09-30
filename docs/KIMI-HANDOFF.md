@@ -6,10 +6,11 @@
 
 **Decisions:** The latest catalog is intentionally 21 records, not an incomplete 50-record historical data export, so the blocking minimum is set to 21 instead of inventing missing programs. Default compare pair is Uruguay + Portugal, both present in this dataset; clearing it leaves the picker/empty state available and does not force a new pair during that page session.
 
-**Git State:**
-- Branch: `docs/meridian-ledger-brief`; changes uncommitted; no push performed. This branch starts at current `origin/main` SHA `460ad30` and must be committed/pushed as a feature branch (never push main directly).
-- SHA: `6df8b74d84adc289cd4cc85bb81dc3beb163fe29`
-- Unpushed commits vs origin/main: `6df8b74 docs: ground sovereign design brief in MotoPass reality` (pre-existing branch commit).
+**Git State:** (updated 2026-09-30)
+- Branch: `docs/meridian-ledger-brief` — committed AND pushed; working tree clean; `HEAD` == `origin/docs/meridian-ledger-brief` == `e5827c20b1065edd33fb786982883470423f42d7`.
+- Branch contains 6 commits ahead of `origin/main` (`460ad30`): `6df8b74` (pre-existing docs commit) + `9281482` CI corpus schema fix · `a832aa9` Programs BTC tiers · `8f49175` unified page frame + Compare onboarding · `e5827c2` Compare E2E + mobile smoke.
+- **PR into `main` is PENDING**: Cam was without GitHub credentials/2FA at handoff time, so the PR could not be opened. When back: open PR `docs/meridian-ledger-brief` → `main` (never push main directly). Pre-filled compare URL was provided; CI will run on the branch.
+- `main` local ref is behind (`9165e96`); do not fast-forward or reset it until the PR merges — `origin/main` remains the authority.
 
 ## Session — 2026-09-29 · Programs ledger BTC tiers and proof/freshness scanability (Buffy)
 
