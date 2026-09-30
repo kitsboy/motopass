@@ -74,7 +74,24 @@ async function stampProgram(p) {
 
   const sliceHash = canonicalSliceHash(p)
   const storedHash = proof.content_hash ?? proof.proof_url?.split('/').pop() ?? null
-  if (storedHash === sliceHash) return { name: p.name, action: 'ok', reason: 'hash in sync' }
+  if (storedHash === sliceHash) {
+    // Hash in sync — but a stamp that is still PENDING has no block height yet.
+    // Backfill block_height/last_verified_block once Bitcoin confirms, so a new
+    // proof's metadata converges without needing a content change to trigger it.
+    if (proof.stamp_id && (!proof.block_height || !p.last_verified_block)) {
+      try {
+        const detail = await apiGetStamp(proof.stamp_id)
+        if (typeof detail.bitcoin_block_height === 'number' && detail.bitcoin_block_height > 0) {
+          proof.block_height = detail.bitcoin_block_height
+          if (!p.last_verified_block) p.last_verified_block = detail.bitcoin_block_height
+          return { name: p.name, action: 'stamped', id: proof.stamp_id, block: detail.bitcoin_block_height, reason: 'block backfill' }
+        }
+      } catch {
+        /* non-fatal — next daily run retries */
+      }
+    }
+    return { name: p.name, action: 'ok', reason: 'hash in sync' }
+  }
 
   if (DRY_RUN) {
     return { name: p.name, action: 'would-stamp', from: storedHash?.slice(0, 8) ?? null, to: sliceHash.slice(0, 8) }
