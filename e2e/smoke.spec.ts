@@ -96,12 +96,33 @@ test.describe('smoke', () => {
     }
   })
 
-  test('compare empty state loads', async ({ page }) => {
+  test('compare empty state offers a working suggested flagship pair', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
     await page.addInitScript(() => localStorage.removeItem('motopass-compare-ids'))
     const data = page.waitForResponse(r => /countries\.json/.test(r.url()) && r.ok(), { timeout: 20_000 })
     await page.goto('/compare', gotoOpts)
     await data.catch(() => {})
-    await expect(page.getByText(/select programs to compare/i)).toBeVisible({ timeout: 20_000 })
+    const table = page.getByRole('table', { name: 'Side-by-side comparison' })
+    await expect(table).toBeVisible({ timeout: 20_000 })
+    await expect(table.getByRole('columnheader', { name: /Uruguay/ })).toBeVisible()
+    await expect(table.getByRole('columnheader', { name: /Portugal/ })).toBeVisible()
+    await page.getByRole('button', { name: /clear all/i }).click()
+    await expect(page.getByText(/choose programs above/i)).toBeVisible()
+    await page.getByRole('button', { name: /uruguay vs portugal/i }).click()
+    await expect(page).toHaveURL(/\/compare\?ids=/)
+    await expect(table.getByRole('columnheader', { name: /Uruguay/ })).toBeVisible()
+    await expect(table.getByRole('columnheader', { name: /Portugal/ })).toBeVisible()
+  })
+
+  test('compare restores a saved selection before choosing a starter pair', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.addInitScript(() => localStorage.setItem('motopass-compare-ids', '[1,2]'))
+    const data = page.waitForResponse(r => /countries\.json/.test(r.url()) && r.ok(), { timeout: 20_000 })
+    await page.goto('/compare', gotoOpts)
+    await data.catch(() => {})
+    await expect(page).toHaveURL(/\/compare\?ids=1(?:%2C|,)2/, { timeout: 20_000 })
+    await expect(page.getByRole('table', { name: 'Side-by-side comparison' })).toBeVisible()
+    await expect(page.getByRole('table', { name: 'Side-by-side comparison' }).getByRole('columnheader', { name: /Portugal/ })).toBeVisible()
   })
 
   test('mobile bottom nav and more sheet', async ({ page }) => {
