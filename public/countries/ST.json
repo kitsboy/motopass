@@ -1,0 +1,158 @@
+{
+  "schema": "gab.country-trust.v1",
+  "country": {
+    "iso2": "ST",
+    "name": "São Tomé and Príncipe",
+    "flag": "🇸🇹",
+    "region": "Africa",
+    "category": "rbi_cbi"
+  },
+  "generated_at": "2026-09-30T19:36:50.990Z",
+  "freshness": {
+    "status": "fresh",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
+    "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
+    "pipeline_sweep": {
+      "status": "fresh",
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
+    }
+  },
+  "proof": {
+    "status": "confirmed",
+    "block": null,
+    "stamped_at": "2026-09-30T19:31:32.673Z",
+    "hash": "916b11e7906487e8d5eb15173ca4d0b1e77d2f687aea46de62365d54e579123e",
+    "proof_url": "https://satohash.io/verify/916b11e7906487e8d5eb15173ca4d0b1e77d2f687aea46de62365d54e579123e",
+    "ots_path": "/proofs/s-o-tom-and-pr-ncipe-916b11e79064.ots",
+    "in_sync": true
+  },
+  "scorecard": {
+    "axes": {
+      "crypto_friendly": {
+        "value": 3,
+        "present": true,
+        "label": "crypto friendly"
+      },
+      "freedom": {
+        "value": 4,
+        "present": true,
+        "label": "freedom"
+      },
+      "stability": {
+        "value": 3,
+        "present": true,
+        "label": "stability"
+      },
+      "tax": {
+        "value": 5,
+        "present": true,
+        "label": "tax"
+      },
+      "cost": {
+        "value": 8,
+        "present": true,
+        "label": "cost"
+      },
+      "mobility": {
+        "value": 2,
+        "present": true,
+        "label": "mobility"
+      },
+      "banking": {
+        "value": 3,
+        "present": true,
+        "label": "banking"
+      }
+    },
+    "note": "Derived from agency-sourced CBI facts (BUILD 2026-09-29); NOT yet Satohash-stamped — treat figures as unverified until stamped."
+  },
+  "threshold": {
+    "min_investment_usd": 90000,
+    "typical_investment_usd": 95000,
+    "history": [
+      {
+        "date": null,
+        "field": "current",
+        "usd": 90000,
+        "note": "Current published minimum — no tracked change history yet."
+      }
+    ],
+    "pathways": [
+      {
+        "type": "fund_contribution",
+        "label": "National development fund contribution (CBI)",
+        "min_investment_usd": 90000
+      }
+    ]
+  },
+  "sources": {
+    "tiers": {
+      "official": 1,
+      "legal": 0,
+      "secondary": 3
+    },
+    "list": [
+      {
+        "name": "São Tomé PRNID CIU — https://cip.gov.st/",
+        "tier": "official"
+      },
+      {
+        "name": "NTL Trust — https://ntltrust.com/citizenship-by-investment/sao-tome-and-principe/",
+        "tier": "secondary"
+      },
+      {
+        "name": "Get Golden Visa — https://getgoldenvisa.com/sao-tome-and-principe-citizenship-by-investment",
+        "tier": "secondary"
+      },
+      {
+        "name": "Henley & Partners — https://www.henleyglobal.com/citizenship-investment/sao-tome-principe",
+        "tier": "secondary"
+      }
+    ],
+    "official_urls": [
+      "https://cip.gov.st/",
+      "https://www.gov.st"
+    ]
+  },
+  "watch": {
+    "changed": false,
+    "last_probe_at": null,
+    "urls": [
+      {
+        "url": "https://www.gov.st",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://cip.gov.st/",
+        "status": null,
+        "last_probed": null
+      }
+    ]
+  },
+  "audit_trail": [
+    {
+      "date": "2026-09-29",
+      "field": "schema.v3",
+      "from": null,
+      "to": "new entry — full v3 schema, agency-sourced, proof pending",
+      "hash": null
+    },
+    {
+      "date": "2026-09-30",
+      "field": "flagship_depth",
+      "from": "template (no proof)",
+      "to": "flagship — research verified via official June 2026 memorandum + agency consensus (fees, 3-4mo timeline); Bitcoin proof anchored via Satohash API + local OTS",
+      "hash": null
+    }
+  ],
+  "sovereignty": {
+    "score": 4,
+    "stacking_synergy": "low",
+    "risk_level": "medium",
+    "lightning_ready": false,
+    "bitcoin_integration": "Minimal/no formal crypto policy. The new CBI programme (Decreto-Lei n.º 07/2025 under Nationality Law n.º 07/2022) requires the USD 90,000+ contribution to be made into the National Transformation Fund's bank account, nominally in US dollars (the national currency is the dobra, STN). In September 2025 the CIU announced a partnership to make the program 'the world's first blockchain-enabled citizenship-by-investment program' (a technical/process innovation), and crypto assets are accepted as PROOF OF SOURCE OF FUNDS - but there is no official government stance on Bitcoin as policy, and neither Bitcoin nor crypto is legal tender."
+  }
+}

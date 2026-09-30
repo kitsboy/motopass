@@ -31,7 +31,11 @@ if (!intel.sweep || typeof intel.sweep.fresh !== 'number' || typeof intel.sweep.
   fail('sweep counts missing')
 }
 const names = Object.keys(intel.programs ?? {})
-if (names.length !== 50) fail(`expected 50 programs in intel.json, found ${names.length}`)
+// The corpus is the truth — never a hard-coded 50 (retired 50-country export,
+// superseded by the curated 21). intel.json must cover exactly the programs in
+// research/countries.json.
+const corpusSize = JSON.parse(readFileSync(resolve(root, 'research/countries.json'), 'utf8')).programs.length
+if (names.length !== corpusSize) fail(`expected ${corpusSize} programs in intel.json (corpus size), found ${names.length}`)
 for (const name of names) {
   const p = intel.programs[name]
   if (!p?.freshness || typeof p.freshness.days_stale !== 'number') fail(`${name}: freshness missing`)

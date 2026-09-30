@@ -7,25 +7,25 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.468Z",
+  "generated_at": "2026-09-30T19:36:50.988Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:19:58.371Z",
-    "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b",
-    "proof_url": "https://satohash.io/verify/8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b",
-    "ots_path": "/proofs/barbados-40cba1605c68.ots",
+    "stamped_at": "2026-09-30T19:31:19.821Z",
+    "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a",
+    "proof_url": "https://satohash.io/verify/c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a",
+    "ots_path": "/proofs/barbados-495453947a45.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -99,97 +99,131 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 4,
       "legal": 0,
-      "secondary": 1
+      "secondary": 2
     },
     "list": [
       {
-        "name": "Official immigration portals",
+        "name": "Barbados Welcome Stamp (official government program) — https://barbadoswelcomestamp.bb/",
         "tier": "official"
       },
       {
-        "name": "MotoPass research BUILD-011",
+        "name": "PwC Barbados — https://www.pwc.com/bb/en/services/pdf/12-month-barbados-welcome-stamp.pdf",
         "tier": "secondary"
+      },
+      {
+        "name": "Central Bank of Barbados (official) — https://www.centralbank.org.bb/financial-stability-and-financial-regulation/cbob-regulatory-sandbox",
+        "tier": "official"
+      },
+      {
+        "name": "TaxAtlas — https://taxatlas.io/calculator/crypto-tax/barbados",
+        "tier": "secondary"
+      },
+      {
+        "name": "Official — https://www.visitbarbados.org/",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.immigration.gov.bb/",
+        "tier": "official"
       }
     ],
     "official_urls": [
+      "https://barbadoswelcomestamp.bb",
+      "https://barbadoswelcomestamp.bb/",
       "https://www.immigration.gov.bb",
-      "https://barbadoswelcomestamp.bb"
+      "https://www.immigration.gov.bb/",
+      "https://www.visitbarbados.org/"
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "changed": false,
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.immigration.gov.bb",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://barbadoswelcomestamp.bb",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.visitbarbados.org/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://barbadoswelcomestamp.bb/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.immigration.gov.bb/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-21",
+      "date": "2026-09-13",
+      "field": "watch.https://www.immigration.gov.bb",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
+    },
+    {
+      "date": "2026-09-13",
+      "field": "watch.https://barbadoswelcomestamp.bb",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
+    },
+    {
+      "date": "2026-09-14",
+      "field": "watch.https://www.immigration.gov.bb",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
+    },
+    {
+      "date": "2026-09-14",
+      "field": "watch.https://barbadoswelcomestamp.bb",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.immigration.gov.bb",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://barbadoswelcomestamp.bb",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.immigration.gov.bb",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "e3b0c44298fc1c14"
+    },
+    {
+      "date": "2026-09-18",
       "field": "proof",
-      "from": "40cba1605c68b8be",
-      "to": "re-anchored 8c927b218538b1ad (stamp d391ce3f-69a)",
-      "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "watch.https://www.immigration.gov.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "watch.https://barbadoswelcomestamp.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://www.immigration.gov.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://barbadoswelcomestamp.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://www.immigration.gov.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://barbadoswelcomestamp.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c927b218538b1ada010228d19c334e188ae64cd3a37752445c7ecfbc49b4c0b"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "last_checked.freshness_sweep",
-      "from": "2026-07-02",
-      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
-      "hash": null
+      "from": "4c4117a6eecbc2c3",
+      "to": "re-anchored c36b684b4de6dab0 (stamp 0e05ca1b-647)",
+      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
     }
   ],
   "sovereignty": {
@@ -197,6 +231,6 @@
     "stacking_synergy": "low",
     "risk_level": "low",
     "lightning_ready": false,
-    "bitcoin_integration": "Barbados offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+    "bitcoin_integration": "Neutral-to-permissive but no bespoke crypto law. Barbados has no specific Bitcoin/crypto licensing statute; crypto is not banned and operates in a guidance/sandbox environment. The Central Bank of Barbados and Financial Services Commission ran a Regulatory Sandbox (Bitt was the first entrant to exit) and Barbados piloted a central-bank digital currency (DCash). No official statement designates Bitcoin as legal tender, and there is no dedicated crypto-asset regulatory framework equivalent to the Bahamas' DARE Act or Cayman's VASP Act."
   }
 }

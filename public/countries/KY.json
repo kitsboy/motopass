@@ -7,25 +7,25 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.473Z",
+  "generated_at": "2026-09-30T19:36:50.989Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T06:26:47.522Z",
-    "hash": "d653997903ce569a71337871bb4fc60a82340101f32d28cc8b1e4ed01d300c90",
-    "proof_url": "https://satohash.io/verify/d653997903ce569a71337871bb4fc60a82340101f32d28cc8b1e4ed01d300c90",
-    "ots_path": "/proofs/cayman-islands-ee79229d8c1e.ots",
+    "stamped_at": "2026-09-30T19:31:22.735Z",
+    "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf",
+    "proof_url": "https://satohash.io/verify/67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf",
+    "ots_path": "/proofs/cayman-islands-1842cdd9cd07.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -99,82 +99,130 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
-      "legal": 0,
-      "secondary": 1
+      "official": 3,
+      "legal": 1,
+      "secondary": 2
     },
     "list": [
       {
-        "name": "Official immigration portals",
+        "name": "Cayman Islands Government / MCEI (official) — https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
         "tier": "official"
       },
       {
-        "name": "MotoPass research BUILD-011",
+        "name": "Cayman Islands Monetary Authority (official) — https://www.cima.ky/vasp-faq",
+        "tier": "official"
+      },
+      {
+        "name": "Mourant (law firm) — https://www.mourant.com/guides/the-cayman-islands-virtual-asset-service-providers-regime/",
+        "tier": "legal"
+      },
+      {
+        "name": "PwC Worldwide Tax Summaries — https://taxsummaries.pwc.com/cayman-islands",
         "tier": "secondary"
+      },
+      {
+        "name": "Cayman Resident — https://caymanresident.com/move/immigration/extended-residence/persons-of-independent-means-investors/certificate-of-permanent-residency",
+        "tier": "secondary"
+      },
+      {
+        "name": "Official — https://www.gov.ky/",
+        "tier": "official"
       }
     ],
     "official_urls": [
+      "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
+      "https://www.ciregistry.gov.ky",
       "https://www.gov.ky",
-      "https://www.ciregistry.gov.ky"
+      "https://www.gov.ky/",
+      "https://www.immigration.gov.ky/"
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "changed": false,
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.gov.ky",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.ciregistry.gov.ky",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.gov.ky/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.immigration.gov.ky/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "ee79229d8c1ef0a85bb4a9b64f7ce33a642f522162a270e4cec18bfce52df072"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "10252f994c99390b",
-      "to": "re-anchored ee79229d8c1ef0a8 (stamp 691e1cad-c1b)",
-      "hash": "ee79229d8c1ef0a85bb4a9b64f7ce33a642f522162a270e4cec18bfce52df072"
-    },
-    {
-      "date": "2026-08-21",
+      "date": "2026-09-08",
       "field": "watch.https://www.gov.ky",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "d653997903ce569a71337871bb4fc60a82340101f32d28cc8b1e4ed01d300c90"
+      "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
     },
     {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "ee79229d8c1ef0a8",
-      "to": "re-anchored d653997903ce569a (stamp 3c67a3b8-857)",
-      "hash": "d653997903ce569a71337871bb4fc60a82340101f32d28cc8b1e4ed01d300c90"
-    },
-    {
-      "date": "2026-08-22",
+      "date": "2026-09-09",
       "field": "watch.https://www.gov.ky",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "d653997903ce569a71337871bb4fc60a82340101f32d28cc8b1e4ed01d300c90"
+      "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
     },
     {
-      "date": "2026-08-22",
-      "field": "last_checked.freshness_sweep",
-      "from": "2026-07-02",
-      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+      "date": "2026-09-10",
+      "field": "watch.https://www.gov.ky",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
+    },
+    {
+      "date": "2026-09-11",
+      "field": "watch.https://www.gov.ky",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
+    },
+    {
+      "date": "2026-09-12",
+      "field": "watch.https://www.gov.ky",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
+    },
+    {
+      "date": "2026-09-13",
+      "field": "watch.https://www.gov.ky",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.gov.ky",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "f39fd6ca09acad01"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.gov.ky",
+      "from": null,
+      "to": "Two duplicate `rule scope added` coverage events REMOVED (t_54b89ced, harness owner). Both carried the same rotating news headline as their \"rule text\" (\"André Ebanks and his fellow Caribbean Overseas Territories Leaders have concluded their 2026 Caucus meeting in Hamilton, Bermuda … in preparation for this year's United Kingdom (UK) Joint Mini…\"), 16 minutes apart — the url alternates an http path whose rule scope is a news headline with a browser path that has no rule scope, so every probe-path flip re-announced the same non-rule text. Neither could alert (a rule scope needs two identical probes). The harness no longer emits this event on a probe-path flip or an EXTRACT_V re-baseline (v8, shouldEmitRuleScopeAdded); these two were pre-fix noise the feed should not have to explain. The `after` texts are preserved here rather than deleted silently. Whether to keep watching www.gov.ky at all (a headline-bearing rule scope) stays a curation decision — see t_239f6996 and t_50cbc2d3.",
       "hash": null
     }
   ],
@@ -183,6 +231,6 @@
     "stacking_synergy": "low",
     "risk_level": "low",
     "lightning_ready": false,
-    "bitcoin_integration": "Cayman Islands offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+    "bitcoin_integration": "Crypto is legal and actively regulated by the Cayman Islands Monetary Authority (CIMA) under the Virtual Asset (Service Providers) Act (2020, revised to 2024 Revision). Registration for VASPs began 31 October 2020; from 1 April 2025 virtual-asset custody and virtual-asset trading-platform operators must obtain a full CIMA VASP licence, with AML/Travel Rule (FATF Rec. 16) compliance. This is one of the pioneering, well-developed crypto-regulatory regimes in the Caribbean/offshore space."
   }
 }

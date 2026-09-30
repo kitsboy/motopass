@@ -7,26 +7,26 @@
     "region": "Central America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.448Z",
+  "generated_at": "2026-09-30T19:36:50.979Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-22T14:57:00.700Z",
-    "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50",
-    "proof_url": "https://satohash.io/verify/279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50",
-    "ots_path": "/proofs/el-salvador-d509c5268fd4.ots",
-    "in_sync": true
+    "stamped_at": "2026-09-30T19:30:49.072Z",
+    "hash": "c9a0a52e503612c2ddd9b95e994b5a500662355bdf505df831b7daf4bac58b92",
+    "proof_url": "https://satohash.io/verify/c9a0a52e503612c2ddd9b95e994b5a500662355bdf505df831b7daf4bac58b92",
+    "ots_path": "/proofs/el-salvador-547b1d2e2bd9.ots",
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -77,6 +77,12 @@
         "field": "category.bitcoin_integration.finance.legal_compliance",
         "usd": 2025,
         "note": "Legal-tender status revoked Feb 2025 (IMF $1.4B deal; amendment Jan 29-30, 2025) — moved to rbi_cbi, reframed as histori"
+      },
+      {
+        "date": "2026-09-10",
+        "field": "finance.bitcoin_specific",
+        "usd": 2025,
+        "note": "Bitcoin legal with voluntary acceptance since Jan 2025 reforms. Government Strategic Bitcoin Reserve continues accumulat"
       }
     ],
     "pathways": [
@@ -89,87 +95,141 @@
         "type": "business",
         "label": "Bitcoin business establishment",
         "min_investment_usd": 30000
+      },
+      {
+        "type": "freedom_visa",
+        "label": "Freedom Visa (Adopting El Salvador)",
+        "min_investment_usd": 1000000
       }
     ]
   },
   "sources": {
     "tiers": {
       "official": 2,
-      "legal": 0,
-      "secondary": 3
+      "legal": 2,
+      "secondary": 2
     },
     "list": [
       {
-        "name": "Reuters (2025-01-30)",
-        "tier": "secondary"
+        "name": "Bloomberg Tax (Daily Tax Report International) — https://news.bloombergtax.com/daily-tax-report-international/el-salvador-gazettes-decree-amending-bitcoin-law",
+        "tier": "legal"
       },
       {
-        "name": "IMF Country Report 25/58",
+        "name": "International Monetary Fund — https://www.imf.org/en/publications/cr/issues/2025/03/19/el-salvador-selected-issues-565394",
         "tier": "official"
       },
       {
-        "name": "CoinDesk",
+        "name": "France24 / AFP — https://www.france24.com/en/live-news/20250130-el-salvador-merchants-no-longer-obliged-to-accept-bitcoin",
         "tier": "secondary"
       },
       {
-        "name": "Wikipedia (Bitcoin in El Salvador)",
+        "name": "CryptoSlate — https://cryptoslate.com/crypto-laws/el-salvador-bitcoin-law/",
+        "tier": "legal"
+      },
+      {
+        "name": "APEX Capital Partners — https://apexcapital.partners/your-guide-to-el-salvador-citizenship-by-investment/",
         "tier": "secondary"
       },
       {
-        "name": "Official government announcements",
+        "name": "Official — https://www.rree.gob.sv/",
         "tier": "official"
       }
     ],
     "official_urls": [
-      "https://www.presidencia.gob.sv"
+      "https://adoptingelsalvador.gob.sv",
+      "https://www.migracion.gob.sv",
+      "https://www.migracion.gob.sv/",
+      "https://www.presidencia.gob.sv",
+      "https://www.rree.gob.sv/"
     ]
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.presidencia.gob.sv",
-        "status": "unreachable",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "blocked",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.migracion.gob.sv",
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.rree.gob.sv/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.migracion.gob.sv/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://adoptingelsalvador.gob.sv",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "d509c5268fd43f6bb61eb5f858d358749d5b4a9ba6e34a9dc081987ec5abb261"
-    },
-    {
-      "date": "2026-08-20",
-      "field": "proof",
-      "from": "414b33ee92785360",
-      "to": "re-anchored d509c5268fd43f6b (stamp eb26f4fc-b29)",
-      "hash": "d509c5268fd43f6bb61eb5f858d358749d5b4a9ba6e34a9dc081987ec5abb261"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "d509c5268fd43f6b",
-      "to": "re-anchored 91427ffdd75bcd09 (stamp 698e0012-ebe)",
-      "hash": "91427ffdd75bcd09ea333e683bf42eafc4f213102c57a19c15b10de35ba80fda"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "category.bitcoin_integration.finance.legal_compliance",
-      "from": "corpus BUILD 72 (legal_tender_bitcoin)",
-      "to": "Legal-tender status revoked Feb 2025 (IMF $1.4B deal; amendment Jan 29-30, 2025) — moved to rbi_cbi, reframed as historical pioneer with voluntary BTC",
-      "hash": null
-    },
     {
       "date": "2026-08-22",
       "field": "proof",
       "from": "91427ffdd75bcd09",
       "to": "re-anchored 279fb4c4cd5d2d69 (stamp a25cef33-2c7)",
       "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
+    },
+    {
+      "date": "2026-08-27",
+      "field": "watch.https://www.presidencia.gob.sv",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
+    },
+    {
+      "date": "2026-09-02",
+      "field": "watch.https://www.presidencia.gob.sv",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
+    },
+    {
+      "date": "2026-09-10",
+      "field": "pathways.freedom_visa",
+      "from": "(absent)",
+      "to": "added: $1M BTC/USDt, 1,000/yr cap, family incl.",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "finance.bitcoin_specific",
+      "from": "Direct Bitcoin payments accepted in many places. Government Bitcoin reserve and infrastructure. Ideal for MotoPass Bitcoin passport pilots.",
+      "to": "Bitcoin legal with voluntary acceptance since Jan 2025 reforms. Government Strategic Bitcoin Reserve continues accumulating (~7,762 BTC as of Sep 2026); Chivo wallet ownership and operation transferred to a private operator (IMF-confirmed, Sep 2026). Freedom Visa anchors the investment-migration offer.",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "last_checked",
+      "from": "2026-08-22",
+      "to": "2026-09-10",
+      "hash": null
+    },
+    {
+      "date": "2026-09-11",
+      "field": "proof",
+      "from": "279fb4c4cd5d2d69",
+      "to": "re-anchored a94cfd8248e94b41 (stamp 8176aafc-b44)",
+      "hash": "a94cfd8248e94b41ae8bc2d5a9dbcfe146f8585bb17784b1437d62571dbcae43"
+    },
+    {
+      "date": "2026-09-16",
+      "field": "proof",
+      "from": "a94cfd8248e94b41",
+      "to": "re-anchored c9a0a52e503612c2 (stamp 0d42a84a-0b7)",
+      "hash": "c9a0a52e503612c2ddd9b95e994b5a500662355bdf505df831b7daf4bac58b92"
     }
   ],
   "sovereignty": {
@@ -177,6 +237,6 @@
     "stacking_synergy": "high",
     "risk_level": "low",
     "lightning_ready": true,
-    "bitcoin_integration": "Bitcoin was legal tender 2021-2025 (status revoked Feb 2025 as an IMF $1.4B program condition); voluntary acceptance continues with strong government support for the Bitcoin ecosystem, Lightning adoption, and crypto businesses. No capital gains tax on Bitcoin in many cases. Excellent for Bitcoin-native identity experiments and residency."
+    "bitcoin_integration": "El Salvador was the first country to make Bitcoin legal tender (Sept 7, 2021). Under a $1.4bn / 40-month IMF program (Dec 2024), Legislative Decree No. 199 was gazetted Jan 30 2025 and took effect ~May 1 2025, dismantling the compulsory framework: merchant acceptance of Bitcoin is now voluntary (not mandatory), the government's Chivo wallet participation is being phased out (by end-July 2025 per IMF terms), and the state does not voluntarily accumulate more Bitcoin. As of 2026 Bitcoin is effectively voluntary tender — most analysts treat the compulsory 'legal tender' obligation as rescinded while the USD remains the dominant currency for wages, prices and taxes; the state retains its existing Bitcoin holdings. The country remains strongly crypto-promotional at the government level despite the legal rollback."
   }
 }

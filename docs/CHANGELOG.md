@@ -27,6 +27,13 @@ All notable changes. BUILD numbers are the primary versioning scheme.
 
 ---
 
+## [BUILD-2026.09.17-d6eb831] — 2026.09.17
+
+### Changed
+- feat(verify): Bitcoin proof panel + proven-then vs valid-now status badge
+
+---
+
 ## [BUILD-2026.08.20-72] — 2026-08-20
 
 ### Changed

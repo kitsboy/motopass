@@ -7,25 +7,25 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.467Z",
+  "generated_at": "2026-09-30T19:36:50.989Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:18:43.891Z",
-    "hash": "d8e4ab5c9927b3d712e36aa2e1e6804198d2367dae62c88edf25025ffe53869e",
-    "proof_url": "https://satohash.io/verify/d8e4ab5c9927b3d712e36aa2e1e6804198d2367dae62c88edf25025ffe53869e",
-    "ots_path": "/proofs/brazil-838e334a0ef9.ots",
+    "stamped_at": "2026-09-30T19:31:26.896Z",
+    "hash": "147d90ee590acce8e02b521b275481f11c94cc55ffb617c99fe592a460c7b5d0",
+    "proof_url": "https://satohash.io/verify/147d90ee590acce8e02b521b275481f11c94cc55ffb617c99fe592a460c7b5d0",
+    "ots_path": "/proofs/brazil-b41480b2644a.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -69,14 +69,26 @@
     "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
   },
   "threshold": {
-    "min_investment_usd": 150000,
-    "typical_investment_usd": 250000,
+    "min_investment_usd": 95000,
+    "typical_investment_usd": 100000,
     "history": [
       {
-        "date": null,
-        "field": "current",
-        "usd": 150000,
-        "note": "Current published minimum — no tracked change history yet."
+        "date": "2026-09-10",
+        "field": "finance.min_investment_usd",
+        "usd": 95000,
+        "note": "95000"
+      },
+      {
+        "date": "2026-09-10",
+        "field": "finance.typical_investment_usd",
+        "usd": 100000,
+        "note": "100000"
+      },
+      {
+        "date": "2026-09-10",
+        "field": "pathways.investor.notes",
+        "usd": 500000,
+        "note": "VITEM IX temporary visa for foreign investors — minimum R$500,000 capital investment in Brazilian company or productive "
       }
     ],
     "pathways": [
@@ -99,75 +111,143 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
-      "legal": 0,
+      "official": 4,
+      "legal": 1,
       "secondary": 1
     },
     "list": [
       {
-        "name": "Official immigration portals",
+        "name": "Receita Federal (official revenue service) — https://gov.br/receitafederal",
         "tier": "official"
       },
       {
-        "name": "MotoPass research BUILD-011",
+        "name": "Bank for Crypto — https://banksforcrypto.com/crypto-taxes-brazil",
         "tier": "secondary"
+      },
+      {
+        "name": "Where Legal Crypto — https://wherelegalcrypto.com/brazil",
+        "tier": "legal"
+      },
+      {
+        "name": "Official — https://www.gov.br/mre/en",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://brsb.itamaraty.gov.br/en-us/",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.gov.br/mj/en/",
+        "tier": "official"
       }
     ],
     "official_urls": [
+      "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
+      "https://brsb.itamaraty.gov.br/en-us/",
+      "https://www.gov.br/mj/en/",
+      "https://www.gov.br/mre/en",
       "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
       "https://www.gov.br/pf/pt-br/assuntos/imigracao",
-      "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm"
+      "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13445.htm"
     ]
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.gov.br/pf/pt-br/assuntos/imigracao",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.gov.br/mre/en",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://brsb.itamaraty.gov.br/en-us/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.gov.br/mj/en/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13445.htm",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "838e334a0ef9bea75866d2ae984f088db1c68fd89c360821ccab9472e3f5cffb"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "55bef9590ff758b0",
-      "to": "re-anchored 838e334a0ef9bea7 (stamp bc365f4a-f39)",
-      "hash": "838e334a0ef9bea75866d2ae984f088db1c68fd89c360821ccab9472e3f5cffb"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "838e334a0ef9bea7",
-      "to": "re-anchored d8e4ab5c9927b3d7 (stamp fef533d6-4cd)",
-      "hash": "d8e4ab5c9927b3d712e36aa2e1e6804198d2367dae62c88edf25025ffe53869e"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "last_checked.freshness_sweep",
-      "from": "2026-07-02",
-      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
+      "date": "2026-09-10",
+      "field": "pathways.digital_nomad.notes",
+      "from": "VITEM XIV temporary visa under Brazilian immigration policy for remote workers employed or contracted abroad — proof of foreign income (~$1,500/month minimum cited in consular guidance). 1-year renewable authorization; does not grant immediate permanent residence.",
+      "to": "VITEM XIV temporary visa under Brazilian immigration policy for remote workers employed or contracted abroad — proof of foreign income (~$1,500/month minimum cited in consular guidance). 1-year renewable authorization; does not grant immediate permanent residence. Alternative: ~$18,000 lump sum / R$100,000 bank balance accepted in place of monthly income (2026 consular guidance).",
       "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "legal_compliance.recent_changes",
+      "from": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs.",
+      "to": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs. 2026-09-10 verification: VITEM IX R$500k current (+R$150k startup tier); VITEM XIV $1,500/mo or ~$18k savings; retirement $2,000/mo. Page-level finance floor aligned to VITEM IX.",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "last_checked",
+      "from": "2026-08-22",
+      "to": "2026-09-10",
+      "hash": null
+    },
+    {
+      "date": "2026-09-11",
+      "field": "watch.https://www.gov.br/pf/pt-br/assuntos/imigracao",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "147d90ee590acce8e02b521b275481f11c94cc55ffb617c99fe592a460c7b5d0"
+    },
+    {
+      "date": "2026-09-12",
+      "field": "watch.https://www.gov.br/pf/pt-br/assuntos/imigracao",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "147d90ee590acce8e02b521b275481f11c94cc55ffb617c99fe592a460c7b5d0"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "proof",
+      "from": "c8ebeb294bf2dae7",
+      "to": "re-anchored 147d90ee590acce8 (stamp 13f9ee76-f8e)",
+      "hash": "147d90ee590acce8e02b521b275481f11c94cc55ffb617c99fe592a460c7b5d0"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "81a8e156e1a0c311"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.gov.br/pf/pt-br/assuntos/imigracao",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "4600b67fa4ebcd9b"
     }
   ],
   "sovereignty": {
@@ -175,6 +255,6 @@
     "stacking_synergy": "medium",
     "risk_level": "medium",
     "lightning_ready": true,
-    "bitcoin_integration": "Brazil offers residency or citizenship pathways with growing crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+    "bitcoin_integration": "Comprehensive crypto law: Marco Legal dos Ativos Virtuais (Law 14.478/2022), BCB as VASP regulator (Decree 11,563/2023), VASP auth resolutions effective Feb 2026. Crypto legal, NOT legal tender. Regulatory/taxing stance, a leading adoption market."
   }
 }

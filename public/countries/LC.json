@@ -7,25 +7,25 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.468Z",
+  "generated_at": "2026-09-30T19:36:50.988Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:18:57.700Z",
-    "hash": "975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa",
-    "proof_url": "https://satohash.io/verify/975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa",
-    "ots_path": "/proofs/st-lucia-27d4e604e55a.ots",
+    "stamped_at": "2026-09-30T19:30:57.120Z",
+    "hash": "65f26a589f96d644c7d5edab7eff4e8faed72df8aa685b82a22b501baa9c0bcf",
+    "proof_url": "https://satohash.io/verify/65f26a589f96d644c7d5edab7eff4e8faed72df8aa685b82a22b501baa9c0bcf",
+    "ots_path": "/proofs/st-lucia-7e7a19af2261.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -69,14 +69,20 @@
     "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
   },
   "threshold": {
-    "min_investment_usd": 100000,
-    "typical_investment_usd": 150000,
+    "min_investment_usd": 240000,
+    "typical_investment_usd": 250000,
     "history": [
       {
-        "date": null,
-        "field": "current",
-        "usd": 100000,
-        "note": "Current published minimum — no tracked change history yet."
+        "date": "2026-09-10",
+        "field": "finance.min_investment_usd",
+        "usd": 240000,
+        "note": "240000"
+      },
+      {
+        "date": "2026-09-10",
+        "field": "finance.typical_investment_usd",
+        "usd": 250000,
+        "note": "250000"
       }
     ],
     "pathways": [
@@ -99,50 +105,62 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 4,
       "legal": 0,
-      "secondary": 1
+      "secondary": 0
     },
     "list": [
       {
-        "name": "Official immigration portals",
+        "name": "St Lucia CIP (official) — https://www.cipsaintlucia.com/citizenship-by-investment",
         "tier": "official"
       },
       {
-        "name": "MotoPass research BUILD-011",
-        "tier": "secondary"
+        "name": "St Lucia official gazette — https://www.cipsaintlucia.com/s/gazettejuly92024.pdf",
+        "tier": "official"
+      },
+      {
+        "name": "Eastern Caribbean Central Bank — https://www.eccb-centralbank.org/blogs/understanding-cryptocurrency-in-the-eccu",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.govt.lc/",
+        "tier": "official"
       }
     ],
     "official_urls": [
-      "https://www.ciu.gov.lc"
+      "https://www.cipsaintlucia.com/",
+      "https://www.cipsaintlucia.com/citizenship-by-investment",
+      "https://www.ciu.gov.lc",
+      "https://www.govt.lc/"
     ]
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.ciu.gov.lc",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.govt.lc/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.cipsaintlucia.com/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.cipsaintlucia.com/citizenship-by-investment",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "27d4e604e55abef2fb29cfb6e7b456f6d69a8249aa1cfea7bb32863d2e88cfb0"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "7f939a3e560b59c1",
-      "to": "re-anchored 27d4e604e55abef2 (stamp 5d801f3d-7e5)",
-      "hash": "27d4e604e55abef2fb29cfb6e7b456f6d69a8249aa1cfea7bb32863d2e88cfb0"
-    },
     {
       "date": "2026-08-21",
       "field": "proof",
@@ -156,6 +174,48 @@
       "from": "2026-07-02",
       "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
       "hash": null
+    },
+    {
+      "date": "2026-08-30",
+      "field": "proof",
+      "from": "975bf50ec82208b2",
+      "to": "re-anchored 5688e8f7fe631e39 (stamp 60e35d29-1e9)",
+      "hash": "5688e8f7fe631e39f055cc83973ab4b7fd3caaa4158ef8c48763ca3385fc79a9"
+    },
+    {
+      "date": "2026-09-10",
+      "field": "finance.min_investment_usd",
+      "from": 100000,
+      "to": 240000,
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "finance.typical_investment_usd",
+      "from": 150000,
+      "to": 250000,
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "legal_compliance.recent_changes",
+      "from": "NEF donation and bond options remain active; industry-wide enhanced due diligence post-2024 Caribbean CBI summit commitments.",
+      "to": "NEF donation and bond options remain active; industry-wide enhanced due diligence post-2024 Caribbean CBI summit commitments. 2026-09-10 verification: NEF $240k (single or family of up to 4), RE $300k, bonds $300k + $50k admin — all current; page-level finance floor aligned to NEF. US Proclamation 10998 partial restrictions name Antigua and Dominica — St. Lucia not listed (CitizenX, Aug 2026).",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "last_checked",
+      "from": "2026-08-22",
+      "to": "2026-09-10",
+      "hash": null
+    },
+    {
+      "date": "2026-09-18",
+      "field": "proof",
+      "from": "5688e8f7fe631e39",
+      "to": "re-anchored 65f26a589f96d644 (stamp d0c8e531-309)",
+      "hash": "65f26a589f96d644c7d5edab7eff4e8faed72df8aa685b82a22b501baa9c0bcf"
     }
   ],
   "sovereignty": {
@@ -163,6 +223,6 @@
     "stacking_synergy": "medium",
     "risk_level": "low",
     "lightning_ready": false,
-    "bitcoin_integration": "St. Lucia offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+    "bitcoin_integration": "Crypto legal privately, not legal tender (EC dollar). No standalone crypto statute; operates under harmonised ECCB VASP framework (register + AML/CFT). ECCB cautious; no Bitcoin-adoption policy."
   }
 }

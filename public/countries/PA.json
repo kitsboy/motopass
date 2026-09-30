@@ -7,25 +7,25 @@
     "region": "Central America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.459Z",
+  "generated_at": "2026-09-30T19:36:50.990Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:16:56.257Z",
-    "hash": "a20bb0c1ff9602261475d1369130271f74b97c5e3066aea8cc9826cab4f1a4c8",
-    "proof_url": "https://satohash.io/verify/a20bb0c1ff9602261475d1369130271f74b97c5e3066aea8cc9826cab4f1a4c8",
-    "ots_path": "/proofs/panama-f834d1ee5e41.ots",
+    "stamped_at": "2026-09-30T19:31:30.650Z",
+    "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b",
+    "proof_url": "https://satohash.io/verify/bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b",
+    "ots_path": "/proofs/panama-c0f4352fe65c.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -99,90 +99,119 @@
   },
   "sources": {
     "tiers": {
-      "official": 0,
-      "legal": 1,
+      "official": 2,
+      "legal": 3,
       "secondary": 1
     },
     "list": [
       {
-        "name": "Immigration rules",
+        "name": "Legal Nodes — https://legalnodes.com/article/panama-crypto-regulations-insights-for-web3-founders-in-2025",
         "tier": "legal"
       },
       {
-        "name": "Bitcoin community reports",
+        "name": "LawZana (migration law analysis) — https://lawzana.com/articles/panama/panama-friendly-nations-visa-2026-requirements-costs-routes-348",
+        "tier": "legal"
+      },
+      {
+        "name": "Nomad Almanac — https://nomadalmanac.com/countries/panama/residency",
         "tier": "secondary"
+      },
+      {
+        "name": "Legalys (Panamanian immigration law firm) — https://panama.legalys.com/en/blog/paises-amigos-7/how-to-get-the-panama-friendly-nations-visa-in-2026-updated-guide-21",
+        "tier": "legal"
+      },
+      {
+        "name": "Official — https://www.mire.gob.pa/",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.migracion.gob.pa",
+        "tier": "official"
       }
     ],
     "official_urls": [
+      "https://www.gacetaoficial.gob.pa",
       "https://www.migracion.gob.pa",
-      "https://www.gacetaoficial.gob.pa"
+      "https://www.mire.gob.pa/"
     ]
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.migracion.gob.pa",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.gacetaoficial.gob.pa",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.mire.gob.pa/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
+      "date": "2026-09-12",
+      "field": "watch.https://www.gacetaoficial.gob.pa",
       "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "f834d1ee5e418f4384f709cb9f9699aa1b026a9b576a908055714b3fd6220c9e"
+      "to": "Official source content changed — manual rule review required",
+      "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
     },
     {
-      "date": "2026-08-20",
+      "date": "2026-09-13",
+      "field": "watch.https://www.gacetaoficial.gob.pa",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
+    },
+    {
+      "date": "2026-09-13",
       "field": "proof",
-      "from": "be87377d1f95266c",
-      "to": "re-anchored f834d1ee5e418f43 (stamp 2cbba005-d46)",
-      "hash": "f834d1ee5e418f4384f709cb9f9699aa1b026a9b576a908055714b3fd6220c9e"
+      "from": "08f2bedb94ea4bc1",
+      "to": "re-anchored bb1f6135c1c7e559 (stamp 0ecb7ddc-a1c)",
+      "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
     },
     {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "f834d1ee5e418f43",
-      "to": "re-anchored a20bb0c1ff960226 (stamp 85290ed3-e9f)",
-      "hash": "a20bb0c1ff9602261475d1369130271f74b97c5e3066aea8cc9826cab4f1a4c8"
-    },
-    {
-      "date": "2026-08-21",
+      "date": "2026-09-14",
       "field": "watch.https://www.gacetaoficial.gob.pa",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "a20bb0c1ff9602261475d1369130271f74b97c5e3066aea8cc9826cab4f1a4c8"
+      "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
     },
     {
-      "date": "2026-08-22",
+      "date": "2026-09-15",
       "field": "watch.https://www.gacetaoficial.gob.pa",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "a20bb0c1ff9602261475d1369130271f74b97c5e3066aea8cc9826cab4f1a4c8"
+      "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
     },
     {
-      "date": "2026-08-22",
-      "field": "finance.pathways.legal_compliance",
-      "from": "corpus BUILD 72",
-      "to": "Crypto grey-area status (2022 veto, 2023 Supreme Court strike-down, 2025 draft bill); Friendly Nations floor corrected $5k -> $200k (Decree 226/2021); Qualified Investor modalities (RE $300k / securities $500k / deposit $750k); last_checked refreshed",
-      "hash": null
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://www.gacetaoficial.gob.pa",
+      "date": "2026-09-15",
+      "field": "watch.https://www.migracion.gob.pa",
       "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "08f2bedb94ea4bc14541c7894a61f2ffe64cb0241941ec6307bae66332925dbe"
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "822b452df921ac24"
+    },
+    {
+      "date": "2026-09-25",
+      "field": "watch.https://www.migracion.gob.pa",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "75f4799c21656d0f"
+    },
+    {
+      "date": "2026-09-26",
+      "field": "watch.https://www.migracion.gob.pa",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "a1d11a672e6b8903"
     }
   ],
   "sovereignty": {
@@ -190,6 +219,6 @@
     "stacking_synergy": "high",
     "risk_level": "low",
     "lightning_ready": true,
-    "bitcoin_integration": "Crypto is legal but largely unregulated (a grey area) — no comprehensive framework; the 2022 crypto bill (697) was partially vetoed (Jun 2022) and then declared unconstitutional by the Supreme Court (Jul 2023). A 2025 draft bill seeks to license crypto service providers and formalize crypto payments, and Panama City accepts crypto for some public services (2025). Territorial tax remains the core draw for Bitcoiners."
+    "bitcoin_integration": "Panama has NO enacted comprehensive crypto law and Bitcoin is NOT legal tender. Its constitution 'Monetary Freedom' (Article 262) forbids compulsory legal tender, meaning any currency — including crypto — can circulate by private agreement but the state does not give Bitcoin legal-tender status. Bill No. 697 (2021) passed the National Assembly in April 2022 but was vetoed by President Cortizo in June 2022 over AML/oversight and constitutional concerns. A successor, Bill No. 247 (introduced 2025), would create a FATF-aligned registration/licensing regime for Virtual Asset Service Providers (VASPs), recognize crypto as a valid medium of exchange by agreement, and set up a public registry and suspicious-operation reporting; it remained pending (not enacted) as of 2026. Panama positions itself as a permissive, business-friendly crypto jurisdiction (regional hub for tokenization/real-estate) but without dedicated legislation in force."
   }
 }

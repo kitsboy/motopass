@@ -7,25 +7,25 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.459Z",
+  "generated_at": "2026-09-30T19:36:50.989Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:16:52.803Z",
-    "hash": "3c722ec81c847ff9e46fd6061b841e7d7c1e1c75ba3a1f49bc9d25dabdf2269f",
-    "proof_url": "https://satohash.io/verify/3c722ec81c847ff9e46fd6061b841e7d7c1e1c75ba3a1f49bc9d25dabdf2269f",
-    "ots_path": "/proofs/malta-7a9f591e2499.ots",
+    "stamped_at": "2026-09-30T19:31:28.194Z",
+    "hash": "1ce9eb8bd293fd5d759ff1f180dadb265c857abfd21020dbf8ca7967900b4f66",
+    "proof_url": "https://satohash.io/verify/1ce9eb8bd293fd5d759ff1f180dadb265c857abfd21020dbf8ca7967900b4f66",
+    "ots_path": "/proofs/malta-cbecbf6ecaa6.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -100,75 +100,130 @@
   "sources": {
     "tiers": {
       "official": 1,
-      "legal": 0,
+      "legal": 4,
       "secondary": 1
     },
     "list": [
       {
-        "name": "MFSA",
+        "name": "MFSA (official regulator) — https://www.mfsa.mt/our-work/virtual-financial-assets/",
         "tier": "official"
       },
       {
-        "name": "Our research",
+        "name": "CMS Law — https://cms.law/en/int/expert-guides/cms-expert-guide-to-crypto-regulation/malta",
+        "tier": "legal"
+      },
+      {
+        "name": "Charltons Quantum — https://charltonsquantum.com/malta-virtual-assets-regulation/",
+        "tier": "legal"
+      },
+      {
+        "name": "Legal 500 — https://www.legal500.com/intelligence/malta/immigration/maltese-citizenship-by-naturalisation-for-exceptional-services",
+        "tier": "legal"
+      },
+      {
+        "name": "Global Law Experts — https://globallawexperts.com/the-maltese-citizenship-by-naturalisation-for-exceptional-services-by-direct-investment/",
+        "tier": "legal"
+      },
+      {
+        "name": "MaltaToday — https://www.maltatoday.com.mt/sponsored/sponsored/130377/understanding_cryptocurrency_taxation_in_malta",
         "tier": "secondary"
       }
     ],
     "official_urls": [
       "https://residencymalta.gov.mt",
-      "https://www.mfsa.mt"
+      "https://www.gov.mt",
+      "https://www.identita.gov.mt",
+      "https://www.mfsa.mt",
+      "https://www.mfsa.mt/our-work/virtual-financial-assets/"
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "changed": false,
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://residencymalta.gov.mt",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.mfsa.mt",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "status": "blocked",
+        "last_probed": "2026-09-15T14:52:53.898Z"
+      },
+      {
+        "url": "https://www.identita.gov.mt",
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.gov.mt",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.mfsa.mt/our-work/virtual-financial-assets/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "7a9f591e2499d54309cfb645c6680d8f0668f339d54d3007b7a6050c1ff619c0"
-    },
-    {
-      "date": "2026-08-20",
-      "field": "proof",
-      "from": "9902443fa88fa82e",
-      "to": "re-anchored 7a9f591e2499d543 (stamp 8a17b0c2-cec)",
-      "hash": "7a9f591e2499d54309cfb645c6680d8f0668f339d54d3007b7a6050c1ff619c0"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "7a9f591e2499d543",
-      "to": "re-anchored 3c722ec81c847ff9 (stamp 1ed1a114-75f)",
-      "hash": "3c722ec81c847ff9e46fd6061b841e7d7c1e1c75ba3a1f49bc9d25dabdf2269f"
-    },
-    {
-      "date": "2026-08-21",
+      "date": "2026-08-29",
       "field": "watch.https://residencymalta.gov.mt",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "3c722ec81c847ff9e46fd6061b841e7d7c1e1c75ba3a1f49bc9d25dabdf2269f"
+      "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
     },
     {
-      "date": "2026-08-22",
-      "field": "legal_compliance.pathways",
-      "from": "corpus BUILD 72",
-      "to": "CBI terminated (CJEU C-181/23, 29 Apr 2025; Act XXI/2025) — no EU CBI remains; MPRP ~€99k + property updated; critical_tests clarified",
-      "hash": null
+      "date": "2026-09-02",
+      "field": "watch.https://residencymalta.gov.mt",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
+    },
+    {
+      "date": "2026-09-03",
+      "field": "watch.https://residencymalta.gov.mt",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
+    },
+    {
+      "date": "2026-09-05",
+      "field": "watch.https://residencymalta.gov.mt",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
+    },
+    {
+      "date": "2026-09-06",
+      "field": "watch.https://residencymalta.gov.mt",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
+    },
+    {
+      "date": "2026-09-13",
+      "field": "watch.https://residencymalta.gov.mt",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
+    },
+    {
+      "date": "2026-09-14",
+      "field": "watch.https://residencymalta.gov.mt",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
+    },
+    {
+      "date": "2026-09-16",
+      "field": "proof",
+      "from": "602b403dce4a3455",
+      "to": "re-anchored 1ce9eb8bd293fd5d (stamp ff6830c2-d7a)",
+      "hash": "1ce9eb8bd293fd5d759ff1f180dadb265c857abfd21020dbf8ca7967900b4f66"
     }
   ],
   "sovereignty": {
@@ -176,6 +231,6 @@
     "stacking_synergy": "high",
     "risk_level": "low",
     "lightning_ready": true,
-    "bitcoin_integration": "Crypto-friendly EU member with clear licensing (MFSA). Good for Bitcoin businesses seeking EU passporting. Residency options available."
+    "bitcoin_integration": "Malta is the EU's most crypto-forward jurisdiction, self-branded the 'Blockchain Island' since 2018. The MFSA has regulated crypto assets since 2018 under the Virtual Financial Assets Act (Chapter 590) via the VFA framework (categories determined by the Financial Instrument Test), supplemented by the MTAS/MDIA and ITAS legislation. Since 2024-2026 the EU Markets in Crypto-Assets Regulation (MiCA) is the primary framework (Markets in Crypto-Assets Act, Ch. 647); the VFA regime is transitional and phasing out as crypto-asset service providers (CASPs) migrate to MiCA (roughly by mid-2026). Official stance is pro-innovation and welcoming; Bitcoin and other cryptocurrencies qualify as Virtual Financial Assets and are licencable. BTC is not legal tender (euro is the currency)."
   }
 }

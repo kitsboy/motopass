@@ -4,7 +4,7 @@
  * Validates shape + honesty contract so a bad generator run can never ship.
  *
  * Honesty checks (non-negotiable):
- *  - 50 envelopes present, all with valid ISO2 filenames.
+ *  - One envelope per corpus program, all with valid ISO2 filenames.
  *  - schema tag is gab.country-trust.v1.
  *  - Freshness status is one of fresh|watch|stale; days_stale is a number.
  *  - Radar axes: a value is present ONLY when it has a real number; missing
