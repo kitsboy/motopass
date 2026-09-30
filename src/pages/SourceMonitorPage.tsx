@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 
 /**
  * MotoPass · Source Monitor
@@ -8,22 +8,32 @@ import { useEffect, useState } from 'react'
  * Self-contained styles so it renders independently of the app theme.
  */
 
+type Status = 'ok' | 'blocked' | 'unreachable'
 const COLORS: Record<Status, string> = { ok: '#2ee6a8', blocked: '#ffb648', unreachable: '#ff5c5c' }
 const LABELS: Record<Status, string> = { ok: 'healthy', blocked: 'blocked', unreachable: 'unreachable' }
 
-function host(u) {
+function host(u: string) {
   try { return new URL(u).hostname.replace(/^www\./, '') } catch { return u }
 }
-function ago(iso) {
+function ago(iso: string | null) {
   if (!iso) return '—'
   const s = (Date.now() - new Date(iso).getTime()) / 3600000
   if (s < 1) return `${Math.round(s * 60)}m ago`
   if (s < 24) return `${Math.round(s)}h ago`
   return `${Math.round(s / 24)}d ago`
 }
-function gapLabel(d) { return d ? `${d}d data gap` : 'live' }
+function gapLabel(d: number | undefined) { return d ? `${d}d data gap` : 'live' }
 
-const s = {
+type Url = { url: string; status: string; last_probed: string | null; coverage_gap_days?: number; last_error?: string | null }
+type Country = { program_id: number; name: string; changed: boolean; coverage_gap_days?: number; urls: Url[] }
+type Ev = { kind: string; country: string; url: string; status?: string; scopes?: string[]; ts: string; before?: string; after?: string }
+/** /data/source-monitor.json (written by scripts/write-intel.mjs). */
+type MonitorManifest = { generated_at: string; total_urls: number; by_country?: Country[] }
+
+/** Responsive collapse for the two-column layout, injected as raw CSS. */
+const MOBILE_CSS = '@media(max-width:980px){#smLayout{grid-template-columns:1fr}}'
+
+const s: Record<string, CSSProperties> = {
   page: { background: '#14070c', color: '#fbeef4', minHeight: '100vh', padding: '22px', fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif' },
   hero: { margin: '38px 0 10px' },
   h1: { fontSize: 'clamp(30px,4.5vw,56px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.05, margin: 0 },
@@ -36,7 +46,6 @@ const s = {
   chipN: { fontSize: 34, fontWeight: 800, lineHeight: 1 },
   chipL: { fontSize: 11, color: '#c99aab', textTransform: 'uppercase', letterSpacing: '.06em', marginTop: 4 },
   layout: { display: 'grid', gridTemplateColumns: '1.6fr 1fr', gap: 20 },
-  mobile: '@media(max-width:980px){#smLayout{grid-template-columns:1fr}}',
   filters: { display: 'flex', gap: 8, flexWrap: 'wrap', margin: '0 0 14px' },
   fb: { padding: '7px 14px', borderRadius: 999, fontSize: 12.5, fontWeight: 600, color: '#c99aab', border: '1px solid #2a1220', background: '#1e0d15', cursor: 'pointer' },
   fbOn: { background: '#a41855', color: '#fff', borderColor: '#a41855' },
@@ -50,13 +59,6 @@ const s = {
   muted: { color: '#c99aab', fontSize: 11 },
   err: { color: COLORS.unreachable, padding: 40, textAlign: 'center' as const },
 }
-
-type Url = { url: string; status: string; last_probed: string | null; coverage_gap_days?: number; last_error?: string | null }
-type Country = { program_id: number; name: string; changed: boolean; coverage_gap_days?: number; urls: Url[] }
-type Ev = { kind: string; country: string; url: string; status?: string; scopes?: string[]; ts: string; before?: string; after?: string }
-/** /data/source-monitor.json (written by scripts/write-intel.mjs). */
-type MonitorManifest = { generated_at: string; total_urls: number; by_country?: Country[] }
-type Status = 'ok' | 'blocked' | 'unreachable'
 
 export function SourceMonitorPage() {
   const [manifest, setManifest] = useState<MonitorManifest | null>(null)
@@ -88,7 +90,7 @@ export function SourceMonitorPage() {
 
   return (
     <div style={s.page}>
-      <style>{s.mobile}</style>
+      <style>{MOBILE_CSS}</style>
       <div style={s.hero}>
         <h1 style={s.h1}>Know the moment a country <span style={s.h1accent}>changes its rules.</span></h1>
         <p style={s.p}>Every official passport, citizenship and immigration source we rely on is watched on a schedule. When a rule moves, you see it here — with proof it's real, before it touches the live program data.</p>

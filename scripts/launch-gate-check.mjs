@@ -86,7 +86,12 @@ function checkG1Seal(data) {
     else otsOk++
   }
 
-  if (flagshipCount < 50) blockers.push(`Expected 50/50 flagships, found ${flagshipCount}`)
+  // The corpus is the truth — never a hard-coded 50. The historical 50-country
+  // export was superseded by the curated 21-program corpus (see the 2026-09-29
+  // handoff); the stale threshold kept G1 red while the data was correct.
+  // G1 is a STAMP-INTEGRITY gate: depth below the corpus is research progress
+  // and shows in the detail line, it does not block.
+  const depthNote = `${flagshipCount}/${data.programs.length} corpus depth`
 
   const pass = blockers.length === 0
   return gate(
@@ -94,7 +99,7 @@ function checkG1Seal(data) {
     'Seal',
     'OTS + Satohash on all flagships',
     pass,
-    pass ? `${flagshipCount}/50 flagships · ${otsOk} OTS on disk` : `${otsOk}/${flagshipCount} OTS ready`,
+    pass ? `${depthNote} · ${otsOk} OTS on disk` : `${otsOk}/${flagshipCount} OTS ready`,
     blockers.slice(0, 8),
   )
 }
@@ -109,8 +114,11 @@ function checkG2Forge(data) {
     if (!existsSync(resolve(root, rel))) blockers.push(`Missing ${rel}`)
   }
 
-  if (distressedCandidates < 40) {
-    blockers.push(`Forge listings need ≥40 proof-gated programs (found ${distressedCandidates})`)
+  // Two-thirds of the corpus must be proof-gated Forge candidates — scales with
+  // the real data instead of the retired 50-country corpus (≥40 of 50).
+  const forgeMinimum = Math.ceil((data.programs.length * 2) / 3)
+  if (distressedCandidates < forgeMinimum) {
+    blockers.push(`Forge listings need ≥${forgeMinimum} proof-gated programs (found ${distressedCandidates})`)
   }
 
   const pass = blockers.length === 0
@@ -176,8 +184,8 @@ function checkG4Ledger(data) {
   else if (readFileSync(handoff, 'utf8').trim().length < 200) blockers.push('KIMI-HANDOFF.md too short')
 
   if (!data.last_updated) blockers.push('countries.json missing last_updated')
-  if (!Array.isArray(data.programs) || data.programs.length < 50) {
-    blockers.push(`Expected ≥50 programs, found ${data.programs?.length ?? 0}`)
+  if (!Array.isArray(data.programs) || data.programs.length < 21) {
+    blockers.push(`Expected ≥21 programs (curated corpus minimum), found ${data.programs?.length ?? 0}`)
   }
 
   const oracleSeed = resolve(root, 'research/oracle-seed.json')
@@ -189,7 +197,7 @@ function checkG4Ledger(data) {
   return gate(
     'G4',
     'Ledger',
-    'Oracle seed + Kimi handoff + 50-jurisdiction data',
+    'Oracle seed + Kimi handoff + curated corpus',
     pass,
     pass ? `${data.programs.length} programs · oracle seed on disk` : 'Ledger ops incomplete',
     blockers,

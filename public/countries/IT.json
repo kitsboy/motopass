@@ -7,25 +7,25 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.470Z",
+  "generated_at": "2026-09-30T19:36:50.986Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:22:36.433Z",
-    "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc",
-    "proof_url": "https://satohash.io/verify/383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc",
-    "ots_path": "/proofs/italy-100675521271.ots",
+    "stamped_at": "2026-09-30T19:30:51.078Z",
+    "hash": "3ca27b9a7ab32911922a4fb71ff45a93dfb9f4ee5a47ac4de03fcc29d8430590",
+    "proof_url": "https://satohash.io/verify/3ca27b9a7ab32911922a4fb71ff45a93dfb9f4ee5a47ac4de03fcc29d8430590",
+    "ots_path": "/proofs/italy-5896d70fc0b8.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -99,103 +99,137 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 3,
       "legal": 0,
-      "secondary": 1
+      "secondary": 3
     },
     "list": [
       {
-        "name": "Official immigration portals",
+        "name": "MIMIT - Ministry of Enterprises and Made in Italy (Investor Visa for Italy) — https://investorvisa.mise.gov.it/index.php/en",
         "tier": "official"
       },
       {
-        "name": "MotoPass research BUILD-011",
+        "name": "Plisio — https://plisio.net/tax/italy-crypto-tax",
         "tier": "secondary"
+      },
+      {
+        "name": "Wag3s — https://wag3s.io/blog/crypto-tax-italy",
+        "tier": "secondary"
+      },
+      {
+        "name": "Domicila — https://domicila.net/italy-golden-visa-cost",
+        "tier": "secondary"
+      },
+      {
+        "name": "Official — https://www.esteri.it/",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.agenziaentrate.gov.it/",
+        "tier": "official"
       }
     ],
     "official_urls": [
-      "https://www.interno.gov.it",
       "https://investorvisa.mise.gov.it",
-      "https://www.agenziaentrate.gov.it"
+      "https://investorvisa.mise.gov.it/index.php/en",
+      "https://www.agenziaentrate.gov.it",
+      "https://www.agenziaentrate.gov.it/",
+      "https://www.esteri.it/",
+      "https://www.interno.gov.it"
     ]
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.interno.gov.it",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://investorvisa.mise.gov.it",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.agenziaentrate.gov.it",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.esteri.it/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.agenziaentrate.gov.it/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://investorvisa.mise.gov.it/index.php/en",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-21",
+      "date": "2026-09-15",
+      "field": "watch.https://www.agenziaentrate.gov.it",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "3ca27b9a7ab32911922a4fb71ff45a93dfb9f4ee5a47ac4de03fcc29d8430590"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.interno.gov.it",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "6a47bf3fcb63b7b8"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.agenziaentrate.gov.it",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "81b732bcb8527895"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.interno.gov.it",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "a0ecd9ac7d521548"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://investorvisa.mise.gov.it",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "f09e6c72f2067cf4"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.agenziaentrate.gov.it",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "41a1a0615a863e29"
+    },
+    {
+      "date": "2026-09-19",
       "field": "proof",
-      "from": "1006755212710054",
-      "to": "re-anchored 383ec285ae5e686d (stamp 3ea3cd84-f66)",
-      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
+      "from": "bd89b05fe04c7736",
+      "to": "re-anchored 3ca27b9a7ab32911 (stamp 5deb3997-56d)",
+      "hash": "3ca27b9a7ab32911922a4fb71ff45a93dfb9f4ee5a47ac4de03fcc29d8430590"
     },
     {
-      "date": "2026-08-21",
-      "field": "watch.https://investorvisa.mise.gov.it",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
-    },
-    {
-      "date": "2026-08-21",
+      "date": "2026-09-23",
       "field": "watch.https://www.agenziaentrate.gov.it",
       "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://investorvisa.mise.gov.it",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://www.agenziaentrate.gov.it",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://investorvisa.mise.gov.it",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://www.agenziaentrate.gov.it",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "383ec285ae5e686dfec41c847aa28edc7c484d7cf2b4bcc056691447763813cc"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "last_checked.freshness_sweep",
-      "from": "2026-07-02",
-      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
-      "hash": null
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "932633c4ad04f0d4"
     }
   ],
   "sovereignty": {
@@ -203,6 +237,6 @@
     "stacking_synergy": "medium",
     "risk_level": "low",
     "lightning_ready": false,
-    "bitcoin_integration": "Italy offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+    "bitcoin_integration": "Bitcoin and crypto ('cripto-attività') are legal in Italy and recognized as an autonomous asset class under Article 67(1)(c-sexies) of the TUIR since 1 January 2023 (2023 Budget Law 197/2022). Italy's stance is neutral-to-sceptical: gains are taxed and the Agenzia delle Entrate has automated oversight; there is no special crypto-industry incentive and no official bitcoin-friendly policy."
   }
 }

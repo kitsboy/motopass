@@ -434,6 +434,15 @@ export type TranslationKey =
   | 'pitch.hero.jurisdictionsChip'
   | 'pitch.hero.advisorySavingsChip'
   | 'pitch.hero.lightningChip'
+  | 'pitch.hero.corpusBadge'
+  | 'pitch.hero.flagshipChip'
+  | 'pitch.hero.watchdogChip'
+  | 'pitch.hero.scrollCta'
+  | 'pitch.hero.statLabel.corpus'
+  | 'pitch.hero.statLabel.flagship'
+  | 'pitch.hero.statLabel.lightning'
+  | 'pitch.hero.statLabel.watchdog'
+  | 'pitch.hero.statLabel.anchor'
   | 'pitch.explorer'
   | 'pitch.metric.jurisdictions'
   | 'pitch.metric.avgSavings'
@@ -629,7 +638,7 @@ const en: Dict = {
   tagline: 'Truth You Can Verify',
   'pitch.hero': 'The private OS for sovereign operators',
   'pitch.sub':
-    'Live Data Engine — 50-country trust cards, Bitcoin-anchored and freshness-checked. Research jurisdictions, model stacks in ₿, verify every claim on-chain, apply with Nostr — no email, no brochure trust.',
+    'Live Data Engine — 21-country trust cards, Bitcoin-anchored and freshness-checked. Research jurisdictions, model stacks in ₿, verify every claim on-chain, apply with Nostr — no email, no brochure trust.',
   'pitch.cta': 'Explore programs',
   'pitch.evolve': 'Living pitch — updated with every BUILD',
   'pitch.stackSimulator': 'Stack simulator',
@@ -657,7 +666,7 @@ const en: Dict = {
   'pitch.feature.agents.sub': 'Country AI agents for real applicants',
   'pitch.feature.live.title': 'Live Data Engine',
   'pitch.feature.live.sub':
-    '50-country trust cards — freshness rings, Bitcoin proof badges, honest staleness. Verify before you trust.',
+    '21-country trust cards — freshness rings, Bitcoin proof badges, honest staleness. Verify before you trust.',
   'pitch.stack.eyebrow': 'THE STACK',
   'pitch.stack.title': 'Bitcoin rails for sovereign mobility',
   'pitch.stack.satohash.title': 'Satohash.io — Truth You Can Verify',
@@ -898,11 +907,20 @@ const en: Dict = {
   'pitch.hero.jurisdictionsChip': '{count} jurisdictions',
   'pitch.hero.advisorySavingsChip': '~{amount} avg advisory savings',
   'pitch.hero.lightningChip': '{count} Lightning ready',
+  'pitch.hero.corpusBadge': 'Live research corpus',
+  'pitch.hero.flagshipChip': 'Flagship depth {count}',
+  'pitch.hero.watchdogChip': '{count} official sources watched',
+  'pitch.hero.scrollCta': 'Scroll to explore',
+  'pitch.hero.statLabel.corpus': 'Countries tracked',
+  'pitch.hero.statLabel.flagship': 'Flagship depth',
+  'pitch.hero.statLabel.lightning': 'Lightning ready',
+  'pitch.hero.statLabel.watchdog': 'Official sources watched',
+  'pitch.hero.statLabel.anchor': 'Bitcoin-anchored',
   'pitch.explorer': 'Explore',
   'pitch.metric.jurisdictions': 'Jurisdictions tracked',
   'pitch.metric.avgSavings': 'Avg. stack savings',
   'pitch.metric.avgDays': 'Avg. days to residency',
-  'pitch.metric.flagshipDepth': '50/50 flagship depth',
+  'pitch.metric.flagshipDepth': 'Flagship depth',
   'pitch.savings.title': 'Cost & time, modeled — not promised',
   'pitch.savings.headerCopy': 'Modeled comparison of a sovereignty stack — boutique-advisory creation, not a guarantee. Real USD figures and day math, shown transparently.',
   'pitch.savings.headerTip': 'Modeled for member evaluation only — modeled stack economics, not a guarantee. Real USD figures and day math, shown transparently.',

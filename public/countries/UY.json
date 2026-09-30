@@ -7,26 +7,26 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.455Z",
+  "generated_at": "2026-09-30T19:36:50.987Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-22T14:57:07.682Z",
-    "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4",
-    "proof_url": "https://satohash.io/verify/1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4",
-    "ots_path": "/proofs/uruguay-9e3adfb544c1.ots",
-    "in_sync": true
+    "stamped_at": "2026-09-30T19:30:52.092Z",
+    "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6",
+    "proof_url": "https://satohash.io/verify/97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6",
+    "ots_path": "/proofs/uruguay-957aaee425cf.ots",
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -73,10 +73,10 @@
     "typical_investment_usd": 150000,
     "history": [
       {
-        "date": null,
-        "field": "current",
-        "usd": 100000,
-        "note": "Current published minimum — no tracked change history yet."
+        "date": "2026-09-10",
+        "field": "finance.tax_benefits",
+        "usd": 2026,
+        "note": "Territorial system, reformed 1 Jan 2026 (Law 20.446 as amended): 11-year tax holiday on foreign-source income for new ta"
       }
     ],
     "pathways": [
@@ -99,83 +99,127 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
-      "legal": 0,
-      "secondary": 1
+      "official": 3,
+      "legal": 2,
+      "secondary": 0
     },
     "list": [
       {
-        "name": "Official immigration sites",
+        "name": "Legalink — https://www.legalink.net/en/publications/newsletters/virtual-assets-law/4203/",
+        "tier": "legal"
+      },
+      {
+        "name": "Ecija — https://www.ecija.com/en/news-and-insights/uruguays-central-bank-approves-regulations-for-virtual-asset-service-providers-vasps/",
+        "tier": "legal"
+      },
+      {
+        "name": "Official — https://embassyofuruguay.us/",
         "tier": "official"
       },
       {
-        "name": "Our detailed research",
-        "tier": "secondary"
+        "name": "Official — https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.gub.uy/tramites/residencia-legal-temporaria",
+        "tier": "official"
       }
     ],
     "official_urls": [
+      "https://embassyofuruguay.us/",
       "https://www.gub.uy/tramites/residencia-legal",
-      "https://www.minterior.gub.uy"
+      "https://www.gub.uy/tramites/residencia-legal-temporaria",
+      "https://www.minterior.gub.uy",
+      "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements"
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "changed": false,
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.gub.uy/tramites/residencia-legal",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.minterior.gub.uy",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://embassyofuruguay.us/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "9e3adfb544c1b648485a76090f9d97cf7b12c6fc50e866627a10272ec1ca6db1"
-    },
-    {
-      "date": "2026-08-20",
-      "field": "proof",
-      "from": "04c9417462f75268",
-      "to": "re-anchored 9e3adfb544c1b648 (stamp f9b39c52-901)",
-      "hash": "9e3adfb544c1b648485a76090f9d97cf7b12c6fc50e866627a10272ec1ca6db1"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "9e3adfb544c1b648",
-      "to": "re-anchored b4e567c15db4a721 (stamp 1b21a090-c39)",
-      "hash": "b4e567c15db4a72141915e1c134c87801ae52c011e594fa300b47c295a4241ed"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "verification",
-      "from": "corpus BUILD 72",
-      "to": "2026-08-22 verification pass — flagship template entry re-verified, no material change; last_checked refreshed",
-      "hash": null
-    },
-    {
-      "date": "2026-08-22",
-      "field": "proof",
-      "from": "b4e567c15db4a721",
-      "to": "re-anchored 1e9993bb823a6b8f (stamp e0350760-c53)",
-      "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
-    },
-    {
-      "date": "2026-08-22",
+      "date": "2026-09-10",
       "field": "watch.https://www.minterior.gub.uy",
       "from": null,
       "to": "Official source content changed — manual rule review required",
       "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
+    },
+    {
+      "date": "2026-09-10",
+      "field": "finance.tax_benefits",
+      "from": "Territorial tax system attractive for high-net-worth. Crypto gains often favorably treated. Strong residency pathway.",
+      "to": "Territorial system, reformed 1 Jan 2026 (Law 20.446 as amended): 11-year tax holiday on foreign-source income for new tax residents preserved; after the holiday most foreign investment income is taxed at 12% (pensions and Social Security exempt). Tax-residency-via-RE threshold now ~US$2M.",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "legal_compliance.recent_changes",
+      "from": "2025–2026 digital nomad and investor pathways streamlined.",
+      "to": "2025–2026 digital nomad and investor pathways streamlined. Tax reform effective 1 Jan 2026 (Law 20.446 as amended): foreign-income holiday preserved at 11 years, then 12% on most foreign investment income; tax-residency real-estate threshold ~US$2M.",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "last_checked",
+      "from": "2026-08-22",
+      "to": "2026-09-10",
+      "hash": null
+    },
+    {
+      "date": "2026-09-11",
+      "field": "watch.https://www.minterior.gub.uy",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
+    },
+    {
+      "date": "2026-09-11",
+      "field": "proof",
+      "from": "1e9993bb823a6b8f",
+      "to": "re-anchored 97d5230a45b78ff2 (stamp 8bc9645f-55b)",
+      "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
+    },
+    {
+      "date": "2026-09-12",
+      "field": "watch.https://www.minterior.gub.uy",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
+    },
+    {
+      "date": "2026-09-13",
+      "field": "watch.https://www.gub.uy/tramites/residencia-legal",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
     }
   ],
   "sovereignty": {
@@ -183,6 +227,6 @@
     "stacking_synergy": "high",
     "risk_level": "low",
     "lightning_ready": true,
-    "bitcoin_integration": "Growing crypto-friendly environment. Stable democracy with interest in digital assets and fintech. Potential for Bitcoin residency incentives."
+    "bitcoin_integration": "Crypto legal to hold/trade, not legal tender (peso only). Virtual Assets Law 20.345 (2024) regulates VASPs under Central Bank (BCU); BCU approved VASP regs July 2025. No El-Salvador-style adoption."
   }
 }

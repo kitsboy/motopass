@@ -14,6 +14,7 @@ import {
   Layers,
   Radio,
   CheckCircle2,
+  ChevronDown,
   RefreshCw,
   Compass,
   ShieldCheck,
@@ -172,6 +173,17 @@ export function PitchPage() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="hero-elite-copy max-w-2xl"
           >
+            {/* Corpus provenance badge — the data behind every number below is
+                live research, not a brochure. Pulse dot is pure CSS (animate-ping). */}
+            <div className="mb-7 flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-2 rounded-full border border-mp-proof/30 bg-mp-proof/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-mp-proof backdrop-blur-sm">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mp-proof opacity-60" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-mp-proof" />
+                </span>
+                {t('pitch.hero.corpusBadge')}
+              </span>
+            </div>
             <PitchHeroTagline />
             <span className="hero-elite-eyebrow club-eyebrow mt-6 inline-block text-white/75">
               {t('pitch.hero.members')} · {t('tagline')}
@@ -184,6 +196,10 @@ export function PitchPage() {
             {/* Reserved space for live-stats chips so the hero doesn't grow when data arrives */}
             {stats ? (
               <div className="mt-6 flex flex-wrap gap-2">
+                <span className="rounded-xl border border-btc-orange/35 bg-btc-orange/12 px-3 py-1.5 font-mono text-[11px] text-mp-btc drop-shadow-sm">
+                  <ChipCount text={t('pitch.hero.flagshipChip')} count={stats.flagshipCount} />
+                  <span className="text-mp-on-hero-muted">/{stats.programCount}</span>
+                </span>
                 <span className="rounded-xl border border-white/15 bg-white/8 px-3 py-1.5 font-mono text-[11px] text-mp-on-hero-secondary backdrop-blur-sm">
                   <ChipCount text={t('pitch.hero.jurisdictionsChip')} count={stats.programCount} />
                 </span>
@@ -223,6 +239,52 @@ export function PitchPage() {
               </HeroCtaLink>
             </div>
 
+            {/* Live stat band — the four numbers that make the pitch verifiable.
+                Depth is computed from countries.json (never hard-coded): the old
+                "50/50 flagship depth" label shipped a false claim once the corpus
+                became the curated 21. */}
+            <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/12 bg-white/10 backdrop-blur-sm sm:grid-cols-4">
+              <div className="hero-stat-cell bg-[#0b0b12]/70 px-4 py-3">
+                <div className="font-display text-xl font-semibold text-mp-on-hero tabular-nums sm:text-2xl">
+                  {stats ? <CountUp value={stats.programCount} /> : <span className="skeleton-shimmer inline-block h-7 w-10 rounded" />}
+                </div>
+                <div className="mt-0.5 font-chrome text-[10px] uppercase tracking-[0.14em] text-mp-on-hero-muted">
+                  {t('pitch.hero.statLabel.corpus')}
+                </div>
+              </div>
+              <div className="hero-stat-cell bg-[#0b0b12]/70 px-4 py-3">
+                <div className="font-display text-xl font-semibold text-mp-btc tabular-nums sm:text-2xl">
+                  {stats ? (
+                    <>
+                      <CountUp value={stats.flagshipCount} />
+                      <span className="text-mp-on-hero-subtle">/{stats.programCount}</span>
+                    </>
+                  ) : (
+                    <span className="skeleton-shimmer inline-block h-7 w-14 rounded" />
+                  )}
+                </div>
+                <div className="mt-0.5 font-chrome text-[10px] uppercase tracking-[0.14em] text-mp-on-hero-muted">
+                  {t('pitch.hero.statLabel.flagship')}
+                </div>
+              </div>
+              <div className="hero-stat-cell bg-[#0b0b12]/70 px-4 py-3">
+                <div className="font-display text-xl font-semibold text-electric tabular-nums sm:text-2xl">
+                  {stats ? <CountUp value={stats.lightningCount} /> : <span className="skeleton-shimmer inline-block h-7 w-10 rounded" />}
+                </div>
+                <div className="mt-0.5 font-chrome text-[10px] uppercase tracking-[0.14em] text-mp-on-hero-muted">
+                  {t('pitch.hero.statLabel.lightning')}
+                </div>
+              </div>
+              <div className="hero-stat-cell bg-[#0b0b12]/70 px-4 py-3">
+                <div className="flex items-center gap-1.5 font-display text-xl font-semibold text-mp-proof sm:text-2xl">
+                  <CheckCircle2 size={20} aria-hidden />
+                </div>
+                <div className="mt-0.5 font-chrome text-[10px] uppercase tracking-[0.14em] text-mp-on-hero-muted">
+                  {t('pitch.hero.statLabel.anchor')}
+                </div>
+              </div>
+            </div>
+
             <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-mp-on-hero-muted min-h-[138px] sm:min-h-0">
               <BlockHeight variant="hero" />
               <BtcPriceTicker variant="hero" />
@@ -253,6 +315,14 @@ export function PitchPage() {
               </div>
             </div>
           )}
+        </div>
+
+        {/* Scroll affordance — decorative, CSS-animated, reduced-motion safe */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-3 z-[1] hidden justify-center sm:flex" aria-hidden>
+          <div className="hero-scroll-cue flex flex-col items-center gap-1 text-mp-on-hero-subtle">
+            <span className="font-chrome text-[9px] uppercase tracking-[0.24em]">{t('pitch.hero.scrollCta')}</span>
+            <ChevronDown size={14} />
+          </div>
         </div>
       </section>
 

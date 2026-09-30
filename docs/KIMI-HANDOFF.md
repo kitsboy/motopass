@@ -1,3 +1,41 @@
+## Session — 2026-09-30 · STP flagship 21/21, M4/HERMES privacy scrub, stat-band localization, visual check (Buffy)
+
+**Done:** São Tomé and Príncipe promoted to flagship — corpus now **21/21 flagship depth**. Processing time corrected to 3–4 months (official June 2026 memorandum; agency backlog reports noted), gov fees ~$10k (submission+issuance), first Bitcoin proof anchored (Satohash stamp `50c12a92`, pending → block height backfills like the other 20; local OTS receipt via `seal:stamp`), audit trail records provenance. **Privacy scrub:** zero M4/HERMES mentions anywhere user-visible — `agents.how.step2.body` + `agents.kimi.sub` cleaned in all 10 languages, script infra-path comment neutralized, new E2E regression pins the agents page clean forever. Hero stat band localized in all 9 locales. Three more stale-50 gates fixed: `check-intel` (corpus equality), `gen-trust-envelopes` (missing ST ISO2 entry produced a mojibake filename; orphaned retired-corpus envelopes purged — 21/21 now), launch gates regenerated 5/5. New `hero-visual.spec.ts`: layout integrity + screenshots at 390/768/1280, depth asserted **21/21 from live data**, agents privacy scrub.
+
+**Also:** PR #1 is OPEN (not yet merged — verified via API; the `merge_commit_sha` field is just the would-be merge ref). CI runs #125–127 all SUCCESS on the branch. One merge click by Cam (credentials holder) ships everything: `https://github.com/kitsboy/motopass/pull/1` → "Merge pull request" → main → CF Pages auto-deploys.
+
+**Verification:** tsc 0 · unit 306/2 skip · lint clean · build ok · validate:data + validate:stamps (**21/21**) + validate:seal + intel:check (21) + trust:check (**21 envelopes**) + pitch:check all ok · **Playwright 42/42** · **CI run #127 success** on the PR head.
+
+**Decisions:** STP stays honestly agency-sourced (caveats kept in record); a stamp is pending until Bitcoin confirms, like every other stamp. Privacy bar: infrastructure names never ship in user-visible copy, in any language, and a test now enforces it.
+
+**Git State:** branch `docs/meridian-ledger-brief` pushed through `27557c5`; PR into `main` open and green — merge to deploy.
+
+## Session — 2026-09-30 · Hero truth pass + landing header modernization + CI stamp-gate fix (Buffy)
+
+**Done:** The landing hero claimed "50-country" and "50/50 flagship depth" while the live corpus is the curated 21 (20 flagships — São Tomé still in research), and `validate:stamps` was red on every push ("Expected 50/50 flagships, found 20") — the stale threshold had survived the 2026-09-29 schema fix. Fixed at the root: all "50" copy corrected in en + 9 locales; flagship depth is now COMPUTED from `countries.json` ("Flagship depth 20/21", localized via `labelKey` on `PitchMetric`, regression-tested against corpus size); `validate-stamps.mjs` / `launch-gate-check.mjs` track the real corpus with G1 reframed as a stamp-INTEGRITY gate (depth below corpus = research progress, reported honestly, never a blocker; Forge minimum scales ≥2/3 corpus; G4 minimum 21); regenerated `public/launch-gates.json` (was claiming "50/50 · 50 OTS on disk") and re-synced the pitch anchor. Landing hero modernized without losing any element: live-corpus provenance badge (CSS pulse), flagship-depth chip (20/21), new 4-cell live stat band (corpus / flagship depth / Lightning / Bitcoin-anchored) with skeletons + CountUp, scroll cue, stat-cell hover + reduced-motion-safe CSS. Tagline, Ken Burns motion background, CTAs, metrics rotator, block/spot tickers, BUILD chip all preserved.
+
+**Done (E2E follow-ups):** BUILD-id smoke + footer-gap specs no longer fail misleadingly on a stale dist — they assert the BUILD shape and SKIP with explicit "run npm run build" guidance (the sha pins to HEAD at build time); `e2e/support/build.ts` removed; new `e2e/filters-tier-compare.spec.ts` covers the BTC-friendly/BTC-policy tier chips (counts, aria-pressed, URL sync, deep-link, tier independence) and the Compare picker search-filter flow.
+
+**Verification:** `tsc --noEmit` 0; unit 306 passed / 2 skipped; lint clean (same 1 pre-existing GoalFinder warning); production build ok; `pitch:check` ok after `pitch:sync`; **Playwright 37/37** on a fresh HEAD build. E2E is build-staleness-sensitive: rebuild before judging failures (specs now say so themselves).
+
+**Decisions:** The corpus is the truth — no UI or gate hard-codes a size any more. A stamp gate verifies stamp integrity, not research progress; the 20/21 depth is shown honestly everywhere (never "20/20", never "21/21").
+
+**Git State:**
+- Branch: `docs/meridian-ledger-brief`; pushed through `b4eb3a1 feat(hero): modernized landing header on honest 21-country corpus`; tree clean.
+- PR into `main` still pending Cam's credentials/2FA.
+
+## Session — 2026-09-30 · Typecheck debt cleared — `tsc --noEmit` is now 0 errors (Buffy)
+
+**Done:** Fixed the long-standing pre-existing type errors recorded in the sessions below: made `SourceChangeEvent.status` optional (the watchdog's `kind:'rule'` events carry no `status`; the required field made every real rule event fail the type — `AlertInbox` never reads it, the manifest remains the confirmation signal), typed the fixture in `alerts.test.ts` as `SourceChangeEvent` so feed-shape drift now fails at the type level, typed `SourceMonitorPage.tsx` helpers/styles (`CSSProperties` record, `Status`/types hoisted above first use, media-query string moved to its own constant), and switched `ThankYouPage.tsx` to `SeoHead`'s `path` prop (absolute URL derived from `VITE_SITE_URL`). Added E2E coverage for both touched routes: `e2e/routes-sources-thankyou.spec.ts` (7 tests) serves deterministic watchdog feeds and asserts country cards/count-stamps/CHANGED badge, the rule-event diff rail vs coverage events, status filter chips, the derived canonical URL, both `/thank-you` routes, next-step link navigation, and an error-boundary guard.
+
+**Verification:** `tsc --noEmit` **0 errors** (was 13); Vitest **305 passed / 2 skipped**; lint clean (same single pre-existing GoalFinder React Compiler warning); `validate:data` ok (21 programs); production build ok; **full Playwright suite 34/34** on a fresh HEAD build. Operational note: the E2E suite is build-staleness-sensitive — the BUILD-id and footer-gap specs fail against a `dist` from an older commit, so rebuild before judging failures. No behavioral change — types only, plus ThankYou's SEO URL now correctly built from the site env var instead of a hard-coded literal. Local sanity sweep done; no CI/PR action possible (credentials with Cam — see the Git State note below).
+
+**Decisions:** The feed type was lying, not the test fixture — the harness has never written `status` on rule events, so the interface was corrected rather than the data. Build-stamp churn in `src/lib/buildInfo.ts` (generated `BUILD_ID`) is restored after local builds to keep the tree clean.
+
+**Git State:**
+- Branch: `docs/meridian-ledger-brief`; pushed through `3fd1e31 fix(types): resolve last 13 tsc errors`; working tree clean.
+- PR into `main` still pending Cam's credentials/2FA (see 2026-09-29 entry below).
+
 ## Session — 2026-09-29 · CI corpus validation, Compare onboarding, shared page framing (Buffy)
 
 **Done:** Fixed CI's actual blocker by aligning both catalog schemas to the current complete 21-country data corpus; improved `/compare` with a usable Uruguay–Portugal starter selection, working suggested pair, browser-persisted restore/clear behavior, and smoke tests. Unified page frame/top spacing/header width across Programs, Vault, Distressed, BTC Map, Simulator, and Agents (responsive gutters retained), and moved ProofStatusBadge shared constants to remove the Fast Refresh warning. Earlier Programs BTC-ledger tier/freshness upgrades remain included in the same uncommitted worktree.
@@ -6,10 +44,11 @@
 
 **Decisions:** The latest catalog is intentionally 21 records, not an incomplete 50-record historical data export, so the blocking minimum is set to 21 instead of inventing missing programs. Default compare pair is Uruguay + Portugal, both present in this dataset; clearing it leaves the picker/empty state available and does not force a new pair during that page session.
 
-**Git State:**
-- Branch: `docs/meridian-ledger-brief`; changes uncommitted; no push performed. This branch starts at current `origin/main` SHA `460ad30` and must be committed/pushed as a feature branch (never push main directly).
-- SHA: `6df8b74d84adc289cd4cc85bb81dc3beb163fe29`
-- Unpushed commits vs origin/main: `6df8b74 docs: ground sovereign design brief in MotoPass reality` (pre-existing branch commit).
+**Git State:** (updated 2026-09-30)
+- Branch: `docs/meridian-ledger-brief` — committed AND pushed; working tree clean; `HEAD` == `origin/docs/meridian-ledger-brief` == `e5827c20b1065edd33fb786982883470423f42d7`.
+- Branch contains 6 commits ahead of `origin/main` (`460ad30`): `6df8b74` (pre-existing docs commit) + `9281482` CI corpus schema fix · `a832aa9` Programs BTC tiers · `8f49175` unified page frame + Compare onboarding · `e5827c2` Compare E2E + mobile smoke.
+- **PR into `main` is PENDING**: Cam was without GitHub credentials/2FA at handoff time, so the PR could not be opened. When back: open PR `docs/meridian-ledger-brief` → `main` (never push main directly). Pre-filled compare URL was provided; CI will run on the branch.
+- `main` local ref is behind (`9165e96`); do not fast-forward or reset it until the PR merges — `origin/main` remains the authority.
 
 ## Session — 2026-09-29 · Programs ledger BTC tiers and proof/freshness scanability (Buffy)
 

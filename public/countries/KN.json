@@ -7,26 +7,26 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.456Z",
+  "generated_at": "2026-09-30T19:36:50.987Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-22T14:57:14.776Z",
-    "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248",
-    "proof_url": "https://satohash.io/verify/f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248",
-    "ots_path": "/proofs/st-kitts-and-nevis-6a452e9aa052.ots",
-    "in_sync": true
+    "stamped_at": "2026-09-30T19:30:54.413Z",
+    "hash": "e0f6d701ac8f0963a3a71c64e39949cfe7a2d6c467f9a2e6be4fe43990388901",
+    "proof_url": "https://satohash.io/verify/e0f6d701ac8f0963a3a71c64e39949cfe7a2d6c467f9a2e6be4fe43990388901",
+    "ots_path": "/proofs/st-kitts-and-nevis-645d4060bb4f.ots",
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -99,84 +99,117 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 3,
       "legal": 0,
       "secondary": 1
     },
     "list": [
       {
-        "name": "Official CBI unit",
+        "name": "CBI Unit (official) — https://ciu.gov.kn/cbi-options/",
         "tier": "official"
       },
       {
-        "name": "Our research",
+        "name": "Eastern Caribbean Central Bank — https://www.eccb-centralbank.org/blogs/understanding-cryptocurrency-in-the-eccu",
+        "tier": "official"
+      },
+      {
+        "name": "Henley & Partners — https://www.henleyglobal.com/citizenship-investment/st-kitts-nevis",
         "tier": "secondary"
+      },
+      {
+        "name": "Official — https://www.gov.kn/",
+        "tier": "official"
       }
     ],
     "official_urls": [
-      "https://www.ciu.gov.kn"
+      "https://ciu.gov.kn/",
+      "https://ciu.gov.kn/cbi-options/",
+      "https://www.ciu.gov.kn",
+      "https://www.gov.kn/"
     ]
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.ciu.gov.kn",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.gov.kn/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://ciu.gov.kn/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://ciu.gov.kn/cbi-options/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2"
-    },
-    {
-      "date": "2026-08-20",
-      "field": "proof",
-      "from": "03027c9c0a995a2f",
-      "to": "re-anchored 6a452e9aa0522016 (stamp 1f59a490-61f)",
-      "hash": "6a452e9aa0522016eb03196c306f5964c16337d8a4b731309860e94b7b0f78d2"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "6a452e9aa0522016",
-      "to": "re-anchored 8cecba069c0f4b40 (stamp 2e3f88b7-7d3)",
-      "hash": "8cecba069c0f4b4059f56581900a2030efcdddfe19c2dea4262f8cde57e3893c"
-    },
-    {
-      "date": "2026-08-22",
+      "date": "2026-09-10",
       "field": "watch.https://www.ciu.gov.kn",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "8cecba069c0f4b4059f56581900a2030efcdddfe19c2dea4262f8cde57e3893c"
+      "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
     },
     {
-      "date": "2026-08-22",
-      "field": "pathways.legal_compliance.critical_tests",
-      "from": "corpus BUILD 72",
-      "to": "SGF -> SISC rename; real estate floor corrected $400k -> $325k (2024 OECS harmonization); 2026 framework (interviews, proposed 30-day visit); US visa restriction noted",
+      "date": "2026-09-10",
+      "field": "critical_tests.notes",
+      "from": "Premium Caribbean passport (~150+ visa-free); no personal income, capital gains, or inheritance tax. No residency requirement today, but a 30-day visit within 5 years is proposed under the 2026 framework — monitor.",
+      "to": "Premium Caribbean passport (~150+ visa-free); no personal income, capital gains, or inheritance tax. No residency requirement in force today — the proposed 30-day visit within 5 years is NOT yet law (Aug 2026); mandatory interviews already apply; 2026 overhaul plans genuine-link rules and phasing out donation-only citizenship.",
       "hash": null
     },
     {
-      "date": "2026-08-22",
-      "field": "proof",
-      "from": "8cecba069c0f4b40",
-      "to": "re-anchored f2209308668869dc (stamp 41f66fcd-c03)",
-      "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
+      "date": "2026-09-10",
+      "field": "legal_compliance.recent_changes",
+      "from": "Sustainable Growth Fund (SGF) renamed Sustainable Island State Contribution (SISC), $250k; the 2026 framework adds mandatory applicant interviews and proposes a 30-day visit requirement within 5 years; US visa restriction on St Kitts and Nevis nationals (Presidential Proclamation 10998, Jan 2026) — monitor US access impact.",
+      "to": "Sustainable Growth Fund (SGF) renamed Sustainable Island State Contribution (SISC), $250k; the 2026 framework adds mandatory applicant interviews and proposes a 30-day visit requirement within 5 years; US visa restriction on St Kitts and Nevis nationals (Presidential Proclamation 10998, Jan 2026) — monitor US access impact.",
+      "hash": null
     },
     {
-      "date": "2026-08-22",
+      "date": "2026-09-10",
+      "field": "last_checked",
+      "from": "2026-08-22",
+      "to": "2026-09-10",
+      "hash": null
+    },
+    {
+      "date": "2026-09-11",
+      "field": "proof",
+      "from": "f2209308668869dc",
+      "to": "re-anchored e0f6d701ac8f0963 (stamp a236d963-f87)",
+      "hash": "e0f6d701ac8f0963a3a71c64e39949cfe7a2d6c467f9a2e6be4fe43990388901"
+    },
+    {
+      "date": "2026-09-12",
       "field": "watch.https://www.ciu.gov.kn",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "f2209308668869dc2de1b2e5b67478405a4920d2a3802943b04e6d8c2c0cd248"
+      "hash": "e0f6d701ac8f0963a3a71c64e39949cfe7a2d6c467f9a2e6be4fe43990388901"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.ciu.gov.kn",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "ffa632fcb9b8145e"
+    },
+    {
+      "date": "2026-09-26",
+      "field": "watch.https://www.ciu.gov.kn",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "32e4c22815693f8f"
     }
   ],
   "sovereignty": {
@@ -184,6 +217,6 @@
     "stacking_synergy": "high",
     "risk_level": "low",
     "lightning_ready": true,
-    "bitcoin_integration": "One of the oldest and most respected CBI programs. Crypto-friendly in practice for high-net-worth applicants. Accepts digital asset investments in some cases."
+    "bitcoin_integration": "Bitcoin/crypto legal to hold privately but NOT legal tender (EC dollar only). ECCB cautious; harmonised Virtual Asset Business Act requires crypto businesses to register + AML/CFT. No BTC legal-tender law; no official Bitcoin adoption."
   }
 }

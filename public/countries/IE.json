@@ -7,25 +7,25 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.470Z",
+  "generated_at": "2026-09-30T19:36:50.989Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:22:29.176Z",
-    "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825",
-    "proof_url": "https://satohash.io/verify/a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825",
-    "ots_path": "/proofs/ireland-42ae6c4ec985.ots",
+    "stamped_at": "2026-09-30T19:31:24.897Z",
+    "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7",
+    "proof_url": "https://satohash.io/verify/73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7",
+    "ots_path": "/proofs/ireland-39d27d5284d8.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -99,103 +99,143 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 5,
       "legal": 0,
       "secondary": 1
     },
     "list": [
       {
-        "name": "Official immigration portals",
+        "name": "Revenue (Irish Tax and Customs) — https://www.revenue.ie/en/companies-and-charities/financial-services/cryptocurrencies/index.aspx",
         "tier": "official"
       },
       {
-        "name": "MotoPass research BUILD-011",
+        "name": "Revenue (Tax and Duty Manual Part 02-01-03) — https://www.revenue.ie/en/tax-professionals/tdm/income-tax-capital-gains-tax-corporation-tax/part-02/02-01-03.pdf",
+        "tier": "official"
+      },
+      {
+        "name": "Department of Justice (gov.ie) — https://gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
+        "tier": "official"
+      },
+      {
+        "name": "Citizens Information (statutory body) — https://citizensinformation.ie/en/money-and-tax/personal-finance/savings-and-investments/crypto/",
         "tier": "secondary"
+      },
+      {
+        "name": "Official — https://www.dfa.ie/",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
+        "tier": "official"
       }
     ],
     "official_urls": [
-      "https://www.irishimmigration.ie",
       "https://enterprise.gov.ie",
-      "https://www.centralbank.ie"
+      "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
+      "https://www.centralbank.ie",
+      "https://www.dfa.ie/",
+      "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
+      "https://www.irishimmigration.ie",
+      "https://www.revenue.ie/"
     ]
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.irishimmigration.ie",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://enterprise.gov.ie",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.centralbank.ie",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.dfa.ie/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.revenue.ie/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "42ae6c4ec985beaad72da5ea567019d7d1f950853cb5b9214ecd4dd613ba876c"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "8d8a7a5b02f47c2a",
-      "to": "re-anchored 42ae6c4ec985beaa (stamp 8c1a5c33-336)",
-      "hash": "42ae6c4ec985beaad72da5ea567019d7d1f950853cb5b9214ecd4dd613ba876c"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "42ae6c4ec985beaa",
-      "to": "re-anchored a510e269112f00c6 (stamp 0d2c76be-0c9)",
-      "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
-    },
-    {
-      "date": "2026-08-21",
+      "date": "2026-09-15",
       "field": "watch.https://enterprise.gov.ie",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
+      "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
     },
     {
-      "date": "2026-08-22",
-      "field": "watch.https://enterprise.gov.ie",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
-    },
-    {
-      "date": "2026-08-22",
+      "date": "2026-09-15",
       "field": "watch.https://www.centralbank.ie",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
+      "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
     },
     {
-      "date": "2026-08-22",
+      "date": "2026-09-15",
       "field": "watch.https://enterprise.gov.ie",
       "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "a510e269112f00c67a92346b20f3297accb64eb949b3ee9df2c0f7fb080a5825"
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "ac12f1581c6c88ce"
     },
     {
-      "date": "2026-08-22",
-      "field": "last_checked.freshness_sweep",
-      "from": "2026-07-02",
-      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
-      "hash": null
+      "date": "2026-09-15",
+      "field": "watch.https://www.irishimmigration.ie",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "67a41a12fa7d4696"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.centralbank.ie",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "2260ad08a61ef8f4"
+    },
+    {
+      "date": "2026-09-20",
+      "field": "watch.https://www.centralbank.ie",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "600000389968dd48"
+    },
+    {
+      "date": "2026-09-25",
+      "field": "watch.https://enterprise.gov.ie",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "b175b5bf4a91bbbf"
+    },
+    {
+      "date": "2026-09-26",
+      "field": "watch.https://enterprise.gov.ie",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "a0fd50caa8f77b72"
     }
   ],
   "sovereignty": {
@@ -203,6 +243,6 @@
     "stacking_synergy": "low",
     "risk_level": "low",
     "lightning_ready": false,
-    "bitcoin_integration": "Ireland offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+    "bitcoin_integration": "Bitcoin (and crypto) is legal in Ireland and fully recognized in tax law, but Receipt of Revenue guidance is neutral and non-promotional: there are no special tax rules for crypto-assets, and they are treated under general income tax, Capital Gains Tax and CAT principles. Revenue endorsed the CJEU Hedqvist ruling that bitcoin is exempt from VAT as a currency-like negotiable instrument. Ireland is aligned with EU DAC8/CARF automatic reporting of crypto from 1 January 2026; there is no bitcoin-friendly tax incentive."
   }
 }

@@ -61,7 +61,7 @@ const SHAPE_RULES = [
 /**
  * Known false positives — allowlisted by PATH **and** LINE SHAPE (and rule),
  * never by path alone, so a *different* finding in the same file still fails.
- * Convention follows kb-leakcheck.sh (~/.hermes/scripts/kb-leakcheck.sh):
+ * Convention follows kb-leakcheck.sh (the house kb-leakcheck convention):
  * exact path + the reason in a comment; never loosen a rule to silence a hit.
  * Every suppression is PRINTED as `ALLOWLISTED …` — silence-with-a-record,
  * never silence. This list ships WITH the gate, so adoption stays one commit.

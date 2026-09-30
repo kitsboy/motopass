@@ -7,25 +7,25 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.467Z",
+  "generated_at": "2026-09-30T19:36:50.989Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:18:47.068Z",
-    "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84",
-    "proof_url": "https://satohash.io/verify/393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84",
-    "ots_path": "/proofs/argentina-36eb480827c9.ots",
+    "stamped_at": "2026-09-30T19:31:25.902Z",
+    "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca",
+    "proof_url": "https://satohash.io/verify/0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca",
+    "ots_path": "/proofs/argentina-302a948d1da4.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -99,103 +99,143 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 6,
       "legal": 0,
-      "secondary": 1
+      "secondary": 0
     },
     "list": [
       {
-        "name": "Official immigration portals",
+        "name": "AFIP/ARCA (official tax authority) — https://www.afip.gob.ar/economia-digital/criptoactivos/impuesto-a-las-ganancias.asp",
         "tier": "official"
       },
       {
-        "name": "MotoPass research BUILD-011",
-        "tier": "secondary"
+        "name": "CNV (official securities regulator) — https://www.argentina.gob.ar/cnv",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://eeeuu.cancilleria.gob.ar/",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.argentina.gob.ar/migraciones/residencias",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
+        "tier": "official"
       }
     ],
     "official_urls": [
+      "https://eeeuu.cancilleria.gob.ar/",
+      "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
+      "https://www.argentina.gob.ar/migraciones/residencias",
+      "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
       "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-      "https://www.migraciones.gob.ar",
-      "https://www.boletinoficial.gob.ar"
+      "https://www.boletinoficial.gob.ar",
+      "https://www.migraciones.gob.ar"
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "changed": false,
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.migraciones.gob.ar",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.boletinoficial.gob.ar",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://eeeuu.cancilleria.gob.ar/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.argentina.gob.ar/migraciones/residencias",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "deb6a6ac56fd242b",
-      "to": "re-anchored 36eb480827c95e98 (stamp 9cc32569-3cc)",
-      "hash": "36eb480827c95e98fad6eff1f50416e18972716fc8d5f3307c51697a68ad28ce"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "36eb480827c95e98",
-      "to": "re-anchored 393ad5b1448f00fd (stamp a5b919e6-941)",
-      "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84"
-    },
-    {
-      "date": "2026-08-21",
+      "date": "2026-09-13",
       "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84"
+      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
     },
     {
-      "date": "2026-08-22",
-      "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84"
-    },
-    {
-      "date": "2026-08-22",
+      "date": "2026-09-13",
       "field": "watch.https://www.migraciones.gob.ar",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84"
+      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
     },
     {
-      "date": "2026-08-22",
+      "date": "2026-09-14",
       "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84"
+      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
     },
     {
-      "date": "2026-08-22",
+      "date": "2026-09-14",
       "field": "watch.https://www.migraciones.gob.ar",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "393ad5b1448f00fdff5aac987d59292d297f932a6fdcac6fca85e8ad6b2a6d84"
+      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
     },
     {
-      "date": "2026-08-22",
-      "field": "last_checked.freshness_sweep",
-      "from": "2026-07-02",
-      "to": "Re-verified 2026-08-22 — no material change found vs corpus (sources reachable/confirmed); last_checked advanced 2026-07-02->2026-08-22",
-      "hash": null
+      "date": "2026-09-15",
+      "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.migraciones.gob.ar",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "proof",
+      "from": "c7eba821b75c0d69",
+      "to": "re-anchored 0d1fa5959e489423 (stamp e0db9473-314)",
+      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "91451ce7cd5c52de"
     }
   ],
   "sovereignty": {
@@ -203,6 +243,6 @@
     "stacking_synergy": "high",
     "risk_level": "medium",
     "lightning_ready": true,
-    "bitcoin_integration": "Argentina offers residency or citizenship pathways with growing crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+    "bitcoin_integration": "Pro-Bitcoin under Milei: Bitcoin contracts legalised 2023, free currency circulation championed; BTC still NOT legal tender (Constitution reserves currency issuance to central bank). VASP registration under CNV + AML (Law 27,739)."
   }
 }

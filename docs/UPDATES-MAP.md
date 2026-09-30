@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.08.20-72 · **Last updated:** 2026-08-22
+**BUILD:** 2026.09.17-d6eb831 · **Last updated:** 2026.09.17
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
 
@@ -11,7 +11,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 | Area | Status | Notes |
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.08.20-72 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
+| **React app** | ✅ 2026.09.17-d6eb831 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
 | **Country intel** | ✅ 24 fresh / 26 stale | 24/50 programs deepened & verified (5 batches, Aug 21–22) |
 | **Research pipeline** | 📋 Blueprinted | `docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md` — source-trust engine spec |
 | **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
@@ -33,6 +33,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.09.17-d6eb831** | 2026.09.17 | `a494e07` | feat(verify): Bitcoin proof panel + proven-then vs valid-now status badge |
 | **2026.08.22** | 2026-08-22 | `d9a86f6` | Claude research-pipeline prompt — source-trust engine blueprint (478-line spec) |
 | **2026.08.22** | 2026-08-22 | `806977f` | Batch 5 (Greece/Vanuatu/Turkey/Mauritius) + CIES/LTR thresholds + Satohash re-stamp 10/24 |
 | **2026.08.22** | 2026-08-22 | `0dc825f` | Batch 4 (HK/Thailand/Mexico/Cyprus) — Thailand payment-tool ban added |

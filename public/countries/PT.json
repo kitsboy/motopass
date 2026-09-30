@@ -7,25 +7,25 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.459Z",
+  "generated_at": "2026-09-30T19:36:50.986Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-22T06:21:18.845Z",
-    "hash": "0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b",
-    "proof_url": "https://satohash.io/verify/0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b",
-    "ots_path": "/proofs/portugal-c538408c3f58.ots",
+    "stamped_at": "2026-09-30T19:30:50.074Z",
+    "hash": "f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db",
+    "proof_url": "https://satohash.io/verify/f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db",
+    "ots_path": "/proofs/portugal-ae7e6b71f116.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -94,91 +94,138 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 3,
       "legal": 0,
-      "secondary": 1
+      "secondary": 3
     },
     "list": [
       {
-        "name": "Official updates",
+        "name": "Autoridade Tributária e Aduaneira (AT) - Portugal Tax Authority — https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Criptoativos.pdf",
         "tier": "official"
       },
       {
-        "name": "Industry analysis",
+        "name": "Autoridade Tributária e Aduaneira (AT) — https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/informacoes_vinculativas/rendimento/cirs/Documents/PIV_29052.pdf",
         "tier": "secondary"
+      },
+      {
+        "name": "Get Golden Visa — https://getgoldenvisa.com/portugal-golden-visa-program",
+        "tier": "secondary"
+      },
+      {
+        "name": "Moving2.com — https://movingto.com/b/portugal-golden-visa-property-to-private-capital",
+        "tier": "secondary"
+      },
+      {
+        "name": "Official — https://www.portaldasfinancas.gov.pt/",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.portugal.gov.pt/",
+        "tier": "official"
       }
     ],
     "official_urls": [
+      "https://aima.gov.pt",
+      "https://aima.gov.pt/pt/a-aima/perguntas-frequentes-faqs/autorizacao-de-residencia-para-investimento-ari/faq-residence-permit-for-investment-activity-ari",
+      "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a",
       "https://imigrante.sef.pt",
+      "https://www.portaldasfinancas.gov.pt/",
       "https://www.portugal.gov.pt",
-      "https://aima.gov.pt"
+      "https://www.portugal.gov.pt/"
     ]
   },
   "watch": {
-    "changed": false,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "changed": true,
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://imigrante.sef.pt",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.portugal.gov.pt",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.portaldasfinancas.gov.pt/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.portugal.gov.pt/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://aima.gov.pt/pt/a-aima/perguntas-frequentes-faqs/autorizacao-de-residencia-para-investimento-ari/faq-residence-permit-for-investment-activity-ari",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
+      "date": "2026-09-10",
+      "field": "verification",
+      "from": "corpus sweep 2026-08-22",
+      "to": "re-verified, no material change — Golden-visa fund route €500k + Lei Orgânica 1/2026 naturalisation (7y EU-CPLP / 10y others) confirmed current (bitizenship 2026-09-10); no new golden-visa threshold change verified",
+      "hash": null
+    },
+    {
+      "date": "2026-09-11",
+      "field": "watch.https://www.portugal.gov.pt",
       "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "c538408c3f58df15f742bd7c985af91fafefca90f18812f6c0d125aa9d1a351a"
+      "to": "Official source content changed — manual rule review required",
+      "hash": "f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db"
     },
     {
-      "date": "2026-08-20",
+      "date": "2026-09-12",
+      "field": "watch.https://www.portugal.gov.pt",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db"
+    },
+    {
+      "date": "2026-09-13",
       "field": "proof",
-      "from": "92358986c6946d3c",
-      "to": "re-anchored c538408c3f58df15 (stamp 58a7e0e4-de0)",
-      "hash": "c538408c3f58df15f742bd7c985af91fafefca90f18812f6c0d125aa9d1a351a"
+      "from": "f37c397dbe7479ec",
+      "to": "re-anchored f3e40457dce4d625 (stamp be0d6712-2c1)",
+      "hash": "f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db"
     },
     {
-      "date": "2026-08-20",
-      "field": "watch.official_urls",
-      "from": "https://imigrante.sef.pt",
-      "to": "added https://aima.gov.pt (SEF successor agency, verified live 2026-08-20)",
-      "hash": null
+      "date": "2026-09-15",
+      "field": "watch.https://www.portugal.gov.pt",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db"
     },
     {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "c538408c3f58df15",
-      "to": "re-anchored 87177a9450d09131 (stamp dff933e5-eb5)",
-      "hash": "87177a9450d09131bc3445575e3a9d361e2f2eb11772d7d85ae7cf53fb47e5f4"
+      "date": "2026-09-15",
+      "field": "watch.https://imigrante.sef.pt",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "fa29f71bffb918bd"
     },
     {
-      "date": "2026-08-21",
-      "field": "finance.crypto_friendly_score",
-      "from": "6",
-      "to": "7",
-      "hash": "0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b"
+      "date": "2026-09-24",
+      "field": "watch.https://www.portugal.gov.pt",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "121a114ef7525582"
     },
     {
-      "date": "2026-08-22",
-      "field": "proof",
-      "from": "87177a9450d09131",
-      "to": "re-anchored 0fbde9af40b0c5ef (stamp ded8e251-5e5)",
-      "hash": "0fbde9af40b0c5ef82a40cd614383fd22abf337e85b8cde8c41641f10cef587b"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "compliance_clock.critical_tests.legal_compliance",
-      "from": "corpus BUILD 72",
-      "to": "Nationality reform Lei Orgânica 1/2026 (in force 19 May 2026): naturalisation 7 yrs EU/CPLP / 10 yrs others (was 5), clock from first residence card; citizenship_eligibility_years 5 -> 10",
-      "hash": null
+      "date": "2026-09-25",
+      "field": "watch.https://www.portugal.gov.pt",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "073387d49817e6b6"
     }
   ],
   "sovereignty": {
@@ -186,6 +233,6 @@
     "stacking_synergy": "medium",
     "risk_level": "medium",
     "lightning_ready": false,
-    "bitcoin_integration": "Was very crypto-friendly (NHR regime). Recent changes to tax rules for crypto. Still attractive but monitor updates. Golden Visa evolving."
+    "bitcoin_integration": "Bitcoin is legal and unregulated as a currency in Portugal. Portugal was historically one of the most crypto-friendly jurisdictions in the EU (tax-free crypto until 2023). Since 1 January 2023 (State Budget Law 24-D/2022) a crypto-asset tax regime applies: capital gains on crypto held for less than 365 days are taxed as Category G gains at a flat 28% (or included in aggregated income), while gains on crypto held for 365 days or more are excluded from tax for most residents. The Portuguese Tax Authority (Autoridade Tributária) issued official guidance and binding rulings (e.g. Processo 29052) confirming this."
   }
 }

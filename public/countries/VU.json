@@ -7,25 +7,25 @@
     "region": "Oceania",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.466Z",
+  "generated_at": "2026-09-30T19:36:50.990Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-22T06:21:22.666Z",
-    "hash": "3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34",
-    "proof_url": "https://satohash.io/verify/3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34",
-    "ots_path": "/proofs/vanuatu-321095951799.ots",
+    "stamped_at": "2026-09-30T19:31:29.514Z",
+    "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27",
+    "proof_url": "https://satohash.io/verify/dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27",
+    "ots_path": "/proofs/vanuatu-8973b5e31268.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -99,77 +99,76 @@
   },
   "sources": {
     "tiers": {
-      "official": 0,
-      "legal": 0,
-      "secondary": 2
+      "official": 3,
+      "legal": 2,
+      "secondary": 1
     },
     "list": [
       {
-        "name": "Vanuatu DSP",
+        "name": "Vanuatu Citizenship Office & Commission (official) — https://vancitizenship.gov.vu/",
+        "tier": "official"
+      },
+      {
+        "name": "Vanuatu Financial Services Commission (official) — https://www.vfsc.vu/virtual-asset-service-provider/",
+        "tier": "official"
+      },
+      {
+        "name": "Financial Center Association of Vanuatu — https://fca.vu/vanuatu-passes-virtual-asset-service-providers-vasp-act/",
+        "tier": "legal"
+      },
+      {
+        "name": "IMI Daily — https://www.imidaily.com/analysis/citizenship-with-bitcoin-source-of-funds/",
         "tier": "secondary"
       },
       {
-        "name": "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
-        "tier": "secondary"
+        "name": "WikiCrypto (2026 Guide) — https://wikicrypto.news/regulation/vanuatu/",
+        "tier": "legal"
+      },
+      {
+        "name": "Vanuatu Passport (licensed CBI agent) — https://www.vanuatupassport.vu/vanuatu-citizenship-program/",
+        "tier": "official"
       }
     ],
     "official_urls": [
       "https://cilc.vu",
-      "https://immigration.gov.vu"
+      "https://immigration.gov.vu",
+      "https://vancitizenship.gov.vu/",
+      "https://www.gov.vu",
+      "https://www.vfsc.vu/virtual-asset-service-provider/"
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "changed": false,
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://cilc.vu",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://immigration.gov.vu",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.gov.vu",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://vancitizenship.gov.vu/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.vfsc.vu/virtual-asset-service-provider/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "3210959517994f765209cd1362c3fa8ab33d442ffdddbef366b0cbc063dfc14f"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "47b05762934d0bd9",
-      "to": "re-anchored 3210959517994f76 (stamp c84de88c-b2c)",
-      "hash": "3210959517994f765209cd1362c3fa8ab33d442ffdddbef366b0cbc063dfc14f"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "3210959517994f76",
-      "to": "re-anchored 83771c5faafe612a (stamp 203518a5-a9e)",
-      "hash": "83771c5faafe612ad36e9034634e81db7dd70a92d8853637af8b735471292c51"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "watch.https://immigration.gov.vu",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "83771c5faafe612ad36e9034634e81db7dd70a92d8853637af8b735471292c51"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "finance.tax_benefits",
-      "from": "No income tax",
-      "to": "No personal income tax (Wikipedia)",
-      "hash": "3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34"
-    },
     {
       "date": "2026-08-22",
       "field": "proof",
@@ -183,6 +182,48 @@
       "from": "corpus BUILD 72",
       "to": "Crypto legal — ban lifted July 2021 (Finance Magnates via Wikipedia); VCP $130k unchanged",
       "hash": null
+    },
+    {
+      "date": "2026-08-26",
+      "field": "watch.https://immigration.gov.vu",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
+    },
+    {
+      "date": "2026-08-29",
+      "field": "proof",
+      "from": "3012b5f3857415cc",
+      "to": "re-anchored dc7586d2d89250d0 (stamp b43f3de3-092)",
+      "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
+    },
+    {
+      "date": "2026-08-31",
+      "field": "watch.https://immigration.gov.vu",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
+    },
+    {
+      "date": "2026-09-09",
+      "field": "watch.https://immigration.gov.vu",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://immigration.gov.vu",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://immigration.gov.vu",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "421bef18e0bea0c1"
     }
   ],
   "sovereignty": {
@@ -190,6 +231,6 @@
     "stacking_synergy": "medium",
     "risk_level": "medium",
     "lightning_ready": true,
-    "bitcoin_integration": "Fast CBI program, accepts crypto payments in practice. Fast passport, Bitcoin-friendly agents Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10."
+    "bitcoin_integration": "Emerging but business-friendly framework: Vanuatu passed the Virtual Asset Service Providers (VASP) Act No. 3 of 2025 (passed 26 March 2025, in force 12 May 2025), which explicitly references Bitcoin and gives the VFSC licensing/supervision authority over crypto businesses (exchanges, custodians, token offerings, a fintech sandbox), aligning with FATF travel-rule and APG/IOSCO standards. Owning, buying, selling and using Bitcoin is legal for individuals, but crypto is NOT legal tender (the national currency is the vatu, VUV); the VFSC warns there is no statutory compensation for crypto losses and steers retail investors away without full risk awareness."
   }
 }

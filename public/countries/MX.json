@@ -7,25 +7,25 @@
     "region": "North America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.465Z",
+  "generated_at": "2026-09-30T19:36:50.990Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:17:21.308Z",
-    "hash": "b08619ddb123a7521f25a0777c841d262971f254b4ffc4a76f14e6e3b57e5f37",
-    "proof_url": "https://satohash.io/verify/b08619ddb123a7521f25a0777c841d262971f254b4ffc4a76f14e6e3b57e5f37",
-    "ots_path": "/proofs/mexico-c336294e6264.ots",
+    "stamped_at": "2026-09-30T19:31:31.650Z",
+    "hash": "94f9beba31b597a1c1a62653b0b7aff41499561ddf47344dd356febfd42c26e5",
+    "proof_url": "https://satohash.io/verify/94f9beba31b597a1c1a62653b0b7aff41499561ddf47344dd356febfd42c26e5",
+    "ots_path": "/proofs/mexico-67ea33c8e699.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -69,26 +69,38 @@
     "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
   },
   "threshold": {
-    "min_investment_usd": 40000,
-    "typical_investment_usd": 80000,
+    "min_investment_usd": 74000,
+    "typical_investment_usd": 120000,
     "history": [
       {
-        "date": null,
-        "field": "current",
-        "usd": 40000,
-        "note": "Current published minimum — no tracked change history yet."
+        "date": "2026-09-10",
+        "field": "pathways.investor.min+notes",
+        "usd": 300000,
+        "note": "300000 / MXN 5,378,664 fixed (2026)"
+      },
+      {
+        "date": "2026-09-10",
+        "field": "finance.min_investment_usd",
+        "usd": 74000,
+        "note": "74000"
+      },
+      {
+        "date": "2026-09-10",
+        "field": "finance.typical_investment_usd",
+        "usd": 120000,
+        "note": "120000"
       }
     ],
     "pathways": [
       {
         "type": "temporary_resident",
         "label": "Temporary resident (economic solvency)",
-        "min_investment_usd": 40000
+        "min_investment_usd": 74000
       },
       {
         "type": "investor",
         "label": "Investor visa (capital investment)",
-        "min_investment_usd": 250000
+        "min_investment_usd": 300000
       },
       {
         "type": "permanent_resident",
@@ -99,69 +111,143 @@
   },
   "sources": {
     "tiers": {
-      "official": 0,
-      "legal": 0,
+      "official": 1,
+      "legal": 3,
       "secondary": 2
     },
     "list": [
       {
-        "name": "INM",
+        "name": "Global Legal Insights (Mexico chapter by Ramos, Ripoll & Schuster) — https://www.globallegalinsights.com/practice-areas/blockchain-cryptocurrency-laws-and-regulations/mexico/",
+        "tier": "legal"
+      },
+      {
+        "name": "Lightspark — https://www.lightspark.com/knowledge/is-crypto-legal-in-mexico",
+        "tier": "legal"
+      },
+      {
+        "name": "CMS (international law firm) — https://cms.law/en/int/expert-guides/cms-expert-guide-to-crypto-regulation/mexico",
+        "tier": "legal"
+      },
+      {
+        "name": "Viamexico (Mexico immigration advisory) — https://viamexico.com/all-articles/mexico-residency-financial-requirements",
         "tier": "secondary"
       },
       {
-        "name": "MotoPass research corpus · last_checked 2026-07-02 · block 958093",
+        "name": "TaxAtlas — https://taxatlas.io/country/mexico/crypto-tax",
         "tier": "secondary"
+      },
+      {
+        "name": "Official — https://www.gob.mx/sre",
+        "tier": "official"
       }
     ],
     "official_urls": [
+      "https://dof.gob.mx",
+      "https://embamex.sre.gob.mx/eua/",
+      "https://www.gob.mx",
+      "https://www.gob.mx/sre",
       "https://www.inm.gob.mx",
-      "https://www.gob.mx"
+      "https://www.inm.gob.mx/",
+      "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html"
     ]
   },
   "watch": {
-    "changed": false,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "changed": true,
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.inm.gob.mx",
-        "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "unreachable",
+        "last_probed": "2026-09-15T15:07:07.008Z"
       },
       {
         "url": "https://www.gob.mx",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html",
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://dof.gob.mx",
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.gob.mx/sre",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://embamex.sre.gob.mx/eua/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.inm.gob.mx/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
+      "date": "2026-09-14",
+      "field": "watch.https://www.gob.mx",
       "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "c336294e6264fbc187185fcb99881fe6724d8475ffe9a04408dae7d976bcb90f"
+      "to": "Official source content changed — manual rule review required",
+      "hash": "4db3d9b39f44851374f2ce2877583f2b4f0c0658e4a23a8a81e59a828df1b026"
     },
     {
-      "date": "2026-08-20",
+      "date": "2026-09-14",
       "field": "proof",
-      "from": "7ac3fa094a892da4",
-      "to": "re-anchored c336294e6264fbc1 (stamp 999d9a7e-468)",
-      "hash": "c336294e6264fbc187185fcb99881fe6724d8475ffe9a04408dae7d976bcb90f"
+      "from": "478df2fad8e25bad",
+      "to": "re-anchored 4db3d9b39f448513 (stamp 6339e80b-413)",
+      "hash": "4db3d9b39f44851374f2ce2877583f2b4f0c0658e4a23a8a81e59a828df1b026"
     },
     {
-      "date": "2026-08-21",
+      "date": "2026-09-15",
+      "field": "watch.https://www.gob.mx",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "4db3d9b39f44851374f2ce2877583f2b4f0c0658e4a23a8a81e59a828df1b026"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.gob.mx",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "760c4cc3ec9e8418"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://dof.gob.mx",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "8093bd1d0b00be57"
+    },
+    {
+      "date": "2026-09-17",
       "field": "proof",
-      "from": "c336294e6264fbc1",
-      "to": "re-anchored b08619ddb123a752 (stamp 50affa60-c6e)",
-      "hash": "b08619ddb123a7521f25a0777c841d262971f254b4ffc4a76f14e6e3b57e5f37"
+      "from": "4db3d9b39f448513",
+      "to": "re-anchored 94f9beba31b597a1 (stamp 2a547e8c-751)",
+      "hash": "94f9beba31b597a1c1a62653b0b7aff41499561ddf47344dd356febfd42c26e5"
     },
     {
-      "date": "2026-08-22",
-      "field": "legal_compliance",
-      "from": "corpus BUILD 72",
-      "to": "Legal since 2017; FinTech Law regulates crypto as virtual assets (taxation case-by-case)",
-      "hash": null
+      "date": "2026-09-19",
+      "field": "watch.https://dof.gob.mx",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "5df81765da60a392"
+    },
+    {
+      "date": "2026-09-26",
+      "field": "watch.https://dof.gob.mx",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "e11ae6b52327e299"
     }
   ],
   "sovereignty": {
@@ -169,6 +255,6 @@
     "stacking_synergy": "medium",
     "risk_level": "medium",
     "lightning_ready": true,
-    "bitcoin_integration": "Temporary and permanent residency paths, active Bitcoin community. Bitcoin circular economies in CDMX and beach towns Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10."
+    "bitcoin_integration": "Mexico regulates crypto under the 2018 Law to Regulate Financial Technology Institutions ('Fintech Law' / LRITF) which defines 'virtual assets', elaborated by Banxico Circular 4/2019. Virtual assets are NOT legal tender (Article 30 LRITF explicitly states they are neither legal tender nor foreign currency, reaffirmed by Banxico/SHCP/CNBV 2021 warning). Financial entities may only engage in virtual-asset operations for internal purposes with prior Banxico authorization and are prohibited from offering exchange/custody/transfer services to customers. Non-financial individuals and companies may legally own, hold, trade and exchange crypto and operate exchanges/custodians without a specific license (subject to AML obligations; a July 16 2025 AML-law reform classifies VASPs as Designated Non-Financial Businesses with travel-rule, KYC and transaction-reporting duties). Stance is widely described as 'permissive yet conservative,' the central bank keeping a 'healthy distance' between crypto and the financial system. No CBDC launched."
   }
 }

@@ -7,26 +7,26 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.458Z",
+  "generated_at": "2026-09-30T19:36:50.987Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-22T14:57:21.703Z",
-    "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c",
-    "proof_url": "https://satohash.io/verify/9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c",
-    "ots_path": "/proofs/dominica-5af844999b98.ots",
-    "in_sync": true
+    "stamped_at": "2026-09-30T19:30:56.122Z",
+    "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec",
+    "proof_url": "https://satohash.io/verify/6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec",
+    "ots_path": "/proofs/dominica-60018a33188a.ots",
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -99,77 +99,117 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 4,
       "legal": 0,
-      "secondary": 1
+      "secondary": 0
     },
     "list": [
       {
-        "name": "Official CBI",
+        "name": "Dominica CBIU (official) — https://www.cbiu.gov.dm/",
         "tier": "official"
       },
       {
-        "name": "Industry reports",
-        "tier": "secondary"
+        "name": "Eastern Caribbean Central Bank — https://www.eccb-centralbank.org/blogs/understanding-cryptocurrency-in-the-eccu",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://dominica.gov.dm/",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.cbiu.gov.dm/investment-options/",
+        "tier": "official"
       }
     ],
     "official_urls": [
-      "https://cbiu.gov.dm"
+      "https://cbiu.gov.dm",
+      "https://dominica.gov.dm/",
+      "https://www.cbiu.gov.dm/",
+      "https://www.cbiu.gov.dm/investment-options/"
     ]
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://cbiu.gov.dm",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://dominica.gov.dm/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.cbiu.gov.dm/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.cbiu.gov.dm/investment-options/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "5af844999b98cd5887607fc7b51656ba66d7e599ba3856065dc4744dac179b3f"
-    },
-    {
-      "date": "2026-08-20",
-      "field": "proof",
-      "from": "e7932ee15cefc0b7",
-      "to": "re-anchored 5af844999b98cd58 (stamp 217dfbe6-39e)",
-      "hash": "5af844999b98cd5887607fc7b51656ba66d7e599ba3856065dc4744dac179b3f"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "5af844999b98cd58",
-      "to": "re-anchored 0173506b5b8bb09b (stamp 2c384449-851)",
-      "hash": "0173506b5b8bb09b22fff4a2e2617b5f5a37637af1fe320a11d5a7b2ce6a4c9c"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "legal_compliance",
-      "from": "corpus BUILD 72",
-      "to": "EDF $200k confirmed current; ECCIRA harmonization 2026; US visa restriction noted",
+      "date": "2026-09-10",
+      "field": "critical_tests.notes",
+      "from": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents.",
+      "to": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents. US Proclamation 10998 (eff. 1 Jan 2026): partial restriction implemented as a B-1/B-2 visa-validity cut for Dominica nationals (10-year visas reduced) — entry not banned.",
       "hash": null
     },
     {
-      "date": "2026-08-22",
-      "field": "proof",
-      "from": "0173506b5b8bb09b",
-      "to": "re-anchored 9098fd4e4d1a73f2 (stamp dc5dc26a-0cc)",
-      "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c"
-    },
-    {
-      "date": "2026-08-22",
+      "date": "2026-09-12",
       "field": "watch.https://cbiu.gov.dm",
       "from": null,
       "to": "Official source content changed — manual rule review required",
-      "hash": "9098fd4e4d1a73f2efbb667c8bc3bb04ebebfdd2bc99ed0e5d0eaad548bae55c"
+      "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec"
+    },
+    {
+      "date": "2026-09-12",
+      "field": "proof",
+      "from": "9098fd4e4d1a73f2",
+      "to": "re-anchored 6a0a046d6ec355ac (stamp 88d5118b-e3b)",
+      "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec"
+    },
+    {
+      "date": "2026-09-13",
+      "field": "watch.https://cbiu.gov.dm",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec"
+    },
+    {
+      "date": "2026-09-14",
+      "field": "watch.https://cbiu.gov.dm",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://cbiu.gov.dm",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://cbiu.gov.dm",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "86c53dcb40ac7e91"
+    },
+    {
+      "date": "2026-09-21",
+      "field": "watch.https://cbiu.gov.dm",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "b3d576701a6e6f67"
     }
   ],
   "sovereignty": {
@@ -177,6 +217,6 @@
     "stacking_synergy": "medium",
     "risk_level": "medium",
     "lightning_ready": true,
-    "bitcoin_integration": "Popular, cost-effective CBI. Accepts crypto in practice for qualified applicants. Affordable entry point with solid passport. Good MotoPass test case. Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10."
+    "bitcoin_integration": "Crypto legal privately but not legal tender (EC dollar only). Virtual Asset Business Act No. 1 of 2022 requires VASP registration with FSU (AML/CFT). Oct 2022 designated TRON protocol as blockchain infrastructure (TRX/stables) — not Bitcoin — for token business."
   }
 }

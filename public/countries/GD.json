@@ -7,25 +7,25 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.468Z",
+  "generated_at": "2026-09-30T19:36:50.988Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:19:53.028Z",
-    "hash": "3fd2f2382bc608c040ea1848f58769024dff7fcf21ba6d13a4d4c786ceb2de97",
-    "proof_url": "https://satohash.io/verify/3fd2f2382bc608c040ea1848f58769024dff7fcf21ba6d13a4d4c786ceb2de97",
-    "ots_path": "/proofs/grenada-387e77668217.ots",
+    "stamped_at": "2026-09-30T19:30:59.324Z",
+    "hash": "53a087ece38e8ceea3347152d081451c86c69177dfee78798a6406dfff8b6bad",
+    "proof_url": "https://satohash.io/verify/53a087ece38e8ceea3347152d081451c86c69177dfee78798a6406dfff8b6bad",
+    "ots_path": "/proofs/grenada-324a9d2f5d39.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -69,21 +69,33 @@
     "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
   },
   "threshold": {
-    "min_investment_usd": 150000,
-    "typical_investment_usd": 200000,
+    "min_investment_usd": 235000,
+    "typical_investment_usd": 245000,
     "history": [
       {
-        "date": null,
-        "field": "current",
-        "usd": 150000,
-        "note": "Current published minimum — no tracked change history yet."
+        "date": "2026-09-10",
+        "field": "pathways.ntf_donation.min_investment_usd",
+        "usd": 235000,
+        "note": "235000"
+      },
+      {
+        "date": "2026-09-10",
+        "field": "finance.min_investment_usd",
+        "usd": 235000,
+        "note": "235000"
+      },
+      {
+        "date": "2026-09-10",
+        "field": "finance.typical_investment_usd",
+        "usd": 245000,
+        "note": "245000"
       }
     ],
     "pathways": [
       {
         "type": "ntf_donation",
         "label": "National Transformation Fund (NTF) donation",
-        "min_investment_usd": 150000
+        "min_investment_usd": 235000
       },
       {
         "type": "real_estate",
@@ -99,63 +111,117 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 4,
       "legal": 0,
-      "secondary": 1
+      "secondary": 0
     },
     "list": [
       {
-        "name": "Official immigration portals",
+        "name": "Investment Migration Agency (official) — https://imagrenada.gd/citizenship-by-investment/",
         "tier": "official"
       },
       {
-        "name": "MotoPass research BUILD-011",
-        "tier": "secondary"
+        "name": "Govt of Grenada (official gazette) — https://grenadaparliament.gd/wp-content/uploads/2024/06/S.R.O.-9-of-2024-Virtual-Asset-Business-Regulations-2024.pdf",
+        "tier": "official"
+      },
+      {
+        "name": "Eastern Caribbean Central Bank — https://www.eccb-centralbank.org/blogs/understanding-cryptocurrency-in-the-eccu",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.gov.gd/",
+        "tier": "official"
       }
     ],
     "official_urls": [
-      "https://www.cbi.gov.gd"
+      "https://imagrenada.gd/",
+      "https://imagrenada.gd/citizenship-by-investment/",
+      "https://www.cbi.gov.gd",
+      "https://www.gov.gd/"
     ]
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.cbi.gov.gd",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.gov.gd/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://imagrenada.gd/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://imagrenada.gd/citizenship-by-investment/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "387e77668217d7b25f4f0c9960abb8ce9318a683bd57533dce4ef2860a191ff2"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "505c960e50a28d52",
-      "to": "re-anchored 387e77668217d7b2 (stamp 30c9c754-68d)",
-      "hash": "387e77668217d7b25f4f0c9960abb8ce9318a683bd57533dce4ef2860a191ff2"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "387e77668217d7b2",
-      "to": "re-anchored 3fd2f2382bc608c0 (stamp 50b33f77-232)",
-      "hash": "3fd2f2382bc608c040ea1848f58769024dff7fcf21ba6d13a4d4c786ceb2de97"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "pathways.real_estate",
-      "from": "corpus BUILD 72 (real_estate $220k)",
-      "to": "Material change found & corrected: real-estate minimum corrected $220k -> $270k (UNCTAD measure 5026)",
+      "date": "2026-09-10",
+      "field": "pathways.ntf_donation.min_investment_usd",
+      "from": 150000,
+      "to": 235000,
       "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "pathways.ntf_donation.notes",
+      "from": "Single applicant minimum — among lowest CBI donation thresholds; processing fees additional.",
+      "to": "$235,000 non-refundable contribution — flat for a single applicant or a family of up to 4 (2026 GIS announcement); processing fees additional; single applicant all-in ≈ $242.5k incl. due diligence.",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "finance.min_investment_usd",
+      "from": 150000,
+      "to": 235000,
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "finance.typical_investment_usd",
+      "from": 200000,
+      "to": 245000,
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "legal_compliance.recent_changes",
+      "from": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged.",
+      "to": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged. NTF donation raised $150k -> $235k (single or family of up to 4; GIS Grenada 2026, multi-source corroborated 2025-09 through 2026-08). US Proclamation 10998 partial restrictions name Antigua and Dominica — Grenada not listed; E-2 treaty differentiator unaffected.",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "last_checked",
+      "from": "2026-08-22",
+      "to": "2026-09-10",
+      "hash": null
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.cbi.gov.gd",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "47200b3f44e6ffac"
+    },
+    {
+      "date": "2026-09-18",
+      "field": "proof",
+      "from": "1d8ca3ece897aaee",
+      "to": "re-anchored 53a087ece38e8cee (stamp f351499e-e48)",
+      "hash": "53a087ece38e8ceea3347152d081451c86c69177dfee78798a6406dfff8b6bad"
     }
   ],
   "sovereignty": {
@@ -163,6 +229,6 @@
     "stacking_synergy": "medium",
     "risk_level": "low",
     "lightning_ready": false,
-    "bitcoin_integration": "Grenada offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+    "bitcoin_integration": "Virtual Asset Business Act No.7/2021 (regs S.R.O. 9/2024): crypto businesses must register with GARFIN + AML/CFT. Crypto legal, not legal tender (EC dollar). E-2 US treaty eligibility is the key CBI differentiator."
   }
 }

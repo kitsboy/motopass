@@ -14,7 +14,7 @@ export function ThankYouPage() {
       <SeoHead
         title={t('thankYou.title')}
         description={t('thankYou.metaDescription')}
-        url="https://motopass.giveabit.io/thank-you"
+        path="/thank-you"
       />
       <PageHeader eyebrow="APPLICATION" title={t('thankYou.title')} subtitle={t('thankYou.sub')} />
 

@@ -41,7 +41,7 @@ describe('computePitchStats', () => {
     expect(stats.flagshipCount).toBe(1)
     expect(stats.deepCount).toBe(1)
     const metrics = pitchStatsToMetrics(stats)
-    expect(metrics.some((m) => m.label === '50/50 flagship depth' && m.value === 1 && m.suffix === '/2')).toBe(true)
+    expect(metrics.some((m) => m.labelKey === 'pitch.metric.flagshipDepth' && m.value === 1 && m.suffix === '/2')).toBe(true)
   })
 
   it('excludes template tier from deep count', () => {
@@ -52,10 +52,24 @@ describe('computePitchStats', () => {
     expect(stats.flagshipCount).toBe(2)
     expect(stats.deepCount).toBe(1)
     const metrics = pitchStatsToMetrics(stats)
-    expect(metrics.find((m) => m.label === '50/50 flagship depth')).toEqual({
-      label: '50/50 flagship depth',
+    expect(metrics.find((m) => m.labelKey === 'pitch.metric.flagshipDepth')).toEqual({
+      label: 'Flagship depth',
+      labelKey: 'pitch.metric.flagshipDepth',
       value: 1,
       suffix: '/2',
     })
+  })
+
+  it('renders flagship depth against the REAL corpus size, not a hard-coded 50', () => {
+    // Regression guard: the label used to read "50/50 flagship depth" while the
+    // corpus moved to 21 programs — a false claim shipped on the landing hero.
+    const stats = computePitchStats([
+      { ...base, flagship_depth: true },
+      { ...base, id: 2, flagship_depth: true },
+      { ...base, id: 3, flagship_depth: false },
+    ])
+    const depth = pitchStatsToMetrics(stats).find((m) => m.labelKey === 'pitch.metric.flagshipDepth')
+    expect(depth?.value).toBe(2)
+    expect(depth?.suffix).toBe('/3')
   })
 })

@@ -1,85 +1,70 @@
 {
   "schema": "motopass-pitch-anchor/v1",
-  "build": "2026.09.10-415f2fb",
-  "generated_at": "2026-07-15T05:25:02.821Z",
-  "btc_usd_reference": 64632,
+  "build": "2026.09.17-d6eb831",
+  "generated_at": "2026-09-30T19:37:16.536Z",
+  "btc_usd_reference": 83704,
   "btc_price_source": "mempool.space",
   "sats_per_btc": 100000000,
   "display_policy": "Bitcoin-first: show ₿ (sats-derived) before USD on all monetary figures.",
   "stats": {
-    "program_count": 50,
-    "lightning_ready_count": 24,
+    "program_count": 21,
+    "lightning_ready_count": 11,
     "avg_typical_investment": {
-      "usd": 652520,
-      "btc": 10.095927713825969,
-      "btc_display": "₿10.10",
-      "usd_display": "$653k"
+      "usd": 422381,
+      "btc": 5.046126827869636,
+      "btc_display": "₿5.05",
+      "usd_display": "$422k"
     },
     "avg_gov_fees": {
-      "usd": 18200,
-      "btc": 0.28159425671494,
-      "btc_display": "₿0.2816",
-      "usd_display": "$18k"
+      "usd": 21143,
+      "btc": 0.25259246869922586,
+      "btc_display": "₿0.2526",
+      "usd_display": "$21k"
     },
-    "avg_processing_months": 6,
+    "avg_processing_months": 5.9,
     "traditional_advisory": {
-      "usd": 106147,
-      "btc": 1.642328877336304,
-      "btc_display": "₿1.64",
-      "usd_display": "$106k"
+      "usd": 81862,
+      "btc": 0.977993883207493,
+      "btc_display": "₿0.9780",
+      "usd_display": "$82k"
     },
     "motopass_advisory": {
-      "usd": 3856,
-      "btc": 0.05966084911498948,
-      "btc_display": "₿0.0597",
-      "usd_display": "$3.9k"
+      "usd": 4091,
+      "btc": 0.04887460575360795,
+      "btc_display": "₿0.0489",
+      "usd_display": "$4.1k"
     },
     "cost_savings": {
-      "usd": 102291,
-      "btc": 1.5826680282213146,
-      "btc_display": "₿1.58",
-      "usd_display": "$102k"
+      "usd": 77771,
+      "btc": 0.9291192774538851,
+      "btc_display": "₿0.9291",
+      "usd_display": "$78k"
     },
-    "cost_savings_pct": 96,
+    "cost_savings_pct": 95,
     "flagships": {
       "uruguay": {
         "min_investment": {
           "usd": 100000,
-          "btc": 1.5472211907414284,
-          "btc_display": "₿1.55",
+          "btc": 1.1946860365096053,
+          "btc_display": "₿1.19",
           "usd_display": "$100k"
         },
         "rentista_monthly_usd": {
           "usd": 1500,
-          "btc": 0.023208317861121427,
-          "btc_display": "₿0.0232",
+          "btc": 0.017920290547644078,
+          "btc_display": "₿0.0179",
           "usd_display": "$1.5k"
         },
         "gov_fees": {
           "usd": 15000,
-          "btc": 0.23208317861121425,
-          "btc_display": "₿0.2321",
+          "btc": 0.1792029054764408,
+          "btc_display": "₿0.1792",
           "usd_display": "$15k"
         },
         "processing_months": "3-8",
         "lightning_ready": true
       },
-      "bolivia": {
-        "min_investment": {
-          "usd": 80000,
-          "btc": 1.2377769525931428,
-          "btc_display": "₿1.24",
-          "usd_display": "$80k"
-        },
-        "gov_fees": {
-          "usd": 12000,
-          "btc": 0.18566654288897141,
-          "btc_display": "₿0.1857",
-          "usd_display": "$12k"
-        },
-        "status": "Researching - Flagship",
-        "note": "Investor/company route — no pure CBI; verify solvency thresholds"
-      }
+      "bolivia": null
     }
   }
 }

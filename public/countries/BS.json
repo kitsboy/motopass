@@ -7,25 +7,25 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.468Z",
+  "generated_at": "2026-09-30T19:36:50.988Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:20:02.324Z",
-    "hash": "30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d",
-    "proof_url": "https://satohash.io/verify/30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d",
-    "ots_path": "/proofs/bahamas-8bd909d33fa9.ots",
+    "stamped_at": "2026-09-30T19:31:00.463Z",
+    "hash": "a10d23fac00a1c92394b2bf1d7eed2aa8ba4dd5026518c1137d7ad573d4851f1",
+    "proof_url": "https://satohash.io/verify/a10d23fac00a1c92394b2bf1d7eed2aa8ba4dd5026518c1137d7ad573d4851f1",
+    "ots_path": "/proofs/bahamas-d5dcf5c42bf3.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -69,14 +69,20 @@
     "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
   },
   "threshold": {
-    "min_investment_usd": 500000,
-    "typical_investment_usd": 750000,
+    "min_investment_usd": 1000000,
+    "typical_investment_usd": 1200000,
     "history": [
       {
-        "date": null,
-        "field": "current",
-        "usd": 500000,
-        "note": "Current published minimum — no tracked change history yet."
+        "date": "2026-09-10",
+        "field": "finance.min_investment_usd",
+        "usd": 1000000,
+        "note": "1000000"
+      },
+      {
+        "date": "2026-09-10",
+        "field": "finance.typical_investment_usd",
+        "usd": 1200000,
+        "note": "1200000"
       }
     ],
     "pathways": [
@@ -99,69 +105,139 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
-      "legal": 0,
-      "secondary": 1
+      "official": 2,
+      "legal": 1,
+      "secondary": 2
     },
     "list": [
       {
-        "name": "Official immigration portals",
+        "name": "Bahamas Immigration Department (official) — https://www.immigration.gov.bs/residence/permanent-residence/",
         "tier": "official"
       },
       {
-        "name": "MotoPass research BUILD-011",
+        "name": "Government of The Bahamas (official) — https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
+        "tier": "official"
+      },
+      {
+        "name": "Lexology (ParrisWhittaker) — https://www.lexology.com/library/detail.aspx?g=444f767c-7830-4a31-85be-fde704bbe52a",
+        "tier": "secondary"
+      },
+      {
+        "name": "Global Law Experts — https://globallawexperts.com/dare-act-digital-asset-licence-bahamas/",
+        "tier": "legal"
+      },
+      {
+        "name": "Investopedia — https://www.investopedia.com/ask/answers/060516/why-bahamas-considered-tax-haven.asp",
         "tier": "secondary"
       }
     ],
     "official_urls": [
+      "https://laws.bahamas.gov.bs",
       "https://www.bahamas.gov.bs",
-      "https://www.bahamaschamber.com"
+      "https://www.bahamas.gov.bs/",
+      "https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
+      "https://www.bahamaschamber.com",
+      "https://www.immigration.gov.bs",
+      "https://www.immigration.gov.bs/residence/permanent-residence/"
     ]
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.bahamas.gov.bs",
         "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "last_probed": "2026-09-15T15:07:07.008Z"
       },
       {
         "url": "https://www.bahamaschamber.com",
-        "status": "unreachable",
-        "last_probed": "2026-08-21T00:11:20.877Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.immigration.gov.bs",
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://laws.bahamas.gov.bs",
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.bahamas.gov.bs/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.immigration.gov.bs/residence/permanent-residence/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "8bd909d33fa96bda4c87823838357304eb439cac62ceccd8a3ea429ed170b243"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "1b572825a4eff8e6",
-      "to": "re-anchored 8bd909d33fa96bda (stamp 8cc36135-c7d)",
-      "hash": "8bd909d33fa96bda4c87823838357304eb439cac62ceccd8a3ea429ed170b243"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "8bd909d33fa96bda",
-      "to": "re-anchored 30dca88964459f41 (stamp 34f86875-6c1)",
-      "hash": "30dca88964459f41d3635560c02cfa384dc78ec6a6a9678f8df1bea4c62ed63d"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "pathways.economic_permanent_residency",
-      "from": "corpus BUILD 72 (economic_permanent_residency $750k)",
-      "to": "Material change found & corrected: EPR threshold corrected $750k -> $1.0M (official Bahamas Immigration)",
+      "date": "2026-09-10",
+      "field": "finance.min_investment_usd",
+      "from": 500000,
+      "to": 1000000,
       "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "finance.typical_investment_usd",
+      "from": 750000,
+      "to": 1200000,
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "paige_fields.optimization_tips",
+      "from": "Home Owner's Card for lifestyle base; EPR for permanent status at $750k+",
+      "to": "Home Owner's Card for lifestyle base; EPR for permanent status at $1M+",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "paige_fields.escalate_when",
+      "from": "EPR $750k+ structuring, Speedy Permit tier selection, or property purchase with crypto source-of-funds",
+      "to": "EPR $1M+ structuring, Speedy Permit tier selection, or property purchase with crypto source-of-funds",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "last_checked",
+      "from": "2026-08-22",
+      "to": "2026-09-10",
+      "hash": null
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://laws.bahamas.gov.bs",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Main content — review required",
+      "hash": "a014c5edeb361058"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.changed",
+      "from": null,
+      "to": "Change flag RETRACTED same day (Rosa, t_a8d32e10): the scopes that moved were Full page · Main content on a source that carries NO rule scope — no rule text, no rule event. Layout movement only; nothing to review.",
+      "hash": null
+    },
+    {
+      "date": "2026-09-18",
+      "field": "proof",
+      "from": "5896afee50c283a0",
+      "to": "re-anchored a10d23fac00a1c92 (stamp 0ca5697c-cd3)",
+      "hash": "a10d23fac00a1c92394b2bf1d7eed2aa8ba4dd5026518c1137d7ad573d4851f1"
     }
   ],
   "sovereignty": {
@@ -169,6 +245,6 @@
     "stacking_synergy": "low",
     "risk_level": "low",
     "lightning_ready": false,
-    "bitcoin_integration": "Bahamas offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+    "bitcoin_integration": "Crypto is legal and actively regulated. The Bahamas pioneered a bespoke digital-asset regime: the Digital Assets and Registered Exchanges (DARE) Act 2020, superseded by the DARE Act 2024 (in force 31 July 2024), administered by the Securities Commission of The Bahamas. It licenses/registers digital-asset exchanges, custodians and token issuers and covers stablecoins and staking disclosure. The central bank has also piloted a CBDC (the 'Sand Dollar'). Bitcoin and other digital assets are therefore lawful subject to SCB registration/licensing."
   }
 }

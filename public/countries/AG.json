@@ -7,26 +7,26 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.457Z",
+  "generated_at": "2026-09-30T19:36:50.987Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-22T14:57:18.189Z",
-    "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e",
-    "proof_url": "https://satohash.io/verify/aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e",
-    "ots_path": "/proofs/antigua-and-barbuda-91a26594ae70.ots",
-    "in_sync": true
+    "stamped_at": "2026-09-30T19:30:53.387Z",
+    "hash": "66163458f496a824a7cbb0a8e0cf7b0b6222604620a8fcf1ccfc02fe0200b52e",
+    "proof_url": "https://satohash.io/verify/66163458f496a824a7cbb0a8e0cf7b0b6222604620a8fcf1ccfc02fe0200b52e",
+    "ots_path": "/proofs/antigua-and-barbuda-b537457d6fe6.ots",
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -99,57 +99,72 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 5,
       "legal": 0,
-      "secondary": 1
+      "secondary": 0
     },
     "list": [
       {
-        "name": "Official sources",
+        "name": "Antigua CIP unit (official) — https://cip.gov.ag/citizenship/",
         "tier": "official"
       },
       {
-        "name": "Our research",
-        "tier": "secondary"
+        "name": "FSRC (official law) — https://www.fsrc.gov.ag/images/pdf/digital-assets/No.-16-of-2020-Digital-Assets-Business-Act-2020.pdf",
+        "tier": "official"
+      },
+      {
+        "name": "Eastern Caribbean Central Bank — https://www.eccb-centralbank.org/blogs/understanding-cryptocurrency-in-the-eccu",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://ab.gov.ag/",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://cip.gov.ag/investment-options/ndf/",
+        "tier": "official"
       }
     ],
     "official_urls": [
+      "https://ab.gov.ag/",
+      "https://cip.gov.ag/",
+      "https://cip.gov.ag/citizenship/",
+      "https://cip.gov.ag/investment-options/ndf/",
       "https://www.cip.gov.ag"
     ]
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.cip.gov.ag",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://ab.gov.ag/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://cip.gov.ag/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://cip.gov.ag/citizenship/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://cip.gov.ag/investment-options/ndf/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-20",
-      "field": "schema.v3",
-      "from": null,
-      "to": "v3 intel blocks seeded (pros/cons/scorecard/freshness/watch)",
-      "hash": "91a26594ae7015d5cb1b6ca08dd00e0f9c349b0c44399f6a03ee5f383fc2ef44"
-    },
-    {
-      "date": "2026-08-20",
-      "field": "proof",
-      "from": "b0080967535080db",
-      "to": "re-anchored 91a26594ae7015d5 (stamp 6a6dc159-dac)",
-      "hash": "91a26594ae7015d5cb1b6ca08dd00e0f9c349b0c44399f6a03ee5f383fc2ef44"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "91a26594ae7015d5",
-      "to": "re-anchored 341c070a4384f648 (stamp 1f66f623-f26)",
-      "hash": "341c070a4384f648410ca060ba25f815a1ebbb2c539005c638cb404b6906be99"
-    },
     {
       "date": "2026-08-22",
       "field": "pathways.legal_compliance.critical_tests",
@@ -163,6 +178,48 @@
       "from": "341c070a4384f648",
       "to": "re-anchored aa4c45f7a554951b (stamp 932a0976-606)",
       "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e"
+    },
+    {
+      "date": "2026-09-02",
+      "field": "watch.https://www.cip.gov.ag",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e"
+    },
+    {
+      "date": "2026-09-10",
+      "field": "pathways.ndf_donation.notes",
+      "from": "National Development Fund: $230,000 for a family of up to 4; single-applicant tier may be lower (~$100k) — verify current tier pricing with a licensed agent.",
+      "to": "National Development Fund: $230,000 non-refundable contribution — flat for a single applicant or a family of up to 4 (official CIU); processing fees $10,000 single / $20,000 family of 4.",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "last_checked",
+      "from": "2026-08-22",
+      "to": "2026-09-10",
+      "hash": null
+    },
+    {
+      "date": "2026-09-10",
+      "field": "critical_tests.notes",
+      "from": "Strong passport mobility (150+ visa-free incl. Schengen); 5-day physical presence in first 5 years required; mandatory virtual interview for applicants 16+; no capital gains tax.",
+      "to": "Strong passport mobility (150+ visa-free incl. Schengen); 5-day physical presence in first 5 years required; mandatory virtual interview for applicants 16+; no capital gains tax. US Proclamation 10998 (eff. 1 Jan 2026): partial restriction implemented as a B-1/B-2 visa-validity cut for Antiguan and Barbudan nationals (10-year visas reduced) — entry not banned.",
+      "hash": null
+    },
+    {
+      "date": "2026-09-12",
+      "field": "proof",
+      "from": "aa4c45f7a554951b",
+      "to": "re-anchored 66163458f496a824 (stamp 4caf5c58-328)",
+      "hash": "66163458f496a824a7cbb0a8e0cf7b0b6222604620a8fcf1ccfc02fe0200b52e"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.cip.gov.ag",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "a26ba4514a028890"
     }
   ],
   "sovereignty": {
@@ -170,6 +227,6 @@
     "stacking_synergy": "medium",
     "risk_level": "medium",
     "lightning_ready": true,
-    "bitcoin_integration": "Well-regarded CBI program. Increasing openness to digital assets and fintech investors. Good for Bitcoin-funded applications. Strong passport for travel. Lightning-ready signal is set in the MotoPass corpus — re-verify merchant and rail availability on BTC Map. Crypto-friendly score (modeled): 7/10."
+    "bitcoin_integration": "Most crypto-permissive of the Caribbean bloc. Digital Assets Business Act 2020 requires FSRC licence for crypto businesses; crypto legal privately, not legal tender; crypto accepted as source-of-funds proof for CBI, but not as direct fee payment."
   }
 }

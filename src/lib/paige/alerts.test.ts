@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildAllAlerts, buildProgramAlerts, buildSourceAlerts } from './alerts'
+import { buildAllAlerts, buildProgramAlerts, buildSourceAlerts, type SourceChangeEvent } from './alerts'
 import type { Program } from '../../types/program'
 
 function programWithTrail(overrides: Partial<Program> & { id: number; name: string }): Program {
@@ -83,7 +83,9 @@ describe('buildAllAlerts watch-list integration', () => {
  * silently dead. If someone reintroduces a status-based filter, these fail.
  */
 describe('buildSourceAlerts', () => {
-  const realRuleEvent = {
+  // Typed as SourceChangeEvent so drift in the declared feed shape (e.g. a
+  // wrongly-required field) fails HERE, at the type level, not just at runtime.
+  const realRuleEvent: SourceChangeEvent = {
     id: '2026-09-15T20:07:26.184Z-t.gov.py-rule',
     ts: '2026-09-15T20:07:26.184Z',
     date: '2026-09-15',

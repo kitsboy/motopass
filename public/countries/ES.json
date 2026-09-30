@@ -7,25 +7,25 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-08-22T20:59:41.470Z",
+  "generated_at": "2026-09-30T19:36:50.989Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
-    "verified_at": "2026-08-22",
+    "days_stale": 1,
+    "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "last_checked": "2026-08-22"
+      "days_stale": 2,
+      "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-08-21T00:22:32.694Z",
-    "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407",
-    "proof_url": "https://satohash.io/verify/8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407",
-    "ots_path": "/proofs/spain-23329cd5b097.ots",
+    "stamped_at": "2026-09-30T19:31:24.041Z",
+    "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18",
+    "proof_url": "https://satohash.io/verify/0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18",
+    "ots_path": "/proofs/spain-afea358e3b7b.ots",
     "in_sync": false
   },
   "scorecard": {
@@ -73,10 +73,10 @@
     "typical_investment_usd": 750000,
     "history": [
       {
-        "date": null,
-        "field": "current",
-        "usd": 32000,
-        "note": "Current published minimum — no tracked change history yet."
+        "date": "2026-09-10",
+        "field": "pathways.digital_nomad.min_investment_usd",
+        "usd": 37000,
+        "note": "37000"
       }
     ],
     "pathways": [
@@ -88,7 +88,7 @@
       {
         "type": "digital_nomad",
         "label": "International teleworkers visa (Ley de Startups)",
-        "min_investment_usd": 29000
+        "min_investment_usd": 37000
       },
       {
         "type": "non_lucrative",
@@ -99,103 +99,143 @@
   },
   "sources": {
     "tiers": {
-      "official": 1,
+      "official": 3,
       "legal": 0,
-      "secondary": 1
+      "secondary": 3
     },
     "list": [
       {
-        "name": "Official immigration portals",
+        "name": "Agencia Estatal de Administración Tributaria (AEAT) — https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
         "tier": "official"
       },
       {
-        "name": "MotoPass research BUILD-011",
+        "name": "SpainExpat — https://spainexpat.com/information/golden-visa-spain-ended",
         "tier": "secondary"
+      },
+      {
+        "name": "Granfield Estate — https://granfield-estate.com/blog/golden-visa-spain-2026-status",
+        "tier": "secondary"
+      },
+      {
+        "name": "Blockpit — https://www.blockpit.io/tax-guides/crypto-tax-spain",
+        "tier": "secondary"
+      },
+      {
+        "name": "Official — https://www.exteriores.gob.es/",
+        "tier": "official"
+      },
+      {
+        "name": "Official — https://www.inclusion.gob.es/",
+        "tier": "official"
       }
     ],
     "official_urls": [
-      "https://www.inclusion.gob.es",
+      "https://sede.agenciatributaria.gob.es/",
+      "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
+      "https://www.cnmv.es",
       "https://www.exteriores.gob.es",
-      "https://www.cnmv.es"
+      "https://www.exteriores.gob.es/",
+      "https://www.inclusion.gob.es",
+      "https://www.inclusion.gob.es/"
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-08-22T20:46:59.447Z",
+    "changed": false,
+    "last_probe_at": "2026-09-28T05:00:36.010Z",
     "urls": [
       {
         "url": "https://www.inclusion.gob.es",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "blocked",
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.exteriores.gob.es",
-        "status": "changed",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "status": "ok",
+        "last_probed": "2026-09-28T05:00:36.010Z"
       },
       {
         "url": "https://www.cnmv.es",
         "status": "ok",
-        "last_probed": "2026-08-22T20:46:59.447Z"
+        "last_probed": "2026-09-28T05:00:36.010Z"
+      },
+      {
+        "url": "https://www.exteriores.gob.es/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://sede.agenciatributaria.gob.es/",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
+        "status": null,
+        "last_probed": null
+      },
+      {
+        "url": "https://www.inclusion.gob.es/",
+        "status": null,
+        "last_probed": null
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "23329cd5b097d93c",
-      "to": "re-anchored 8c26088d885c5164 (stamp f60c251d-f24)",
-      "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "watch.https://www.inclusion.gob.es",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
-    },
-    {
-      "date": "2026-08-21",
-      "field": "watch.https://www.exteriores.gob.es",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://www.inclusion.gob.es",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://www.exteriores.gob.es",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://www.inclusion.gob.es",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "watch.https://www.exteriores.gob.es",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "8c26088d885c51644edef3fd08546a4fb0174514b47da43939c177183b535407"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "pathways.golden_visa",
-      "from": "corpus BUILD 72 (golden_visa active, min $550k)",
-      "to": "Material change found & corrected: golden visa route marked CLOSED (abolished 2025-04-03, Organic Law 1/2025); no new applications",
+      "date": "2026-09-10",
+      "field": "last_checked",
+      "from": "2026-08-22",
+      "to": "2026-09-10",
       "hash": null
+    },
+    {
+      "date": "2026-09-11",
+      "field": "watch.https://www.exteriores.gob.es",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
+    },
+    {
+      "date": "2026-09-12",
+      "field": "watch.https://www.exteriores.gob.es",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
+    },
+    {
+      "date": "2026-09-13",
+      "field": "watch.https://www.exteriores.gob.es",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
+    },
+    {
+      "date": "2026-09-14",
+      "field": "watch.https://www.exteriores.gob.es",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.exteriores.gob.es",
+      "from": null,
+      "to": "Official source content changed — manual rule review required",
+      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
+    },
+    {
+      "date": "2026-09-15",
+      "field": "watch.https://www.exteriores.gob.es",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "9d9c0b455be3bcf2"
+    },
+    {
+      "date": "2026-09-19",
+      "field": "proof",
+      "from": "671696e0460a6ad8",
+      "to": "re-anchored 0a97f7f4bd3fd91a (stamp 24776bcf-da6)",
+      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
     }
   ],
   "sovereignty": {
@@ -203,6 +243,6 @@
     "stacking_synergy": "medium",
     "risk_level": "low",
     "lightning_ready": false,
-    "bitcoin_integration": "Spain offers residency or citizenship pathways with moderate crypto-friendly policy. Bitcoin holders evaluate tax treatment, processing time, and stacking synergy with other jurisdictions."
+    "bitcoin_integration": "Bitcoin is legal in Spain. The Agencia Estatal de Administración Tributaria (AEAT) classifies cryptocurrencies and crypto-assets as digital assets (treated like securities/investment property, not currency) and holds that all gains and income from crypto are taxable. Spain is compliance-focused: AEAT requires disclosure of foreign crypto holdings and implements DAC8; there is no dedicated crypto-industry incentive and no bitcoin-friendly special regime."
   }
 }
