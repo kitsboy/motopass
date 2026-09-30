@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-09-30 by Buffy — typecheck debt cleared, repo typechecks clean
+# motopass — Last Updated 2026-09-30 by Buffy — hero truth pass + landing header modernization
+
+Landing hero no longer claims "50-country" / "50/50 flagship depth": all copy now reflects the curated 21-country corpus (en + 9 locales), flagship depth is computed from `countries.json` ("Flagship depth 20/21" — São Tomé in research), and the CI `validate:stamps` gate that stayed red on the stale ≥50 threshold now tracks the real corpus as a stamp-integrity gate. Hero modernized: corpus provenance badge, depth chip, 4-cell live stat band, scroll cue — everything prior preserved. E2E: BUILD-id specs skip with stale-dist guidance instead of failing; new tier-chip + compare-filter spec. tsc 0, unit 306/2, lint, build, pitch:check, **Playwright 37/37**. Pushed through `b4eb3a1` on `docs/meridian-ledger-brief`; PR into `main` still waits on Cam's GitHub credentials.
+
+## Previous update — 2026-09-30 by Buffy — typecheck debt cleared, repo typechecks clean
 
 `tsc --noEmit` now exits 0 (was 13 pre-existing errors): `SourceChangeEvent.status` made optional to match the watchdog feed's real rule-event shape, SourceMonitor helpers/styles typed, ThankYou switched to `SeoHead path`. Vitest 305/2 skip, lint, validate:data pass; **full Playwright suite 34/34** incl. new route coverage for `/sources` and `/thank-you` (`e2e/routes-sources-thankyou.spec.ts`, 7 tests — note: E2E is build-staleness-sensitive, rebuild before judging). Pushed on `docs/meridian-ledger-brief`; PR into `main` still waits on Cam's GitHub credentials (branch is on origin, nothing blocked).
 
