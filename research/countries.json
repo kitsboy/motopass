@@ -127,7 +127,7 @@
             "url": "https://www.migracion.gob.sv",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "bd1c5b79b7619cdfd64ea8f79059b8535aa09997c72dc2f6b1d187cc0384dbac"
@@ -145,18 +145,41 @@
           },
           {
             "url": "https://www.rree.gob.sv/",
-            "mode": "http"
+            "mode": "http",
+            "status_since": "2026-10-01T05:01:08.661Z",
+            "status": "blocked",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_error": "HTTP 403 — Cloudflare bot wall"
           },
           {
             "url": "https://www.migracion.gob.sv/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1073,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "bd1c5b79b7619cdfd64ea8f79059b8535aa09997c72dc2f6b1d187cc0384dbac"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "bd1c5b79b7619cdfd64ea8f79059b8535aa09997c72dc2f6b1d187cc0384dbac"
           },
           {
             "url": "https://adoptingelsalvador.gob.sv",
-            "mode": "http"
+            "mode": "http",
+            "status_since": "2026-10-01T05:01:08.661Z",
+            "status": "unreachable",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_error": "empty render (0 chars of text)"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -438,7 +461,7 @@
             "url": "https://imigrante.sef.pt",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "cb24cef103e00007cb7b0ecc3600258318c72bc5dfce9c11ec72fb7700674f22"
@@ -457,43 +480,116 @@
             "url": "https://www.portugal.gov.pt",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "073387d49817e6b63e24bed85c2355fb816e29655bc522a339eebd5f70d956ec"
+                "last_hash": "a6c3821fcbc2ade7f629d2830b2fd2cc0acaa6e4982d7be8e1d668ee79f1aab6"
               },
               "rule": {
                 "last_hash": "a2a871388637d24aa7b934f677fad00bd62f55683e338727d5818ecb6ef62422"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "073387d49817e6b63e24bed85c2355fb816e29655bc522a339eebd5f70d956ec",
+            "last_hash": "a6c3821fcbc2ade7f629d2830b2fd2cc0acaa6e4982d7be8e1d668ee79f1aab6",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
-            "last_layout_change": "2026-09-25T05:00:19.548Z",
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
             "probe_path": "http",
-            "last_text_len": 517,
-            "last_main_len": 0
+            "last_text_len": 512,
+            "last_main_len": 0,
+            "layout_change_streak": 1
           },
           {
             "url": "https://www.portaldasfinancas.gov.pt/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 732,
+            "last_main_len": 542,
+            "scopes": {
+              "whole": {
+                "last_hash": "341a6fd250de2a91964013be09928c0007fdad62cc1704ac5004ef98cd235521"
+              },
+              "main": {
+                "last_hash": "cb251ab5f4e21a4ec33ea7d8572e3c6deaa7e6721097cb64104d52bc6b2aef02"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "341a6fd250de2a91964013be09928c0007fdad62cc1704ac5004ef98cd235521"
           },
           {
             "url": "https://www.portugal.gov.pt/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 512,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "a6c3821fcbc2ade7f629d2830b2fd2cc0acaa6e4982d7be8e1d668ee79f1aab6"
+              },
+              "rule": {
+                "last_hash": "a2a871388637d24aa7b934f677fad00bd62f55683e338727d5818ecb6ef62422"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "a6c3821fcbc2ade7f629d2830b2fd2cc0acaa6e4982d7be8e1d668ee79f1aab6"
           },
           {
             "url": "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 9483,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "efec66e7f32c7eb20bc1b6beefbe1850f147f8131ae80147cd3c27b37ada54a0"
+              },
+              "rule": {
+                "last_hash": "1952e213ffaf45e15a2a550a6eb1956fbe3297891237696feabd1deaaf797387"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "efec66e7f32c7eb20bc1b6beefbe1850f147f8131ae80147cd3c27b37ada54a0"
           },
           {
             "url": "https://aima.gov.pt/pt/a-aima/perguntas-frequentes-faqs/autorizacao-de-residencia-para-investimento-ari/faq-residence-permit-for-investment-activity-ari",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 5926,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "a257b12f58e648506719572fa25243c14140b477ba5a75791dd01436fd914f90"
+              },
+              "rule": {
+                "last_hash": "8f0543661a5ecd376b20dc9423178eac5837ad7ecc74c17906ef494f03cd1627"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "a257b12f58e648506719572fa25243c14140b477ba5a75791dd01436fd914f90"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z",
+        "last_probe_at": "2026-10-01T05:01:08.661Z",
         "changed": true
       },
       "pros": [
@@ -864,30 +960,31 @@
             "url": "https://www.interno.gov.it",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "d1260e1439032b006ce56c4bac27bf59ec9e9a40a9529e893d2dde47529c3d64"
+                "last_hash": "94d55271954afe3ce7007227fd8366eebeb980c70c99531aaa0a1ccd2f7f38b8"
               },
               "rule": {
                 "last_hash": "3c0202a46d6b5be0207e5ee0f82c30493db5cf04d1e410d3e40185a499b609b8"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "d1260e1439032b006ce56c4bac27bf59ec9e9a40a9529e893d2dde47529c3d64",
+            "last_hash": "94d55271954afe3ce7007227fd8366eebeb980c70c99531aaa0a1ccd2f7f38b8",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
             "probe_path": "http",
-            "last_text_len": 3643,
+            "last_text_len": 3454,
             "last_main_len": 0,
-            "last_layout_change": "2026-09-26T05:00:18.350Z"
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
+            "layout_change_streak": 1
           },
           {
             "url": "https://investorvisa.mise.gov.it",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "4a93f329d074cf912e44d2d70f100afe7aa5b2358099938c838b0675b8fc9f0b"
@@ -909,7 +1006,7 @@
             "url": "https://www.agenziaentrate.gov.it",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "932633c4ad04f0d40b51ed6d6194076d9d521f8f36221070b62a1765d0631304"
@@ -930,18 +1027,72 @@
           },
           {
             "url": "https://www.esteri.it/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 5740,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "e87e0224c955fba87b9da9024ccf7fc98c8dd74c73c32fedd6860e3cb5a91733"
+              },
+              "rule": {
+                "last_hash": "f4e161c111368f67278225e9a89dccecf1cb609d9d55ae7f69a6ba862bf92ea8"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "e87e0224c955fba87b9da9024ccf7fc98c8dd74c73c32fedd6860e3cb5a91733"
           },
           {
             "url": "https://www.agenziaentrate.gov.it/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 3043,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "932633c4ad04f0d40b51ed6d6194076d9d521f8f36221070b62a1765d0631304"
+              },
+              "rule": {
+                "last_hash": "21b26f2feaeca8f1a5998e73531945a6d31daec2a0871c5ec539247e974611e9"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "932633c4ad04f0d40b51ed6d6194076d9d521f8f36221070b62a1765d0631304"
           },
           {
             "url": "https://investorvisa.mise.gov.it/index.php/en",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1271,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "4a0a69fe47890d8807c570ad49a4d2ec8330faf71a4c69e3628062f3593f92f1"
+              },
+              "rule": {
+                "last_hash": "0fec94fee488d496dff9de3a4583e342b6c505983044cd153c8089ac63a43162"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "4a0a69fe47890d8807c570ad49a4d2ec8330faf71a4c69e3628062f3593f92f1"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z",
+        "last_probe_at": "2026-10-01T05:01:08.661Z",
         "changed": true
       },
       "pros": [
@@ -1675,7 +1826,7 @@
             "url": "https://www.gub.uy/tramites/residencia-legal",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "b211ce93995e55d45dcef02019b025262d69a190cd0b5b5adcba8f8c1faeee22"
@@ -1697,42 +1848,101 @@
             "url": "https://www.minterior.gub.uy",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "54b6569dc157dde3ec1ac3e27cfe0fd128c0f63603c7ec45f0a96204398ce575"
+                "last_hash": "91069f397ed6edc7160dc9b6469f6f85bbe3aacb40e1293e4040fa50b529b3ee"
               },
               "rule": {
-                "last_hash": "5246fc94ef1930ea3f326678ee897eef28eac16e637cc79c333a0d1ccf5e6e57"
+                "last_hash": "5246fc94ef1930ea3f326678ee897eef28eac16e637cc79c333a0d1ccf5e6e57",
+                "pending_hash": "fdd909150c4454d8d6e0ee7d95cd2a1bf44e489128364c389ff61a934540fd05"
               },
               "main": {
-                "last_hash": "b12c6b766a4d989725fe716a58807989b1dedb5ad8ca367bdf6f690702e0b7eb"
+                "last_hash": "e212f915a232b8e9e8effaa102d031b509593b340be8eaf8b013f62305115829"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "54b6569dc157dde3ec1ac3e27cfe0fd128c0f63603c7ec45f0a96204398ce575",
+            "last_hash": "91069f397ed6edc7160dc9b6469f6f85bbe3aacb40e1293e4040fa50b529b3ee",
             "rule_scope": "present",
             "main_scope": "present",
             "extract_v": 7,
             "probe_path": "browser",
-            "last_text_len": 4487,
-            "last_main_len": 3465,
-            "last_layout_change": "2026-09-25T05:00:19.548Z"
+            "last_text_len": 4596,
+            "last_main_len": 3525,
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
+            "layout_change_streak": 1
           },
           {
             "url": "https://embassyofuruguay.us/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1720,
+            "last_main_len": 365,
+            "scopes": {
+              "whole": {
+                "last_hash": "6dead5e895e69b3584d4b66acbd9d894cb659a301f7e366c9dd469b5cdb53f4a"
+              },
+              "rule": {
+                "last_hash": "1292250b53d266f7fc25de6c7306d4c198547c81ac9b3121c974ca0532e9fbf8"
+              },
+              "main": {
+                "last_hash": "c4798a2c3ea853d46f74df5237db9fba3f30e967c7e520275c7e0179a9aa9bf7"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "6dead5e895e69b3584d4b66acbd9d894cb659a301f7e366c9dd469b5cdb53f4a"
           },
           {
             "url": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 336,
+            "last_main_len": 134,
+            "scopes": {
+              "whole": {
+                "last_hash": "77a9b1342807fbb91451aaf638e7fe291450ae70968ae89ccce6e736fe68f50e"
+              },
+              "main": {
+                "last_hash": "f2191af3cd0e0a1ddd7f1efb63498758eb3dbb03f765c5c10ed670816090cd02"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "77a9b1342807fbb91451aaf638e7fe291450ae70968ae89ccce6e736fe68f50e"
           },
           {
             "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 12782,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "202e90945fc9093d88b194a27c8b22e883ca4af9212cc211ac42c940ba762edf"
+              },
+              "rule": {
+                "last_hash": "418d04fddf0624a3697fead8cc76bce879744efd8f0a80a8ecfd2d53e1367374"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "202e90945fc9093d88b194a27c8b22e883ca4af9212cc211ac42c940ba762edf"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -2077,7 +2287,7 @@
             "url": "https://www.cip.gov.ag",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "9d861565bbda534e566d3ee60cae14f3c6555fe559fa5d8504b6b14ae6264938"
@@ -2097,22 +2307,94 @@
           },
           {
             "url": "https://ab.gov.ag/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1065,
+            "last_main_len": 129,
+            "scopes": {
+              "whole": {
+                "last_hash": "0ae0ec3d9f17f0bc0d42286f246e07f6e8abb593ce9fbd6d317d68840a17d185"
+              },
+              "main": {
+                "last_hash": "3a898ccd6c34df150e3c420311e18e6959716c57010d5d42aa6baec227a26425"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "0ae0ec3d9f17f0bc0d42286f246e07f6e8abb593ce9fbd6d317d68840a17d185"
           },
           {
             "url": "https://cip.gov.ag/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1418,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "9d861565bbda534e566d3ee60cae14f3c6555fe559fa5d8504b6b14ae6264938"
+              },
+              "rule": {
+                "last_hash": "7292da47ebf561cb9259b97bad6f385417fed2ed7a682dac51b17b20a4c269c1"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "9d861565bbda534e566d3ee60cae14f3c6555fe559fa5d8504b6b14ae6264938"
           },
           {
             "url": "https://cip.gov.ag/citizenship/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 3499,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "ef2692900df503ca0be9c5ab9396bfe154908b9b48135319c5f49670eb1f98e6"
+              },
+              "rule": {
+                "last_hash": "ee7273f4aed025701d9a8bd68fef386aabfe67e9b6087e956310fa1122f42760"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "ef2692900df503ca0be9c5ab9396bfe154908b9b48135319c5f49670eb1f98e6"
           },
           {
             "url": "https://cip.gov.ag/investment-options/ndf/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2781,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "740d0e2527f0a48c64780ff3d65d9006d30644762b4399e8e025bf75991789e9"
+              },
+              "rule": {
+                "last_hash": "8f26a1191c30a217035ec6376c012fdee09159a019ccaf5be46a1249f116e873"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "740d0e2527f0a48c64780ff3d65d9006d30644762b4399e8e025bf75991789e9"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -2388,39 +2670,94 @@
             "url": "https://www.ciu.gov.kn",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "32e4c22815693f8f90b3b18d92e61f9c36937357a805a50652f9b257f2e2a696"
+                "last_hash": "31b8de42b9c0ba45c6fd4890c232f2b834f4e87765af78ddb976ee213ec53ea6"
               },
               "rule": {
                 "last_hash": "5a17b8f6e2e9360548edec84d07f960daf8113fc2ce1644aa452634d317480b5"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "32e4c22815693f8f90b3b18d92e61f9c36937357a805a50652f9b257f2e2a696",
+            "last_hash": "31b8de42b9c0ba45c6fd4890c232f2b834f4e87765af78ddb976ee213ec53ea6",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
-            "last_layout_change": "2026-09-26T05:00:18.350Z",
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
             "probe_path": "http",
-            "last_text_len": 4859,
-            "last_main_len": 0
+            "last_text_len": 4847,
+            "last_main_len": 0,
+            "layout_change_streak": 1
           },
           {
             "url": "https://www.gov.kn/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 6465,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "75bc119d18b667700d91eb50efdc42b7e8c828f0c1dbc74fa8d1e6afe927d82a"
+              },
+              "rule": {
+                "last_hash": "3fdd53d7b432637d90957e47c63502030b8feb5522e20635a168a8e9fe01c201"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "75bc119d18b667700d91eb50efdc42b7e8c828f0c1dbc74fa8d1e6afe927d82a"
           },
           {
             "url": "https://ciu.gov.kn/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 4847,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "31b8de42b9c0ba45c6fd4890c232f2b834f4e87765af78ddb976ee213ec53ea6"
+              },
+              "rule": {
+                "last_hash": "5a17b8f6e2e9360548edec84d07f960daf8113fc2ce1644aa452634d317480b5"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "31b8de42b9c0ba45c6fd4890c232f2b834f4e87765af78ddb976ee213ec53ea6"
           },
           {
             "url": "https://ciu.gov.kn/cbi-options/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2537,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "75ddf3be9bf6a75267b0e1558eb4552761ac1e7b820d580a8ed899541153764e"
+              },
+              "rule": {
+                "last_hash": "32e70492744a6042e35f52eb32250495111a650179acd6e7fb6999cc9e013a69"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "75ddf3be9bf6a75267b0e1558eb4552761ac1e7b820d580a8ed899541153764e"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z",
+        "last_probe_at": "2026-10-01T05:01:08.661Z",
         "changed": true
       },
       "pros": [
@@ -2804,7 +3141,7 @@
             "url": "https://cbiu.gov.dm",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "b3d576701a6e6f670fce7f60c5562d616cc7c6c1bf54b22d6a188cf6d68a7ff4"
@@ -2825,18 +3162,72 @@
           },
           {
             "url": "https://dominica.gov.dm/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 3192,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "e96da843f074b0c1dd38870c8018df9537431cc9e60e7fc75fecf29127bac533"
+              },
+              "rule": {
+                "last_hash": "199335ea38b0319a138fc23ac5d3766ebe78915530ee196619ccc99d7eff5ba1"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "e96da843f074b0c1dd38870c8018df9537431cc9e60e7fc75fecf29127bac533"
           },
           {
             "url": "https://www.cbiu.gov.dm/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 3019,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "b3d576701a6e6f670fce7f60c5562d616cc7c6c1bf54b22d6a188cf6d68a7ff4"
+              },
+              "rule": {
+                "last_hash": "bc154cd20e183d49bf487669ec874eaa36acbb81167d995eae1fe41ee95158f6"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "b3d576701a6e6f670fce7f60c5562d616cc7c6c1bf54b22d6a188cf6d68a7ff4"
           },
           {
             "url": "https://www.cbiu.gov.dm/investment-options/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 3449,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "84a11fbaafb2ec8d7e3592cf067ccc81591a7778b0ffa901cba3efda0ea219da"
+              },
+              "rule": {
+                "last_hash": "3c1c962ab5599e55ee693532dc1f07b4feeba8c2ea6e6ac6898886f1c6ee69d0"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "84a11fbaafb2ec8d7e3592cf067ccc81591a7778b0ffa901cba3efda0ea219da"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z",
+        "last_probe_at": "2026-10-01T05:01:08.661Z",
         "changed": true
       },
       "pros": [
@@ -3247,7 +3638,7 @@
             "url": "https://www.ciu.gov.lc",
             "status": "ok",
             "mode": "browser",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "3614984c05f005fdaeaabf1f98244bf92fbcb7554b8ece08149976385882c802"
@@ -3267,18 +3658,72 @@
           },
           {
             "url": "https://www.govt.lc/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1937,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "d31382fe84586e6a05a12f99996c334a4ee4c8ecf07e8c8bcd4c29fc1cbc28ac"
+              },
+              "rule": {
+                "last_hash": "1c462d9d952250163243b4b9b1dd11181269b360e242528d1580cd68c14792bc"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "d31382fe84586e6a05a12f99996c334a4ee4c8ecf07e8c8bcd4c29fc1cbc28ac"
           },
           {
             "url": "https://www.cipsaintlucia.com/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 128,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "e50ca7ea3ea30dd0c9eb993b84f077b94a9ae5b613984eff159d49b0486024dc"
+              },
+              "rule": {
+                "last_hash": "0dd0308be1a4ba776163cd24d6373349e75093ccb4cb67b0ed1459e3937dd060"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "e50ca7ea3ea30dd0c9eb993b84f077b94a9ae5b613984eff159d49b0486024dc"
           },
           {
             "url": "https://www.cipsaintlucia.com/citizenship-by-investment",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 4939,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "c9457b1ba96ad6d3cbcf8de9996fd48ace5d58df50579a87ac2082a6c8f8d5ce"
+              },
+              "rule": {
+                "last_hash": "321b139ab12439bc7505b262ecd034e0f4a6f256ae8716bb2d67a78290d4d380"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "c9457b1ba96ad6d3cbcf8de9996fd48ace5d58df50579a87ac2082a6c8f8d5ce"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -3542,7 +3987,7 @@
             "url": "https://www.cbi.gov.gd",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "e0471efef94c905823f474cf56983f7df93aa93aeb154b96ce02d3d05bc424a6"
@@ -3562,18 +4007,72 @@
           },
           {
             "url": "https://www.gov.gd/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2941,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "3849f76eb142c6eb24feb63aaf06787bfa0eace912c35a991b1df916a08b3836"
+              },
+              "rule": {
+                "last_hash": "b5a7c5cb34debddcaa72eee4f4d19fefe0c17dfda359d1a6025d9d960e1fb2e5"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "3849f76eb142c6eb24feb63aaf06787bfa0eace912c35a991b1df916a08b3836"
           },
           {
             "url": "https://imagrenada.gd/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1696,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "6f21c1b741191815aa947ded1c6f82c368252f75210d73a1dfa2af14290c0241"
+              },
+              "rule": {
+                "last_hash": "1652f4e80977a5995137687bd1b78898baef170d673cafec0407547fe44f6baa"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "6f21c1b741191815aa947ded1c6f82c368252f75210d73a1dfa2af14290c0241"
           },
           {
             "url": "https://imagrenada.gd/citizenship-by-investment/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1077,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "08aabb369bc48c18e3b2e4860da0dd6e01a6822a9b50387f84a8244f404dbcd5"
+              },
+              "rule": {
+                "last_hash": "8be84e399934a777ec48803073115ab3bb00762e75cf56b7d236f831cf37aeda"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "08aabb369bc48c18e3b2e4860da0dd6e01a6822a9b50387f84a8244f404dbcd5"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -3879,7 +4378,7 @@
             "url": "https://www.bahamaschamber.com",
             "status": "ok",
             "mode": "browser",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "b95cdc9d98357dc106dc93d7aab7ef9ac996980b7b5b095991be0cae0f3d8967"
@@ -3899,7 +4398,7 @@
           },
           {
             "url": "https://www.immigration.gov.bs",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -3921,7 +4420,7 @@
           },
           {
             "url": "https://laws.bahamas.gov.bs",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "mode": "browser",
             "scopes": {
               "whole": {
@@ -3944,18 +4443,44 @@
           },
           {
             "url": "https://www.bahamas.gov.bs/",
-            "mode": "http"
+            "mode": "http",
+            "status_since": "2026-10-01T05:01:08.661Z",
+            "status": "unreachable",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_error": "empty render (13 chars of text)"
           },
           {
             "url": "https://www.immigration.gov.bs/residence/permanent-residence/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 6269,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "c903d3f30323d2f00b17a20338e4e3622e8407339f707047ccecba294f934576"
+              },
+              "rule": {
+                "last_hash": "ddf7e9054ad311966c03ab3644acde01d304804cf7467add04d2ef45d5d4249d"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "c903d3f30323d2f00b17a20338e4e3622e8407339f707047ccecba294f934576"
           },
           {
             "url": "https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
-            "mode": "http"
+            "mode": "http",
+            "status_since": "2026-10-01T05:01:08.661Z",
+            "status": "unreachable",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_error": "empty render (13 chars of text)"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z",
+        "last_probe_at": "2026-10-01T05:01:08.661Z",
         "changed": false
       },
       "pros": [
@@ -4249,7 +4774,7 @@
             "url": "https://www.immigration.gov.bb",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "7ebea7b9cbf44396bdf171829d15166dbd512e5e0092f6d562b799c6a0b02a73"
@@ -4271,7 +4796,7 @@
             "url": "https://barbadoswelcomestamp.bb",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "a0cda1db3af8af1368614541065274c2326ae31cf4c0553dac00bb220d430a92"
@@ -4292,18 +4817,72 @@
           },
           {
             "url": "https://www.visitbarbados.org/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 3868,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "948cd76242fb612721a932d1e975f0584913f32a3c9e0dd12631758e76ead42e"
+              },
+              "rule": {
+                "last_hash": "6cb86716fa78dc532c95d1db68d3afa05e15cd507a7bdfc367b3f8a3881cd158"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "948cd76242fb612721a932d1e975f0584913f32a3c9e0dd12631758e76ead42e"
           },
           {
             "url": "https://barbadoswelcomestamp.bb/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 12323,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "a0cda1db3af8af1368614541065274c2326ae31cf4c0553dac00bb220d430a92"
+              },
+              "rule": {
+                "last_hash": "31e95d171803f0f7608b28366e51860962b6172ee207fee4c75c0ece9652f068"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "a0cda1db3af8af1368614541065274c2326ae31cf4c0553dac00bb220d430a92"
           },
           {
             "url": "https://www.immigration.gov.bb/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1082,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "7ebea7b9cbf44396bdf171829d15166dbd512e5e0092f6d562b799c6a0b02a73"
+              },
+              "rule": {
+                "last_hash": "610481026e75ad982c0a47ed444299a5f837e1ad0df68d15d68524c43ffcee53"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "7ebea7b9cbf44396bdf171829d15166dbd512e5e0092f6d562b799c6a0b02a73"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -4935,31 +5514,30 @@
             "url": "https://www.gov.ky",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "5fe927c157629352be29dec0734de579497b75f10358ba1497dbdf4710a8b9ad"
+                "last_hash": "ea3ecc7527d4675c8840119616d581acf8f2fd5afd112a7c24107518e489cdfc"
               },
-              "main": {
-                "last_hash": "5fe927c157629352be29dec0734de579497b75f10358ba1497dbdf4710a8b9ad"
+              "rule": {
+                "last_hash": "25b4abb21663f17c032e6474eab63e8269e2f4cf861c8bc4507ddc08f5847d7a"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "5fe927c157629352be29dec0734de579497b75f10358ba1497dbdf4710a8b9ad",
-            "rule_scope": "none",
-            "main_scope": "present",
+            "last_hash": "ea3ecc7527d4675c8840119616d581acf8f2fd5afd112a7c24107518e489cdfc",
+            "rule_scope": "present",
+            "main_scope": "none",
             "extract_v": 7,
             "last_layout_change": "2026-09-28T05:00:36.010Z",
-            "probe_path": "browser",
-            "last_text_len": 1535,
-            "last_main_len": 1535,
-            "layout_change_streak": 10
+            "probe_path": "http",
+            "last_text_len": 2057,
+            "last_main_len": 0
           },
           {
             "url": "https://www.ciregistry.gov.ky",
             "status": "ok",
             "mode": "browser",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "50645801df96cd1770794cca6ab6dcfe8f94bd429609a68848187b3b44632d78"
@@ -4979,18 +5557,69 @@
           },
           {
             "url": "https://www.gov.ky/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2057,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "ea3ecc7527d4675c8840119616d581acf8f2fd5afd112a7c24107518e489cdfc"
+              },
+              "rule": {
+                "last_hash": "25b4abb21663f17c032e6474eab63e8269e2f4cf861c8bc4507ddc08f5847d7a"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "ea3ecc7527d4675c8840119616d581acf8f2fd5afd112a7c24107518e489cdfc"
           },
           {
             "url": "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 0,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "e1ede34d8f32e4581e23443b9e3f24ac1ff4d3e64788fe4e5757fab5eeae9235"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "e1ede34d8f32e4581e23443b9e3f24ac1ff4d3e64788fe4e5757fab5eeae9235"
           },
           {
             "url": "https://www.immigration.gov.ky/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 113,
+            "last_main_len": 113,
+            "scopes": {
+              "whole": {
+                "last_hash": "87ffb6ddb985a35b18b9fda331d078578d4e49a47b6819d5d730f9d7e7ab6f6a"
+              },
+              "main": {
+                "last_hash": "87ffb6ddb985a35b18b9fda331d078578d4e49a47b6819d5d730f9d7e7ab6f6a"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "87ffb6ddb985a35b18b9fda331d078578d4e49a47b6819d5d730f9d7e7ab6f6a"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -5370,30 +5999,31 @@
             "url": "https://www.exteriores.gob.es",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "e4e5a49936727a3bc7296541e4216a34a797e537897c7c8f387fbbb392ffce14"
+                "last_hash": "560bdb959e815d9ff523c71dcaf469ba34c05cb9da68ae1ab51e13d1c1b08e76"
               },
               "main": {
-                "last_hash": "12f23d5652a80011b84bde10ee9db3292ad7055ffa49f6093104c14a4b409a2f"
+                "last_hash": "74bdd69e8c7a2de1dc0cdc8cc2ec87ffc04083f94962f7e6f974250a5671b774"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "e4e5a49936727a3bc7296541e4216a34a797e537897c7c8f387fbbb392ffce14",
+            "last_hash": "560bdb959e815d9ff523c71dcaf469ba34c05cb9da68ae1ab51e13d1c1b08e76",
             "rule_scope": "none",
             "main_scope": "present",
             "extract_v": 7,
             "probe_path": "browser",
-            "last_layout_change": "2026-09-26T05:00:18.350Z",
-            "last_text_len": 2075,
-            "last_main_len": 1374
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2018,
+            "last_main_len": 1317,
+            "layout_change_streak": 1
           },
           {
             "url": "https://www.cnmv.es",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "f6a08a311eea7e624e4a1908188fab632f353308fb86a6e675dd681bef021281"
@@ -5413,22 +6043,80 @@
           },
           {
             "url": "https://www.exteriores.gob.es/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2018,
+            "last_main_len": 1317,
+            "scopes": {
+              "whole": {
+                "last_hash": "560bdb959e815d9ff523c71dcaf469ba34c05cb9da68ae1ab51e13d1c1b08e76"
+              },
+              "main": {
+                "last_hash": "74bdd69e8c7a2de1dc0cdc8cc2ec87ffc04083f94962f7e6f974250a5671b774"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "560bdb959e815d9ff523c71dcaf469ba34c05cb9da68ae1ab51e13d1c1b08e76"
           },
           {
             "url": "https://sede.agenciatributaria.gob.es/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 6443,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "d2527da751cc35588c040e3e76a20ccb1209733fe4db87ce069dc2a633cb0533"
+              },
+              "rule": {
+                "last_hash": "d28fc84ecdf4fb00ab08c459a162cc0fc15fd544fea1cc0e78805922e28d3fd4"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "d2527da751cc35588c040e3e76a20ccb1209733fe4db87ce069dc2a633cb0533"
           },
           {
             "url": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2043,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "c498df80b882e15c7e481897d438026f0874dc47a00862b1cd9fd888626501a2"
+              },
+              "rule": {
+                "last_hash": "38a16b8c96128fed9e19a37042b193351a6e48ca7395d911cb3d9150cb1a63c1"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "c498df80b882e15c7e481897d438026f0874dc47a00862b1cd9fd888626501a2"
           },
           {
             "url": "https://www.inclusion.gob.es/",
-            "mode": "http"
+            "mode": "http",
+            "status_since": "2026-10-01T05:01:08.661Z",
+            "status": "blocked",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_error": "bot-walled (WAF/challenge page — no readable content)"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -6029,89 +6717,158 @@
             "url": "https://www.irishimmigration.ie",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "acc32be91ee0693030bc791617bfbb85ee9cbc890f72f4d9429d5add79d5047f"
+                "last_hash": "6bf747414d2abee2bb7c014ca4c4d2fe9795c2f7d2282d1584271111387afdf6"
               },
               "main": {
-                "last_hash": "b5cf6f81525e840d35f098a0b0f2104e41b065968b71a1633f219028d84c5c5c"
+                "last_hash": "e1be92c8bc495274068c4533253e07838eb3e6b02f9694f95aadcec594224ba5"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "acc32be91ee0693030bc791617bfbb85ee9cbc890f72f4d9429d5add79d5047f",
+            "last_hash": "6bf747414d2abee2bb7c014ca4c4d2fe9795c2f7d2282d1584271111387afdf6",
             "rule_scope": "none",
             "main_scope": "present",
             "extract_v": 7,
             "probe_path": "browser",
-            "last_layout_change": "2026-09-15T18:07:59.129Z",
-            "last_text_len": 1260,
-            "last_main_len": 591
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1574,
+            "last_main_len": 679,
+            "layout_change_streak": 1
           },
           {
             "url": "https://enterprise.gov.ie",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "a0fd50caa8f77b723b9c0ce41e24dbc53d59802202841dffea0460c5b153d940"
+                "last_hash": "510e8de60d6ba46202a5b9f6cca61eb12e91d72447ba9f2422f9ca52cb6ac1fd"
               },
               "rule": {
                 "last_hash": "b60589a2e6ac3be8df137e265b00d42cf577d0b49dd2e8c604451f07d944a4c1"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "a0fd50caa8f77b723b9c0ce41e24dbc53d59802202841dffea0460c5b153d940",
-            "last_layout_change": "2026-09-26T05:00:18.350Z",
+            "last_hash": "510e8de60d6ba46202a5b9f6cca61eb12e91d72447ba9f2422f9ca52cb6ac1fd",
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
             "probe_path": "http",
-            "last_text_len": 4486,
-            "last_main_len": 0
+            "last_text_len": 4489,
+            "last_main_len": 0,
+            "layout_change_streak": 1
           },
           {
             "url": "https://www.centralbank.ie",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "27331ab9319c2f996052bc7e798618a3f1bd613a47067657fbfe2041834f6510"
+                "last_hash": "178cc12b31ebabd1f9cf737ff8779f46ca9355ec29e106fb8d8f98a432a4a71f"
               },
               "rule": {
                 "last_hash": "aa626eb98fac5047cfcb3761c33329811422329679c73eba885bc033641effbc"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "27331ab9319c2f996052bc7e798618a3f1bd613a47067657fbfe2041834f6510",
+            "last_hash": "178cc12b31ebabd1f9cf737ff8779f46ca9355ec29e106fb8d8f98a432a4a71f",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
             "probe_path": "http",
-            "last_text_len": 1748,
+            "last_text_len": 1784,
             "last_main_len": 0,
-            "last_layout_change": "2026-09-25T05:00:19.548Z"
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
+            "layout_change_streak": 1
           },
           {
             "url": "https://www.dfa.ie/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 442,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "86187a6a135d8423197e1c92e8937c8e51fee73c35f241aa6b3a8a6feeb56bd5"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "86187a6a135d8423197e1c92e8937c8e51fee73c35f241aa6b3a8a6feeb56bd5"
           },
           {
             "url": "https://www.revenue.ie/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 3280,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "df2e48b168d1876e80784c3c8d51c3963e8537279fd9091716f70f8fd48df3c8"
+              },
+              "rule": {
+                "last_hash": "38e95d043e20ad2bc512cf2194dc16373979a2cba21520c356fe0c2999cf34d0"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "df2e48b168d1876e80784c3c8d51c3963e8537279fd9091716f70f8fd48df3c8"
           },
           {
             "url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 442,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "86187a6a135d8423197e1c92e8937c8e51fee73c35f241aa6b3a8a6feeb56bd5"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "86187a6a135d8423197e1c92e8937c8e51fee73c35f241aa6b3a8a6feeb56bd5"
           },
           {
             "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 14548,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "19593cdada3523e6441d365e714d5f0a6ac74e0e5d07eca6e8870f66d2fb4d0a"
+              },
+              "rule": {
+                "last_hash": "085d7329f38fd0d1e36f27d9c0ccdbef8e963dce90ab58a10c94aa2b01f2efc4"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "19593cdada3523e6441d365e714d5f0a6ac74e0e5d07eca6e8870f66d2fb4d0a"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z",
+        "last_probe_at": "2026-10-01T05:01:08.661Z",
         "changed": true
       },
       "pros": [
@@ -6736,7 +7493,7 @@
             "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "28e0fbef8d3828232fc9863f899db55ed2674e7104defd7f3cd193e9b3e3d39e"
@@ -6759,7 +7516,7 @@
             "url": "https://www.migraciones.gob.ar",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "d45f25a0c8ef1a6d2264b117c65141b4ba4656d197049aac9bce1988787f83b9"
@@ -6781,7 +7538,7 @@
             "url": "https://www.boletinoficial.gob.ar",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "ed4f520657ae4743090d032dfe1355605884a64f6874558095167b7fc11fc267"
@@ -6802,22 +7559,91 @@
           },
           {
             "url": "https://eeeuu.cancilleria.gob.ar/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1970,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "fc2653960a0d5bfdb15b06b4df8e33835a3c62fbec100d862fd37539e8e2a98c"
+              },
+              "rule": {
+                "last_hash": "6558ada9adec470ab08cf72d6762a71baa10fee835d63fe415e27652d12c0c42"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "fc2653960a0d5bfdb15b06b4df8e33835a3c62fbec100d862fd37539e8e2a98c"
           },
           {
             "url": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 802,
+            "last_main_len": 481,
+            "scopes": {
+              "whole": {
+                "last_hash": "da1b0c6749745cfadafc2aa14c517166edc9b0f4d7ece9f4ec1288f5da385fb1"
+              },
+              "main": {
+                "last_hash": "13e7bec148187116dd7cd4dc6e6e6887d87a8fca76e3a5fcc23180e7f9ef9075"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "da1b0c6749745cfadafc2aa14c517166edc9b0f4d7ece9f4ec1288f5da385fb1"
           },
           {
             "url": "https://www.argentina.gob.ar/migraciones/residencias",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2346,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "811be4dacc215bf9228537cf35611793c51c9c38d313a0ea0d73b3d1ff443d3d"
+              },
+              "rule": {
+                "last_hash": "6b9f242d9ecaf05b13ab6489af75a6e0294fd71e99d4dd67f0fcddcd8a55e1a8"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "811be4dacc215bf9228537cf35611793c51c9c38d313a0ea0d73b3d1ff443d3d"
           },
           {
             "url": "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 594,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "883c8f28dbbf97821d282fcf82cbe858abd0e47f10fa75aaa2ff8ba075dc5590"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "883c8f28dbbf97821d282fcf82cbe858abd0e47f10fa75aaa2ff8ba075dc5590"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -7479,7 +8305,7 @@
             "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "4ec9c68aba5afb873134c2d1cb766b009a61a6cee3f24b90100ceab40abb3a27"
@@ -7501,30 +8327,31 @@
             "url": "https://www.gov.br/pf/pt-br/assuntos/imigracao",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "80559d29b03982f6ae2aef10f52fba3ab7d4ee8c65bf2e88fe70b760abd78a7b"
+                "last_hash": "92fb0b45650884b8887ec52fb2bf6ae38a29b98c8d44f05541d9c2c351491085"
               },
               "main": {
                 "last_hash": "32b6ea838d7aab50fe35bb0a7f15704d4dcc5c14907f064534e97461a06ecec9"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "80559d29b03982f6ae2aef10f52fba3ab7d4ee8c65bf2e88fe70b760abd78a7b",
-            "last_layout_change": "2026-09-15T14:57:07.990Z",
+            "last_hash": "92fb0b45650884b8887ec52fb2bf6ae38a29b98c8d44f05541d9c2c351491085",
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
             "rule_scope": "none",
             "main_scope": "present",
             "extract_v": 7,
             "probe_path": "browser",
-            "last_text_len": 2269,
-            "last_main_len": 33
+            "last_text_len": 2283,
+            "last_main_len": 33,
+            "layout_change_streak": 1
           },
           {
             "url": "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
             "status": "ok",
             "mode": "browser",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "08647a76cea82b8360d6e2da06e3e3d897b1dcd2446d8e88bc9f24f584b5e1df"
@@ -7544,22 +8371,94 @@
           },
           {
             "url": "https://www.gov.br/mre/en",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 1536,
+            "last_main_len": 33,
+            "scopes": {
+              "whole": {
+                "last_hash": "6d9b8a0bce2dc62a4dcf22e9bdaec7a02cc141aabf8b0d6aae3f4ebcbfe16012"
+              },
+              "main": {
+                "last_hash": "32b6ea838d7aab50fe35bb0a7f15704d4dcc5c14907f064534e97461a06ecec9"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "6d9b8a0bce2dc62a4dcf22e9bdaec7a02cc141aabf8b0d6aae3f4ebcbfe16012"
           },
           {
             "url": "https://brsb.itamaraty.gov.br/en-us/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 112,
+            "last_main_len": 112,
+            "scopes": {
+              "whole": {
+                "last_hash": "959ee277979f8f5fbf9f62889db9cc14850c2347f5f62d4698ef0d32bd361bef"
+              },
+              "main": {
+                "last_hash": "959ee277979f8f5fbf9f62889db9cc14850c2347f5f62d4698ef0d32bd361bef"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "959ee277979f8f5fbf9f62889db9cc14850c2347f5f62d4698ef0d32bd361bef"
           },
           {
             "url": "https://www.gov.br/mj/en/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2986,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "711a595dd69fda3d2c865fc806a5062c5156a390ba95cf3b520b09d057114ec0"
+              },
+              "rule": {
+                "last_hash": "61a60fc36d75ac40d27c8e58dd62531e31d7a38bded1d850d3b0dca8cd85379a"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "711a595dd69fda3d2c865fc806a5062c5156a390ba95cf3b520b09d057114ec0"
           },
           {
             "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13445.htm",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 153,
+            "last_main_len": 153,
+            "scopes": {
+              "whole": {
+                "last_hash": "08647a76cea82b8360d6e2da06e3e3d897b1dcd2446d8e88bc9f24f584b5e1df"
+              },
+              "main": {
+                "last_hash": "08647a76cea82b8360d6e2da06e3e3d897b1dcd2446d8e88bc9f24f584b5e1df"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "08647a76cea82b8360d6e2da06e3e3d897b1dcd2446d8e88bc9f24f584b5e1df"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -7935,7 +8834,7 @@
             "url": "https://residencymalta.gov.mt",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "512961f748ec99e126ffea303940167c65a24a6dec691755b05c5af74e999533"
@@ -7965,7 +8864,7 @@
             "url": "https://www.identita.gov.mt",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "b0c51232d8ed025f2f48517aedbb30e6294d66cc6a63cbb4d7c433ab3968bd29"
@@ -7986,14 +8885,22 @@
           },
           {
             "url": "https://www.gov.mt",
-            "mode": "http"
+            "mode": "http",
+            "status_since": "2026-10-01T05:01:08.661Z",
+            "status": "blocked",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_error": "HTTP 403 — Cloudflare bot wall"
           },
           {
             "url": "https://www.mfsa.mt/our-work/virtual-financial-assets/",
-            "mode": "http"
+            "mode": "http",
+            "status_since": "2026-10-01T05:01:08.661Z",
+            "status": "blocked",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_error": "HTTP 403 — Cloudflare bot wall"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -8327,7 +9234,7 @@
             "url": "https://cilc.vu",
             "status": "ok",
             "mode": "browser",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "8bb480f6f57de40f55b01ce3866b63c949315724a4db39d8a6695ef6827f5928"
@@ -8349,7 +9256,7 @@
             "url": "https://immigration.gov.vu",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
                 "last_hash": "7eba8831720532860a86e7263a5ec20b168e3122193abbadb6a44d15240c7756"
@@ -8369,18 +9276,72 @@
           },
           {
             "url": "https://www.gov.vu",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2280,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "c4fbb1f16ad1582a6f58fd9407b5c48810fa5f9e54f6d4b07cad3dbea41b3e02"
+              },
+              "rule": {
+                "last_hash": "1fc6230f2e4aba12d0e28e89634885ce4dba8f45ce5752dd8f980928af660404"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "c4fbb1f16ad1582a6f58fd9407b5c48810fa5f9e54f6d4b07cad3dbea41b3e02"
           },
           {
             "url": "https://vancitizenship.gov.vu/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 3881,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "791a0c76ba4f22331fe6a7e480483c2febc860e66ffa3ab122206ecaa89dcd6c"
+              },
+              "rule": {
+                "last_hash": "902d78cb8354caaccf1067c41ea409568ce00ba71897cb69b8c9cfea0d994755"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "791a0c76ba4f22331fe6a7e480483c2febc860e66ffa3ab122206ecaa89dcd6c"
           },
           {
             "url": "https://www.vfsc.vu/virtual-asset-service-provider/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 3390,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "b4fc77e35459154c06ce171327d306e1ddb23a984427f68b6ade1bf72450dd0a"
+              },
+              "rule": {
+                "last_hash": "49aa0e79fcf6d0e31052716dd99545e8addf358f2f56b6cb972c0ce0af54eff4"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "b4fc77e35459154c06ce171327d306e1ddb23a984427f68b6ade1bf72450dd0a"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z"
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
@@ -8678,54 +9639,76 @@
             "url": "https://www.migracion.gob.pa",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "a1d11a672e6b89031289c6e93d1f53437635bd43377e370e38df9d2f07c0ff20"
+                "last_hash": "9e47b3e00939b87feb0ec5a8622f8fd1a55dac20e2f5eb7577fd10dc6bcb3369"
               },
               "rule": {
-                "last_hash": "7a39d4609cd85da56e437bde809f5b9e5fae42655d60550b7defd9ac6876a537"
+                "last_hash": "7a39d4609cd85da56e437bde809f5b9e5fae42655d60550b7defd9ac6876a537",
+                "pending_hash": "76282cd7f404b359b6db922a0319eac407c5272419e8ff78479257710882e5c5"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "a1d11a672e6b89031289c6e93d1f53437635bd43377e370e38df9d2f07c0ff20",
-            "last_layout_change": "2026-09-26T05:00:18.350Z",
+            "last_hash": "9e47b3e00939b87feb0ec5a8622f8fd1a55dac20e2f5eb7577fd10dc6bcb3369",
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
             "probe_path": "http",
-            "last_text_len": 2251,
-            "last_main_len": 0
+            "last_text_len": 7392,
+            "last_main_len": 0,
+            "layout_change_streak": 1
           },
           {
             "url": "https://www.gacetaoficial.gob.pa",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "f0c547dfbfe95fc4b84bcef8e1b0b6e7b6806b66f60ad55fd901e6679f9280f6"
+                "last_hash": "3260d4a65f621d6c2116165f249f109b52162575558d0d6211221c7dece1a761"
               },
               "rule": {
-                "last_hash": "eb2113a16fb699b568a46d17aeacf84a8be285e7b822b0ddb9b563279e0b4492"
+                "last_hash": "eb2113a16fb699b568a46d17aeacf84a8be285e7b822b0ddb9b563279e0b4492",
+                "pending_hash": "806b7991487f885ce9c9ccb6932a9bf2785aad7222c10b5e563c084593f98ba9"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "f0c547dfbfe95fc4b84bcef8e1b0b6e7b6806b66f60ad55fd901e6679f9280f6",
-            "last_layout_change": "2026-09-25T05:00:19.548Z",
+            "last_hash": "3260d4a65f621d6c2116165f249f109b52162575558d0d6211221c7dece1a761",
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
             "rule_scope": "present",
             "main_scope": "none",
             "extract_v": 7,
             "probe_path": "browser",
-            "last_text_len": 3737,
-            "last_main_len": 0
+            "last_text_len": 2424,
+            "last_main_len": 0,
+            "layout_change_streak": 1
           },
           {
             "url": "https://www.mire.gob.pa/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2721,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "f0b16f049fc68cde03a1bee51be8fee6ef3e1efe3e3923de1a7a41ef26eee59d"
+              },
+              "rule": {
+                "last_hash": "a874f5bb74ff020e4e0e4ff6e9e1072fc44184b5dec5e14ed7cbc4409b32f908"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "f0b16f049fc68cde03a1bee51be8fee6ef3e1efe3e3923de1a7a41ef26eee59d"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z",
+        "last_probe_at": "2026-10-01T05:01:08.661Z",
         "changed": true
       },
       "pros": [
@@ -9188,28 +10171,29 @@
             "url": "https://www.gob.mx",
             "status": "ok",
             "mode": "http",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "scopes": {
               "whole": {
-                "last_hash": "e8ff0841951bbca7dcec48f2136f4c8ca39cf28310a5bcbd94553920f72876d2"
+                "last_hash": "6c1e1829b3fedefef3cd343d5ef3580cd5dd64aeb08dd4ab4c19228f682ac74f"
               },
               "main": {
-                "last_hash": "58fe20dadde1f8828fe70667ba73957ea169dd4acf2ba6b6eb74d13cec2d884c"
+                "last_hash": "119ba08e3b839f1d0bfe2057286d1131741def1bcd279c16acb7f83fe3ad3351"
               }
             },
             "baselined_at": "2026-09-15T14:52:53.898Z",
-            "last_hash": "e8ff0841951bbca7dcec48f2136f4c8ca39cf28310a5bcbd94553920f72876d2",
+            "last_hash": "6c1e1829b3fedefef3cd343d5ef3580cd5dd64aeb08dd4ab4c19228f682ac74f",
             "rule_scope": "none",
             "main_scope": "present",
             "extract_v": 7,
             "probe_path": "browser",
-            "last_text_len": 1260,
-            "last_main_len": 900,
-            "last_layout_change": "2026-09-19T05:00:20.173Z"
+            "last_text_len": 925,
+            "last_main_len": 565,
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
+            "layout_change_streak": 1
           },
           {
             "url": "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "mode": "http",
             "scopes": {
               "whole": {
@@ -9231,14 +10215,15 @@
           },
           {
             "url": "https://dof.gob.mx",
-            "last_probed": "2026-09-28T05:00:36.010Z",
+            "last_probed": "2026-10-01T05:01:08.661Z",
             "mode": "http",
             "scopes": {
               "whole": {
-                "last_hash": "fab2fc6e6addc241902be8952394067bfc4090093cc414eb244f7ebd4c5d7b0e"
+                "last_hash": "e07e07b376ed3e5ce770429159077d3339a1c2ddaeba856b1d97b43bbd59911b"
               },
               "rule": {
-                "last_hash": "276bf7988b0fa552d9181ddc17327547fb645ce5895de1d99ae8ce80c0f9ceed"
+                "last_hash": "276bf7988b0fa552d9181ddc17327547fb645ce5895de1d99ae8ce80c0f9ceed",
+                "pending_hash": "1fa322fe0854673dd8e68889529617193f5c207fb6b531717deb5e1679ea6b74"
               }
             },
             "rule_scope": "present",
@@ -9246,26 +10231,53 @@
             "extract_v": 7,
             "status": "ok",
             "baselined_at": "2026-09-15T15:44:46.649Z",
-            "last_hash": "fab2fc6e6addc241902be8952394067bfc4090093cc414eb244f7ebd4c5d7b0e",
+            "last_hash": "e07e07b376ed3e5ce770429159077d3339a1c2ddaeba856b1d97b43bbd59911b",
             "probe_path": "http",
-            "last_text_len": 7366,
+            "last_text_len": 7032,
             "last_main_len": 0,
-            "last_layout_change": "2026-09-27T05:00:33.513Z"
+            "last_layout_change": "2026-10-01T05:01:08.661Z",
+            "layout_change_streak": 1
           },
           {
             "url": "https://www.gob.mx/sre",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2625,
+            "last_main_len": 2248,
+            "scopes": {
+              "whole": {
+                "last_hash": "6668758942ef67924ad6edae64275f3422737bff676a41824dccaf6b705790e0"
+              },
+              "main": {
+                "last_hash": "b7e039a08d0bd69e1049a74a888fe9542c17c600b11680926ab5c8645e6dfdf7"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "present",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "6668758942ef67924ad6edae64275f3422737bff676a41824dccaf6b705790e0"
           },
           {
             "url": "https://embamex.sre.gob.mx/eua/",
-            "mode": "http"
+            "mode": "http",
+            "status_since": "2026-10-01T05:01:08.661Z",
+            "status": "blocked",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_error": "bot-walled (WAF/challenge page — no readable content)"
           },
           {
             "url": "https://www.inm.gob.mx/",
-            "mode": "http"
+            "mode": "http",
+            "status_since": "2026-10-01T05:01:08.661Z",
+            "status": "unreachable",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_error": "empty render (0 chars of text)"
           }
         ],
-        "last_probe_at": "2026-09-28T05:00:36.010Z",
+        "last_probe_at": "2026-10-01T05:01:08.661Z",
         "changed": true
       },
       "pros": [
@@ -9700,14 +10712,47 @@
         "urls": [
           {
             "url": "https://www.gov.st",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 2608,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "6fa25c01b4ec6b4454792550d2ef55ed75447b3ace56e3d9c9e07a13e235e0fd"
+              }
+            },
+            "rule_scope": "none",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "browser",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "6fa25c01b4ec6b4454792550d2ef55ed75447b3ace56e3d9c9e07a13e235e0fd"
           },
           {
             "url": "https://cip.gov.st/",
-            "mode": "http"
+            "mode": "http",
+            "last_probed": "2026-10-01T05:01:08.661Z",
+            "last_text_len": 14040,
+            "last_main_len": 0,
+            "scopes": {
+              "whole": {
+                "last_hash": "fe88ce94e64a43c13b9877f46de275d278d61864870780e137f98525da453053"
+              },
+              "rule": {
+                "last_hash": "a866d8fbc32f56aeb814c6d1ef2451f8e7037d467432674748c9591890d1b62f"
+              }
+            },
+            "rule_scope": "present",
+            "main_scope": "none",
+            "extract_v": 7,
+            "probe_path": "http",
+            "status": "ok",
+            "baselined_at": "2026-10-01T05:01:08.661Z",
+            "last_hash": "fe88ce94e64a43c13b9877f46de275d278d61864870780e137f98525da453053"
           }
         ],
-        "last_probe_at": null
+        "last_probe_at": "2026-10-01T05:01:08.661Z"
       },
       "pros": [
         {
