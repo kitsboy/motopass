@@ -1,13 +1,14 @@
 {
-  "generated_at": "2026-10-01T12:01:11.426Z",
+  "generated_at": "2026-10-02T11:32:45.933Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
     "fresh": 21,
     "watch": 0,
     "stale": 0,
-    "swept_at": "2026-10-01T12:01:11.426Z",
+    "swept_at": "2026-10-02T11:32:45.933Z",
     "satohash_api": {
-      "status": "down"
+      "status": "up",
+      "version": "5.0.0-ELITE"
     }
   },
   "programs": {
@@ -76,7 +77,7 @@
       "watch": {
         "changed": true,
         "probed": 6,
-        "unreachable": 4
+        "unreachable": 6
       },
       "proof": {
         "hash": "ae7e6b71f116ec64b7ab90cf099c88b5393d8a9a24d236d05d4a8a0f36cec8bc",
@@ -129,7 +130,7 @@
       "watch": {
         "changed": true,
         "probed": 6,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "5896d70fc0b87a29e9f45849bf8e733c252559f028d5bf0b8188607cd3355eb8",
@@ -139,6 +140,18 @@
         "stamp_id": "3d0c96df-1338-4d03-a87f-0b79b7299e7c"
       },
       "recent_changes": [
+        {
+          "date": "2026-10-02",
+          "field": "watch.https://www.agenziaentrate.gov.it/",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "70f6d639a39a8d1c"
+        },
+        {
+          "date": "2026-10-02",
+          "field": "watch.https://www.agenziaentrate.gov.it",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "70f6d639a39a8d1c"
+        },
         {
           "date": "2026-09-30",
           "field": "proof",
@@ -158,18 +171,6 @@
           "from": "bd89b05fe04c7736",
           "to": "re-anchored 3ca27b9a7ab32911 (stamp 5deb3997-56d)",
           "hash": "3ca27b9a7ab32911922a4fb71ff45a93dfb9f4ee5a47ac4de03fcc29d8430590"
-        },
-        {
-          "date": "2026-09-15",
-          "field": "watch.https://www.agenziaentrate.gov.it",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "41a1a0615a863e29"
-        },
-        {
-          "date": "2026-09-15",
-          "field": "watch.https://investorvisa.mise.gov.it",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "f09e6c72f2067cf4"
         }
       ]
     },
@@ -181,7 +182,7 @@
         "last_checked": "2026-09-29"
       },
       "watch": {
-        "changed": false,
+        "changed": true,
         "probed": 5,
         "unreachable": 3
       },
@@ -193,6 +194,12 @@
         "stamp_id": "bec9cfdf-88b3-48d9-8906-65e68ac6265a"
       },
       "recent_changes": [
+        {
+          "date": "2026-10-02",
+          "field": "watch.https://www.minterior.gub.uy",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "91069f397ed6edc7"
+        },
         {
           "date": "2026-09-30",
           "field": "proof",
@@ -217,12 +224,6 @@
           "field": "proof",
           "from": "1e9993bb823a6b8f",
           "to": "re-anchored 97d5230a45b78ff2 (stamp 8bc9645f-55b)",
-          "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
-        },
-        {
-          "date": "2026-09-11",
-          "field": "watch.https://www.minterior.gub.uy",
-          "to": "Official source content changed — manual rule review required",
           "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
         }
       ]
@@ -613,7 +614,7 @@
       "watch": {
         "changed": false,
         "probed": 5,
-        "unreachable": 2
+        "unreachable": 4
       },
       "proof": {
         "hash": "1842cdd9cd07c630485c11a6754745b93442f41027aaf110ab4520a8dece0402",
@@ -731,6 +732,12 @@
       },
       "recent_changes": [
         {
+          "date": "2026-10-02",
+          "field": "watch.https://enterprise.gov.ie",
+          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "a238bb63af7be49d"
+        },
+        {
           "date": "2026-09-30",
           "field": "proof",
           "from": "73c8efd7ab309c52",
@@ -754,12 +761,6 @@
           "field": "watch.https://www.centralbank.ie",
           "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
           "hash": "600000389968dd48"
-        },
-        {
-          "date": "2026-09-15",
-          "field": "watch.https://www.centralbank.ie",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "2260ad08a61ef8f4"
         }
       ]
     },
@@ -990,7 +991,7 @@
       "watch": {
         "changed": true,
         "probed": 3,
-        "unreachable": 0
+        "unreachable": 2
       },
       "proof": {
         "hash": "c0f4352fe65c1b80a4485542db3e223c377fb6048c115bd142387c116b50edd9",
