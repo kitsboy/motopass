@@ -7,26 +7,26 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.989Z",
+  "generated_at": "2026-10-02T19:00:25.471Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:31:22.735Z",
-    "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf",
-    "proof_url": "https://satohash.io/verify/67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf",
+    "stamped_at": "2026-09-30T20:44:44.273Z",
+    "hash": "1842cdd9cd07c630485c11a6754745b93442f41027aaf110ab4520a8dece0402",
+    "proof_url": "https://satohash.io/verify/1842cdd9cd07c630485c11a6754745b93442f41027aaf110ab4520a8dece0402",
     "ots_path": "/proofs/cayman-islands-1842cdd9cd07.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -139,43 +139,36 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.gov.ky",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.ciregistry.gov.ky",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.gov.ky/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.immigration.gov.ky/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-08",
-      "field": "watch.https://www.gov.ky",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
-    },
     {
       "date": "2026-09-09",
       "field": "watch.https://www.gov.ky",
@@ -224,6 +217,13 @@
       "from": null,
       "to": "Two duplicate `rule scope added` coverage events REMOVED (t_54b89ced, harness owner). Both carried the same rotating news headline as their \"rule text\" (\"André Ebanks and his fellow Caribbean Overseas Territories Leaders have concluded their 2026 Caucus meeting in Hamilton, Bermuda … in preparation for this year's United Kingdom (UK) Joint Mini…\"), 16 minutes apart — the url alternates an http path whose rule scope is a news headline with a browser path that has no rule scope, so every probe-path flip re-announced the same non-rule text. Neither could alert (a rule scope needs two identical probes). The harness no longer emits this event on a probe-path flip or an EXTRACT_V re-baseline (v8, shouldEmitRuleScopeAdded); these two were pre-fix noise the feed should not have to explain. The `after` texts are preserved here rather than deleted silently. Whether to keep watching www.gov.ky at all (a headline-bearing rule scope) stays a curation decision — see t_239f6996 and t_50cbc2d3.",
       "hash": null
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "67fe1219912c44a0",
+      "to": "re-anchored 1842cdd9cd07c630 (stamp 7b87b477-9b5)",
+      "hash": "1842cdd9cd07c630485c11a6754745b93442f41027aaf110ab4520a8dece0402"
     }
   ],
   "sovereignty": {

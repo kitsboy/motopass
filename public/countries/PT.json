@@ -7,26 +7,26 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.986Z",
+  "generated_at": "2026-10-02T19:00:25.466Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:30:50.074Z",
-    "hash": "f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db",
-    "proof_url": "https://satohash.io/verify/f3e40457dce4d625c56ee87dab8f857e724f7c1690c395930d6e46df743415db",
+    "stamped_at": "2026-09-30T20:37:45.750Z",
+    "hash": "ae7e6b71f116ec64b7ab90cf099c88b5393d8a9a24d236d05d4a8a0f36cec8bc",
+    "proof_url": "https://satohash.io/verify/ae7e6b71f116ec64b7ab90cf099c88b5393d8a9a24d236d05d4a8a0f36cec8bc",
     "ots_path": "/proofs/portugal-ae7e6b71f116.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -136,48 +136,41 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://imigrante.sef.pt",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.portugal.gov.pt",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.portaldasfinancas.gov.pt/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.portugal.gov.pt/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://aima.gov.pt/pt/a-aima/perguntas-frequentes-faqs/autorizacao-de-residencia-para-investimento-ari/faq-residence-permit-for-investment-activity-ari",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "verification",
-      "from": "corpus sweep 2026-08-22",
-      "to": "re-verified, no material change — Golden-visa fund route €500k + Lei Orgânica 1/2026 naturalisation (7y EU-CPLP / 10y others) confirmed current (bitizenship 2026-09-10); no new golden-visa threshold change verified",
-      "hash": null
-    },
     {
       "date": "2026-09-11",
       "field": "watch.https://www.portugal.gov.pt",
@@ -226,6 +219,13 @@
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
       "hash": "073387d49817e6b6"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "f3e40457dce4d625",
+      "to": "re-anchored ae7e6b71f116ec64 (stamp ccb51b8f-fc8)",
+      "hash": "ae7e6b71f116ec64b7ab90cf099c88b5393d8a9a24d236d05d4a8a0f36cec8bc"
     }
   ],
   "sovereignty": {

@@ -7,26 +7,26 @@
     "region": "Oceania",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.990Z",
+  "generated_at": "2026-10-02T19:00:25.473Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:31:29.514Z",
-    "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27",
-    "proof_url": "https://satohash.io/verify/dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27",
+    "stamped_at": "2026-10-01T12:01:08.406Z",
+    "hash": "a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938",
+    "proof_url": "https://satohash.io/verify/a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938",
     "ots_path": "/proofs/vanuatu-8973b5e31268.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -139,57 +139,36 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://cilc.vu",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://immigration.gov.vu",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.gov.vu",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://vancitizenship.gov.vu/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.vfsc.vu/virtual-asset-service-provider/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-22",
-      "field": "proof",
-      "from": "83771c5faafe612a",
-      "to": "re-anchored 3012b5f3857415cc (stamp b2c92368-b0f)",
-      "hash": "3012b5f3857415cc40dea6352aa55da91f9caa085dbbfedbf6847a77aee9ca34"
-    },
-    {
-      "date": "2026-08-22",
-      "field": "legal_compliance",
-      "from": "corpus BUILD 72",
-      "to": "Crypto legal — ban lifted July 2021 (Finance Magnates via Wikipedia); VCP $130k unchanged",
-      "hash": null
-    },
-    {
-      "date": "2026-08-26",
-      "field": "watch.https://immigration.gov.vu",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
-    },
     {
       "date": "2026-08-29",
       "field": "proof",
@@ -224,6 +203,27 @@
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
       "hash": "421bef18e0bea0c1"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "dc7586d2d89250d0",
+      "to": "re-anchored 8973b5e31268af3b (stamp f2a95839-323)",
+      "hash": "8973b5e31268af3b822f9e74e35e4bf1701b1214099e2bcbd596ca9fee0dd660"
+    },
+    {
+      "date": "2026-10-01",
+      "field": "finance.tax_benefits",
+      "from": "No personal income tax (Wikipedia)\n\nCrypto/Bitcoin tax: Zero-direct-tax regime: no personal income t",
+      "to": "No personal income tax (Wikipedia)",
+      "hash": "a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938"
+    },
+    {
+      "date": "2026-10-01",
+      "field": "proof",
+      "from": "8973b5e31268af3b",
+      "to": "re-anchored a65002fbf8c5059d (stamp bcca1eec-371)",
+      "hash": "a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938"
     }
   ],
   "sovereignty": {

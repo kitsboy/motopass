@@ -281,6 +281,168 @@ export async function fetchBtcMap(countryName) {
   }
 }
 
+// ── Industry-news adapter (CBI / competitor feed) ─────────────────────────────
+//
+// Why Google News RSS and not the outlets' own feeds: the industry firms gate
+// their XML (IMI Daily 403s plain HTTP), redirect their /feed to the homepage
+// (Nomad Capitalist, Henley, GoldenVisas) or ship no feed at all (CitizenX).
+// Google News RSS is stable, free, no bot wall, and returns the same stories the
+// outlets' own pages carry — deduplicated, time-stamped, source-attributed.
+// See card t_05522f76: CitizenX beat us on Argentina CBI because this watch
+// list had ZERO industry feeds; this adapter closes that gap.
+const GOOGLE_NEWS_RSS = 'https://news.google.com/rss/search'
+const GOOGLE_NEWS_PARAMS = { hl: 'en-US', gl: 'US', ceid: 'US:en' }
+
+// The competitor / industry outlets we watch. Query is fed to Google News so a
+// firm that kills its feed (or never had one) still gets covered.
+const INDUSTRY_SOURCES = [
+  {
+    key: 'citizenx',
+    label: 'CitizenX (PlanBpassport / Katie)',
+    query: '"CitizenX" OR "PlanBpassport" citizenship OR residency OR passport',
+  },
+  {
+    key: 'imidaily',
+    label: 'IMI Daily',
+    query: 'site:imidaily.com citizenship OR investment OR residency',
+  },
+  {
+    key: 'nomad-capitalist',
+    label: 'Nomad Capitalist',
+    query: 'site:nomadcapitalist.com citizenship OR residency OR passport',
+  },
+  {
+    key: 'henley',
+    label: 'Henley & Partners',
+    query: 'site:henleyglobal.com citizenship OR investment OR residency',
+  },
+  {
+    key: 'goldenvisas',
+    label: 'Get Golden Visa',
+    query: 'site:getgoldenvisa.com "golden visa" OR citizenship OR residency',
+  },
+]
+
+// CBI / program vocabulary — an item must carry one of these to be considered
+// program news (vs. a generic tax/lifestyle post).
+const CBI_TERM_RE =
+  /\b(cbi|citizenship\s+by\s+investment|golden\s+visa|investment\s+migration|second\s+citizenship|residen(?:cy|ce)\s+by\s+investment|passport\s+progra?m|passports?)\b/i
+// A program-status signal: announcing / opening / formalising / pricing a
+// program, or a rule/eligibility change inside one. Matches the class Cam wants
+// alerted ("Argentina CBI going from announced to official").
+const PROGRAM_STATUS_RE =
+  /\b(announc(?:es|ed|ing)?|launch(?:es|ed|ing)?|opens?|roll(?:s|ing)?\s*out|go(?:es|ing)?\s+(?:live|official)|official(?:ly|ising|ized)?|pric(?:es|ed|ing)?|fees?|thresholds?|minimum\s+invest(?:ment)?|eligib|new\s+program|resumes?)\b/i
+// Country aliases so short-form article titles still match the corpus.
+const COUNTRY_ALIASES = {
+  'St. Kitts and Nevis': /st\.?\s*kitts/i,
+  'Antigua and Barbuda': /antigua/i,
+  'St. Lucia': /st\.?\s*lucia/i,
+  'São Tomé and Príncipe': /s[aã]o\s*tom[eé]/i,
+  'Cayman Islands': /cayman/i,
+  'El Salvador': /el\s+salvador/i,
+  'United States': /\bus\b|united\s+states|america/i,
+}
+
+function escapeRe(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+/**
+ * Return the regex that matches a corpus country name (or its alias) in a
+ * headline/description. Used to attribute an industry item to a watched program.
+ */
+export function countryNameRe(countryName) {
+  if (COUNTRY_ALIASES[countryName]) return COUNTRY_ALIASES[countryName]
+  return new RegExp(`\\b${escapeRe(countryName)}\\b`, 'i')
+}
+
+function decodeXml(s) {
+  return String(s ?? '')
+    .replace(/<!\[CDATA\[/g, '')
+    .replace(/\]\]>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+}
+
+function parseRssItems(xml) {
+  const items = []
+  const re = /<item>([\s\S]*?)<\/item>/g
+  let m
+  while ((m = re.exec(xml)) !== null) {
+    const block = m[1]
+    const grab = (tag) => {
+      const mm = block.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`))
+      return mm ? decodeXml(mm[1]).trim() : ''
+    }
+    const title = grab('title')
+    const link = grab('link')
+    const guid = grab('guid')
+    const pubDate = grab('pubDate')
+    const badge = grab('source')
+    const description = grab('description').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+    if (!title || !link) continue
+    items.push({ title, link, guid, pubDate, source: badge, description })
+  }
+  return items
+}
+
+/**
+ * Fetch the industry / competitor CBI feed for a single outlet via Google News
+ * RSS. Returns { key, label, items: [...] } or null on failure.
+ * `items` carries the raw fields (title / link / guid / pubDate / source /
+ * description); relevance + country attribution happen in the runner.
+ */
+export async function fetchIndustryNews(source = INDUSTRY_SOURCES[0], limit = 30) {
+  const params = new URLSearchParams({ ...GOOGLE_NEWS_PARAMS, q: source.query })
+  try {
+    const res = await fetch(`${GOOGLE_NEWS_RSS}?${params}`, {
+      headers: { 'User-Agent': USER_AGENT, Accept: 'application/xml' },
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    })
+    if (!res.ok) return null
+    const xml = await res.text()
+    const items = parseRssItems(xml).slice(0, limit)
+    return { key: source.key, label: source.label, items }
+  } catch {
+    return null
+  }
+}
+
+/** Fetch every industry source. Returns array of { key, label, items } | null. */
+export async function fetchAllIndustryNews(limit = 30) {
+  const results = await Promise.all(
+    INDUSTRY_SOURCES.map((s) => fetchIndustryNews(s, limit).catch(() => null)),
+  )
+  return results.filter(Boolean)
+}
+
+/**
+ * Is this item CBI / program news worth surfacing?
+ * Requires a CBI/program term AND (a watched country OR a program-status signal).
+ * Returns { relevant, country } — `country` is the corpus country mentioned,
+ * if any.
+ */
+export function classifyIndustryItem(item, countryList) {
+  const blob = `${item.title} ${item.description}`
+  if (!CBI_TERM_RE.test(blob)) return { relevant: false, country: null }
+  const statusSignal = PROGRAM_STATUS_RE.test(blob)
+  let country = null
+  for (const name of countryList) {
+    if (countryNameRe(name).test(blob)) {
+      country = name
+      break
+    }
+  }
+  // Surface when it names a watched country OR carries a program-status signal
+  // (a "Türkiye passport program opens fees" headline is news even if the corpus
+  // does not watch Türkiye yet).
+  return { relevant: country != null || statusSignal, country }
+}
+
 // ── Exchange-rate / crypto-climate adapter ────────────────────────────────────
 
 /**

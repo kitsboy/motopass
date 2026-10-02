@@ -7,26 +7,26 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.987Z",
+  "generated_at": "2026-10-02T19:00:25.468Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 958093,
-    "stamped_at": "2026-09-30T19:30:53.387Z",
-    "hash": "66163458f496a824a7cbb0a8e0cf7b0b6222604620a8fcf1ccfc02fe0200b52e",
-    "proof_url": "https://satohash.io/verify/66163458f496a824a7cbb0a8e0cf7b0b6222604620a8fcf1ccfc02fe0200b52e",
+    "block": 969313,
+    "stamped_at": "2026-09-30T20:35:45.174Z",
+    "hash": "b537457d6fe6c9d28f57262ebc42ec285f2be7ff317f576c79d844bb73476e08",
+    "proof_url": "https://satohash.io/verify/b537457d6fe6c9d28f57262ebc42ec285f2be7ff317f576c79d844bb73476e08",
     "ots_path": "/proofs/antigua-and-barbuda-b537457d6fe6.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -135,43 +135,36 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.cip.gov.ag",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://ab.gov.ag/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://cip.gov.ag/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://cip.gov.ag/citizenship/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://cip.gov.ag/investment-options/ndf/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-22",
-      "field": "pathways.legal_compliance.critical_tests",
-      "from": "corpus BUILD 72",
-      "to": "Business route corrected $1.5M -> $400k share of $5M+ joint business; UWI $260k (families 6+); ECCIRA harmonization 2026; US visa restriction noted",
-      "hash": null
-    },
     {
       "date": "2026-08-22",
       "field": "proof",
@@ -220,6 +213,13 @@
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
       "hash": "a26ba4514a028890"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "66163458f496a824",
+      "to": "re-anchored b537457d6fe6c9d2 (stamp 979bd44f-d46) @ block 969313",
+      "hash": "b537457d6fe6c9d28f57262ebc42ec285f2be7ff317f576c79d844bb73476e08"
     }
   ],
   "sovereignty": {

@@ -7,26 +7,26 @@
     "region": "Central America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.979Z",
+  "generated_at": "2026-10-02T19:00:25.456Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:30:49.072Z",
-    "hash": "c9a0a52e503612c2ddd9b95e994b5a500662355bdf505df831b7daf4bac58b92",
-    "proof_url": "https://satohash.io/verify/c9a0a52e503612c2ddd9b95e994b5a500662355bdf505df831b7daf4bac58b92",
+    "stamped_at": "2026-09-30T20:37:43.149Z",
+    "hash": "547b1d2e2bd9e85180f2dd0c4c5b79f3c9463cd38e9a43aa4d3286fdfc4ed354",
+    "proof_url": "https://satohash.io/verify/547b1d2e2bd9e85180f2dd0c4c5b79f3c9463cd38e9a43aa4d3286fdfc4ed354",
     "ots_path": "/proofs/el-salvador-547b1d2e2bd9.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -145,43 +145,36 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.presidencia.gob.sv",
         "status": "blocked",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.migracion.gob.sv",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.rree.gob.sv/",
-        "status": null,
-        "last_probed": null
+        "status": "blocked",
+        "last_probed": "2026-10-01T05:01:08.661Z"
       },
       {
         "url": "https://www.migracion.gob.sv/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://adoptingelsalvador.gob.sv",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-22",
-      "field": "proof",
-      "from": "91427ffdd75bcd09",
-      "to": "re-anchored 279fb4c4cd5d2d69 (stamp a25cef33-2c7)",
-      "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
-    },
     {
       "date": "2026-08-27",
       "field": "watch.https://www.presidencia.gob.sv",
@@ -230,6 +223,13 @@
       "from": "a94cfd8248e94b41",
       "to": "re-anchored c9a0a52e503612c2 (stamp 0d42a84a-0b7)",
       "hash": "c9a0a52e503612c2ddd9b95e994b5a500662355bdf505df831b7daf4bac58b92"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "c9a0a52e503612c2",
+      "to": "re-anchored 547b1d2e2bd9e851 (stamp 0af9f818-dba)",
+      "hash": "547b1d2e2bd9e85180f2dd0c4c5b79f3c9463cd38e9a43aa4d3286fdfc4ed354"
     }
   ],
   "sovereignty": {

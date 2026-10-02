@@ -7,26 +7,26 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.989Z",
+  "generated_at": "2026-10-02T19:00:25.473Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:31:28.194Z",
-    "hash": "1ce9eb8bd293fd5d759ff1f180dadb265c857abfd21020dbf8ca7967900b4f66",
-    "proof_url": "https://satohash.io/verify/1ce9eb8bd293fd5d759ff1f180dadb265c857abfd21020dbf8ca7967900b4f66",
+    "stamped_at": "2026-09-30T20:39:17.266Z",
+    "hash": "cbecbf6ecaa659a20bd373b79d9eeda9ba52b994147d61a1e0b519f4cbec9b0d",
+    "proof_url": "https://satohash.io/verify/cbecbf6ecaa659a20bd373b79d9eeda9ba52b994147d61a1e0b519f4cbec9b0d",
     "ots_path": "/proofs/malta-cbecbf6ecaa6.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -139,12 +139,12 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://residencymalta.gov.mt",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.mfsa.mt",
@@ -154,28 +154,21 @@
       {
         "url": "https://www.identita.gov.mt",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.gov.mt",
-        "status": null,
-        "last_probed": null
+        "status": "blocked",
+        "last_probed": "2026-10-01T05:01:08.661Z"
       },
       {
         "url": "https://www.mfsa.mt/our-work/virtual-financial-assets/",
-        "status": null,
-        "last_probed": null
+        "status": "blocked",
+        "last_probed": "2026-10-01T05:01:08.661Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-29",
-      "field": "watch.https://residencymalta.gov.mt",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
-    },
     {
       "date": "2026-09-02",
       "field": "watch.https://residencymalta.gov.mt",
@@ -224,6 +217,13 @@
       "from": "602b403dce4a3455",
       "to": "re-anchored 1ce9eb8bd293fd5d (stamp ff6830c2-d7a)",
       "hash": "1ce9eb8bd293fd5d759ff1f180dadb265c857abfd21020dbf8ca7967900b4f66"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "1ce9eb8bd293fd5d",
+      "to": "re-anchored cbecbf6ecaa659a2 (stamp 7bc793b6-3b4)",
+      "hash": "cbecbf6ecaa659a20bd373b79d9eeda9ba52b994147d61a1e0b519f4cbec9b0d"
     }
   ],
   "sovereignty": {

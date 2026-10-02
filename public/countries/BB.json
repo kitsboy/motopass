@@ -7,26 +7,26 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.988Z",
+  "generated_at": "2026-10-02T19:00:25.471Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:31:19.821Z",
-    "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a",
-    "proof_url": "https://satohash.io/verify/c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a",
+    "stamped_at": "2026-10-01T12:01:04.689Z",
+    "hash": "495453947a454b028af643ec9792c6c94c21674ddfcc9f0c72733970e478d3e0",
+    "proof_url": "https://satohash.io/verify/495453947a454b028af643ec9792c6c94c21674ddfcc9f0c72733970e478d3e0",
     "ots_path": "/proofs/barbados-495453947a45.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -139,43 +139,36 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.immigration.gov.bb",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://barbadoswelcomestamp.bb",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.visitbarbados.org/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://barbadoswelcomestamp.bb/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.immigration.gov.bb/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-13",
-      "field": "watch.https://www.immigration.gov.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
-    },
     {
       "date": "2026-09-13",
       "field": "watch.https://barbadoswelcomestamp.bb",
@@ -224,6 +217,13 @@
       "from": "4c4117a6eecbc2c3",
       "to": "re-anchored c36b684b4de6dab0 (stamp 0e05ca1b-647)",
       "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
+    },
+    {
+      "date": "2026-10-01",
+      "field": "proof",
+      "from": "c36b684b4de6dab0",
+      "to": "re-anchored 495453947a454b02 (stamp 444a7e24-3a8)",
+      "hash": "495453947a454b028af643ec9792c6c94c21674ddfcc9f0c72733970e478d3e0"
     }
   ],
   "sovereignty": {

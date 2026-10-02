@@ -7,26 +7,26 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.989Z",
+  "generated_at": "2026-10-02T19:00:25.472Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:31:24.897Z",
-    "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7",
-    "proof_url": "https://satohash.io/verify/73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7",
+    "stamped_at": "2026-09-30T20:42:11.034Z",
+    "hash": "39d27d5284d82abd3ea3f985590bf2316c6eac17c497f54492a90bdf8fec66da",
+    "proof_url": "https://satohash.io/verify/39d27d5284d82abd3ea3f985590bf2316c6eac17c497f54492a90bdf8fec66da",
     "ots_path": "/proofs/ireland-39d27d5284d8.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -141,60 +141,46 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.irishimmigration.ie",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://enterprise.gov.ie",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.centralbank.ie",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.dfa.ie/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.revenue.ie/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://enterprise.gov.ie",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
-    },
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://www.centralbank.ie",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "73c8efd7ab309c525140b2df1a8fa471c8d269c2ecf7f04265be3807b2b5b3d7"
-    },
     {
       "date": "2026-09-15",
       "field": "watch.https://enterprise.gov.ie",
@@ -236,6 +222,20 @@
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
       "hash": "a0fd50caa8f77b72"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "73c8efd7ab309c52",
+      "to": "re-anchored 39d27d5284d82abd (stamp a5c7964d-121)",
+      "hash": "39d27d5284d82abd3ea3f985590bf2316c6eac17c497f54492a90bdf8fec66da"
+    },
+    {
+      "date": "2026-10-02",
+      "field": "watch.https://enterprise.gov.ie",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "a238bb63af7be49d"
     }
   ],
   "sovereignty": {

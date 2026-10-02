@@ -7,21 +7,21 @@
     "region": "Africa",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.990Z",
+  "generated_at": "2026-10-02T19:00:25.477Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": null,
+    "block": 969342,
     "stamped_at": "2026-09-30T19:31:32.673Z",
     "hash": "916b11e7906487e8d5eb15173ca4d0b1e77d2f687aea46de62365d54e579123e",
     "proof_url": "https://satohash.io/verify/916b11e7906487e8d5eb15173ca4d0b1e77d2f687aea46de62365d54e579123e",
@@ -118,17 +118,17 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": null,
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.gov.st",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://cip.gov.st/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },

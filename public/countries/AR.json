@@ -7,26 +7,26 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.989Z",
+  "generated_at": "2026-10-02T19:00:25.472Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
-    "verified_at": "2026-09-29",
+    "days_stale": 0,
+    "verified_at": "2026-10-02",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
-      "last_checked": "2026-09-29"
+      "days_stale": 1,
+      "last_checked": "2026-10-02"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:31:25.902Z",
-    "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca",
-    "proof_url": "https://satohash.io/verify/0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca",
+    "stamped_at": "2026-10-02T19:00:22.734Z",
+    "hash": "515b2a393bbffcfe9c3511d04a4349e199dbff1959cc0ac1f76817cd92f53abd",
+    "proof_url": "https://satohash.io/verify/515b2a393bbffcfe9c3511d04a4349e199dbff1959cc0ac1f76817cd92f53abd",
     "ots_path": "/proofs/argentina-302a948d1da4.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -73,10 +73,10 @@
     "typical_investment_usd": 100000,
     "history": [
       {
-        "date": null,
-        "field": "current",
-        "usd": 50000,
-        "note": "Current published minimum — no tracked change history yet."
+        "date": "2026-10-02",
+        "field": "pathways.citizenship_by_investment",
+        "usd": 2027,
+        "note": "added announced Citizenship-by-Investment pathway (US$350k contribution + US$800k bond main; dependents US$100k spouse/a"
       }
     ],
     "pathways": [
@@ -94,12 +94,17 @@
         "type": "digital_nomad",
         "label": "Digital nomad (Disposición 758/2022)",
         "min_investment_usd": 0
+      },
+      {
+        "type": "citizenship_by_investment",
+        "label": "Citizenship by Investment (announced, not yet live)",
+        "min_investment_usd": 350000
       }
     ]
   },
   "sources": {
     "tiers": {
-      "official": 6,
+      "official": 7,
       "legal": 0,
       "secondary": 0
     },
@@ -127,6 +132,10 @@
       {
         "name": "Official — https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
         "tier": "official"
+      },
+      {
+        "name": "CitizenX (announced CBI, @PlanBpassport X thread 2026-10-02) — https://x.com/PlanBpassport/status/2106022914143269177",
+        "tier": "official"
       }
     ],
     "official_urls": [
@@ -141,67 +150,46 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.migraciones.gob.ar",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.boletinoficial.gob.ar",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://eeeuu.cancilleria.gob.ar/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.argentina.gob.ar/migraciones/residencias",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-13",
-      "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
-    },
-    {
-      "date": "2026-09-13",
-      "field": "watch.https://www.migraciones.gob.ar",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
-    },
-    {
-      "date": "2026-09-14",
-      "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
-    },
     {
       "date": "2026-09-14",
       "field": "watch.https://www.migraciones.gob.ar",
@@ -236,6 +224,27 @@
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
       "hash": "91451ce7cd5c52de"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "0d1fa5959e489423",
+      "to": "re-anchored 302a948d1da4a1c8 (stamp 47d7cc0f-077)",
+      "hash": "302a948d1da4a1c82f95e2226b69edfa2227c1ea791802ee017f77d42ce74ab5"
+    },
+    {
+      "date": "2026-10-02",
+      "field": "pathways.citizenship_by_investment",
+      "from": "(absent)",
+      "to": "added announced Citizenship-by-Investment pathway (US$350k contribution + US$800k bond main; dependents US$100k spouse/adult, US$25k minor; est. Q1 2027); marked UNVERIFIED — CitizenX announcement only, no official decree/gazette yet",
+      "hash": null
+    },
+    {
+      "date": "2026-10-02",
+      "field": "proof",
+      "from": "302a948d1da4a1c8",
+      "to": "re-anchored 515b2a393bbffcfe (stamp 74397a78-340)",
+      "hash": "515b2a393bbffcfe9c3511d04a4349e199dbff1959cc0ac1f76817cd92f53abd"
     }
   ],
   "sovereignty": {

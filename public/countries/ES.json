@@ -7,26 +7,26 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.989Z",
+  "generated_at": "2026-10-02T19:00:25.471Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:31:24.041Z",
-    "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18",
-    "proof_url": "https://satohash.io/verify/0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18",
+    "stamped_at": "2026-09-30T20:42:06.419Z",
+    "hash": "afea358e3b7b87a65e70519717dddb43a15a8dd53cd7676fa4595801ccc1e10b",
+    "proof_url": "https://satohash.io/verify/afea358e3b7b87a65e70519717dddb43a15a8dd53cd7676fa4595801ccc1e10b",
     "ots_path": "/proofs/spain-afea358e3b7b.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -141,53 +141,46 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.inclusion.gob.es",
         "status": "blocked",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.exteriores.gob.es",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.cnmv.es",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.exteriores.gob.es/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://sede.agenciatributaria.gob.es/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.inclusion.gob.es/",
-        "status": null,
-        "last_probed": null
+        "status": "blocked",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "last_checked",
-      "from": "2026-08-22",
-      "to": "2026-09-10",
-      "hash": null
-    },
     {
       "date": "2026-09-11",
       "field": "watch.https://www.exteriores.gob.es",
@@ -236,6 +229,13 @@
       "from": "671696e0460a6ad8",
       "to": "re-anchored 0a97f7f4bd3fd91a (stamp 24776bcf-da6)",
       "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "0a97f7f4bd3fd91a",
+      "to": "re-anchored afea358e3b7b87a6 (stamp 9663be53-28d)",
+      "hash": "afea358e3b7b87a65e70519717dddb43a15a8dd53cd7676fa4595801ccc1e10b"
     }
   ],
   "sovereignty": {

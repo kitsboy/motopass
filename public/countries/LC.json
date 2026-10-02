@@ -7,26 +7,26 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.988Z",
+  "generated_at": "2026-10-02T19:00:25.470Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:30:57.120Z",
-    "hash": "65f26a589f96d644c7d5edab7eff4e8faed72df8aa685b82a22b501baa9c0bcf",
-    "proof_url": "https://satohash.io/verify/65f26a589f96d644c7d5edab7eff4e8faed72df8aa685b82a22b501baa9c0bcf",
+    "stamped_at": "2026-09-30T20:36:01.058Z",
+    "hash": "7e7a19af2261f696637747c196ec813534b6887746836a389fd45e654b79cf17",
+    "proof_url": "https://satohash.io/verify/7e7a19af2261f696637747c196ec813534b6887746836a389fd45e654b79cf17",
     "ots_path": "/proofs/st-lucia-7e7a19af2261.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -136,38 +136,31 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.ciu.gov.lc",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.govt.lc/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.cipsaintlucia.com/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.cipsaintlucia.com/citizenship-by-investment",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-21",
-      "field": "proof",
-      "from": "27d4e604e55abef2",
-      "to": "re-anchored 975bf50ec82208b2 (stamp 8deb2c19-239)",
-      "hash": "975bf50ec82208b26480edbd6c0de2d51fc46cb621f9765d1a779bdc3091f2aa"
-    },
     {
       "date": "2026-08-22",
       "field": "last_checked.freshness_sweep",
@@ -216,6 +209,13 @@
       "from": "5688e8f7fe631e39",
       "to": "re-anchored 65f26a589f96d644 (stamp d0c8e531-309)",
       "hash": "65f26a589f96d644c7d5edab7eff4e8faed72df8aa685b82a22b501baa9c0bcf"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "65f26a589f96d644",
+      "to": "re-anchored 7e7a19af2261f696 (stamp e08139d8-358)",
+      "hash": "7e7a19af2261f696637747c196ec813534b6887746836a389fd45e654b79cf17"
     }
   ],
   "sovereignty": {

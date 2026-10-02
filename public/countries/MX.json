@@ -7,26 +7,26 @@
     "region": "North America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.990Z",
+  "generated_at": "2026-10-02T19:00:25.476Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:31:31.650Z",
-    "hash": "94f9beba31b597a1c1a62653b0b7aff41499561ddf47344dd356febfd42c26e5",
-    "proof_url": "https://satohash.io/verify/94f9beba31b597a1c1a62653b0b7aff41499561ddf47344dd356febfd42c26e5",
+    "stamped_at": "2026-09-30T20:39:29.260Z",
+    "hash": "67ea33c8e6990e5a655df4bb2a48cbe29f64be5ddedae2ead3953b3f9a19a210",
+    "proof_url": "https://satohash.io/verify/67ea33c8e6990e5a655df4bb2a48cbe29f64be5ddedae2ead3953b3f9a19a210",
     "ots_path": "/proofs/mexico-67ea33c8e699.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -153,7 +153,7 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.inm.gob.mx",
@@ -163,43 +163,36 @@
       {
         "url": "https://www.gob.mx",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://dof.gob.mx",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.gob.mx/sre",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://embamex.sre.gob.mx/eua/",
-        "status": null,
-        "last_probed": null
+        "status": "blocked",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.inm.gob.mx/",
-        "status": null,
-        "last_probed": null
+        "status": "unreachable",
+        "last_probed": "2026-10-01T05:01:08.661Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-14",
-      "field": "watch.https://www.gob.mx",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "4db3d9b39f44851374f2ce2877583f2b4f0c0658e4a23a8a81e59a828df1b026"
-    },
     {
       "date": "2026-09-14",
       "field": "proof",
@@ -248,6 +241,13 @@
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
       "hash": "e11ae6b52327e299"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "94f9beba31b597a1",
+      "to": "re-anchored 67ea33c8e6990e5a (stamp e66afd75-575)",
+      "hash": "67ea33c8e6990e5a655df4bb2a48cbe29f64be5ddedae2ead3953b3f9a19a210"
     }
   ],
   "sovereignty": {

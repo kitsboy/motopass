@@ -7,26 +7,26 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.988Z",
+  "generated_at": "2026-10-02T19:00:25.470Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:30:59.324Z",
-    "hash": "53a087ece38e8ceea3347152d081451c86c69177dfee78798a6406dfff8b6bad",
-    "proof_url": "https://satohash.io/verify/53a087ece38e8ceea3347152d081451c86c69177dfee78798a6406dfff8b6bad",
+    "stamped_at": "2026-09-30T20:37:53.076Z",
+    "hash": "324a9d2f5d396de1434045da4cf21f1877091859f9668b3b426b679130334986",
+    "proof_url": "https://satohash.io/verify/324a9d2f5d396de1434045da4cf21f1877091859f9668b3b426b679130334986",
     "ots_path": "/proofs/grenada-324a9d2f5d39.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -142,38 +142,31 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.cbi.gov.gd",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.gov.gd/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://imagrenada.gd/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://imagrenada.gd/citizenship-by-investment/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "pathways.ntf_donation.min_investment_usd",
-      "from": 150000,
-      "to": 235000,
-      "hash": null
-    },
     {
       "date": "2026-09-10",
       "field": "pathways.ntf_donation.notes",
@@ -222,6 +215,13 @@
       "from": "1d8ca3ece897aaee",
       "to": "re-anchored 53a087ece38e8cee (stamp f351499e-e48)",
       "hash": "53a087ece38e8ceea3347152d081451c86c69177dfee78798a6406dfff8b6bad"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "53a087ece38e8cee",
+      "to": "re-anchored 324a9d2f5d396de1 (stamp a6c9f8a7-d70)",
+      "hash": "324a9d2f5d396de1434045da4cf21f1877091859f9668b3b426b679130334986"
     }
   ],
   "sovereignty": {

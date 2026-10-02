@@ -7,26 +7,26 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.987Z",
+  "generated_at": "2026-10-02T19:00:25.468Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 958093,
-    "stamped_at": "2026-09-30T19:30:52.092Z",
-    "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6",
-    "proof_url": "https://satohash.io/verify/97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6",
+    "block": 969313,
+    "stamped_at": "2026-09-30T20:35:42.859Z",
+    "hash": "957aaee425cfad6e312ca3a7204af81e9f4c8ce3efc10ba4d586e9f80eaed6ef",
+    "proof_url": "https://satohash.io/verify/957aaee425cfad6e312ca3a7204af81e9f4c8ce3efc10ba4d586e9f80eaed6ef",
     "ots_path": "/proofs/uruguay-957aaee425cf.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -134,51 +134,37 @@
     ]
   },
   "watch": {
-    "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "changed": true,
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.gub.uy/tramites/residencia-legal",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.minterior.gub.uy",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://embassyofuruguay.us/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "watch.https://www.minterior.gub.uy",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "1e9993bb823a6b8fbc470f26aa8b546d0c25283b029de54dee0cfa25feb9cdc4"
-    },
-    {
-      "date": "2026-09-10",
-      "field": "finance.tax_benefits",
-      "from": "Territorial tax system attractive for high-net-worth. Crypto gains often favorably treated. Strong residency pathway.",
-      "to": "Territorial system, reformed 1 Jan 2026 (Law 20.446 as amended): 11-year tax holiday on foreign-source income for new tax residents preserved; after the holiday most foreign investment income is taxed at 12% (pensions and Social Security exempt). Tax-residency-via-RE threshold now ~US$2M.",
-      "hash": null
-    },
     {
       "date": "2026-09-10",
       "field": "legal_compliance.recent_changes",
@@ -220,6 +206,20 @@
       "from": null,
       "to": "Official source content changed — manual rule review required",
       "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "97d5230a45b78ff2",
+      "to": "re-anchored 957aaee425cfad6e (stamp bec9cfdf-88b) @ block 969313",
+      "hash": "957aaee425cfad6e312ca3a7204af81e9f4c8ce3efc10ba4d586e9f80eaed6ef"
+    },
+    {
+      "date": "2026-10-02",
+      "field": "watch.https://www.minterior.gub.uy",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "91069f397ed6edc7"
     }
   ],
   "sovereignty": {

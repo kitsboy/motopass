@@ -7,26 +7,26 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.988Z",
+  "generated_at": "2026-10-02T19:00:25.470Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:31:00.463Z",
-    "hash": "a10d23fac00a1c92394b2bf1d7eed2aa8ba4dd5026518c1137d7ad573d4851f1",
-    "proof_url": "https://satohash.io/verify/a10d23fac00a1c92394b2bf1d7eed2aa8ba4dd5026518c1137d7ad573d4851f1",
+    "stamped_at": "2026-09-30T20:37:56.508Z",
+    "hash": "d5dcf5c42bf300dbf8ced0ec72ccbfeefcf5834bf7a523cca80a845af89439f9",
+    "proof_url": "https://satohash.io/verify/d5dcf5c42bf300dbf8ced0ec72ccbfeefcf5834bf7a523cca80a845af89439f9",
     "ots_path": "/proofs/bahamas-d5dcf5c42bf3.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -143,7 +143,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://www.bahamas.gov.bs",
@@ -153,43 +153,36 @@
       {
         "url": "https://www.bahamaschamber.com",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.immigration.gov.bs",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://laws.bahamas.gov.bs",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.bahamas.gov.bs/",
-        "status": null,
-        "last_probed": null
+        "status": "unreachable",
+        "last_probed": "2026-10-01T05:01:08.661Z"
       },
       {
         "url": "https://www.immigration.gov.bs/residence/permanent-residence/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
-        "status": null,
-        "last_probed": null
+        "status": "unreachable",
+        "last_probed": "2026-10-01T05:01:08.661Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "finance.min_investment_usd",
-      "from": 500000,
-      "to": 1000000,
-      "hash": null
-    },
     {
       "date": "2026-09-10",
       "field": "finance.typical_investment_usd",
@@ -238,6 +231,13 @@
       "from": "5896afee50c283a0",
       "to": "re-anchored a10d23fac00a1c92 (stamp 0ca5697c-cd3)",
       "hash": "a10d23fac00a1c92394b2bf1d7eed2aa8ba4dd5026518c1137d7ad573d4851f1"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "a10d23fac00a1c92",
+      "to": "re-anchored d5dcf5c42bf300db (stamp d0196ddb-e01)",
+      "hash": "d5dcf5c42bf300dbf8ced0ec72ccbfeefcf5834bf7a523cca80a845af89439f9"
     }
   ],
   "sovereignty": {

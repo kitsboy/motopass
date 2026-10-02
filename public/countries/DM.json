@@ -7,26 +7,26 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-09-30T19:36:50.987Z",
+  "generated_at": "2026-10-02T19:00:25.469Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 3,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 4,
       "last_checked": "2026-09-29"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T19:30:56.122Z",
-    "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec",
-    "proof_url": "https://satohash.io/verify/6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec",
+    "stamped_at": "2026-09-30T20:35:53.351Z",
+    "hash": "60018a33188a009b108496e8fd3fd5f957c2577408f3f44b6acc28c6fe5681db",
+    "proof_url": "https://satohash.io/verify/60018a33188a009b108496e8fd3fd5f957c2577408f3f44b6acc28c6fe5681db",
     "ots_path": "/proofs/dominica-60018a33188a.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -130,38 +130,31 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-09-28T05:00:36.010Z",
+    "last_probe_at": "2026-10-02T18:55:58.530Z",
     "urls": [
       {
         "url": "https://cbiu.gov.dm",
         "status": "ok",
-        "last_probed": "2026-09-28T05:00:36.010Z"
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://dominica.gov.dm/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.cbiu.gov.dm/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       },
       {
         "url": "https://www.cbiu.gov.dm/investment-options/",
-        "status": null,
-        "last_probed": null
+        "status": "ok",
+        "last_probed": "2026-10-02T18:55:58.530Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "critical_tests.notes",
-      "from": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents.",
-      "to": "Value CBI play — solid passport at lower price point. No residency requirement; no income/capital gains tax on foreign income for non-residents. US Proclamation 10998 (eff. 1 Jan 2026): partial restriction implemented as a B-1/B-2 visa-validity cut for Dominica nationals (10-year visas reduced) — entry not banned.",
-      "hash": null
-    },
     {
       "date": "2026-09-12",
       "field": "watch.https://cbiu.gov.dm",
@@ -210,6 +203,13 @@
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
       "hash": "b3d576701a6e6f67"
+    },
+    {
+      "date": "2026-09-30",
+      "field": "proof",
+      "from": "6a0a046d6ec355ac",
+      "to": "re-anchored 60018a33188a009b (stamp 650ed349-1b7)",
+      "hash": "60018a33188a009b108496e8fd3fd5f957c2577408f3f44b6acc28c6fe5681db"
     }
   ],
   "sovereignty": {
