@@ -7474,15 +7474,16 @@
         "crypto_friendly_score": 8,
         "bitcoin_specific": "Partially (city level): City of Buenos Aires (CABA) since Aug 2025 accepts crypto QR for certain municipal taxes (ABL, Patentes, Ingresos Brutos). Federal/immigration fees in pesos, not BTC."
       },
-      "details": "Flagship-depth research entry for Argentina. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-09-29",
+      "details": "Flagship-depth research entry for Argentina. Part of MotoPass 50-jurisdiction tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools. Oct 2026 INTEL: CitizenX announced Argentina's first true Citizenship-by-Investment programme (largest country by land area and economy ever to launch a CBI; est. main applicant US$350k contribution + US$800k bond), expected Q1 2027 — NOT yet official, treat as unverified until Argentina gazettes it. Existing routes today remain residency-based (rentista, investor, digital nomad).",
+      "last_checked": "2026-10-02",
       "sources": [
         "AFIP/ARCA (official tax authority) — https://www.afip.gob.ar/economia-digital/criptoactivos/impuesto-a-las-ganancias.asp",
         "CNV (official securities regulator) — https://www.argentina.gob.ar/cnv",
         "Official — https://eeeuu.cancilleria.gob.ar/",
         "Official — https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
         "Official — https://www.argentina.gob.ar/migraciones/residencias",
-        "Official — https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista"
+        "Official — https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
+        "CitizenX (announced CBI, @PlanBpassport X thread 2026-10-02) — https://x.com/PlanBpassport/status/2106022914143269177"
       ],
       "flag": "🇦🇷",
       "lightning_ready": true,
@@ -7526,6 +7527,12 @@
           "label": "Digital nomad (Disposición 758/2022)",
           "min_investment_usd": 0,
           "notes": "Transitory residence up to 180 days (one extension for 180 more) for remote workers serving foreign clients — visa-free nationals may regularize in-country. Not a permanent-residency track without upgrading to temporaria category."
+        },
+        {
+          "type": "citizenship_by_investment",
+          "label": "Citizenship by Investment (announced, not yet live)",
+          "min_investment_usd": 350000,
+          "notes": "ANNOUNCED Oct 2026 — largest country (by land area and economy) ever to launch a Citizenship-by-Investment programme. NOT yet in force: expected launch within ~3 months, realistically Q1 2027. Main applicant: US$350,000 non-refundable contribution + US$800,000 government bond purchase. Dependents: spouse US$100,000; kids 18-25, single, no children US$100,000 each; kids under 18 US$25,000 each. Due diligence docs: passport, birth certificate, marriage certificate (if any), national ID, proof of residential address (utility bill/title deed/rental agreement), police clearance, CV. Source of funds: bank reference letter, 12-month bank statements, proof of funding origin. UNVERIFIED: announced by CitizenX (competitor firm) — no official decree/gazette yet; treat all figures as unconfirmed until Argentina formally publishes the programme."
         }
       ],
       "critical_tests": {
@@ -7551,7 +7558,7 @@
           "https://www.migraciones.gob.ar"
         ],
         "property_foreign_ownership": "Foreigners may own urban property with few restrictions; rural land in border/security zones subject to prior authorization. Rentista route does not require property purchase.",
-        "recent_changes": "2022 digital-nomad disposición formalized 180-day remote-work category. 2023–2024 rentista income thresholds tied to SMVM index — verify current peso equivalent before filing. Milei-era FX liberalization improved crypto-to-bank pathways but documentation still strict. 2026-09-10 verification: rentista 5× SMVM re-anchored (ARS 376,600 Aug 2026); investor $50k unchanged; Milei-era FX liberalization still favorable for crypto-to-bank funding."
+        "recent_changes": "2022 digital-nomad disposición formalized 180-day remote-work category. 2023–2024 rentista income thresholds tied to SMVM index — verify current peso equivalent before filing. Milei-era FX liberalization improved crypto-to-bank pathways but documentation still strict. 2026-09-10 verification: rentista 5× SMVM re-anchored (ARS 376,600 Aug 2026); investor $50k unchanged; Milei-era FX liberalization still favorable for crypto-to-bank funding. 2026-10-02 INTEL (unverified): CitizenX announced a Citizenship-by-Investment programme (main US$350k + US$800k bond; dependents US$100k spousal/adult, US$25k minor; est. Q1 2027) — the largest CBI launch ever by country size — NO official decree yet; monitor Argentina gazette (boletinoficial.gob.ar) before treating as real."
       },
       "compliance_clock": {
         "renewal_interval_months": 12,
@@ -7581,7 +7588,7 @@
       "freshness": {
         "status": "fresh",
         "days_stale": 0,
-        "last_sweep": "2026-09-29"
+        "last_sweep": "2026-10-02"
       },
       "watch": {
         "urls": [
@@ -8272,6 +8279,13 @@
           "to": "re-anchored 302a948d1da4a1c8 (stamp 47d7cc0f-077)",
           "source": "satohash-api",
           "hash": "302a948d1da4a1c82f95e2226b69edfa2227c1ea791802ee017f77d42ce74ab5"
+        },
+        {
+          "date": "2026-10-02",
+          "field": "pathways.citizenship_by_investment",
+          "from": "(absent)",
+          "to": "added announced Citizenship-by-Investment pathway (US$350k contribution + US$800k bond main; dependents US$100k spouse/adult, US$25k minor; est. Q1 2027); marked UNVERIFIED — CitizenX announcement only, no official decree/gazette yet",
+          "source": "CitizenX @PlanBpassport X thread 2026-10-02 (https://x.com/PlanBpassport/status/2106022914143269177); Cam work order"
         }
       ],
       "policy_mentions_btc": true,
