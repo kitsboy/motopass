@@ -59,7 +59,7 @@ motopass/
 ├── docs/                  ← All documentation
 ├── src/                   ← React app (15 routes, dark mode, BTC Map)
 ├── public/data/           ← BTC Map density + offline cache JSON
-├── research/countries.json ← 50 programs
+├── research/countries.json ← 21 programs
 ├── website/index.html     ← Static demo
 ├── images/                ← Sovereign assets
 └── scripts/               ← verify-goal, btcmap sync, sitemap
