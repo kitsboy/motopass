@@ -30,9 +30,9 @@ export const DASHBOARD_METRICS: DashboardMetric[] = [
     id: 'jurisdictions',
     label: 'Jurisdictions',
     traditional: 3,
-    motopass: 50,
+    motopass: 21,
     unit: 'count',
-    deltaLabel: '+47 jurisdictions modeled',
+    deltaLabel: '+18 jurisdictions modeled',
   },
 ]
 
