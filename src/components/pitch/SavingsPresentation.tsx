@@ -457,7 +457,7 @@ function SummaryCard({
           animate={run ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
           transition={{ delay: 0.6, duration: 0.45 }}
         >
-          <CountUp value={47} unit="count" run={run} tone="gold" delay={650} />
+          <CountUp value={18} unit="count" run={run} tone="gold" delay={650} />
           <span className="ds-summary-grid__label">Jurisdictions</span>
         </motion.div>
       </div>

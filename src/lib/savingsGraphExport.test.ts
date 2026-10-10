@@ -9,7 +9,7 @@ import {
 const ROWS: SavingsRow[] = [
   { label: 'Legal & advisory', traditional: 81_000, motopass: 3_900, unit: '$' },
   { label: 'Time to approval', traditional: 177, motopass: 135, unit: 'days' },
-  { label: 'Jurisdictions', traditional: 3, motopass: 50, unit: 'programs' },
+  { label: 'Jurisdictions', traditional: 3, motopass: 21, unit: 'programs' },
 ]
 
 class MockCanvas {

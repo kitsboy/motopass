@@ -323,7 +323,7 @@ const sw: Partial<Dict> = {
   'pitch.savings.metric.jurisdictionsMeaning': 'Idadi ya chaguzi za uhuru kila njia inazifungua — MotoPass inaweka programu nyingi ambapo ushauri wa jadi kwa kawaida huzuilia moja.',
   'pitch.savings.delta.legal': '−$77,100 mfano',
   'pitch.savings.delta.time': '−siku 42 mfano',
-  'pitch.savings.delta.jurisdictions': '+mamlaka 47 mfano',
+  'pitch.savings.delta.jurisdictions': '+mamlaka 18 mfano',
   'pitch.savings.savingsBrand': 'Uokoaji',
   'pitch.savings.modeledLegalDelta': 'tofauti ya kisheria ya mfano',
   'pitch.savings.barMeaningDefault': 'Makadirio ya mfano yanaonyeshwa kwa tathmini ya wanachama.',

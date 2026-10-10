@@ -945,7 +945,7 @@ const en: Dict = {
   'pitch.savings.metric.jurisdictionsMeaning': 'How many sovereignty options each route opens — MotoPass stacks programs where traditional advisory typically restricts to one.',
   'pitch.savings.delta.legal': '−$77,100 modeled',
   'pitch.savings.delta.time': '−42 days modeled',
-  'pitch.savings.delta.jurisdictions': '+47 jurisdictions modeled',
+  'pitch.savings.delta.jurisdictions': '+18 jurisdictions modeled',
   'pitch.savings.phase.opening': 'Opening',
   'pitch.savings.phase.cost': 'Cost',
   'pitch.savings.phase.time': 'Time',
