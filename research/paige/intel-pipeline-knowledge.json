@@ -4,7 +4,7 @@
   "version": "2026-08-21",
   "build": "2026.08.20-72",
   "facts": [
-    "MotoPass tracks 50 countries (jurisdictions) with residency, citizenship, and Bitcoin integration data.",
+    "MotoPass tracks 21 citizenship-by-investment and residency-by-investment programs with residency, citizenship, and Bitcoin integration data.",
     "The intel pipeline runs daily at 06:00 UTC via GitHub Actions (.github/workflows/daily-intel.yml).",
     "The pipeline has 8 steps: migrate, freshness, fetch (auto-research), probe, stamp, write, validate, commit.",
     "intel:fetch is the automated research layer that replaces manual brief-filling with live source fetching.",
@@ -126,7 +126,7 @@
     "MAX_STAMPS_PER_RUN": "default 15 — cap per daily run"
   },
   "member_scripts": {
-    "how_fresh": "MotoPass runs a daily research pipeline that fetches live data from Wikipedia, BTC Map, and CoinGecko for all 50 countries. When something changes, the new data is verified and anchored to Bitcoin via Satohash.",
+    "how_fresh": "MotoPass runs a daily research pipeline that fetches live data from Wikipedia, BTC Map, and CoinGecko for the current 21-program corpus. When something changes, the new data is verified and anchored to Bitcoin via Satohash.",
     "self_heal": "If a government changes its rules, the pipeline detects it (URL hash change), researches the update, applies verified changes, and re-anchors the proof to Bitcoin — all automatically.",
     "why_trust": "Every data change is recorded in an audit trail with a Bitcoin-anchored hash. You can verify any program's proof at satohash.io/verify/<hash> without trusting MotoPass.",
     "how_to_check": "Visit /vault to see all proofs, /programs for freshness badges, or ask me about any specific country."

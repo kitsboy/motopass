@@ -4,11 +4,11 @@
 
 [![CI](https://github.com/kitsboy/motopass/actions/workflows/ci.yml/badge.svg)](https://github.com/kitsboy/motopass/actions/workflows/ci.yml)
 [![Live](https://img.shields.io/website?url=https%3A%2F%2Fmotopass.giveabit.io&label=motopass.giveabit.io)](https://motopass.giveabit.io)
-[![Programs](https://img.shields.io/badge/programs-50-brightgreen)](https://motopass.giveabit.io/research/countries.json)
+[![Programs](https://img.shields.io/badge/programs-21-brightgreen)](https://motopass.giveabit.io/research/countries.json)
 
 **Live:** https://motopass.giveabit.io
 
-Bitcoin-native platform for CBI/RBI programs, jurisdictional stacking, and sovereign mobility. **Live Data Engine:** 50-country trust cards — OTS-verified, Bitcoin-anchored, with freshness rings and honest staleness. **Prime directive:** “Truth You Can Verify.”
+Bitcoin-native platform for CBI/RBI programs, jurisdictional stacking, and sovereign mobility. **Live Data Engine:** 21-program trust cards — OTS-verified, Bitcoin-anchored, with freshness rings and honest staleness. **Prime directive:** “Truth You Can Verify.”
 
 ---
 

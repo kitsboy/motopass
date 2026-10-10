@@ -7,14 +7,14 @@
     "MotoPass has a 3-step registration flow: connect Nostr wallet → enter display name + target program → confirm and create profile.",
     "Registration creates a UserProfile stored in localStorage with npub, pubkey, display name, target program, agent assignment (Kimi), and initial status 'registered'.",
     "The profile status progresses through 8 stages: registered → documents → stamped → agent_assigned → submitted → payment_pending → in_review → approved.",
-    "ProgramsPage is the main discovery interface with 50 countries, offering table and card views with instant filtering.",
+    "ProgramsPage is the main discovery interface with 21 programs, offering table and card views with instant filtering.",
     "Filter system supports: text search (name/details/bitcoin_integration), region, category, investment range ($0–$2M), crypto score (0–10), sovereignty (0–10), Lightning-only, and status.",
     "Three filter presets are available: Under $100K investment, Lightning-ready only, Bitcoin-friendly (crypto score ≥7).",
     "Gold Standard Spotlight highlights Uruguay and Bolivia as flagship depth programs that anchor research templates.",
     "Program cards show: flag, country, status, proof badge, pathways count, flagship depth, sovereignty score, stacking synergy, risk level, Lightning readiness.",
     "ProgramModal has 7 tabs: Overview, Pathways (flagships only), Finance, Bitcoin, Critical (flagships only), Legal, Intel, Paige, Sources.",
     "The Intel tab displays sourced pros/cons with verification dates, scorecard bars, freshness status, and recent audit trail entries.",
-    "ProgramsComplianceStrip shows compliance metrics across all 50 jurisdictions.",
+    "ProgramsComplianceStrip shows compliance metrics across all 21 programs.",
     "The Apply page accepts: name, target program (free text), optional notes, and attachable stamped documents from the Vault.",
     "Applications are SHA-256 hashed with the payload (program, created timestamp, npub, doc hashes) and stored locally with status 'interest'.",
     "On successful application, the user is redirected to the Agents page with application parameters for agent handoff.",
@@ -31,12 +31,12 @@
     "New programs can be added via the Programs page '+' button — they are user-added stubs with 'Researching' status and default scores.",
     "Programs can be exported as JSON (all or filtered) and imported back, supporting drag-and-drop and file picker.",
     "Saved filters, view preferences, and session filter presets persist across page reloads via localStorage and sessionStorage.",
-    "The IntelWatchStrip shows live freshness indicators across the 50-country corpus on both Programs and Pitch pages."
+    "The IntelWatchStrip shows live freshness indicators across the 21-program corpus on both Programs and Pitch pages."
   ],
   "user_journey": {
     "discovery": {
       "entry_points": ["/ (pitch page)", "/programs (direct)", "/btcmap (map entry)", "Paige chat recommendation"],
-      "first_action": "Browse 50 programs with filters, search presets, or Gold Standard spotlight",
+      "first_action": "Browse 21 programs with filters, search presets, or Gold Standard spotlight",
       "research": "Click a program card → ProgramModal with 7+ tabs of deep research"
     },
     "registration": {
@@ -82,7 +82,7 @@
   },
   "page_map": {
     "/": "Pitch page — hero with live stats, savings graphs, 4-step guide, pillars, products, FAQ",
-    "/programs": "Program explorer — 50 countries with table/card views, filters, presets",
+    "/programs": "Program explorer — 21 programs with table/card views, filters, presets",
     "/portfolio": "Saved program list with Compliance Clock and stats",
     "/simulator": "Stack Simulator — combined metrics for multi-program portfolios",
     "/compare": "Side-by-side comparison matrix (up to 4 programs)",

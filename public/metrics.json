@@ -15,12 +15,12 @@
       {
         "id": "countries-json",
         "status": "green",
-        "detail": "research/countries.json · 50 programs"
+        "detail": "research/countries.json · 21 programs"
       },
       {
         "id": "ots-proofs",
         "status": "green",
-        "detail": "public/proofs · 50 .ots files"
+        "detail": "public/proofs · 21 .ots files"
       },
       {
         "id": "satohash",
@@ -42,12 +42,12 @@
       "unit": "countries",
       "format": "number",
       "priority": 1,
-      "hint": "Original deep-seed cohort (16/50). Full catalog is programs_total."
+      "hint": "Original deep-seed cohort (16/21). Full catalog is programs_total."
     },
     {
       "key": "programs_total",
       "label": "Programs total",
-      "value": 50,
+      "value": 21,
       "unit": "programs",
       "format": "number",
       "priority": 1,
@@ -56,7 +56,7 @@
     {
       "key": "countries_ots",
       "label": "Countries OTS-stamped",
-      "value": 50,
+      "value": 21,
       "unit": "countries",
       "format": "number",
       "priority": 1,
@@ -83,11 +83,11 @@
     {
       "key": "target_countries",
       "label": "Target countries",
-      "value": 50,
+      "value": 21,
       "unit": "countries",
       "format": "number",
       "priority": 2,
-      "hint": "Roadmap target for seeded jurisdiction coverage (16 seeded → 50 target)."
+      "hint": "Live corpus: 21 CBI/RBI programs refreshed from a live intel feed."
     },
     {
       "key": "cheapest_program",
@@ -141,24 +141,24 @@
           "id": "seeded",
           "label": "Seeded deep cohort",
           "value": 16,
-          "meta": { "of": 50 }
+          "meta": { "of": 21 }
         },
         {
           "id": "programs",
           "label": "Programs in catalog",
-          "value": 50,
+          "value": 21,
           "meta": { "source": "research/countries.json" }
         },
         {
           "id": "ots",
           "label": "OTS-stamped",
-          "value": 50,
+          "value": 21,
           "meta": { "source": "public/proofs" }
         },
         {
           "id": "target",
           "label": "Target countries",
-          "value": 50,
+          "value": 21,
           "meta": { "roadmap": true }
         }
       ]
@@ -167,7 +167,7 @@
   "offers": [
     {
       "id": "program_oracle",
-      "title": "50-jurisdiction program oracle",
+      "title": "21-program CBI/RBI oracle",
       "for": ["giveabit", "hq", "openstrata"],
       "status": "ga",
       "endpoint": "GET /research/countries.json",
@@ -193,8 +193,8 @@
   "education": [
     {
       "id": "mold_seeded_vs_total",
-      "title": "16 seeded vs 50 programs",
-      "body": "countries_seeded is the original deep-seed cohort. programs_total and countries_ots are full-catalog counts (50). Pitch 16/50 progress using seeded + target_countries.",
+      "title": "16 seeded vs 21 programs",
+      "body": "countries_seeded is the original deep-seed cohort. programs_total and countries_ots are full-catalog counts (21). Pitch 16/21 progress using seeded + target_countries.",
       "action": "Show seeded/target on HQ card; programs_total on Concert",
       "opportunity": "opportunity"
     },
@@ -238,14 +238,14 @@
   "raw": {
     "demo": false,
     "source": "research/countries.json + public/proofs + inventory defaults",
-    "programs_total": 50,
+    "programs_total": 21,
     "countries_seeded": 16,
-    "countries_ots": 50,
-    "countries_verified_ots": 50,
+    "countries_ots": 21,
+    "countries_verified_ots": 21,
     "avg_program_cost_usd": 185000,
     "fastest_days": 60,
     "fastest_citizenship_days": 60,
-    "target_countries": 50,
+    "target_countries": 21,
     "cheapest_program_usd": 25000,
     "cheapest_program_name": "Central African Republic",
     "umamiWebsiteId": "dd982c5b-f27a-40e3-924b-4ea1e64d5f8a",

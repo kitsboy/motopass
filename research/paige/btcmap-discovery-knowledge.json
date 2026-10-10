@@ -104,7 +104,7 @@
     "how_do_i_add_venue": "Click 'Report Venue' on the BTC Map page — it links to btcmap.org/add-location with the coordinates pre-filled. The community verifies new submissions."
   },
   "page_map": {
-    "/btcmap": "Interactive map + merchant directory for all 50 programs",
+    "/btcmap": "Interactive map + merchant directory for all 21 programs",
     "/programs": "Program cards show merchant density badges linking to /btcmap",
     "/dashboard": "Density snapshot overview (when wired)"
   },
@@ -128,6 +128,6 @@
     "src/components/btcmap/BtcMapCacheStaleBanner.tsx": "Warning banner for expired offline cache",
     "scripts/fetch-btcmap-density.mjs": "Daily density pre-fetch → public/data/btcmap-density.json",
     "scripts/sync-btcmap-cache.mjs": "Per-jurisdiction snapshot sync → public/data/btcmap/{slug}.json",
-    "src/data/programCoords.ts": "Lat/lon coordinates + radius for all 50 programs"
+    "src/data/programCoords.ts": "Lat/lon coordinates + radius for all 21 programs"
   }
 }

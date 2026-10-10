@@ -27,7 +27,7 @@ export const ROUTE_SEO: Record<string, SeoMeta> = {
       'Track saved CBI, RBI, and Bitcoin-native residency programs in your personal sovereign mobility portfolio.',
   },
   '/programs': {
-    title: 'Bitcoin Visa & Crypto Golden Visa Programs — 50 Jurisdictions',
+    title: 'Bitcoin Visa & Crypto Golden Visa Programs — 21 Programs',
     description:
       'Browse sovereign passport and Bitcoin visa programs — crypto golden visa, residency-by-investment, and CBI with Lightning readiness, ₿-denominated costs, and Satohash verification.',
   },

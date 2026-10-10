@@ -4,7 +4,7 @@
   "version": "2026-08-21",
   "build": "2026.08.20-72",
   "facts": [
-    "The Vault (/vault) is MotoPass's proof archive — it shows Bitcoin-anchored proofs for all 50 programs.",
+    "The Vault (/vault) is MotoPass's proof archive — it shows Bitcoin-anchored proofs for all 21 programs.",
     "The Vault also hosts the Document Stamper — members can timestamp their own files on Bitcoin.",
     "Document stamping works by hashing the file locally (SHA-256), then submitting only the hash to the Satohash API.",
     "The file never leaves the member's device — only the 64-character hex hash is sent to Satohash.",
@@ -72,7 +72,7 @@
     "Stamp error": "submission failed; retry available via restamp or Satohash stamp guide"
   },
   "member_scripts": {
-    "what_is_vault": "The Vault is your proof archive — it shows Bitcoin-anchored proofs for all 50 countries and lets you timestamp your own documents the same way.",
+    "what_is_vault": "The Vault is your proof archive — it shows Bitcoin-anchored proofs for all 21 programs and lets you timestamp your own documents the same way.",
     "how_to_stamp": "Drop any file into the Document Stamper on /vault. Its fingerprint (hash) is computed locally — the file never leaves your device — and anchored to Bitcoin via Satohash. You get a proof card showing the block number when it's confirmed.",
     "is_it_safe": "Your file never leaves your device. Only the cryptographic fingerprint (SHA-256 hash) is sent to Satohash. Even Satohash never sees your document — just the hash.",
     "how_to_verify": "Copy the hash from any proof card, open satohash.io/verify/<hash>, and see for yourself. You don't need to trust MotoPass.",

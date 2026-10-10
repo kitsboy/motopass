@@ -28,7 +28,7 @@ const en: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — Bitcoin Sovereign Passports & Residency Intelligence',
     description:
-      'Evaluate 50 Bitcoin visa and crypto golden visa programs with ₿-first pricing, Satohash proofs, and Nostr identity. Truth You Can Verify.',
+      'Evaluate 21 Bitcoin visa and crypto golden visa programs with ₿-first pricing, Satohash proofs, and Nostr identity. Truth You Can Verify.',
     keywords: [
       'bitcoin passport', 'sovereign passport', 'crypto golden visa',
       'residency by investment', 'bitcoin visa', 'sovereign mobility',
@@ -37,15 +37,15 @@ const en: RouteSeoKeywords = {
     h1: 'Bitcoin-Native Sovereign Passport Intelligence',
   },
   '/programs': {
-    title: '50 Bitcoin Visa & Crypto Golden Visa Programs — MotoPass',
+    title: '21 Bitcoin Visa & Crypto Golden Visa Programs — MotoPass',
     description:
-      'Browse 50 sovereign passport and Bitcoin visa programs — crypto golden visa, residency-by-investment with Lightning readiness, ₿ costs, and Satohash proof.',
+      'Browse 21 sovereign passport and Bitcoin visa programs — crypto golden visa, residency-by-investment with Lightning readiness, ₿ costs, and Satohash proof.',
     keywords: [
       'bitcoin visa programs', 'crypto golden visa', 'residency by investment programs',
       'CBI programs 2026', 'RBI programs', 'sovereign passport programs',
       'lightning ready residency', 'satohash verified programs',
     ],
-    h1: 'Residency & Citizenship Programs — 50 Jurisdictions',
+    h1: 'Residency & Citizenship Programs — 21 Programs',
   },
   '/portfolio': {
     title: 'Sovereign Mobility Portfolio — Track Your Programs',
@@ -185,7 +185,7 @@ const es: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — Pasaportes Soberanos Bitcoin e Inteligencia de Residencia',
     description:
-      'Evalúa 50 programas de visa Bitcoin y visa dorada crypto con precios en ₿, pruebas Satohash e identidad Nostr. Verdad que puedes comprobar.',
+      'Evalúa 21 programas de visa Bitcoin y visa dorada crypto con precios en ₿, pruebas Satohash e identidad Nostr. Verdad que puedes comprobar.',
     keywords: [
       'pasaporte bitcoin', 'pasaporte soberano', 'visa dorada crypto',
       'residencia por inversión', 'visa bitcoin', 'movilidad soberana',
@@ -193,14 +193,14 @@ const es: RouteSeoKeywords = {
     h1: 'Inteligencia de Pasaportes Soberanos Bitcoin',
   },
   '/programs': {
-    title: '50 Programas de Visa Bitcoin y Visa Dorada Crypto — MotoPass',
+    title: '21 Programas de Visa Bitcoin y Visa Dorada Crypto — MotoPass',
     description:
-      'Explora 50 programas de pasaporte soberano y visa Bitcoin — visa dorada crypto, residencia por inversión con Lightning, costos en ₿ y pruebas Satohash.',
+      'Explora 21 programas de pasaporte soberano y visa Bitcoin — visa dorada crypto, residencia por inversión con Lightning, costos en ₿ y pruebas Satohash.',
     keywords: [
       'programas visa bitcoin', 'visa dorada crypto', 'residencia por inversión',
       'programas CBI 2026', 'programas RBI', 'pasaporte soberano',
     ],
-    h1: 'Programas de Residencia y Ciudadanía — 50 Jurisdicciones',
+    h1: 'Programas de Residencia y Ciudadanía — 21 Programas',
   },
   '/portfolio': {
     title: 'Portafolio de Movilidad Soberana — Tus Programas',
@@ -340,7 +340,7 @@ const fr: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — Passeports Souverains Bitcoin et Intelligence Résidentielle',
     description:
-      'Évaluez 50 programmes de visa Bitcoin et visa dorée crypto avec tarifs en ₿, preuves Satohash et identité Nostr. Une vérité vérifiable.',
+      'Évaluez 21 programmes de visa Bitcoin et visa dorée crypto avec tarifs en ₿, preuves Satohash et identité Nostr. Une vérité vérifiable.',
     keywords: [
       'passeport bitcoin', 'passeport souverain', 'visa dorée crypto',
       'résidence par investissement', 'visa bitcoin', 'mobilité souveraine',
@@ -348,14 +348,14 @@ const fr: RouteSeoKeywords = {
     h1: 'Intelligence Passeport Souverain Bitcoin',
   },
   '/programs': {
-    title: '50 Programmes Visa Bitcoin et Visa Dorée Crypto — MotoPass',
+    title: '21 Programmes Visa Bitcoin et Visa Dorée Crypto — MotoPass',
     description:
-      'Parcourez 50 programmes de passeport souverain et visa Bitcoin — visa dorée crypto, résidence par investissement avec Lightning, coûts en ₿ et preuves Satohash.',
+      'Parcourez 21 programmes de passeport souverain et visa Bitcoin — visa dorée crypto, résidence par investissement avec Lightning, coûts en ₿ et preuves Satohash.',
     keywords: [
       'programmes visa bitcoin', 'visa dorée crypto', 'résidence par investissement',
       'programmes CBI 2026', 'programmes RBI', 'passeport souverain',
     ],
-    h1: 'Programmes de Résidence et Citoyenneté — 50 Juridictions',
+    h1: 'Programmes de Résidence et Citoyenneté — 21 Programmes',
   },
   '/portfolio': {
     title: 'Portefeuille Mobilité Souveraine — Vos Programmes',
@@ -495,15 +495,15 @@ const pt: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — Passaportes Soberanos Bitcoin e Inteligência de Residência',
     description:
-      'Avalie 50 programas de visto Bitcoin e visto dourado crypto com preços em ₿, provas Satohash e identidade Nostr. Verdade que você pode verificar.',
+      'Avalie 21 programas de visto Bitcoin e visto dourado crypto com preços em ₿, provas Satohash e identidade Nostr. Verdade que você pode verificar.',
     keywords: ['passaporte bitcoin', 'passaporte soberano', 'visto dourado crypto', 'residência por investimento'],
     h1: 'Inteligência de Passaportes Soberanos Bitcoin',
   },
   '/programs': {
-    title: '50 Programas de Visto Bitcoin e Visto Dourado Crypto — MotoPass',
-    description: 'Explore 50 programas de passaporte soberano e visto Bitcoin — visto dourado crypto, residência por investimento com Lightning.',
+    title: '21 Programas de Visto Bitcoin e Visto Dourado Crypto — MotoPass',
+    description: 'Explore 21 programas de passaporte soberano e visto Bitcoin — visto dourado crypto, residência por investimento com Lightning.',
     keywords: ['programas visto bitcoin', 'visto dourado crypto', 'residência por investimento', 'programas CBI'],
-    h1: 'Programas de Residência e Cidadania — 50 Jurisdições',
+    h1: 'Programas de Residência e Cidadania — 21 Programas',
   },
 }
 
@@ -512,15 +512,15 @@ const pt: RouteSeoKeywords = {
 const zh: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — 比特币主权护照与居留情报',
-    description: '评估50个比特币签证和加密黄金签证项目，₿定价、Satohash证明和Nostr身份。可验证的真相。',
+    description: '评估21个比特币签证和加密黄金签证项目，₿定价、Satohash证明和Nostr身份。可验证的真相。',
     keywords: ['比特币护照', '主权护照', '加密黄金签证', '投资居留'],
     h1: '比特币原生主权护照情报',
   },
   '/programs': {
-    title: '50个比特币签证与加密黄金签证项目 — MotoPass',
-    description: '浏览50个主权护照和比特币签证项目——加密黄金签证、投资居留，Lightning就绪，₿成本，Satohash验证。',
+    title: '21个比特币签证与加密黄金签证项目 — MotoPass',
+    description: '浏览21个主权护照和比特币签证项目——加密黄金签证、投资居留，Lightning就绪，₿成本，Satohash验证。',
     keywords: ['比特币签证项目', '加密黄金签证', '投资居留', 'CBI项目'],
-    h1: '居留与公民身份项目 — 50个司法管辖区',
+    h1: '居留与公民身份项目 — 21个项目',
   },
 }
 
@@ -529,15 +529,15 @@ const zh: RouteSeoKeywords = {
 const ar: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — جوازات السيادة Bitcoin والاستخبارات السكنية',
-    description: 'قيّم 50 برنامج تأشيرة Bitcoin وتأشيرة ذهبية مشفرة مع تسعير ₿ وبراهين Satohash وهوية Nostr. حقيقة يمكنك التحقق منها.',
+    description: 'قيّم 21 برنامج تأشيرة Bitcoin وتأشيرة ذهبية مشفرة مع تسعير ₿ وبراهين Satohash وهوية Nostr. حقيقة يمكنك التحقق منها.',
     keywords: ['جواز سفر بيتكوين', 'جواز سفر سيادي', 'تأشيرة ذهبية مشفرة', 'إقامة بالاستثمار'],
     h1: 'استخبارات جوازات السيادة البيتكوينية',
   },
   '/programs': {
-    title: '50 برنامج تأشيرة بيتكوين وتأشيرة ذهبية مشفرة — MotoPass',
-    description: 'تصفح 50 برنامج جواز سفر سيادي وتأشيرة بيتكوين — تأشيرة ذهبية مشفرة، إقامة بالاستثمار مع Lightning.',
+    title: '21 برنامج تأشيرة بيتكوين وتأشيرة ذهبية مشفرة — MotoPass',
+    description: 'تصفح 21 برنامج جواز سفر سيادي وتأشيرة بيتكوين — تأشيرة ذهبية مشفرة، إقامة بالاستثمار مع Lightning.',
     keywords: ['برامج تأشيرة بيتكوين', 'تأشيرة ذهبية مشفرة', 'إقامة بالاستثمار', 'برامج CBI'],
-    h1: 'برامج الإقامة والجنسية — 50 ولاية قضائية',
+    h1: 'برامج الإقامة والجنسية — 21 برنامجاً',
   },
 }
 
@@ -546,7 +546,7 @@ const ar: RouteSeoKeywords = {
 const sw: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — Hatari za Uso wa Bitcoin na Taarifa za Kukaa',
-    description: 'Tathmini programs 50 za kibali cha Bitcoin na kibali cha dhahabu ya crypto kwa bei za ₿, uthibitisho wa Satohash na utambulisho wa Nostr.',
+    description: 'Tathmini programu 21 za kibali cha Bitcoin na kibali cha dhahabu ya crypto kwa bei za ₿, uthibitisho wa Satohash na utambulisho wa Nostr.',
     keywords: ['hatari ya bitcoin', 'hatari ya uso', 'kibali cha dhahabu ya crypto', 'kukaa kwa uwekezaji'],
     h1: 'Taarifa za Hatari za Uso wa Bitcoin',
   },
@@ -557,15 +557,15 @@ const sw: RouteSeoKeywords = {
 const de: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — Bitcoin-Souveräne Pässe & Aufenthalts-Intelligenz',
-    description: 'Bewerten Sie 50 Bitcoin-Visa- und Krypto-Golden-Visa-Programme mit ₿-Preisen, Satohash-Beweisen und Nostr-Identität.',
+    description: 'Bewerten Sie 21 Bitcoin-Visa- und Krypto-Golden-Visa-Programme mit ₿-Preisen, Satohash-Beweisen und Nostr-Identität.',
     keywords: ['Bitcoin-Reisepass', 'souveräner Reisepass', 'Krypto-Golden-Visa', 'Aufenthalt durch Investition'],
     h1: 'Bitcoin-native Souveräne Reisepass-Intelligenz',
   },
   '/programs': {
-    title: '50 Bitcoin-Visa- & Krypto-Golden-Visa-Programme — MotoPass',
-    description: 'Durchsuchen Sie 50 souveräne Reisepass- und Bitcoin-Visa-Programme — Krypto-Golden-Visa, RBI und CBI mit Lightning-Bereitschaft, ₿-Kosten und Satohash-Verifizierung.',
+    title: '21 Bitcoin-Visa- & Krypto-Golden-Visa-Programme — MotoPass',
+    description: 'Durchsuchen Sie 21 souveräne Reisepass- und Bitcoin-Visa-Programme — Krypto-Golden-Visa, RBI und CBI mit Lightning-Bereitschaft, ₿-Kosten und Satohash-Verifizierung.',
     keywords: ['Bitcoin-Visa-Programme', 'Krypto-Golden-Visa', 'Aufenthalt durch Investition', 'CBI-Programme'],
-    h1: 'Aufenthalts- & Bürgerrechtsprogramme — 50 Jurisdiktionen',
+    h1: 'Aufenthalts- & Bürgerrechtsprogramme — 21 Programme',
   },
 }
 
@@ -574,7 +574,7 @@ const de: RouteSeoKeywords = {
 const hi: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — बिटकॉइन संप्रभु पासपोर्ट और निवास बुद्धिमत्ता',
-    description: '50 बिटकॉइन वीज़ा और क्रिप्टो गोल्डन वीज़ा कार्यक्रमों का मूल्यांकन करें — ₿ मूल्य निर्धारण, Satohash प्रमाण और Nostr पहचान।',
+    description: '21 बिटकॉइन वीज़ा और क्रिप्टो गोल्डन वीज़ा कार्यक्रमों का मूल्यांकन करें — ₿ मूल्य निर्धारण, Satohash प्रमाण और Nostr पहचान।',
     keywords: ['बिटकॉइन पासपोर्ट', 'संप्रभु पासपोर्ट', 'क्रिप्टो गोल्डन वीज़ा', 'निवास निवेश द्वारा'],
     h1: 'बिटकॉइन-नेटिव संप्रभु पासपोर्ट बुद्धिमत्ता',
   },
@@ -585,15 +585,15 @@ const hi: RouteSeoKeywords = {
 const ja: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — ビットコイン主権パスポート＆居住インテリジェンス',
-    description: '50のビットコインビザと暗号ゴールデンビザプログラムを₿プライシング、Satohash証明、Nostr IDで評価。検証可能な真実。',
+    description: '21のビットコインビザと暗号ゴールデンビザプログラムを₿プライシング、Satohash証明、Nostr IDで評価。検証可能な真実。',
     keywords: ['ビットコインパスポート', '主権パスポート', '暗号ゴールデンビザ', '投資居住'],
     h1: 'ビットコインネイティブ主権パスポートインテリジェンス',
   },
   '/programs': {
-    title: '50のビットコインビザ＆暗号ゴールデンビザプログラム — MotoPass',
-    description: '50の主権パスポートとビットコインビザプログラムを閲覧 — Lightning対応、₿コスト、Satohash検証。',
+    title: '21のビットコインビザ＆暗号ゴールデンビザプログラム — MotoPass',
+    description: '21の主権パスポートとビットコインビザプログラムを閲覧 — Lightning対応、₿コスト、Satohash検証。',
     keywords: ['ビットコインビザプログラム', '暗号ゴールデンビザ', '投資居住', 'CBIプログラム'],
-    h1: '居住・市民権プログラム — 50の法域',
+    h1: '居住・市民権プログラム — 21のプログラム',
   },
 }
 

@@ -30,7 +30,7 @@ export const JOB_POSTINGS: JobPosting[] = [
     location: 'Remote · EU / Americas time zones',
     type: 'Full-time · Senior',
     summary:
-      'Own flagship-depth CBI/RBI program research across 50 jurisdictions. Every field you publish must be Satohash-verifiable and Bitcoin-relevant.',
+      'Own flagship-depth CBI/RBI program research across 21 programs. Every field you publish must be Satohash-verifiable and Bitcoin-relevant.',
     responsibilities: [
       'Expand and maintain research/countries.json to Uruguay flagship template depth',
       'Source official government extracts; coordinate OpenTimestamps proofs',

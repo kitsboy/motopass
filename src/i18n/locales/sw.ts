@@ -47,7 +47,7 @@ const sw: Partial<Dict> = {
   'currency.staleTag': 'Kiwango kilichopitwa',
   'currency.fxUnavailable': 'FX haipatikani',
   'currency.degradedTitle': 'Chanzo cha FX cha moja kwa moja hakipatikani — inaonyesha viwango vya mwisho vinavyojulikana (vilivyopitwa) au BTC pekee.',
-  'pitch.feature.jurisdictions.title': 'Mamlaka 50',
+  'pitch.feature.jurisdictions.title': 'Programu 21',
   'pitch.feature.jurisdictions.sub': 'CBI, RBI na njia asilia za Bitcoin',
   'pitch.feature.satohash.title': 'Ushahidi wa Satohash',
   'pitch.feature.satohash.sub': 'OpenTimestamps kwenye kila dai la msingi',
