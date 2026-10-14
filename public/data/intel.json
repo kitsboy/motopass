@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-13T13:07:52.575Z",
+  "generated_at": "2026-10-14T10:49:03.194Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
     "fresh": 1,
     "watch": 20,
     "stale": 0,
-    "swept_at": "2026-10-13T13:07:52.575Z",
+    "swept_at": "2026-10-14T10:49:03.194Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -130,7 +130,7 @@
       "watch": {
         "changed": true,
         "probed": 6,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "5896d70fc0b87a29e9f45849bf8e733c252559f028d5bf0b8188607cd3355eb8",
@@ -290,7 +290,7 @@
       "watch": {
         "changed": true,
         "probed": 4,
-        "unreachable": 0
+        "unreachable": 3
       },
       "proof": {
         "hash": "645d4060bb4ff8235b5a7d84a104ec813bbb9f2aea4ef79373f59b38697ecaa6",
@@ -730,6 +730,18 @@
       },
       "recent_changes": [
         {
+          "date": "2026-10-14",
+          "field": "watch.https://enterprise.gov.ie",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "380d638a27e04440"
+        },
+        {
+          "date": "2026-10-14",
+          "field": "watch.https://www.revenue.ie/",
+          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "c33e9552974b4ba1"
+        },
+        {
           "date": "2026-10-13",
           "field": "watch.https://www.revenue.ie/",
           "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
@@ -746,18 +758,6 @@
           "field": "watch.https://enterprise.gov.ie",
           "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
           "hash": "177a5b65301b39a4"
-        },
-        {
-          "date": "2026-10-09",
-          "field": "watch.https://www.revenue.ie/",
-          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "9c2610ac85b77023"
-        },
-        {
-          "date": "2026-10-08",
-          "field": "watch.https://enterprise.gov.ie",
-          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "b164a8cfdc710e83"
         }
       ]
     },
@@ -826,7 +826,7 @@
       "watch": {
         "changed": false,
         "probed": 7,
-        "unreachable": 5
+        "unreachable": 6
       },
       "proof": {
         "hash": "b41480b2644ae16ae2cdc73fc4e5e57fdfc3a4b388438b1df51520eefdc9b1e7",
@@ -989,7 +989,7 @@
       "watch": {
         "changed": true,
         "probed": 3,
-        "unreachable": 2
+        "unreachable": 1
       },
       "proof": {
         "hash": "c0f4352fe65c1b80a4485542db3e223c377fb6048c115bd142387c116b50edd9",
@@ -1052,6 +1052,12 @@
       },
       "recent_changes": [
         {
+          "date": "2026-10-14",
+          "field": "watch.https://dof.gob.mx",
+          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+          "hash": "34a5fd9b33637130"
+        },
+        {
           "date": "2026-10-13",
           "field": "watch.https://dof.gob.mx",
           "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
@@ -1075,12 +1081,6 @@
           "from": "94f9beba31b597a1",
           "to": "re-anchored 67ea33c8e6990e5a (stamp e66afd75-575)",
           "hash": "67ea33c8e6990e5a655df4bb2a48cbe29f64be5ddedae2ead3953b3f9a19a210"
-        },
-        {
-          "date": "2026-09-26",
-          "field": "watch.https://dof.gob.mx",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "e11ae6b52327e299"
         }
       ]
     },
