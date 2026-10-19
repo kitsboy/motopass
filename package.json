@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "vite",
     "build:info": "node scripts/gen-build-info.mjs",
-    "build": "npm run build:info && vite build",
+    "build": "npm run build:info && node scripts/build-rss.mjs && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:e2e": "bash scripts/e2e-smoke.sh",
