@@ -170,6 +170,20 @@ export function Footer() {
             <span className="text-mp-strong hidden sm:inline opacity-50" aria-hidden>
               ·
             </span>
+            <a
+              href="/feed.xml"
+              className="inline-flex items-center gap-1 rounded-full border border-orange-400/40 bg-orange-400/10 px-2 py-0.5 text-[10px] font-semibold text-orange-300 hover:bg-orange-400/20"
+              title="Subscribe via RSS"
+              aria-label="Subscribe via RSS"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M6.18 17.82a2.18 2.18 0 1 0 0 4.36 2.18 2.18 0 0 0 0-4.36zM4 4.44v3.6C12.9 8.04 20 15.1 20 24h3.6C23.6 14.6 13.4 4.44 4 4.44zM4 10.1v3.6c5.7 0 10.3 4.6 10.3 10.3h3.6C17.9 14.9 9.1 10.1 4 10.1z" />
+              </svg>
+              RSS
+            </a>
+            <span className="text-mp-strong hidden sm:inline opacity-50" aria-hidden>
+              ·
+            </span>
             <span className="leading-none hidden md:inline max-w-[16rem] truncate opacity-70" title={BUILD_LABEL}>
               {BUILD_LABEL}
             </span>
