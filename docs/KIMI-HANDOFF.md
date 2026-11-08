@@ -1,3 +1,19 @@
+## Session — 2026-11-08 · Source monitor matches the catalog (Grok)
+
+**Done:**
+- Rebuilt `public/data/source-monitor.json` from `research/countries.json` with no network probe. 21 countries, 110 URLs: 98 ok, 1 changed, 5 unreachable, 6 blocked. `generated_at` is the weekly probe `2026-11-08T12:24:29.059Z`. Only Uruguay is `changed`. Portugal is not. `https://adoptingelsalvador.gob.sv` is ok. No Playwright error remains in the monitor. Italy is not in `changed_countries`.
+- Source Monitor no longer calls a changed country healthy. Uruguay’s status word is `changed`. Chips: 1 rules changed, 20 sources healthy, 110 URLs. Filter `changed` shows Uruguay.
+- Program cards and the programs table show `Sources probed 8 Nov` from `watch.last_probe_at`, next to the research freshness badge (`Recent · Sep 2026`). `last_checked` was not moved.
+- Dev-only fix: Source Monitor ignores the React Strict Mode abort so the page loads.
+
+**Decisions:**
+- Did not probe the network, forge `last_checked`, open applications, or wrangler-deploy. Push to `main` is the Cloudflare Pages deploy.
+- Layout-change history in the monitor file was kept. The live status lists (`changed_countries`, `blocked_urls`, `unreachable_urls`) were reconciled to the catalog.
+
+**Git State:**
+- SHA: `788e8ca070b25b36343fed20d6c4ff0303289a86`
+- Unpushed at write time: `6fa90d8`, `1b32fa3`, `788e8ca`, plus this handoff commit. Then `git push origin main`.
+
 ## Session — 2026-11-08 · Truth pass — badges, metrics, BTC Map, gates (Grok)
 
 **Done:**

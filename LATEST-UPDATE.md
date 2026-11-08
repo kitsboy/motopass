@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-08 by Grok — truth pass on the 21-program catalog
+# motopass — Last Updated 2026-11-08 by Grok — source monitor matches the 21
+
+The source monitor follows the catalog: only Uruguay is changed, and that card says changed. Program cards and the table show `Sources probed 8 Nov` beside the September research badge. `last_checked` was not moved. Commit: `788e8ca`.
+
+## Previous update — 2026-11-08 by Grok — truth pass on the 21-program catalog
 
 Badges, HQ metrics, BTC Map cache, and launch gates now match the curated 21. Nine stuck "source changed" flags cleared; Italy and Uruguay remain. Spain $32,000 is the cheapest stated minimum. Applications stay closed. Research `last_checked` is still 2026-09-29. Commit: `43acd6c`.
 
