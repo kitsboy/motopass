@@ -7,16 +7,16 @@
     "region": "Oceania",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.772Z",
+  "generated_at": "2026-11-08T18:53:58.861Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938",
     "proof_url": "https://satohash.io/verify/a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938",
     "ots_path": "/proofs/vanuatu-8973b5e31268.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -139,7 +139,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://cilc.vu",
@@ -149,33 +149,26 @@
       {
         "url": "https://immigration.gov.vu",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.gov.vu",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://vancitizenship.gov.vu/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.vfsc.vu/virtual-asset-service-provider/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-29",
-      "field": "proof",
-      "from": "3012b5f3857415cc",
-      "to": "re-anchored dc7586d2d89250d0 (stamp b43f3de3-092)",
-      "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
-    },
     {
       "date": "2026-08-31",
       "field": "watch.https://immigration.gov.vu",
@@ -224,6 +217,13 @@
       "from": "8973b5e31268af3b",
       "to": "re-anchored a65002fbf8c5059d (stamp bcca1eec-371)",
       "hash": "a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
+      "hash": null
     }
   ],
   "sovereignty": {

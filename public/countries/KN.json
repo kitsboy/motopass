@@ -7,16 +7,16 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.770Z",
+  "generated_at": "2026-11-08T18:53:58.860Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "645d4060bb4ff8235b5a7d84a104ec813bbb9f2aea4ef79373f59b38697ecaa6",
     "proof_url": "https://satohash.io/verify/645d4060bb4ff8235b5a7d84a104ec813bbb9f2aea4ef79373f59b38697ecaa6",
     "ots_path": "/proofs/st-kitts-and-nevis-645d4060bb4f.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -130,7 +130,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://www.ciu.gov.kn",
@@ -140,7 +140,7 @@
       {
         "url": "https://www.gov.kn/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://ciu.gov.kn/",
@@ -155,13 +155,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "legal_compliance.recent_changes",
-      "from": "Sustainable Growth Fund (SGF) renamed Sustainable Island State Contribution (SISC), $250k; the 2026 framework adds mandatory applicant interviews and proposes a 30-day visit requirement within 5 years; US visa restriction on St Kitts and Nevis nationals (Presidential Proclamation 10998, Jan 2026) — monitor US access impact.",
-      "to": "Sustainable Growth Fund (SGF) renamed Sustainable Island State Contribution (SISC), $250k; the 2026 framework adds mandatory applicant interviews and proposes a 30-day visit requirement within 5 years; US visa restriction on St Kitts and Nevis nationals (Presidential Proclamation 10998, Jan 2026) — monitor US access impact.",
-      "hash": null
-    },
     {
       "date": "2026-09-10",
       "field": "last_checked",
@@ -209,6 +202,13 @@
       "field": "watch.changed",
       "from": "true",
       "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
       "hash": null
     }
   ],

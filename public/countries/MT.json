@@ -7,16 +7,16 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.771Z",
+  "generated_at": "2026-11-08T18:53:58.861Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "cbecbf6ecaa659a20bd373b79d9eeda9ba52b994147d61a1e0b519f4cbec9b0d",
     "proof_url": "https://satohash.io/verify/cbecbf6ecaa659a20bd373b79d9eeda9ba52b994147d61a1e0b519f4cbec9b0d",
     "ots_path": "/proofs/malta-cbecbf6ecaa6.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -139,12 +139,12 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://residencymalta.gov.mt",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.mfsa.mt",
@@ -154,7 +154,7 @@
       {
         "url": "https://www.identita.gov.mt",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.gov.mt",
@@ -169,13 +169,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-02",
-      "field": "watch.https://residencymalta.gov.mt",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
-    },
     {
       "date": "2026-09-03",
       "field": "watch.https://residencymalta.gov.mt",
@@ -224,6 +217,13 @@
       "from": "1ce9eb8bd293fd5d",
       "to": "re-anchored cbecbf6ecaa659a2 (stamp 7bc793b6-3b4)",
       "hash": "cbecbf6ecaa659a20bd373b79d9eeda9ba52b994147d61a1e0b519f4cbec9b0d"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
+      "hash": null
     }
   ],
   "sovereignty": {

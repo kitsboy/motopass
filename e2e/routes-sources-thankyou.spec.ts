@@ -42,6 +42,12 @@ const MONITOR = {
       changed: false,
       urls: [{ url: 'https://www.gibraltar.gov.gi/', status: 'blocked', last_probed: new Date().toISOString() }],
     },
+    {
+      program_id: 13,
+      name: 'Spain',
+      changed: false,
+      urls: [{ url: 'https://www.exteriores.gob.es/', status: 'ok', last_probed: new Date().toISOString() }],
+    },
   ],
 }
 
@@ -93,7 +99,8 @@ test.describe('/sources — Source Monitor', () => {
     await expect(grid.getByText('migraciones.gov.py')).toBeVisible()
     await expect(grid.getByText('CHANGED')).toBeVisible()
 
-    // UAE's best-status is ok (one of its urls is ok) despite the walled url.
+    // A blocked URL outranks an ok URL. Spain is the all-ok country.
+    await expect(grid.getByText('Spain').first()).toBeVisible()
     await expect(grid.getByText('healthy').first()).toBeVisible()
     await expect(grid.getByText('blocked').first()).toBeVisible()
 
@@ -111,12 +118,13 @@ test.describe('/sources — Source Monitor', () => {
     await expect(page.getByRole('heading', { name: /know the moment a country/i })).toBeVisible({ timeout: 20_000 })
 
     const grid = page.locator('#smLayout > div').first()
-    // Gibraltar is the only all-blocked country; UAE's best-status is ok.
+    // UAE is blocked because one URL is walled, even though another is ok.
     await page.getByRole('button', { name: 'blocked', exact: true }).click()
     await expect(grid.getByText('Gibraltar').first()).toBeVisible()
+    await expect(grid.getByText('United Arab Emirates').first()).toBeVisible()
     await expect(grid.getByText('Paraguay')).toHaveCount(0)
     await expect(grid.getByText('Atlantis')).toHaveCount(0)
-    await expect(grid.getByText('United Arab Emirates')).toHaveCount(0)
+    await expect(grid.getByText('Spain')).toHaveCount(0)
 
     await page.getByRole('button', { name: 'unreachable', exact: true }).click()
     await expect(grid.getByText('Atlantis').first()).toBeVisible()

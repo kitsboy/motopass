@@ -46,7 +46,7 @@ export const ProgramCard = memo(function ProgramCard({
   const isFlagship = weight === 'flagship';
   const reduceMotion = useReducedMotion();
 
-  const cardClassName = `group relative w-full overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base ease-spring-gentle hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc ${
+  const cardClassName = `group relative w-full min-w-0 overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base ease-spring-gentle hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc ${
     isFlagship ? 'border-mp-btc/35 hover:border-mp-btc/55' : 'border-mp-border hover:border-mp-copper/40'
   }`;
 
@@ -132,51 +132,15 @@ function ProgramCardContent({
       )}
 
       <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 flex-1 items-center gap-3">
           <LazyFlagSprite
             countryName={program.country}
             emojiFallback={program.flag ?? program.countryCode}
-            className="h-9 w-9 rounded-full border border-mp-border-subtle bg-mp-section p-1.5"
+            className="h-9 w-9 shrink-0 rounded-full border border-mp-border-subtle bg-mp-section p-1.5"
           />
-          <div>
-            <h3 className="font-display text-lg2 leading-tight text-mp-ink">{program.country}</h3>
-            <span
-              className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary"
-              title={t(tierTooltipKey(program.tier))}
-            >
-              {program.tier} &middot; {program.region}
-            </span>
-            <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-              {program.lightningReady && (
-                <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-btc/30 bg-mp-btc-soft px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-btc-text">
-                  <Zap size={9} aria-hidden="true" />
-                  {t('modal.lightning')}
-                </span>
-              )}
-              {program.highlightBtcFriendly && (
-                <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-btc/50 bg-mp-btc-soft px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-btc-text">
-                  ₿ {t('programs.presetBitcoinFriendly')}
-                </span>
-              )}
-              {program.policyMentionsBtc && (
-                <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-copper/30 bg-mp-section px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-copper">
-                  ₿ {t('programs.presetBitcoinPolicy')}
-                </span>
-              )}
-              <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />
-              <IntelStatusBadge programName={program.country} compact />
-              <SourceStatusBadge programName={program.country} />
-              <FreshnessBadge
-                lastChecked={program.lastChecked}
-                proofStampedAt={program.proofStampedAt}
-                compact
-                labels={freshnessLabels}
-              />
-            </div>
-            <SourcesProbedNote iso={program.lastProbed} />
-          </div>
+          <h3 className="min-w-0 flex-1 font-display text-lg2 leading-tight text-mp-ink">{program.country}</h3>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           {onToggleWatch && (
             <button
               type="button"
@@ -206,8 +170,43 @@ function ProgramCardContent({
               <Check size={14} strokeWidth={inPortfolio ? 2.5 : 2} />
             </button>
           )}
-          <ProofBadge status={program.proofStatus} compact />
         </div>
+      </div>
+      <span
+        className="mt-1 block max-w-full truncate font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary"
+        title={`${program.tier} · ${program.region}. ${t(tierTooltipKey(program.tier))}`}
+      >
+        {program.tier} &middot; {program.region}
+      </span>
+
+      <div className="mt-2 flex w-full flex-wrap items-center gap-1.5">
+        {program.lightningReady && (
+          <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-btc/30 bg-mp-btc-soft px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-btc-text">
+            <Zap size={9} aria-hidden="true" />
+            {t('modal.lightning')}
+          </span>
+        )}
+        {program.highlightBtcFriendly && (
+          <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-btc/50 bg-mp-btc-soft px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-btc-text">
+            ₿ {t('programs.presetBitcoinFriendly')}
+          </span>
+        )}
+        {program.policyMentionsBtc && (
+          <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-copper/30 bg-mp-section px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-copper">
+            ₿ {t('programs.presetBitcoinPolicy')}
+          </span>
+        )}
+        <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />
+        <IntelStatusBadge programName={program.country} compact />
+        <SourceStatusBadge programName={program.country} />
+        <FreshnessBadge
+          lastChecked={program.lastChecked}
+          proofStampedAt={program.proofStampedAt}
+          compact
+          labels={freshnessLabels}
+        />
+        <ProofBadge status={program.proofStatus} compact />
+        <SourcesProbedNote iso={program.lastProbed} />
       </div>
 
       <p className="mt-3 line-clamp-2 font-body text-sm text-mp-ink-secondary">{program.summary}</p>

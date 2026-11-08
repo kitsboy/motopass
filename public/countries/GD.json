@@ -7,16 +7,16 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.770Z",
+  "generated_at": "2026-11-08T18:53:58.860Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "324a9d2f5d396de1434045da4cf21f1877091859f9668b3b426b679130334986",
     "proof_url": "https://satohash.io/verify/324a9d2f5d396de1434045da4cf21f1877091859f9668b3b426b679130334986",
     "ots_path": "/proofs/grenada-324a9d2f5d39.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -142,7 +142,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://www.cbi.gov.gd",
@@ -152,28 +152,21 @@
       {
         "url": "https://www.gov.gd/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://imagrenada.gd/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://imagrenada.gd/citizenship-by-investment/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "pathways.ntf_donation.notes",
-      "from": "Single applicant minimum — among lowest CBI donation thresholds; processing fees additional.",
-      "to": "$235,000 non-refundable contribution — flat for a single applicant or a family of up to 4 (2026 GIS announcement); processing fees additional; single applicant all-in ≈ $242.5k incl. due diligence.",
-      "hash": null
-    },
     {
       "date": "2026-09-10",
       "field": "finance.min_investment_usd",
@@ -222,6 +215,13 @@
       "from": "53a087ece38e8cee",
       "to": "re-anchored 324a9d2f5d396de1 (stamp a6c9f8a7-d70)",
       "hash": "324a9d2f5d396de1434045da4cf21f1877091859f9668b3b426b679130334986"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
+      "hash": null
     }
   ],
   "sovereignty": {

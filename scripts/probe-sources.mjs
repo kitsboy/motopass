@@ -94,7 +94,8 @@
  *
  * Usage: node scripts/probe-sources.mjs [--dry-run] [--self-test] [--reconcile-latch]
  * Env:   PLAYWRIGHT_EXECUTABLE  chromium path (auto-detect if unset)
- *        PLAYWRIGHT_MODULE_DIR   dir to resolve playwright from (default /root/hq)
+ *        PLAYWRIGHT_MODULE_DIR   optional dir to resolve playwright from first.
+ *                                Then this repo, then the legacy /root/hq checkout.
  *        PROBE_CONCURRENCY       http concurrency (default 6)
  *        PROBE_BROWSER_CONCURRENCY  browser concurrency (default 3)
  *        PROBE_TIMEOUT_MS        per-request timeout (default 12000)
@@ -104,8 +105,8 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
-import { createRequire } from 'node:module'
 import { applyProbeFailure } from './lib/probe-failure.mjs'
+import { playwrightRequire } from './lib/playwright-resolve.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
@@ -597,9 +598,11 @@ function looksLikeChallengePage(whole, main) {
   if (!blob) return false
   return isBotWall(blob) || CHALLENGE_PAGE_RE.test(blob)
 }
-const requirePw = createRequire(process.env.PLAYWRIGHT_MODULE_DIR || '/root/hq/')
 async function launchBrowser() {
-  const pw = requirePw('playwright')
+  const pw = playwrightRequire({
+    repoRoot: root,
+    moduleDir: process.env.PLAYWRIGHT_MODULE_DIR || null,
+  })('playwright')
   const executable = process.env.PLAYWRIGHT_EXECUTABLE || pw.chromium.executablePath()
   const browser = await pw.chromium.launch({
     executablePath: executable,

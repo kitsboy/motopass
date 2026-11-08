@@ -7,16 +7,16 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.771Z",
+  "generated_at": "2026-11-08T18:53:58.861Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "39d27d5284d82abd3ea3f985590bf2316c6eac17c497f54492a90bdf8fec66da",
     "proof_url": "https://satohash.io/verify/39d27d5284d82abd3ea3f985590bf2316c6eac17c497f54492a90bdf8fec66da",
     "ots_path": "/proofs/ireland-39d27d5284d8.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -141,22 +141,22 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://www.irishimmigration.ie",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://enterprise.gov.ie",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.centralbank.ie",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.dfa.ie/",
@@ -166,7 +166,7 @@
       {
         "url": "https://www.revenue.ie/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
@@ -176,18 +176,11 @@
       {
         "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-10-25",
-      "field": "watch.https://www.centralbank.ie",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "a9b3e863f60d49eb"
-    },
     {
       "date": "2026-10-29",
       "field": "watch.https://www.revenue.ie/",
@@ -235,6 +228,13 @@
       "field": "watch.changed",
       "from": "true",
       "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
       "hash": null
     }
   ],

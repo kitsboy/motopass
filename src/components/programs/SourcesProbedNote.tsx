@@ -17,6 +17,6 @@ export function SourcesProbedNote({ iso }: { iso?: string | null }) {
   const label = sourcesProbedLabel(iso)
   if (!label) return null
   return (
-    <span data-testid="sources-probed" className="mt-1 inline-flex whitespace-nowrap font-mono text-[10px] leading-none text-mp-ink-secondary">{label}</span>
+    <span data-testid="sources-probed" className="inline-flex whitespace-nowrap font-mono text-[10px] leading-none text-mp-ink-secondary">{label}</span>
   )
 }

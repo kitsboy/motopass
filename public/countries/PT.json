@@ -7,16 +7,16 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.769Z",
+  "generated_at": "2026-11-08T18:53:58.859Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "ae7e6b71f116ec64b7ab90cf099c88b5393d8a9a24d236d05d4a8a0f36cec8bc",
     "proof_url": "https://satohash.io/verify/ae7e6b71f116ec64b7ab90cf099c88b5393d8a9a24d236d05d4a8a0f36cec8bc",
     "ots_path": "/proofs/portugal-ae7e6b71f116.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -136,7 +136,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://imigrante.sef.pt",
@@ -171,13 +171,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-10-18",
-      "field": "watch.https://www.portugal.gov.pt/",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "9a5c5283dc58210d"
-    },
     {
       "date": "2026-10-25",
       "field": "watch.https://www.portugal.gov.pt",
@@ -225,6 +218,13 @@
       "field": "watch.changed",
       "from": "true",
       "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
       "hash": null
     }
   ],

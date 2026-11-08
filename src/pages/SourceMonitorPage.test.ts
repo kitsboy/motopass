@@ -5,7 +5,7 @@
 import { createElement as h } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import { SourceCountryCard, countryTone } from './SourceMonitorPage'
+import { SourceCountryCard, countryTone, openReviewRows } from './SourceMonitorPage'
 
 function country(name: string, changed: boolean, statuses: string[]) {
   return {
@@ -53,9 +53,33 @@ describe('SourceMonitorPage country tone', () => {
     expect(html).not.toContain('changed')
   })
 
-  it('falls through to blocked, then unreachable', () => {
-    expect(countryTone(country('Malta', false, ['blocked', 'unreachable']))).toBe('blocked')
-    expect(countryTone(country('Bahamas', false, ['unreachable']))).toBe('unreachable')
+  it('labels a mixed country by its worst URL, not its best', () => {
+    const salvador = country('El Salvador', false, ['ok', 'blocked'])
+    const bahamas = country('Bahamas', false, ['ok', 'unreachable'])
+    const salvadorHtml = renderToStaticMarkup(h(SourceCountryCard, { country: salvador }))
+    const bahamasHtml = renderToStaticMarkup(h(SourceCountryCard, { country: bahamas }))
+    expect(countryTone(salvador)).toBe('blocked')
+    expect(salvadorHtml).toContain('blocked')
+    expect(salvadorHtml).not.toContain('healthy')
+    expect(countryTone(bahamas)).toBe('unreachable')
+    expect(bahamasHtml).toContain('unreachable')
+    expect(bahamasHtml).not.toContain('healthy')
+    expect(countryTone(country('Malta', false, ['blocked', 'unreachable']))).toBe('unreachable')
     expect(countryTone({ changed: false, urls: [] })).toBe('unreachable')
+  })
+
+  it('puts the open Uruguay URL above a country that is only healthy', () => {
+    const rows = openReviewRows([
+      {
+        name: 'Uruguay',
+        changed: true,
+        urls: [
+          { url: 'https://www.gub.uy/tramites/residencia-legal', status: 'ok' },
+          { url: 'https://www.minterior.gub.uy', status: 'changed' },
+        ],
+      },
+      { name: 'Portugal', changed: false, urls: [{ url: 'https://imigrante.sef.pt', status: 'ok' }] },
+    ])
+    expect(rows).toEqual([{ name: 'Uruguay', url: 'https://www.minterior.gub.uy' }])
   })
 })

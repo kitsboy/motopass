@@ -7,16 +7,16 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.770Z",
+  "generated_at": "2026-11-08T18:53:58.860Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "d5dcf5c42bf300dbf8ced0ec72ccbfeefcf5834bf7a523cca80a845af89439f9",
     "proof_url": "https://satohash.io/verify/d5dcf5c42bf300dbf8ced0ec72ccbfeefcf5834bf7a523cca80a845af89439f9",
     "ots_path": "/proofs/bahamas-d5dcf5c42bf3.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -143,7 +143,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://www.bahamas.gov.bs",
@@ -158,7 +158,7 @@
       {
         "url": "https://www.immigration.gov.bs",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://laws.bahamas.gov.bs",
@@ -173,7 +173,7 @@
       {
         "url": "https://www.immigration.gov.bs/residence/permanent-residence/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
@@ -183,13 +183,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "finance.typical_investment_usd",
-      "from": 750000,
-      "to": 1200000,
-      "hash": null
-    },
     {
       "date": "2026-09-10",
       "field": "paige_fields.optimization_tips",
@@ -238,6 +231,13 @@
       "from": "a10d23fac00a1c92",
       "to": "re-anchored d5dcf5c42bf300db (stamp d0196ddb-e01)",
       "hash": "d5dcf5c42bf300dbf8ced0ec72ccbfeefcf5834bf7a523cca80a845af89439f9"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
+      "hash": null
     }
   ],
   "sovereignty": {

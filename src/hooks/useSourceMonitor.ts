@@ -94,12 +94,13 @@ export interface CountryHealth {
 export function countrySourceHealth(c: SourceCountry): CountryHealth {
   const okCount = c.urls.filter((u) => u.status === 'ok').length
   const changed = !!c.changed || c.urls.some((u) => u.status === 'changed')
+  const walled = c.urls.some((u) => u.status === 'blocked' || u.status === 'unreachable')
   const probed = c.urls
     .map((u) => u.last_probed)
     .filter((v): v is string => !!v)
     .sort()
     .pop()
-  const level: SourceLevel = changed ? 'changed' : okCount > 0 ? 'ok' : 'walled'
+  const level: SourceLevel = changed ? 'changed' : walled || okCount === 0 ? 'walled' : 'ok'
   return { level, probed, okCount, total: c.urls.length, changed, coverageGapDays: c.coverage_gap_days }
 }
 

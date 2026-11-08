@@ -28,13 +28,32 @@ type Url = { url: string; status: string; last_probed: string | null; coverage_g
 type Country = { program_id: number; name: string; changed: boolean; coverage_gap_days?: number; urls: Url[] }
 type Ev = { kind: string; country: string; url: string; status?: string; scopes?: string[]; ts: string; before?: string; after?: string }
 
-/** Open rule change outranks a healthy probe. Otherwise first match: ok, blocked, unreachable. */
+/** Open rule change first. Otherwise the worst URL: unreachable, then blocked, then ok. */
 export function countryTone(country: { changed?: boolean; urls?: { status?: string }[] }): SourceTone {
   const urls = country.urls ?? []
   if (country.changed === true || urls.some(u => u.status === 'changed')) return 'changed'
-  if (urls.some(u => u.status === 'ok')) return 'ok'
+  if (urls.some(u => u.status === 'unreachable')) return 'unreachable'
   if (urls.some(u => u.status === 'blocked')) return 'blocked'
+  if (urls.some(u => u.status === 'ok')) return 'ok'
   return 'unreachable'
+}
+
+/** Changed URLs waiting on review. A latched country with no changed URL still lists its first source. */
+export function openReviewRows(countries: { name: string; changed?: boolean; urls?: { url?: string; status?: string }[] }[]) {
+  const rows: { name: string; url: string }[] = []
+  for (const country of countries) {
+    const urls = country.urls ?? []
+    const changed = urls.filter((u): u is { url: string; status?: string } => u.status === 'changed' && typeof u.url === 'string' && u.url.length > 0)
+    if (changed.length) {
+      for (const url of changed) rows.push({ name: country.name, url: url.url })
+      continue
+    }
+    if (country.changed === true) {
+      const fallback = urls.find(u => typeof u.url === 'string' && u.url.length > 0)
+      if (fallback?.url) rows.push({ name: country.name, url: fallback.url })
+    }
+  }
+  return rows
 }
 
 /** /data/source-monitor.json (written by scripts/write-intel.mjs). */
@@ -117,6 +136,7 @@ export function SourceMonitorPage() {
     unreachable: countries.filter(c => countryTone(c) === 'unreachable').length,
   }
   const feed = events.slice(0, 10)
+  const reviews = openReviewRows(countries)
 
   useEffect(() => {
     document.title = 'Source Monitor · MotoPass'
@@ -160,7 +180,19 @@ export function SourceMonitorPage() {
 
         <div style={s.rail}>
           <div style={s.panel}>
-            <div style={s.panelH}>Recent activity</div>
+            <div style={s.panelH}>Open reviews</div>
+            {reviews.length === 0 ? <div style={s.muted}>No open rule review.</div> : reviews.map(review => (
+              <div key={review.url} style={s.row}>
+                <span style={{ ...s.dot, background: COLORS.changed }}></span>
+                <div style={{ minWidth: 0 }}>
+                  <b>{review.name}</b>
+                  <div style={{ ...s.muted, marginTop: 4, wordBreak: 'break-all' }}>
+                    <a href={review.url} style={{ color: '#ffc4de' }}>{review.url}</a>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div style={{ ...s.panelH, marginTop: 16 }}>Recent activity</div>
             {feed.length === 0 ? <div style={s.muted}>No confirmed rule changes yet — the watchdog is watching.</div> : feed.map((e, i) => (
               <div key={i} style={s.row}>
                 <span style={{ ...s.dot, background: e.kind === 'rule' ? COLORS.unreachable : COLORS.blocked }}></span>

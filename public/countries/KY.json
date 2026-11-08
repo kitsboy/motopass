@@ -7,16 +7,16 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.771Z",
+  "generated_at": "2026-11-08T18:53:58.861Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "1842cdd9cd07c630485c11a6754745b93442f41027aaf110ab4520a8dece0402",
     "proof_url": "https://satohash.io/verify/1842cdd9cd07c630485c11a6754745b93442f41027aaf110ab4520a8dece0402",
     "ots_path": "/proofs/cayman-islands-1842cdd9cd07.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -139,7 +139,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://www.gov.ky",
@@ -159,7 +159,7 @@
       {
         "url": "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.immigration.gov.ky/",
@@ -169,13 +169,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-09",
-      "field": "watch.https://www.gov.ky",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
-    },
     {
       "date": "2026-09-10",
       "field": "watch.https://www.gov.ky",
@@ -224,6 +217,13 @@
       "from": "67fe1219912c44a0",
       "to": "re-anchored 1842cdd9cd07c630 (stamp 7b87b477-9b5)",
       "hash": "1842cdd9cd07c630485c11a6754745b93442f41027aaf110ab4520a8dece0402"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
+      "hash": null
     }
   ],
   "sovereignty": {

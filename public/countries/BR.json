@@ -7,16 +7,16 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.771Z",
+  "generated_at": "2026-11-08T18:53:58.861Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "b41480b2644ae16ae2cdc73fc4e5e57fdfc3a4b388438b1df51520eefdc9b1e7",
     "proof_url": "https://satohash.io/verify/b41480b2644ae16ae2cdc73fc4e5e57fdfc3a4b388438b1df51520eefdc9b1e7",
     "ots_path": "/proofs/brazil-b41480b2644a.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -153,12 +153,12 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.gov.br/pf/pt-br/assuntos/imigracao",
@@ -183,7 +183,7 @@
       {
         "url": "https://www.gov.br/mj/en/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13445.htm",
@@ -193,13 +193,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-30",
-      "field": "proof",
-      "from": "147d90ee590acce8",
-      "to": "re-anchored b41480b2644ae16a (stamp 259d302b-dd6)",
-      "hash": "b41480b2644ae16ae2cdc73fc4e5e57fdfc3a4b388438b1df51520eefdc9b1e7"
-    },
     {
       "date": "2026-10-23",
       "field": "watch.https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
@@ -247,6 +240,13 @@
       "field": "watch.changed",
       "from": "true",
       "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
       "hash": null
     }
   ],

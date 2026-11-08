@@ -7,16 +7,16 @@
     "region": "North America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.772Z",
+  "generated_at": "2026-11-08T18:53:58.861Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "67ea33c8e6990e5a655df4bb2a48cbe29f64be5ddedae2ead3953b3f9a19a210",
     "proof_url": "https://satohash.io/verify/67ea33c8e6990e5a655df4bb2a48cbe29f64be5ddedae2ead3953b3f9a19a210",
     "ots_path": "/proofs/mexico-67ea33c8e699.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -153,7 +153,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://www.inm.gob.mx",
@@ -168,12 +168,12 @@
       {
         "url": "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://dof.gob.mx",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.gob.mx/sre",
@@ -193,13 +193,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-10-28",
-      "field": "watch.https://dof.gob.mx",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "4b7b5864d1043767"
-    },
     {
       "date": "2026-10-29",
       "field": "watch.https://dof.gob.mx",
@@ -247,6 +240,13 @@
       "field": "watch.changed",
       "from": "true",
       "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
       "hash": null
     }
   ],

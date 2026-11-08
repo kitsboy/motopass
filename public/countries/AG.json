@@ -7,16 +7,16 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.770Z",
+  "generated_at": "2026-11-08T18:53:58.860Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 40,
-    "verified_at": "2026-09-29",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 40,
-      "last_checked": "2026-09-29"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "b537457d6fe6c9d28f57262ebc42ec285f2be7ff317f576c79d844bb73476e08",
     "proof_url": "https://satohash.io/verify/b537457d6fe6c9d28f57262ebc42ec285f2be7ff317f576c79d844bb73476e08",
     "ots_path": "/proofs/antigua-and-barbuda-b537457d6fe6.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -135,12 +135,12 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://www.cip.gov.ag",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://ab.gov.ag/",
@@ -150,28 +150,21 @@
       {
         "url": "https://cip.gov.ag/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://cip.gov.ag/citizenship/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://cip.gov.ag/investment-options/ndf/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-08-22",
-      "field": "proof",
-      "from": "341c070a4384f648",
-      "to": "re-anchored aa4c45f7a554951b (stamp 932a0976-606)",
-      "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e"
-    },
     {
       "date": "2026-09-02",
       "field": "watch.https://www.cip.gov.ag",
@@ -220,6 +213,13 @@
       "from": "66163458f496a824",
       "to": "re-anchored b537457d6fe6c9d2 (stamp 979bd44f-d46) @ block 969313",
       "hash": "b537457d6fe6c9d28f57262ebc42ec285f2be7ff317f576c79d844bb73476e08"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-09-29",
+      "to": "2026-11-08",
+      "hash": null
     }
   ],
   "sovereignty": {

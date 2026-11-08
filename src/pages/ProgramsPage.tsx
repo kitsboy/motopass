@@ -594,7 +594,7 @@ export function ProgramsPage() {
                 <RowSkeleton count={6} />
               </div>
               <div
-                className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 sm:hidden"
+                className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 sm:hidden"
                 role="status"
                 aria-busy="true"
                 aria-label={t('programs.loadingAria')}
@@ -606,7 +606,7 @@ export function ProgramsPage() {
             </>
           ) : (
             <div
-              className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+              className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
               role="status"
               aria-busy="true"
               aria-label={t('programs.loadingAria')}
@@ -618,7 +618,7 @@ export function ProgramsPage() {
           ))}
 
         {!loading && (
-          <div className="grid min-w-0 gap-8 lg:grid-cols-[200px_1fr]">
+          <div className="grid min-w-0 grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]">
             <aside className="programs-filter-rail lg:sticky lg:top-24 lg:self-start">
               <span className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary lg:block lg:mb-3">
                 {t('programs.region')}
@@ -636,7 +636,7 @@ export function ProgramsPage() {
               </div>
             </aside>
 
-            <div>
+            <div className="min-w-0">
               <p className="sr-only" aria-live="polite" aria-atomic="true">
                 {formatT(t, 'programs.filterResults', { count: cinematic.length })}
               </p>
@@ -677,7 +677,7 @@ export function ProgramsPage() {
                       />
                     </div>
                   )}
-                  <div className={`grid gap-4 sm:grid-cols-2 xl:grid-cols-3 ${view === 'table' ? 'sm:hidden' : ''}`}>
+                  <div className={`grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 ${view === 'table' ? 'sm:hidden' : ''}`}>
                     {cinematic.map((p, i) => (
                       <ProgramCard
                         key={p.id}

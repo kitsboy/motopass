@@ -7,16 +7,16 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T06:56:42.771Z",
+  "generated_at": "2026-11-08T18:53:58.861Z",
   "freshness": {
-    "status": "watch",
-    "days_stale": 37,
-    "verified_at": "2026-10-02",
+    "status": "fresh",
+    "days_stale": 0,
+    "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "watch",
-      "days_stale": 37,
-      "last_checked": "2026-10-02"
+      "status": "fresh",
+      "days_stale": 1,
+      "last_checked": "2026-11-08"
     }
   },
   "proof": {
@@ -26,7 +26,7 @@
     "hash": "515b2a393bbffcfe9c3511d04a4349e199dbff1959cc0ac1f76817cd92f53abd",
     "proof_url": "https://satohash.io/verify/515b2a393bbffcfe9c3511d04a4349e199dbff1959cc0ac1f76817cd92f53abd",
     "ots_path": "/proofs/argentina-302a948d1da4.ots",
-    "in_sync": true
+    "in_sync": false
   },
   "scorecard": {
     "axes": {
@@ -150,17 +150,17 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-08T06:01:10.159Z",
+    "last_probe_at": "2026-11-08T12:24:29.059Z",
     "urls": [
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.migraciones.gob.ar",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.boletinoficial.gob.ar",
@@ -170,7 +170,7 @@
       {
         "url": "https://eeeuu.cancilleria.gob.ar/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
@@ -180,7 +180,7 @@
       {
         "url": "https://www.argentina.gob.ar/migraciones/residencias",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-08T12:24:29.059Z"
       },
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
@@ -190,13 +190,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://www.migraciones.gob.ar",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
-    },
     {
       "date": "2026-09-15",
       "field": "proof",
@@ -244,6 +237,13 @@
       "field": "watch.changed",
       "from": "true",
       "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "last_checked",
+      "from": "2026-10-02",
+      "to": "2026-11-08",
       "hash": null
     }
   ],

@@ -9,9 +9,9 @@ import { useSourceMonitor, ageLabel, type SourceLevel } from '../../hooks/useSou
  * MotoPass source watchdog (re-checked every 24h).
  *
  * Levels:
- *   ok      — at least one official source read successfully (quiet green)
+ *   ok      — every watched source read successfully (quiet green)
  *   changed — a confirmed rule change is recorded (amber — the thing we promise)
- *   walled  — every watched source is bot-walled / unreachable (honest grey)
+ *   walled  — at least one source is bot-walled or unreachable (honest grey)
  *
  * Renders nothing when the feed is unavailable, so the card degrades quietly.
  * A plain <span> (not a link) on purpose: cards are tap-anywhere buttons, and
