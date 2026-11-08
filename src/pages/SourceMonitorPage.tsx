@@ -8,9 +8,9 @@ import { useEffect, useState, type CSSProperties } from 'react'
  * Self-contained styles so it renders independently of the app theme.
  */
 
-type Status = 'ok' | 'blocked' | 'unreachable'
-const COLORS: Record<Status, string> = { ok: '#2ee6a8', blocked: '#ffb648', unreachable: '#ff5c5c' }
-const LABELS: Record<Status, string> = { ok: 'healthy', blocked: 'blocked', unreachable: 'unreachable' }
+type SourceTone = 'changed' | 'ok' | 'blocked' | 'unreachable'
+const COLORS: Record<SourceTone, string> = { changed: '#ff2d7a', ok: '#2ee6a8', blocked: '#ffb648', unreachable: '#ff5c5c' }
+const LABELS: Record<SourceTone, string> = { changed: 'changed', ok: 'healthy', blocked: 'blocked', unreachable: 'unreachable' }
 
 function host(u: string) {
   try { return new URL(u).hostname.replace(/^www\./, '') } catch { return u }
@@ -27,6 +27,16 @@ function gapLabel(d: number | undefined) { return d ? `${d}d data gap` : 'live' 
 type Url = { url: string; status: string; last_probed: string | null; coverage_gap_days?: number; last_error?: string | null }
 type Country = { program_id: number; name: string; changed: boolean; coverage_gap_days?: number; urls: Url[] }
 type Ev = { kind: string; country: string; url: string; status?: string; scopes?: string[]; ts: string; before?: string; after?: string }
+
+/** Open rule change outranks a healthy probe. Otherwise first match: ok, blocked, unreachable. */
+export function countryTone(country: { changed?: boolean; urls?: { status?: string }[] }): SourceTone {
+  const urls = country.urls ?? []
+  if (country.changed === true || urls.some(u => u.status === 'changed')) return 'changed'
+  if (urls.some(u => u.status === 'ok')) return 'ok'
+  if (urls.some(u => u.status === 'blocked')) return 'blocked'
+  return 'unreachable'
+}
+
 /** /data/source-monitor.json (written by scripts/write-intel.mjs). */
 type MonitorManifest = { generated_at: string; total_urls: number; by_country?: Country[] }
 
@@ -60,6 +70,22 @@ const s: Record<string, CSSProperties> = {
   err: { color: COLORS.unreachable, padding: 40, textAlign: 'center' as const },
 }
 
+export function SourceCountryCard({ country }: { country: Country }) {
+  const b = countryTone(country)
+  const gap = country.coverage_gap_days || 0
+  return (
+    <div style={{ ...s.card, borderColor: b === 'ok' ? '#2a1220' : COLORS[b] }}>
+      <div style={{ float: 'right', width: 11, height: 11, borderRadius: 11, background: COLORS[b] }}></div>
+      <div style={{ fontWeight: 700, fontSize: 14.5 }}>{country.name}<span style={{ ...s.muted, marginLeft: 6, fontSize: 10 }}>{country.program_id}</span>{country.changed ? <span style={{ background: COLORS.unreachable, color: '#fff', fontSize: 9.5, fontWeight: 800, padding: '2px 7px', borderRadius: 999, marginLeft: 8 }}>CHANGED</span> : null}</div>
+      <div style={{ ...s.muted, marginTop: 5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{country.urls.map(u => host(u.url)).join(' · ')}</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 10, fontSize: 11.5, color: '#8a5f70' }}>
+        <span style={{ color: COLORS[b], fontWeight: 700, textTransform: 'uppercase', fontSize: 10, letterSpacing: '.04em' }}>{LABELS[b]}</span>
+        <span style={{ marginLeft: 'auto' }}>{gap ? `⚠ ${gapLabel(gap)}` : `${ago(country.urls[0]?.last_probed)}· fresh`}</span>
+      </div>
+    </div>
+  )
+}
+
 export function SourceMonitorPage() {
   const [manifest, setManifest] = useState<MonitorManifest | null>(null)
   const [events, setEvents] = useState<Ev[]>([])
@@ -68,17 +94,28 @@ export function SourceMonitorPage() {
 
   useEffect(() => {
     const c = new AbortController()
+    let live = true
     Promise.all([
       fetch('/data/source-monitor.json', { signal: c.signal }).then(r => r.json()),
       fetch('/data/source-events.json', { signal: c.signal }).then(r => r.json()).catch(() => []),
-    ]).then(([m, e]) => { setManifest(m); setEvents(e) }).catch(e => setErr(String(e)))
-    return () => c.abort()
+    ]).then(([m, e]) => {
+      if (live) { setManifest(m); setEvents(e) }
+    }).catch(e => {
+      // Strict Mode aborts the first fetch. That is not a failed source file.
+      if (!live || e?.name === 'AbortError') return
+      setErr(String(e))
+    })
+    return () => { live = false; c.abort() }
   }, [])
 
-  const best = (c: Country): Status => c.urls.some(u => u.status === 'ok') ? 'ok' : (c.urls.some(u => u.status === 'blocked') ? 'blocked' : 'unreachable')
   const countries: Country[] = manifest?.by_country || []
-  const filtered = countries.filter(c => filter === 'all' || best(c) === filter)
-  const counts = { ok: countries.filter(c => best(c) === 'ok').length, blocked: countries.filter(c => best(c) === 'blocked').length, unreachable: countries.filter(c => best(c) === 'unreachable').length }
+  const filtered = countries.filter(c => filter === 'all' || countryTone(c) === filter)
+  const counts: Record<SourceTone, number> = {
+    changed: countries.filter(c => countryTone(c) === 'changed').length,
+    ok: countries.filter(c => countryTone(c) === 'ok').length,
+    blocked: countries.filter(c => countryTone(c) === 'blocked').length,
+    unreachable: countries.filter(c => countryTone(c) === 'unreachable').length,
+  }
   const feed = events.slice(0, 10)
 
   useEffect(() => {
@@ -98,8 +135,13 @@ export function SourceMonitorPage() {
       <div style={s.honesty}><span style={s.live}></span> Official sources re-checked every 24h · last verified {ago(manifest.generated_at)} · a flagged change goes through human review before it reaches the live rules — we never auto-publish.</div>
 
       <div style={s.chips}>
-        {[['ok', 'Sources healthy', counts.ok], ['blocked', 'Blocked (bot-wall)', counts.blocked], ['unreachable', 'Unreachable', counts.unreachable]].map(([k, l, n]) => (
-          <div key={k} style={s.chip}><div style={{ ...s.chipN, color: COLORS[k as Status] }}>{n}</div><div style={s.chipL}>{l}</div></div>
+        {([
+          ['changed', 'Rules changed', counts.changed],
+          ['ok', 'Sources healthy', counts.ok],
+          ['blocked', 'Blocked (bot-wall)', counts.blocked],
+          ['unreachable', 'Unreachable', counts.unreachable],
+        ] as const).map(([k, l, n]) => (
+          <div key={k} style={s.chip}><div style={{ ...s.chipN, color: COLORS[k] }}>{n}</div><div style={s.chipL}>{l}</div></div>
         ))}
         <div style={s.chip}><div style={s.chipN}>{manifest.total_urls}</div><div style={s.chipL}>Official URLs watched</div></div>
       </div>
@@ -107,26 +149,12 @@ export function SourceMonitorPage() {
       <div id="smLayout" style={s.layout}>
         <div>
           <div style={s.filters}>
-            {['all', 'ok', 'blocked', 'unreachable'].map(f => (
-              <button key={f} style={{ ...s.fb, ...(filter === f ? s.fbOn : {}) }} onClick={() => setFilter(f)}>{f === 'all' ? 'All' : LABELS[f as keyof typeof LABELS]}</button>
+            {(['all', 'changed', 'ok', 'blocked', 'unreachable'] as const).map(f => (
+              <button key={f} style={{ ...s.fb, ...(filter === f ? s.fbOn : {}) }} onClick={() => setFilter(f)}>{f === 'all' ? 'All' : LABELS[f]}</button>
             ))}
           </div>
           <div style={s.grid}>
-            {filtered.map(c => {
-              const b = best(c)
-              const gap = c.coverage_gap_days || 0
-              return (
-                <div key={c.program_id} style={{ ...s.card, borderColor: b === 'ok' ? '#2a1220' : COLORS[b] }}>
-                  <div style={{ float: 'right', width: 11, height: 11, borderRadius: 11, background: COLORS[b] }}></div>
-                  <div style={{ fontWeight: 700, fontSize: 14.5 }}>{c.name}<span style={{ ...s.muted, marginLeft: 6, fontSize: 10 }}>{c.program_id}</span>{c.changed ? <span style={{ background: COLORS.unreachable, color: '#fff', fontSize: 9.5, fontWeight: 800, padding: '2px 7px', borderRadius: 999, marginLeft: 8 }}>CHANGED</span> : null}</div>
-                  <div style={{ ...s.muted, marginTop: 5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.urls.map(u => host(u.url)).join(' · ')}</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 10, fontSize: 11.5, color: '#8a5f70' }}>
-                    <span style={{ color: COLORS[b], fontWeight: 700, textTransform: 'uppercase', fontSize: 10, letterSpacing: '.04em' }}>{LABELS[b]}</span>
-                    <span style={{ marginLeft: 'auto' }}>{gap ? `⚠ ${gapLabel(gap)}` : `${ago(c.urls[0]?.last_probed)}· fresh`}</span>
-                  </div>
-                </div>
-              )
-            })}
+            {filtered.map(c => <SourceCountryCard key={c.program_id} country={c} />)}
           </div>
         </div>
 

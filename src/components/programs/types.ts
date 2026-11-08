@@ -38,6 +38,8 @@ export interface Program {
   category?: string;
   status?: string;
   lastChecked?: string;
+  /** Weekly source probe (`watch.last_probe_at`). Not the research `lastChecked` date. */
+  lastProbed?: string | null;
   proofStampedAt?: string;
   bitcoinIntegration?: string;
   bitcoinSpecific?: string;

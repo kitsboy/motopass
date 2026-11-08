@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
 import { FreshnessBadge } from '../ui/FreshnessBadge';
+import { SourcesProbedNote } from './SourcesProbedNote';
 import { IntelStatusBadge } from '../intel/IntelStatusBadge';
 import { LazyFlagSprite } from '../pitch/LazyFlagSprite';
 import { BtcDualPrice } from '../BtcDualPrice';
@@ -183,6 +184,7 @@ export function ProgramsTable({
                     compact
                     labels={freshnessLabels}
                   />
+                  <SourcesProbedNote iso={p.lastProbed} />
                 </div>
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-2`}>

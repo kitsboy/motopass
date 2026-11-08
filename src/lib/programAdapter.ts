@@ -68,6 +68,7 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     category: p.category,
     status: p.status,
     lastChecked: p.last_checked,
+    lastProbed: p.watch?.last_probe_at ?? null,
     proofStampedAt: proof?.stamped_at,
     bitcoinIntegration: p.bitcoin_integration,
     bitcoinSpecific: p.finance.bitcoin_specific,
