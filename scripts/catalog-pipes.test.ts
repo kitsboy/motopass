@@ -7,6 +7,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import { auditCatalogPipes } from './lib/catalog-pipes.mjs'
+import { falseToolingSignals } from './lib/probe-failure.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000
@@ -41,6 +42,22 @@ describe('catalog pipes', () => {
     expect(report.count).toBe(21)
     expect(report.missing).toEqual({ intel: [], trust: [], density: [], snapshot: [] })
     expect(report.missingCount).toBe(0)
+    const tooling = falseToolingSignals(catalog)
+    console.log(
+      `tooling_unreachable=${tooling.unreachable.length} tooling_latch_cleared=${tooling.latchCleared.length}`,
+    )
+    for (const row of tooling.unreachable) console.log(`TOOLING ${row.name} ${row.status} ${row.url}`)
+    for (const name of tooling.latchCleared) console.log(`TOOLING_LATCH ${name}`)
+    expect(tooling.unreachable).toEqual([])
+    expect(tooling.latchCleared).toEqual([])
+    expect(report.tooling).toEqual(tooling)
+    const uruguay = catalog.programs.find((program: { name?: string }) => program.name === 'Uruguay')
+    const interior = uruguay?.watch?.urls?.find(
+      (url: { url?: string }) => url.url === 'https://www.minterior.gub.uy',
+    )
+    expect(interior?.status).toBe('changed')
+    expect(uruguay?.watch?.changed).toBe(true)
+    expect(intel.programs.Uruguay.watch.changed).toBe(true)
   })
 
   it('names a program that drops off one pipe', () => {

@@ -105,6 +105,7 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
 import { createRequire } from 'node:module'
+import { applyProbeFailure } from './lib/probe-failure.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
@@ -1071,6 +1072,8 @@ async function main() {
     changed_countries: [],
     blocked_urls: [],
     unreachable_urls: [],
+    tooling_failures: 0,
+    tooling_failure_urls: [],
     by_country: [],
     // v3 bookkeeping — how many URLs carry no rule scope at all, and how many
     // baselines were silently re-written because the extraction pipeline moved.
@@ -1113,20 +1116,21 @@ async function main() {
     }
 
     if (!result.ok) {
-      const isBlocked = result.cloudflare === true
-      const status = isBlocked ? 'blocked' : 'unreachable'
+      const applied = applyProbeFailure(entry, result, nowIso)
+      if (applied.kind === 'tooling') {
+        // The browser module did not load. The source was not fetched, so the
+        // last real status stays. A missing module is not `unreachable`.
+        report.tooling_failures++
+        report.tooling_failure_urls.push({ program_id: p.id, name: p.name, url: entry.url, error: result.error })
+        continue
+      }
+      const isBlocked = applied.kind === 'blocked'
+      const status = applied.kind
       report[isBlocked ? 'cloudflare_blocked' : 'unreachable']++
-      // start / keep the coverage clock whenever the URL is failing
-      entry.status_since = entry.status_since || nowIso
-      if (entry.status !== status) {
-        entry.status = status
-        entry.last_probed = nowIso
-        entry.last_error = result.error
-        if (entry.scopes && entry.scopes.whole?.last_hash) {
-          newEvents.push({ id: `${nowIso}-${entry.url.slice(-8)}-${status}`, ts: nowIso, date: today,
-                           country: p.name, program_id: p.id, url: entry.url, kind: 'coverage',
-                           status, before: null, after: null })
-        }
+      if (applied.changed && entry.scopes && entry.scopes.whole?.last_hash) {
+        newEvents.push({ id: `${nowIso}-${entry.url.slice(-8)}-${status}`, ts: nowIso, date: today,
+                         country: p.name, program_id: p.id, url: entry.url, kind: 'coverage',
+                         status, before: null, after: null })
       }
       // A stored baseline of sha256('') is not content — drop it so it can never
       // be compared against a real render later.
@@ -1318,6 +1322,9 @@ async function main() {
   }
   if (report.unreachable_urls.length) {
     console.log('  UNREACHABLE:', report.unreachable_urls.map(u => `${u.name} [${u.error}]`).join(', '))
+  }
+  if (report.tooling_failure_urls.length) {
+    console.log('  TOOLING (previous status kept):', report.tooling_failure_urls.map(u => `${u.name} ${u.url}`).join(', '))
   }
   if (report.layout_changed_urls.length) {
     console.log(`  LAYOUT-CHANGED (informational — which pages drifted${report.layout_changed_repeat_count ? `, ${report.layout_changed_repeat_count} on a consecutive run` : ''}): ` +
@@ -1712,6 +1719,16 @@ async function selfTest() {
   const stillCleared = reconcileWatchChanged([still], '2026-11-07')
   check('a watch with one URL still changed stays latched and gains no clear-audit row',
     still.watch.changed === true && stillCleared.length === 0 && still.audit_trail.length === stillBefore, still)
+
+  const toolingEntry = { url: 'https://www.minterior.gub.uy', status: 'changed', last_probed: '2026-11-08T06:01:10.159Z' }
+  const toolingApplied = applyProbeFailure(toolingEntry, {
+    ok: false,
+    error: "browser: Cannot find module 'playwright'\nRequire stack:\n- /root/hq/noop.js",
+  }, '2026-11-08T12:24:29.059Z')
+  check('a missing Playwright module does not mark a changed URL unreachable',
+    toolingApplied.kind === 'tooling' && toolingApplied.changed === false &&
+    toolingEntry.status === 'changed' && toolingEntry.last_probed === '2026-11-08T06:01:10.159Z' &&
+    toolingEntry.last_error === undefined && toolingEntry.status_since === undefined, toolingEntry)
 
   const openProg = {
     audit_trail: [

@@ -2,6 +2,7 @@
  * Join the live catalog to the pipes the site serves.
  * Callers load the JSON. This module does not read the disk or the network.
  */
+import { falseToolingSignals } from './probe-failure.mjs'
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000
 
@@ -111,6 +112,7 @@ export function auditCatalogPipes({ catalog, intel, trustIndex, density, snapsho
     missing,
     missingCount,
     outsideWeek: rows.filter(row => !row.withinWeek).map(row => row.name),
+    tooling: falseToolingSignals(catalog),
     rows,
   }
 }
