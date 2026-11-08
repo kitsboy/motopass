@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-08 by Grok — source monitor matches the 21
+# motopass — Last Updated 2026-11-08 by Grok — worst URL, open review, 8 Nov re-read
+
+Source Monitor chips follow the worst open URL: 1 changed, 15 healthy, 3 blocked, 2 unreachable. Uruguay's open review is `https://www.minterior.gub.uy`. All 21 research dates are 2026-11-08 from pages that actually loaded. Proofs read out of sync until the daily re-stamp. Commit: `2215860`.
+
+## Previous update — 2026-11-08 by Grok — source monitor matches the 21
 
 The source monitor follows the catalog: only Uruguay is changed, and that card says changed. Program cards and the table show `Sources probed 8 Nov` beside the September research badge. `last_checked` was not moved. Commit: `788e8ca`.
 

@@ -1,3 +1,21 @@
+## Session — 2026-11-08 · Worst-URL monitor, open review, 8 Nov re-read (Grok)
+
+**Done:**
+- Source Monitor labels a country by its worst open URL. Changed still wins. Chips on the live manifest: 1 changed, 15 healthy, 3 blocked, 2 unreachable, 110 URLs. El Salvador is blocked (38-day gap stays). Bahamas and Mexico are unreachable. Uruguay stays changed. Portugal and the all-ok countries stay healthy. Program cards use the same rule: El Salvador "Source walled", Portugal "Source live", Uruguay "Source changed".
+- Open reviews sit above Recent activity. The only row is Uruguay, `https://www.minterior.gub.uy`. Portugal is not listed.
+- Program cards put the region and the badges on full-width rows. At 1280px the three-column cards are 323px, "Citizenship · Central America" is fully visible, and long names wrap. At 390px the card is 358px inside the screen. `Sources probed 8 Nov` and `Fresh · Nov 2026` are on the card.
+- Research re-read on 2026-11-08. All 21 `last_checked` dates moved only after an official page returned HTTP 200 and real text. Dominica's page is `https://dominica.gov.dm/` because `https://cbiu.gov.dm` did not connect. Spain's page is `https://www.exteriores.gob.es/` because `https://www.cnmv.es` returned HTTP 500. Corpus dollar figures were not on those pages and were not changed. Uruguay's minterior latch was not cleared. Intel sweep is 21 fresh / 0 watch / 0 stale, Satohash API up. Trust envelopes match.
+- Because `last_checked` is inside the Satohash slice, all 21 proofs now read `in_sync: false`. The daily job re-stamps at most 12 per run. Cards show Resync until that converges. This machine did not stamp.
+- Playwright resolves from this repo before `/root/hq`. The daily workflow installs Chromium before the probe. Local self-test passed, including the browser fixtures. THOR's Chromium binary was not touched.
+
+**Decisions:**
+- Did not forge a date, rewrite minima, run the 110-URL probe, run `intel:fetch`, or run `update-freshness.mjs` as the writer.
+- Did not SSH to THOR. Did not open applications. Deploy is the Cloudflare Pages git integration on push to `main`.
+
+**Git State:**
+- SHA: `2215860ad9cad025efb80b2acf52b6f24833c6b4`
+- Unpushed at write time: this commit plus the handoff commit, then `git push origin main`.
+
 ## Session — 2026-11-08 · Source monitor matches the catalog (Grok)
 
 **Done:**
