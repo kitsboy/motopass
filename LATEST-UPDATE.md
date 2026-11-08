@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-09-30 by Buffy — PR #1 merged, live deploy verified
+# motopass — Last Updated 2026-11-08 by Grok — truth pass on the 21-program catalog
+
+Badges, HQ metrics, BTC Map cache, and launch gates now match the curated 21. Nine stuck "source changed" flags cleared; Italy and Uruguay remain. Spain $32,000 is the cheapest stated minimum. Applications stay closed. Research `last_checked` is still 2026-09-29. Commit: `43acd6c`.
+
+## Previous update — 2026-09-30 by Buffy — PR #1 merged, live deploy verified
 
 PR #1 merged to `main` (`4c878b4`), all six CI checks green, Cloudflare deployed. Verified LIVE in rendered DOM (headless Chromium on M3): bundle salt matches the merge commit; hero shows "Flagship depth 21/21" + "21 jurisdictions" (settled read); `/agents` has zero HERMES/M4 mentions; São Tomé live at 21/21 with its stamp pending Bitcoin confirmation; no mobile overflow, no page errors. Sampling note: DOM numbers must be read settled (0/21 and 19/21 were mid-animation artifacts). Cam's 9 workflow rules (gh-first on THOR, verify branch math, CI-green before merge, bundle-salt deploy proof, no false-positive content scans) absorbed as standard.
 
