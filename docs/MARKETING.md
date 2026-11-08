@@ -118,7 +118,7 @@ All paid tiers emphasize Bitcoin-only settlement and clear value delivered throu
 ## Competitive Differentiation (Honest)
 
 **vs. Generic CBI directories / Henley-style indexes**
-- We go deep (50 programs at legal-extract depth) instead of wide and shallow.
+- We go deep on the live curated catalog (21 programs at legal-extract depth) instead of wide and shallow. A later full target of 50 is an expansion aim, not the catalog on the site. The earlier “50 programs” wording described the pre-curation BUILD-33 corpus.
 - We are Bitcoin-native and timestamped; they are not.
 - We are interactive and model stacks; they are static lists.
 
@@ -128,13 +128,13 @@ All paid tiers emphasize Bitcoin-only settlement and clear value delivered throu
 - We will surface the best of them inside a future verified network with on-chain reputation.
 
 **vs. “Crypto-friendly” relocation consultants**
-- Most are one-country shops or generalists. We are systematic across 50.
+- Most are one-country shops or generalists. We are systematic across the live 21.
 - We actually model Bitcoin tax implications and Lightning payment paths.
 - We do not sell programs; we sell clarity and optionality. (This builds long-term trust.)
 
 ## Launch Sequencing (Tied to Product Phases)
 
-1. **Data + Demo Drop** (current): 16–25 countries at good depth + pristine dashboard live on a simple domain or GitHub Pages. Nostr announcement + “Truth You Can Verify” thread series. Collect early waitlist via Nostr DMs or simple form.
+1. **Data + Demo Drop** (shipped): the original phase aimed at 16–25 countries at good depth. The site now serves the curated **21**, plus the pristine dashboard. Nostr announcement + “Truth You Can Verify” thread series. Collect early waitlist via Nostr DMs or simple form. The 16–25 range is that phase’s target, not the live catalog.
 2. **Modern Frontend + Simulator + BTC Map** (shipped BUILD-26): Portfolio, Stacking Simulator, Finance Compare, and **BTC Map merchant layer** per jurisdiction (density badges, Leaflet pins, Nostr saves). Public beta at motopass.giveabit.io. Begin stamping the dataset.
 3. **Payments + Paige v1**: Lightning fee payments (even if manual fulfillment at first), real Nostr alerts, Paige answering real user questions grounded in the stamped corpus.
 4. **Marketplace Alpha + Verified Advisors**: Services directory, first real-estate/Bitcoin-business listings, reputation via stamped reviews.
@@ -144,10 +144,11 @@ All paid tiers emphasize Bitcoin-only settlement and clear value delivered throu
 - **Regulatory whiplash**: Programs change. Mitigation: continuous monitoring (Nostr events + agent pipeline), visible “last verified + Satohash” on every entry, clear disclaimers that we are intelligence not legal advice.
 - **Perception as “pay-for-passport”**: We emphasize legal, government-sanctioned programs + tax/lifestyle optimization, not evasion. “Truth You Can Verify” + transparent sourcing is the antidote.
 - **Bitcoin winter / capital contraction**: Our core users are often the most convicted and longest-horizon. Diversification tools become more valuable in uncertainty. Price in sats where possible; focus on time-to-value.
-- **Trust bootstrapping**: Start with the most verifiable, high-signal countries (El Salvador, Uruguay, UAE, Switzerland, Singapore, Georgia). Publish the stamping process publicly. Let the proofs speak.
+- **Trust bootstrapping**: Publish the stamping process publicly. Let the proofs speak. El Salvador and Uruguay are in the live 21. UAE, Switzerland, Singapore, and Georgia were on the earlier high-signal list and are not in the curated catalog.
+- **Location freshness (MVP):** every live program is updated at least once a week by the source probe or the intel sweep. Daily updates for every location are the later target. A research date is not treated as fresh unless the content was re-verified.
 
 ## Success Metrics (Early)
-- Countries at full v2.0 depth (target 25 by end of next major cycle, 50 thereafter).
+- Countries at full v2.0 depth. The live catalog is the curated **21**. Later targets, not the catalog today: 25 by end of next major cycle, 50 thereafter.
 - Weekly active “sovereigns” (local or authenticated) in the dashboard.
 - Nostr engagement on program updates and Paige interactions.
 - Number of timestamp proofs created and verified by third parties.

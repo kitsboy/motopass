@@ -18,13 +18,17 @@ The full vision spans data depth, user experience, Bitcoin protocol integration,
 
 ---
 
-## Current State (BUILD-33 Baseline)
+## Current State (live catalog, 2026-11-08)
+
+The BUILD-33 baseline (2026-07-14) recorded a pre-curation corpus: **50 programs**, **50/50 deep flagships**, **50 OTS files**, and **50 BTC Map snapshots**. That 50-count is history. On 2026-09-29 the corpus was curated to the live catalog below. Do not read the BUILD-33 numbers as what the site serves now.
 
 ### Data
-- **50 programs** in `research/countries.json` — **50/50 deep flagships** at Uruguay template depth.
+- **21 programs** in `research/countries.json` — the curated live catalog, each kept at Uruguay template depth.
 - Rich finance modeling per program: min/typical investment USD, gov/processing fees, processing time months, tax benefits, crypto-friendly score (0–10), Bitcoin-specific narrative, pathways, critical tests, Paige fields.
-- **50 OTS files on disk** · Satohash proof URLs · `research/oracle-seed.json` for G4 Ledger.
-- **BTC Map layer shipped**: merchant density (`btcmap-density.json`), offline cache (50 snapshots), live btcmap-api v4 on `/btcmap`.
+- **21 of 21 live programs** have an OTS file on disk · Satohash proof URLs · `research/oracle-seed.json` for G4 Ledger. Proof files left over from retired countries are not part of this count.
+- **BTC Map layer shipped**: merchant density (`btcmap-density.json`, 21 programs), offline cache (**21 snapshots**), live btcmap-api v4 on `/btcmap`.
+- **Location cadence (MVP):** every one of the 21 locations is updated at least once a week. The weekly marker is a source-probe time or an intel-sweep time already produced by the pipeline. Research `last_checked` moves only when that program's researched content is actually re-verified.
+- **Later cadence:** every location updated every day. Daily is the next target. This note does not add a new scheduler. The existing intel sweep stays the pipeline that already runs.
 
 ### Experience (React App — primary, BUILD-33)
 - **18 routes** including `/vault` (Seal), `/distressed` (Forge), `/apply` (Launch Engine).
@@ -59,11 +63,11 @@ The full vision spans data depth, user experience, Bitcoin protocol integration,
 
 ## The Full Scope — Phased Breakdown
 
-### Phase 0: Foundation & Reference (Current — BUILD-004)
+### Phase 0: Foundation & Reference (BUILD-004 — historical phase)
 **Goal:** Make the intelligence layer credible, beautiful, and usable today while establishing the permanent documentation and process foundation.
 
 **Data**
-- Maintain and expand the 16 → 25+ programs at v2.0 flagship depth (legal extracts with sources + Satohash placeholders, full finance, Bitcoin/Lightning signals, Paige fields).
+- Original Phase 0 target, not the live catalog: maintain and expand the 16 → 25+ programs at v2.0 flagship depth (legal extracts with sources + Satohash placeholders, full finance, Bitcoin/Lightning signals, Paige fields). The site now serves the curated **21**. The BUILD-33 corpus of 50 is pre-curation history.
 - Replicate Uruguay template exactly for every new entry. No shortcuts.
 - Add initial sovereignty score, stacking synergy, risk, and ROI projection fields (even if modeled simply at first).
 
@@ -82,7 +86,7 @@ The full vision spans data depth, user experience, Bitcoin protocol integration,
 - Begin manually stamping key data points and the Uruguay template via Satohash/OpenTimestamps. Record proofs.
 
 **Success Criteria**
-- 20+ countries at consistent flagship depth.
+- 20+ countries at consistent flagship depth (Phase 0 target; met, then curated to the live 21).
 - Public demo URL that impresses on first open and clearly communicates “Truth You Can Verify.”
 - Documentation suite complete and cross-referenced.
 
@@ -258,9 +262,9 @@ The full vision spans data depth, user experience, Bitcoin protocol integration,
 
 ---
 
-## Data Scope — The 50-Country Program (Non-Negotiable Depth)
+## Data Scope — The Live 21 (Depth Stays Non-Negotiable)
 
-The heart of the product is not the UI. It is the dataset.
+The heart of the product is not the UI. It is the dataset. The live catalog is **21 programs**. A later full target of 50 is an expansion aim, not the corpus on the site. The heading this section used to carry ("The 50-Country Program") described that later aim and the pre-curation BUILD-33 corpus. It is not the current catalog.
 
 **Master Template v2.0** (from PROJECT-VISION + Uruguay flagship):
 - A. Basic Information (official name, flag, government URLs with last-checked + Satohash, program names, type, treaty access)
@@ -272,11 +276,14 @@ The heart of the product is not the UI. It is the dataset.
 - G. Bitcoin-Native Features (direct acceptance? preferred method — BOLT12/Silent/etc., timestamping status)
 - H. Paige AI Fields (common questions + optimized answers, red flags/gotchas, country-specific optimization, escalation triggers)
 
-**Expansion Plan**
-- Seed (current): 16
-- Near-term target (Phase 1): 25–30 at full depth, prioritized by Bitcoin signal + tax attractiveness + mobility (El Salvador, Uruguay, UAE, Switzerland, Singapore, Georgia, Panama, Malta, St Kitts, Antigua, Dominica, Paraguay, Argentina, Spain/Portugal watch, Ireland, Vanuatu, etc.)
-- Full target: 50 (include more Caribbean, Pacific, African, additional EU/EEA, Latin America, and emerging Bitcoin-positive jurisdictions).
-- Ongoing: every program has a living “last verified” + change log driven by Nostr events.
+**Catalog, history, and cadence**
+- Live catalog (since the 2026-09-29 curation): **21 programs**. That is the corpus the site serves: catalog record, trust envelope, intel entry, BTC Map density entry, and BTC Map snapshot.
+- MVP location cadence: every one of those 21 is updated at least once a week. The marker is a source-probe time or an intel-sweep time. Research `last_checked` is not rewritten to look fresh.
+- Later cadence: every location every day. Daily is the next target, not a scheduler added with this note.
+- History, not the catalog: seed cohort of 16. BUILD-33 (2026-07-14) wrote 50 programs, 50 OTS files, and 50 snapshots before curation.
+- Near-term expansion aim after the live 21 (not the count today): 25–30 at full depth, prioritized by Bitcoin signal + tax attractiveness + mobility. Names in that older priority list that are not in the curated 21 (UAE, Switzerland, Singapore, Georgia, and others dropped in curation) are not on the site.
+- Later full target, not the catalog: 50 (more Caribbean, Pacific, African, additional EU/EEA, Latin America, and emerging Bitcoin-positive jurisdictions).
+- Ongoing: every program has a living last-verified marker. For the MVP that marker is at least weekly.
 
 **Quality Bar**
 - No program entry is published without sources + Satohash placeholder (or real stamp).
@@ -325,7 +332,7 @@ See also future `ARCHITECTURE.md`.
 
 ## Success Metrics (Across Phases)
 
-- Data: % of 50 countries at v2.0 flagship depth with real Satohash proofs.
+- Data: share of the live **21** at v2.0 flagship depth with real Satohash proofs. The later full target of 50 is an expansion aim, not the denominator today. The older “% of 50 countries” line is pre-curation history.
 - Experience: Time-to-first-useful-insight for a new visitor; % of users who create and save at least one stack.
 - Verifiability: Number of third-party verifications of MotoPass stamps; number of user-generated stamped artifacts.
 - Bitcoin usage: Lightning volume (fees + marketplace); % of premium tier payments in BTC/Lightning.
@@ -360,7 +367,7 @@ We are building the trusted, verifiable, Bitcoin-native command center for peopl
 
 The pristine demo proves the aesthetic, the data quality, and the immediate usefulness. The modern dev environment (`npm run dev`) is the bridge to the full interactive experience. The documentation you are reading makes the total scope, the non-negotiables, and the sequencing explicit.
 
-From 16 countries to 50 at flagship depth. From a beautiful static file to a living, Nostr-native, Lightning-paying, Paige-assisted, self-hostable sovereign OS. From “here is some research” to “every claim you see, every action you take, and every sat you move is independently verifiable on the blockchain.”
+The live catalog is the curated 21 at flagship depth. History: a seed of 16, then a pre-curation BUILD-33 corpus of 50. Later full target: 50 again, only while the 21 stay current (weekly now, daily later). From a beautiful static file to a living, Nostr-native, Lightning-paying, Paige-assisted, self-hostable sovereign OS. From “here is some research” to “every claim you see, every action you take, and every sat you move is independently verifiable on the blockchain.”
 
 That is how much we are going to build.
 

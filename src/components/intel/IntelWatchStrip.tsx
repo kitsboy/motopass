@@ -1,5 +1,5 @@
 import { Activity, AlertTriangle, CheckCircle2, Radio, RefreshCw } from 'lucide-react'
-import { useIntel, type IntelChange } from '../../hooks/useIntel'
+import { useIntel, type IntelChange, type IntelManifest } from '../../hooks/useIntel'
 import { safeSatohashHref } from '../../lib/satohash'
 
 interface IntelWatchStripProps {
@@ -21,14 +21,54 @@ function sweptTime(iso?: string): string {
   return new Date(iso).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC'
 }
 
-/** Daily Country Intel watch — sweep counts, flags, and anchored change feed. */
-export function IntelWatchStrip({ variant = 'full' }: IntelWatchStripProps) {
-  const { intel, loading } = useIntel()
-  if (loading || !intel) return null
+/** Programs whose watched source text no longer matches the anchored rule. */
+export function flaggedProgramNames(programs: IntelManifest['programs']): string[] {
+  return Object.entries(programs)
+    .filter(([, entry]) => entry.watch?.changed === true)
+    .map(([name]) => name)
+    .sort((a, b) => a.localeCompare(b))
+}
 
+/** User-visible label. Null when nothing is flagged. Names every flagged program. */
+export function sourceChangeLabel(names: readonly string[]): string | null {
+  if (names.length === 0) return null
+  const noun = names.length === 1 ? 'source change' : 'source changes'
+  return `${names.length} ${noun}: ${names.join(', ')}`
+}
+
+function SourceChangeNames({ names }: { names: string[] }) {
+  const label = sourceChangeLabel(names)
+  if (!label) return null
+  return (
+    <div data-testid="intel-source-changes">
+      <p className="font-chrome text-[10px] uppercase tracking-wide text-mp-btc-text">{label}</p>
+      <ul className="mt-1.5 flex flex-wrap gap-1.5">
+        {names.map(name => (
+          <li
+            key={name}
+            className="inline-flex items-center gap-1 rounded-chip border border-mp-btc-text/40 bg-mp-section px-2 py-0.5 text-[11px] font-medium text-mp-ink"
+          >
+            <AlertTriangle size={10} aria-hidden="true" />
+            {name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+/** Presentational watch strip. The page wrapper loads `/data/intel.json`. */
+export function IntelWatchStripView({
+  intel,
+  variant = 'full',
+}: {
+  intel: IntelManifest
+  variant?: 'full' | 'ticker'
+}) {
   const { sweep, programs } = intel
   const entries = Object.values(programs)
-  const flagged = entries.filter(e => e.watch.changed)
+  const flaggedNames = flaggedProgramNames(programs)
+  const changeLabel = sourceChangeLabel(flaggedNames)
   const resyncing = entries.filter(e => !e.proof.in_sync)
   const changes = recentChangesAcross(intel)
   const apiUp = sweep.satohash_api?.status === 'up'
@@ -40,9 +80,9 @@ export function IntelWatchStrip({ variant = 'full' }: IntelWatchStripProps) {
           <Activity size={10} aria-hidden="true" /> Intel
         </span>
         <span>{sweep.fresh} fresh · {sweep.watch} watch · {sweep.stale} stale</span>
-        {flagged.length > 0 && (
-          <span className="inline-flex items-center gap-1 text-mp-btc-text">
-            <AlertTriangle size={10} aria-hidden="true" /> {flagged.length} source {flagged.length === 1 ? 'change' : 'changes'}
+        {changeLabel && (
+          <span data-testid="intel-source-changes" className="inline-flex items-center gap-1 text-mp-btc-text">
+            <AlertTriangle size={10} aria-hidden="true" /> {changeLabel}
           </span>
         )}
         {resyncing.length > 0 && (
@@ -78,7 +118,7 @@ export function IntelWatchStrip({ variant = 'full' }: IntelWatchStripProps) {
           [sweep.fresh, 'fresh', 'text-mp-proof'],
           [sweep.watch, 'watch', 'text-mp-btc-text'],
           [sweep.stale, 'stale', 'text-mp-ink-tertiary'],
-          [flagged.length, 'source changes flagged', 'text-mp-btc-text'],
+          [flaggedNames.length, 'source changes flagged', 'text-mp-btc-text'],
         ].map(([count, label, color]) => (
           <div key={String(label)} className="rounded-mp-md border border-mp-border/50 bg-mp-section/50 px-3 py-2">
             <div className={`font-display text-lg2 font-semibold ${color}`}>{count}</div>
@@ -86,6 +126,12 @@ export function IntelWatchStrip({ variant = 'full' }: IntelWatchStripProps) {
           </div>
         ))}
       </div>
+
+      {flaggedNames.length > 0 && (
+        <div className="mt-3">
+          <SourceChangeNames names={flaggedNames} />
+        </div>
+      )}
 
       {resyncing.length > 0 && (
         <p className="mt-2 text-[11px] text-mp-ink-muted inline-flex items-center gap-1.5">
@@ -120,4 +166,11 @@ export function IntelWatchStrip({ variant = 'full' }: IntelWatchStripProps) {
       )}
     </section>
   )
+}
+
+/** Daily Country Intel watch — sweep counts, flagged country names, and anchored change feed. */
+export function IntelWatchStrip({ variant = 'full' }: IntelWatchStripProps) {
+  const { intel, loading } = useIntel()
+  if (loading || !intel) return null
+  return <IntelWatchStripView intel={intel} variant={variant} />
 }
