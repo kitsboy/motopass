@@ -34,12 +34,14 @@ const items = posts.map((p) => `    <item>
       <link>${SITE}/blog/${p.slug}</link>
       <guid isPermaLink="true">${SITE}/blog/${p.slug}</guid>
       <pubDate>${new Date(p.date + 'T12:00:00Z').toUTCString()}</pubDate>
+      <category>own-page</category>
       <description>${esc(p.excerpt)}</description>
     </item>`).join('\n')
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+    <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml"/>
     <title>MotoPass — Truth You Can Verify</title>
     <link>${SITE}/blog</link>
     <description>Residency and passport notes from MotoPass. Own posts only. Sibling news is not mixed in.</description>

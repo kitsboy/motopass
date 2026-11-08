@@ -7,15 +7,15 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-10-02T19:00:25.472Z",
+  "generated_at": "2026-11-08T06:56:42.771Z",
   "freshness": {
-    "status": "fresh",
-    "days_stale": 0,
+    "status": "watch",
+    "days_stale": 37,
     "verified_at": "2026-10-02",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "fresh",
-      "days_stale": 1,
+      "status": "watch",
+      "days_stale": 37,
       "last_checked": "2026-10-02"
     }
   },
@@ -150,60 +150,46 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-10-02T18:55:58.530Z",
+    "last_probe_at": "2026-11-08T06:01:10.159Z",
     "urls": [
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.migraciones.gob.ar",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.boletinoficial.gob.ar",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://eeeuu.cancilleria.gob.ar/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.argentina.gob.ar/migraciones/residencias",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-14",
-      "field": "watch.https://www.migraciones.gob.ar",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
-    },
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "0d1fa5959e489423abc9682a9baffc48e97096e7746de63e0ce2508cf6e440ca"
-    },
     {
       "date": "2026-09-15",
       "field": "watch.https://www.migraciones.gob.ar",
@@ -245,6 +231,20 @@
       "from": "302a948d1da4a1c8",
       "to": "re-anchored 515b2a393bbffcfe (stamp 74397a78-340)",
       "hash": "515b2a393bbffcfe9c3511d04a4349e199dbff1959cc0ac1f76817cd92f53abd"
+    },
+    {
+      "date": "2026-10-30",
+      "field": "watch.https://www.migraciones.gob.ar",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "c41add7cb751f107"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
     }
   ],
   "sovereignty": {

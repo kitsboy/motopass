@@ -7,15 +7,15 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-10-02T19:00:25.472Z",
+  "generated_at": "2026-11-08T06:56:42.771Z",
   "freshness": {
-    "status": "fresh",
-    "days_stale": 3,
+    "status": "watch",
+    "days_stale": 40,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "fresh",
-      "days_stale": 4,
+      "status": "watch",
+      "days_stale": 40,
       "last_checked": "2026-09-29"
     }
   },
@@ -140,102 +140,102 @@
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-10-02T18:55:58.530Z",
+    "changed": false,
+    "last_probe_at": "2026-11-08T06:01:10.159Z",
     "urls": [
       {
         "url": "https://www.irishimmigration.ie",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://enterprise.gov.ie",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.centralbank.ie",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.dfa.ie/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.revenue.ie/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-09-15",
-      "field": "watch.https://enterprise.gov.ie",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "ac12f1581c6c88ce"
-    },
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://www.irishimmigration.ie",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "67a41a12fa7d4696"
-    },
-    {
-      "date": "2026-09-15",
+      "date": "2026-10-25",
       "field": "watch.https://www.centralbank.ie",
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "2260ad08a61ef8f4"
+      "hash": "a9b3e863f60d49eb"
     },
     {
-      "date": "2026-09-20",
+      "date": "2026-10-29",
+      "field": "watch.https://www.revenue.ie/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "7ddb94a2c061f4f8"
+    },
+    {
+      "date": "2026-10-31",
+      "field": "watch.https://enterprise.gov.ie",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "25843a407d28ed37"
+    },
+    {
+      "date": "2026-11-01",
       "field": "watch.https://www.centralbank.ie",
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "600000389968dd48"
+      "hash": "b5f7533d320e0420"
     },
     {
-      "date": "2026-09-25",
-      "field": "watch.https://enterprise.gov.ie",
+      "date": "2026-11-03",
+      "field": "watch.https://www.revenue.ie/",
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "b175b5bf4a91bbbf"
+      "hash": "3dab63ad0d5b0bf1"
     },
     {
-      "date": "2026-09-26",
-      "field": "watch.https://enterprise.gov.ie",
+      "date": "2026-11-05",
+      "field": "watch.https://www.revenue.ie/",
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "a0fd50caa8f77b72"
+      "hash": "47104f24fabe4d23"
     },
     {
-      "date": "2026-09-30",
-      "field": "proof",
-      "from": "73c8efd7ab309c52",
-      "to": "re-anchored 39d27d5284d82abd (stamp a5c7964d-121)",
-      "hash": "39d27d5284d82abd3ea3f985590bf2316c6eac17c497f54492a90bdf8fec66da"
-    },
-    {
-      "date": "2026-10-02",
+      "date": "2026-11-06",
       "field": "watch.https://enterprise.gov.ie",
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "a238bb63af7be49d"
+      "hash": "c14c29518fdcaec8"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
     }
   ],
   "sovereignty": {

@@ -7,15 +7,15 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-10-02T19:00:25.471Z",
+  "generated_at": "2026-11-08T06:56:42.771Z",
   "freshness": {
-    "status": "fresh",
-    "days_stale": 3,
+    "status": "watch",
+    "days_stale": 40,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "fresh",
-      "days_stale": 4,
+      "status": "watch",
+      "days_stale": 40,
       "last_checked": "2026-09-29"
     }
   },
@@ -141,74 +141,46 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-10-02T18:55:58.530Z",
+    "last_probe_at": "2026-11-08T06:01:10.159Z",
     "urls": [
       {
         "url": "https://www.inclusion.gob.es",
         "status": "blocked",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.exteriores.gob.es",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.cnmv.es",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.exteriores.gob.es/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://sede.agenciatributaria.gob.es/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.inclusion.gob.es/",
         "status": "blocked",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-11",
-      "field": "watch.https://www.exteriores.gob.es",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
-    },
-    {
-      "date": "2026-09-12",
-      "field": "watch.https://www.exteriores.gob.es",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
-    },
-    {
-      "date": "2026-09-13",
-      "field": "watch.https://www.exteriores.gob.es",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
-    },
-    {
-      "date": "2026-09-14",
-      "field": "watch.https://www.exteriores.gob.es",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
-    },
     {
       "date": "2026-09-15",
       "field": "watch.https://www.exteriores.gob.es",
@@ -236,6 +208,34 @@
       "from": "0a97f7f4bd3fd91a",
       "to": "re-anchored afea358e3b7b87a6 (stamp 9663be53-28d)",
       "hash": "afea358e3b7b87a65e70519717dddb43a15a8dd53cd7676fa4595801ccc1e10b"
+    },
+    {
+      "date": "2026-10-09",
+      "field": "watch.https://sede.agenciatributaria.gob.es/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "a3478bf4d95430d3"
+    },
+    {
+      "date": "2026-10-16",
+      "field": "watch.https://sede.agenciatributaria.gob.es/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "94a9c261353169a5"
+    },
+    {
+      "date": "2026-10-29",
+      "field": "watch.https://sede.agenciatributaria.gob.es/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "14aaa308b9ad4b2b"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
     }
   ],
   "sovereignty": {

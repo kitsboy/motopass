@@ -4,7 +4,7 @@
 
 ## 30-Second Version
 
-MotoPass guides users through a 4-step journey: **explore** 50 country programs → **stamp** documents in the Vault → **build** a portfolio → **apply** with Bitcoin-anchored proofs. The program matching system combines sovereign-scored research, filter presets, and deep flagship templates to help members find the right jurisdiction.
+MotoPass guides users through a 4-step journey: **explore** 21 country programs → **stamp** documents in the Vault → **build** a portfolio → **apply** with Bitcoin-anchored proofs. The program matching system combines sovereign-scored research, filter presets, and deep flagship templates to help members find the right jurisdiction.
 
 ---
 
@@ -19,7 +19,7 @@ MotoPass guides users through a 4-step journey: **explore** 50 country programs 
 │  │/programs │   │ /register  │   │  /vault  │   │   /apply   │  │
 │  └────┬────┘   └─────┬──────┘   └────┬─────┘   └─────┬──────┘  │
 │       │              │               │               │           │
-│  Browse 50      Nostr wallet     Upload docs     Submit with     │
+│  Browse 21      Nostr wallet     Upload docs     Submit with     │
 │  countries      connect +        SHA-256 hash    proof hashes    │
 │  Filter by      profile setup    Satohash stamp  + doc attach    │
 │  presets                                                           │
@@ -44,7 +44,7 @@ MotoPass guides users through a 4-step journey: **explore** 50 country programs 
 
 ## Step 1: Discovery — `/programs`
 
-The Programs page is the main entry point for exploring 50 countries.
+The Programs page is the main entry point for exploring 21 countries.
 
 ### Views
 - **Table view** (default): Compact rows with sortable columns, adjustable density (compact/comfortable)
@@ -360,7 +360,7 @@ When a user clicks a program card, the modal provides deep research:
 ### Data Flow Diagram
 
 ```
-countries.json (50 programs)
+countries.json (21 programs)
     ↓ usePrograms() hook
     ↓ ProgramsContext
     ↓ filterPrograms(filters) → toCinematicPrograms()

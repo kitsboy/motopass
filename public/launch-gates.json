@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-30T19:37:16.807Z",
-  "build_id": "2026.09.17-d6eb831",
+  "generated_at": "2026-11-08T06:58:56.924Z",
+  "build_id": "2026.11.07-f5a673f",
   "applications_open": false,
   "relay": "wss://relay.motopass.giveabit.io",
   "relay_fake": true,
@@ -41,9 +41,9 @@
     {
       "id": "G5",
       "pillar": "Ops",
-      "name": "CI validate + build artifacts",
+      "name": "Data/stamp/OTS validators + production build",
       "pass": true,
-      "detail": "Skipped (LAUNCH_SKIP_OPS=1)",
+      "detail": "validate:data · validate:stamps · validate:seal · dist OK",
       "blockers": []
     }
   ]

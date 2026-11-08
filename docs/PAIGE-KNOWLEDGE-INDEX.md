@@ -209,7 +209,7 @@ The Paige knowledge base is a **self-documenting, hot-loadable RAG system** that
 
 **Key concepts:**
 - 3-step registration: Nostr connect → profile → confirm
-- Programs page with 50 countries, table/card views, filter presets
+- Programs page with 21 countries, table/card views, filter presets
 - Gold Standard: Uruguay and Bolivia as flagship depth templates
 - 5 launch gates must pass before applications open
 

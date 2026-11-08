@@ -7,15 +7,15 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-10-02T19:00:25.469Z",
+  "generated_at": "2026-11-08T06:56:42.770Z",
   "freshness": {
-    "status": "fresh",
-    "days_stale": 3,
+    "status": "watch",
+    "days_stale": 40,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "fresh",
-      "days_stale": 4,
+      "status": "watch",
+      "days_stale": 40,
       "last_checked": "2026-09-29"
     }
   },
@@ -129,46 +129,32 @@
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-10-02T18:55:58.530Z",
+    "changed": false,
+    "last_probe_at": "2026-11-08T06:01:10.159Z",
     "urls": [
       {
         "url": "https://cbiu.gov.dm",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://dominica.gov.dm/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.cbiu.gov.dm/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.cbiu.gov.dm/investment-options/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-12",
-      "field": "watch.https://cbiu.gov.dm",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec"
-    },
-    {
-      "date": "2026-09-12",
-      "field": "proof",
-      "from": "9098fd4e4d1a73f2",
-      "to": "re-anchored 6a0a046d6ec355ac (stamp 88d5118b-e3b)",
-      "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec"
-    },
     {
       "date": "2026-09-13",
       "field": "watch.https://cbiu.gov.dm",
@@ -210,6 +196,20 @@
       "from": "6a0a046d6ec355ac",
       "to": "re-anchored 60018a33188a009b (stamp 650ed349-1b7)",
       "hash": "60018a33188a009b108496e8fd3fd5f957c2577408f3f44b6acc28c6fe5681db"
+    },
+    {
+      "date": "2026-11-03",
+      "field": "watch.https://dominica.gov.dm/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "b94aea907ae617d3"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
     }
   ],
   "sovereignty": {

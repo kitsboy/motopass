@@ -24,10 +24,10 @@ This is a living high-level architecture document. It will be expanded as implem
 - Playwright e2e (19 tests), Vitest unit tests (36), CI bundle budget.
 
 **Sovereign Stack v2.3 (Launch Engine)**
-- **Seal:** Vault page (`/vault`) — OTS upload, hash verify, 50/50 flagship proofs on disk. BUILD 68: kind `30078` attestations + Satohash API stamp. Threat model: [SECURITY-TIMESTAMP-NOSTR.md](./SECURITY-TIMESTAMP-NOSTR.md).
+- **Seal:** Vault page (`/vault`) — OTS upload, hash verify, flagship proofs for the curated 21 on disk. BUILD 68: kind `30078` attestations + Satohash API stamp. Threat model: [SECURITY-TIMESTAMP-NOSTR.md](./SECURITY-TIMESTAMP-NOSTR.md).
 - **Forge:** Distressed marketplace (`/distressed`) — curated + permissionless lanes, PSBT escrow stub.
 - **Nexus:** Apply flow (`/apply`) — gated by `public/launch-gates.json` from `npm run launch:gate`.
-- **Ledger:** `research/oracle-seed.json` + Kimi handoff; 50-jurisdiction `countries.json`.
+- **Ledger:** `research/oracle-seed.json` + Kimi handoff; 21-jurisdiction `countries.json`.
 - **Ops:** `validate:data` · `validate:stamps` · `validate:seal` · `launch:gate` scorecard.
 
 **BTC Map integration (v2)**
@@ -41,7 +41,7 @@ This is a living high-level architecture document. It will be expanded as implem
 
 **Static assets**
 - `website/index.html` — zero-build reference dashboard.
-- `research/countries.json` — 50 programs.
+- `research/countries.json` — 21 programs.
 - `public/data/` — BTC Map snapshots copied to `dist/data/` at build.
 
 **Process**
@@ -192,10 +192,10 @@ Five gates must pass before `applications_open` in `public/launch-gates.json`:
 
 | Gate | Pillar | Check |
 |------|--------|-------|
-| G1 | Seal | 50/50 flagships · OTS on disk · Satohash proofs |
-| G2 | Forge | Vault + Distressed UI · ≥40 listing candidates |
+| G1 | Seal | Stamp integrity on the curated corpus · OTS on disk · Satohash proofs |
+| G2 | Forge | Vault + Distressed UI · proof-gated candidates ≥ two-thirds of the corpus |
 | G3 | Nexus | Nostr relay NIP-11 (or `LAUNCH_FAKE_RELAY=1` for QA) |
-| G4 | Ledger | `oracle-seed.json` · KIMI-HANDOFF · 50 programs |
+| G4 | Ledger | `oracle-seed.json` · KIMI-HANDOFF · curated corpus (21) |
 | G5 | Ops | `validate:data` · `validate:stamps` · `validate:seal` · `dist/` |
 
 ```mermaid

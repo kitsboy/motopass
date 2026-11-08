@@ -7,15 +7,15 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-10-02T19:00:25.467Z",
+  "generated_at": "2026-11-08T06:56:42.769Z",
   "freshness": {
-    "status": "fresh",
-    "days_stale": 3,
+    "status": "watch",
+    "days_stale": 40,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "fresh",
-      "days_stale": 4,
+      "status": "watch",
+      "days_stale": 40,
       "last_checked": "2026-09-29"
     }
   },
@@ -140,96 +140,96 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-10-02T18:55:58.530Z",
+    "last_probe_at": "2026-11-08T06:01:10.159Z",
     "urls": [
       {
         "url": "https://www.interno.gov.it",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://investorvisa.mise.gov.it",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.agenziaentrate.gov.it",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.esteri.it/",
-        "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "status": "changed",
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.agenziaentrate.gov.it/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://investorvisa.mise.gov.it/index.php/en",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-09-15",
+      "date": "2026-10-20",
+      "field": "watch.https://www.esteri.it/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "2ecfbb0e3d81d727"
+    },
+    {
+      "date": "2026-10-22",
+      "field": "watch.https://www.esteri.it/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "772b624ecac3ad80"
+    },
+    {
+      "date": "2026-10-24",
+      "field": "watch.https://www.esteri.it/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "d8271c450544c44f"
+    },
+    {
+      "date": "2026-10-30",
+      "field": "watch.https://www.esteri.it/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "899f255020961f90"
+    },
+    {
+      "date": "2026-11-04",
       "field": "watch.https://www.interno.gov.it",
       "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "a0ecd9ac7d521548"
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "6916fac27a951fb4"
     },
     {
-      "date": "2026-09-15",
-      "field": "watch.https://investorvisa.mise.gov.it",
+      "date": "2026-11-06",
+      "field": "watch.https://www.esteri.it/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "3e63c37371b2ae48"
+    },
+    {
+      "date": "2026-11-07",
+      "field": "watch.https://www.esteri.it/",
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "f09e6c72f2067cf4"
+      "hash": "bc21329b943bd001"
     },
     {
-      "date": "2026-09-15",
-      "field": "watch.https://www.agenziaentrate.gov.it",
+      "date": "2026-11-08",
+      "field": "watch.https://www.esteri.it/",
       "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "41a1a0615a863e29"
-    },
-    {
-      "date": "2026-09-19",
-      "field": "proof",
-      "from": "bd89b05fe04c7736",
-      "to": "re-anchored 3ca27b9a7ab32911 (stamp 5deb3997-56d)",
-      "hash": "3ca27b9a7ab32911922a4fb71ff45a93dfb9f4ee5a47ac4de03fcc29d8430590"
-    },
-    {
-      "date": "2026-09-23",
-      "field": "watch.https://www.agenziaentrate.gov.it",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "932633c4ad04f0d4"
-    },
-    {
-      "date": "2026-09-30",
-      "field": "proof",
-      "from": "3ca27b9a7ab32911",
-      "to": "re-anchored 5896d70fc0b87a29 (stamp 3d0c96df-133) @ block 969313",
-      "hash": "5896d70fc0b87a29e9f45849bf8e733c252559f028d5bf0b8188607cd3355eb8"
-    },
-    {
-      "date": "2026-10-02",
-      "field": "watch.https://www.agenziaentrate.gov.it",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "70f6d639a39a8d1c"
-    },
-    {
-      "date": "2026-10-02",
-      "field": "watch.https://www.agenziaentrate.gov.it/",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "70f6d639a39a8d1c"
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "299e59ac8731ffd0"
     }
   ],
   "sovereignty": {

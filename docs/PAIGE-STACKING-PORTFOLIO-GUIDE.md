@@ -57,7 +57,7 @@ The simulator lets you **pick any combination of programs** and see the combined
 
 ### How it works
 
-1. **Select programs** — checkbox list of all 50 programs, searchable
+1. **Select programs** — checkbox list of all 21 programs, searchable
 2. **See metrics** — live dashboard updates as you toggle programs:
    - **Programs:** count of selected
    - **Cost:** total typical investment (USD + BTC)

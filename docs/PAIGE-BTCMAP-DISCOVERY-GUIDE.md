@@ -7,7 +7,7 @@
 
 ## 30-Second Version
 
-BTC Map is the world's community-sourced map of Bitcoin-accepting businesses — like Yelp for Bitcoin. MotoPass integrates it to show merchant density for each of the 50 jurisdictions: how many places near the capital accept Bitcoin, what categories they are, and whether they support Lightning. This helps members evaluate real-world Bitcoin usability alongside residency requirements.
+BTC Map is the world's community-sourced map of Bitcoin-accepting businesses — like Yelp for Bitcoin. MotoPass integrates it to show merchant density for each of the 21 jurisdictions: how many places near the capital accept Bitcoin, what categories they are, and whether they support Lightning. This helps members evaluate real-world Bitcoin usability alongside residency requirements.
 
 ---
 
@@ -358,7 +358,7 @@ Use these when members ask common questions:
 | `src/components/btcmap/BtcMapCacheStaleBanner.tsx` | Expired cache warning |
 | `scripts/fetch-btcmap-density.mjs` | Daily density pre-fetch |
 | `scripts/sync-btcmap-cache.mjs` | Per-jurisdiction snapshot sync |
-| `src/data/programCoords.ts` | Lat/lon + radius for all 50 programs |
+| `src/data/programCoords.ts` | Lat/lon + radius for all 21 programs |
 
 ### Storage Keys
 
@@ -424,7 +424,7 @@ Use these when members ask common questions:
 
 ### Program Coordinates
 
-All 50 programs have a lat/lon coordinate and search radius defined in `src/data/programCoords.ts`. These are mirrored in:
+All 21 programs have a lat/lon coordinate and search radius defined in `src/data/programCoords.ts`. These are mirrored in:
 - `scripts/fetch-btcmap-density.mjs` (density pre-fetch)
 - `scripts/sync-btcmap-cache.mjs` (snapshot sync)
 - `scripts/lib/intel-sources.mjs` (intel pipeline)

@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /** Per-jurisdiction BTC Map snapshots → public/data/btcmap/{slug}.json for offline use */
-import { writeFileSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const API = process.env.VITE_BTCMAP_API_URL || 'https://api.btcmap.org'
 const OUT_DIR = resolve(__dirname, '../public/data/btcmap')
+const CATALOG = resolve(__dirname, '../research/countries.json')
 
 const PROGRAM_COORDS = {
   'El Salvador': { lat: 13.6929, lon: -89.2182, radiusKm: 80 },
@@ -59,6 +60,7 @@ const PROGRAM_COORDS = {
   Gibraltar: { lat: 36.1408, lon: -5.3536, radiusKm: 10 },
   'Cayman Islands': { lat: 19.2869, lon: -81.3674, radiusKm: 15 },
   Andorra: { lat: 42.5063, lon: 1.5218, radiusKm: 15 },
+  'São Tomé and Príncipe': { lat: 0.3365, lon: 6.7273, radiusKm: 30 },
 }
 
 function slug(name) {
@@ -90,11 +92,49 @@ async function syncProgram(name, coord) {
   }
 }
 
+/** Catalog names that also have coordinates. Missing coords are logged, never invented. */
+function catalogEntries() {
+  const data = JSON.parse(readFileSync(CATALOG, 'utf8'))
+  const names = []
+  const entries = []
+  for (const program of data.programs ?? []) {
+    const name = program?.name
+    if (typeof name !== 'string' || !name) continue
+    names.push(name)
+    const coord = PROGRAM_COORDS[name]
+    if (!coord) {
+      process.stderr.write(`no coordinates: ${name}\n`)
+      continue
+    }
+    entries.push([name, coord])
+  }
+  return { names, entries }
+}
+
+/** Drop snapshots whose program is not in the live catalog. Unreadable files stay. */
+function pruneRetiredSnapshots(catalogNames) {
+  const live = new Set(catalogNames)
+  for (const file of readdirSync(OUT_DIR)) {
+    if (!file.endsWith('.json') || file === 'manifest.json') continue
+    const path = resolve(OUT_DIR, file)
+    let snapshot
+    try {
+      snapshot = JSON.parse(readFileSync(path, 'utf8'))
+    } catch {
+      process.stderr.write(`${file}\n`)
+      continue
+    }
+    const program = snapshot && typeof snapshot === 'object' ? snapshot.program : undefined
+    if (!live.has(program)) unlinkSync(path)
+  }
+}
+
 async function main() {
   mkdirSync(OUT_DIR, { recursive: true })
+  const { names, entries } = catalogEntries()
   const manifest = { generatedAt: new Date().toISOString(), programs: [] }
 
-  for (const [name, coord] of Object.entries(PROGRAM_COORDS)) {
+  for (const [name, coord] of entries) {
     const file = `${slug(name)}.json`
     try {
       const snapshot = await syncProgram(name, coord)
@@ -108,6 +148,7 @@ async function main() {
   }
 
   writeFileSync(resolve(OUT_DIR, 'manifest.json'), JSON.stringify(manifest, null, 2))
+  pruneRetiredSnapshots(names)
   console.log(`Wrote ${manifest.programs.length} snapshots to ${OUT_DIR}`)
 }
 

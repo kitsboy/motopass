@@ -30,8 +30,8 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 | Asset | Path | Status |
 |-------|------|--------|
 | React app | `src/` + `npm run dev` | BUILD-d6eb831 — 15 routes, dark mode, BTC Map, ₿-first pricing |
-| Program data | `research/countries.json` | **50 programs** |
-| BTC Map cache | `public/data/btcmap/` | **50 jurisdiction snapshots** |
+| Program data | `research/countries.json` | **21 programs** |
+| BTC Map cache | `public/data/btcmap/` | **21 snapshot files** for the curated catalog |
 | BTC Map density | `public/data/btcmap-density.json` | Merchant counts per program |
 | Static demo | `website/index.html` | Luminous Sovereign light theme |
 | Design system | `docs/DESIGN-CONTEXT.md`, `docs/DESIGN-TOKENS.md` | Canonical |
@@ -41,16 +41,16 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 ## Current capabilities (shipped)
 
-- Programs explorer (card + table, filters, breadcrumbs) — **50/50 deep flagships**
+- Programs explorer (card + table, filters, breadcrumbs) — **21 deep flagships**
 - Portfolio, Stack Simulator, **Finance Compare** (BUILD-66 eager route — glass matrix, mobile scroll, immediate empty state), Blog, Agents
-- **Seal** (`/vault`) — OTS upload, hash verify, 50/50 proofs on disk
+- **Seal** (`/vault`) — OTS upload, hash verify, proofs for the curated 21 on disk
 - **Forge** (`/distressed`) — curated + permissionless marketplace, PSBT escrow stub
 - **Apply** (`/apply`) — Launch Engine gated applications, 5/5 gate scorecard
 - **Launch Engine** — `npm run launch:gate` → `public/launch-gates.json`
 - **Canonical nav** — `src/lib/navRoutes.ts` (8 links, mobile bottom + More sheet)
 - **Sovereign UI** — glass cards, BTC textures, dark default, motion polish
-- **Country intel deepened** — **24/50 programs** re-verified/corrected across 5 batches (Aug 21–22): El Salvador legal-tender revocation (Feb 2025), Panama threshold corrections, Portugal nationality reform, Malta CBI termination, Thailand payment-tool ban, + 19 more (see `docs/KIMI-HANDOFF.md` top entry)
-- **Research-pipeline blueprint** — `docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md`: questionnaire, 50-country hot-button map, source-criteria, free-first API table, build plan for the Satohash-anchored source-trust engine
+- **Country intel deepened** — **24/50 programs** re-verified/corrected across 5 batches (Aug 21–22): El Salvador legal-tender revocation (Feb 2025), Panama threshold corrections, Portugal nationality reform, Malta CBI termination, Thailand payment-tool ban, + 19 more (see `docs/KIMI-HANDOFF.md` top entry). The live catalog is now the curated 21.
+- **Research-pipeline blueprint** — `docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md`: questionnaire, 50-country hot-button map (August snapshot; the live catalog is now the curated 21), source-criteria, free-first API table, build plan for the Satohash-anchored source-trust engine
 - **BTC Map layer** (`/btcmap`): Leaflet map, merchant list, area chips, program modal panel
 - **Merchant density badges** on program cards (sparse / moderate / dense)
 - **Nostr NIP-98** sign-in for BTC Map saved merchants (heart toggle)
@@ -64,7 +64,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 ## Gaps & next priorities
 
-1. **Country intel** — 26/50 still stale; unverified thresholds flagged (Mexico INM, Cyprus 6.2, Singapore GIP)
+1. **Country intel** — research last_checked is 2026-09-29, so freshness is watch-aged, and official-source coverage still has unreachable and bot-walled URLs.
 2. **Source-trust engine** — Build the registry + discovery + Satohash-anchored source hashes from the Claude prompt spec
 3. **Bitcoin core** — Live Satohash stamp is shipped; Lightning BOLT11 mint still open
 4. **Nostr** — Attestations ship (BUILD 68); live MotoPass relay + npub-native routing still open

@@ -7,15 +7,15 @@
     "region": "Central America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-10-02T19:00:25.456Z",
+  "generated_at": "2026-11-08T06:56:42.762Z",
   "freshness": {
-    "status": "fresh",
-    "days_stale": 3,
+    "status": "watch",
+    "days_stale": 40,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "fresh",
-      "days_stale": 4,
+      "status": "watch",
+      "days_stale": 40,
       "last_checked": "2026-09-29"
     }
   },
@@ -145,17 +145,17 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-10-02T18:55:58.530Z",
+    "last_probe_at": "2026-11-08T06:01:10.159Z",
     "urls": [
       {
         "url": "https://www.presidencia.gob.sv",
-        "status": "blocked",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "status": "ok",
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.migracion.gob.sv",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.rree.gob.sv/",
@@ -165,12 +165,12 @@
       {
         "url": "https://www.migracion.gob.sv/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://adoptingelsalvador.gob.sv",
-        "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "status": "unreachable",
+        "last_probed": "2026-11-05T13:41:07.581Z"
       }
     ]
   },

@@ -146,8 +146,8 @@ Translations support `{variable}` placeholders:
 
 ```typescript
 // Translation: "programs.eyebrow": "{count} jurisdictions, tracked"
-formatT(t, 'programs.eyebrow', { count: 50 })
-// → "50 jurisdictions, tracked"
+formatT(t, 'programs.eyebrow', { count: 21 })
+// → "21 jurisdictions, tracked"
 ```
 
 ---
@@ -284,7 +284,7 @@ return <h1>{t('programs.title')}</h1>
 
 // With variables
 const { t } = useI18n()
-return <p>{formatT(t, 'programs.eyebrow', { count: 50 })}</p>
+return <p>{formatT(t, 'programs.eyebrow', { count: 21 })}</p>
 
 // Reading current language
 const { lang, dir } = useI18n()

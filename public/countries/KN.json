@@ -7,15 +7,15 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-10-02T19:00:25.469Z",
+  "generated_at": "2026-11-08T06:56:42.770Z",
   "freshness": {
-    "status": "fresh",
-    "days_stale": 3,
+    "status": "watch",
+    "days_stale": 40,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "fresh",
-      "days_stale": 4,
+      "status": "watch",
+      "days_stale": 40,
       "last_checked": "2026-09-29"
     }
   },
@@ -129,39 +129,32 @@
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-10-02T18:55:58.530Z",
+    "changed": false,
+    "last_probe_at": "2026-11-08T06:01:10.159Z",
     "urls": [
       {
         "url": "https://www.ciu.gov.kn",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.gov.kn/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://ciu.gov.kn/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://ciu.gov.kn/cbi-options/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "critical_tests.notes",
-      "from": "Premium Caribbean passport (~150+ visa-free); no personal income, capital gains, or inheritance tax. No residency requirement today, but a 30-day visit within 5 years is proposed under the 2026 framework — monitor.",
-      "to": "Premium Caribbean passport (~150+ visa-free); no personal income, capital gains, or inheritance tax. No residency requirement in force today — the proposed 30-day visit within 5 years is NOT yet law (Aug 2026); mandatory interviews already apply; 2026 overhaul plans genuine-link rules and phasing out donation-only citizenship.",
-      "hash": null
-    },
     {
       "date": "2026-09-10",
       "field": "legal_compliance.recent_changes",
@@ -210,6 +203,13 @@
       "from": "e0f6d701ac8f0963",
       "to": "re-anchored 645d4060bb4ff823 (stamp 40ef93ba-dcb)",
       "hash": "645d4060bb4ff8235b5a7d84a104ec813bbb9f2aea4ef79373f59b38697ecaa6"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
     }
   ],
   "sovereignty": {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /** Pre-fetch BTC Map merchant counts per MotoPass jurisdiction → public/data/btcmap-density.json */
-import { writeFileSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -8,6 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const API = process.env.VITE_BTCMAP_API_URL || 'https://api.btcmap.org'
 const OUT_DIR = resolve(__dirname, '../public/data')
 const OUT_FILE = resolve(OUT_DIR, 'btcmap-density.json')
+const CATALOG = resolve(__dirname, '../research/countries.json')
 
 /** Mirrors src/data/programCoords.ts — keep in sync */
 const PROGRAM_COORDS = {
@@ -61,6 +62,7 @@ const PROGRAM_COORDS = {
   Gibraltar: { lat: 36.1408, lon: -5.3536, radiusKm: 10 },
   'Cayman Islands': { lat: 19.2869, lon: -81.3674, radiusKm: 15 },
   Andorra: { lat: 42.5063, lon: 1.5218, radiusKm: 15 },
+  'São Tomé and Príncipe': { lat: 0.3365, lon: 6.7273, radiusKm: 30 },
 }
 
 function densityTier(count) {
@@ -83,9 +85,26 @@ async function fetchCount(name, { lat, lon, radiusKm }) {
   return { count, tier: densityTier(count), score: densityScore(count, radiusKm) }
 }
 
+/** Catalog names that also have coordinates. Missing coords are logged, never invented. */
+function catalogEntries() {
+  const data = JSON.parse(readFileSync(CATALOG, 'utf8'))
+  const entries = []
+  for (const program of data.programs ?? []) {
+    const name = program?.name
+    if (typeof name !== 'string' || !name) continue
+    const coord = PROGRAM_COORDS[name]
+    if (!coord) {
+      process.stderr.write(`no coordinates: ${name}\n`)
+      continue
+    }
+    entries.push([name, coord])
+  }
+  return entries
+}
+
 async function main() {
   mkdirSync(OUT_DIR, { recursive: true })
-  const entries = Object.entries(PROGRAM_COORDS)
+  const entries = catalogEntries()
   const density = { generatedAt: new Date().toISOString(), programs: {} }
 
   for (const [name, coord] of entries) {

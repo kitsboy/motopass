@@ -7,15 +7,15 @@
     "region": "Central America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-10-02T19:00:25.474Z",
+  "generated_at": "2026-11-08T06:56:42.772Z",
   "freshness": {
-    "status": "fresh",
-    "days_stale": 3,
+    "status": "watch",
+    "days_stale": 40,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "fresh",
-      "days_stale": 4,
+      "status": "watch",
+      "days_stale": 40,
       "last_checked": "2026-09-29"
     }
   },
@@ -136,82 +136,82 @@
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-10-02T18:55:58.530Z",
+    "changed": false,
+    "last_probe_at": "2026-11-08T06:01:10.159Z",
     "urls": [
       {
         "url": "https://www.migracion.gob.pa",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.gacetaoficial.gob.pa",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.mire.gob.pa/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       }
     ]
   },
   "audit_trail": [
     {
-      "date": "2026-09-13",
-      "field": "proof",
-      "from": "08f2bedb94ea4bc1",
-      "to": "re-anchored bb1f6135c1c7e559 (stamp 0ecb7ddc-a1c)",
-      "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
-    },
-    {
-      "date": "2026-09-14",
-      "field": "watch.https://www.gacetaoficial.gob.pa",
+      "date": "2026-10-06",
+      "field": "watch.https://www.migracion.gob.pa",
       "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "3316becfe791abd5"
     },
     {
-      "date": "2026-09-15",
-      "field": "watch.https://www.gacetaoficial.gob.pa",
+      "date": "2026-10-09",
+      "field": "watch.https://www.mire.gob.pa/",
       "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "bb1f6135c1c7e559c82bc36a36eac03c06d1f795eb6ba5ced414fbbe8988c74b"
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "e80b33b579cb6910"
     },
     {
-      "date": "2026-09-15",
+      "date": "2026-10-13",
+      "field": "watch.https://www.migracion.gob.pa",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "9e6dcb7e14b69713"
+    },
+    {
+      "date": "2026-10-23",
+      "field": "watch.https://www.mire.gob.pa/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "0084298a151680b0"
+    },
+    {
+      "date": "2026-10-30",
+      "field": "watch.https://www.migracion.gob.pa",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "a38b8bad41d01cb0"
+    },
+    {
+      "date": "2026-11-03",
       "field": "watch.https://www.migracion.gob.pa",
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "822b452df921ac24"
+      "hash": "52280e80d2b3f455"
     },
     {
-      "date": "2026-09-25",
+      "date": "2026-11-07",
       "field": "watch.https://www.migracion.gob.pa",
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "75f4799c21656d0f"
+      "hash": "d10a16ccaaed63cf"
     },
     {
-      "date": "2026-09-26",
-      "field": "watch.https://www.migracion.gob.pa",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "a1d11a672e6b8903"
-    },
-    {
-      "date": "2026-09-30",
-      "field": "proof",
-      "from": "bb1f6135c1c7e559",
-      "to": "re-anchored c0f4352fe65c1b80 (stamp 6929eb67-320)",
-      "hash": "c0f4352fe65c1b80a4485542db3e223c377fb6048c115bd142387c116b50edd9"
-    },
-    {
-      "date": "2026-10-01",
-      "field": "watch.https://www.migracion.gob.pa",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "9e47b3e00939b87f"
+      "date": "2026-11-08",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
     }
   ],
   "sovereignty": {

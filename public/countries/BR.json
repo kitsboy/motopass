@@ -7,15 +7,15 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-10-02T19:00:25.473Z",
+  "generated_at": "2026-11-08T06:56:42.771Z",
   "freshness": {
-    "status": "fresh",
-    "days_stale": 3,
+    "status": "watch",
+    "days_stale": 40,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "fresh",
-      "days_stale": 4,
+      "status": "watch",
+      "days_stale": 40,
       "last_checked": "2026-09-29"
     }
   },
@@ -153,101 +153,101 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-10-02T18:55:58.530Z",
+    "last_probe_at": "2026-11-08T06:01:10.159Z",
     "urls": [
       {
         "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.gov.br/pf/pt-br/assuntos/imigracao",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.gov.br/mre/en",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://brsb.itamaraty.gov.br/en-us/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.gov.br/mj/en/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13445.htm",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "legal_compliance.recent_changes",
-      "from": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs.",
-      "to": "VITEM XIV digital-nomad category added under Lei 13.445 framework. Investor threshold remains R$500,000. 2024–2025 Receita Federal crypto reporting rules tightened — declare foreign exchange inflows for residency income proofs. 2026-09-10 verification: VITEM IX R$500k current (+R$150k startup tier); VITEM XIV $1,500/mo or ~$18k savings; retirement $2,000/mo. Page-level finance floor aligned to VITEM IX.",
-      "hash": null
-    },
-    {
-      "date": "2026-09-10",
-      "field": "last_checked",
-      "from": "2026-08-22",
-      "to": "2026-09-10",
-      "hash": null
-    },
-    {
-      "date": "2026-09-11",
-      "field": "watch.https://www.gov.br/pf/pt-br/assuntos/imigracao",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "147d90ee590acce8e02b521b275481f11c94cc55ffb617c99fe592a460c7b5d0"
-    },
-    {
-      "date": "2026-09-12",
-      "field": "watch.https://www.gov.br/pf/pt-br/assuntos/imigracao",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "147d90ee590acce8e02b521b275481f11c94cc55ffb617c99fe592a460c7b5d0"
-    },
-    {
-      "date": "2026-09-15",
-      "field": "proof",
-      "from": "c8ebeb294bf2dae7",
-      "to": "re-anchored 147d90ee590acce8 (stamp 13f9ee76-f8e)",
-      "hash": "147d90ee590acce8e02b521b275481f11c94cc55ffb617c99fe592a460c7b5d0"
-    },
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "81a8e156e1a0c311"
-    },
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://www.gov.br/pf/pt-br/assuntos/imigracao",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "4600b67fa4ebcd9b"
-    },
     {
       "date": "2026-09-30",
       "field": "proof",
       "from": "147d90ee590acce8",
       "to": "re-anchored b41480b2644ae16a (stamp 259d302b-dd6)",
       "hash": "b41480b2644ae16ae2cdc73fc4e5e57fdfc3a4b388438b1df51520eefdc9b1e7"
+    },
+    {
+      "date": "2026-10-23",
+      "field": "watch.https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "3819a5858d3b7e24"
+    },
+    {
+      "date": "2026-10-27",
+      "field": "watch.https://www.gov.br/mj/en/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "5c9eed18d48815b3"
+    },
+    {
+      "date": "2026-10-30",
+      "field": "watch.https://www.gov.br/mj/en/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "8c2626f42bfb6d94"
+    },
+    {
+      "date": "2026-11-01",
+      "field": "watch.https://www.gov.br/mj/en/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "776c5f722701ff48"
+    },
+    {
+      "date": "2026-11-06",
+      "field": "watch.https://www.gov.br/mj/en/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "1436271ced6a7b42"
+    },
+    {
+      "date": "2026-11-07",
+      "field": "watch.https://www.gov.br/mj/en/",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "0a893d621fb3c774"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
     }
   ],
   "sovereignty": {

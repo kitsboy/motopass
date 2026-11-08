@@ -2,15 +2,15 @@
   "schema": "gab.product-metrics.v1",
   "productId": "motopass",
   "name": "MotoPass",
-  "updatedAt": "2026-07-21T22:00:00.000Z",
+  "updatedAt": "2026-11-08T06:55:53.850Z",
   "window": {
     "label": "all",
     "from": "2026-01-01T00:00:00.000Z",
-    "to": "2026-07-21T22:00:00.000Z"
+    "to": "2026-11-08T06:55:53.850Z"
   },
   "health": {
     "status": "green",
-    "message": "Static snapshot (curated 2026-07-21; refreshed when research/countries.json or public/proofs change) — program KPIs from research/countries.json + public/proofs; Umami visitors fill once analytics host is public. No live uptime probe on this origin, so uptimePct24h/latencyMs are omitted rather than reported as null.",
+    "message": "This file is generated from research/countries.json by scripts/gen-metrics.mjs. Umami visitor counts stay 0 until the analytics host is public. No live uptime probe on this origin, so uptimePct24h/latencyMs are omitted rather than reported as null.",
     "dependencies": [
       {
         "id": "countries-json",
@@ -20,7 +20,7 @@
       {
         "id": "ots-proofs",
         "status": "green",
-        "detail": "public/proofs · 21 .ots files"
+        "detail": "public/proofs · 21 current programs with a Satohash .ots file on disk (50 other .ots files are not counted)"
       },
       {
         "id": "satohash",
@@ -42,7 +42,7 @@
       "unit": "countries",
       "format": "number",
       "priority": 1,
-      "hint": "Original deep-seed cohort (16/21). Full catalog is programs_total."
+      "hint": "Original deep-seed cohort (16/21). This is not the catalog size. Full catalog is programs_total."
     },
     {
       "key": "programs_total",
@@ -60,25 +60,25 @@
       "unit": "countries",
       "format": "number",
       "priority": 1,
-      "hint": "Jurisdictions with OpenTimestamps proofs on disk (public/proofs/*.ots). Alias: countries_verified_ots."
+      "hint": "Current programs with a Satohash proof whose .ots file exists under public/. Historical proofs for retired countries are not counted. Alias: countries_verified_ots."
     },
     {
       "key": "avg_program_cost_usd",
       "label": "Avg program cost",
-      "value": 185000,
+      "value": 422381,
       "unit": "USD",
       "format": "usd",
       "priority": 1,
-      "hint": "Headline average investment for Concert / diligence (USD)."
+      "hint": "Arithmetic mean of finance.typical_investment_usd across 21 programs with a numeric value, rounded to the nearest dollar."
     },
     {
       "key": "fastest_days",
       "label": "Fastest pathway",
-      "value": 60,
+      "value": 30,
       "unit": "days",
       "format": "duration",
       "priority": 2,
-      "hint": "Minimum citizenship/residency processing time in the catalog (days). Alias: fastest_citizenship_days."
+      "hint": "Derived from low end of finance.processing_time_months in months × 30. A range such as \"1-4\" uses the low end. Minimum is 30 days, tied across El Salvador (1-4), Vanuatu (1-3), Mexico (1-3). No unique fastest country is claimed. Alias: fastest_citizenship_days."
     },
     {
       "key": "target_countries",
@@ -87,16 +87,16 @@
       "unit": "countries",
       "format": "number",
       "priority": 2,
-      "hint": "Live corpus: 21 CBI/RBI programs refreshed from a live intel feed."
+      "hint": "Live corpus: 21 programs in research/countries.json. Same count as programs_total."
     },
     {
       "key": "cheapest_program",
       "label": "Cheapest program",
-      "value": 25000,
+      "value": 32000,
       "unit": "USD",
       "format": "usd",
       "priority": 3,
-      "hint": "Lowest typical/min investment in countries.json (Central African Republic · $25k)."
+      "hint": "Lowest finance.min_investment_usd greater than 0: Spain · $32,000. El Salvador's min_investment_usd is 0 (no stated investment floor), so $0 is not presented as the cheapest citizenship for sale."
     }
   ],
   "series": [],
@@ -141,25 +141,33 @@
           "id": "seeded",
           "label": "Seeded deep cohort",
           "value": 16,
-          "meta": { "of": 21 }
+          "meta": {
+            "of": 21
+          }
         },
         {
           "id": "programs",
           "label": "Programs in catalog",
           "value": 21,
-          "meta": { "source": "research/countries.json" }
+          "meta": {
+            "source": "research/countries.json"
+          }
         },
         {
           "id": "ots",
           "label": "OTS-stamped",
           "value": 21,
-          "meta": { "source": "public/proofs" }
+          "meta": {
+            "source": "public/proofs"
+          }
         },
         {
           "id": "target",
           "label": "Target countries",
           "value": 21,
-          "meta": { "roadmap": true }
+          "meta": {
+            "roadmap": true
+          }
         }
       ]
     }
@@ -168,7 +176,11 @@
     {
       "id": "program_oracle",
       "title": "21-program CBI/RBI oracle",
-      "for": ["giveabit", "hq", "openstrata"],
+      "for": [
+        "giveabit",
+        "hq",
+        "openstrata"
+      ],
       "status": "ga",
       "endpoint": "GET /research/countries.json",
       "hint": "CBI/RBI catalog with finance, pathways, Satohash proofs"
@@ -176,7 +188,9 @@
     {
       "id": "ots_proofs",
       "title": "OpenTimestamps program proofs",
-      "for": ["satohash"],
+      "for": [
+        "satohash"
+      ],
       "status": "ga",
       "endpoint": "GET /proofs/*.ots",
       "hint": "Immutable program snapshots via Satohash"
@@ -184,7 +198,9 @@
     {
       "id": "metrics_v1",
       "title": "Product metrics v1",
-      "for": ["hq"],
+      "for": [
+        "hq"
+      ],
       "status": "ga",
       "endpoint": "GET /metrics.json",
       "hint": "gab.product-metrics.v1 for HQ cards"
@@ -194,21 +210,21 @@
     {
       "id": "mold_seeded_vs_total",
       "title": "16 seeded vs 21 programs",
-      "body": "countries_seeded is the original deep-seed cohort. programs_total and countries_ots are full-catalog counts (21). Pitch 16/21 progress using seeded + target_countries.",
+      "body": "countries_seeded is the original deep-seed cohort (16), not the catalog size. The live corpus is 21 programs: programs_total and target_countries both follow research/countries.json. Pitch 16/21 progress using seeded + target_countries.",
       "action": "Show seeded/target on HQ card; programs_total on Concert",
       "opportunity": "opportunity"
     },
     {
       "id": "mold_ots",
       "title": "OTS is the truth layer",
-      "body": "countries_ots = proofs on disk. Every listed jurisdiction ships a .ots file under public/proofs for re-verification.",
+      "body": "The live corpus is 21 programs. countries_ots counts those whose Satohash proof has an .ots file on disk under public/ (21 today). Leftover proofs for retired countries are not counted.",
       "action": "Link HQ card to /verify and Satohash",
       "opportunity": "info"
     },
     {
       "id": "wire_umami",
       "title": "Visitor funnel needs public Umami",
-      "body": "Tracking script is in index.html. Funnel counts stay 0 until analytics.giveabit.io (or THOR reverse proxy) is reachable from the open web.",
+      "body": "Tracking script is in index.html. The live corpus is 21 programs, but funnel counts stay 0 until analytics.giveabit.io (or the THOR reverse proxy) is reachable from the open web. Umami visitor counts stay 0 until the analytics host is public.",
       "action": "Point analytics.giveabit.io → THOR:3002 over HTTPS",
       "opportunity": "plan"
     }
@@ -237,19 +253,28 @@
   ],
   "raw": {
     "demo": false,
-    "source": "research/countries.json + public/proofs + inventory defaults",
+    "source": "research/countries.json + public/proofs via scripts/gen-metrics.mjs",
     "programs_total": 21,
     "countries_seeded": 16,
     "countries_ots": 21,
     "countries_verified_ots": 21,
-    "avg_program_cost_usd": 185000,
-    "fastest_days": 60,
-    "fastest_citizenship_days": 60,
+    "avg_program_cost_usd": 422381,
+    "avg_program_cost_sample_size": 21,
+    "fastest_days": 30,
+    "fastest_citizenship_days": 30,
+    "fastest_days_method": "low end of finance.processing_time_months in months × 30",
+    "fastest_days_programs": [
+      "El Salvador",
+      "Vanuatu",
+      "Mexico"
+    ],
     "target_countries": 21,
-    "cheapest_program_usd": 25000,
-    "cheapest_program_name": "Central African Republic",
+    "cheapest_program_usd": 32000,
+    "cheapest_program_name": "Spain",
+    "el_salvador_min_investment_usd": 0,
+    "el_salvador_min_investment_note": "El Salvador's min_investment_usd is 0 (no stated investment floor), so $0 is not presented as the cheapest citizenship for sale.",
     "umamiWebsiteId": "dd982c5b-f27a-40e3-924b-4ea1e64d5f8a",
     "umamiPending": true,
-    "note": "Static product metrics for HQ — a curated snapshot (not build-generated), last refreshed 2026-07-21. Regenerate when countries.json or proofs change. Visitor funnel fills from Umami once analytics host is public."
+    "note": "This file is generated from research/countries.json by scripts/gen-metrics.mjs. Umami visitor counts stay 0 until the analytics host is public. countries_seeded is the original deep-seed cohort (16), not the catalog size. El Salvador's min_investment_usd is 0 (no stated investment floor), so $0 is not presented as the cheapest citizenship for sale."
   }
 }

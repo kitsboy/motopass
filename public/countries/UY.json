@@ -7,15 +7,15 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-10-02T19:00:25.468Z",
+  "generated_at": "2026-11-08T06:56:42.769Z",
   "freshness": {
-    "status": "fresh",
-    "days_stale": 3,
+    "status": "watch",
+    "days_stale": 40,
     "verified_at": "2026-09-29",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
-      "status": "fresh",
-      "days_stale": 4,
+      "status": "watch",
+      "days_stale": 40,
       "last_checked": "2026-09-29"
     }
   },
@@ -135,78 +135,36 @@
   },
   "watch": {
     "changed": true,
-    "last_probe_at": "2026-10-02T18:55:58.530Z",
+    "last_probe_at": "2026-11-08T06:01:10.159Z",
     "urls": [
       {
         "url": "https://www.gub.uy/tramites/residencia-legal",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.minterior.gub.uy",
-        "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "status": "changed",
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://embassyofuruguay.us/",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       },
       {
         "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
         "status": "ok",
-        "last_probed": "2026-10-02T18:55:58.530Z"
+        "last_probed": "2026-11-08T06:01:10.159Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "legal_compliance.recent_changes",
-      "from": "2025–2026 digital nomad and investor pathways streamlined.",
-      "to": "2025–2026 digital nomad and investor pathways streamlined. Tax reform effective 1 Jan 2026 (Law 20.446 as amended): foreign-income holiday preserved at 11 years, then 12% on most foreign investment income; tax-residency real-estate threshold ~US$2M.",
-      "hash": null
-    },
-    {
-      "date": "2026-09-10",
-      "field": "last_checked",
-      "from": "2026-08-22",
-      "to": "2026-09-10",
-      "hash": null
-    },
-    {
-      "date": "2026-09-11",
-      "field": "watch.https://www.minterior.gub.uy",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
-    },
-    {
-      "date": "2026-09-11",
-      "field": "proof",
-      "from": "1e9993bb823a6b8f",
-      "to": "re-anchored 97d5230a45b78ff2 (stamp 8bc9645f-55b)",
-      "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
-    },
-    {
-      "date": "2026-09-12",
-      "field": "watch.https://www.minterior.gub.uy",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
-    },
-    {
-      "date": "2026-09-13",
-      "field": "watch.https://www.gub.uy/tramites/residencia-legal",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "97d5230a45b78ff2d74d289985962be0e8106705e09e7a2b38293b895cb4eef6"
-    },
     {
       "date": "2026-09-30",
       "field": "proof",
@@ -220,6 +178,48 @@
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
       "hash": "91069f397ed6edc7"
+    },
+    {
+      "date": "2026-10-03",
+      "field": "watch.https://www.minterior.gub.uy",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "f0082a2e1bf3b602"
+    },
+    {
+      "date": "2026-10-18",
+      "field": "watch.https://www.minterior.gub.uy",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "f602d8f48fb50c48"
+    },
+    {
+      "date": "2026-10-25",
+      "field": "watch.https://www.minterior.gub.uy",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "2a72a94a61d61cc3"
+    },
+    {
+      "date": "2026-10-31",
+      "field": "watch.https://www.minterior.gub.uy",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "b8e33dedac839084"
+    },
+    {
+      "date": "2026-11-06",
+      "field": "watch.https://www.minterior.gub.uy",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "9b9fa60e22cc5e52"
+    },
+    {
+      "date": "2026-11-08",
+      "field": "watch.https://www.minterior.gub.uy",
+      "from": null,
+      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
+      "hash": "3eb279503555961f"
     }
   ],
   "sovereignty": {

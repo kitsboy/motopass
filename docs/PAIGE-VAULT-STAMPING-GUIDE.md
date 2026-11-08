@@ -13,13 +13,13 @@ Vault?"
 
 The Vault (`/vault`) is MotoPass's **proof archive**. It does two things:
 
-1. **Shows Bitcoin-anchored proofs** for all 50 programs — block numbers, hashes, verify links, and proof lineage
+1. **Shows Bitcoin-anchored proofs** for all 21 programs — block numbers, hashes, verify links, and proof lineage
 2. **Lets members timestamp their own documents** on Bitcoin via the Document Stamper
 
 The document stamping workflow is simple: **hash it locally, stamp it on Bitcoin, keep the hash, verify later.** The original file never leaves your device.
 
 **Ask Paige:** *"What is the Vault?"*
-> The Vault is your proof archive — it shows Bitcoin-anchored proofs for all 50 countries and lets you timestamp your own documents the same way. You can verify any proof independently at satohash.io without trusting MotoPass.
+> The Vault is your proof archive — it shows Bitcoin-anchored proofs for all 21 countries and lets you timestamp your own documents the same way. You can verify any proof independently at satohash.io without trusting MotoPass.
 
 ---
 
@@ -229,7 +229,7 @@ Every item has an **education tooltip** (InfoTip) explaining what it means:
 
 ### "What is the Vault?"
 
-> The Vault is your proof archive — it shows Bitcoin-anchored proofs for all 50 countries and lets you timestamp your own documents the same way. You can verify any proof independently at satohash.io without trusting MotoPass.
+> The Vault is your proof archive — it shows Bitcoin-anchored proofs for all 21 countries and lets you timestamp your own documents the same way. You can verify any proof independently at satohash.io without trusting MotoPass.
 
 ### "How do I stamp my document?"
 

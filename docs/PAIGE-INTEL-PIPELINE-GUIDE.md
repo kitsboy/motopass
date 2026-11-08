@@ -1,7 +1,7 @@
 # Paige — Intel Pipeline & Self-Healing Loop Guide
 
 **Purpose:** teach Paige (and any future agent) exactly how MotoPass keeps its
-50-country corpus honest, near-real-time, and Bitcoin-anchored. This is the
+21-country corpus honest, near-real-time, and Bitcoin-anchored. This is the
 authoritative reference for answering "how does MotoPass stay up to date?" and
 "how do I know the data is fresh?"
 
@@ -11,7 +11,7 @@ authoritative reference for answering "how does MotoPass stay up to date?" and
 
 ## 1. What the intel pipeline does (the 30-second version)
 
-MotoPass tracks **50 countries** with residency, citizenship, and Bitcoin
+MotoPass tracks **21 countries** with residency, citizenship, and Bitcoin
 integration data. A daily automated pipeline runs at 06:00 UTC and does three
 things:
 
@@ -25,7 +25,7 @@ substantiate from a source.
 
 **Ask Paige:** *"How does MotoPass keep its data fresh?"*
 > MotoPass runs a daily research pipeline that fetches live data from Wikipedia,
-> BTC Map, and CoinGecko for all 50 countries. When something changes, the new
+> BTC Map, and CoinGecko for all 21 countries. When something changes, the new
 > data is verified and anchored to Bitcoin via Satohash. You can check any
 > program's freshness badge on /programs or verify proofs at /vault.
 
@@ -44,7 +44,7 @@ steps in order:
 | 4 | `probe-sources.mjs` | `intel:probe` | Probes official government URLs, hashes content, flags changes |
 | 5 | `stamp-changed.mjs` | `intel:stamp` | Re-anchors changed programs via Satohash API |
 | 6 | `write-intel.mjs` | `intel:write` | Regenerates `intel.json` runtime manifest |
-| 7 | `check-intel.mjs` | `intel:check` | CI gate: validates shape, 50/50 coverage, stamps intact |
+| 7 | `check-intel.mjs` | `intel:check` | CI gate: validates shape, curated-corpus coverage (21), stamps intact |
 | 8 | auto-commit | — | Commits detection + research changes + re-anchors |
 
 Run locally anytime: `npm run intel:run` (or step-by-step).
@@ -67,7 +67,7 @@ corpus, and writes verified changes with audit trail.
 
 ### How it works
 
-1. **Fetch** — for each of the 50 countries, fetch all 3 sources (concurrency 5, paced 500ms)
+1. **Fetch** — for each of the 21 countries, fetch all 3 sources (concurrency 5, paced 500ms)
 2. **Diff** — compare fetched intel against the existing corpus:
    - Wikipedia: crypto keyword detection, tax signal extraction (no-income > territorial > favorable), investment threshold parsing
    - BTC Map: merchant count → Lightning-ready upgrade, crypto-friendly score boost
@@ -87,7 +87,7 @@ corpus, and writes verified changes with audit trail.
 ### Usage
 
 ```bash
-npm run intel:fetch                          # All 50 countries
+npm run intel:fetch                          # All 21 countries
 npm run intel:fetch -- --top=10              # Stalest 10 only
 npm run intel:fetch -- --country="El Salvador"  # Single country
 npm run intel:fetch -- --dry-run             # Preview without writing
@@ -227,7 +227,7 @@ public/data/intel.json  — runtime manifest (SPA fetches for badges/tickers)
 ### "How fresh is this data?"
 
 > MotoPass runs a daily research pipeline that fetches live data from Wikipedia,
-> BTC Map, and CoinGecko for all 50 countries. The freshness badge on each
+> BTC Map, and CoinGecko for all 21 countries. The freshness badge on each
 > program tells you when it was last verified by a human. Green means fresh
 > (within 14 days), yellow means aging (15–45 days), and red means it needs
 > re-research.
@@ -255,7 +255,7 @@ public/data/intel.json  — runtime manifest (SPA fetches for badges/tickers)
 
 ### "What is the intel pipeline?"
 
-> It's the automated system that keeps MotoPass's 50-country database honest and
+> It's the automated system that keeps MotoPass's 21-country database honest and
 > near-real-time. It runs daily: researching from live sources, detecting
 > government rule changes, and re-anchoring data to Bitcoin. Every change is
 > recorded in an audit trail you can verify.

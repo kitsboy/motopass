@@ -24,6 +24,7 @@
     "sitemap": "node scripts/generate-sitemap.mjs",
     "btcmap:density": "node scripts/fetch-btcmap-density.mjs",
     "fx:sync": "node scripts/sync-fx-snapshot.mjs",
+    "metrics:sync": "node scripts/gen-metrics.mjs",
     "btcmap:sync": "node scripts/sync-btcmap-cache.mjs",
     "pitch:sync": "node scripts/sync-pitch-anchor.mjs",
     "pitch:check": "node scripts/sync-pitch-anchor.mjs --check",

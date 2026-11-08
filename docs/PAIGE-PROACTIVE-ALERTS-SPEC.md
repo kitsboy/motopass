@@ -10,7 +10,7 @@ before they apply, without checking the site daily.
 
 ## 1. Problem statement
 
-MotoPass tracks 50 countries with residency, citizenship, and Bitcoin
+MotoPass tracks 21 countries with residency, citizenship, and Bitcoin
 integration data. Rules change — governments update thresholds, close
 pathways, or open new ones. Today, users learn about changes only by
 checking the site. Proactive alerts would notify users whose portfolio or

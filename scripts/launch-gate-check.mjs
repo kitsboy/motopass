@@ -258,7 +258,7 @@ function printScorecard(report) {
   console.log(report.applications_open
     ? '\x1b[32mAPPLICATIONS OPEN\x1b[0m — Apply form may be enabled'
     : '\x1b[33mPRE-LAUNCH\x1b[0m — Apply form stays disabled')
-  if (gates.every(g => g.pass) && !report.applications_open) {
+  if (report.gates.every(g => g.pass) && !report.applications_open) {
     console.log('\x1b[33mnote\x1b[0m — all technical gates pass, but the HUMAN GATE is closed.')
     console.log('       Applications stay closed until Cam deliberately opens them.')
     console.log('       Open with: LAUNCH_APPLICATIONS_OPEN=1 node scripts/launch-gate-check.mjs')

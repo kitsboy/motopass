@@ -92,7 +92,7 @@
  *   - updates research/countries.json (watch.* + audit_trail on rule change)
  *   - writes public/data/source-monitor.json (the presentation layer reads this)
  *
- * Usage: node scripts/probe-sources.mjs [--dry-run] [--self-test]
+ * Usage: node scripts/probe-sources.mjs [--dry-run] [--self-test] [--reconcile-latch]
  * Env:   PLAYWRIGHT_EXECUTABLE  chromium path (auto-detect if unset)
  *        PLAYWRIGHT_MODULE_DIR   dir to resolve playwright from (default /root/hq)
  *        PROBE_CONCURRENCY       http concurrency (default 6)
@@ -989,6 +989,52 @@ function applyScopes(entry, scopes, rebaseline, pathRebaseline = false) {
   return { ruleChanged, layoutChanged, changedScopes }
 }
 
+/**
+ * Latest `watch.${url}` audit row still asking for a human review?
+ * Walk from the end; the first row whose `field` is exactly that URL decides.
+ * Older rows stay history and do not reopen or close the review.
+ */
+function hasOpenReview(program, url) {
+  const trail = program?.audit_trail
+  if (!Array.isArray(trail)) return false
+  const field = `watch.${url}`
+  for (let i = trail.length - 1; i >= 0; i--) {
+    const row = trail[i]
+    if (!row || row.field !== field) continue
+    return typeof row.to === 'string' && row.to.includes('review required')
+  }
+  return false
+}
+
+/**
+ * `watch.changed` is true only while some watched URL is still `status: changed`.
+ * A latch left over after every URL has moved on is cleared, with one audit row.
+ * Does not delete history, touch `last_checked`, or set the flag for any other reason.
+ */
+function reconcileWatchChanged(programs, today) {
+  const cleared = []
+  if (!Array.isArray(programs)) return cleared
+  for (const p of programs) {
+    if (!p?.watch) continue
+    const urls = Array.isArray(p.watch.urls) ? p.watch.urls : []
+    const confirmed = urls.some(u => u?.status === 'changed')
+    const was = p.watch.changed === true
+    p.watch.changed = confirmed
+    if (was && !confirmed) {
+      if (!Array.isArray(p.audit_trail)) p.audit_trail = []
+      p.audit_trail.push({
+        date: today,
+        field: 'watch.changed',
+        from: 'true',
+        to: 'Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.',
+        source: 'source-probe-v2',
+      })
+      cleared.push(p.name)
+    }
+  }
+  return cleared
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -1176,14 +1222,18 @@ async function main() {
       watch.changed = true
       report.changed++
       report.changed_countries.push({ program_id: p.id, name: p.name, url: entry.url, scopes: changedScopes })
-      if (!Array.isArray(p.audit_trail)) p.audit_trail = []
-      p.audit_trail.push({
-        date: today,
-        field: `watch.${entry.url}`,
-        to: `Rule-bearing content confirmed changed on official source: ${changedScopes.join(' · ')} — review required`,
-        source: 'source-probe-v2',
-        hash: entry.scopes.whole?.last_hash?.slice(0, 16),
-      })
+      // An open review for this URL already tells a human to look. A later
+      // confirm of the same URL must not grow another identical audit row.
+      if (!hasOpenReview(p, entry.url)) {
+        if (!Array.isArray(p.audit_trail)) p.audit_trail = []
+        p.audit_trail.push({
+          date: today,
+          field: `watch.${entry.url}`,
+          to: `Rule-bearing content confirmed changed on official source: ${changedScopes.join(' · ')} — review required`,
+          source: 'source-probe-v2',
+          hash: entry.scopes.whole?.last_hash?.slice(0, 16),
+        })
+      }
     } else if (layoutChanged) {
       entry.status = 'ok'
       report.layout_changed++
@@ -1245,6 +1295,7 @@ async function main() {
   report.last_events = allEvents.slice(0, 8)
 
   if (!DRY_RUN) {
+    reconcileWatchChanged(data.programs, today)
     writeFileSync(countriesPath, JSON.stringify(data, null, 2) + '\n')
     mkdirSync(intelDir, { recursive: true })
     writeFileSync(manifestPath, JSON.stringify(report, null, 2) + '\n')
@@ -1636,6 +1687,53 @@ async function selfTest() {
     rep.layout_changed_urls[0].streak === 1 && rep.layout_changed_urls[1].streak === 2 &&
     rep.layout_changed_urls[2].streak === 1 && rep.layout_changed_repeat_count === 1, rep)
 
+  // --- watch latch: changed stays true only while a URL is still changed ---
+  const latched = {
+    name: 'Latchedland',
+    watch: { changed: true, urls: [{ url: 'https://a.example', status: 'ok' }, { url: 'https://b.example', status: 'ok' }] },
+    audit_trail: [{ date: '2026-01-01', field: 'watch.https://a.example', to: 'review required', source: 'source-probe-v2' }],
+  }
+  const latchedBefore = latched.audit_trail.length
+  const clearedNames = reconcileWatchChanged([latched], '2026-11-07')
+  const clearRow = latched.audit_trail.at(-1)
+  check('a latched watch with every URL ok is cleared and gains exactly one audit row',
+    latched.watch.changed === false && clearedNames.length === 1 && clearedNames[0] === 'Latchedland' &&
+    latched.audit_trail.length === latchedBefore + 1 &&
+    clearRow.field === 'watch.changed' && clearRow.from === 'true' && clearRow.date === '2026-11-07' &&
+    clearRow.to.includes('Latch cleared') && latched.audit_trail[0].field === 'watch.https://a.example',
+    { changed: latched.watch.changed, clearedNames, trail: latched.audit_trail })
+
+  const still = {
+    name: 'Stillland',
+    watch: { changed: true, urls: [{ url: 'https://a.example', status: 'ok' }, { url: 'https://c.example', status: 'changed' }] },
+    audit_trail: [{ date: '2026-01-01', field: 'note', to: 'x' }],
+  }
+  const stillBefore = still.audit_trail.length
+  const stillCleared = reconcileWatchChanged([still], '2026-11-07')
+  check('a watch with one URL still changed stays latched and gains no clear-audit row',
+    still.watch.changed === true && stillCleared.length === 0 && still.audit_trail.length === stillBefore, still)
+
+  const openProg = {
+    audit_trail: [
+      { field: 'watch.https://old.example', to: 'something else' },
+      { field: 'watch.https://it.example', to: 'Rule-bearing content confirmed changed — review required' },
+      { field: 'watch.https://other.example', to: 'unrelated note' },
+    ],
+  }
+  check('hasOpenReview is true when the latest matching field says review required, and false for a different url',
+    hasOpenReview(openProg, 'https://it.example') === true &&
+    hasOpenReview(openProg, 'https://other.example') === false &&
+    hasOpenReview(openProg, 'https://missing.example') === false)
+
+  const closedProg = {
+    audit_trail: [
+      { field: 'watch.https://it.example', to: 'Rule-bearing content confirmed changed — review required' },
+      { field: 'watch.https://it.example', to: 'Reviewed and accepted' },
+    ],
+  }
+  check('hasOpenReview is false when a later entry for the same field does not include review required',
+    hasOpenReview(closedProg, 'https://it.example') === false)
+
   // --- end-to-end: a live fixture that renders to nothing -------------------
   try {
     const httpMod = await import('node:http')
@@ -1732,6 +1830,15 @@ async function selfTest() {
 if (process.argv.includes('--self-test')) {
   const failed = await selfTest()
   process.exit(failed === 0 ? 0 : 1)
+}
+
+// Clear stuck `watch.changed` latches from countries.json. No network.
+if (process.argv.includes('--reconcile-latch')) {
+  const data = JSON.parse(readFileSync(countriesPath, 'utf8'))
+  const cleared = reconcileWatchChanged(data.programs, new Date().toISOString().slice(0, 10))
+  writeFileSync(countriesPath, JSON.stringify(data, null, 2) + '\n')
+  for (const name of cleared) console.log(name)
+  process.exit(0)
 }
 
 main().catch(err => { console.error(err); process.exit(1) })
