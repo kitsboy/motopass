@@ -125,7 +125,7 @@ research change → canonical-slice hash drifts
   → intel.json proof.in_sync: true
 ```
 
-**Rate limiting:** paced ~2s between stamps, capped ~15 per run. If the API is
+**Rate limiting:** paced ~2s between stamps (2.5s on the daily job), capped at 21 per run (the catalog size). A 429 still defers the rest. If the API is
 down or rate-limited, remaining re-stamps are deferred to the next daily run —
 **incremental self-heal by design**.
 
@@ -294,7 +294,7 @@ npm run intel:fetch -- --country="El Salvador"
 | `PROBE_TIMEOUT_MS` | probe | `10000` | Timeout for URL probes |
 | `PROBE_CONCURRENCY` | probe | `5` | Parallel URL probes |
 | `STAMP_DELAY_MS` | stamp | `2000` | Pace between Satohash stamps |
-| `MAX_STAMPS_PER_RUN` | stamp | `15` | Cap per daily run |
+| `MAX_STAMPS_PER_RUN` | stamp | `21` | One catalog pass; a 429 still defers the rest |
 
 ### Key files
 

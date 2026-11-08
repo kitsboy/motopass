@@ -71,8 +71,9 @@ shared with `stamp-ots.mjs`) to its stored `content_hash`. On drift:
 3. `audit_trail` entry appended with the new hash — the change is on-chain.
 
 API down or rate-limited? Non-fatal — partial updates commit, remaining
-re-stamps retry next run (paced 2 s, capped 15/run — the Satohash API throttles
-bursts, so drift converges incrementally over days). `proof.in_sync` in
+re-stamps retry next run (paced 2.5 s on the daily job, capped at 21 — the
+catalog size — the Satohash API throttles bursts, so a 429 still defers the
+rest). `proof.in_sync` in
 `intel.json` reports the honest per-program state until healed.
 
 ## Source watchdog (rule-change detection)
@@ -81,6 +82,17 @@ bursts, so drift converges incrementally over days). `proof.in_sync` in
 16 KB hash window). First probe records a baseline. A later differing hash →
 `status: 'changed'` + an audit entry (`source: source-probe`) — a **detection
 fact**. Humans then review and update the corpus; the next re-stamp anchors it.
+
+If Playwright loads but its Chromium binary is missing, the probe installs it
+(`npx playwright install chromium`, user cache, no `--with-deps`) and retries.
+A missing module or a failed install is a tooling failure: the URL is not
+marked unreachable. On the THOR checkout, run `npm run probe:browser` once if
+the morning cron has not installed the binary yet. GitHub Actions still
+installs Chromium with system deps before the daily probe.
+
+After the stamp, the daily job runs `npm run trust:envelopes` and
+`npm run trust:check`, then commits `public/countries/*.json` and
+`public/trust-state.json` with the research file and `public/data/intel.json`.
 
 ## Proof coverage fix (2026-08-20)
 
@@ -114,4 +126,4 @@ format — the API-issued `stamp_id` is now the authoritative anchor.
 | `PROBE_TIMEOUT_MS` | probe | default 10000 |
 | `PROBE_CONCURRENCY` | probe | default 5 |
 | `STAMP_DELAY_MS` | stamp | default 2000 (rate-limit pacing) |
-| `MAX_STAMPS_PER_RUN` | stamp | default 15 (incremental self-heal) |
+| `MAX_STAMPS_PER_RUN` | stamp | default 21 (one full catalog pass; a 429 still defers the rest) |

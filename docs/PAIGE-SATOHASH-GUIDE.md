@@ -40,7 +40,7 @@ GET /api/stamps/:id
 
 **Rate limit:** bursts are throttled (HTTP 429 `Too many stamp requests`).
 Programmatic pipelines must pace (~2 s between stamps) and cap per run
-(`MAX_STAMPS_PER_RUN`, default 15). Anonymous stamps work.
+(`MAX_STAMPS_PER_RUN`, default 21, the catalog size). A 429 still defers the rest. Anonymous stamps work.
 
 ## 3. Headers
 

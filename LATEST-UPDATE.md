@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-08 by Grok — worst URL, open review, 8 Nov re-read
+# motopass — Last Updated 2026-11-08 by Grok — 21 proofs re-anchored
+
+All 21 Satohash proofs match the 8 Nov slice. Intel is 21 fresh, Satohash up, Uruguay stays the open review. Source badges show `8 Nov`. Source Monitor history is an older log (`2 Oct 2026`). Mobile region chips fade at the right edge. THOR's Chromium binary is not installed until the host runs `npm run probe:browser` or the next probe. Code commit: `9d3d06a`.
+
+## Previous update — 2026-11-08 by Grok — worst URL, open review, 8 Nov re-read
 
 Source Monitor chips follow the worst open URL: 1 changed, 15 healthy, 3 blocked, 2 unreachable. Uruguay's open review is `https://www.minterior.gub.uy`. All 21 research dates are 2026-11-08 from pages that actually loaded. Proofs read out of sync until the daily re-stamp. Commit: `2215860`.
 

@@ -1,8 +1,8 @@
 # MotoPass Updates Map
 
-**BUILD:** 2026.09.17-d6eb831 · **Last updated:** 2026.09.17
+**BUILD:** see `LATEST-UPDATE.md` · **Last updated:** 2026-11-08
 
-Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations.
+Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations. The glance table is the live catalog. The build history below it is the old log and still says 50 where that was true at the time.
 
 ---
 
@@ -10,22 +10,17 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | Area | Status | Notes |
 |------|--------|-------|
-| **Live site** | ✅ Shipped | https://motopass.giveabit.io |
-| **React app** | ✅ 2026.09.17-d6eb831 | Vite + React 18 + TS + Tailwind · 15 routes · 16 flagships |
-| **Country intel** | ✅ 24 fresh / 26 stale | 24/50 programs deepened & verified (5 batches, Aug 21–22) |
-| **Research pipeline** | 📋 Blueprinted | `docs/CLAUDE-RESEARCH-PIPELINE-PROMPT.md` — source-trust engine spec |
-| **Launch Engine** | ✅ 5/5 gates | Vault · Distressed · Apply · `launch-gates.json` |
-| **Nav** | ✅ Canonical | `navRoutes.ts` — 8 links, no Explore/Tools dupes |
-| **UI** | ✅ Sovereign Night | Glass cards · BTC textures · dark default |
-| **BTC Map** | ✅ v2 | `/btcmap` — Leaflet, density badges, Nostr saves, offline cache |
-| **E2E smoke** | ✅ Playwright | 19 tests — `npm run test:e2e` |
-| **Unit tests** | ✅ Vitest | 125 tests |
-| **Finance Compare** | ✅ BUILD 66 | Eager route · glass matrix · immediate empty state |
-| **Design system** | ✅ Warm Sovereign Cinematic | Sovereign Night default + light toggle |
-| **Programs data** | ✅ 50 / 50 deep | `research/countries.json` |
-| **BTC Map cache** | ✅ 50 snapshots | `public/data/btcmap/` |
-| **CI** | ✅ Green | GitHub Actions + bundle budget |
-| **Handoff** | ✅ Current | `docs/KIMI-HANDOFF.md` |
+| **Live site** | ✅ Shipped | https://motopass.giveabit.io · Cloudflare Pages on push to `main` |
+| **React app** | ✅ Vite + React 18 | Curated catalog is 21 programs. Applications stay closed. |
+| **Country intel** | ✅ 21 fresh | `last_checked` 2026-11-08 from pages that loaded. Satohash proofs re-anchored the same day. Uruguay remains the open rule review (`https://www.minterior.gub.uy`). |
+| **Source monitor** | ✅ 110 URLs | Worst open URL wins. Chips follow the manifest. History is an older log, not today's probe. |
+| **Research pipeline** | ✅ Daily job | Probe, stamp (cap 21; a 429 still defers), intel write, trust envelopes. `npm run probe:browser` installs Chromium on a host that has the module but not the binary. |
+| **Launch Engine** | ✅ Gates | Applications stay closed. |
+| **UI** | ✅ Sovereign Night | Program cards keep region and badges on full-width rows. Mobile region chips fade at the right edge. |
+| **BTC Map** | ✅ 21 | Density and snapshots match the curated catalog. |
+| **Unit tests** | ✅ Vitest | `npm test` |
+| **Programs data** | ✅ 21 | `research/countries.json` |
+| **Handoff** | ✅ Current | `docs/KIMI-HANDOFF.md` (newest section on top) |
 
 ---
 

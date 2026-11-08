@@ -1,3 +1,30 @@
+## Session — 2026-11-08 · Proofs re-anchored, probe day, history log (Grok)
+
+**Done:**
+- All 21 Satohash proofs re-stamped against the 8 Nov canonical slice. `proof.in_sync` is true for every program. Intel `generated_at` `2026-11-08T19:36:22.921Z`: 21 fresh / 0 watch / 0 stale, Satohash API up `5.0.0-ELITE`. Trust envelopes regenerated `2026-11-08T19:36:23.111Z`, `trust:check` passed. `validate:stamps` is 21/21.
+- The API returned HTTP 429 after about 5 stamps. This session waited ~90s and continued. Five passes covered the rest. São Tomé and Príncipe was the last. Do not lower the delay to push through a 429. The daily job still stops at the first 429 (`MAX_STAMPS_PER_RUN` is 21, which is the catalog size, not a guarantee the API will accept 21 in one burst).
+- Research dates stayed `2026-11-08`. No finance or dollar field changed. Each program gained one `audit_trail` row (`field: proof`, `source: satohash-api`). Uruguay `watch.changed` is still true, open URL `https://www.minterior.gub.uy`. Italy's `https://www.esteri.it/` latch stays clear.
+- Source badges show the UTC probe day (`8 Nov`), not a relative age. The tooltip still has the age and any coverage gap. Source Monitor's side rail is headed **History**, with the line "Older log. These rows are not the open review and they are not today's probe." Rows show `2 Oct 2026`. The October events were not deleted. Open reviews stay first: Uruguay only.
+- Daily workflow now runs `trust:envelopes` and `trust:check` after the stamp and commits `public/countries/*.json` and `public/trust-state.json` with the research file and intel.
+- If Playwright loads and the Chromium binary is missing, `scripts/probe-sources.mjs` runs `npx playwright install chromium` (user cache, no `--with-deps`) and retries. A missing module or a failed install stays a tooling failure and does not mark the URL unreachable. `npm run probe:browser` is that install. **THOR's Chromium binary was not installed in this session.** Kimi can run `npm run probe:browser` from the motopass checkout. Do not SSH from M3. GitHub Actions still installs Chromium with system deps before the daily probe.
+- Presentation polish this push: under 1024px the Programs region chips fade at the right edge so "South America" is not a hard cut. Desktop rail is unchanged (no mask). Checked at 390px (cards 358px, fade on, South America overflows the scroller, no page scroll) and 1280px card view (cards 323px, regions not clipped, no page scroll). Zero Resync badges. Uruguay shows Watch. Long names are not clipped.
+- Tests: `npm test` 334 passed, 2 skipped. `npm run intel:probe:selftest` passed, including the missing-Playwright case and the live browser fixtures. The installer itself was not executed here; this machine already has Chromium.
+
+**Decisions:**
+- Did not run the 110-URL probe, `intel:fetch`, or `update-freshness.mjs` as the writer. Did not forge `last_checked`. Did not open applications. Did not move BackToTop.
+- `https://cbiu.gov.dm` and `https://www.cnmv.es` are still `status: ok` on the 12:24Z probe. The same-day manual re-read could not use them (connection error, HTTP 500). They were not retired in this commit.
+
+**Still open (do not start unless Cam asks):**
+- Daily stamp should wait and resume inside one job after a 429, or a full drift leaves Resync badges until the next morning.
+- Intel's fresh window is 14 days. The catalog returns to watch around 22 Nov 2026 without another real page re-read.
+- Healthy source-monitor cards still take their subtitle age from the first URL.
+- The mobile "Reading the badges" coach truncates mid-sentence. That is the next small presentation pass.
+- Re-check `cbiu.gov.dm` and `cnmv.es` before treating the green probe status as a successful human read.
+
+**Git State:**
+- Code SHA: `9d3d06a6669fae15c0abde7ed1274add490027f0`
+- Docs commit follows, then `git push origin main`. Deploy is the Cloudflare Pages git integration.
+
 ## Session — 2026-11-08 · Worst-URL monitor, open review, 8 Nov re-read (Grok)
 
 **Done:**
