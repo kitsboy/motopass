@@ -7,7 +7,7 @@
     "region": "Central America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T18:53:58.852Z",
+  "generated_at": "2026-11-08T19:36:23.100Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -22,11 +22,11 @@
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T20:37:43.149Z",
-    "hash": "547b1d2e2bd9e85180f2dd0c4c5b79f3c9463cd38e9a43aa4d3286fdfc4ed354",
-    "proof_url": "https://satohash.io/verify/547b1d2e2bd9e85180f2dd0c4c5b79f3c9463cd38e9a43aa4d3286fdfc4ed354",
+    "stamped_at": "2026-11-08T19:28:15.690Z",
+    "hash": "90732627f00bb71170c6a91b91361f300cc99c6151492c7df42714d8be7e62a1",
+    "proof_url": "https://satohash.io/verify/90732627f00bb71170c6a91b91361f300cc99c6151492c7df42714d8be7e62a1",
     "ots_path": "/proofs/el-salvador-547b1d2e2bd9.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -176,13 +176,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-09-02",
-      "field": "watch.https://www.presidencia.gob.sv",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "279fb4c4cd5d2d697abb746e242115ab77f452b7d01976c40b3c175a9ce20e50"
-    },
-    {
       "date": "2026-09-10",
       "field": "pathways.freedom_visa",
       "from": "(absent)",
@@ -230,6 +223,13 @@
       "from": "2026-09-29",
       "to": "2026-11-08",
       "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "proof",
+      "from": "547b1d2e2bd9e851",
+      "to": "re-anchored 90732627f00bb711 (stamp 56a090d0-75e)",
+      "hash": "90732627f00bb71170c6a91b91361f300cc99c6151492c7df42714d8be7e62a1"
     }
   ],
   "sovereignty": {

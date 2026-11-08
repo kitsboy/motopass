@@ -50,18 +50,20 @@ jobs:
           PROBE_CONCURRENCY: '8'
 
       # 5) Re-anchor changed programs via Satohash API (self-heal to the chain)
-      #    Paced + capped: ~12 stamps/run, rest converges over subsequent days.
+      #    One run covers the 21-program catalog. A 429 still defers the rest.
       - name: Satohash re-stamp loop
         run: npm run intel:stamp
         env:
           SATOHASH_API_URL: ${{ vars.SATOHASH_API_URL }}
           SATOHASH_API_KEY: ${{ secrets.SATOHASH_API_KEY }}
           STAMP_DELAY_MS: '2500'
-          MAX_STAMPS_PER_RUN: '12'
+          MAX_STAMPS_PER_RUN: '21'
 
-      # 6) Rewrite manifest with probe/stamp state + validate the gate
+      # 6) Rewrite manifest with probe/stamp state + the trust pages that read it
       - run: npm run intel:write
       - run: npm run intel:check
+      - run: npm run trust:envelopes
+      - run: npm run trust:check
       - run: npm run validate:data
       - run: npm run validate:stamps
 
@@ -70,7 +72,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore(intel): daily freshness sweep + source probe + satohash re-stamp'
-          file_pattern: 'research/countries.json public/data/intel.json public/proofs/*'
+          file_pattern: 'research/countries.json public/data/intel.json public/proofs/* public/countries/*.json public/trust-state.json'
           skip_fetch: true
 
       # 8) Summary for the morning review

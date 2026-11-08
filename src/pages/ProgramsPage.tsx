@@ -623,7 +623,7 @@ export function ProgramsPage() {
               <span className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary lg:block lg:mb-3">
                 {t('programs.region')}
               </span>
-              <div className="mt-2 flex gap-2 overflow-x-auto pb-2 lg:mt-0 lg:flex-col lg:overflow-visible lg:pb-0">
+              <div className="programs-region-scroll mt-2 flex gap-2 overflow-x-auto pb-2 lg:mt-0 lg:flex-col lg:overflow-visible lg:pb-0">
                 {regions.map((r) => (
                   <Chip
                     key={r}

@@ -7,7 +7,7 @@
     "region": "Oceania",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T18:53:58.861Z",
+  "generated_at": "2026-11-08T19:36:23.110Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -22,11 +22,11 @@
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-10-01T12:01:08.406Z",
-    "hash": "a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938",
-    "proof_url": "https://satohash.io/verify/a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938",
+    "stamped_at": "2026-11-08T19:34:16.357Z",
+    "hash": "b3902b9313aac4ec9f2834c25726d5442af7266f0a84391b29ec6bfb8c68871a",
+    "proof_url": "https://satohash.io/verify/b3902b9313aac4ec9f2834c25726d5442af7266f0a84391b29ec6bfb8c68871a",
     "ots_path": "/proofs/vanuatu-8973b5e31268.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -170,13 +170,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-08-31",
-      "field": "watch.https://immigration.gov.vu",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
-    },
-    {
       "date": "2026-09-09",
       "field": "watch.https://immigration.gov.vu",
       "from": null,
@@ -224,6 +217,13 @@
       "from": "2026-09-29",
       "to": "2026-11-08",
       "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "proof",
+      "from": "a65002fbf8c5059d",
+      "to": "re-anchored b3902b9313aac4ec (stamp 28a18416-948)",
+      "hash": "b3902b9313aac4ec9f2834c25726d5442af7266f0a84391b29ec6bfb8c68871a"
     }
   ],
   "sovereignty": {

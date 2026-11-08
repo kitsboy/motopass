@@ -105,7 +105,7 @@ test.describe('/sources — Source Monitor', () => {
     await expect(grid.getByText('blocked').first()).toBeVisible()
 
     // Feed rail: the rule event shows the diff, the coverage event shows status.
-    const rail = page.getByText('Recent activity').locator('..')
+    const rail = page.getByText('History').locator('..')
     await expect(rail.getByText('Paraguay')).toBeVisible()
     await expect(rail.getByText(/rule change in/)).toBeVisible()
     await expect(rail.getByText(/\+new rule text/)).toBeVisible()

@@ -104,7 +104,7 @@ export function countrySourceHealth(c: SourceCountry): CountryHealth {
   return { level, probed, okCount, total: c.urls.length, changed, coverageGapDays: c.coverage_gap_days }
 }
 
-/** Human "3h ago" style age from an ISO timestamp. */
+/** Human "3h ago" style age from an ISO timestamp. Tooltip only — the badge shows the calendar day. */
 export function ageLabel(iso?: string): string | null {
   if (!iso) return null
   const t = Date.parse(iso)
@@ -114,6 +114,20 @@ export function ageLabel(iso?: string): string | null {
   const hours = Math.round(mins / 60)
   if (hours < 48) return `${hours}h`
   return `${Math.round(hours / 24)}d`
+}
+
+const PROBE_DAY = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
+
+/** UTC calendar day of a probe, e.g. "8 Nov". Not a research re-check. */
+export function probeDayLabel(iso?: string): string | null {
+  if (!iso) return null
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return null
+  const parts = PROBE_DAY.formatToParts(d)
+  const day = parts.find((part) => part.type === 'day')?.value
+  const month = parts.find((part) => part.type === 'month')?.value?.replace(/[,.]/g, '').trim()
+  if (!day || !month) return null
+  return `${day} ${month}`
 }
 
 /** Reactive manifest accessor — one fetch shared across the app. */

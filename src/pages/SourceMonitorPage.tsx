@@ -15,6 +15,16 @@ const LABELS: Record<SourceTone, string> = { changed: 'changed', ok: 'healthy', 
 function host(u: string) {
   try { return new URL(u).hostname.replace(/^www\./, '') } catch { return u }
 }
+const HISTORY_DAY = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
+
+/** Calendar day for the history log, e.g. "2 Oct 2026". */
+export function historyDateLabel(iso: string | null | undefined): string {
+  if (!iso) return ''
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return ''
+  return HISTORY_DAY.format(d).replace(/,/g, '')
+}
+
 function ago(iso: string | null) {
   if (!iso) return '—'
   const s = (Date.now() - new Date(iso).getTime()) / 3600000
@@ -192,13 +202,14 @@ export function SourceMonitorPage() {
                 </div>
               </div>
             ))}
-            <div style={{ ...s.panelH, marginTop: 16 }}>Recent activity</div>
-            {feed.length === 0 ? <div style={s.muted}>No confirmed rule changes yet — the watchdog is watching.</div> : feed.map((e, i) => (
-              <div key={i} style={s.row}>
+            <div style={{ ...s.panelH, marginTop: 16 }}>History</div>
+            <div style={{ ...s.muted, marginTop: -6, marginBottom: 8 }}>Older log. These rows are not the open review and they are not today's probe.</div>
+            {feed.length === 0 ? <div style={s.muted}>No earlier log rows yet.</div> : feed.map((e, i) => (
+              <div key={i} style={{ ...s.row, opacity: 0.72 }}>
                 <span style={{ ...s.dot, background: e.kind === 'rule' ? COLORS.unreachable : COLORS.blocked }}></span>
                 <div><b>{e.country}</b> · <span style={s.muted}>{e.kind === 'rule' ? `rule change in ${(e.scopes || []).join(' · ') || 'rules'}` : e.status}</span>
                   {e.kind === 'rule' && (e.before || e.after) ? <div style={{ ...s.muted, marginTop: 4, background: '#14070c', padding: 6, borderRadius: 8, fontSize: 11 }}><span style={{ color: COLORS.unreachable }}>−{(e.before || '').slice(0, 90)}</span><br /><span style={{ color: COLORS.ok }}>+{(e.after || '').slice(0, 90)}</span></div> : null}</div>
-                <div style={{ ...s.muted, marginLeft: 'auto', flexShrink: 0 }}>{ago(e.ts)}</div>
+                <div style={{ ...s.muted, marginLeft: 'auto', flexShrink: 0 }}>{historyDateLabel(e.ts)}</div>
               </div>
             ))}
           </div>

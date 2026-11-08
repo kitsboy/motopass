@@ -7,7 +7,7 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T18:53:58.861Z",
+  "generated_at": "2026-11-08T19:36:23.110Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -22,11 +22,11 @@
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T20:42:11.034Z",
-    "hash": "39d27d5284d82abd3ea3f985590bf2316c6eac17c497f54492a90bdf8fec66da",
-    "proof_url": "https://satohash.io/verify/39d27d5284d82abd3ea3f985590bf2316c6eac17c497f54492a90bdf8fec66da",
+    "stamped_at": "2026-11-08T19:32:29.862Z",
+    "hash": "c1f60dab96cf37c674a30d8c55514692420451a020dafc81f5ce1a2407f1e0aa",
+    "proof_url": "https://satohash.io/verify/c1f60dab96cf37c674a30d8c55514692420451a020dafc81f5ce1a2407f1e0aa",
     "ots_path": "/proofs/ireland-39d27d5284d8.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -182,13 +182,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-10-29",
-      "field": "watch.https://www.revenue.ie/",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "7ddb94a2c061f4f8"
-    },
-    {
       "date": "2026-10-31",
       "field": "watch.https://enterprise.gov.ie",
       "from": null,
@@ -236,6 +229,13 @@
       "from": "2026-09-29",
       "to": "2026-11-08",
       "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "proof",
+      "from": "39d27d5284d82abd",
+      "to": "re-anchored c1f60dab96cf37c6 (stamp 4856ac92-d7f)",
+      "hash": "c1f60dab96cf37c674a30d8c55514692420451a020dafc81f5ce1a2407f1e0aa"
     }
   ],
   "sovereignty": {

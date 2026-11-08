@@ -5,6 +5,7 @@
 import { describe, expect, it } from 'vitest'
 import { createElement as h } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { probeDayLabel } from '../../hooks/useSourceMonitor'
 import { SourcesProbedNote } from './SourcesProbedNote'
 import { ProgramsTable } from './ProgramsTable'
 import { toCinematicProgram } from '../../lib/programAdapter'
@@ -67,6 +68,11 @@ describe('SourcesProbedNote', () => {
     expect(html).toContain('data-testid="sources-probed"')
     expect(html).toContain('Sources probed 8 Nov')
     expect(html).not.toContain('Sep 2026')
+  })
+
+  it('uses the same calendar day on the source badge', () => {
+    expect(probeDayLabel(PROBE_ISO)).toBe('8 Nov')
+    expect(probeDayLabel(undefined)).toBeNull()
   })
 
   it('renders nothing when the probe timestamp is missing', () => {

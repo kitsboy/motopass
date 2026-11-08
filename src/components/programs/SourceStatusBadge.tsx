@@ -1,6 +1,6 @@
 import { ShieldCheck, ShieldAlert, Radar } from 'lucide-react'
 import { useI18n } from '../../i18n/I18nContext'
-import { useSourceMonitor, ageLabel, type SourceLevel } from '../../hooks/useSourceMonitor'
+import { useSourceMonitor, ageLabel, probeDayLabel, type SourceLevel } from '../../hooks/useSourceMonitor'
 
 /**
  * SourceStatusBadge
@@ -30,6 +30,7 @@ export function SourceStatusBadge({ programName }: { programName: string }) {
   const health = byCountry.get(programName)
   if (!health) return null
 
+  const day = probeDayLabel(health.probed)
   const age = ageLabel(health.probed)
   const label =
     health.level === 'changed'
@@ -40,7 +41,7 @@ export function SourceStatusBadge({ programName }: { programName: string }) {
 
   const Icon = health.level === 'changed' ? ShieldAlert : health.level === 'walled' ? Radar : ShieldCheck
   const title = `${t('source.tooltip')} · ${health.okCount}/${health.total} ${t('source.readable')}${
-    age ? ` · ${t('source.checked')} ${age}` : ''
+    day ? ` · ${t('source.checked')} ${day}${age ? ` (${age})` : ''}` : ''
   }${health.coverageGapDays ? ` · ${health.coverageGapDays}d ${t('source.gap')}` : ''}`
 
   return (
@@ -53,7 +54,7 @@ export function SourceStatusBadge({ programName }: { programName: string }) {
       <Icon size={9} aria-hidden="true" />
       <span>
         {label}
-        {age ? ` · ${age}` : ''}
+        {day ? ` · ${day}` : ''}
       </span>
     </span>
   )

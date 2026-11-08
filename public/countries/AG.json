@@ -7,7 +7,7 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T18:53:58.860Z",
+  "generated_at": "2026-11-08T19:36:23.109Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -22,11 +22,11 @@
   "proof": {
     "status": "confirmed",
     "block": 969313,
-    "stamped_at": "2026-09-30T20:35:45.174Z",
-    "hash": "b537457d6fe6c9d28f57262ebc42ec285f2be7ff317f576c79d844bb73476e08",
-    "proof_url": "https://satohash.io/verify/b537457d6fe6c9d28f57262ebc42ec285f2be7ff317f576c79d844bb73476e08",
+    "stamped_at": "2026-11-08T19:28:28.353Z",
+    "hash": "dc61bf2381915a48c0a32ecfbea1bb1f62a8d8506aba60583d0b4393a81fffa7",
+    "proof_url": "https://satohash.io/verify/dc61bf2381915a48c0a32ecfbea1bb1f62a8d8506aba60583d0b4393a81fffa7",
     "ots_path": "/proofs/antigua-and-barbuda-b537457d6fe6.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -166,13 +166,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-09-02",
-      "field": "watch.https://www.cip.gov.ag",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "aa4c45f7a554951b0ed8cc35001171fe770cf3a8d05090446997abfe4381d60e"
-    },
-    {
       "date": "2026-09-10",
       "field": "pathways.ndf_donation.notes",
       "from": "National Development Fund: $230,000 for a family of up to 4; single-applicant tier may be lower (~$100k) — verify current tier pricing with a licensed agent.",
@@ -220,6 +213,13 @@
       "from": "2026-09-29",
       "to": "2026-11-08",
       "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "proof",
+      "from": "b537457d6fe6c9d2",
+      "to": "re-anchored dc61bf2381915a48 (stamp 82119eda-a63)",
+      "hash": "dc61bf2381915a48c0a32ecfbea1bb1f62a8d8506aba60583d0b4393a81fffa7"
     }
   ],
   "sovereignty": {

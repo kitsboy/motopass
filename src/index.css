@@ -4234,6 +4234,13 @@ body,
   }
 }
 
+@media (max-width: 1023px) {
+  .programs-region-scroll {
+    -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 2.75rem), transparent);
+    mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 2.75rem), transparent);
+  }
+}
+
 .back-to-top {
   @apply fixed z-[90] inline-flex items-center justify-center h-11 w-11 rounded-2xl border border-mp/80 font-chrome text-ink-secondary shadow-card-hover transition-colors duration-150;
   right: max(1rem, env(safe-area-inset-right));

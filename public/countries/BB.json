@@ -7,7 +7,7 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T18:53:58.860Z",
+  "generated_at": "2026-11-08T19:36:23.109Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -22,11 +22,11 @@
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-10-01T12:01:04.689Z",
-    "hash": "495453947a454b028af643ec9792c6c94c21674ddfcc9f0c72733970e478d3e0",
-    "proof_url": "https://satohash.io/verify/495453947a454b028af643ec9792c6c94c21674ddfcc9f0c72733970e478d3e0",
+    "stamped_at": "2026-11-08T19:32:18.101Z",
+    "hash": "64e834ed74a98fa1aa17928ae10e6a853e03d0c45542dd867e8a9f0e4e31a664",
+    "proof_url": "https://satohash.io/verify/64e834ed74a98fa1aa17928ae10e6a853e03d0c45542dd867e8a9f0e4e31a664",
     "ots_path": "/proofs/barbados-495453947a45.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -171,13 +171,6 @@
   "audit_trail": [
     {
       "date": "2026-09-14",
-      "field": "watch.https://www.immigration.gov.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
-    },
-    {
-      "date": "2026-09-14",
       "field": "watch.https://barbadoswelcomestamp.bb",
       "from": null,
       "to": "Official source content changed — manual rule review required",
@@ -224,6 +217,13 @@
       "from": "2026-09-29",
       "to": "2026-11-08",
       "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "proof",
+      "from": "495453947a454b02",
+      "to": "re-anchored 64e834ed74a98fa1 (stamp 44010535-120)",
+      "hash": "64e834ed74a98fa1aa17928ae10e6a853e03d0c45542dd867e8a9f0e4e31a664"
     }
   ],
   "sovereignty": {

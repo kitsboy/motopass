@@ -5,7 +5,7 @@
 import { createElement as h } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import { SourceCountryCard, countryTone, openReviewRows } from './SourceMonitorPage'
+import { SourceCountryCard, countryTone, historyDateLabel, openReviewRows } from './SourceMonitorPage'
 
 function country(name: string, changed: boolean, statuses: string[]) {
   return {
@@ -81,5 +81,12 @@ describe('SourceMonitorPage country tone', () => {
       { name: 'Portugal', changed: false, urls: [{ url: 'https://imigrante.sef.pt', status: 'ok' }] },
     ])
     expect(rows).toEqual([{ name: 'Uruguay', url: 'https://www.minterior.gub.uy' }])
+  })
+})
+
+describe('history log dates', () => {
+  it('shows a calendar day so an old row does not read as recent', () => {
+    expect(historyDateLabel('2026-10-02T18:55:58.530Z')).toBe('2 Oct 2026')
+    expect(historyDateLabel(null)).toBe('')
   })
 })

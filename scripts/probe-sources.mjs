@@ -106,7 +106,7 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
 import { applyProbeFailure } from './lib/probe-failure.mjs'
-import { playwrightRequire } from './lib/playwright-resolve.mjs'
+import { ensureChromiumExecutable, playwrightRequire } from './lib/playwright-resolve.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
@@ -603,7 +603,7 @@ async function launchBrowser() {
     repoRoot: root,
     moduleDir: process.env.PLAYWRIGHT_MODULE_DIR || null,
   })('playwright')
-  const executable = process.env.PLAYWRIGHT_EXECUTABLE || pw.chromium.executablePath()
+  const executable = ensureChromiumExecutable(pw, { repoRoot: root })
   const browser = await pw.chromium.launch({
     executablePath: executable,
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-blink-features=AutomationControlled'],

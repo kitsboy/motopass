@@ -7,7 +7,7 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T18:53:58.859Z",
+  "generated_at": "2026-11-08T19:36:23.108Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -22,11 +22,11 @@
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T20:37:45.750Z",
-    "hash": "ae7e6b71f116ec64b7ab90cf099c88b5393d8a9a24d236d05d4a8a0f36cec8bc",
-    "proof_url": "https://satohash.io/verify/ae7e6b71f116ec64b7ab90cf099c88b5393d8a9a24d236d05d4a8a0f36cec8bc",
+    "stamped_at": "2026-11-08T19:28:19.312Z",
+    "hash": "02de3da00ca582dfca54f0085cc7d8da72c6a658506e1508b6e3de083cb8cf8b",
+    "proof_url": "https://satohash.io/verify/02de3da00ca582dfca54f0085cc7d8da72c6a658506e1508b6e3de083cb8cf8b",
     "ots_path": "/proofs/portugal-ae7e6b71f116.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -173,13 +173,6 @@
   "audit_trail": [
     {
       "date": "2026-10-25",
-      "field": "watch.https://www.portugal.gov.pt",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "82577ad977734af6"
-    },
-    {
-      "date": "2026-10-25",
       "field": "watch.https://www.portugal.gov.pt/",
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
@@ -226,6 +219,13 @@
       "from": "2026-09-29",
       "to": "2026-11-08",
       "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "proof",
+      "from": "ae7e6b71f116ec64",
+      "to": "re-anchored 02de3da00ca582df (stamp ff7cfe76-dd5)",
+      "hash": "02de3da00ca582dfca54f0085cc7d8da72c6a658506e1508b6e3de083cb8cf8b"
     }
   ],
   "sovereignty": {

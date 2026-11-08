@@ -30,7 +30,7 @@ const CLIENT = 'motopass-intel'
 // Respect the Satohash API rate limit: pace stamps and cap each run. Remaining
 // drift heals on the next daily run — incremental self-heal by design.
 const STAMP_DELAY_MS = Number(process.env.STAMP_DELAY_MS ?? 2000)
-const MAX_STAMPS_PER_RUN = Number(process.env.MAX_STAMPS_PER_RUN ?? 15)
+const MAX_STAMPS_PER_RUN = Number(process.env.MAX_STAMPS_PER_RUN ?? 21)
 const sleep = (ms) => new Promise(r => setTimeout(r, ms))
 const SHA64 = /^[a-f0-9]{64}$/i
 

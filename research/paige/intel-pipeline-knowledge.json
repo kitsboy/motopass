@@ -123,7 +123,7 @@
     "PROBE_TIMEOUT_MS": "default 10000 — timeout for official URL probes",
     "PROBE_CONCURRENCY": "default 5 — parallel URL probes",
     "STAMP_DELAY_MS": "default 2000 — pace between Satohash API stamps",
-    "MAX_STAMPS_PER_RUN": "default 15 — cap per daily run"
+    "MAX_STAMPS_PER_RUN": "default 21 — one catalog pass; a 429 still defers the rest"
   },
   "member_scripts": {
     "how_fresh": "MotoPass runs a daily research pipeline that fetches live data from Wikipedia, BTC Map, and CoinGecko for the current 21-program corpus. When something changes, the new data is verified and anchored to Bitcoin via Satohash.",

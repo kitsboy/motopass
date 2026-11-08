@@ -7,7 +7,7 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T18:53:58.860Z",
+  "generated_at": "2026-11-08T19:36:23.109Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
@@ -22,11 +22,11 @@
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-09-30T20:35:53.351Z",
-    "hash": "60018a33188a009b108496e8fd3fd5f957c2577408f3f44b6acc28c6fe5681db",
-    "proof_url": "https://satohash.io/verify/60018a33188a009b108496e8fd3fd5f957c2577408f3f44b6acc28c6fe5681db",
+    "stamped_at": "2026-11-08T19:30:31.130Z",
+    "hash": "ef070d57a298ad241fb577aa4a65ff9f048dc14776b741b2a50a17e803a44d2e",
+    "proof_url": "https://satohash.io/verify/ef070d57a298ad241fb577aa4a65ff9f048dc14776b741b2a50a17e803a44d2e",
     "ots_path": "/proofs/dominica-60018a33188a.ots",
-    "in_sync": false
+    "in_sync": true
   },
   "scorecard": {
     "axes": {
@@ -156,13 +156,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-09-14",
-      "field": "watch.https://cbiu.gov.dm",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec"
-    },
-    {
       "date": "2026-09-15",
       "field": "watch.https://cbiu.gov.dm",
       "from": null,
@@ -210,6 +203,13 @@
       "from": "2026-09-29",
       "to": "2026-11-08",
       "hash": null
+    },
+    {
+      "date": "2026-11-08",
+      "field": "proof",
+      "from": "60018a33188a009b",
+      "to": "re-anchored ef070d57a298ad24 (stamp 3245f82c-ef3)",
+      "hash": "ef070d57a298ad241fb577aa4a65ff9f048dc14776b741b2a50a17e803a44d2e"
     }
   ],
   "sovereignty": {
