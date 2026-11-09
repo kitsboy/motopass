@@ -4,6 +4,7 @@ import { ChevronRight, ShieldCheck } from 'lucide-react'
 import { useIntel } from '../../../hooks/useIntel'
 import { useProgramsContext } from '../../../context/ProgramsContext'
 import { useI18n } from '../../../i18n/I18nContext'
+import { CountryFlag } from '../../ui/CountryTitle'
 
 const FEATURED_COUNT = 5
 
@@ -53,9 +54,7 @@ export function MenuDiscover({ onClose }: { onClose: () => void }) {
                       i > 0 ? 'border-t border-white/[0.05]' : ''
                     }`}
                   >
-                    <span className="text-base leading-none" aria-hidden="true">
-                      {p.flag ?? '🌐'}
-                    </span>
+                    <CountryFlag name={p.name} emoji={p.flag} size="sm" />
                     <span className="min-w-0 flex-1">
                       <span className="block truncate text-[13px] text-white/90">{p.name}</span>
                       <span className="block truncate text-[10px] text-white/40">{p.region}</span>

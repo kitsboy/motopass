@@ -5,7 +5,7 @@ import { ProofBadge } from '../ui/ProofBadge';
 import { FreshnessBadge } from '../ui/FreshnessBadge';
 import { SourcesProbedNote } from './SourcesProbedNote';
 import { IntelStatusBadge } from '../intel/IntelStatusBadge';
-import { LazyFlagSprite } from '../pitch/LazyFlagSprite';
+import { CountryFlag } from '../ui/CountryTitle';
 import { BtcDualPrice } from '../BtcDualPrice';
 import type { ProgramsTableDensity } from '../../lib/portfolioStorage';
 import { useI18n } from '../../i18n/I18nContext';
@@ -146,10 +146,10 @@ export function ProgramsTable({
               )}
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4`}>
                 <div className="flex items-center gap-2.5">
-                  <LazyFlagSprite
-                    countryName={p.country}
-                    emojiFallback={p.flag ?? p.countryCode}
-                    className={compact ? 'h-5 w-5' : 'h-6 w-6'}
+                  <CountryFlag
+                    name={p.country}
+                    emoji={p.flag ?? p.countryCode}
+                    size={compact ? 'sm' : 'md'}
                   />
                   <span className={`font-display text-mp-ink ${compact ? 'text-xs' : 'text-sm'}`}>{p.country}</span>
                   {p.highlightBtcFriendly && (

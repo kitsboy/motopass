@@ -8,6 +8,7 @@ import { bestIndex } from './compareUtils'
 import { useI18n } from '../../i18n/I18nContext'
 import type { TranslationKey } from '../../i18n/translations'
 import { formatT } from '../../i18n/format'
+import { CountryFlag } from '../ui/CountryTitle'
 
 interface CompareMatrixProps {
   programs: Program[]
@@ -89,7 +90,7 @@ export function CompareMatrix({ programs, rows, onOpenProgram, toCinematic }: Co
                       className="fc-matrix__program-btn"
                       aria-label={formatT(t, 'compare.openProgram', { name: p.name })}
                     >
-                      <span className="fc-matrix__program-flag">{p.flag}</span>
+                      <CountryFlag name={p.name} emoji={p.flag} size="sm" className="fc-matrix__program-flag" />
                       <span className="fc-matrix__program-name">{p.name}</span>
                       <span className="fc-matrix__program-region">{p.region}</span>
                     </button>
@@ -169,7 +170,7 @@ export function CompareMatrix({ programs, rows, onOpenProgram, toCinematic }: Co
                   className="fc-scroll-matrix__head"
                   aria-label={formatT(t, 'compare.openProgram', { name: p.name })}
                 >
-                  <span className="fc-scroll-matrix__flag">{p.flag}</span>
+                  <CountryFlag name={p.name} emoji={p.flag} size="sm" className="fc-scroll-matrix__flag" />
                   <span className="fc-scroll-matrix__name">{p.name}</span>
                 </button>
                 {COMPARE_GROUPS.map(group => {

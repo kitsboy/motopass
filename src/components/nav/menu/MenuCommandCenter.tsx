@@ -8,6 +8,7 @@ import { useProgramsContext } from '../../../context/ProgramsContext'
 import { useI18n } from '../../../i18n/I18nContext'
 import { formatT } from '../../../i18n/format'
 import { formatUsdCompact } from '../../../lib/btcPrice'
+import { CountryFlag } from '../../ui/CountryTitle'
 
 const MAX_MATCHES = 6
 
@@ -124,9 +125,7 @@ export function MenuCommandCenter({ onClose }: { onClose: () => void }) {
                       onClick={() => goProgram(p.id)}
                       className="flex w-full items-center gap-2.5 px-3 py-2 text-left transition-colors hover:bg-white/[0.06] active:bg-white/[0.08]"
                     >
-                      <span className="text-base leading-none" aria-hidden="true">
-                        {p.flag ?? '🌐'}
-                      </span>
+                      <CountryFlag name={p.name} emoji={p.flag} size="sm" />
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-[13px] text-white/90">{p.name}</span>
                         <span className="block truncate text-[10px] text-white/40">{p.region}</span>

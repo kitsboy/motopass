@@ -2,6 +2,7 @@ import { Landmark, Scale, Newspaper } from 'lucide-react'
 import type { CountryTrustEnvelope } from '../../types/countryTrust'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
+import { visitorLink } from '../../lib/visitorLink'
 
 /**
  * SourceTierStrip — Official / Legal / Trusted Secondary badges.
@@ -58,17 +59,21 @@ export function SourceTierStrip({ sources }: { sources: CountryTrustEnvelope['so
         </span>
       ))}
 
-      {sources.official_urls.length > 0 && (
-        <a
-          href={sources.official_urls[0]}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 font-mono text-[10px] text-mp-ink-tertiary underline decoration-dotted underline-offset-2 hover:text-mp-btc-text"
-          title={t('trust.officialUrlTitle')}
-        >
-          {t('trust.officialSource')}
-        </a>
-      )}
+      {sources.official_urls.length > 0 && (() => {
+        const link = visitorLink(sources.official_urls[0], { liveMissed: t('veritas.liveMissed') })
+        return (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 font-mono text-[10px] text-mp-ink-tertiary underline decoration-dotted underline-offset-2 hover:text-mp-btc-text"
+            title={link.archived ? link.title : t('trust.officialUrlTitle')}
+          >
+            {t('trust.officialSource')}
+            {link.archived ? ` · ${t('veritas.mirror')}` : ''}
+          </a>
+        )
+      })()}
     </div>
   )
 }

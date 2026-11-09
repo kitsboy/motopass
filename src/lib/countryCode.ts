@@ -9,6 +9,7 @@ const ISO_BY_NAME: Record<string, string> = {
   Switzerland: 'CH',
   Singapore: 'SG',
   'United Arab Emirates': 'AE',
+  UAE: 'AE',
   Bolivia: 'BO',
   'UAE (Dubai / Abu Dhabi)': 'AE',
   Panama: 'PA',

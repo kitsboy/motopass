@@ -47,6 +47,8 @@ export const FLAG_SPRITE_OFFSETS: Record<string, { x: number; y: number }> = {
   'py': { x: 80, y: 120 },
   'sc': { x: 120, y: 120 },
   'sg': { x: 160, y: 120 },
+  // Extra row. Do not insert `st` into the first 50 tiles — that would move every later flag.
+  'st': { x: 0, y: 150 },
   'sv': { x: 200, y: 120 },
   'th': { x: 240, y: 120 },
   'tr': { x: 280, y: 120 },
@@ -55,4 +57,4 @@ export const FLAG_SPRITE_OFFSETS: Record<string, { x: number; y: number }> = {
 }
 
 // Tile dims in the sprite
-export const FLAG_SPRITE_TILE = { w: 40, h: 30, cols: 10, rows: 5 }
+export const FLAG_SPRITE_TILE = { w: 40, h: 30, cols: 10, rows: 6 }

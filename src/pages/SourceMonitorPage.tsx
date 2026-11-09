@@ -1,4 +1,5 @@
 import { useEffect, useState, type CSSProperties } from 'react'
+import { CountryTitle } from '../components/ui/CountryTitle'
 
 /**
  * MotoPass · Source Monitor
@@ -105,7 +106,11 @@ export function SourceCountryCard({ country }: { country: Country }) {
   return (
     <div style={{ ...s.card, borderColor: b === 'ok' ? '#2a1220' : COLORS[b] }}>
       <div style={{ float: 'right', width: 11, height: 11, borderRadius: 11, background: COLORS[b] }}></div>
-      <div style={{ fontWeight: 700, fontSize: 14.5 }}>{country.name}<span style={{ ...s.muted, marginLeft: 6, fontSize: 10 }}>{country.program_id}</span>{country.changed ? <span style={{ background: COLORS.unreachable, color: '#fff', fontSize: 9.5, fontWeight: 800, padding: '2px 7px', borderRadius: 999, marginLeft: 8 }}>CHANGED</span> : null}</div>
+      <div style={{ fontWeight: 700, fontSize: 14.5, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+        <CountryTitle name={country.name} size="sm" />
+        <span style={{ ...s.muted, fontSize: 10 }}>{country.program_id}</span>
+        {country.changed ? <span style={{ background: COLORS.unreachable, color: '#fff', fontSize: 9.5, fontWeight: 800, padding: '2px 7px', borderRadius: 999 }}>CHANGED</span> : null}
+      </div>
       <div style={{ ...s.muted, marginTop: 5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{country.urls.map(u => host(u.url)).join(' · ')}</div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 10, fontSize: 11.5, color: '#8a5f70' }}>
         <span style={{ color: COLORS[b], fontWeight: 700, textTransform: 'uppercase', fontSize: 10, letterSpacing: '.04em' }}>{LABELS[b]}</span>

@@ -8,6 +8,7 @@ import { computePitchStats } from '../../lib/pitchStats'
 import type { Program } from '../../types/program'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
+import { CountryFlag } from '../ui/CountryTitle'
 
 const GOLD_STANDARD_NAMES = ['Uruguay', 'Bolivia'] as const
 const IDLE_CYCLE_MS = 30_000
@@ -73,7 +74,7 @@ export function GoldStandardSpotlight({ programs }: { programs: Program[] }) {
               <Card variant="interactive" animate delay={0.04 + i * 0.04} className="h-full">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl" aria-hidden>{p.flag}</span>
+                    <CountryFlag name={p.name} emoji={p.flag} size="md" />
                     <div>
                       <h3 className="font-display font-semibold text-ink group-hover:text-mp-btc-text transition-colors">
                         {p.name}

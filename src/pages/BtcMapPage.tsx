@@ -18,6 +18,7 @@ import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import { btcMapAttribution, btcMapMapUrl } from '../lib/btcmap'
 import { getProgramCoord } from '../data/programCoords'
+import { CountryTitle } from '../components/ui/CountryTitle'
 import { serializeIdList, parseIdList } from '../lib/urlState'
 import {
   BTC_MAP_PHONE_LANDSCAPE_MQ,
@@ -135,7 +136,9 @@ export function BtcMapPage() {
           {selected && (
             <div className="flex-1 min-w-0 lg:border-l lg:border-mp/50 lg:pl-6">
               <div className="flex flex-wrap items-center gap-2 mb-1">
-                <span className="font-display font-semibold text-ink">{selected.flag} {selected.name}</span>
+                <span className="font-display font-semibold text-ink">
+                  <CountryTitle name={selected.name} emoji={selected.flag} size="md" />
+                </span>
                 {selected.lightning_ready && (
                   <span className="proof-badge text-[10px]">{t('btcmap.lightningReady')}</span>
                 )}

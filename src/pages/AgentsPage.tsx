@@ -19,6 +19,7 @@ import { useToast } from '../components/ui/Toast'
 import { CardSkeleton } from '../components/LoadingSkeleton'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { formatT } from '../i18n/format'
+import { CountryTitle } from '../components/ui/CountryTitle'
 import { estimateReadingMinutes } from '../lib/utils'
 import { AGENT_SLA } from '../lib/agentOfficeHours'
 import { useLaunchGates } from '../hooks/useLaunchGates'
@@ -325,7 +326,9 @@ export function AgentsPage() {
             <Card key={a.id} variant="elevated" animate delay={0.04 + i * 0.03} className="!p-5">
               <div className="flex justify-between items-start mb-3">
                 <div>
-                  <h3 className="font-display font-semibold text-lg text-ink">{a.country}</h3>
+                  <h3 className="font-display font-semibold text-lg text-ink">
+                    <CountryTitle name={a.country} size="md" />
+                  </h3>
                   <p className="text-xs text-ink-muted">{t(a.regionKey)}</p>
                 </div>
                 <span className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full border ${statusClass(a.status)}`}>
@@ -355,7 +358,9 @@ export function AgentsPage() {
           <Card key={`hours-${a.id}`} variant="elevated" animate delay={0.04 + i * 0.03} className="!p-5">
             <div className="flex justify-between items-start mb-3">
               <div>
-                <h3 className="font-display font-semibold text-lg text-ink">{a.country}</h3>
+                <h3 className="font-display font-semibold text-lg text-ink">
+                  <CountryTitle name={a.country} size="md" />
+                </h3>
                 <p className="text-xs text-ink-muted">{t(a.regionKey)}</p>
               </div>
               <span className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full border ${statusClass(a.status)}`}>

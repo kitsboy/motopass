@@ -17,6 +17,7 @@ import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { ValueForksPanel } from '../components/simulator/ValueForksPanel'
 import { SimulatorPresets } from '../components/simulator/SimulatorPresets'
 import { Card } from '../components/ui/Card'
+import { CountryTitle } from '../components/ui/CountryTitle'
 import { formatStackSummary } from '../lib/simulatorSummary'
 import { useToast } from '../components/ui/Toast'
 import { InfoTip } from '../components/ui/InfoTip'
@@ -146,7 +147,9 @@ export function StackSimulatorPage() {
               {filtered.map(p => (
                 <label key={p.id} htmlFor={`sim-p-${p.id}`} className="flex items-center gap-3 p-3 rounded-mp-md hover:bg-section cursor-pointer border border-transparent hover:border-mp transition-colors">
                   <input id={`sim-p-${p.id}`} type="checkbox" checked={selected.includes(p.id)} onChange={() => toggle(p.id)} className="accent-btc-orange w-4 h-4" />
-                  <span className="text-ink font-medium">{p.flag} {p.name}</span>
+                  <span className="text-ink font-medium">
+                    <CountryTitle name={p.name} emoji={p.flag} size="sm" />
+                  </span>
                   <span className="text-xs text-ink-muted ml-auto capitalize">{p.stacking_synergy}</span>
                 </label>
               ))}

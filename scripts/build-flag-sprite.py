@@ -2,6 +2,9 @@
 """Build a single self-hosted flag sprite from flagcdn for all program ISOs.
 Composes N flags (w40 = 40x30px) into a grid sprite + generates the iso->offset map.
 Run from repo root: python3 scripts/build-flag-sprite.py
+
+Adding an ISO by dropping it into the middle of CODES shifts every later
+tile. São Tomé (`st`) lives on an extra row at x:0 y:150. Keep that offset.
 """
 import json, os, urllib.request, sys
 from PIL import Image, ImageOps

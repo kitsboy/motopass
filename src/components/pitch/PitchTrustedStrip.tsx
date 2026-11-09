@@ -67,7 +67,7 @@ export function PitchTrustedStrip({ programs, loading }: PitchTrustedStripProps)
                   tabIndex={i < entries.length ? 0 : -1}
                   aria-hidden={i >= entries.length}
                 >
-                  <LazyFlagSprite countryName={entry.name} emojiFallback={entry.flag} />
+                  <LazyFlagSprite countryName={entry.name} emojiFallback={entry.flag} decorative />
                   <span className="font-chrome text-[11px] text-ink-muted group-hover:text-mp-btc-text whitespace-nowrap">
                     {entry.name}
                   </span>

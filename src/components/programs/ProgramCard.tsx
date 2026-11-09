@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Bell, Check, Zap } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
-import { LazyFlagSprite } from '../pitch/LazyFlagSprite';
+import { CountryFlag } from '../ui/CountryTitle';
 import { FreshnessBadge } from '../ui/FreshnessBadge';
 import { SourcesProbedNote } from './SourcesProbedNote';
 import { IntelStatusBadge } from '../intel/IntelStatusBadge';
@@ -133,10 +133,10 @@ function ProgramCardContent({
 
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 flex-1 items-center gap-3">
-          <LazyFlagSprite
-            countryName={program.country}
-            emojiFallback={program.flag ?? program.countryCode}
-            className="h-9 w-9 shrink-0 rounded-full border border-mp-border-subtle bg-mp-section p-1.5"
+          <CountryFlag
+            name={program.country}
+            emoji={program.flag ?? program.countryCode}
+            size="md"
           />
           <h3 className="min-w-0 flex-1 font-display text-lg2 leading-tight text-mp-ink">{program.country}</h3>
         </div>

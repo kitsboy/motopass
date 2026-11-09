@@ -21,6 +21,8 @@ import { programDetailJsonLd } from '../../lib/siteJsonLd';
 import { safeSatohashHref } from '../../lib/satohash';
 import { ScorecardBars } from '../intel/ScorecardBars';
 import { VeritasSourcePanel } from '../intel/VeritasSourcePanel';
+import { CountryTitle } from '../ui/CountryTitle';
+import { normalizeVisitorUrl, visitorLink } from '../../lib/visitorLink';
 
 interface ProgramModalProps {
   program: Program | null;
@@ -191,7 +193,7 @@ function ProgramModalBody({
         returnFocusRef={openerRef}
         closeLabel={t('modal.close')}
         eyebrow={`${program.tier} · ${program.region}`}
-        title={program.country}
+        title={<CountryTitle name={program.country} emoji={program.flag} size="md" />}
       >
       <div className="mb-4 overflow-hidden rounded-mp-lg border border-mp-border/60">
         <img
@@ -357,9 +359,20 @@ function ProgramModalBody({
               <div>
                 <h4 className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary mb-1">{t('modal.officialSources')}</h4>
                 <ul className="text-xs space-y-1">
-                  {program.legalCompliance.official_urls.map((u) => (
-                    <li key={u}><a href={u} className="text-accent hover:underline break-all" target="_blank" rel="noopener noreferrer">{u}</a></li>
-                  ))}
+                  {program.legalCompliance.official_urls.map((u) => {
+                    const watch = program.watchUrls?.find((w) => normalizeVisitorUrl(w.url) === normalizeVisitorUrl(u))
+                    const link = visitorLink(u, {
+                      status: watch?.status,
+                      probed: watch?.last_probed,
+                      liveMissed: t('veritas.liveMissed'),
+                    })
+                    return (
+                      <li key={u}>
+                        <a href={link.href} title={link.title} className="text-accent hover:underline break-all" target="_blank" rel="noopener noreferrer">{u}</a>
+                        {link.archived && <span className="ml-1 font-mono text-[10px] text-mp-ink-muted">{t('veritas.mirror')}</span>}
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
               <p className="text-xs"><strong>{t('modal.property')}:</strong> {program.legalCompliance.property_foreign_ownership}</p>

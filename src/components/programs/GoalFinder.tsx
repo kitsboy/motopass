@@ -6,6 +6,7 @@ import type { Program } from '../../types/program'
 import { parseMonthsToDays } from '../../lib/programAdapter'
 import { useI18n } from '../../i18n/I18nContext'
 import { BtcDualPrice } from '../BtcDualPrice'
+import { CountryFlag } from '../ui/CountryTitle'
 
 type Budget = 'any' | '50k' | '150k' | '500k'
 type Timeline = 'any' | '6mo' | '12mo' | '24mo'
@@ -196,9 +197,9 @@ export function GoalFinder({ programs, onOpenProgram }: GoalFinderProps) {
                         onClick={() => onOpenProgram?.(p)}
                         className="w-full text-left flex items-center gap-3 rounded-mp-md border border-mp-border bg-card px-3 py-2.5 transition-colors hover:border-btc-orange/40 hover:bg-section"
                       >
-                        <span className="text-lg leading-none" aria-hidden>{p.flag ?? '🏴'}</span>
+                        <CountryFlag name={p.name} emoji={p.flag} size="sm" />
                         <span className="min-w-0 flex-1">
-                          <span className="block text-sm font-medium text-ink truncate">{p.name}</span>
+                          <span className="block text-sm font-medium text-ink">{p.name}</span>
                           <span className="flex items-center gap-2 text-[11px] text-ink-muted mt-0.5">
                             <Shield size={10} className="text-mp-proof" aria-hidden /> {sov}/10
                             <Clock size={10} aria-hidden /> {Math.round(days / 30)}mo

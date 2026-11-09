@@ -9,6 +9,7 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { SeoHead } from '../components/SeoHead'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
+import { CountryTitle } from '../components/ui/CountryTitle'
 
 // Drawer-only charts (radar, sparkline, source tiers, proof badge) are code-split
 // and loaded ONLY when a card is tapped or compare is opened — they never touch the
@@ -261,11 +262,10 @@ export function TrustPage() {
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex min-w-0 items-center gap-3">
-                        <span className="text-3xl leading-none" aria-hidden="true">
-                          {c.flag ?? '🏳️'}
-                        </span>
                         <div className="min-w-0">
-                          <h3 className="font-display text-lg leading-tight text-mp-ink">{c.name}</h3>
+                          <h3 className="font-display text-lg leading-tight text-mp-ink">
+                            <CountryTitle name={c.name} emoji={c.flag} size="md" />
+                          </h3>
                           <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
                             {c.iso2}
                           </span>
@@ -337,11 +337,10 @@ export function TrustPage() {
             >
               <div className="mb-4 flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-3xl" aria-hidden="true">
-                    {selected.country.flag ?? '🏳️'}
-                  </span>
                   <div>
-                    <h2 className="font-display text-xl text-mp-ink">{selected.country.name}</h2>
+                    <h2 className="font-display text-xl text-mp-ink">
+                      <CountryTitle name={selected.country.name} emoji={selected.country.flag} size="md" />
+                    </h2>
                     <span className="font-chrome text-[11px] uppercase tracking-wide text-mp-ink-tertiary">
                       {selected.country.region ?? ''} · {selected.country.iso2}
                     </span>
@@ -453,10 +452,9 @@ export function TrustPage() {
                       className="rounded-mp-lg border border-mp-border bg-mp-card p-4"
                     >
                       <div className="mb-2 flex items-center gap-2">
-                        <span className="text-xl" aria-hidden="true">
-                          {env.country.flag ?? '🏳️'}
-                        </span>
-                        <h3 className="font-display text-base text-mp-ink">{env.country.name}</h3>
+                        <h3 className="font-display text-base text-mp-ink">
+                          <CountryTitle name={env.country.name} emoji={env.country.flag} size="sm" />
+                        </h3>
                         <button
                           type="button"
                           onClick={() => toggleCompare(env.country.iso2)}

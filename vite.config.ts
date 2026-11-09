@@ -50,6 +50,10 @@ function copyStaticAssets(outDir: string) {
 function serveStaticRoot(root: string) {
   return (req: IncomingMessage, res: ServerResponse, next: () => void) => {
     if (!req.url) return next()
+    const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?') + 1) : ''
+    // Vite's import.meta.glob loads research JSON as JS via ?import. A raw
+    // application/json response is not a module, so Paige (and /agents) never mounts.
+    if (new URLSearchParams(query).has('import')) return next()
     const urlPath = decodeURIComponent(req.url.split('?')[0])
     const filePath = resolve(root, '.' + urlPath)
     if (!filePath.startsWith(root) || !existsSync(filePath)) return next()

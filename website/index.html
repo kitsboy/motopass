@@ -1427,7 +1427,7 @@ section { position: relative; }
 <!-- ══════════════ HEADER ══════════════ -->
 <header id="site-header">
   <div class="header-inner">
-    <a href="#" class="logo-wrap">
+    <a href="/website/" class="logo-wrap">
       <div class="logo-icon">⚡</div>
       <div>
         <div class="logo-text-main">MotoPass</div>
@@ -1819,8 +1819,8 @@ section { position: relative; }
           <li><a href="#paige"><i class="fas fa-arrow-right"></i>Paige AI</a></li>
           <li><a href="#programs"><i class="fas fa-arrow-right"></i>Programs</a></li>
           <li><a href="#timestamp"><i class="fas fa-arrow-right"></i>Timestamps</a></li>
-          <li><a href="#"><i class="fas fa-arrow-right"></i>Marketplace</a></li>
-          <li><a href="#"><i class="fas fa-arrow-right"></i>For Governments</a></li>
+          <li><a href="/distressed"><i class="fas fa-arrow-right"></i>Marketplace</a></li>
+          <li><a href="/agents"><i class="fas fa-arrow-right"></i>For Governments</a></li>
         </ul>
       </div>
       <div>
@@ -1837,11 +1837,11 @@ section { position: relative; }
       <div>
         <div class="footer-col-title">Network</div>
         <ul class="footer-links">
-          <li><a href="#"><i class="fas fa-bolt"></i>Lightning Network</a></li>
-          <li><a href="#"><i class="fas fa-broadcast-tower"></i>NOSTR Relay</a></li>
-          <li><a href="#"><i class="fab fa-bitcoin"></i>Bitcoin Explorer</a></li>
-          <li><a href="#"><i class="fas fa-code"></i>Open Source</a></li>
-          <li><a href="#"><i class="fas fa-envelope"></i>Contact</a></li>
+          <li><a href="/vault"><i class="fas fa-bolt"></i>Lightning Network</a></li>
+          <li><a href="/agents"><i class="fas fa-broadcast-tower"></i>NOSTR Relay</a></li>
+          <li><a href="https://mempool.space" target="_blank" rel="noopener noreferrer"><i class="fab fa-bitcoin"></i>Bitcoin Explorer</a></li>
+          <li><a href="https://github.com/kitsboy/motopass" target="_blank" rel="noopener noreferrer"><i class="fas fa-code"></i>Open Source</a></li>
+          <li><a href="mailto:accuracy@motopass.giveabit.io"><i class="fas fa-envelope"></i>Contact</a></li>
         </ul>
       </div>
     </div>
@@ -1885,12 +1885,62 @@ section { position: relative; }
 // ── DATA (loaded from research/countries.json) ──
 let programs = [];
 
+// Pages that did not load on 2026-11-08. Same set as src/lib/visitorLink.ts.
+// Bot walls stay on the live URL. The corpus is not rewritten.
+const VISITOR_DEAD = new Set([
+  'https://adoptingelsalvador.gob.sv',
+  'https://aima.gov.pt',
+  'https://aima.gov.pt/pt/a-aima/perguntas-frequentes-faqs/autorizacao-de-residencia-para-investimento-ari/faq-residence-permit-for-investment-activity-ari',
+  'https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a',
+  'https://investorvisa.mise.gov.it',
+  'https://investorvisa.mise.gov.it/index.php/en',
+  'https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements',
+  'https://cbiu.gov.dm',
+  'https://www.cbiu.gov.dm',
+  'https://www.cbiu.gov.dm/investment-options',
+  'https://www.ciu.gov.lc',
+  'https://imagrenada.gd',
+  'https://imagrenada.gd/citizenship-by-investment',
+  'https://www.cbi.gov.gd',
+  'https://laws.bahamas.gov.bs',
+  'https://www.bahamaschamber.com',
+  'https://www.ciregistry.gov.ky',
+  'https://www.immigration.gov.ky',
+  'https://www.boletinoficial.gob.ar',
+  'https://brsb.itamaraty.gov.br/en-us',
+  'https://cilc.vu'
+]);
+function normUrl(url) {
+  try {
+    const u = new URL(url);
+    return u.protocol + '//' + u.hostname.toLowerCase() + u.pathname.replace(/\/+$/, '') + u.search;
+  } catch (e) {
+    return String(url || '').trim().replace(/\/+$/, '');
+  }
+}
+function esc(s) {
+  return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function officialHref(url) {
+  if (!url) return '';
+  return VISITOR_DEAD.has(normUrl(url)) ? ('https://web.archive.org/web/2/' + url) : url;
+}
+function officialTitle(url) {
+  return VISITOR_DEAD.has(normUrl(url)) ? ('Live page did not load — ' + url) : url;
+}
+function officialLink(url, label, className, extra) {
+  if (!url) return '';
+  return '<a href="' + esc(officialHref(url)) + '" title="' + esc(officialTitle(url)) + '" target="_blank" rel="noopener noreferrer" class="' + esc(className) + '"' + (extra || '') + ' onclick="event.stopPropagation()"><i class="fas fa-external-link"></i>' + label + '</a>';
+}
+
 function jsonToDemoProgram(p) {
   const score = p.finance?.crypto_friendly_score ?? 5;
   const statusType = score >= 9 ? 'btc' : score >= 7 ? 'green' : 'gold';
   const hash = (p.satohash_proofs?.[0]?.proof_url || '').split('/').pop() || ('a'.repeat(64));
+  const officialUrl = (p.legal_compliance && p.legal_compliance.official_urls && p.legal_compliance.official_urls[0]) || '';
   return {
     id: p.id, name: p.name, flag: p.flag || '🌍', region: p.region,
+    officialUrl,
     status: p.status.split(' - ')[0], statusType, score,
     details: p.details,
     facts: { residency: p.finance.processing_time_months + ' mo', path: p.category, tax: p.finance.tax_benefits?.slice(0,20), btc: p.finance.bitcoin_specific?.slice(0,20), dual: 'Verify' },
@@ -1943,7 +1993,7 @@ function renderPrograms() {
         <div class="prog-desc font-serif">${p.details}</div>
         ${bars}
         <div class="prog-footer">
-          <a href="#" class="prog-link"><i class="fas fa-external-link"></i>Official Site</a>
+          ${officialLink(p.officialUrl, 'Official Site', 'prog-link')}
           <button class="prog-details-btn" onclick="openProgramModal(${p.id});event.stopPropagation()">Full Details →</button>
         </div>
       </div>
@@ -2035,9 +2085,7 @@ function openProgramModal(id) {
       <button class="btn-primary" onclick="closeProgramModal();document.getElementById('paige').scrollIntoView({behavior:'smooth'})">
         <i class="fas fa-robot"></i> Ask Paige About ${p.name}
       </button>
-      <a href="#" class="btn-secondary" style="text-decoration:none">
-        <i class="fas fa-external-link"></i> Official Government Site
-      </a>
+      ${officialLink(p.officialUrl, ' Official Government Site', 'btn-secondary', ' style="text-decoration:none"')}
     </div>
   `;
   document.getElementById('prog-modal').classList.add('open');

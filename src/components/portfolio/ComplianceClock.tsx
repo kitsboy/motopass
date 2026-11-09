@@ -4,6 +4,7 @@ import { hasFlagshipDepth } from '../programs/types'
 import { InfoTip } from '../ui/InfoTip'
 import { useI18n } from '../../i18n/I18nContext'
 import { complianceSeverity, type ComplianceSeverity } from '../../lib/compliance'
+import { CountryTitle } from '../ui/CountryTitle'
 
 type ComplianceClockProps = {
   program: Program
@@ -79,7 +80,9 @@ export function ComplianceClock({ program, acquiredAt }: ComplianceClockProps) {
           </span>
         </InfoTip>
       </div>
-      <p className="font-display text-sm font-semibold text-ink mb-3">{program.country}</p>
+      <p className="font-display text-sm font-semibold text-ink mb-3">
+        <CountryTitle name={program.country} emoji={program.flag} size="sm" />
+      </p>
       <dl className="grid grid-cols-2 gap-3 text-xs">
         <div className="card-muted">
           <dt className="text-ink-muted uppercase tracking-wide text-[10px]">{t('portfolio.renewalWindow')}</dt>

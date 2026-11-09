@@ -3,6 +3,7 @@ import { Compass } from 'lucide-react'
 import type { Program } from '../../types/program'
 import { getProgramCoord } from '../../data/programCoords'
 import { useI18n } from '../../i18n/I18nContext'
+import { CountryTitle } from '../ui/CountryTitle'
 
 export function BtcMapJurisdictionJump({
   programs,
@@ -73,7 +74,7 @@ export function BtcMapJurisdictionJump({
                   setQuery('')
                 }}
               >
-                {p.flag} {p.name}
+                <CountryTitle name={p.name} emoji={p.flag} size="sm" />
               </button>
             </li>
           ))}

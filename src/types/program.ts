@@ -36,7 +36,7 @@ export interface WatchUrl {
   last_probed?: string | null
   /** Short hash of the fetched body's first bytes — change detector. */
   last_hash?: string | null
-  status: 'unprobed' | 'ok' | 'changed' | 'unreachable'
+  status: 'unprobed' | 'ok' | 'changed' | 'unreachable' | 'blocked'
 }
 
 export interface ProgramWatch {

@@ -8,6 +8,7 @@ import { ProofBadge } from './ProofBadge'
 import { ScorecardRadar } from './ScorecardRadar'
 import { ThresholdSparkline } from './ThresholdSparkline'
 import { SourceTierStrip } from './SourceTierStrip'
+import { CountryTitle } from '../ui/CountryTitle'
 
 /**
  * TrustCard — the reusable 5-sub-component trust card, wired to the
@@ -33,11 +34,10 @@ export function TrustCard({
       {/* header: flag + name + freshness ring */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="text-3xl leading-none" aria-hidden="true">
-            {country.flag ?? '🏳️'}
-          </span>
           <div className="min-w-0">
-            <h3 className="font-display text-lg leading-tight text-mp-ink">{country.name}</h3>
+            <h3 className="font-display text-lg leading-tight text-mp-ink">
+              <CountryTitle name={country.name} emoji={country.flag} size="md" />
+            </h3>
             <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
               {country.region ?? ''}
               {sovereignty.risk_level ? ` · ${formatT(t, 'trust.riskSuffix', { level: sovereignty.risk_level })}` : ''}
@@ -134,10 +134,9 @@ export function TrustCardCompact({ envelope }: { envelope: CountryTrustEnvelope 
   return (
     <div className="rounded-card border border-mp-border bg-mp-card p-4">
       <div className="flex items-center gap-2">
-        <span className="text-xl leading-none" aria-hidden="true">
-          {country.flag ?? '🏳️'}
-        </span>
-        <h4 className="font-display text-base text-mp-ink">{country.name}</h4>
+        <h4 className="font-display text-base text-mp-ink">
+          <CountryTitle name={country.name} emoji={country.flag} size="sm" />
+        </h4>
         <span className="ml-auto inline-flex items-center gap-1 font-mono text-[10px] text-mp-ink-tertiary">
           <Scale className="h-3 w-3" aria-hidden="true" /> {t('trust.trustLabel')}
         </span>

@@ -5,6 +5,7 @@ import type { CompareRow } from './types'
 import { bestIndex } from './compareUtils'
 import { compareDiffClass, compareDiffKind } from '../../lib/compareDiff'
 import { useI18n } from '../../i18n/I18nContext'
+import { CountryTitle } from '../ui/CountryTitle'
 
 interface CompareDiffSectionProps {
   programs: Program[]
@@ -52,7 +53,7 @@ export function CompareDiffSection({ programs, diffRows, onExport }: CompareDiff
                   <th scope="col">{t('compare.metric')}</th>
                   {programs.map(p => (
                     <th key={p.id} scope="col">
-                      <span className="fc-diff__th-flag">{p.flag}</span> {p.name}
+                      <CountryTitle name={p.name} emoji={p.flag} size="sm" />
                     </th>
                   ))}
                 </tr>

@@ -10,6 +10,7 @@ import { useI18n } from '../../i18n/I18nContext'
 import { similarDistressedListings } from '../../lib/distressedSimilar'
 import { satohashVerifyUrl } from '../../lib/seal/vaultVerify'
 import type { DistressedListing } from '../../types/distressedListing'
+import { CountryFlag, CountryTitle } from '../ui/CountryTitle'
 
 function scoreChip(score: number) {
   if (score >= 4) return 'bg-btc-orange-soft/60 text-mp-btc-text border-btc-orange/35'
@@ -137,8 +138,8 @@ export function DistressedListingsList({
                     <span className="text-[10px] text-ink-muted font-mono uppercase tracking-wider">
                       {listing.region}
                     </span>
-                    <div className="font-chrome text-sm font-medium text-ink truncate group-hover:text-mp-btc-text transition-colors">
-                      {listing.program_flag} {listing.program_name}
+                    <div className="font-chrome text-sm font-medium text-ink group-hover:text-mp-btc-text transition-colors">
+                      <CountryTitle name={listing.program_name} emoji={listing.program_flag} size="sm" />
                     </div>
                   </div>
                   <div className="flex items-center gap-1 shrink-0">
@@ -302,11 +303,13 @@ function SimilarPathwayChips({
             onSelect(peer)
           }}
           onKeyDown={e => onChipKeyDown(e, chipRefs.current.filter(Boolean) as HTMLButtonElement[], i)}
-          className="rounded-chip border border-mp/60 bg-card-muted/40 px-2 py-0.5 text-[10px] font-chrome text-ink-muted hover:border-btc-orange/30 hover:text-mp-btc-text transition-colors max-w-[9rem] truncate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-btc-orange/50"
+          className="inline-flex max-w-[9rem] items-center rounded-chip border border-mp/60 bg-card-muted/40 px-2 py-0.5 text-[10px] font-chrome text-ink-muted hover:border-btc-orange/30 hover:text-mp-btc-text transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-btc-orange/50"
           title={`${peer.pathway_label} · ${peer.program_name}`}
         >
-          {peer.program_flag ? `${peer.program_flag} ` : ''}
-          {peer.program_name}
+          <span className="inline-flex min-w-0 items-center gap-1">
+            <CountryFlag name={peer.program_name} emoji={peer.program_flag} size="sm" />
+            <span className="truncate">{peer.program_name}</span>
+          </span>
         </button>
       ))}
     </div>

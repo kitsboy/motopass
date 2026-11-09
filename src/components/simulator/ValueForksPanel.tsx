@@ -8,6 +8,7 @@ import { InfoTip } from '../ui/InfoTip'
 import { toCinematicProgram } from '../../lib/programAdapter'
 import { useI18n } from '../../i18n/I18nContext'
 import type { Program } from '../../types/program'
+import { CountryTitle } from '../ui/CountryTitle'
 
 export function ValueForksPanel({ stack }: { stack: Program[] }) {
   const { t } = useI18n()
@@ -137,7 +138,7 @@ export function ValueForksPanel({ stack }: { stack: Program[] }) {
             >
               <div className="flex flex-wrap items-center gap-2 mb-1">
                 <span className="font-chrome text-xs font-semibold text-ink">
-                  {f.flag} {f.programName}
+                  <CountryTitle name={f.programName} emoji={f.flag} size="sm" />
                 </span>
                 <span className="rounded-chip border border-electric/25 bg-electric-soft/50 px-2 py-0.5 text-[10px] font-mono text-electric uppercase">
                   {f.type}

@@ -5,6 +5,7 @@ import type { Program } from '../../types/program'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
 import { serializeIdList } from '../../lib/urlState'
+import { CountryFlag } from '../ui/CountryTitle'
 
 interface ComparePickerProps {
   ids: number[]
@@ -78,9 +79,7 @@ export function ComparePicker({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.04, duration: 0.3 }}
               >
-                <span className="fc-chip__flag" aria-hidden>
-                  {p.flag}
-                </span>
+                <CountryFlag name={p.name} emoji={p.flag} size="sm" className="fc-chip__flag" />
                 <div className="fc-chip__text">
                   <span className="fc-chip__name">{p.name}</span>
                   <span className="fc-chip__region">{p.region}</span>
@@ -132,7 +131,7 @@ export function ComparePicker({
                     onClick={() => onToggle(p.id)}
                     className="fc-picker__dropdown-item"
                   >
-                    <span className="fc-picker__dropdown-flag">{p.flag}</span>
+                    <CountryFlag name={p.name} emoji={p.flag} size="sm" className="fc-picker__dropdown-flag" />
                     <span className="fc-picker__dropdown-name">{p.name}</span>
                     <span className="fc-picker__dropdown-region">{p.region}</span>
                   </button>

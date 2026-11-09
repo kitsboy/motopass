@@ -17,6 +17,7 @@ import {
   Radio,
 } from 'lucide-react'
 import { InfoTip } from '../ui/InfoTip'
+import { CountryTitle } from '../ui/CountryTitle'
 import { nostrEventIdStub } from '../../lib/nostrEventId'
 import { Card } from '../ui/Card'
 import { ProofBadge } from '../ui/ProofBadge'
@@ -200,7 +201,7 @@ export function VaultProofRow({
               />
             )}
             <div className="font-display text-lg font-semibold text-ink sm:text-xl">
-              {program.flag} {program.name}
+              <CountryTitle name={program.name} emoji={program.flag} size="md" />
             </div>
             <InfoTip
               tip={

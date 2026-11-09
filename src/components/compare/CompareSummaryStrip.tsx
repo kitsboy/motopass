@@ -5,6 +5,7 @@ import type { CompareRow } from './types'
 import { bestIndex } from './compareUtils'
 import { useI18n } from '../../i18n/I18nContext'
 import { InfoTip } from '../ui/InfoTip'
+import { CountryFlag, CountryTitle } from '../ui/CountryTitle'
 
 interface CompareSummaryStripProps {
   programs: Program[]
@@ -80,8 +81,13 @@ export function CompareSummaryStrip({ programs, rows }: CompareSummaryStripProps
           key={label}
           tip={
             <span>
-              <strong className="font-mono font-semibold text-ink">{label}</strong> · {program?.flag}{' '}
-              {program?.name}
+              <strong className="font-mono font-semibold text-ink">{label}</strong>
+              {program?.name ? (
+                <>
+                  {' · '}
+                  <CountryFlag name={program.name} emoji={program.flag} size="sm" /> {program.name}
+                </>
+              ) : null}
               <span className="block mt-1 opacity-90">{meaning}</span>
             </span>
           }
@@ -92,7 +98,7 @@ export function CompareSummaryStrip({ programs, rows }: CompareSummaryStripProps
             <div className="fc-summary__copy">
               <span className="fc-summary__label">{label}</span>
               <span className="fc-summary__winner">
-                {program?.flag} {program?.name}
+                {program?.name ? <CountryTitle name={program.name} emoji={program.flag} size="sm" /> : null}
               </span>
             </div>
           </div>

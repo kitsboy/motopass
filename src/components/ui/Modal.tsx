@@ -6,7 +6,7 @@ import { MODAL_BACKDROP_FADE, MODAL_SPRING_ENTER, MODAL_SPRING_EXIT } from '../.
 export type ModalProps = {
   open: boolean
   onClose: () => void
-  title: string
+  title: ReactNode
   subtitle?: string
   eyebrow?: string
   icon?: ReactNode

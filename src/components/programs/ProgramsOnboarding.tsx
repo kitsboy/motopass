@@ -43,20 +43,20 @@ export function ProgramsOnboarding() {
       role="note"
       aria-label={t('programs.ob.title')}
     >
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-2">
         <span className="font-chrome text-[10px] font-semibold uppercase tracking-[0.14em] text-btc-orange">
           {t('programs.ob.title')}
         </span>
         {items.map(({ icon: Icon, key }) => (
-          <span key={key} className="inline-flex min-w-0 items-center gap-1.5 text-xs text-ink-secondary">
-            <Icon size={13} className="shrink-0 text-mp-btc-text" aria-hidden />
-            <span className="truncate">{t(key)}</span>
+          <span key={key} className="flex min-w-0 items-start gap-1.5 text-xs text-ink-secondary sm:items-center">
+            <Icon size={13} className="mt-0.5 shrink-0 text-mp-btc-text sm:mt-0" aria-hidden />
+            <span>{t(key)}</span>
           </span>
         ))}
         <button
           type="button"
           onClick={dismiss}
-          className="ml-auto shrink-0 rounded-chip border border-mp/60 px-2.5 py-0.5 font-chrome text-[10px] text-ink-muted transition-colors hover:border-btc-orange/30 hover:text-ink"
+          className="self-start shrink-0 rounded-chip border border-mp/60 px-2.5 py-0.5 font-chrome text-[10px] text-ink-muted transition-colors hover:border-btc-orange/30 hover:text-ink sm:ml-auto"
         >
           {t('programs.ob.dismiss')}
         </button>
