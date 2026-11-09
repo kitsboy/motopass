@@ -59,6 +59,7 @@ export function RouteMixer({ programs }: { programs: DataProgram[] }) {
   })
   const total = sumRouteMins(chosen.map(item => item.route))
   const family = sumKnownFamily(chosen.map(item => item.route))
+  const selectedMix = chosen.find(item => item.program.id === country?.id)
 
   function add(route: RouteLine) {
     if (!country) return
@@ -89,7 +90,8 @@ export function RouteMixer({ programs }: { programs: DataProgram[] }) {
       </label>
 
       <div className="grid gap-4 lg:grid-cols-[15rem_minmax(0,1fr)]">
-        <div className="max-h-80 overflow-y-auto rounded-mp-lg border border-mp-border" role="listbox" aria-label={t('mixer.countries')}>
+        <div className="max-lg:sticky max-lg:top-[var(--mp-header-offset,7.25rem)] max-lg:z-20 max-lg:bg-[rgb(var(--mp-canvas-rgb))] max-lg:pb-2">
+        <div className="max-h-80 overflow-y-auto rounded-mp-lg border border-mp-border bg-[rgb(var(--mp-card-rgb))]" role="listbox" aria-label={t('mixer.countries')}>
           {cinematic.map(program => {
             const selected = program.id === country?.id
             return (
@@ -108,6 +110,25 @@ export function RouteMixer({ programs }: { programs: DataProgram[] }) {
               </button>
             )
           })}
+        </div>
+        <div className="mt-2 rounded-mp-lg border border-mp-border bg-[rgb(var(--mp-card-rgb))] p-3 lg:hidden">
+          <p className="text-sm text-mp-ink">
+            {country?.country ?? t('mixer.empty')}
+            {selectedMix ? (
+              <span className="text-mp-ink-tertiary">
+                {' · '}
+                {selectedMix.route.label}
+              </span>
+            ) : null}
+          </p>
+          {chosen.length === 0 ? (
+            <p className="mt-1 text-xs text-mp-ink-secondary">{t('mixer.empty')}</p>
+          ) : (
+            <div className="mt-1">
+              <BtcDualPrice usd={total} size="xs" layout="inline" />
+            </div>
+          )}
+        </div>
         </div>
 
         {country && pack && clocks && (

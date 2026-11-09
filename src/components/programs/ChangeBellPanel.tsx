@@ -65,9 +65,15 @@ export function ChangeBellPanel({ programs }: { programs: Program[] }) {
             {t('bell.title')}
           </h2>
           <p className="mt-2 max-w-2xl font-body text-sm leading-relaxed text-ink-secondary">
-            {report.changed.length
-              ? formatT(t, 'bell.changed', { count: report.changed.length, names: report.changed.map(country => country.name).join(', ') })
-              : formatT(t, 'bell.quiet', { count: report.steady, date: when })}
+            {report.changed.length > 0 ? (
+              <>
+                <span className="font-semibold text-mp-wax">{report.changed.length}</span>
+                {' '}
+                {formatT(t, 'bell.changedRest', { names: report.changed.map(country => country.name).join(', ') })}
+              </>
+            ) : (
+              formatT(t, 'bell.quiet', { count: report.steady, date: when })
+            )}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">

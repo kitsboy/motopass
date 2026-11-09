@@ -363,6 +363,7 @@ export type TranslationKey =
   | 'bell.title'
   | 'bell.quiet'
   | 'bell.changed'
+  | 'bell.changedRest'
   | 'bell.unknownDate'
   | 'bell.copyNote'
   | 'bell.copyPayload'
@@ -750,6 +751,7 @@ const en: Dict = {
   'bell.title': 'When an official page changes',
   'bell.quiet': '{count} countries are steady. Last probe {date}. No watched page is marked changed.',
   'bell.changed': '{count} watched pages changed: {names}.',
+  'bell.changedRest': 'watched pages changed: {names}.',
   'bell.unknownDate': 'not on file',
   'bell.copyNote': 'Copy Nostr note',
   'bell.copyPayload': 'Copy webhook',
