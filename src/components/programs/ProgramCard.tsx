@@ -13,8 +13,25 @@ import { BtcDualPrice } from '../BtcDualPrice';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 import { SovereigntyScoreTooltip } from './SovereigntyScoreTooltip';
 import { DecisionClocks } from './DecisionClocks';
+import { gazetteHits, gazetteLine } from '../../lib/gazetteWatch';
 import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
+
+function GazetteCardLine({ program }: { program: Program }) {
+  const { t } = useI18n();
+  const line = gazetteLine(gazetteHits({
+    sources: program.sources,
+    officialUrls: program.legalCompliance?.official_urls,
+    watchUrls: program.watchUrls,
+  }));
+  if (line === 'none') return null;
+  const key = line === 'changed' ? 'gazette.changed' : line === 'watched' ? 'gazette.watched' : 'gazette.cited';
+  return (
+    <p className={`mt-2 font-mono text-[11px] uppercase tracking-wide ${line === 'cited' ? 'text-mp-ink-tertiary' : 'text-mp-ink'}`}>
+      {t(key)}
+    </p>
+  );
+}
 
 interface ProgramCardProps {
   program: Program;
@@ -215,6 +232,7 @@ function ProgramCardContent({
       {program.watchChanged && (
         <p className="mt-2 font-mono text-[11px] uppercase tracking-wide text-mp-wax">{t('bell.cardLine')}</p>
       )}
+      <GazetteCardLine program={program} />
 
       <div className="mt-4 border-t border-mp-border-subtle pt-4">
         <dl className="grid grid-cols-2 gap-2">

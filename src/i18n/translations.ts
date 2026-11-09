@@ -369,6 +369,13 @@ export type TranslationKey =
   | 'bell.copied'
   | 'bell.cardLine'
   | 'bell.hint'
+  | 'gazette.eyebrow'
+  | 'gazette.title'
+  | 'gazette.summary'
+  | 'gazette.noneListed'
+  | 'gazette.watched'
+  | 'gazette.changed'
+  | 'gazette.cited'
   | 'portfolio.nostrIdentity'
   | 'portfolio.nostrHint'
   | 'portfolio.loadingAria'
@@ -690,6 +697,13 @@ const en: Dict = {
   'bell.copied': 'Copied',
   'bell.cardLine': 'A watched official page changed',
   'bell.hint': 'Copy the note and post it with your own Nostr key. The webhook is sent only by the daily script, and only to an https address you set as MOTOPASS_CHANGE_WEBHOOK_URL.',
+  'gazette.eyebrow': 'GAZETTE',
+  'gazette.title': 'Law newspapers on the watch list',
+  'gazette.summary': 'On the daily watch: {watched}. Cited, and not watched yet: {cited}. {missing} countries have no gazette URL on file.',
+  'gazette.noneListed': 'none',
+  'gazette.watched': 'Gazette watched',
+  'gazette.changed': 'Gazette page changed',
+  'gazette.cited': 'Gazette cited, not on the daily watch',
   'portfolio.nostrIdentity': 'Nostr identity',
   'portfolio.nostrHint': 'Connect npub before Apply — agents route deal rooms and proof updates through your sovereign key.',
   'portfolio.loadingAria': 'Loading portfolio',

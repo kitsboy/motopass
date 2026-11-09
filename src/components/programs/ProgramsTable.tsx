@@ -14,6 +14,7 @@ import { Program, scoreWeight } from './types';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 import { SovereigntyScoreTooltip } from './SovereigntyScoreTooltip';
 import { DecisionClocks } from './DecisionClocks';
+import { gazetteHits, gazetteLine } from '../../lib/gazetteWatch';
 
 interface ProgramsTableProps {
   programs: Program[];
@@ -30,6 +31,18 @@ interface ProgramsTableProps {
  * of a full card treatment, keeping density high without losing hierarchy.
  * Not used on mobile — ProgramsPage swaps to ProgramCard stack below `lg`.
  */
+function GazetteTableLine({ program }: { program: Program }) {
+  const { t } = useI18n();
+  const line = gazetteLine(gazetteHits({
+    sources: program.sources,
+    officialUrls: program.legalCompliance?.official_urls,
+    watchUrls: program.watchUrls,
+  }));
+  if (line === 'none') return null;
+  const key = line === 'changed' ? 'gazette.changed' : line === 'watched' ? 'gazette.watched' : 'gazette.cited';
+  return <span className="block font-mono text-[9px] uppercase tracking-wide text-mp-ink-tertiary">{t(key)}</span>;
+}
+
 type SortDir = 'asc' | 'desc' | null
 
 export function ProgramsTable({
@@ -162,6 +175,7 @@ export function ProgramsTable({
                     {p.watchChanged && (
                       <span className="block font-mono text-[9px] uppercase tracking-wide text-mp-wax">{t('bell.cardLine')}</span>
                     )}
+                    <GazetteTableLine program={p} />
                   </span>
                   {p.highlightBtcFriendly && (
                     <span className="inline-flex items-center rounded-chip border border-mp-btc/50 bg-mp-btc-soft px-1 py-px font-mono text-[8px] uppercase tracking-wide text-mp-btc-text" title={t('programs.presetBitcoinFriendly')}>₿</span>
