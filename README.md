@@ -58,7 +58,7 @@ motopass/
 ├── README.md              ← You are here
 ├── docs/                  ← All documentation
 ├── src/                   ← React app (15 routes, dark mode, BTC Map)
-├── public/data/           ← BTC Map density + offline cache JSON
+├── public/data/           ← advice snapshot, probe feeds, BTC Map cache
 ├── research/countries.json ← 21 programs
 ├── website/index.html     ← Static demo
 ├── images/                ← Sovereign assets
@@ -67,10 +67,12 @@ motopass/
 
 ---
 
-## Current state (BUILD d6eb831)
+## Current state
+
+The live catalog is **21 programs**. Applications stay closed. BUILD d6eb831 is an older snapshot.
 
 - **Sovereign Night** default UI — glass cards, BTC grid/hash textures, orange accents
-- **50/50 deep flagships** · Launch Engine 5/5 · applications open at `/apply`
+- **21 programs** on the site. The 50-count was the pre-curation corpus. Applications stay closed.
 - **Canonical nav** — Programs · Vault · Distressed · BTC Map · Simulator · Compare · Agents · Apply
 - **Finance Compare** (`/compare`) — premium glass matrix; BUILD 66 fixes stuck loading + dropdown clip
 - Vault (Seal), Distressed (Forge), Apply, Portfolio, Simulator, Compare, Agents, Blog

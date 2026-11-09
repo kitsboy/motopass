@@ -131,6 +131,7 @@ All paid tiers emphasize Bitcoin-only settlement and clear value delivered throu
 - Most are one-country shops or generalists. We are systematic across the live 21.
 - We actually model Bitcoin tax implications and Lightning payment paths.
 - We do not sell programs; we sell clarity and optionality. (This builds long-term trust.)
+- We show the warning each government already publishes for its own citizens, and we show a fee in sats only when that government's note says the fee can be paid in Bitcoin.
 
 ## Launch Sequencing (Tied to Product Phases)
 

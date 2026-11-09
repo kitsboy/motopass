@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** see `LATEST-UPDATE.md` · **Last updated:** 2026-11-08
+**BUILD:** see `LATEST-UPDATE.md` · **Last updated:** 2026-11-09
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations. The glance table is the live catalog. The build history below it is the old log and still says 50 where that was true at the time.
 
@@ -12,11 +12,11 @@ Living record of what shipped, what's in progress, and where to find everything.
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io · Cloudflare Pages on push to `main` |
 | **React app** | ✅ Vite + React 18 | Curated catalog is 21 programs. Applications stay closed. |
-| **Country intel** | ✅ 21 fresh | `last_checked` 2026-11-08 from pages that loaded. Satohash proofs re-anchored the same day. Uruguay remains the open rule review (`https://www.minterior.gub.uy`). |
+| **Country intel** | ✅ 21 fresh | `last_checked` 2026-11-08 from pages that loaded. Satohash proofs re-anchored that day. The 9 Nov probe left Uruguay unchanged. |
 | **Source monitor** | ✅ 110 URLs | Worst open URL wins. Chips follow the manifest. History is an older log, not today's probe. |
 | **Research pipeline** | ✅ Daily job | Probe, stamp (cap 21; a 429 still defers), intel write, trust envelopes. `npm run probe:browser` installs Chromium on a host that has the module but not the binary. |
 | **Launch Engine** | ✅ Gates | Applications stay closed. |
-| **UI** | ✅ Sovereign Night | Program cards keep region and badges on full-width rows. Mobile region chips fade at the right edge. |
+| **UI** | ✅ Sovereign Night | Programs adds citizen advice, the probe's stored sentence, day bars, and a Bitcoin fee invoice. A phone compare note stays on three lines until it is opened. |
 | **BTC Map** | ✅ 21 | Density and snapshots match the curated catalog. |
 | **Unit tests** | ✅ Vitest | `npm test` |
 | **Programs data** | ✅ 21 | `research/countries.json` |

@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-09 by Grok — bell, gazettes, mixer, compare clocks
+# motopass — Last Updated 2026-11-09 by Grok — citizen advice, sentences, days, Bitcoin fee
+
+Programs shows what the US, UK, and Argentine pages tell their own citizens, the probe's stored before-and-after, the days each program asks for across the whole path, and a sats figure only where the note says the fee can be paid in Bitcoin. Phone compare keeps a long note to three lines. Research was not edited. Code commit: `abf1e6e`.
+
+## Previous update — 2026-11-09 by Grok — bell, gazettes, mixer, compare clocks
 
 Programs now shows a change bell, which gazettes are already watched, and a route mixer with announced routes behind a switch. Compare adds days in country, years to citizenship, fee-in-Bitcoin stance, and how you file. Research was not edited. Code commit: `8380862`.
 

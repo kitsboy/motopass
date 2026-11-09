@@ -1,3 +1,31 @@
+## Session — 2026-11-09 · Citizen advice, stored sentences, day bars, Bitcoin fee (Grok)
+
+**Done:**
+- Travel advice on Programs. Three public feeds, each speaking to its own citizens: US State Department advice to US citizens, UK FCDO advice to British nationals, and Argentine Cancillería alerts to Argentine citizens. The snapshot is `public/data/advisories.json`, outside the Satohash slice. The browser does not call those sites. US rows are matched by the advisory title, never by the feed's Category code (Category `ES` is El Salvador, not Spain; Category `ST` is Saint Lucia, not São Tomé). St. Kitts is Level 1 on this copy. Argentina's own row has no consular alert. The only matched Argentine alert among the 21 is Brazil yellow fever. The other Argentine notices, including Lebanon and La Paz, stay in the unmatched list. A failed copy keeps the previous file. The daily job refreshes it and does not edit `research/countries.json`.
+- The sentence strip shows the before-and-after the probe already stored in `public/data/source-events.json`. It is dated, and it says "Not marked changed today" unless `watch.changed` is true. Nothing in the catalog is marked changed. The copied Nostr note and webhook JSON include those sentences. The webhook still posts only when `MOTOPASS_CHANGE_WEBHOOK_URL` is a public https URL.
+- Day bars are the day count already on file for the whole path. The longest bar is 3,650 days. Zero reads "None." A missing count reads "Not on file." This is not a plan for one calendar year and not tax advice.
+- The fee invoice shows a sats payment only for the line the note says can be paid in Bitcoin. El Salvador's Freedom Visa contribution parses as about USD 1 million on that rail. The USD 5,000 government fee stays a dollar line labeled "Spot conversion. Not a payment rail." Argentina is partial and unpriced. São Tomé names crypto as a source of funds, not a payment rail. The other 18 notes are grouped as not payable in Bitcoin.
+- Phone compare keeps a note longer than 90 characters to three lines. Opening it lays the rest over the cell so the other column does not grow. Desktop compare still shows the full note.
+- The advice board no longer prints "Not on file" while the snapshot is still loading.
+- Research, proofs, intel, and `last_checked` were not edited. Applications stay closed. Uruguay stays unchanged from the 9 Nov probe.
+
+**Decisions:**
+- Did not invent a Canada feed, a paid travel-advisory API, or a "do not travel" line a ministry did not publish.
+- Did not add St. Lucia or Grenada gazette PDFs to the daily watch.
+- Did not restamp, probe, publish Nostr, or wrangler-deploy. Deploy is the Cloudflare Pages git integration.
+- The five ideas offered at the end of this session were not built.
+
+**Still open (do not start unless Cam asks):**
+- Daily stamp still stops at the first HTTP 429 after about 5 stamps. Resume inside the same job.
+- Intel's fresh window is 14 days. The catalog returns to watch around 22 Nov 2026 without another real page re-read.
+- Healthy source-monitor cards still take their subtitle age from the first URL's relative time.
+- Re-check `cbiu.gov.dm` and `cnmv.es` before treating a green probe status as a successful human read.
+- Bahamas and Mexico remain real unreachables.
+
+**Git State:**
+- Code: `ade04eb` advice, `e61b77c` sentences, `ba755db` days, `25853ed` fee invoice, `3a9ef2c` phone note clamp, `abf1e6e` advice loading line.
+- Docs commit follows, then `git push origin main`.
+
 ## Session — 2026-11-09 · Change bell, gazettes, route mixer, compare clocks (Grok)
 
 **Done:**

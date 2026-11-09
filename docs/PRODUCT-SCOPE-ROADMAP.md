@@ -59,6 +59,10 @@ The BUILD-33 baseline (2026-07-14) recorded a pre-curation corpus: **50 programs
 
 **Assessment:** The current package is already one of the cleanest, most Bitcoin-aligned, and most actionable sovereign residency intelligence artifacts in existence. The work ahead is to make it production-grade, deeply integrated with Bitcoin rails, intelligent, multi-user, and eventually a full ecosystem.
 
+### On the site as of 2026-11-09
+
+The 2026-11-08 block above is still the catalog: 21 programs, weekly MVP cadence, applications closed. Programs now also shows four reads of facts already on file. Travel advice is the public page each government writes for its own citizens (United States, United Kingdom, Argentina), copied into `public/data/advisories.json`. The sentence strip shows the probe's stored before-and-after and says it is not marked changed unless the catalog latch says so. The day bars are the day count for the whole path, not one calendar year. The fee invoice shows a sats payment only for the line that says the fee can be paid in Bitcoin. Research dates were not moved for this.
+
 ---
 
 ## The Full Scope — Phased Breakdown

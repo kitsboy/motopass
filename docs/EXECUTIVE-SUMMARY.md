@@ -41,6 +41,9 @@ It combines:
 - **Two-sided future.** Once the intelligence layer is trusted, the marketplace and B2G surfaces become natural and defensible.
 
 ## Current Traction & Assets (BUILD-33)
+
+As of 2026-11-09 the live catalog is the curated **21**. Applications stay closed. The 50-count in this section is the BUILD-33 baseline, not the site.
+
 - **50/50 deep flagships** in `research/countries.json` with OTS on disk, pathways, critical tests, and cinematic program cards/table.
 - **Production React app** at https://motopass.giveabit.io — Launch Engine open; Vault, Distressed, Apply, Portfolio, Simulator, Compare, Agents, BTC Map.
 - **Sovereign Stack v2.3 shipped**: Seal (`/vault`), Forge (`/distressed`), Nexus (`/apply`), Ledger (`oracle-seed.json`), Ops (`deploy:all`).
