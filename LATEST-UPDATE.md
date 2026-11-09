@@ -1,6 +1,10 @@
-# motopass — Last Updated 2026-11-09 by Grok — table header clears the first country
+# motopass — Last Updated 2026-11-09 by Grok — tests match the cleared Uruguay probe
 
-The programs chart title row no longer covers the first country. It sits on its own opaque row, and Score sorts in the same style as the other columns. Code commit: `3dac3a8`.
+The 9 Nov probe left Uruguay unchanged and `minterior.gub.uy` ok. The two tests that still expected an open review now follow that catalog. `npm test` is 343 passed, 2 skipped. Cloudflare Pages failed the header commit, so the live site was still the `273eea0` bundle. Test commit: `c2d81e4`. Header code remains `3dac3a8`.
+
+## Previous update — 2026-11-09 by Grok — table header clears the first country
+
+The programs chart title row no longer covers the first country in git. It sits on its own opaque row, and Score sorts in the same style as the other columns. That commit did not reach production: Pages marked the deploy failed and the site kept serving `273eea0`. Code commit: `3dac3a8`.
 
 ## Previous update — 2026-11-08 by Grok — flags and dead links
 

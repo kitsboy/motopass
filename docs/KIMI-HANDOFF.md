@@ -1,3 +1,25 @@
+## Session — 2026-11-09 · Tests follow the cleared Uruguay probe (Grok)
+
+**Done:**
+- `scripts/source-monitor-sync.test.ts` and `scripts/catalog-pipes.test.ts` now follow the 9 Nov probe. Uruguay `watch.changed` is false, `https://www.minterior.gub.uy` is `ok`, and the rebuilt census has no changed URLs. Intel matches. Research, proofs, and intel files were not edited.
+- `npm test`: 343 passed, 2 skipped. `npm run build` succeeded locally. `src/lib/buildInfo.ts` and `public/feed.xml` were reverted after that build.
+- The public site was still serving bundle `20261109-273eea0` after the header commit. Cloudflare Pages marked `a4ddbda` "Deploy failed" (check run `129270407457`). The GitHub deploy workflow only looks for the word "MotoPass", so it reported success while production stayed on the previous bundle. The header clearance in `3dac3a8` is in git and was not on the live site. This test commit is the push that should let Pages publish it.
+
+**Decisions:**
+- Did not flip Uruguay back to changed. Did not restamp. Did not wrangler-deploy.
+
+**Still open (do not start unless Cam asks):**
+- Daily stamp still stops at the first HTTP 429 after about 5 stamps. Resume inside the same job.
+- Intel's fresh window is 14 days. The catalog returns to watch around 22 Nov 2026 without another real page re-read.
+- Healthy source-monitor cards still take their subtitle age from the first URL's relative time.
+- Re-check `cbiu.gov.dm` and `cnmv.es` before treating a green probe status as a successful human read.
+- The Pages failure log is only in the Cloudflare dashboard. The API token in `.env.local` returned 401.
+
+**Git State:**
+- Test SHA: `c2d81e44dffd457c2b12bcc83a856a2c4c699eb0`
+- Header code SHA still `3dac3a8efb28aa2dc2b32c5e67300b0164e9ea4e`
+- Docs commit follows, then `git push origin main`. Deploy is the Cloudflare Pages git integration.
+
 ## Session — 2026-11-09 · Programs table header no longer covers the first country (Grok)
 
 **Done:**
