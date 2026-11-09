@@ -4,7 +4,7 @@
 - Change bell on Programs. It reads the catalog the daily probe already writes. Today every watched country is steady, so the strip says that. A card line appears only when `watch.changed` is true. The note and the webhook JSON can be copied. The script `scripts/change-bell.mjs` prints the payload and posts only when `MOTOPASS_CHANGE_WEBHOOK_URL` is a public https URL. It does not publish to a relay.
 - Gazette strip. It classifies URLs already in the file. Watched: Argentina, Panama, Mexico. Cited and not on the daily watch: St. Lucia, Grenada. The other 16 have no gazette URL on file. No gazette is marked changed.
 - Route mixer, the UI pass for this session. One route per country, one dollar and sats total, family prices only where the note already states them. Announced routes stay behind a switch that starts off. Argentina's announced citizenship-by-investment minimum stays hidden until that switch is on.
-- Compare chart adds days in the country, years to citizenship, fee-in-Bitcoin stance, and how you file. Uruguay is 1,095 days and 4 years. El Salvador is 365 days, 5 years, fee partial. São Tomé is None, At grant, and remote filing.
+- Compare chart adds days in the country, years to citizenship, fee-in-Bitcoin stance, and how you file. Uruguay is 1,095 days and 4 years. El Salvador is 365 days, 5 years, fee partial. São Tomé is None, At grant, and remote filing. On a phone, those labels share one row height with the values so a two-line label does not shift the rows under it.
 - `npm test`: 361 passed, 2 skipped. Research, proofs, and intel were not edited. Applications stay closed.
 
 **Decisions:**

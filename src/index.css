@@ -2120,7 +2120,8 @@ html.mp-header-collapsed {
 .fc-scroll-matrix__metric {
   display: flex;
   align-items: center;
-  min-height: 2.75rem;
+  /* Two-line labels such as "Years to citizenship" share this height with the value cell. */
+  min-height: 3.125rem;
   padding: 0.5rem 0.75rem;
   font-size: 0.6875rem;
   font-weight: 500;
@@ -2177,7 +2178,7 @@ html.mp-header-collapsed {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  min-height: 2.75rem;
+  min-height: 3.125rem;
   padding: 0.5rem 0.75rem;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.85);
