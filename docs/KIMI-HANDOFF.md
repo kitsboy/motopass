@@ -1,3 +1,30 @@
+## Session — 2026-11-08 · Dead links, country flags, badge coach (Grok)
+
+**Done:**
+- Visitor links are fixed in the UI only. `research/countries.json`, intel, trust envelopes, and the 21 Satohash proofs were not edited and were not re-stamped. A blocked or HTTP 403 page stays on the live URL (a human browser can pass the wall). A timeout, connection failure, or confirmed 404 opens in the Wayback Machine, and the visible text stays the live URL. Changed-but-still-loading pages keep the live link and add a separate archive link.
+- The Sources tab no longer crashes when a URL status is `blocked`. El Salvador, Spain, and Malta render "Walled". Unknown statuses fall back to pending.
+- Dead clicks that now go to the archive include `adoptingelsalvador.gob.sv`, the AIMA paths, `investorvisa.mise.gov.it`, the Uruguay XXI entry-requirements 404, `cbiu.gov.dm`, `ciu.gov.lc`, the Grenada CBI hosts, `laws.bahamas.gov.bs`, `bahamaschamber.com`, the Cayman registry and immigration hosts, `boletinoficial.gob.ar`, `brsb.itamaraty.gov.br`, and `cilc.vu`. Proof URLs stay live. Dollar floors were not re-read and were not changed.
+- The demo official-site buttons and the footer (Marketplace, For Governments, Lightning, NOSTR, mempool.space, GitHub, the accuracy mailbox) are real links. The legal footer items still open the terms modal.
+- Country cards show a self-hosted flag beside the name. The flag's hover title is that name. São Tomé is a new sprite row at `x:0 y:150` (sheet 400×180). The first 50 tile offsets were not moved. UAE maps to `AE`. Cards paint the tile immediately. Native `<select>` options and the language menu stay emoji.
+- Checked in the browser: program cards, the Sources tab, the Uruguay legal tab, trust, source monitor (21 flags), the demo, and Agents. Agents shows Uruguay, El Salvador, UAE, Singapore, Portugal, and Georgia on both the directory cards and the office-hours cards, at 390 and 1280, with no sideways scroll. UAE is the Emirates flag.
+- The mobile "Reading the badges" coach wraps full sentences. It no longer cuts a word.
+- Local dev was serving Paige knowledge JSON as raw `application/json`, so `/agents` (and any page that loads Paige) failed to import the module. `?import` now falls through to Vite. A leftover service worker from another app on port 5173 was also intercepting this browser. That worker is not in the repo.
+
+**Decisions:**
+- Did not forge `last_checked`, open applications, run the 110-URL probe, or install Chromium on THOR.
+- Did not archive bot-walled hosts (`rree.gob.sv`, `inclusion.gob.es`, `gov.mt`, `mfsa.mt`, `embamex.sre.gob.mx`). Bahamas and Mexico stay real unreachables. Uruguay's open review stays `https://www.minterior.gub.uy`.
+
+**Still open (do not start unless Cam asks):**
+- Daily stamp still stops at the first HTTP 429 after about 5 stamps. Resume inside the same job.
+- Intel's fresh window is 14 days. The catalog returns to watch around 22 Nov 2026 without another real page re-read.
+- Healthy source-monitor cards still take their subtitle age from the first URL's relative time.
+- Re-check `cbiu.gov.dm` and `cnmv.es` before treating a green probe status as a successful human read.
+
+**Git State:**
+- Code SHA: `78c63ca50b03ffa9161801eb352878581f44d3c3`
+- Docs commit follows, then `git push origin main`. Deploy is the Cloudflare Pages git integration.
+- Tests: `npm test` 343 passed, 2 skipped.
+
 ## Session — 2026-11-08 · Proofs re-anchored, probe day, history log (Grok)
 
 **Done:**

@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-08 by Grok — 21 proofs re-anchored
+# motopass — Last Updated 2026-11-08 by Grok — flags and dead links
+
+Country cards show a sprite flag beside the name, including São Tomé and the UAE. Timeouts and confirmed 404s open in the Wayback Machine. Walled pages stay on the live URL. The Sources tab no longer crashes on a blocked row. The mobile badge coach wraps full sentences. Research dates and the 21 proofs were not moved. Code commit: `78c63ca`.
+
+## Previous update — 2026-11-08 by Grok — 21 proofs re-anchored
 
 All 21 Satohash proofs match the 8 Nov slice. Intel is 21 fresh, Satohash up, Uruguay stays the open review. Source badges show `8 Nov`. Source Monitor history is an older log (`2 Oct 2026`). Mobile region chips fade at the right edge. THOR's Chromium binary is not installed until the host runs `npm run probe:browser` or the next probe. Code commit: `9d3d06a`.
 
