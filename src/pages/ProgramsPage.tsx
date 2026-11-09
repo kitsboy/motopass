@@ -25,6 +25,7 @@ import { GoalFinder } from '../components/programs/GoalFinder'
 import { GoldStandardSpotlight } from '../components/programs/GoldStandardSpotlight'
 import { ChangeBellPanel } from '../components/programs/ChangeBellPanel'
 import { GazetteStrip } from '../components/programs/GazetteStrip'
+import { RouteMixer } from '../components/programs/RouteMixer'
 import { ProgramsComplianceStrip } from '../components/programs/ProgramsComplianceStrip'
 import { Chip } from '../components/ui/Chip'
 import { ClassyModal } from '../components/ui/ClassyModal'
@@ -385,6 +386,7 @@ export function ProgramsPage() {
           <>
             <ChangeBellPanel programs={programs} />
             <GazetteStrip programs={programs} />
+            <RouteMixer programs={programs} />
             <GoldStandardSpotlight programs={programs} />
             <ProgramsComplianceStrip />
           </>

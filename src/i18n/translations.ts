@@ -376,6 +376,15 @@ export type TranslationKey =
   | 'gazette.watched'
   | 'gazette.changed'
   | 'gazette.cited'
+  | 'mixer.eyebrow'
+  | 'mixer.title'
+  | 'mixer.lead'
+  | 'mixer.includeAnnounced'
+  | 'mixer.countries'
+  | 'mixer.total'
+  | 'mixer.empty'
+  | 'mixer.family'
+  | 'mixer.remove'
   | 'portfolio.nostrIdentity'
   | 'portfolio.nostrHint'
   | 'portfolio.loadingAria'
@@ -704,6 +713,15 @@ const en: Dict = {
   'gazette.watched': 'Gazette watched',
   'gazette.changed': 'Gazette page changed',
   'gazette.cited': 'Gazette cited, not on the daily watch',
+  'mixer.eyebrow': 'ROUTE MIXER',
+  'mixer.title': 'One route per country',
+  'mixer.lead': 'Pick a route and add it. Each country keeps one route in the total. Family prices appear only where the note already states them. Announced routes stay out until you include them.',
+  'mixer.includeAnnounced': 'Include announced routes',
+  'mixer.countries': 'Countries',
+  'mixer.total': 'Mix total',
+  'mixer.empty': 'Pick a route to start a total.',
+  'mixer.family': 'Family prices on file',
+  'mixer.remove': 'Remove',
   'portfolio.nostrIdentity': 'Nostr identity',
   'portfolio.nostrHint': 'Connect npub before Apply — agents route deal rooms and proof updates through your sovereign key.',
   'portfolio.loadingAria': 'Loading portfolio',
