@@ -385,6 +385,12 @@ export type TranslationKey =
   | 'mixer.empty'
   | 'mixer.family'
   | 'mixer.remove'
+  | 'compare.daysInCountry'
+  | 'compare.yearsToCitizenship'
+  | 'compare.feeBitcoin'
+  | 'compare.filing'
+  | 'compare.fileInCountry'
+  | 'compare.fileRemote'
   | 'portfolio.nostrIdentity'
   | 'portfolio.nostrHint'
   | 'portfolio.loadingAria'
@@ -722,6 +728,12 @@ const en: Dict = {
   'mixer.empty': 'Pick a route to start a total.',
   'mixer.family': 'Family prices on file',
   'mixer.remove': 'Remove',
+  'compare.daysInCountry': 'Days in country',
+  'compare.yearsToCitizenship': 'Years to citizenship',
+  'compare.feeBitcoin': 'Fee in Bitcoin',
+  'compare.filing': 'How you file',
+  'compare.fileInCountry': 'In the country',
+  'compare.fileRemote': 'Remote',
   'portfolio.nostrIdentity': 'Nostr identity',
   'portfolio.nostrHint': 'Connect npub before Apply — agents route deal rooms and proof updates through your sovereign key.',
   'portfolio.loadingAria': 'Loading portfolio',

@@ -9,6 +9,9 @@ import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
 import { useI18n } from '../i18n/I18nContext'
 import { parseIdList, serializeIdList } from '../lib/urlState'
 import { toCinematicProgram } from '../lib/programAdapter'
+import { compareFacts } from '../lib/compareFacts'
+import type { FeeStance, FilingMode } from '../lib/decisionPack'
+import type { TranslationKey } from '../i18n/translations'
 import { ProgramModal } from '../components/programs/ProgramModal'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import type { Program } from '../types/program'
@@ -26,6 +29,19 @@ import { compareDiffMarkdown } from '../lib/compareMarkdown'
 import { useToast } from '../components/ui/Toast'
 
 const COMPARE_STARTER_DISMISSED_KEY = 'motopass-compare-starter-dismissed'
+
+function feeLabelKey(fee: FeeStance): TranslationKey {
+  if (fee === 'yes') return 'pack.feeYes'
+  if (fee === 'no') return 'pack.feeNo'
+  if (fee === 'partial') return 'pack.feePartial'
+  return 'pack.notOnFile'
+}
+
+function filingLabelKey(mode: FilingMode): TranslationKey {
+  if (mode === 'in_country') return 'compare.fileInCountry'
+  if (mode === 'remote') return 'compare.fileRemote'
+  return 'pack.notOnFile'
+}
 
 export function FinanceComparePage() {
   const { t } = useI18n()
@@ -159,6 +175,38 @@ export function FinanceComparePage() {
         numeric: () => null,
         valueKey: p => p.finance.processing_time_months ?? '',
         render: p => `${p.finance.processing_time_months ?? '—'} ${t('compare.months')}`,
+      },
+      {
+        label: t('compare.daysInCountry'),
+        group: 'timeline',
+        best: 'min',
+        numeric: p => compareFacts(p).days,
+        valueKey: p => compareFacts(p).daysLabel,
+        render: p => compareFacts(p).daysLabel,
+      },
+      {
+        label: t('compare.yearsToCitizenship'),
+        group: 'timeline',
+        best: 'min',
+        numeric: p => compareFacts(p).years,
+        valueKey: p => compareFacts(p).yearsLabel,
+        render: p => compareFacts(p).yearsLabel,
+      },
+      {
+        label: t('compare.feeBitcoin'),
+        group: 'stack',
+        best: null,
+        numeric: () => null,
+        valueKey: p => compareFacts(p).fee,
+        render: p => t(feeLabelKey(compareFacts(p).fee)),
+      },
+      {
+        label: t('compare.filing'),
+        group: 'stack',
+        best: null,
+        numeric: () => null,
+        valueKey: p => compareFacts(p).filing,
+        render: p => t(filingLabelKey(compareFacts(p).filing)),
       },
       {
         label: t('compare.btcScore'),
