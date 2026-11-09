@@ -385,6 +385,26 @@ export type TranslationKey =
   | 'mixer.empty'
   | 'mixer.family'
   | 'mixer.remove'
+  | 'advice.eyebrow'
+  | 'advice.title'
+  | 'advice.lead'
+  | 'advice.fetched'
+  | 'advice.unknownDate'
+  | 'advice.country'
+  | 'advice.usAudience'
+  | 'advice.ukAudience'
+  | 'advice.arAudience'
+  | 'advice.levelWord'
+  | 'advice.noUkCode'
+  | 'advice.ukAvoidAll'
+  | 'advice.ukAvoidEssential'
+  | 'advice.ukAvoidAllParts'
+  | 'advice.ukAvoidEssentialParts'
+  | 'advice.noArAlert'
+  | 'advice.otherAr'
+  | 'advice.notOnFile'
+  | 'advice.read'
+  | 'advice.hide'
   | 'compare.daysInCountry'
   | 'compare.yearsToCitizenship'
   | 'compare.feeBitcoin'
@@ -728,6 +748,26 @@ const en: Dict = {
   'mixer.empty': 'Pick a route to start a total.',
   'mixer.family': 'Family prices on file',
   'mixer.remove': 'Remove',
+  'advice.eyebrow': 'ADVICE',
+  'advice.title': 'What each government tells its own citizens',
+  'advice.lead': 'The United States line is for United States citizens. The British line is for British nationals. The Argentine line is what Cancillería published for Argentine citizens. A quiet line means that page did not name this country.',
+  'advice.fetched': 'Copied {date}.',
+  'advice.unknownDate': 'not on file',
+  'advice.country': 'Country',
+  'advice.usAudience': 'United States citizens',
+  'advice.ukAudience': 'British nationals',
+  'advice.arAudience': 'Argentine citizens',
+  'advice.levelWord': 'Level',
+  'advice.noUkCode': 'No warning code on the page',
+  'advice.ukAvoidAll': 'Advise against all travel',
+  'advice.ukAvoidEssential': 'Advise against all but essential travel',
+  'advice.ukAvoidAllParts': 'Advise against all travel to parts',
+  'advice.ukAvoidEssentialParts': 'Advise against all but essential travel to parts',
+  'advice.noArAlert': 'No consular alert on file',
+  'advice.otherAr': 'Argentine alerts that do not name one of these programs',
+  'advice.notOnFile': 'Not on file',
+  'advice.read': 'Read the sentence',
+  'advice.hide': 'Hide the sentence',
   'compare.daysInCountry': 'Days in country',
   'compare.yearsToCitizenship': 'Years to citizenship',
   'compare.feeBitcoin': 'Fee in Bitcoin',

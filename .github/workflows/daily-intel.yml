@@ -67,12 +67,15 @@ jobs:
       - run: npm run validate:data
       - run: npm run validate:stamps
 
+      - name: Refresh travel advice
+        run: npm run advisories:fetch
+
       # 7) Auto-commit DETECTION + re-anchors + research changes (facts, never invented rules)
       - name: Commit intel sweep
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore(intel): daily freshness sweep + source probe + satohash re-stamp'
-          file_pattern: 'research/countries.json public/data/intel.json public/proofs/* public/countries/*.json public/trust-state.json'
+          file_pattern: 'research/countries.json public/data/intel.json public/data/advisories.json public/proofs/* public/countries/*.json public/trust-state.json'
           skip_fetch: true
 
       # 8) Summary for the morning review

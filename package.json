@@ -31,6 +31,7 @@
     "intel:migrate": "node scripts/migrate-schema-v3.mjs",
     "intel:freshness": "node scripts/update-freshness.mjs",
     "intel:probe": "node scripts/probe-sources.mjs",
+    "advisories:fetch": "node scripts/fetch-advisories.mjs",
     "probe:browser": "npx playwright install chromium",
     "intel:probe:selftest": "node scripts/probe-sources.mjs --self-test",
     "intel:stamp": "node scripts/stamp-changed.mjs",

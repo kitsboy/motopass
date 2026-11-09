@@ -23,6 +23,7 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { ProgramsOnboarding } from '../components/programs/ProgramsOnboarding'
 import { GoalFinder } from '../components/programs/GoalFinder'
 import { GoldStandardSpotlight } from '../components/programs/GoldStandardSpotlight'
+import { AdvisoryBoard } from '../components/programs/AdvisoryBoard'
 import { ChangeBellPanel } from '../components/programs/ChangeBellPanel'
 import { GazetteStrip } from '../components/programs/GazetteStrip'
 import { RouteMixer } from '../components/programs/RouteMixer'
@@ -384,6 +385,7 @@ export function ProgramsPage() {
 
         {!loading && !error && programs.length > 0 && (
           <>
+            <AdvisoryBoard programs={programs} />
             <ChangeBellPanel programs={programs} />
             <GazetteStrip programs={programs} />
             <RouteMixer programs={programs} />
