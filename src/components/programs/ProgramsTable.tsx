@@ -1,6 +1,6 @@
 import { useMemo, useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { motion } from 'motion/react';
-import { Check, ChevronDown, ChevronUp } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp, ChevronsUpDown } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge';
 import { FreshnessBadge } from '../ui/FreshnessBadge';
 import { SourcesProbedNote } from './SourcesProbedNote';
@@ -83,16 +83,21 @@ export function ProgramsTable({
             <span className="text-mp-btc-text">₿</span> {t('programs.minInvest')}
           </th>
           <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>{t('programs.timeline')}</th>
-          <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}>
+          <th
+            scope="col"
+            aria-sort={scoreSort === 'asc' ? 'ascending' : scoreSort === 'desc' ? 'descending' : 'none'}
+            className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}
+          >
             <button
               type="button"
               onClick={toggleScoreSort}
-              className="inline-flex items-center gap-1 hover:text-mp-btc-text transition-colors"
+              className={`inline-flex items-center gap-1 font-chrome text-[11px] uppercase tracking-wide transition-colors hover:text-mp-btc-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc ${scoreSort ? 'text-mp-btc-text' : 'text-inherit'}`}
               aria-label={t('programs.sortSovereignty')}
             >
               {t('programs.score')}
               {scoreSort === 'desc' && <ChevronDown size={12} aria-hidden="true" />}
               {scoreSort === 'asc' && <ChevronUp size={12} aria-hidden="true" />}
+              {scoreSort === null && <ChevronsUpDown size={12} className="opacity-45" aria-hidden="true" />}
             </button>
           </th>
           <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>{t('programs.proof')}</th>

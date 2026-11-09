@@ -667,7 +667,7 @@ export function ProgramsPage() {
               {cinematic.length > 0 && (
                 <>
                   {view === 'table' && (
-                    <div className="hidden sm:block min-w-0 overflow-x-auto">
+                    <div className="hidden sm:block min-w-0 overflow-x-auto overflow-y-clip">
                       <ProgramsTable
                         programs={cinematic}
                         onSelect={setActive}

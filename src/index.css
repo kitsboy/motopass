@@ -1396,11 +1396,13 @@ html.mp-header-collapsed {
 
 .programs-table-sticky thead th {
   position: sticky;
-  top: 3.25rem;
+  /* The table sits in a horizontal scroller. A non-zero top paints this row over the first country. */
+  top: 0;
   z-index: 25;
-  background: var(--mp-glass-bg);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 2px 8px rgb(var(--mp-ink-rgb, 24 24 27) / 0.08);
+  /* Opaque. A glass fill lets the first country show through the title row. */
+  background: rgb(var(--mp-card-rgb));
+  background-clip: padding-box;
+  box-shadow: none;
 }
 
 .programs-filter-rail {
@@ -1443,8 +1445,15 @@ html.mp-header-collapsed {
 .dark .mp-table-zebra thead th,
 .dark .programs-table-sticky thead th {
   color: rgb(var(--mp-ink-secondary-rgb));
-  background: rgb(var(--mp-card-rgb) / 0.92);
   border-bottom-color: rgb(var(--mp-border-strong-rgb) / 0.75);
+}
+
+.dark .mp-table-zebra thead th {
+  background: rgb(var(--mp-card-rgb) / 0.92);
+}
+
+.dark .programs-table-sticky thead th {
+  background: rgb(var(--mp-card-rgb));
 }
 
 .dark .mp-table-zebra tbody td,
