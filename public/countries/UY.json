@@ -7,15 +7,15 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-08T19:36:23.108Z",
+  "generated_at": "2026-11-09T14:53:31.351Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 0,
+    "days_stale": 1,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
+      "days_stale": 2,
       "last_checked": "2026-11-08"
     }
   },
@@ -134,44 +134,37 @@
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-11-08T12:24:29.059Z",
+    "changed": false,
+    "last_probe_at": "2026-11-09T14:38:54.440Z",
     "urls": [
       {
         "url": "https://www.gub.uy/tramites/residencia-legal",
         "status": "ok",
-        "last_probed": "2026-11-08T12:24:29.059Z"
+        "last_probed": "2026-11-09T14:38:54.440Z"
       },
       {
         "url": "https://www.minterior.gub.uy",
-        "status": "changed",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "status": "ok",
+        "last_probed": "2026-11-09T14:38:54.440Z"
       },
       {
         "url": "https://embassyofuruguay.us/",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-09T14:38:54.440Z"
       },
       {
         "url": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
         "status": "ok",
-        "last_probed": "2026-11-08T06:01:10.159Z"
+        "last_probed": "2026-11-09T14:38:54.440Z"
       },
       {
         "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
         "status": "ok",
-        "last_probed": "2026-11-08T12:24:29.059Z"
+        "last_probed": "2026-11-09T14:38:54.440Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-10-03",
-      "field": "watch.https://www.minterior.gub.uy",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "f0082a2e1bf3b602"
-    },
     {
       "date": "2026-10-18",
       "field": "watch.https://www.minterior.gub.uy",
@@ -220,6 +213,13 @@
       "from": "957aaee425cfad6e",
       "to": "re-anchored 03162f1e30588da2 (stamp 34f59f11-924)",
       "hash": "03162f1e30588da2c1589d97943a41abb8a243e1b20e1912144e946045665802"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
+      "hash": null
     }
   ],
   "sovereignty": {
