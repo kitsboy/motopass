@@ -637,7 +637,7 @@ export function ProgramsPage() {
             </aside>
 
             <div className="min-w-0">
-              <p className="sr-only" aria-live="polite" aria-atomic="true">
+              <p className="mb-3 text-sm text-mp-ink-secondary" aria-live="polite" aria-atomic="true">
                 {formatT(t, 'programs.filterResults', { count: cinematic.length })}
               </p>
               {cinematic.length === 0 && (

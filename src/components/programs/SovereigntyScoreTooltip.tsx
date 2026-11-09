@@ -10,14 +10,34 @@ interface SovereigntyScoreTooltipProps {
   isFlagship: boolean
 }
 
+function meterTone(score: number): string {
+  if (score >= 85) return 'bg-mp-btc'
+  if (score >= 70) return 'bg-mp-ink-secondary'
+  return 'bg-mp-ink-tertiary'
+}
+
 export function SovereigntyScoreTooltip({ program, score, isFlagship }: SovereigntyScoreTooltipProps) {
   const { t } = useI18n()
   const [open, setOpen] = useState(false)
   const tooltipId = useId()
   const breakdown = getSovereigntyBreakdown(program)
+  const clamped = Math.max(0, Math.min(100, score))
+  const meter = (
+    <span
+      className="block h-1 w-14 overflow-hidden rounded-full bg-mp-border-subtle"
+      aria-hidden="true"
+    >
+      <span className={`block h-full rounded-full ${meterTone(score)}`} style={{ width: `${clamped}%` }} />
+    </span>
+  )
 
   if (!isFlagship) {
-    return <span className="font-mono text-sm text-mp-ink">{score}</span>
+    return (
+      <span className="inline-flex flex-col items-end gap-1">
+        <span className="font-mono text-sm tabular-nums text-mp-ink">{score}</span>
+        {meter}
+      </span>
+    )
   }
 
   const formatValue = (key: string, value: string) => {
@@ -28,8 +48,9 @@ export function SovereigntyScoreTooltip({ program, score, isFlagship }: Sovereig
   }
 
   return (
-    <span className="relative inline-flex items-center gap-1">
-      <span className={`font-mono text-sm ${isFlagship ? 'text-mp-btc-text' : 'text-mp-ink'}`}>{score}</span>
+    <span className="relative inline-flex flex-col items-end gap-1">
+      <span className="inline-flex items-center gap-1">
+      <span className="font-mono text-sm tabular-nums text-mp-btc-text">{score}</span>
       <button
         type="button"
         className="inline-flex h-5 w-5 items-center justify-center rounded-full text-mp-btc-text hover:bg-mp-btc-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-mp-btc"
@@ -47,6 +68,8 @@ export function SovereigntyScoreTooltip({ program, score, isFlagship }: Sovereig
       >
         <Info size={12} aria-hidden="true" />
       </button>
+      </span>
+      {meter}
       {open && (
         <span
           id={tooltipId}

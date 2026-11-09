@@ -134,7 +134,7 @@ export function ProgramsTable({
               }`}
             >
               {onTogglePortfolio && (
-                <td className={`border-b border-mp-border-subtle ${cellPad} pe-2`}>
+                <td className={`border-b border-mp-border-subtle ${cellPad} pe-2 ${isFlagship ? 'shadow-[inset_3px_0_0_0_var(--mp-accent-btc)]' : ''}`}>
                   <button
                     type="button"
                     onClick={handleToggle}
@@ -171,7 +171,7 @@ export function ProgramsTable({
               >
                 {p.tier}
               </td>
-              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>
+              <td className={`whitespace-nowrap border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>
                 <BtcDualPrice usd={p.minInvestment} size="xs" layout="stack" className="items-end" />
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-mono text-sm text-mp-ink`}>
