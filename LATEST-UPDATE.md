@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-08 by Grok — flags and dead links
+# motopass — Last Updated 2026-11-09 by Grok — table header clears the first country
+
+The programs chart title row no longer covers the first country. It sits on its own opaque row, and Score sorts in the same style as the other columns. Code commit: `3dac3a8`.
+
+## Previous update — 2026-11-08 by Grok — flags and dead links
 
 Country cards show a sprite flag beside the name, including São Tomé and the UAE. The sprite URL carries `?v=6` so the edge cache does not keep the old 5-row sheet. Timeouts and confirmed 404s open in the Wayback Machine. Walled pages stay on the live URL. The Sources tab no longer crashes on a blocked row. The mobile badge coach wraps full sentences. Research dates and the 21 proofs were not moved. Code commit: `78c63ca`.
 

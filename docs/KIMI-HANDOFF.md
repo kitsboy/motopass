@@ -1,3 +1,23 @@
+## Session — 2026-11-09 · Programs table header no longer covers the first country (Grok)
+
+**Done:**
+- The programs chart title row (Jurisdiction, Tier, ₿ Min. invest, Timeline, Score, Proof, Intel) was `position: sticky; top: 3.25rem` inside a horizontal scroller. That offset painted the titles 52px down onto the first country, and the glass background let the country show through. `top` is now 0, the scroller uses `overflow-y: clip`, and the title cells are an opaque card color with no drop shadow.
+- Checked at 1280: overlap between the title row and the first country is 0. El Salvador's name starts below the titles. The page does not scroll sideways.
+- Score is a real sort control. It uses the same uppercase chrome as the other columns, shows a sort mark, and sets `aria-sort`. Clicking it orders high scores first (El Salvador and Uruguay at 90 stay above Italy at 80). The table stays desktop-only; phones still get the card list.
+
+**Decisions:**
+- Did not edit research, proofs, or intel. Did not open applications.
+
+**Still open (do not start unless Cam asks):**
+- Daily stamp still stops at the first HTTP 429 after about 5 stamps. Resume inside the same job.
+- Intel's fresh window is 14 days. The catalog returns to watch around 22 Nov 2026 without another real page re-read.
+- Healthy source-monitor cards still take their subtitle age from the first URL's relative time.
+- Re-check `cbiu.gov.dm` and `cnmv.es` before treating a green probe status as a successful human read.
+
+**Git State:**
+- Code SHA: `3dac3a8efb28aa2dc2b32c5e67300b0164e9ea4e`
+- Docs commit follows, then `git push origin main`. Deploy is the Cloudflare Pages git integration.
+
 ## Session — 2026-11-08 · Dead links, country flags, badge coach (Grok)
 
 **Done:**
