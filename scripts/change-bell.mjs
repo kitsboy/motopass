@@ -35,7 +35,38 @@ export function reportFromPrograms(programs) {
   }
 }
 
-export function payloadFromReport(report) {
+function squash(value) {
+  return String(value || '').replace(/\s+/g, ' ').trim()
+}
+
+export function sentencesFromEvents(events, programs) {
+  const names = new Set(programs.map(program => program.name))
+  const changed = new Map(programs.map(program => [program.name, program.watch?.changed === true]))
+  const ordered = (events || []).slice().sort((a, b) => String(b.ts || b.date).localeCompare(String(a.ts || a.date)))
+  const seen = new Set()
+  const sentences = []
+  for (const event of ordered) {
+    if (event.kind !== 'rule' || !names.has(event.country) || seen.has(event.country)) continue
+    const before = squash(event.before)
+    const after = squash(event.after)
+    if (!before || !after || before === after) continue
+    seen.add(event.country)
+    let index = 0
+    while (index < before.length && index < after.length && before[index] === after[index]) index += 1
+    const space = after.lastIndexOf(' ', index)
+    const added = after.slice(space > 0 ? space + 1 : 0).trim()
+    sentences.push({
+      country: event.country,
+      date: event.date,
+      url: event.url,
+      added: added.length > 180 ? `${added.slice(0, 179).trimEnd()}…` : added,
+      marked_changed: changed.get(event.country) === true,
+    })
+  }
+  return sentences
+}
+
+export function payloadFromReport(report, sentences = []) {
   return {
     kind: 'motopass.change-bell',
     probed_at: report.latestProbe,
@@ -44,6 +75,7 @@ export function payloadFromReport(report) {
       name: country.name,
       urls: country.changedPages.map(page => page.url),
     })),
+    sentences,
   }
 }
 
@@ -71,7 +103,13 @@ export function webhookUrlAllowed(raw) {
 
 async function main() {
   const catalog = JSON.parse(readFileSync(resolve(root, 'research/countries.json'), 'utf8'))
-  const payload = payloadFromReport(reportFromPrograms(catalog.programs))
+  let events = []
+  try {
+    events = JSON.parse(readFileSync(resolve(root, 'public/data/source-events.json'), 'utf8'))
+  } catch {
+    events = []
+  }
+  const payload = payloadFromReport(reportFromPrograms(catalog.programs), sentencesFromEvents(events, catalog.programs))
   const body = JSON.stringify(payload)
   const target = process.env.MOTOPASS_CHANGE_WEBHOOK_URL
   if (!webhookUrlAllowed(target)) {

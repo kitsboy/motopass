@@ -405,6 +405,13 @@ export type TranslationKey =
   | 'advice.notOnFile'
   | 'advice.read'
   | 'advice.hide'
+  | 'sentence.eyebrow'
+  | 'sentence.title'
+  | 'sentence.lead'
+  | 'sentence.none'
+  | 'sentence.marked'
+  | 'sentence.notMarked'
+  | 'sentence.quiet'
   | 'compare.daysInCountry'
   | 'compare.yearsToCitizenship'
   | 'compare.feeBitcoin'
@@ -768,6 +775,13 @@ const en: Dict = {
   'advice.notOnFile': 'Not on file',
   'advice.read': 'Read the sentence',
   'advice.hide': 'Hide the sentence',
+  'sentence.eyebrow': 'STORED SENTENCE',
+  'sentence.title': 'The last before-and-after on file',
+  'sentence.lead': 'These are the two texts the probe stored. The date is the day it stored them. A country is marked changed only when the catalog says so.',
+  'sentence.none': 'No before-and-after sentence is on file.',
+  'sentence.marked': 'Marked changed',
+  'sentence.notMarked': 'Not marked changed today',
+  'sentence.quiet': '{count} countries have no before-and-after on file.',
   'compare.daysInCountry': 'Days in country',
   'compare.yearsToCitizenship': 'Years to citizenship',
   'compare.feeBitcoin': 'Fee in Bitcoin',

@@ -1,7 +1,9 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Bell } from 'lucide-react'
 import type { Program } from '../../types/program'
 import { changeBellNote, changeBellPayload, changeBellReport } from '../../lib/changeBell'
+import { latestRuleSentences } from '../../lib/ruleSentence'
+import { loadSourceEvents } from '../../hooks/useSourceMonitor'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
 
@@ -13,8 +15,34 @@ import { formatT } from '../../i18n/format'
 export function ChangeBellPanel({ programs }: { programs: Program[] }) {
   const { t } = useI18n()
   const report = useMemo(() => changeBellReport(programs), [programs])
+  const [sentences, setSentences] = useState<ReturnType<typeof latestRuleSentences>>([])
   const [copied, setCopied] = useState<'note' | 'payload' | null>(null)
   const when = report.latestProbe?.slice(0, 10) ?? t('bell.unknownDate')
+
+  useEffect(() => {
+    let live = true
+    loadSourceEvents().then(events => {
+      if (live) setSentences(latestRuleSentences(events, programs))
+    })
+    return () => {
+      live = false
+    }
+  }, [programs])
+
+  const sentenceLines = sentences.map(sentence => `${sentence.country} (${sentence.date}): ${sentence.added}`)
+  const note = [changeBellNote(report), sentenceLines.length ? `Stored sentences:\n${sentenceLines.join('\n')}` : '']
+    .filter(Boolean)
+    .join('\n\n')
+  const payload = {
+    ...changeBellPayload(report),
+    sentences: sentences.map(sentence => ({
+      country: sentence.country,
+      date: sentence.date,
+      url: sentence.url,
+      added: sentence.added,
+      marked_changed: sentence.markedChanged,
+    })),
+  }
 
   async function copy(kind: 'note' | 'payload', text: string) {
     try {
@@ -46,14 +74,14 @@ export function ChangeBellPanel({ programs }: { programs: Program[] }) {
           <button
             type="button"
             className="chip text-xs"
-            onClick={() => copy('note', changeBellNote(report))}
+            onClick={() => copy('note', note)}
           >
             {copied === 'note' ? t('bell.copied') : t('bell.copyNote')}
           </button>
           <button
             type="button"
             className="chip text-xs"
-            onClick={() => copy('payload', JSON.stringify(changeBellPayload(report), null, 2))}
+            onClick={() => copy('payload', JSON.stringify(payload, null, 2))}
           >
             {copied === 'payload' ? t('bell.copied') : t('bell.copyPayload')}
           </button>
