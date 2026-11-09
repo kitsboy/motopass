@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-09 by Grok — tests match the cleared Uruguay probe
+# motopass — Last Updated 2026-11-09 by Grok — score meters, prices, region rail
+
+Programs scores show a 0–100 meter, investment figures stay on one line, and the region list shows a count next to a visible match total. Code commit: `b473681`.
+
+## Previous update — 2026-11-09 by Grok — tests match the cleared Uruguay probe
 
 The 9 Nov probe left Uruguay unchanged and `minterior.gub.uy` ok. The two tests that still expected an open review now follow that catalog. `npm test` is 343 passed, 2 skipped. Cloudflare Pages failed the header commit, so the live site was still the `273eea0` bundle. Test commit: `c2d81e4`. Header code remains `3dac3a8`.
 

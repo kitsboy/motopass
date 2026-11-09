@@ -1,3 +1,23 @@
+## Session — 2026-11-09 · Score meters, intact prices, region rail (Grok)
+
+**Done:**
+- Three presentation polishes on Programs. Each score has a 0–100 meter (amber at 85 and above, quieter below). Flagship rows keep the breakdown button and gain a left amber mark that actually paints. Investment figures stay on one line, including Bahamas `1293.19M sats`. The region rail is a full-width list with a count pill, and the match sentence is visible (`21 programs match your filters`; Caribbean shows 8).
+- Checked at 1280: header overlap is still 0, El Salvador is the first row, the page does not scroll sideways, and the score breakdown opens. At 390 the table stays hidden, cards show the meter, region chips scroll, and the page does not scroll sideways.
+- Research, proofs, and intel were not edited. Applications stay closed.
+
+**Decisions:**
+- Did not restamp, probe, or wrangler-deploy.
+
+**Still open (do not start unless Cam asks):**
+- Daily stamp still stops at the first HTTP 429 after about 5 stamps. Resume inside the same job.
+- Intel's fresh window is 14 days. The catalog returns to watch around 22 Nov 2026 without another real page re-read.
+- Healthy source-monitor cards still take their subtitle age from the first URL's relative time.
+- Re-check `cbiu.gov.dm` and `cnmv.es` before treating a green probe status as a successful human read.
+
+**Git State:**
+- Code SHA: `b47368113071b15081a0535214f04327c59d38cd`
+- Docs commit follows, then `git push origin main`. Deploy is the Cloudflare Pages git integration.
+
 ## Session — 2026-11-09 · Tests follow the cleared Uruguay probe (Grok)
 
 **Done:**
