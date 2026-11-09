@@ -1,3 +1,26 @@
+## Session — 2026-11-09 · Decision clocks on every program (Grok)
+
+**Done:**
+- Every program card and the desktop table now show three clocks from facts already on file: processing time as written (Uruguay `3-8 mo`, not the old 165-day average), days in the country, and years to citizenship. Zero days read "None." Zero years read "At grant."
+- The program window has a decision pack: those clocks plus renewal, each route marked live / reformed / announced, family prices only where the note already states them, fee-in-Bitcoin stance, the crypto-tax sentence, how you file, mobility, and banking. Empty slots say "Not on file."
+- Argentina's citizenship-by-investment route stays announced, with the spouse and child prices already in the note. The card minimum stays the investor floor. Uruguay and El Salvador lead the gold-standard row and the compliance strip. Paige's gold-standard answer names those two.
+- Checked in the browser at 1280 and 390. Header overlap is still 0. The page does not scroll sideways. `npm test`: 350 passed, 2 skipped.
+- Research, proofs, and intel were not edited. Applications stay closed. The ten bigger ideas were answered in chat and were not built.
+
+**Decisions:**
+- The pack is derived in the page. It does not edit `research/countries.json` or any Satohash slice field.
+- Did not restamp, probe, or wrangler-deploy.
+
+**Still open (do not start unless Cam asks):**
+- Daily stamp still stops at the first HTTP 429 after about 5 stamps. Resume inside the same job.
+- Intel's fresh window is 14 days. The catalog returns to watch around 22 Nov 2026 without another real page re-read.
+- Healthy source-monitor cards still take their subtitle age from the first URL's relative time.
+- Re-check `cbiu.gov.dm` and `cnmv.es` before treating a green probe status as a successful human read.
+
+**Git State:**
+- Code SHA: `f03eee74a4d3b6dcdaebb9c3393ae418398602f7`
+- Docs commit follows, then `git push origin main`. Deploy is the Cloudflare Pages git integration.
+
 ## Session — 2026-11-09 · Score meters, intact prices, region rail (Grok)
 
 **Done:**

@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-09 by Grok — score meters, prices, region rail
+# motopass — Last Updated 2026-11-09 by Grok — three decision clocks
+
+Every program shows processing time, days in the country, and years to citizenship from the notes already on file. Announced routes stay labeled announced. Code commit: `f03eee7`.
+
+## Previous update — 2026-11-09 by Grok — score meters, prices, region rail
 
 Programs scores show a 0–100 meter, investment figures stay on one line, and the region list shows a count next to a visible match total. Code commit: `b473681`.
 
