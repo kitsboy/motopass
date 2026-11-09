@@ -55,9 +55,10 @@ describe('catalog pipes', () => {
     const interior = uruguay?.watch?.urls?.find(
       (url: { url?: string }) => url.url === 'https://www.minterior.gub.uy',
     )
-    expect(interior?.status).toBe('changed')
-    expect(uruguay?.watch?.changed).toBe(true)
-    expect(intel.programs.Uruguay.watch.changed).toBe(true)
+    // The 9 Nov 2026 probe set this URL ok and cleared the latch. Intel follows the catalog.
+    expect(interior?.status).toBe('ok')
+    expect(uruguay?.watch?.changed).toBe(false)
+    expect(intel.programs.Uruguay.watch.changed).toBe(false)
   })
 
   it('names a program that drops off one pipe', () => {

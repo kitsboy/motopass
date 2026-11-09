@@ -32,11 +32,12 @@ describe('source monitor sync', () => {
 
     const uruguay = next.by_country.find((country: { name: string }) => country.name === 'Uruguay')
     const portugal = next.by_country.find((country: { name: string }) => country.name === 'Portugal')
-    expect(uruguay.changed).toBe(true)
+    // The 9 Nov 2026 probe cleared Uruguay. The census follows that catalog, not the old open review.
+    expect(uruguay.changed).toBe(false)
     expect(portugal.changed).toBe(false)
     expect(portugal.urls.find((url: { url: string }) => url.url === 'https://imigrante.sef.pt')?.status).toBe('ok')
     expect(uruguay.urls.find((url: { url: string }) => url.url === 'https://www.minterior.gub.uy')?.status).toBe(
-      'changed',
+      'ok',
     )
 
     for (const country of next.by_country) {
@@ -70,9 +71,7 @@ describe('source monitor sync', () => {
     for (const row of next.changed_countries) expect(statusByUrl.get(row.url)).toBe('changed')
     for (const row of next.unreachable_urls) expect(statusByUrl.get(row.url)).toBe('unreachable')
     for (const row of next.blocked_urls) expect(statusByUrl.get(row.url)).toBe('blocked')
-    expect(next.changed_countries.map((row: { url: string }) => row.url)).toEqual([
-      'https://www.minterior.gub.uy',
-    ])
+    expect(next.changed_countries.map((row: { url: string }) => row.url)).toEqual([])
     expect(next.unreachable_urls.map((row: { url: string }) => row.url)).not.toContain(
       'https://adoptingelsalvador.gob.sv',
     )
