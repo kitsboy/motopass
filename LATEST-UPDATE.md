@@ -1,6 +1,6 @@
 # motopass — Last Updated 2026-11-08 by Grok — flags and dead links
 
-Country cards show a sprite flag beside the name, including São Tomé and the UAE. Timeouts and confirmed 404s open in the Wayback Machine. Walled pages stay on the live URL. The Sources tab no longer crashes on a blocked row. The mobile badge coach wraps full sentences. Research dates and the 21 proofs were not moved. Code commit: `78c63ca`.
+Country cards show a sprite flag beside the name, including São Tomé and the UAE. The sprite URL carries `?v=6` so the edge cache does not keep the old 5-row sheet. Timeouts and confirmed 404s open in the Wayback Machine. Walled pages stay on the live URL. The Sources tab no longer crashes on a blocked row. The mobile badge coach wraps full sentences. Research dates and the 21 proofs were not moved. Code commit: `78c63ca`.
 
 ## Previous update — 2026-11-08 by Grok — 21 proofs re-anchored
 

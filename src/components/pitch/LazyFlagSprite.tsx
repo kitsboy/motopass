@@ -106,7 +106,7 @@ export function LazyFlagSprite({
             width: display.w,
             height: display.h,
             borderRadius: 2,
-            backgroundImage: 'url(/images/flags-sprite.webp)',
+            backgroundImage: 'url(/images/flags-sprite.webp?v=6)',
             backgroundRepeat: 'no-repeat',
             backgroundSize: `${bgW}px ${bgH}px`,
             backgroundPosition: `-${posX}px -${posY}px`,
