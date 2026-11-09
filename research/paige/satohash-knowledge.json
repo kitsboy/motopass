@@ -25,8 +25,8 @@
     "X-Satohash-Key": "optional privileged key; GitHub secret SATOHASH_API_KEY; never in the SPA"
   },
   "rate_limits": {
-    "note": "Bursts are throttled (HTTP 429). Programmatic stamping must pace ~2s (2.5s on the daily job) and cap at 21 per run, the catalog size. A 429 still defers the rest.",
-    "env": { "STAMP_DELAY_MS": "2000", "MAX_STAMPS_PER_RUN": "21" }
+    "note": "Bursts are throttled (HTTP 429). Programmatic stamping paces ~2s (2.5s on the daily job) and caps at 21 per run, the catalog size. A 429 retries that same program, then defers only that one and continues.",
+    "env": { "STAMP_DELAY_MS": "2000", "MAX_STAMPS_PER_RUN": "21", "STAMP_429_BACKOFF_MS": "90000", "STAMP_429_RETRIES": "3" }
   },
   "badge_vocabulary": {
     "Demo": "seed/placeholder proof for testing — NOT verification",

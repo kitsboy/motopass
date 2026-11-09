@@ -2,6 +2,8 @@
 
 **BUILD:** 2026.07.14-28 · **Last updated:** 2026-11-09
 
+Programs can lead with one passport, copy one country's change note without sending it, and open a receipt under a day bar. `src/lib/probeNotHumanRead.ts` labels `cbiu.gov.dm` and `cnmv.es` as probe-only. `scripts/stamp-changed.mjs` retries a 429 and then continues. Intel fresh is ≤30 days.
+
 **Live catalog:** **21 programs** in `research/countries.json`. Counts of 50 in older notes are pre-curation history (BUILD-33, 2026-07-14: 50 programs, 50 OTS files, 50 BTC Map snapshots). **MVP cadence:** every location updated at least once a week (source probe or intel sweep). **Later cadence:** every location every day. Daily is the next target, not a new scheduler.
 
 Complete file map for any agent (Grok, Kimi, Claude, Hermes). **Canonical docs live in `docs/`** unless noted.

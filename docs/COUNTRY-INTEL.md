@@ -20,7 +20,7 @@ whole pipeline (source registry, Satohash-anchored source hashes at fetch time):
 
 ```
 research/countries.json (schema v3)
-  ├─ freshness     — status fresh(≤14d)/watch(≤45d)/stale(>45d) + days_stale
+  ├─ freshness     — status fresh(≤30d)/watch(≤45d)/stale(>45d) + days_stale
   ├─ watch         — official URLs (legal_compliance.official_urls) + probe state
   ├─ pros / cons   — structured claims, each {text, source, verified_at}
   ├─ scorecard     — 7 metrics (0–10; null = honest “research pending”)
@@ -70,11 +70,14 @@ shared with `stamp-ots.mjs`) to its stored `content_hash`. On drift:
    `stamped_at`, `stamp_id`, `block_height` (synced to `last_verified_block`).
 3. `audit_trail` entry appended with the new hash — the change is on-chain.
 
-API down or rate-limited? Non-fatal — partial updates commit, remaining
-re-stamps retry next run (paced 2.5 s on the daily job, capped at 21 — the
-catalog size — the Satohash API throttles bursts, so a 429 still defers the
-rest). `proof.in_sync` in
-`intel.json` reports the honest per-program state until healed.
+API down? Non-fatal — partial updates commit, and the remaining re-stamps
+wait for the next run. A 429 does not stop the run. The same program is
+retried after `STAMP_429_BACKOFF_MS` (default 90s, times the attempt number),
+up to `STAMP_429_RETRIES` (default 3). The proof is written only after a
+successful POST, so a retry is not a second stamp. If it is still limited,
+that one program is deferred and the loop continues. Pacing stays 2.5 s on
+the daily job, and the cap stays 21. `proof.in_sync` in `intel.json` reports
+the honest per-program state until healed.
 
 ## Source watchdog (rule-change detection)
 
@@ -125,5 +128,7 @@ format — the API-issued `stamp_id` is now the authoritative anchor.
 | `SATOHASH_API_KEY` | stamp | optional, sent as `X-Satohash-Key` (GitHub secret) |
 | `PROBE_TIMEOUT_MS` | probe | default 10000 |
 | `PROBE_CONCURRENCY` | probe | default 5 |
-| `STAMP_DELAY_MS` | stamp | default 2000 (rate-limit pacing) |
-| `MAX_STAMPS_PER_RUN` | stamp | default 21 (one full catalog pass; a 429 still defers the rest) |
+| `STAMP_DELAY_MS` | stamp | default 2000 (pace between successful stamps; the daily job uses 2500) |
+| `MAX_STAMPS_PER_RUN` | stamp | default 21 (one full catalog pass) |
+| `STAMP_429_BACKOFF_MS` | stamp | default 90000. A 429 waits this long times the attempt, then retries the same program |
+| `STAMP_429_RETRIES` | stamp | default 3. After that, that program is deferred and the run continues |

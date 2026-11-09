@@ -1,3 +1,28 @@
+## Session — 2026-11-09 · Passport switch, one-country copy, day receipts, stamp retry (Grok)
+
+**Done:**
+- Phone route total. The country list no longer sticks over the route buttons. A short bar with the country, the route, and the total pins to the top of the phone. Desktop stays list beside routes. Checked at 390 and 1280. Page overflow stayed 0. The programs table still clears El Salvador.
+- Advice board. It still opens on all three passports. Choosing one passport leads with that column. The other two appear after the row is opened. St. Kitts and El Salvador are Level 1. Spain is Level 2. No new facts.
+- Change bell. A visitor can pick one country, paste an https address, and paste a Nostr key. Copy uses that country's sentences. The page does not fetch or post. The daily script still posts only when `MOTOPASS_CHANGE_WEBHOOK_URL` is a public https URL. `MOTOPASS_CHANGE_COUNTRY` limits that post to one exact country name. Nostr stays copy-only.
+- Day receipts. A bar with a count opens the sentence that states that count, plus the first https official URL. Antigua's 5-day sentence is on file. Uruguay (1,095) and El Salvador (365) say the sentence is not on file. Uruguay's link is `https://embassyofuruguay.us/`. Portugal's 3,650-day bar does not use the crypto tax sentence that mentions 365.
+- Stamp loop. A 429 waits and retries the same program, then defers that one and continues. The proof is written only after a successful POST. The delay and the cap of 21 were not lowered. The live Satohash API was not called.
+- Intel fresh window is 30 days, the same as the trust envelope. `research/countries.json`, `last_checked`, and `public/data/intel.json` were not rewritten.
+- Source cards use the newest probe time. The word healthy appears only when the country tone is ok. Bahamas and Mexico stay unreachable. Dominica is healthy, and each `cbiu.gov.dm` row says the 8 Nov re-read could not open that page. `dominica.gov.dm` does not get that sentence. Those hosts returned HTTP 200 on 9 Nov. That is a probe, not the human read that set `last_checked`.
+- Gazette PDFs stay cited, not watched. Applications stay closed.
+
+**Decisions:**
+- Did not edit the Satohash slice, official URLs, or `last_checked`.
+- Did not mark Bahamas or Mexico ok. Other URLs on those cards are still unreachable.
+- Did not add St. Lucia or Grenada gazette PDFs to the daily watch.
+- Did not publish to a Nostr relay, invent a webhook URL, or wrangler-deploy.
+
+**Git State:**
+- `5d5c192` phone total under the list (first pass).
+- `84aa8e2` pin only the short total.
+- `8a81d05` stamp retry, 30-day fresh window, newest probe time, probe-only label.
+- `f7aca94` passport switch, one-country copy, day receipts.
+- Docs commit follows, then `git push origin main`. Deploy is the Cloudflare Pages git integration.
+
 ## Session — 2026-11-09 · Citizen advice, stored sentences, day bars, Bitcoin fee (Grok)
 
 **Done:**
@@ -2736,3 +2761,29 @@ Persistent handoff log for M3 (Grok) → M4 (Kimi). Append new sections at the b
 ---
 
 *Safe Harbour · Part of the [Give A Bit](https://giveabit.io) family.*
+
+## Latest Session Summary (from 2026-11-09 goodbye)
+
+**Chat Topic:** Finish the open checks and three program tools, then leave a clean handoff.
+
+**Key Things We Did:**
+- Pinned the phone route total without covering the route buttons.
+- Taught the stamp job to retry a rate limit and keep going.
+- Lined the intel fresh window up with the 30-day trust window.
+- Labeled Dominica's unit site and Spain's market site as probe-only.
+- Let a visitor lead with one passport, copy one country's note, and open a day receipt.
+
+**Finished in this session:**
+- Phone total bar, passport switch, one-country copy, day receipts.
+- Stamp retry, newest probe time, probe-only label, 30-day fresh window.
+- Docs, Paige knowledge, and this handoff. Research dates were not moved.
+
+**Still to do:**
+- Bahamas and Mexico still have unreachable official URLs. Do not invent replacements.
+- A new human re-read of `cbiu.gov.dm` and `cnmv.es` is a separate job. HTTP 200 on 9 Nov is not that read.
+- Gazette PDFs stay cited. Applications stay closed. Nostr stays copy-only.
+- Do not run the 110-URL probe or install Chromium on THOR from M3.
+
+**Update / Status:** As of 2026-11-09 the live catalog is still the curated 21. Code on main is `f7aca94` plus the docs commit that carries this note. Deploy is Cloudflare Pages on push to main.
+
+**Next for Kimi:** Integrate this summary into MASTER-BRAIN.md / Kanban / Obsidian vault on THOR. Update any maps. Educate Hermes. Use the giveabit-project-handoff skill for future projects. Do not sync this to M4.

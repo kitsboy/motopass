@@ -12,11 +12,11 @@ Living record of what shipped, what's in progress, and where to find everything.
 |------|--------|-------|
 | **Live site** | ✅ Shipped | https://motopass.giveabit.io · Cloudflare Pages on push to `main` |
 | **React app** | ✅ Vite + React 18 | Curated catalog is 21 programs. Applications stay closed. |
-| **Country intel** | ✅ 21 fresh | `last_checked` 2026-11-08 from pages that loaded. Satohash proofs re-anchored that day. The 9 Nov probe left Uruguay unchanged. |
-| **Source monitor** | ✅ 110 URLs | Worst open URL wins. Chips follow the manifest. History is an older log, not today's probe. |
-| **Research pipeline** | ✅ Daily job | Probe, stamp (cap 21; a 429 still defers), intel write, trust envelopes. `npm run probe:browser` installs Chromium on a host that has the module but not the binary. |
+| **Country intel** | ✅ 21 fresh | `last_checked` 2026-11-08 from pages that loaded. Fresh is now ≤30 days, the same window as the trust envelope. The 9 Nov probe left Uruguay unchanged. |
+| **Source monitor** | ✅ 110 URLs | Worst open URL wins. A healthy card uses the newest probe time. Bahamas and Mexico stay unreachable. History is an older log, not today's probe. |
+| **Research pipeline** | ✅ Daily job | Probe, stamp (cap 21; a 429 retries that program, then continues), intel write, trust envelopes. `npm run probe:browser` installs Chromium on a host that has the module but not the binary. |
 | **Launch Engine** | ✅ Gates | Applications stay closed. |
-| **UI** | ✅ Sovereign Night | Programs adds citizen advice, the probe's stored sentence, day bars, and a Bitcoin fee invoice. A phone compare note stays on three lines until it is opened. |
+| **UI** | ✅ Sovereign Night | Programs can lead with one passport, copy one country's change note, and open a day-bar receipt. The phone route total pins to the top without covering the routes. |
 | **BTC Map** | ✅ 21 | Density and snapshots match the curated catalog. |
 | **Unit tests** | ✅ Vitest | `npm test` |
 | **Programs data** | ✅ 21 | `research/countries.json` |

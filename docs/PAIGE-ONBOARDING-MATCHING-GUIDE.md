@@ -248,9 +248,10 @@ Two tiers:
 
 | Badge | Meaning | Color |
 |-------|---------|-------|
-| Fresh | Checked ≤14 days ago | Green |
-| Watch | Checked ≤45 days ago | Amber |
-| Stale | Checked >45 days ago | Red |
+| Fresh | Research date within 30 days | Green |
+| Recent | Research date within 90 days, on the program card | Quieter |
+| Watch | Intel status from day 31 through day 45 | Amber |
+| Stale | Intel status after 45 days | Red |
 
 ### Proof Status
 

@@ -17,10 +17,10 @@
     "intel:probe hashes the first 16KB of each program's official government URLs to detect rule-page changes.",
     "A changed hash from probe is a detection fact — humans review flagged countries and update the corpus.",
     "intel:stamp re-anchors changed programs via POST /api/stamp to the Satohash API.",
-    "Stamping is paced (~2s between stamps) and capped (~15 per run) to respect API rate limits.",
+    "Stamping is paced (~2s between stamps, 2.5s on the daily job) and capped at 21 per run. A 429 retries that program, then continues.",
     "If the Satohash API is down, remaining re-stamps are deferred to the next daily run — incremental self-heal.",
     "proof.in_sync in intel.json reports whether the stored proof hash matches the current data.",
-    "Freshness status is computed from last_checked: fresh (≤14d), watch (≤45d), stale (>45d).",
+    "Freshness status is computed from last_checked: fresh (≤30d), watch (≤45d), stale (>45d). The 30-day fresh window matches the trust envelope. It is not a new human page read.",
     "last_checked is a human research date — the pipeline never rewrites it, so daily sweeps never trigger re-stamps.",
     "Detection is auto-committed (facts); rule rewrites are always human-reviewed.",
     "intel.json is the runtime manifest that the SPA fetches for badges, tickers, and freshness indicators.",
@@ -123,7 +123,9 @@
     "PROBE_TIMEOUT_MS": "default 10000 — timeout for official URL probes",
     "PROBE_CONCURRENCY": "default 5 — parallel URL probes",
     "STAMP_DELAY_MS": "default 2000 — pace between Satohash API stamps",
-    "MAX_STAMPS_PER_RUN": "default 21 — one catalog pass; a 429 still defers the rest"
+    "MAX_STAMPS_PER_RUN": "default 21 — one catalog pass",
+    "STAMP_429_BACKOFF_MS": "default 90000 — a 429 waits, retries that same program, then continues the run",
+    "STAMP_429_RETRIES": "default 3"
   },
   "member_scripts": {
     "how_fresh": "MotoPass runs a daily research pipeline that fetches live data from Wikipedia, BTC Map, and CoinGecko for the current 21-program corpus. When something changes, the new data is verified and anchored to Bitcoin via Satohash.",

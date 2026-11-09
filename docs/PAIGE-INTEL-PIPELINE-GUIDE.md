@@ -160,8 +160,8 @@ Freshness is computed from `last_checked` (the human research date):
 
 | Status | Condition | Meaning |
 |--------|-----------|---------|
-| **Fresh** | ≤ 14 days since last checked | Recently verified by a human |
-| **Watch** | 15–45 days since last checked | Aging — monitor for changes |
+| **Fresh** | ≤ 30 days since last checked | Same fresh window as the trust envelope |
+| **Watch** | 31–45 days since last checked | Aging — monitor for changes |
 | **Stale** | > 45 days since last checked | Needs re-research |
 
 The pipeline never updates `last_checked` — that's a human action. The auto-research
@@ -180,7 +180,7 @@ research date. Only a human researcher can move `last_checked` forward.
 
 ```
 research/countries.json (schema v3)
-  ├─ freshness     — status fresh(≤14d)/watch(≤45d)/stale(>45d) + days_stale
+  ├─ freshness     — status fresh(≤30d)/watch(≤45d)/stale(>45d) + days_stale
   ├─ watch         — official URLs + probe state (ok/changed/unreachable)
   ├─ pros / cons   — structured claims, each {text, source, verified_at}
   ├─ scorecard     — 7 metrics (0–10; null = honest "research pending")
@@ -228,9 +228,10 @@ public/data/intel.json  — runtime manifest (SPA fetches for badges/tickers)
 
 > MotoPass runs a daily research pipeline that fetches live data from Wikipedia,
 > BTC Map, and CoinGecko for all 21 countries. The freshness badge on each
-> program tells you when it was last verified by a human. Green means fresh
-> (within 14 days), yellow means aging (15–45 days), and red means it needs
-> re-research.
+> program tells you when it was last verified by a human. Green means the
+> research date is within 30 days. The card then stays in a quieter recent
+> band through 90 days. Intel marks watch from day 31 and stale after 45.
+> A wider window is not a new page read.
 
 ### "How do I know this hasn't changed?"
 

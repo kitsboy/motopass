@@ -63,6 +63,10 @@ The BUILD-33 baseline (2026-07-14) recorded a pre-curation corpus: **50 programs
 
 The 2026-11-08 block above is still the catalog: 21 programs, weekly MVP cadence, applications closed. Programs now also shows four reads of facts already on file. Travel advice is the public page each government writes for its own citizens (United States, United Kingdom, Argentina), copied into `public/data/advisories.json`. The sentence strip shows the probe's stored before-and-after and says it is not marked changed unless the catalog latch says so. The day bars are the day count for the whole path, not one calendar year. The fee invoice shows a sats payment only for the line that says the fee can be paid in Bitcoin. Research dates were not moved for this.
 
+### Later the same day (2026-11-09)
+
+The advice board can lead with the passport you hold and keep the other two behind the row. The change bell can copy one country, an address, or a Nostr key, and the page still does not send them. A day bar opens the sentence that states that count, or says the sentence is not on file. The phone route total stays at the top while the country list scrolls away. A green probe on `cbiu.gov.dm` or `cnmv.es` is labeled probe-only. Gazette PDFs stay cited, not watched. Research dates were not moved.
+
 ---
 
 ## The Full Scope — Phased Breakdown

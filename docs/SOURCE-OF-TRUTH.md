@@ -64,7 +64,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 ## Gaps & next priorities
 
-1. **Country intel** — research last_checked is 2026-11-08 from pages that actually loaded, so freshness is fresh. Official-source coverage still has unreachable and bot-walled URLs. The 9 Nov probe left Uruguay unchanged. The human re-read URL stays `https://www.gub.uy/tramites/residencia-legal`.
+1. **Country intel** — research `last_checked` is 2026-11-08 from pages that actually loaded. Intel calls that fresh for 30 days, matching the trust envelope. Bahamas and Mexico stay unreachable. `cbiu.gov.dm` and `cnmv.es` can probe ok and still are not the 8 Nov human read. The 9 Nov probe left Uruguay unchanged. The human re-read URL stays `https://www.gub.uy/tramites/residencia-legal`.
 2. **Source-trust engine** — Build the registry + discovery + Satohash-anchored source hashes from the Claude prompt spec
 3. **Bitcoin core** — Live Satohash stamp is shipped; Lightning BOLT11 mint still open
 4. **Nostr** — Attestations ship (BUILD 68); live MotoPass relay + npub-native routing still open

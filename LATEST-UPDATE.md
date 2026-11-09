@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-09 by Grok — citizen advice, sentences, days, Bitcoin fee
+# motopass — Last Updated 2026-11-09 by Grok — passport, one-country copy, day receipts
+
+Programs can lead with one passport, copy one country's change note without sending it, and open the sentence under a day bar. The phone route total pins to the top. A Satohash 429 retries that program and then continues. Intel calls a check fresh for 30 days. `cbiu.gov.dm` and `cnmv.es` stay probe-only. Research was not edited. Code commits: `84aa8e2`, `8a81d05`, `f7aca94`.
+
+## Previous update — 2026-11-09 by Grok — citizen advice, sentences, days, Bitcoin fee
 
 Programs shows what the US, UK, and Argentine pages tell their own citizens, the probe's stored before-and-after, the days each program asks for across the whole path, and a sats figure only where the note says the fee can be paid in Bitcoin. Phone compare keeps a long note to three lines. Research was not edited. Code commit: `abf1e6e`.
 
