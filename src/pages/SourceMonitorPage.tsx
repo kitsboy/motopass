@@ -26,6 +26,14 @@ export function historyDateLabel(iso: string | null | undefined): string {
   return HISTORY_DAY.format(d).replace(/,/g, '')
 }
 
+/** Newest probe time on the card. The first URL is not the country's age. */
+export function newestLastProbed(urls: { last_probed?: string | null }[] | undefined): string | null {
+  const stamps = (urls ?? []).map(url => url.last_probed).filter((value): value is string => Boolean(value))
+  if (!stamps.length) return null
+  const sorted = stamps.slice().sort()
+  return sorted[sorted.length - 1] ?? null
+}
+
 function ago(iso: string | null) {
   if (!iso) return '—'
   const s = (Date.now() - new Date(iso).getTime()) / 3600000
@@ -114,7 +122,7 @@ export function SourceCountryCard({ country }: { country: Country }) {
       <div style={{ ...s.muted, marginTop: 5, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{country.urls.map(u => host(u.url)).join(' · ')}</div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 10, fontSize: 11.5, color: '#8a5f70' }}>
         <span style={{ color: COLORS[b], fontWeight: 700, textTransform: 'uppercase', fontSize: 10, letterSpacing: '.04em' }}>{LABELS[b]}</span>
-        <span style={{ marginLeft: 'auto' }}>{gap ? `⚠ ${gapLabel(gap)}` : `${ago(country.urls[0]?.last_probed)}· fresh`}</span>
+        <span style={{ marginLeft: 'auto' }}>{gap ? `⚠ ${gapLabel(gap)}` : b === 'ok' ? `${ago(newestLastProbed(country.urls))} · healthy` : ago(newestLastProbed(country.urls))}</span>
       </div>
     </div>
   )

@@ -38,4 +38,14 @@ describe('VeritasSourcePanel links', () => {
     expect(html).toContain('Pending')
     expect(html).toContain('href="https://example.com/source"')
   })
+
+  it('does not treat a green probe of cbiu or cnmv as the human read', () => {
+    const html = panel([
+      { url: 'https://cbiu.gov.dm', status: 'ok', last_probed: '2026-11-09' },
+      { url: 'https://dominica.gov.dm/', status: 'ok', last_probed: '2026-11-09' },
+    ])
+    expect(html).toContain('Probe status only')
+    expect(html).toContain('dominica.gov.dm')
+    expect(html.split('Probe status only').length).toBe(2)
+  })
 })

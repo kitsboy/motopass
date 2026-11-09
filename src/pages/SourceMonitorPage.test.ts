@@ -5,7 +5,7 @@
 import { createElement as h } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it } from 'vitest'
-import { SourceCountryCard, countryTone, historyDateLabel, openReviewRows } from './SourceMonitorPage'
+import { SourceCountryCard, countryTone, historyDateLabel, newestLastProbed, openReviewRows } from './SourceMonitorPage'
 
 function country(name: string, changed: boolean, statuses: string[]) {
   return {
@@ -21,6 +21,15 @@ function country(name: string, changed: boolean, statuses: string[]) {
 }
 
 describe('SourceMonitorPage country tone', () => {
+  it('uses the newest probe time, not the first URL', () => {
+    expect(
+      newestLastProbed([
+        { last_probed: '2026-10-01T00:00:00.000Z' },
+        { last_probed: '2026-11-08T12:00:00.000Z' },
+      ]),
+    ).toBe('2026-11-08T12:00:00.000Z')
+  })
+
   it('does not call a changed country healthy when another URL is ok', () => {
     const uruguay = country('Uruguay', true, ['ok', 'changed'])
     const html = renderToStaticMarkup(h(SourceCountryCard, { country: uruguay }))

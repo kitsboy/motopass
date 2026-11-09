@@ -23,7 +23,7 @@ export interface SatohashProof {
 export type FreshnessStatus = 'fresh' | 'watch' | 'stale'
 
 export interface ProgramFreshness {
-  /** fresh ≤ 14d · watch ≤ 45d · stale > 45d since last_checked */
+  /** fresh ≤ 30d · watch ≤ 45d · stale > 45d since last_checked. Same fresh window as the trust envelope. */
   status: FreshnessStatus
   days_stale: number
   /** ISO date of the last pipeline freshness sweep (null until first sweep). */

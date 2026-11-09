@@ -31,7 +31,23 @@ const CLIENT = 'motopass-intel'
 // drift heals on the next daily run — incremental self-heal by design.
 const STAMP_DELAY_MS = Number(process.env.STAMP_DELAY_MS ?? 2000)
 const MAX_STAMPS_PER_RUN = Number(process.env.MAX_STAMPS_PER_RUN ?? 21)
+const STAMP_429_BACKOFF_MS = Number(process.env.STAMP_429_BACKOFF_MS ?? 90000)
+const STAMP_429_RETRIES = Number(process.env.STAMP_429_RETRIES ?? 3)
 const sleep = (ms) => new Promise(r => setTimeout(r, ms))
+
+export function isRateLimitMessage(message) {
+  return /429|Too many|rate/i.test(String(message || ''))
+}
+
+/**
+ * A 429 retries the same program inside this job. The proof is written only
+ * after a successful POST, so a retry is not a second stamp. When the budget
+ * is spent, the loop moves to the next program instead of stopping.
+ */
+export function rateLimitStep(attempt, retries = STAMP_429_RETRIES, backoffMs = STAMP_429_BACKOFF_MS) {
+  if (attempt < retries) return { action: 'retry', waitMs: backoffMs * (attempt + 1) }
+  return { action: 'continue' }
+}
 const SHA64 = /^[a-f0-9]{64}$/i
 
 async function apiStamp(hash) {
@@ -148,19 +164,31 @@ async function main() {
       results.push({ name: p.name, action: 'deferred', reason: 'per-run cap' })
       continue
     }
-    try {
-      const r = await stampProgram(p)
-      if (r.action === 'stamped') stampsThisRun++
-      results.push(r)
-      if (r.action === 'stamped') await sleep(STAMP_DELAY_MS)
-    } catch (err) {
-      if (/429|Too many|rate/i.test(err.message)) {
-        rateLimited = true
-        results.push({ name: p.name, action: 'rate-limited', reason: err.message })
-        break // stop the burst; next run continues
+    let attempt = 0
+    for (;;) {
+      try {
+        const r = await stampProgram(p)
+        if (r.action === 'stamped') stampsThisRun++
+        results.push(r)
+        if (r.action === 'stamped') await sleep(STAMP_DELAY_MS)
+        break
+      } catch (err) {
+        if (isRateLimitMessage(err.message)) {
+          const step = rateLimitStep(attempt)
+          attempt += 1
+          if (step.action === 'retry') {
+            console.warn(`⚠ ${p.name} rate-limited. Retry ${attempt} in ${step.waitMs}ms.`)
+            await sleep(step.waitMs)
+            continue
+          }
+          rateLimited = true
+          results.push({ name: p.name, action: 'deferred', reason: err.message })
+          break
+        }
+        apiDown = true
+        results.push({ name: p.name, action: 'api-error', reason: err.message })
+        break
       }
-      apiDown = true
-      results.push({ name: p.name, action: 'api-error', reason: err.message })
     }
   }
 
@@ -179,11 +207,14 @@ async function main() {
   console.log(`✓ Stamp loop — ${results.length} checked · ${stamped.length} re-stamped · ${deferred.length} deferred · ${errors.length} api errors`)
   for (const r of stamped) console.log(`  ✓ ${r.name} → ${r.id ?? 'stamped'}${r.block ? ` @ block ${r.block}` : ''}`)
   for (const r of errors) console.log(`  ✗ ${r.name}: ${r.reason}`)
-  if (rateLimited) console.warn('⚠ Rate-limited — remaining re-stamps deferred to next daily run (incremental self-heal)')
+  if (rateLimited) console.warn('⚠ Rate-limited — this run retried, then continued. A program still limited waits for the next daily run.')
   if (apiDown) console.warn('⚠ Satohash API partially unreachable — remaining re-stamps deferred to next daily run')
 }
 
-main().catch(err => {
-  console.error(err)
-  process.exit(1)
-})
+const isDirect = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])
+if (isDirect) {
+  main().catch(err => {
+    console.error(err)
+    process.exit(1)
+  })
+}

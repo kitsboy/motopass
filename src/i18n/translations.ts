@@ -430,6 +430,7 @@ export type TranslationKey =
   | 'fee.spot'
   | 'fee.noAmount'
   | 'fee.quiet'
+  | 'veritas.notHumanRead'
   | 'compare.daysInCountry'
   | 'compare.yearsToCitizenship'
   | 'compare.feeBitcoin'
@@ -818,6 +819,7 @@ const en: Dict = {
   'fee.spot': 'Spot conversion. Not a payment rail.',
   'fee.noAmount': 'No amount is on file.',
   'fee.quiet': '{count} notes say the government fee is not payable in Bitcoin.',
+  'veritas.notHumanRead': 'Probe status only. The 8 Nov re-read could not open this page.',
   'compare.daysInCountry': 'Days in country',
   'compare.yearsToCitizenship': 'Years to citizenship',
   'compare.feeBitcoin': 'Fee in Bitcoin',

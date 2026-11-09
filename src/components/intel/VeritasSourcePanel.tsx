@@ -3,6 +3,7 @@ import type { WatchUrl } from '../../types/program'
 import type { TranslationKey } from '../../i18n/translations'
 import { useI18n } from '../../i18n/I18nContext'
 import { visitorLink, waybackUrl } from '../../lib/visitorLink'
+import { probeOkIsNotHumanRead } from '../../lib/probeNotHumanRead'
 
 interface VeritasSourcePanelProps {
   urls: WatchUrl[]
@@ -73,7 +74,8 @@ export function VeritasSourcePanel({ urls, probedAt }: VeritasSourcePanelProps) 
           // A dead page's main click is already the archive.
           const showMirror = u.status === 'changed' && !link.archived
           return (
-            <li key={u.url} className="flex items-center gap-2 text-xs">
+            <li key={u.url} className="text-xs">
+              <div className="flex items-center gap-2">
               <Icon size={13} className={`shrink-0 ${s.cls}`} aria-hidden />
               <a
                 href={link.href}
@@ -110,6 +112,10 @@ export function VeritasSourcePanel({ urls, probedAt }: VeritasSourcePanelProps) 
                 >
                   <ExternalLink size={11} aria-hidden />
                 </a>
+              )}
+              </div>
+              {probeOkIsNotHumanRead(u.url) && (
+                <p className="mt-0.5 ps-5 text-[10px] leading-snug text-mp-wax">{t('veritas.notHumanRead')}</p>
               )}
             </li>
           )

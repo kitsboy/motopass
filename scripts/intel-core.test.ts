@@ -64,7 +64,8 @@ describe('freshness', () => {
   it('classifies fresh/watch/stale by thresholds', () => {
     expect(freshnessStatus(0)).toBe('fresh')
     expect(freshnessStatus(14)).toBe('fresh')
-    expect(freshnessStatus(15)).toBe('watch')
+    expect(freshnessStatus(30)).toBe('fresh')
+    expect(freshnessStatus(31)).toBe('watch')
     expect(freshnessStatus(45)).toBe('watch')
     expect(freshnessStatus(46)).toBe('stale')
     expect(freshnessStatus(null)).toBe('stale')
@@ -161,11 +162,12 @@ describe('intel manifest', () => {
     const data = { programs: [baseProgram, { ...baseProgram, id: 2, name: 'Testland2' }] }
     const intel = buildIntel(data, { now: new Date('2026-08-20').getTime(), nowIso: '2026-08-20T00:00:00.000Z' })
     expect(intel.schema).toBe('motopass.country-intel.v1')
-    expect(intel.programs.Testland.freshness.status).toBe('watch') // 19d: >14d, ≤45d
+    expect(intel.programs.Testland.freshness.status).toBe('fresh') // 19d is inside the 30d fresh window
     expect(intel.programs.Testland.proof.hash).toMatch(/^[a-f0-9]{64}$/)
     expect(typeof intel.programs.Testland.proof.in_sync).toBe('boolean')
     expect(Array.isArray(intel.programs.Testland.recent_changes)).toBe(true)
-    expect(intel.sweep.watch).toBe(2)
+    expect(intel.sweep.watch).toBe(0)
+    expect(intel.sweep.fresh).toBe(2)
     expect(intel.sweep.stale).toBe(0)
   })
 })

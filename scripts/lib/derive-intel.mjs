@@ -5,7 +5,7 @@
  * claims with `source` + `verified_at` — never invents facts.
  */
 
-export const FRESH_MAX_DAYS = 14
+export const FRESH_MAX_DAYS = 30
 export const WATCH_MAX_DAYS = 45
 export const CORPUS_SOURCE = 'MotoPass corpus (BUILD 72 research)'
 
