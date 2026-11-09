@@ -27,6 +27,7 @@ import { AdvisoryBoard } from '../components/programs/AdvisoryBoard'
 import { ChangeBellPanel } from '../components/programs/ChangeBellPanel'
 import { RuleSentenceStrip } from '../components/programs/RuleSentenceStrip'
 import { GazetteStrip } from '../components/programs/GazetteStrip'
+import { FeeInvoicePanel } from '../components/programs/FeeInvoicePanel'
 import { PresenceDays } from '../components/programs/PresenceDays'
 import { RouteMixer } from '../components/programs/RouteMixer'
 import { ProgramsComplianceStrip } from '../components/programs/ProgramsComplianceStrip'
@@ -392,6 +393,7 @@ export function ProgramsPage() {
             <RuleSentenceStrip programs={programs} />
             <GazetteStrip programs={programs} />
             <PresenceDays programs={programs} />
+            <FeeInvoicePanel programs={programs} />
             <RouteMixer programs={programs} />
             <GoldStandardSpotlight programs={programs} />
             <ProgramsComplianceStrip />

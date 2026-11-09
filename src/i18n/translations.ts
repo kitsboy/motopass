@@ -418,6 +418,16 @@ export type TranslationKey =
   | 'days.none'
   | 'days.notOnFile'
   | 'days.yearMark'
+  | 'fee.eyebrow'
+  | 'fee.title'
+  | 'fee.lead'
+  | 'fee.bitcoin'
+  | 'fee.dollars'
+  | 'fee.unpriced'
+  | 'fee.fiat'
+  | 'fee.spot'
+  | 'fee.noAmount'
+  | 'fee.quiet'
   | 'compare.daysInCountry'
   | 'compare.yearsToCitizenship'
   | 'compare.feeBitcoin'
@@ -794,6 +804,16 @@ const en: Dict = {
   'days.none': 'None',
   'days.notOnFile': 'Not on file',
   'days.yearMark': '{years}y',
+  'fee.eyebrow': 'FEE INVOICE',
+  'fee.title': 'What the note says you can pay in Bitcoin',
+  'fee.lead': 'A sats figure is a payment rail only on the line that says so. Every other sats figure is a spot conversion of a dollar amount already on file.',
+  'fee.bitcoin': 'Payable in Bitcoin',
+  'fee.dollars': 'Dollars only',
+  'fee.unpriced': 'Partial, and no amount is on file',
+  'fee.fiat': 'Not payable in Bitcoin',
+  'fee.spot': 'Spot conversion. Not a payment rail.',
+  'fee.noAmount': 'No amount is on file.',
+  'fee.quiet': '{count} notes say the government fee is not payable in Bitcoin.',
   'compare.daysInCountry': 'Days in country',
   'compare.yearsToCitizenship': 'Years to citizenship',
   'compare.feeBitcoin': 'Fee in Bitcoin',
