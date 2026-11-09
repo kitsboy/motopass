@@ -14,6 +14,7 @@ import { CountryFlag } from '../ui/CountryTitle'
 export function AdvisoryBoard({ programs }: { programs: Program[] }) {
   const { t } = useI18n()
   const [file, setFile] = useState<AdvisoryFile | null>(null)
+  const [phase, setPhase] = useState<'loading' | 'ready' | 'missing'>('loading')
   const [open, setOpen] = useState<string | null>(null)
 
   useEffect(() => {
@@ -21,10 +22,14 @@ export function AdvisoryBoard({ programs }: { programs: Program[] }) {
     fetch('/data/advisories.json')
       .then(response => (response.ok ? response.json() : null))
       .then(data => {
-        if (live) setFile(data as AdvisoryFile | null)
+        if (!live) return
+        setFile(data as AdvisoryFile | null)
+        setPhase(data ? 'ready' : 'missing')
       })
       .catch(() => {
-        if (live) setFile(null)
+        if (!live) return
+        setFile(null)
+        setPhase('missing')
       })
     return () => {
       live = false
@@ -41,8 +46,14 @@ export function AdvisoryBoard({ programs }: { programs: Program[] }) {
         {t('advice.title')}
       </h2>
       <p className="mt-2 max-w-2xl font-body text-sm leading-relaxed text-ink-secondary">{t('advice.lead')}</p>
-      <p className="mt-2 text-[11px] text-mp-ink-tertiary">{formatT(t, 'advice.fetched', { date: when })}</p>
+      <p className="mt-2 text-[11px] text-mp-ink-tertiary">
+        {phase === 'loading' ? t('advice.copying') : formatT(t, 'advice.fetched', { date: when })}
+      </p>
 
+      {phase === 'missing' && <p className="mt-3 text-sm text-mp-ink-secondary">{t('advice.notOnFile')}</p>}
+
+      {phase === 'ready' && (
+      <>
       <div className="mt-4 hidden gap-2 border-b border-mp-border-subtle pb-2 text-[10px] font-chrome uppercase tracking-wide text-mp-ink-tertiary sm:grid sm:grid-cols-[10.5rem_1fr_1fr_1fr]">
         <span>{t('advice.country')}</span>
         <span>{t('advice.usAudience')}</span>
@@ -100,6 +111,8 @@ export function AdvisoryBoard({ programs }: { programs: Program[] }) {
             ))}
           </ul>
         </div>
+      )}
+      </>
       )}
     </section>
   )

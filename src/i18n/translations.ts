@@ -403,6 +403,7 @@ export type TranslationKey =
   | 'advice.noArAlert'
   | 'advice.otherAr'
   | 'advice.notOnFile'
+  | 'advice.copying'
   | 'advice.read'
   | 'advice.hide'
   | 'sentence.eyebrow'
@@ -789,6 +790,7 @@ const en: Dict = {
   'advice.noArAlert': 'No consular alert on file',
   'advice.otherAr': 'Argentine alerts that do not name one of these programs',
   'advice.notOnFile': 'Not on file',
+  'advice.copying': 'Copying the three public pages.',
   'advice.read': 'Read the sentence',
   'advice.hide': 'Hide the sentence',
   'sentence.eyebrow': 'STORED SENTENCE',
