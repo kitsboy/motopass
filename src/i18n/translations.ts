@@ -359,6 +359,16 @@ export type TranslationKey =
   | 'pack.included'
   | 'pack.scoreOnFile'
   | 'pack.cap'
+  | 'bell.eyebrow'
+  | 'bell.title'
+  | 'bell.quiet'
+  | 'bell.changed'
+  | 'bell.unknownDate'
+  | 'bell.copyNote'
+  | 'bell.copyPayload'
+  | 'bell.copied'
+  | 'bell.cardLine'
+  | 'bell.hint'
   | 'portfolio.nostrIdentity'
   | 'portfolio.nostrHint'
   | 'portfolio.loadingAria'
@@ -670,6 +680,16 @@ const en: Dict = {
   'pack.included': 'Included',
   'pack.scoreOnFile': '{score}/10 on file',
   'pack.cap': 'Cap on file: {count} main applicants a year',
+  'bell.eyebrow': 'CHANGE BELL',
+  'bell.title': 'When an official page changes',
+  'bell.quiet': '{count} countries are steady. Last probe {date}. No watched page is marked changed.',
+  'bell.changed': '{count} watched pages changed: {names}.',
+  'bell.unknownDate': 'not on file',
+  'bell.copyNote': 'Copy Nostr note',
+  'bell.copyPayload': 'Copy webhook',
+  'bell.copied': 'Copied',
+  'bell.cardLine': 'A watched official page changed',
+  'bell.hint': 'Copy the note and post it with your own Nostr key. The webhook is sent only by the daily script, and only to an https address you set as MOTOPASS_CHANGE_WEBHOOK_URL.',
   'portfolio.nostrIdentity': 'Nostr identity',
   'portfolio.nostrHint': 'Connect npub before Apply — agents route deal rooms and proof updates through your sovereign key.',
   'portfolio.loadingAria': 'Loading portfolio',

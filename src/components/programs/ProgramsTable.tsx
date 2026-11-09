@@ -157,7 +157,12 @@ export function ProgramsTable({
                     emoji={p.flag ?? p.countryCode}
                     size={compact ? 'sm' : 'md'}
                   />
-                  <span className={`font-display text-mp-ink ${compact ? 'text-xs' : 'text-sm'}`}>{p.country}</span>
+                  <span className="min-w-0">
+                    <span className={`block font-display text-mp-ink ${compact ? 'text-xs' : 'text-sm'}`}>{p.country}</span>
+                    {p.watchChanged && (
+                      <span className="block font-mono text-[9px] uppercase tracking-wide text-mp-wax">{t('bell.cardLine')}</span>
+                    )}
+                  </span>
                   {p.highlightBtcFriendly && (
                     <span className="inline-flex items-center rounded-chip border border-mp-btc/50 bg-mp-btc-soft px-1 py-px font-mono text-[8px] uppercase tracking-wide text-mp-btc-text" title={t('programs.presetBitcoinFriendly')}>₿</span>
                   )}

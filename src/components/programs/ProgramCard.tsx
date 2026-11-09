@@ -212,6 +212,9 @@ function ProgramCardContent({
       </div>
 
       <p className="mt-3 line-clamp-2 font-body text-sm text-mp-ink-secondary">{program.summary}</p>
+      {program.watchChanged && (
+        <p className="mt-2 font-mono text-[11px] uppercase tracking-wide text-mp-wax">{t('bell.cardLine')}</p>
+      )}
 
       <div className="mt-4 border-t border-mp-border-subtle pt-4">
         <dl className="grid grid-cols-2 gap-2">

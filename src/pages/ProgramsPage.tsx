@@ -23,6 +23,7 @@ import { PageHeader } from '../components/ui/PageHeader'
 import { ProgramsOnboarding } from '../components/programs/ProgramsOnboarding'
 import { GoalFinder } from '../components/programs/GoalFinder'
 import { GoldStandardSpotlight } from '../components/programs/GoldStandardSpotlight'
+import { ChangeBellPanel } from '../components/programs/ChangeBellPanel'
 import { ProgramsComplianceStrip } from '../components/programs/ProgramsComplianceStrip'
 import { Chip } from '../components/ui/Chip'
 import { ClassyModal } from '../components/ui/ClassyModal'
@@ -381,6 +382,7 @@ export function ProgramsPage() {
 
         {!loading && !error && programs.length > 0 && (
           <>
+            <ChangeBellPanel programs={programs} />
             <GoldStandardSpotlight programs={programs} />
             <ProgramsComplianceStrip />
           </>
