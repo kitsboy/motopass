@@ -412,6 +412,12 @@ export type TranslationKey =
   | 'sentence.marked'
   | 'sentence.notMarked'
   | 'sentence.quiet'
+  | 'days.eyebrow'
+  | 'days.title'
+  | 'days.lead'
+  | 'days.none'
+  | 'days.notOnFile'
+  | 'days.yearMark'
   | 'compare.daysInCountry'
   | 'compare.yearsToCitizenship'
   | 'compare.feeBitcoin'
@@ -782,6 +788,12 @@ const en: Dict = {
   'sentence.marked': 'Marked changed',
   'sentence.notMarked': 'Not marked changed today',
   'sentence.quiet': '{count} countries have no before-and-after on file.',
+  'days.eyebrow': 'DAYS ON FILE',
+  'days.title': 'Days the program asks you to be there',
+  'days.lead': 'Each bar is the day count already on file for the whole path. A longer bar is a longer ask. It is not a plan for one calendar year.',
+  'days.none': 'None',
+  'days.notOnFile': 'Not on file',
+  'days.yearMark': '{years}y',
   'compare.daysInCountry': 'Days in country',
   'compare.yearsToCitizenship': 'Years to citizenship',
   'compare.feeBitcoin': 'Fee in Bitcoin',
