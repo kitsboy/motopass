@@ -89,8 +89,7 @@ export function RouteMixer({ programs }: { programs: DataProgram[] }) {
         {t('mixer.includeAnnounced')}
       </label>
 
-      <div className="grid gap-4 lg:grid-cols-[15rem_minmax(0,1fr)]">
-        <div className="max-lg:sticky max-lg:top-[var(--mp-header-offset,7.25rem)] max-lg:z-20 max-lg:bg-[rgb(var(--mp-canvas-rgb))] max-lg:pb-2">
+      <div className="lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-4">
         <div className="max-h-80 overflow-y-auto rounded-mp-lg border border-mp-border bg-[rgb(var(--mp-card-rgb))]" role="listbox" aria-label={t('mixer.countries')}>
           {cinematic.map(program => {
             const selected = program.id === country?.id
@@ -111,7 +110,7 @@ export function RouteMixer({ programs }: { programs: DataProgram[] }) {
             )
           })}
         </div>
-        <div className="mt-2 rounded-mp-lg border border-mp-border bg-[rgb(var(--mp-card-rgb))] p-3 lg:hidden">
+        <div className="mt-2 rounded-mp-lg border border-mp-border bg-[rgb(var(--mp-card-rgb))] p-3 lg:hidden max-lg:sticky max-lg:top-0 max-lg:z-30">
           <p className="text-sm text-mp-ink">
             {country?.country ?? t('mixer.empty')}
             {selectedMix ? (
@@ -129,10 +128,9 @@ export function RouteMixer({ programs }: { programs: DataProgram[] }) {
             </div>
           )}
         </div>
-        </div>
 
         {country && pack && clocks && (
-          <div className="rounded-mp-lg border border-mp-border bg-section/40 p-4">
+          <div className="mt-4 rounded-mp-lg border border-mp-border bg-section/40 p-4 lg:mt-0">
             <h3 className="font-display text-lg font-semibold text-ink">{country.country}</h3>
             <dl className="mt-3 grid grid-cols-3 gap-2">
               {(
