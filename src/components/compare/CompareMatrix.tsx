@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import type { Program } from '../../types/program'
 import type { Program as CinematicProgram } from '../programs/types'
@@ -15,6 +15,20 @@ interface CompareMatrixProps {
   rows: CompareRow[]
   onOpenProgram: (program: CinematicProgram) => void
   toCinematic: (p: Program) => CinematicProgram
+}
+
+/** A long note stays three lines until it is opened, so the phone columns keep one height. */
+function PhoneNote({ text }: { text: string }) {
+  return (
+    <details className="fc-clamp">
+      <summary>{text}</summary>
+    </details>
+  )
+}
+
+function phoneCell(node: ReactNode) {
+  if (typeof node === 'string' && node.length > 90) return <PhoneNote text={node} />
+  return node
 }
 
 function groupLabel(group: (typeof COMPARE_GROUPS)[number], t: (k: TranslationKey) => string): string {
@@ -191,7 +205,7 @@ export function CompareMatrix({ programs, rows, onOpenProgram, toCinematic }: Co
                             title={`${r.label} — ${rowMeaning(r)}`}
                           >
                             {isBest && <span className="fc-scroll-matrix__best">{t('compare.best')}</span>}
-                            {r.render(p)}
+                            {phoneCell(r.render(p))}
                           </div>
                         )
                       })}
