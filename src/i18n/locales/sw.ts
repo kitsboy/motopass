@@ -343,7 +343,7 @@ const sw: Partial<Dict> = {
   'programs.flagshipDepth': 'KINA KIKUU',
   'programs.goldStandardTitle': 'Mamlaka za kiwango cha dhahabu',
   'programs.goldStandardSub':
-    'Uruguay na Bolivia ndizo nanga za violezo vya utafiti vya MotoPass — njia, saa za kufuata, na uthibitisho wa Satohash unaorithiwa na programu nyingine.',
+    'Uruguay na El Salvador ndizo nanga za vifurushi vya bendera — saa tatu, hali ya njia, na maelezo ambayo programu nyingine hurithi.',
   'programs.openResearch': 'Fungua utafiti',
   'programs.pathwaysCount': '{count} njia',
   'programs.residencyClocks': 'Saa za ukaaji',

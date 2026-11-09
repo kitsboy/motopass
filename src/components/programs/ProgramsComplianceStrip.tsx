@@ -8,6 +8,7 @@ import { Card } from '../ui/Card'
 import { useI18n } from '../../i18n/I18nContext'
 
 const SPOTLIGHT = new Set(['Uruguay', 'Bolivia', 'El Salvador', 'UAE'])
+const LEAD = ['Uruguay', 'El Salvador']
 
 export function ProgramsComplianceStrip() {
   const { t } = useI18n()
@@ -17,7 +18,13 @@ export function ProgramsComplianceStrip() {
     const cinematic = toCinematicPrograms(
       programs.filter(p => (p.flagship_depth || SPOTLIGHT.has(p.name)) && p.compliance_clock),
     )
-    return cinematic.filter(hasFlagshipDepth).slice(0, 4)
+    const deep = cinematic.filter(hasFlagshipDepth)
+    const lead = LEAD.flatMap(name => {
+      const hit = deep.find(p => p.country === name)
+      return hit ? [hit] : []
+    })
+    const rest = deep.filter(p => !LEAD.includes(p.country))
+    return [...lead, ...rest].slice(0, 4)
   }, [programs])
 
   if (loading || flagship.length === 0) return null

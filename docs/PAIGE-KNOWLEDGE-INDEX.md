@@ -210,7 +210,7 @@ The Paige knowledge base is a **self-documenting, hot-loadable RAG system** that
 **Key concepts:**
 - 3-step registration: Nostr connect → profile → confirm
 - Programs page with 21 countries, table/card views, filter presets
-- Gold Standard: Uruguay and Bolivia as flagship depth templates
+- Gold Standard: Uruguay and El Salvador as the flagship packs
 - 5 launch gates must pass before applications open
 
 **Member scripts:** How do I start?, How do I register?, How do I apply?, How do I find a program?, What is Gold Standard?, How do I compare?, What are launch gates?, What is the Portfolio?

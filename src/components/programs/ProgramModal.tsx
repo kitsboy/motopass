@@ -16,6 +16,7 @@ import { useI18n } from '../../i18n/I18nContext';
 import { BtcMapProgramPanel } from '../btcmap/BtcMapProgramPanel';
 import { btcMapPageUrl } from '../../lib/btcmap';
 import { Program, ProgramModalTab, scoreWeight, hasFlagshipDepth } from './types';
+import { DecisionClocks } from './DecisionClocks';
 import { SeoHead } from '../SeoHead';
 import { programDetailJsonLd } from '../../lib/siteJsonLd';
 import { safeSatohashHref } from '../../lib/satohash';
@@ -247,6 +248,7 @@ function ProgramModalBody({
       {tab === 'Overview' && (
         <div className="space-y-4 text-sm text-mp-ink-secondary">
           <p className="leading-relaxed">{program.summary}</p>
+          <DecisionClocks program={program} variant="pack" />
           <div className="grid grid-cols-2 gap-2 text-xs">
             {[
               [t('modal.sovereignty'), `${program.sovereigntyScore}/100`],
@@ -260,9 +262,8 @@ function ProgramModalBody({
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3">
             <StatCard label={t('modal.minInvestStat')} value={<BtcDualPrice usd={program.minInvestment} size="sm" />} />
-            <StatCard label={t('modal.avgTimeline')} value={`${program.timelineDays}d`} />
             <StatCard label={t('modal.sovereigntyScore')} value={`${program.sovereigntyScore}/100`} />
           </div>
         </div>

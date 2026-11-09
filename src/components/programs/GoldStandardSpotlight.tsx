@@ -10,7 +10,7 @@ import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
 import { CountryFlag } from '../ui/CountryTitle'
 
-const GOLD_STANDARD_NAMES = ['Uruguay', 'Bolivia'] as const
+const GOLD_STANDARD_NAMES = ['Uruguay', 'El Salvador'] as const
 const IDLE_CYCLE_MS = 30_000
 
 export function GoldStandardSpotlight({ programs }: { programs: Program[] }) {

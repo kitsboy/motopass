@@ -73,7 +73,7 @@ The Programs page is the main entry point for exploring 21 countries.
 
 ### Gold Standard Spotlight
 
-Uruguay and Bolivia appear as featured flagship programs at the top of the page. They cycle on idle (30s) and have the deepest research templates including:
+Uruguay and El Salvador appear as featured flagship programs at the top of the page. They cycle on idle (30s) and anchor the decision pack (three clocks, route status, and the notes already on file):
 - Multiple pathway analyses
 - Compliance Clock timelines
 - Critical test results (live/work, freedom scope, dual citizenship)
@@ -307,7 +307,7 @@ When a user clicks a program card, the modal provides deep research:
 | "What's a sovereignty score?" | Explanation of the 0-100 scoring methodology |
 | "How do I apply?" | Step-by-step guide to /apply with document attachment |
 | "Are applications open?" | Check launch gates status and explain any blockers |
-| "What's the Gold Standard?" | Explain Uruguay and Bolivia flagship depth |
+| "What's the Gold Standard?" | Explain Uruguay and El Salvador flagship packs |
 | "How do I compare programs?" | Guide to Compare page and ProgramModal tabs |
 | "What's the portfolio for?" | Explain saved list, Compliance Clock, and stack planning |
 

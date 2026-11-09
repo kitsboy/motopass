@@ -12,6 +12,7 @@ import { MerchantDensityBadge } from '../btcmap/MerchantDensityBadge';
 import { BtcDualPrice } from '../BtcDualPrice';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 import { SovereigntyScoreTooltip } from './SovereigntyScoreTooltip';
+import { DecisionClocks } from './DecisionClocks';
 import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
 
@@ -180,6 +181,7 @@ function ProgramCardContent({
       </span>
 
       <div className="mt-2 flex w-full flex-wrap items-center gap-1.5">
+        <DecisionClocks program={program} variant="pill" />
         {program.lightningReady && (
           <span className="inline-flex items-center gap-0.5 rounded-chip border border-mp-btc/30 bg-mp-btc-soft px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wide text-mp-btc-text">
             <Zap size={9} aria-hidden="true" />
@@ -211,24 +213,23 @@ function ProgramCardContent({
 
       <p className="mt-3 line-clamp-2 font-body text-sm text-mp-ink-secondary">{program.summary}</p>
 
-      <dl className="mt-4 grid grid-cols-3 gap-2 border-t border-mp-border-subtle pt-4">
-        <div>
-          <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.minInvest')}</dt>
-          <dd className="text-mp-ink">
-            <BtcDualPrice usd={program.minInvestment} size="xs" layout="stack" />
-          </dd>
-        </div>
-        <div>
-          <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.timeline')}</dt>
-          <dd className="font-mono text-sm text-mp-ink">{program.timelineDays}d</dd>
-        </div>
-        <div>
-          <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.score')}</dt>
-          <dd>
-            <SovereigntyScoreTooltip program={program} score={program.sovereigntyScore} isFlagship={isFlagship} />
-          </dd>
-        </div>
-      </dl>
+      <div className="mt-4 border-t border-mp-border-subtle pt-4">
+        <dl className="grid grid-cols-2 gap-2">
+          <div>
+            <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.minInvest')}</dt>
+            <dd className="text-mp-ink">
+              <BtcDualPrice usd={program.minInvestment} size="xs" layout="stack" />
+            </dd>
+          </div>
+          <div>
+            <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.score')}</dt>
+            <dd>
+              <SovereigntyScoreTooltip program={program} score={program.sovereigntyScore} isFlagship={isFlagship} />
+            </dd>
+          </div>
+        </dl>
+        <DecisionClocks program={program} variant="strip" />
+      </div>
     </>
   );
 }

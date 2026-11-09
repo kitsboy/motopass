@@ -320,6 +320,45 @@ export type TranslationKey =
   | 'programs.trackInPortfolio'
   | 'programs.complianceEyebrow'
   | 'programs.loadingAria'
+  | 'pack.title'
+  | 'pack.process'
+  | 'pack.processLong'
+  | 'pack.inCountry'
+  | 'pack.inCountryLong'
+  | 'pack.citizenship'
+  | 'pack.citizenshipLong'
+  | 'pack.renewal'
+  | 'pack.notOnFile'
+  | 'pack.none'
+  | 'pack.atGrant'
+  | 'pack.mo'
+  | 'pack.day'
+  | 'pack.year'
+  | 'pack.announced'
+  | 'pack.announcedHint'
+  | 'pack.routes'
+  | 'pack.family'
+  | 'pack.fee'
+  | 'pack.feeYes'
+  | 'pack.feeNo'
+  | 'pack.feePartial'
+  | 'pack.crypto'
+  | 'pack.filing'
+  | 'pack.fileInCountry'
+  | 'pack.fileRemote'
+  | 'pack.mobility'
+  | 'pack.banking'
+  | 'pack.holding'
+  | 'pack.refundable'
+  | 'pack.refundYes'
+  | 'pack.refundNo'
+  | 'pack.refundPartial'
+  | 'pack.live'
+  | 'pack.reformed'
+  | 'pack.closed'
+  | 'pack.included'
+  | 'pack.scoreOnFile'
+  | 'pack.cap'
   | 'portfolio.nostrIdentity'
   | 'portfolio.nostrHint'
   | 'portfolio.loadingAria'
@@ -585,13 +624,52 @@ const en: Dict = {
   'programs.flagshipDepth': 'FLAGSHIP DEPTH',
   'programs.goldStandardTitle': 'Gold standard jurisdictions',
   'programs.goldStandardSub':
-    'Uruguay and Bolivia anchor MotoPass research templates — pathways, compliance clocks, and Satohash proofs other programs inherit.',
+    'Uruguay and El Salvador anchor the flagship packs — three clocks, route status, and the notes the other programs inherit.',
   'programs.openResearch': 'Open research',
   'programs.pathwaysCount': '{count} pathways',
   'programs.residencyClocks': 'Residency clocks',
   'programs.trackInPortfolio': 'Track in portfolio →',
   'programs.complianceEyebrow': 'COMPLIANCE',
   'programs.loadingAria': 'Loading programs',
+  'pack.title': 'Decision pack',
+  'pack.process': 'Process',
+  'pack.processLong': 'Processing',
+  'pack.inCountry': 'In country',
+  'pack.inCountryLong': 'Days in country',
+  'pack.citizenship': 'Citizenship',
+  'pack.citizenshipLong': 'Years to citizenship',
+  'pack.renewal': 'Renewal',
+  'pack.notOnFile': 'Not on file',
+  'pack.none': 'None',
+  'pack.atGrant': 'At grant',
+  'pack.mo': 'mo',
+  'pack.day': 'd',
+  'pack.year': 'y',
+  'pack.announced': 'Announced',
+  'pack.announcedHint': 'Not yet in force. The card minimum stays the live route.',
+  'pack.routes': 'Routes',
+  'pack.family': 'Family',
+  'pack.fee': 'Fee in Bitcoin',
+  'pack.feeYes': 'Yes',
+  'pack.feeNo': 'No',
+  'pack.feePartial': 'Partially',
+  'pack.crypto': 'Crypto tax',
+  'pack.filing': 'How you file',
+  'pack.fileInCountry': 'File in the country. See the pathway notes.',
+  'pack.fileRemote': 'Marketed as remote. Confirm before you rely on it.',
+  'pack.mobility': 'Mobility',
+  'pack.banking': 'Banking',
+  'pack.holding': 'Holding',
+  'pack.refundable': 'Refundable',
+  'pack.refundYes': 'Yes',
+  'pack.refundNo': 'No',
+  'pack.refundPartial': 'Partly',
+  'pack.live': 'Live',
+  'pack.reformed': 'Reformed',
+  'pack.closed': 'Closed',
+  'pack.included': 'Included',
+  'pack.scoreOnFile': '{score}/10 on file',
+  'pack.cap': 'Cap on file: {count} main applicants a year',
   'portfolio.nostrIdentity': 'Nostr identity',
   'portfolio.nostrHint': 'Connect npub before Apply — agents route deal rooms and proof updates through your sovereign key.',
   'portfolio.loadingAria': 'Loading portfolio',

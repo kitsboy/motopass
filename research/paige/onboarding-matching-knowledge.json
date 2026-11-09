@@ -10,7 +10,7 @@
     "ProgramsPage is the main discovery interface with 21 programs, offering table and card views with instant filtering.",
     "Filter system supports: text search (name/details/bitcoin_integration), region, category, investment range ($0–$2M), crypto score (0–10), sovereignty (0–10), Lightning-only, and status.",
     "Three filter presets are available: Under $100K investment, Lightning-ready only, Bitcoin-friendly (crypto score ≥7).",
-    "Gold Standard Spotlight highlights Uruguay and Bolivia as flagship depth programs that anchor research templates.",
+    "Gold Standard Spotlight highlights Uruguay and El Salvador. Each program shows three clocks (processing, days in country, years to citizenship), route status, and the notes already on file. Missing prices stay Not on file.",
     "Program cards show: flag, country, status, proof badge, pathways count, flagship depth, sovereignty score, stacking synergy, risk level, Lightning readiness.",
     "ProgramModal has 7 tabs: Overview, Pathways (flagships only), Finance, Bitcoin, Critical (flagships only), Legal, Intel, Paige, Sources.",
     "The Intel tab displays sourced pros/cons with verification dates, scorecard bars, freshness status, and recent audit trail entries.",
@@ -112,7 +112,7 @@
     "how_to_register": "Click Register, connect your Nostr wallet (you'll need a browser extension like nos2x or Alby), enter your name, pick a target program from the dropdown, and confirm.",
     "how_to_apply": "Visit /apply, fill in your name and target program, optionally attach stamped documents from the Vault, and submit. Your application is hashed and you'll be guided to meet Kimi, our AI agent.",
     "how_to_find_program": "Go to /programs — use the search bar for country names, the region sidebar to filter by geography, or the filter presets (Under $100K, Lightning-ready, Bitcoin-friendly) to narrow down options.",
-    "what_is_gold_standard": "Uruguay and Bolivia are our Gold Standard flagships — they have the deepest research templates with full pathway analysis, compliance clocks, and critical test results that other programs reference.",
+    "what_is_gold_standard": "Uruguay and El Salvador are the Gold Standard flagships on the programs page. They anchor the decision pack: three clocks, route status, and the notes the other programs inherit. A route marked Announced is not open yet.",
     "how_to_compare": "Click any program card, then click 'Open Compare' in the modal. You can compare up to 4 programs side-by-side with a matrix view showing investment, timelines, sovereignty, and Bitcoin readiness.",
     "what_are_launch_gates": "Launch gates are 5 checkpoints (Seal, Forge, Nexus, Ledger, Ops) that must all pass before applications open. They ensure the platform has Bitcoin proofs, a working marketplace, live relay, agent readiness, and CI validation.",
     "what_is_portfolio": "Your portfolio at /portfolio is a saved list of programs you're interested in. It shows combined statistics, a Compliance Clock for timelines, and syncs across pages. Add programs from the Programs page."

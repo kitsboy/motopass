@@ -13,6 +13,7 @@ import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 import { SovereigntyScoreTooltip } from './SovereigntyScoreTooltip';
+import { DecisionClocks } from './DecisionClocks';
 
 interface ProgramsTableProps {
   programs: Program[];
@@ -174,8 +175,8 @@ export function ProgramsTable({
               <td className={`whitespace-nowrap border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>
                 <BtcDualPrice usd={p.minInvestment} size="xs" layout="stack" className="items-end" />
               </td>
-              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-mono text-sm text-mp-ink`}>
-                {p.timelineDays}d
+              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>
+                <DecisionClocks program={p} variant="cell" />
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>
                 <SovereigntyScoreTooltip program={p} score={p.sovereigntyScore} isFlagship={isFlagship} />
