@@ -1,3 +1,27 @@
+## Session — 2026-11-09 · Change bell, gazettes, route mixer, compare clocks (Grok)
+
+**Done:**
+- Change bell on Programs. It reads the catalog the daily probe already writes. Today every watched country is steady, so the strip says that. A card line appears only when `watch.changed` is true. The note and the webhook JSON can be copied. The script `scripts/change-bell.mjs` prints the payload and posts only when `MOTOPASS_CHANGE_WEBHOOK_URL` is a public https URL. It does not publish to a relay.
+- Gazette strip. It classifies URLs already in the file. Watched: Argentina, Panama, Mexico. Cited and not on the daily watch: St. Lucia, Grenada. The other 16 have no gazette URL on file. No gazette is marked changed.
+- Route mixer, the UI pass for this session. One route per country, one dollar and sats total, family prices only where the note already states them. Announced routes stay behind a switch that starts off. Argentina's announced citizenship-by-investment minimum stays hidden until that switch is on.
+- Compare chart adds days in the country, years to citizenship, fee-in-Bitcoin stance, and how you file. Uruguay is 1,095 days and 4 years. El Salvador is 365 days, 5 years, fee partial. São Tomé is None, At grant, and remote filing.
+- `npm test`: 361 passed, 2 skipped. Research, proofs, and intel were not edited. Applications stay closed.
+
+**Decisions:**
+- Did not add the two one-off gazette PDFs to the daily watch. They are not living gazette homepages, and a new unprobed URL would change the probe set.
+- Did not restamp, probe, flip Uruguay, publish Nostr, or wrangler-deploy.
+- The five bigger ideas in chat were not built.
+
+**Still open (do not start unless Cam asks):**
+- Daily stamp still stops at the first HTTP 429 after about 5 stamps. Resume inside the same job.
+- Intel's fresh window is 14 days. The catalog returns to watch around 22 Nov 2026 without another real page re-read.
+- Healthy source-monitor cards still take their subtitle age from the first URL's relative time.
+- Re-check `cbiu.gov.dm` and `cnmv.es` before treating a green probe status as a successful human read.
+
+**Git State:**
+- Code SHA: `8380862b4246b7585fdda41a9ad8770acba72158` (compare clocks). Earlier in this run: `db7769f` bell, `0f32ca0` gazettes, `f7dad2a` route mixer.
+- Docs commit follows, then `git push origin main`. Deploy is the Cloudflare Pages git integration.
+
 ## Session — 2026-11-09 · Decision clocks on every program (Grok)
 
 **Done:**

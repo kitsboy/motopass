@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-09 by Grok — three decision clocks
+# motopass — Last Updated 2026-11-09 by Grok — bell, gazettes, mixer, compare clocks
+
+Programs now shows a change bell, which gazettes are already watched, and a route mixer with announced routes behind a switch. Compare adds days in country, years to citizenship, fee-in-Bitcoin stance, and how you file. Research was not edited. Code commit: `8380862`.
+
+## Previous update — 2026-11-09 by Grok — three decision clocks
 
 Every program shows processing time, days in the country, and years to citizenship from the notes already on file. Announced routes stay labeled announced. Code commit: `f03eee7`.
 
