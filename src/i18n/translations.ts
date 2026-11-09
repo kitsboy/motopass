@@ -364,6 +364,10 @@ export type TranslationKey =
   | 'bell.quiet'
   | 'bell.changed'
   | 'bell.changedRest'
+  | 'bell.country'
+  | 'bell.allCountries'
+  | 'bell.deliverUrl'
+  | 'bell.deliverKey'
   | 'bell.unknownDate'
   | 'bell.copyNote'
   | 'bell.copyPayload'
@@ -405,6 +409,12 @@ export type TranslationKey =
   | 'advice.otherAr'
   | 'advice.notOnFile'
   | 'advice.copying'
+  | 'advice.hold'
+  | 'advice.holdAll'
+  | 'advice.holdUs'
+  | 'advice.holdUk'
+  | 'advice.holdAr'
+  | 'advice.otherPassports'
   | 'advice.read'
   | 'advice.hide'
   | 'sentence.eyebrow'
@@ -420,6 +430,8 @@ export type TranslationKey =
   | 'days.none'
   | 'days.notOnFile'
   | 'days.yearMark'
+  | 'days.receipt'
+  | 'days.noSentence'
   | 'fee.eyebrow'
   | 'fee.title'
   | 'fee.lead'
@@ -753,12 +765,16 @@ const en: Dict = {
   'bell.quiet': '{count} countries are steady. Last probe {date}. No watched page is marked changed.',
   'bell.changed': '{count} watched pages changed: {names}.',
   'bell.changedRest': 'watched pages changed: {names}.',
+  'bell.country': 'One country',
+  'bell.allCountries': 'All countries',
+  'bell.deliverUrl': 'https address',
+  'bell.deliverKey': 'Nostr pubkey',
   'bell.unknownDate': 'not on file',
   'bell.copyNote': 'Copy Nostr note',
   'bell.copyPayload': 'Copy webhook',
   'bell.copied': 'Copied',
   'bell.cardLine': 'A watched official page changed',
-  'bell.hint': 'Copy the note and post it with your own Nostr key. The webhook is sent only by the daily script, and only to an https address you set as MOTOPASS_CHANGE_WEBHOOK_URL.',
+  'bell.hint': 'This page copies the note. It does not send the address and it does not publish the key. The daily script posts only when MOTOPASS_CHANGE_WEBHOOK_URL is a public https address. MOTOPASS_CHANGE_COUNTRY limits that post to one country name.',
   'gazette.eyebrow': 'GAZETTE',
   'gazette.title': 'Law newspapers on the watch list',
   'gazette.summary': 'On the daily watch: {watched}. Cited, and not watched yet: {cited}. {missing} countries have no gazette URL on file.',
@@ -794,6 +810,12 @@ const en: Dict = {
   'advice.otherAr': 'Argentine alerts that do not name one of these programs',
   'advice.notOnFile': 'Not on file',
   'advice.copying': 'Copying the three public pages.',
+  'advice.hold': 'Passport I hold',
+  'advice.holdAll': 'All three',
+  'advice.holdUs': 'United States',
+  'advice.holdUk': 'United Kingdom',
+  'advice.holdAr': 'Argentina',
+  'advice.otherPassports': 'The other two passports',
   'advice.read': 'Read the sentence',
   'advice.hide': 'Hide the sentence',
   'sentence.eyebrow': 'STORED SENTENCE',
@@ -809,6 +831,8 @@ const en: Dict = {
   'days.none': 'None',
   'days.notOnFile': 'Not on file',
   'days.yearMark': '{years}y',
+  'days.receipt': 'Receipt',
+  'days.noSentence': 'The sentence is not on file.',
   'fee.eyebrow': 'FEE INVOICE',
   'fee.title': 'What the note says you can pay in Bitcoin',
   'fee.lead': 'A sats figure is a payment rail only on the line that says so. Every other sats figure is a spot conversion of a dollar amount already on file.',

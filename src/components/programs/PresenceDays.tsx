@@ -54,6 +54,22 @@ export function PresenceDays({ programs }: { programs: Program[] }) {
                 style={{ width: `${Math.max(1.5, ((row.days ?? 0) / scale) * 100)}%` }}
               />
             </div>
+            <details className="mt-1">
+              <summary className="cursor-pointer font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
+                {t('days.receipt')}
+              </summary>
+              <p className="mt-1 text-xs leading-relaxed text-mp-ink-secondary">{row.sentence ?? t('days.noSentence')}</p>
+              {row.url && (
+                <a
+                  href={row.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-1 block truncate font-mono text-[10px] text-mp-ink-tertiary underline-offset-2 hover:underline"
+                >
+                  {row.url}
+                </a>
+              )}
+            </details>
           </li>
         ))}
       </ul>

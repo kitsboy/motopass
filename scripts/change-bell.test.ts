@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { payloadFromReport, reportFromPrograms, sentencesFromEvents, webhookUrlAllowed } from './change-bell.mjs'
+import { payloadFromReport, programsForCountry, reportFromPrograms, sentencesFromEvents, webhookUrlAllowed } from './change-bell.mjs'
 
 describe('change bell script', () => {
   it('builds the same kind of payload and refuses a private webhook', () => {
@@ -16,5 +16,9 @@ describe('change bell script', () => {
     expect(sentences[0].added).toContain('new line')
     expect(sentences[0].marked_changed).toBe(false)
     expect(payloadFromReport(report, sentences).sentences).toHaveLength(1)
+    const programs = [{ name: 'Uruguay' }, { name: 'Spain' }]
+    expect(programsForCountry(programs, 'Uruguay')).toEqual([{ name: 'Uruguay' }])
+    expect(programsForCountry(programs, '')).toEqual(programs)
+    expect(programsForCountry(programs, 'Atlantis')).toEqual([])
   })
 })

@@ -17,7 +17,12 @@ export function ChangeBellPanel({ programs }: { programs: Program[] }) {
   const report = useMemo(() => changeBellReport(programs), [programs])
   const [sentences, setSentences] = useState<ReturnType<typeof latestRuleSentences>>([])
   const [copied, setCopied] = useState<'note' | 'payload' | null>(null)
+  const [countryName, setCountryName] = useState('')
+  const [deliverUrl, setDeliverUrl] = useState('')
+  const [nostrKey, setNostrKey] = useState('')
   const when = report.latestProbe?.slice(0, 10) ?? t('bell.unknownDate')
+  const scopedPrograms = countryName ? programs.filter(program => program.name === countryName) : programs
+  const scopedReport = countryName ? changeBellReport(scopedPrograms) : report
 
   useEffect(() => {
     let live = true
@@ -29,19 +34,30 @@ export function ChangeBellPanel({ programs }: { programs: Program[] }) {
     }
   }, [programs])
 
-  const sentenceLines = sentences.map(sentence => `${sentence.country} (${sentence.date}): ${sentence.added}`)
-  const note = [changeBellNote(report), sentenceLines.length ? `Stored sentences:\n${sentenceLines.join('\n')}` : '']
+  const scopedSentences = countryName ? sentences.filter(sentence => sentence.country === countryName) : sentences
+  const sentenceLines = scopedSentences.map(sentence => `${sentence.country} (${sentence.date}): ${sentence.added}`)
+  const deliveryLines = [
+    nostrKey.trim() ? `Nostr pubkey: ${nostrKey.trim()}` : '',
+    deliverUrl.trim() ? `Deliver to (not sent from this page): ${deliverUrl.trim()}` : '',
+  ].filter(Boolean)
+  const note = [
+    changeBellNote(scopedReport),
+    sentenceLines.length ? `Stored sentences:\n${sentenceLines.join('\n')}` : '',
+    deliveryLines.join('\n'),
+  ]
     .filter(Boolean)
     .join('\n\n')
   const payload = {
-    ...changeBellPayload(report),
-    sentences: sentences.map(sentence => ({
+    ...changeBellPayload(scopedReport),
+    sentences: scopedSentences.map(sentence => ({
       country: sentence.country,
       date: sentence.date,
       url: sentence.url,
       added: sentence.added,
       marked_changed: sentence.markedChanged,
     })),
+    nostr_pubkey: nostrKey.trim() || null,
+    deliver_to: deliverUrl.trim() || null,
   }
 
   async function copy(kind: 'note' | 'payload', text: string) {
@@ -107,6 +123,44 @@ export function ChangeBellPanel({ programs }: { programs: Program[] }) {
           ))}
         </ul>
       )}
+      <div className="mt-4 grid gap-2 sm:grid-cols-3">
+        <label className="text-[11px] text-mp-ink-tertiary">
+          {t('bell.country')}
+          <select
+            className="mt-1 w-full rounded-mp-md border border-mp-border bg-transparent px-2 py-1.5 text-sm text-mp-ink"
+            value={countryName}
+            onChange={event => setCountryName(event.target.value)}
+          >
+            <option value="">{t('bell.allCountries')}</option>
+            {programs.map(program => (
+              <option key={program.id} value={program.name}>
+                {program.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="text-[11px] text-mp-ink-tertiary">
+          {t('bell.deliverUrl')}
+          <input
+            className="mt-1 w-full rounded-mp-md border border-mp-border bg-transparent px-2 py-1.5 text-sm text-mp-ink"
+            value={deliverUrl}
+            onChange={event => setDeliverUrl(event.target.value)}
+            inputMode="url"
+            autoComplete="off"
+            spellCheck={false}
+          />
+        </label>
+        <label className="text-[11px] text-mp-ink-tertiary">
+          {t('bell.deliverKey')}
+          <input
+            className="mt-1 w-full rounded-mp-md border border-mp-border bg-transparent px-2 py-1.5 text-sm text-mp-ink"
+            value={nostrKey}
+            onChange={event => setNostrKey(event.target.value)}
+            autoComplete="off"
+            spellCheck={false}
+          />
+        </label>
+      </div>
       <p className="mt-3 text-[11px] leading-relaxed text-mp-ink-tertiary">{t('bell.hint')}</p>
     </section>
   )

@@ -16,6 +16,7 @@ export function AdvisoryBoard({ programs }: { programs: Program[] }) {
   const [file, setFile] = useState<AdvisoryFile | null>(null)
   const [phase, setPhase] = useState<'loading' | 'ready' | 'missing'>('loading')
   const [open, setOpen] = useState<string | null>(null)
+  const [held, setHeld] = useState<'all' | 'us' | 'uk' | 'ar'>('all')
 
   useEffect(() => {
     let live = true
@@ -54,11 +55,32 @@ export function AdvisoryBoard({ programs }: { programs: Program[] }) {
 
       {phase === 'ready' && (
       <>
-      <div className="mt-4 hidden gap-2 border-b border-mp-border-subtle pb-2 text-[10px] font-chrome uppercase tracking-wide text-mp-ink-tertiary sm:grid sm:grid-cols-[10.5rem_1fr_1fr_1fr]">
+      <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label={t('advice.hold')}>
+        {([
+          ['all', 'advice.holdAll'],
+          ['us', 'advice.holdUs'],
+          ['uk', 'advice.holdUk'],
+          ['ar', 'advice.holdAr'],
+        ] as const).map(([key, label]) => (
+          <button
+            key={key}
+            type="button"
+            aria-pressed={held === key}
+            className={`chip text-xs ${held === key ? 'border-mp-btc text-mp-ink' : ''}`}
+            onClick={() => {
+              setHeld(key)
+              setOpen(null)
+            }}
+          >
+            {t(label)}
+          </button>
+        ))}
+      </div>
+      <div className={`mt-4 hidden gap-2 border-b border-mp-border-subtle pb-2 text-[10px] font-chrome uppercase tracking-wide text-mp-ink-tertiary sm:grid ${held === 'all' ? 'sm:grid-cols-[10.5rem_1fr_1fr_1fr]' : 'sm:grid-cols-[10.5rem_1fr]'}`}>
         <span>{t('advice.country')}</span>
-        <span>{t('advice.usAudience')}</span>
-        <span>{t('advice.ukAudience')}</span>
-        <span>{t('advice.arAudience')}</span>
+        {(held === 'all' || held === 'us') && <span>{t('advice.usAudience')}</span>}
+        {(held === 'all' || held === 'uk') && <span>{t('advice.ukAudience')}</span>}
+        {(held === 'all' || held === 'ar') && <span>{t('advice.arAudience')}</span>}
       </div>
 
       <ul className="divide-y divide-mp-border-subtle">
@@ -68,14 +90,18 @@ export function AdvisoryBoard({ programs }: { programs: Program[] }) {
           const expanded = open === program.name
           return (
             <li key={program.id} className="py-2.5">
-              <div className="grid gap-2 sm:grid-cols-[10.5rem_1fr_1fr_1fr] sm:items-start">
+              <div className={`grid gap-2 sm:items-start ${held === 'all' ? 'sm:grid-cols-[10.5rem_1fr_1fr_1fr]' : 'sm:grid-cols-[10.5rem_1fr]'}`}>
                 <div className="flex min-w-0 items-center gap-2">
                   <CountryFlag name={program.name} emoji={program.flag} size="sm" />
                   <span className="min-w-0 text-sm font-medium text-mp-ink">{program.name}</span>
                 </div>
-                <UsCell advice={row?.us ?? null} missing={t('advice.notOnFile')} levelWord={t('advice.levelWord')} />
-                <UkCell advice={row?.uk ?? null} missing={t('advice.notOnFile')} none={t('advice.noUkCode')} t={t} />
-                <ArCell alerts={row?.ar ?? []} none={t('advice.noArAlert')} />
+                {(held === 'all' || held === 'us') && (
+                  <UsCell advice={row?.us ?? null} missing={t('advice.notOnFile')} levelWord={t('advice.levelWord')} />
+                )}
+                {(held === 'all' || held === 'uk') && (
+                  <UkCell advice={row?.uk ?? null} missing={t('advice.notOnFile')} none={t('advice.noUkCode')} t={t} />
+                )}
+                {(held === 'all' || held === 'ar') && <ArCell alerts={row?.ar ?? []} none={t('advice.noArAlert')} />}
               </div>
               <button
                 type="button"
@@ -83,13 +109,22 @@ export function AdvisoryBoard({ programs }: { programs: Program[] }) {
                 aria-expanded={expanded}
                 onClick={() => setOpen(expanded ? null : program.name)}
               >
-                {expanded ? t('advice.hide') : t('advice.read')}
+                {expanded ? t('advice.hide') : held === 'all' ? t('advice.read') : t('advice.otherPassports')}
               </button>
-              {expanded && (
+              {expanded && held === 'all' && (
                 <div className="mt-2 grid gap-2 text-xs leading-relaxed text-mp-ink-secondary sm:grid-cols-3">
                   <p>{row?.us?.summary || t('advice.notOnFile')}</p>
                   <p>{row?.uk?.change || t('advice.notOnFile')}</p>
                   <p>{row?.ar?.[0]?.detail || t('advice.noArAlert')}</p>
+                </div>
+              )}
+              {expanded && held !== 'all' && (
+                <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                  {held !== 'us' && <UsCell advice={row?.us ?? null} missing={t('advice.notOnFile')} levelWord={t('advice.levelWord')} />}
+                  {held !== 'uk' && (
+                    <UkCell advice={row?.uk ?? null} missing={t('advice.notOnFile')} none={t('advice.noUkCode')} t={t} />
+                  )}
+                  {held !== 'ar' && <ArCell alerts={row?.ar ?? []} none={t('advice.noArAlert')} />}
                 </div>
               )}
             </li>

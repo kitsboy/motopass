@@ -66,6 +66,12 @@ export function sentencesFromEvents(events, programs) {
   return sentences
 }
 
+export function programsForCountry(programs, name) {
+  const only = String(name || '').trim()
+  if (!only) return programs
+  return programs.filter(program => program.name === only)
+}
+
 export function payloadFromReport(report, sentences = []) {
   return {
     kind: 'motopass.change-bell',
@@ -109,7 +115,8 @@ async function main() {
   } catch {
     events = []
   }
-  const payload = payloadFromReport(reportFromPrograms(catalog.programs), sentencesFromEvents(events, catalog.programs))
+  const programs = programsForCountry(catalog.programs, process.env.MOTOPASS_CHANGE_COUNTRY)
+  const payload = payloadFromReport(reportFromPrograms(programs), sentencesFromEvents(events, programs))
   const body = JSON.stringify(payload)
   const target = process.env.MOTOPASS_CHANGE_WEBHOOK_URL
   if (!webhookUrlAllowed(target)) {
