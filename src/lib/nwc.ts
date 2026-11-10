@@ -7,11 +7,11 @@ import { looksLikeBolt11 } from './lnurl'
  * NIP-47 (Nostr Wallet Connect).
  *
  * The connection string carries a secret with whatever permissions the wallet
- * granted. This client sends exactly three methods — `get_balance`,
- * `make_invoice` and `lookup_invoice` — and never asks for a payment or a
- * signature. A wallet that requires a per-request budget still sees a request
- * from us; the UI says so plainly instead of implying the connection is
- * powerless.
+ * granted. This client sends exactly four methods — `get_balance`,
+ * `make_invoice`, `lookup_invoice` and `list_transactions` — and never asks for
+ * a payment or a signature. A wallet that requires a per-request budget still
+ * sees a request from us; the UI says so plainly instead of implying the
+ * connection is powerless.
  *
  * Settlement is only ever read from the user's own wallet. There is no
  * MotoPass node watching the payment, so an invoice is never marked paid
@@ -51,6 +51,25 @@ export interface NwcInvoiceStatus {
   preimage: string | null
   /** Unix seconds, only when the wallet reports a settlement time. */
   settledAt: number | null
+}
+
+export type NwcTxState = 'settled' | 'pending' | 'expired' | 'failed' | 'unknown'
+
+/**
+ * One row from `list_transactions`. Every field is exactly what the wallet
+ * reported: a missing field stays null rather than being filled in.
+ */
+export interface NwcTransaction {
+  type: 'incoming' | 'outgoing'
+  description: string | null
+  paymentHash: string | null
+  preimage: string | null
+  amountMsat: number | null
+  /** Wallet-reported fee, outgoing only. Null when it reports none. */
+  feesPaidMsat: number | null
+  createdAt: number | null
+  settledAt: number | null
+  state: NwcTxState
 }
 
 function hexToBytes(hex: string): Uint8Array {
@@ -189,6 +208,71 @@ export function parseNwcLookup(result: unknown): { ok: true; status: NwcInvoiceS
   }
 }
 
+/** `list_transactions` says `settled` where `lookup_invoice` says `paid`. */
+function txState(state: NwcInvoiceState): NwcTxState {
+  return state === 'paid' ? 'settled' : state
+}
+
+function numberOrNull(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null
+}
+
+function unixOrNull(value: unknown): number | null {
+  const seconds = numberOrNull(value)
+  return seconds != null && seconds > 0 ? Math.floor(seconds) : null
+}
+
+/**
+ * A `list_transactions` result. Rows the wallet reports in a shape we cannot
+ * read are dropped; if every row was unreadable the call is an error, so an
+ * empty list always means "the wallet says there is nothing", never "we could
+ * not parse what it sent".
+ */
+export function parseNwcTransactions(
+  result: unknown,
+): { ok: true; transactions: NwcTransaction[] } | { ok: false; error: string } {
+  const rows = Array.isArray(result)
+    ? result
+    : result && typeof result === 'object' && Array.isArray((result as { transactions?: unknown }).transactions)
+      ? ((result as { transactions: unknown[] }).transactions)
+      : null
+  if (!rows) return { ok: false, error: 'Wallet returned no transaction list' }
+
+  const transactions: NwcTransaction[] = []
+  for (const row of rows) {
+    if (!row || typeof row !== 'object') continue
+    const data = row as Record<string, unknown>
+    const type = data.type === 'incoming' || data.type === 'outgoing' ? data.type : null
+    if (!type) continue
+    const paymentHash =
+      typeof data.payment_hash === 'string' && HEX64.test(data.payment_hash.trim())
+        ? data.payment_hash.trim().toLowerCase()
+        : null
+    const preimage =
+      typeof data.preimage === 'string' && HEX64.test(data.preimage.trim()) ? data.preimage.trim().toLowerCase() : null
+    const description =
+      typeof data.description === 'string' && data.description.trim() ? data.description.trim().slice(0, 200) : null
+    transactions.push({
+      type,
+      description,
+      paymentHash,
+      preimage,
+      amountMsat: numberOrNull(data.amount),
+      feesPaidMsat: numberOrNull(data.fees_paid),
+      createdAt: unixOrNull(data.created_at),
+      settledAt: unixOrNull(data.settled_at ?? data.paid_at),
+      state: txState(normaliseState(data.state ?? data.status)),
+    })
+  }
+
+  if (rows.length > 0 && transactions.length === 0) {
+    return { ok: false, error: 'Wallet returned transactions in a shape we cannot read' }
+  }
+
+  transactions.sort((a, b) => (b.settledAt ?? b.createdAt ?? 0) - (a.settledAt ?? a.createdAt ?? 0))
+  return { ok: true, transactions }
+}
+
 /**
  * Send one NIP-47 request and wait for its matching response.
  * Never throws; every failure path returns `{ ok: false, error }`.
@@ -291,6 +375,22 @@ export async function nwcMakeInvoice(
   )
   if (!response.ok) return response
   return parseNwcInvoice(response.result)
+}
+
+/**
+ * Ask the wallet for its recent transactions. This is the wallet's own record,
+ * not a MotoPass ledger: it can contain payments unrelated to any gap tip, and
+ * only the wallet decides which ones it reports.
+ */
+export async function nwcListTransactions(
+  uri: string,
+  opts: { limit?: number; timeoutMs?: number } = {},
+): Promise<{ ok: true; transactions: NwcTransaction[] } | { ok: false; error: string }> {
+  const requested = numberOrNull(opts.limit) ?? 10
+  const limit = Math.min(50, Math.max(1, Math.floor(requested)))
+  const response = await nwcRequest(uri, 'list_transactions', { limit }, { timeoutMs: opts.timeoutMs })
+  if (!response.ok) return response
+  return parseNwcTransactions(response.result)
 }
 
 /** Ask the wallet what happened to an invoice it issued. */

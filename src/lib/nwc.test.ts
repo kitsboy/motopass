@@ -1,7 +1,14 @@
 import { describe, it, expect } from 'vitest'
 import { finalizeEvent, generateSecretKey, getPublicKey } from 'nostr-tools/pure'
 import * as nip04 from 'nostr-tools/nip04'
-import { buildNwcRequest, parseNwcInvoice, parseNwcLookup, parseNwcResponse, parseNwcUri } from './nwc'
+import {
+  buildNwcRequest,
+  parseNwcInvoice,
+  parseNwcLookup,
+  parseNwcResponse,
+  parseNwcTransactions,
+  parseNwcUri,
+} from './nwc'
 
 const WALLET_SECRET = generateSecretKey()
 const WALLET_PUBKEY = getPublicKey(WALLET_SECRET)
@@ -159,5 +166,61 @@ describe('parseNwcLookup', () => {
       })(),
     )
     expect(result.ok && result.status.preimage).toBe('c'.repeat(64))
+  })
+})
+
+describe('parseNwcTransactions', () => {
+  it('maps reported rows and sorts newest first', () => {
+    const result = parseNwcTransactions([
+      {
+        type: 'incoming',
+        state: 'settled',
+        amount: 5_000_000,
+        payment_hash: 'D'.repeat(64),
+        preimage: 'E'.repeat(64),
+        description: 'MotoPass gap tip: Panama gov_fees',
+        created_at: 1_760_000_000,
+        settled_at: 1_760_000_100,
+      },
+      { type: 'outgoing', state: 'pending', amount: 2_000_000, created_at: 1_760_000_500 },
+    ])
+    expect(result.ok).toBe(true)
+    if (!result.ok) return
+    expect(result.transactions).toHaveLength(2)
+    expect(result.transactions[0]).toMatchObject({
+      type: 'outgoing',
+      state: 'pending',
+      amountMsat: 2_000_000,
+      createdAt: 1_760_000_500,
+      settledAt: null,
+      paymentHash: null,
+    })
+    expect(result.transactions[1]).toMatchObject({
+      type: 'incoming',
+      state: 'settled',
+      paymentHash: 'd'.repeat(64),
+      preimage: 'e'.repeat(64),
+      description: 'MotoPass gap tip: Panama gov_fees',
+      settledAt: 1_760_000_100,
+      feesPaidMsat: null,
+    })
+  })
+
+  it('reads the { transactions } envelope and keeps an empty list empty', () => {
+    expect(parseNwcTransactions({ transactions: [] })).toEqual({ ok: true, transactions: [] })
+  })
+
+  it('never turns an unrecognised state into settled', () => {
+    const result = parseNwcTransactions([{ type: 'incoming', state: 'half-paid', amount: 1_000 }])
+    expect(result.ok && result.transactions[0].state).toBe('unknown')
+  })
+
+  it('errors when nothing in the list can be read', () => {
+    expect(parseNwcTransactions([{ amount: 1_000 }, 'junk'])).toEqual({
+      ok: false,
+      error: 'Wallet returned transactions in a shape we cannot read',
+    })
+    expect(parseNwcTransactions({ result: [] })).toEqual({ ok: false, error: 'Wallet returned no transaction list' })
+    expect(parseNwcTransactions(null).ok).toBe(false)
   })
 })

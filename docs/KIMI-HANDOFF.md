@@ -7,6 +7,7 @@
 - `src/lib/nip46.ts` — `bunker://` parsing, encrypted request/response over injected transport, `sign_event` verified against the requested template and signature, plus `nostrconnect://` pairing with an app secret. `src/lib/nip05.ts` — resolution of `name@domain` to a hex pubkey and a match/mismatch/unverified verdict. `RemoteSigner.tsx` wires both into the ledger for visitors without NIP-07.
 - `src/lib/bolt12.ts` — bech32 checksum validation of `lno1…` offers (it does not claim to decode fields). `RecurringGaps.tsx` shows the standing arithmetic (`open gaps × 5,000 sats/month`) and a QR/deep link only for a configured, checksum-valid `VITE_BOLT12_OFFER`.
 - UI polish: Evidence gap strip with count, total sats and jump-to-first-gap; staged ledger panel with anchor state; dated rate note plus wallet fingerprint/relay and gap-tip capacity on the NIP-47 card.
+- Follow-up: `nwcListTransactions` (`list_transactions`, limit clamped 1–50) and `parseNwcTransactions`. Rows keep only what the wallet reported — null stays null, an unrecognised state stays `unknown`, and a list where nothing could be read is an error rather than an empty list. `TipReceipt` shows the last ten on request, newest first, tags the row whose payment hash matches the signed receipt as `this receipt`, and says plainly that the wallet's list can contain unrelated payments and is not summed.
 - No research fact was added or changed; `research/countries.json` untouched. No new locale keys (new panels are English-only, as before).
 
 **Decisions:**
