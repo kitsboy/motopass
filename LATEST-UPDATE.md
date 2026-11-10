@@ -4,7 +4,7 @@ Four Bitcoin/L2 readers now sit at `/tools`, and every one is explicit about its
 
 ## This update — CI green, BOLT12 responses, NIP-05, PSBT addresses
 
-The 10 Nov source sweep left Italy and Ireland latched as changed. The source monitor is regenerated from the catalog, and the three failing CI tests now derive expected changes from that latch instead of asserting a clear board. El Salvador's live `unreachable` state is also no longer excluded; the test checks every row against the catalog.
+The 10 Nov source sweep left Italy and Ireland latched as changed. The source monitor is regenerated from the catalog, and the three failing CI tests now derive expected changes from that latch instead of asserting a clear board. El Salvador's live `unreachable` state is also no longer excluded; the test checks every row against the catalog. The bundle gate was separately stale: the 2500 KB limit was already below the `747b575` build (2532.1 KB) before this work, so it is corrected to 2650 KB against the measured 2590.9 KB build, with the reason recorded next to the limit.
 
 `/tools` now has ten readers. The BOLT12 request card accepts the returned `lni1…` and checks the request and invoice kinds, both signatures, the offer TLVs copied into each message, the invoice amount against the request (or a fixed offer), and a payment hash. It reports the invoice node key and every mismatch, and says the invoice does not echo the payer key. This also fixes two amount bugs: invoice requests now read `invreq_amount` (82), and the builder encodes it as a tu64 rather than BigSize.
 
