@@ -4,6 +4,7 @@ import { inspectBitcoinInput } from '../../lib/bitcoinInspect'
 import { decodeSilentPaymentAddress, deriveSilentPaymentOutput } from '../../lib/silentPayments'
 import { formatSatsExact } from '../../lib/satsAnchor'
 import { ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass } from './toolsShared'
+import { QrScanButton } from './QrScanner'
 
 function AddressPsbtTool() {
   const [raw, setRaw] = useState('')
@@ -44,16 +45,19 @@ function AddressPsbtTool() {
           placeholder="bc1… / 1… / cHNidP…"
           className={inputClass}
         />
-        <button type="submit" disabled={busy || !raw.trim()} className={`${buttonClass} mt-2`}>
-          {busy ? 'Reading…' : 'Inspect'}
-        </button>
-        <ClearButton
-          onClick={() => {
-            setRaw('')
-            setResult(null)
-          }}
-          disabled={!raw && !result}
-        />
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <button type="submit" disabled={busy || !raw.trim()} className={buttonClass}>
+            {busy ? 'Reading…' : 'Inspect'}
+          </button>
+          <QrScanButton onScan={setRaw} />
+          <ClearButton
+            onClick={() => {
+              setRaw('')
+              setResult(null)
+            }}
+            disabled={!raw && !result}
+          />
+        </div>
       </form>
       <div aria-live="polite" className="mt-3">
         {result?.result.ok === false && (
@@ -277,20 +281,23 @@ function SilentPaymentsTool() {
             <input id="sp-vout" value={vout} onChange={event => setVout(event.target.value)} inputMode="numeric" className={inputClass} />
           </div>
         </div>
-        <button type="submit" disabled={!address.trim()} className={`${buttonClass} mt-2`}>
-          Read address
-        </button>
-        <ClearButton
-          onClick={() => {
-            setAddress('')
-            setPrivateKey('')
-            setTxid('')
-            setVout('0')
-            setDecoded(null)
-            setDerived(null)
-          }}
-          disabled={!address && !privateKey && !txid && !decoded}
-        />
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <button type="submit" disabled={!address.trim()} className={buttonClass}>
+            Read address
+          </button>
+          <QrScanButton onScan={setAddress} />
+          <ClearButton
+            onClick={() => {
+              setAddress('')
+              setPrivateKey('')
+              setTxid('')
+              setVout('0')
+              setDecoded(null)
+              setDerived(null)
+            }}
+            disabled={!address && !privateKey && !txid && !decoded}
+          />
+        </div>
       </form>
       <div aria-live="polite" className="mt-3">
         {decoded && !decoded.ok && (

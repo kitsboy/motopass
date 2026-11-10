@@ -1,15 +1,100 @@
-import { useState, type ReactNode } from 'react'
-import { Check, Copy, Download, Link2 } from 'lucide-react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { ArrowRight, Check, Copy, Download, Link2, Share2 } from 'lucide-react'
 import { Card } from '../ui/Card'
 import {
   buildVerificationReceipt,
   serializeVerificationReceipt,
   verificationReceiptFilename,
+  type VerificationReceipt,
   type VerificationReceiptInput,
   type VerificationReceiptState,
 } from '../../lib/verificationReceipt'
+import { recordVerification } from '../../lib/verificationHistory'
 
 export type TrailState = VerificationReceiptState
+
+const NEXT_STEP: Record<
+  string,
+  { title: string; body: string; href?: string; linkLabel?: string }
+> = {
+  bolt11: {
+    title: 'Verify the payee key next',
+    body: 'A checksum only proves the invoice is well formed. Recover the signing key and compare it with a payee identity you already trust before paying.',
+    href: '#bolt11-signature',
+    linkLabel: 'Check the signature',
+  },
+  'bolt11-signature': {
+    title: 'Read the payment terms next',
+    body: 'A valid payee key does not prove the amount, expiry or route. Read the invoice and compare the payment hash with the payer or merchant.',
+    href: '#bolt11',
+    linkLabel: 'Read invoice terms',
+  },
+  bolt12: {
+    title: 'Treat an unsigned offer as a claim',
+    body: 'Offers have no signature by design. Only a request or invoice signature is cryptographic evidence; confirm the issuer and amount out of band.',
+  },
+  'bolt12-response': {
+    title: 'Check the invoice independently',
+    body: 'The request and invoice signatures verify, but settlement is not checked. Compare the payment hash and amount with the node or merchant before paying.',
+  },
+  psbt: {
+    title: 'Review outputs and fee before signing',
+    body: 'A valid PSBT signature does not prove the transaction is safe or broadcast. Confirm every output, the fee and the network in your signing wallet.',
+  },
+  'silent-payments': {
+    title: 'The receiver must scan',
+    body: 'This is sender-side arithmetic for one outpoint. The receiver still has to scan the chain with the scan key; do not reuse an input key across wallets.',
+  },
+  nip05: {
+    title: 'Compare the npub out of band',
+    body: 'A NIP-05 match is domain trust and the domain can rotate it. Compare the npub through another channel before relying on the name.',
+  },
+  nip17: {
+    title: 'A seal proves the sender, not delivery',
+    body: 'The gift wrap and seal can verify while the message is still unread or unsent. Reply only after confirming the sender through another channel.',
+  },
+  'message-signature': {
+    title: 'Check the message context',
+    body: 'This proves the key behind the address signed these exact bytes. It does not prove funds or current ownership; confirm the relying party and replay rules.',
+  },
+  preimage: {
+    title: 'A hash relation is not settlement',
+    body: 'A matching preimage proves the hash relation. Confirm the payment hash belongs to the invoice or receipt you actually care about.',
+  },
+}
+
+function NextStepPanel({ tool, steps }: { tool: string; steps: Array<{ label: string; state: TrailState }> }) {
+  const failed = steps.filter(step => step.state === 'fail')
+  const unknown = steps.filter(step => step.state === 'unknown')
+  const next = NEXT_STEP[tool]
+  const tone = failed.length > 0 ? 'border-mp-wax/40 bg-mp-wax/5' : 'border-mp-border-subtle bg-mp-canvas/40'
+  const title = failed.length > 0 ? 'Stop: a check failed' : next?.title ?? (unknown.length > 0 ? 'Bounded result' : 'Checks passed locally')
+  const body =
+    failed.length > 0
+      ? 'Do not act on this artifact. Re-check the failing step against the original source, or use an independent verifier.'
+      : `${next?.body ?? 'A local pass only covers the checks shown above.'}${
+          unknown.length > 0 ? ` Still unchecked: ${unknown.map(step => step.label).join(', ')}.` : ''
+        }`
+
+  return (
+    <div className={`mt-1.5 rounded-mp-md border px-2 py-1.5 ${tone}`} role="note">
+      <p className={`flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide ${failed.length ? 'text-mp-wax' : 'text-mp-ink-secondary'}`}>
+        <ArrowRight size={10} aria-hidden="true" />
+        {title}
+      </p>
+      <p className="mt-0.5 text-[9px] leading-relaxed text-mp-ink-tertiary">{body}</p>
+      {next?.href && failed.length === 0 && (
+        <a
+          href={next.href}
+          className="mt-1 inline-flex items-center gap-1 font-chrome text-[8px] font-semibold uppercase tracking-wide text-mp-btc-text underline underline-offset-2"
+        >
+          {next.linkLabel ?? 'Next step'}
+          <ArrowRight size={8} aria-hidden="true" />
+        </a>
+      )}
+    </div>
+  )
+}
 
 export function VerificationTrail({
   steps,
@@ -28,22 +113,37 @@ export function VerificationTrail({
 }) {
   const receiptInput =
     receipt ?? (tool && limits ? { tool, title: title ?? tool, steps, limits, fields } : undefined)
+  const receiptKey = receiptInput ? JSON.stringify(receiptInput) : ''
+
+  useEffect(() => {
+    if (!receiptKey) return
+    try {
+      recordVerification(JSON.parse(receiptKey) as VerificationReceiptInput)
+    } catch {
+      // History is a convenience; never let storage or parsing break a result.
+    }
+  }, [receiptKey])
+
   const tone: Record<TrailState, string> = {
     pass: 'border-mp-proof-border text-mp-proof',
     fail: 'border-mp-wax/40 text-mp-wax',
     unknown: 'border-mp-border-subtle text-mp-ink-tertiary',
   }
   return (
-    <div className="mb-2 flex flex-wrap gap-1" aria-label="Verification trail">
-      {steps.map((step, index) => (
-        <span
-          key={`${step.label}-${index}`}
-          className={`rounded-full border px-1.5 py-0.5 font-chrome text-[8px] uppercase tracking-wide ${tone[step.state]}`}
-        >
-          {step.label} · {step.state === 'pass' ? 'pass' : step.state === 'fail' ? 'fail' : 'unchecked'}
-        </span>
-      ))}
-      {receiptInput && <VerificationReceiptButton receipt={receiptInput} />}
+    <div className="mb-2">
+      <div className="flex flex-wrap items-center gap-1" aria-label="Verification trail">
+        {steps.map((step, index) => (
+          <span
+            key={`${step.label}-${index}`}
+            className={`rounded-full border px-1.5 py-0.5 font-chrome text-[8px] uppercase tracking-wide ${tone[step.state]}`}
+          >
+            {step.label} · {step.state === 'pass' ? 'pass' : step.state === 'fail' ? 'fail' : 'unchecked'}
+          </span>
+        ))}
+        {receiptInput && <VerificationReceiptButton receipt={receiptInput} />}
+        {receiptInput && <ProofCardButton receipt={receiptInput} />}
+      </div>
+      {tool && <NextStepPanel tool={tool} steps={steps} />}
     </div>
   )
 }
@@ -163,18 +263,22 @@ export function CheckLine({ label, value }: { label: string; value: boolean | nu
   )
 }
 
+function downloadBlob(blob: Blob, filename: string): void {
+  const url = URL.createObjectURL(blob)
+  const anchor = document.createElement('a')
+  anchor.href = url
+  anchor.download = filename
+  anchor.click()
+  URL.revokeObjectURL(url)
+}
+
 export function VerificationReceiptButton({ receipt }: { receipt: VerificationReceiptInput }) {
   const [saved, setSaved] = useState(false)
   const download = () => {
     const now = new Date()
     const payload = buildVerificationReceipt(receipt, now)
     const blob = new Blob([serializeVerificationReceipt(payload)], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const anchor = document.createElement('a')
-    anchor.href = url
-    anchor.download = verificationReceiptFilename(receipt.tool, now)
-    anchor.click()
-    URL.revokeObjectURL(url)
+    downloadBlob(blob, verificationReceiptFilename(receipt.tool, now))
     setSaved(true)
     setTimeout(() => setSaved(false), 1800)
   }
@@ -186,6 +290,151 @@ export function VerificationReceiptButton({ receipt }: { receipt: VerificationRe
     >
       <Download size={10} aria-hidden="true" />
       {saved ? 'Receipt downloaded' : 'Download verification receipt'}
+    </button>
+  )
+}
+
+function wrapCanvasText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number, maxLines: number): string[] {
+  const words = text.split(/\s+/)
+  const lines: string[] = []
+  let current = ''
+  for (const word of words) {
+    const next = current ? `${current} ${word}` : word
+    if (ctx.measureText(next).width > maxWidth && current) {
+      lines.push(current)
+      current = word
+      if (lines.length === maxLines) break
+    } else {
+      current = next
+    }
+  }
+  if (current && lines.length < maxLines) lines.push(current)
+  return lines
+}
+
+async function drawProofCard(receipt: VerificationReceipt): Promise<Blob | null> {
+  const canvas = document.createElement('canvas')
+  canvas.width = 1200
+  canvas.height = 630
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return null
+  ctx.textBaseline = 'top'
+  ctx.fillStyle = '#0b0f14'
+  ctx.fillRect(0, 0, 1200, 630)
+  ctx.fillStyle = '#f7931a'
+  ctx.fillRect(0, 0, 1200, 10)
+  ctx.strokeStyle = '#27313d'
+  ctx.lineWidth = 2
+  ctx.strokeRect(28, 28, 1144, 574)
+
+  ctx.fillStyle = '#f7931a'
+  ctx.font = "600 19px ui-monospace, SFMono-Regular, Menlo, monospace"
+  ctx.fillText('MOTOPASS / VERIFICATION CARD', 64, 62)
+  ctx.fillStyle = '#8b98a8'
+  ctx.font = "400 16px ui-monospace, SFMono-Regular, Menlo, monospace"
+  ctx.fillText(receipt.tool, 64, 92)
+
+  ctx.fillStyle = '#f5f2ec'
+  ctx.font = "600 42px system-ui, -apple-system, Segoe UI, sans-serif"
+  const titleLines = wrapCanvasText(ctx, receipt.title, 1040, 2)
+  titleLines.forEach((line, index) => ctx.fillText(line, 64, 132 + index * 48))
+
+  ctx.fillStyle = '#8b98a8'
+  ctx.font = "400 16px ui-monospace, SFMono-Regular, Menlo, monospace"
+  ctx.fillText(new Date(receipt.generatedAt).toISOString(), 64, 250)
+
+  const stateColor = { pass: '#6ee7a8', fail: '#ff8a7a', unknown: '#8b98a8' } as const
+  const stepY = 292
+  receipt.steps.slice(0, 6).forEach((step, index) => {
+    const x = 64 + (index % 3) * 350
+    const y = stepY + Math.floor(index / 3) * 62
+    ctx.fillStyle = stateColor[step.state]
+    ctx.beginPath()
+    ctx.arc(x + 5, y + 6, 5, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.fillStyle = '#f5f2ec'
+    ctx.font = "600 17px system-ui, -apple-system, Segoe UI, sans-serif"
+    ctx.fillText(step.label.slice(0, 28), x + 18, y - 3)
+    ctx.fillStyle = stateColor[step.state]
+    ctx.font = "400 13px ui-monospace, SFMono-Regular, Menlo, monospace"
+    ctx.fillText(step.state === 'unknown' ? 'UNCHECKED' : step.state.toUpperCase(), x + 18, y + 18)
+  })
+
+  ctx.fillStyle = '#8b98a8'
+  ctx.font = "600 14px ui-monospace, SFMono-Regular, Menlo, monospace"
+  ctx.fillText('LIMITS', 64, 428)
+  ctx.font = "400 16px system-ui, -apple-system, Segoe UI, sans-serif"
+  ctx.fillStyle = '#c8d0da'
+  const limitLines = receipt.limits
+    .slice(0, 2)
+    .flatMap(limit => wrapCanvasText(ctx, limit, 1040, 2))
+    .slice(0, 4)
+  limitLines.forEach((line, index) => ctx.fillText(line, 64, 450 + index * 22))
+
+  ctx.fillStyle = '#f7931a'
+  ctx.font = "600 15px ui-monospace, SFMono-Regular, Menlo, monospace"
+  ctx.fillText('NOT PROOF OF PAYMENT', 64, 572)
+  ctx.fillStyle = '#8b98a8'
+  ctx.font = "400 14px ui-monospace, SFMono-Regular, Menlo, monospace"
+  ctx.fillText(`motopass.giveabit.io/tools#${receipt.tool}`, 720, 573)
+
+  return new Promise(resolve => canvas.toBlob(blob => resolve(blob), 'image/png'))
+}
+
+export function ProofCardButton({ receipt }: { receipt: VerificationReceiptInput }) {
+  const [status, setStatus] = useState<'idle' | 'working' | 'shared' | 'downloaded'>('idle')
+  const timeout = useRef<number | null>(null)
+
+  useEffect(
+    () => () => {
+      if (timeout.current) window.clearTimeout(timeout.current)
+    },
+    [],
+  )
+
+  const share = async () => {
+    setStatus('working')
+    const now = new Date()
+    const payload = buildVerificationReceipt(receipt, now)
+    const blob = await drawProofCard(payload)
+    if (!blob) {
+      setStatus('idle')
+      return
+    }
+    const filename = verificationReceiptFilename(receipt.tool, now).replace(/\.json$/, '.png')
+    const file = new File([blob], filename, { type: 'image/png' })
+    try {
+      if (navigator.share && navigator.canShare?.({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: receipt.title,
+          text: 'MotoPass verification card — not proof of payment.',
+        })
+        setStatus('shared')
+      } else {
+        downloadBlob(blob, filename)
+        setStatus('downloaded')
+      }
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        setStatus('idle')
+        return
+      }
+      downloadBlob(blob, filename)
+      setStatus('downloaded')
+    }
+    timeout.current = window.setTimeout(() => setStatus('idle'), 2200)
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => void share()}
+      disabled={status === 'working'}
+      className="mt-2 inline-flex items-center gap-1 rounded-full border border-mp-border-subtle px-2 py-1 font-chrome text-[9px] font-semibold uppercase tracking-wide text-mp-ink-tertiary hover:border-mp-btc/40 hover:text-mp-btc-text focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40 disabled:opacity-50"
+    >
+      {status === 'shared' ? <Check size={10} aria-hidden="true" /> : <Share2 size={10} aria-hidden="true" />}
+      {status === 'working' ? 'Drawing…' : status === 'shared' ? 'Card shared' : status === 'downloaded' ? 'Card downloaded' : 'Share proof card'}
     </button>
   )
 }

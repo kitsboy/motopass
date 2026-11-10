@@ -65,6 +65,7 @@ jobs:
       - run: npm run validate:data
       - run: npm run validate:stamps
       - run: npm run trust:check
+      - run: npm run tools:check
       # One canonical check (scripts/sync-pitch-anchor.mjs --check): it pins spot +
       # timestamp to the committed anchor, ignores the volatile BUILD id, and fails when
       # the published figures no longer match research/countries.json.
@@ -152,6 +153,20 @@ jobs:
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - run: npm run verify:live:ci
+      - name: Record live deploy in handoff
+        run: node scripts/update-handoff-deploy.mjs
+      - name: Commit live deploy record
+        run: |
+          if git diff --quiet -- docs/KIMI-HANDOFF.md; then
+            echo "No handoff change"
+            exit 0
+          fi
+          git config user.name "motopass-deploy-bot"
+          git config user.email "deploy-bot@motopass.local"
+          git add docs/KIMI-HANDOFF.md
+          git commit -m "docs: record live deploy [skip ci]"
+          git pull --rebase origin main
+          git push
       - name: Deploy summary JSON
         if: always()
         run: node scripts/deploy-summary.mjs --out artifacts/deploy-summary.json

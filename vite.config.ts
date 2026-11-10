@@ -153,6 +153,13 @@ function motopassStaticAssets(): Plugin {
 export default defineConfig({
   resolve: {
     dedupe: ['react', 'react-dom', 'react-router-dom'],
+    // react-router 7's package exports point `import` at the development
+    // build, which put its dev warnings and extra code in the production entry.
+    // Use the matching production entry explicitly; routing APIs are identical.
+    alias: [
+      { find: /^react-router$/, replacement: resolve(__dirname, 'node_modules/react-router/dist/production/index.mjs') },
+      { find: /^react-router\/dom$/, replacement: resolve(__dirname, 'node_modules/react-router/dist/production/dom-export.mjs') },
+    ],
   },
   build: {
     sourcemap: true,

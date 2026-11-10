@@ -4,6 +4,7 @@ import { bolt11AmountSats, bolt11ExpiryLabel, decodeBolt11 } from '../../lib/bol
 import { verifyBolt11Signature } from '../../lib/bolt11Signature'
 import { formatSatsExact } from '../../lib/satsAnchor'
 import { ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass } from './toolsShared'
+import { QrScanButton } from './QrScanner'
 
 function nowSeconds(): number {
   return Math.floor(Date.now() / 1000)
@@ -57,9 +58,12 @@ function Bolt11Tool() {
           placeholder="lnbc…"
           className={inputClass}
         />
-        <button type="submit" disabled={!raw.trim()} className={`${buttonClass} mt-2`}>
-          Decode invoice
-        </button>
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <button type="submit" disabled={!raw.trim()} className={buttonClass}>
+            Decode invoice
+          </button>
+          <QrScanButton onScan={setRaw} />
+        </div>
       </form>
 
       <div aria-live="polite" className="mt-3">
@@ -179,16 +183,19 @@ function Bolt11SignatureTool() {
           placeholder="lnbc…"
           className={inputClass}
         />
-        <button type="submit" disabled={busy || !raw.trim()} className={`${buttonClass} mt-2`}>
-          {busy ? 'Recovering…' : 'Verify signature'}
-        </button>
-        <ClearButton
-          onClick={() => {
-            setRaw('')
-            setResult(null)
-          }}
-          disabled={!raw && !result}
-        />
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <button type="submit" disabled={busy || !raw.trim()} className={buttonClass}>
+            {busy ? 'Recovering…' : 'Verify signature'}
+          </button>
+          <QrScanButton onScan={setRaw} />
+          <ClearButton
+            onClick={() => {
+              setRaw('')
+              setResult(null)
+            }}
+            disabled={!raw && !result}
+          />
+        </div>
       </form>
       <div aria-live="polite" className="mt-3">
         {result && (

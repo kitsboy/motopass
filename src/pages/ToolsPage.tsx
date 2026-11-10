@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Receipt } from 'lucide-react'
 import { PageHeader } from '../components/ui/PageHeader'
@@ -9,6 +9,8 @@ import { Bolt11SignatureTool, Bolt11Tool } from '../components/tools/Bolt11Cards
 import { Bolt12RequestTool, Bolt12Tool } from '../components/tools/Bolt12Cards'
 import { LnurlTool, PreimageTool, ZapReceiptTool } from '../components/tools/LightningCards'
 import { Nip05Tool, Nip17Tool } from '../components/tools/NostrCards'
+import { MessageSignatureTool } from '../components/tools/MessageCards'
+import { VerificationHistoryPanel } from '../components/tools/VerificationHistoryPanel'
 
 const BITCOIN_TOOLS = [
   { id: 'bolt11', href: '#bolt11', label: 'BOLT11 invoice', network: false, group: 'invoice' },
@@ -22,6 +24,7 @@ const BITCOIN_TOOLS = [
   { id: 'nip05', href: '#nip05', label: 'NIP-05 lookup', network: true, group: 'nostr' },
   { id: 'nip17', href: '#nip17', label: 'NIP-17 DM', network: false, group: 'nostr' },
   { id: 'address-psbt', href: '#address-psbt', label: 'Address / PSBT', network: false, group: 'bitcoin' },
+  { id: 'message-signature', href: '#message-signature', label: 'Signed message', network: false, group: 'bitcoin' },
   { id: 'silent-payments', href: '#silent-payments', label: 'Silent Payments', network: false, group: 'bitcoin' },
 ] as const
 
@@ -34,6 +37,7 @@ const GUIDE: Array<{
   { id: 'bolt11', label: 'An invoice', hint: 'BOLT11 amount, expiry, payee key', keywords: 'bolt11 invoice lightning lnbc payment' },
   { id: 'bolt12', label: 'An offer or request', hint: 'BOLT12 TLV and signatures', keywords: 'bolt12 offer invoice request lno lnr lni' },
   { id: 'address-psbt', label: 'A PSBT or address', hint: 'Scripts, coin control, signatures', keywords: 'psbt address bitcoin base58 bech32 multisig taproot' },
+  { id: 'message-signature', label: 'A signed message', hint: 'BIP-137 proof of key control', keywords: 'bip137 bip-137 signed message signature proof address' },
   { id: 'silent-payments', label: 'A Silent Payment', hint: 'sp1 address and one output', keywords: 'silent payment bip352 sp1 tsp1' },
   { id: 'nip17', label: 'A Nostr DM', hint: 'Gift wrap, seal and rumor', keywords: 'nip17 nip-17 nip59 gift wrap dm nostr message' },
   { id: 'nip05', label: 'A NIP-05 name', hint: 'Domain mapping and continuity', keywords: 'nip05 nip-05 name domain nostr identity' },
@@ -46,6 +50,15 @@ export function ToolsPage() {
     const id = window.location.hash.replace('#', '')
     return BITCOIN_TOOLS.some(tool => tool.id === id) ? id : null
   })
+
+  useEffect(() => {
+    const sync = () => {
+      const id = window.location.hash.replace('#', '')
+      setActive(BITCOIN_TOOLS.some(tool => tool.id === id) ? id : null)
+    }
+    window.addEventListener('hashchange', sync)
+    return () => window.removeEventListener('hashchange', sync)
+  }, [])
 
   const select = (id: string) => {
     setActive(id)
@@ -125,12 +138,14 @@ export function ToolsPage() {
         </p>
       </section>
 
+      <VerificationHistoryPanel />
+
       <nav
         aria-label="Bitcoin tools on this page"
         className="sticky top-16 z-20 -mx-1 mb-5 rounded-mp-lg border border-mp-border-subtle bg-mp-canvas/95 p-2 shadow-sm backdrop-blur"
       >
         <p className="mb-1.5 px-1 font-chrome text-[9px] font-semibold uppercase tracking-[0.14em] text-mp-ink-tertiary">
-          12 tools · 10 local · 2 network
+          13 tools · 11 local · 2 network
         </p>
         {active && (
           <div aria-label="Tool switcher" className="mb-1.5 flex items-center gap-1 rounded-full border border-mp-border-subtle bg-mp-canvas/80 p-0.5 lg:hidden">
@@ -216,13 +231,16 @@ export function ToolsPage() {
         <div id="address-psbt" className={`${visibility('address-psbt')} lg:col-span-2`}>
           <AddressPsbtTool />
         </div>
+        <div id="message-signature" className={visibility('message-signature')}>
+          <MessageSignatureTool />
+        </div>
         <div id="silent-payments" className={visibility('silent-payments')}>
           <SilentPaymentsTool />
         </div>
       </div>
 
       <p className="mt-6 max-w-3xl text-[11px] leading-relaxed text-mp-ink-tertiary">
-        Ten tools run entirely offline. LNURL and NIP-05 are the exceptions: pressing Inspect makes one https request
+        Eleven tools run entirely offline. LNURL and NIP-05 are the exceptions: pressing Inspect makes one https request
         to the endpoint or domain you named. A valid BOLT11 checksum and matching payee key mean the invoice is well formed
         and signed by its stated key, not that it is payable; a valid BOLT12 request signature means the message was
         signed by its payer key; a matching preimage means the hash relation holds. None of these proves a payment

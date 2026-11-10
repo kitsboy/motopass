@@ -1,3 +1,21 @@
+<!-- live-deploy:start -->
+**Last live deploy:** pending this workflow run.
+<!-- live-deploy:end -->
+
+## Session — 2026-11-10 · history, QR input, proof cards, BIP-137 and policy automation (Buffy)
+
+**Done:**
+- **Verification history** (`src/lib/verificationHistory.ts` + `VerificationHistoryPanel`): automatically records public result metadata in localStorage, deduplicates identical checks, supports local comparison of two trails and changed fields, links back to the card, and clears without touching inputs or keys.
+- **QR/camera input** (`QrScanner.tsx`, `qrScan.ts`): native `BarcodeDetector` scanning on invoice, BOLT12, address/PSBT, Silent Payments and NIP-17 inputs. Strips `lightning:`/BIP-21 wrappers, keeps frames local, and gives an honest paste fallback when the browser has no detector.
+- **Next-step guidance** (`toolsShared.tsx`): every verification trail now ends with the safest next action and lists unchecked steps; a failed trail leads with a stop instruction.
+- **Shareable proof card**: canvas-generated 1200×630 PNG with trail, limits and tool URL; uses the Web Share API when available, otherwise downloads.
+- **BIP-137 proof gap** (`src/lib/messageSignature.ts` + `MessageCards.tsx`): compact-signature key recovery and address binding for P2PKH, P2SH-P2WPKH and P2WPKH, tested against Bitcoin Core's published `rpc_signmessagewithprivkey` vector. BIP-322/taproot messages stay unsupported.
+- **Bundle policy**: replaced browser-side Ajv with explicit validation, removed the 136 KB validator chunk, and tightened the gate to **2600 KB**. Router resolves the production build, not its development entry.
+- **Fixture policy**: `docs/TOOLS-REGRESSION.md` and `npm run tools:check` require every tool card to have Published, Live or Deterministic provenance; CI runs it.
+- **Deploy handoff automation**: `scripts/update-handoff-deploy.mjs` writes the live BUILD, commit and health timestamp into the block above; the live-health job commits it with `[skip ci]`.
+
+**Checks:** Vitest **601 passed / 2 skipped (603)**; focused new suites **14 passed**; Playwright **29 passed** including BIP-137, history and PNG proof-card download; `npm run tools:check` **13/13**; ESLint **0 errors** (7 pre-existing warnings); production build passed; bundle **2535.9 KB / 2600 KB**; `tsc --noEmit` still only the two pre-existing `IntelWatchStrip.test.ts` Node-type errors. No research fact changed.
+
 ## Session — 2026-11-10 · multisig/tapscript PSBTs, receipts, tools split and mobile pass (Buffy)
 
 **Done:**

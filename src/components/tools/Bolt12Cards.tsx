@@ -5,6 +5,7 @@ import { decodeBolt12, type Bolt12Decoded } from '../../lib/bolt12'
 import { verifyBolt12InvoiceResponse } from '../../lib/bolt12Response'
 import { formatSatsExact } from '../../lib/satsAnchor'
 import { CheckLine, ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass } from './toolsShared'
+import { QrScanButton } from './QrScanner'
 
 const SIGNATURE_TONE: Record<Bolt12Decoded['signatureCheck'], string> = {
   valid: 'text-mp-proof',
@@ -64,9 +65,12 @@ function Bolt12Tool() {
           placeholder="lno1… or lnr1…"
           className={inputClass}
         />
-        <button type="submit" disabled={busy || !raw.trim()} className={`${buttonClass} mt-2`}>
-          {busy ? 'Reading…' : 'Read BOLT12'}
-        </button>
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <button type="submit" disabled={busy || !raw.trim()} className={buttonClass}>
+            {busy ? 'Reading…' : 'Read BOLT12'}
+          </button>
+          <QrScanButton onScan={setRaw} />
+        </div>
       </form>
 
       <div aria-live="polite" className="mt-3">
@@ -254,9 +258,12 @@ function Bolt12RequestTool() {
             />
           </div>
         </div>
-        <button type="submit" disabled={busy || !offer.trim()} className={`${buttonClass} mt-2`}>
-          {busy ? 'Signing…' : 'Build request'}
-        </button>
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <button type="submit" disabled={busy || !offer.trim()} className={buttonClass}>
+            {busy ? 'Signing…' : 'Build request'}
+          </button>
+          <QrScanButton onScan={setOffer} />
+        </div>
         <ClearButton
           onClick={() => {
             setOffer('')

@@ -5,6 +5,7 @@ import { forgetNip05Pin, recordNip05Pin, type Nip05PinRecord } from '../../lib/n
 import { inspectNip17GiftWrap } from '../../lib/nip17'
 import { decode as decodeNip19, npubEncode } from 'nostr-tools/nip19'
 import { CheckLine, ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass } from './toolsShared'
+import { QrScanButton } from './QrScanner'
 
 function expectedPubkey(value: string): string | null {
   const trimmed = value.trim()
@@ -197,10 +198,13 @@ function Nip17Tool() {
           Recipient nsec or hex (optional, to unwrap)
         </label>
         <input id="nip17-secret" type="password" value={secret} onChange={event => setSecret(event.target.value)} spellCheck={false} autoComplete="off" placeholder="kept in this tab only" className={inputClass} />
-        <button type="submit" disabled={!raw.trim()} className={`${buttonClass} mt-2`}>
-          Inspect DM
-        </button>
-        <ClearButton onClick={() => { setRaw(''); setSecret(''); setResult(null) }} disabled={!raw && !secret && !result} />
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <button type="submit" disabled={!raw.trim()} className={buttonClass}>
+            Inspect DM
+          </button>
+          <QrScanButton onScan={setRaw} />
+          <ClearButton onClick={() => { setRaw(''); setSecret(''); setResult(null) }} disabled={!raw && !secret && !result} />
+        </div>
       </form>
       <div aria-live="polite" className="mt-3">
         {result && !result.ok && (

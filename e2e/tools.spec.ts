@@ -30,4 +30,23 @@ test.describe('tools guided mobile flow', () => {
     await expect(page.locator('#bolt11')).toBeVisible()
     await expect(page.locator('#silent-payments')).toBeVisible()
   })
+
+  test('verifies BIP-137, records history and downloads a proof card', async ({ page }) => {
+    await page.goto('/tools#message-signature', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByRole('heading', { name: 'Verify a signed message' })).toBeVisible()
+    await page.getByLabel('Signing address').fill('mpLQjfK79b7CCV4VMJWEWAj5Mpx8Up5zxB')
+    await page.getByLabel('Exact message').fill('This is just a test message')
+    await page.getByLabel('Base64 compact signature').fill(
+      'INbVnW4e6PeRmsv2Qgu8NuopvrVjkcxob+sX8OcZG0SALhWybUjzMLPdAsXI46YZGb0KQTRii+wWIQzRpG/U+S0=',
+    )
+    await page.getByRole('button', { name: 'Verify message' }).click()
+    await expect(page.getByText('Address controls the signing key')).toBeVisible()
+    await expect(page.getByText('Check the message context')).toBeVisible()
+    await expect(page.getByText('1 local', { exact: true })).toBeVisible()
+
+    const download = page.waitForEvent('download')
+    await page.getByRole('button', { name: 'Share proof card' }).click()
+    expect((await download).suggestedFilename()).toMatch(/^motopass-message-signature-.*\.png$/)
+    await expect(page.getByRole('button', { name: 'Card downloaded' })).toBeVisible()
+  })
 })

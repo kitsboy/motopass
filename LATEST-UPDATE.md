@@ -1,6 +1,16 @@
-# motopass — Last Updated 2026-11-10 by Buffy — multisig/tapscript PSBTs, downloadable receipts, mobile tools pass
+# motopass — Last Updated 2026-11-10 by Buffy — history, QR input, proof cards, BIP-137 and deploy automation
 
-## This update — advanced PSBTs, portable receipts and a smaller tools page
+## This update — nine follow-throughs, one new proof gap
+
+**The tools now remember what you checked, without remembering secrets.** Every verification trail is recorded in a local 12-entry history with a stable fingerprint, so rerunning the same check moves it to the top instead of duplicating it. Two entries can be compared step-by-step and by generated field; links return to the card. Only public result metadata is stored — raw inputs and private keys never are.
+
+**BIP-137 signed messages are the new proof gap.** `messageSignature.ts` recovers the key from the compact signature and binds it to a P2PKH, P2SH-P2WPKH or P2WPKH address. It is tested against Bitcoin Core's published `rpc_signmessagewithprivkey` vector. BIP-322 and taproot messages remain explicitly unsupported. **QR/camera input** uses the browser's native `BarcodeDetector` and never uploads frames; browsers without it get a paste fallback. Every trail now ends with a tool-specific **next safe step**, and a failed check says stop. Results can generate a 1200×630 **proof-card PNG** with the trail and limits, shared through the Web Share API or downloaded.
+
+**Bundle and policy work:** the browser-side Ajv validator (136 KB) was replaced with explicit checks and removed, React Router now resolves its production entry, and the budget tightened to **2600 KB**. The measured bundle is **2535.9 KB**. `docs/TOOLS-REGRESSION.md` + `npm run tools:check` require every card to name Published, Live or Deterministic provenance; CI runs the check. The live-health job now runs `update-handoff-deploy.mjs` and commits the deployed BUILD, commit and timestamp into the handoff with `[skip ci]`.
+
+Checks: Vitest **601 passed / 2 skipped**; Playwright **29 passed**; fixture policy **13/13**; ESLint **0 errors**; production build passed; bundle **2535.9 KB / 2600 KB**. `tsc --noEmit` still reports only the two pre-existing `IntelWatchStrip.test.ts` Node-type errors. No research fact changed.
+
+## Previous update — multisig/tapscript PSBTs, downloadable receipts, mobile tools pass
 
 **P2SH multisig and taproot script-path verification are now real.** `psbtVerify.ts` checks the P2SH redeem-script hash, parses standard `m-of-n` redeem/witness scripts, verifies each `SIGHASH_ALL` ECDSA signature against the legacy or BIP-143 digest, and requires the signing key to belong to the multisig script. For taproot script path it parses PSBT tap-leaf values, matches the signature's leaf hash, validates the control block back to the P2TR output key, and verifies the BIP-342 digest. P2WPKH/P2PKH keys are also bound to their script hash. Unsupported schemes remain `unchecked`.
 

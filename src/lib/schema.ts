@@ -1,92 +1,92 @@
-import Ajv from 'ajv'
-import addFormats from 'ajv-formats'
+/**
+ * Lightweight runtime validation for the published country snapshot and for
+ * optional user-imported programs.
+ *
+ * This used to compile Ajv schemas in the browser, which put a ~136 KB
+ * validator chunk on the critical path for a feature most visitors never use.
+ * The accepted shape is deliberately small, so explicit checks are smaller,
+ * easier to audit and produce the same public result.
+ */
 
-const ajv = new Ajv({ allErrors: true })
-addFormats(ajv)
+type Validation = { valid: boolean; errors: string[] }
+type RecordValue = Record<string, unknown>
 
-export const countriesSchema = {
-  type: 'object',
-  required: ['programs'],
-  properties: {
-    programs: {
-      type: 'array',
-      // Keep import validation aligned with the 21-country production catalog.
-      minItems: 21,
-      items: {
-        type: 'object',
-        required: ['id', 'name', 'category', 'region', 'status', 'finance', 'details'],
-        properties: {
-          id: { type: 'number' },
-          name: { type: 'string', minLength: 1 },
-          sovereignty_score: { type: 'number', minimum: 0, maximum: 10 },
-          stacking_synergy: { type: 'string' },
-          risk_level: { type: 'string' },
-          lightning_ready: { type: 'boolean' },
-          last_verified_block: { type: 'number' },
-          satohash_proofs: { type: 'array' },
-          finance: {
-            type: 'object',
-            properties: {
-              crypto_friendly_score: { type: ['number', 'null'] },
-              min_investment_usd: { type: ['number', 'null'] },
-            },
-          },
-        },
-      },
-    },
-  },
-} as const
+function isRecord(value: unknown): value is RecordValue {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
 
-const validateCountries = ajv.compile(countriesSchema)
+function nonEmptyString(value: unknown): value is string {
+  return typeof value === 'string' && value.trim().length > 0
+}
 
-export function validateCountriesData(data: unknown): { valid: boolean; errors: string[] } {
-  const valid = validateCountries(data)
-  if (valid) return { valid: true, errors: [] }
-  return {
-    valid: false,
-    errors: (validateCountries.errors ?? []).map(e => `${e.instancePath} ${e.message}`),
+function optionalNumber(errors: string[], value: unknown, path: string, min = 0, max = Number.MAX_SAFE_INTEGER): void {
+  if (value == null) return
+  if (typeof value !== 'number' || !Number.isFinite(value)) {
+    errors.push(`${path} must be a number`)
+  } else if (value < min || value > max) {
+    errors.push(`${path} must be between ${min} and ${max}`)
   }
 }
 
-/** Lighter schema for custom program JSON imports (Zod-like Ajv checks). */
-export const programImportSchema = {
-  type: 'object',
-  required: ['id', 'name', 'category', 'region', 'status', 'finance', 'details'],
-  properties: {
-    id: { type: 'number' },
-    name: { type: 'string', minLength: 1 },
-    category: { type: 'string', minLength: 1 },
-    region: { type: 'string', minLength: 1 },
-    status: { type: 'string', minLength: 1 },
-    bitcoin_integration: { type: 'string' },
-    details: { type: 'string', minLength: 1 },
-    last_checked: { type: 'string' },
-    sovereignty_score: { type: 'number', minimum: 0, maximum: 10 },
-    stacking_synergy: { type: 'string' },
-    risk_level: { type: 'string' },
-    lightning_ready: { type: 'boolean' },
-    finance: {
-      type: 'object',
-      properties: {
-        min_investment_usd: { type: ['number', 'null'] },
-        typical_investment_usd: { type: ['number', 'null'] },
-        gov_fees_usd: { type: ['number', 'null'] },
-        processing_time_months: { type: ['string', 'null'] },
-        tax_benefits: { type: 'string' },
-        crypto_friendly_score: { type: ['number', 'null'], minimum: 0, maximum: 10 },
-        bitcoin_specific: { type: 'string' },
-      },
-    },
-  },
-} as const
+function optionalString(errors: string[], value: unknown, path: string): void {
+  if (value != null && typeof value !== 'string') errors.push(`${path} must be a string`)
+}
 
-const validateProgramImport = ajv.compile(programImportSchema)
-
-export function validateProgramImportEntry(entry: unknown): { valid: boolean; errors: string[] } {
-  const valid = validateProgramImport(entry)
-  if (valid) return { valid: true, errors: [] }
-  return {
-    valid: false,
-    errors: (validateProgramImport.errors ?? []).map(e => `${e.instancePath || '/'} ${e.message}`),
+function validateRequiredProgram(errors: string[], value: unknown, path: string): void {
+  if (!isRecord(value)) {
+    errors.push(`${path} must be an object`)
+    return
   }
+  if (typeof value.id !== 'number' || !Number.isFinite(value.id)) errors.push(`${path}/id must be a number`)
+  for (const field of ['name', 'category', 'region', 'status', 'details'] as const) {
+    if (!nonEmptyString(value[field])) errors.push(`${path}/${field} must be a non-empty string`)
+  }
+  if (!isRecord(value.finance)) errors.push(`${path}/finance must be an object`)
+}
+
+export function validateCountriesData(data: unknown): Validation {
+  const errors: string[] = []
+  if (!isRecord(data)) return { valid: false, errors: ['/ must be an object'] }
+  if (!Array.isArray(data.programs)) return { valid: false, errors: ['/programs must be an array'] }
+  if (data.programs.length < 21) errors.push('/programs must contain at least 21 items')
+  data.programs.forEach((program, index) => {
+    const path = `/programs/${index}`
+    validateRequiredProgram(errors, program, path)
+    if (!isRecord(program)) return
+    optionalNumber(errors, program.sovereignty_score, `${path}/sovereignty_score`, 0, 10)
+    optionalString(errors, program.stacking_synergy, `${path}/stacking_synergy`)
+    optionalString(errors, program.risk_level, `${path}/risk_level`)
+    if (program.lightning_ready != null && typeof program.lightning_ready !== 'boolean') {
+      errors.push(`${path}/lightning_ready must be a boolean`)
+    }
+    if (isRecord(program.finance)) {
+      optionalNumber(errors, program.finance.crypto_friendly_score, `${path}/finance/crypto_friendly_score`, 0, 10)
+      optionalNumber(errors, program.finance.min_investment_usd, `${path}/finance/min_investment_usd`)
+    }
+  })
+  return { valid: errors.length === 0, errors }
+}
+
+export function validateProgramImportEntry(entry: unknown): Validation {
+  const errors: string[] = []
+  validateRequiredProgram(errors, entry, '')
+  if (!isRecord(entry)) return { valid: false, errors }
+  optionalString(errors, entry.bitcoin_integration, '/bitcoin_integration')
+  optionalString(errors, entry.last_checked, '/last_checked')
+  optionalNumber(errors, entry.sovereignty_score, '/sovereignty_score', 0, 10)
+  optionalString(errors, entry.stacking_synergy, '/stacking_synergy')
+  optionalString(errors, entry.risk_level, '/risk_level')
+  if (entry.lightning_ready != null && typeof entry.lightning_ready !== 'boolean') {
+    errors.push('/lightning_ready must be a boolean')
+  }
+  if (isRecord(entry.finance)) {
+    for (const field of ['min_investment_usd', 'typical_investment_usd', 'gov_fees_usd'] as const) {
+      optionalNumber(errors, entry.finance[field], `/finance/${field}`)
+    }
+    optionalString(errors, entry.finance.processing_time_months, '/finance/processing_time_months')
+    optionalString(errors, entry.finance.tax_benefits, '/finance/tax_benefits')
+    optionalNumber(errors, entry.finance.crypto_friendly_score, '/finance/crypto_friendly_score', 0, 10)
+    optionalString(errors, entry.finance.bitcoin_specific, '/finance/bitcoin_specific')
+  }
+  return { valid: errors.length === 0, errors }
 }
