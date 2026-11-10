@@ -24,6 +24,7 @@ import { ProgramsOnboarding } from '../components/programs/ProgramsOnboarding'
 import { GoalFinder } from '../components/programs/GoalFinder'
 import { GoldStandardSpotlight } from '../components/programs/GoldStandardSpotlight'
 import { AdvisoryBoard } from '../components/programs/AdvisoryBoard'
+import { SelectionBoard } from '../components/programs/SelectionBoard'
 import { ChangeBellPanel } from '../components/programs/ChangeBellPanel'
 import { RuleSentenceStrip } from '../components/programs/RuleSentenceStrip'
 import { GazetteStrip } from '../components/programs/GazetteStrip'
@@ -388,6 +389,12 @@ export function ProgramsPage() {
 
         {!loading && !error && programs.length > 0 && (
           <>
+            <SelectionBoard
+              shown={filtered}
+              regionCounts={regionCounts}
+              regionFilter={regionFilter}
+              onRegion={(region) => patchFilters({ region })}
+            />
             <AdvisoryBoard programs={programs} />
             <ChangeBellPanel programs={programs} />
             <RuleSentenceStrip programs={programs} />
@@ -651,9 +658,6 @@ export function ProgramsPage() {
             </aside>
 
             <div className="min-w-0">
-              <p className="mb-3 text-sm text-mp-ink-secondary" aria-live="polite" aria-atomic="true">
-                {formatT(t, 'programs.filterResults', { count: cinematic.length })}
-              </p>
               {cinematic.length === 0 && (
                 <div className="text-center py-16 rounded-2xl border border-mp-border glass-card">
                   <p className="text-mp-ink-tertiary mb-2">{t('programs.noMatch')}</p>

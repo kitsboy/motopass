@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-09 by Grok — passport, one-country copy, day receipts
+# motopass — Last Updated 2026-11-09 by Buffy — selection board card, country coverage audit
+
+The Programs count line moved out of the results grid to the top of the page, in a card above Advice: live match count, region chips with counts, jurisdiction / flagship / sources-on-file chips, and four `facts on file` counts for the filtered set. `npm run coverage:data` and `docs/COUNTRY-DATA-COVERAGE.md` record what each of the 21 programs is missing. No research facts were added. Not committed yet.
+
+## Previous update — 2026-11-09 by Grok — passport, one-country copy, day receipts
 
 Programs can lead with one passport, copy one country's change note without sending it, and open the sentence under a day bar. The phone route total pins to the top. A Satohash 429 retries that program and then continues. Intel calls a check fresh for 30 days. `cbiu.gov.dm` and `cnmv.es` stay probe-only. Research was not edited. Code commits: `84aa8e2`, `8a81d05`, `f7aca94`.
 

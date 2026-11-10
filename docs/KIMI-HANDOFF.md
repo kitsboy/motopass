@@ -1,3 +1,31 @@
+## Session — 2026-11-09 · Selection board card, country coverage audit (Buffy)
+
+**Done:**
+- The match sentence left the results grid. `SelectionBoard` now opens the Programs information stack, immediately above Advice, in the same card frame as the other panels: the live count (`21 programs match your filters` follows the filters), region chips with counts that set the region filter, jurisdiction / flagship / sources-on-file chips, and four `facts on file` counts (days in country, years to citizenship, fee in Bitcoin, mobility) for the filtered set. Ten locales got the four new page keys. The old plain `<p>` and its `aria-live` were removed; the count keeps `aria-live` in the card.
+- `npm run coverage:data` (`scripts/data-coverage.mjs`) reads `research/countries.json` and reports 23 facts per program, thinnest first. It writes nothing and calls no network. `docs/COUNTRY-DATA-COVERAGE.md` records the run.
+
+**Found:**
+- Schema is uniform: all 59 leaf paths exist on all 21. The unevenness is filled-in values, not missing fields.
+- Real gaps: `mobility_score` 1/21 and `banking_score` 1/21 (only São Tomé has them), `renewal_months` 14/21, `days_in_country` 19/21 (Bahamas, Barbados), `years_to_citizenship` 18/21 (Bahamas, Barbados, Cayman), `tax_score` 13/21, `crypto_tax_sentence` 20/21 (Vanuatu's `tax_benefits` is 34 chars with no `Crypto/Bitcoin tax:` line).
+- Uruguay and El Salvador are **not** the longest records: São Tomé has the longest `details` (1,380), Mexico the longest `bitcoin_integration` (1,041), Argentina the most sources (7) and paths (4). UY/ES look richest because they fill 21/23 facts and carry three priced pathways. Thinnest: Bahamas 18/23, Barbados 18/23, St. Lucia / Grenada / Cayman / Vanuatu 19/23.
+
+**Decisions:**
+- Did not write new country facts. Filling the six gaps needs one official page read per country; inventing values would break the proof discipline. Values and `last_checked` are untouched.
+- Research, intel, proofs, and `research/countries.json` were not edited.
+
+**Checks:**
+- `npm test`: 375 passed, 2 skipped. `npx vite build` (to a temp outDir, so `dist/` and `buildInfo.ts` stayed clean) succeeded.
+- `npx tsc --noEmit` still reports two errors, both in `src/components/intel/IntelWatchStrip.test.ts` (`node:path` `dirname`, `node:url`) — pre-existing at `6fa90d8`, file untouched by this session.
+- No browser screenshot run.
+
+**Still open (do not start unless Cam asks):**
+- Fill the six coverage gaps from official pages, then re-run `coverage:data`.
+- Daily stamp still stops at the first HTTP 429 after about 5 stamps.
+- Re-check `cbiu.gov.dm` and `cnmv.es` before treating a green probe as a human read. Bahamas and Mexico stay unreachable.
+
+**Git State:**
+- Working tree has the card, the audit script, the coverage doc, and the i18n keys. **Not committed, not pushed.**
+
 ## Session — 2026-11-09 · Passport switch, one-country copy, day receipts, stamp retry (Grok)
 
 **Done:**

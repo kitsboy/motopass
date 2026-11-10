@@ -21,6 +21,7 @@
     "format": "prettier --check src",
     "prettier:check": "prettier --check src",
     "validate:data": "node scripts/validate-data.mjs",
+    "coverage:data": "node scripts/data-coverage.mjs",
     "sitemap": "node scripts/generate-sitemap.mjs",
     "btcmap:density": "node scripts/fetch-btcmap-density.mjs",
     "fx:sync": "node scripts/sync-fx-snapshot.mjs",
