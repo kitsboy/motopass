@@ -7,7 +7,7 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T02:17:14.287Z",
+  "generated_at": "2026-11-10T03:20:25.948Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 2,
@@ -61,12 +61,12 @@
         "label": "mobility"
       },
       "banking": {
-        "value": null,
-        "present": false,
+        "value": 8,
+        "present": true,
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+    "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions."
   },
   "threshold": {
     "min_investment_usd": 50000,
@@ -106,7 +106,7 @@
     "tiers": {
       "official": 7,
       "legal": 0,
-      "secondary": 1
+      "secondary": 2
     },
     "list": [
       {
@@ -139,6 +139,10 @@
       },
       {
         "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
+      },
+      {
+        "name": "World Bank Global Findex — account ownership 81.7% of adults 15+ (2024), FX.OWN.TOTL.ZS",
         "tier": "secondary"
       }
     ],
@@ -195,13 +199,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-09-30",
-      "field": "proof",
-      "from": "0d1fa5959e489423",
-      "to": "re-anchored 302a948d1da4a1c8 (stamp 47d7cc0f-077)",
-      "hash": "302a948d1da4a1c82f95e2226b69edfa2227c1ea791802ee017f77d42ce74ab5"
-    },
-    {
       "date": "2026-10-02",
       "field": "pathways.citizenship_by_investment",
       "from": "(absent)",
@@ -248,6 +245,13 @@
       "field": "scorecard.mobility",
       "from": "null",
       "to": "8 (168 visa-free destinations)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.banking",
+      "from": "null",
+      "to": "8 (Findex 81.7%, 2024)",
       "hash": null
     }
   ],

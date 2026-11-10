@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-09 by Buffy — gaps filled from sources, facts column, day panel
+# motopass — Last Updated 2026-11-09 by Buffy — banking on a published index, evidence per fact
+
+Banking went from 1/21 to 11/21 by adopting one citable method: World Bank Findex account ownership, scored as a decile, with the percentage, year and API URL stored beside every score (`docs/BANKING-SCORE-RUBRIC.md`). The other 10 have no Findex observation and stay null with a written reason; São Tomé's unrecomputable agency score of 3 was withdrawn. Every one of the 23 facts can now name the audit row and URL that last wrote it — the table's `n/23` badge expands into that list, and mobile cards show the same completeness badge. Cayman's mobility stays null on purpose: BOTC counts in the wild disagree by 119 destinations. Canada was not added because IRCC has paused the Start-up Visa.
+
+## Previous update — 2026-11-09 by Buffy — gaps filled from sources, facts column, day panel
 
 21 programs now carry 22 or 23 of the 23 research facts (São Tomé 23). Bahamas 90-day presence and 10-year citizenship, Barbados 5 years and no codified minimum, Cayman 20 years to Caymanian status, Vanuatu's missing crypto-tax sentence, 20 mobility scores from Henley 2026 and the 8 blank tax scores were filled from named sources with audit rows. Banking stays empty on 20 programs because no comparable measure exists. The programs table gained a sortable facts-on-file column; the day panel now draws "no minimum" as a row.
 

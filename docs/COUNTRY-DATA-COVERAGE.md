@@ -1,9 +1,10 @@
 # Country data coverage — 21 programs
 
-Last run: 2026-11-09 after `scripts/apply-researched-fills.mjs`. Regenerate with `npm run coverage:data`.
-It counts fields already in `research/countries.json`. It adds no facts.
+Last run: 2026-11-09, after `scripts/apply-researched-fills.mjs` and `scripts/apply-scorecard.mjs`.
+Regenerate the counts with `npm run coverage:data`. Nothing here is inferred: a fact
+counts only when its own field carries a value.
 
-## 22 of 23 facts are now on file in every program
+## Facts on file, by fact
 
 | Fact | On file | Missing |
 | --- | --- | --- |
@@ -17,7 +18,7 @@ It counts fields already in `research/countries.json`. It adds no facts.
 | `renewal_months` | 21/21 | — |
 | `mobility` | 21/21 | — |
 | `mobility_score` | 20/21 | Cayman Islands |
-| `banking_score` | 1/21 | every program except São Tomé and Príncipe |
+| `banking_score` | 11/21 | Antigua and Barbuda, St. Kitts and Nevis, Dominica, St. Lucia, Grenada, Bahamas, Barbados, Cayman Islands, Vanuatu, São Tomé and Príncipe |
 | `tax_score` | 21/21 | — |
 | `pathways` | 21/21 | — |
 | `official_urls` | 21/21 | — |
@@ -28,91 +29,80 @@ It counts fields already in `research/countries.json`. It adds no facts.
 | `property_ownership` / `recent_changes` | 21/21 | — |
 
 `renewal_months` counts as on file when citizenship is granted outright: there is no
-permit to renew, and the clocks already print "None". Counting that as missing was a
-defect in the earlier audit, now fixed in `scripts/data-coverage.mjs`.
+permit to renew, and the clocks already print "None".
 
 ## Record depth (thinnest first)
 
 | Country | Facts | Details | Integration | Tax | Bitcoin | Src | URLs | Paths |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Cayman Islands | 21/23 | 170 | 490 | 489 | 414 | 7 | 5 | 3 |
-| El Salvador | 22/23 | 387 | 819 | 672 | 325 | 7 | 5 | 3 |
-| Portugal | 22/23 | 425 | 615 | 693 | 445 | 7 | 7 | 2 |
-| Italy | 22/23 | 161 | 390 | 896 | 326 | 7 | 6 | 3 |
-| Uruguay | 22/23 | 175 | 197 | 501 | 106 | 6 | 5 | 3 |
 | Antigua and Barbuda | 22/23 | 401 | 246 | 242 | 177 | 6 | 5 | 3 |
-| St. Kitts and Nevis | 22/23 | 490 | 235 | 291 | 181 | 5 | 4 | 3 |
-| Dominica | 22/23 | 416 | 262 | 212 | 121 | 5 | 4 | 3 |
-| St. Lucia | 22/23 | 165 | 194 | 229 | 102 | 5 | 4 | 3 |
-| Grenada | 22/23 | 163 | 214 | 215 | 102 | 5 | 4 | 3 |
+| St. Kitts and Nevis | 22/23 | 490 | 235 | 291 | 181 | 6 | 4 | 3 |
+| Dominica | 22/23 | 416 | 262 | 212 | 121 | 6 | 4 | 3 |
+| St. Lucia | 22/23 | 165 | 194 | 229 | 102 | 6 | 4 | 3 |
+| Grenada | 22/23 | 163 | 214 | 215 | 102 | 6 | 4 | 3 |
 | Bahamas | 22/23 | 163 | 547 | 446 | 270 | 8 | 7 | 3 |
 | Barbados | 22/23 | 164 | 539 | 564 | 252 | 9 | 5 | 3 |
-| Spain | 22/23 | 161 | 457 | 595 | 343 | 7 | 7 | 3 |
-| Ireland | 22/23 | 163 | 520 | 858 | 322 | 7 | 7 | 3 |
-| Argentina | 22/23 | 549 | 230 | 300 | 190 | 8 | 7 | 4 |
-| Brazil | 22/23 | 162 | 247 | 348 | 109 | 7 | 7 | 3 |
-| Malta | 22/23 | 439 | 781 | 629 | 193 | 7 | 5 | 3 |
 | Vanuatu | 22/23 | 335 | 661 | 737 | 273 | 8 | 5 | 3 |
-| Panama | 22/23 | 482 | 943 | 585 | 338 | 7 | 3 | 3 |
-| Mexico | 22/23 | 390 | 1041 | 575 | 383 | 7 | 7 | 3 |
-| São Tomé and Príncipe | 23/23 | 1380 | 635 | 751 | 358 | 5 | 2 | 1 |
+| São Tomé and Príncipe | 22/23 | 1380 | 635 | 751 | 358 | 6 | 2 | 1 |
+| El Salvador | 23/23 | 387 | 819 | 672 | 325 | 8 | 5 | 3 |
+| Portugal | 23/23 | 425 | 615 | 693 | 445 | 8 | 7 | 2 |
+| Italy | 23/23 | 161 | 390 | 896 | 326 | 8 | 6 | 3 |
+| Uruguay | 23/23 | 175 | 197 | 501 | 106 | 7 | 5 | 3 |
+| Spain | 23/23 | 161 | 457 | 595 | 343 | 8 | 7 | 3 |
+| Ireland | 23/23 | 163 | 520 | 858 | 322 | 8 | 7 | 3 |
+| Argentina | 23/23 | 549 | 230 | 300 | 190 | 9 | 7 | 4 |
+| Brazil | 23/23 | 162 | 247 | 348 | 109 | 8 | 7 | 3 |
+| Malta | 23/23 | 439 | 781 | 629 | 193 | 8 | 5 | 3 |
+| Panama | 23/23 | 482 | 943 | 585 | 338 | 8 | 3 | 3 |
+| Mexico | 23/23 | 390 | 1041 | 575 | 383 | 8 | 7 | 3 |
 
-## What was filled, and from where
+## The three scored axes and their published methods
 
-Every value below is in the catalog with a dated `audit_trail` row naming its source.
-`last_checked` was not moved: it is the date of the last full human re-read, and that
-is still 2026-11-08.
+**Mobility (20/21).** September 2026 Henley Passport Index visa-free destination count,
+scored `round(count / 20)`. The raw count is stored in the audit row, so the score can be
+recomputed without re-reading anything.
 
-**Clocks**
-- Bahamas — 90 days a year (Economic Permanent Residence, Immigration (Amendment) Act
-  2021 s.17A(1)(b)) and 10 years to citizenship (legal PR for 10 years, 12 months
-  immediately before applying, 6 years of actual residence). Source: Bahamas
-  Immigration Department citizenship page; Higgs & Johnson.
-- Barbados — 5 years to naturalisation (12 months plus 5 of the preceding 7, Citizenship
-  Act Cap. 186) and a 0-day target, because the Special Entry and Residing Permit sets
-  no codified minimum presence. Source: Barbados Immigration Department SEP page;
-  Citizenship Act.
-- Cayman Islands — 20 years to the right to be Caymanian, including 10 holding permanent
-  residence, under the Caymanian Protection Act in force 1 May 2026 (was 15 and 5).
-  BOTC naturalisation under UK law remains a separate, earlier step. Source: Cayman
-  Government / MCEI reform guide.
+**Tax (21/21).** Headline rubric applied to each program's existing tax sentence:
+10 = no direct taxes at all; 8–9 = no capital gains tax or no personal income tax;
+6–7 = material income tax with reliefs.
 
-**Vanuatu tax** — the 34-character "No personal income tax (Wikipedia)" became the full
-position plus a `Crypto/Bitcoin tax:` sentence: no personal income, capital gains,
-corporate, withholding, wealth or inheritance tax; VAT 15%, import duties, rent tax and
-stamp duty are the revenue base; citizenship does not itself create tax residence.
-Source: Vanuatu Foreign Investment Promotion Agency, "Low tax jurisdiction".
+**Banking (11/21).** World Bank Global Findex `FX.OWN.TOTL.ZS` — account ownership at a
+financial institution or mobile-money provider, % of adults 15+ — scored
+`clamp(round(value / 10), 1, 10)`. Full method in
+[`BANKING-SCORE-RUBRIC.md`](./BANKING-SCORE-RUBRIC.md). The score is arithmetic on a
+published indicator; it measures domestic account access, **not** non-resident
+onboarding, and every record says so in `scorecard.banking_note`.
 
-**Mobility score (20 countries)** — the September 2026 Henley Passport Index visa-free
-destination count, scored `round(count / 20)`. Counts used: Portugal 184, Italy 185,
-Spain 185, Ireland 185, Malta 184, El Salvador 131, Uruguay 155, Argentina 168, Brazil
-168, Mexico 156, Panama 147, Bahamas 158, Barbados 163, Antigua and Barbuda 154,
-St. Kitts and Nevis 157, Dominica 145, St. Lucia 144, Grenada 147, Vanuatu 87,
-São Tomé and Príncipe 58. The count itself is recorded in each audit row, so the score
-can be recomputed without re-reading anything.
+## Evidence behind each fact
 
-**Tax score (8 countries)** — Italy 6, Spain 6, Ireland 6, Barbados 6, St. Lucia 8,
-Grenada 8, Bahamas 9, Cayman Islands 10. Rubric: 10 = no direct taxes at all; 8–9 = no
-capital gains tax or no personal income tax; 6–7 = material income tax with reliefs.
-Applied to the tax sentence already on file.
+Each of the 23 facts can name the audit row that last wrote it and the URL that row
+cites. `src/lib/factEvidence.ts` derives that from `audit_trail` — it never invents a
+date: a fact with no audit row shows its date as missing. In the programs table the
+`n/23` badge expands to the fact list with `date · hostname` links.
 
 ## What is still missing, and why it was not filled
 
-1. **Banking score — 20 of 21.** There is no comparable published measure: opening a
-   personal account as a non-resident depends on the individual bank, the applicant's
-   residence and source-of-funds file, not on a country-level rule. A number here would
-   be an opinion dressed as a metric. It needs a stated method (which banks, which
-   applicant profile, which documents) before any value is written. São Tomé's 3 came
-   from agency-sourced facts and is still unstamped.
-2. **Cayman Islands mobility score.** Henley ranks passports, and Cayman residents
-   travel on a British Overseas Territories citizen passport, which the index does not
-   score separately. The UK figure would be wrong for Cayman.
-3. **Evidence floor.** Sources per country now run from 5 to 9 (was 4 to 7), official
-   URLs 2 to 7. Panama still has 3 official URLs and São Tomé 2; no URL was added
-   without reading it.
+1. **Banking — 10 programs.** The World Bank publishes no Findex observation for
+   Antigua and Barbuda, St. Kitts and Nevis, Dominica, St. Lucia, Grenada, Bahamas,
+   Barbados, Cayman Islands, Vanuatu or São Tomé and Príncipe. Borrowing a neighbour's
+   figure would be a lie; the axis stays empty with a written reason.
+2. **Cayman Islands mobility.** Cayman residents travel on a BOTC passport. GOV.UK says
+   only "visa-free travel to many countries"; third-party trackers in November 2026 gave
+   50, 157 and 169 destinations. A spread of 119 is not a measurement, so no score.
+3. **Official URLs — Panama (3) and São Tomé (2).** Reaching the 4-URL floor needs pages
+   that actually load. `migracion.gob.pa` closed the connection and `governo.st` did not
+   resolve on 2026-11-09, so no URL was added.
+4. **São Tomé's old banking score of 3** was withdrawn: it predated the rubric and could
+   not be recomputed, and one method for every score beats a lone figure.
 
-## How to read the gap now
+## Not started, and named honestly
 
-Twenty programs show 22 of 23 and São Tomé shows 23 of 23. The one universal hole is
-banking, and it is universal rather than country-specific — which is the honest picture
-and the next research project, not a per-country failure.
+- **Passport validity per program** needs a read of each passport authority's page; no
+  bulk source exists and none was fabricated.
+- **Tax-residency depth** (183-day thresholds, remittance basis) needs one tax-authority
+  read per country.
+- **Residence-card travel** (Schengen 90/180, CA-4, Mercosur) needs treaty-level reads.
+- **Canada** was considered as a 22nd program and rejected for now: IRCC marks the
+  Start-up Visa **paused and closed to new applicants** (page dated 2026-07-21), so it
+  would be a dead entry rather than a live route.

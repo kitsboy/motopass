@@ -9,8 +9,8 @@ import { CountryFlag } from '../ui/CountryTitle';
 import { BtcDualPrice } from '../BtcDualPrice';
 import type { ProgramsTableDensity } from '../../lib/portfolioStorage';
 import { useI18n } from '../../i18n/I18nContext';
-import { formatT } from '../../i18n/format';
 import { programFacts } from '../../lib/factCoverage';
+import { FactsBadge } from './FactsBadge';
 import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
@@ -238,23 +238,7 @@ export function ProgramsTable({
                 <SovereigntyScoreTooltip program={p} score={p.sovereigntyScore} isFlagship={isFlagship} />
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>
-                {(() => {
-                  const list = facts.get(p.id) ?? [];
-                  const have = list.filter(fact => fact.have).length;
-                  const complete = have === list.length;
-                  return (
-                    <span
-                      className={`inline-flex items-center rounded-chip border px-1.5 py-0.5 font-mono text-[10px] tabular-nums ${
-                        complete
-                          ? 'border-mp-border text-mp-ink-secondary'
-                          : 'border-mp-wax/40 text-mp-wax'
-                      }`}
-                      title={`${formatT(t, 'programs.factsOnFile', { have, total: list.length })}${complete ? '' : ` — ${list.filter(fact => !fact.have).map(fact => fact.key).join(', ')}`}`}
-                    >
-                      {have}/{list.length}
-                    </span>
-                  );
-                })()}
+                <FactsBadge program={p} expandable />
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4`}>
                 <div className="flex flex-wrap items-center gap-1.5">

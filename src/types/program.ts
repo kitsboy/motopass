@@ -62,6 +62,13 @@ export type ScorecardMetric =
   | 'mobility'
   | 'banking'
 
+export interface ScoreBasis {
+  indicator: string
+  value: number
+  year: string
+  url: string
+}
+
 export interface ProgramScorecard {
   /** 0–10 where a value exists; null = honest “research pending”. */
   crypto_friendly: number | null
@@ -71,6 +78,12 @@ export interface ProgramScorecard {
   cost: number | null
   mobility: number | null
   banking: number | null
+  /** Published indicator the banking score is arithmetic on (World Bank Findex). */
+  banking_basis?: ScoreBasis | null
+  /** What the banking figure measures — printed beside the score, never dropped. */
+  banking_note?: string | null
+  /** Why a mobility score is absent, when the absence is a finding rather than a gap. */
+  mobility_note?: string | null
   /** Human-readable note on derivation, e.g. “derived from corpus (BUILD 72)”. */
   note?: string
 }

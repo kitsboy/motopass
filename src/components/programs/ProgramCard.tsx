@@ -16,6 +16,7 @@ import { DecisionClocks } from './DecisionClocks';
 import { gazetteHits, gazetteLine } from '../../lib/gazetteWatch';
 import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
+import { FactsBadge } from './FactsBadge';
 
 function GazetteCardLine({ program }: { program: Program }) {
   const { t } = useI18n();
@@ -215,6 +216,7 @@ function ProgramCardContent({
             ₿ {t('programs.presetBitcoinPolicy')}
           </span>
         )}
+        <FactsBadge program={program} />
         <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />
         <IntelStatusBadge programName={program.country} compact />
         <SourceStatusBadge programName={program.country} />

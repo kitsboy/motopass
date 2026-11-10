@@ -25,8 +25,9 @@ describe('decision pack', () => {
     expect(pack.mobilityNote).toMatch(/170/)
     // Henley Sept 2026: 155 visa-free destinations → round(155 / 20).
     expect(pack.mobilityScore).toBe(8)
-    expect(pack.bankingScore).toBeNull()
-    expect(pack.bankingNote).toBeNull()
+    // World Bank Findex 73.7% account ownership (2024) → round(73.7 / 10).
+    expect(pack.bankingScore).toBe(7)
+    expect(pack.bankingNote).toMatch(/World Bank Findex/)
     expect(pack.filing).toBe('unknown')
     expect(pack.announced).toBe(false)
     expect(pack.routes.every(route => route.holding == null && route.family.length === 0)).toBe(true)
@@ -66,7 +67,8 @@ describe('decision pack', () => {
     expect(pack.routes.every(route => route.status === 'live')).toBe(true)
     // Henley Sept 2026: 131 visa-free destinations → round(131 / 20).
     expect(pack.mobilityScore).toBe(7)
-    expect(pack.bankingScore).toBeNull()
+    // World Bank Findex 43.4% (2024) → round(43.4 / 10).
+    expect(pack.bankingScore).toBe(4)
   })
 
   it('reads São Tomé zero clocks as none and at grant, and keeps the remote filing', () => {
@@ -81,7 +83,9 @@ describe('decision pack', () => {
     expect(pack.feeInBitcoin).toBe('partial')
     // Henley Sept 2026: 58 visa-free destinations → round(58 / 20).
     expect(pack.mobilityScore).toBe(3)
-    expect(pack.bankingScore).toBe(3)
+    // The pre-rubric agency score was withdrawn: no Findex observation exists,
+    // and one method for every score beats a figure nobody can recompute.
+    expect(pack.bankingScore).toBeNull()
     expect(pack.routes[0].family).toEqual([
       { who: 'Additional dependent', usd: 5000, included: false },
     ])

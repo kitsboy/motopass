@@ -7,7 +7,7 @@
     "region": "Africa",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T02:17:14.288Z",
+  "generated_at": "2026-11-10T03:20:25.949Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 2,
@@ -61,12 +61,12 @@
         "label": "mobility"
       },
       "banking": {
-        "value": 3,
-        "present": true,
+        "value": null,
+        "present": false,
         "label": "banking"
       }
     },
-    "note": "Derived from agency-sourced CBI facts (BUILD 2026-09-29); NOT yet Satohash-stamped — treat figures as unverified until stamped."
+    "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions."
   },
   "threshold": {
     "min_investment_usd": 90000,
@@ -170,6 +170,13 @@
       "field": "scorecard.mobility",
       "from": "2",
       "to": "3 (58 visa-free destinations)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.banking",
+      "from": "null",
+      "to": "left null — no World Bank Findex observation",
       "hash": null
     }
   ],

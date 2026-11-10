@@ -25,7 +25,8 @@
         "CryptoSlate — https://cryptoslate.com/crypto-laws/el-salvador-bitcoin-law/",
         "APEX Capital Partners — https://apexcapital.partners/your-guide-to-el-salvador-citizenship-by-investment/",
         "Official — https://www.rree.gob.sv/",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 43.4% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "flag": "🇸🇻",
       "lightning_ready": true,
@@ -267,8 +268,15 @@
         "tax": 7,
         "cost": 10,
         "mobility": 7,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 4,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 43.4,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 43.4% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -391,6 +399,13 @@
           "from": "null",
           "to": "7 (131 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "4 (Findex 43.4%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=SV"
         }
       ],
       "policy_mentions_btc": true,
@@ -421,7 +436,8 @@
         "Moving2.com — https://movingto.com/b/portugal-golden-visa-property-to-private-capital",
         "Official — https://www.portaldasfinancas.gov.pt/",
         "Official — https://www.portugal.gov.pt/",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 91.4% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "flag": "🇵🇹",
       "lightning_ready": false,
@@ -708,8 +724,15 @@
         "tax": 8,
         "cost": 1,
         "mobility": 9,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 9,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 91.4,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 91.4% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -994,6 +1017,13 @@
           "from": "null",
           "to": "9 (184 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "9 (Findex 91.4%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=PT"
         }
       ],
       "policy_mentions_btc": true,
@@ -1024,7 +1054,8 @@
         "Domicila — https://domicila.net/italy-golden-visa-cost",
         "Official — https://www.esteri.it/",
         "Official — https://www.agenziaentrate.gov.it/",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 86% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "flag": "🇮🇹",
       "lightning_ready": false,
@@ -1318,8 +1349,15 @@
         "tax": 6,
         "cost": 1,
         "mobility": 9,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 9,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 86,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 86% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -2016,6 +2054,13 @@
           "from": "null",
           "to": "6",
           "source": "Headline-tax rubric (see docs/COUNTRY-DATA-COVERAGE.md): 10 = no direct taxes at all; 8–9 = no capital gains or no personal income tax; 6–7 = material income tax with reliefs. Applied to the tax_benefits text already on file for this program."
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "9 (Findex 86%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=IT"
         }
       ],
       "policy_mentions_btc": true,
@@ -2045,7 +2090,8 @@
         "Official — https://embassyofuruguay.us/",
         "Official — https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
         "Official — https://www.gub.uy/tramites/residencia-legal-temporaria",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 73.7% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "flag": "🇺🇾",
       "lightning_ready": true,
@@ -2308,8 +2354,15 @@
         "tax": 8,
         "cost": 1,
         "mobility": 8,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 7,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 73.7,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 73.7% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -2557,6 +2610,13 @@
           "from": "null",
           "to": "8 (155 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "7 (Findex 73.7%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=UY"
         }
       ],
       "policy_mentions_btc": true,
@@ -2854,7 +2914,8 @@
         "cost": 1,
         "mobility": 8,
         "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet.",
+        "banking_note": "The World Bank Findex publishes no observation for this country, so the banking axis stays empty rather than borrowing another country’s figure."
       },
       "audit_trail": [
         {
@@ -2969,6 +3030,13 @@
           "from": "null",
           "to": "8 (154 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
         }
       ],
       "policy_mentions_btc": true,
@@ -3238,7 +3306,8 @@
         "cost": 1,
         "mobility": 8,
         "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet.",
+        "banking_note": "The World Bank Findex publishes no observation for this country, so the banking axis stays empty rather than borrowing another country’s figure."
       },
       "audit_trail": [
         {
@@ -3472,6 +3541,13 @@
           "from": "null",
           "to": "8 (157 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
         }
       ],
       "policy_mentions_btc": true,
@@ -3747,7 +3823,8 @@
         "cost": 1,
         "mobility": 7,
         "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet.",
+        "banking_note": "The World Bank Findex publishes no observation for this country, so the banking axis stays empty rather than borrowing another country’s figure."
       },
       "audit_trail": [
         {
@@ -4009,6 +4086,13 @@
           "from": "null",
           "to": "7 (145 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
         }
       ],
       "policy_mentions_btc": true,
@@ -4277,7 +4361,8 @@
         "cost": 1,
         "mobility": 7,
         "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet.",
+        "banking_note": "The World Bank Findex publishes no observation for this country, so the banking axis stays empty rather than borrowing another country’s figure."
       },
       "audit_trail": [
         {
@@ -4393,6 +4478,13 @@
           "from": "null",
           "to": "8",
           "source": "Headline-tax rubric (see docs/COUNTRY-DATA-COVERAGE.md): 10 = no direct taxes at all; 8–9 = no capital gains or no personal income tax; 6–7 = material income tax with reliefs. Applied to the tax_benefits text already on file for this program."
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
         }
       ],
       "policy_mentions_btc": true,
@@ -4661,7 +4753,8 @@
         "cost": 1,
         "mobility": 7,
         "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet.",
+        "banking_note": "The World Bank Findex publishes no observation for this country, so the banking axis stays empty rather than borrowing another country’s figure."
       },
       "audit_trail": [
         {
@@ -4798,6 +4891,13 @@
           "from": "null",
           "to": "8",
           "source": "Headline-tax rubric (see docs/COUNTRY-DATA-COVERAGE.md): 10 = no direct taxes at all; 8–9 = no capital gains or no personal income tax; 6–7 = material income tax with reliefs. Applied to the tax_benefits text already on file for this program."
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
         }
       ],
       "policy_mentions_btc": true,
@@ -5111,7 +5211,8 @@
         "cost": 1,
         "mobility": 8,
         "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet.",
+        "banking_note": "The World Bank Findex publishes no observation for this country, so the banking axis stays empty rather than borrowing another country’s figure."
       },
       "audit_trail": [
         {
@@ -5255,6 +5356,13 @@
           "from": "null",
           "to": "9",
           "source": "Headline-tax rubric (see docs/COUNTRY-DATA-COVERAGE.md): 10 = no direct taxes at all; 8–9 = no capital gains or no personal income tax; 6–7 = material income tax with reliefs. Applied to the tax_benefits text already on file for this program."
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
         }
       ],
       "policy_mentions_btc": true,
@@ -5552,7 +5660,8 @@
         "cost": 1,
         "mobility": 8,
         "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet.",
+        "banking_note": "The World Bank Findex publishes no observation for this country, so the banking axis stays empty rather than borrowing another country’s figure."
       },
       "audit_trail": [
         {
@@ -6047,6 +6156,13 @@
           "from": "null",
           "to": "6",
           "source": "Headline-tax rubric (see docs/COUNTRY-DATA-COVERAGE.md): 10 = no direct taxes at all; 8–9 = no capital gains or no personal income tax; 6–7 = material income tax with reliefs. Applied to the tax_benefits text already on file for this program."
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
         }
       ],
       "policy_mentions_btc": false,
@@ -6341,7 +6457,9 @@
         "cost": 1,
         "mobility": null,
         "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research.",
+        "mobility_note": "Cayman residents travel on a British Overseas Territories citizen passport. GOV.UK states that BOTC-only holders have visa-free travel to \"many countries\" without publishing a count; third-party trackers in November 2026 gave 50, 157 and 169, so no number is recorded.",
+        "banking_note": "The World Bank Findex publishes no observation for the Cayman Islands, so account ownership is not on file."
       },
       "audit_trail": [
         {
@@ -6547,6 +6665,12 @@
           "from": "null",
           "to": "10",
           "source": "Headline-tax rubric (see docs/COUNTRY-DATA-COVERAGE.md): 10 = no direct taxes at all; 8–9 = no capital gains or no personal income tax; 6–7 = material income tax with reliefs. Applied to the tax_benefits text already on file for this program."
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "to": "left null — no authoritative BOTC visa-free count",
+          "source": "https://www.gov.uk/government/publications/british-overseas-territories-citizens/british-overseas-territories-citizens-accessible-version"
         }
       ],
       "policy_mentions_btc": true,
@@ -6577,7 +6701,8 @@
         "Blockpit — https://www.blockpit.io/tax-guides/crypto-tax-spain",
         "Official — https://www.exteriores.gob.es/",
         "Official — https://www.inclusion.gob.es/",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 98.4% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "flag": "🇪🇸",
       "lightning_ready": false,
@@ -6871,8 +6996,15 @@
         "tax": 6,
         "cost": 1,
         "mobility": 9,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 10,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 98.4,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 98.4% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -7345,6 +7477,13 @@
           "from": "null",
           "to": "6",
           "source": "Headline-tax rubric (see docs/COUNTRY-DATA-COVERAGE.md): 10 = no direct taxes at all; 8–9 = no capital gains or no personal income tax; 6–7 = material income tax with reliefs. Applied to the tax_benefits text already on file for this program."
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "10 (Findex 98.4%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=ES"
         }
       ],
       "policy_mentions_btc": true,
@@ -7375,7 +7514,8 @@
         "Citizens Information (statutory body) — https://citizensinformation.ie/en/money-and-tax/personal-finance/savings-and-investments/crypto/",
         "Official — https://www.dfa.ie/",
         "Official — https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 98.3% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "flag": "🇮🇪",
       "lightning_ready": false,
@@ -7690,8 +7830,15 @@
         "tax": 6,
         "cost": 1,
         "mobility": 9,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 10,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 98.3,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 98.3% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -8310,6 +8457,13 @@
           "from": "null",
           "to": "6",
           "source": "Headline-tax rubric (see docs/COUNTRY-DATA-COVERAGE.md): 10 = no direct taxes at all; 8–9 = no capital gains or no personal income tax; 6–7 = material income tax with reliefs. Applied to the tax_benefits text already on file for this program."
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "10 (Findex 98.3%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=IE"
         }
       ],
       "policy_mentions_btc": true,
@@ -8341,7 +8495,8 @@
         "Official — https://www.argentina.gob.ar/migraciones/residencias",
         "Official — https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
         "CitizenX (announced CBI, @PlanBpassport X thread 2026-10-02) — https://x.com/PlanBpassport/status/2106022914143269177",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 81.7% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "flag": "🇦🇷",
       "lightning_ready": true,
@@ -8671,8 +8826,15 @@
         "tax": 8,
         "cost": 1,
         "mobility": 8,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 8,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 81.7,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 81.7% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -9187,6 +9349,13 @@
           "from": "null",
           "to": "8 (168 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "8 (Findex 81.7%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=AR"
         }
       ],
       "policy_mentions_btc": true,
@@ -9217,7 +9386,8 @@
         "Official — https://www.gov.br/mre/en",
         "Official — https://brsb.itamaraty.gov.br/en-us/",
         "Official — https://www.gov.br/mj/en/",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 86.4% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "flag": "🇧🇷",
       "lightning_ready": true,
@@ -9544,8 +9714,15 @@
         "tax": 8,
         "cost": 1,
         "mobility": 8,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 9,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 86.4,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 86.4% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -9800,6 +9977,13 @@
           "from": "null",
           "to": "8 (168 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "9 (Findex 86.4%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=BR"
         }
       ],
       "policy_mentions_btc": true,
@@ -9830,7 +10014,8 @@
         "Legal 500 — https://www.legal500.com/intelligence/malta/immigration/maltese-citizenship-by-naturalisation-for-exceptional-services",
         "Global Law Experts — https://globallawexperts.com/the-maltese-citizenship-by-naturalisation-for-exceptional-services-by-direct-investment/",
         "MaltaToday — https://www.maltatoday.com.mt/sponsored/sponsored/130377/understanding_cryptocurrency_taxation_in_malta",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 96.6% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "flag": "🇲🇹",
       "lightning_ready": true,
@@ -10067,8 +10252,15 @@
         "tax": 7,
         "cost": 1,
         "mobility": 9,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 10,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 96.6,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 96.6% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -10239,6 +10431,13 @@
           "from": "null",
           "to": "9 (184 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "10 (Findex 96.6%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=MT"
         }
       ],
       "policy_mentions_btc": true,
@@ -10547,7 +10746,8 @@
         "cost": 1,
         "mobility": 4,
         "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet.",
+        "banking_note": "The World Bank Findex publishes no observation for this country, so the banking axis stays empty rather than borrowing another country’s figure."
       },
       "audit_trail": [
         {
@@ -10701,6 +10901,13 @@
           "from": "No personal income tax (Wikipedia)",
           "to": "Full direct-tax position + Crypto/Bitcoin tax sentence",
           "source": "Vanuatu Foreign Investment Promotion Agency (official) — Low tax jurisdiction — https://investvanuatu.vu/untapped-potential/low-tax-jurisdiction/"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
         }
       ],
       "policy_mentions_btc": true,
@@ -10731,7 +10938,8 @@
         "Legalys (Panamanian immigration law firm) — https://panama.legalys.com/en/blog/paises-amigos-7/how-to-get-the-panama-friendly-nations-visa-in-2026-updated-guide-21",
         "Official — https://www.mire.gob.pa/",
         "Official — https://www.migracion.gob.pa",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 64.1% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "flag": "🇵🇦",
       "lightning_ready": true,
@@ -10948,8 +11156,15 @@
         "tax": 8,
         "cost": 1,
         "mobility": 7,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 6,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 64.1,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 64.1% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -11309,6 +11524,13 @@
           "from": "null",
           "to": "7 (147 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "6 (Findex 64.1%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=PA"
         }
       ],
       "policy_mentions_btc": false,
@@ -11338,7 +11560,8 @@
         "Viamexico (Mexico immigration advisory) — https://viamexico.com/all-articles/mexico-residency-financial-requirements",
         "TaxAtlas — https://taxatlas.io/country/mexico/crypto-tax",
         "Official — https://www.gob.mx/sre",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "World Bank Global Findex — account ownership 53% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
       "id": 20,
       "flag": "🇲🇽",
@@ -11625,8 +11848,15 @@
         "tax": 8,
         "cost": 1,
         "mobility": 8,
-        "banking": null,
-        "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+        "banking": 5,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_basis": {
+          "indicator": "FX.OWN.TOTL.ZS",
+          "value": 53,
+          "year": "2024",
+          "url": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
+        },
+        "banking_note": "World Bank Findex: 53% of adults 15+ held an account (2024). Measures domestic access, not non-resident onboarding."
       },
       "audit_trail": [
         {
@@ -12043,6 +12273,13 @@
           "from": "null",
           "to": "8 (156 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "5 (Findex 53%, 2024)",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS?locations=MX"
         }
       ],
       "policy_mentions_btc": false,
@@ -12228,8 +12465,9 @@
         "tax": 5,
         "cost": 8,
         "mobility": 3,
-        "banking": 3,
-        "note": "Derived from agency-sourced CBI facts (BUILD 2026-09-29); NOT yet Satohash-stamped — treat figures as unverified until stamped."
+        "banking": null,
+        "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions.",
+        "banking_note": "The World Bank Findex publishes no observation for this country, so the banking axis stays empty rather than borrowing another country’s figure."
       },
       "audit_trail": [
         {
@@ -12266,6 +12504,13 @@
           "from": "2",
           "to": "3 (58 visa-free destinations)",
           "source": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation",
+          "source": "https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS"
         }
       ],
       "policy_mentions_btc": false,

@@ -1,3 +1,16 @@
+## Session — 2026-11-09 · Banking rubric, per-fact evidence, three UI upgrades (Buffy)
+
+**Done:**
+- `scripts/apply-scorecard.mjs` fills `scorecard.banking` from World Bank Global Findex `FX.OWN.TOTL.ZS` (latest observation, scored `clamp(round(pct/10),1,10)`), with `banking_basis` (value, year, URL) and `banking_note` on every record. Method: `docs/BANKING-SCORE-RUBRIC.md`. Result: 11/21 scored; the 10 without a Findex observation are null with a reason. São Tomé's pre-rubric 3 was withdrawn so one method covers every score. Sources went 5–9 → 6–9 everywhere.
+- `src/lib/factEvidence.ts` maps each of the 23 facts to the audit row that last wrote it, returning the date and the first URL inside that row's source. `FactsBadge` expands `n/23` into the fact list with `date · hostname` links (table) and shows the same badge on mobile cards. It never invents a date.
+- `SelectionBoard` coverage now has a fifth cell: banking.
+- Cayman mobility stays null with `scorecard.mobility_note`: GOV.UK publishes no BOTC count and third-party trackers disagree 50 / 157 / 169.
+- Canada was considered and **not added**: IRCC marks the Start-up Visa paused and closed to new applicants (Canada.ca, page dated 2026-07-21). Adding it would be a dead route.
+
+**Checks:** 379 Vitest passed / 2 skipped; `validate:data`, `validate:stamps` (21/21), `pitch:check`, `trust:envelopes` + `trust:check`, lint 0 errors; `vite build` ok. `tsc` has the 2 pre-existing `IntelWatchStrip.test.ts` errors.
+
+**Still open:** banking on 10 microstates (no Findex series), Cayman mobility, official URLs for Panama (3) and São Tomé (2) — both official hosts were unreachable on 9 Nov — and items 6–8 of the comparability plan (passport validity, tax-residency depth, residence-card travel), which need one authoritative read per country.
+
 ## Session — 2026-11-09 · Coverage fills from sources, facts column, day panel (Buffy)
 
 **Done:**

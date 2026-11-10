@@ -7,7 +7,7 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T02:17:14.285Z",
+  "generated_at": "2026-11-10T03:20:25.946Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 2,
@@ -61,12 +61,12 @@
         "label": "mobility"
       },
       "banking": {
-        "value": null,
-        "present": false,
+        "value": 9,
+        "present": true,
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
+    "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions."
   },
   "threshold": {
     "min_investment_usd": 250000,
@@ -96,7 +96,7 @@
     "tiers": {
       "official": 3,
       "legal": 0,
-      "secondary": 4
+      "secondary": 5
     },
     "list": [
       {
@@ -125,6 +125,10 @@
       },
       {
         "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
+      },
+      {
+        "name": "World Bank Global Findex — account ownership 91.4% of adults 15+ (2024), FX.OWN.TOTL.ZS",
         "tier": "secondary"
       }
     ],
@@ -177,13 +181,6 @@
   "audit_trail": [
     {
       "date": "2026-11-01",
-      "field": "watch.https://www.portugal.gov.pt",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "e047a6d54e90d888"
-    },
-    {
-      "date": "2026-11-01",
       "field": "watch.https://www.portugal.gov.pt/",
       "from": null,
       "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
@@ -229,6 +226,13 @@
       "field": "scorecard.mobility",
       "from": "null",
       "to": "9 (184 visa-free destinations)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.banking",
+      "from": "null",
+      "to": "9 (Findex 91.4%, 2024)",
       "hash": null
     }
   ],

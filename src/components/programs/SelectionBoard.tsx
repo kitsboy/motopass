@@ -45,6 +45,10 @@ export function SelectionBoard({ shown, regionCounts, regionFilter, onRegion }: 
         label: t('pack.mobility'),
         have: shown.filter(program => program.scorecard?.mobility != null).length,
       },
+      {
+        label: t('pack.banking'),
+        have: shown.filter(program => program.scorecard?.banking != null).length,
+      },
     ],
     [shown, t],
   )
@@ -99,7 +103,7 @@ export function SelectionBoard({ shown, regionCounts, regionFilter, onRegion }: 
 
       <div className="mt-4 border-t border-mp-border-subtle pt-3">
         <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('board.coverage')}</span>
-        <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1.5 sm:grid-cols-4">
+        <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1.5 sm:grid-cols-3 lg:grid-cols-5">
           {coverage.map(item => (
             <div key={item.label}>
               <dt className="text-[11px] leading-snug text-mp-ink-tertiary">{item.label}</dt>
