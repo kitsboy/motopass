@@ -13,10 +13,10 @@ import type { Program } from '../components/programs/types'
  * changed on 2026-11-09" must not be stamped with today's clock. A row without
  * a valid date is skipped rather than given one.
  *
- * Publishing signs with the visitor's NIP-07 key, not a MotoPass key. That is
- * deliberate and stated in the UI: MotoPass has no signing authority here, so
- * the event proves who republished the record, and the source link proves what
- * it says.
+ * Publishing signs with the visitor's key — a NIP-07 extension or a NIP-46
+ * remote signer — not a MotoPass key. That is deliberate and stated in the UI:
+ * MotoPass has no signing authority here, so the event proves who republished
+ * the record, and the source link proves what it says.
  */
 
 export interface AuditLedgerEvent {
@@ -28,12 +28,28 @@ export interface AuditLedgerEvent {
 
 export type LedgerPublishStatus = 'published' | 'signed-unpublished' | 'unsigned' | 'rejected' | 'empty'
 
+export type LedgerTemplate = {
+  kind: number
+  created_at: number
+  tags: string[][]
+  content: string
+}
+
+/** A signer that returns a signed event for a template — NIP-07 or NIP-46. */
+export type LedgerSigner = (template: LedgerTemplate) => Promise<unknown>
+
+export interface LedgerPublishOptions {
+  signer?: LedgerSigner
+}
+
 export interface LedgerPublishResult {
   status: LedgerPublishStatus
   events: AuditLedgerEvent[]
   json: string
   signedCount: number
   publishedCount: number
+  /** Ids of the events that were actually signed — the only anchorable set. */
+  signedIds?: string[]
   relaySummary?: string
   error?: string
 }
@@ -165,24 +181,33 @@ function isSignedLike(value: unknown): value is SignedLike {
   )
 }
 
+function nip07Signer(): LedgerSigner | null {
+  if (!hasNostrExtension() || !window.nostr?.signEvent) return null
+  return template => window.nostr!.signEvent(template)
+}
+
 /**
- * Sign each audit event with NIP-07 and publish it. Never throws.
- * Without an extension the caller gets the exact JSON to publish elsewhere.
+ * Sign each audit event and publish it. Never throws.
+ * Without a signer the caller gets the exact JSON to publish elsewhere.
  */
-export async function publishAuditLedger(program: Program): Promise<LedgerPublishResult> {
+export async function publishAuditLedger(
+  program: Program,
+  opts: LedgerPublishOptions = {},
+): Promise<LedgerPublishResult> {
   const events = buildAuditLedgerEvents(program)
   const json = ledgerJson(events)
   if (events.length === 0) {
-    return { status: 'empty', events, json, signedCount: 0, publishedCount: 0 }
+    return { status: 'empty', events, json, signedCount: 0, publishedCount: 0, signedIds: [] }
   }
-  if (!hasNostrExtension() || !window.nostr?.signEvent) {
-    return { status: 'unsigned', events, json, signedCount: 0, publishedCount: 0 }
+  const signer = opts.signer ?? nip07Signer()
+  if (!signer) {
+    return { status: 'unsigned', events, json, signedCount: 0, publishedCount: 0, signedIds: [] }
   }
 
   const signed: SignedLike[] = []
   try {
     for (const template of events) {
-      const result = await window.nostr.signEvent({
+      const result = await signer({
         kind: template.kind,
         created_at: template.created_at,
         tags: template.tags,
@@ -195,7 +220,8 @@ export async function publishAuditLedger(program: Program): Promise<LedgerPublis
           json,
           signedCount: signed.length,
           publishedCount: 0,
-          error: 'NIP-07 did not return a signed event',
+          signedIds: signed.map(event => event.id),
+          error: 'The signer did not return a signed event',
         }
       }
       if (!signedEventMatchesTemplate(result, template)) {
@@ -205,6 +231,7 @@ export async function publishAuditLedger(program: Program): Promise<LedgerPublis
           json,
           signedCount: signed.length,
           publishedCount: 0,
+          signedIds: signed.map(event => event.id),
           error: 'Signer returned a different event — publish aborted',
         }
       }
@@ -215,6 +242,7 @@ export async function publishAuditLedger(program: Program): Promise<LedgerPublis
           json,
           signedCount: signed.length,
           publishedCount: 0,
+          signedIds: signed.map(event => event.id),
           error: 'Signature failed verification',
         }
       }
@@ -227,6 +255,7 @@ export async function publishAuditLedger(program: Program): Promise<LedgerPublis
       json,
       signedCount: signed.length,
       publishedCount: 0,
+      signedIds: signed.map(event => event.id),
       error: err instanceof Error ? err.message : 'Signing failed',
     }
   }
@@ -245,6 +274,7 @@ export async function publishAuditLedger(program: Program): Promise<LedgerPublis
     json: JSON.stringify({ platform: 'MotoPass', kind: 'audit-ledger', events: signed }, null, 2),
     signedCount: signed.length,
     publishedCount,
+    signedIds: signed.map(event => event.id),
     relaySummary: relayStatusSummary(results),
     error: publishedCount > 0 ? undefined : 'Signed locally — no relay accepted. Keep the JSON.',
   }

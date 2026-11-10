@@ -2,15 +2,18 @@ import { useState } from 'react'
 import { Check, Copy, ExternalLink, Zap } from 'lucide-react'
 import { bountyMemo, gapBounty } from '../../lib/bounties'
 import { lightningDeepLink, requestInvoice, resolveLnurlPay } from '../../lib/lnurl'
+import { NWC_STORAGE_KEY } from '../../lib/nwc'
 import { PaymentQrCode } from '../ui/PaymentQrCode'
+import { TipReceipt } from './TipReceipt'
 
 /**
- * Fund a missing fact with sats.
+ * Fund a missing fact.
  *
- * The invoice is resolved live from the project Lightning Address, so the
- * amount shown is the amount requested — there is no "demo" invoice here. The
- * copy is deliberate: this is a tip toward research time. It does not buy a
- * finding, a date, or a favourable answer, and it does not pre-fill the fact.
+ * Two rails, both live: an LNURL-pay invoice from the project Lightning Address,
+ * or an invoice from the visitor's own connected wallet (which can then issue a
+ * signed settlement receipt). The copy is deliberate: this is a tip toward
+ * research time. It does not buy a finding, a date, or a favourable answer, and
+ * it does not pre-fill the fact.
  */
 
 type State =
@@ -19,10 +22,19 @@ type State =
   | { phase: 'invoice'; invoice: string; sats: number }
   | { phase: 'error'; error: string }
 
+function storedNwcUri(): string {
+  try {
+    return sessionStorage.getItem(NWC_STORAGE_KEY) ?? ''
+  } catch {
+    return ''
+  }
+}
+
 export function GapBounty({ factKey, programName }: { factKey: string; programName: string }) {
   const bounty = gapBounty(factKey)
   const [state, setState] = useState<State>({ phase: 'idle' })
   const [copied, setCopied] = useState(false)
+  const nwcUri = storedNwcUri()
 
   if (!bounty) {
     return (
@@ -119,8 +131,8 @@ export function GapBounty({ factKey, programName }: { factKey: string; programNa
               </a>
             </div>
             <p className="text-[10px] leading-relaxed text-mp-ink-tertiary">
-              A tip funds research time. It does not buy a finding or a date, and the fact stays empty
-              until an official source is read.
+              A tip funds research time. It does not buy a finding or a date, and the fact stays empty until an
+              official source is read.
             </p>
           </div>
         </div>
@@ -129,6 +141,15 @@ export function GapBounty({ factKey, programName }: { factKey: string; programNa
       {state.phase === 'idle' && lightningDeepLink(bounty.address, bounty.sats) && (
         <p className="mt-1.5 text-[10px] leading-relaxed text-mp-ink-tertiary">
           Paying does not pre-fill the fact or change what the source says.
+        </p>
+      )}
+
+      {nwcUri ? (
+        <TipReceipt nwcUri={nwcUri} factKey={factKey} programName={programName} sats={bounty.sats} />
+      ) : (
+        <p className="mt-2 border-t border-mp-border-subtle pt-2 text-[9px] leading-relaxed text-mp-ink-tertiary">
+          Want a signed settlement receipt? Connect a wallet in Portfolio → Lightning wallet. MotoPass cannot see
+          an LNURL payment settle on its own.
         </p>
       )}
     </div>

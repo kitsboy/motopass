@@ -14,7 +14,10 @@ import {
   type SnapshotIndex,
 } from '../../lib/snapshotProof'
 import { GapBounty } from '../lightning/GapBounty'
+import { RecurringGaps } from '../lightning/RecurringGaps'
 import { LedgerPublish } from '../nostr/LedgerPublish'
+import { SUGGESTED_GAP_BOUNTY_SATS } from '../../lib/bounties'
+import { formatSatsExact } from '../../lib/satsAnchor'
 
 /**
  * Evidence for every fact, and the layer-2 tools around it.
@@ -63,8 +66,16 @@ export function EvidencePanel({ program, onClose }: { program: Program; onClose:
   )
 
   const totals = factTotals(program)
+  const gaps = rows.filter(row => !row.have)
   const undated = rows.filter(row => row.have && !row.evidence).length
   const pct = totals.total > 0 ? Math.round((totals.have / totals.total) * 100) : 0
+
+  const focusGap = (key: string) => {
+    setOpenGap(key)
+    window.requestAnimationFrame(() => {
+      document.getElementById(`fact-${key}`)?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+    })
+  }
 
   const copy = async (key: string, text: string) => {
     try {
@@ -107,6 +118,22 @@ export function EvidencePanel({ program, onClose }: { program: Program; onClose:
         </div>
       </div>
 
+      {gaps.length > 0 && (
+        <div className="flex flex-wrap items-center justify-between gap-2 rounded-mp-md border border-mp-btc/30 bg-mp-btc/5 px-3 py-2">
+          <span className="font-mono text-[10px] text-mp-btc-text">
+            {gaps.length} open {gaps.length === 1 ? 'gap' : 'gaps'} ·{' '}
+            {formatSatsExact(gaps.length * SUGGESTED_GAP_BOUNTY_SATS)} if every one were tipped
+          </span>
+          <button
+            type="button"
+            onClick={() => focusGap(gaps[0].key)}
+            className="rounded-full border border-mp-btc/40 px-2.5 py-0.5 font-chrome text-[10px] font-semibold text-mp-btc-text hover:bg-mp-btc/10"
+          >
+            Jump to first gap
+          </button>
+        </div>
+      )}
+
       {rows.some(row => row.snapshot) && (
         <p className="text-[10px] leading-relaxed text-mp-ink-tertiary">
           A digest is what the source probe recorded. Where the archive kept only an excerpt, clicking
@@ -123,7 +150,8 @@ export function EvidencePanel({ program, onClose }: { program: Program; onClose:
           return (
             <li
               key={row.key}
-              className="border-t border-mp-border-subtle py-2 first:border-t-0"
+              id={`fact-${row.key}`}
+              className="scroll-mt-24 border-t border-mp-border-subtle py-2 first:border-t-0"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                 <span className={`font-mono text-[11px] ${row.have ? 'text-mp-ink' : 'text-mp-ink-tertiary'}`}>
@@ -210,6 +238,8 @@ export function EvidencePanel({ program, onClose }: { program: Program; onClose:
           )
         })}
       </ul>
+
+      <RecurringGaps program={program} missing={gaps.length} />
 
       <p className="text-xs card-muted leading-relaxed">
         {t('modal.evidenceMissingNote')}{' '}

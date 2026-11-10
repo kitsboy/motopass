@@ -1,16 +1,18 @@
 import { useState, type FormEvent } from 'react'
 import { PlugZap, Unplug } from 'lucide-react'
 import { nwcGetBalance, parseNwcUri, type NwcBalanceResult } from '../../lib/nwc'
+import { SUGGESTED_GAP_BOUNTY_SATS } from '../../lib/bounties'
 
 const STORAGE_KEY = 'motopass-nwc-uri'
 
 /**
  * Nostr Wallet Connect, read-only.
  *
- * Only `get_balance` is ever sent. The connection string is a bearer secret
- * that the wallet chooses the permissions for, so it is held in this tab's
- * sessionStorage and never written to localStorage, a URL or a log. The card
- * says this instead of implying the string is harmless.
+ * Only `get_balance` is ever sent here. The connection string is a bearer
+ * secret that the wallet chooses the permissions for, so it is held in this
+ * tab's sessionStorage and never written to localStorage, a URL or a log. The
+ * card says this instead of implying the string is harmless, and shows which
+ * wallet answered so two connections are never confused.
  */
 export function NwcBalanceCard() {
   const [uri, setUri] = useState(() => {
@@ -46,7 +48,10 @@ export function NwcBalanceCard() {
     setResult(null)
   }
 
-  const valid = parseNwcUri(uri) != null
+  const connection = parseNwcUri(uri)
+  const valid = connection != null
+  const relayHost = connection ? connection.relayUrl.replace(/^wss:\/\//, '').replace(/\/$/, '') : null
+  const gapTips = result?.ok ? Math.floor(result.balanceSats / SUGGESTED_GAP_BOUNTY_SATS) : 0
 
   return (
     <section
@@ -72,8 +77,8 @@ export function NwcBalanceCard() {
       </div>
 
       <p className="mt-1.5 text-[11px] leading-relaxed text-mp-ink-tertiary">
-        Paste a NIP-47 connection string from your wallet. This app sends only a balance request —
-        no invoices, no payments, no signatures. The wallet decides what the string allows.
+        Paste a NIP-47 connection string from your wallet. This card sends only a balance request — no payments
+        and no signatures. The wallet decides what the string allows.
       </p>
 
       <form onSubmit={(event) => void check(event)} className="mt-3 flex flex-wrap gap-2">
@@ -103,10 +108,22 @@ export function NwcBalanceCard() {
       {result && (
         <div className="mt-3" role="status">
           {result.ok ? (
-            <p className="font-mono text-sm text-mp-btc-text">
-              {result.balanceSats.toLocaleString()} sats
-              <span className="ml-2 text-[10px] text-mp-ink-tertiary">{result.balanceMsat.toLocaleString()} msat</span>
-            </p>
+            <div className="space-y-1">
+              <p className="font-mono text-sm text-mp-btc-text">
+                {result.balanceSats.toLocaleString()} sats
+                <span className="ml-2 text-[10px] text-mp-ink-tertiary">{result.balanceMsat.toLocaleString()} msat</span>
+              </p>
+              <p className="text-[10px] leading-relaxed text-mp-ink-tertiary">
+                {gapTips > 0
+                  ? `Enough for ${gapTips.toLocaleString()} gap ${gapTips === 1 ? 'tip' : 'tips'} at ${SUGGESTED_GAP_BOUNTY_SATS.toLocaleString()} sats.`
+                  : `Below one ${SUGGESTED_GAP_BOUNTY_SATS.toLocaleString()}-sat gap tip.`}
+              </p>
+              {connection && relayHost && (
+                <p className="font-mono text-[9px] text-mp-ink-tertiary">
+                  wallet {connection.walletPubkey.slice(0, 8)}… · relay {relayHost}
+                </p>
+              )}
+            </div>
           ) : (
             <p className="text-[11px] text-mp-wax">{result.error}</p>
           )}
@@ -114,8 +131,8 @@ export function NwcBalanceCard() {
       )}
 
       <p className="mt-2 border-t border-mp-border-subtle pt-2 text-[10px] leading-relaxed text-mp-ink-tertiary">
-        Held in sessionStorage for this tab only. A wallet may still see the request as authorised
-        activity — if that matters, use a connection scoped to balance reads.
+        Held in sessionStorage for this tab only. A wallet may still see the request as authorised activity — if that
+        matters, use a connection scoped to balance reads.
       </p>
     </section>
   )

@@ -12,6 +12,7 @@ import { AnimatedBadge } from '../components/beui/AnimatedBadge'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import { BtcDualPrice } from '../components/BtcDualPrice'
+import { SatsAnchorNote } from '../components/SatsAnchorNote'
 import { parseIdList, serializeIdList } from '../lib/urlState'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { ValueForksPanel } from '../components/simulator/ValueForksPanel'
@@ -187,6 +188,7 @@ export function StackSimulatorPage() {
                   </div>
                 </InfoTip>
               </div>
+              <SatsAnchorNote className="mt-3" />
               {stack.length > 0 && (
                 <p className="mt-4 text-xs text-ink-muted">
                   {formatT(t, 'simulator.synergySummary', synergyCounts)}

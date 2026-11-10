@@ -16,6 +16,7 @@ import { ClassyModal } from '../components/ui/ClassyModal'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import { BtcDualPrice } from '../components/BtcDualPrice'
+import { SatsAnchorNote } from '../components/SatsAnchorNote'
 import { ComplianceClock } from '../components/portfolio/ComplianceClock'
 import { PaigeChat } from '../components/PaigeChat'
 import { NostrConnect } from '../components/NostrConnect'
@@ -164,8 +165,9 @@ export function PortfolioPage() {
         <NostrConnect />
       </Card>
 
-      <div className="mb-8">
+      <div className="mb-8 space-y-2">
         <NwcBalanceCard />
+        <SatsAnchorNote />
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">

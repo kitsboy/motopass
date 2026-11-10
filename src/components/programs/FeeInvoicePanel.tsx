@@ -4,6 +4,7 @@ import { feeInvoice, type FeeLine } from '../../lib/feeInvoice'
 import { useI18n } from '../../i18n/I18nContext'
 import { formatT } from '../../i18n/format'
 import { BtcDualPrice } from '../BtcDualPrice'
+import { SatsAnchorNote } from '../SatsAnchorNote'
 import { CountryFlag } from '../ui/CountryTitle'
 
 /**
@@ -30,6 +31,7 @@ export function FeeInvoicePanel({ programs }: { programs: Program[] }) {
         {t('fee.title')}
       </h2>
       <p className="mt-2 max-w-2xl font-body text-sm leading-relaxed text-ink-secondary">{t('fee.lead')}</p>
+      <SatsAnchorNote className="mt-1.5" />
 
       <ul className="mt-4 space-y-3">
         {featured.map(({ program, invoice }) => (

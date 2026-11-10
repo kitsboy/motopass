@@ -1,19 +1,28 @@
 import { SimplePool, type Event, type Filter } from 'nostr-tools'
 import * as nip04 from 'nostr-tools/nip04'
 import { finalizeEvent, getPublicKey, type EventTemplate } from 'nostr-tools/pure'
+import { looksLikeBolt11 } from './lnurl'
 
 /**
- * NIP-47 (Nostr Wallet Connect), read-only.
+ * NIP-47 (Nostr Wallet Connect).
  *
  * The connection string carries a secret with whatever permissions the wallet
- * granted. This client only ever sends `get_balance`, keeps the secret in
- * sessionStorage, and never asks for an invoice, a payment or a signature. A
- * wallet that requires a per-request budget still sees a request from us; the
- * UI says so plainly instead of implying the connection is powerless.
+ * granted. This client sends exactly three methods — `get_balance`,
+ * `make_invoice` and `lookup_invoice` — and never asks for a payment or a
+ * signature. A wallet that requires a per-request budget still sees a request
+ * from us; the UI says so plainly instead of implying the connection is
+ * powerless.
+ *
+ * Settlement is only ever read from the user's own wallet. There is no
+ * MotoPass node watching the payment, so an invoice is never marked paid
+ * because a page was open.
  */
 
 const HEX64 = /^[a-f0-9]{64}$/i
 const NWC_PREFIX = 'nostr+walletconnect://'
+
+/** sessionStorage key shared with the portfolio wallet card. */
+export const NWC_STORAGE_KEY = 'motopass-nwc-uri'
 
 export interface NwcConnection {
   walletPubkey: string
@@ -24,6 +33,25 @@ export interface NwcConnection {
 export type NwcBalanceResult =
   | { ok: true; balanceMsat: number; balanceSats: number }
   | { ok: false; error: string }
+
+export type NwcResult = { ok: true; result: unknown } | { ok: false; error: string }
+
+export interface NwcInvoice {
+  bolt11: string
+  paymentHash: string
+  /** Wallet-reported amount in msat, when it reports one. */
+  amountMsat: number | null
+}
+
+export type NwcInvoiceState = 'paid' | 'pending' | 'expired' | 'failed' | 'unknown'
+
+export interface NwcInvoiceStatus {
+  state: NwcInvoiceState
+  amountPaidMsat: number | null
+  preimage: string | null
+  /** Unix seconds, only when the wallet reports a settlement time. */
+  settledAt: number | null
+}
 
 function hexToBytes(hex: string): Uint8Array {
   const bytes = new Uint8Array(hex.length / 2)
@@ -74,11 +102,11 @@ export function buildNwcRequest(
 }
 
 /** Decrypt a NIP-47 response. Wrong author, wrong key or junk is an error. */
-export function parseNwcResponse(
+export function decryptNwcResponse(
   secret: Uint8Array,
   walletPubkey: string,
   event: Pick<Event, 'kind' | 'pubkey' | 'content'>,
-): NwcBalanceResult | { ok: false; error: string; method?: string } {
+): NwcResult {
   if (event.kind !== 23195) return { ok: false, error: 'Not a NIP-47 response' }
   if (event.pubkey.toLowerCase() !== walletPubkey.toLowerCase()) {
     return { ok: false, error: 'Response is not from the connected wallet' }
@@ -96,8 +124,13 @@ export function parseNwcResponse(
     const message = typeof data.error.message === 'string' ? data.error.message : 'Wallet refused the request'
     return { ok: false, error: `${code}: ${message}` }
   }
-  const result = data.result as { balance?: unknown } | null | undefined
-  const balanceMsat = result?.balance
+  return { ok: true, result: data.result }
+}
+
+/** Balance payload from a decrypted `get_balance` result. */
+export function parseNwcBalance(result: unknown): NwcBalanceResult {
+  const data = result as { balance?: unknown } | null | undefined
+  const balanceMsat = data?.balance
   if (typeof balanceMsat !== 'number' || !Number.isFinite(balanceMsat) || balanceMsat < 0) {
     return { ok: false, error: 'Response carried no balance' }
   }
@@ -108,14 +141,64 @@ export function parseNwcResponse(
   }
 }
 
+/** Backwards-compatible balance parse straight from a response event. */
+export function parseNwcResponse(
+  secret: Uint8Array,
+  walletPubkey: string,
+  event: Pick<Event, 'kind' | 'pubkey' | 'content'>,
+): NwcBalanceResult {
+  const decrypted = decryptNwcResponse(secret, walletPubkey, event)
+  if (!decrypted.ok) return { ok: false, error: decrypted.error }
+  return parseNwcBalance(decrypted.result)
+}
+
+/** A `make_invoice` result is payable only if it is a BOLT11 with a payment hash. */
+export function parseNwcInvoice(result: unknown): { ok: true; invoice: NwcInvoice } | { ok: false; error: string } {
+  const data = result as Record<string, unknown> | null | undefined
+  const bolt11 = data?.invoice
+  const paymentHash = typeof data?.payment_hash === 'string' ? data.payment_hash.trim().toLowerCase() : ''
+  if (!looksLikeBolt11(bolt11)) return { ok: false, error: 'Wallet did not return a BOLT11 invoice' }
+  if (!HEX64.test(paymentHash)) return { ok: false, error: 'Invoice carried no payment hash' }
+  const amountMsat = typeof data?.amount === 'number' && Number.isFinite(data.amount) && data.amount > 0 ? data.amount : null
+  return { ok: true, invoice: { bolt11: bolt11.trim(), paymentHash, amountMsat } }
+}
+
+function normaliseState(value: unknown): NwcInvoiceState {
+  const state = typeof value === 'string' ? value.toLowerCase() : ''
+  if (state === 'paid' || state === 'settled' || state === 'complete' || state === 'completed') return 'paid'
+  if (state === 'pending' || state === 'open' || state === 'unpaid') return 'pending'
+  if (state === 'expired') return 'expired'
+  if (state === 'failed' || state === 'error') return 'failed'
+  return 'unknown'
+}
+
+/** A `lookup_invoice` result. Any state we do not recognise is `unknown`, not paid. */
+export function parseNwcLookup(result: unknown): { ok: true; status: NwcInvoiceStatus } | { ok: false; error: string } {
+  const data = result as Record<string, unknown> | null | undefined
+  if (!data || typeof data !== 'object') return { ok: false, error: 'Wallet returned no invoice state' }
+  const state = normaliseState(data.state ?? data.status)
+  if (state === 'unknown') return { ok: false, error: 'Wallet returned an unrecognised invoice state' }
+  const preimage = typeof data.preimage === 'string' && HEX64.test(data.preimage) ? data.preimage.toLowerCase() : null
+  const amount = typeof data.amount === 'number' && Number.isFinite(data.amount) && data.amount >= 0 ? data.amount : null
+  const settledRaw = data.settled_at ?? data.paid_at
+  const settledAt =
+    typeof settledRaw === 'number' && Number.isFinite(settledRaw) && settledRaw > 0 ? Math.floor(settledRaw) : null
+  return {
+    ok: true,
+    status: { state, amountPaidMsat: state === 'paid' ? amount : null, preimage, settledAt },
+  }
+}
+
 /**
- * Ask the wallet for its balance and wait for one matching response.
+ * Send one NIP-47 request and wait for its matching response.
  * Never throws; every failure path returns `{ ok: false, error }`.
  */
-export async function nwcGetBalance(
+export async function nwcRequest(
   uri: string,
+  method: string,
+  params: Record<string, unknown> = {},
   opts: { timeoutMs?: number } = {},
-): Promise<NwcBalanceResult> {
+): Promise<NwcResult> {
   const connection = parseNwcUri(uri)
   if (!connection) return { ok: false, error: 'Not a valid NWC connection string' }
   const secret = hexToBytes(connection.secret)
@@ -123,7 +206,7 @@ export async function nwcGetBalance(
 
   let request: Event
   try {
-    request = buildNwcRequest(secret, connection.walletPubkey, 'get_balance')
+    request = buildNwcRequest(secret, connection.walletPubkey, method, params)
   } catch (err) {
     return { ok: false, error: err instanceof Error ? err.message : 'Could not build request' }
   }
@@ -131,11 +214,11 @@ export async function nwcGetBalance(
   const timeoutMs = opts.timeoutMs ?? 15_000
   const pool = new SimplePool()
 
-  return await new Promise<NwcBalanceResult>(resolve => {
+  return await new Promise<NwcResult>(resolve => {
     let settled = false
     let sub: { close: () => void } | undefined
 
-    const finish = (result: NwcBalanceResult) => {
+    const finish = (result: NwcResult) => {
       if (settled) return
       settled = true
       clearTimeout(timer)
@@ -170,7 +253,7 @@ export async function nwcGetBalance(
         filter,
         {
           onevent(event) {
-            finish(parseNwcResponse(secret, connection.walletPubkey, event))
+            finish(decryptNwcResponse(secret, connection.walletPubkey, event))
           },
         },
       )
@@ -178,4 +261,47 @@ export async function nwcGetBalance(
       finish({ ok: false, error: err instanceof Error ? err.message : 'Relay connection failed' })
     }
   })
+}
+
+/** Ask the wallet for its balance. */
+export async function nwcGetBalance(
+  uri: string,
+  opts: { timeoutMs?: number } = {},
+): Promise<NwcBalanceResult> {
+  const response = await nwcRequest(uri, 'get_balance', {}, opts)
+  if (!response.ok) return response
+  return parseNwcBalance(response.result)
+}
+
+/**
+ * Ask the user's wallet to issue an invoice for a gap tip.
+ * The memo names the gap; it is not a promise that the fact will be filled.
+ */
+export async function nwcMakeInvoice(
+  uri: string,
+  args: { sats: number; memo: string },
+  opts: { timeoutMs?: number } = {},
+): Promise<{ ok: true; invoice: NwcInvoice } | { ok: false; error: string }> {
+  if (!Number.isInteger(args.sats) || args.sats <= 0) return { ok: false, error: 'Amount must be whole sats' }
+  const response = await nwcRequest(
+    uri,
+    'make_invoice',
+    { amount: args.sats * 1000, description: args.memo.slice(0, 200) },
+    opts,
+  )
+  if (!response.ok) return response
+  return parseNwcInvoice(response.result)
+}
+
+/** Ask the wallet what happened to an invoice it issued. */
+export async function nwcLookupInvoice(
+  uri: string,
+  paymentHash: string,
+  opts: { timeoutMs?: number } = {},
+): Promise<{ ok: true; status: NwcInvoiceStatus } | { ok: false; error: string }> {
+  const hash = paymentHash.trim().toLowerCase()
+  if (!HEX64.test(hash)) return { ok: false, error: 'Not a payment hash' }
+  const response = await nwcRequest(uri, 'lookup_invoice', { payment_hash: hash }, opts)
+  if (!response.ok) return response
+  return parseNwcLookup(response.result)
 }

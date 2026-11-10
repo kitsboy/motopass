@@ -9,6 +9,8 @@ interface ImportMetaEnv {
   readonly VITE_LIGHTNING_ADDRESS?: string
   /** Optional on-chain bc1… donation / fee address */
   readonly VITE_ONCHAIN_ADDRESS?: string
+  /** Optional BOLT12 offer (lno1…) issued by the project wallet; never generated in-browser */
+  readonly VITE_BOLT12_OFFER?: string
 }
 
 interface ImportMeta {

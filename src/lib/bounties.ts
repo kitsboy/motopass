@@ -17,6 +17,14 @@ export interface GapBounty {
   walletUri: string
 }
 
+export interface GapPlan {
+  missing: number
+  bountySats: number
+  /** One tip per open gap, once — the unit a standing commitment is built from. */
+  monthlySats: number
+  annualSats: number
+}
+
 export function bountyAddress(): string {
   return getLightningAddress()
 }
@@ -33,7 +41,25 @@ export function gapBounty(factKey: string, address: string = bountyAddress()): G
   }
 }
 
+/**
+ * What a standing commitment would cost: every open gap tipped once a month.
+ * This is arithmetic on the suggested tip, not a quote and not an offer —
+ * only a wallet can issue a recurring BOLT12 offer.
+ */
+export function gapPlan(missingFacts: number, bountySats: number = SUGGESTED_GAP_BOUNTY_SATS): GapPlan | null {
+  if (!Number.isInteger(missingFacts) || missingFacts <= 0) return null
+  if (!Number.isInteger(bountySats) || bountySats <= 0) return null
+  const monthlySats = missingFacts * bountySats
+  if (!Number.isSafeInteger(monthlySats) || !Number.isSafeInteger(monthlySats * 12)) return null
+  return { missing: missingFacts, bountySats, monthlySats, annualSats: monthlySats * 12 }
+}
+
 /** Comment sent with the invoice request when the server allows one. */
 export function bountyMemo(factKey: string, programName: string): string {
   return `MotoPass gap: ${programName} ${factKey.replace(/_/g, ' ')}`.slice(0, 120)
+}
+
+/** Memo for a standing commitment; names the country, never a promise. */
+export function standingMemo(programName: string, plan: GapPlan): string {
+  return `MotoPass standing gap fund: ${programName} ${plan.monthlySats} sats/mo`.slice(0, 120)
 }

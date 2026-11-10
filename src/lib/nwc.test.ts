@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { finalizeEvent, generateSecretKey, getPublicKey } from 'nostr-tools/pure'
 import * as nip04 from 'nostr-tools/nip04'
-import { buildNwcRequest, parseNwcResponse, parseNwcUri } from './nwc'
+import { buildNwcRequest, parseNwcInvoice, parseNwcLookup, parseNwcResponse, parseNwcUri } from './nwc'
 
 const WALLET_SECRET = generateSecretKey()
 const WALLET_PUBKEY = getPublicKey(WALLET_SECRET)
@@ -82,5 +82,82 @@ describe('buildNwcRequest / parseNwcResponse', () => {
       error: 'Not a NIP-47 response',
     })
     expect(parseNwcResponse(CLIENT_SECRET, WALLET_PUBKEY, { kind: 23195, pubkey: WALLET_PUBKEY, content: 'not-ciphertext' }).ok).toBe(false)
+  })
+})
+
+const BOLT11 = `lnbc1${'q'.repeat(120)}`
+
+function content(payload: unknown): string {
+  return nip04.encrypt(WALLET_SECRET, getPublicKey(CLIENT_SECRET), JSON.stringify(payload))
+}
+
+describe('parseNwcInvoice', () => {
+  it('accepts a BOLT11 with a payment hash and reads the msat amount', () => {
+    expect(
+      parseNwcInvoice({ invoice: BOLT11, payment_hash: 'A'.repeat(64), amount: 5_000_000 }),
+    ).toEqual({
+      ok: true,
+      invoice: { bolt11: BOLT11, paymentHash: 'a'.repeat(64), amountMsat: 5_000_000 },
+    })
+  })
+
+  it('refuses a non-invoice or an invoice without a hash', () => {
+    expect(parseNwcInvoice({ invoice: 'hello', payment_hash: 'a'.repeat(64) })).toEqual({
+      ok: false,
+      error: 'Wallet did not return a BOLT11 invoice',
+    })
+    expect(parseNwcInvoice({ invoice: BOLT11, payment_hash: 'nope' })).toEqual({
+      ok: false,
+      error: 'Invoice carried no payment hash',
+    })
+    expect(parseNwcInvoice(null).ok).toBe(false)
+  })
+})
+
+describe('parseNwcLookup', () => {
+  it('reads a paid invoice with its preimage and settlement time', () => {
+    const result = parseNwcLookup({
+      state: 'paid',
+      amount: 5_000_000,
+      preimage: 'B'.repeat(64),
+      settled_at: 1_760_000_000,
+    })
+    expect(result).toEqual({
+      ok: true,
+      status: { state: 'paid', amountPaidMsat: 5_000_000, preimage: 'b'.repeat(64), settledAt: 1_760_000_000 },
+    })
+  })
+
+  it('keeps pending pending and reports no paid amount', () => {
+    const result = parseNwcLookup({ state: 'pending', amount: 5_000_000 })
+    expect(result.ok).toBe(true)
+    if (result.ok) {
+      expect(result.status.state).toBe('pending')
+      expect(result.status.amountPaidMsat).toBeNull()
+      expect(result.status.settledAt).toBeNull()
+    }
+  })
+
+  it('never upgrades an unrecognised state to paid', () => {
+    expect(parseNwcLookup({ state: 'mystery' })).toEqual({
+      ok: false,
+      error: 'Wallet returned an unrecognised invoice state',
+    })
+    expect(parseNwcLookup(null).ok).toBe(false)
+  })
+
+  it('accepts a decrypted paid response through the event path', () => {
+    const event = {
+      kind: 23195,
+      pubkey: WALLET_PUBKEY,
+      content: content({ result: { state: 'paid', amount: 5_000_000, preimage: 'C'.repeat(64) }, error: null }),
+    }
+    const result = parseNwcLookup(
+      (() => {
+        const decrypted = nip04.decrypt(CLIENT_SECRET, WALLET_PUBKEY, event.content)
+        return JSON.parse(decrypted).result
+      })(),
+    )
+    expect(result.ok && result.status.preimage).toBe('c'.repeat(64))
   })
 })
