@@ -32,6 +32,7 @@ const ROUTES = [
   { path: '/distressed', priority: '0.85', changefreq: 'weekly' },
   { path: '/blog', priority: '0.9', changefreq: 'daily' },
   { path: '/verify', priority: '0.8', changefreq: 'monthly' },
+  { path: '/tools', priority: '0.7', changefreq: 'monthly' },
   { path: '/agents', priority: '0.8', changefreq: 'weekly' },
   { path: '/apply', priority: '0.8', changefreq: 'weekly' },
   { path: '/register', priority: '0.9', changefreq: 'weekly' },

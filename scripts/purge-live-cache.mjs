@@ -53,6 +53,7 @@ const assets = [
     `${BASE}/`,
     `${BASE}/index.html`,
     `${BASE}/verify`,
+    `${BASE}/tools`,
     `${BASE}/images/header-elite.jpg`,
     ...htmlAssets,
     ...diskAssets,

@@ -19,6 +19,7 @@ const KNOWN_ROUTES = [
   /^\/blog\/?$/,
   /^\/blog\/[^/]+\/?$/,
   /^\/verify\/?$/,
+  /^\/tools\/?$/,
   /^\/agents\/?$/,
   /^\/apply\/?$/,
   /^\/thank-you\/?$/, /^\/thanks\/?$/, /^\/thankyou\/?$/, /^\/success\/?$/,

@@ -7,13 +7,14 @@
 - `src/pages/ToolsPage.tsx` — `/tools` with four local tools: BOLT11 invoice decode, BOLT12 offer/signature reader, preimage `sha256` check, and the existing receipt inspector. Results use `aria-live`, labels are associated, `Cmd/Ctrl+Enter` runs a decode, and section anchors have scroll margins. Nothing fetches a node, relay or explorer.
 - `TipReceiptsPanel` — one `anchorLedger` stamp over the sorted saved receipt ids, with the honest status line (`Bitcoin block N`, `pending — waiting for Bitcoin`, or `confirmed — block height not reported`), root and allowlisted verify link. The duplicate inspector was removed from the panel and linked to `/tools` instead.
 - Nav/SEO: `/tools` is in the overflow nav (More sheet + footer), `prefetchRoutes`, `ROUTE_SEO`, the breadcrumb map and the lazy route table. `@noble/curves@^2.4.0` is now an explicit dependency for Schnorr verification.
+- **First deploy returned 404 on `/tools`:** Cloudflare Pages runs `functions/_middleware.js`, which serves a real 404 for paths outside its `KNOWN_ROUTES` allowlist. Added `/^\/tools\/?$/` there (plus the sitemap and cache-purge lists) and redeployed. The SPA router alone is not enough for a new route.
 
 **Decisions:**
 - BOLT12 offers are not signed. The requested "verify offer signatures" cannot be implemented honestly, so the tool verifies the message types that do carry signatures and states the offer limitation in the card, tests and docs.
 - BOLT11 signature recovery was left out. A decode with a checksum is still not a payment proof, and the UI must not blur that line.
 - No research fact was added or changed; `research/countries.json` untouched.
 
-**Checks:** 20 new BOLT11/BOLT12 tests pass, including the official offer and invoice-request vectors. Lint 0 errors; `vite build` ok. `tsc` shows only the two pre-existing `IntelWatchStrip.test.ts` errors. No live node, relay, wallet or Satohash stamp was exercised; the receipt anchor button is unit-backed by the existing `ledgerAnchor` tests only.
+**Checks:** 20 new BOLT11/BOLT12 tests pass, including the official offer and invoice-request vectors. Lint 0 errors; `vite build` ok. `tsc` shows only the two pre-existing `IntelWatchStrip.test.ts` errors. Full suite: 528 passed / 3 pre-existing catalog failures / 2 skipped. Live `/tools` returns 200 on the redeployed bundle. No live node, relay, wallet or Satohash stamp was exercised; the receipt anchor button is unit-backed by the existing `ledgerAnchor` tests only.
 
 **Git State:**
 - Code SHA: pending this commit
