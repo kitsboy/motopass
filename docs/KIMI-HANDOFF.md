@@ -1,3 +1,20 @@
+## Session — 2026-11-10 · Evidence tab with Lightning, Nostr and snapshot rails (Buffy)
+
+**Done:**
+- `src/lib/lnurl.ts` — LUD-16 Lightning Address client: strict `user@domain` parsing, `.well-known/lnurlp` resolution, https-callback and msat-range checks, amount clamping, BOLT11 shape check, injectable fetch (no network in tests). `src/lib/bounties.ts` prices a missing fact at 5,000 sats against the configured Lightning Address and says it is a tip, not a contract.
+- `src/lib/snapshotProof.ts` — archived source text is re-hashed in the browser with `crypto.subtle` against `public/data/source-snapshots.json`. Measured against the real file: **61 of the 103 stored digests reproduce; the other 42 are excerpts**, so the UI reports `digest only` and never claims tampering. 38 entries carry no hash/text.
+- `src/lib/nostrLedger.ts` — audit rows → kind-30078 events with `created_at` taken from the row date at noon UTC (never publish time), deterministic `d` tags, NIP-07 sign + publish with template/id/signature checks, and the exact JSON for unsigned users. `src/lib/nwc.ts` — NIP-47 `get_balance` only over NIP-04 on wss, 15s timeout, connection string in sessionStorage.
+- UI: `EvidencePanel` (coverage meter, per-fact Markdown citation copy, snapshot digest chip, `Fund gap` LNURL invoice, ledger publish), `GapBounty`, `LedgerPublish`, `NwcBalanceCard` on Portfolio, and `ModalTabs` made sticky with snap scrolling.
+- No research fact was added or changed; `research/countries.json` untouched.
+
+**Checks:** 423 Vitest passed / 2 skipped; lint 0 errors (7 warnings); `validate:data`, `validate:stamps` (21/21), `trust:check`, `vite build` ok; `tsc` shows only the two pre-existing `IntelWatchStrip.test.ts` errors.
+
+**Still open / honest limits:**
+- Settlement-triggered stamping did not ship. A static site cannot observe an invoice settle, so LNURL is the pay rail for gap tips only today.
+- Blossom/NIP-94 upload did not ship. The digest is provenance for the archived excerpt; an excerpt is not a full-page archive.
+- The three new panels are English-only (no page keys added, so locale tests are unchanged).
+- `nwcGetBalance` was not exercised against a live wallet; only the encrypted request/response round trip and URI parsing are tested.
+
 ## Session — 2026-11-09 · Banking rubric, per-fact evidence, three UI upgrades (Buffy)
 
 **Done:**

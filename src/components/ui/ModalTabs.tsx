@@ -6,15 +6,22 @@ type Props<T extends string> = {
   onChange: (id: T) => void
 }
 
+/**
+ * Sticky by design: the record modal can carry eight tabs, and on a phone the
+ * row scrolls sideways behind a blurred edge instead of wrapping into two
+ * ragged lines. Keeping the active tab in view while the body scrolls is what
+ * makes the extra tabs affordable.
+ */
 export function ModalTabs<T extends string>({ tabs, active, onChange }: Props<T>) {
   return (
-    <div className="flex gap-1.5 p-1 rounded-full bg-section border border-mp mb-5 overflow-x-auto">
+    <div className="sticky top-0 z-20 -mx-1 mb-5 flex snap-x gap-1.5 overflow-x-auto rounded-full border border-mp bg-section/95 p-1 backdrop-blur-md supports-[backdrop-filter]:bg-section/80">
       {tabs.map(t => (
         <button
           key={t.id}
           type="button"
           onClick={() => onChange(t.id)}
-          className={`flex-1 min-w-[max-content] px-4 py-2.5 rounded-full text-xs font-medium transition-all whitespace-nowrap ${
+          aria-current={active === t.id ? 'page' : undefined}
+          className={`min-w-[max-content] shrink-0 snap-start rounded-full px-4 py-2.5 text-xs font-medium transition-all whitespace-nowrap ${
             active === t.id
               ? 'bg-card text-btc-orange-deep shadow-card border border-btc-orange/30'
               : 'text-ink-muted hover:text-ink hover:bg-card/60'

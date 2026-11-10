@@ -19,6 +19,7 @@ import { BtcDualPrice } from '../components/BtcDualPrice'
 import { ComplianceClock } from '../components/portfolio/ComplianceClock'
 import { PaigeChat } from '../components/PaigeChat'
 import { NostrConnect } from '../components/NostrConnect'
+import { NwcBalanceCard } from '../components/lightning/NwcBalanceCard'
 import { Card } from '../components/ui/Card'
 import { InfoTip } from '../components/ui/InfoTip'
 import { hasFlagshipDepth } from '../components/programs/types'
@@ -162,6 +163,10 @@ export function PortfolioPage() {
         </div>
         <NostrConnect />
       </Card>
+
+      <div className="mb-8">
+        <NwcBalanceCard />
+      </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
         <InfoTip tip={t('portfolio.tip.programs')} className="block">

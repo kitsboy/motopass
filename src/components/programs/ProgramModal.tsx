@@ -22,8 +22,7 @@ import { programDetailJsonLd } from '../../lib/siteJsonLd';
 import { safeSatohashHref } from '../../lib/satohash';
 import { ScorecardBars } from '../intel/ScorecardBars';
 import { VeritasSourcePanel } from '../intel/VeritasSourcePanel';
-import { programFacts } from '../../lib/factCoverage';
-import { evidenceFor, factLabel, sourceHost } from '../../lib/factEvidence';
+import { EvidencePanel } from './EvidencePanel';
 import { CountryTitle } from '../ui/CountryTitle';
 import { normalizeVisitorUrl, visitorLink } from '../../lib/visitorLink';
 
@@ -477,54 +476,7 @@ function ProgramModalBody({
         </div>
       )}
 
-      {tab === 'Evidence' && (
-        <div className="space-y-4">
-          <p className="text-xs card-muted leading-relaxed">{t('modal.evidenceIntro')}</p>
-          <ul className="text-sm">
-            {programFacts(program).map(fact => {
-              const evidence = evidenceFor(program, fact.key)
-              const host = sourceHost(evidence?.source ?? null)
-              return (
-                <li
-                  key={fact.key}
-                  className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 border-t border-mp-border-subtle py-1.5 first:border-t-0"
-                >
-                  <span
-                    className={`font-mono text-[11px] ${fact.have ? 'text-mp-ink' : 'text-mp-ink-tertiary'}`}
-                  >
-                    {factLabel(fact.key)}
-                  </span>
-                  {fact.have ? (
-                    evidence?.source ? (
-                      <a
-                        href={evidence.source}
-                        target="_blank"
-                        rel="noreferrer"
-                        title={evidence.source}
-                        className="font-mono text-[10px] text-mp-ink-tertiary underline-offset-2 hover:underline"
-                      >
-                        {evidence.date} · {host} ↗
-                      </a>
-                    ) : (
-                      <span className="font-mono text-[10px] text-mp-ink-tertiary">
-                        {evidence ? evidence.date : t('modal.evidenceUndated')}
-                      </span>
-                    )
-                  ) : (
-                    <span className="font-mono text-[10px] text-mp-wax">{t('modal.evidenceMissing')}</span>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-          <p className="text-xs card-muted leading-relaxed">
-            {t('modal.evidenceMissingNote')}{' '}
-            <Link to="/agents#agents-paige" className="text-accent hover:underline" onClick={onClose}>
-              {t('modal.evidenceAskPaige')}
-            </Link>
-          </p>
-        </div>
-      )}
+      {tab === 'Evidence' && <EvidencePanel program={program} onClose={onClose} />}
 
       {tab === 'Sources' && (
         <div className="space-y-4">
