@@ -28,7 +28,14 @@ function facts(program) {
     { key: 'fee_in_bitcoin', have: feeStated(program.finance?.bitcoin_specific) },
     { key: 'days_in_country', have: hasNumber(program.compliance_clock?.residency_day_count_target) },
     { key: 'years_to_citizenship', have: hasNumber(program.compliance_clock?.citizenship_eligibility_years) },
-    { key: 'renewal_months', have: hasNumber(program.compliance_clock?.renewal_interval_months) },
+    {
+      key: 'renewal_months',
+      // Citizenship at grant means there is no permit to renew — the clocks
+      // already render that as "None", so counting it as missing would be wrong.
+      have:
+        hasNumber(program.compliance_clock?.renewal_interval_months) ||
+        program.compliance_clock?.citizenship_eligibility_years === 0,
+    },
     { key: 'mobility', have: hasText(program.critical_tests?.notes) },
     { key: 'mobility_score', have: hasNumber(program.scorecard?.mobility) },
     { key: 'banking_score', have: hasNumber(program.scorecard?.banking) },

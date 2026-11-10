@@ -23,7 +23,8 @@ describe('decision pack', () => {
     expect(clocks.renewal).toBe('36 mo')
     expect(pack.feeInBitcoin).toBe('no')
     expect(pack.mobilityNote).toMatch(/170/)
-    expect(pack.mobilityScore).toBeNull()
+    // Henley Sept 2026: 155 visa-free destinations → round(155 / 20).
+    expect(pack.mobilityScore).toBe(8)
     expect(pack.bankingScore).toBeNull()
     expect(pack.bankingNote).toBeNull()
     expect(pack.filing).toBe('unknown')
@@ -63,7 +64,8 @@ describe('decision pack', () => {
     ])
     expect(visa?.capPerYear).toBe('1,000')
     expect(pack.routes.every(route => route.status === 'live')).toBe(true)
-    expect(pack.mobilityScore).toBeNull()
+    // Henley Sept 2026: 131 visa-free destinations → round(131 / 20).
+    expect(pack.mobilityScore).toBe(7)
     expect(pack.bankingScore).toBeNull()
   })
 
@@ -77,7 +79,8 @@ describe('decision pack', () => {
     expect(clocks.renewal).toBe('None')
     expect(pack.filing).toBe('remote')
     expect(pack.feeInBitcoin).toBe('partial')
-    expect(pack.mobilityScore).toBe(2)
+    // Henley Sept 2026: 58 visa-free destinations → round(58 / 20).
+    expect(pack.mobilityScore).toBe(3)
     expect(pack.bankingScore).toBe(3)
     expect(pack.routes[0].family).toEqual([
       { who: 'Additional dependent', usd: 5000, included: false },

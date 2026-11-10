@@ -7,10 +7,10 @@
     "region": "Africa",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.357Z",
+  "generated_at": "2026-11-10T02:17:14.288Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -56,7 +56,7 @@
         "label": "cost"
       },
       "mobility": {
-        "value": 2,
+        "value": 3,
         "present": true,
         "label": "mobility"
       },
@@ -91,7 +91,7 @@
     "tiers": {
       "official": 1,
       "legal": 0,
-      "secondary": 3
+      "secondary": 4
     },
     "list": [
       {
@@ -108,6 +108,10 @@
       },
       {
         "name": "Henley & Partners — https://www.henleyglobal.com/citizenship-investment/sao-tome-principe",
+        "tier": "secondary"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
         "tier": "secondary"
       }
     ],
@@ -160,6 +164,13 @@
       "from": "916b11e7906487e8",
       "to": "re-anchored 4cdb4a443d04d8a5 (stamp 8490bdb2-920)",
       "hash": "4cdb4a443d04d8a57c87f94aacf6129e1038282180155da07aa4bac4bd01f5b0"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "2",
+      "to": "3 (58 visa-free destinations)",
+      "hash": null
     }
   ],
   "sovereignty": {

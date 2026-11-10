@@ -7,10 +7,10 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.354Z",
+  "generated_at": "2026-11-10T02:17:14.287Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -46,8 +46,8 @@
         "label": "stability"
       },
       "tax": {
-        "value": null,
-        "present": false,
+        "value": 6,
+        "present": true,
         "label": "tax"
       },
       "cost": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 8,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 200000,
@@ -100,8 +100,8 @@
   "sources": {
     "tiers": {
       "official": 4,
-      "legal": 0,
-      "secondary": 2
+      "legal": 1,
+      "secondary": 4
     },
     "list": [
       {
@@ -127,6 +127,18 @@
       {
         "name": "Official — https://www.immigration.gov.bb/",
         "tier": "official"
+      },
+      {
+        "name": "Barbados Immigration Department — Special Entry Permit requirements — https://immigration.gov.bb/pages/SpecialEntryPermit.aspx",
+        "tier": "secondary"
+      },
+      {
+        "name": "Barbados Citizenship Act, Cap. 186 (naturalisation: 12 months + 5 of 7 years) — https://www.refworld.org/legal/legislation/natlegbod/1966/en/20336",
+        "tier": "legal"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
       }
     ],
     "official_urls": [
@@ -170,27 +182,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-09-14",
-      "field": "watch.https://barbadoswelcomestamp.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
-    },
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://www.immigration.gov.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
-    },
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://barbadoswelcomestamp.bb",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
-    },
-    {
       "date": "2026-09-15",
       "field": "watch.https://www.immigration.gov.bb",
       "from": null,
@@ -224,6 +215,27 @@
       "from": "495453947a454b02",
       "to": "re-anchored 64e834ed74a98fa1 (stamp 44010535-120)",
       "hash": "64e834ed74a98fa1aa17928ae10e6a853e03d0c45542dd867e8a9f0e4e31a664"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "compliance_clock",
+      "from": "days null, years null",
+      "to": "days 0, years 5",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "8 (163 visa-free destinations)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.tax",
+      "from": "null",
+      "to": "6",
+      "hash": null
     }
   ],
   "sovereignty": {

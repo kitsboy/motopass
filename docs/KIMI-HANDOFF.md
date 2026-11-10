@@ -1,3 +1,22 @@
+## Session — 2026-11-09 · Coverage fills from sources, facts column, day panel (Buffy)
+
+**Done:**
+- `scripts/apply-researched-fills.mjs` (idempotent) wrote 51 sourced updates into `research/countries.json`: Bahamas 90-day presence + 10-year citizenship, Barbados 5-year naturalisation + 0-day minimum, Cayman 20 years to Caymanian status (1 May 2026 reform), Vanuatu's full direct-tax position with a `Crypto/Bitcoin tax:` sentence, 20 mobility scores (Henley Sept 2026 visa-free ÷ 20) and 8 tax scores. Each write has a dated `audit_trail` row naming its source.
+- `scripts/data-coverage.mjs` no longer counts renewal as missing when citizenship is granted outright — there is no permit to renew and the clocks already say "None".
+- Programs table: new sortable `Facts` column showing `n/23`, amber when incomplete, with the missing fact keys in the tooltip. Shares `src/lib/factCoverage.ts` with the audit.
+- Day panel: programs with a 0-day requirement are now drawn as rows tagged "None" instead of being listed in a footnote, plus a counted summary line.
+
+**Result:** 20 programs at 22/23 facts, São Tomé at 23/23, Cayman 21/23.
+
+**Decisions:**
+- Banking score left empty on 20 programs. There is no comparable country-level measure; the number would be an opinion. Needs a published method first (banks, applicant profile, documents).
+- Cayman mobility left empty: Cayman residents travel on a BOTC passport that Henley does not rank separately; the UK count would be wrong.
+- `last_checked` was not moved. It records the last full human re-read (2026-11-08), and partial source reads on 9 Nov are recorded in `audit_trail` instead.
+
+**Checks:** validate:data, validate:stamps (21/21), pitch:check, trust:envelopes + trust:check, lint (0 errors), `npm test`, `tsc` and `vite build` — see the run below. The two `tsc` errors in `IntelWatchStrip.test.ts` are pre-existing.
+
+**Git State:** committed and pushed on `main`; Cloudflare Pages deploy verified against the live bundle.
+
 ## Session — 2026-11-09 · Selection board card, country coverage audit (Buffy)
 
 **Done:**

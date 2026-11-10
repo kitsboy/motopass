@@ -9,6 +9,8 @@ import { CountryFlag } from '../ui/CountryTitle';
 import { BtcDualPrice } from '../BtcDualPrice';
 import type { ProgramsTableDensity } from '../../lib/portfolioStorage';
 import { useI18n } from '../../i18n/I18nContext';
+import { formatT } from '../../i18n/format';
+import { programFacts } from '../../lib/factCoverage';
 import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
@@ -54,6 +56,11 @@ export function ProgramsTable({
 }: ProgramsTableProps) {
   const { t } = useI18n();
   const [scoreSort, setScoreSort] = useState<SortDir>(null);
+  const [factsSort, setFactsSort] = useState<SortDir>(null);
+  const facts = useMemo(
+    () => new Map(programs.map(program => [program.id, programFacts(program)])),
+    [programs],
+  );
   const portfolioSet = new Set(portfolioIds);
   const compact = density === 'compact';
   const cellPad = compact ? 'py-2' : 'py-3';
@@ -67,15 +74,28 @@ export function ProgramsTable({
   };
 
   const sortedPrograms = useMemo(() => {
+    const have = (id: string) => (facts.get(id) ?? []).filter(fact => fact.have).length;
+    if (factsSort) {
+      return [...programs].sort((a, b) => {
+        const diff = have(a.id) - have(b.id);
+        return factsSort === 'asc' ? diff : -diff;
+      });
+    }
     if (!scoreSort) return programs;
     return [...programs].sort((a, b) => {
       const diff = a.sovereigntyScore - b.sovereigntyScore;
       return scoreSort === 'asc' ? diff : -diff;
     });
-  }, [programs, scoreSort]);
+  }, [programs, scoreSort, factsSort, facts]);
 
   const toggleScoreSort = () => {
+    setFactsSort(null);
     setScoreSort(prev => (prev === null ? 'desc' : prev === 'desc' ? 'asc' : null));
+  };
+
+  const toggleFactsSort = () => {
+    setScoreSort(null);
+    setFactsSort(prev => (prev === null ? 'desc' : prev === 'desc' ? 'asc' : null));
   };
 
   return (
@@ -112,6 +132,23 @@ export function ProgramsTable({
               {scoreSort === 'desc' && <ChevronDown size={12} aria-hidden="true" />}
               {scoreSort === 'asc' && <ChevronUp size={12} aria-hidden="true" />}
               {scoreSort === null && <ChevronsUpDown size={12} className="opacity-45" aria-hidden="true" />}
+            </button>
+          </th>
+          <th
+            scope="col"
+            aria-sort={factsSort === 'asc' ? 'ascending' : factsSort === 'desc' ? 'descending' : 'none'}
+            className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end font-medium`}
+          >
+            <button
+              type="button"
+              onClick={toggleFactsSort}
+              className={`inline-flex items-center gap-1 font-chrome text-[11px] uppercase tracking-wide transition-colors hover:text-mp-btc-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc ${factsSort ? 'text-mp-btc-text' : 'text-inherit'}`}
+              title={t('programs.factsHint')}
+            >
+              {t('programs.facts')}
+              {factsSort === 'desc' && <ChevronDown size={12} aria-hidden="true" />}
+              {factsSort === 'asc' && <ChevronUp size={12} aria-hidden="true" />}
+              {factsSort === null && <ChevronsUpDown size={12} className="opacity-45" aria-hidden="true" />}
             </button>
           </th>
           <th scope="col" className={`border-b border-mp-border-subtle ${cellPad} pe-4 font-medium`}>{t('programs.proof')}</th>
@@ -199,6 +236,25 @@ export function ProgramsTable({
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>
                 <SovereigntyScoreTooltip program={p} score={p.sovereigntyScore} isFlagship={isFlagship} />
+              </td>
+              <td className={`border-b border-mp-border-subtle ${cellPad} pe-4 text-end`}>
+                {(() => {
+                  const list = facts.get(p.id) ?? [];
+                  const have = list.filter(fact => fact.have).length;
+                  const complete = have === list.length;
+                  return (
+                    <span
+                      className={`inline-flex items-center rounded-chip border px-1.5 py-0.5 font-mono text-[10px] tabular-nums ${
+                        complete
+                          ? 'border-mp-border text-mp-ink-secondary'
+                          : 'border-mp-wax/40 text-mp-wax'
+                      }`}
+                      title={`${formatT(t, 'programs.factsOnFile', { have, total: list.length })}${complete ? '' : ` — ${list.filter(fact => !fact.have).map(fact => fact.key).join(', ')}`}`}
+                    >
+                      {have}/{list.length}
+                    </span>
+                  );
+                })()}
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4`}>
                 <div className="flex flex-wrap items-center gap-1.5">

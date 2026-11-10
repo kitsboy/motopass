@@ -7,10 +7,10 @@
     "region": "Central America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.356Z",
+  "generated_at": "2026-11-10T02:17:14.288Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 7,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 200000,
@@ -101,7 +101,7 @@
     "tiers": {
       "official": 2,
       "legal": 3,
-      "secondary": 1
+      "secondary": 2
     },
     "list": [
       {
@@ -127,6 +127,10 @@
       {
         "name": "Official — https://www.migracion.gob.pa",
         "tier": "official"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
       }
     ],
     "official_urls": [
@@ -157,13 +161,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-10-13",
-      "field": "watch.https://www.migracion.gob.pa",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "9e6dcb7e14b69713"
-    },
     {
       "date": "2026-10-23",
       "field": "watch.https://www.mire.gob.pa/",
@@ -212,6 +209,13 @@
       "from": "c0f4352fe65c1b80",
       "to": "re-anchored 71085b61c92479d1 (stamp 9a84605b-a72)",
       "hash": "71085b61c92479d16f231bbdee613c88945b4d37e580e6e894c3318873491587"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "7 (147 visa-free destinations)",
+      "hash": null
     }
   ],
   "sovereignty": {

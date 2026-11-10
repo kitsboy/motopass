@@ -7,10 +7,10 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.353Z",
+  "generated_at": "2026-11-10T02:17:14.286Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -46,8 +46,8 @@
         "label": "stability"
       },
       "tax": {
-        "value": null,
-        "present": false,
+        "value": 8,
+        "present": true,
         "label": "tax"
       },
       "cost": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 7,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 235000,
@@ -113,7 +113,7 @@
     "tiers": {
       "official": 4,
       "legal": 0,
-      "secondary": 0
+      "secondary": 1
     },
     "list": [
       {
@@ -131,6 +131,10 @@
       {
         "name": "Official — https://www.gov.gd/",
         "tier": "official"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
       }
     ],
     "official_urls": [
@@ -167,20 +171,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "finance.typical_investment_usd",
-      "from": 200000,
-      "to": 245000,
-      "hash": null
-    },
-    {
-      "date": "2026-09-10",
-      "field": "legal_compliance.recent_changes",
-      "from": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged.",
-      "to": "Real-estate CBI share minimum corrected $220k -> $270k (UNCTAD monitor measure 5026; statutory Regulations). NTF donation single $150k confirmed unchanged. NTF donation raised $150k -> $235k (single or family of up to 4; GIS Grenada 2026, multi-source corroborated 2025-09 through 2026-08). US Proclamation 10998 partial restrictions name Antigua and Dominica — Grenada not listed; E-2 treaty differentiator unaffected.",
-      "hash": null
-    },
     {
       "date": "2026-09-10",
       "field": "last_checked",
@@ -222,6 +212,20 @@
       "from": "324a9d2f5d396de1",
       "to": "re-anchored f485aeeed85024b2 (stamp eec985e8-5fe)",
       "hash": "f485aeeed85024b22bd4723d0515ee6d76f563695f436054740524e0413c7c24"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "7 (147 visa-free destinations)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.tax",
+      "from": "null",
+      "to": "8",
+      "hash": null
     }
   ],
   "sovereignty": {

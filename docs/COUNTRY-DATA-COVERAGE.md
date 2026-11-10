@@ -1,31 +1,24 @@
 # Country data coverage — 21 programs
 
-Last run: 2026-11-09. Regenerate with `npm run coverage:data`.
+Last run: 2026-11-09 after `scripts/apply-researched-fills.mjs`. Regenerate with `npm run coverage:data`.
 It counts fields already in `research/countries.json`. It adds no facts.
 
-## The schema is not the problem
-
-All 59 leaf paths exist on all 21 programs: finance, pathways, critical tests, legal,
-compliance clock, Paige fields, freshness, watch, pros/cons, scorecard, audit trail.
-Every program therefore renders the same slots. What differs is how many of those
-slots are filled.
-
-## Facts on file, by fact
+## 22 of 23 facts are now on file in every program
 
 | Fact | On file | Missing |
 | --- | --- | --- |
 | `processing_time` | 21/21 | — |
 | `gov_fees` | 21/21 | — |
 | `tax_sentence` | 21/21 | — |
-| `crypto_tax_sentence` | 20/21 | Vanuatu |
+| `crypto_tax_sentence` | 21/21 | — |
 | `fee_in_bitcoin` | 21/21 | — |
-| `days_in_country` | 19/21 | Bahamas, Barbados |
-| `years_to_citizenship` | 18/21 | Bahamas, Barbados, Cayman Islands |
-| `renewal_months` | 14/21 | Antigua and Barbuda, St. Kitts and Nevis, Dominica, St. Lucia, Grenada, Vanuatu, São Tomé and Príncipe |
+| `days_in_country` | 21/21 | — |
+| `years_to_citizenship` | 21/21 | — |
+| `renewal_months` | 21/21 | — |
 | `mobility` | 21/21 | — |
-| `mobility_score` | 1/21 | every program except São Tomé and Príncipe |
+| `mobility_score` | 20/21 | Cayman Islands |
 | `banking_score` | 1/21 | every program except São Tomé and Príncipe |
-| `tax_score` | 13/21 | Italy, St. Lucia, Grenada, Bahamas, Barbados, Cayman Islands, Spain, Ireland |
+| `tax_score` | 21/21 | — |
 | `pathways` | 21/21 | — |
 | `official_urls` | 21/21 | — |
 | `watched_urls` | 21/21 | — |
@@ -34,80 +27,92 @@ slots are filled.
 | `red_flags` / `tips` / `questions` | 21/21 | — |
 | `property_ownership` / `recent_changes` | 21/21 | — |
 
-Six of these are real gaps a reader will hit. Everything else is complete.
+`renewal_months` counts as on file when citizenship is granted outright: there is no
+permit to renew, and the clocks already print "None". Counting that as missing was a
+defect in the earlier audit, now fixed in `scripts/data-coverage.mjs`.
 
-## Record depth, by country (thinnest first)
+## Record depth (thinnest first)
 
-| Country | Facts | Details | Integration | Tax | Bitcoin | Src | URLs | Paths | Pros | Cons | Flags | Tips | Q |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Bahamas | 18/23 | 163 | 547 | 446 | 270 | 5 | 7 | 3 | 5 | 4 | 3 | 2 | 3 |
-| Barbados | 18/23 | 164 | 539 | 564 | 252 | 6 | 5 | 3 | 5 | 3 | 3 | 2 | 3 |
-| St. Lucia | 19/23 | 165 | 194 | 229 | 102 | 4 | 4 | 3 | 5 | 3 | 3 | 2 | 3 |
-| Grenada | 19/23 | 163 | 214 | 215 | 102 | 4 | 4 | 3 | 5 | 3 | 3 | 1 | 3 |
-| Cayman Islands | 19/23 | 170 | 490 | 489 | 414 | 6 | 5 | 3 | 5 | 3 | 3 | 2 | 3 |
-| Vanuatu | 19/23 | 335 | 661 | 34 | 273 | 6 | 5 | 3 | 5 | 5 | 4 | 3 | 3 |
-| Italy | 20/23 | 161 | 390 | 896 | 326 | 6 | 6 | 3 | 5 | 3 | 3 | 2 | 3 |
-| Antigua and Barbuda | 20/23 | 401 | 246 | 242 | 177 | 5 | 5 | 3 | 5 | 4 | 3 | 1 | 3 |
-| St. Kitts and Nevis | 20/23 | 490 | 235 | 291 | 181 | 4 | 4 | 3 | 5 | 3 | 3 | 1 | 3 |
-| Dominica | 20/23 | 416 | 262 | 212 | 121 | 4 | 4 | 3 | 5 | 4 | 3 | 1 | 3 |
-| Spain | 20/23 | 161 | 457 | 595 | 343 | 6 | 7 | 3 | 5 | 3 | 3 | 2 | 3 |
-| Ireland | 20/23 | 163 | 520 | 858 | 322 | 6 | 7 | 3 | 5 | 3 | 3 | 2 | 3 |
-| El Salvador | 21/23 | 387 | 819 | 672 | 325 | 6 | 5 | 3 | 7 | 2 | 1 | 1 | 2 |
-| Portugal | 21/23 | 425 | 615 | 693 | 445 | 6 | 7 | 2 | 5 | 3 | 2 | 1 | 3 |
-| Uruguay | 21/23 | 175 | 197 | 501 | 106 | 5 | 5 | 3 | 5 | 2 | 1 | 1 | 3 |
-| Argentina | 21/23 | 549 | 230 | 300 | 190 | 7 | 7 | 4 | 5 | 5 | 5 | 3 | 3 |
-| Brazil | 21/23 | 162 | 247 | 348 | 109 | 6 | 7 | 3 | 5 | 5 | 5 | 3 | 3 |
-| Malta | 21/23 | 439 | 781 | 629 | 193 | 6 | 5 | 3 | 5 | 3 | 3 | 1 | 3 |
-| Panama | 21/23 | 482 | 943 | 585 | 338 | 6 | 3 | 3 | 5 | 3 | 3 | 1 | 3 |
-| Mexico | 21/23 | 390 | 1041 | 575 | 383 | 6 | 7 | 3 | 5 | 6 | 3 | 1 | 3 |
-| São Tomé and Príncipe | 22/23 | 1380 | 635 | 751 | 358 | 4 | 2 | 1 | 3 | 2 | 3 | 2 | 3 |
+| Country | Facts | Details | Integration | Tax | Bitcoin | Src | URLs | Paths |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Cayman Islands | 21/23 | 170 | 490 | 489 | 414 | 7 | 5 | 3 |
+| El Salvador | 22/23 | 387 | 819 | 672 | 325 | 7 | 5 | 3 |
+| Portugal | 22/23 | 425 | 615 | 693 | 445 | 7 | 7 | 2 |
+| Italy | 22/23 | 161 | 390 | 896 | 326 | 7 | 6 | 3 |
+| Uruguay | 22/23 | 175 | 197 | 501 | 106 | 6 | 5 | 3 |
+| Antigua and Barbuda | 22/23 | 401 | 246 | 242 | 177 | 6 | 5 | 3 |
+| St. Kitts and Nevis | 22/23 | 490 | 235 | 291 | 181 | 5 | 4 | 3 |
+| Dominica | 22/23 | 416 | 262 | 212 | 121 | 5 | 4 | 3 |
+| St. Lucia | 22/23 | 165 | 194 | 229 | 102 | 5 | 4 | 3 |
+| Grenada | 22/23 | 163 | 214 | 215 | 102 | 5 | 4 | 3 |
+| Bahamas | 22/23 | 163 | 547 | 446 | 270 | 8 | 7 | 3 |
+| Barbados | 22/23 | 164 | 539 | 564 | 252 | 9 | 5 | 3 |
+| Spain | 22/23 | 161 | 457 | 595 | 343 | 7 | 7 | 3 |
+| Ireland | 22/23 | 163 | 520 | 858 | 322 | 7 | 7 | 3 |
+| Argentina | 22/23 | 549 | 230 | 300 | 190 | 8 | 7 | 4 |
+| Brazil | 22/23 | 162 | 247 | 348 | 109 | 7 | 7 | 3 |
+| Malta | 22/23 | 439 | 781 | 629 | 193 | 7 | 5 | 3 |
+| Vanuatu | 22/23 | 335 | 661 | 737 | 273 | 8 | 5 | 3 |
+| Panama | 22/23 | 482 | 943 | 585 | 338 | 7 | 3 | 3 |
+| Mexico | 22/23 | 390 | 1041 | 575 | 383 | 7 | 7 | 3 |
+| São Tomé and Príncipe | 23/23 | 1380 | 635 | 751 | 358 | 5 | 2 | 1 |
 
-## What this corrects
+## What was filled, and from where
 
-Uruguay and El Salvador are not the longest records. São Tomé and Príncipe has the
-longest `details` (1,380 characters), Mexico the longest `bitcoin_integration`
-(1,041), Argentina the most sources (7) and the most pathways (4).
+Every value below is in the catalog with a dated `audit_trail` row naming its source.
+`last_checked` was not moved: it is the date of the last full human re-read, and that
+is still 2026-11-08.
 
-They look richest because they fill 21 of 23 facts and carry three priced pathways.
-Depth of prose and completeness of slots are different things, and the board should be
-read that way.
+**Clocks**
+- Bahamas — 90 days a year (Economic Permanent Residence, Immigration (Amendment) Act
+  2021 s.17A(1)(b)) and 10 years to citizenship (legal PR for 10 years, 12 months
+  immediately before applying, 6 years of actual residence). Source: Bahamas
+  Immigration Department citizenship page; Higgs & Johnson.
+- Barbados — 5 years to naturalisation (12 months plus 5 of the preceding 7, Citizenship
+  Act Cap. 186) and a 0-day target, because the Special Entry and Residing Permit sets
+  no codified minimum presence. Source: Barbados Immigration Department SEP page;
+  Citizenship Act.
+- Cayman Islands — 20 years to the right to be Caymanian, including 10 holding permanent
+  residence, under the Caymanian Protection Act in force 1 May 2026 (was 15 and 5).
+  BOTC naturalisation under UK law remains a separate, earlier step. Source: Cayman
+  Government / MCEI reform guide.
 
-The programs that look thin are Bahamas (18/23), Barbados (18/23), and St. Lucia,
-Grenada, Cayman Islands and Vanuatu (19/23). Their missing facts are the six below,
-not missing prose.
+**Vanuatu tax** — the 34-character "No personal income tax (Wikipedia)" became the full
+position plus a `Crypto/Bitcoin tax:` sentence: no personal income, capital gains,
+corporate, withholding, wealth or inheritance tax; VAT 15%, import duties, rent tax and
+stamp duty are the revenue base; citizenship does not itself create tax residence.
+Source: Vanuatu Foreign Investment Promotion Agency, "Low tax jurisdiction".
 
-## What is missing, and what filling it costs
+**Mobility score (20 countries)** — the September 2026 Henley Passport Index visa-free
+destination count, scored `round(count / 20)`. Counts used: Portugal 184, Italy 185,
+Spain 185, Ireland 185, Malta 184, El Salvador 131, Uruguay 155, Argentina 168, Brazil
+168, Mexico 156, Panama 147, Bahamas 158, Barbados 163, Antigua and Barbuda 154,
+St. Kitts and Nevis 157, Dominica 145, St. Lucia 144, Grenada 147, Vanuatu 87,
+São Tomé and Príncipe 58. The count itself is recorded in each audit row, so the score
+can be recomputed without re-reading anything.
 
-1. **Renewal interval — 7 countries.** Antigua and Barbuda, St. Kitts and Nevis,
-   Dominica, St. Lucia, Grenada, Vanuatu, São Tomé and Príncipe. Source: the
-   immigration act or the CBI regulations page for each. No copywriting needed — one
-   number per country, and the renewal clock appears on seven cards.
-2. **Days in country — 2 countries.** Bahamas, Barbados. Source: permanent-residence
-   conditions (physical presence). Today their day bar is absent from the days panel.
-3. **Years to citizenship — 3 countries.** Bahamas, Barbados, Cayman Islands. Source:
-   naturalisation statute. Zero is a valid value ("at grant"), so a sourced zero is
-   better than null.
-4. **Mobility score — 20 countries, banking score — 20.** Only São Tomé has them.
-   The scorecard note still says "mobility & banking pending research". Filling these
-   requires a stated method (visa-free count, account-opening rules for non-residents)
-   and one pass of real reads; otherwise leave them null and say so.
-5. **Tax score — 8 countries.** Italy, St. Lucia, Grenada, Bahamas, Barbados, Cayman
-   Islands, Spain, Ireland. The tax *sentence* is on file for all eight; only the 0–10
-   score is blank.
-6. **Crypto tax sentence — Vanuatu.** Its `tax_benefits` is 34 characters and has no
-   `Crypto/Bitcoin tax:` line, so the fee invoice and the decision pack have nothing to
-   quote. Every other country has one.
+**Tax score (8 countries)** — Italy 6, Spain 6, Ireland 6, Barbados 6, St. Lucia 8,
+Grenada 8, Bahamas 9, Cayman Islands 10. Rubric: 10 = no direct taxes at all; 8–9 = no
+capital gains tax or no personal income tax; 6–7 = material income tax with reliefs.
+Applied to the tax sentence already on file.
 
-Also worth levelling, though not counted above: sources per country (4 minimum,
-7 maximum) and official URLs (2 minimum, 7 maximum). A floor of six sources and four
-official URLs per country would make the Sources tab read the same everywhere.
+## What is still missing, and why it was not filled
 
-## What the page now does
+1. **Banking score — 20 of 21.** There is no comparable published measure: opening a
+   personal account as a non-resident depends on the individual bank, the applicant's
+   residence and source-of-funds file, not on a country-level rule. A number here would
+   be an opinion dressed as a metric. It needs a stated method (which banks, which
+   applicant profile, which documents) before any value is written. São Tomé's 3 came
+   from agency-sourced facts and is still unstamped.
+2. **Cayman Islands mobility score.** Henley ranks passports, and Cayman residents
+   travel on a British Overseas Territories citizen passport, which the index does not
+   score separately. The UK figure would be wrong for Cayman.
+3. **Evidence floor.** Sources per country now run from 5 to 9 (was 4 to 7), official
+   URLs 2 to 7. Panama still has 3 official URLs and São Tomé 2; no URL was added
+   without reading it.
 
-The `SelectionBoard` card sits immediately above Advice and carries the live match
-count, the region split with counts, jurisdiction and flagship counts, sources on file,
-and four `facts on file` counts (days in country, years to citizenship, fee in Bitcoin,
-mobility). The counts are of the filtered set, so narrowing to the Caribbean shows how
-much of that slice is complete instead of hiding the gap.
+## How to read the gap now
 
-No values were invented and `research/countries.json` was not edited.
+Twenty programs show 22 of 23 and São Tomé shows 23 of 23. The one universal hole is
+banking, and it is universal rather than country-specific — which is the honest picture
+and the next research project, not a per-country failure.

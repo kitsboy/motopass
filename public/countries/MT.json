@@ -7,10 +7,10 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.356Z",
+  "generated_at": "2026-11-10T02:17:14.287Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 9,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 200000,
@@ -101,7 +101,7 @@
     "tiers": {
       "official": 1,
       "legal": 4,
-      "secondary": 1
+      "secondary": 2
     },
     "list": [
       {
@@ -126,6 +126,10 @@
       },
       {
         "name": "MaltaToday — https://www.maltatoday.com.mt/sponsored/sponsored/130377/understanding_cryptocurrency_taxation_in_malta",
+        "tier": "secondary"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
         "tier": "secondary"
       }
     ],
@@ -169,13 +173,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-05",
-      "field": "watch.https://residencymalta.gov.mt",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
-    },
     {
       "date": "2026-09-06",
       "field": "watch.https://residencymalta.gov.mt",
@@ -224,6 +221,13 @@
       "from": "cbecbf6ecaa659a2",
       "to": "re-anchored 7b4f66059e8886ff (stamp 6d7c2103-05a)",
       "hash": "7b4f66059e8886ff250ac734a28e155cbcbb10eb7d17c30a1db4c8fa4672dedd"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "9 (184 visa-free destinations)",
+      "hash": null
     }
   ],
   "sovereignty": {

@@ -7,10 +7,10 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.355Z",
+  "generated_at": "2026-11-10T02:17:14.287Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -46,8 +46,8 @@
         "label": "stability"
       },
       "tax": {
-        "value": null,
-        "present": false,
+        "value": 6,
+        "present": true,
         "label": "tax"
       },
       "cost": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 9,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 500000,
@@ -101,7 +101,7 @@
     "tiers": {
       "official": 5,
       "legal": 0,
-      "secondary": 1
+      "secondary": 2
     },
     "list": [
       {
@@ -127,6 +127,10 @@
       {
         "name": "Official — https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
         "tier": "official"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
       }
     ],
     "official_urls": [
@@ -182,20 +186,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-10-31",
-      "field": "watch.https://enterprise.gov.ie",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "25843a407d28ed37"
-    },
-    {
-      "date": "2026-11-01",
-      "field": "watch.https://www.centralbank.ie",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "b5f7533d320e0420"
-    },
-    {
       "date": "2026-11-03",
       "field": "watch.https://www.revenue.ie/",
       "from": null,
@@ -236,6 +226,20 @@
       "from": "39d27d5284d82abd",
       "to": "re-anchored c1f60dab96cf37c6 (stamp 4856ac92-d7f)",
       "hash": "c1f60dab96cf37c674a30d8c55514692420451a020dafc81f5ce1a2407f1e0aa"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "9 (185 visa-free destinations)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.tax",
+      "from": "null",
+      "to": "6",
+      "hash": null
     }
   ],
   "sovereignty": {

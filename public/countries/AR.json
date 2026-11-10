@@ -7,10 +7,10 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.355Z",
+  "generated_at": "2026-11-10T02:17:14.287Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 8,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 50000,
@@ -106,7 +106,7 @@
     "tiers": {
       "official": 7,
       "legal": 0,
-      "secondary": 0
+      "secondary": 1
     },
     "list": [
       {
@@ -136,6 +136,10 @@
       {
         "name": "CitizenX (announced CBI, @PlanBpassport X thread 2026-10-02) — https://x.com/PlanBpassport/status/2106022914143269177",
         "tier": "official"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
       }
     ],
     "official_urls": [
@@ -191,13 +195,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-09-15",
-      "field": "watch.https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "91451ce7cd5c52de"
-    },
-    {
       "date": "2026-09-30",
       "field": "proof",
       "from": "0d1fa5959e489423",
@@ -245,6 +242,13 @@
       "from": "515b2a393bbffcfe",
       "to": "re-anchored 164d0a3b6eb57f5d (stamp 9b902d2f-53a)",
       "hash": "164d0a3b6eb57f5de5df783a040f6d640a882e8fc48b14e31045f9184737d7cb"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "8 (168 visa-free destinations)",
+      "hash": null
     }
   ],
   "sovereignty": {

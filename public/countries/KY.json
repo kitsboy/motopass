@@ -7,10 +7,10 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.354Z",
+  "generated_at": "2026-11-10T02:17:14.287Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -46,8 +46,8 @@
         "label": "stability"
       },
       "tax": {
-        "value": null,
-        "present": false,
+        "value": 10,
+        "present": true,
         "label": "tax"
       },
       "cost": {
@@ -99,7 +99,7 @@
   },
   "sources": {
     "tiers": {
-      "official": 3,
+      "official": 4,
       "legal": 1,
       "secondary": 2
     },
@@ -126,6 +126,10 @@
       },
       {
         "name": "Official — https://www.gov.ky/",
+        "tier": "official"
+      },
+      {
+        "name": "Cayman Islands Government / MCEI — Immigration Reform Guide, Caymanian Protection Act (20 years, 10 as PR, from 1 May 2026) — https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+-+18JUNE2026.pdf",
         "tier": "official"
       }
     ],
@@ -170,20 +174,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-09-11",
-      "field": "watch.https://www.gov.ky",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
-    },
-    {
-      "date": "2026-09-12",
-      "field": "watch.https://www.gov.ky",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "67fe1219912c44a070dc6c3862f7aa36b717cf36784551747899469a882a0bbf"
-    },
-    {
       "date": "2026-09-13",
       "field": "watch.https://www.gov.ky",
       "from": null,
@@ -224,6 +214,20 @@
       "from": "1842cdd9cd07c630",
       "to": "re-anchored 83c5ad64fcb92a9f (stamp 7431cf6d-d71)",
       "hash": "83c5ad64fcb92a9f9fb26859e936a4fefdc8d9f3fe233ab0b23dfebbde1c1ee1"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "compliance_clock",
+      "from": "days 0, years null",
+      "to": "days 0, years 20",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.tax",
+      "from": "null",
+      "to": "10",
+      "hash": null
     }
   ],
   "sovereignty": {

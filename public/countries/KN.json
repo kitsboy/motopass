@@ -7,10 +7,10 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.352Z",
+  "generated_at": "2026-11-10T02:17:14.286Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 8,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 250000,
@@ -101,7 +101,7 @@
     "tiers": {
       "official": 3,
       "legal": 0,
-      "secondary": 1
+      "secondary": 2
     },
     "list": [
       {
@@ -119,6 +119,10 @@
       {
         "name": "Official — https://www.gov.kn/",
         "tier": "official"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
       }
     ],
     "official_urls": [
@@ -155,13 +159,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-11",
-      "field": "proof",
-      "from": "f2209308668869dc",
-      "to": "re-anchored e0f6d701ac8f0963 (stamp a236d963-f87)",
-      "hash": "e0f6d701ac8f0963a3a71c64e39949cfe7a2d6c467f9a2e6be4fe43990388901"
-    },
     {
       "date": "2026-09-12",
       "field": "watch.https://www.ciu.gov.kn",
@@ -210,6 +207,13 @@
       "from": "645d4060bb4ff823",
       "to": "re-anchored 7615122f5a697da6 (stamp 8d5524ee-c90)",
       "hash": "7615122f5a697da63dab3da3aaa4ed86aa6a0febf0d7605007acba764d889f1c"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "8 (157 visa-free destinations)",
+      "hash": null
     }
   ],
   "sovereignty": {

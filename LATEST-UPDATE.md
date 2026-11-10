@@ -1,4 +1,8 @@
-# motopass — Last Updated 2026-11-09 by Buffy — selection board card, country coverage audit
+# motopass — Last Updated 2026-11-09 by Buffy — gaps filled from sources, facts column, day panel
+
+21 programs now carry 22 or 23 of the 23 research facts (São Tomé 23). Bahamas 90-day presence and 10-year citizenship, Barbados 5 years and no codified minimum, Cayman 20 years to Caymanian status, Vanuatu's missing crypto-tax sentence, 20 mobility scores from Henley 2026 and the 8 blank tax scores were filled from named sources with audit rows. Banking stays empty on 20 programs because no comparable measure exists. The programs table gained a sortable facts-on-file column; the day panel now draws "no minimum" as a row.
+
+## Previous update — 2026-11-09 by Buffy — selection board card, country coverage audit
 
 The Programs count line moved out of the results grid to the top of the page, in a card above Advice: live match count, region chips with counts, jurisdiction / flagship / sources-on-file chips, and four `facts on file` counts for the filtered set. `npm run coverage:data` and `docs/COUNTRY-DATA-COVERAGE.md` record what each of the 21 programs is missing. No research facts were added. Not committed yet.
 

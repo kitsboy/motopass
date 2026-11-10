@@ -7,10 +7,10 @@
     "region": "Oceania",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.356Z",
+  "generated_at": "2026-11-10T02:17:14.287Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 4,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 130000,
@@ -99,9 +99,9 @@
   },
   "sources": {
     "tiers": {
-      "official": 3,
+      "official": 4,
       "legal": 2,
-      "secondary": 1
+      "secondary": 2
     },
     "list": [
       {
@@ -126,6 +126,14 @@
       },
       {
         "name": "Vanuatu Passport (licensed CBI agent) — https://www.vanuatupassport.vu/vanuatu-citizenship-program/",
+        "tier": "official"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
+      },
+      {
+        "name": "Vanuatu Foreign Investment Promotion Agency (official) — Low tax jurisdiction — https://investvanuatu.vu/untapped-potential/low-tax-jurisdiction/",
         "tier": "official"
       }
     ],
@@ -170,20 +178,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-09-09",
-      "field": "watch.https://immigration.gov.vu",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
-    },
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://immigration.gov.vu",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "dc7586d2d89250d0e0e608c038f825c5f9e34d5fd047a15144155fd800835d27"
-    },
-    {
       "date": "2026-09-15",
       "field": "watch.https://immigration.gov.vu",
       "from": null,
@@ -224,6 +218,20 @@
       "from": "a65002fbf8c5059d",
       "to": "re-anchored b3902b9313aac4ec (stamp 28a18416-948)",
       "hash": "b3902b9313aac4ec9f2834c25726d5442af7266f0a84391b29ec6bfb8c68871a"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "4 (87 visa-free destinations)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "finance.tax_benefits",
+      "from": "No personal income tax (Wikipedia)",
+      "to": "Full direct-tax position + Crypto/Bitcoin tax sentence",
+      "hash": null
     }
   ],
   "sovereignty": {

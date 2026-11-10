@@ -7,10 +7,10 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.352Z",
+  "generated_at": "2026-11-10T02:17:14.286Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 7,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 200000,
@@ -101,7 +101,7 @@
     "tiers": {
       "official": 4,
       "legal": 0,
-      "secondary": 0
+      "secondary": 1
     },
     "list": [
       {
@@ -119,6 +119,10 @@
       {
         "name": "Official — https://www.cbiu.gov.dm/investment-options/",
         "tier": "official"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
       }
     ],
     "official_urls": [
@@ -155,13 +159,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://cbiu.gov.dm",
-      "from": null,
-      "to": "Official source content changed — manual rule review required",
-      "hash": "6a0a046d6ec355acdbdbce1aa33e99db29848c65b5f07a41f6316d50db329cec"
-    },
     {
       "date": "2026-09-15",
       "field": "watch.https://cbiu.gov.dm",
@@ -210,6 +207,13 @@
       "from": "60018a33188a009b",
       "to": "re-anchored ef070d57a298ad24 (stamp 3245f82c-ef3)",
       "hash": "ef070d57a298ad241fb577aa4a65ff9f048dc14776b741b2a50a17e803a44d2e"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "7 (145 visa-free destinations)",
+      "hash": null
     }
   ],
   "sovereignty": {

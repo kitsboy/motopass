@@ -7,10 +7,10 @@
     "region": "Central America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.343Z",
+  "generated_at": "2026-11-10T02:17:14.277Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 7,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 0,
@@ -107,7 +107,7 @@
     "tiers": {
       "official": 2,
       "legal": 2,
-      "secondary": 2
+      "secondary": 3
     },
     "list": [
       {
@@ -133,6 +133,10 @@
       {
         "name": "Official — https://www.rree.gob.sv/",
         "tier": "official"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
       }
     ],
     "official_urls": [
@@ -175,13 +179,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "pathways.freedom_visa",
-      "from": "(absent)",
-      "to": "added: $1M BTC/USDt, 1,000/yr cap, family incl.",
-      "hash": null
-    },
     {
       "date": "2026-09-10",
       "field": "finance.bitcoin_specific",
@@ -230,6 +227,13 @@
       "from": "547b1d2e2bd9e851",
       "to": "re-anchored 90732627f00bb711 (stamp 56a090d0-75e)",
       "hash": "90732627f00bb71170c6a91b91361f300cc99c6151492c7df42714d8be7e62a1"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "7 (131 visa-free destinations)",
+      "hash": null
     }
   ],
   "sovereignty": {

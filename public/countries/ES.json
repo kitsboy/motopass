@@ -7,10 +7,10 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.354Z",
+  "generated_at": "2026-11-10T02:17:14.287Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -46,8 +46,8 @@
         "label": "stability"
       },
       "tax": {
-        "value": null,
-        "present": false,
+        "value": 6,
+        "present": true,
         "label": "tax"
       },
       "cost": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 9,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 32000,
@@ -101,7 +101,7 @@
     "tiers": {
       "official": 3,
       "legal": 0,
-      "secondary": 3
+      "secondary": 4
     },
     "list": [
       {
@@ -127,6 +127,10 @@
       {
         "name": "Official — https://www.inclusion.gob.es/",
         "tier": "official"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
       }
     ],
     "official_urls": [
@@ -182,20 +186,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-09-19",
-      "field": "proof",
-      "from": "671696e0460a6ad8",
-      "to": "re-anchored 0a97f7f4bd3fd91a (stamp 24776bcf-da6)",
-      "hash": "0a97f7f4bd3fd91a112c7aba7e6a535396ce9ef8accf6ed7cc4417252988db18"
-    },
-    {
-      "date": "2026-09-30",
-      "field": "proof",
-      "from": "0a97f7f4bd3fd91a",
-      "to": "re-anchored afea358e3b7b87a6 (stamp 9663be53-28d)",
-      "hash": "afea358e3b7b87a65e70519717dddb43a15a8dd53cd7676fa4595801ccc1e10b"
-    },
-    {
       "date": "2026-10-09",
       "field": "watch.https://sede.agenciatributaria.gob.es/",
       "from": null,
@@ -236,6 +226,20 @@
       "from": "afea358e3b7b87a6",
       "to": "re-anchored 61d142a9c0712e00 (stamp 48ac155a-84c)",
       "hash": "61d142a9c0712e009908c4a9569dc4881fd8b71adf3106c9145bf300bed8b9a6"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "9 (185 visa-free destinations)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.tax",
+      "from": "null",
+      "to": "6",
+      "hash": null
     }
   ],
   "sovereignty": {

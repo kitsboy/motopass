@@ -7,10 +7,10 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-09T14:53:31.351Z",
+  "generated_at": "2026-11-10T02:17:14.285Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 1,
+    "days_stale": 2,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
@@ -46,8 +46,8 @@
         "label": "stability"
       },
       "tax": {
-        "value": null,
-        "present": false,
+        "value": 6,
+        "present": true,
         "label": "tax"
       },
       "cost": {
@@ -56,8 +56,8 @@
         "label": "cost"
       },
       "mobility": {
-        "value": null,
-        "present": false,
+        "value": 9,
+        "present": true,
         "label": "mobility"
       },
       "banking": {
@@ -66,7 +66,7 @@
         "label": "banking"
       }
     },
-    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
+    "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility from the Henley Passport Index 2026 (visa-free destinations ÷ 20, rounded); banking still pending — no published method yet."
   },
   "threshold": {
     "min_investment_usd": 250000,
@@ -101,7 +101,7 @@
     "tiers": {
       "official": 3,
       "legal": 0,
-      "secondary": 3
+      "secondary": 4
     },
     "list": [
       {
@@ -127,6 +127,10 @@
       {
         "name": "Official — https://www.agenziaentrate.gov.it/",
         "tier": "official"
+      },
+      {
+        "name": "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "tier": "secondary"
       }
     ],
     "official_urls": [
@@ -176,20 +180,6 @@
   },
   "audit_trail": [
     {
-      "date": "2026-10-30",
-      "field": "watch.https://www.esteri.it/",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "899f255020961f90"
-    },
-    {
-      "date": "2026-11-04",
-      "field": "watch.https://www.interno.gov.it",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "6916fac27a951fb4"
-    },
-    {
       "date": "2026-11-06",
       "field": "watch.https://www.esteri.it/",
       "from": null,
@@ -230,6 +220,20 @@
       "from": "5896d70fc0b87a29",
       "to": "re-anchored 6af616c6ca04580f (stamp 131b6d7f-387)",
       "hash": "6af616c6ca04580f517d4669e3dc2f3cfd6d2a99de3c54a6a6f0de0401efced6"
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.mobility",
+      "from": "null",
+      "to": "9 (185 visa-free destinations)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-09",
+      "field": "scorecard.tax",
+      "from": "null",
+      "to": "6",
+      "hash": null
     }
   ],
   "sovereignty": {
