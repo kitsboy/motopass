@@ -14,6 +14,7 @@ const BREADCRUMB_LABELS: Record<string, string> = {
   '/btcmap': 'BTC Map',
   '/vault': 'Vault',
   '/distressed': 'Distressed',
+  '/tools': 'Tools',
   '/agents': 'Agents',
   '/register': 'Register',
   '/dashboard': 'Dashboard',

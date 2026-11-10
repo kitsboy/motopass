@@ -1,3 +1,24 @@
+## Session — 2026-11-10 · BOLT11/BOLT12 readers, receipt anchoring, Bitcoin tools page (Buffy)
+
+**Done:**
+- `src/lib/bech32.ts` — one decoder with an optional checksum: BOLT11 keeps its six-word checksum, BOLT12 correctly has none. Mixed case is refused rather than silently lowered; 5-bit padding must be zero.
+- `src/lib/bolt11.ts` — decodes network, amount (all four multipliers), timestamp, expiry, payment hash, description/hash, payee key, features, CLTV, fallback and route-hint count. The bech32 checksum is checked; the ECDSA signature is **not**, and the UI says `decoded locally`, not `verified`. A pico amount that is not a whole msat is refused rather than rounded.
+- `src/lib/bolt12.ts` — rewritten. Offers (`lno1…`), invoice requests (`lnr1…`) and invoices (`lni1…`) are decoded from BigSize TLV streams. Signature-bearing messages are verified with BIP-340 Schnorr over the BOLT12 Merkle root (TLV leaf + `LnNonce` whose tag includes the first TLV + `LnBranch` inner nodes), against `invreq_payer_id` / `invoice_node_id`. The official `signature-test.json` vector reproduces Merkle root `608407…` and verifies. **Offers are unsigned by BOLT12 design**, so the code and UI say there is no offer signature to verify instead of inventing one; an offer carrying a signature field is rejected as malformed. `parseBolt12Offer` now validates TLV structure instead of a checksum that BOLT12 does not have.
+- `src/pages/ToolsPage.tsx` — `/tools` with four local tools: BOLT11 invoice decode, BOLT12 offer/signature reader, preimage `sha256` check, and the existing receipt inspector. Results use `aria-live`, labels are associated, `Cmd/Ctrl+Enter` runs a decode, and section anchors have scroll margins. Nothing fetches a node, relay or explorer.
+- `TipReceiptsPanel` — one `anchorLedger` stamp over the sorted saved receipt ids, with the honest status line (`Bitcoin block N`, `pending — waiting for Bitcoin`, or `confirmed — block height not reported`), root and allowlisted verify link. The duplicate inspector was removed from the panel and linked to `/tools` instead.
+- Nav/SEO: `/tools` is in the overflow nav (More sheet + footer), `prefetchRoutes`, `ROUTE_SEO`, the breadcrumb map and the lazy route table. `@noble/curves@^2.4.0` is now an explicit dependency for Schnorr verification.
+
+**Decisions:**
+- BOLT12 offers are not signed. The requested "verify offer signatures" cannot be implemented honestly, so the tool verifies the message types that do carry signatures and states the offer limitation in the card, tests and docs.
+- BOLT11 signature recovery was left out. A decode with a checksum is still not a payment proof, and the UI must not blur that line.
+- No research fact was added or changed; `research/countries.json` untouched.
+
+**Checks:** 20 new BOLT11/BOLT12 tests pass, including the official offer and invoice-request vectors. Lint 0 errors; `vite build` ok. `tsc` shows only the two pre-existing `IntelWatchStrip.test.ts` errors. No live node, relay, wallet or Satohash stamp was exercised; the receipt anchor button is unit-backed by the existing `ledgerAnchor` tests only.
+
+**Git State:**
+- Code SHA: pending this commit
+- Unpushed: none after push
+
 ## Session — 2026-11-10 · Sats anchor, wallet receipts, block anchoring, NIP-46/05, BOLT12 checks (Buffy)
 
 **Done:**

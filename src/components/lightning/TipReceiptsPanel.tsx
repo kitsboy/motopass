@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Check, Copy, RefreshCw, Trash2 } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Check, Copy, ExternalLink, RefreshCw, Trash2 } from 'lucide-react'
 import {
   MAX_TIP_RECEIPTS,
   clearTipReceipts,
@@ -9,8 +10,9 @@ import {
   type StoredTipReceipt,
 } from '../../lib/tipReceiptStore'
 import { fetchTipReceipts } from '../../lib/receiptRelays'
+import { anchorLedger, anchorStatusLabel } from '../../lib/ledgerAnchor'
+import { safeSatohashHref } from '../../lib/satohash'
 import { formatSatsExact } from '../../lib/satsAnchor'
-import { ReceiptInspector } from './ReceiptInspector'
 
 /**
  * Receipts this device holds, and a way to pull the same public events back
@@ -41,6 +43,12 @@ function shortHash(hash: string | null): string {
   return hash ? `${hash.slice(0, 8)}…${hash.slice(-4)}` : 'no payment hash'
 }
 
+type AnchorState =
+  | { phase: 'idle' }
+  | { phase: 'busy' }
+  | { phase: 'error'; error: string }
+  | { phase: 'done'; label: string; root: string; verifyUrl: string | null }
+
 export function TipReceiptsPanel() {
   const [receipts, setReceipts] = useState(() => loadTipReceipts())
   const [copiedId, setCopiedId] = useState<string | null>(null)
@@ -48,6 +56,7 @@ export function TipReceiptsPanel() {
   const [author, setAuthor] = useState('')
   const [lookup, setLookup] = useState<{ tone: 'ok' | 'warn'; text: string } | null>(null)
   const [lookupBusy, setLookupBusy] = useState(false)
+  const [anchor, setAnchor] = useState<AnchorState>({ phase: 'idle' })
 
   const copy = async (receipt: StoredTipReceipt) => {
     try {
@@ -74,6 +83,22 @@ export function TipReceiptsPanel() {
     setReceipts([])
     setConfirmClear(false)
     setLookup(null)
+  }
+
+  const anchorAll = async () => {
+    if (receipts.length === 0) return
+    setAnchor({ phase: 'busy' })
+    const result = await anchorLedger(receipts.map(receipt => receipt.id))
+    if (!result.ok) {
+      setAnchor({ phase: 'error', error: result.error ?? 'The stamp could not be submitted.' })
+      return
+    }
+    setAnchor({
+      phase: 'done',
+      label: anchorStatusLabel(result.blockHeight, result.status),
+      root: result.root ?? '',
+      verifyUrl: safeSatohashHref(result.verifyUrl ?? undefined) ?? null,
+    })
   }
 
   const find = async () => {
@@ -172,6 +197,45 @@ export function TipReceiptsPanel() {
         </ul>
       )}
 
+      {receipts.length > 0 && (
+        <div className="mt-3 rounded-mp-md border border-mp-border-subtle bg-mp-card/30 p-2.5">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="font-chrome text-[10px] font-semibold uppercase tracking-wide text-mp-ink-tertiary">
+              One Bitcoin stamp for the set
+            </p>
+            <button
+              type="button"
+              onClick={() => void anchorAll()}
+              disabled={anchor.phase === 'busy'}
+              className="inline-flex items-center gap-1 rounded-full border border-mp-btc/40 px-2.5 py-1 font-chrome text-[10px] font-semibold text-mp-btc-text hover:bg-mp-btc/10 disabled:opacity-50"
+            >
+              {anchor.phase === 'busy' ? 'Submitting…' : `Anchor ${receipts.length} receipt${receipts.length === 1 ? '' : 's'}`}
+            </button>
+          </div>
+          <p className="mt-1 text-[9px] leading-relaxed text-mp-ink-tertiary">
+            A Satohash/OpenTimestamps stamp over the sorted event ids. It proves this exact set existed at or before a
+            block — not that each payment is true, and not that a block has confirmed it yet.
+          </p>
+          {anchor.phase === 'error' && <p className="mt-1 text-[10px] text-mp-wax">{anchor.error}</p>}
+          {anchor.phase === 'done' && (
+            <div className="mt-1.5 space-y-0.5 text-[10px] leading-relaxed">
+              <p className="text-mp-ink-secondary">{anchor.label}</p>
+              <p className="break-all font-mono text-[9px] text-mp-ink-tertiary">root {anchor.root}</p>
+              {anchor.verifyUrl && (
+                <a
+                  href={anchor.verifyUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-mp-btc-text hover:underline"
+                >
+                  Open the stamp <ExternalLink size={9} aria-hidden="true" />
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
       <form
         onSubmit={event => {
           event.preventDefault()
@@ -211,8 +275,13 @@ export function TipReceiptsPanel() {
         )}
       </form>
 
-      <div className="mt-3">
-        <ReceiptInspector />
+      <div className="mt-3 border-t border-mp-border-subtle pt-2">
+        <Link to="/tools" className="inline-flex items-center gap-1 font-chrome text-[10px] font-semibold text-mp-btc-text hover:underline">
+          Check a pasted receipt in Tools <ExternalLink size={9} aria-hidden="true" />
+        </Link>
+        <p className="mt-1 text-[9px] leading-relaxed text-mp-ink-tertiary">
+          The receipt verifier lives on the Bitcoin tools page so the same check is not duplicated in two places.
+        </p>
       </div>
     </section>
   )

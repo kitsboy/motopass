@@ -66,6 +66,11 @@ export const ROUTE_SEO: Record<string, SeoMeta> = {
     description:
       'Generate and verify Satohash.io OpenTimestamps proofs for MotoPass application payloads and material claims.',
   },
+  '/tools': {
+    title: 'Bitcoin Tools — BOLT11, BOLT12 and Receipts',
+    description:
+      'Decode BOLT11 invoices, read BOLT12 offers and verify BOLT12 signatures, check a Lightning preimage and verify a signed gap-tip receipt — all locally in your browser.',
+  },
   '/agents': {
     title: 'Country Liaison Agents',
     description:

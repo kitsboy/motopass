@@ -75,6 +75,7 @@ const VerifyPage = lazy(() =>
 const SourceMonitorPage = lazy(() =>
   import('./pages/SourceMonitorPage').then((m) => ({ default: m.SourceMonitorPage })),
 )
+const ToolsPage = lazy(() => import('./pages/ToolsPage').then((m) => ({ default: m.ToolsPage })))
 
 export default function App() {
   return (
@@ -160,6 +161,14 @@ export default function App() {
                                   }
                                 />
                                 <Route path="verify" element={<VerifyPage />} />
+                                <Route
+                                  path="tools"
+                                  element={
+                                    <RouteSuspense minH={900}>
+                                      <ToolsPage />
+                                    </RouteSuspense>
+                                  }
+                                />
                                 <Route path="sources" element={<SourceMonitorPage />} />
                                 <Route path="agents" element={<AgentsPage />} />
                                 <Route path="apply" element={<ApplyPage />} />

@@ -71,6 +71,7 @@
     "check:security": "node scripts/check-secret-hygiene.mjs"
   },
   "dependencies": {
+    "@noble/curves": "^2.4.0",
     "@sentry/react": "^8.55.2",
     "@types/leaflet": "^1.9.21",
     "leaflet": "^1.9.4",

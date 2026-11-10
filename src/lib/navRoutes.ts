@@ -28,6 +28,7 @@ export const OVERFLOW_NAV_ROUTES: readonly NavRoute[] = [
   { to: '/trust', key: 'nav.trust' },
   { to: '/sources', key: 'nav.sources' },
   { to: '/portfolio', key: 'nav.portfolio' },
+  { to: '/tools', key: 'nav.tools' },
   { to: '/verify', key: 'nav.verify' },
 ] as const
 

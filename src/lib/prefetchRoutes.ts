@@ -10,6 +10,7 @@ const ROUTE_LOADERS: Record<string, () => Promise<unknown>> = {
   '/distressed': () => import('../pages/DistressedPage'),
   '/blog': () => import('../pages/BlogPage'),
   '/verify': () => import('../pages/VerifyPage'),
+  '/tools': () => import('../pages/ToolsPage'),
   '/agents': () => import('../pages/AgentsPage'),
   '/apply': () => import('../pages/ApplyPage'),
   '/register': () => import('../pages/RegisterPage'),
