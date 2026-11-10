@@ -1,12 +1,14 @@
 import { bech32Decode, bech32Encode, bytesToHex, bytesToWords, wordsToBytes } from './bech32'
+import { verifyPsbtSignatures, type PsbtSignatureCheck, type PsbtVerifyInput } from './psbtVerify'
 
 /**
  * Base-layer readers: address decoding and PSBT map inspection.
  *
  * Addresses are checked against their real checksum (Base58Check or the
  * bech32/bech32m variant required by the witness version). PSBTs are parsed
- * structurally; signatures are counted, not verified, and a fee is reported
- * only when every input carries a witness UTXO from which it can be computed.
+ * structurally; supported PSBT signatures are verified against the unsigned
+ * transaction, and a fee is reported only when every input carries a witness
+ * UTXO from which it can be computed.
  * A PSBT does not carry a network, so derived addresses use Bitcoin prefixes
  * and the UI says that explicitly. Nothing is signed or broadcast.
  */
@@ -167,6 +169,7 @@ export async function inspectAddress(raw: string): Promise<AddressResult> {
 
 export interface PsbtInput {
   witnessUtxo: number | null
+  nonWitnessUtxo: boolean
   partialSigs: number
   tapSigs: number
   keys: string[]
@@ -174,12 +177,17 @@ export interface PsbtInput {
   scriptType: string
   prevTxid: string | null
   vout: number | null
+  signatures: PsbtSignatureCheck[]
 }
 
 export interface PsbtOutput {
   amountSats: number | null
   scriptType: string
+  scriptPubKey: string
   address: string | null
+  possibleChange: boolean
+  addressReuse: boolean
+  dust: boolean
 }
 
 export interface PsbtInspection {
@@ -196,6 +204,10 @@ export interface PsbtInspection {
   outputSats: number | null
   feeSats: number | null
   globalKeys: string[]
+  signatureChecks: PsbtSignatureCheck[]
+  signaturesValid: number
+  signaturesInvalid: number
+  signaturesUnsupported: number
   warnings: string[]
 }
 
@@ -288,7 +300,7 @@ export async function scriptToAddress(
 interface ParsedTx {
   version: number
   locktime: number
-  inputs: Array<{ txid: string; vout: number }>
+  inputs: Array<{ txid: string; vout: number; sequence: number }>
   outputs: Array<{ amountSats: number; script: Uint8Array }>
 }
 
@@ -298,7 +310,7 @@ function parseUnsignedTx(bytes: Uint8Array): ParsedTx | null {
   const inputCount = readVarint(bytes, 4)
   if (!inputCount) return null
   let cursor = inputCount.next
-  const inputs: Array<{ txid: string; vout: number }> = []
+  const inputs: Array<{ txid: string; vout: number; sequence: number }> = []
   for (let i = 0; i < inputCount.value; i += 1) {
     if (cursor + 36 > bytes.length) return null
     const txid = bytesToHex(Uint8Array.from(bytes.slice(cursor, cursor + 32)).reverse())
@@ -308,9 +320,12 @@ function parseUnsignedTx(bytes: Uint8Array): ParsedTx | null {
     cursor += 4
     const script = readVarint(bytes, cursor)
     if (!script) return null
-    cursor = script.next + script.value + 4
+    cursor = script.next + script.value
+    const sequence = readU32(bytes, cursor)
+    if (sequence == null) return null
+    cursor += 4
     if (cursor > bytes.length) return null
-    inputs.push({ txid, vout })
+    inputs.push({ txid, vout, sequence })
   }
   const outputCount = readVarint(bytes, cursor)
   if (!outputCount) return null
@@ -374,6 +389,8 @@ export async function inspectPsbt(raw: string): Promise<PsbtResult> {
 
   let cursor = global.next
   const inputDetails: PsbtInput[] = []
+  const verifyInputs: PsbtVerifyInput[] = []
+  const inputScripts: Uint8Array[] = []
   let partialSigs = 0
   let tapSigs = 0
   let inputSats = 0
@@ -384,26 +401,46 @@ export async function inspectPsbt(raw: string): Promise<PsbtResult> {
     cursor = map.next
     let witnessUtxo: number | null = null
     let witnessScript: Uint8Array | null = null
+    let redeemScript: Uint8Array | null = null
+    let nonWitnessUtxo = false
     let inputPartial = 0
     let inputTap = 0
     const keys: string[] = []
+    const partialEntries: Array<{ pubkey: Uint8Array; signature: Uint8Array }> = []
+    const tapEntries: Array<{ xonly: Uint8Array; signature: Uint8Array }> = []
     for (const entry of map.entries) {
       const type = entry.key[0]
       keys.push(`0x${type.toString(16).padStart(2, '0')}`)
-      if (type === 0x01) {
+      if (type === 0x00) nonWitnessUtxo = true
+      else if (type === 0x01) {
         const parsed = parseWitnessUtxo(entry.value)
         witnessUtxo = parsed.amountSats
         witnessScript = parsed.script
-      } else if (type === 0x02) inputPartial += 1
-      else if (type === 0x13) inputTap += 1
+      } else if (type === 0x02 && entry.key.length >= 34) {
+        inputPartial += 1
+        partialEntries.push({ pubkey: entry.key.slice(1), signature: entry.value })
+      } else if (type === 0x04) redeemScript = entry.value
+      else if (type === 0x13 && entry.key.length === 33) {
+        inputTap += 1
+        tapEntries.push({ xonly: entry.key.slice(1), signature: entry.value })
+      }
     }
     partialSigs += inputPartial
     tapSigs += inputTap
     if (witnessUtxo == null) everyWitnessUtxo = false
     else inputSats += witnessUtxo
     const derived = witnessScript ? await scriptToAddress(witnessScript) : null
+    verifyInputs.push({
+      witnessUtxo,
+      script: witnessScript,
+      redeemScript,
+      partialSigs: partialEntries,
+      tapSigs: tapEntries,
+    })
+    inputScripts.push(witnessScript ?? new Uint8Array())
     inputDetails.push({
       witnessUtxo,
+      nonWitnessUtxo,
       partialSigs: inputPartial,
       tapSigs: inputTap,
       keys,
@@ -411,6 +448,7 @@ export async function inspectPsbt(raw: string): Promise<PsbtResult> {
       scriptType: witnessScript ? scriptKind(witnessScript) : 'unavailable',
       prevTxid: tx.inputs[i].txid,
       vout: tx.inputs[i].vout,
+      signatures: [],
     })
   }
 
@@ -425,19 +463,65 @@ export async function inspectPsbt(raw: string): Promise<PsbtResult> {
     outputDetails.push({
       amountSats: output.amountSats,
       scriptType: scriptKind(output.script),
+      scriptPubKey: bytesToHex(output.script),
       address: derived?.address ?? null,
+      possibleChange: false,
+      addressReuse: false,
+      dust: false,
     })
   }
 
   const warnings: string[] = []
   if (cursor !== bytes.length) warnings.push('Trailing bytes after the output maps.')
-  if (!everyWitnessUtxo) warnings.push('At least one input has no witness UTXO, so the fee and input address are unavailable.')
+  if (!everyWitnessUtxo) {
+    warnings.push('At least one input has no witness UTXO, so the fee and input address are unavailable.')
+  }
+  for (let i = 0; i < inputDetails.length; i += 1) {
+    const input = inputDetails[i]
+    if (input.witnessUtxo == null && !input.nonWitnessUtxo) {
+      warnings.push(`Input ${i} has neither a witness UTXO nor a non-witness UTXO; its amount cannot be checked.`)
+    } else if (input.witnessUtxo == null) {
+      warnings.push(`Input ${i} has a non-witness UTXO only; this reader cannot derive its address or include its amount.`)
+    }
+  }
+
   const outputSats = outputDetails.reduce<number | null>(
     (sum, output) => (sum == null || output.amountSats == null ? null : sum + output.amountSats),
     0,
   )
   const feeSats =
     everyWitnessUtxo && outputSats != null && inputSats >= outputSats ? inputSats - outputSats : null
+  if (feeSats != null && inputSats > 0 && feeSats > inputSats * 0.2) {
+    warnings.push(`Fee is ${((feeSats / inputSats) * 100).toFixed(1)}% of the input value; check the change output before signing.`)
+  }
+
+  const seenOutputs = new Map<string, number>()
+  const inputScriptSet = new Set(inputScripts.filter(script => script.length > 0).map(script => bytesToHex(script)))
+  for (let i = 0; i < outputDetails.length; i += 1) {
+    const output = outputDetails[i]
+    const hex = output.scriptPubKey
+    const duplicateOf = seenOutputs.get(hex)
+    const matchesInput = inputScriptSet.has(hex)
+    output.addressReuse = duplicateOf != null || matchesInput
+    output.possibleChange = matchesInput
+    const dustThreshold = output.scriptType === 'P2TR' || output.scriptType === 'P2WPKH' || output.scriptType === 'P2WSH' ? 330 : 546
+    output.dust = output.scriptType !== 'custom' && output.amountSats != null && output.amountSats > 0 && output.amountSats < dustThreshold
+    if (duplicateOf != null) warnings.push(`Output ${i} reuses the same script as output ${duplicateOf}.`)
+    if (matchesInput) warnings.push(`Output ${i} pays the same script as an input; possible change, not proof.`)
+    if (output.dust) warnings.push(`Output ${i} is below the ${dustThreshold} sat dust threshold.`)
+    if (!seenOutputs.has(hex)) seenOutputs.set(hex, i)
+  }
+
+  const signatureChecks = await verifyPsbtSignatures(
+    { version: tx.version, locktime: tx.locktime, inputs: tx.inputs, outputs: tx.outputs },
+    verifyInputs,
+  )
+  for (const check of signatureChecks) inputDetails[check.input]?.signatures.push(check)
+  const signaturesValid = signatureChecks.filter(check => check.status === 'valid').length
+  const signaturesInvalid = signatureChecks.filter(check => check.status === 'invalid').length
+  const signaturesUnsupported = signatureChecks.filter(check => check.status === 'unsupported').length
+  if (signaturesInvalid > 0) warnings.push(`${signaturesInvalid} PSBT signature(s) do not verify.`)
+  if (signaturesUnsupported > 0) warnings.push(`${signaturesUnsupported} PSBT signature(s) could not be checked by this reader.`)
 
   return {
     ok: true,
@@ -455,6 +539,10 @@ export async function inspectPsbt(raw: string): Promise<PsbtResult> {
       outputSats,
       feeSats,
       globalKeys: global.entries.map(entry => `0x${entry.key[0].toString(16).padStart(2, '0')}`),
+      signatureChecks,
+      signaturesValid,
+      signaturesInvalid,
+      signaturesUnsupported,
       warnings,
     },
   }

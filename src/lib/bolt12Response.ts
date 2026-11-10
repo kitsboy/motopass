@@ -18,6 +18,7 @@ export interface Bolt12ResponseChecks {
   offerFieldsInRequest: boolean
   offerFieldsInInvoice: boolean
   amountMatches: boolean | null
+  quantityMatches: boolean | null
   paymentHashPresent: boolean
   payerKeyPresent: boolean
 }
@@ -78,7 +79,19 @@ export async function verifyBolt12InvoiceResponse(
       ? null
       : expectedAmount === invoice.decoded.amount
 
+  const quantityMatches =
+    offer.decoded.quantityMax == null
+      ? request.decoded.quantity == null
+        ? null
+        : false
+      : offer.decoded.quantityMax === 0
+        ? request.decoded.quantity == null
+        : request.decoded.quantity != null &&
+          request.decoded.quantity > 0 &&
+          request.decoded.quantity <= offer.decoded.quantityMax
+
   const mismatches = [...requestMismatches, ...invoiceMismatches]
+  if (quantityMatches === false) mismatches.push('The request quantity does not fit the offer quantity terms.')
   if (amountMatches === false) {
     mismatches.push(
       `Invoice amount ${invoice.decoded.amount ?? 'missing'} does not match the request ${expectedAmount}`,
@@ -100,11 +113,12 @@ export async function verifyBolt12InvoiceResponse(
         offerFieldsInRequest: requestMismatches.length === 0,
         offerFieldsInInvoice: invoiceMismatches.length === 0,
         amountMatches,
+        quantityMatches,
         paymentHashPresent: Boolean(invoice.decoded.paymentHash),
         payerKeyPresent: Boolean(request.decoded.payerId),
       },
       mismatches,
-      note: 'The invoice is signed by its node key. The payer key belongs to the request; BOLT12 invoices do not echo it, so it cannot be compared to the invoice signer.',
+      note: 'The invoice is signed by its node key. The payer key belongs to the request; BOLT12 invoices do not echo it, so it cannot be compared to the invoice signer. Quantity is checked on the request because the merged invoice fields do not repeat it.',
     },
   }
 }

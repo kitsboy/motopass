@@ -40,6 +40,9 @@ export interface Bolt12Decoded {
   nodeId: string | null
   payerId: string | null
   paymentHash: string | null
+  quantityMax: number | null
+  quantity: number | null
+  recurrenceNote: string
   createdAt: number | null
   absoluteExpiry: number | null
   signature: string | null
@@ -379,6 +382,10 @@ export async function decodeBolt12(raw: string): Promise<Bolt12Result> {
   const nodeId = byType.has(nodeField) ? safeHex(byType.get(nodeField)!) : null
   const payerId = byType.has(88) ? safeHex(byType.get(88)!) : null
   const paymentHash = byType.has(168) ? safeHex(byType.get(168)!) : null
+  const quantityMax = byType.has(20) ? fieldNumber(byType.get(20)!) : null
+  const quantity = byType.has(86) ? fieldNumber(byType.get(86)!) : null
+  const recurrenceNote =
+    'Recurrence is not in the merged BOLT12 specification. This reader shows quantity terms only and does not treat an experimental TLV as a subscription schedule.'
   const createdAt = byType.has(164) ? fieldNumber(byType.get(164)!) : null
   const absoluteExpiry = byType.has(14) ? fieldNumber(byType.get(14)!) : null
 
@@ -456,6 +463,9 @@ export async function decodeBolt12(raw: string): Promise<Bolt12Result> {
       nodeId,
       payerId,
       paymentHash,
+      quantityMax,
+      quantity,
+      recurrenceNote,
       createdAt,
       absoluteExpiry,
       signature,

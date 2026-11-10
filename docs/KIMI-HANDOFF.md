@@ -1,3 +1,26 @@
+## Session — 2026-11-10 · guided tools, PSBT signatures, Silent Payments, NIP-17 (Buffy)
+
+**Done:**
+- **Guided / mobile tools UX** (`src/pages/ToolsPage.tsx`): a “What do you have?” chooser for invoice, offer/request, PSBT/address, Silent Payment, NIP-17 DM and NIP-05; selecting a card hides the others below `lg` and updates the URL hash, with a `Show all tools` reset. Every new result uses a compact verification trail.
+- **PSBT signature verification** (`src/lib/psbtVerify.ts`): BIP-143 ECDSA for P2WPKH/P2SH-P2WPKH, legacy ECDSA for P2PKH, and BIP-341 key-path Schnorr for P2TR when all input UTXOs are present. Unsigned/unsupported schemes are labelled `unchecked`. `bitcoinInspect.ts` now carries sequences, non-witness UTXO presence, partial/tap signatures, per-input checks, output `possibleChange`/`addressReuse`/`dust`, and warnings. A real P2WPKH fixture verifies against BIP-143's published sighash; an edited signature is rejected.
+- **Silent Payments** (`src/lib/silentPayments.ts`): BIP-352 address decode and one sender-side output derivation, tested against the official vector `3e9fce73…`. The optional input key is never stored.
+- **BOLT12 quantity/currency**: `offer_quantity_max` (20) and `invreq_quantity` (86) decode; request building accepts/validates quantity and defaults to 1 when the offer requires one; response checks include quantity. Recurrence is explicitly unsupported because it is not in the merged spec.
+- **NIP-17/NIP-59** (`src/lib/nip17.ts`): public kind-1059/21059 wrapper checks, optional NIP-44 unwrap of seal and unsigned rumor, sender/rumor checks; no secret stored or returned.
+- **NIP-05 continuity** (`src/lib/nip05Pin.ts`): public-only pin in localStorage, `new`/`same`/`rotated` status and a forget action in the card.
+- No research fact changed; `research/countries.json` untouched.
+
+**Decisions:**
+- PSBT verification reports only what it can rebuild. P2SH multisig, non-SIGHASH_ALL schemes and any input without a witness UTXO are `unchecked`, not guessed. Coin-control flags are warnings, not proof of change.
+- Silent Payments is sender-side derivation, not a chain scan; the card says so.
+- BOLT12 recurrence is not implemented because the merged spec has no standard recurrence TLV. Quantity/currency checks are implemented instead of inventing a schedule.
+- NIP-17 public structure can be checked without a key; unwrapping is optional and the key is memory-only.
+
+**Checks:** full Vitest **577 passed / 2 skipped (579)**; focused suites **41 passed**; ESLint edited files 0 errors; `vite build` passed; bundle **2623.4 KB / 2650 KB** (index advisory 482.4 KB). `tsc --noEmit` still reports only the two pre-existing `src/components/intel/IntelWatchStrip.test.ts` Node-type errors. No browser pass and no live relay, NIP-05 domain, node or chain lookup was exercised.
+
+**Git State:**
+- Code SHA: pending this commit
+- Unpushed: none after push
+
 ## Session — 2026-11-10 · CI repair, BOLT12 response, NIP-05, PSBT addresses (Buffy)
 
 **Done:**

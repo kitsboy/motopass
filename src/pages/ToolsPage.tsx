@@ -24,6 +24,9 @@ import { buildBolt12InvoiceRequest } from '../lib/bolt12Request'
 import { verifyBolt12InvoiceResponse } from '../lib/bolt12Response'
 import { inspectBitcoinInput } from '../lib/bitcoinInspect'
 import { nip05Verdict, resolveNip05 } from '../lib/nip05'
+import { forgetNip05Pin, recordNip05Pin, type Nip05PinRecord } from '../lib/nip05Pin'
+import { inspectNip17GiftWrap } from '../lib/nip17'
+import { decodeSilentPaymentAddress, deriveSilentPaymentOutput } from '../lib/silentPayments'
 import { decode as decodeNip19, npubEncode } from 'nostr-tools/nip19'
 import { checkPreimage, type PreimageCheck } from '../lib/preimage'
 import { inspectLnurlPay, requestAndInspectLnurlInvoice } from '../lib/lnurlInspect'
@@ -53,17 +56,47 @@ function bolt11AmountLabel(amountMsat: number | null): string {
 }
 
 const BITCOIN_TOOLS = [
-  { href: '#bolt11', label: 'BOLT11 invoice', network: false },
-  { href: '#bolt11-signature', label: 'BOLT11 signature', network: false },
-  { href: '#bolt12', label: 'BOLT12 message', network: false },
-  { href: '#bolt12-request', label: 'BOLT12 request', network: false },
-  { href: '#preimage', label: 'Preimage check', network: false },
-  { href: '#receipt', label: 'Receipt verify', network: false },
-  { href: '#lnurl', label: 'LNURL inspect', network: true },
-  { href: '#zap', label: 'Zap receipt', network: false },
-  { href: '#nip05', label: 'NIP-05 lookup', network: true },
-  { href: '#address-psbt', label: 'Address / PSBT', network: false },
+  { id: 'bolt11', href: '#bolt11', label: 'BOLT11 invoice', network: false, group: 'invoice' },
+  { id: 'bolt11-signature', href: '#bolt11-signature', label: 'BOLT11 signature', network: false, group: 'invoice' },
+  { id: 'bolt12', href: '#bolt12', label: 'BOLT12 message', network: false, group: 'offer' },
+  { id: 'bolt12-request', href: '#bolt12-request', label: 'BOLT12 request', network: false, group: 'offer' },
+  { id: 'preimage', href: '#preimage', label: 'Preimage check', network: false, group: 'lightning' },
+  { id: 'receipt', href: '#receipt', label: 'Receipt verify', network: false, group: 'lightning' },
+  { id: 'lnurl', href: '#lnurl', label: 'LNURL inspect', network: true, group: 'lightning' },
+  { id: 'zap', href: '#zap', label: 'Zap receipt', network: false, group: 'nostr' },
+  { id: 'nip05', href: '#nip05', label: 'NIP-05 lookup', network: true, group: 'nostr' },
+  { id: 'nip17', href: '#nip17', label: 'NIP-17 DM', network: false, group: 'nostr' },
+  { id: 'address-psbt', href: '#address-psbt', label: 'Address / PSBT', network: false, group: 'bitcoin' },
+  { id: 'silent-payments', href: '#silent-payments', label: 'Silent Payments', network: false, group: 'bitcoin' },
 ] as const
+
+const GUIDE: Array<{ id: (typeof BITCOIN_TOOLS)[number]['id']; label: string; hint: string }> = [
+  { id: 'bolt11', label: 'An invoice', hint: 'BOLT11 amount, expiry, payee key' },
+  { id: 'bolt12', label: 'An offer or request', hint: 'BOLT12 TLV and signatures' },
+  { id: 'address-psbt', label: 'A PSBT or address', hint: 'Scripts, coin control, signatures' },
+  { id: 'silent-payments', label: 'A Silent Payment', hint: 'sp1 address and one output' },
+  { id: 'nip17', label: 'A Nostr DM', hint: 'Gift wrap, seal and rumor' },
+  { id: 'nip05', label: 'A NIP-05 name', hint: 'Domain mapping and continuity' },
+]
+
+type TrailState = 'pass' | 'fail' | 'unknown'
+
+function VerificationTrail({ steps }: { steps: Array<{ label: string; state: TrailState }> }) {
+  const tone: Record<TrailState, string> = {
+    pass: 'border-mp-proof-border text-mp-proof',
+    fail: 'border-mp-wax/40 text-mp-wax',
+    unknown: 'border-mp-border-subtle text-mp-ink-tertiary',
+  }
+  return (
+    <div className="mb-2 flex flex-wrap gap-1" aria-label="Verification trail">
+      {steps.map((step, index) => (
+        <span key={`${step.label}-${index}`} className={`rounded-full border px-1.5 py-0.5 font-chrome text-[8px] uppercase tracking-wide ${tone[step.state]}`}>
+          {step.label} · {step.state === 'pass' ? 'pass' : step.state === 'fail' ? 'fail' : 'unchecked'}
+        </span>
+      ))}
+    </div>
+  )
+}
 
 function ToolCard({
   icon,
@@ -203,6 +236,13 @@ function Bolt11Tool() {
         )}
         {result?.ok && (
           <div className="rounded-mp-md border border-mp-border-subtle bg-mp-card/40 p-2.5">
+            <VerificationTrail
+              steps={[
+                { label: 'checksum', state: 'pass' },
+                { label: 'payee key', state: result.invoice.payeeNodeKey ? 'unknown' : 'unknown' },
+                { label: 'payment', state: 'unknown' },
+              ]}
+            />
             <p className="flex items-center gap-1 text-[10px] font-semibold text-mp-proof">
               <CheckCircle2 size={11} aria-hidden="true" /> Checksum valid · decoded locally
             </p>
@@ -322,6 +362,21 @@ function Bolt12Tool() {
         )}
         {result?.ok && (
           <div className="rounded-mp-md border border-mp-border-subtle bg-mp-card/40 p-2.5">
+            <VerificationTrail
+              steps={[
+                { label: 'format', state: 'pass' },
+                {
+                  label: 'signature',
+                  state:
+                    result.decoded.signatureCheck === 'valid'
+                      ? 'pass'
+                      : result.decoded.signatureCheck === 'invalid'
+                        ? 'fail'
+                        : 'unknown',
+                },
+                { label: 'payment', state: 'unknown' },
+              ]}
+            />
             <p className={`text-[10px] font-semibold ${SIGNATURE_TONE[result.decoded.signatureCheck]}`}>
               {SIGNATURE_LABEL[result.decoded.signatureCheck]}
             </p>
@@ -341,6 +396,8 @@ function Bolt12Tool() {
                         : `${result.decoded.amount.toLocaleString('en-US')} msat (not a whole number of sats)`
                 }
               />
+              <FieldRow label="Quantity max" value={result.decoded.quantityMax ?? 'not present'} />
+              <FieldRow label="Quantity in request" value={result.decoded.quantity ?? 'not present'} />
               <FieldRow
                 label="Issuer"
                 value={result.decoded.issuer ?? 'not present'}
@@ -363,6 +420,7 @@ function Bolt12Tool() {
               )}
               <FieldRow label="TLV fields" value={result.decoded.fields.map(field => field.type).join(' · ')} />
             </div>
+            <p className="mt-2 text-[9px] leading-relaxed text-mp-ink-tertiary">{result.decoded.recurrenceNote}</p>
             {result.decoded.warnings.length > 0 && (
               <ul className="mt-2 space-y-1 text-[10px] leading-relaxed text-mp-wax">
                 {result.decoded.warnings.map(warning => (
@@ -534,6 +592,7 @@ function Bolt12RequestTool() {
   const [offer, setOffer] = useState('')
   const [sats, setSats] = useState('')
   const [note, setNote] = useState('')
+  const [quantity, setQuantity] = useState('')
   const [result, setResult] = useState<Awaited<ReturnType<typeof buildBolt12InvoiceRequest>> | null>(null)
   const [returned, setReturned] = useState('')
   const [response, setResponse] = useState<Awaited<ReturnType<typeof verifyBolt12InvoiceResponse>> | null>(null)
@@ -544,7 +603,8 @@ function Bolt12RequestTool() {
     setBusy(true)
     setResponse(null)
     const amount = sats.trim() ? Number(sats) : null
-    setResult(await buildBolt12InvoiceRequest(offer, { amountSats: amount, payerNote: note }))
+    const parsedQuantity = quantity.trim() ? Number(quantity) : null
+    setResult(await buildBolt12InvoiceRequest(offer, { amountSats: amount, payerNote: note, quantity: parsedQuantity }))
     setBusy(false)
   }
 
@@ -597,6 +657,19 @@ function Bolt12RequestTool() {
             />
           </div>
           <div>
+            <label htmlFor="bolt12-quantity" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+              Quantity (optional)
+            </label>
+            <input
+              id="bolt12-quantity"
+              value={quantity}
+              onChange={event => setQuantity(event.target.value)}
+              inputMode="numeric"
+              placeholder="1"
+              className={inputClass}
+            />
+          </div>
+          <div>
             <label htmlFor="bolt12-note" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
               Payer note (optional)
             </label>
@@ -618,6 +691,7 @@ function Bolt12RequestTool() {
             setOffer('')
             setSats('')
             setNote('')
+            setQuantity('')
             setResult(null)
             setReturned('')
             setResponse(null)
@@ -654,6 +728,7 @@ function Bolt12RequestTool() {
                 label="Amount"
                 value={result.amountMsat == null ? 'open' : `${result.amountMsat.toLocaleString('en-US')} msat`}
               />
+              <FieldRow label="Quantity" value={quantity.trim() || (result.request ? 'see request' : 'not set')} />
               <FieldRow
                 label="Merkle root"
                 value={<span className="font-mono text-[10px]">{result.merkleRoot}</span>}
@@ -692,6 +767,14 @@ function Bolt12RequestTool() {
               )}
               {response?.ok && (
                 <div className="mt-2 rounded-mp-md border border-mp-border-subtle p-2">
+                  <VerificationTrail
+                    steps={[
+                      { label: 'request sig', state: response.result.checks.requestSignature ? 'pass' : 'fail' },
+                      { label: 'invoice sig', state: response.result.checks.invoiceSignature ? 'pass' : 'fail' },
+                      { label: 'amount / quantity', state: response.result.checks.amountMatches === true && response.result.checks.quantityMatches !== false ? 'pass' : 'fail' },
+                      { label: 'paid', state: 'unknown' },
+                    ]}
+                  />
                   <CheckLine label="Request kind" value={response.result.checks.requestKind} />
                   <CheckLine label="Invoice kind" value={response.result.checks.invoiceKind} />
                   <CheckLine label="Request signature" value={response.result.checks.requestSignature} />
@@ -699,6 +782,7 @@ function Bolt12RequestTool() {
                   <CheckLine label="Offer fields in request" value={response.result.checks.offerFieldsInRequest} />
                   <CheckLine label="Offer fields in invoice" value={response.result.checks.offerFieldsInInvoice} />
                   <CheckLine label="Amount matches" value={response.result.checks.amountMatches} />
+                  <CheckLine label="Quantity matches" value={response.result.checks.quantityMatches} />
                   <CheckLine label="Payment hash present" value={response.result.checks.paymentHashPresent} />
                   <CheckLine label="Payer key present" value={response.result.checks.payerKeyPresent} />
                   <div className="mt-1.5">
@@ -1009,6 +1093,7 @@ function Nip05Tool() {
   const [handle, setHandle] = useState('')
   const [expected, setExpected] = useState('')
   const [result, setResult] = useState<Awaited<ReturnType<typeof resolveNip05>> | null>(null)
+  const [pin, setPin] = useState<Nip05PinRecord | null>(null)
   const [busy, setBusy] = useState(false)
   const expectedHex = expected.trim() ? expectedPubkey(expected) : null
   const invalidExpected = Boolean(expected.trim() && !expectedHex)
@@ -1016,7 +1101,9 @@ function Nip05Tool() {
 
   const run = async () => {
     setBusy(true)
-    setResult(await resolveNip05(handle))
+    const next = await resolveNip05(handle)
+    setResult(next)
+    setPin(next.ok ? recordNip05Pin(handle, next.pubkey, next.relays) : null)
     setBusy(false)
   }
 
@@ -1068,6 +1155,7 @@ function Nip05Tool() {
             setHandle('')
             setExpected('')
             setResult(null)
+            setPin(null)
           }}
           disabled={!handle && !expected && !result}
         />
@@ -1081,6 +1169,13 @@ function Nip05Tool() {
         )}
         {result?.ok && (
           <div className="rounded-mp-md border border-mp-border-subtle bg-mp-card/40 p-2.5">
+            <VerificationTrail
+              steps={[
+                { label: 'domain JSON', state: 'pass' },
+                { label: 'key match', state: verdict == null ? 'unknown' : verdict === 'match' ? 'pass' : 'fail' },
+                { label: 'domain trust', state: 'unknown' },
+              ]}
+            />
             <p className={`text-[10px] font-semibold ${verdict === 'mismatch' ? 'text-mp-wax' : verdict === 'match' ? 'text-mp-proof' : 'text-mp-ink-tertiary'}`}>
               {verdict === 'match'
                 ? 'Name resolves to the expected key'
@@ -1105,6 +1200,32 @@ function Nip05Tool() {
               />
               <FieldRow label="Relays" value={result.relays.length > 0 ? result.relays.join(', ') : 'none advertised'} />
             </div>
+            {pin && (
+              <div className={`mt-2 border-t border-mp-border-subtle/60 pt-2 text-[10px] leading-relaxed ${pin.status === 'rotated' ? 'text-mp-wax' : 'text-mp-ink-tertiary'}`}>
+                <p>
+                  {pin.status === 'new'
+                    ? 'Pinned the first key seen for this name in this browser.'
+                    : pin.status === 'same'
+                      ? 'Same key as the local continuity pin.'
+                      : 'Key changed since the local pin. Verify the new key out of band before trusting it.'}
+                </p>
+                {pin.previous && (
+                  <p className="mt-1 break-all font-mono text-[9px]">
+                    Pinned {pin.previous.pubkey.slice(0, 16)}… → now {pin.pin.pubkey.slice(0, 16)}…
+                  </p>
+                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    forgetNip05Pin(handle)
+                    setPin(null)
+                  }}
+                  className="mt-1 font-chrome text-[9px] uppercase tracking-wide text-mp-ink-tertiary underline underline-offset-2 hover:text-mp-ink"
+                >
+                  Forget local pin
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -1126,8 +1247,9 @@ function AddressPsbtTool() {
   return (
     <ToolCard icon={<Landmark size={11} aria-hidden="true" />} eyebrow="BASE LAYER" title="Read an address or PSBT">
       <p className="text-[11px] leading-relaxed text-mp-ink-tertiary">
-        Derives the scriptPubKey from a bech32, bech32m or Base58Check address, or reads a base64/hex PSBT. PSBT
-        signatures are counted, not verified; nothing is signed or broadcast.
+        Derives the scriptPubKey from a bech32, bech32m or Base58Check address, or reads a base64/hex PSBT. Supported
+        ECDSA and Schnorr signatures are verified against the unsigned transaction; unsupported inputs are labelled, not
+        guessed. Nothing is signed or broadcast.
       </p>
       <form
         onSubmit={event => {
@@ -1191,12 +1313,31 @@ function AddressPsbtTool() {
         )}
         {result?.kind === 'psbt' && result.result.ok && (
           <div className="rounded-mp-md border border-mp-border-subtle bg-mp-card/40 p-2.5">
-            <p className="text-[10px] font-semibold text-mp-proof">PSBT structure read</p>
+            <VerificationTrail
+              steps={[
+                { label: 'structure', state: 'pass' },
+                {
+                  label: 'signatures',
+                  state:
+                    result.result.psbt.signaturesInvalid > 0
+                      ? 'fail'
+                      : result.result.psbt.signaturesValid > 0
+                        ? 'pass'
+                        : 'unknown',
+                },
+                { label: 'broadcast', state: 'unknown' },
+              ]}
+            />
+            <p className="text-[10px] font-semibold text-mp-proof">PSBT structure read · signatures checked where supported</p>
             <div className="mt-1.5">
               <FieldRow label="Version" value={result.result.psbt.version} />
               <FieldRow label="Inputs / outputs" value={`${result.result.psbt.inputs} / ${result.result.psbt.outputs}`} />
               <FieldRow label="Partial signatures" value={result.result.psbt.partialSigs} />
               <FieldRow label="Taproot signatures" value={result.result.psbt.tapSigs} />
+              <FieldRow
+                label="Verification"
+                value={`${result.result.psbt.signaturesValid} valid · ${result.result.psbt.signaturesInvalid} invalid · ${result.result.psbt.signaturesUnsupported} unchecked`}
+              />
               <FieldRow
                 label="Input value"
                 value={result.result.psbt.inputSats == null ? 'incomplete witness UTXOs' : formatSatsExact(result.result.psbt.inputSats)}
@@ -1222,6 +1363,15 @@ function AddressPsbtTool() {
                     value={<span className="font-mono text-[9px]">{input.address ?? 'not in witness UTXO'}</span>}
                     copy={input.address ?? undefined}
                   />
+                  {input.nonWitnessUtxo && <FieldRow label="Non-witness UTXO" value="present" />}
+                  {input.signatures.map((signature, signatureIndex) => (
+                    <p
+                      key={`sig-${index}-${signatureIndex}`}
+                      className={`mt-1 text-[9px] leading-relaxed ${signature.status === 'invalid' ? 'text-mp-wax' : signature.status === 'valid' ? 'text-mp-proof' : 'text-mp-ink-tertiary'}`}
+                    >
+                      {signature.scheme.toUpperCase()} {signature.status}: {signature.note}
+                    </p>
+                  ))}
                 </div>
               ))}
               {result.result.psbt.outputDetails.map((output, index) => (
@@ -1237,6 +1387,13 @@ function AddressPsbtTool() {
                     value={<span className="font-mono text-[9px]">{output.address ?? 'custom script'}</span>}
                     copy={output.address ?? undefined}
                   />
+                  {(output.possibleChange || output.addressReuse || output.dust) && (
+                    <p className="mt-1 text-[9px] leading-relaxed text-mp-wax">
+                      {output.possibleChange ? 'Possible change. ' : ''}
+                      {output.addressReuse && !output.possibleChange ? 'Address reuse. ' : ''}
+                      {output.dust ? 'Below dust threshold. ' : ''}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -1257,13 +1414,253 @@ function AddressPsbtTool() {
   )
 }
 
+function SilentPaymentsTool() {
+  const [address, setAddress] = useState('')
+  const [privateKey, setPrivateKey] = useState('')
+  const [txid, setTxid] = useState('')
+  const [vout, setVout] = useState('0')
+  const [decoded, setDecoded] = useState<Awaited<ReturnType<typeof decodeSilentPaymentAddress>> | null>(null)
+  const [derived, setDerived] = useState<Awaited<ReturnType<typeof deriveSilentPaymentOutput>> | null>(null)
+
+  const run = async () => {
+    const next = decodeSilentPaymentAddress(address)
+    setDecoded(next)
+    if (!next.ok || !privateKey.trim()) {
+      setDerived(null)
+      return
+    }
+    setDerived(
+      await deriveSilentPaymentOutput({
+        address,
+        inputPrivateKey: privateKey,
+        txid,
+        vout: Number(vout),
+      }),
+    )
+  }
+
+  return (
+    <ToolCard icon={<Wallet size={11} aria-hidden="true" />} eyebrow="BIP-352" title="Read a Silent Payment address">
+      <p className="text-[11px] leading-relaxed text-mp-ink-tertiary">
+        Decodes an <span className="font-mono">sp1…</span> address into its scan and spend keys. An optional input key derives one
+        one-time P2TR output for a specific outpoint; it is used in this tab and never stored. This does not scan the chain.
+      </p>
+      <form
+        onSubmit={event => {
+          event.preventDefault()
+          void run()
+        }}
+      >
+        <label htmlFor="sp-address" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+          Silent Payment address
+        </label>
+        <input
+          id="sp-address"
+          value={address}
+          onChange={event => setAddress(event.target.value)}
+          spellCheck={false}
+          placeholder="sp1… or tsp1…"
+          className={inputClass}
+        />
+        <label htmlFor="sp-key" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+          Input private key (hex, optional)
+        </label>
+        <input
+          id="sp-key"
+          type="password"
+          value={privateKey}
+          onChange={event => setPrivateKey(event.target.value)}
+          spellCheck={false}
+          autoComplete="off"
+          placeholder="kept in this tab only"
+          className={inputClass}
+        />
+        <div className="grid grid-cols-[1fr_90px] gap-2">
+          <div>
+            <label htmlFor="sp-txid" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+              Smallest input txid
+            </label>
+            <input id="sp-txid" value={txid} onChange={event => setTxid(event.target.value)} spellCheck={false} placeholder="64 hex" className={inputClass} />
+          </div>
+          <div>
+            <label htmlFor="sp-vout" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+              vout
+            </label>
+            <input id="sp-vout" value={vout} onChange={event => setVout(event.target.value)} inputMode="numeric" className={inputClass} />
+          </div>
+        </div>
+        <button type="submit" disabled={!address.trim()} className={`${buttonClass} mt-2`}>
+          Read address
+        </button>
+        <ClearButton
+          onClick={() => {
+            setAddress('')
+            setPrivateKey('')
+            setTxid('')
+            setVout('0')
+            setDecoded(null)
+            setDerived(null)
+          }}
+          disabled={!address && !privateKey && !txid && !decoded}
+        />
+      </form>
+      <div aria-live="polite" className="mt-3">
+        {decoded && !decoded.ok && (
+          <p className="flex items-start gap-1.5 text-[11px] leading-relaxed text-mp-wax">
+            <AlertTriangle size={12} className="mt-0.5 shrink-0" aria-hidden="true" />
+            {decoded.error}
+          </p>
+        )}
+        {decoded?.ok && (
+          <div className="rounded-mp-md border border-mp-border-subtle bg-mp-card/40 p-2.5">
+            <VerificationTrail
+              steps={[
+                { label: 'bech32m', state: 'pass' },
+                { label: 'keys', state: 'pass' },
+                { label: 'output', state: derived?.ok ? 'pass' : derived ? 'fail' : 'unknown' },
+                { label: 'chain scan', state: 'unknown' },
+              ]}
+            />
+            <p className="text-[10px] font-semibold text-mp-proof">Address decodes · version 0</p>
+            <div className="mt-1.5">
+              <FieldRow label="Network" value={decoded.address.network} />
+              <FieldRow label="Scan key" value={<span className="break-all font-mono text-[9px]">{decoded.address.scanPubkey}</span>} copy={decoded.address.scanPubkey} />
+              <FieldRow label="Spend key" value={<span className="break-all font-mono text-[9px]">{decoded.address.spendPubkey}</span>} copy={decoded.address.spendPubkey} />
+            </div>
+            {derived && !derived.ok && <p className="mt-2 text-[10px] text-mp-wax">{derived.error}</p>}
+            {derived?.ok && (
+              <div className="mt-2 rounded-mp-sm border border-mp-border-subtle/60 p-1.5">
+                <FieldRow label="Output key" value={<span className="break-all font-mono text-[9px]">{derived.xOnlyPubkey}</span>} copy={derived.xOnlyPubkey} />
+                <FieldRow label="scriptPubKey" value={<span className="break-all font-mono text-[9px]">{derived.scriptPubKey}</span>} copy={derived.scriptPubKey} />
+                <FieldRow label="One-time address" value={<span className="break-all font-mono text-[9px]">{derived.address}</span>} copy={derived.address} />
+                <FieldRow label="Input hash" value={<span className="break-all font-mono text-[9px]">{derived.inputHash}</span>} />
+              </div>
+            )}
+            <p className="mt-2 text-[9px] leading-relaxed text-mp-ink-tertiary">
+              A derived output proves this address and outpoint produce that script. It does not prove the receiver scanned it or
+              that a payment was broadcast. Reusing an input key across wallets can break the sender-side privacy assumption.
+            </p>
+          </div>
+        )}
+      </div>
+    </ToolCard>
+  )
+}
+
+function Nip17Tool() {
+  const [raw, setRaw] = useState('')
+  const [secret, setSecret] = useState('')
+  const [result, setResult] = useState<Awaited<ReturnType<typeof inspectNip17GiftWrap>> | null>(null)
+
+  const run = () => setResult(inspectNip17GiftWrap(raw, secret))
+
+  return (
+    <ToolCard icon={<ShieldCheck size={11} aria-hidden="true" />} eyebrow="NIP-17 / NIP-59" title="Inspect a gift-wrapped DM">
+      <p className="text-[11px] leading-relaxed text-mp-ink-tertiary">
+        Checks the public kind 1059 wrapper, then optionally unwraps the NIP-44 seal and unsigned rumor with the recipient key.
+        The key stays in this tab; it is never stored, returned or logged. A valid seal proves the sender key, not delivery.
+      </p>
+      <form
+        onSubmit={event => {
+          event.preventDefault()
+          run()
+        }}
+      >
+        <label htmlFor="nip17-event" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+          Gift-wrap event JSON
+        </label>
+        <textarea id="nip17-event" value={raw} onChange={event => setRaw(event.target.value)} rows={5} spellCheck={false} placeholder='{"kind":1059,…}' className={`${inputClass} font-mono text-[9px]`} />
+        <label htmlFor="nip17-secret" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+          Recipient nsec or hex (optional, to unwrap)
+        </label>
+        <input id="nip17-secret" type="password" value={secret} onChange={event => setSecret(event.target.value)} spellCheck={false} autoComplete="off" placeholder="kept in this tab only" className={inputClass} />
+        <button type="submit" disabled={!raw.trim()} className={`${buttonClass} mt-2`}>
+          Inspect DM
+        </button>
+        <ClearButton onClick={() => { setRaw(''); setSecret(''); setResult(null) }} disabled={!raw && !secret && !result} />
+      </form>
+      <div aria-live="polite" className="mt-3">
+        {result && !result.ok && (
+          <p className="flex items-start gap-1.5 text-[11px] leading-relaxed text-mp-wax">
+            <AlertTriangle size={12} className="mt-0.5 shrink-0" aria-hidden="true" />
+            {result.error}
+          </p>
+        )}
+        {result?.ok && (
+          <div className="rounded-mp-md border border-mp-border-subtle bg-mp-card/40 p-2.5">
+            <VerificationTrail
+              steps={[
+                { label: 'wrapper sig', state: result.result.checks.signature ? 'pass' : 'fail' },
+                { label: 'one recipient', state: result.result.checks.oneRecipient ? 'pass' : 'fail' },
+                { label: 'seal', state: result.result.unlocked ? (result.result.unlocked.checks.sealSignature ? 'pass' : 'fail') : 'unknown' },
+                { label: 'sender match', state: result.result.unlocked ? (result.result.unlocked.checks.senderMatches ? 'pass' : 'fail') : 'unknown' },
+              ]}
+            />
+            <div>
+              <CheckLine label="Kind 1059 / 21059" value={result.result.checks.kind} />
+              <CheckLine label="Wrapper signature" value={result.result.checks.signature} />
+              <CheckLine label="One recipient" value={result.result.checks.oneRecipient} />
+              <CheckLine label="Past timestamp" value={result.result.checks.pastTimestamp} />
+            </div>
+            <div className="mt-1.5">
+              <FieldRow label="Wrapper author" value={<span className="break-all font-mono text-[9px]">{result.result.event.pubkey}</span>} />
+              <FieldRow label="Recipients" value={result.result.recipients.length > 0 ? result.result.recipients.join(', ') : 'none'} />
+            </div>
+            {result.result.unlockError && <p className="mt-2 text-[10px] leading-relaxed text-mp-wax">No unwrap: {result.result.unlockError}</p>}
+            {result.result.unlocked && (
+              <div className="mt-2 rounded-mp-sm border border-mp-border-subtle/60 p-1.5">
+                <div className="mb-1 flex flex-wrap items-center gap-1">
+                  <CheckLine label="Seal kind 13" value={result.result.unlocked.checks.sealKind} />
+                  <CheckLine label="Seal signature" value={result.result.unlocked.checks.sealSignature} />
+                  <CheckLine label="Empty seal tags" value={result.result.unlocked.checks.sealEmptyTags} />
+                  <CheckLine label="Sender matches rumor" value={result.result.unlocked.checks.senderMatches} />
+                  <CheckLine label="Rumor id" value={result.result.unlocked.checks.rumorId} />
+                  <CheckLine label="DM kind" value={result.result.unlocked.checks.rumorKind} />
+                </div>
+                <FieldRow label="Sender npub" value={<span className="break-all font-mono text-[9px]">{npubEncode(result.result.unlocked.rumor.pubkey)}</span>} copy={npubEncode(result.result.unlocked.rumor.pubkey)} />
+                <FieldRow label="Sent" value={new Date(result.result.unlocked.rumor.created_at * 1000).toISOString().slice(0, 16).replace('T', ' ') + ' UTC'} />
+                <p className="mt-1 font-chrome text-[9px] uppercase tracking-wide text-mp-ink-tertiary">Content</p>
+                <pre className="mt-1 max-h-48 overflow-auto whitespace-pre-wrap break-words rounded-mp-sm bg-mp-canvas/70 p-2 text-[10px] text-mp-ink">{result.result.unlocked.rumor.content}</pre>
+              </div>
+            )}
+            {result.result.warnings.length > 0 && (
+              <ul className="mt-2 space-y-1 text-[10px] leading-relaxed text-mp-wax">
+                {result.result.warnings.map(warning => <li key={warning}>{warning}</li>)}
+              </ul>
+            )}
+          </div>
+        )}
+      </div>
+    </ToolCard>
+  )
+}
+
 export function ToolsPage() {
+  const [active, setActive] = useState<string | null>(() => {
+    if (typeof window === 'undefined') return null
+    const id = window.location.hash.replace('#', '')
+    return BITCOIN_TOOLS.some(tool => tool.id === id) ? id : null
+  })
+
+  const select = (id: string) => {
+    setActive(id)
+    history.replaceState(null, '', `#${id}`)
+    requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+  }
+
+  const showAll = () => {
+    setActive(null)
+    history.replaceState(null, '', window.location.pathname)
+  }
+
+  const visibility = (id: string) => `scroll-mt-28 ${active && active !== id ? 'hidden lg:block' : ''}`
+
   return (
     <div className="page-container px-4 sm:px-6 py-8 max-w-7xl mx-auto">
       <PageHeader
         eyebrow="BITCOIN TOOLS"
         title="Read it yourself"
-        subtitle="Invoices, offers, receipts, zaps and PSBTs, read in this tab. LNURL and NIP-05 are the only network calls, and only when you press Inspect. Each card says what it cannot prove."
+        subtitle="Start with what you have, then read it in this tab. LNURL and NIP-05 are the only network calls, and only when you press Inspect. Each result carries a verification trail and says what it cannot prove."
         actions={
           <Link to="/verify" className="chip text-xs">
             Verify a stamped hash →
@@ -1271,19 +1668,52 @@ export function ToolsPage() {
         }
       />
 
+      <section aria-label="Choose a tool by what you have" className="mb-5 rounded-mp-lg border border-mp-border-subtle bg-mp-card/40 p-3">
+        <div className="flex items-baseline justify-between gap-2">
+          <p className="font-chrome text-[10px] font-semibold uppercase tracking-[0.14em] text-mp-ink-tertiary">What do you have?</p>
+          {active && (
+            <button type="button" onClick={showAll} className="font-chrome text-[9px] uppercase tracking-wide text-mp-ink-tertiary underline underline-offset-2 hover:text-mp-ink">
+              Show all tools
+            </button>
+          )}
+        </div>
+        <div className="mt-2 grid gap-1.5 sm:grid-cols-2 lg:grid-cols-3">
+          {GUIDE.map(item => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => select(item.id)}
+              aria-pressed={active === item.id}
+              className={`rounded-mp-md border px-2.5 py-2 text-left transition-colors ${active === item.id ? 'border-mp-proof-border bg-mp-proof/10' : 'border-mp-border-subtle bg-mp-canvas/40 hover:border-mp-border-strong'}`}
+            >
+              <span className="block text-[11px] font-semibold text-mp-ink">{item.label}</span>
+              <span className="mt-0.5 block text-[9px] leading-snug text-mp-ink-tertiary">{item.hint}</span>
+            </button>
+          ))}
+        </div>
+        <p className="mt-2 text-[9px] leading-relaxed text-mp-ink-tertiary lg:hidden">
+          On a small screen, choosing one card shows only that card. The guide stays here so you can switch without scrolling.
+        </p>
+      </section>
+
       <nav
         aria-label="Bitcoin tools on this page"
         className="sticky top-16 z-20 -mx-1 mb-5 rounded-mp-lg border border-mp-border-subtle bg-mp-canvas/95 p-2 shadow-sm backdrop-blur"
       >
         <p className="mb-1.5 px-1 font-chrome text-[9px] font-semibold uppercase tracking-[0.14em] text-mp-ink-tertiary">
-          10 tools · 8 local · 2 network
+          12 tools · 10 local · 2 network
         </p>
         <div className="flex flex-wrap gap-1.5">
           {BITCOIN_TOOLS.map(tool => (
             <a
               key={tool.href}
               href={tool.href}
-              className="chip gap-1 text-[10px]"
+              onClick={event => {
+                event.preventDefault()
+                select(tool.id)
+              }}
+              aria-current={active === tool.id ? 'true' : undefined}
+              className={`chip gap-1 text-[10px] ${active === tool.id ? 'border-mp-proof-border text-mp-proof' : ''}`}
               title={tool.network ? 'Makes one https request' : 'Runs entirely in this tab'}
             >
               {tool.label}
@@ -1296,22 +1726,22 @@ export function ToolsPage() {
       </nav>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <div id="bolt11" className="scroll-mt-28">
+        <div id="bolt11" className={visibility('bolt11')}>
           <Bolt11Tool />
         </div>
-        <div id="bolt11-signature" className="scroll-mt-28">
+        <div id="bolt11-signature" className={visibility('bolt11-signature')}>
           <Bolt11SignatureTool />
         </div>
-        <div id="bolt12" className="scroll-mt-28">
+        <div id="bolt12" className={visibility('bolt12')}>
           <Bolt12Tool />
         </div>
-        <div id="bolt12-request" className="scroll-mt-28">
+        <div id="bolt12-request" className={visibility('bolt12-request')}>
           <Bolt12RequestTool />
         </div>
-        <div id="preimage" className="scroll-mt-28">
+        <div id="preimage" className={visibility('preimage')}>
           <PreimageTool />
         </div>
-        <div id="receipt" className="scroll-mt-28">
+        <div id="receipt" className={visibility('receipt')}>
           <Card className="flex min-w-0 flex-col p-4 sm:p-5">
             <p className="flex items-center gap-1.5 font-chrome text-[10px] font-semibold uppercase tracking-[0.14em] text-mp-ink-tertiary">
               <Receipt size={11} aria-hidden="true" />
@@ -1326,22 +1756,28 @@ export function ToolsPage() {
             </div>
           </Card>
         </div>
-        <div id="lnurl" className="scroll-mt-28">
+        <div id="lnurl" className={visibility('lnurl')}>
           <LnurlTool />
         </div>
-        <div id="zap" className="scroll-mt-28">
+        <div id="zap" className={visibility('zap')}>
           <ZapReceiptTool />
         </div>
-        <div id="nip05" className="scroll-mt-28">
+        <div id="nip05" className={visibility('nip05')}>
           <Nip05Tool />
         </div>
-        <div id="address-psbt" className="scroll-mt-28 lg:col-span-2">
+        <div id="nip17" className={visibility('nip17')}>
+          <Nip17Tool />
+        </div>
+        <div id="address-psbt" className={`${visibility('address-psbt')} lg:col-span-2`}>
           <AddressPsbtTool />
+        </div>
+        <div id="silent-payments" className={visibility('silent-payments')}>
+          <SilentPaymentsTool />
         </div>
       </div>
 
       <p className="mt-6 max-w-3xl text-[11px] leading-relaxed text-mp-ink-tertiary">
-        Eight tools run entirely offline. LNURL and NIP-05 are the exceptions: pressing Inspect makes one https request
+        Ten tools run entirely offline. LNURL and NIP-05 are the exceptions: pressing Inspect makes one https request
         to the endpoint or domain you named. A valid BOLT11 checksum and matching payee key mean the invoice is well formed
         and signed by its stated key, not that it is payable; a valid BOLT12 request signature means the message was
         signed by its payer key; a matching preimage means the hash relation holds. None of these proves a payment

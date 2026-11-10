@@ -20,6 +20,8 @@ import {
 export interface Bolt12RequestOptions {
   amountSats?: number | null
   payerNote?: string
+  /** Required when offer_quantity_max is present and greater than zero. */
+  quantity?: number | null
 }
 
 export type Bolt12RequestResult =
@@ -124,6 +126,19 @@ export async function buildBolt12InvoiceRequest(
   if (amountMsat != null) {
     // invreq_amount is a tu64, not a BigSize-prefixed integer.
     fields.set(82, encodeUint(amountMsat))
+  }
+
+  if (offer.quantityMax != null) {
+    const quantity = opts.quantity ?? (offer.quantityMax > 0 ? 1 : null)
+    if (offer.quantityMax === 0) {
+      if (quantity != null) return { ok: false, error: 'This offer has quantity_max 0 (unlimited), so a request must omit quantity.' }
+    } else if (quantity == null || !Number.isSafeInteger(quantity) || quantity <= 0 || quantity > offer.quantityMax) {
+      return { ok: false, error: `Quantity must be a whole number from 1 to ${offer.quantityMax}.` }
+    } else {
+      fields.set(86, encodeUint(quantity))
+    }
+  } else if (opts.quantity != null) {
+    return { ok: false, error: 'The offer does not allow a quantity field.' }
   }
 
   const note = opts.payerNote?.trim()
