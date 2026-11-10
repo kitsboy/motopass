@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-09T14:53:31.002Z",
+  "generated_at": "2026-11-10T14:12:19.953Z",
   "schema": "motopass.country-intel.v1",
   "sweep": {
     "fresh": 21,
     "watch": 0,
     "stale": 0,
-    "swept_at": "2026-11-09T14:53:31.002Z",
+    "swept_at": "2026-11-10T14:12:19.953Z",
     "satohash_api": {
       "status": "up",
       "version": "5.0.0-ELITE"
@@ -16,13 +16,13 @@
       "id": 1,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
         "changed": false,
         "probed": 5,
-        "unreachable": 0
+        "unreachable": 1
       },
       "proof": {
         "hash": "90732627f00bb71170c6a91b91361f300cc99c6151492c7df42714d8be7e62a1",
@@ -32,6 +32,19 @@
         "stamp_id": "56a090d0-75ee-4424-a78d-39c0141289ea"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "4 (Findex 43.4%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "7 (131 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -51,20 +64,6 @@
           "from": "c9a0a52e503612c2",
           "to": "re-anchored 547b1d2e2bd9e851 (stamp 0af9f818-dba)",
           "hash": "547b1d2e2bd9e85180f2dd0c4c5b79f3c9463cd38e9a43aa4d3286fdfc4ed354"
-        },
-        {
-          "date": "2026-09-16",
-          "field": "proof",
-          "from": "a94cfd8248e94b41",
-          "to": "re-anchored c9a0a52e503612c2 (stamp 0d42a84a-0b7)",
-          "hash": "c9a0a52e503612c2ddd9b95e994b5a500662355bdf505df831b7daf4bac58b92"
-        },
-        {
-          "date": "2026-09-11",
-          "field": "proof",
-          "from": "279fb4c4cd5d2d69",
-          "to": "re-anchored a94cfd8248e94b41 (stamp 8176aafc-b44)",
-          "hash": "a94cfd8248e94b41ae8bc2d5a9dbcfe146f8585bb17784b1437d62571dbcae43"
         }
       ]
     },
@@ -72,7 +71,7 @@
       "id": 2,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -88,6 +87,19 @@
         "stamp_id": "ff7cfe76-dd5d-4058-9147-b1e04da35b5c"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "9 (Findex 91.4%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "9 (184 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -106,18 +118,6 @@
           "field": "watch.changed",
           "from": "true",
           "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history."
-        },
-        {
-          "date": "2026-11-04",
-          "field": "watch.https://www.portugal.gov.pt/",
-          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "eaa5b56aa7796fc7"
-        },
-        {
-          "date": "2026-11-04",
-          "field": "watch.https://www.portugal.gov.pt",
-          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "eaa5b56aa7796fc7"
         }
       ]
     },
@@ -125,11 +125,11 @@
       "id": 3,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
-        "changed": false,
+        "changed": true,
         "probed": 6,
         "unreachable": 0
       },
@@ -142,6 +142,26 @@
       },
       "recent_changes": [
         {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "9 (Findex 86%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.tax",
+          "from": "null",
+          "to": "6",
+          "hash": null
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "9 (185 visa-free destinations)",
+          "hash": null
+        },
+        {
           "date": "2026-11-08",
           "field": "proof",
           "from": "5896d70fc0b87a29",
@@ -153,24 +173,6 @@
           "field": "last_checked",
           "from": "2026-09-29",
           "to": "2026-11-08"
-        },
-        {
-          "date": "2026-11-08",
-          "field": "watch.changed",
-          "from": "true",
-          "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history."
-        },
-        {
-          "date": "2026-11-08",
-          "field": "watch.https://www.esteri.it/",
-          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "299e59ac8731ffd0"
-        },
-        {
-          "date": "2026-11-07",
-          "field": "watch.https://www.esteri.it/",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "bc21329b943bd001"
         }
       ]
     },
@@ -178,7 +180,7 @@
       "id": 4,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -194,6 +196,19 @@
         "stamp_id": "34f59f11-924e-483a-88ec-721620e69cc2"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "7 (Findex 73.7%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "8 (155 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-09",
           "field": "watch.changed",
@@ -212,18 +227,6 @@
           "field": "last_checked",
           "from": "2026-09-29",
           "to": "2026-11-08"
-        },
-        {
-          "date": "2026-11-08",
-          "field": "watch.https://www.minterior.gub.uy",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "3eb279503555961f"
-        },
-        {
-          "date": "2026-11-06",
-          "field": "watch.https://www.minterior.gub.uy",
-          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "9b9fa60e22cc5e52"
         }
       ]
     },
@@ -231,7 +234,7 @@
       "id": 5,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -247,6 +250,19 @@
         "stamp_id": "82119eda-a63a-4657-816a-7a6cd064188c"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "8 (154 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -266,19 +282,6 @@
           "from": "66163458f496a824",
           "to": "re-anchored b537457d6fe6c9d2 (stamp 979bd44f-d46) @ block 969313",
           "hash": "b537457d6fe6c9d28f57262ebc42ec285f2be7ff317f576c79d844bb73476e08"
-        },
-        {
-          "date": "2026-09-15",
-          "field": "watch.https://www.cip.gov.ag",
-          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "a26ba4514a028890"
-        },
-        {
-          "date": "2026-09-12",
-          "field": "proof",
-          "from": "aa4c45f7a554951b",
-          "to": "re-anchored 66163458f496a824 (stamp 4caf5c58-328)",
-          "hash": "66163458f496a824a7cbb0a8e0cf7b0b6222604620a8fcf1ccfc02fe0200b52e"
         }
       ]
     },
@@ -286,7 +289,7 @@
       "id": 6,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -302,6 +305,19 @@
         "stamp_id": "8d5524ee-c903-4966-afee-4c5eb764a5b8"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "8 (157 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -320,19 +336,6 @@
           "field": "watch.changed",
           "from": "true",
           "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history."
-        },
-        {
-          "date": "2026-09-30",
-          "field": "proof",
-          "from": "e0f6d701ac8f0963",
-          "to": "re-anchored 645d4060bb4ff823 (stamp 40ef93ba-dcb)",
-          "hash": "645d4060bb4ff8235b5a7d84a104ec813bbb9f2aea4ef79373f59b38697ecaa6"
-        },
-        {
-          "date": "2026-09-26",
-          "field": "watch.https://www.ciu.gov.kn",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "32e4c22815693f8f"
         }
       ]
     },
@@ -340,7 +343,7 @@
       "id": 7,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -356,6 +359,19 @@
         "stamp_id": "3245f82c-ef3c-43f9-8ae6-8b40153ec06b"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "7 (145 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -374,19 +390,6 @@
           "field": "watch.changed",
           "from": "true",
           "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history."
-        },
-        {
-          "date": "2026-11-03",
-          "field": "watch.https://dominica.gov.dm/",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "b94aea907ae617d3"
-        },
-        {
-          "date": "2026-09-30",
-          "field": "proof",
-          "from": "6a0a046d6ec355ac",
-          "to": "re-anchored 60018a33188a009b (stamp 650ed349-1b7)",
-          "hash": "60018a33188a009b108496e8fd3fd5f957c2577408f3f44b6acc28c6fe5681db"
         }
       ]
     },
@@ -394,7 +397,7 @@
       "id": 8,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -411,6 +414,26 @@
       },
       "recent_changes": [
         {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.tax",
+          "from": "null",
+          "to": "8",
+          "hash": null
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "7 (144 visa-free destinations)",
+          "hash": null
+        },
+        {
           "date": "2026-11-08",
           "field": "proof",
           "from": "7e7a19af2261f696",
@@ -422,26 +445,6 @@
           "field": "last_checked",
           "from": "2026-09-29",
           "to": "2026-11-08"
-        },
-        {
-          "date": "2026-09-30",
-          "field": "proof",
-          "from": "65f26a589f96d644",
-          "to": "re-anchored 7e7a19af2261f696 (stamp e08139d8-358)",
-          "hash": "7e7a19af2261f696637747c196ec813534b6887746836a389fd45e654b79cf17"
-        },
-        {
-          "date": "2026-09-18",
-          "field": "proof",
-          "from": "5688e8f7fe631e39",
-          "to": "re-anchored 65f26a589f96d644 (stamp d0c8e531-309)",
-          "hash": "65f26a589f96d644c7d5edab7eff4e8faed72df8aa685b82a22b501baa9c0bcf"
-        },
-        {
-          "date": "2026-09-10",
-          "field": "last_checked",
-          "from": "2026-08-22",
-          "to": "2026-09-10"
         }
       ]
     },
@@ -449,7 +452,7 @@
       "id": 9,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -466,6 +469,26 @@
       },
       "recent_changes": [
         {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.tax",
+          "from": "null",
+          "to": "8",
+          "hash": null
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "7 (147 visa-free destinations)",
+          "hash": null
+        },
+        {
           "date": "2026-11-08",
           "field": "proof",
           "from": "324a9d2f5d396de1",
@@ -477,26 +500,6 @@
           "field": "last_checked",
           "from": "2026-09-29",
           "to": "2026-11-08"
-        },
-        {
-          "date": "2026-09-30",
-          "field": "proof",
-          "from": "53a087ece38e8cee",
-          "to": "re-anchored 324a9d2f5d396de1 (stamp a6c9f8a7-d70)",
-          "hash": "324a9d2f5d396de1434045da4cf21f1877091859f9668b3b426b679130334986"
-        },
-        {
-          "date": "2026-09-18",
-          "field": "proof",
-          "from": "1d8ca3ece897aaee",
-          "to": "re-anchored 53a087ece38e8cee (stamp f351499e-e48)",
-          "hash": "53a087ece38e8ceea3347152d081451c86c69177dfee78798a6406dfff8b6bad"
-        },
-        {
-          "date": "2026-09-15",
-          "field": "watch.https://www.cbi.gov.gd",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "47200b3f44e6ffac"
         }
       ]
     },
@@ -504,7 +507,7 @@
       "id": 10,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -513,44 +516,46 @@
         "unreachable": 3
       },
       "proof": {
-        "hash": "c0112d288a766743efa81d5bf3811b3ffe860fb3aab90358adc992b695188d8e",
+        "hash": "eaef3a1ad9d4d2ba6fac9f7e1c2029a2acde321da3fe72cb6c9552c6db4bf556",
         "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-11-08T19:30:43.263Z",
-        "stamp_id": "3b64f623-9ca8-4711-9993-190deb4e3a08"
+        "stamped_at": "2026-11-10T14:12:08.746Z",
+        "stamp_id": "b98062b0-660e-4cad-851b-637b3b9600b8"
       },
       "recent_changes": [
         {
-          "date": "2026-11-08",
+          "date": "2026-11-10",
           "field": "proof",
-          "from": "d5dcf5c42bf300db",
-          "to": "re-anchored c0112d288a766743 (stamp 3b64f623-9ca)",
-          "hash": "c0112d288a766743efa81d5bf3811b3ffe860fb3aab90358adc992b695188d8e"
+          "from": "c0112d288a766743",
+          "to": "re-anchored eaef3a1ad9d4d2ba (stamp b98062b0-660)",
+          "hash": "eaef3a1ad9d4d2ba6fac9f7e1c2029a2acde321da3fe72cb6c9552c6db4bf556"
         },
         {
-          "date": "2026-11-08",
-          "field": "last_checked",
-          "from": "2026-09-29",
-          "to": "2026-11-08"
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation"
         },
         {
-          "date": "2026-09-30",
-          "field": "proof",
-          "from": "a10d23fac00a1c92",
-          "to": "re-anchored d5dcf5c42bf300db (stamp d0196ddb-e01)",
-          "hash": "d5dcf5c42bf300dbf8ced0ec72ccbfeefcf5834bf7a523cca80a845af89439f9"
+          "date": "2026-11-09",
+          "field": "scorecard.tax",
+          "from": "null",
+          "to": "9",
+          "hash": null
         },
         {
-          "date": "2026-09-18",
-          "field": "proof",
-          "from": "5896afee50c283a0",
-          "to": "re-anchored a10d23fac00a1c92 (stamp 0ca5697c-cd3)",
-          "hash": "a10d23fac00a1c92394b2bf1d7eed2aa8ba4dd5026518c1137d7ad573d4851f1"
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "8 (158 visa-free destinations)",
+          "hash": null
         },
         {
-          "date": "2026-09-15",
-          "field": "watch.changed",
-          "to": "Change flag RETRACTED same day (Rosa, t_a8d32e10): the scopes that moved were Full page · Main content on a source that carries NO rule scope — no rule text, no rule event. Layout movement only; nothing to review."
+          "date": "2026-11-09",
+          "field": "compliance_clock",
+          "from": "days null, years null",
+          "to": "days 90, years 10",
+          "hash": null
         }
       ]
     },
@@ -558,7 +563,7 @@
       "id": 11,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -567,45 +572,46 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "64e834ed74a98fa1aa17928ae10e6a853e03d0c45542dd867e8a9f0e4e31a664",
+        "hash": "cc7d8d415fffd1bb47d8214325cab749bf28bad449988163f8f030fd6b420495",
         "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-11-08T19:32:18.101Z",
-        "stamp_id": "44010535-1208-4813-b4f9-994929dd7037"
+        "stamped_at": "2026-11-10T14:12:12.879Z",
+        "stamp_id": "1b99d3aa-3c6f-45c3-a642-52acad1e06a9"
       },
       "recent_changes": [
         {
-          "date": "2026-11-08",
+          "date": "2026-11-10",
           "field": "proof",
-          "from": "495453947a454b02",
-          "to": "re-anchored 64e834ed74a98fa1 (stamp 44010535-120)",
-          "hash": "64e834ed74a98fa1aa17928ae10e6a853e03d0c45542dd867e8a9f0e4e31a664"
+          "from": "64e834ed74a98fa1",
+          "to": "re-anchored cc7d8d415fffd1bb (stamp 1b99d3aa-3c6)",
+          "hash": "cc7d8d415fffd1bb47d8214325cab749bf28bad449988163f8f030fd6b420495"
         },
         {
-          "date": "2026-11-08",
-          "field": "last_checked",
-          "from": "2026-09-29",
-          "to": "2026-11-08"
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation"
         },
         {
-          "date": "2026-10-01",
-          "field": "proof",
-          "from": "c36b684b4de6dab0",
-          "to": "re-anchored 495453947a454b02 (stamp 444a7e24-3a8)",
-          "hash": "495453947a454b028af643ec9792c6c94c21674ddfcc9f0c72733970e478d3e0"
+          "date": "2026-11-09",
+          "field": "scorecard.tax",
+          "from": "null",
+          "to": "6",
+          "hash": null
         },
         {
-          "date": "2026-09-18",
-          "field": "proof",
-          "from": "4c4117a6eecbc2c3",
-          "to": "re-anchored c36b684b4de6dab0 (stamp 0e05ca1b-647)",
-          "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "8 (163 visa-free destinations)",
+          "hash": null
         },
         {
-          "date": "2026-09-15",
-          "field": "watch.https://www.immigration.gov.bb",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "e3b0c44298fc1c14"
+          "date": "2026-11-09",
+          "field": "compliance_clock",
+          "from": "days null, years null",
+          "to": "days 0, years 5",
+          "hash": null
         }
       ]
     },
@@ -613,7 +619,7 @@
       "id": 12,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -622,44 +628,45 @@
         "unreachable": 0
       },
       "proof": {
-        "hash": "83c5ad64fcb92a9f9fb26859e936a4fefdc8d9f3fe233ab0b23dfebbde1c1ee1",
+        "hash": "8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883",
         "in_sync": true,
         "block": 958093,
-        "stamped_at": "2026-11-08T19:32:21.801Z",
-        "stamp_id": "7431cf6d-d710-4391-86d8-70a3832de0db"
+        "stamped_at": "2026-11-10T14:12:16.712Z",
+        "stamp_id": "342aeef1-8d15-4778-897e-4be2b993e5c2"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-10",
+          "field": "proof",
+          "from": "83c5ad64fcb92a9f",
+          "to": "re-anchored 8a478f2a2745a847 (stamp 342aeef1-8d1)",
+          "hash": "8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "to": "left null — no authoritative BOTC visa-free count"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.tax",
+          "from": "null",
+          "to": "10",
+          "hash": null
+        },
+        {
+          "date": "2026-11-09",
+          "field": "compliance_clock",
+          "from": "days 0, years null",
+          "to": "days 0, years 20",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
           "from": "1842cdd9cd07c630",
           "to": "re-anchored 83c5ad64fcb92a9f (stamp 7431cf6d-d71)",
           "hash": "83c5ad64fcb92a9f9fb26859e936a4fefdc8d9f3fe233ab0b23dfebbde1c1ee1"
-        },
-        {
-          "date": "2026-11-08",
-          "field": "last_checked",
-          "from": "2026-09-29",
-          "to": "2026-11-08"
-        },
-        {
-          "date": "2026-09-30",
-          "field": "proof",
-          "from": "67fe1219912c44a0",
-          "to": "re-anchored 1842cdd9cd07c630 (stamp 7b87b477-9b5)",
-          "hash": "1842cdd9cd07c630485c11a6754745b93442f41027aaf110ab4520a8dece0402"
-        },
-        {
-          "date": "2026-09-15",
-          "field": "watch.https://www.gov.ky",
-          "to": "Two duplicate `rule scope added` coverage events REMOVED (t_54b89ced, harness owner). Both carried the same rotating news headline as their \"rule text\" (\"André Ebanks and his fellow Caribbean Overseas Territories Leaders have concluded their 2026 Caucus meeting in Hamilton, Bermuda … in preparation for this year's United Kingdom (UK) Joint Mini…\"), 16 minutes apart — the url alternates an http path whose rule scope is a news headline with a browser path that has no rule scope, so every probe-path flip re-announced the same non-rule text. Neither could alert (a rule scope needs two identical probes). The harness no longer emits this event on a probe-path flip or an EXTRACT_V re-baseline (v8, shouldEmitRuleScopeAdded); these two were pre-fix noise the feed should not have to explain. The `after` texts are preserved here rather than deleted silently. Whether to keep watching www.gov.ky at all (a headline-bearing rule scope) stays a curation decision — see t_239f6996 and t_50cbc2d3.",
-          "hash": null
-        },
-        {
-          "date": "2026-09-15",
-          "field": "watch.https://www.gov.ky",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "f39fd6ca09acad01"
         }
       ]
     },
@@ -667,7 +674,7 @@
       "id": 13,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -684,6 +691,26 @@
       },
       "recent_changes": [
         {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "10 (Findex 98.4%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.tax",
+          "from": "null",
+          "to": "6",
+          "hash": null
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "9 (185 visa-free destinations)",
+          "hash": null
+        },
+        {
           "date": "2026-11-08",
           "field": "proof",
           "from": "afea358e3b7b87a6",
@@ -695,24 +722,6 @@
           "field": "last_checked",
           "from": "2026-09-29",
           "to": "2026-11-08"
-        },
-        {
-          "date": "2026-11-08",
-          "field": "watch.changed",
-          "from": "true",
-          "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history."
-        },
-        {
-          "date": "2026-10-29",
-          "field": "watch.https://sede.agenciatributaria.gob.es/",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "14aaa308b9ad4b2b"
-        },
-        {
-          "date": "2026-10-16",
-          "field": "watch.https://sede.agenciatributaria.gob.es/",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "94a9c261353169a5"
         }
       ]
     },
@@ -720,11 +729,11 @@
       "id": 14,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
-        "changed": false,
+        "changed": true,
         "probed": 7,
         "unreachable": 0
       },
@@ -737,6 +746,26 @@
       },
       "recent_changes": [
         {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "10 (Findex 98.3%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.tax",
+          "from": "null",
+          "to": "6",
+          "hash": null
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "9 (185 visa-free destinations)",
+          "hash": null
+        },
+        {
           "date": "2026-11-08",
           "field": "proof",
           "from": "39d27d5284d82abd",
@@ -748,24 +777,6 @@
           "field": "last_checked",
           "from": "2026-09-29",
           "to": "2026-11-08"
-        },
-        {
-          "date": "2026-11-08",
-          "field": "watch.changed",
-          "from": "true",
-          "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history."
-        },
-        {
-          "date": "2026-11-06",
-          "field": "watch.https://enterprise.gov.ie",
-          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "c14c29518fdcaec8"
-        },
-        {
-          "date": "2026-11-05",
-          "field": "watch.https://www.revenue.ie/",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "47104f24fabe4d23"
         }
       ]
     },
@@ -773,7 +784,7 @@
       "id": 15,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -789,6 +800,19 @@
         "stamp_id": "9b902d2f-53ad-4bbf-ab84-0ffe293a997b"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "8 (Findex 81.7%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "8 (168 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -807,19 +831,6 @@
           "field": "watch.changed",
           "from": "true",
           "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history."
-        },
-        {
-          "date": "2026-10-30",
-          "field": "watch.https://www.migraciones.gob.ar",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "c41add7cb751f107"
-        },
-        {
-          "date": "2026-10-02",
-          "field": "proof",
-          "from": "302a948d1da4a1c8",
-          "to": "re-anchored 515b2a393bbffcfe (stamp 74397a78-340)",
-          "hash": "515b2a393bbffcfe9c3511d04a4349e199dbff1959cc0ac1f76817cd92f53abd"
         }
       ]
     },
@@ -827,7 +838,7 @@
       "id": 16,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -843,6 +854,19 @@
         "stamp_id": "45882adc-c436-4303-8dca-077d9ee39c60"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "9 (Findex 86.4%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "8 (168 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -861,18 +885,6 @@
           "field": "watch.changed",
           "from": "true",
           "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history."
-        },
-        {
-          "date": "2026-11-07",
-          "field": "watch.https://www.gov.br/mj/en/",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "0a893d621fb3c774"
-        },
-        {
-          "date": "2026-11-06",
-          "field": "watch.https://www.gov.br/mj/en/",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "1436271ced6a7b42"
         }
       ]
     },
@@ -880,7 +892,7 @@
       "id": 17,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -896,6 +908,19 @@
         "stamp_id": "6d7c2103-05a0-41ec-9d47-276ad715f87c"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "10 (Findex 96.6%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "9 (184 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -915,19 +940,6 @@
           "from": "1ce9eb8bd293fd5d",
           "to": "re-anchored cbecbf6ecaa659a2 (stamp 7bc793b6-3b4)",
           "hash": "cbecbf6ecaa659a20bd373b79d9eeda9ba52b994147d61a1e0b519f4cbec9b0d"
-        },
-        {
-          "date": "2026-09-16",
-          "field": "proof",
-          "from": "602b403dce4a3455",
-          "to": "re-anchored 1ce9eb8bd293fd5d (stamp ff6830c2-d7a)",
-          "hash": "1ce9eb8bd293fd5d759ff1f180dadb265c857abfd21020dbf8ca7967900b4f66"
-        },
-        {
-          "date": "2026-09-14",
-          "field": "watch.https://residencymalta.gov.mt",
-          "to": "Official source content changed — manual rule review required",
-          "hash": "602b403dce4a3455ce6c0993587f4d15e99099ab3d78b8df5d8de3d6f4299bba"
         }
       ]
     },
@@ -935,7 +947,7 @@
       "id": 18,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -952,38 +964,38 @@
       },
       "recent_changes": [
         {
+          "date": "2026-11-10",
+          "field": "finance.tax_benefits",
+          "from": "No personal income tax, no capital gains tax, no corporate income tax, no withholding tax, no wealth",
+          "to": "No personal income tax (Wikipedia)",
+          "hash": "b3902b9313aac4ec9f2834c25726d5442af7266f0a84391b29ec6bfb8c68871a"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "finance.tax_benefits",
+          "from": "No personal income tax (Wikipedia)",
+          "to": "Full direct-tax position + Crypto/Bitcoin tax sentence",
+          "hash": null
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "4 (87 visa-free destinations)",
+          "hash": null
+        },
+        {
           "date": "2026-11-08",
           "field": "proof",
           "from": "a65002fbf8c5059d",
           "to": "re-anchored b3902b9313aac4ec (stamp 28a18416-948)",
           "hash": "b3902b9313aac4ec9f2834c25726d5442af7266f0a84391b29ec6bfb8c68871a"
-        },
-        {
-          "date": "2026-11-08",
-          "field": "last_checked",
-          "from": "2026-09-29",
-          "to": "2026-11-08"
-        },
-        {
-          "date": "2026-10-01",
-          "field": "proof",
-          "from": "8973b5e31268af3b",
-          "to": "re-anchored a65002fbf8c5059d (stamp bcca1eec-371)",
-          "hash": "a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938"
-        },
-        {
-          "date": "2026-10-01",
-          "field": "finance.tax_benefits",
-          "from": "No personal income tax (Wikipedia)\n\nCrypto/Bitcoin tax: Zero-direct-tax regime: no personal income t",
-          "to": "No personal income tax (Wikipedia)",
-          "hash": "a65002fbf8c5059d18619271e5686ca1675d87109cdd155bfdf3d84fee249938"
-        },
-        {
-          "date": "2026-09-30",
-          "field": "proof",
-          "from": "dc7586d2d89250d0",
-          "to": "re-anchored 8973b5e31268af3b (stamp f2a95839-323)",
-          "hash": "8973b5e31268af3b822f9e74e35e4bf1701b1214099e2bcbd596ca9fee0dd660"
         }
       ]
     },
@@ -991,7 +1003,7 @@
       "id": 19,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -1007,6 +1019,19 @@
         "stamp_id": "9a84605b-a726-4c66-b8b4-ea596143b5ed"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "6 (Findex 64.1%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "7 (147 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -1025,18 +1050,6 @@
           "field": "watch.changed",
           "from": "true",
           "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history."
-        },
-        {
-          "date": "2026-11-07",
-          "field": "watch.https://www.migracion.gob.pa",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "d10a16ccaaed63cf"
-        },
-        {
-          "date": "2026-11-03",
-          "field": "watch.https://www.migracion.gob.pa",
-          "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "52280e80d2b3f455"
         }
       ]
     },
@@ -1044,7 +1057,7 @@
       "id": 20,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -1060,6 +1073,19 @@
         "stamp_id": "794e19dc-ed14-4d0a-97b7-16fe8e38afdc"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "5 (Findex 53%, 2024)"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "null",
+          "to": "8 (156 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -1078,18 +1104,6 @@
           "field": "watch.changed",
           "from": "true",
           "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history."
-        },
-        {
-          "date": "2026-11-06",
-          "field": "watch.https://dof.gob.mx",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "124b48b339611306"
-        },
-        {
-          "date": "2026-11-04",
-          "field": "watch.https://dof.gob.mx",
-          "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-          "hash": "476a8ed06456475a"
         }
       ]
     },
@@ -1097,7 +1111,7 @@
       "id": 21,
       "freshness": {
         "status": "fresh",
-        "days_stale": 2,
+        "days_stale": 3,
         "last_checked": "2026-11-08"
       },
       "watch": {
@@ -1113,6 +1127,19 @@
         "stamp_id": "8490bdb2-920e-453c-b811-c726fd8949cc"
       },
       "recent_changes": [
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.banking",
+          "from": "null",
+          "to": "left null — no World Bank Findex observation"
+        },
+        {
+          "date": "2026-11-09",
+          "field": "scorecard.mobility",
+          "from": "2",
+          "to": "3 (58 visa-free destinations)",
+          "hash": null
+        },
         {
           "date": "2026-11-08",
           "field": "proof",
@@ -1131,11 +1158,6 @@
           "field": "flagship_depth",
           "from": "template (no proof)",
           "to": "flagship — research verified via official June 2026 memorandum + agency consensus (fees, 3-4mo timeline); Bitcoin proof anchored via Satohash API + local OTS"
-        },
-        {
-          "date": "2026-09-29",
-          "field": "schema.v3",
-          "to": "new entry — full v3 schema, agency-sourced, proof pending"
         }
       ]
     }

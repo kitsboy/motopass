@@ -7,7 +7,7 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T03:53:31.667Z",
+  "generated_at": "2026-11-10T14:12:20.327Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 2,
@@ -15,16 +15,16 @@
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 3,
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-11-08T19:32:21.801Z",
-    "hash": "83c5ad64fcb92a9f9fb26859e936a4fefdc8d9f3fe233ab0b23dfebbde1c1ee1",
-    "proof_url": "https://satohash.io/verify/83c5ad64fcb92a9f9fb26859e936a4fefdc8d9f3fe233ab0b23dfebbde1c1ee1",
+    "stamped_at": "2026-11-10T14:12:16.712Z",
+    "hash": "8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883",
+    "proof_url": "https://satohash.io/verify/8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883",
     "ots_path": "/proofs/cayman-islands-1842cdd9cd07.ots",
     "in_sync": true
   },
@@ -143,43 +143,36 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-09T14:38:54.440Z",
+    "last_probe_at": "2026-11-10T13:57:56.770Z",
     "urls": [
       {
         "url": "https://www.gov.ky",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.ciregistry.gov.ky",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.gov.ky/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.immigration.gov.ky/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://www.gov.ky",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "f39fd6ca09acad01"
-    },
     {
       "date": "2026-09-15",
       "field": "watch.https://www.gov.ky",
@@ -228,6 +221,13 @@
       "from": null,
       "to": "left null — no authoritative BOTC visa-free count",
       "hash": null
+    },
+    {
+      "date": "2026-11-10",
+      "field": "proof",
+      "from": "83c5ad64fcb92a9f",
+      "to": "re-anchored 8a478f2a2745a847 (stamp 342aeef1-8d1)",
+      "hash": "8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883"
     }
   ],
   "sovereignty": {

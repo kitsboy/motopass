@@ -7,7 +7,7 @@
     "region": "Oceania",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T03:53:31.668Z",
+  "generated_at": "2026-11-10T14:12:20.329Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 2,
@@ -15,7 +15,7 @@
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 3,
       "last_checked": "2026-11-08"
     }
   },
@@ -147,43 +147,36 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-09T14:38:54.440Z",
+    "last_probe_at": "2026-11-10T13:57:56.770Z",
     "urls": [
       {
         "url": "https://cilc.vu",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://immigration.gov.vu",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.gov.vu",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://vancitizenship.gov.vu/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.vfsc.vu/virtual-asset-service-provider/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-30",
-      "field": "proof",
-      "from": "dc7586d2d89250d0",
-      "to": "re-anchored 8973b5e31268af3b (stamp f2a95839-323)",
-      "hash": "8973b5e31268af3b822f9e74e35e4bf1701b1214099e2bcbd596ca9fee0dd660"
-    },
     {
       "date": "2026-10-01",
       "field": "finance.tax_benefits",
@@ -232,6 +225,13 @@
       "from": "null",
       "to": "left null — no World Bank Findex observation",
       "hash": null
+    },
+    {
+      "date": "2026-11-10",
+      "field": "finance.tax_benefits",
+      "from": "No personal income tax, no capital gains tax, no corporate income tax, no withholding tax, no wealth",
+      "to": "No personal income tax (Wikipedia)",
+      "hash": "b3902b9313aac4ec9f2834c25726d5442af7266f0a84391b29ec6bfb8c68871a"
     }
   ],
   "sovereignty": {

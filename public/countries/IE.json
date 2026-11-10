@@ -7,7 +7,7 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T03:53:31.668Z",
+  "generated_at": "2026-11-10T14:12:20.328Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 2,
@@ -15,7 +15,7 @@
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 3,
       "last_checked": "2026-11-08"
     }
   },
@@ -148,43 +148,43 @@
     ]
   },
   "watch": {
-    "changed": false,
-    "last_probe_at": "2026-11-09T14:38:54.440Z",
+    "changed": true,
+    "last_probe_at": "2026-11-10T13:57:56.770Z",
     "urls": [
       {
         "url": "https://www.irishimmigration.ie",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://enterprise.gov.ie",
-        "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "status": "changed",
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.centralbank.ie",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.dfa.ie/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.revenue.ie/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       }
     ]
   },

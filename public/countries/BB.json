@@ -7,7 +7,7 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T03:53:31.667Z",
+  "generated_at": "2026-11-10T14:12:20.327Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 2,
@@ -15,16 +15,16 @@
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 3,
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-11-08T19:32:18.101Z",
-    "hash": "64e834ed74a98fa1aa17928ae10e6a853e03d0c45542dd867e8a9f0e4e31a664",
-    "proof_url": "https://satohash.io/verify/64e834ed74a98fa1aa17928ae10e6a853e03d0c45542dd867e8a9f0e4e31a664",
+    "stamped_at": "2026-11-10T14:12:12.879Z",
+    "hash": "cc7d8d415fffd1bb47d8214325cab749bf28bad449988163f8f030fd6b420495",
+    "proof_url": "https://satohash.io/verify/cc7d8d415fffd1bb47d8214325cab749bf28bad449988163f8f030fd6b420495",
     "ots_path": "/proofs/barbados-495453947a45.ots",
     "in_sync": true
   },
@@ -151,43 +151,36 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-09T14:38:54.440Z",
+    "last_probe_at": "2026-11-10T13:57:56.770Z",
     "urls": [
       {
         "url": "https://www.immigration.gov.bb",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://barbadoswelcomestamp.bb",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.visitbarbados.org/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://barbadoswelcomestamp.bb/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.immigration.gov.bb/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-18",
-      "field": "proof",
-      "from": "4c4117a6eecbc2c3",
-      "to": "re-anchored c36b684b4de6dab0 (stamp 0e05ca1b-647)",
-      "hash": "c36b684b4de6dab0c877710c87dc4b0e095cbf96f9767eda94fea4ec4bec4b4a"
-    },
     {
       "date": "2026-10-01",
       "field": "proof",
@@ -236,6 +229,13 @@
       "from": "null",
       "to": "left null — no World Bank Findex observation",
       "hash": null
+    },
+    {
+      "date": "2026-11-10",
+      "field": "proof",
+      "from": "64e834ed74a98fa1",
+      "to": "re-anchored cc7d8d415fffd1bb (stamp 1b99d3aa-3c6)",
+      "hash": "cc7d8d415fffd1bb47d8214325cab749bf28bad449988163f8f030fd6b420495"
     }
   ],
   "sovereignty": {

@@ -7,7 +7,7 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T03:53:31.667Z",
+  "generated_at": "2026-11-10T14:12:20.326Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 2,
@@ -15,16 +15,16 @@
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 3,
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
     "block": 958093,
-    "stamped_at": "2026-11-08T19:30:43.263Z",
-    "hash": "c0112d288a766743efa81d5bf3811b3ffe860fb3aab90358adc992b695188d8e",
-    "proof_url": "https://satohash.io/verify/c0112d288a766743efa81d5bf3811b3ffe860fb3aab90358adc992b695188d8e",
+    "stamped_at": "2026-11-10T14:12:08.746Z",
+    "hash": "eaef3a1ad9d4d2ba6fac9f7e1c2029a2acde321da3fe72cb6c9552c6db4bf556",
+    "proof_url": "https://satohash.io/verify/eaef3a1ad9d4d2ba6fac9f7e1c2029a2acde321da3fe72cb6c9552c6db4bf556",
     "ots_path": "/proofs/bahamas-d5dcf5c42bf3.ots",
     "in_sync": true
   },
@@ -155,7 +155,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-09T14:38:54.440Z",
+    "last_probe_at": "2026-11-10T13:57:56.770Z",
     "urls": [
       {
         "url": "https://www.bahamas.gov.bs",
@@ -165,17 +165,17 @@
       {
         "url": "https://www.bahamaschamber.com",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.immigration.gov.bs",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://laws.bahamas.gov.bs",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.bahamas.gov.bs/",
@@ -185,7 +185,7 @@
       {
         "url": "https://www.immigration.gov.bs/residence/permanent-residence/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
@@ -195,13 +195,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-18",
-      "field": "proof",
-      "from": "5896afee50c283a0",
-      "to": "re-anchored a10d23fac00a1c92 (stamp 0ca5697c-cd3)",
-      "hash": "a10d23fac00a1c92394b2bf1d7eed2aa8ba4dd5026518c1137d7ad573d4851f1"
-    },
     {
       "date": "2026-09-30",
       "field": "proof",
@@ -250,6 +243,13 @@
       "from": "null",
       "to": "left null — no World Bank Findex observation",
       "hash": null
+    },
+    {
+      "date": "2026-11-10",
+      "field": "proof",
+      "from": "c0112d288a766743",
+      "to": "re-anchored eaef3a1ad9d4d2ba (stamp b98062b0-660)",
+      "hash": "eaef3a1ad9d4d2ba6fac9f7e1c2029a2acde321da3fe72cb6c9552c6db4bf556"
     }
   ],
   "sovereignty": {

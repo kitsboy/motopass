@@ -7,7 +7,7 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T03:53:31.666Z",
+  "generated_at": "2026-11-10T14:12:20.324Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 2,
@@ -15,7 +15,7 @@
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 2,
+      "days_stale": 3,
       "last_checked": "2026-11-08"
     }
   },
@@ -147,38 +147,38 @@
     ]
   },
   "watch": {
-    "changed": false,
-    "last_probe_at": "2026-11-09T14:38:54.440Z",
+    "changed": true,
+    "last_probe_at": "2026-11-10T13:57:56.770Z",
     "urls": [
       {
         "url": "https://www.interno.gov.it",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://investorvisa.mise.gov.it",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.agenziaentrate.gov.it",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.esteri.it/",
-        "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "status": "changed",
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://www.agenziaentrate.gov.it/",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       },
       {
         "url": "https://investorvisa.mise.gov.it/index.php/en",
         "status": "ok",
-        "last_probed": "2026-11-09T14:38:54.440Z"
+        "last_probed": "2026-11-10T13:57:56.770Z"
       }
     ]
   },
