@@ -3,7 +3,7 @@ import { AlertTriangle, CheckCircle2, ScanLine, ShieldCheck } from 'lucide-react
 import { bolt11AmountSats, bolt11ExpiryLabel, decodeBolt11 } from '../../lib/bolt11'
 import { verifyBolt11Signature } from '../../lib/bolt11Signature'
 import { formatSatsExact } from '../../lib/satsAnchor'
-import { ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass } from './toolsShared'
+import { ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass, useToolIntake } from './toolsShared'
 import { QrScanButton } from './QrScanner'
 
 function nowSeconds(): number {
@@ -21,6 +21,8 @@ function Bolt11Tool() {
   const [raw, setRaw] = useState('')
   const [result, setResult] = useState<ReturnType<typeof decodeBolt11> | null>(null)
   const [decodedAt, setDecodedAt] = useState<number | null>(null)
+
+  useToolIntake('bolt11', setRaw)
 
   const run = () => {
     setResult(decodeBolt11(raw))
@@ -142,6 +144,8 @@ function Bolt11SignatureTool() {
   const [raw, setRaw] = useState('')
   const [result, setResult] = useState<Awaited<ReturnType<typeof verifyBolt11Signature>> | null>(null)
   const [busy, setBusy] = useState(false)
+
+  useToolIntake('bolt11-signature', setRaw)
 
   const run = async () => {
     setBusy(true)

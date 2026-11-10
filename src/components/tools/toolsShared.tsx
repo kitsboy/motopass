@@ -2,8 +2,10 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { ArrowRight, Check, Copy, Download, Link2, Share2 } from 'lucide-react'
 import { Card } from '../ui/Card'
 import {
+  buildReceiptShareLink,
   buildVerificationReceipt,
   serializeVerificationReceipt,
+  verificationReceiptDigest,
   verificationReceiptFilename,
   type VerificationReceipt,
   type VerificationReceiptInput,
@@ -61,7 +63,54 @@ const NEXT_STEP: Record<
     title: 'A hash relation is not settlement',
     body: 'A matching preimage proves the hash relation. Confirm the payment hash belongs to the invoice or receipt you actually care about.',
   },
+  'payment-evidence': {
+    title: 'A coherent bundle is not a payment',
+    body: 'Cross-links can agree while the underlying invoice, receipt or message is still about something else. Keep the source and the payer context out of band.',
+  },
 }
+
+interface ToolIntakeDetail {
+  toolId: string
+  value: string
+}
+
+const pendingIntake = new Map<string, string>()
+
+/** Queue a detected artifact for a tool card, even if that card mounts later. */
+export function prefillTool(toolId: string, value: string): void {
+  pendingIntake.set(toolId, value)
+  if (typeof window !== 'undefined') {
+    try {
+      window.dispatchEvent(new CustomEvent<ToolIntakeDetail>('motopass:tool-intake', { detail: { toolId, value } }))
+    } catch {
+      // The pending value is still picked up when the card mounts.
+    }
+  }
+}
+
+export function useToolIntake(toolId: string, onValue: (value: string) => void): void {
+  const callback = useRef(onValue)
+  useEffect(() => {
+    callback.current = onValue
+  }, [onValue])
+  useEffect(() => {
+    const handler = (event: Event) => {
+      const detail = (event as CustomEvent<ToolIntakeDetail>).detail
+      if (detail?.toolId === toolId && typeof detail.value === 'string') {
+        pendingIntake.delete(toolId)
+        callback.current(detail.value)
+      }
+    }
+    window.addEventListener('motopass:tool-intake', handler)
+    const pending = pendingIntake.get(toolId)
+    if (pending != null) {
+      pendingIntake.delete(toolId)
+      callback.current(pending)
+    }
+    return () => window.removeEventListener('motopass:tool-intake', handler)
+  }, [toolId])
+}
+
 
 function NextStepPanel({ tool, steps }: { tool: string; steps: Array<{ label: string; state: TrailState }> }) {
   const failed = steps.filter(step => step.state === 'fail')
@@ -77,19 +126,19 @@ function NextStepPanel({ tool, steps }: { tool: string; steps: Array<{ label: st
         }`
 
   return (
-    <div className={`mt-1.5 rounded-mp-md border px-2 py-1.5 ${tone}`} role="note">
-      <p className={`flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide ${failed.length ? 'text-mp-wax' : 'text-mp-ink-secondary'}`}>
-        <ArrowRight size={10} aria-hidden="true" />
+    <div className={`mt-1.5 rounded-mp-md border px-2.5 py-2 ${tone}`} role="note">
+      <p className={`flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide ${failed.length ? 'text-mp-wax' : 'text-mp-ink-secondary'}`}>
+        <ArrowRight size={11} aria-hidden="true" />
         {title}
       </p>
-      <p className="mt-0.5 text-[9px] leading-relaxed text-mp-ink-tertiary">{body}</p>
+      <p className="mt-0.5 text-[11px] leading-relaxed text-mp-ink-tertiary">{body}</p>
       {next?.href && failed.length === 0 && (
         <a
           href={next.href}
-          className="mt-1 inline-flex items-center gap-1 font-chrome text-[8px] font-semibold uppercase tracking-wide text-mp-btc-text underline underline-offset-2"
+          className="mt-1 inline-flex min-h-8 items-center gap-1 font-chrome text-[10px] font-semibold uppercase tracking-wide text-mp-btc-text underline underline-offset-2"
         >
           {next.linkLabel ?? 'Next step'}
-          <ArrowRight size={8} aria-hidden="true" />
+          <ArrowRight size={10} aria-hidden="true" />
         </a>
       )}
     </div>
@@ -135,12 +184,13 @@ export function VerificationTrail({
         {steps.map((step, index) => (
           <span
             key={`${step.label}-${index}`}
-            className={`rounded-full border px-1.5 py-0.5 font-chrome text-[8px] uppercase tracking-wide ${tone[step.state]}`}
+            className={`rounded-full border px-2 py-1 font-chrome text-[10px] uppercase tracking-wide ${tone[step.state]}`}
           >
             {step.label} · {step.state === 'pass' ? 'pass' : step.state === 'fail' ? 'fail' : 'unchecked'}
           </span>
         ))}
         {receiptInput && <VerificationReceiptButton receipt={receiptInput} />}
+        {receiptInput && <ReceiptLinkButton receipt={receiptInput} />}
         {receiptInput && <ProofCardButton receipt={receiptInput} />}
       </div>
       {tool && <NextStepPanel tool={tool} steps={steps} />}
@@ -164,9 +214,9 @@ export function CopyButton({ value, label = 'Copy', text = 'Copy' }: { value: st
       type="button"
       onClick={() => void copy()}
       aria-label={`Copy ${label}`}
-      className="ml-1 inline-flex shrink-0 items-center gap-1 rounded-full border border-mp-border-subtle px-1.5 py-0.5 font-chrome text-[8px] font-semibold uppercase tracking-wide text-mp-ink-tertiary hover:border-mp-btc/40 hover:text-mp-btc-text focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40"
+      className="ml-1 inline-flex min-h-8 shrink-0 items-center gap-1 rounded-full border border-mp-border-subtle px-2 py-1 font-chrome text-[10px] font-semibold uppercase tracking-wide text-mp-ink-tertiary hover:border-mp-btc/40 hover:text-mp-btc-text focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40"
     >
-      {copied ? <Check size={8} aria-hidden="true" /> : <Copy size={8} aria-hidden="true" />}
+      {copied ? <Check size={10} aria-hidden="true" /> : <Copy size={10} aria-hidden="true" />}
       {copied ? 'Copied' : text}
     </button>
   )
@@ -204,7 +254,7 @@ export function ToolCard({
             </span>
           )}
           <span
-            className={`rounded-full border px-1.5 py-0.5 text-[8px] tracking-wide ${network ? 'border-mp-wax/40 text-mp-wax' : 'border-mp-proof-border text-mp-proof'}`}
+            className={`rounded-full border px-2 py-0.5 text-[10px] tracking-wide ${network ? 'border-mp-wax/40 text-mp-wax' : 'border-mp-proof-border text-mp-proof'}`}
           >
             {network ? 'NETWORK' : 'LOCAL'}
           </span>
@@ -219,8 +269,8 @@ export function ToolCard({
 export function FieldRow({ label, value, copy }: { label: string; value: ReactNode; copy?: string }) {
   return (
     <div className="grid grid-cols-[7.5rem_minmax(0,1fr)] gap-2 border-b border-mp-border-subtle/60 py-1 last:border-0">
-      <span className="text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{label}</span>
-      <span className="flex min-w-0 items-start gap-1 break-words text-[11px] text-mp-ink-secondary">
+      <span className="text-[11px] uppercase tracking-wide text-mp-ink-tertiary">{label}</span>
+      <span className="flex min-w-0 items-start gap-1 break-words text-[12px] text-mp-ink-secondary">
         <span className="min-w-0 break-words">{value}</span>
         {copy && <CopyButton value={copy} label={label} />}
       </span>
@@ -256,7 +306,7 @@ const CHECK_TONE = {
 export function CheckLine({ label, value }: { label: string; value: boolean | null }) {
   const tone = value == null ? 'unknown' : value ? 'pass' : 'fail'
   return (
-    <div className={`flex items-center justify-between gap-2 border-b border-mp-border-subtle/60 py-1 text-[10px] last:border-0 ${CHECK_TONE[tone]}`}>
+    <div className={`flex items-center justify-between gap-2 border-b border-mp-border-subtle/60 py-1.5 text-[11px] last:border-0 ${CHECK_TONE[tone]}`}>
       <span>{label}</span>
       <span className="font-semibold">{value == null ? 'not checked' : value ? 'pass' : 'fail'}</span>
     </div>
@@ -286,10 +336,48 @@ export function VerificationReceiptButton({ receipt }: { receipt: VerificationRe
     <button
       type="button"
       onClick={download}
-      className="mt-2 inline-flex items-center gap-1 rounded-full border border-mp-border-subtle px-2 py-1 font-chrome text-[9px] font-semibold uppercase tracking-wide text-mp-ink-tertiary hover:border-mp-proof-border hover:text-mp-proof focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40"
+      className="mt-2 inline-flex min-h-9 items-center gap-1 rounded-full border border-mp-border-subtle px-2.5 py-1 font-chrome text-[10px] font-semibold uppercase tracking-wide text-mp-ink-tertiary hover:border-mp-proof-border hover:text-mp-proof focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40"
     >
-      <Download size={10} aria-hidden="true" />
+      <Download size={11} aria-hidden="true" />
       {saved ? 'Receipt downloaded' : 'Download verification receipt'}
+    </button>
+  )
+}
+
+export function ReceiptLinkButton({ receipt }: { receipt: VerificationReceiptInput }) {
+  const [status, setStatus] = useState<'idle' | 'copied' | 'error'>('idle')
+  const timeout = useRef<number | null>(null)
+
+  useEffect(
+    () => () => {
+      if (timeout.current) window.clearTimeout(timeout.current)
+    },
+    [],
+  )
+
+  const copy = async () => {
+    const link = buildReceiptShareLink(buildVerificationReceipt(receipt))
+    if (!link.ok) {
+      setStatus('error')
+    } else {
+      try {
+        await navigator.clipboard.writeText(link.url)
+        setStatus('copied')
+      } catch {
+        setStatus('error')
+      }
+    }
+    timeout.current = window.setTimeout(() => setStatus('idle'), 2400)
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => void copy()}
+      className="mt-2 inline-flex min-h-9 items-center gap-1 rounded-full border border-mp-border-subtle px-2.5 py-1 font-chrome text-[10px] font-semibold uppercase tracking-wide text-mp-ink-tertiary hover:border-mp-proof-border hover:text-mp-proof focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40"
+    >
+      <Link2 size={11} aria-hidden="true" />
+      {status === 'copied' ? 'Receipt link copied' : status === 'error' ? 'Link unavailable' : 'Copy receipt link'}
     </button>
   )
 }
@@ -376,7 +464,8 @@ async function drawProofCard(receipt: VerificationReceipt): Promise<Blob | null>
   ctx.fillText('NOT PROOF OF PAYMENT', 64, 572)
   ctx.fillStyle = '#8b98a8'
   ctx.font = "400 14px ui-monospace, SFMono-Regular, Menlo, monospace"
-  ctx.fillText(`motopass.giveabit.io/tools#${receipt.tool}`, 720, 573)
+  ctx.fillText(`SHA-256 ${verificationReceiptDigest(receipt).slice(0, 20)}…`, 64, 596)
+  ctx.fillText(`motopass.giveabit.io/tools/receipt`, 720, 573)
 
   return new Promise(resolve => canvas.toBlob(blob => resolve(blob), 'image/png'))
 }
@@ -431,7 +520,7 @@ export function ProofCardButton({ receipt }: { receipt: VerificationReceiptInput
       type="button"
       onClick={() => void share()}
       disabled={status === 'working'}
-      className="mt-2 inline-flex items-center gap-1 rounded-full border border-mp-border-subtle px-2 py-1 font-chrome text-[9px] font-semibold uppercase tracking-wide text-mp-ink-tertiary hover:border-mp-btc/40 hover:text-mp-btc-text focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40 disabled:opacity-50"
+      className="mt-2 inline-flex items-center gap-1 rounded-full border border-mp-border-subtle px-2 py-1 font-chrome text-[10px] font-semibold uppercase tracking-wide text-mp-ink-tertiary hover:border-mp-btc/40 hover:text-mp-btc-text focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40 disabled:opacity-50"
     >
       {status === 'shared' ? <Check size={10} aria-hidden="true" /> : <Share2 size={10} aria-hidden="true" />}
       {status === 'working' ? 'Drawing…' : status === 'shared' ? 'Card shared' : status === 'downloaded' ? 'Card downloaded' : 'Share proof card'}

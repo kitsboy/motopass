@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ShieldCheck, ShieldAlert } from 'lucide-react'
 import { inspectTipReceiptJson, type ReceiptDetails } from '../../lib/receiptInspect'
 import { checkPreimage, type PreimageCheck } from '../../lib/preimage'
+import { useToolIntake } from '../tools/toolsShared'
 
 /**
  * Independent check of a pasted receipt.
@@ -31,6 +32,8 @@ export function ReceiptInspector() {
   const [outcome, setOutcome] = useState<Outcome | null>(null)
   const [preimage, setPreimage] = useState<PreimageCheck>('unreadable')
   const [busy, setBusy] = useState(false)
+
+  useToolIntake('receipt', setRaw)
 
   const verify = async () => {
     setBusy(true)
@@ -105,11 +108,11 @@ export function ReceiptInspector() {
             {outcome.details.country ? ` · ${outcome.details.country}` : ''}
             {outcome.details.sats != null ? ` · ${outcome.details.sats.toLocaleString()} sats` : ''}
           </p>
-          <p className="font-mono text-[9px] text-mp-ink-tertiary">
+          <p className="font-mono text-[10px] text-mp-ink-tertiary">
             signed by {outcome.pubkey.slice(0, 12)}… · {new Date(outcome.createdAt * 1000).toISOString().slice(0, 16).replace('T', ' ')} UTC
           </p>
           {evidence && <p className={evidence.tone}>{evidence.text}</p>}
-          <p className="text-[9px] text-mp-ink-tertiary">
+          <p className="text-[10px] text-mp-ink-tertiary">
             A valid signature shows who recorded the payment. It does not show what the invoice was for.
           </p>
         </div>

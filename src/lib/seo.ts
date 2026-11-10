@@ -67,9 +67,14 @@ export const ROUTE_SEO: Record<string, SeoMeta> = {
       'Generate and verify Satohash.io OpenTimestamps proofs for MotoPass application payloads and material claims.',
   },
   '/tools': {
-    title: 'Bitcoin Tools — BOLT11, BOLT12, PSBTs, NIP-17 and Silent Payments',
+    title: 'Bitcoin Tools — BOLT11, BOLT12, PSBTs, BIP-322 and Silent Payments',
     description:
-      'Decode BOLT11 invoices, read and sign BOLT12 offers and requests, inspect LNURL-pay, verify zap receipts, unwrap NIP-17 DMs, pin NIP-05 keys, and verify PSBT signatures or Silent Payment addresses — locally, except the LNURL and NIP-05 requests you initiate.',
+      'Decode BOLT11 invoices, read BOLT12, verify BIP-137/BIP-322 signed messages, cross-check payment evidence, inspect LNURL-pay, verify zap receipts, unwrap NIP-17 DMs, pin NIP-05 keys, and verify PSBT signatures or Silent Payment addresses — locally, except the LNURL and NIP-05 requests you initiate.',
+  },
+  '/tools/receipt': {
+    title: 'Receipt Verifier — Check a Shared MotoPass Receipt',
+    description:
+      'Verify a shared MotoPass receipt entirely in your browser: decode the URL fragment, recompute its canonical SHA-256 digest, and read every check and limit. No upload, no signature and no payment proof implied.',
   },
   '/agents': {
     title: 'Country Liaison Agents',

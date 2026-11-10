@@ -5,7 +5,7 @@ import { checkPreimage, type PreimageCheck } from '../../lib/preimage'
 import { inspectLnurlPay, requestAndInspectLnurlInvoice } from '../../lib/lnurlInspect'
 import { formatSatsExact } from '../../lib/satsAnchor'
 import { verifyZapReceipt } from '../../lib/zapReceipt'
-import { CheckLine, ClearButton, FieldRow, ToolCard, buttonClass, inputClass } from './toolsShared'
+import { CheckLine, ClearButton, FieldRow, ToolCard, buttonClass, inputClass, useToolIntake } from './toolsShared'
 
 function bolt11AmountLabel(amountMsat: number | null): string {
   if (amountMsat == null) return 'open — no amount in the invoice'
@@ -81,6 +81,8 @@ function LnurlTool() {
   const [inspection, setInspection] = useState<Awaited<ReturnType<typeof inspectLnurlPay>> | null>(null)
   const [invoice, setInvoice] = useState<Awaited<ReturnType<typeof requestAndInspectLnurlInvoice>> | null>(null)
   const [busy, setBusy] = useState(false)
+
+  useToolIntake('lnurl', setRaw)
 
   const inspect = async () => {
     setBusy(true)
@@ -166,7 +168,7 @@ function LnurlTool() {
         {inspection?.ok && (
           <div className="rounded-mp-md border border-mp-border-subtle bg-mp-card/40 p-2.5">
             <p className="text-[10px] font-semibold text-mp-proof">Pay endpoint responded</p>
-            <p className="mt-0.5 break-all font-mono text-[9px] text-mp-ink-tertiary">{inspection.inspection.target.endpoint}</p>
+            <p className="mt-0.5 break-all font-mono text-[10px] text-mp-ink-tertiary">{inspection.inspection.target.endpoint}</p>
             <div className="mt-1.5">
               <FieldRow label="Kind" value={inspection.inspection.target.kind} />
               <FieldRow
@@ -218,6 +220,8 @@ function ZapReceiptTool() {
   const [raw, setRaw] = useState('')
   const [result, setResult] = useState<Awaited<ReturnType<typeof verifyZapReceipt>> | null>(null)
   const [busy, setBusy] = useState(false)
+
+  useToolIntake('zap', setRaw)
 
   const run = async () => {
     setBusy(true)

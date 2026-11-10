@@ -3,13 +3,15 @@ import { AlertTriangle, CheckCircle2, Landmark, Wallet } from 'lucide-react'
 import { inspectBitcoinInput } from '../../lib/bitcoinInspect'
 import { decodeSilentPaymentAddress, deriveSilentPaymentOutput } from '../../lib/silentPayments'
 import { formatSatsExact } from '../../lib/satsAnchor'
-import { ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass } from './toolsShared'
+import { ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass, useToolIntake } from './toolsShared'
 import { QrScanButton } from './QrScanner'
 
 function AddressPsbtTool() {
   const [raw, setRaw] = useState('')
   const [result, setResult] = useState<Awaited<ReturnType<typeof inspectBitcoinInput>> | null>(null)
   const [busy, setBusy] = useState(false)
+
+  useToolIntake('address-psbt', setRaw)
 
   const run = async () => {
     setBusy(true)
@@ -146,20 +148,20 @@ function AddressPsbtTool() {
             <div className="mt-2 space-y-2">
               {result.result.psbt.inputDetails.map((input, index) => (
                 <div key={`input-${index}`} className="rounded-mp-sm border border-mp-border-subtle/60 p-1.5">
-                  <p className="font-chrome text-[9px] font-semibold uppercase tracking-wide text-mp-ink-tertiary">Input {index}</p>
-                  <FieldRow label="Prev txid" value={<span className="break-all font-mono text-[9px]">{input.prevTxid ?? '—'}</span>} />
+                  <p className="font-chrome text-[10px] font-semibold uppercase tracking-wide text-mp-ink-tertiary">Input {index}</p>
+                  <FieldRow label="Prev txid" value={<span className="break-all font-mono text-[10px]">{input.prevTxid ?? '—'}</span>} />
                   <FieldRow label="Prev vout" value={input.vout ?? '—'} />
                   <FieldRow label="Type" value={input.scriptType} />
                   <FieldRow
                     label="Address"
-                    value={<span className="font-mono text-[9px]">{input.address ?? 'not in witness UTXO'}</span>}
+                    value={<span className="font-mono text-[10px]">{input.address ?? 'not in witness UTXO'}</span>}
                     copy={input.address ?? undefined}
                   />
                   {input.nonWitnessUtxo && <FieldRow label="Non-witness UTXO" value="present" />}
                   {input.signatures.map((signature, signatureIndex) => (
                     <p
                       key={`sig-${index}-${signatureIndex}`}
-                      className={`mt-1 text-[9px] leading-relaxed ${signature.status === 'invalid' ? 'text-mp-wax' : signature.status === 'valid' ? 'text-mp-proof' : 'text-mp-ink-tertiary'}`}
+                      className={`mt-1 text-[10px] leading-relaxed ${signature.status === 'invalid' ? 'text-mp-wax' : signature.status === 'valid' ? 'text-mp-proof' : 'text-mp-ink-tertiary'}`}
                     >
                       {signature.scheme.toUpperCase()} {signature.status}: {signature.note}
                     </p>
@@ -168,7 +170,7 @@ function AddressPsbtTool() {
               ))}
               {result.result.psbt.outputDetails.map((output, index) => (
                 <div key={`output-${index}`} className="rounded-mp-sm border border-mp-border-subtle/60 p-1.5">
-                  <p className="font-chrome text-[9px] font-semibold uppercase tracking-wide text-mp-ink-tertiary">Output {index}</p>
+                  <p className="font-chrome text-[10px] font-semibold uppercase tracking-wide text-mp-ink-tertiary">Output {index}</p>
                   <FieldRow
                     label="Value"
                     value={output.amountSats == null ? 'unreadable' : formatSatsExact(output.amountSats)}
@@ -176,11 +178,11 @@ function AddressPsbtTool() {
                   <FieldRow label="Type" value={output.scriptType} />
                   <FieldRow
                     label="Address"
-                    value={<span className="font-mono text-[9px]">{output.address ?? 'custom script'}</span>}
+                    value={<span className="font-mono text-[10px]">{output.address ?? 'custom script'}</span>}
                     copy={output.address ?? undefined}
                   />
                   {(output.possibleChange || output.addressReuse || output.dust) && (
-                    <p className="mt-1 text-[9px] leading-relaxed text-mp-wax">
+                    <p className="mt-1 text-[10px] leading-relaxed text-mp-wax">
                       {output.possibleChange ? 'Possible change. ' : ''}
                       {output.addressReuse && !output.possibleChange ? 'Address reuse. ' : ''}
                       {output.dust ? 'Below dust threshold. ' : ''}
@@ -189,7 +191,7 @@ function AddressPsbtTool() {
                 </div>
               ))}
             </div>
-            <p className="mt-2 text-[9px] leading-relaxed text-mp-ink-tertiary">
+            <p className="mt-2 text-[10px] leading-relaxed text-mp-ink-tertiary">
               PSBTs do not encode a network, so these addresses use Bitcoin mainnet prefixes.
             </p>
             {result.result.psbt.warnings.length > 0 && (
@@ -213,6 +215,8 @@ function SilentPaymentsTool() {
   const [vout, setVout] = useState('0')
   const [decoded, setDecoded] = useState<Awaited<ReturnType<typeof decodeSilentPaymentAddress>> | null>(null)
   const [derived, setDerived] = useState<Awaited<ReturnType<typeof deriveSilentPaymentOutput>> | null>(null)
+
+  useToolIntake('silent-payments', setAddress)
 
   const run = async () => {
     const next = decodeSilentPaymentAddress(address)
@@ -332,19 +336,19 @@ function SilentPaymentsTool() {
             <p className="text-[10px] font-semibold text-mp-proof">Address decodes · version 0</p>
             <div className="mt-1.5">
               <FieldRow label="Network" value={decoded.address.network} />
-              <FieldRow label="Scan key" value={<span className="break-all font-mono text-[9px]">{decoded.address.scanPubkey}</span>} copy={decoded.address.scanPubkey} />
-              <FieldRow label="Spend key" value={<span className="break-all font-mono text-[9px]">{decoded.address.spendPubkey}</span>} copy={decoded.address.spendPubkey} />
+              <FieldRow label="Scan key" value={<span className="break-all font-mono text-[10px]">{decoded.address.scanPubkey}</span>} copy={decoded.address.scanPubkey} />
+              <FieldRow label="Spend key" value={<span className="break-all font-mono text-[10px]">{decoded.address.spendPubkey}</span>} copy={decoded.address.spendPubkey} />
             </div>
             {derived && !derived.ok && <p className="mt-2 text-[10px] text-mp-wax">{derived.error}</p>}
             {derived?.ok && (
               <div className="mt-2 rounded-mp-sm border border-mp-border-subtle/60 p-1.5">
-                <FieldRow label="Output key" value={<span className="break-all font-mono text-[9px]">{derived.xOnlyPubkey}</span>} copy={derived.xOnlyPubkey} />
-                <FieldRow label="scriptPubKey" value={<span className="break-all font-mono text-[9px]">{derived.scriptPubKey}</span>} copy={derived.scriptPubKey} />
-                <FieldRow label="One-time address" value={<span className="break-all font-mono text-[9px]">{derived.address}</span>} copy={derived.address} />
-                <FieldRow label="Input hash" value={<span className="break-all font-mono text-[9px]">{derived.inputHash}</span>} />
+                <FieldRow label="Output key" value={<span className="break-all font-mono text-[10px]">{derived.xOnlyPubkey}</span>} copy={derived.xOnlyPubkey} />
+                <FieldRow label="scriptPubKey" value={<span className="break-all font-mono text-[10px]">{derived.scriptPubKey}</span>} copy={derived.scriptPubKey} />
+                <FieldRow label="One-time address" value={<span className="break-all font-mono text-[10px]">{derived.address}</span>} copy={derived.address} />
+                <FieldRow label="Input hash" value={<span className="break-all font-mono text-[10px]">{derived.inputHash}</span>} />
               </div>
             )}
-            <p className="mt-2 text-[9px] leading-relaxed text-mp-ink-tertiary">
+            <p className="mt-2 text-[10px] leading-relaxed text-mp-ink-tertiary">
               A derived output proves this address and outpoint produce that script. It does not prove the receiver scanned it or
               that a payment was broadcast. Reusing an input key across wallets can break the sender-side privacy assumption.
             </p>

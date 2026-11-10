@@ -3,22 +3,13 @@ import { createPortal } from 'react-dom'
 import { AlertTriangle, ScanLine, X } from 'lucide-react'
 import { cleanScannedText } from '../../lib/qrScan'
 
-interface DetectedBarcode {
-  rawValue: string
-}
-
-interface BarcodeDetectorLike {
-  detect(source: CanvasImageSource): Promise<DetectedBarcode[]>
-}
-
-type BarcodeDetectorCtor = new (options?: { formats?: string[] }) => BarcodeDetectorLike
-
 /**
- * Camera QR input using the browser's native BarcodeDetector.
+ * Camera QR input.
  *
- * No image or frame leaves the tab, and there is no QR library in the bundle.
- * Browsers without BarcodeDetector get an honest paste fallback instead of a
- * camera button that silently does nothing.
+ * qr-scanner is loaded only when the camera is opened. It uses the native
+ * BarcodeDetector where available and its own worker-based decoder elsewhere,
+ * so the initial bundle stays lean and Safari / Firefox get camera input too.
+ * No image or frame leaves the tab.
  */
 export function QrScanButton({
   onScan,
@@ -42,68 +33,45 @@ export function QrScanButton({
   useEffect(() => {
     if (!open) return
     let cancelled = false
-    let stream: MediaStream | null = null
-    let timer: number | undefined
+    let scanner: { start: () => Promise<void>; destroy: () => void } | null = null
     const video = videoRef.current
 
     const start = async () => {
       setError(null)
       setScanning(true)
-      const Ctor = (window as Window & { BarcodeDetector?: BarcodeDetectorCtor }).BarcodeDetector
-      if (!Ctor) {
-        setError('This browser cannot read QR codes. Paste the invoice, address or PSBT instead — no data has left this tab.')
-        setScanning(false)
-        return
-      }
       if (!navigator.mediaDevices?.getUserMedia) {
         setError('Camera access is unavailable. Open this page on HTTPS and allow camera permission, or paste the value.')
         setScanning(false)
         return
       }
       try {
-        stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'environment' },
-          audio: false,
-        })
-        if (cancelled || !video) {
-          stream.getTracks().forEach(track => track.stop())
-          return
-        }
-        video.srcObject = stream
-        await video.play()
-        let detector: BarcodeDetectorLike
-        try {
-          detector = new Ctor({ formats: ['qr_code'] })
-        } catch {
-          detector = new Ctor()
-        }
-        const scan = async () => {
-          if (cancelled || !video || video.readyState < 2) {
-            timer = window.setTimeout(scan, 300)
-            return
-          }
-          try {
-            const codes = await detector.detect(video)
-            const value = codes.find(code => code.rawValue.trim())?.rawValue
-            if (value) {
-              onScanRef.current(cleanScannedText(value))
-              setOpen(false)
-              return
-            }
-          } catch {
-            // A transient detector failure should not close the camera.
-          }
-          timer = window.setTimeout(scan, 300)
-        }
-        timer = window.setTimeout(scan, 300)
+        const { default: QrScanner } = await import('qr-scanner')
+        if (cancelled || !video) return
+        scanner = new QrScanner(
+          video,
+          result => {
+            onScanRef.current(cleanScannedText(result.data))
+            setOpen(false)
+          },
+          {
+            preferredCamera: 'environment',
+            maxScansPerSecond: 4,
+            returnDetailedScanResult: true,
+            onDecodeError: () => {
+              // A frame without a QR code is normal; keep scanning.
+            },
+          },
+        )
+        await scanner.start()
       } catch (err) {
+        if (cancelled) return
         const name = err instanceof DOMException ? err.name : ''
         setError(
           name === 'NotAllowedError'
             ? 'Camera permission was denied. Allow it in the browser, or paste the value.'
             : name === 'NotFoundError'
               ? 'No camera was found. Paste the value instead.'
-              : 'The camera could not start. Paste the value instead.',
+              : 'The camera or local QR decoder could not start. Paste the value instead — no frame has left this tab.',
         )
         setScanning(false)
       }
@@ -115,8 +83,7 @@ export function QrScanButton({
 
     return () => {
       cancelled = true
-      if (timer) window.clearTimeout(timer)
-      stream?.getTracks().forEach(track => track.stop())
+      scanner?.destroy()
       document.body.style.overflow = previousOverflow
     }
   }, [open])
@@ -126,7 +93,7 @@ export function QrScanButton({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={`inline-flex items-center gap-1 rounded-full border border-mp-border-subtle px-2.5 py-1.5 font-chrome text-[10px] font-semibold text-mp-ink-tertiary hover:border-mp-btc/40 hover:text-mp-btc-text focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40 ${className}`}
+        className={`inline-flex min-h-9 items-center gap-1 rounded-full border border-mp-border-subtle px-2.5 py-1.5 font-chrome text-[10px] font-semibold text-mp-ink-tertiary hover:border-mp-btc/40 hover:text-mp-btc-text focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40 ${className}`}
       >
         <ScanLine size={11} aria-hidden="true" />
         {label}
@@ -150,7 +117,7 @@ export function QrScanButton({
                   type="button"
                   onClick={() => setOpen(false)}
                   aria-label="Close camera"
-                  className="rounded-full border border-mp-border-subtle p-2 text-mp-ink-secondary"
+                  className="min-h-11 min-w-11 rounded-full border border-mp-border-subtle p-2 text-mp-ink-secondary"
                 >
                   <X size={16} aria-hidden="true" />
                 </button>
@@ -168,13 +135,14 @@ export function QrScanButton({
                 </p>
               ) : (
                 <p className="mt-2 text-[10px] leading-relaxed text-mp-ink-tertiary">
-                  Hold the code inside the frame. Camera frames are processed in this tab and are never uploaded.
+                  Hold the code inside the frame. Camera frames are processed in this tab by the native detector or a
+                  lazy-loaded local decoder, and are never uploaded.
                 </p>
               )}
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="mt-3 w-full rounded-full border border-mp-border-subtle px-3 py-2 text-[11px] font-semibold text-mp-ink-secondary"
+                className="mt-3 min-h-11 w-full rounded-full border border-mp-border-subtle px-3 py-2 text-[11px] font-semibold text-mp-ink-secondary"
               >
                 Paste instead
               </button>

@@ -54,6 +54,7 @@ const assets = [
     `${BASE}/index.html`,
     `${BASE}/verify`,
     `${BASE}/tools`,
+    `${BASE}/tools/receipt`,
     `${BASE}/images/header-elite.jpg`,
     ...htmlAssets,
     ...diskAssets,

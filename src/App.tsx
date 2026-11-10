@@ -76,6 +76,7 @@ const SourceMonitorPage = lazy(() =>
   import('./pages/SourceMonitorPage').then((m) => ({ default: m.SourceMonitorPage })),
 )
 const ToolsPage = lazy(() => import('./pages/ToolsPage').then((m) => ({ default: m.ToolsPage })))
+const ReceiptPage = lazy(() => import('./pages/ReceiptPage').then((m) => ({ default: m.ReceiptPage })))
 
 export default function App() {
   return (
@@ -166,6 +167,14 @@ export default function App() {
                                   element={
                                     <RouteSuspense minH={900}>
                                       <ToolsPage />
+                                    </RouteSuspense>
+                                  }
+                                />
+                                <Route
+                                  path="tools/receipt"
+                                  element={
+                                    <RouteSuspense minH={700}>
+                                      <ReceiptPage />
                                     </RouteSuspense>
                                   }
                                 />

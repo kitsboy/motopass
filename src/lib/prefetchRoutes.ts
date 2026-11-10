@@ -11,6 +11,7 @@ const ROUTE_LOADERS: Record<string, () => Promise<unknown>> = {
   '/blog': () => import('../pages/BlogPage'),
   '/verify': () => import('../pages/VerifyPage'),
   '/tools': () => import('../pages/ToolsPage'),
+  '/tools/receipt': () => import('../pages/ReceiptPage'),
   '/agents': () => import('../pages/AgentsPage'),
   '/apply': () => import('../pages/ApplyPage'),
   '/register': () => import('../pages/RegisterPage'),

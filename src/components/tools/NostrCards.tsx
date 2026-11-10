@@ -4,7 +4,7 @@ import { nip05Verdict, resolveNip05 } from '../../lib/nip05'
 import { forgetNip05Pin, recordNip05Pin, type Nip05PinRecord } from '../../lib/nip05Pin'
 import { inspectNip17GiftWrap } from '../../lib/nip17'
 import { decode as decodeNip19, npubEncode } from 'nostr-tools/nip19'
-import { CheckLine, ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass } from './toolsShared'
+import { CheckLine, ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass, useToolIntake } from './toolsShared'
 import { QrScanButton } from './QrScanner'
 
 function expectedPubkey(value: string): string | null {
@@ -25,6 +25,8 @@ function Nip05Tool() {
   const [result, setResult] = useState<Awaited<ReturnType<typeof resolveNip05>> | null>(null)
   const [pin, setPin] = useState<Nip05PinRecord | null>(null)
   const [busy, setBusy] = useState(false)
+  useToolIntake('nip05', setHandle)
+
   const expectedHex = expected.trim() ? expectedPubkey(expected) : null
   const invalidExpected = Boolean(expected.trim() && !expectedHex)
   const verdict = result?.ok ? nip05Verdict(result.pubkey, expectedHex) : null
@@ -148,7 +150,7 @@ function Nip05Tool() {
                       : 'Key changed since the local pin. Verify the new key out of band before trusting it.'}
                 </p>
                 {pin.previous && (
-                  <p className="mt-1 break-all font-mono text-[9px]">
+                  <p className="mt-1 break-all font-mono text-[10px]">
                     Pinned {pin.previous.pubkey.slice(0, 16)}… → now {pin.pin.pubkey.slice(0, 16)}…
                   </p>
                 )}
@@ -158,7 +160,7 @@ function Nip05Tool() {
                     forgetNip05Pin(handle)
                     setPin(null)
                   }}
-                  className="mt-1 font-chrome text-[9px] uppercase tracking-wide text-mp-ink-tertiary underline underline-offset-2 hover:text-mp-ink"
+                  className="mt-1 font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary underline underline-offset-2 hover:text-mp-ink"
                 >
                   Forget local pin
                 </button>
@@ -175,6 +177,8 @@ function Nip17Tool() {
   const [raw, setRaw] = useState('')
   const [secret, setSecret] = useState('')
   const [result, setResult] = useState<Awaited<ReturnType<typeof inspectNip17GiftWrap>> | null>(null)
+
+  useToolIntake('nip17', setRaw)
 
   const run = () => setResult(inspectNip17GiftWrap(raw, secret))
 
@@ -193,7 +197,7 @@ function Nip17Tool() {
         <label htmlFor="nip17-event" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
           Gift-wrap event JSON
         </label>
-        <textarea id="nip17-event" value={raw} onChange={event => setRaw(event.target.value)} rows={5} spellCheck={false} placeholder='{"kind":1059,…}' className={`${inputClass} font-mono text-[9px]`} />
+        <textarea id="nip17-event" value={raw} onChange={event => setRaw(event.target.value)} rows={5} spellCheck={false} placeholder='{"kind":1059,…}' className={`${inputClass} font-mono text-[10px]`} />
         <label htmlFor="nip17-secret" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
           Recipient nsec or hex (optional, to unwrap)
         </label>
@@ -238,7 +242,7 @@ function Nip17Tool() {
               <CheckLine label="Past timestamp" value={result.result.checks.pastTimestamp} />
             </div>
             <div className="mt-1.5">
-              <FieldRow label="Wrapper author" value={<span className="break-all font-mono text-[9px]">{result.result.event.pubkey}</span>} />
+              <FieldRow label="Wrapper author" value={<span className="break-all font-mono text-[10px]">{result.result.event.pubkey}</span>} />
               <FieldRow label="Recipients" value={result.result.recipients.length > 0 ? result.result.recipients.join(', ') : 'none'} />
             </div>
             {result.result.unlockError && <p className="mt-2 text-[10px] leading-relaxed text-mp-wax">No unwrap: {result.result.unlockError}</p>}
@@ -252,9 +256,9 @@ function Nip17Tool() {
                   <CheckLine label="Rumor id" value={result.result.unlocked.checks.rumorId} />
                   <CheckLine label="DM kind" value={result.result.unlocked.checks.rumorKind} />
                 </div>
-                <FieldRow label="Sender npub" value={<span className="break-all font-mono text-[9px]">{npubEncode(result.result.unlocked.rumor.pubkey)}</span>} copy={npubEncode(result.result.unlocked.rumor.pubkey)} />
+                <FieldRow label="Sender npub" value={<span className="break-all font-mono text-[10px]">{npubEncode(result.result.unlocked.rumor.pubkey)}</span>} copy={npubEncode(result.result.unlocked.rumor.pubkey)} />
                 <FieldRow label="Sent" value={new Date(result.result.unlocked.rumor.created_at * 1000).toISOString().slice(0, 16).replace('T', ' ') + ' UTC'} />
-                <p className="mt-1 font-chrome text-[9px] uppercase tracking-wide text-mp-ink-tertiary">Content</p>
+                <p className="mt-1 font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">Content</p>
                 <pre className="mt-1 max-h-48 overflow-auto whitespace-pre-wrap break-words rounded-mp-sm bg-mp-canvas/70 p-2 text-[10px] text-mp-ink">{result.result.unlocked.rumor.content}</pre>
               </div>
             )}

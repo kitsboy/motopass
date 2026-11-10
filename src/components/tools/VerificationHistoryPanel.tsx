@@ -78,19 +78,19 @@ export function VerificationHistoryPanel() {
 
   return (
     <details className="mb-5 rounded-mp-lg border border-mp-border-subtle bg-mp-card/30 p-3" open={entries.length > 0 && selected.length > 0}>
-      <summary className="flex cursor-pointer list-none items-center gap-1.5 font-chrome text-[10px] font-semibold uppercase tracking-[0.14em] text-mp-ink-tertiary">
-        <History size={12} aria-hidden="true" />
+      <summary className="flex min-h-11 cursor-pointer list-none items-center gap-1.5 font-chrome text-[11px] font-semibold uppercase tracking-[0.14em] text-mp-ink-tertiary">
+        <History size={13} aria-hidden="true" />
         Recent checks
-        <span className="ml-auto rounded-full border border-mp-border-subtle px-1.5 py-0.5 text-[8px] normal-case tracking-wide text-mp-ink-tertiary">
+        <span className="ml-auto rounded-full border border-mp-border-subtle px-2 py-0.5 text-[10px] normal-case tracking-wide text-mp-ink-tertiary">
           {entries.length} local
         </span>
       </summary>
-      <p className="mt-2 text-[9px] leading-relaxed text-mp-ink-tertiary">
+      <p className="mt-2 text-[11px] leading-relaxed text-mp-ink-tertiary">
         Stored only in this browser. Receipts keep result metadata, never raw inputs or private keys. Select two to compare.
       </p>
 
       {entries.length === 0 ? (
-        <p className="mt-2 text-[10px] text-mp-ink-tertiary">No checks recorded yet. Run any verification to start a local trail.</p>
+        <p className="mt-2 text-[11px] text-mp-ink-tertiary">No checks recorded yet. Run any verification to start a local trail.</p>
       ) : (
         <>
           <div className="mt-2 space-y-1.5">
@@ -107,21 +107,26 @@ export function VerificationHistoryPanel() {
                     onClick={() => toggle(entry.id)}
                     aria-pressed={active}
                     aria-label={`Select ${entry.title} for comparison`}
-                    className={`mt-1 h-3 w-3 shrink-0 rounded-sm border ${active ? 'border-mp-proof bg-mp-proof' : 'border-mp-border-strong'}`}
-                  />
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`h-4 w-4 rounded-sm border ${active ? 'border-mp-proof bg-mp-proof' : 'border-mp-border-strong'}`}
+                    />
+                  </button>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
                       <a
                         href={`#${verificationAnchor(entry.tool)}`}
-                        className="text-[10px] font-semibold text-mp-ink hover:text-mp-btc-text hover:underline"
+                        className="text-[11px] font-semibold text-mp-ink hover:text-mp-btc-text hover:underline"
                       >
                         {entry.title}
                       </a>
-                      <span className={`font-chrome text-[8px] uppercase tracking-wide ${STATE_TONE[status.tone]}`}>
+                      <span className={`font-chrome text-[10px] uppercase tracking-wide ${STATE_TONE[status.tone]}`}>
                         {status.tone === 'pass' ? 'all checked' : status.tone === 'fail' ? 'failed' : `${status.unknown} unchecked`}
                       </span>
                     </div>
-                    <p className="mt-0.5 text-[9px] text-mp-ink-tertiary">
+                    <p className="mt-0.5 text-[10px] text-mp-ink-tertiary">
                       {new Date(entry.generatedAt).toLocaleString()} · {entry.tool} · {status.pass} pass
                       {status.fail > 0 ? ` · ${status.fail} fail` : ''}
                     </p>
@@ -132,7 +137,7 @@ export function VerificationHistoryPanel() {
           </div>
 
           <div className="mt-2 flex flex-wrap items-center gap-2">
-            <span className="flex items-center gap-1 text-[9px] text-mp-ink-tertiary">
+            <span className="flex items-center gap-1 text-[10px] text-mp-ink-tertiary">
               <GitCompare size={10} aria-hidden="true" />
               {selectedActive.length === 2 ? 'Comparison below' : `Select ${2 - selectedActive.length} more to compare`}
             </span>
@@ -142,7 +147,7 @@ export function VerificationHistoryPanel() {
                 clearVerificationHistory()
                 setSelected([])
               }}
-              className="ml-auto inline-flex items-center gap-1 font-chrome text-[9px] uppercase tracking-wide text-mp-ink-tertiary underline underline-offset-2 hover:text-mp-wax"
+              className="ml-auto inline-flex min-h-9 items-center gap-1 font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary underline underline-offset-2 hover:text-mp-wax"
             >
               <Trash2 size={10} aria-hidden="true" />
               Clear local history
@@ -151,11 +156,11 @@ export function VerificationHistoryPanel() {
 
           {comparison && (
             <div className="mt-2 rounded-mp-md border border-mp-border-subtle p-2">
-              <p className="text-[10px] font-semibold text-mp-ink">
+              <p className="text-[11px] font-semibold text-mp-ink">
                 {comparison.a.title} <span className="text-mp-ink-tertiary">vs</span> {comparison.b.title}
               </p>
               <div className="mt-1.5 overflow-x-auto">
-                <table className="w-full min-w-[280px] text-left text-[9px]">
+                <table className="w-full min-w-[280px] text-left text-[10px]">
                   <thead className="text-mp-ink-tertiary">
                     <tr>
                       <th className="py-0.5 pr-2 font-medium">Step</th>
@@ -180,15 +185,15 @@ export function VerificationHistoryPanel() {
               </div>
               {comparison.fields.length > 0 ? (
                 <div className="mt-2 space-y-1">
-                  <p className="font-chrome text-[8px] uppercase tracking-wide text-mp-ink-tertiary">Changed fields</p>
+                  <p className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">Changed fields</p>
                   {comparison.fields.map(field => (
-                    <p key={field.key} className="break-words text-[9px] text-mp-ink-tertiary">
+                    <p key={field.key} className="break-words text-[10px] text-mp-ink-tertiary">
                       <span className="text-mp-ink-secondary">{field.key}:</span> {valueLabel(field.a)} → {valueLabel(field.b)}
                     </p>
                   ))}
                 </div>
               ) : (
-                <p className="mt-2 text-[9px] text-mp-ink-tertiary">No generated field changed; compare the trail above.</p>
+                <p className="mt-2 text-[10px] text-mp-ink-tertiary">No generated field changed; compare the trail above.</p>
               )}
             </div>
           )}

@@ -4,7 +4,7 @@ import { buildBolt12InvoiceRequest } from '../../lib/bolt12Request'
 import { decodeBolt12, type Bolt12Decoded } from '../../lib/bolt12'
 import { verifyBolt12InvoiceResponse } from '../../lib/bolt12Response'
 import { formatSatsExact } from '../../lib/satsAnchor'
-import { CheckLine, ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass } from './toolsShared'
+import { CheckLine, ClearButton, FieldRow, ToolCard, VerificationTrail, buttonClass, inputClass, useToolIntake } from './toolsShared'
 import { QrScanButton } from './QrScanner'
 
 const SIGNATURE_TONE: Record<Bolt12Decoded['signatureCheck'], string> = {
@@ -26,6 +26,8 @@ function Bolt12Tool() {
   const [raw, setRaw] = useState('')
   const [result, setResult] = useState<Awaited<ReturnType<typeof decodeBolt12>> | null>(null)
   const [busy, setBusy] = useState(false)
+
+  useToolIntake('bolt12', setRaw)
 
   const run = async () => {
     setBusy(true)
@@ -148,7 +150,7 @@ function Bolt12Tool() {
               )}
               <FieldRow label="TLV fields" value={result.decoded.fields.map(field => field.type).join(' · ')} />
             </div>
-            <p className="mt-2 text-[9px] leading-relaxed text-mp-ink-tertiary">{result.decoded.recurrenceNote}</p>
+            <p className="mt-2 text-[10px] leading-relaxed text-mp-ink-tertiary">{result.decoded.recurrenceNote}</p>
             {result.decoded.warnings.length > 0 && (
               <ul className="mt-2 space-y-1 text-[10px] leading-relaxed text-mp-wax">
                 {result.decoded.warnings.map(warning => (
@@ -294,7 +296,7 @@ function Bolt12RequestTool() {
               value={result.request}
               rows={4}
               aria-label="Generated BOLT12 invoice request"
-              className={`${inputClass} font-mono text-[9px]`}
+              className={`${inputClass} font-mono text-[10px]`}
             />
             <div className="mt-1.5">
               <FieldRow
@@ -313,7 +315,7 @@ function Bolt12RequestTool() {
                 copy={result.merkleRoot}
               />
             </div>
-            <p className="mt-1 text-[9px] leading-relaxed text-mp-ink-tertiary">
+            <p className="mt-1 text-[10px] leading-relaxed text-mp-ink-tertiary">
               This request is a message, not a payment. It has not been sent to the issuer.
             </p>
             <div className="mt-3 border-t border-mp-border-subtle/60 pt-2">
@@ -327,7 +329,7 @@ function Bolt12RequestTool() {
                 rows={3}
                 spellCheck={false}
                 placeholder="lni1… from the issuer"
-                className={`${inputClass} font-mono text-[9px]`}
+                className={`${inputClass} font-mono text-[10px]`}
               />
               <button
                 type="button"
@@ -397,7 +399,7 @@ function Bolt12RequestTool() {
                       ))}
                     </ul>
                   )}
-                  <p className="mt-2 text-[9px] leading-relaxed text-mp-ink-tertiary">{response.result.note}</p>
+                  <p className="mt-2 text-[10px] leading-relaxed text-mp-ink-tertiary">{response.result.note}</p>
                 </div>
               )}
             </div>
