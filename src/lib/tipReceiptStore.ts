@@ -11,7 +11,7 @@ import type { ReceiptPublishResult } from './tipReceipt'
  */
 
 export const TIP_RECEIPT_KEY = 'motopass-tip-receipts'
-const MAX_RECEIPTS = 20
+export const MAX_TIP_RECEIPTS = 20
 const HEX64 = /^[a-f0-9]{64}$/i
 
 export interface StoredTipReceipt {
@@ -110,7 +110,7 @@ export function loadTipReceipts(storage: ReceiptStorage | null = defaultStorage(
     if (!receipt || seen.has(receipt.id)) continue
     seen.add(receipt.id)
     receipts.push(receipt)
-    if (receipts.length >= MAX_RECEIPTS) break
+    if (receipts.length >= MAX_TIP_RECEIPTS) break
   }
   return receipts
 }
@@ -139,7 +139,7 @@ export function saveTipReceipt(
   if (!receipt) return { ok: false, error: 'The signed receipt did not verify' }
 
   const existing = loadTipReceipts(storage)
-  const receipts = [receipt, ...existing.filter(item => item.id !== receipt.id)].slice(0, MAX_RECEIPTS)
+  const receipts = [receipt, ...existing.filter(item => item.id !== receipt.id)].slice(0, MAX_TIP_RECEIPTS)
   try {
     storage.setItem(TIP_RECEIPT_KEY, JSON.stringify(receipts))
   } catch {
@@ -157,6 +157,56 @@ export function storedReceiptHashes(receipts: StoredTipReceipt[]): string[] {
         .filter((hash): hash is string => typeof hash === 'string' && HEX64.test(hash)),
     ),
   ]
+}
+
+/** Remove one saved receipt. A missing id is not an error. */
+export function removeTipReceipt(
+  id: string,
+  storage: ReceiptStorage | null = defaultStorage(),
+): { ok: boolean; receipts: StoredTipReceipt[] } {
+  const existing = loadTipReceipts(storage)
+  if (!storage) return { ok: false, receipts: existing }
+  const receipts = existing.filter(receipt => receipt.id !== id)
+  if (receipts.length === existing.length) return { ok: true, receipts }
+  try {
+    storage.setItem(TIP_RECEIPT_KEY, JSON.stringify(receipts))
+  } catch {
+    return { ok: false, receipts: existing }
+  }
+  return { ok: true, receipts }
+}
+
+/**
+ * Merge receipts found elsewhere (another device, a relay) into this device.
+ * Every incoming value is verified again before it is written, so a relay can
+ * add nothing that this browser has not checked itself.
+ */
+export function mergeTipReceipts(
+  incoming: unknown[],
+  storage: ReceiptStorage | null = defaultStorage(),
+): { ok: true; receipts: StoredTipReceipt[]; added: number } | { ok: false; error: string } {
+  if (!storage) return { ok: false, error: 'This browser does not allow local storage' }
+  const existing = loadTipReceipts(storage)
+  const known = new Set(existing.map(receipt => receipt.id))
+  const verified: StoredTipReceipt[] = []
+  for (const value of incoming) {
+    const receipt = toStoredTipReceipt(value)
+    if (!receipt || known.has(receipt.id)) continue
+    known.add(receipt.id)
+    verified.push(receipt)
+  }
+  if (verified.length === 0) return { ok: true, receipts: existing, added: 0 }
+
+  const existingIds = new Set(existing.map(receipt => receipt.id))
+  const receipts = [...verified, ...existing]
+    .sort((a, b) => b.created_at - a.created_at)
+    .slice(0, MAX_TIP_RECEIPTS)
+  try {
+    storage.setItem(TIP_RECEIPT_KEY, JSON.stringify(receipts))
+  } catch {
+    return { ok: false, error: 'This browser refused to store the receipts' }
+  }
+  return { ok: true, receipts, added: receipts.filter(receipt => !existingIds.has(receipt.id)).length }
 }
 
 export function clearTipReceipts(storage: ReceiptStorage | null = defaultStorage()): void {

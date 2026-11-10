@@ -5,6 +5,8 @@ import {
   TIP_RECEIPT_KEY,
   clearTipReceipts,
   loadTipReceipts,
+  mergeTipReceipts,
+  removeTipReceipt,
   saveTipReceipt,
   storedReceiptHashes,
   toStoredTipReceipt,
@@ -155,5 +157,60 @@ describe('loadTipReceipts', () => {
     saveTipReceipt(published(), storage)
     clearTipReceipts(storage)
     expect(storage.dump()[TIP_RECEIPT_KEY]).toBeUndefined()
+  })
+})
+
+describe('removeTipReceipt and mergeTipReceipts', () => {
+  it('removes one receipt and keeps the rest', () => {
+    const storage = memoryStorage()
+    saveTipReceipt(published(), storage)
+    saveTipReceipt(published('c'.repeat(64), 2_000), storage)
+    const target = loadTipReceipts(storage)[0]
+
+    const result = removeTipReceipt(target.id, storage)
+    expect(result.ok).toBe(true)
+    expect(result.receipts.map(receipt => receipt.id)).not.toContain(target.id)
+    expect(loadTipReceipts(storage)).toHaveLength(1)
+
+    expect(removeTipReceipt('missing', storage)).toEqual({ ok: true, receipts: loadTipReceipts(storage) })
+  })
+
+  it('merges verified receipts, ignores tampered ones and counts only new ones', () => {
+    const storage = memoryStorage()
+    saveTipReceipt(published(), storage)
+    const existing = (JSON.parse(storage.dump()[TIP_RECEIPT_KEY]) as Record<string, unknown>[])[0]
+    const fresh = JSON.parse(published('e'.repeat(64), 3_000).json) as Record<string, unknown>
+
+    const merged = mergeTipReceipts([fresh, existing, { ...fresh, content: 'rewritten' }], storage)
+    expect(merged.ok).toBe(true)
+    if (!merged.ok) return
+    expect(merged.added).toBe(1)
+    expect(merged.receipts.map(receipt => receipt.paymentHash)).toContain('e'.repeat(64))
+    expect(merged.receipts).toHaveLength(2)
+    expect(loadTipReceipts(storage)).toHaveLength(2)
+  })
+
+  it('caps a merge at twenty and reports nothing new for an empty list', () => {
+    const storage = memoryStorage()
+    for (let index = 0; index < 20; index += 1) {
+      saveTipReceipt(published(index.toString(16).padStart(64, '0')), storage)
+    }
+    const extra = Array.from({ length: 5 }, (_, index) =>
+      JSON.parse(published((index + 100).toString(16).padStart(64, '0')).json),
+    )
+    const merged = mergeTipReceipts(extra, storage)
+    expect(merged.ok).toBe(true)
+    if (!merged.ok) return
+    expect(merged.receipts).toHaveLength(20)
+    expect(merged.added).toBe(5)
+
+    expect(mergeTipReceipts([], storage)).toMatchObject({ ok: true, added: 0 })
+  })
+
+  it('refuses to merge with no storage at all', () => {
+    expect(mergeTipReceipts([], null)).toEqual({
+      ok: false,
+      error: 'This browser does not allow local storage',
+    })
   })
 })

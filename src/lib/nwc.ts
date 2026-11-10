@@ -377,6 +377,38 @@ export async function nwcMakeInvoice(
   return parseNwcInvoice(response.result)
 }
 
+export interface NwcListOptions {
+  limit?: number
+  /** Unix seconds, inclusive lower bound. */
+  from?: number
+  /** Unix seconds, inclusive upper bound. */
+  until?: number
+  /** Ask the wallet for unpaid invoices instead of settled history. */
+  unpaid?: boolean
+  timeoutMs?: number
+}
+
+/**
+ * The params a `list_transactions` request carries. Bounds that are absent stay
+ * absent — the wallet is never told `0`, which some wallets read as an epoch.
+ * A range that ends before it starts is refused rather than silently reordered.
+ */
+export function buildListTransactionsParams(
+  opts: NwcListOptions = {},
+): { ok: true; params: Record<string, unknown> } | { ok: false; error: string } {
+  const requested = numberOrNull(opts.limit) ?? 10
+  const params: Record<string, unknown> = { limit: Math.min(50, Math.max(1, Math.floor(requested))) }
+  const from = unixOrNull(opts.from)
+  const until = unixOrNull(opts.until)
+  if (from != null && until != null && until <= from) {
+    return { ok: false, error: 'The end of the range is before its start' }
+  }
+  if (from != null) params.from = from
+  if (until != null) params.until = until
+  if (opts.unpaid === true) params.unpaid = true
+  return { ok: true, params }
+}
+
 /**
  * Ask the wallet for its recent transactions. This is the wallet's own record,
  * not a MotoPass ledger: it can contain payments unrelated to any gap tip, and
@@ -384,11 +416,11 @@ export async function nwcMakeInvoice(
  */
 export async function nwcListTransactions(
   uri: string,
-  opts: { limit?: number; timeoutMs?: number } = {},
+  opts: NwcListOptions = {},
 ): Promise<{ ok: true; transactions: NwcTransaction[] } | { ok: false; error: string }> {
-  const requested = numberOrNull(opts.limit) ?? 10
-  const limit = Math.min(50, Math.max(1, Math.floor(requested)))
-  const response = await nwcRequest(uri, 'list_transactions', { limit }, { timeoutMs: opts.timeoutMs })
+  const built = buildListTransactionsParams(opts)
+  if (!built.ok) return built
+  const response = await nwcRequest(uri, 'list_transactions', built.params, { timeoutMs: opts.timeoutMs })
   if (!response.ok) return response
   return parseNwcTransactions(response.result)
 }
