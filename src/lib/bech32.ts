@@ -8,6 +8,10 @@
 
 const CHARSET = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l'
 const GENERATOR = [0x3b6a57b2, 0x26508e6d, 0x1ea119fa, 0x3d4233dd, 0x2a1462b3]
+const BECH32_CONST = 1
+const BECH32M_CONST = 0x2bc830a3
+
+export type Bech32Encoding = 'bech32' | 'bech32m'
 
 function polymod(values: number[]): number {
   let checksum = 1
@@ -30,15 +34,20 @@ function hrpExpand(hrp: string): number[] {
 }
 
 export type Bech32Decode =
-  | { ok: true; hrp: string; words: number[] }
+  | { ok: true; hrp: string; words: number[]; encoding?: Bech32Encoding }
   | { ok: false; error: string }
 
 /**
  * Decode a bech32 string. `checksum: false` is BOLT12's checksum-less variant.
+ * `encoding: 'any'` accepts bech32 or bech32m and reports which one matched.
  * Mixed case is refused rather than silently lowercased, per BIP-173.
  */
-export function bech32Decode(raw: string, opts: { checksum?: boolean } = {}): Bech32Decode {
+export function bech32Decode(
+  raw: string,
+  opts: { checksum?: boolean; encoding?: Bech32Encoding | 'any' } = {},
+): Bech32Decode {
   const checksum = opts.checksum ?? true
+  const encoding = opts.encoding ?? 'bech32'
   const value = raw.trim()
   if (!value) return { ok: false, error: 'Empty string' }
   if (value !== value.toLowerCase() && value !== value.toUpperCase()) {
@@ -62,8 +71,12 @@ export function bech32Decode(raw: string, opts: { checksum?: boolean } = {}): Be
 
   if (checksum) {
     if (values.length < 6) return { ok: false, error: 'Checksum is missing' }
-    if (polymod([...hrpExpand(hrp), ...values]) !== 1) return { ok: false, error: 'Checksum failed' }
-    return { ok: true, hrp, words: values.slice(0, -6) }
+    const residue = polymod([...hrpExpand(hrp), ...values])
+    let matched: Bech32Encoding | null = null
+    if (residue === BECH32_CONST) matched = 'bech32'
+    else if (residue === BECH32M_CONST) matched = 'bech32m'
+    if (!matched || (encoding !== 'any' && matched !== encoding)) return { ok: false, error: 'Checksum failed' }
+    return { ok: true, hrp, words: values.slice(0, -6), encoding: matched }
   }
 
   return { ok: true, hrp, words: values }
@@ -121,4 +134,4 @@ export function wordsToInt(words: number[]): number | null {
   return value
 }
 
-export { CHARSET as BECH32_CHARSET }
+export { CHARSET as BECH32_CHARSET, BECH32_CONST, BECH32M_CONST }

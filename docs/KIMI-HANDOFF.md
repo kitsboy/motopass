@@ -1,3 +1,26 @@
+## Session — 2026-11-10 · BOLT11 recovery, BOLT12 requests, LNURL, zaps, PSBTs (Buffy)
+
+**Done:**
+- `src/lib/bolt11Signature.ts` — verifies BOLT11's ECDSA signature by rebuilding `SHA256(hrp || zero-padded data)`, converting the BOLT11 recovery-id-last signature to noble's recovery-id-first form, recovering the payee key, and comparing it with the `n` tag. Statuses are `valid`, `invalid`, `recovered` (no `n`) and `unreadable`; only `valid` means a stated key matched. Five tests sign real invoices.
+- `src/lib/bolt12Request.ts` — builds and signs a real invoice request from an offer. A fresh payer key is generated locally, all non-signature offer TLVs are copied, `invreq_metadata` (type 0), amount (82), payer id (88) and optional note (89) are added, and the Merkle root is signed with BIP-340. The private key is not returned or stored. Round-trip test decodes the generated `lnr` through the existing verifier and expects `signatureCheck: 'valid'`.
+- `src/lib/lnurlInspect.ts` — parses `user@domain` and checksummed `lnurl1…`, resolves the endpoint through the existing LUD-16 client, parses metadata pairs, and optionally requests an invoice then decodes and amount-checks it locally. `lnurl.ts` now exposes `resolveLnurlPayUrl` for the decoded endpoint. Network/CORS failures surface as errors; the card is marked NETWORK.
+- `src/lib/zapReceipt.ts` — NIP-57 reader: kind 9735, event id/signature, embedded kind-9731 zap request and its signature, BOLT11 decode, request/invoice amount, `p`/`e` tag matching, optional preimage. A valid receipt proves who published it, not that the invoice was paid.
+- `src/lib/bitcoinInspect.ts` — Base58Check and bech32/bech32m address decoding with witness-version/variant rules, scriptPubKey derivation, and PSBT map parsing (unsigned tx, input/output maps, partial/tap signatures, witness-UTXO fee only when complete). Signatures are counted, not verified; nothing is signed or broadcast.
+- `src/pages/ToolsPage.tsx` — five new cards, nine total. Sticky index badges 8 LOCAL / 1 NETWORK, result fields gained copy buttons, and every new card has a Clear action. SEO title/description and `LATEST-UPDATE.md` updated.
+- No research fact was added or changed; `research/countries.json` untouched.
+
+**Decisions:**
+- LNURL is the only network call and is explicitly opt-in. Claims that the whole page is offline were replaced with “8 local, 1 network”.
+- The BOLT12 request builder discards its payer private key. It returns the signed request and payer public key, not a secret to store.
+- Zap verification does not say “paid” without a matching preimage, and even then the receipt signature only proves the recipient published it.
+- PSBT fee is shown only when every input has a witness UTXO; otherwise it says the fee is not computable instead of guessing.
+
+**Checks:** 23 new tests across BOLT11 recovery, BOLT12 request, LNURL, NIP-57 and address/PSBT parsing. Full suite: 551 passed / 3 pre-existing catalog failures (`source-monitor-sync`, `changeBell`, `ruleSentence`) / 2 skipped (556). `tsc` only the two known `IntelWatchStrip.test.ts` errors; edited files lint 0 errors; `vite build` ok. No browser pass and no live LNURL endpoint, relay, wallet or node was exercised.
+
+**Git State:**
+- Code SHA: pending this commit
+- Unpushed: none after push
+
 ## Session — 2026-11-10 · BOLT11/BOLT12 readers, receipt anchoring, Bitcoin tools page (Buffy)
 
 **Done:**
@@ -11,7 +34,7 @@
 
 **Decisions:**
 - BOLT12 offers are not signed. The requested "verify offer signatures" cannot be implemented honestly, so the tool verifies the message types that do carry signatures and states the offer limitation in the card, tests and docs.
-- BOLT11 signature recovery was left out. A decode with a checksum is still not a payment proof, and the UI must not blur that line.
+- BOLT11 signature recovery was left out in the previous session; it is now implemented in `bolt11Signature.ts`, with the result still labelled separately from payment proof.
 - No research fact was added or changed; `research/countries.json` untouched.
 
 **Checks:** 20 new BOLT11/BOLT12 tests pass, including the official offer and invoice-request vectors. Lint 0 errors; `vite build` ok. `tsc` shows only the two pre-existing `IntelWatchStrip.test.ts` errors. Full suite: 528 passed / 3 pre-existing catalog failures / 2 skipped. Live `/tools` returns 200 on the redeployed bundle. No live node, relay, wallet or Satohash stamp was exercised; the receipt anchor button is unit-backed by the existing `ledgerAnchor` tests only.

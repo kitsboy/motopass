@@ -112,11 +112,15 @@ const MESSAGE_BY_KIND: Record<Bolt12Kind, string> = {
   invoice: 'invoice',
 }
 
-interface RawField {
+interface RawField extends Bolt12SignableField {
   type: number
+  value: Uint8Array
+}
+
+/** The two encodings the BOLT12 Merkle tree needs for each signed TLV. */
+export interface Bolt12SignableField {
   typeBytes: Uint8Array
   encoded: Uint8Array
-  value: Uint8Array
 }
 
 interface Structure {
@@ -258,7 +262,7 @@ function lesserFirst(a: Uint8Array, b: Uint8Array): Uint8Array {
  * each TLV is a leaf paired with a nonce; inner nodes are
  * H("LnBranch", lesser || greater), odd leaves carried up.
  */
-async function merkleRoot(fields: RawField[]): Promise<Uint8Array | null> {
+async function merkleRoot(fields: Bolt12SignableField[]): Promise<Uint8Array | null> {
   if (fields.length === 0) return null
   const first = fields[0].encoded
   let level: Uint8Array[] = []
@@ -290,6 +294,16 @@ async function merkleRoot(fields: RawField[]): Promise<Uint8Array | null> {
     level = next
   }
   return level[0]
+}
+
+/** Compute the BOLT12 signed Merkle root for a list of TLVs. */
+export function computeBolt12MerkleRoot(fields: Bolt12SignableField[]): Promise<Uint8Array | null> {
+  return merkleRoot(fields)
+}
+
+/** BIP-340 tagged hash used by BOLT12 signatures. */
+export function bolt12TaggedHash(tag: string, message: Uint8Array): Promise<Uint8Array | null> {
+  return taggedHash(tag, message)
 }
 
 function describeField(field: RawField): Bolt12Field {

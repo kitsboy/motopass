@@ -80,10 +80,27 @@ export async function resolveLnurlPay(
 ): Promise<LnurlResolveResult> {
   const url = lnurlpUrl(address)
   if (!url) return { ok: false, error: 'Not a Lightning Address' }
+  return resolveLnurlPayUrl(url, fetchImpl)
+}
+
+/** Resolve an already-validated https LNURL-pay endpoint. */
+export async function resolveLnurlPayUrl(
+  endpoint: string,
+  fetchImpl: FetchLike = fetch,
+): Promise<LnurlResolveResult> {
+  let url: URL
+  try {
+    url = new URL(endpoint)
+  } catch {
+    return { ok: false, error: 'LNURL endpoint is malformed' }
+  }
+  if (url.protocol !== 'https:' || url.username || url.password) {
+    return { ok: false, error: 'LNURL endpoint must be an https URL without credentials' }
+  }
 
   let body: unknown
   try {
-    const res = await fetchImpl(url)
+    const res = await fetchImpl(url.toString())
     if (!res.ok) return { ok: false, error: `Lightning Address returned HTTP ${res.status ?? 'error'}` }
     body = await res.json()
   } catch (err) {
