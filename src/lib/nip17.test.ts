@@ -6,7 +6,12 @@ function conversationKey(secret: Uint8Array, pubkey: string): Uint8Array {
   return nip44.v2.utils.getConversationKey(secret, pubkey)
 }
 
-function giftWrapFixture(): { wrap: Event; recipientSecret: Uint8Array; senderPubkey: string } {
+function giftWrapFixture(options: { createdAt?: number; sealTags?: string[][]; extraRecipient?: boolean } = {}): {
+  wrap: Event
+  recipientSecret: Uint8Array
+  senderPubkey: string
+} {
+  const createdAt = options.createdAt ?? 1_700_000_000
   const senderSecret = generateSecretKey()
   const recipientSecret = generateSecretKey()
   const senderPubkey = getPublicKey(senderSecret)
@@ -14,7 +19,7 @@ function giftWrapFixture(): { wrap: Event; recipientSecret: Uint8Array; senderPu
 
   const rumor = {
     pubkey: senderPubkey,
-    created_at: 1_700_000_000,
+    created_at: createdAt,
     kind: 14,
     tags: [['p', recipientPubkey]],
     content: 'Hola, que tal?',
@@ -24,8 +29,8 @@ function giftWrapFixture(): { wrap: Event; recipientSecret: Uint8Array; senderPu
   const seal = finalizeEvent(
     {
       kind: 13,
-      created_at: 1_700_000_000,
-      tags: [],
+      created_at: createdAt,
+      tags: options.sealTags ?? [],
       content: nip44.v2.encrypt(JSON.stringify(rumorWithId), conversationKey(senderSecret, recipientPubkey)),
     },
     senderSecret,
@@ -35,8 +40,11 @@ function giftWrapFixture(): { wrap: Event; recipientSecret: Uint8Array; senderPu
   const wrap = finalizeEvent(
     {
       kind: 1059,
-      created_at: 1_700_000_000,
-      tags: [['p', recipientPubkey]],
+      created_at: createdAt,
+      tags: [
+        ['p', recipientPubkey],
+        ...(options.extraRecipient ? [['p', getPublicKey(generateSecretKey())]] : []),
+      ],
       content: nip44.v2.encrypt(JSON.stringify(seal), conversationKey(wrapperSecret, recipientPubkey)),
     },
     wrapperSecret,
@@ -110,6 +118,30 @@ describe('inspectNip17GiftWrap', () => {
     expect(result.result.checks.kind).toBe(false)
     expect(result.result.checks.signature).toBe(false)
     expect(result.result.warnings.join(' ')).toContain('not a NIP-59 gift wrap')
+  })
+
+  it('flags a future timestamp and more than one recipient as public-structure failures', () => {
+    const future = giftWrapFixture({ createdAt: Math.floor(Date.now() / 1000) + 3600 })
+    const futureResult = inspectNip17GiftWrap(JSON.stringify(future.wrap))
+    expect(futureResult.ok).toBe(true)
+    if (futureResult.ok) {
+      expect(futureResult.result.checks.pastTimestamp).toBe(false)
+      expect(futureResult.result.warnings.join(' ')).toContain('future')
+    }
+
+    const multi = giftWrapFixture({ extraRecipient: true })
+    const multiResult = inspectNip17GiftWrap(JSON.stringify(multi.wrap))
+    expect(multiResult.ok).toBe(true)
+    if (multiResult.ok) expect(multiResult.result.checks.oneRecipient).toBe(false)
+  })
+
+  it('rejects a decrypted seal that carries tags', () => {
+    const { wrap, recipientSecret } = giftWrapFixture({ sealTags: [['x', 'not-empty']] })
+    const result = inspectNip17GiftWrap(JSON.stringify(wrap), nip19.nsecEncode(recipientSecret))
+    expect(result.ok).toBe(true)
+    if (!result.ok) return
+    expect(result.result.unlocked?.checks.sealEmptyTags).toBe(false)
+    expect(result.result.unlocked?.warnings.join(' ')).toContain('must not carry tags')
   })
 
   it('rejects junk JSON', () => {

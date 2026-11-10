@@ -1,3 +1,26 @@
+## Session — 2026-11-10 · multisig/tapscript PSBTs, receipts, tools split and mobile pass (Buffy)
+
+**Done:**
+- **P2SH multisig and taproot script path** (`src/lib/psbtVerify.ts`): verifies the P2SH redeem-script hash, standard `m-of-n` redeem/witness scripts, per-key `SIGHASH_ALL` ECDSA against legacy/BIP-143 digests, key membership, P2WPKH/P2PKH key-to-script hashes, tap-leaf hash matching, control-block path to the P2TR output key, and BIP-342 script-path Schnorr. New fixture suite `psbtAdvanced.test.ts` covers 2-of-3 P2SH, a bad redeem hash, a valid tapscript spend and a wrong leaf hash.
+- **Tools page split:** `ToolsPage.tsx` is now page orchestration. Cards live in `src/components/tools/{Bolt11Cards,Bolt12Cards,LightningCards,NostrCards,BitcoinCards}.tsx`, with shared `toolsShared.tsx` for card shell, trail, field rows, inputs and receipt download.
+- **Downloadable verification receipt:** `src/lib/verificationReceipt.ts` serializes version, tool, timestamp, every trail step, generated fields and explicit limits. `VerificationReceiptButton` is wired to PSBT, BOLT11, BOLT12, NIP-05, NIP-17 and Silent Payments results. It is not signed and does not prove payment.
+- **Edge tests:** NIP-17 future timestamp, multiple recipients and tagged seal; NIP-05 double rotation, return-to-original and blocked localStorage; Silent Payments testnet `tsp`, tb1p derivation and out-of-range vout/k/txid.
+- **Three UI/UX items:** keyword search/filter in the guide; copyable per-card tool links; previous/next/guide switcher inside the mobile sticky index.
+- **Mobile browser pass** (`e2e/tools.spec.ts`): 390px flow filters, selects one card, checks the switcher, steps to the next card and resets. Two defects were found and fixed: the wrapped sticky index and the back-to-top button intercepting Guide. The spec is now part of `npm run test:e2e`.
+- **Dependency:** `@noble/hashes` is explicit for RIPEMD-160 (P2SH hash binding).
+- No research fact changed; `research/countries.json` untouched.
+
+**Decisions:**
+- Multisig verification requires the redeem/witness script and checks its hash before any signature is called valid. Missing scripts or unsupported sighash types remain `unchecked`.
+- Taproot script-path signatures require a tap leaf whose hash matches the PSBT key and a control block that derives the P2TR output; a bare signature over a leaf is not enough.
+- Receipts are local JSON records of what was checked and what could not be checked. They are not signed and are not proof of broadcast or payment.
+
+**Checks:** full Vitest **590 passed / 2 skipped (592)**; focused **36 passed**; ESLint 0 errors; production build passed; bundle **2637.3 KB / 2650 KB**; mobile Playwright spec **1 passed**. `tsc --noEmit` still reports only the two pre-existing `src/components/intel/IntelWatchStrip.test.ts` Node-type errors. No live relay, NIP-05 domain, node or chain lookup was exercised.
+
+**Git State:**
+- Code SHA: pending this commit
+- Unpushed: none after push
+
 ## Session — 2026-11-10 · guided tools, PSBT signatures, Silent Payments, NIP-17 (Buffy)
 
 **Done:**

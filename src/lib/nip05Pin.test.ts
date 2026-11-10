@@ -6,16 +6,20 @@ const B = 'b'.repeat(64)
 
 beforeEach(() => {
   const values = new Map<string, string>()
-  globalThis.localStorage = {
-    getItem: (key: string) => values.get(key) ?? null,
-    setItem: (key: string, value: string) => void values.set(key, value),
-    removeItem: (key: string) => void values.delete(key),
-    clear: () => values.clear(),
-    key: (index: number) => [...values.keys()][index] ?? null,
-    get length() {
-      return values.size
-    },
-  } as Storage
+  Object.defineProperty(globalThis, 'localStorage', {
+    configurable: true,
+    writable: true,
+    value: {
+      getItem: (key: string) => values.get(key) ?? null,
+      setItem: (key: string, value: string) => void values.set(key, value),
+      removeItem: (key: string) => void values.delete(key),
+      clear: () => values.clear(),
+      key: (index: number) => [...values.keys()][index] ?? null,
+      get length() {
+        return values.size
+      },
+    } as Storage,
+  })
 })
 
 describe('NIP-05 continuity pins', () => {
@@ -46,6 +50,29 @@ describe('NIP-05 continuity pins', () => {
     expect(recordNip05Pin('not-a-handle', A)).toBeNull()
     expect(recordNip05Pin('cam@example.com', 'nope')).toBeNull()
     expect(loadNip05Pins()).toEqual([])
+  })
+
+  it('tracks a second rotation and returns to the original key as another rotation', () => {
+    recordNip05Pin('cam@example.com', A, [], 1000)
+    recordNip05Pin('cam@example.com', B, [], 2000)
+    const back = recordNip05Pin('cam@example.com', A, [], 3000)
+    expect(back?.status).toBe('rotated')
+    expect(back?.previous?.pubkey).toBe(B)
+    expect(back?.pin.previousPubkey).toBe(B)
+    expect(back?.pin.rotatedAt).toBe(3000)
+  })
+
+  it('does not throw when localStorage is blocked', () => {
+    const original = globalThis.localStorage
+    Object.defineProperty(globalThis, 'localStorage', {
+      configurable: true,
+      get() {
+        throw new Error('blocked')
+      },
+    })
+    expect(recordNip05Pin('cam@example.com', A)).toBeTruthy()
+    expect(loadNip05Pins()).toEqual([])
+    Object.defineProperty(globalThis, 'localStorage', { configurable: true, value: original })
   })
 
   it('forgets one handle and clears all pins', () => {

@@ -400,6 +400,7 @@ export async function inspectPsbt(raw: string): Promise<PsbtResult> {
     if (!map) return { ok: false, error: `Input ${i} map is truncated` }
     cursor = map.next
     let witnessUtxo: number | null = null
+    let utxoScript: Uint8Array | null = null
     let witnessScript: Uint8Array | null = null
     let redeemScript: Uint8Array | null = null
     let nonWitnessUtxo = false
@@ -407,7 +408,8 @@ export async function inspectPsbt(raw: string): Promise<PsbtResult> {
     let inputTap = 0
     const keys: string[] = []
     const partialEntries: Array<{ pubkey: Uint8Array; signature: Uint8Array }> = []
-    const tapEntries: Array<{ xonly: Uint8Array; signature: Uint8Array }> = []
+    const tapEntries: Array<{ xonly: Uint8Array; signature: Uint8Array; leafHash: Uint8Array | null }> = []
+    const tapLeafValues: Uint8Array[] = []
     for (const entry of map.entries) {
       const type = entry.key[0]
       keys.push(`0x${type.toString(16).padStart(2, '0')}`)
@@ -415,29 +417,36 @@ export async function inspectPsbt(raw: string): Promise<PsbtResult> {
       else if (type === 0x01) {
         const parsed = parseWitnessUtxo(entry.value)
         witnessUtxo = parsed.amountSats
-        witnessScript = parsed.script
+        utxoScript = parsed.script
       } else if (type === 0x02 && entry.key.length >= 34) {
         inputPartial += 1
         partialEntries.push({ pubkey: entry.key.slice(1), signature: entry.value })
       } else if (type === 0x04) redeemScript = entry.value
-      else if (type === 0x13 && entry.key.length === 33) {
+      else if (type === 0x05) witnessScript = entry.value
+      else if (type === 0x13 && (entry.key.length === 33 || entry.key.length === 65)) {
         inputTap += 1
-        tapEntries.push({ xonly: entry.key.slice(1), signature: entry.value })
-      }
+        tapEntries.push({
+          xonly: entry.key.slice(1, 33),
+          signature: entry.value,
+          leafHash: entry.key.length === 65 ? entry.key.slice(33) : null,
+        })
+      } else if (type === 0x15) tapLeafValues.push(entry.value)
     }
     partialSigs += inputPartial
     tapSigs += inputTap
     if (witnessUtxo == null) everyWitnessUtxo = false
     else inputSats += witnessUtxo
-    const derived = witnessScript ? await scriptToAddress(witnessScript) : null
+    const derived = utxoScript ? await scriptToAddress(utxoScript) : null
     verifyInputs.push({
       witnessUtxo,
-      script: witnessScript,
+      script: utxoScript,
       redeemScript,
+      witnessScript,
       partialSigs: partialEntries,
       tapSigs: tapEntries,
+      tapLeafValues,
     })
-    inputScripts.push(witnessScript ?? new Uint8Array())
+    inputScripts.push(utxoScript ?? new Uint8Array())
     inputDetails.push({
       witnessUtxo,
       nonWitnessUtxo,
@@ -445,7 +454,7 @@ export async function inspectPsbt(raw: string): Promise<PsbtResult> {
       tapSigs: inputTap,
       keys,
       address: derived?.address ?? null,
-      scriptType: witnessScript ? scriptKind(witnessScript) : 'unavailable',
+      scriptType: utxoScript ? scriptKind(utxoScript) : 'unavailable',
       prevTxid: tx.inputs[i].txid,
       vout: tx.inputs[i].vout,
       signatures: [],

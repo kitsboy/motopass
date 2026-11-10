@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { bech32Decode, bech32Encode } from './bech32'
 import { decodeSilentPaymentAddress, deriveSilentPaymentOutput } from './silentPayments'
 
 /** BIP-352 test vector: "Simple send: two inputs". */
@@ -26,6 +27,24 @@ describe('decodeSilentPaymentAddress', () => {
       ok: true,
       address: { address: ADDRESS },
     })
+  })
+
+  it('decodes a testnet tsp address and derives a tb1p output', async () => {
+    const decoded = bech32Decode(ADDRESS, { checksum: true, encoding: 'bech32m' })
+    if (!decoded.ok) throw new Error(decoded.error)
+    const testnet = bech32Encode('tsp', decoded.words, 'bech32m')
+    const address = decodeSilentPaymentAddress(testnet)
+    expect(address.ok).toBe(true)
+    if (!address.ok) return
+    expect(address.address.network).toBe('testnet')
+    const output = await deriveSilentPaymentOutput({
+      address: testnet,
+      inputPrivateKey: INPUT_KEY_SUM,
+      txid: 'f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16',
+      vout: 0,
+    })
+    expect(output.ok).toBe(true)
+    if (output.ok) expect(output.address.startsWith('tb1p')).toBe(true)
   })
 })
 
@@ -76,5 +95,17 @@ describe('deriveSilentPaymentOutput', () => {
         vout: 0,
       }),
     ).toMatchObject({ ok: false })
+  })
+
+  it('rejects an out-of-range vout, k and txid length', async () => {
+    const base = {
+      address: ADDRESS,
+      inputPrivateKey: INPUT_KEY_SUM,
+      txid: 'f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16',
+      vout: 0,
+    }
+    expect(await deriveSilentPaymentOutput({ ...base, vout: -1 })).toMatchObject({ ok: false })
+    expect(await deriveSilentPaymentOutput({ ...base, k: -1 })).toMatchObject({ ok: false })
+    expect(await deriveSilentPaymentOutput({ ...base, txid: '00' })).toMatchObject({ ok: false })
   })
 })

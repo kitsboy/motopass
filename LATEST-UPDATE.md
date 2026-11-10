@@ -1,6 +1,14 @@
-# motopass — Last Updated 2026-11-10 by Buffy — guided tools, proof trails, PSBT signatures, Silent Payments and NIP-17
+# motopass — Last Updated 2026-11-10 by Buffy — multisig/tapscript PSBTs, downloadable receipts, mobile tools pass
 
-## This update — eight upgrades, one honest boundary each
+## This update — advanced PSBTs, portable receipts and a smaller tools page
+
+**P2SH multisig and taproot script-path verification are now real.** `psbtVerify.ts` checks the P2SH redeem-script hash, parses standard `m-of-n` redeem/witness scripts, verifies each `SIGHASH_ALL` ECDSA signature against the legacy or BIP-143 digest, and requires the signing key to belong to the multisig script. For taproot script path it parses PSBT tap-leaf values, matches the signature's leaf hash, validates the control block back to the P2TR output key, and verifies the BIP-342 digest. P2WPKH/P2PKH keys are also bound to their script hash. Unsupported schemes remain `unchecked`.
+
+`ToolsPage.tsx` is now orchestration, not a 1,700-line monolith: five artifact modules (`Bolt11Cards`, `Bolt12Cards`, `LightningCards`, `NostrCards`, `BitcoinCards`) plus shared card/trail/receipt primitives. Proof-bearing results can download a JSON **verification receipt** containing each trail step, generated fields and the explicit limits; it is a record, not a signature or payment proof. The mobile flow gained keyword search, per-card copy links, and a compact Previous/Next/Guide switcher inside the sticky index. The 390px Playwright pass caught and fixed two real layout defects: the tool index wrapping into a tall block and the global back-to-top button covering the switcher.
+
+Checks: full Vitest **590 passed / 2 skipped**; focused new suites **36 passed**; ESLint clean; production build passed; bundle **2637.3 KB / 2650 KB**; mobile Playwright spec **1 passed**. `tsc --noEmit` still reports only the two pre-existing `IntelWatchStrip.test.ts` Node-type errors. No research fact changed; `research/countries.json` untouched.
+
+## Previous update — guided tools, proof trails, PSBT signatures, Silent Payments and NIP-17
 
 `/tools` now has **12 readers** (10 local, 2 network) and starts with a guided “what do you have?” chooser. On a phone, choosing one card shows only that card, with the guide pinned above so switching stays one tap; on desktop the full grid remains. Every result now carries a compact verification trail (`format → signature → payment`, or the equivalent for the artifact) so a pass is never mistaken for a payment.
 
