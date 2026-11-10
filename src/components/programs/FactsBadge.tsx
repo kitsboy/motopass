@@ -10,7 +10,16 @@ import type { Program } from './types'
  * tooltipped badge on the card, which is itself a button and cannot nest another
  * interactive element.
  */
-export function FactsBadge({ program, expandable = false }: { program: Program; expandable?: boolean }) {
+export function FactsBadge({
+  program,
+  expandable = false,
+  onOpenEvidence,
+}: {
+  program: Program
+  expandable?: boolean
+  /** Card badge: open the modal's Evidence tab instead of a popover that the card clips. */
+  onOpenEvidence?: () => void
+}) {
   const { t } = useI18n()
   const facts = programFacts(program)
   const { have, total, missing } = factTotals(program)
@@ -27,6 +36,23 @@ export function FactsBadge({ program, expandable = false }: { program: Program; 
       {have}/{total}
     </span>
   )
+
+  if (onOpenEvidence) {
+    return (
+      <button
+        type="button"
+        title={t('programs.factsHint')}
+        aria-label={`${title} — ${t('modal.tabEvidence')}`}
+        onClick={event => {
+          event.stopPropagation()
+          onOpenEvidence()
+        }}
+        className="rounded-chip focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc"
+      >
+        {badge}
+      </button>
+    )
+  }
 
   if (!expandable) {
     return (

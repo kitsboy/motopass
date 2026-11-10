@@ -42,6 +42,8 @@ interface ProgramCardProps {
   onTogglePortfolio?: (program: Program) => void;
   watched?: boolean;
   onToggleWatch?: (program: Program) => void;
+  /** Opens the modal on its Evidence tab; the card itself clips a popover. */
+  onShowEvidence?: (program: Program) => void;
 }
 
 /**
@@ -60,12 +62,23 @@ export const ProgramCard = memo(function ProgramCard({
   onTogglePortfolio,
   watched = false,
   onToggleWatch,
+  onShowEvidence,
 }: ProgramCardProps) {
   const weight = scoreWeight(program.sovereigntyScore);
   const isFlagship = weight === 'flagship';
   const reduceMotion = useReducedMotion();
 
-  const cardClassName = `group relative w-full min-w-0 overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base ease-spring-gentle hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc ${
+  // The root is a div, not a button: the card already contains its own
+  // watch/portfolio controls, and the facts badge is a third one.
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.target !== e.currentTarget) return;
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onSelect(program);
+    }
+  };
+
+  const cardClassName = `group relative w-full min-w-0 cursor-pointer overflow-hidden rounded-card border bg-mp-card p-5 text-left shadow-mp-1 transition-[box-shadow,border-color] duration-base ease-spring-gentle hover:shadow-mp-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mp-btc ${
     isFlagship ? 'border-mp-btc/35 hover:border-mp-btc/55' : 'border-mp-border hover:border-mp-copper/40'
   }`;
 
@@ -81,7 +94,13 @@ export const ProgramCard = memo(function ProgramCard({
 
   if (reduceMotion) {
     return (
-      <button type="button" onClick={() => onSelect(program)} className={cardClassName}>
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={() => onSelect(program)}
+        onKeyDown={handleKeyDown}
+        className={cardClassName}
+      >
         <ProgramCardContent
           program={program}
           isFlagship={isFlagship}
@@ -89,15 +108,18 @@ export const ProgramCard = memo(function ProgramCard({
           onTogglePortfolio={onTogglePortfolio ? handleToggle : undefined}
           watched={watched}
           onToggleWatch={onToggleWatch ? handleWatchToggle : undefined}
+          onShowEvidence={onShowEvidence}
         />
-      </button>
+      </div>
     );
   }
 
   return (
-    <motion.button
-      type="button"
+    <motion.div
+      role="button"
+      tabIndex={0}
       onClick={() => onSelect(program)}
+      onKeyDown={handleKeyDown}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-8%' }}
@@ -112,8 +134,9 @@ export const ProgramCard = memo(function ProgramCard({
         onTogglePortfolio={onTogglePortfolio ? handleToggle : undefined}
         watched={watched}
         onToggleWatch={onToggleWatch ? handleWatchToggle : undefined}
+        onShowEvidence={onShowEvidence}
       />
-    </motion.button>
+    </motion.div>
   );
 });
 
@@ -124,6 +147,7 @@ function ProgramCardContent({
   onTogglePortfolio,
   watched,
   onToggleWatch,
+  onShowEvidence,
 }: {
   program: Program;
   isFlagship: boolean;
@@ -131,6 +155,7 @@ function ProgramCardContent({
   onTogglePortfolio?: (e: React.MouseEvent) => void;
   watched?: boolean;
   onToggleWatch?: (e: React.MouseEvent) => void;
+  onShowEvidence?: (program: Program) => void;
 }) {
   const { t } = useI18n();
   const freshnessLabels = {
@@ -216,7 +241,10 @@ function ProgramCardContent({
             ₿ {t('programs.presetBitcoinPolicy')}
           </span>
         )}
-        <FactsBadge program={program} />
+        <FactsBadge
+          program={program}
+          onOpenEvidence={onShowEvidence ? () => onShowEvidence(program) : undefined}
+        />
         <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />
         <IntelStatusBadge programName={program.country} compact />
         <SourceStatusBadge programName={program.country} />

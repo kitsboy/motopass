@@ -20,6 +20,7 @@ export type ProgramModalTab =
   | 'Legal'
   | 'Intel'
   | 'Paige'
+  | 'Evidence'
   | 'Sources';
 
 export interface Program {

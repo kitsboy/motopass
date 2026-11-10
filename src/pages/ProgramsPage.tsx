@@ -40,7 +40,7 @@ import { ProgramModal } from '../components/programs/ProgramModal'
 import { IntelWatchStrip } from '../components/intel/IntelWatchStrip'
 import { RowSkeleton } from '../components/LoadingSkeleton'
 import { ProgramsLoadError } from '../components/ui/ProgramsLoadError'
-import type { Program as CinematicProgram } from '../components/programs/types'
+import type { Program as CinematicProgram, ProgramModalTab } from '../components/programs/types'
 import type { Program } from '../types/program'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
@@ -85,6 +85,15 @@ export function ProgramsPage() {
   const filters = useMemo(() => filtersFromSearchParams(searchParams), [searchParams])
   const view = (searchParams.get('view') === 'card' ? 'card' : 'table') as 'table' | 'card'
   const [active, setActive] = useState<CinematicProgram | null>(null)
+  const [modalTab, setModalTab] = useState<ProgramModalTab>('Overview')
+  const openProgram = useCallback((program: CinematicProgram) => {
+    setModalTab('Overview')
+    setActive(program)
+  }, [])
+  const openEvidence = useCallback((program: CinematicProgram) => {
+    setModalTab('Evidence')
+    setActive(program)
+  }, [])
   const [showAdvanced, setShowAdvanced] = useState(false)
   const [addOpen, setAddOpen] = useState(false)
   const [newName, setNewName] = useState('')
@@ -688,7 +697,7 @@ export function ProgramsPage() {
                     <div className="hidden sm:block min-w-0 overflow-x-auto overflow-y-clip">
                       <ProgramsTable
                         programs={cinematic}
-                        onSelect={setActive}
+                        onSelect={openProgram}
                         portfolioIds={portfolio}
                         onTogglePortfolio={handleTogglePortfolio}
                         density={tableDensity}
@@ -700,7 +709,8 @@ export function ProgramsPage() {
                       <ProgramCard
                         key={p.id}
                         program={p}
-                        onSelect={setActive}
+                        onSelect={openProgram}
+                        onShowEvidence={openEvidence}
                         index={i}
                         inPortfolio={isInPortfolio(p)}
                         onTogglePortfolio={handleTogglePortfolio}
@@ -724,6 +734,7 @@ export function ProgramsPage() {
 
       <ProgramModal
         program={active}
+        initialTab={modalTab}
         onClose={() => setActive(null)}
         onAddToStack={handleAddToStack}
         inPortfolio={active ? isInPortfolio(active) : false}
