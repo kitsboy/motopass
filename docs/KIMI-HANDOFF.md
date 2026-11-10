@@ -1,3 +1,32 @@
+## Session — 2026-11-10 · Sats anchor, wallet receipts, block anchoring, NIP-46/05, BOLT12 checks (Buffy)
+
+**Done:**
+- `src/lib/satsAnchor.ts` — one dated rate (`BTC_USD_AT_CAPTURE`, 2026-08-22) behind every sats figure, with exact conversions, age and staleness. `SatsAnchorNote` now sits on the fee invoice, the stack simulator total and the portfolio; no live ticker is introduced, so a stored dollar figure does not change meaning minute to minute.
+- `src/lib/nwc.ts` — generalised NIP-47 client: `get_balance`, `make_invoice`, `lookup_invoice`, all via one request path with a 15s timeout; results are parsed by pure functions that refuse a non-BOLT11 invoice, a missing payment hash, or an unrecognised invoice state. `src/lib/tipReceipt.ts` — payer-signed kind-30078 receipt (invoice, amount, payment hash, preimage and settlement time only when the wallet reported them). It is **not** NIP-57: only the receiving node may sign a zap receipt. `TipReceipt.tsx` is the flow; no receipt is possible unless the wallet says `paid`.
+- `src/lib/ledgerAnchor.ts` — one Satohash/OTS stamp over the SHA-256 of the sorted, de-duplicated signed event ids. A block height is only shown when the proof reports one; `confirmed` without a height is labelled as such. `LedgerPublish` exposes sign → publish → anchor with the verify link.
+- `src/lib/nip46.ts` — `bunker://` parsing, encrypted request/response over injected transport, `sign_event` verified against the requested template and signature, plus `nostrconnect://` pairing with an app secret. `src/lib/nip05.ts` — resolution of `name@domain` to a hex pubkey and a match/mismatch/unverified verdict. `RemoteSigner.tsx` wires both into the ledger for visitors without NIP-07.
+- `src/lib/bolt12.ts` — bech32 checksum validation of `lno1…` offers (it does not claim to decode fields). `RecurringGaps.tsx` shows the standing arithmetic (`open gaps × 5,000 sats/month`) and a QR/deep link only for a configured, checksum-valid `VITE_BOLT12_OFFER`.
+- UI polish: Evidence gap strip with count, total sats and jump-to-first-gap; staged ledger panel with anchor state; dated rate note plus wallet fingerprint/relay and gap-tip capacity on the NIP-47 card.
+- No research fact was added or changed; `research/countries.json` untouched. No new locale keys (new panels are English-only, as before).
+
+**Decisions:**
+- Receipts are payer-signed, not NIP-57. Issuing a zap receipt without the receiving node's key would be fabricated proof.
+- Settlement is read only from the user's wallet via `lookup_invoice`. A static site cannot observe a payment, so the LNURL rail still cannot produce a receipt and says so.
+- One stamp covers the ledger set rather than one per row: same proof for the set, far fewer calendar submissions. The UI says it proves the set existed by a block, not that each id is true.
+- BOLT12 offers are never generated in the browser and the offer's fields are not decoded; only the checksum is checked, and the plan is labelled as arithmetic, not a quote.
+
+**Checks:** 482 Vitest passed / 2 skipped, including new suites for all six libs (57 new tests). Lint 0 errors. `tsc` shows only the two pre-existing `IntelWatchStrip.test.ts` errors. `vite build` succeeded. `/env.example` and `vite-env.d.ts` document `VITE_BOLT12_OFFER`.
+
+**Still open / honest limits:**
+- No live wallet, relay, signer app or BOLT12 offer was exercised. NIP-46/NIP-05/NWC paths are tested with injected transports and fake responses, not against a real service.
+- `make_invoice` needs that permission on the connection string; a balance-only connection will refuse and the error is shown.
+- No browser pass was run on the new panels.
+
+**Git State:**
+- Code SHA: `ad4b2cb` (this session's handoff commit follows on top)
+- Base: `1ac5248`
+- Unpushed: checked and pushed to `origin/main`
+
 ## Session — 2026-11-10 · Evidence tab with Lightning, Nostr and snapshot rails (Buffy)
 
 **Done:**
