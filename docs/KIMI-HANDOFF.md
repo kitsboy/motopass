@@ -1,5 +1,5 @@
 <!-- live-deploy:start -->
-**Last live deploy:** pending this workflow run.
+**Last live deploy:** BUILD `2026.11.10-00c033e` · commit `00c033e` · HTTP 200 · verified 2026-11-10T22:41:30.753Z
 <!-- live-deploy:end -->
 
 ## Session — 2026-11-10 · history, QR input, proof cards, BIP-137 and policy automation (Buffy)
