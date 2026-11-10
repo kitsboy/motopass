@@ -1,5 +1,5 @@
 <!-- live-deploy:start -->
-**Last live deploy:** BUILD `2026.11.10-00c033e` · commit `00c033e` · HTTP 200 · verified 2026-11-10T22:41:30.753Z
+**Last live deploy:** BUILD `2026.11.10-6d4bb1b` · commit `6d4bb1b` · HTTP 200 · verified 2026-11-10T23:26:46.612Z
 <!-- live-deploy:end -->
 
 ## Session — 2026-11-10 · BIP-322, shareable receipts, payment evidence and universal intake (Buffy)
