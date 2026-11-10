@@ -16,7 +16,9 @@
 - One stamp covers the ledger set rather than one per row: same proof for the set, far fewer calendar submissions. The UI says it proves the set existed by a block, not that each id is true.
 - BOLT12 offers are never generated in the browser and the offer's fields are not decoded; only the checksum is checked, and the plan is labelled as arithmetic, not a quote.
 
-**Checks:** 482 Vitest passed / 2 skipped, including new suites for all six libs (57 new tests). Lint 0 errors. `tsc` shows only the two pre-existing `IntelWatchStrip.test.ts` errors. `vite build` succeeded. `/env.example` and `vite-env.d.ts` document `VITE_BOLT12_OFFER`.
+- Follow-up 2: `src/lib/tipReceiptStore.ts` keeps signed receipts in `localStorage` (`motopass-tip-receipts`, max 20, public event fields only — the wallet URI is never stored), re-verifies each signature with `verifyEvent` on load, refuses `unsigned`/`rejected` results at save time, and hands back payment hashes for matching. `WalletLedger.tsx` is the one panel now used by both the gap tip and the portfolio wallet card: filter chips `All / Received / Sent / My receipts` with counts, `showing n of m`, and rows matched to a saved receipt marked `your receipt`. The portfolio card reports how many receipts the device holds, and its copy now says it asks for transactions too.
+
+**Checks:** 482 Vitest passed / 2 skipped, including new suites for all six libs (57 new tests); the follow-up store adds 10 more. Full suite, lint and build re-run before the follow-up commit. Lint 0 errors. `tsc` shows only the two pre-existing `IntelWatchStrip.test.ts` errors. `vite build` succeeded. `/env.example` and `vite-env.d.ts` document `VITE_BOLT12_OFFER`.
 
 **Still open / honest limits:**
 - No live wallet, relay, signer app or BOLT12 offer was exercised. NIP-46/NIP-05/NWC paths are tested with injected transports and fake responses, not against a real service.

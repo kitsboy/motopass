@@ -2,17 +2,20 @@ import { useState, type FormEvent } from 'react'
 import { PlugZap, Unplug } from 'lucide-react'
 import { nwcGetBalance, parseNwcUri, type NwcBalanceResult } from '../../lib/nwc'
 import { SUGGESTED_GAP_BOUNTY_SATS } from '../../lib/bounties'
+import { loadTipReceipts, storedReceiptHashes } from '../../lib/tipReceiptStore'
+import { WalletLedger } from './WalletLedger'
 
 const STORAGE_KEY = 'motopass-nwc-uri'
 
 /**
  * Nostr Wallet Connect, read-only.
  *
- * Only `get_balance` is ever sent here. The connection string is a bearer
- * secret that the wallet chooses the permissions for, so it is held in this
- * tab's sessionStorage and never written to localStorage, a URL or a log. The
- * card says this instead of implying the string is harmless, and shows which
- * wallet answered so two connections are never confused.
+ * Only `get_balance` is sent on load; `list_transactions` is sent when the
+ * visitor opens the ledger. The connection string is a bearer secret that the
+ * wallet chooses the permissions for, so it is held in this tab's
+ * sessionStorage and never written to localStorage, a URL or a log. The card
+ * says this instead of implying the string is harmless, and shows which wallet
+ * answered so two connections are never confused.
  */
 export function NwcBalanceCard() {
   const [uri, setUri] = useState(() => {
@@ -24,6 +27,7 @@ export function NwcBalanceCard() {
   })
   const [result, setResult] = useState<NwcBalanceResult | null>(null)
   const [busy, setBusy] = useState(false)
+  const [receiptHashes] = useState(() => storedReceiptHashes(loadTipReceipts()))
 
   const check = async (event: FormEvent) => {
     event.preventDefault()
@@ -77,8 +81,9 @@ export function NwcBalanceCard() {
       </div>
 
       <p className="mt-1.5 text-[11px] leading-relaxed text-mp-ink-tertiary">
-        Paste a NIP-47 connection string from your wallet. This card sends only a balance request — no payments
-        and no signatures. The wallet decides what the string allows.
+        Paste a NIP-47 connection string from your wallet. This card asks for a balance, and for your recent
+        transactions only when you open the ledger — no payments and no signatures. The wallet decides what the
+        string allows.
       </p>
 
       <form onSubmit={(event) => void check(event)} className="mt-3 flex flex-wrap gap-2">
@@ -130,9 +135,20 @@ export function NwcBalanceCard() {
         </div>
       )}
 
+      {valid && (
+        <div className="mt-3 space-y-1.5">
+          <WalletLedger nwcUri={uri} highlightHashes={receiptHashes} />
+          <p className="text-[9px] leading-relaxed text-mp-ink-tertiary">
+            {receiptHashes.length > 0
+              ? `${receiptHashes.length.toLocaleString()} signed ${receiptHashes.length === 1 ? 'receipt' : 'receipts'} saved on this device can be matched to wallet rows.`
+              : 'No signed receipts are saved on this device yet, so no wallet row can be marked as a gap tip here.'}
+          </p>
+        </div>
+      )}
+
       <p className="mt-2 border-t border-mp-border-subtle pt-2 text-[10px] leading-relaxed text-mp-ink-tertiary">
         Held in sessionStorage for this tab only. A wallet may still see the request as authorised activity — if that
-        matters, use a connection scoped to balance reads.
+        matters, use a connection scoped to balance and transaction reads.
       </p>
     </section>
   )
