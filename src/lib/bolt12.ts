@@ -363,8 +363,14 @@ export async function decodeBolt12(raw: string): Promise<Bolt12Result> {
   }
 
   const currency = byType.has(6) ? decodeUtf8(byType.get(6)!) : null
-  const amountField = kind === 'invoice' ? 170 : 8
-  const amount = byType.has(amountField) ? fieldNumber(byType.get(amountField)!) : null
+  // An invoice request carries its own invreq_amount (82); an invoice carries
+  // invoice_amount (170). Only an offer uses offer_amount (8).
+  const amountField = kind === 'invoice' ? 170 : kind === 'invoice_request' ? 82 : 8
+  const amount = byType.has(amountField)
+    ? fieldNumber(byType.get(amountField)!)
+    : kind === 'invoice_request' && byType.has(8)
+      ? fieldNumber(byType.get(8)!)
+      : null
   const rawDescription = byType.get(10)
   const description = rawDescription ? decodeUtf8(rawDescription) : null
   const rawIssuer = byType.get(18)

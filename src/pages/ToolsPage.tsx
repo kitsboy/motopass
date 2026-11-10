@@ -9,6 +9,7 @@ import {
   Landmark,
   Receipt,
   ScanLine,
+  BadgeCheck,
   ShieldCheck,
   Wallet,
   Zap,
@@ -20,7 +21,10 @@ import { decodeBolt11, bolt11AmountSats, bolt11ExpiryLabel } from '../lib/bolt11
 import { verifyBolt11Signature } from '../lib/bolt11Signature'
 import { decodeBolt12, type Bolt12Decoded } from '../lib/bolt12'
 import { buildBolt12InvoiceRequest } from '../lib/bolt12Request'
+import { verifyBolt12InvoiceResponse } from '../lib/bolt12Response'
 import { inspectBitcoinInput } from '../lib/bitcoinInspect'
+import { nip05Verdict, resolveNip05 } from '../lib/nip05'
+import { decode as decodeNip19, npubEncode } from 'nostr-tools/nip19'
 import { checkPreimage, type PreimageCheck } from '../lib/preimage'
 import { inspectLnurlPay, requestAndInspectLnurlInvoice } from '../lib/lnurlInspect'
 import { formatSatsExact } from '../lib/satsAnchor'
@@ -29,8 +33,8 @@ import { verifyZapReceipt } from '../lib/zapReceipt'
 /**
  * Bitcoin / Lightning readers that run entirely in this tab.
  *
- * All readers run in this tab except the LNURL resolver, which makes one https
- * request only after the visitor presses Inspect. That limits what they can say:
+ * All readers run in this tab except the LNURL resolver and NIP-05 lookup, which
+ * each make one https request only after the visitor presses Inspect. That limits what they can say:
  * BOLT11 can be decoded and its payee key recovered, a BOLT12 offer is
  * structurally read and is unsigned by design, and a receipt is checked for its
  * signature and preimage relation only. The copy on each card states the limit
@@ -57,6 +61,7 @@ const BITCOIN_TOOLS = [
   { href: '#receipt', label: 'Receipt verify', network: false },
   { href: '#lnurl', label: 'LNURL inspect', network: true },
   { href: '#zap', label: 'Zap receipt', network: false },
+  { href: '#nip05', label: 'NIP-05 lookup', network: true },
   { href: '#address-psbt', label: 'Address / PSBT', network: false },
 ] as const
 
@@ -530,13 +535,24 @@ function Bolt12RequestTool() {
   const [sats, setSats] = useState('')
   const [note, setNote] = useState('')
   const [result, setResult] = useState<Awaited<ReturnType<typeof buildBolt12InvoiceRequest>> | null>(null)
+  const [returned, setReturned] = useState('')
+  const [response, setResponse] = useState<Awaited<ReturnType<typeof verifyBolt12InvoiceResponse>> | null>(null)
   const [busy, setBusy] = useState(false)
+  const [verifyBusy, setVerifyBusy] = useState(false)
 
   const run = async () => {
     setBusy(true)
+    setResponse(null)
     const amount = sats.trim() ? Number(sats) : null
     setResult(await buildBolt12InvoiceRequest(offer, { amountSats: amount, payerNote: note }))
     setBusy(false)
+  }
+
+  const verify = async () => {
+    if (!result?.ok) return
+    setVerifyBusy(true)
+    setResponse(await verifyBolt12InvoiceResponse(offer, result.request, returned))
+    setVerifyBusy(false)
   }
 
   return (
@@ -603,8 +619,10 @@ function Bolt12RequestTool() {
             setSats('')
             setNote('')
             setResult(null)
+            setReturned('')
+            setResponse(null)
           }}
-          disabled={!offer && !sats && !note && !result}
+          disabled={!offer && !sats && !note && !result && !returned}
         />
       </form>
       <div aria-live="polite" className="mt-3">
@@ -645,6 +663,74 @@ function Bolt12RequestTool() {
             <p className="mt-1 text-[9px] leading-relaxed text-mp-ink-tertiary">
               This request is a message, not a payment. It has not been sent to the issuer.
             </p>
+            <div className="mt-3 border-t border-mp-border-subtle/60 pt-2">
+              <label htmlFor="bolt12-returned" className="block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+                Returned invoice (optional)
+              </label>
+              <textarea
+                id="bolt12-returned"
+                value={returned}
+                onChange={event => setReturned(event.target.value)}
+                rows={3}
+                spellCheck={false}
+                placeholder="lni1… from the issuer"
+                className={`${inputClass} font-mono text-[9px]`}
+              />
+              <button
+                type="button"
+                onClick={() => void verify()}
+                disabled={verifyBusy || !returned.trim()}
+                className={`${buttonClass} mt-2`}
+              >
+                {verifyBusy ? 'Verifying…' : 'Verify response'}
+              </button>
+              {response && !response.ok && (
+                <p className="mt-2 flex items-start gap-1.5 text-[10px] leading-relaxed text-mp-wax">
+                  <AlertTriangle size={11} className="mt-0.5 shrink-0" aria-hidden="true" />
+                  {response.error}
+                </p>
+              )}
+              {response?.ok && (
+                <div className="mt-2 rounded-mp-md border border-mp-border-subtle p-2">
+                  <CheckLine label="Request kind" value={response.result.checks.requestKind} />
+                  <CheckLine label="Invoice kind" value={response.result.checks.invoiceKind} />
+                  <CheckLine label="Request signature" value={response.result.checks.requestSignature} />
+                  <CheckLine label="Invoice signature" value={response.result.checks.invoiceSignature} />
+                  <CheckLine label="Offer fields in request" value={response.result.checks.offerFieldsInRequest} />
+                  <CheckLine label="Offer fields in invoice" value={response.result.checks.offerFieldsInInvoice} />
+                  <CheckLine label="Amount matches" value={response.result.checks.amountMatches} />
+                  <CheckLine label="Payment hash present" value={response.result.checks.paymentHashPresent} />
+                  <CheckLine label="Payer key present" value={response.result.checks.payerKeyPresent} />
+                  <div className="mt-1.5">
+                    <FieldRow
+                      label="Node id"
+                      value={<span className="font-mono text-[10px]">{response.result.invoice.nodeId ?? 'not present'}</span>}
+                    />
+                    <FieldRow
+                      label="Invoice amount"
+                      value={
+                        response.result.invoice.amount == null
+                          ? 'not present'
+                          : `${response.result.invoice.amount.toLocaleString('en-US')} msat`
+                      }
+                    />
+                    <FieldRow
+                      label="Payment hash"
+                      value={<span className="font-mono text-[10px]">{response.result.invoice.paymentHash ?? 'not present'}</span>}
+                      copy={response.result.invoice.paymentHash ?? undefined}
+                    />
+                  </div>
+                  {response.result.mismatches.length > 0 && (
+                    <ul className="mt-2 space-y-1 text-[10px] leading-relaxed text-mp-wax">
+                      {response.result.mismatches.map(mismatch => (
+                        <li key={mismatch}>{mismatch}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <p className="mt-2 text-[9px] leading-relaxed text-mp-ink-tertiary">{response.result.note}</p>
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -907,6 +993,125 @@ function ZapReceiptTool() {
   )
 }
 
+function expectedPubkey(value: string): string | null {
+  const trimmed = value.trim()
+  if (!trimmed) return null
+  if (/^[0-9a-f]{64}$/i.test(trimmed)) return trimmed.toLowerCase()
+  try {
+    const decoded = decodeNip19(trimmed)
+    return decoded.type === 'npub' ? decoded.data : null
+  } catch {
+    return null
+  }
+}
+
+function Nip05Tool() {
+  const [handle, setHandle] = useState('')
+  const [expected, setExpected] = useState('')
+  const [result, setResult] = useState<Awaited<ReturnType<typeof resolveNip05>> | null>(null)
+  const [busy, setBusy] = useState(false)
+  const expectedHex = expected.trim() ? expectedPubkey(expected) : null
+  const invalidExpected = Boolean(expected.trim() && !expectedHex)
+  const verdict = result?.ok ? nip05Verdict(result.pubkey, expectedHex) : null
+
+  const run = async () => {
+    setBusy(true)
+    setResult(await resolveNip05(handle))
+    setBusy(false)
+  }
+
+  return (
+    <ToolCard icon={<BadgeCheck size={11} aria-hidden="true" />} eyebrow="NIP-05" title="Resolve a name to an npub" network>
+      <p className="text-[11px] leading-relaxed text-mp-ink-tertiary">
+        Reads the domain&apos;s <span className="font-mono">/.well-known/nostr.json</span> and shows the npub, hex key and
+        relays it maps to. A match is domain trust: the domain owner can change the mapping.
+      </p>
+      <form
+        onSubmit={event => {
+          event.preventDefault()
+          void run()
+        }}
+      >
+        <label htmlFor="nip05-handle" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+          NIP-05 name
+        </label>
+        <input
+          id="nip05-handle"
+          value={handle}
+          onChange={event => setHandle(event.target.value)}
+          onKeyDown={event => {
+            if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) void run()
+          }}
+          spellCheck={false}
+          placeholder="name@domain"
+          className={inputClass}
+        />
+        <label htmlFor="nip05-expected" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+          Expected key (npub or hex, optional)
+        </label>
+        <input
+          id="nip05-expected"
+          value={expected}
+          onChange={event => setExpected(event.target.value)}
+          spellCheck={false}
+          placeholder="npub1… or 64 hex characters"
+          className={inputClass}
+        />
+        {invalidExpected && (
+          <p className="mt-1 text-[10px] text-mp-wax">Expected key must be an npub or 64 hex characters.</p>
+        )}
+        <button type="submit" disabled={busy || !handle.trim() || invalidExpected} className={`${buttonClass} mt-2`}>
+          {busy ? 'Resolving…' : 'Resolve name'}
+        </button>
+        <ClearButton
+          onClick={() => {
+            setHandle('')
+            setExpected('')
+            setResult(null)
+          }}
+          disabled={!handle && !expected && !result}
+        />
+      </form>
+      <div aria-live="polite" className="mt-3">
+        {result && !result.ok && (
+          <p className="flex items-start gap-1.5 text-[11px] leading-relaxed text-mp-wax">
+            <AlertTriangle size={12} className="mt-0.5 shrink-0" aria-hidden="true" />
+            {result.error}
+          </p>
+        )}
+        {result?.ok && (
+          <div className="rounded-mp-md border border-mp-border-subtle bg-mp-card/40 p-2.5">
+            <p className={`text-[10px] font-semibold ${verdict === 'mismatch' ? 'text-mp-wax' : verdict === 'match' ? 'text-mp-proof' : 'text-mp-ink-tertiary'}`}>
+              {verdict === 'match'
+                ? 'Name resolves to the expected key'
+                : verdict === 'mismatch'
+                  ? 'Name resolves to a different key'
+                  : 'Name resolved · no expected key supplied'}
+            </p>
+            <div className="mt-1.5">
+              <FieldRow
+                label="NIP-05"
+                value={`${result.identifier.name}@${result.identifier.domain}`}
+              />
+              <FieldRow
+                label="npub"
+                value={<span className="font-mono text-[10px]">{npubEncode(result.pubkey)}</span>}
+                copy={npubEncode(result.pubkey)}
+              />
+              <FieldRow
+                label="Hex key"
+                value={<span className="font-mono text-[10px]">{result.pubkey}</span>}
+                copy={result.pubkey}
+              />
+              <FieldRow label="Relays" value={result.relays.length > 0 ? result.relays.join(', ') : 'none advertised'} />
+            </div>
+          </div>
+        )}
+      </div>
+    </ToolCard>
+  )
+}
+
 function AddressPsbtTool() {
   const [raw, setRaw] = useState('')
   const [result, setResult] = useState<Awaited<ReturnType<typeof inspectBitcoinInput>> | null>(null)
@@ -1005,6 +1210,39 @@ function AddressPsbtTool() {
                 value={result.result.psbt.feeSats == null ? 'not computable from witness UTXOs' : formatSatsExact(result.result.psbt.feeSats)}
               />
             </div>
+            <div className="mt-2 space-y-2">
+              {result.result.psbt.inputDetails.map((input, index) => (
+                <div key={`input-${index}`} className="rounded-mp-sm border border-mp-border-subtle/60 p-1.5">
+                  <p className="font-chrome text-[9px] font-semibold uppercase tracking-wide text-mp-ink-tertiary">Input {index}</p>
+                  <FieldRow label="Prev txid" value={<span className="break-all font-mono text-[9px]">{input.prevTxid ?? '—'}</span>} />
+                  <FieldRow label="Prev vout" value={input.vout ?? '—'} />
+                  <FieldRow label="Type" value={input.scriptType} />
+                  <FieldRow
+                    label="Address"
+                    value={<span className="font-mono text-[9px]">{input.address ?? 'not in witness UTXO'}</span>}
+                    copy={input.address ?? undefined}
+                  />
+                </div>
+              ))}
+              {result.result.psbt.outputDetails.map((output, index) => (
+                <div key={`output-${index}`} className="rounded-mp-sm border border-mp-border-subtle/60 p-1.5">
+                  <p className="font-chrome text-[9px] font-semibold uppercase tracking-wide text-mp-ink-tertiary">Output {index}</p>
+                  <FieldRow
+                    label="Value"
+                    value={output.amountSats == null ? 'unreadable' : formatSatsExact(output.amountSats)}
+                  />
+                  <FieldRow label="Type" value={output.scriptType} />
+                  <FieldRow
+                    label="Address"
+                    value={<span className="font-mono text-[9px]">{output.address ?? 'custom script'}</span>}
+                    copy={output.address ?? undefined}
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="mt-2 text-[9px] leading-relaxed text-mp-ink-tertiary">
+              PSBTs do not encode a network, so these addresses use Bitcoin mainnet prefixes.
+            </p>
             {result.result.psbt.warnings.length > 0 && (
               <ul className="mt-2 space-y-1 text-[10px] leading-relaxed text-mp-wax">
                 {result.result.psbt.warnings.map(warning => (
@@ -1025,7 +1263,7 @@ export function ToolsPage() {
       <PageHeader
         eyebrow="BITCOIN TOOLS"
         title="Read it yourself"
-        subtitle="Invoices, offers, receipts, zaps and PSBTs, read in this tab. LNURL is the only network call, and only when you press Inspect. Each card says what it cannot prove."
+        subtitle="Invoices, offers, receipts, zaps and PSBTs, read in this tab. LNURL and NIP-05 are the only network calls, and only when you press Inspect. Each card says what it cannot prove."
         actions={
           <Link to="/verify" className="chip text-xs">
             Verify a stamped hash →
@@ -1038,7 +1276,7 @@ export function ToolsPage() {
         className="sticky top-16 z-20 -mx-1 mb-5 rounded-mp-lg border border-mp-border-subtle bg-mp-canvas/95 p-2 shadow-sm backdrop-blur"
       >
         <p className="mb-1.5 px-1 font-chrome text-[9px] font-semibold uppercase tracking-[0.14em] text-mp-ink-tertiary">
-          9 tools · 8 local · 1 network
+          10 tools · 8 local · 2 network
         </p>
         <div className="flex flex-wrap gap-1.5">
           {BITCOIN_TOOLS.map(tool => (
@@ -1094,14 +1332,17 @@ export function ToolsPage() {
         <div id="zap" className="scroll-mt-28">
           <ZapReceiptTool />
         </div>
+        <div id="nip05" className="scroll-mt-28">
+          <Nip05Tool />
+        </div>
         <div id="address-psbt" className="scroll-mt-28 lg:col-span-2">
           <AddressPsbtTool />
         </div>
       </div>
 
       <p className="mt-6 max-w-3xl text-[11px] leading-relaxed text-mp-ink-tertiary">
-        Eight tools run entirely offline. The LNURL inspector is the exception: pressing Inspect makes one https request
-        to the pay endpoint you named. A valid BOLT11 checksum and matching payee key mean the invoice is well formed
+        Eight tools run entirely offline. LNURL and NIP-05 are the exceptions: pressing Inspect makes one https request
+        to the endpoint or domain you named. A valid BOLT11 checksum and matching payee key mean the invoice is well formed
         and signed by its stated key, not that it is payable; a valid BOLT12 request signature means the message was
         signed by its payer key; a matching preimage means the hash relation holds. None of these proves a payment
         occurred.

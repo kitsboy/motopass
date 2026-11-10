@@ -61,10 +61,21 @@ describe('change bell', () => {
     expect(changeBellNote(report)).toContain('Changed: none')
   })
 
-  it('follows the shipped catalog without flipping a clear latch', () => {
-    const report = changeBellReport((catalogJson as { programs: Program[] }).programs)
-    expect(report.changed.map(item => item.name)).toEqual([])
-    expect(report.steady).toBe(21)
+  it('follows the shipped catalog latch without flipping a clear country', () => {
+    const programs = (catalogJson as { programs: Program[] }).programs
+    const expected = programs
+      .filter(
+        program =>
+          program.watch?.changed === true || (program.watch?.urls ?? []).some(page => page.status === 'changed'),
+      )
+      .map(program => program.name)
+    const report = changeBellReport(programs)
+    expect(report.changed.map(item => item.name)).toEqual(expected)
+    expect(report.steady).toBe(programs.length - expected.length)
+    for (const program of programs) {
+      if (expected.includes(program.name)) continue
+      expect(report.changed.map(item => item.name)).not.toContain(program.name)
+    }
   })
 
   it('refuses private and non-https webhook addresses', () => {

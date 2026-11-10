@@ -42,6 +42,16 @@ function encodeBigSize(value: number): Uint8Array {
   throw new Error('TLV type is too large to encode')
 }
 
+function encodeUint(value: number): Uint8Array {
+  const out: number[] = []
+  let remaining = value
+  do {
+    out.unshift(remaining & 0xff)
+    remaining = Math.floor(remaining / 256)
+  } while (remaining > 0)
+  return Uint8Array.from(out)
+}
+
 function encodeTlv(type: number, value: Uint8Array): Uint8Array {
   const typeBytes = encodeBigSize(type)
   const lengthBytes = encodeBigSize(value.length)
@@ -112,8 +122,8 @@ export async function buildBolt12InvoiceRequest(
   }
 
   if (amountMsat != null) {
-    const amountBytes = encodeBigSize(amountMsat)
-    fields.set(82, amountBytes)
+    // invreq_amount is a tu64, not a BigSize-prefixed integer.
+    fields.set(82, encodeUint(amountMsat))
   }
 
   const note = opts.payerNote?.trim()

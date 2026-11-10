@@ -1,3 +1,24 @@
+## Session — 2026-11-10 · CI repair, BOLT12 response, NIP-05, PSBT addresses (Buffy)
+
+**Done:**
+- **CI repair:** the 10 Nov source sweep correctly latched Italy and Ireland as changed, but `public/data/source-monitor.json` and three tests still expected a clear board. Regenerated the monitor from `research/countries.json` (`node scripts/sync-source-monitor.mjs`), and changed `changeBell.test.ts`, `ruleSentence.test.ts` and `scripts/source-monitor-sync.test.ts` to derive expected changed names from the catalog's `watch.changed` / changed URLs. Removed the stale El Salvador exclusion because that source is now genuinely `unreachable`; the existing per-row catalog status check remains.
+- **BOLT12 response verifier** (`src/lib/bolt12Response.ts`): accepts offer + request + returned `lni1…`, checks message kinds, invoice signature, request signature, every non-signature offer TLV copied into request and invoice, invoice amount against `invreq_amount` (or a fixed offer amount), payment hash presence, and payer-key presence. Returns the invoice node key and explicit mismatches. The card explains that the invoice does not echo the payer key.
+- **BOLT12 amount fixes:** `decodeBolt12` now reads `invreq_amount` (82) for invoice requests, and `buildBolt12InvoiceRequest` encodes it as a tu64 instead of a BigSize-prefixed value. The response test exposed both bugs.
+- **NIP-05 tool** (`ToolsPage.tsx`): one opt-in https lookup, shows `name@domain`, npub, hex key and advertised relays, and compares against an optional npub/hex expected key. Match is labelled domain trust, not identity. The index now reads 10 tools / 8 local / 2 network.
+- **PSBT addresses:** `bitcoinInspect.ts` now derives P2PKH/P2SH/P2WPKH/P2WSH/P2TR addresses for every output and for inputs carrying a witness UTXO, exposes prev txid/vout, and labels custom scripts without inventing an address. Added base58 and bech32/bech32m encoders. The UI states that PSBTs do not encode a network and displays Bitcoin mainnet prefixes. `inspectPsbt` is async because Base58Check needs SHA-256.
+- No research fact was added or changed; `research/countries.json` untouched.
+
+**Decisions:**
+- CI is repaired by following the real catalog and regenerating derived data, not by reverting the Italian/Irish source changes or weakening assertions. The tests compare against catalog latches and every URL row against its status.
+- The response verifier reports what it can check. It does not claim the payer key is the invoice signer; BOLT12 invoices do not carry `invreq_payer_id`, so the card says so.
+- Derived PSBT addresses are Bitcoin mainnet because a PSBT has no network field. The UI warning is explicit rather than guessing testnet/regtest.
+
+**Checks:** full Vitest **558 passed / 2 skipped (560)**; focused CI + feature suites **17 passed**; ESLint edited files 0 errors; `vite build` passed. `tsc --noEmit` reports only the two pre-existing `src/components/intel/IntelWatchStrip.test.ts` Node-types errors. No browser pass and no live NIP-05 domain, relay or node was exercised. Live `/tools` verification follows the push.
+
+**Git State:**
+- Code SHA: pending this commit
+- Unpushed: none after push
+
 ## Session — 2026-11-10 · BOLT11 recovery, BOLT12 requests, LNURL, zaps, PSBTs (Buffy)
 
 **Done:**

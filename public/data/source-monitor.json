@@ -1,12 +1,12 @@
 {
   "schema": "gab.motopass.source-monitor.v1",
-  "generated_at": "2026-11-08T12:24:29.059Z",
+  "generated_at": "2026-11-10T13:57:56.770Z",
   "interval_hours": 24,
   "total_urls": 110,
-  "ok": 98,
-  "changed": 1,
+  "ok": 96,
+  "changed": 2,
   "layout_changed": 10,
-  "unreachable": 5,
+  "unreachable": 6,
   "cloudflare_blocked": 6,
   "layout_changed_urls": [
     {
@@ -103,12 +103,16 @@
   "layout_changed_repeat_count": 8,
   "changed_countries": [
     {
-      "program_id": 4,
-      "name": "Uruguay",
-      "url": "https://www.minterior.gub.uy",
-      "scopes": [
-        "Rule terms (fees · thresholds · requirements)"
-      ]
+      "program_id": 3,
+      "name": "Italy",
+      "url": "https://www.esteri.it/",
+      "scopes": []
+    },
+    {
+      "program_id": 14,
+      "name": "Ireland",
+      "url": "https://enterprise.gov.ie",
+      "scopes": []
     }
   ],
   "blocked_urls": [
@@ -179,6 +183,12 @@
       "name": "Mexico",
       "url": "https://www.inm.gob.mx/",
       "error": "empty render (0 chars of text)"
+    },
+    {
+      "program_id": 1,
+      "name": "El Salvador",
+      "url": "https://adoptingelsalvador.gob.sv",
+      "error": "empty render (0 chars of text)"
     }
   ],
   "by_country": [
@@ -186,13 +196,13 @@
       "program_id": 1,
       "name": "El Salvador",
       "changed": false,
-      "coverage_gap_days": 38,
+      "coverage_gap_days": 41,
       "urls": [
         {
           "url": "https://www.presidencia.gob.sv",
           "status": "ok",
           "mode": "browser",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-11-07T06:00:54.731Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -211,7 +221,7 @@
           "url": "https://www.migracion.gob.sv",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -233,7 +243,7 @@
           "last_probed": "2026-10-01T05:01:08.661Z",
           "baselined_at": null,
           "status_since": "2026-10-01T05:01:08.661Z",
-          "coverage_gap_days": 38,
+          "coverage_gap_days": 41,
           "scopes": {},
           "rule_scope": "none",
           "extract_v": null,
@@ -243,7 +253,7 @@
           "url": "https://www.migracion.gob.sv/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -260,11 +270,11 @@
         },
         {
           "url": "https://adoptingelsalvador.gob.sv",
-          "status": "ok",
+          "status": "unreachable",
           "mode": "http",
-          "last_probed": "2026-11-05T06:00:37.538Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-02T18:55:58.530Z",
-          "status_since": null,
+          "status_since": "2026-11-10T13:57:56.770Z",
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
@@ -280,7 +290,7 @@
           },
           "rule_scope": "none",
           "extract_v": 7,
-          "last_error": null
+          "last_error": "empty render (0 chars of text)"
         }
       ]
     },
@@ -294,7 +304,7 @@
           "url": "https://imigrante.sef.pt",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -313,19 +323,19 @@
           "url": "https://www.portugal.gov.pt",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "637d27bb57f3",
+              "last_hash": "2c10e54f8a9b",
               "changed": false
             },
             "main": {
               "label": "main",
-              "last_hash": "3aec09f2ea8b",
+              "last_hash": "f490ceb98b7d",
               "changed": false
             },
             "rule": {
@@ -342,7 +352,7 @@
           "url": "https://www.portaldasfinancas.gov.pt/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -366,19 +376,19 @@
           "url": "https://www.portugal.gov.pt/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "637d27bb57f3",
+              "last_hash": "2c10e54f8a9b",
               "changed": false
             },
             "main": {
               "label": "main",
-              "last_hash": "3aec09f2ea8b",
+              "last_hash": "f490ceb98b7d",
               "changed": false
             },
             "rule": {
@@ -395,7 +405,7 @@
           "url": "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -419,7 +429,7 @@
           "url": "https://aima.gov.pt/pt/a-aima/perguntas-frequentes-faqs/autorizacao-de-residencia-para-investimento-ari/faq-residence-permit-for-investment-activity-ari",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -444,21 +454,21 @@
     {
       "program_id": 3,
       "name": "Italy",
-      "changed": false,
+      "changed": true,
       "coverage_gap_days": 0,
       "urls": [
         {
           "url": "https://www.interno.gov.it",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "5d5e50eca3a9",
+              "last_hash": "2e96aaf6ede7",
               "changed": false
             },
             "main": {
@@ -475,7 +485,7 @@
           "url": "https://investorvisa.mise.gov.it",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -499,7 +509,7 @@
           "url": "https://www.agenziaentrate.gov.it",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -521,21 +531,21 @@
         },
         {
           "url": "https://www.esteri.it/",
-          "status": "ok",
+          "status": "changed",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "6ddf4951bfbe",
+              "last_hash": "c0d8d8192e5b",
               "changed": false
             },
             "rule": {
               "label": "rule",
-              "last_hash": "5afdbb3c00c8",
+              "last_hash": "021366f5a684",
               "changed": false
             }
           },
@@ -547,7 +557,7 @@
           "url": "https://www.agenziaentrate.gov.it/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -571,7 +581,7 @@
           "url": "https://investorvisa.mise.gov.it/index.php/en",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -596,14 +606,14 @@
     {
       "program_id": 4,
       "name": "Uruguay",
-      "changed": true,
+      "changed": false,
       "coverage_gap_days": 0,
       "urls": [
         {
           "url": "https://www.gub.uy/tramites/residencia-legal",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -625,21 +635,21 @@
         },
         {
           "url": "https://www.minterior.gub.uy",
-          "status": "changed",
+          "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "3eb279503555",
+              "last_hash": "9d8f57394375",
               "changed": false
             },
             "main": {
               "label": "main",
-              "last_hash": "953ea5b5f7dd",
+              "last_hash": "300713c9119c",
               "changed": false
             },
             "rule": {
@@ -656,7 +666,7 @@
           "url": "https://embassyofuruguay.us/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -685,7 +695,7 @@
           "url": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -709,7 +719,7 @@
           "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -741,7 +751,7 @@
           "url": "https://www.cip.gov.ag",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -765,14 +775,14 @@
           "url": "https://ab.gov.ag/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "1f6cc0a26764",
+              "last_hash": "e628da93dbcc",
               "changed": false
             },
             "main": {
@@ -789,7 +799,7 @@
           "url": "https://cip.gov.ag/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -813,7 +823,7 @@
           "url": "https://cip.gov.ag/citizenship/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -837,7 +847,7 @@
           "url": "https://cip.gov.ag/investment-options/ndf/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -869,7 +879,7 @@
           "url": "https://www.ciu.gov.kn",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -893,7 +903,7 @@
           "url": "https://www.gov.kn/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -917,7 +927,7 @@
           "url": "https://ciu.gov.kn/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -941,7 +951,7 @@
           "url": "https://ciu.gov.kn/cbi-options/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -973,7 +983,7 @@
           "url": "https://cbiu.gov.dm",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -997,23 +1007,23 @@
           "url": "https://dominica.gov.dm/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "efe645d4c9ee",
+              "last_hash": "bea44dc61342",
               "changed": false
             },
-            "rule": {
-              "label": "rule",
-              "last_hash": "a65192b95096",
+            "main": {
+              "label": "main",
+              "last_hash": "bea44dc61342",
               "changed": false
             }
           },
-          "rule_scope": "present",
+          "rule_scope": "none",
           "extract_v": 7,
           "last_error": null
         },
@@ -1021,7 +1031,7 @@
           "url": "https://www.cbiu.gov.dm/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1045,7 +1055,7 @@
           "url": "https://www.cbiu.gov.dm/investment-options/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1077,7 +1087,7 @@
           "url": "https://www.ciu.gov.lc",
           "status": "ok",
           "mode": "browser",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1101,7 +1111,7 @@
           "url": "https://www.govt.lc/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1125,7 +1135,7 @@
           "url": "https://www.cipsaintlucia.com/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1149,7 +1159,7 @@
           "url": "https://www.cipsaintlucia.com/citizenship-by-investment",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1181,7 +1191,7 @@
           "url": "https://www.cbi.gov.gd",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1205,14 +1215,14 @@
           "url": "https://www.gov.gd/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "3752e2dea3f2",
+              "last_hash": "993cc77800e8",
               "changed": false
             },
             "rule": {
@@ -1229,7 +1239,7 @@
           "url": "https://imagrenada.gd/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1253,7 +1263,7 @@
           "url": "https://imagrenada.gd/citizenship-by-investment/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1279,7 +1289,7 @@
       "program_id": 10,
       "name": "Bahamas",
       "changed": false,
-      "coverage_gap_days": 54,
+      "coverage_gap_days": 56,
       "urls": [
         {
           "url": "https://www.bahamas.gov.bs",
@@ -1288,7 +1298,7 @@
           "last_probed": "2026-09-15T15:07:07.008Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": "2026-09-15T15:07:07.008Z",
-          "coverage_gap_days": 54,
+          "coverage_gap_days": 56,
           "scopes": {
             "whole": {
               "label": "whole",
@@ -1304,7 +1314,7 @@
           "url": "https://www.bahamaschamber.com",
           "status": "ok",
           "mode": "browser",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1328,7 +1338,7 @@
           "url": "https://www.immigration.gov.bs",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T15:44:46.649Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1352,7 +1362,7 @@
           "url": "https://laws.bahamas.gov.bs",
           "status": "ok",
           "mode": "browser",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T15:44:46.649Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1379,7 +1389,7 @@
           "last_probed": "2026-10-01T05:01:08.661Z",
           "baselined_at": null,
           "status_since": "2026-10-01T05:01:08.661Z",
-          "coverage_gap_days": 38,
+          "coverage_gap_days": 41,
           "scopes": {},
           "rule_scope": "none",
           "extract_v": null,
@@ -1389,7 +1399,7 @@
           "url": "https://www.immigration.gov.bs/residence/permanent-residence/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1416,7 +1426,7 @@
           "last_probed": "2026-10-01T05:01:08.661Z",
           "baselined_at": null,
           "status_since": "2026-10-01T05:01:08.661Z",
-          "coverage_gap_days": 38,
+          "coverage_gap_days": 41,
           "scopes": {},
           "rule_scope": "none",
           "extract_v": null,
@@ -1434,7 +1444,7 @@
           "url": "https://www.immigration.gov.bb",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1458,7 +1468,7 @@
           "url": "https://barbadoswelcomestamp.bb",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1482,14 +1492,14 @@
           "url": "https://www.visitbarbados.org/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "78495a047028",
+              "last_hash": "656f616fcf84",
               "changed": false
             },
             "rule": {
@@ -1506,7 +1516,7 @@
           "url": "https://barbadoswelcomestamp.bb/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1530,7 +1540,7 @@
           "url": "https://www.immigration.gov.bb/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1562,19 +1572,19 @@
           "url": "https://www.gov.ky",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "926eda9c5a46",
+              "last_hash": "c936ac05e247",
               "changed": false
             },
             "main": {
               "label": "main",
-              "last_hash": "926eda9c5a46",
+              "last_hash": "c936ac05e247",
               "changed": false
             }
           },
@@ -1586,7 +1596,7 @@
           "url": "https://www.ciregistry.gov.ky",
           "status": "ok",
           "mode": "browser",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1610,19 +1620,19 @@
           "url": "https://www.gov.ky/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "926eda9c5a46",
+              "last_hash": "c936ac05e247",
               "changed": false
             },
             "main": {
               "label": "main",
-              "last_hash": "926eda9c5a46",
+              "last_hash": "c936ac05e247",
               "changed": false
             }
           },
@@ -1634,7 +1644,7 @@
           "url": "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1653,7 +1663,7 @@
           "url": "https://www.immigration.gov.ky/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1679,7 +1689,7 @@
       "program_id": 13,
       "name": "Spain",
       "changed": false,
-      "coverage_gap_days": 54,
+      "coverage_gap_days": 56,
       "urls": [
         {
           "url": "https://www.inclusion.gob.es",
@@ -1688,7 +1698,7 @@
           "last_probed": "2026-11-08T06:01:10.159Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": "2026-09-15T16:57:36.441Z",
-          "coverage_gap_days": 54,
+          "coverage_gap_days": 56,
           "scopes": {
             "whole": {
               "label": "whole",
@@ -1704,7 +1714,7 @@
           "url": "https://www.exteriores.gob.es",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1728,7 +1738,7 @@
           "url": "https://www.cnmv.es",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1752,7 +1762,7 @@
           "url": "https://www.exteriores.gob.es/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1776,7 +1786,7 @@
           "url": "https://sede.agenciatributaria.gob.es/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1800,7 +1810,7 @@
           "url": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1827,7 +1837,7 @@
           "last_probed": "2026-11-08T06:01:10.159Z",
           "baselined_at": null,
           "status_since": "2026-10-01T05:01:08.661Z",
-          "coverage_gap_days": 38,
+          "coverage_gap_days": 41,
           "scopes": {},
           "rule_scope": "none",
           "extract_v": null,
@@ -1838,14 +1848,14 @@
     {
       "program_id": 14,
       "name": "Ireland",
-      "changed": false,
+      "changed": true,
       "coverage_gap_days": 0,
       "urls": [
         {
           "url": "https://www.irishimmigration.ie",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1867,21 +1877,21 @@
         },
         {
           "url": "https://enterprise.gov.ie",
-          "status": "ok",
+          "status": "changed",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "c14c29518fdc",
+              "last_hash": "bb2e6525234c",
               "changed": false
             },
             "rule": {
               "label": "rule",
-              "last_hash": "6febd8dbfcbc",
+              "last_hash": "bd77699719fc",
               "changed": false
             }
           },
@@ -1893,14 +1903,14 @@
           "url": "https://www.centralbank.ie",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "301dcba0decd",
+              "last_hash": "9008a856a187",
               "changed": false
             },
             "rule": {
@@ -1917,7 +1927,7 @@
           "url": "https://www.dfa.ie/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1936,14 +1946,14 @@
           "url": "https://www.revenue.ie/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "47104f24fabe",
+              "last_hash": "df8bd00dfe1a",
               "changed": false
             },
             "rule": {
@@ -1960,7 +1970,7 @@
           "url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -1979,7 +1989,7 @@
           "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2011,7 +2021,7 @@
           "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2035,7 +2045,7 @@
           "url": "https://www.migraciones.gob.ar",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2059,19 +2069,19 @@
           "url": "https://www.boletinoficial.gob.ar",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "b758ef878dae",
+              "last_hash": "36b21ea7c662",
               "changed": false
             },
             "main": {
               "label": "main",
-              "last_hash": "b758ef878dae",
+              "last_hash": "36b21ea7c662",
               "changed": false
             }
           },
@@ -2083,7 +2093,7 @@
           "url": "https://eeeuu.cancilleria.gob.ar/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2107,7 +2117,7 @@
           "url": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2131,7 +2141,7 @@
           "url": "https://www.argentina.gob.ar/migraciones/residencias",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2155,7 +2165,7 @@
           "url": "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2182,7 +2192,7 @@
           "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2206,7 +2216,7 @@
           "url": "https://www.gov.br/pf/pt-br/assuntos/imigracao",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2230,7 +2240,7 @@
           "url": "http://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/L13445.htm",
           "status": "ok",
           "mode": "browser",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2254,19 +2264,19 @@
           "url": "https://www.gov.br/mre/en",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "b3f10be2807d",
+              "last_hash": "741f11a5c951",
               "changed": false
             },
             "main": {
               "label": "main",
-              "last_hash": "32b6ea838d7a",
+              "last_hash": "c94d2a780d16",
               "changed": false
             }
           },
@@ -2278,7 +2288,7 @@
           "url": "https://brsb.itamaraty.gov.br/en-us/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2302,14 +2312,14 @@
           "url": "https://www.gov.br/mj/en/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "0a893d621fb3",
+              "last_hash": "16d84a979f69",
               "changed": false
             },
             "rule": {
@@ -2326,7 +2336,7 @@
           "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13445.htm",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2352,13 +2362,13 @@
       "program_id": 17,
       "name": "Malta",
       "changed": false,
-      "coverage_gap_days": 38,
+      "coverage_gap_days": 41,
       "urls": [
         {
           "url": "https://residencymalta.gov.mt",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2382,19 +2392,19 @@
           "url": "https://www.mfsa.mt",
           "status": "ok",
           "mode": "browser",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-12T05:00:56.151Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "af1a05a306c1",
+              "last_hash": "e19f2d55c8c2",
               "changed": false
             },
             "main": {
               "label": "main",
-              "last_hash": "8d795383d787",
+              "last_hash": "9588d81be800",
               "changed": false
             },
             "rule": {
@@ -2411,14 +2421,14 @@
           "url": "https://www.identita.gov.mt",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "ba3b296bdbeb",
+              "last_hash": "b0c51232d8ed",
               "changed": false
             },
             "rule": {
@@ -2438,7 +2448,7 @@
           "last_probed": "2026-10-01T05:01:08.661Z",
           "baselined_at": null,
           "status_since": "2026-10-01T05:01:08.661Z",
-          "coverage_gap_days": 38,
+          "coverage_gap_days": 41,
           "scopes": {},
           "rule_scope": "none",
           "extract_v": null,
@@ -2451,7 +2461,7 @@
           "last_probed": "2026-10-01T05:01:08.661Z",
           "baselined_at": null,
           "status_since": "2026-10-01T05:01:08.661Z",
-          "coverage_gap_days": 38,
+          "coverage_gap_days": 41,
           "scopes": {},
           "rule_scope": "none",
           "extract_v": null,
@@ -2469,7 +2479,7 @@
           "url": "https://cilc.vu",
           "status": "ok",
           "mode": "browser",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2493,7 +2503,7 @@
           "url": "https://immigration.gov.vu",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2517,7 +2527,7 @@
           "url": "https://www.gov.vu",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2541,7 +2551,7 @@
           "url": "https://vancitizenship.gov.vu/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2565,7 +2575,7 @@
           "url": "https://www.vfsc.vu/virtual-asset-service-provider/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2597,14 +2607,14 @@
           "url": "https://www.migracion.gob.pa",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "8fd4c53964d4",
+              "last_hash": "3d730b09ed90",
               "changed": false
             },
             "rule": {
@@ -2621,18 +2631,23 @@
           "url": "https://www.gacetaoficial.gob.pa",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "230b59369f79",
+              "last_hash": "6f1650ecde39",
+              "changed": false
+            },
+            "rule": {
+              "label": "rule",
+              "last_hash": "abc3997d1073",
               "changed": false
             }
           },
-          "rule_scope": "none",
+          "rule_scope": "present",
           "extract_v": 7,
           "last_error": null
         },
@@ -2640,19 +2655,19 @@
           "url": "https://www.mire.gob.pa/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "e02a5cd3ffd5",
+              "last_hash": "98ac535ef0c1",
               "changed": false
             },
             "main": {
               "label": "main",
-              "last_hash": "e8ac91c8cdca",
+              "last_hash": "1d03dc8a5324",
               "changed": false
             }
           },
@@ -2666,7 +2681,7 @@
       "program_id": 20,
       "name": "Mexico",
       "changed": false,
-      "coverage_gap_days": 54,
+      "coverage_gap_days": 56,
       "urls": [
         {
           "url": "https://www.inm.gob.mx",
@@ -2675,7 +2690,7 @@
           "last_probed": "2026-09-15T15:07:07.008Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": "2026-09-15T15:07:07.008Z",
-          "coverage_gap_days": 54,
+          "coverage_gap_days": 56,
           "scopes": {},
           "rule_scope": "none",
           "extract_v": null,
@@ -2685,7 +2700,7 @@
           "url": "https://www.gob.mx",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T14:52:53.898Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2709,7 +2724,7 @@
           "url": "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T15:44:46.649Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -2733,14 +2748,14 @@
           "url": "https://dof.gob.mx",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-09-15T15:44:46.649Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "75670cf1bd08",
+              "last_hash": "9b0a4e7b0baf",
               "changed": false
             },
             "rule": {
@@ -2757,19 +2772,19 @@
           "url": "https://www.gob.mx/sre",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "bd8203a2193a",
+              "last_hash": "9798ff11b325",
               "changed": false
             },
             "main": {
               "label": "main",
-              "last_hash": "2b604821cede",
+              "last_hash": "a5fcc1ea7de6",
               "changed": false
             }
           },
@@ -2784,7 +2799,7 @@
           "last_probed": "2026-11-08T06:01:10.159Z",
           "baselined_at": null,
           "status_since": "2026-10-01T05:01:08.661Z",
-          "coverage_gap_days": 38,
+          "coverage_gap_days": 41,
           "scopes": {},
           "rule_scope": "none",
           "extract_v": null,
@@ -2797,7 +2812,7 @@
           "last_probed": "2026-10-01T05:01:08.661Z",
           "baselined_at": null,
           "status_since": "2026-10-01T05:01:08.661Z",
-          "coverage_gap_days": 38,
+          "coverage_gap_days": 41,
           "scopes": {},
           "rule_scope": "none",
           "extract_v": null,
@@ -2815,14 +2830,14 @@
           "url": "https://www.gov.st",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T06:01:10.159Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
           "scopes": {
             "whole": {
               "label": "whole",
-              "last_hash": "4af4c5fce023",
+              "last_hash": "85ace0528cdc",
               "changed": false
             }
           },
@@ -2834,7 +2849,7 @@
           "url": "https://cip.gov.st/",
           "status": "ok",
           "mode": "http",
-          "last_probed": "2026-11-08T12:24:29.059Z",
+          "last_probed": "2026-11-10T13:57:56.770Z",
           "baselined_at": "2026-10-01T05:01:08.661Z",
           "status_since": null,
           "coverage_gap_days": 0,
@@ -3182,8 +3197,8 @@
   ],
   "extract_v": 7,
   "coverage_gap_count": 5,
-  "ok_count": 98,
-  "changed_count": 1,
+  "ok_count": 96,
+  "changed_count": 2,
   "layout_changed_count": 10,
   "last_events": [
     {

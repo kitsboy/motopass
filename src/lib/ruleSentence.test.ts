@@ -10,11 +10,12 @@ describe('rule sentences', () => {
     expect(addedWords('same opening stays', 'same opening stays and then a new fee')).toContain('new fee')
   })
 
-  it('reads the shipped event log without calling a clear latch changed', () => {
+  it('reads the shipped event log with only the catalog latches marked changed', () => {
     const events = JSON.parse(readFileSync('public/data/source-events.json', 'utf8'))
     const programs = (catalogJson as { programs: Program[] }).programs
+    const latched = new Set(programs.filter(program => program.watch?.changed === true).map(program => program.name))
     const sentences = latestRuleSentences(events, programs)
-    expect(sentences.every(sentence => sentence.markedChanged === false)).toBe(true)
+    expect(sentences.every(sentence => sentence.markedChanged === latched.has(sentence.country))).toBe(true)
     expect(sentences.map(sentence => sentence.country)).toContain('Uruguay')
     expect(sentences.map(sentence => sentence.country)).toContain('Italy')
     const uruguay = sentences.find(sentence => sentence.country === 'Uruguay')

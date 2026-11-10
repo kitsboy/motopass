@@ -71,11 +71,13 @@ describe('source monitor sync', () => {
     for (const row of next.changed_countries) expect(statusByUrl.get(row.url)).toBe('changed')
     for (const row of next.unreachable_urls) expect(statusByUrl.get(row.url)).toBe('unreachable')
     for (const row of next.blocked_urls) expect(statusByUrl.get(row.url)).toBe('blocked')
-    expect(next.changed_countries.map((row: { url: string }) => row.url)).toEqual([])
-    expect(next.unreachable_urls.map((row: { url: string }) => row.url)).not.toContain(
-      'https://adoptingelsalvador.gob.sv',
-    )
-    expect(next.changed_countries.map((row: { name: string }) => row.name)).not.toContain('Italy')
+    const latchedNames = catalog.programs
+      .filter(
+        (program: { watch?: { changed?: boolean; urls?: { status?: string }[] } }) =>
+          program.watch?.changed === true || (program.watch?.urls ?? []).some(url => url.status === 'changed'),
+      )
+      .map((program: { name: string }) => program.name)
+    expect(next.changed_countries.map((row: { name: string }) => row.name)).toEqual(latchedNames)
     expect(next.changed_countries.map((row: { name: string }) => row.name)).not.toContain('Portugal')
   })
 

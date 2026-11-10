@@ -82,6 +82,14 @@ export function bech32Decode(
   return { ok: true, hrp, words: values }
 }
 
+/** Encode 5-bit words with the bech32 or bech32m checksum. */
+export function bech32Encode(hrp: string, words: number[], encoding: Bech32Encoding = 'bech32'): string {
+  const values = [...hrpExpand(hrp), ...words, 0, 0, 0, 0, 0, 0]
+  const residue = polymod(values) ^ (encoding === 'bech32m' ? BECH32M_CONST : BECH32_CONST)
+  const checksum = [0, 1, 2, 3, 4, 5].map(i => (residue >>> (5 * (5 - i))) & 31)
+  return `${hrp}1${[...words, ...checksum].map(word => CHARSET[word]).join('')}`
+}
+
 /**
  * Regroup 5-bit words into bytes. Returns null on a group that does not pad to
  * a whole byte, or on non-zero padding bits — both mean the string was edited.

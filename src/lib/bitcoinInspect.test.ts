@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { inspectAddress, inspectPsbt } from './bitcoinInspect'
+import { inspectAddress, inspectPsbt, scriptToAddress } from './bitcoinInspect'
 
 function psbtFixture(): string {
   const u32 = (value: number) => [value & 0xff, (value >>> 8) & 0xff, (value >>> 16) & 0xff, (value >>> 24) & 0xff]
@@ -12,6 +12,7 @@ function psbtFixture(): string {
     }
     return out
   }
+  const script = [0x00, 0x14, ...new Array(20).fill(1)]
   const tx = [
     ...u32(2),
     1,
@@ -21,10 +22,11 @@ function psbtFixture(): string {
     ...[0xff, 0xff, 0xff, 0xff],
     1,
     ...u64(4000),
-    0,
+    script.length,
+    ...script,
     ...u32(0),
   ]
-  const witnessUtxo = [...u64(5000), 0]
+  const witnessUtxo = [...u64(5000), script.length, ...script]
   const bytes = [
     0x70, 0x73, 0x62, 0x74, 0xff,
     0x01, 0x00, tx.length, ...tx,
@@ -63,9 +65,23 @@ describe('inspectAddress', () => {
   })
 })
 
+describe('scriptToAddress', () => {
+  it('round-trips a P2WPKH script into a bech32 address', async () => {
+    const script = Uint8Array.from([0x00, 0x14, ...new Uint8Array(20).fill(1)])
+    const result = await scriptToAddress(script)
+    expect(result?.type).toBe('P2WPKH')
+    expect(result?.address.startsWith('bc1q')).toBe(true)
+    if (result) {
+      const decoded = await inspectAddress(result.address)
+      expect(decoded.ok).toBe(true)
+      if (decoded.ok) expect(decoded.address.scriptPubKey).toBe('0014' + '01'.repeat(20))
+    }
+  })
+})
+
 describe('inspectPsbt', () => {
-  it('reads a minimal PSBT and computes its fee from witness UTXOs', () => {
-    const result = inspectPsbt(psbtFixture())
+  it('reads a minimal PSBT, derives input/output addresses and computes its fee', async () => {
+    const result = await inspectPsbt(psbtFixture())
     expect(result.ok, result.ok ? '' : result.error).toBe(true)
     if (result.ok) {
       expect(result.psbt.version).toBe(2)
@@ -74,11 +90,16 @@ describe('inspectPsbt', () => {
       expect(result.psbt.inputSats).toBe(5000)
       expect(result.psbt.outputSats).toBe(4000)
       expect(result.psbt.feeSats).toBe(1000)
+      expect(result.psbt.outputDetails[0].scriptType).toBe('P2WPKH')
+      expect(result.psbt.outputDetails[0].address).toMatch(/^bc1q/)
+      expect(result.psbt.inputDetails[0].scriptType).toBe('P2WPKH')
+      expect(result.psbt.inputDetails[0].address).toMatch(/^bc1q/)
+      expect(result.psbt.inputDetails[0].prevTxid).toHaveLength(64)
     }
   })
 
-  it('rejects a non-PSBT and a truncated map', () => {
-    expect(inspectPsbt('%%%%')).toEqual({ ok: false, error: 'Not valid base64 or hex' })
-    expect(inspectPsbt('70736274ff00')).toMatchObject({ ok: false })
+  it('rejects a non-PSBT and a truncated map', async () => {
+    expect(await inspectPsbt('%%%%')).toEqual({ ok: false, error: 'Not valid base64 or hex' })
+    expect(await inspectPsbt('70736274ff00')).toMatchObject({ ok: false })
   })
 })

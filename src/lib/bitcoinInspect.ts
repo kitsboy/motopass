@@ -1,4 +1,4 @@
-import { bech32Decode, bytesToHex, wordsToBytes } from './bech32'
+import { bech32Decode, bech32Encode, bytesToHex, bytesToWords, wordsToBytes } from './bech32'
 
 /**
  * Base-layer readers: address decoding and PSBT map inspection.
@@ -7,7 +7,8 @@ import { bech32Decode, bytesToHex, wordsToBytes } from './bech32'
  * bech32/bech32m variant required by the witness version). PSBTs are parsed
  * structurally; signatures are counted, not verified, and a fee is reported
  * only when every input carries a witness UTXO from which it can be computed.
- * Nothing is signed or broadcast.
+ * A PSBT does not carry a network, so derived addresses use Bitcoin prefixes
+ * and the UI says that explicitly. Nothing is signed or broadcast.
  */
 
 const BASE58_ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
@@ -47,6 +48,20 @@ function base58Decode(value: string): Uint8Array | null {
   return Uint8Array.from([...new Array(leadingZeros).fill(0), ...bytes])
 }
 
+function base58Encode(bytes: Uint8Array): string {
+  let leadingZeros = 0
+  while (leadingZeros < bytes.length && bytes[leadingZeros] === 0) leadingZeros += 1
+  let value = 0n
+  for (const byte of bytes) value = (value << 8n) | BigInt(byte)
+  let encoded = ''
+  while (value > 0n) {
+    const digit = Number(value % 58n)
+    encoded = BASE58_ALPHABET[digit] + encoded
+    value /= 58n
+  }
+  return '1'.repeat(leadingZeros) + encoded
+}
+
 async function sha256(bytes: Uint8Array): Promise<Uint8Array | null> {
   const subtle = globalThis.crypto?.subtle
   if (!subtle) return null
@@ -59,8 +74,16 @@ async function sha256(bytes: Uint8Array): Promise<Uint8Array | null> {
   }
 }
 
-function scriptHex(bytes: number[]): string {
-  return bytes.map(byte => byte.toString(16).padStart(2, '0')).join('')
+function scriptHex(bytes: ArrayLike<number>): string {
+  return Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('')
+}
+
+async function base58Check(version: number, hash: Uint8Array): Promise<string | null> {
+  const payload = Uint8Array.from([version, ...hash])
+  const first = await sha256(payload)
+  const second = first ? await sha256(first) : null
+  if (!second) return null
+  return base58Encode(Uint8Array.from([...payload, ...second.slice(0, 4)]))
 }
 
 /** Async because Base58Check needs a double SHA-256. */
@@ -147,6 +170,16 @@ export interface PsbtInput {
   partialSigs: number
   tapSigs: number
   keys: string[]
+  address: string | null
+  scriptType: string
+  prevTxid: string | null
+  vout: number | null
+}
+
+export interface PsbtOutput {
+  amountSats: number | null
+  scriptType: string
+  address: string | null
 }
 
 export interface PsbtInspection {
@@ -155,6 +188,7 @@ export interface PsbtInspection {
   inputs: number
   outputs: number
   inputDetails: PsbtInput[]
+  outputDetails: PsbtOutput[]
   outputMaps: number
   partialSigs: number
   tapSigs: number
@@ -217,7 +251,7 @@ function readMap(bytes: Uint8Array, offset: number): { entries: MapEntry[]; next
   return null
 }
 
-function scriptKind(script: Uint8Array): string {
+export function scriptKind(script: Uint8Array): string {
   if (script.length === 25 && script[0] === 0x76 && script[1] === 0xa9 && script[2] === 0x14 && script[23] === 0x88 && script[24] === 0xac) return 'P2PKH'
   if (script.length === 23 && script[0] === 0xa9 && script[1] === 0x14 && script[22] === 0x87) return 'P2SH'
   if (script.length === 22 && script[0] === 0x00 && script[1] === 0x14) return 'P2WPKH'
@@ -226,31 +260,62 @@ function scriptKind(script: Uint8Array): string {
   return 'custom'
 }
 
-function parseUnsignedTx(bytes: Uint8Array): {
+export async function scriptToAddress(
+  script: Uint8Array,
+  network: 'bitcoin' | 'testnet' | 'regtest' = 'bitcoin',
+): Promise<{ address: string; type: string } | null> {
+  const kind = scriptKind(script)
+  const hrp = network === 'bitcoin' ? 'bc' : network === 'testnet' ? 'tb' : 'bcrt'
+  if (kind === 'P2WPKH' || kind === 'P2WSH' || kind === 'P2TR') {
+    const version = kind === 'P2TR' ? 1 : 0
+    const program = script.slice(2)
+    return {
+      address: bech32Encode(hrp, [version, ...bytesToWords(program)], version === 0 ? 'bech32' : 'bech32m'),
+      type: kind,
+    }
+  }
+  if (kind === 'P2PKH') {
+    const address = await base58Check(network === 'bitcoin' ? 0x00 : 0x6f, script.slice(3, 23))
+    return address ? { address, type: kind } : null
+  }
+  if (kind === 'P2SH') {
+    const address = await base58Check(network === 'bitcoin' ? 0x05 : 0xc4, script.slice(2, 22))
+    return address ? { address, type: kind } : null
+  }
+  return null
+}
+
+interface ParsedTx {
   version: number
   locktime: number
-  inputCount: number
-  outputCount: number
-  outputSats: number | null
-  outputKinds: string[]
-} | null {
+  inputs: Array<{ txid: string; vout: number }>
+  outputs: Array<{ amountSats: number; script: Uint8Array }>
+}
+
+function parseUnsignedTx(bytes: Uint8Array): ParsedTx | null {
   const version = readU32(bytes, 0)
   if (version == null) return null
   const inputCount = readVarint(bytes, 4)
   if (!inputCount) return null
   let cursor = inputCount.next
+  const inputs: Array<{ txid: string; vout: number }> = []
   for (let i = 0; i < inputCount.value; i += 1) {
-    cursor += 36
+    if (cursor + 36 > bytes.length) return null
+    const txid = bytesToHex(Uint8Array.from(bytes.slice(cursor, cursor + 32)).reverse())
+    cursor += 32
+    const vout = readU32(bytes, cursor)
+    if (vout == null) return null
+    cursor += 4
     const script = readVarint(bytes, cursor)
     if (!script) return null
     cursor = script.next + script.value + 4
     if (cursor > bytes.length) return null
+    inputs.push({ txid, vout })
   }
   const outputCount = readVarint(bytes, cursor)
   if (!outputCount) return null
   cursor = outputCount.next
-  let outputSats: number | null = 0
-  const outputKinds: string[] = []
+  const outputs: Array<{ amountSats: number; script: Uint8Array }> = []
   for (let i = 0; i < outputCount.value; i += 1) {
     const amount = readU64(bytes, cursor)
     if (amount == null) return null
@@ -260,18 +325,25 @@ function parseUnsignedTx(bytes: Uint8Array): {
     const start = script.next
     const end = start + script.value
     if (end > bytes.length) return null
-    const kind = scriptKind(bytes.slice(start, end))
-    outputKinds.push(kind)
-    outputSats = outputSats == null ? null : outputSats + amount
-    if (!Number.isSafeInteger(outputSats)) outputSats = null
+    outputs.push({ amountSats: amount, script: bytes.slice(start, end) })
     cursor = end
   }
   const locktime = readU32(bytes, cursor)
   if (locktime == null) return null
-  return { version, locktime, inputCount: inputCount.value, outputCount: outputCount.value, outputSats, outputKinds }
+  return { version, locktime, inputs, outputs }
 }
 
-export function inspectPsbt(raw: string): PsbtResult {
+function parseWitnessUtxo(value: Uint8Array): { amountSats: number | null; script: Uint8Array | null } {
+  const amountSats = readU64(value, 0)
+  const scriptLength = readVarint(value, 8)
+  if (!scriptLength) return { amountSats, script: null }
+  const start = scriptLength.next
+  const end = start + scriptLength.value
+  if (end > value.length) return { amountSats, script: null }
+  return { amountSats, script: value.slice(start, end) }
+}
+
+export async function inspectPsbt(raw: string): Promise<PsbtResult> {
   const text = raw.trim()
   if (!text) return { ok: false, error: 'Paste a base64 or hex PSBT first' }
 
@@ -306,11 +378,12 @@ export function inspectPsbt(raw: string): PsbtResult {
   let tapSigs = 0
   let inputSats = 0
   let everyWitnessUtxo = true
-  for (let i = 0; i < tx.inputCount; i += 1) {
+  for (let i = 0; i < tx.inputs.length; i += 1) {
     const map = readMap(bytes, cursor)
     if (!map) return { ok: false, error: `Input ${i} map is truncated` }
     cursor = map.next
     let witnessUtxo: number | null = null
+    let witnessScript: Uint8Array | null = null
     let inputPartial = 0
     let inputTap = 0
     const keys: string[] = []
@@ -318,7 +391,9 @@ export function inspectPsbt(raw: string): PsbtResult {
       const type = entry.key[0]
       keys.push(`0x${type.toString(16).padStart(2, '0')}`)
       if (type === 0x01) {
-        witnessUtxo = readU64(entry.value, 0)
+        const parsed = parseWitnessUtxo(entry.value)
+        witnessUtxo = parsed.amountSats
+        witnessScript = parsed.script
       } else if (type === 0x02) inputPartial += 1
       else if (type === 0x13) inputTap += 1
     }
@@ -326,36 +401,58 @@ export function inspectPsbt(raw: string): PsbtResult {
     tapSigs += inputTap
     if (witnessUtxo == null) everyWitnessUtxo = false
     else inputSats += witnessUtxo
-    inputDetails.push({ witnessUtxo, partialSigs: inputPartial, tapSigs: inputTap, keys })
+    const derived = witnessScript ? await scriptToAddress(witnessScript) : null
+    inputDetails.push({
+      witnessUtxo,
+      partialSigs: inputPartial,
+      tapSigs: inputTap,
+      keys,
+      address: derived?.address ?? null,
+      scriptType: witnessScript ? scriptKind(witnessScript) : 'unavailable',
+      prevTxid: tx.inputs[i].txid,
+      vout: tx.inputs[i].vout,
+    })
   }
 
   let outputMaps = 0
-  for (let i = 0; i < tx.outputCount; i += 1) {
+  const outputDetails: PsbtOutput[] = []
+  for (const output of tx.outputs) {
     const map = readMap(bytes, cursor)
-    if (!map) return { ok: false, error: `Output ${i} map is truncated` }
+    if (!map) return { ok: false, error: `Output ${outputMaps} map is truncated` }
     cursor = map.next
     outputMaps += 1
+    const derived = await scriptToAddress(output.script)
+    outputDetails.push({
+      amountSats: output.amountSats,
+      scriptType: scriptKind(output.script),
+      address: derived?.address ?? null,
+    })
   }
 
   const warnings: string[] = []
   if (cursor !== bytes.length) warnings.push('Trailing bytes after the output maps.')
-  if (!everyWitnessUtxo) warnings.push('At least one input has no witness UTXO, so the fee is not computed.')
+  if (!everyWitnessUtxo) warnings.push('At least one input has no witness UTXO, so the fee and input address are unavailable.')
+  const outputSats = outputDetails.reduce<number | null>(
+    (sum, output) => (sum == null || output.amountSats == null ? null : sum + output.amountSats),
+    0,
+  )
   const feeSats =
-    everyWitnessUtxo && tx.outputSats != null && inputSats >= tx.outputSats ? inputSats - tx.outputSats : null
+    everyWitnessUtxo && outputSats != null && inputSats >= outputSats ? inputSats - outputSats : null
 
   return {
     ok: true,
     psbt: {
       version: tx.version,
       locktime: tx.locktime,
-      inputs: tx.inputCount,
-      outputs: tx.outputCount,
+      inputs: tx.inputs.length,
+      outputs: tx.outputs.length,
       inputDetails,
+      outputDetails,
       outputMaps,
       partialSigs,
       tapSigs,
       inputSats: everyWitnessUtxo ? inputSats : null,
-      outputSats: tx.outputSats,
+      outputSats,
       feeSats,
       globalKeys: global.entries.map(entry => `0x${entry.key[0].toString(16).padStart(2, '0')}`),
       warnings,
@@ -369,6 +466,6 @@ export type BitcoinInspectResult =
 
 export async function inspectBitcoinInput(raw: string): Promise<BitcoinInspectResult> {
   const text = raw.trim()
-  if (/^(cHNidP|70736274ff)/i.test(text)) return { kind: 'psbt', result: inspectPsbt(text) }
+  if (/^(cHNidP|70736274ff)/i.test(text)) return { kind: 'psbt', result: await inspectPsbt(text) }
   return { kind: 'address', result: await inspectAddress(text) }
 }
