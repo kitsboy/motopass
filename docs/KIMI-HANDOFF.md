@@ -15,10 +15,10 @@
 - Zap verification does not say “paid” without a matching preimage, and even then the receipt signature only proves the recipient published it.
 - PSBT fee is shown only when every input has a witness UTXO; otherwise it says the fee is not computable instead of guessing.
 
-**Checks:** 23 new tests across BOLT11 recovery, BOLT12 request, LNURL, NIP-57 and address/PSBT parsing. Full suite: 551 passed / 3 pre-existing catalog failures (`source-monitor-sync`, `changeBell`, `ruleSentence`) / 2 skipped (556). `tsc` only the two known `IntelWatchStrip.test.ts` errors; edited files lint 0 errors; `vite build` ok. No browser pass and no live LNURL endpoint, relay, wallet or node was exercised.
+**Checks:** 23 new tests across BOLT11 recovery, BOLT12 request, LNURL, NIP-57 and address/PSBT parsing. Full suite: 551 passed / 3 pre-existing catalog failures (`source-monitor-sync`, `changeBell`, `ruleSentence`) / 2 skipped (556). `tsc` only the two known `IntelWatchStrip.test.ts` errors; edited files lint 0 errors; `vite build` ok. Live bundle `assets/index-B_7054tu-20261110-a4804c3.js` and `/tools` returns 200. No browser pass and no live LNURL endpoint, relay, wallet or node was exercised.
 
 **Git State:**
-- Code SHA: pending this commit
+- Code SHA: `a4804c3` (feature commit; this handoff edit follows)
 - Unpushed: none after push
 
 ## Session — 2026-11-10 · BOLT11/BOLT12 readers, receipt anchoring, Bitcoin tools page (Buffy)
