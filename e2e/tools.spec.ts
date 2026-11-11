@@ -1,4 +1,33 @@
 import { test, expect } from '@playwright/test'
+import { createHash } from 'node:crypto'
+
+function stableValue(value: unknown): string {
+  if (value == null || typeof value !== 'object') return JSON.stringify(value)
+  if (Array.isArray(value)) return `[${value.map(stableValue).join(',')}]`
+  const record = value as Record<string, unknown>
+  return `{${Object.keys(record).sort().map(key => `${JSON.stringify(key)}:${stableValue(record[key])}`).join(',')}}`
+}
+
+function canonicalReceipt(receipt: Record<string, unknown>): string {
+  return stableValue({
+    version: receipt.version,
+    app: receipt.app,
+    tool: receipt.tool,
+    title: receipt.title,
+    generatedAt: receipt.generatedAt,
+    steps: receipt.steps,
+    limits: receipt.limits,
+    fields: receipt.fields ?? {},
+  })
+}
+
+function receiptDigest(receipt: Record<string, unknown>): string {
+  return createHash('sha256').update(canonicalReceipt(receipt)).digest('hex')
+}
+
+function receiptLink(receipt: Record<string, unknown>, digest = receiptDigest(receipt)): string {
+  return `/tools/receipt#r=${Buffer.from(canonicalReceipt(receipt)).toString('base64url')}&h=${digest}`
+}
 
 test.describe('tools guided mobile flow', () => {
   test.use({ viewport: { width: 390, height: 844 } })
@@ -83,5 +112,34 @@ test.describe('tools guided mobile flow', () => {
     await page.getByLabel('Receipt link or JSON').fill('{not json')
     await page.getByRole('button', { name: 'Check receipt' }).click()
     await expect(page.getByText('That is not valid JSON')).toBeVisible()
+  })
+
+  test('hands off a receipt, checks a batch and diffs a tampered copy', async ({ page }) => {
+    const receipt = {
+      version: 1,
+      app: 'MotoPass',
+      tool: 'bolt11',
+      title: 'Invoice A',
+      generatedAt: '2026-11-10T12:34:56.000Z',
+      steps: [{ label: 'checksum', state: 'pass' }],
+      limits: ['Not proof of payment.'],
+      fields: { amount: 1000 },
+    }
+    await page.goto(receiptLink(receipt), { waitUntil: 'domcontentloaded' })
+    await expect(page.getByRole('heading', { name: 'Invoice A' })).toBeVisible()
+    await expect(page.getByText('Cross-device handoff')).toBeVisible()
+    await expect(page.getByRole('img', { name: 'MotoPass receipt link' })).toBeVisible()
+
+    await page.getByLabel('Receipt batch JSON').fill(JSON.stringify([receipt]))
+    await page.getByRole('button', { name: 'Check batch' }).click()
+    await expect(page.getByText('1 verified · 0 edited · 0 errors')).toBeVisible()
+
+    const tampered = { ...receipt, title: 'Invoice A edited' }
+    await page.goto(receiptLink(tampered, receiptDigest(receipt)), { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('digest mismatch')).toBeVisible()
+    await page.getByLabel('Original receipt JSON (from a separate copy)').fill(JSON.stringify(receipt))
+    await page.getByRole('button', { name: 'Compare fields' }).click()
+    await expect(page.getByRole('cell', { name: 'title' })).toBeVisible()
+    await expect(page.getByRole('cell', { name: 'Invoice A edited' })).toBeVisible()
   })
 })

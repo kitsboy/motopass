@@ -26,6 +26,8 @@ describe('detectTool', () => {
 
   it('detects signed-message proofs and returns null for unknown text', () => {
     expect(detectTool('smpAkcwRAIg')).toMatchObject({ id: 'message-signature' })
+    expect(detectTool('fulAAAA')).toMatchObject({ id: 'message-signature' })
+    expect(detectTool('pofAAAA')).toMatchObject({ id: 'message-signature' })
     expect(detectTool('hello, this is not an artifact')).toBe(null)
     expect(detectTool('   ')).toBe(null)
   })

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { ArrowRight, Check, Copy, Download, Link2, Share2 } from 'lucide-react'
+import { createPortal } from 'react-dom'
+import { ArrowRight, Check, Copy, Download, Link2, QrCode, Share2 } from 'lucide-react'
 import { Card } from '../ui/Card'
+import { ReceiptQr } from './ReceiptQr'
 import {
   buildReceiptShareLink,
   buildVerificationReceipt,
@@ -112,6 +114,35 @@ export function useToolIntake(toolId: string, onValue: (value: string) => void):
 }
 
 
+function StickyVerificationSummary({ tool, steps }: { tool?: string; steps: Array<{ label: string; state: TrailState }> }) {
+  if (!steps.length) return null
+  const passed = steps.filter(step => step.state === 'pass').length
+  const unknown = steps.filter(step => step.state === 'unknown')
+  const failed = steps.filter(step => step.state === 'fail').length
+  const next = tool ? NEXT_STEP[tool] : undefined
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="pointer-events-none fixed inset-x-3 bottom-[calc(env(safe-area-inset-bottom)+4.5rem)] z-30 rounded-mp-md border border-mp-border-strong bg-mp-canvas/95 px-2.5 py-2 shadow-xl backdrop-blur lg:hidden"
+    >
+      <p className="flex flex-wrap items-center gap-x-2 gap-y-0.5 font-chrome text-[10px] font-semibold uppercase tracking-wide text-mp-ink-secondary">
+        <span>{passed} checked</span>
+        <span className={failed ? 'text-mp-wax' : unknown.length ? 'text-mp-ink-tertiary' : 'text-mp-proof'}>
+          {unknown.length} unchecked{failed ? ` · ${failed} failed` : ''}
+        </span>
+      </p>
+      <p className="mt-0.5 text-[10px] leading-snug text-mp-ink-tertiary">
+        {failed
+          ? 'Stop and recheck the failing step against the original source.'
+          : unknown.length
+            ? `Next: verify ${unknown.map(step => step.label).join(', ')}.`
+            : next?.title ?? 'A pass covers only the checks shown above.'}
+      </p>
+    </div>
+  )
+}
+
 function NextStepPanel({ tool, steps }: { tool: string; steps: Array<{ label: string; state: TrailState }> }) {
   const failed = steps.filter(step => step.state === 'fail')
   const unknown = steps.filter(step => step.state === 'unknown')
@@ -191,9 +222,11 @@ export function VerificationTrail({
         ))}
         {receiptInput && <VerificationReceiptButton receipt={receiptInput} />}
         {receiptInput && <ReceiptLinkButton receipt={receiptInput} />}
+        {receiptInput && <ReceiptQrButton receipt={receiptInput} />}
         {receiptInput && <ProofCardButton receipt={receiptInput} />}
       </div>
       {tool && <NextStepPanel tool={tool} steps={steps} />}
+      <StickyVerificationSummary tool={tool} steps={steps} />
     </div>
   )
 }
@@ -341,6 +374,65 @@ export function VerificationReceiptButton({ receipt }: { receipt: VerificationRe
       <Download size={11} aria-hidden="true" />
       {saved ? 'Receipt downloaded' : 'Download verification receipt'}
     </button>
+  )
+}
+
+export function ReceiptQrButton({ receipt }: { receipt: VerificationReceiptInput }) {
+  const [open, setOpen] = useState(false)
+  const [link, setLink] = useState<ReturnType<typeof buildReceiptShareLink> | null>(null)
+
+  const show = () => {
+    setLink(buildReceiptShareLink(buildVerificationReceipt(receipt)))
+    setOpen(true)
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={show}
+        className="mt-2 inline-flex min-h-9 items-center gap-1 rounded-full border border-mp-border-subtle px-2.5 py-1 font-chrome text-[10px] font-semibold uppercase tracking-wide text-mp-ink-tertiary hover:border-mp-proof-border hover:text-mp-proof focus:outline-none focus-visible:ring-2 focus-visible:ring-mp-btc/40"
+      >
+        <QrCode size={11} aria-hidden="true" /> Receipt QR
+      </button>
+      {open &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Receipt handoff QR"
+            className="fixed inset-0 z-[80] flex items-end justify-center bg-black/80 p-4 sm:items-center"
+          >
+            <div className="w-full max-w-md rounded-mp-lg border border-mp-border-strong bg-mp-canvas p-3 shadow-2xl">
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <p className="font-chrome text-[10px] font-semibold uppercase tracking-[0.14em] text-mp-ink-tertiary">Handoff</p>
+                  <h2 className="font-display text-lg font-semibold text-mp-ink">Scan this receipt</h2>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="min-h-11 rounded-full border border-mp-border-subtle px-2 text-[10px] font-semibold text-mp-ink-secondary"
+                >
+                  Close
+                </button>
+              </div>
+              <div className="mt-3 flex justify-center">
+                {link?.ok ? (
+                  <ReceiptQr url={link.url} label="MotoPass receipt link" />
+                ) : (
+                  <p className="text-[11px] text-mp-wax">{link?.error ?? 'This receipt cannot be shown as a QR code.'}</p>
+                )}
+              </div>
+              <p className="mt-2 text-[10px] leading-relaxed text-mp-ink-tertiary">
+                The receipt stays in the URL fragment. Compare the SHA-256 fingerprint on the recipient’s screen with
+                this one out of band. A QR scan opens the verifier; it does not prove payment.
+              </p>
+            </div>
+          </div>,
+          document.body,
+        )}
+    </>
   )
 }
 

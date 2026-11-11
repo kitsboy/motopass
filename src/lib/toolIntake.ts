@@ -73,7 +73,7 @@ export function detectTool(raw: string): ToolDetection | null {
       alternates: [{ id: 'nip05', label: 'NIP-05 name' }],
     }
   }
-  if (value.startsWith('smp')) {
+  if (value.startsWith('smp') || value.startsWith('ful') || value.startsWith('pof')) {
     return { id: 'message-signature', label: 'BIP-322 signed-message proof', value }
   }
   if (BASE64.test(value) && decodeBase64Length(value) === 65) {

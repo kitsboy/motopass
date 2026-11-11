@@ -2,10 +2,34 @@
 **Last live deploy:** BUILD `2026.11.10-6d4bb1b` · commit `6d4bb1b` · HTTP 200 · verified 2026-11-10T23:26:46.612Z
 <!-- live-deploy:end -->
 
+## Session — 2026-11-10 · BIP-322 full/PoF, receipt handoff, batch, anchoring and evidence binding (Buffy)
+
+**Done — all eight follow-ups:**
+1. **BIP-322 full and proof-of-funds** (`src/lib/bip322Tx.ts`, `src/lib/bip322Full.ts`, `signedMessage.ts`): parses and serializes transactions, computes txids and legacy/BIP-143/BIP-341 sighashes, parses finalized PSBTs, and verifies P2PKH, P2SH-P2WPKH, P2WPKH, standard P2SH/P2WSH multisig and P2TR key-path spends. Arbitrary scripts, taproot script paths, annexes and timelocks stay **inconclusive** rather than passing. Proof-of-funds requires the zero-value `to_spend` UTXO plus the additional proved UTXO.
+2. **Cross-device receipt handoff** (`ReceiptHandoff.tsx`): renders the fragment link as a lazy QR plus a grouped SHA-256 fingerprint for out-of-band comparison. Oversized receipts fall back to the copyable link instead of an unreliable code.
+3. **Receipt anchoring** (`ReceiptAnchorPanel.tsx`, `receiptAnchor.ts`): sends only the 64-character receipt digest to Satohash/OpenTimestamps and keeps `pending`, `confirmed` and error states explicit. It does not upload the receipt or call a timestamp proof a payment proof.
+4. **Batch verification** (`ReceiptBatchPanel.tsx`, `receiptBatch.ts`): parses a pasted or dropped JSON bundle locally, verifies each receipt digest, labels edited entries and exports the per-row result.
+5. **Payment-evidence binding** (`paymentEvidence.ts`, `PaymentEvidenceCard.tsx`): optional expected recipient, amount and purpose strings must appear verbatim in the signed message. The card does not infer a recipient or amount that was not supplied.
+6. **Tampered-receipt diff** (`ReceiptDiffPanel.tsx`, `receiptDiff.ts`): compares the checked receipt with an independent pasted copy and shows changed fields. A lone digest mismatch cannot identify which field changed, so the UI says that directly.
+7. **QR handoff UI**: the receipt page now exposes the QR and fingerprint from the handoff card, while the paste box can open the existing camera scanner.
+8. **Mobile verification summary** (`StickyVerificationSummary` in `toolsShared.tsx`): a compact fixed summary of the current trail stays visible below `lg` without covering the card actions.
+
+**Decisions:**
+- Full/PoF verification is bounded on purpose. A script it cannot rebuild is labelled inconclusive, never valid.
+- Receipt anchoring submits the digest only; confirmation proves the digest existed by a block, not that any claim in the receipt is true.
+- Receipt diffing needs an out-of-band reference. A digest carried beside an edited payload cannot reveal the original field values.
+- Payment-evidence binding checks supplied strings in the signed message; it is not an inference engine.
+
+**Checks:** full Vitest **631 passed / 2 skipped (633)**; focused proof/receipt/evidence/intake suites **27 passed** (BIP-322 simple 5, full/PoF 5, receipt diff 3, batch 3, anchor 2, payment evidence 5, intake 4); Playwright **33 passed**, including a shared-receipt flow that sees the QR, checks a batch and diffs a tampered field; `npm run tools:check` **14/14**; ESLint **0 errors / 9 pre-existing warnings**; production build passed; bundle **2681.3 KB / 2700 KB** (index **482.0 KB**, advisory 460 KB), with the gate remeasured from 2670 KB in `scripts/check-bundle-size.mjs`; `tsc --noEmit` still reports only the two pre-existing `IntelWatchStrip.test.ts` Node-type errors. No live Satohash request was made, and no camera decoded the rendered QR; the anchor status mapping and QR rendering are covered without claiming a live network or camera pass.
+
+**Git State:**
+- Code SHA: pending this commit
+- Unpushed: pending this push
+
 ## Session — 2026-11-10 · BIP-322, shareable receipts, payment evidence and universal intake (Buffy)
 
 **Done:**
-- **BIP-322 simple verification** (`src/lib/bip322.ts`, `src/lib/signedMessage.ts`): rebuilds the BIP-322 virtual `to_spend`/`to_sign` transaction, checks the BIP-143 P2WPKH sighash and BIP-341 key-path P2TR sighash, and verifies the witness signature. Published vectors cover P2WPKH, P2TR and the `to_spend` txid. The dispatcher keeps BIP-137 for 65-byte compact signatures and reports `smp`/bare witness stacks as BIP-322. Full (`ful`), proof-of-funds (`pof`), P2WSH and multisig proofs remain **explicitly unsupported**, never guessed.
+- **BIP-322 simple verification** (`src/lib/bip322.ts`, `src/lib/signedMessage.ts`): rebuilds the BIP-322 virtual `to_spend`/`to_sign` transaction, checks the BIP-143 P2WPKH sighash and BIP-341 key-path P2TR sighash, and verifies the witness signature. Published vectors cover P2WPKH, P2TR and the `to_spend` txid. The dispatcher keeps BIP-137 for 65-byte compact signatures and reports `smp`/bare witness stacks as BIP-322. In that session full (`ful`), proof-of-funds (`pof`), P2WSH and multisig proofs were still **explicitly unsupported**; the next session above adds the bounded full/PoF verifier, while arbitrary scripts and taproot script paths stay inconclusive, never guessed.
 - **Shareable verification receipts** (`src/lib/verificationReceipt.ts`, `src/pages/ReceiptPage.tsx`): canonical JSON is SHA-256 hashed and carried in a URL fragment (`/tools/receipt#r=…&h=…`), so it never reaches a server. The receipt page recomputes the digest, labels a mismatch as edited, and repeats the receipt's limits. The new route is in the Cloudflare middleware allowlist, sitemap, cache-purge list and prefetch map.
 - **Composite payment evidence** (`src/lib/paymentEvidence.ts` + `PaymentEvidenceCard`): cross-checks a BOLT11 invoice, optional preimage, optional NIP-57 zap receipt and optional signed message. Verdicts are `consistent`, `incomplete` or `failed`; “consistent” only means the supplied artifacts agree, never that a payment occurred.
 - **Universal intake** (`src/lib/toolIntake.ts`, `UniversalIntake.tsx`): one paste/drop/file/scan box detects BOLT11, BOLT12, PSBT, address, BIP-137/BIP-322 proof, zap receipt, NIP-17 wrap, receipt event, LNURL, Lightning address and NIP-05, then prefills the owning card. `/tools` now lists **14 tools · 12 local · 2 network**.

@@ -1,16 +1,22 @@
-import { verifyBip322Simple, type Bip322Check } from './bip322'
+import { verifyBip322Simple, type Bip322Check, type Bip322Result } from './bip322'
+import { verifyBip322Full } from './bip322Full'
 import { verifyMessageSignature, type MessageSignatureResult } from './messageSignature'
 
 /**
  * Signed-message dispatcher.
  *
- * BIP-322 prefixed simple signatures and unprefixed witness stacks go to the
- * BIP-322 reader. A 65-byte compact signature with a BIP-137 header stays with
- * the legacy reader. Full/proof-of-funds BIP-322 is surfaced as unsupported,
- * never silently treated as a legacy signature.
+ * BIP-322 simple signatures, full transactions and proof-of-funds PSBTs go to
+ * the BIP-322 readers. A 65-byte compact signature with a BIP-137 header stays
+ * with the legacy reader. Unsupported scripts are labelled inconclusive, never
+ * silently treated as a legacy signature.
  */
 
-export type SignedMessageFormat = 'BIP-137' | 'BIP-322 simple' | 'BIP-322 full' | null
+export type SignedMessageFormat =
+  | 'BIP-137'
+  | 'BIP-322 simple'
+  | 'BIP-322 full'
+  | 'BIP-322 proof-of-funds'
+  | null
 
 export interface SignedMessageResult {
   status: 'valid' | 'invalid' | 'unreadable'
@@ -30,7 +36,7 @@ const BIP137_LIMITS = [
   'A signed message can be replayed wherever it is accepted; this card does not check the relying party or context.',
 ]
 
-function asBip322(result: ReturnType<typeof verifyBip322Simple>): SignedMessageResult {
+function asBip322(result: Bip322Result): SignedMessageResult {
   return {
     status: result.status,
     format: result.format,
@@ -85,21 +91,7 @@ export function verifySignedMessage(
   const prefix = signature.slice(0, 3).toLowerCase()
 
   if (prefix === 'smp') return asBip322(verifyBip322Simple(addressInput, message, signature))
-  if (prefix === 'ful' || prefix === 'pof') {
-    return {
-      status: 'unreadable',
-      format: prefix === 'ful' ? 'BIP-322 full' : null,
-      addressType: null,
-      recoveredPubkey: null,
-      recoveredAddress: null,
-      checks: [],
-      note:
-        prefix === 'ful'
-          ? 'BIP-322 full signatures carry a whole transaction and are not supported by this reader. Only BIP-322 simple P2WPKH/P2TR proofs are checked.'
-          : 'BIP-322 proof-of-funds signatures need a PSBT and UTXO verifier and are not supported by this reader.',
-      limits: BIP322_FULL_LIMITS,
-    }
-  }
+  if (prefix === 'ful' || prefix === 'pof') return asBip322(verifyBip322Full(addressInput, message, signature))
 
   const length = decodeBase64Length(signature)
   if (length === 65) return fromBip137(verifyMessageSignature(addressInput, message, signature))
@@ -110,9 +102,3 @@ export function verifySignedMessage(
   if (bip322.status !== 'unreadable') return asBip322(bip322)
   return fromBip137(verifyMessageSignature(addressInput, message, signature))
 }
-
-const BIP322_FULL_LIMITS = [
-  'This reader verifies BIP-322 simple only: native P2WPKH and single-key P2TR.',
-  'Full BIP-322 proofs can express timelocks and arbitrary scripts, so they need a full script interpreter and are reported as unchecked.',
-  'A valid proof would show control of the address key at signing time, not funds, balance or a payment.',
-]

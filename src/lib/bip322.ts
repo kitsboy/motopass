@@ -28,8 +28,8 @@ export interface Bip322Check {
 
 export interface Bip322Result {
   status: Bip322Status
-  format: 'BIP-322 simple' | null
-  addressType: 'P2WPKH' | 'P2TR' | null
+  format: 'BIP-322 simple' | 'BIP-322 full' | 'BIP-322 proof-of-funds' | null
+  addressType: string | null
   recoveredPubkey: string | null
   recoveredAddress: string | null
   checks: Bip322Check[]
@@ -187,6 +187,11 @@ export function bip322ToSpendBytes(message: string, script: Uint8Array): Uint8Ar
 
 function toSpendDigest(message: string, script: Uint8Array): Uint8Array {
   return doubleSha256(bip322ToSpendBytes(message, script))
+}
+
+/** Display-order txid of the virtual to_spend transaction for any script. */
+export function bip322ToSpendTxidForScript(message: string, script: Uint8Array): string {
+  return bytesToHex(reverse(toSpendDigest(message, script)))
 }
 
 function p2wpkhSighash(message: string, program: Uint8Array, hashType: number): Uint8Array {

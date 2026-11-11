@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom'
 import { AlertTriangle, CheckCircle2, FileCheck2, History } from 'lucide-react'
 import { PageHeader } from '../components/ui/PageHeader'
 import { Card } from '../components/ui/Card'
+import { QrScanButton } from '../components/tools/QrScanner'
+import { ReceiptAnchorPanel } from '../components/tools/ReceiptAnchorPanel'
+import { ReceiptBatchPanel } from '../components/tools/ReceiptBatchPanel'
+import { ReceiptDiffPanel } from '../components/tools/ReceiptDiffPanel'
+import { ReceiptHandoff } from '../components/tools/ReceiptHandoff'
 import { verificationAnchor } from '../lib/verificationHistory'
 import {
   parseReceiptShareHash,
@@ -196,6 +201,17 @@ export function ReceiptPage() {
             )}
           </Card>
 
+          <ReceiptHandoff receipt={loaded.receipt} digest={loaded.digest} />
+
+          <ReceiptDiffPanel
+            receipt={loaded.receipt}
+            digest={loaded.digest}
+            providedDigest={loaded.providedDigest}
+            hashMatches={loaded.hashMatches}
+          />
+
+          <ReceiptAnchorPanel digest={loaded.digest} />
+
           <Card className="p-4 sm:p-6">
             <p className="flex items-center gap-1.5 font-chrome text-[10px] font-semibold uppercase tracking-[0.14em] text-mp-ink-tertiary">
               <History size={12} aria-hidden="true" /> What this receipt cannot prove
@@ -243,7 +259,8 @@ export function ReceiptPage() {
               placeholder="/tools/receipt#r=…&amp;h=… or {&quot;version&quot;:1,…}"
               className="mt-2 w-full resize-y rounded-mp-md border border-mp-border bg-mp-canvas/60 px-3 py-2 font-mono text-[11px] leading-relaxed text-mp-ink focus:border-mp-btc/60 focus:outline-none"
             />
-            <div className="mt-2 flex items-center gap-2">
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <QrScanButton onScan={setRaw} label="Scan receipt QR" />
               <button
                 type="button"
                 onClick={verifyPaste}
@@ -262,6 +279,10 @@ export function ReceiptPage() {
             {message && <p className="mt-2 text-[11px] text-mp-wax">{message}</p>}
           </Card>
         )}
+      </div>
+
+      <div className="mt-4">
+        <ReceiptBatchPanel />
       </div>
     </div>
   )

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /** Fail CI if total JS bundle exceeds budget; warn if index chunk >460kb (batch 26 #874).
  * The total includes lazy locale, map and route chunks. The tool expansion
- * (BIP-322, receipt links, payment evidence and a cross-browser QR fallback)
- * measured 2634.7 KB on 2026-11-10; the QR decoder is a lazy 60 KB main+worker
- * pair. The gate is 2670 KB, leaving ~35 KB headroom rather than a false pass.
+ * (BIP-322 full/pof, receipt handoff, batch checks, anchoring, evidence binding
+ * and a cross-browser QR fallback) measured 2681.3 KB on 2026-11-10. The gate
+ * is 2700 KB, leaving ~19 KB headroom rather than a false pass.
  */
 import { readdirSync, statSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST = resolve(__dirname, '../dist/assets')
-const MAX_BYTES = Number(process.env.BUNDLE_MAX_KB || 2670) * 1024
+const MAX_BYTES = Number(process.env.BUNDLE_MAX_KB || 2700) * 1024
 const INDEX_WARN_KB = Number(process.env.INDEX_CHUNK_WARN_KB || 460)
 
 let total = 0

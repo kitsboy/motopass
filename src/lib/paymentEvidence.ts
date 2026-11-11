@@ -22,6 +22,7 @@ export interface PaymentEvidenceChecks {
   zapAmount: boolean | null
   signedMessage: boolean | null
   messageHash: boolean | null
+  messageBinding: boolean | null
 }
 
 export type EvidenceVerdict = 'consistent' | 'incomplete' | 'failed'
@@ -39,6 +40,7 @@ export interface PaymentEvidenceResult {
     zapSender: string | null
     messageFormat: string | null
     messageAddress: string | null
+    messageBinding: boolean | null
   }
 }
 
@@ -53,6 +55,24 @@ export interface PaymentEvidenceInput {
   signedMessageAddress?: string
   signedMessageText?: string
   signedMessageSignature?: string
+  expectedRecipient?: string
+  expectedAmount?: string
+  expectedPurpose?: string
+}
+
+export interface PaymentExpectations {
+  recipient?: string
+  amount?: string
+  purpose?: string
+}
+
+/** Return the expected bindings that do not appear verbatim in the message. */
+export function missingMessageBindings(message: string, expected: PaymentExpectations): string[] {
+  const haystack = message.toLowerCase()
+  return (['recipient', 'amount', 'purpose'] as const).filter(key => {
+    const value = expected[key]?.trim()
+    return Boolean(value && !haystack.includes(value.toLowerCase()))
+  })
 }
 
 function supplied(value: string | undefined): boolean {
@@ -74,6 +94,7 @@ export async function verifyPaymentEvidence(input: PaymentEvidenceInput): Promis
     zapAmount: null,
     signedMessage: null,
     messageHash: null,
+    messageBinding: null,
   }
   const details: PaymentEvidenceResult['details'] = {
     preimage: input.preimage?.trim().toLowerCase() || null,
@@ -81,7 +102,14 @@ export async function verifyPaymentEvidence(input: PaymentEvidenceInput): Promis
     zapSender: null,
     messageFormat: null,
     messageAddress: null,
+    messageBinding: null,
   }
+  const expected: PaymentExpectations = {
+    recipient: input.expectedRecipient,
+    amount: input.expectedAmount,
+    purpose: input.expectedPurpose,
+  }
+  const expectedCount = Object.values(expected).filter(value => value?.trim()).length
 
   if (!paymentHash) warnings.push('The invoice has no payment hash, so nothing can be cross-linked to it.')
 
@@ -136,7 +164,17 @@ export async function verifyPaymentEvidence(input: PaymentEvidenceInput): Promis
         checks.messageHash = message.toLowerCase().includes(paymentHash.toLowerCase())
         if (!checks.messageHash) warnings.push('The signed message does not contain the invoice payment hash, so it is not bound to this invoice.')
       }
+      if (expectedCount > 0) {
+        const missing = missingMessageBindings(message, expected)
+        checks.messageBinding = missing.length === 0
+        details.messageBinding = checks.messageBinding
+        if (missing.length) {
+          warnings.push(`The signed message is missing the expected ${missing.join(', ')} binding${missing.length === 1 ? '' : 's'}.`)
+        }
+      }
     }
+  } else if (expectedCount > 0) {
+    warnings.push('Expected recipient, amount or purpose was supplied, but no signed message was available to bind it.')
   }
 
   const suppliedChecks = Object.entries(checks).filter(

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { finalizeEvent, generateSecretKey, getPublicKey } from 'nostr-tools/pure'
 import { bech32Encode, bytesToWords } from './bech32'
-import { verifyPaymentEvidence } from './paymentEvidence'
+import { missingMessageBindings, verifyPaymentEvidence } from './paymentEvidence'
 import { sha256Hex } from './preimage'
 
 const PREIMAGE = '11'.repeat(32)
@@ -110,5 +110,12 @@ describe('payment evidence bundle', () => {
   it('does not pretend malformed invoice input is evidence', async () => {
     const result = await verifyPaymentEvidence({ invoice: 'not an invoice' })
     expect(result.ok).toBe(false)
+  })
+
+  it('requires each supplied recipient, amount and purpose binding to appear in the message', () => {
+    const message = 'Pay 250000000 msat to satoshi.store for residency fee; hash abc123'
+    expect(missingMessageBindings(message, { recipient: 'satoshi.store', amount: '250000000 msat', purpose: 'residency fee' })).toEqual([])
+    expect(missingMessageBindings(message, { recipient: 'other.store', amount: '250000000 msat' })).toEqual(['recipient'])
+    expect(missingMessageBindings(message, { purpose: '' })).toEqual([])
   })
 })

@@ -13,6 +13,9 @@ export function PaymentEvidenceCard() {
   const [messageAddress, setMessageAddress] = useState('')
   const [messageText, setMessageText] = useState('')
   const [messageSignature, setMessageSignature] = useState('')
+  const [expectedRecipient, setExpectedRecipient] = useState('')
+  const [expectedAmount, setExpectedAmount] = useState('')
+  const [expectedPurpose, setExpectedPurpose] = useState('')
   const [result, setResult] = useState<PaymentEvidenceOutcome | null>(null)
   const [busy, setBusy] = useState(false)
 
@@ -26,6 +29,9 @@ export function PaymentEvidenceCard() {
         signedMessageAddress: messageAddress,
         signedMessageText: messageText,
         signedMessageSignature: messageSignature,
+        expectedRecipient,
+        expectedAmount,
+        expectedPurpose,
       }),
     )
     setBusy(false)
@@ -41,6 +47,7 @@ export function PaymentEvidenceCard() {
         { label: 'zap amount', state: STATE_LABEL(result.checks.zapAmount) },
         { label: 'signed message', state: STATE_LABEL(result.checks.signedMessage) },
         { label: 'message ↔ hash', state: STATE_LABEL(result.checks.messageHash) },
+        { label: 'message binding', state: STATE_LABEL(result.checks.messageBinding) },
       ]
     : []
 
@@ -114,8 +121,50 @@ export function PaymentEvidenceCard() {
             placeholder="bc1… / 1… / 3…"
             className={inputClass}
           />
+          <p className="mt-2 text-[10px] leading-relaxed text-mp-ink-tertiary">
+            Expected bindings are optional. Each value you supply must appear verbatim in the signed message; the
+            reader does not infer a merchant, amount or purpose.
+          </p>
+          <div className="grid gap-2 sm:grid-cols-3">
+            <div>
+              <label htmlFor="evidence-expected-recipient" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+                Expected recipient
+              </label>
+              <input
+                id="evidence-expected-recipient"
+                value={expectedRecipient}
+                onChange={event => setExpectedRecipient(event.target.value)}
+                placeholder="merchant or address"
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="evidence-expected-amount" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+                Expected amount
+              </label>
+              <input
+                id="evidence-expected-amount"
+                value={expectedAmount}
+                onChange={event => setExpectedAmount(event.target.value)}
+                placeholder="250000000 msat"
+                className={inputClass}
+              />
+            </div>
+            <div>
+              <label htmlFor="evidence-expected-purpose" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
+                Expected purpose
+              </label>
+              <input
+                id="evidence-expected-purpose"
+                value={expectedPurpose}
+                onChange={event => setExpectedPurpose(event.target.value)}
+                placeholder="residency fee"
+                className={inputClass}
+              />
+            </div>
+          </div>
           <label htmlFor="evidence-message" className="mt-2 block font-chrome text-[10px] font-semibold text-mp-ink-secondary">
-            Exact message (must contain the payment hash)
+            Exact message (must contain the payment hash and expected bindings)
           </label>
           <textarea
             id="evidence-message"
@@ -149,9 +198,12 @@ export function PaymentEvidenceCard() {
             setMessageAddress('')
             setMessageText('')
             setMessageSignature('')
+            setExpectedRecipient('')
+            setExpectedAmount('')
+            setExpectedPurpose('')
             setResult(null)
           }}
-          disabled={!invoice && !preimage && !zapReceipt && !messageAddress && !messageText && !messageSignature && !result}
+          disabled={!invoice && !preimage && !zapReceipt && !messageAddress && !messageText && !messageSignature && !expectedRecipient && !expectedAmount && !expectedPurpose && !result}
         />
       </form>
 
@@ -171,7 +223,7 @@ export function PaymentEvidenceCard() {
               limits={[
                 'A matching preimage proves the hash relation; it does not prove who paid or what the invoice was for.',
                 'A zap receipt is signed by a node or recipient key, not by the payer; its presence does not prove settlement.',
-                'A signed message proves control of an address key, not funds or current ownership.',
+                'A signed message proves control of an address key, not funds or current ownership. Expected bindings check string presence, not that the merchant or purpose is real.',
                 'This reader does not query the chain, a node or a relay. The invoice must still be checked with the payee.',
               ]}
               fields={{
@@ -182,6 +234,7 @@ export function PaymentEvidenceCard() {
                 zapSender: result.details.zapSender,
                 messageFormat: result.details.messageFormat,
                 messageAddress: result.details.messageAddress,
+                messageBinding: result.details.messageBinding,
                 verdict: result.verdict,
               }}
             />
@@ -211,6 +264,9 @@ export function PaymentEvidenceCard() {
               <FieldRow label="Amount" value={result.invoice.amountMsat == null ? 'open invoice' : `${result.invoice.amountMsat.toLocaleString('en-US')} msat`} />
               {result.details.zapRecipient && <FieldRow label="Zap recipient" value={<span className="break-all font-mono text-[10px]">{result.details.zapRecipient}</span>} />}
               {result.details.messageAddress && <FieldRow label="Message address" value={result.details.messageAddress} />}
+              {result.details.messageBinding != null && (
+                <FieldRow label="Message binding" value={result.details.messageBinding ? 'all expected values present' : 'a supplied value is missing'} />
+              )}
             </div>
             {result.warnings.length > 0 && (
               <ul className="mt-2 space-y-1 text-[10px] leading-relaxed text-mp-wax">

@@ -21,9 +21,9 @@ function MessageSignatureTool() {
       toolId="message-signature"
     >
       <p className="text-[11px] leading-relaxed text-mp-ink-tertiary">
-        Detects BIP-137 legacy signatures and BIP-322 simple proofs. BIP-322 covers P2WPKH and single-key P2TR; BIP-137
-        covers P2PKH, P2SH-P2WPKH and P2WPKH. Full, proof-of-funds, P2WSH and multisig proofs are explicitly labelled
-        unsupported rather than guessed at.
+        Detects BIP-137 legacy signatures, BIP-322 simple proofs, full transactions and proof-of-funds PSBTs. The bounded
+        BIP-322 reader covers P2WPKH, P2TR key-path, P2PKH, P2SH-P2WPKH and standard multisig; arbitrary scripts and
+        taproot script paths are explicitly labelled inconclusive rather than guessed at.
       </p>
       <form
         onSubmit={event => {
@@ -63,7 +63,7 @@ function MessageSignatureTool() {
           onChange={event => setSignature(event.target.value)}
           rows={2}
           spellCheck={false}
-          placeholder="smp… / a witness stack / 65-byte BIP-137"
+          placeholder="smp… / ful… / pof… / a witness stack / 65-byte BIP-137"
           className={`${inputClass} font-mono text-[10px]`}
         />
         <button type="submit" disabled={!address.trim() || !signature.trim()} className={`${buttonClass} mt-2`}>
