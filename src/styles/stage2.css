@@ -190,6 +190,13 @@
     padding-right: 32px;
   }
 }
+@media (max-width: 899px) {
+  /* Same 20px gutter as the hero at phone widths */
+  .club-header-top-row {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
 @media (max-width: 1023px) {
   .club-header .elite-hamburger,
   .club-header [aria-label='Site tools'] {

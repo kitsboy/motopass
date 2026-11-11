@@ -71,10 +71,10 @@ export function ApplyNavTab({ moreSheetOpen = false }: { moreSheetOpen?: boolean
             <ClipboardList size={17} strokeWidth={active ? 2.5 : 2} className="shrink-0" aria-hidden="true" />
             <span className="leading-none max-w-full px-0.5 text-[10px] font-chrome">
               {applicationsOpen ? (
-                label
+                t('nav.apply')
               ) : (
                 <span className="apply-tab-closed">
-                  <span>{label}</span>
+                  <span>{t('nav.apply')}</span>
                   <span className="apply-tab-closed__state">closed</span>
                 </span>
               )}
