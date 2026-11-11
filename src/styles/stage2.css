@@ -300,6 +300,10 @@
   letter-spacing: 0.01em;
   color: var(--s2-ink);
 }
+.s2-facts {
+  /* one reserved line: the text swaps from a loading state to real counts */
+  min-height: 3.15rem;
+}
 .s2-facts strong {
   font-weight: 600;
 }
@@ -313,6 +317,9 @@
 .s2-visa {
   position: relative;
   overflow: hidden;
+  /* The record arrives after the corpus loads; reserving its height keeps the
+     hero from shifting when it does. */
+  min-height: 380px;
   background: var(--s2-card);
   border: 1px solid var(--s2-rule-strong);
   border-radius: 2px;
