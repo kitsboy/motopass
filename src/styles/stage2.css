@@ -526,7 +526,8 @@
   /* The stamp straddles the rule above this block. The margin keeps its upper
      half in empty space, and the padding keeps its lower half off the text. */
   margin-top: 34px;
-  padding-top: 40px;
+  /* stamp occupies this band: its bottom edge lands above the note text */
+  padding-top: 64px;
   border-top: 1px solid var(--s2-rule);
 }
 .s2-stamp {
