@@ -103,8 +103,7 @@
   border-bottom: 1px solid var(--s2-rule) !important;
 }
 
-.club-header-surface {
-  /* The tinted bands behind the page: a blue radial and an orange radial. They
+/* The tinted bands behind the page: a blue radial and an orange radial. They
    painted a pale strip under the header in light and a brown one in dark.
    Deleted outright — the page is one colour. */
 .sovereign-ambient,
@@ -118,6 +117,7 @@
 }
 
 /* ONE bar. The second nav row and its tinted strip are gone. */
+.club-header-surface {
   padding-block: 0;
 }
 .club-header-top-row {
