@@ -104,7 +104,20 @@
 }
 
 .club-header-surface {
-  /* ONE bar. The second nav row and its tinted strip are gone. */
+  /* The tinted bands behind the page: a blue radial and an orange radial. They
+   painted a pale strip under the header in light and a brown one in dark.
+   Deleted outright — the page is one colour. */
+.sovereign-ambient,
+.sovereign-glow {
+  display: none !important;
+}
+.page-container,
+.s2-page {
+  background: var(--s2-paper) !important;
+  background-image: none !important;
+}
+
+/* ONE bar. The second nav row and its tinted strip are gone. */
   padding-block: 0;
 }
 .club-header-top-row {
@@ -634,4 +647,114 @@ footer a[href='/feed.xml'] svg {
   line-height: 1.45;
   color: var(--s2-ink-muted);
   max-width: 34ch;
+}
+
+
+/* ==========================================================================
+   SECTIONS — one content width, one left edge (1240px, 32px gutters at >=900)
+   ========================================================================== */
+.s2-section {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 56px 20px;
+}
+@media (min-width: 900px) {
+  .s2-section {
+    padding: 72px 32px;
+  }
+}
+.s2-section--band {
+  border-top: 1px solid var(--s2-rule);
+}
+.s2-section--last {
+  padding-bottom: 88px;
+}
+@media (min-width: 900px) {
+  .s2-section--last {
+    padding-bottom: 104px;
+  }
+}
+
+/* The orange tracked eyebrow belongs to the hero only. Sections get a plain,
+   sentence-case label with a rule under it. */
+.s2-kicker {
+  display: block;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--s2-rule);
+  font-family: var(--s2-font-text);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--s2-ink-muted);
+}
+
+.s2-status-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: var(--s2-ink-muted);
+}
+
+/* ---- card: one rule, and the rule stops where the stamp starts ---- */
+.s2-visa-rows {
+  border-top: none;
+}
+.s2-proof {
+  border-top: none;
+}
+.s2-proof::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 128px;
+  right: 0;
+  border-top: 1px solid var(--s2-rule);
+}
+
+.s2-visa-quote {
+  margin: 18px 0 0;
+  font-family: var(--s2-font-display);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--s2-ink);
+}
+.s2-visa-quote-src {
+  font-family: var(--s2-font-text);
+  font-size: 12px;
+  color: var(--s2-ink-muted);
+}
+
+.s2-machine-block {
+  margin-top: 18px;
+}
+.s2-machine-block .s2-machine {
+  margin: 0;
+}
+
+/* A real link, on its own line — never an orphaned "· ots proof" */
+.s2-verify-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--s2-font-text);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--s2-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--s2-rule-strong);
+  white-space: nowrap;
+}
+.s2-verify-link:hover {
+  text-decoration-color: var(--s2-ink);
+}
+.s2-verify-link--off {
+  font-weight: 500;
+  color: var(--s2-ink-muted);
+  text-decoration: none;
+  white-space: normal;
 }

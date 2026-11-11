@@ -37,7 +37,7 @@ export function PitchPage() {
   const count = stats?.programCount ?? 0
 
   return (
-    <div className="page-container bg-mp-canvas">
+    <div className="page-container s2-page">
       {/* ── 1. What is this? ── */}
       <Stage2Hero programs={programs} loading={loading} />
 
@@ -45,11 +45,11 @@ export function PitchPage() {
       <PitchRevealSection
         id="pitch-trust"
         stagger={0.04}
-        className="surface-band px-4 sm:px-6 py-14 sm:py-16 scroll-mt-header"
+        className="s2-section s2-section--band scroll-mt-header"
       >
-        <div className="max-w-7xl mx-auto">
+        <div>
           <div className="mb-10 max-w-2xl">
-            <span className="club-eyebrow block mb-3">{t('pitch.trust.eyebrow')}</span>
+            <span className="s2-kicker">{t('pitch.trust.eyebrow')}</span>
             <h2 className="font-display text-h2 font-semibold text-ink tracking-tight">{t('pitch.trust.title')}</h2>
             <p className="mt-3 font-body text-body text-ink-secondary leading-relaxed">{t('pitch.trust.sub')}</p>
           </div>
@@ -97,9 +97,9 @@ export function PitchPage() {
       <PitchRevealSection
         id="pitch-how"
         stagger={0.06}
-        className="px-4 sm:px-6 py-14 sm:py-16 max-w-7xl mx-auto scroll-mt-header"
+        className="s2-section scroll-mt-header"
       >
-        <span className="club-eyebrow block mb-3">{t('pitch.steps.eyebrow')}</span>
+        <span className="s2-kicker">{t('pitch.steps.eyebrow')}</span>
         <h2 className="font-display text-h2 font-semibold text-ink mb-10">{t('pitch.steps.title')}</h2>
         <div className="grid gap-5 md:grid-cols-3">
           {(['compare', 'model', 'apply'] as const).map((id, i) => (
@@ -127,12 +127,12 @@ export function PitchPage() {
       <PitchRevealSection
         id="pitch-browse"
         stagger={0.08}
-        className="surface-band px-4 sm:px-6 py-12 sm:py-14 scroll-mt-header"
+        className="s2-section s2-section--band scroll-mt-header"
       >
-        <div className="max-w-7xl mx-auto">
+        <div>
           <div className="mb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <div>
-              <span className="club-eyebrow block mb-3">{t('pitch.browse.eyebrow')}</span>
+              <span className="s2-kicker">{t('pitch.browse.eyebrow')}</span>
               <h2 className="font-display text-h2 font-semibold text-ink">
                 {stats ? formatT(t, 'pitch.browse.title', { count }) : t('pitch.browse.titlePending')}
               </h2>
@@ -152,13 +152,13 @@ export function PitchPage() {
       <PitchRevealSection
         id="pitch-start"
         stagger={0.1}
-        className="px-4 sm:px-6 pb-16 sm:pb-20 pt-14 max-w-7xl mx-auto scroll-mt-header"
+        className="s2-section s2-section--last scroll-mt-header"
       >
         <Card variant="banner" className="!p-8 sm:!p-10">
           <div className="max-w-2xl">
             <h2 className="font-display text-h2 font-semibold text-ink mb-3">{t('pitch.start.title')}</h2>
             <p className="font-body text-body text-ink-secondary leading-relaxed mb-5">{t('pitch.start.body')}</p>
-            <p className="mb-7 inline-flex items-start gap-2 rounded-xl border border-status-amber/30 bg-status-amber/10 px-3 py-2 text-sm text-ink-secondary">
+            <p className="s2-status-line">
               <Clock size={14} className="text-status-amber shrink-0 mt-0.5" aria-hidden />
               {applicationsOpen ? t('pitch.start.open') : t('pitch.start.closed')}
             </p>

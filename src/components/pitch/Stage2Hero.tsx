@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { Program } from '../../types/program'
-import { featuredRecord, heroFacts } from '../../lib/stage2HeroData'
+import { claimCoverage, featuredRecord, heroFacts } from '../../lib/stage2HeroData'
 import { LazyFlagSprite } from './LazyFlagSprite'
 
 /**
@@ -20,6 +20,7 @@ import { LazyFlagSprite } from './LazyFlagSprite'
 export function Stage2Hero({ programs, loading }: { programs: Program[]; loading: boolean }) {
   const facts = heroFacts(programs)
   const visa = featuredRecord(programs)
+  const coverage = claimCoverage()
 
   const count = facts.programs
   const primaryLabel = count ? `Compare ${count} programs` : 'Compare the programs'
@@ -49,14 +50,17 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
             </Link>
           </div>
 
+          {/* Pages watched is not evidence; figures traced to an official page is. */}
           <p className="s2-facts">
             {loading || !count ? (
               'Reading the register…'
             ) : (
               <>
-                <strong>{count} programs</strong> · checked {facts.checked ?? 'not on file'} ·{' '}
-                <strong>{facts.officialSources ?? '—'} official sources</strong>
-                {facts.allSources ? <span className="s2-facts-all"> of {facts.allSources} watched</span> : null}
+                <strong>{count} programs</strong> ·{' '}
+                <strong>
+                  {coverage.figures_traced} of {coverage.figures_shown} figures
+                </strong>{' '}
+                traced to an official page · checked {facts.checked ?? 'not on file'}
               </>
             )}
           </p>
@@ -98,12 +102,18 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
                   <span className="k">Last checked</span>
                   <span className="v">{visa.checked ?? 'not on file'}</span>
                 </li>
+                {visa.statute ? (
+                  <li>
+                    <span className="k">Statutory minimum</span>
+                    <span className="v">
+                      <a href={visa.statute.url} target="_blank" rel="noopener noreferrer">
+                        {visa.statute.amount}
+                      </a>
+                    </span>
+                  </li>
+                ) : null}
                 <li>
-                  <span className="k">Investment</span>
-                  <span className="v s2-not-on-file">not on file</span>
-                </li>
-                <li>
-                  <span className="k">Timeline</span>
+                  <span className="k">Processing time</span>
                   <span className="v s2-not-on-file">not on file</span>
                 </li>
                 <li>
@@ -121,7 +131,7 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
               </ul>
 
               <div className="s2-proof">
-                {visa.blockHeight ? (
+                {visa.blockHeight && visa.proofResolves ? (
                   visa.proofUrl ? (
                     <a
                       className="s2-stamp"
@@ -143,26 +153,40 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
                   )
                 ) : null}
 
+                {visa.statute ? (
+                  <p className="s2-visa-quote">
+                    “{visa.statute.quote.length > 120 ? `${visa.statute.quote.slice(0, 117)}…` : visa.statute.quote}”
+                    <span className="s2-visa-quote-src"> — Decreto 616/2010, art. 23 d)</span>
+                  </p>
+                ) : null}
+
                 <p className="s2-visa-note">
-                  The cited immigration pages publish no investment figure or processing time for
-                  this route, so none is shown.
+                  The statute figure was set in 2010 and has never been indexed. Migraciones'
+                  investor service page returns an error today and its residence index lists no
+                  investor track, so whether this route is open is unconfirmed.
                 </p>
 
                 {visa.hash ? (
-                  <p className="s2-machine">
-                    <span className="s2-machine-label">sha256</span>{' '}
-                    <span className="s2-hash">{visa.hash}</span>
-                    {visa.proofUrl ? (
-                      <>
-                        {' · '}
-                        <a href={visa.proofUrl} target="_blank" rel="noopener noreferrer">
-                          ots proof
-                        </a>
-                      </>
+                  <div className="s2-machine-block">
+                    <p className="s2-machine">
+                      <span className="s2-machine-label">sha256</span>{' '}
+                      <span className="s2-hash">{visa.hash}</span>
+                    </p>
+                    {visa.proofUrl && visa.proofResolves ? (
+                      <a
+                        className="s2-verify-link"
+                        href={visa.proofUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Verify proof ↗
+                      </a>
                     ) : (
-                      <span> · ots</span>
+                      <span className="s2-verify-link s2-verify-link--off">
+                        Proof not resolvable — badge withheld
+                      </span>
                     )}
-                  </p>
+                  </div>
                 ) : null}
               </div>
             </article>

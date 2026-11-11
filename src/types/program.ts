@@ -107,10 +107,24 @@ export interface ProgramIntel {
   audit_trail?: AuditEntry[]
 }
 
+export interface ClaimSource {
+  /** The official page that carries the words. */
+  url: string
+  /** The exact words on that page, under fifteen words. */
+  quote: string
+  /** The day we read it (YYYY-MM-DD). */
+  fetched: string
+  /** Where on the page, e.g. "art. 23 inc. d". */
+  location?: string
+}
+
 export interface ProgramPathway {
   type: string
   label: string
   min_investment_usd: number
+  /** Statute figures often exist in local currency only — the currency the law names. */
+  min_investment_ars?: number
+  min_investment_local?: number
   notes: string
 }
 
@@ -142,6 +156,9 @@ export interface PaigeFields {
 }
 
 export interface Program {
+  /** Figure path -> the official page, quote and fetch date that support it. */
+  claim_sources?: Record<string, ClaimSource>
+
   id: number
   name: string
   category: string
