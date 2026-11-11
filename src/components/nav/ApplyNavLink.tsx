@@ -2,6 +2,7 @@ import type { NavLinkProps } from 'react-router-dom'
 import { ClipboardList } from 'lucide-react'
 import { PrefetchNavLink } from './PrefetchNavLink'
 import { useI18n } from '../../i18n/I18nContext'
+import { useLaunchGates } from '../../hooks/useLaunchGates'
 import { navPillClass, navTabClass, navTileClass } from '../../lib/navRoutes'
 
 type NavLayout = 'pill' | 'tile' | 'tab' | 'cta' | 'drawer-cta'
@@ -26,6 +27,10 @@ function layoutClass(layout: NavLayout, isActive: boolean): string {
  */
 export function ApplyNavLink({ layout = 'pill', className, ...props }: Props) {
   const { t } = useI18n()
+  const { applicationsOpen } = useLaunchGates()
+  // Stated, not implied: the label says the door is shut, and the link still
+  // works so the page can explain when it opens.
+  const label = applicationsOpen ? t('nav.apply') : `${t('nav.apply')} (closed)`
 
   return (
     <PrefetchNavLink
@@ -37,7 +42,7 @@ export function ApplyNavLink({ layout = 'pill', className, ...props }: Props) {
           : ({ isActive }) => `${layoutClass(layout, isActive)} ${typeof className === 'string' ? className : ''}`.trim()
       }
     >
-      {t('nav.apply')}
+      {label}
     </PrefetchNavLink>
   )
 }

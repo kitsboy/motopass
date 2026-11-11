@@ -15,7 +15,6 @@ import { Breadcrumbs } from './nav/Breadcrumbs'
 import { PageTransition } from './nav/PageTransition'
 import { NavShortcutsModal } from './nav/NavShortcutsModal'
 import { useI18n } from '../i18n/I18nContext'
-import { FOOTER_VERSION } from '../lib/buildInfo'
 import { useScrollToTop } from '../hooks/useScrollToTop'
 import { useHeaderCollapse } from '../hooks/useHeaderCollapse'
 import { useLanguageShortcut } from '../hooks/useLanguageShortcut'
@@ -71,10 +70,11 @@ export function Layout() {
                 <div className="font-display font-semibold tracking-tight text-[13px] sm:text-sm truncate text-ink group-hover:text-mp-btc-text transition-colors duration-fast">
                   MOTOPASS
                 </div>
+                {/* Stage 2: the build id and the slogan are out of the header.
+                    Version + date live in the footer only, small. */}
                 <div className="club-header-tagline hidden md:block text-[10px] text-ink-muted truncate font-mono max-w-[14rem] opacity-80">
-                  {FOOTER_VERSION} · {t('tagline')}
+                  {t('tagline')}
                 </div>
-                <div className="club-header-tagline club-header-build-tag hidden text-[10px] text-ink-muted truncate font-mono opacity-80">{FOOTER_VERSION}</div>
               </div>
             </NavLink>
 
