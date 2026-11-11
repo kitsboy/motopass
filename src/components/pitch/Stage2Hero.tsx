@@ -1,17 +1,20 @@
 import { Link } from 'react-router-dom'
 import type { Program } from '../../types/program'
 import { featuredRecord, heroFacts } from '../../lib/stage2HeroData'
+import { LazyFlagSprite } from './LazyFlagSprite'
 
 /**
  * Stage 2 hero — the "travel document" direction.
  *
  * Asymmetric: the argument on the left, one real program record on the right,
  * set like a passport page. One stamp colour, hairline rules, no glass, no
- * glow, no photo, no rotating slogan. Every value is read from the corpus; a
- * missing field says "not on file" instead of guessing.
+ * glow, no photo, no rotating slogan.
  *
- * Deliberately not built on the old token layer: this is a proposal, and the
- * rest of the site keeps its current styling until the direction is approved.
+ * The claim on the left and the card on the right are held to the same rule:
+ * the featured record must have a named program, a minimum that cannot
+ * contradict its typical figure, a government source, and a real Bitcoin
+ * anchor (see stage2HeroData). Both the stamp and the machine line open that
+ * record's actual verification page.
  */
 export function Stage2Hero({ programs, loading }: { programs: Program[]; loading: boolean }) {
   const facts = heroFacts(programs)
@@ -26,14 +29,14 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
         <div>
           <p className="s2-eyebrow">Verified program register</p>
 
+          {/* The hyphen is non-breaking so the word never splits at a line end. */}
           <h1 className="s2-h1" id="s2-hero-h1">
-            Compare second-citizenship and residency programs, with data you can verify.
+            Compare second&#8209;citizenship and residency programs, with data you can verify.
           </h1>
 
           <p className="s2-lede">
-            Every record is read from an official government source, dated, and stamped to the
-            Bitcoin blockchain. Compare the real terms side by side, model what a plan would cost
-            you, and check the proof yourself before you pay anyone.
+            Each record is dated, linked to its source, and stamped to the Bitcoin blockchain.
+            Compare terms side by side, model your costs, and check the proof yourself.
           </p>
 
           <div className="s2-actions">
@@ -50,8 +53,9 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
               'Reading the register…'
             ) : (
               <>
-                {count} programs · checked {facts.checked ?? 'not on file'} ·{' '}
-                {facts.sources ? `${facts.sources} official sources watched` : 'sources not on file'}
+                <strong>{count} programs</strong> · checked {facts.checked ?? 'not on file'} ·{' '}
+                <strong>{facts.officialSources ?? '—'} official sources</strong>
+                {facts.allSources ? <span className="s2-facts-all"> of {facts.allSources} watched</span> : null}
               </>
             )}
           </p>
@@ -63,33 +67,37 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
               <p className="s2-eyebrow">Loading the record…</p>
             </div>
           ) : visa ? (
-            <article className="s2-visa" aria-labelledby="s2-visa-name">
+            <article className="s2-visa" aria-labelledby="s2-visa-country">
+              <div className="s2-guilloche" aria-hidden />
+
               <div className="s2-visa-head">
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-                    {visa.flag && (
-                      <span className="s2-visa-flag" aria-hidden>
-                        {visa.flag}
-                      </span>
-                    )}
-                    <h2 className="s2-visa-name" id="s2-visa-name">
-                      {visa.name}
+                <div className="s2-visa-who">
+                  <LazyFlagSprite
+                    countryName={visa.country}
+                    emojiFallback=""
+                    size="md"
+                    eager
+                    decorative
+                  />
+                  <div>
+                    <h2 className="s2-visa-name" id="s2-visa-country">
+                      {visa.country}
                     </h2>
+                    <p className="s2-visa-program">{visa.program}</p>
                   </div>
                 </div>
                 <div className="s2-visa-kind">{visa.kind}</div>
               </div>
 
               <div className="s2-visa-money">
-                <span className="s2-visa-money-amt">{visa.typicalInvestment ?? 'not on file'}</span>
-                <span className="s2-visa-money-note">typical investment</span>
+                <span className="s2-visa-money-amt">{visa.minimum ?? 'not on file'}</span>
+                <span className="s2-visa-money-note">
+                  minimum investment
+                  {visa.typical ? <span className="s2-visa-typical"> · {visa.typical} typical</span> : null}
+                </span>
               </div>
 
               <ul className="s2-visa-rows">
-                <li>
-                  <span className="k">Minimum</span>
-                  <span className="v">{visa.minInvestment ?? 'not on file'}</span>
-                </li>
                 <li>
                   <span className="k">Timeline</span>
                   <span className="v">{visa.timeline ?? 'not on file'}</span>
@@ -98,19 +106,12 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
                   <span className="k">Last checked</span>
                   <span className="v">{visa.checked ?? 'not on file'}</span>
                 </li>
-                <li>
-                  <span className="k">Source</span>
+                <li className="s2-visa-source-row">
+                  <span className="k">Official source</span>
                   <span className="v">
                     {visa.sourceUrl ? (
-                      <a
-                        href={visa.sourceUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}
-                      >
-                        {visa.sourceName && visa.sourceName.length > 30
-                          ? `${visa.sourceName.slice(0, 30).trimEnd()}…`
-                          : visa.sourceName}
+                      <a href={visa.sourceUrl} target="_blank" rel="noopener noreferrer">
+                        {visa.sourceName ?? visa.sourceHost}
                       </a>
                     ) : (
                       'not on file'
@@ -119,19 +120,44 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
                 </li>
               </ul>
 
-              {visa.blockHeight && (
-                <div className="s2-stamp" aria-label={`Stamped to Bitcoin block ${visa.blockHeight}`}>
-                  <span className="s2-stamp-line1">Bitcoin block</span>
-                  <span className="s2-stamp-line2">{visa.blockHeight.toLocaleString('en-US')}</span>
-                </div>
-              )}
+              <div className="s2-proof">
+                {visa.blockHeight ? (
+                  visa.proofUrl ? (
+                    <a
+                      className="s2-stamp"
+                      href={visa.proofUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="s2-stamp-line1">Bitcoin block</span>
+                      <span className="s2-stamp-line2">{visa.blockHeight.toLocaleString('en-US')}</span>
+                      <span className="s2-stamp-line3">verify</span>
+                    </a>
+                  ) : (
+                    <span className="s2-stamp">
+                      <span className="s2-stamp-line1">Bitcoin block</span>
+                      <span className="s2-stamp-line2">{visa.blockHeight.toLocaleString('en-US')}</span>
+                    </span>
+                  )
+                ) : null}
 
-              {visa.hash && (
-                <p className="s2-machine">
-                  sha256 {visa.hash.slice(0, 32)}…
-                  {visa.blockHeight ? ` · block ${visa.blockHeight}` : ''} · ots
-                </p>
-              )}
+                {visa.hash ? (
+                  <p className="s2-machine">
+                    <span className="s2-machine-label">sha256</span>{' '}
+                    <span className="s2-hash">{visa.hash}</span>
+                    {visa.proofUrl ? (
+                      <>
+                        {' · '}
+                        <a href={visa.proofUrl} target="_blank" rel="noopener noreferrer">
+                          ots proof
+                        </a>
+                      </>
+                    ) : (
+                      <span> · ots</span>
+                    )}
+                  </p>
+                ) : null}
+              </div>
             </article>
           ) : null}
         </div>

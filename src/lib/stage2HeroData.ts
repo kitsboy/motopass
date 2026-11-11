@@ -1,31 +1,42 @@
 import type { Program } from '../types/program'
 
 /**
- * Everything the Stage 2 hero shows, read from the real corpus.
+ * Everything the Stage 2 hero shows, read from the real corpus under a rule,
+ * never by picking the prettiest record.
  *
- * No derived claim is invented: counts come from the loaded records, the
- * "checked" date is the newest `last_checked` in the corpus, the source count
- * is the number of distinct official URLs cited, and the featured record is a
- * real program with a real Satohash anchor. A missing field renders as
- * "not on file" rather than a plausible-looking guess.
+ * A record may be featured only when ALL of these hold:
+ *   1. it names a concrete pathway (that is the program, not the country),
+ *   2. that pathway carries a minimum investment above zero,
+ *   3. the country figure `typical_investment_usd` is at least that minimum
+ *      (so the card can never print "$30,000 typical" above "No minimum"),
+ *   4. it carries a processing time, a last-checked date, a Satohash proof
+ *      with a real content hash and block height, and
+ *   5. at least one of its sources is an official government or regulator
+ *      page — a subscription news article is not evidence.
+ *
+ * Among qualifying records the one with the most official sources wins, then
+ * the most sources overall, then alphabetical. The selection is deterministic:
+ * the same corpus always yields the same record.
  */
 export interface HeroFacts {
   programs: number | null
   checked: string | null
-  sources: number | null
+  officialSources: number | null
+  allSources: number | null
 }
 
 export interface VisaRecord {
-  name: string
-  flag: string | null
+  country: string
+  program: string
   kind: string
-  /** Formatted in USD, or null when the record does not carry the figure. */
-  minInvestment: string | null
-  typicalInvestment: string | null
+  minimum: string | null
+  typical: string | null
   timeline: string | null
   checked: string | null
   sourceUrl: string | null
   sourceName: string | null
+  sourceHost: string | null
+  proofUrl: string | null
   blockHeight: number | null
   hash: string | null
 }
@@ -34,6 +45,12 @@ const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',
 ]
+
+const URL_RE = /https?:\/\/[^\s,;)]+/
+
+/** A government or regulator page. Anything else is "other", never "official". */
+const OFFICIAL_HOST_RE =
+  /(\.gov(\.[a-z]{2})?$)|(\.gob(\.[a-z]{2})?$)|(\.gov\.)|(\.gob\.)|(\.gv\.)|(\.govt\.)|(\.admin\.ch$)|(go\.kr$)|(\.gc\.ca$)|(\.europa\.eu$)/i
 
 function isoDate(value: unknown): string | null {
   if (typeof value !== 'string') return null
@@ -48,88 +65,188 @@ function prettyDate(iso: string | null): string | null {
   return `${d} ${MONTHS[m - 1]} ${y}`
 }
 
-function usd(value: unknown): string | null {
-  if (typeof value !== 'number' || !Number.isFinite(value) || value < 0) return null
-  // 0 is a real answer for these programs: there is no minimum investment.
-  if (value === 0) return 'No minimum'
+function usd(value: number | null | undefined): string | null {
+  if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) return null
   return `$${value.toLocaleString('en-US')}`
 }
 
-const SOURCE_URL = /https?:\/\/[^\s,;)]+/
+interface SourceEntry {
+  url: string
+  name: string
+  host: string
+  official: boolean
+}
 
-function sourceOf(program: Program): { url: string; name: string } | null {
-  const list = Array.isArray(program.sources) ? program.sources : []
-  for (const entry of list) {
-    const text = String(entry)
-    const url = text.match(SOURCE_URL)?.[0]
+function sourcesOf(program: Program): SourceEntry[] {
+  const out: SourceEntry[] = []
+  for (const raw of (Array.isArray(program.sources) ? program.sources : [])) {
+    const text = String(raw)
+    const url = text.match(URL_RE)?.[0]
     if (!url) continue
-    const name = text.split(' — ')[0].split(' - ')[0].trim()
-    return { url, name: name || new URL(url).hostname }
+    let host = ''
+    try {
+      host = new URL(url).hostname.toLowerCase()
+    } catch {
+      continue
+    }
+    const name = text.split(' — ')[0].split(' - ')[0].trim() || host
+    out.push({ url, name, host, official: OFFICIAL_HOST_RE.test(host) })
   }
-  return null
+  return out
 }
 
 export function heroFacts(programs: Program[]): HeroFacts {
-  if (!programs.length) return { programs: null, checked: null, sources: null }
+  if (!programs.length) {
+    return { programs: null, checked: null, officialSources: null, allSources: null }
+  }
 
-  const dates = programs.map(p => isoDate(p.last_checked)).filter((d): d is string => !!d).sort()
-  const urls = new Set<string>()
+  const dates = programs
+    .map(p => isoDate(p.last_checked))
+    .filter((d): d is string => !!d)
+    .sort()
+
+  const official = new Set<string>()
+  const all = new Set<string>()
   for (const p of programs) {
-    for (const entry of (Array.isArray(p.sources) ? p.sources : [])) {
-      const url = String(entry).match(SOURCE_URL)?.[0]
-      if (url) urls.add(url.replace(/\/+$/, ''))
+    for (const s of sourcesOf(p)) {
+      all.add(s.url.replace(/\/+$/, ''))
+      if (s.official) official.add(s.url.replace(/\/+$/, ''))
     }
   }
 
   return {
     programs: programs.length,
     checked: prettyDate(dates[dates.length - 1] ?? null),
-    sources: urls.size || null,
+    officialSources: official.size || null,
+    allSources: all.size || null,
   }
 }
 
-/** One real record, chosen for having the most verifiable fields present. */
-export function featuredRecord(programs: Program[]): VisaRecord | null {
-  if (!programs.length) return null
+interface Candidate {
+  program: Program
+  pathwayLabel: string
+  minimum: number
+  typical: number
+  officialCount: number
+  totalCount: number
+  proofUrl: string | null
+  blockHeight: number
+  hash: string
+}
 
-  const score = (p: Program) => {
-    let s = 0
-    if (p.finance?.typical_investment_usd) s += 2
-    if (p.finance?.processing_time_months) s += 1
-    if (p.last_checked) s += 1
-    if (p.last_verified_block) s += 2
-    if (Array.isArray(p.satohash_proofs) && p.satohash_proofs.length) s += 2
-    if (sourceOf(p)) s += 1
-    if (p.flag) s += 1
-    return s
-  }
+function candidate(program: Program): Candidate | null {
+  const fund = program.finance ?? {}
+  const typical = typeof fund.typical_investment_usd === 'number' ? fund.typical_investment_usd : 0
+  if (typical <= 0) return null
+  if (!fund.processing_time_months) return null
+  if (!isoDate(program.last_checked)) return null
 
-  const pick = [...programs].sort((a, b) => score(b) - score(a))[0]
-  const source = sourceOf(pick)
-  const proof = Array.isArray(pick.satohash_proofs) ? pick.satohash_proofs[0] : undefined
+  const pathways = (program.pathways ?? []).filter(
+    w => typeof w.min_investment_usd === 'number' && w.min_investment_usd > 0 && w.label,
+  )
+  if (!pathways.length) return null
+
+  // The named pathway must not exceed the country figure, or the card would
+  // show a minimum above its own "typical" number.
+  const pathway = pathways
+    .filter(w => (w.min_investment_usd as number) <= typical)
+    .sort((a, b) => (b.min_investment_usd as number) - (a.min_investment_usd as number))[0]
+  if (!pathway) return null
+
+  const proof = (program.satohash_proofs ?? [])[0]
   const hash = typeof proof?.content_hash === 'string' ? proof.content_hash : null
-  const block = typeof pick.last_verified_block === 'number'
-    ? pick.last_verified_block
-    : typeof proof?.block_height === 'number'
-      ? proof.block_height
-      : null
+  const blockHeight = typeof proof?.block_height === 'number' ? proof.block_height : null
+  if (!hash || !blockHeight) return null
 
-  const category = String(pick.category ?? '')
-  const kind = category === 'cbi' ? 'Citizenship' : category === 'rbi' ? 'Residency' : 'Program'
+  const sources = sourcesOf(program)
+  const officialCount = sources.filter(s => s.official).length
+  if (!officialCount) return null
 
   return {
-    name: pick.name,
-    flag: pick.flag ?? null,
-    kind,
-    minInvestment: usd(pick.finance?.min_investment_usd),
-    typicalInvestment: usd(pick.finance?.typical_investment_usd),
-    timeline: pick.finance?.processing_time_months
-      ? `${pick.finance.processing_time_months} months`
-      : null,
-    checked: prettyDate(isoDate(pick.last_checked)),
-    sourceUrl: source?.url ?? null,
-    sourceName: source?.name ?? null,
-    blockHeight: block,
+    program,
+    pathwayLabel: String(pathway.label),
+    minimum: pathway.min_investment_usd as number,
+    typical,
+    officialCount,
+    totalCount: sources.length,
+    proofUrl: typeof proof?.proof_url === 'string' ? proof.proof_url : null,
+    blockHeight,
     hash,
   }
+}
+
+/** The record that qualifies under the rule, or null when none does. */
+export function featuredRecord(programs: Program[]): VisaRecord | null {
+  const candidates = programs
+    .map(candidate)
+    .filter((c): c is Candidate => !!c)
+    .sort(
+      (a, b) =>
+        b.officialCount - a.officialCount ||
+        b.totalCount - a.totalCount ||
+        a.program.name.localeCompare(b.program.name),
+    )
+
+  const pick = candidates[0]
+  if (!pick) return null
+
+  const official = sourcesOf(pick.program).find(s => s.official)
+  const category = String(pick.program.category ?? '')
+
+  return {
+    country: pick.program.name,
+    program: pick.pathwayLabel,
+    kind: category === 'cbi' ? 'Citizenship' : category === 'rbi' ? 'Residency' : 'Program',
+    minimum: usd(pick.minimum),
+    typical: usd(pick.typical),
+    timeline: pick.program.finance?.processing_time_months
+      ? `${pick.program.finance.processing_time_months} months`
+      : null,
+    checked: prettyDate(isoDate(pick.program.last_checked)),
+    sourceUrl: official?.url ?? null,
+    sourceName: official?.name ?? null,
+    sourceHost: official?.host ?? null,
+    proofUrl: pick.proofUrl,
+    blockHeight: pick.blockHeight,
+    hash: pick.hash,
+  }
+}
+
+/** Diagnostics for the design brief: who qualifies, and why a record does not. */
+export function recordReport(programs: Program[]) {
+  return programs.map(p => {
+    const c = candidate(p)
+    const fund = p.finance ?? {}
+    const paths = (p.pathways ?? []).filter(w => (w.min_investment_usd ?? 0) > 0)
+    const sources = sourcesOf(p)
+    const official = sources.filter(s => s.official)
+    const proof = (p.satohash_proofs ?? [])[0]
+    return {
+      name: p.name,
+      qualifies: !!c,
+      officialSources: official.length,
+      allSources: sources.length,
+      typical: fund.typical_investment_usd ?? null,
+      lowestPathway: paths.length
+        ? Math.min(...paths.map(w => w.min_investment_usd as number))
+        : null,
+      blocked: !c
+        ? [
+            !fund.typical_investment_usd && 'no typical investment',
+            !fund.processing_time_months && 'no processing time',
+            !isoDate(p.last_checked) && 'no last-checked date',
+            !proof?.content_hash && 'no proof hash',
+            !proof?.block_height && 'no block height',
+            !paths.length && 'no paid pathway',
+            !official.length && 'no official source',
+            !!paths.length &&
+              !!fund.typical_investment_usd &&
+              !paths.some(
+                w => (w.min_investment_usd as number) <= (fund.typical_investment_usd as number),
+              ) &&
+              'minimum exceeds typical',
+          ].filter(Boolean)
+        : [],
+    }
+  })
 }

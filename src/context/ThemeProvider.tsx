@@ -21,7 +21,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (typeof window === 'undefined') return 'dark'
     const stored = localStorage.getItem(STORAGE_KEY) as Theme | null
     if (stored === 'light' || stored === 'dark') return stored
-    return 'dark'
+    // Stage 2: paper is the default. A visitor who has never chosen keeps the
+    // light page; the toggle still writes an explicit choice.
+    return 'light'
   })
 
   useEffect(() => {

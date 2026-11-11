@@ -1,8 +1,10 @@
 /* ==========================================================================
    STAGE 2 — "travel document, restrained"
    A passport page: paper, ink, hairline rules, one stamp. No glass, no glow,
-   no gradients, no night-sky photo. Scoped to .s2-* classes so the rest of
-   the site can be converted page by page behind an approved direction.
+   no gradients, no night-sky photo.
+
+   The palette lives on :root / .dark because the header and the hero share it;
+   the .s2 scope decides which layout rules apply.
    ========================================================================== */
 
 /* Display + text faces, self-hosted, latin subset, swap. 3 new files:
@@ -30,8 +32,7 @@
   src: url('/fonts/ibm-plex-sans-600.woff2') format('woff2');
 }
 
-.s2 {
-  /* Paper + ink, light (default) */
+:root {
   --s2-paper: #f4efe4;
   --s2-paper-deep: #ece5d6;
   --s2-card: #fbf8f2;
@@ -40,13 +41,13 @@
   --s2-rule: rgba(18, 20, 26, 0.12);
   --s2-rule-strong: rgba(18, 20, 26, 0.24);
 
-  /* One stamp colour, used for the primary button and stamps only */
+  /* One stamp colour: primary button and stamps only */
   --s2-stamp: #c8402b;
   --s2-on-stamp: #fbf8f2;
-  /* Status only: verified/fresh, aging */
+  /* Status only */
   --s2-fresh: #1f6b3a;
   --s2-aging: #8a5a12;
-  /* Bitcoin orange is reserved for Bitcoin/Lightning glyphs */
+  /* Bitcoin orange — glyphs only, never text or chrome */
   --s2-btc: #f7931a;
 
   --s2-font-display: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
@@ -54,8 +55,129 @@
   --s2-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
   --s2-h1: clamp(44px, 6vw, 72px);
-  --s2-h2: clamp(30px, 3.4vw, 44px);
+  /* Keep anchors from landing under the fixed mobile bar */
+  scroll-padding-bottom: calc(var(--mp-mobile-tab-bar-height, 3.75rem) + 1rem);
+}
 
+/* Narrow phones: a shorter headline breaks into fewer, more even lines, so
+   the last line is never a single orphan word. */
+@media (max-width: 480px) {
+  :root {
+    --s2-h1: 34px;
+  }
+}
+
+.dark {
+  --s2-paper: #101a2e;
+  --s2-paper-deep: #0c1424;
+  --s2-card: #16223a;
+  --s2-ink: #f4efe4;
+  --s2-ink-muted: rgba(244, 239, 228, 0.74);
+  --s2-rule: rgba(244, 239, 228, 0.18);
+  --s2-rule-strong: rgba(244, 239, 228, 0.32);
+  /* #E8725C keeps the stamp at 5.28:1 on the dark card, 5.78:1 on navy */
+  --s2-stamp: #e8725c;
+  --s2-on-stamp: #14100c;
+  --s2-fresh: #6fcaa0;
+  --s2-aging: #e0b465;
+}
+
+/* ==========================================================================
+   GLOBAL CHROME — one solid bar, both themes
+   The old header stacked a translucent gradient band and a dark second bar,
+   with an orange glow CTA. All of it is replaced by paper (or navy) + hairline.
+   ========================================================================== */
+.club-header .club-header-bg,
+.club-header .club-header-bg::before,
+.club-header .club-header-bg::after {
+  display: none !important;
+}
+
+.club-header-surface,
+.club-header {
+  background: var(--s2-paper) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid var(--s2-rule) !important;
+}
+
+.elite-desktop-nav,
+.elite-desktop-nav__inner {
+  background: transparent !important;
+  background-image: none !important;
+  border-top: 1px solid var(--s2-rule);
+  box-shadow: none !important;
+}
+
+/* Wordmark in ink, not orange; no orange hover */
+.club-header a .font-display,
+.club-header a .font-display:hover {
+  color: var(--s2-ink) !important;
+}
+
+.elite-desktop-nav a,
+.elite-nav-link--account {
+  color: var(--s2-ink-muted);
+  font-family: var(--s2-font-text);
+  letter-spacing: 0;
+}
+.elite-desktop-nav a:hover {
+  color: var(--s2-ink);
+}
+
+/* Apply — outlined, ink text, no glow, no gradient, no lift */
+.elite-nav-cta,
+.elite-nav-cta:hover,
+.elite-nav-cta--active {
+  background: transparent !important;
+  background-image: none !important;
+  border: 1px solid var(--s2-rule-strong) !important;
+  color: var(--s2-ink) !important;
+  box-shadow: none !important;
+  transform: none !important;
+  border-radius: 3px !important;
+  font-family: var(--s2-font-text) !important;
+  font-weight: 600;
+}
+.elite-nav-cta:hover {
+  border-color: var(--s2-ink) !important;
+}
+
+/* Mobile: the bottom bar is the only navigation. Hamburger and settings pill
+   are gone below lg; Settings lives inside "More". */
+@media (max-width: 1023px) {
+  .club-header .elite-hamburger,
+  .club-header [aria-label='Site tools'] {
+    display: none !important;
+  }
+  .club-header-top-inner {
+    justify-content: flex-start;
+  }
+}
+
+/* Bottom tab bar — paper surface, hairline above, ink labels */
+.mobile-nav-glass {
+  background: var(--s2-paper) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-top: 1px solid var(--s2-rule) !important;
+  box-shadow: none !important;
+}
+.mobile-nav-glass a {
+  color: var(--s2-ink-muted) !important;
+  font-family: var(--s2-font-text) !important;
+}
+.mobile-nav-glass a[aria-current='page'] {
+  color: var(--s2-ink) !important;
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.s2 {
   background: var(--s2-paper);
   color: var(--s2-ink);
   font-family: var(--s2-font-text);
@@ -64,27 +186,12 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.dark .s2 {
-  --s2-paper: #101a2e;
-  --s2-paper-deep: #0c1424;
-  --s2-card: #16223a;
-  --s2-ink: #f4efe4;
-  --s2-ink-muted: rgba(244, 239, 228, 0.74);
-  --s2-rule: rgba(244, 239, 228, 0.18);
-  --s2-rule-strong: rgba(244, 239, 228, 0.32);
-  /* #E8725C keeps the stamp at 5.28:1 on the dark card (5.78:1 on navy) */
-  --s2-stamp: #e8725c;
-  --s2-on-stamp: #14100c;
-  --s2-fresh: #6fcaa0;
-  --s2-aging: #e0b465;
-}
-
-/* ── Hero ──────────────────────────────────────────────────────────────── */
 .s2-hero {
   border-top: 1px solid var(--s2-rule);
   border-bottom: 1px solid var(--s2-rule);
-  /* The mobile tab bar is fixed; content must never sit under it. */
-  padding-bottom: calc(var(--mp-mobile-tab-bar-height, 3.75rem) + env(safe-area-inset-bottom, 0px));
+  /* The mobile tab bar is fixed; nothing may sit under it. */
+  /* Clear the fixed tab bar with room to spare, not exactly to its edge. */
+  padding-bottom: calc(var(--mp-mobile-tab-bar-height, 3.75rem) + 1.75rem + env(safe-area-inset-bottom, 0px));
 }
 @media (min-width: 900px) {
   .s2-hero {
@@ -95,17 +202,16 @@
 .s2-hero-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
-  padding: 56px 20px 64px;
+  gap: 34px;
+  padding: 40px 20px 44px;
   max-width: 1240px;
   margin: 0 auto;
 }
-
 @media (min-width: 900px) {
   .s2-hero-grid {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     gap: 56px;
-    padding: 96px 32px 104px;
+    padding: 76px 32px 84px;
     align-items: start;
   }
 }
@@ -116,6 +222,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--s2-ink-muted);
+  margin: 0;
 }
 
 .s2-h1 {
@@ -125,13 +232,15 @@
   line-height: 1.02;
   letter-spacing: 0;
   color: var(--s2-ink);
-  margin: 18px 0 0;
+  margin: 14px 0 0;
   text-wrap: balance;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 
 .s2-lede {
-  margin: 22px 0 0;
-  max-width: 46ch;
+  margin: 18px 0 0;
+  max-width: 44ch;
   font-size: 17px;
   line-height: 1.6;
   color: var(--s2-ink-muted);
@@ -142,7 +251,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 20px;
-  margin-top: 32px;
+  margin-top: 26px;
 }
 
 .s2-btn {
@@ -150,7 +259,7 @@
   align-items: center;
   gap: 8px;
   padding: 13px 22px;
-  min-height: 46px;
+  min-height: 48px;
   border-radius: 3px;
   background: var(--s2-stamp);
   color: var(--s2-on-stamp);
@@ -179,94 +288,141 @@
   text-decoration-color: var(--s2-ink);
 }
 
+/* The facts line is the proof, so it reads as a line of data, not a footnote:
+   14px, ink, directly under the buttons, and never below the fold. */
 .s2-facts {
-  margin: 40px 0 0;
-  padding-top: 16px;
+  margin: 20px 0 0;
+  padding-top: 13px;
   border-top: 1px solid var(--s2-rule);
   font-family: var(--s2-font-mono);
-  font-size: 12px;
-  letter-spacing: 0.02em;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--s2-ink);
+}
+.s2-facts strong {
+  font-weight: 600;
+}
+.s2-facts-all {
   color: var(--s2-ink-muted);
 }
 
-/* ── Visa page (one real record) ────────────────────────────────────────── */
+/* ==========================================================================
+   VISA CARD — one real record
+   ========================================================================== */
 .s2-visa {
   position: relative;
+  overflow: hidden;
   background: var(--s2-card);
   border: 1px solid var(--s2-rule-strong);
   border-radius: 2px;
-  padding: 22px 22px 20px;
+  padding: 20px 20px 18px;
   box-shadow: none;
 }
-@media (min-width: 900px) {
-  .s2-visa {
-    margin-top: 6px;
-  }
+
+/* Faint guilloché — card only, ~5% ink */
+.s2-guilloche {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cg fill='none' stroke='%2312141a' stroke-width='0.7'%3E%3Ccircle cx='110' cy='110' r='34'/%3E%3Ccircle cx='110' cy='110' r='52'/%3E%3Ccircle cx='110' cy='110' r='70'/%3E%3Ccircle cx='110' cy='110' r='88'/%3E%3Ccircle cx='110' cy='110' r='106'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+.dark .s2-guilloche {
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cg fill='none' stroke='%23f4efe4' stroke-width='0.7'%3E%3Ccircle cx='110' cy='110' r='34'/%3E%3Ccircle cx='110' cy='110' r='52'/%3E%3Ccircle cx='110' cy='110' r='70'/%3E%3Ccircle cx='110' cy='110' r='88'/%3E%3Ccircle cx='110' cy='110' r='106'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.s2-visa > *:not(.s2-guilloche) {
+  position: relative;
 }
 
 .s2-visa-head {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--s2-rule);
 }
 
-.s2-visa-flag {
-  font-size: 22px;
-  line-height: 1;
+.s2-visa-who {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.s2-visa-who img {
+  border-radius: 1px;
+  flex-shrink: 0;
 }
 
 .s2-visa-name {
   font-family: var(--s2-font-display);
-  font-size: 30px;
+  font-size: 27px;
   line-height: 1.1;
   color: var(--s2-ink);
+  margin: 0;
+}
+
+/* The program, not the country: a country is not a program. */
+.s2-visa-program {
+  margin: 3px 0 0;
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--s2-ink-muted);
+  max-width: 24ch;
 }
 
 .s2-visa-kind {
   font-family: var(--s2-font-mono);
-  font-size: 10.5px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--s2-ink-muted);
   text-align: right;
+  flex-shrink: 0;
+  padding-top: 4px;
 }
 
 .s2-visa-money {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin: 18px 0 4px;
+  flex-direction: column;
+  gap: 2px;
+  margin: 14px 0 2px;
 }
 .s2-visa-money-amt {
   font-family: var(--s2-font-display);
-  font-size: 40px;
+  font-size: 38px;
   line-height: 1;
   color: var(--s2-ink);
 }
 .s2-visa-money-note {
   font-family: var(--s2-font-mono);
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--s2-ink-muted);
 }
 
+/* Fixed grid: label column fixed, values align on one edge */
 .s2-visa-rows {
-  margin: 16px 0 0;
+  margin: 12px 0 0;
   padding: 0;
   list-style: none;
   border-top: 1px solid var(--s2-rule);
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
 }
 .s2-visa-rows li {
-  display: flex;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 9px 0;
-  border-bottom: 1px solid var(--s2-rule);
-  font-size: 13.5px;
+  display: contents;
 }
-.s2-visa-rows dt,
+.s2-visa-rows .k,
+.s2-visa-rows .v {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--s2-rule);
+  font-size: 13px;
+  line-height: 1.35;
+}
 .s2-visa-rows .k {
   color: var(--s2-ink-muted);
 }
@@ -275,23 +431,55 @@
   color: var(--s2-ink);
   text-align: right;
 }
+.s2-visa-rows .v a {
+  color: var(--s2-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--s2-rule-strong);
+  /* identical behaviour in both themes: wrap, two lines maximum */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+.s2-visa-rows .v a:hover {
+  text-decoration-color: var(--s2-ink);
+}
 
+/* Stamp overlaps the rule it sits on, the way a real one does */
+.s2-proof {
+  position: relative;
+  margin-top: 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--s2-rule);
+}
 .s2-stamp {
-  margin-top: 16px;
+  position: absolute;
+  top: -19px;
+  left: 2px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 8px 14px;
+  gap: 1px;
+  padding: 5px 12px 6px;
   border: 1.5px solid var(--s2-stamp);
   border-radius: 3px;
   color: var(--s2-stamp);
-  transform: rotate(-6deg);
-  opacity: 0.92;
+  background: var(--s2-card);
+  transform: rotate(-5deg);
+  text-decoration: none;
+  z-index: 1;
 }
-.s2-stamp-line1 {
+.s2-stamp:hover {
+  filter: brightness(1.05);
+}
+.s2-stamp-line1,
+.s2-stamp-line3 {
   font-family: var(--s2-font-mono);
-  font-size: 9.5px;
+  font-size: 8.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   text-align: center;
@@ -300,28 +488,41 @@
   font-family: var(--s2-font-mono);
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   font-variant-numeric: tabular-nums;
   text-align: center;
 }
+.s2-stamp-line3 {
+  opacity: 0.85;
+}
 
+/* Machine-readable line: real hash, never split mid-token ("o / ts"), and its
+   link is the same verification page as the stamp. */
 .s2-machine {
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid var(--s2-rule);
+  margin: 14px 0 0;
   font-family: var(--s2-font-mono);
   font-size: 10.5px;
-  line-height: 1.5;
+  line-height: 1.55;
   letter-spacing: 0.01em;
   color: var(--s2-ink-muted);
-  word-break: break-all;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
-
-.s2-source {
-  margin-top: 6px;
-  font-size: 12px;
-  color: var(--s2-ink-muted);
+.s2-machine-label {
+  white-space: nowrap;
 }
-
-/* The featured card's own block sits on a tinted field only in light mode so
-   the paper edge reads; dark keeps the card surface. */
+.s2-hash {
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+.s2-machine a {
+  color: var(--s2-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}

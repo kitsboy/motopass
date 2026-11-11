@@ -98,7 +98,7 @@ export function Layout() {
 
       <main
         id="main-content"
-        className="layout-main relative z-[1] w-full min-w-0 max-w-full overflow-x-clip"
+        className="layout-main relative z-[1] w-full min-w-0 max-w-full overflow-x-clip pb-[calc(var(--mp-mobile-tab-bar-height,3.75rem)+1.5rem)] lg:pb-0"
       >
         <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-3 w-full min-w-0">
           <Breadcrumbs />
