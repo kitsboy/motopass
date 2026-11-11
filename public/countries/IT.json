@@ -7,15 +7,15 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T14:12:20.324Z",
+  "generated_at": "2026-11-11T13:24:56.754Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 2,
+    "days_stale": 3,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 3,
+      "days_stale": 4,
       "last_checked": "2026-11-08"
     }
   },
@@ -147,49 +147,42 @@
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-11-10T13:57:56.770Z",
+    "changed": false,
+    "last_probe_at": "2026-11-11T13:10:00.149Z",
     "urls": [
       {
         "url": "https://www.interno.gov.it",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://investorvisa.mise.gov.it",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://www.agenziaentrate.gov.it",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://www.esteri.it/",
-        "status": "changed",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "status": "ok",
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://www.agenziaentrate.gov.it/",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://investorvisa.mise.gov.it/index.php/en",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-11-07",
-      "field": "watch.https://www.esteri.it/",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "bc21329b943bd001"
-    },
     {
       "date": "2026-11-08",
       "field": "watch.https://www.esteri.it/",
@@ -237,6 +230,13 @@
       "field": "scorecard.banking",
       "from": "null",
       "to": "9 (Findex 86%, 2024)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-11",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
       "hash": null
     }
   ],
