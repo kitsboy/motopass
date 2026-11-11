@@ -110,6 +110,11 @@
 .sovereign-glow {
   display: none !important;
 }
+/* The body carried a second, slightly warmer grey (#F5F2EC) than paper
+   (#F4EFE4) and a #12121C black against navy. Anywhere it showed through — the
+   band under the header — read as a tinted strip. One colour everywhere. */
+html,
+body,
 .page-container,
 .s2-page {
   background: var(--s2-paper) !important;
