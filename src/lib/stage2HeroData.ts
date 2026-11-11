@@ -200,7 +200,11 @@ export function featuredRecord(programs: Program[]): VisaRecord | null {
     stamped: prettyDate(isoDate(proof?.stamped_at)),
     checked: prettyDate(isoDate(pick.program.last_checked)),
     sourceUrl: official?.url ?? null,
-    sourceName: official?.name ?? null,
+    // A bare "Official" tells the reader nothing; show the host instead.
+    sourceName:
+      official && !/^(official|source|sources)$/i.test(official.name)
+        ? official.name
+        : official?.host ?? null,
     sourceHost: official?.host ?? null,
     proofUrl: pick.proofUrl,
     blockHeight: pick.blockHeight,
