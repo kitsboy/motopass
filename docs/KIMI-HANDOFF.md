@@ -1,5 +1,5 @@
 <!-- live-deploy:start -->
-**Last live deploy:** BUILD `2026.11.10-6d4bb1b` · commit `6d4bb1b` · HTTP 200 · verified 2026-11-10T23:26:46.612Z
+**Last live deploy:** BUILD `2026.11.11-a5226ba` · commit `a5226ba` · HTTP 200 · verified 2026-11-11T00:18:21.205Z
 <!-- live-deploy:end -->
 
 ## Session — 2026-11-10 · BIP-322 full/PoF, receipt handoff, batch, anchoring and evidence binding (Buffy)
