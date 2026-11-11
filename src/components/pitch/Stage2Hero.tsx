@@ -166,6 +166,10 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
                   investor track, so whether this route is open is unconfirmed.
                 </p>
 
+                <p className="s2-disclaimer">
+                  Informational only. Not legal, immigration or tax advice.
+                </p>
+
                 {visa.hash ? (
                   <div className="s2-machine-block">
                     <p className="s2-machine">
