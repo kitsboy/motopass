@@ -1,6 +1,6 @@
 # MotoPass Updates Map
 
-**BUILD:** see `LATEST-UPDATE.md` · **Last updated:** 2026-11-09
+**BUILD:** see `LATEST-UPDATE.md` · **Last updated:** 2026-11-10
 
 Living record of what shipped, what's in progress, and where to find everything. Pair with [WORK-TREE.md](./WORK-TREE.md) for file locations. The glance table is the live catalog. The build history below it is the old log and still says 50 where that was true at the time.
 
@@ -17,10 +17,11 @@ Living record of what shipped, what's in progress, and where to find everything.
 | **Research pipeline** | ✅ Daily job | Probe, stamp (cap 21; a 429 retries that program, then continues), intel write, trust envelopes. `npm run probe:browser` installs Chromium on a host that has the module but not the binary. |
 | **Launch Engine** | ✅ Gates | Applications stay closed. |
 | **UI** | ✅ Sovereign Night | Programs can lead with one passport, copy one country's change note, and open a day-bar receipt. The phone route total pins to the top without covering the routes. |
+| **Verification tools** | ✅ 14 tools | `/tools` has 12 local and 2 network readers; `/tools/receipt` verifies shared receipts, QR handoff, batch bundles, field diffs and digest anchoring. |
 | **BTC Map** | ✅ 21 | Density and snapshots match the curated catalog. |
-| **Unit tests** | ✅ Vitest | `npm test` |
+| **Unit tests** | ✅ 631 passed / 2 skipped | `npm test`; Playwright 33 passed; `tools:check` 14/14. |
 | **Programs data** | ✅ 21 | `research/countries.json` |
-| **Handoff** | ✅ Current | `docs/KIMI-HANDOFF.md` (newest section on top) |
+| **Handoff** | ✅ Current | `docs/KIMI-HANDOFF.md` (newest section on top) and `docs/SESSION-SUMMARY-2026-11-10.md` |
 
 ---
 
@@ -28,6 +29,7 @@ Living record of what shipped, what's in progress, and where to find everything.
 
 | BUILD | Date | Commit | Summary |
 |-------|------|--------|---------|
+| **2026.11.10-a5226ba** | 2026-11-10 | `a5226ba` | BIP-322 full/PoF, receipt QR handoff, batch/diff/anchor, evidence binding, sticky summary |
 | **2026.09.17-d6eb831** | 2026.09.17 | `a494e07` | feat(verify): Bitcoin proof panel + proven-then vs valid-now status badge |
 | **2026.08.22** | 2026-08-22 | `d9a86f6` | Claude research-pipeline prompt — source-trust engine blueprint (478-line spec) |
 | **2026.08.22** | 2026-08-22 | `806977f` | Batch 5 (Greece/Vanuatu/Turkey/Mauritius) + CIES/LTR thresholds + Satohash re-stamp 10/24 |
@@ -82,6 +84,9 @@ Living record of what shipped, what's in progress, and where to find everything.
 - [x] BTC Map merchant layer per jurisdiction (v1 + v2)
 - [x] Round-2 polish batches 17–20 (500 items)
 - [x] Playwright e2e in CI, sitemap, hreflang, bundle budget
+- [x] BIP-322 simple plus bounded full/proof-of-funds verification (`a5226ba`)
+- [x] Receipt QR handoff, local batch checks, field diffs and digest-only anchoring (`a5226ba`)
+- [x] Payment-evidence recipient/amount/purpose binding and mobile sticky summary (`a5226ba`)
 
 ### P1 — Next
 - [ ] Deepen remaining 26 countries to Uruguay flagship template depth (**24/50 done** — 5 batches Aug 21–22; next batch: Seychelles, Brazil, Argentina, Chile, Colombia, St. Lucia)

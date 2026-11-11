@@ -1,5 +1,7 @@
 # motopass — Last Updated 2026-11-10 by Buffy — BIP-322 full proofs and receipts you can hand off
 
+**Commit:** `a5226ba` · pushed to `origin/main` · clean handoff in `docs/KIMI-HANDOFF.md`
+
 ## This update — the eight proof and receipt follow-ups
 
 **BIP-322 full and proof-of-funds are now verified, within a stated boundary.** `bip322Full.ts` parses transactions and finalized PSBTs, rebuilds legacy/BIP-143/BIP-341 sighashes, and checks P2PKH, P2SH-P2WPKH, P2WPKH, standard P2SH/P2WSH multisig and P2TR key-path spends. Proof-of-funds requires the zero-value `to_spend` UTXO plus the additional UTXO. Arbitrary scripts, taproot script paths, annexes and timelocks stay **inconclusive** instead of passing.
@@ -9,6 +11,8 @@
 **Anchoring and evidence binding stay narrow.** The Satohash panel sends only the 64-character receipt digest to OpenTimestamps and keeps pending, confirmed and error states explicit; it does not upload the receipt or claim payment. Payment evidence can require expected recipient, amount and purpose strings to appear verbatim in the signed message. It checks what you supply and does not infer missing facts. On phones, a compact sticky verification summary keeps the current trail visible below `lg`.
 
 Checks: Vitest **631 passed / 2 skipped**; Playwright **33 passed**, including QR handoff, a batch check and a tampered-field diff; focused proof/receipt/evidence/intake suites **27 passed**; fixture policy **14/14**; ESLint **0 errors / 9 pre-existing warnings**; production build passed; bundle **2681.3 KB / 2700 KB** (gate remeasured from 2670 KB in `scripts/check-bundle-size.mjs`; index 482.0 KB against the 460 KB advisory). `tsc --noEmit` still reports only the two pre-existing `IntelWatchStrip.test.ts` Node-type errors. No live Satohash request or camera decode was made. No research fact changed.
+
+**Handoff:** the detailed session summary is at the top of `docs/KIMI-HANDOFF.md`; the clean recovery copy is `docs/SESSION-SUMMARY-2026-11-10.md`. The automated live-deploy block still showed `6d4bb1b`, so verify the next deployment serves `a5226ba`.
 
 ## Previous update — BIP-322, shareable receipts and one intake box
 

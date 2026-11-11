@@ -1,8 +1,10 @@
 # MotoPass Work Tree
 
-**BUILD:** 2026.07.14-28 · **Last updated:** 2026-11-09
+**BUILD:** 2026.11.10-a5226ba · **Last updated:** 2026-11-10
 
 Programs can lead with one passport, copy one country's change note without sending it, and open a receipt under a day bar. `src/lib/probeNotHumanRead.ts` labels `cbiu.gov.dm` and `cnmv.es` as probe-only. `scripts/stamp-changed.mjs` retries a 429 and then continues. Intel fresh is ≤30 days.
+
+Latest: `/tools` carries **14 readers** (12 local, 2 network) and `/tools/receipt` verifies shared receipts, QR handoff, batch bundles, field diffs and digest-only Satohash anchoring. BIP-322 full/proof-of-funds is bounded to named script types; unsupported paths are labelled inconclusive.
 
 **Live catalog:** **21 programs** in `research/countries.json`. Counts of 50 in older notes are pre-curation history (BUILD-33, 2026-07-14: 50 programs, 50 OTS files, 50 BTC Map snapshots). **MVP cadence:** every location updated at least once a week (source probe or intel sweep). **Later cadence:** every location every day. Daily is the next target, not a new scheduler.
 
@@ -96,15 +98,27 @@ src/
 ├── components/
 │   ├── btcmap/          # BtcMapLeaflet, PlacesList, ReportVenue, density badge
 │   ├── programs/        # ProgramCard, ProgramModal, ProgramsTable
+│   ├── tools/           # Tool cards, receipt QR/handoff/batch/diff/anchor panels
 │   └── ui/              # PageHeader, ProofBadge, etc.
 ├── context/             # User, Theme, Programs, BlockHeight, BtcMapAuth, BtcMapDensity
-├── pages/               # Pitch, Programs, Portfolio, BtcMap, Agents, Blog, etc.
+├── pages/               # Pitch, Programs, Portfolio, BtcMap, Agents, Blog, Tools, Receipt, etc.
 ├── hooks/               # useBtcMapPlaces, usePrograms, usePortfolio
-├── lib/                 # btcmap, btcmapAuth, btcmapCache, satohash, programAdapter
+├── lib/                 # btcmap, btcmapAuth, satohash, bip322*, receipt*, paymentEvidence
 ├── i18n/                # Translations + pageKeys.ts
 ├── data/                # programCoords, blog, taxonomy, agents
 └── types/               # Program, User types
 ```
+
+### Verification tools
+
+| Path | Purpose |
+|------|---------|
+| `src/pages/ToolsPage.tsx` | Guided 14-reader tools page; 12 local and 2 network cards. |
+| `src/pages/ReceiptPage.tsx` | Shared-receipt verifier; recomputes the digest, QR handoff, diff, anchor and batch panels. |
+| `src/lib/bip322.ts`, `bip322Tx.ts`, `bip322Full.ts` | BIP-322 simple and bounded full/proof-of-funds verification, transaction/sighash helpers and PSBT parsing. |
+| `src/lib/verificationReceipt.ts`, `receiptDiff.ts`, `receiptBatch.ts`, `receiptAnchor.ts` | Canonical receipt digest/share link, field diff, local batch parser and Satohash digest anchoring. |
+| `src/lib/paymentEvidence.ts` | Cross-checks supplied invoice, preimage, zap, signed-message and expected-field bindings without claiming payment. |
+| `e2e/tools.spec.ts` | Mobile tools, BIP-137/BIP-322, receipt QR, batch and tampered-diff browser coverage. |
 
 ---
 

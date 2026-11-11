@@ -1,6 +1,6 @@
 # MotoPass Documentation Hub
 
-**BUILD:** 2026.09.17-d6eb831 · **Last updated:** 2026.09.17
+**BUILD:** 2026.11.10-a5226ba · **Last updated:** 2026.11.10
 
 Official documentation for MotoPass. All long-form docs live here unless required at repo root (see [WORK-TREE.md](./WORK-TREE.md)).
 
@@ -29,8 +29,8 @@ Official documentation for MotoPass. All long-form docs live here unless require
 
 1. **[SOURCE-OF-TRUTH.md](./SOURCE-OF-TRUTH.md)** — Canonical project record
 2. **[UPDATES-MAP.md](./UPDATES-MAP.md)** — Build history & work queue
-3. **[KIMI-HANDOFF.md](./KIMI-HANDOFF.md)** — Latest M3 session (bottom section)
-4. **[SESSION-SUMMARY-2026-07-15-BUILD66.md](./SESSION-SUMMARY-2026-07-15-BUILD66.md)** — Compare fix session (goodbye)
+3. **[KIMI-HANDOFF.md](./KIMI-HANDOFF.md)** — Latest M3 session and clean goodbye summary (newest on top)
+4. **[SESSION-SUMMARY-2026-11-10.md](./SESSION-SUMMARY-2026-11-10.md)** — BIP-322 full/PoF and receipt handoff session (goodbye)
 5. **[EXECUTIVE-SUMMARY.md](./EXECUTIVE-SUMMARY.md)** — Strategic one-pager
 6. **[PRODUCT-SCOPE-ROADMAP.md](./PRODUCT-SCOPE-ROADMAP.md)** — Phased ambition
 7. **[DESIGN-CONTEXT.md](./DESIGN-CONTEXT.md)** — Current UI direction
@@ -74,6 +74,7 @@ Official documentation for MotoPass. All long-form docs live here unless require
 - [CHANGELOG.md](./CHANGELOG.md)
 - [CONTRIBUTING.md](./CONTRIBUTING.md)
 - [IMPROVEMENTS-QUEUE.md](./IMPROVEMENTS-QUEUE.md) — 200-item polish + BTC Map batches
+- [SESSION-SUMMARY-2026-11-10.md](./SESSION-SUMMARY-2026-11-10.md) — latest goodbye summary
 - [DIRECTORY-MAP.md](./DIRECTORY-MAP.md) — Legacy index
 - [archive/](./archive/) — Superseded docs
 

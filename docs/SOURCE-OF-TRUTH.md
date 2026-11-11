@@ -1,9 +1,9 @@
 # SOURCE-OF-TRUTH — MotoPass
 
-**Project:** MotoPass  
-**Date:** 2026.09.17  
-**BUILD:** 2026.09.17-d6eb831  
-**Commit:** `d9a86f6` (research-pipeline blueprint)
+**Project:** MotoPass
+**Date:** 2026.11.10
+**BUILD:** `2026.11.10-6d4bb1b` (last verified live)
+**Commit:** `a5226ba` (latest code, pushed to `main`)
 
 ## Project overview
 
@@ -29,7 +29,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 
 | Asset | Path | Status |
 |-------|------|--------|
-| React app | `src/` + `npm run dev` | BUILD-d6eb831 — 15 routes, dark mode, BTC Map, ₿-first pricing |
+| React app | `src/` + `npm run dev` | BUILD-6d4bb1b — routes include `/tools` and `/tools/receipt`, dark mode, BTC Map, ₿-first pricing |
 | Program data | `research/countries.json` | **21 programs** |
 | BTC Map cache | `public/data/btcmap/` | **21 snapshot files** for the curated catalog |
 | BTC Map density | `public/data/btcmap-density.json` | Merchant counts per program |
@@ -42,6 +42,7 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 ## Current capabilities (shipped)
 
 - Programs explorer (card + table, filters, breadcrumbs) — **21 deep flagships**
+- **Verification tools** (`/tools`, `/tools/receipt`) — **14 tools · 12 local · 2 network**: BOLT11/BOLT12, Lightning, PSBT/address, Silent Payments, NIP-17, NIP-05, BIP-137/BIP-322, zaps, payment evidence and shared receipts. BIP-322 has bounded full/proof-of-funds support; unsupported scripts are inconclusive. Receipts travel in the URL fragment, can be handed off by QR, checked in batches, diffed against an independent copy and anchored by digest only.
 - Portfolio, Stack Simulator, **Finance Compare** (BUILD-66 eager route — glass matrix, mobile scroll, immediate empty state), Blog, Agents
 - **Seal** (`/vault`) — OTS upload, hash verify, proofs for the curated 21 on disk
 - **Forge** (`/distressed`) — curated + permissionless marketplace, PSBT escrow stub
@@ -59,14 +60,14 @@ MotoPass is the premium Bitcoin-native platform for sovereign passports, citizen
 - Satohash API stamp + poll + health; honest “Proof on file” vs Bitcoin-verified badges
 - Payment methods: live LN Address QR + on-chain donation; other rails labeled demo
 - i18n (10 locales + page keys), SEO meta + hreflang, FAQ JSON-LD
-- Playwright e2e (19 tests), Vitest (36), CI bundle budget, `npm run deploy:all`
+- Playwright e2e (**33 tests**), Vitest (**631 passed / 2 skipped**), CI bundle budget, `npm run tools:check` and `npm run deploy:all`
 - **Bitcoin-first pricing** — `BtcDualPrice`; `research/pitch-anchor.json` via `npm run pitch:sync`
 
 ## Gaps & next priorities
 
 1. **Country intel** — research `last_checked` is 2026-11-08 from pages that actually loaded. Intel calls that fresh for 30 days, matching the trust envelope. Bahamas and Mexico stay unreachable. `cbiu.gov.dm` and `cnmv.es` can probe ok and still are not the 8 Nov human read. The 9 Nov probe left Uruguay unchanged. The human re-read URL stays `https://www.gub.uy/tramites/residencia-legal`.
 2. **Source-trust engine** — Build the registry + discovery + Satohash-anchored source hashes from the Claude prompt spec
-3. **Bitcoin core** — Live Satohash stamp is shipped; Lightning BOLT11 mint still open
+3. **Bitcoin core** — Live Satohash stamp and receipt digest anchoring are shipped; a real Satohash confirmation and camera QR pass remain to test, and the Lightning BOLT11 mint is still open
 4. **Nostr** — Attestations ship (BUILD 68); live MotoPass relay + npub-native routing still open
 5. **PSBT escrow** — Real 2-of-3 after legal sign-off
 6. **Paige AI** — Move from simulated to real concierge

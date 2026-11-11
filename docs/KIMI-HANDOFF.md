@@ -2,6 +2,38 @@
 **Last live deploy:** BUILD `2026.11.11-a5226ba` · commit `a5226ba` · HTTP 200 · verified 2026-11-11T00:18:21.205Z
 <!-- live-deploy:end -->
 
+## Latest Session Summary (from 2026-11-10 goodbye)
+
+**Chat Topic:** Finish eight MotoPass proof and receipt improvements, verify them, and leave a clean Kimi handoff.
+
+**Key Things We Did:**
+- Added BIP-322 full/proof-of-funds verification with a bounded script interpreter: P2PKH, P2SH-P2WPKH, P2WPKH, standard P2SH/P2WSH multisig and P2TR key-path. Unsupported scripts, taproot script paths, annexes and timelocks stay **inconclusive**.
+- Added receipt QR handoff with a grouped SHA-256 fingerprint, local batch verification, tampered-field diff against an independent copy, and Satohash anchoring of the digest only.
+- Added optional payment-evidence binding for recipient, amount and purpose strings in a signed message, plus a sticky mobile verification summary.
+- Added five BIP-322 full/PoF tests and new receipt library/UI tests; extended Playwright with QR, batch and tampered-diff coverage.
+- Updated `KIMI-HANDOFF`, `LATEST-UPDATE`, `UPDATES-MAP`, `SOURCE-OF-TRUTH`, `WORK-TREE` and `docs/README`; wrote `SESSION-SUMMARY-2026-11-10.md`.
+
+**What We Finished:**
+- All eight improvements are in commit **`a5226ba`**, pushed to `origin/main`.
+- Full Vitest **631 passed / 2 skipped**; Playwright **33 passed**; production build and tools check passed; bundle **2681.3 KB / 2700 KB**.
+
+**What We Are Still Aiming to Finish:**
+- Confirm the live deploy serves `a5226ba`; the automated live-deploy block still showed `6d4bb1b` at handoff.
+- Exercise a real Satohash confirmation and a real camera scan. Anchor status and QR rendering are unit/browser tested, not live-network tested.
+- Add a committed BIP-322 full-proof fixture for standard P2WSH multisig.
+
+**Update / Status:** The code and handoff docs were updated on 2026-11-10 and pushed. `research/countries.json` and all research facts are unchanged. Applications remain closed; Nostr remains copy-only where previously noted.
+
+**Key Decisions / Notes:**
+- Unsupported BIP-322 paths are labelled inconclusive, never valid.
+- A receipt digest proves tamper-evidence only when compared out of band; it is not a signature, timestamp proof or payment proof.
+- Receipt anchoring submits only the digest. Confirmation proves the digest existed by a block, not that a receipt claim is true.
+- A digest mismatch alone cannot name the edited field; the diff needs an independent reference receipt.
+
+**Next for Kimi:** Integrate this summary into `MASTER-BRAIN.md`, Kanban and the Obsidian vault. Update any maps, and educate Hermes. Use the `giveabit-project-handoff` skill for future project handoffs. Do not edit `research/countries.json` from this summary.
+
+**Mission Tie-in:** MotoPass keeps “Truth You Can Verify” honest: every new proof path names what it checked and what it cannot prove, so a user can verify a receipt or signature without mistaking it for payment.
+
 ## Session — 2026-11-10 · BIP-322 full/PoF, receipt handoff, batch, anchoring and evidence binding (Buffy)
 
 **Done — all eight follow-ups:**
@@ -23,8 +55,8 @@
 **Checks:** full Vitest **631 passed / 2 skipped (633)**; focused proof/receipt/evidence/intake suites **27 passed** (BIP-322 simple 5, full/PoF 5, receipt diff 3, batch 3, anchor 2, payment evidence 5, intake 4); Playwright **33 passed**, including a shared-receipt flow that sees the QR, checks a batch and diffs a tampered field; `npm run tools:check` **14/14**; ESLint **0 errors / 9 pre-existing warnings**; production build passed; bundle **2681.3 KB / 2700 KB** (index **482.0 KB**, advisory 460 KB), with the gate remeasured from 2670 KB in `scripts/check-bundle-size.mjs`; `tsc --noEmit` still reports only the two pre-existing `IntelWatchStrip.test.ts` Node-type errors. No live Satohash request was made, and no camera decoded the rendered QR; the anchor status mapping and QR rendering are covered without claiming a live network or camera pass.
 
 **Git State:**
-- Code SHA: pending this commit
-- Unpushed: pending this push
+- Code SHA: `a5226ba`
+- Unpushed: none after push
 
 ## Session — 2026-11-10 · BIP-322, shareable receipts, payment evidence and universal intake (Buffy)
 
