@@ -493,7 +493,7 @@
   text-align: center;
 }
 .s2-stamp-line3 {
-  opacity: 0.85;
+  /* no opacity: the stamp colour is 4.69:1 on the card, and 8.5px text needs it */
 }
 
 /* Machine-readable line: real hash, never split mid-token ("o / ts"), and its
@@ -525,4 +525,13 @@
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   white-space: nowrap;
+}
+
+/* Footer RSS badge carried dark-theme orange-on-orange; on paper it measured
+   1.49:1. Give it ink on the card surface. */
+footer a[href='/feed.xml'],
+footer a[href='/feed.xml'] svg {
+  color: var(--s2-ink) !important;
+  border-color: var(--s2-rule-strong) !important;
+  background: transparent !important;
 }
