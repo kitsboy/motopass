@@ -30,8 +30,8 @@ export function ApplyNavLink({ layout = 'pill', className, ...props }: Props) {
   const { applicationsOpen } = useLaunchGates()
   // Stated, not implied: the label says the door is shut, and the link still
   // works so the page can explain when it opens.
-  // The tab is ~78px wide: "Apply (closed)" clips to "Apply (cl…". Stack it.
-  const label = applicationsOpen ? t('nav.apply') : t('nav.apply')
+  // Desktop bar has room: state the door is shut in the label itself.
+  const label = applicationsOpen ? t('nav.apply') : `${t('nav.apply')} (closed)`
 
   return (
     <PrefetchNavLink
@@ -53,15 +53,19 @@ export function ApplyNavTab({ moreSheetOpen = false }: { moreSheetOpen?: boolean
   const { t } = useI18n()
   const { applicationsOpen } = useLaunchGates()
   // The tab is ~78px wide: "Apply (closed)" clips to "Apply (cl…". Stack it.
-  const label = applicationsOpen ? t('nav.apply') : t('nav.apply')
+  const label = applicationsOpen ? t('nav.apply') : `${t('nav.apply')} (closed)`
 
   return (
     <PrefetchNavLink
       to="/apply"
-      className={({ isActive }) => `${navTabClass(!moreSheetOpen && isActive)} apply-nav-tab-pulse`.trim()}
+      className={({ isActive }) =>
+        `${navTabClass(applicationsOpen && !moreSheetOpen && isActive)}${
+          applicationsOpen ? ' apply-nav-tab-pulse' : ''
+        }`.trim()
+      }
     >
       {({ isActive }) => {
-        const active = !moreSheetOpen && isActive
+        const active = applicationsOpen && !moreSheetOpen && isActive
         return (
           <>
             <ClipboardList size={17} strokeWidth={active ? 2.5 : 2} className="shrink-0" aria-hidden="true" />
