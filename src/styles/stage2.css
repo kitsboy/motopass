@@ -542,3 +542,16 @@ footer a[href='/feed.xml'] svg {
   border-color: var(--s2-rule-strong) !important;
   background: transparent !important;
 }
+
+/* Mobile Apply tab: "Apply / closed" stacked, so the state is never clipped */
+.apply-tab-closed {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.05;
+}
+.apply-tab-closed__state {
+  font-size: 8.5px;
+  letter-spacing: 0.04em;
+  opacity: 0.95;
+}

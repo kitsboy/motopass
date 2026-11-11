@@ -30,7 +30,8 @@ export function ApplyNavLink({ layout = 'pill', className, ...props }: Props) {
   const { applicationsOpen } = useLaunchGates()
   // Stated, not implied: the label says the door is shut, and the link still
   // works so the page can explain when it opens.
-  const label = applicationsOpen ? t('nav.apply') : `${t('nav.apply')} (closed)`
+  // The tab is ~78px wide: "Apply (closed)" clips to "Apply (cl…". Stack it.
+  const label = applicationsOpen ? t('nav.apply') : t('nav.apply')
 
   return (
     <PrefetchNavLink
@@ -51,7 +52,8 @@ export function ApplyNavLink({ layout = 'pill', className, ...props }: Props) {
 export function ApplyNavTab({ moreSheetOpen = false }: { moreSheetOpen?: boolean }) {
   const { t } = useI18n()
   const { applicationsOpen } = useLaunchGates()
-  const label = applicationsOpen ? t('nav.apply') : `${t('nav.apply')} (closed)`
+  // The tab is ~78px wide: "Apply (closed)" clips to "Apply (cl…". Stack it.
+  const label = applicationsOpen ? t('nav.apply') : t('nav.apply')
 
   return (
     <PrefetchNavLink
@@ -63,7 +65,16 @@ export function ApplyNavTab({ moreSheetOpen = false }: { moreSheetOpen?: boolean
         return (
           <>
             <ClipboardList size={17} strokeWidth={active ? 2.5 : 2} className="shrink-0" aria-hidden="true" />
-            <span className="leading-none truncate max-w-full px-0.5 text-[10px] font-chrome">{label}</span>
+            <span className="leading-none max-w-full px-0.5 text-[10px] font-chrome">
+              {applicationsOpen ? (
+                label
+              ) : (
+                <span className="apply-tab-closed">
+                  <span>{label}</span>
+                  <span className="apply-tab-closed__state">closed</span>
+                </span>
+              )}
+            </span>
           </>
         )
       }}
