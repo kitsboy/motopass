@@ -559,7 +559,6 @@ export type TranslationKey =
   | 'simulator.vsTypical'
   | 'simulator.sideBySide'
   | 'trust.researchPending'
-  | 'pitch.hero.members'
   | 'pitch.hero.jurisdictionsChip'
   | 'pitch.hero.advisorySavingsChip'
   | 'pitch.hero.lightningChip'
@@ -602,7 +601,6 @@ export type TranslationKey =
   | 'pitch.savings.metric.timeMeaning'
   | 'pitch.savings.metric.jurisdictionsMeaning'
   | 'pitch.savings.delta.legal'
-  | 'pitch.savings.delta.time'
   | 'pitch.savings.delta.jurisdictions'
   | 'pitch.products.applicationsOpen'
   | 'pitch.explainer.badge'
@@ -632,6 +630,79 @@ export type TranslationKey =
   | 'vault.how.step3.link'
   | 'vault.how.step4.link'
   | 'layout.loadingAria'
+  // ——— Stage 1: plain-language home, merged Proof hub, one settings menu.
+  // Every key here exists because the old copy said something the site could
+  // not back up, used an internal codename, or described a surface as "trusted".
+  | 'pitch.h1'
+  | 'pitch.subPending'
+  | 'pitch.ctaPending'
+  | 'pitch.browse.titlePending'
+  | 'pitch.browse.ctaPending'
+  | 'pitch.verifyCta'
+  | 'pitch.researchDate'
+  | 'pitch.metric.daysToResidency'
+  | 'pitch.trust.eyebrow'
+  | 'pitch.trust.title'
+  | 'pitch.trust.sub'
+  | 'pitch.trust.sources.title'
+  | 'pitch.trust.sources.body'
+  | 'pitch.trust.sources.cta'
+  | 'pitch.trust.stamps.title'
+  | 'pitch.trust.stamps.body'
+  | 'pitch.trust.stamps.cta'
+  | 'pitch.trust.stale.title'
+  | 'pitch.trust.stale.body'
+  | 'pitch.trust.stale.cta'
+  | 'pitch.steps.eyebrow'
+  | 'pitch.steps.title'
+  | 'pitch.steps.compare.title'
+  | 'pitch.steps.compare.body'
+  | 'pitch.steps.compare.cta'
+  | 'pitch.steps.model.title'
+  | 'pitch.steps.model.body'
+  | 'pitch.steps.model.cta'
+  | 'pitch.steps.apply.title'
+  | 'pitch.steps.apply.body'
+  | 'pitch.steps.apply.cta'
+  | 'pitch.browse.eyebrow'
+  | 'pitch.browse.title'
+  | 'pitch.browse.cta'
+  | 'pitch.start.title'
+  | 'pitch.start.body'
+  | 'pitch.start.open'
+  | 'pitch.start.closed'
+  | 'pitch.start.applyCta'
+  | 'nav.proof'
+  | 'nav.settings'
+  | 'nav.currency'
+  | 'nav.theme'
+  | 'nav.account'
+  | 'proof.eyebrow'
+  | 'proof.title'
+  | 'proof.sub'
+  | 'proof.tabsAria'
+  | 'proof.loading'
+  | 'proof.tab.trust'
+  | 'proof.tab.sources'
+  | 'proof.tab.vault'
+  | 'proof.tab.tools'
+  | 'liaison.eyebrow'
+  | 'liaison.title'
+  | 'liaison.sub'
+  | 'liaison.automatedLabel'
+  | 'liaison.automatedBody'
+  | 'liaison.humanLabel'
+  | 'liaison.humanBody'
+  | 'liaison.status'
+  | 'liaison.cta'
+  | 'apply.eyebrow'
+  | 'apply.closed.title'
+  | 'apply.closed.body'
+  | 'apply.closed.step1'
+  | 'apply.closed.step2'
+  | 'apply.closed.step3'
+  | 'apply.closed.ctaPrograms'
+  | 'apply.closed.ctaProof'
   | PageKey
 
 export type Dict = Record<TranslationKey, string>
@@ -639,7 +710,7 @@ export type Dict = Record<TranslationKey, string>
 export type PartialDict = Partial<Dict>
 
 const en: Dict = {
-  'nav.pitch': 'Pitch',
+  'nav.pitch': 'Home',
   'nav.portfolio': 'Portfolio',
   'nav.programs': 'Programs',
   'nav.simulator': 'Simulator',
@@ -895,9 +966,6 @@ const en: Dict = {
   'dashboard.paigeDismiss': 'Dismiss Paige proof policy notice',
   tagline: 'Truth You Can Verify',
   'pitch.hero': 'The private OS for sovereign operators',
-  'pitch.sub':
-    'Live Data Engine — 21-country trust cards, Bitcoin-anchored and freshness-checked. Research jurisdictions, model stacks in ₿, verify every claim on-chain, apply with Nostr — no email, no brochure trust.',
-  'pitch.cta': 'Explore programs',
   'pitch.evolve': 'Living pitch — updated with every BUILD',
   'pitch.stackSimulator': 'Stack simulator',
   'pitch.btcmapCta': 'BTC Map merchants',
@@ -1043,7 +1111,7 @@ const en: Dict = {
   'agents.title': 'Country liaison agents',
   'agents.sub': 'AI-assisted passport office liaisons — reachable on Nostr for verified applicants',
   'apply.title': 'Passport application tracker',
-  'apply.sub': 'Register interest, timestamp your application hash, connect your npub',
+  'apply.sub': 'Read the catalogue, model a plan, then apply with a Nostr key instead of an email and password.',
   'apply.submit': 'Register & timestamp',
   'thankYou.title': 'Thank you.',
   'thankYou.metaDescription':
@@ -1161,7 +1229,6 @@ const en: Dict = {
   'simulator.vsTypical': 'vs. typical',
   'simulator.sideBySide': 'Open in',
   'trust.researchPending': 'Research pending',
-  'pitch.hero.members': 'MEMBERS',
   'pitch.hero.jurisdictionsChip': '{count} jurisdictions',
   'pitch.hero.advisorySavingsChip': '~{amount} avg advisory savings',
   'pitch.hero.lightningChip': '{count} Lightning ready',
@@ -1173,7 +1240,7 @@ const en: Dict = {
   'pitch.hero.statLabel.flagship': 'Flagship depth',
   'pitch.hero.statLabel.lightning': 'Lightning ready',
   'pitch.hero.statLabel.watchdog': 'Official sources watched',
-  'pitch.hero.statLabel.anchor': 'Bitcoin-anchored',
+  'pitch.hero.statLabel.anchor': 'Bitcoin-stamped',
   'pitch.explorer': 'Explore',
   'pitch.metric.jurisdictions': 'Jurisdictions tracked',
   'pitch.metric.avgSavings': 'Avg. stack savings',
@@ -1202,7 +1269,6 @@ const en: Dict = {
   'pitch.savings.metric.timeMeaning': 'Modeled months from first engagement to passport in hand for each route.',
   'pitch.savings.metric.jurisdictionsMeaning': 'How many sovereignty options each route opens — MotoPass stacks programs where traditional advisory typically restricts to one.',
   'pitch.savings.delta.legal': '−$77,100 modeled',
-  'pitch.savings.delta.time': '−42 days modeled',
   'pitch.savings.delta.jurisdictions': '+18 jurisdictions modeled',
   'pitch.savings.phase.opening': 'Opening',
   'pitch.savings.phase.cost': 'Cost',
@@ -1246,6 +1312,95 @@ const en: Dict = {
   'intel.statusReanchoring': 'Re-anchoring',
   'paige.conciergeAria': 'Open the Paige concierge chat',
   ...pageKeysEn,
+  // ——— Stage 1 copy: plain language, no invented comparators, no codenames.
+  'pitch.h1': 'Compare residency and citizenship programs',
+  'pitch.subPending':
+    'Data you can verify: every program side by side, each figure traced to an official source. Built for Bitcoiners.',
+  'pitch.ctaPending': 'Compare the programs',
+  'pitch.browse.titlePending': 'Every program, one record each',
+  'pitch.browse.ctaPending': 'See all programs',
+  'pitch.sub':
+    'Data you can verify: {count} programs side by side, each figure traced to an official source. Built for Bitcoiners.',
+  'pitch.cta': 'Compare {count} programs',
+  'pitch.verifyCta': 'How verification works',
+  'pitch.researchDate': 'Research checked {date}',
+  'pitch.metric.daysToResidency': 'Avg. days to residency',
+  'pitch.trust.eyebrow': 'Why trust it',
+  'pitch.trust.title': 'Every figure traces back to an official source',
+  'pitch.trust.sub':
+    "We are not asking you to believe a brochure. Each program's cost, timeline and requirements come from the government's own pages, and every record is stamped so you can check it years from now.",
+  'pitch.trust.sources.title': 'Official pages, re-checked',
+  'pitch.trust.sources.body':
+    'We watch the government pages behind each program and flag anything that changed since the last check.',
+  'pitch.trust.sources.cta': 'See the source log',
+  'pitch.trust.stamps.title': 'Stamped on Bitcoin',
+  'pitch.trust.stamps.body':
+    'Each research record is hashed and timestamped with OpenTimestamps, so the version you read is provably the version we published.',
+  'pitch.trust.stamps.cta': 'Open the timestamp vault',
+  'pitch.trust.stale.title': 'Stale is shown as stale',
+  'pitch.trust.stale.body':
+    'If a record has not been re-checked recently, the card says so. Nothing is dressed up as fresher than it is.',
+  'pitch.trust.stale.cta': 'Check the freshness of every record',
+  'pitch.steps.eyebrow': 'How it works',
+  'pitch.steps.title': 'Three steps, and nothing to sign up for to start',
+  'pitch.steps.compare.title': 'Compare',
+  'pitch.steps.compare.body':
+    'Filter the {count} programs by cost, timeline, region and how well they work with Bitcoin. Same fields, side by side.',
+  'pitch.steps.compare.cta': 'Open the program list',
+  'pitch.steps.model.title': 'Model your plan',
+  'pitch.steps.model.body':
+    'Stack two or three programs into one timeline and see the total cost, in sats and in your own currency.',
+  'pitch.steps.model.cta': 'Open the simulator',
+  'pitch.steps.apply.title': 'Register interest',
+  'pitch.steps.apply.body':
+    'You apply with a Nostr key — a login no company owns — instead of an email and a password. You keep the key.',
+  'pitch.steps.apply.cta': 'See what applying involves',
+  'pitch.browse.eyebrow': "What's inside",
+  'pitch.browse.title': '{count} programs, one record each',
+  'pitch.browse.cta': 'See all {count}',
+  'pitch.start.title': 'Start with the data',
+  'pitch.start.body':
+    'The catalogue is free to read and needs no account. You only create one if you want to register interest.',
+  'pitch.start.open': 'Applications are open.',
+  'pitch.start.closed':
+    'Applications are closed. Nothing is being accepted right now — the catalogue and the timestamps stay open.',
+  'pitch.start.applyCta': 'What applying involves',
+  'nav.proof': 'Proof',
+  'nav.settings': 'Settings',
+  'nav.currency': 'Currency',
+  'nav.theme': 'Theme',
+  'nav.account': 'Account',
+  'proof.eyebrow': 'Proof',
+  'proof.title': 'Check the data yourself',
+  'proof.sub':
+    'Four ways to test what this site claims: how fresh each record is, which official pages we watch, the Bitcoin timestamps, and tools that run in your browser.',
+  'proof.tabsAria': 'Proof sections',
+  'proof.loading': 'Loading…',
+  'proof.tab.trust': 'Freshness',
+  'proof.tab.sources': 'Sources',
+  'proof.tab.vault': 'Timestamps',
+  'proof.tab.tools': 'Tools',
+  'liaison.eyebrow': 'Liaison desk',
+  'liaison.title': 'One desk — and it says who does what',
+  'liaison.sub':
+    'Program questions go to one place. Here is exactly what is automated and what a person handles.',
+  'liaison.automatedLabel': 'Automated',
+  'liaison.automatedBody':
+    'The queue, the checklist and the record of what you sent. Reminders and status updates are generated.',
+  'liaison.humanLabel': 'A person',
+  'liaison.humanBody':
+    "Choosing a program, reading a government's requirements and speaking to an office are human work. No model decides an application.",
+  'liaison.status': 'The desk opens when applications open. Until then it is a queue, not an inbox.',
+  'liaison.cta': 'See what applying involves',
+  'apply.eyebrow': 'Applications',
+  'apply.closed.title': 'Applications are closed',
+  'apply.closed.body':
+    'Nothing is being accepted right now. This page is honest about that rather than showing a form that goes nowhere.',
+  'apply.closed.step1': 'Read the catalogue — every program, its cost and its official source.',
+  'apply.closed.step2': 'Model a plan in the simulator and note which programs you would want.',
+  'apply.closed.step3': 'When applications open, you will apply with a Nostr key, not an email address.',
+  'apply.closed.ctaPrograms': 'Browse the programs',
+  'apply.closed.ctaProof': 'See what is verified',
 }
 
 // ── Lazy locale loading ────────────────────────────────────────────────────────

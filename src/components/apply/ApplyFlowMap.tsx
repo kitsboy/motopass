@@ -55,7 +55,7 @@ export function ApplyFlowMap({ steps }: { steps: ApplyFlowStep[] }) {
                   {state.done ? <Check size={13} strokeWidth={2.5} /> : <Icon size={13} />}
                 </span>
                 <span
-                  className={`hidden truncate font-chrome text-[10px] font-medium uppercase tracking-wider min-[420px]:inline sm:text-[11px] ${
+                  className={`hidden whitespace-normal leading-tight text-center max-w-[7.5rem] font-chrome text-[10px] font-medium uppercase tracking-[0.08em] min-[420px]:inline sm:text-[11px] ${
                     state.done ? 'text-mp-proof' : state.active ? 'text-ink' : 'text-mp-ink-tertiary'
                   }`}
                 >

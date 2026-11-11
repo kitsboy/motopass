@@ -14,8 +14,6 @@ import { Button } from '../components/ui/Button'
 import { useToast } from '../components/ui/Toast'
 import { Input, Textarea } from '../components/ui/Input'
 import { useLaunchGates, LAUNCH_GATES_REFRESH_MS } from '../hooks/useLaunchGates'
-import { isOfficeHoursOpen, KIMI_TIMEZONE } from '../lib/agentOfficeHours'
-import { BUILD_ID } from '../lib/buildInfo'
 import { ApplyLaunchGatesDirectory } from '../components/apply/ApplyLaunchGatesDirectory'
 import { ApplyFormProgressStepper } from '../components/apply/ApplyFormProgressStepper'
 import { ApplicationFeeStep } from '../components/apply/ApplicationFeeStep'
@@ -77,7 +75,11 @@ export function ApplyPage() {
     return match && match.status === 'confirmed' ? new Set([match.id]) : new Set()
   })
   const draftRestored = initialFields.draftRestored && !draftBannerDismissed
-  const kimiOfficeOpen = isOfficeHoursOpen(KIMI_TIMEZONE)
+  /**
+   * Launch-gate plumbing (relay status, gate scorecard) is engineering state, not
+   * an applicant's business. It only renders in dev or with VITE_SHOW_DEV_TOOLS.
+   */
+  const devTools = import.meta.env.DEV || import.meta.env.VITE_SHOW_DEV_TOOLS === 'true'
   const selectedDocs = docs.filter(d => selectedDocIds.has(d.id))
   const confirmedDocs = docs.filter(d => d.status === 'confirmed')
   const attachedDocs = selectedDocs.filter(d => d.status === 'confirmed')
@@ -144,23 +146,27 @@ export function ApplyPage() {
           <div className="min-w-0">
             <p className="font-display text-sm font-semibold text-ink">{t('apply.launchBannerTitle')}</p>
             <p className="font-body text-xs text-ink-secondary mt-1 leading-relaxed">{t('apply.launchBannerBody')}</p>
-            <p className="text-[10px] font-mono text-mp-btc-text mt-2 tracking-wide">
-              {BUILD_ID} · {passed}/{report.gates.length} gates · applications_open
-            </p>
+            {devTools && (
+              <p className="text-[10px] font-mono text-mp-btc-text mt-2 tracking-wide">
+                dev · {passed}/{report.gates.length} gates · applications_open
+              </p>
+            )}
           </div>
         </Card>
       )}
 
-      <PageHeader eyebrow="MEMBERS · APPLICATIONS" title={t('apply.title')} subtitle={t('apply.sub')} />
+      <PageHeader eyebrow={t('apply.eyebrow')} title={t('apply.title')} subtitle={t('apply.sub')} />
 
-      <ApplyFlowMap
-        steps={[
-          { id: 'connect', done: !!nostr, active: !nostr },
-          { id: 'details', done: !!(name.trim() && program.trim()), active: !!nostr && !(name.trim() && program.trim()) },
-          { id: 'submit', done: !!result, active: !result && !!nostr && !!name.trim() && !!program.trim() },
-          { id: 'fee', done: feePaid, active: !!result && !feePaid },
-        ] satisfies ApplyFlowStep[]}
-      />
+      {applicationsOpen && (
+        <ApplyFlowMap
+          steps={[
+            { id: 'connect', done: !!nostr, active: !nostr },
+            { id: 'details', done: !!(name.trim() && program.trim()), active: !!nostr && !(name.trim() && program.trim()) },
+            { id: 'submit', done: !!result, active: !result && !!nostr && !!name.trim() && !!program.trim() },
+            { id: 'fee', done: feePaid, active: !!result && !feePaid },
+          ] satisfies ApplyFlowStep[]}
+        />
+      )}
 
       {applicationsOpen && !agentsMessagingOpen && (
         <Card animate delay={0.03} className="mb-6 flex items-start gap-3 border-nostr-violet/25">
@@ -172,7 +178,7 @@ export function ApplyPage() {
         </Card>
       )}
 
-      {relayFake && (
+      {devTools && relayFake && (
         <Card animate delay={0.05} className="mb-6 flex items-start gap-3 border-nostr-violet/25">
           <Radio size={18} className="text-nostr-violet shrink-0 mt-0.5" aria-hidden />
           <div className="min-w-0">
@@ -185,33 +191,56 @@ export function ApplyPage() {
       )}
 
       {!applicationsOpen && (
-        <Card animate delay={0.08} className="mb-6 flex items-start gap-3 border-status-amber/30">
-          <Clock size={18} className="text-status-amber shrink-0 mt-0.5" aria-hidden />
-          <div className="min-w-0">
-            <p className="font-chrome text-sm font-semibold text-ink">{t('apply.officeHoursHintTitle')}</p>
-            <p className="text-xs text-ink-muted mt-1 leading-relaxed">
-              {kimiOfficeOpen ? t('apply.officeHoursOpenNow') : t('apply.officeHoursClosed')}
-            </p>
-            <p className="text-[10px] font-mono text-ink-muted mt-2 opacity-80">
-              {t('agents.officeHours')} · {t('agents.kimi.timezone')}
-            </p>
+        <Card variant="elevated" animate delay={0.08} className="mb-6 border-status-amber/30 !p-6">
+          <div className="flex items-start gap-3">
+            <Clock size={18} className="text-status-amber shrink-0 mt-0.5" aria-hidden />
+            <div className="min-w-0">
+              <p className="font-display text-base font-semibold text-ink">{t('apply.closed.title')}</p>
+              <p className="mt-1 font-body text-sm text-ink-secondary leading-relaxed">{t('apply.closed.body')}</p>
+            </div>
+          </div>
+          <ol className="mt-4 space-y-2 border-t border-mp/50 pt-4 text-sm text-ink-secondary">
+            <li className="flex gap-2">
+              <span className="font-mono text-mp-btc-text">1.</span>
+              <span>{t('apply.closed.step1')}</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="font-mono text-mp-btc-text">2.</span>
+              <span>{t('apply.closed.step2')}</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="font-mono text-mp-btc-text">3.</span>
+              <span>{t('apply.closed.step3')}</span>
+            </li>
+          </ol>
+          <div className="mt-5 flex flex-col sm:flex-row gap-2">
+            <Link to="/programs" className="btn-secondary text-sm inline-flex items-center justify-center gap-2">
+              {t('apply.closed.ctaPrograms')}
+            </Link>
+            <Link to="/proof" className="btn-secondary text-sm inline-flex items-center justify-center gap-2">
+              {t('apply.closed.ctaProof')}
+            </Link>
           </div>
         </Card>
       )}
 
-      <Card variant="elevated" animate delay={0.1} className="mb-6 overflow-hidden !p-0">
-        <ApplyLaunchGatesDirectory
-          report={report}
-          loading={loading}
-          applicationsOpen={applicationsOpen}
-        />
-      </Card>
+      {devTools && (
+        <Card variant="elevated" animate delay={0.1} className="mb-6 overflow-hidden !p-0">
+          <ApplyLaunchGatesDirectory
+            report={report}
+            loading={loading}
+            applicationsOpen={applicationsOpen}
+          />
+        </Card>
+      )}
 
-      <div className="mb-6">
-        <NostrConnect onConnect={setNostr} />
-      </div>
+      {applicationsOpen && (
+        <>
+          <div className="mb-6">
+            <NostrConnect onConnect={setNostr} />
+          </div>
 
-      {!result && (
+          {!result && (
         <Card animate delay={0.06} className="mb-6">
           <div className="flex items-start justify-between gap-3 mb-3">
             <div>
@@ -529,13 +558,6 @@ export function ApplyPage() {
               {t('apply.shareIntent')}
             </button>
           </div>
-          <Link
-            to={`/agents?application=${encodeURIComponent(result.id)}&program=${encodeURIComponent(program)}&hash=${encodeURIComponent(result.hash)}`}
-            className="btn-secondary w-full text-center block relative z-[1]"
-          >
-            {t('apply.meetAgents')}
-          </Link>
-          <p className="font-body text-xs text-ink-muted leading-relaxed relative z-[1]">{t('apply.agentNotify')}</p>
           <Button type="button" variant="secondary" className="w-full relative z-[1]" onClick={() => setResult(null)}>
             {t('apply.registerAnother')}
           </Button>
@@ -543,12 +565,25 @@ export function ApplyPage() {
       )}
 
       {/* Application-fee commerce step — real Lightning payment on the MotoPass wallet (Seam B) */}
-      {result && <ApplicationFeeStep appHash={result.hash} appId={result.id} program={program} onPaid={() => setFeePaid(true)} />}
+          {result && (
+            <ApplicationFeeStep
+              appHash={result.hash}
+              appId={result.id}
+              program={program}
+              onPaid={() => setFeePaid(true)}
+            />
+          )}
+        </>
+      )}
 
       <p className="text-center font-chrome text-xs text-ink-muted mt-8">
-        <Link to="/vault" className="text-mp-btc-text hover:underline underline-offset-2">Vault</Link>
+        <Link to="/programs" className="text-mp-btc-text hover:underline underline-offset-2">
+          {t('nav.programs')}
+        </Link>
         <span className="mx-2 opacity-40">·</span>
-        <Link to="/agents" className="text-mp-btc-text hover:underline underline-offset-2">Agents</Link>
+        <Link to="/proof" className="text-mp-btc-text hover:underline underline-offset-2">
+          {t('nav.proof')}
+        </Link>
       </p>
     </div>
   )

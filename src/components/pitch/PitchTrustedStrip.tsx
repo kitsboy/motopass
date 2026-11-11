@@ -24,7 +24,6 @@ export function PitchTrustedStrip({ programs, loading }: PitchTrustedStripProps)
       if (!p.flag || seen.has(p.id)) continue
       seen.add(p.id)
       out.push({ id: p.id, flag: p.flag, name: p.name })
-      if (out.length >= 18) break
     }
     return out
   }, [programs])
@@ -53,7 +52,9 @@ export function PitchTrustedStrip({ programs, loading }: PitchTrustedStripProps)
       aria-label={t('pitch.trusted.label')}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-        <span className="club-eyebrow shrink-0 text-[10px]">{t('pitch.trusted.eyebrow')}</span>
+        <span className="club-eyebrow shrink-0 text-[10px]">
+          {formatT(t, 'pitch.trusted.eyebrow', { count: entries.length })}
+        </span>
         <div className="relative min-w-0 flex-1 overflow-hidden mask-fade-x">
           <ul
             className="pitch-trusted-track flex items-center gap-6 sm:gap-8 w-max"

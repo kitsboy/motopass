@@ -153,7 +153,7 @@ const de: Partial<Dict> = {
   'agents.title': 'Verbindungsagenten pro Land',
   'agents.sub': 'KI-gestützte Passbehörden-Verbindungen — auf Nostr erreichbar für verifizierte Bewerber',
   'apply.title': 'Pass-Bewerbungs-Tracker',
-  'apply.sub': 'Interesse registrieren, Bewerbungshash stempeln, npub verbinden',
+  'apply.sub': 'Bewerbungen sind derzeit geschlossen. So sieht der Ablauf aus, wenn sie öffnen — und das können Sie in der Zwischenzeit tun.',
   'apply.submit': 'Registrieren und stempeln',
   'nostr.connect': 'Nostr verbinden',
   'nostr.connected': 'Verbunden',

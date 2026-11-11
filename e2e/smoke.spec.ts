@@ -58,6 +58,10 @@ test.describe('smoke', () => {
   test('language dropdown opens on desktop', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto('/')
+    // Language now lives inside the single settings menu (header utility bar collapsed).
+    const settingsBtn = page.getByRole('button', { name: /settings/i }).first()
+    await expect(settingsBtn).toBeVisible()
+    await settingsBtn.click()
     const langBtn = page.getByRole('button', { name: /language/i }).first()
     await expect(langBtn).toBeVisible()
     await langBtn.click()
@@ -71,6 +75,8 @@ test.describe('smoke', () => {
   test('language switch updates document lang', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto('/')
+    // Language lives in the settings menu now.
+    await page.getByRole('button', { name: /settings/i }).first().click()
     const langBtn = page.getByRole('button', { name: /language/i }).first()
     await langBtn.click()
     await page.getByRole('option').filter({ hasText: 'Español' }).click()
@@ -80,6 +86,8 @@ test.describe('smoke', () => {
   test('theme toggle switches dark class', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto('/')
+    // Theme control lives in the settings menu now.
+    await page.getByRole('button', { name: /settings/i }).first().click()
     const toggle = page.getByRole('button', { name: /switch to (light|dark) mode/i })
     await expect(toggle).toBeVisible()
 
@@ -194,6 +202,7 @@ test.describe('smoke', () => {
   test('Arabic sets RTL document direction', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto('/')
+    await page.getByRole('button', { name: /settings/i }).first().click()
     const langBtn = page.getByRole('button', { name: /language/i }).first()
     await langBtn.click()
     await page.getByRole('option').filter({ hasText: 'العربية' }).click()
@@ -228,9 +237,14 @@ test.describe('smoke', () => {
     await expect(page).toHaveURL(/\/register\?next=%2Fprofile/, { timeout: 15_000 })
   })
 
-  test('apply page loads with launch scorecard', async ({ page }) => {
+  test('apply page states applications are closed and shows no launch internals', async ({ page }) => {
+    // The gate scorecard and the fake relay are engineering state: dev-only.
+    // The public page must say plainly that nothing is being accepted.
     await page.goto('/apply', gotoOpts)
-    await expect(page.getByText(/launch gate scorecard/i)).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText(/applications are closed/i).first()).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText(/launch gate scorecard/i)).toHaveCount(0)
+    await expect(page.getByText(/status: fake/i)).toHaveCount(0)
+    await expect(page.getByText(/office hours/i)).toHaveCount(0)
   })
 
   test('mobile viewport has no horizontal overflow on home', async ({ page }) => {

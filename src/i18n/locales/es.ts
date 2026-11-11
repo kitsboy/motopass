@@ -153,7 +153,7 @@ const es: Partial<Dict> = {
   'agents.title': 'Agentes de enlace por país',
   'agents.sub': 'Enlaces de oficinas de pasaportes asistidos por IA — contactables en Nostr para solicitantes verificados',
   'apply.title': 'Seguimiento de solicitud de pasaporte',
-  'apply.sub': 'Registra interés, marca con hora el hash de tu solicitud, conecta tu npub',
+  'apply.sub': 'Las solicitudes están cerradas por ahora. Así funciona el proceso cuando abra, y esto puede hacer mientras tanto.',
   'apply.submit': 'Registrar y sellar',
   'nostr.connect': 'Conectar Nostr',
   'nostr.connected': 'Conectado',

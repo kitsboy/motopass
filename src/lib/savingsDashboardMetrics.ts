@@ -24,7 +24,7 @@ export const DASHBOARD_METRICS: DashboardMetric[] = [
     traditional: 177,
     motopass: 135,
     unit: 'days',
-    deltaLabel: '−42 days modeled',
+    deltaLabel: '',
   },
   {
     id: 'jurisdictions',

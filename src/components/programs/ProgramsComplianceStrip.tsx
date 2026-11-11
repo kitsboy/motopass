@@ -38,7 +38,7 @@ export function ProgramsComplianceStrip() {
             {t('programs.residencyClocks')}
           </h2>
         </div>
-        <Link to="/portfolio" className="text-xs font-chrome text-mp-btc-text hover:underline">
+        <Link to="/simulator" className="text-xs font-chrome text-mp-btc-text hover:underline">
           {t('programs.trackInPortfolio')}
         </Link>
       </div>

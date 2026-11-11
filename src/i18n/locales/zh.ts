@@ -153,7 +153,7 @@ const zh: Partial<Dict> = {
   'agents.title': '国家级联络代理',
   'agents.sub': 'AI辅助的护照办公室联络人——供已验证申请人通过Nostr联系',
   'apply.title': '护照申请追踪器',
-  'apply.sub': '登记意向、给申请哈希盖时间戳、连接你的npub',
+  'apply.sub': '目前暂不接受申请。开放后的流程如下，同时您可以先做这些事。',
   'apply.submit': '登记并盖章',
   'nostr.connect': '连接Nostr',
   'nostr.connected': '已连接',

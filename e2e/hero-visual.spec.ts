@@ -46,7 +46,7 @@ test.describe('hero visual integrity', () => {
       expect(overflow).toBe(false)
 
       // CTAs remain clickable at this width.
-      await expect(page.getByRole('link', { name: /explore programs/i }).first()).toBeVisible()
+      await expect(page.getByRole('link', { name: /compare .*programs/i }).first()).toBeVisible()
 
       await page.screenshot({ path: `artifacts/playwright/hero-visual/${name}-hero.png`, fullPage: false })
     })

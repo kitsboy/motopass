@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { motion, AnimatePresence, useInView, useReducedMotion } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { ProofBadge } from '../ui/ProofBadge';
 import { BtcDualPrice } from '../BtcDualPrice';
 import { useI18n } from '../../i18n/I18nContext';
@@ -7,7 +7,7 @@ import { useI18n } from '../../i18n/I18nContext';
 export interface StackMetric {
   label: string;
   /** i18n key overriding `label` at render time (localized depth label). */
-  labelKey?: 'pitch.metric.flagshipDepth';
+  labelKey?: 'pitch.metric.flagshipDepth' | 'pitch.metric.jurisdictions' | 'pitch.metric.daysToResidency';
   value: number;
   suffix?: string;
   prefix?: string;
@@ -25,80 +25,6 @@ const DEFAULT_TAGLINES = [
   'modeled in real cost, not marketing math.',
 ];
 
-function CountUpAnimated({
-  value,
-  prefix = '',
-  suffix = '',
-  active,
-}: {
-  value: number;
-  prefix?: string;
-  suffix?: string;
-  active: boolean;
-}) {
-  const [display, setDisplay] = useState(0);
-
-  useEffect(() => {
-    if (!active) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- counter reset on deactivate; converges after one render
-      setDisplay(0);
-      return;
-    }
-
-    let raf: number;
-    const start = performance.now();
-    const duration = 1100;
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setDisplay(Math.round(eased * value));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [value, active]);
-
-  return (
-    <span className="font-mono tabular-nums">
-      {prefix}
-      {display.toLocaleString()}
-      {suffix}
-    </span>
-  );
-}
-
-function CountUp({
-  value,
-  prefix = '',
-  suffix = '',
-  active,
-}: {
-  value: number;
-  prefix?: string;
-  suffix?: string;
-  active: boolean;
-}) {
-  const reduceMotion = useReducedMotion();
-  if (reduceMotion) {
-    return (
-      <span className="font-mono tabular-nums">
-        {prefix}
-        {value.toLocaleString()}
-        {suffix}
-      </span>
-    );
-  }
-  return (
-    <CountUpAnimated
-      key={`${value}-${active}`}
-      value={value}
-      prefix={prefix}
-      suffix={suffix}
-      active={active}
-    />
-  );
-}
-
 function TaglineAnnouncer({ tagline }: { tagline: string }) {
   return (
     <p className="sr-only" aria-live="polite" aria-atomic="true">
@@ -112,7 +38,6 @@ export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, pro
   const [tagIndex, setTagIndex] = useState(0);
   const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-10% 0px' });
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -173,7 +98,7 @@ export function EvolvingPitchRotator({ metrics, taglines = DEFAULT_TAGLINES, pro
               {m.usdValue != null ? (
                 <BtcDualPrice usd={m.usdValue} size="lg" layout="stack" />
               ) : (
-                <CountUp value={m.value} prefix={m.prefix} suffix={m.suffix} active={inView} />
+                <span className="font-mono tabular-nums">{m.prefix}{m.value.toLocaleString()}{m.suffix}</span>
               )}
             </dd>
           </motion.div>

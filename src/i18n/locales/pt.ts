@@ -165,7 +165,7 @@ const pt: Partial<Dict> = {
   'agents.title': 'Agentes de ligação por país',
   'agents.sub': 'Ligações de gabinetes de passaportes assistidos por IA — contactáveis no Nostr para candidatos verificados',
   'apply.title': 'Rastreador de candidatura de passaporte',
-  'apply.sub': 'Registe interesse, carimbe o hash da sua candidatura, ligue o seu npub',
+  'apply.sub': 'As candidaturas estão fechadas neste momento. É assim que o processo funciona quando abrir, e isto é o que pode fazer entretanto.',
   'apply.submit': 'Registar e carimbar',
   'nostr.connect': 'Ligar Nostr',
   'nostr.connected': 'Ligado',

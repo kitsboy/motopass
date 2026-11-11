@@ -87,7 +87,7 @@ export function ApplyFormProgressStepper({
               >
                 {done ? <Check size={10} /> : i + 1}
               </span>
-              <span className="truncate">{t(step.labelKey)}</span>
+              <span className="whitespace-normal leading-tight text-center">{t(step.labelKey)}</span>
             </li>
           )
         })}

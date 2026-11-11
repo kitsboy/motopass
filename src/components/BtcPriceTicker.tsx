@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Bitcoin } from 'lucide-react'
-import { formatBtc, formatUsdCompact } from '../lib/btcPrice'
+import { formatUsdCompact } from '../lib/btcPrice'
 import { FIATS, formatFiat } from '../lib/fx'
 import { useBtcPrice } from '../context/BtcPriceContext'
 import { useDisplayCurrency } from '../context/DisplayCurrencyContext'
@@ -13,16 +13,26 @@ export function BtcPriceTicker({ variant = 'default' }: { variant?: 'default' | 
   const [copied, setCopied] = useState(false)
   const isHero = variant === 'hero'
   const isCompact = variant === 'compact'
+  /**
+   * Spot price, always stated as one BTC in fiat.
+   *
+   * The old ticker printed `₿1.00 · 100M sats` whenever the display currency
+   * was sats — which is a unit conversion, not a price, and read as broken.
+   * Sats is a secondary display choice; the ticker itself always answers
+   * "what is one bitcoin worth".
+   */
   const spot = useMemo(() => {
-    if (currency === 'SAT') return `${formatBtc(1)} · 100M sats`
-    if (currency === 'BTC') return formatBtc(1)
-    if (currency === 'USD') return `${formatBtc(1)} · ${formatUsdCompact(rate)}`
-    if (fx && !fx.missing && fx.ratePerBtc) {
-      const meta = FIATS.find((f) => f.code === currency)
-      if (meta) return `${formatBtc(1)} · ${formatFiat(fx.ratePerBtc, meta, true)}`
-    }
-    // Honest fallback: real BTC spot with USD secondary; fiat conversion unavailable.
-    return `${formatBtc(1)} · ${formatUsdCompact(rate)}`
+    const fiatText =
+      currency !== 'SAT' && currency !== 'BTC' && fx && !fx.missing && fx.ratePerBtc
+        ? (() => {
+            const meta = FIATS.find((f) => f.code === currency)
+            return meta ? formatFiat(fx.ratePerBtc, meta, true) : formatUsdCompact(rate)
+          })()
+        : formatUsdCompact(rate)
+    // Sats is a secondary display choice: the ticker still answers "what is one
+    // bitcoin worth" in money a person can budget with.
+    const satsNote = currency === 'SAT' ? ' (100M sats)' : ''
+    return `1 BTC = ${fiatText}${satsNote}`
   }, [currency, fx, rate])
   const [flash, setFlash] = useState(false)
   const prevRate = useRef(rate)

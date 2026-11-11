@@ -1,65 +1,47 @@
-import { Calendar, MessageCircle } from 'lucide-react'
-import { TiltCard } from './beui/TiltCard'
-import { AnimatedBadge } from './beui/AnimatedBadge'
+import { Link } from 'react-router-dom'
+import { MessageCircle } from 'lucide-react'
+import { Card } from './ui/Card'
 import { useI18n } from '../i18n/I18nContext'
-import { isOfficeHoursOpen, KIMI_TIMEZONE } from '../lib/agentOfficeHours'
-import { downloadKimiOfficeHoursIcs } from '../lib/kimiOfficeHoursIcs'
-import { CopyField } from './ui/CopyField'
 
-const KIMI_NPUB = 'npub1kimi…motopass'
-
+/**
+ * Liaison desk.
+ *
+ * This card used to be a persona card ("Kimi", photo, “Online”, office hours,
+ * npub) which read as a live human service the site does not run — and worse,
+ * as an AI agent with office hours on a passport product. It now says plainly
+ * which part is automated and which part is a person.
+ */
 export function AgentCardKimi() {
   const { t } = useI18n()
-  const availableNow = isOfficeHoursOpen(KIMI_TIMEZONE)
 
   return (
-    <TiltCard className="rounded-mp-xl">
-      <div className="glass-card-elevated border-nostr-violet/25 bg-gradient-to-br from-transparent to-nostr-violet-soft/35 overflow-hidden">
-        <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
-          <div className="relative shrink-0">
-            <img
-              src="/images/kimi.webp"
-              alt="Kimi — MotoPass liaison agent"
-              className="w-24 h-24 sm:w-28 sm:h-28 rounded-mp-lg object-cover border-2 border-nostr-violet/25 shadow-card"
-            />
-            <AnimatedBadge status="success" className="absolute -bottom-2 -right-2">
-              Online
-            </AnimatedBadge>
-          </div>
-          <div className="flex-1 text-center sm:text-left min-w-0">
-            <div className="section-label mb-1">{t('agents.kimi.liaison')}</div>
-            <h3 className="text-xl font-display font-semibold text-mp-ink">Kimi</h3>
-            <p className="text-xs text-mp-ink-secondary mt-1">{t('agents.kimi.sub')}</p>
-            {availableNow && (
-              <span className="inline-flex items-center gap-1.5 mt-2 text-[10px] font-chrome font-medium text-mp-proof bg-mp-proof/10 border border-mp-proof/30 rounded-full px-2.5 py-0.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-mp-proof animate-pulse" aria-hidden />
-                {t('agents.availableNow')} · {t('agents.officeHours')} · {t('agents.kimi.timezone')}
-              </span>
-            )}
-            <p className="text-sm text-mp-ink-secondary mt-3 leading-relaxed">{t('agents.kimi.body')}</p>
-            <div className="mt-4 max-w-sm">
-              <CopyField label={t('agents.copyNpub')} value={KIMI_NPUB} truncate />
-            </div>
-            <div className="flex flex-wrap gap-2 mt-4 justify-center sm:justify-start">
-              <a
-                href="https://nostr.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm inline-flex items-center gap-2 border border-nostr-violet/30 text-nostr-violet hover:bg-nostr-violet-soft rounded-full px-4 py-1.5 transition-colors font-medium"
-              >
-                <MessageCircle size={14} /> {t('agents.kimi.message')}
-              </a>
-              <button
-                type="button"
-                onClick={() => downloadKimiOfficeHoursIcs()}
-                className="text-sm inline-flex items-center gap-2 border border-mp text-ink-secondary hover:bg-card-muted rounded-full px-4 py-1.5 transition-colors font-medium"
-              >
-                <Calendar size={14} aria-hidden /> {t('agents.kimi.downloadIcs')}
-              </button>
-            </div>
-          </div>
+    <Card variant="elevated" className="h-full border-nostr-violet/20">
+      <div className="section-label mb-2">{t('liaison.eyebrow')}</div>
+      <h3 className="text-xl font-display font-semibold text-ink">{t('liaison.title')}</h3>
+      <p className="text-sm text-ink-secondary mt-2 leading-relaxed">{t('liaison.sub')}</p>
+
+      <dl className="mt-5 space-y-3 text-sm">
+        <div className="rounded-mp-md border border-mp/60 bg-card-muted/30 px-3 py-2.5">
+          <dt className="font-chrome text-[10px] uppercase tracking-[0.14em] text-ink-muted">
+            {t('liaison.automatedLabel')}
+          </dt>
+          <dd className="mt-1 text-ink-secondary leading-relaxed">{t('liaison.automatedBody')}</dd>
         </div>
+        <div className="rounded-mp-md border border-mp/60 bg-card-muted/30 px-3 py-2.5">
+          <dt className="font-chrome text-[10px] uppercase tracking-[0.14em] text-ink-muted">
+            {t('liaison.humanLabel')}
+          </dt>
+          <dd className="mt-1 text-ink-secondary leading-relaxed">{t('liaison.humanBody')}</dd>
+        </div>
+      </dl>
+
+      <p className="mt-4 text-xs text-ink-muted leading-relaxed">{t('liaison.status')}</p>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        <Link to="/apply" className="btn-secondary text-sm inline-flex items-center gap-2">
+          <MessageCircle size={14} aria-hidden /> {t('liaison.cta')}
+        </Link>
       </div>
-    </TiltCard>
+    </Card>
   )
 }

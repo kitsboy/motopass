@@ -46,6 +46,11 @@ export const ROUTE_SEO: Record<string, SeoMeta> = {
     description:
       'Cross-reference MotoPass sovereign jurisdictions with BTC Map — live Bitcoin-accepting merchants, communities, and Lightning venues per country.',
   },
+  '/proof': {
+    title: 'Proof — Check the Data Yourself',
+    description:
+      'Freshness of every record, the official government pages we watch, the Bitcoin timestamps, and local tools to verify it all yourself.',
+  },
   '/vault': {
     title: 'Vault — Timestamp Proofs',
     description:

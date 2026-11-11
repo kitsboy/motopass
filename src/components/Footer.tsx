@@ -7,7 +7,7 @@ import { FooterVerifyLink } from './footer/FooterVerifyLink'
 import { FooterActionBar } from './footer/FooterActionBar'
 import { FooterApplyLink } from './footer/FooterApplyLink'
 import { SatohashStampWidget } from './SatohashStampWidget'
-import { BUILD_ID, BUILD_LABEL, FOOTER_VERSION } from '../lib/buildInfo'
+import { BUILD_ID, BUILD_DATE, FOOTER_VERSION } from '../lib/buildInfo'
 import { useLiveDeployHealth } from '../hooks/useLiveDeployHealth'
 import type { LiveDeployHealthState } from '../hooks/useLiveDeployHealth'
 import { MAIN_NAV_ROUTES, OVERFLOW_NAV_ROUTES } from '../lib/navRoutes'
@@ -23,19 +23,20 @@ const footerLinkClass = ({ isActive }: { isActive: boolean }) =>
     ? 'text-mp-btc-text font-medium border-b border-btc-orange/40 pb-0.5'
     : 'text-ink-muted hover:text-mp-btc-text transition-colors duration-fast border-b border-transparent hover:border-btc-orange/30 pb-0.5'
 
+/**
+ * Deploy tooltip. It used to interpolate the last commit subject (BUILD_LABEL),
+ * which printed raw commit messages in the public footer. Build id + date only —
+ * a commit message is a note to ourselves, not a version.
+ */
 function deployHealthTitle(health: LiveDeployHealthState): string {
   const local = `local ${BUILD_ID}`
   if (health.liveBuildId) {
     const liveLabel = `live ${health.liveBuildId}`
-    if (health.status === 'synced') {
-      return `${BUILD_LABEL} · ${local} · ${liveLabel} · deploy matches`
-    }
-    if (health.status === 'stale') {
-      return `${BUILD_LABEL} · ${local} · ${liveLabel} · live deploy behind`
-    }
-    return `${BUILD_LABEL} · ${local} · ${liveLabel}`
+    if (health.status === 'synced') return `${local} · ${liveLabel} · deploy matches`
+    if (health.status === 'stale') return `${local} · ${liveLabel} · live deploy behind`
+    return `${local} · ${liveLabel}`
   }
-  return BUILD_LABEL
+  return `${FOOTER_VERSION} · ${BUILD_DATE}`
 }
 
 export function Footer() {
@@ -62,7 +63,7 @@ export function Footer() {
                 {t('footer.descriptionBefore')}
                 <a
                   href="https://satohash.io"
-                  className="text-accent font-medium hover:underline underline-offset-2"
+                  className="text-accent font-medium underline underline-offset-2 decoration-accent/40 hover:decoration-accent"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -106,22 +107,20 @@ export function Footer() {
                   </a>
                 </div>
               </nav>
-              <p className="mt-6 text-[11px] font-chrome text-ink-muted/80 leading-relaxed">
-                <a href="/privacy" className="hover:text-mp-btc-text transition-colors duration-fast">
+              <p className="mt-6 text-[11px] font-chrome text-ink-muted leading-relaxed">
+                <a href="/privacy" className="underline underline-offset-2 decoration-ink-muted/40 hover:decoration-ink-secondary text-ink-secondary">
                   Privacy
                 </a>
-                <span className="mx-1.5 opacity-50" aria-hidden>
+                <span className="mx-2 text-ink-muted/60" aria-hidden>
                   ·
                 </span>
-                <a href="/terms" className="hover:text-mp-btc-text transition-colors duration-fast">
+                <a href="/terms" className="underline underline-offset-2 decoration-ink-muted/40 hover:decoration-ink-secondary text-ink-secondary">
                   Terms
                 </a>
-                <span className="mx-1.5 opacity-50" aria-hidden>
+                <span className="mx-2 text-ink-muted/60" aria-hidden>
                   ·
                 </span>
-                <span>
-                  No cookies. We use self-hosted, cookie-less analytics. Nothing to consent to.
-                </span>
+                <span>No cookies. We use self-hosted, cookie-less analytics. Nothing to consent to.</span>
               </p>
             </div>
             <AgentCardKimi />
@@ -133,15 +132,9 @@ export function Footer() {
         <div className="club-divider mb-6" aria-hidden />
 
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-[10px] text-ink-muted font-mono">
-          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-2">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
             <span className="leading-none">© 2026 MotoPass</span>
-            <span className="text-mp-strong hidden sm:inline opacity-50" aria-hidden>
-              ·
-            </span>
             <GiveABitLogoLink />
-            <span className="text-mp-strong opacity-50" aria-hidden>
-              ·
-            </span>
             <span
               className="inline-flex items-center gap-1.5 leading-none font-semibold text-mp-btc-text shrink-0 px-2 py-0.5 rounded-lg border border-btc-orange/30 bg-btc-orange-soft/50 shadow-[0_0_12px_rgba(255,149,0,0.08)]"
               data-build-version
@@ -163,13 +156,7 @@ export function Footer() {
               )}
               {FOOTER_VERSION}
             </span>
-            <span className="text-mp-strong opacity-50" aria-hidden>
-              ·
-            </span>
             <FooterVerifyLink />
-            <span className="text-mp-strong hidden sm:inline opacity-50" aria-hidden>
-              ·
-            </span>
             <a
               href="/feed.xml"
               className="inline-flex items-center gap-1 rounded-full border border-orange-400/40 bg-orange-400/10 px-2 py-0.5 text-[10px] font-semibold text-orange-300 hover:bg-orange-400/20"
@@ -181,14 +168,8 @@ export function Footer() {
               </svg>
               RSS
             </a>
-            <span className="text-mp-strong hidden sm:inline opacity-50" aria-hidden>
-              ·
-            </span>
-            <span className="leading-none hidden md:inline max-w-[16rem] truncate opacity-70" title={BUILD_LABEL}>
-              {BUILD_LABEL}
-            </span>
           </div>
-          <span className="opacity-70 tracking-wide">{t('footer.truth')}</span>
+          <span className="text-ink-muted/90 tracking-wide">{t('footer.truth')}</span>
         </div>
       </div>
     </footer>

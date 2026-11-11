@@ -153,7 +153,7 @@ const fr: Partial<Dict> = {
   'agents.title': 'Agents de liaison par pays',
   'agents.sub': 'Agents de liaison de bureaux de passeport assistés par IA — joignables sur Nostr pour les candidats vérifiés',
   'apply.title': 'Suivi de candidature de passeport',
-  'apply.sub': 'Enregistrez votre intérêt, horodatez le hachage de votre candidature, connectez votre npub',
+  'apply.sub': 'Les candidatures sont fermées pour le moment. Voici comment la procédure se déroulera à l\'ouverture, et ce que vous pouvez faire en attendant.',
   'apply.submit': 'S\'inscrire et horodater',
   'nostr.connect': 'Connecter Nostr',
   'nostr.connected': 'Connecté',

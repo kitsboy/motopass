@@ -41,6 +41,7 @@ const NotFoundPage = lazy(() =>
 // RouteSuspense `minH` reserves below, which hold the above-fold space so the
 // page mounts in-place instead of popping the viewport.
 const PitchPage = lazy(() => import('./pages/PitchPage').then((m) => ({ default: m.PitchPage })))
+const ProofPage = lazy(() => import('./pages/ProofPage').then((m) => ({ default: m.ProofPage })))
 const FinanceComparePage = lazy(() =>
   import('./pages/FinanceComparePage').then((m) => ({ default: m.FinanceComparePage })),
 )
@@ -179,6 +180,14 @@ export default function App() {
                                   }
                                 />
                                 <Route path="sources" element={<SourceMonitorPage />} />
+                                <Route
+                                  path="proof"
+                                  element={
+                                    <RouteSuspense minH={900}>
+                                      <ProofPage />
+                                    </RouteSuspense>
+                                  }
+                                />
                                 <Route path="agents" element={<AgentsPage />} />
                                 <Route path="apply" element={<ApplyPage />} />
                                 <Route path="thank-you" element={<ThankYouPage />} />

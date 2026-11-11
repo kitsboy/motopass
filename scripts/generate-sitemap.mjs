@@ -20,42 +20,35 @@ function readBuildDate() {
 
 const LASTMOD = readBuildDate()
 
+/**
+ * Public, shipped surfaces only.
+ *
+ * Removed on purpose: /portfolio (empty), /agents (not live), /blog (one post),
+ * /distressed (parked — it is a different, riskier product). They stay mounted
+ * as routes so old links resolve, but they are not advertised to crawlers.
+ * /proof is the merged trust + sources + vault + tools hub.
+ */
 const ROUTES = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
-  { path: '/portfolio', priority: '0.9', changefreq: 'weekly' },
   { path: '/programs', priority: '0.9', changefreq: 'weekly' },
-  { path: '/btcmap', priority: '0.85', changefreq: 'weekly' },
+  { path: '/compare', priority: '0.9', changefreq: 'weekly' },
   { path: '/simulator', priority: '0.8', changefreq: 'weekly' },
-  { path: '/compare', priority: '0.8', changefreq: 'weekly' },
-  { path: '/trust', priority: '0.85', changefreq: 'daily' },
-  { path: '/vault', priority: '0.8', changefreq: 'weekly' },
-  { path: '/distressed', priority: '0.85', changefreq: 'weekly' },
-  { path: '/blog', priority: '0.9', changefreq: 'daily' },
-  { path: '/verify', priority: '0.8', changefreq: 'monthly' },
+  { path: '/proof', priority: '0.85', changefreq: 'daily' },
+  { path: '/trust', priority: '0.75', changefreq: 'daily' },
+  { path: '/vault', priority: '0.7', changefreq: 'weekly' },
+  { path: '/sources', priority: '0.7', changefreq: 'daily' },
   { path: '/tools', priority: '0.7', changefreq: 'monthly' },
   { path: '/tools/receipt', priority: '0.5', changefreq: 'monthly' },
-  { path: '/agents', priority: '0.8', changefreq: 'weekly' },
+  { path: '/btcmap', priority: '0.7', changefreq: 'weekly' },
+  { path: '/verify', priority: '0.7', changefreq: 'monthly' },
   { path: '/apply', priority: '0.8', changefreq: 'weekly' },
-  { path: '/register', priority: '0.9', changefreq: 'weekly' },
-  { path: '/dashboard', priority: '0.8', changefreq: 'daily' },
-  { path: '/profile', priority: '0.7', changefreq: 'weekly' },
-  { path: '/sources', priority: '0.7', changefreq: 'daily' },
-]
-
-const BLOG_SLUGS = [
-  'truth-you-can-verify-launch',
-  'nostr-passport-applications',
-  'el-salvador-bitcoin-legal-tender',
-  'country-liaison-agents',
+  { path: '/register', priority: '0.6', changefreq: 'weekly' },
+  { path: '/dashboard', priority: '0.6', changefreq: 'daily' },
+  { path: '/profile', priority: '0.5', changefreq: 'weekly' },
 ]
 
 const urls = [
   ...ROUTES.map((r) => ({ loc: `${SITE}${r.path === '/' ? '/' : r.path}`, ...r })),
-  ...BLOG_SLUGS.map((slug) => ({
-    loc: `${SITE}/blog/${slug}`,
-    priority: '0.8',
-    changefreq: 'monthly',
-  })),
   { loc: `${SITE}/website/index.html`, priority: '0.7', changefreq: 'weekly' },
 ]
 

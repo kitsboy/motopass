@@ -97,7 +97,7 @@ test.describe('/sources — Source Monitor', () => {
       await expect(grid.getByText(name).first()).toBeVisible()
     }
     await expect(grid.getByText('migraciones.gov.py')).toBeVisible()
-    await expect(grid.getByText('CHANGED')).toBeVisible()
+    await expect(grid.getByText('CHANGED', { exact: true }).first()).toBeVisible()
 
     // A blocked URL outranks an ok URL. Spain is the all-ok country.
     await expect(grid.getByText('Spain').first()).toBeVisible()
@@ -106,10 +106,10 @@ test.describe('/sources — Source Monitor', () => {
 
     // Feed rail: the rule event shows the diff, the coverage event shows status.
     const rail = page.getByText('History').locator('..')
-    await expect(rail.getByText('Paraguay')).toBeVisible()
-    await expect(rail.getByText(/rule change in/)).toBeVisible()
-    await expect(rail.getByText(/\+new rule text/)).toBeVisible()
-    await expect(rail.getByText('United Arab Emirates')).toBeVisible()
+    await expect(rail.getByText('Paraguay').first()).toBeVisible()
+    await expect(rail.getByText(/rule change in/).first()).toBeVisible()
+    await expect(rail.getByText(/\+new rule text/).first()).toBeVisible()
+    await expect(rail.getByText('United Arab Emirates').first()).toBeVisible()
   })
 
   test('status filter chips narrow the country grid', async ({ page }) => {
@@ -131,7 +131,7 @@ test.describe('/sources — Source Monitor', () => {
     await expect(grid.getByText('United Arab Emirates')).toHaveCount(0)
 
     await page.getByRole('button', { name: 'All', exact: true }).click()
-    await expect(grid.getByText('Paraguay')).toBeVisible()
+    await expect(grid.getByText('Paraguay').first()).toBeVisible()
   })
 
   test('page never crashes into the error boundary', async ({ page }) => {

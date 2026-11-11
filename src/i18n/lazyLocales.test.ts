@@ -9,7 +9,7 @@ import { pageKeysEn } from './pageKeys/en'
 
 describe('lazy i18n locales', () => {
   it('English resolves without any registration (bundled)', () => {
-    expect(t('en', 'nav.pitch')).toBe('Pitch')
+    expect(t('en', 'nav.pitch')).toBe('Home')
     expect(t('en', 'nav.trust')).toBe('Trust')
   })
 

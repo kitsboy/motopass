@@ -25,12 +25,12 @@ const base: Program = {
 }
 
 describe('computePitchStats', () => {
-  it('derives savings from program aggregates', () => {
+  it('derives corpus aggregates without inventing a comparator', () => {
     const stats = computePitchStats([base, { ...base, id: 2, lightning_ready: false, finance: { ...base.finance, processing_time_months: '12-18' } }])
     expect(stats.programCount).toBe(2)
-    expect(stats.traditionalAdvisoryUsd).toBeGreaterThan(stats.motopassAdvisoryUsd)
-    expect(stats.costSavingsUsd).toBeGreaterThan(0)
-    expect(stats.timeSavingsMonths).toBeGreaterThan(0)
+    expect(stats.lightningCount).toBe(1)
+    expect(stats.avgProcessingMonths).toBeGreaterThan(0)
+    expect(Object.keys(stats)).not.toContain('costSavingsUsd')
   })
 
   it('counts flagship depth programs', () => {

@@ -4,7 +4,7 @@ import type { Dict } from '../translations'
 const ja: Partial<Dict> = {
   'agents.sub': 'AI支援のパスポート窓口リエゾン — 検証済み申請者はNostrで連絡可能',
   'agents.title': '国別リエゾンエージェント',
-  'apply.sub': '関心を登録し、申請ハッシュにタイムスタンプを押し、npubを接続',
+  'apply.sub': '現在、申請は受け付けていません。受付開始後の流れと、それまでにできることをまとめました。',
   'apply.submit': '登録して刻印',
   'apply.title': 'パスポート申請トラッカー',
   'block.live': 'Bitcoinブロック',
