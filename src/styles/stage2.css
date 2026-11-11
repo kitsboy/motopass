@@ -764,3 +764,11 @@ footer a[href='/feed.xml'] svg {
   text-decoration: none;
   white-space: normal;
 }
+
+/* Row links are also touch targets: a 13px word is not a 24px hit area. */
+.s2-visa-rows a {
+  display: inline-block;
+  padding-block: 6px;
+  min-height: 24px;
+  min-width: 24px;
+}
