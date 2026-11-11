@@ -58,7 +58,7 @@ export function Layout() {
       </a>
 
       <Header collapsed={headerCollapsed}>
-        <div className="relative z-30 max-w-7xl mx-auto px-3 sm:px-5 club-header-top-row">
+        <div className="relative z-30 w-full max-w-[1240px] mx-auto px-5 sm:px-8 club-header-top-row">
           <div className="club-header-top-inner flex items-center justify-between gap-2">
             <NavLink
               to="/"
@@ -66,17 +66,16 @@ export function Layout() {
               onClick={() => setMenuOpen(false)}
             >
               <Logo size="sm" />
-              <div className="min-w-0 hidden sm:block leading-tight">
+              <div className="min-w-0 leading-tight">
                 <div className="font-display font-semibold tracking-tight text-[13px] sm:text-sm truncate text-ink group-hover:text-mp-btc-text transition-colors duration-fast">
                   MOTOPASS
                 </div>
-                {/* Stage 2: the build id and the slogan are out of the header.
+                {/* Stage 2: no slogan in the header, and no build id.
                     Version + date live in the footer only, small. */}
-                <div className="club-header-tagline hidden md:block text-[10px] text-ink-muted truncate font-mono max-w-[14rem] opacity-80">
-                  {t('tagline')}
-                </div>
               </div>
             </NavLink>
+
+            <DesktopNav />
 
             <HeaderToolbar collapsed={headerCollapsed} />
 
@@ -93,7 +92,6 @@ export function Layout() {
         </div>
 
         <MobileMenuSheet open={menuOpen} onClose={() => setMenuOpen(false)} />
-        <DesktopNav />
       </Header>
 
       <main

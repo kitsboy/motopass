@@ -39,11 +39,21 @@ export function LazyFlagSprite({
   eager = false,
 }: LazyFlagSpriteProps) {
   const ref = useRef<HTMLSpanElement>(null)
-  const [visible, setVisible] = useState(eager || !IO_SUPPORTED)
-
+  const [spriteOk, setSpriteOk] = useState(true)
   const iso = programCountryCode(countryName).toLowerCase()
   const tile = FLAG_SPRITE_OFFSETS[iso]
-  const showSprite = !!tile
+  const showSprite = !!tile && spriteOk
+  const [visible, setVisible] = useState(eager || !IO_SUPPORTED)
+  // The sprite is a CSS background, so a 404 paints an empty box. Probe the
+  // image once and fall back to the emoji if the sheet will not load.
+
+  useEffect(() => {
+    if (!showSprite) return
+    const img = new Image()
+    img.onerror = () => setSpriteOk(false)
+    img.src = '/images/flags-sprite.webp?v=6'
+  }, [showSprite])
+
   const display = DISPLAY[size]
 
   useEffect(() => {

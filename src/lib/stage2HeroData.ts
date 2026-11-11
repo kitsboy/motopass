@@ -29,9 +29,8 @@ export interface VisaRecord {
   country: string
   program: string
   kind: string
-  minimum: string | null
-  typical: string | null
-  timeline: string | null
+  /** Date the snapshot block was mined, from the stamp itself. */
+  stamped: string | null
   checked: string | null
   sourceUrl: string | null
   sourceName: string | null
@@ -63,11 +62,6 @@ function prettyDate(iso: string | null): string | null {
   const [y, m, d] = iso.split('-').map(Number)
   if (!y || !m || !d) return null
   return `${d} ${MONTHS[m - 1]} ${y}`
-}
-
-function usd(value: number | null | undefined): string | null {
-  if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) return null
-  return `$${value.toLocaleString('en-US')}`
 }
 
 interface SourceEntry {
@@ -191,17 +185,15 @@ export function featuredRecord(programs: Program[]): VisaRecord | null {
   if (!pick) return null
 
   const official = sourcesOf(pick.program).find(s => s.official)
-  const category = String(pick.program.category ?? '')
+  const proof = (pick.program.satohash_proofs ?? [])[0]
 
   return {
     country: pick.program.name,
     program: pick.pathwayLabel,
-    kind: category === 'cbi' ? 'Citizenship' : category === 'rbi' ? 'Residency' : 'Program',
-    minimum: usd(pick.minimum),
-    typical: usd(pick.typical),
-    timeline: pick.program.finance?.processing_time_months
-      ? `${pick.program.finance.processing_time_months} months`
-      : null,
+    // The label says which residency or citizenship route this is; the country
+    // category ("rbi_cbi") cannot, because a country is not a program.
+    kind: /citizen/i.test(pick.pathwayLabel) ? 'Citizenship' : 'Residency',
+    stamped: prettyDate(isoDate(proof?.stamped_at)),
     checked: prettyDate(isoDate(pick.program.last_checked)),
     sourceUrl: official?.url ?? null,
     sourceName: official?.name ?? null,

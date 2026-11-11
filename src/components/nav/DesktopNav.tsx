@@ -9,27 +9,21 @@ export function DesktopNav() {
   const { t } = useI18n()
 
   return (
-    <nav className="elite-desktop-nav" aria-label={t('nav.mainNavigation')}>
-      <div className="elite-desktop-nav__inner max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="elite-desktop-nav__links">
-          {PRIMARY_ROUTES.map(n => (
-            <PrefetchNavLink
-              key={n.to}
-              to={n.to}
-              end={n.end}
-              className={({ isActive }) => eliteNavLinkClass(isActive)}
-            >
-              {t(n.key)}
-            </PrefetchNavLink>
-          ))}
-        </div>
-
-        {/* Account links moved into the Settings menu; the bar carries the
-            five product routes and Apply, nothing else. */}
-        <div className="elite-desktop-nav__aside">
-          <ApplyNavLink layout="cta" />
-        </div>
-      </div>
+    <nav className="s2-nav-links" aria-label={t('nav.mainNavigation')}>
+      {PRIMARY_ROUTES.map(n => (
+        <PrefetchNavLink
+          key={n.to}
+          to={n.to}
+          end={n.end}
+          className={({ isActive }) => eliteNavLinkClass(isActive)}
+        >
+          {t(n.key)}
+        </PrefetchNavLink>
+      ))}
+      {/* Apply is a plain outlined button, and says so when applications are closed. */}
+      <span className="s2-nav-apply">
+        <ApplyNavLink layout="cta" />
+      </span>
     </nav>
   )
 }

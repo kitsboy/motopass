@@ -10,11 +10,12 @@ import { LazyFlagSprite } from './LazyFlagSprite'
  * set like a passport page. One stamp colour, hairline rules, no glass, no
  * glow, no photo, no rotating slogan.
  *
- * The claim on the left and the card on the right are held to the same rule:
- * the featured record must have a named program, a minimum that cannot
- * contradict its typical figure, a government source, and a real Bitcoin
- * anchor (see stage2HeroData). Both the stamp and the machine line open that
- * record's actual verification page.
+ * The card shows only what the record can prove: which country, which route,
+ * when the data was last checked, which official page it came from, and the
+ * Bitcoin block that stamped the snapshot. Investment amounts and timelines are
+ * absent because the cited Argentine pages publish neither — a number without a
+ * source is the exact claim this site exists to avoid. Every omission says
+ * "not on file" and links out to the source.
  */
 export function Stage2Hero({ programs, loading }: { programs: Program[]; loading: boolean }) {
   const facts = heroFacts(programs)
@@ -26,7 +27,7 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
   return (
     <section className="s2 s2-hero" id="pitch-hero" aria-labelledby="s2-hero-h1">
       <div className="s2-hero-grid">
-        <div>
+        <div className="s2-hero-copy">
           <p className="s2-eyebrow">Verified program register</p>
 
           {/* The hyphen is non-breaking so the word never splits at a line end. */}
@@ -61,7 +62,7 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
           </p>
         </div>
 
-        <div>
+        <div className="s2-hero-card">
           {loading ? (
             <div className="s2-visa" role="status" aria-busy="true">
               <p className="s2-eyebrow">Loading the record…</p>
@@ -79,7 +80,7 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
                     eager
                     decorative
                   />
-                  <div>
+                  <div className="s2-visa-who-text">
                     <h2 className="s2-visa-name" id="s2-visa-country">
                       {visa.country}
                     </h2>
@@ -89,24 +90,23 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
                 <div className="s2-visa-kind">{visa.kind}</div>
               </div>
 
-              <div className="s2-visa-money">
-                <span className="s2-visa-money-amt">{visa.minimum ?? 'not on file'}</span>
-                <span className="s2-visa-money-note">
-                  minimum investment
-                  {visa.typical ? <span className="s2-visa-typical"> · {visa.typical} typical</span> : null}
-                </span>
-              </div>
-
+              {/* Fixed label/value grid. The stamp gets a reserved band between
+                  the rows and the machine line: it overlaps the rule, never a
+                  label or a value. */}
               <ul className="s2-visa-rows">
-                <li>
-                  <span className="k">Timeline</span>
-                  <span className="v">{visa.timeline ?? 'not on file'}</span>
-                </li>
                 <li>
                   <span className="k">Last checked</span>
                   <span className="v">{visa.checked ?? 'not on file'}</span>
                 </li>
-                <li className="s2-visa-source-row">
+                <li>
+                  <span className="k">Investment</span>
+                  <span className="v s2-not-on-file">not on file</span>
+                </li>
+                <li>
+                  <span className="k">Timeline</span>
+                  <span className="v s2-not-on-file">not on file</span>
+                </li>
+                <li>
                   <span className="k">Official source</span>
                   <span className="v">
                     {visa.sourceUrl ? (
@@ -129,17 +129,24 @@ export function Stage2Hero({ programs, loading }: { programs: Program[]; loading
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span className="s2-stamp-line1">Bitcoin block</span>
-                      <span className="s2-stamp-line2">{visa.blockHeight.toLocaleString('en-US')}</span>
-                      <span className="s2-stamp-line3">verify</span>
+                      <span className="s2-stamp-line1">Stamped</span>
+                      <span className="s2-stamp-line2">{visa.stamped ?? '—'}</span>
+                      <span className="s2-stamp-line3">
+                        block {visa.blockHeight.toLocaleString('en-US')} · verify
+                      </span>
                     </a>
                   ) : (
                     <span className="s2-stamp">
-                      <span className="s2-stamp-line1">Bitcoin block</span>
-                      <span className="s2-stamp-line2">{visa.blockHeight.toLocaleString('en-US')}</span>
+                      <span className="s2-stamp-line1">Stamped</span>
+                      <span className="s2-stamp-line2">{visa.stamped ?? '—'}</span>
                     </span>
                   )
                 ) : null}
+
+                <p className="s2-visa-note">
+                  The cited immigration pages publish no investment figure or processing time for
+                  this route, so none is shown.
+                </p>
 
                 {visa.hash ? (
                   <p className="s2-machine">
