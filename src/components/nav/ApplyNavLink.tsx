@@ -53,7 +53,6 @@ export function ApplyNavTab({ moreSheetOpen = false }: { moreSheetOpen?: boolean
   const { t } = useI18n()
   const { applicationsOpen } = useLaunchGates()
   // The tab is ~78px wide: "Apply (closed)" clips to "Apply (cl…". Stack it.
-  const label = applicationsOpen ? t('nav.apply') : `${t('nav.apply')} (closed)`
 
   return (
     <PrefetchNavLink
