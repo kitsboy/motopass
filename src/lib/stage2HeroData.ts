@@ -184,7 +184,11 @@ export function featuredRecord(programs: Program[]): VisaRecord | null {
   const pick = candidates[0]
   if (!pick) return null
 
-  const official = sourcesOf(pick.program).find(s => s.official)
+  // Prefer the immigration authority over a tax or securities page: this card
+  // is about a residency route, and the agency that runs it is the right link.
+  const officialSources = sourcesOf(pick.program).filter(s => s.official)
+  const official =
+    officialSources.find(s => /migracion|migration|inmigracion/i.test(s.url)) ?? officialSources[0]
   const proof = (pick.program.satohash_proofs ?? [])[0]
 
   return {
