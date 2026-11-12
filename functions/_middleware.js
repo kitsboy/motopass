@@ -6,33 +6,42 @@
 const SKIP_PREFIXES = ['/assets/', '/api/', '/.well-known/', '/images/', '/website/', '/research/']
 
 // Known client routes (BrowserRouter). Keep in sync with src/App + sitemap.
-const KNOWN_ROUTES = [
-  /^\/$/,
-  /^\/programs\/?$/,
-  /^\/portfolio\/?$/,
-  /^\/simulator\/?$/,
-  /^\/compare\/?$/,
-  /^\/trust\/?$/,
+// Exported as literals so scripts/check-routes.mjs can compare this list with
+// the router and the sitemap in both directions instead of trusting a comment.
+const ROUTE_PATHS = [
+  '/',
+  '/programs',
+  '/portfolio',
+  '/simulator',
+  '/compare',
+  '/trust',
   // /proof backs every "unverified" label and is in the sitemap. It was missing
   // from this allowlist, so the middleware answered 404 for a real page.
-  /^\/proof\/?$/,
-  /^\/btcmap\/?$/,
-  /^\/vault\/?$/,
-  /^\/distressed\/?$/,
-  /^\/blog\/?$/,
-  /^\/blog\/[^/]+\/?$/,
-  /^\/verify\/?$/,
-  /^\/tools\/?$/,
-  /^\/tools\/receipt\/?$/,
-  /^\/agents\/?$/,
-  /^\/apply\/?$/,
-  /^\/thank-you\/?$/, /^\/thanks\/?$/, /^\/thankyou\/?$/, /^\/success\/?$/,
-  /^\/apply\/thank-you\/?$/,
-  /^\/register\/?$/,
-  /^\/dashboard\/?$/,
-  /^\/profile\/?$/,
-  /^\/sources\/?$/,
+  '/proof',
+  '/btcmap',
+  '/vault',
+  '/distressed',
+  '/blog',
+  '/blog/:slug',
+  '/verify',
+  '/tools',
+  '/tools/receipt',
+  '/agents',
+  '/apply',
+  '/thank-you',
+  '/apply/thank-you',
+  '/register',
+  '/dashboard',
+  '/profile',
+  '/sources',
 ]
+
+export { ROUTE_PATHS }
+
+const pathToRegex = (path) =>
+  new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '[^/]+') + '\\/?$')
+
+const KNOWN_ROUTES = ROUTE_PATHS.map(pathToRegex)
 
 // Real static pages shipped in public/ (Cloudflare Pretty URLs serve the
 // extensionless path from the .html file). They are NOT client routes — the
