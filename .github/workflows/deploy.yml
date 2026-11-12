@@ -57,6 +57,8 @@ jobs:
             printf '%s' "$HTML" > /tmp/prod-page.html
             if [ -s /tmp/prod-page.html ] && grep -q "$MARKER" /tmp/prod-page.html; then
               echo "OK — $URL live with marker '$MARKER' (attempt $attempt) for $GITHUB_SHA"
+              # Production is live: now prove every published route still answers.
+              node scripts/check-routes.mjs --live https://motopass.giveabit.io
               exit 0
             fi
             echo "attempt $attempt: production not live yet (CF Pages git build may still be running)"
