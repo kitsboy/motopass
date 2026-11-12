@@ -1,0 +1,28 @@
+# Code owners — what "traced", "green" and "published" mean needs a human owner.
+#
+# NOT ENFORCED YET. Enforcement needs branch protection with
+# "Require review from Code Owners" on main. Once that is on, a bot approval
+# cannot satisfy a code-owner requirement: research claims, the scripts that
+# compute coverage/proof status, and the workflow definitions all need Cam.
+
+# Research claims and the corpus they live in
+/research/countries.json     @kitsboy
+/research/**                 @kitsboy
+
+# Generated data that the site renders
+/src/data/**                 @kitsboy
+
+# The definition of "traced"
+/src/lib/claims.ts           @kitsboy
+
+# The gates themselves — a change here changes what "green" means
+/scripts/**                  @kitsboy
+/.github/workflows/**        @kitsboy
+/.github/CODEOWNERS          @kitsboy
+/package.json                @kitsboy
+
+# Routing and the 404 allowlist
+/functions/_middleware.js    @kitsboy
+
+# What we tell search engines we publish
+/public/sitemap.xml          @kitsboy

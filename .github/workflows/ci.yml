@@ -71,6 +71,9 @@ jobs:
       # Every route in the sitemap must be known to the Pages middleware, or a
       # real page 404s for anyone arriving from a link.
       - run: npm run check:routes
+      # A stamp covers the hash of the record as it was. If the record moved
+      # since, the badge must say "changed since last timestamp".
+      - run: npm run check:slices
       - run: npm run check:proofs
       - run: npm run trust:check
       - run: npm run tools:check

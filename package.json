@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "vite",
     "build:info": "node scripts/gen-build-info.mjs",
-    "build": "npm run build:info && node scripts/build-rss.mjs && vite build",
+    "build": "npm run build:info && node scripts/check-slice-hashes.mjs --write && node scripts/build-rss.mjs && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:e2e": "bash scripts/e2e-smoke.sh",
@@ -73,7 +73,8 @@
     "check:security": "node scripts/check-secret-hygiene.mjs",
     "verify:proofs": "node scripts/verify-proofs.mjs",
     "check:proofs": "node scripts/check-proof-fields.mjs",
-    "check:routes": "node scripts/check-routes.mjs"
+    "check:routes": "node scripts/check-routes.mjs",
+    "check:slices": "node scripts/check-slice-hashes.mjs"
   },
   "dependencies": {
     "@noble/curves": "^2.4.0",

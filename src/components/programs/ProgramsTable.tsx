@@ -242,7 +242,7 @@ export function ProgramsTable({
               </td>
               <td className={`border-b border-mp-border-subtle ${cellPad} pe-4`}>
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <ProofBadge status={p.proofStatus} compact />
+                  <ProofBadge status={p.proofStatus} compact programName={p.country} />
                   <FreshnessBadge
                     lastChecked={p.lastChecked}
                     proofStampedAt={p.proofStampedAt}
