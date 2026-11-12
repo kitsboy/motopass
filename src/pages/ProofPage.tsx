@@ -120,10 +120,9 @@ export function ProofPage() {
               12 Nov 2026
             </time>
             <br />
-            Corrected the Bitcoin block height on 21 timestamps. Each one now carries the height
-            the stamp actually sits in, {' '}
-            <span className="text-ink">975,093</span> or <span className="text-ink">975,308</span>,
-            instead of a number written into the code.
+            Corrected the Bitcoin block height on every timestamp. Each record now carries the
+            height its stamp actually sits in, read from the chain when the site is built, instead
+            of a number written into the code.
           </li>
           <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
             <time dateTime="2026-11-12" className="font-mono text-xs text-ink-muted">
@@ -147,10 +146,12 @@ export function ProofPage() {
               12 Nov 2026
             </time>
             <br />
-            Replaced five hosts that no longer resolve. For Cayman Islands, Vanuatu, Brazil&rsquo;s
-            foreign ministry and Grenada the replacement is the government&rsquo;s own page; for
-            St Lucia the replacement host is a programme site we have not confirmed is
-            government-run, so it is labelled a replacement host, not an official one.
+            Replaced five hosts that no longer resolve. For Cayman Islands, Vanuatu and
+            Brazil&rsquo;s foreign ministry the replacement is the government&rsquo;s own page.
+            For St Lucia and Grenada the replacement host is a programme site we have not
+            confirmed is government-run, so both are labelled a replacement host, not an
+            official one. Grenada&rsquo;s figures carry that label until a government page links
+            to the site.
           </li>
         </ol>
       </section>

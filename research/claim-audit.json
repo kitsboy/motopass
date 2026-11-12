@@ -2,12 +2,12 @@
  "generated_by": "scripts/audit-claims.py",
  "corpus": "research/countries.json",
  "records": 21,
- "figures_shown": 298,
- "figures_traced": 2,
- "coverage_pct": 0.7,
+ "figures_shown": 295,
+ "figures_traced": 4,
+ "coverage_pct": 1.4,
  "money_and_time": {
-  "shown": 141,
-  "traced": 2
+  "shown": 138,
+  "traced": 4
  },
  "per_record": [
   {
@@ -147,11 +147,10 @@
   {
    "name": "Dominica",
    "figures_shown": 14,
-   "figures_traced": 1,
+   "figures_traced": 2,
    "unsourced_fields": [
     "finance.typical_investment_usd",
     "finance.gov_fees_usd",
-    "finance.processing_time_months",
     "scorecard.crypto_friendly",
     "scorecard.freedom",
     "scorecard.stability",
@@ -320,13 +319,10 @@
   },
   {
    "name": "Argentina",
-   "figures_shown": 15,
-   "figures_traced": 0,
+   "figures_shown": 12,
+   "figures_traced": 1,
    "unsourced_fields": [
-    "finance.min_investment_usd",
-    "finance.typical_investment_usd",
     "finance.gov_fees_usd",
-    "finance.processing_time_months",
     "scorecard.crypto_friendly",
     "scorecard.freedom",
     "scorecard.stability",
@@ -336,10 +332,9 @@
     "scorecard.banking",
     "sovereignty_score",
     "pathways[0].min_investment_usd",
-    "pathways[1].min_investment_usd",
     "pathways[3].min_investment_usd"
    ],
-   "has_claim_sources_key": false
+   "has_claim_sources_key": true
   },
   {
    "name": "Brazil",
