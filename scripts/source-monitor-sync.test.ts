@@ -82,7 +82,8 @@ describe('source monitor sync', () => {
           program.watch?.changed === true || (program.watch?.urls ?? []).some(url => url.status === 'changed'),
       )
       .map((program: { name: string }) => program.name)
-    expect(next.changed_countries.map((row: { name: string }) => row.name)).toEqual(latchedNames)
+    // Same set, not the same order: the census sorts by country, the corpus by program.
+    expect(next.changed_countries.map((row: { name: string }) => row.name).sort()).toEqual([...latchedNames].sort())
     expect(next.changed_countries.map((row: { name: string }) => row.name)).not.toContain('Portugal')
   })
 
