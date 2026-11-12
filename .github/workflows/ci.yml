@@ -64,6 +64,10 @@ jobs:
           fi
       - run: npm run validate:data
       - run: npm run validate:stamps
+      # Every proof height must match the chain, and a proof that does not
+      # resolve may carry no height at all. This is the gate that keeps a
+      # hardcoded block number out of the corpus.
+      - run: npm run check:proofs
       - run: npm run trust:check
       - run: npm run tools:check
       # A quote that has drifted off its page is worse than no source at all: it

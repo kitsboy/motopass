@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "MotoPass — Bitcoin Sovereign Passports & Residency Programs. Single source of truth project with pristine demo + modern dev environment.",
+  "description": "MotoPass \u2014 Bitcoin Sovereign Passports & Residency Programs. Single source of truth project with pristine demo + modern dev environment.",
   "engines": {
     "node": ">=20"
   },
@@ -57,11 +57,11 @@
     "a11y:check": "node scripts/check-a11y-budget.mjs",
     "health-check": "bash scripts/health-check.sh",
     "verify:goal": "bash scripts/verify-goal.sh",
-    "deploy:verify": "npm run build && echo 'Build OK — CI / wrangler deploys dist; do not commit dist/'",
+    "deploy:verify": "npm run build && echo 'Build OK \u2014 CI / wrangler deploys dist; do not commit dist/'",
     "verify:live": "node scripts/verify-live-app.mjs",
     "verify:live:ci": "node scripts/deploy-health.mjs",
     "deploy:health": "node scripts/deploy-health.mjs",
-    "//deploy": "Staged: build → purge CF cache → wrangler pages deploy → wait-live verify (Playwright)",
+    "//deploy": "Staged: build \u2192 purge CF cache \u2192 wrangler pages deploy \u2192 wait-live verify (Playwright)",
     "deploy": "npm run build:info && npm run sync:build && npm run build && npm run check:build-salt && node scripts/purge-live-cache.mjs && wrangler pages deploy dist --project-name=motopass --branch=main --commit-dirty=true && node scripts/wait-live-app.mjs",
     "deploy:safe": "npm run build:info && npm run sync:build && npm run build && npm run check:build-salt && node scripts/purge-live-cache.mjs && echo 'Deploying ONLY to motopass (motopass.giveabit.io)' && wrangler pages deploy dist --project-name=motopass --branch=main --commit-dirty=true",
     "check:live-headers": "node scripts/check-live-headers.mjs",
@@ -70,7 +70,9 @@
     "predeploy:push": "npm test && npm run test:e2e",
     "deploy:check": "test -n \"$CLOUDFLARE_API_TOKEN\" && echo 'CF token set' || echo 'Set CLOUDFLARE_API_TOKEN in .env.local for manual wrangler deploy'",
     "deploy:all": "npm run validate:data && npm run validate:stamps && npm run validate:seal && LAUNCH_SKIP_OPS=1 LAUNCH_WRITE_ONLY=1 npm run launch:gate && npm run lint && npm run build:info && npm run sync:build && npm run build && npm run bundle:check && npm run check:build-salt && npm run predeploy:push && npm run deploy:safe && node scripts/wait-live-app.mjs",
-    "check:security": "node scripts/check-secret-hygiene.mjs"
+    "check:security": "node scripts/check-secret-hygiene.mjs",
+    "verify:proofs": "node scripts/verify-proofs.mjs",
+    "check:proofs": "node scripts/check-proof-fields.mjs"
   },
   "dependencies": {
     "@noble/curves": "^2.4.0",
