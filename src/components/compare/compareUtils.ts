@@ -15,7 +15,10 @@ export function bestIndex(nums: (number | null)[], mode: 'min' | 'max'): Set<num
 }
 
 /** Sats-first plain-text figure for clipboard/markdown export: "388M sats (≈$300k)". */
-export function formatMoneyText(usd: number): string {
+export function formatMoneyText(usd: number | null | undefined): string {
+  // A figure we do not have is not zero — never let a missing number become
+  // "0 sats" in an export or a clipboard summary.
+  if (usd == null) return 'not on file'
   return `${formatSats(usdToSats(usd, BTC_USD_AT_CAPTURE))} (≈${formatUsdCompact(usd)})`
 }
 

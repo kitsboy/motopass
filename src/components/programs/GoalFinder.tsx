@@ -78,9 +78,11 @@ export function GoalFinder({ programs, onOpenProgram }: GoalFinderProps) {
     const scored = programs
       .filter(p => {
         if (p.status && p.status.toLowerCase() !== 'active') return false
-        const min = p.finance.min_investment_usd ?? p.finance.typical_investment_usd ?? 0
+        const min = p.finance.min_investment_usd ?? p.finance.typical_investment_usd
         const minDays = parseMonthsToDays(p.finance.processing_time_months)
-        if (min > budgetCap) return false
+        // No figure on file cannot be shown to fit a budget, so it is excluded
+        // rather than ranked as if it were free.
+        if (min == null || min > budgetCap) return false
         if (minDays > timelineCapDays) return false
         if (goal === 'citizenship' && !p.category.includes('citizenship') && !p.category.includes('rbi_cbi')) return false
         if (goal === 'residency' && p.category.includes('citizenship') && !p.category.includes('rbi_cbi') && !p.category.includes('residency')) return false

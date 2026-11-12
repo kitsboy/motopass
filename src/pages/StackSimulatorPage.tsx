@@ -55,7 +55,10 @@ export function StackSimulatorPage() {
   }, [programs, debouncedSearch])
 
   const stack = programs.filter(p => selected.includes(p.id))
-  const totalCost = stack.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
+  // Only figures that are actually on file enter the total; the count says how
+  // much of the stack that covers.
+  const costKnown = stack.filter(p => p.finance.typical_investment_usd != null)
+  const totalCost = costKnown.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
   const sovereignty = stack.length ? Math.round(stack.reduce((s, p) => s + (p.sovereignty_score ?? 5), 0) / stack.length) : 0
   const months = stack.length
     ? Math.max(...stack.map(p => Math.ceil(parseMonthsToDays(p.finance.processing_time_months) / 30)))
@@ -174,7 +177,14 @@ export function StackSimulatorPage() {
                   <div>
                     <span className="text-ink-muted text-xs">{t('simulator.stat.cost')}</span>
                     <div className="mt-1">
-                      <BtcDualPrice usd={totalCost} size="md" layout="stack" />
+                      {costKnown.length ? (
+                        <BtcDualPrice usd={totalCost} size="md" layout="stack" />
+                      ) : (
+                        <span className="text-2xl font-display font-semibold text-ink-muted">—</span>
+                      )}
+                      <div className="text-[11px] text-ink-muted mt-1">
+                        {costKnown.length} of {stack.length} programs have a cost on file
+                      </div>
                     </div>
                   </div>
                 </InfoTip>

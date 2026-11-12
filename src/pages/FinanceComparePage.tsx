@@ -148,8 +148,8 @@ export function FinanceComparePage() {
         best: 'min',
         numeric: p => p.finance.min_investment_usd,
         valueKey: p => String(p.finance.min_investment_usd ?? ''),
-        render: p => <CompareMoneyCell usd={p.finance.min_investment_usd ?? 0} />,
-        renderText: p => formatMoneyText(p.finance.min_investment_usd ?? 0),
+        render: p => <CompareMoneyCell usd={p.finance.min_investment_usd} />,
+        renderText: p => formatMoneyText(p.finance.min_investment_usd),
       },
       {
         label: t('compare.typical'),
@@ -157,8 +157,8 @@ export function FinanceComparePage() {
         best: 'min',
         numeric: p => p.finance.typical_investment_usd,
         valueKey: p => String(p.finance.typical_investment_usd ?? ''),
-        render: p => <CompareMoneyCell usd={p.finance.typical_investment_usd ?? 0} />,
-        renderText: p => formatMoneyText(p.finance.typical_investment_usd ?? 0),
+        render: p => <CompareMoneyCell usd={p.finance.typical_investment_usd} />,
+        renderText: p => formatMoneyText(p.finance.typical_investment_usd),
       },
       {
         label: t('compare.govFees'),
@@ -166,8 +166,8 @@ export function FinanceComparePage() {
         best: 'min',
         numeric: p => p.finance.gov_fees_usd,
         valueKey: p => String(p.finance.gov_fees_usd ?? ''),
-        render: p => <CompareMoneyCell usd={p.finance.gov_fees_usd ?? 0} />,
-        renderText: p => formatMoneyText(p.finance.gov_fees_usd ?? 0),
+        render: p => <CompareMoneyCell usd={p.finance.gov_fees_usd} />,
+        renderText: p => formatMoneyText(p.finance.gov_fees_usd),
       },
       {
         label: t('compare.processing'),
