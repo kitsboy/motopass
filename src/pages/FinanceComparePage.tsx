@@ -175,7 +175,10 @@ export function FinanceComparePage() {
         best: null,
         numeric: () => null,
         valueKey: p => p.finance.processing_time_months ?? '',
-        render: p => `${p.finance.processing_time_months ?? '—'} ${t('compare.months')}`,
+        render: p =>
+          p.finance.processing_time_months
+            ? `${p.finance.processing_time_months} ${t('compare.months')}`
+            : t('compare.notOnFile'),
       },
       {
         label: t('compare.daysInCountry'),
@@ -210,20 +213,21 @@ export function FinanceComparePage() {
         render: p => t(filingLabelKey(compareFacts(p).filing)),
       },
       {
-        label: t('compare.btcScore'),
+        label: `${t('compare.btcScore')} · ${t('compare.ratingTag')}`,
         group: 'scores',
-        best: 'max',
+        // A rating is our judgement, not a reported fact: it never gets BEST.
+        best: null,
         numeric: p => p.finance.crypto_friendly_score,
         valueKey: p => String(p.finance.crypto_friendly_score ?? ''),
-        render: p => `${p.finance.crypto_friendly_score ?? '—'}/10`,
+        render: p => (p.finance.crypto_friendly_score == null ? t('compare.notOnFile') : `${p.finance.crypto_friendly_score}/10`),
       },
       {
-        label: t('compare.sovereignty'),
+        label: `${t('compare.sovereignty')} · ${t('compare.ratingTag')}`,
         group: 'scores',
-        best: 'max',
+        best: null,
         numeric: p => p.sovereignty_score ?? null,
         valueKey: p => String(p.sovereignty_score ?? ''),
-        render: p => `${p.sovereignty_score ?? '—'}/10`,
+        render: p => (p.sovereignty_score == null ? t('compare.notOnFile') : `${p.sovereignty_score}/10`),
       },
       {
         label: t('compare.synergy'),
