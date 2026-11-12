@@ -1,6 +1,7 @@
 import type { Program, ClaimSource } from '../types/program'
 import coverage from '../data/claimCoverage.json'
 import proofStatus from '../data/proofStatus.json'
+import quoteStatus from '../data/quoteStatus.json'
 
 /**
  * One question, asked everywhere: has this figure been traced to the exact
@@ -15,7 +16,11 @@ import proofStatus from '../data/proofStatus.json'
  */
 export function isTraced(program: Program, path: string): boolean {
   const src = (program.claim_sources ?? {})[path] as ClaimSource | undefined
-  return Boolean(src?.url && src?.quote && src?.fetched)
+  if (!src?.url || !src?.quote || !src?.fetched) return false
+  // A quote that only exists in our file is a claim, not evidence. Until CI has
+  // read the words back off the live page, the figure is unchecked.
+  const table = quoteStatus as Record<string, Record<string, boolean>>
+  return table[program.name]?.[path] === true
 }
 
 /** Every money or time figure this program shows, with its trace state. */

@@ -41,16 +41,18 @@ describe('computePitchStats', () => {
     expect(stats.avgProcessingMonths).toBe(0)
   })
 
-  it('averages only the figures that are traced', () => {
+  it('keeps a figure out of the average until its quote has been read back', () => {
     const traced: Program = {
       ...base,
       claim_sources: {
         'finance.typical_investment_usd': { url: 'https://example.gov/x', quote: 'fees of 200,000 US dollars', fetched: '2026-11-11' },
       },
     }
-    // One traced record plus one untraced: the average is the traced figure only.
+    // A source on file is not enough: src/data/quoteStatus.json says whether CI
+    // has read those words off the live page. This fixture has no such pass, so
+    // both records are excluded and the average is 0 rather than an invented one.
     const stats = computePitchStats([traced, { ...base, id: 2, finance: { ...base.finance, typical_investment_usd: 900000 } }])
-    expect(stats.avgTypicalInvestment).toBe(200000)
+    expect(stats.avgTypicalInvestment).toBe(0)
   })
 
   it('no longer reports an average of processing times', () => {

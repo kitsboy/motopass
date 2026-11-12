@@ -66,6 +66,13 @@ jobs:
       - run: npm run validate:stamps
       - run: npm run trust:check
       - run: npm run tools:check
+      # A quote that has drifted off its page is worse than no source at all: it
+      # looks like evidence. This reads every claim URL in a real browser and
+      # writes src/data/quoteStatus.json — the site calls a figure traced only
+      # when its entry there is true.
+      - run: npx playwright install --with-deps chromium
+      - name: Every claim quote is still on its source page
+        run: node scripts/check-quotes.mjs
       # One canonical check (scripts/sync-pitch-anchor.mjs --check): it pins spot +
       # timestamp to the committed anchor, ignores the volatile BUILD id, and fails when
       # the published figures no longer match research/countries.json.

@@ -30,6 +30,8 @@ export interface Program {
   tier: 'Citizenship' | 'Residency' | 'Golden Visa';
   region: string;
   minInvestment: number;
+  /** False when the record carries no minimum: callers must print "not on file". */
+  minOnFile?: boolean;
   timelineDays: number;
   sovereigntyScore: number;
   proofStatus: 'verified' | 'recorded' | 'pending' | 'demo';

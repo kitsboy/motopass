@@ -60,6 +60,9 @@ function proofRef(p: DataProgram): string | undefined {
 /** Map countries.json Program → Warm Sovereign Cinematic card/table shape */
 export function toCinematicProgram(p: DataProgram): CinematicProgram {
   const sovereigntyScore = Math.round((p.sovereignty_score ?? 6) * 10)
+  // Zero is not "free": it is "we do not have this figure". Callers must check
+  // minOnFile before printing a dollar amount.
+  const minOnFile = p.finance.min_investment_usd != null || p.finance.typical_investment_usd != null
   const minInvestment = p.finance.min_investment_usd ?? p.finance.typical_investment_usd ?? 0
 
   const proof = p.satohash_proofs?.[0]
@@ -71,6 +74,7 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     tier: mapTier(p.category),
     region: p.region,
     minInvestment,
+    minOnFile,
     timelineDays: parseMonthsToDays(p.finance.processing_time_months),
     sovereigntyScore,
     proofStatus: proofStatusForRecord(p),

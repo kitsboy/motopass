@@ -97,4 +97,20 @@ fs.writeFileSync(
   `${ROOT}research/quote-check.json`,
   JSON.stringify({ checked_at: new Date().toISOString(), total: claims.length, pass, fails, unreachable }, null, 1),
 )
+// The site must not call a figure traced until its quote has been read back
+// from the live page in CI. This file is that gate.
+const status = {}
+for (const p of corpus.programs ?? corpus) {
+  status[p.name] = {}
+  for (const path of Object.keys(p.claim_sources ?? {})) {
+    status[p.name][path] = false
+  }
+}
+for (const c of claims) {
+  const bad = fails.some(f => f.name === c.name && f.path === c.path)
+  const unknown = unreachable.some(u => u.name === c.name && u.path === c.path)
+  status[c.name][c.path] = !bad && !unknown
+}
+fs.writeFileSync(`${ROOT}src/data/quoteStatus.json`, JSON.stringify(status, null, 1) + '\n', )
+
 if (fails.length && !process.argv.includes('--fix-miss')) process.exit(1)
