@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   btcmap-sync:
@@ -19,7 +20,11 @@ jobs:
       - run: npm ci
       - run: npm run btcmap:density
       - run: npm run btcmap:sync
-      - uses: stefanzweifel/git-auto-commit-action@v7
+      - uses: peter-evans/create-pull-request@v6
         with:
-          commit_message: 'chore: weekly btcmap density + cache sync'
-          file_pattern: 'public/data/btcmap*'
+          branch: bot/btcmap-sync
+          delete-branch: true
+          title: 'chore: weekly btcmap density'
+          commit-message: 'chore: weekly btcmap density + cache sync'
+          add-paths: public/data/btcmap*
+          body: 'Automated BTC Map density refresh. Merges only when CI is green.'

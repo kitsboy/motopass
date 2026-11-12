@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   intel-sweep:
@@ -71,12 +72,27 @@ jobs:
         run: npm run advisories:fetch
 
       # 7) Auto-commit DETECTION + re-anchors + research changes (facts, never invented rules)
-      - name: Commit intel sweep
-        uses: stefanzweifel/git-auto-commit-action@v7
+      # Main is protected: the sweep opens a PR and CI decides. A re-stamp that
+      # moves a block height therefore meets check:proofs before it ships.
+      - name: Open PR for the intel sweep
+        uses: peter-evans/create-pull-request@v6
         with:
-          commit_message: 'chore(intel): daily freshness sweep + source probe + satohash re-stamp'
-          file_pattern: 'research/countries.json public/data/intel.json public/data/advisories.json public/proofs/* public/countries/*.json public/trust-state.json'
-          skip_fetch: true
+          branch: bot/daily-intel
+          delete-branch: true
+          title: 'chore(intel): daily freshness sweep'
+          commit-message: 'chore(intel): daily freshness sweep + source probe + satohash re-stamp'
+          add-paths: |
+            research/countries.json
+            public/data/intel.json
+            public/data/advisories.json
+            public/proofs/*
+            public/countries/*.json
+            public/trust-state.json
+          body: |
+            Automated sweep: source probes, freshness, advisories and any Satohash re-stamp.
+
+            Review the corpus diff. A height change here means the record was re-stamped
+            and `check:proofs` must pass before this merges.
 
       # 8) Summary for the morning review
       - name: Intel summary
