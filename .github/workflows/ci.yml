@@ -173,17 +173,21 @@ jobs:
       - run: npm run verify:live:ci
       - name: Record live deploy in handoff
         run: node scripts/update-handoff-deploy.mjs
-      # Main is protected, so the deploy record goes up as a pull request rather
-      # than a direct push. Same branch every time: the PR updates in place.
-      - name: Open PR for the deploy record
-        uses: peter-evans/create-pull-request@v6
-        with:
-          branch: bot/deploy-log
-          delete-branch: true
-          title: 'docs: record live deploy'
-          commit-message: 'docs: record live deploy'
-          add-paths: docs/KIMI-HANDOFF.md
-          body: 'The deploy verifier wrote the live commit into the handoff. Merging is bookkeeping only.'
+      # Main is protected and a GITHUB_TOKEN PR never gets CI, so the record is
+      # published to a branch. Merging it is bookkeeping, done deliberately.
+      - name: Publish deploy record
+        if: always()
+        run: |
+          if git diff --quiet -- docs/KIMI-HANDOFF.md; then
+            echo "No handoff change"
+            exit 0
+          fi
+          git config user.name "motopass-deploy-bot"
+          git config user.email "deploy-bot@motopass.local"
+          git add docs/KIMI-HANDOFF.md
+          git commit -m "docs: record live deploy"
+          git push origin HEAD:refs/heads/bot/deploy-log --force-with-lease || true
+          echo "::notice::Deploy record pushed to bot/deploy-log."
       - name: Deploy summary JSON
         if: always()
         run: node scripts/deploy-summary.mjs --out artifacts/deploy-summary.json

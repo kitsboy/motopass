@@ -20,11 +20,17 @@ jobs:
       - run: npm ci
       - run: npm run btcmap:density
       - run: npm run btcmap:sync
-      - uses: peter-evans/create-pull-request@v6
-        with:
-          branch: bot/btcmap-sync
-          delete-branch: true
-          title: 'chore: weekly btcmap density'
-          commit-message: 'chore: weekly btcmap density + cache sync'
-          add-paths: public/data/btcmap*
-          body: 'Automated BTC Map density refresh. Merges only when CI is green.'
+      # Same reason as the intel sweep: a GITHUB_TOKEN PR never gets CI, so it
+      # cannot satisfy a required check. Publish the branch instead.
+      - name: Publish btcmap branch
+        run: |
+          git config user.name "motopass-btcmap-bot"
+          git config user.email "btcmap-bot@motopass.local"
+          git add public/data
+          if git diff --cached --quiet; then
+            echo "No density change; nothing to publish."
+            exit 0
+          fi
+          git commit -m "chore: weekly btcmap density + cache sync"
+          git push origin HEAD:refs/heads/bot/btcmap-sync --force-with-lease
+          echo "::notice::Density refresh pushed to bot/btcmap-sync — open a PR to review it."
