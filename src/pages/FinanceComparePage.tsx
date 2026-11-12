@@ -19,6 +19,7 @@ import { CompareMoneyCell } from '../components/CompareMoneyCell'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { formatMoneyText, rowValuesDiffer } from '../components/compare/compareUtils'
 import type { CompareRow } from '../components/compare/types'
+import { UnverifiedNote } from '../components/ui/UnverifiedNote'
 import { CompareHero } from '../components/compare/CompareHero'
 import { ComparePicker } from '../components/compare/ComparePicker'
 import { CompareSummaryStrip } from '../components/compare/CompareSummaryStrip'
@@ -147,8 +148,8 @@ export function FinanceComparePage() {
         best: 'min',
         numeric: p => p.finance.min_investment_usd,
         valueKey: p => String(p.finance.min_investment_usd ?? ''),
-        render: p => <CompareMoneyCell usd={p.finance.min_investment_usd ?? 0} />,
-        renderText: p => formatMoneyText(p.finance.min_investment_usd ?? 0),
+        render: p => <CompareMoneyCell usd={p.finance.min_investment_usd} />,
+        renderText: p => formatMoneyText(p.finance.min_investment_usd),
       },
       {
         label: t('compare.typical'),
@@ -156,17 +157,24 @@ export function FinanceComparePage() {
         best: 'min',
         numeric: p => p.finance.typical_investment_usd,
         valueKey: p => String(p.finance.typical_investment_usd ?? ''),
-        render: p => <CompareMoneyCell usd={p.finance.typical_investment_usd ?? 0} />,
-        renderText: p => formatMoneyText(p.finance.typical_investment_usd ?? 0),
+        render: p => <CompareMoneyCell usd={p.finance.typical_investment_usd} />,
+        renderText: p => formatMoneyText(p.finance.typical_investment_usd),
       },
       {
         label: t('compare.govFees'),
         group: 'finance',
         best: 'min',
-        numeric: p => p.finance.gov_fees_usd,
-        valueKey: p => String(p.finance.gov_fees_usd ?? ''),
-        render: p => <CompareMoneyCell usd={p.finance.gov_fees_usd ?? 0} />,
-        renderText: p => formatMoneyText(p.finance.gov_fees_usd ?? 0),
+        // Program-level fees describe the standard route, so they are not
+        // shown against a route that is not open (Argentina: unconfirmed).
+        numeric: p => (p.route_status === 'open' ? p.finance.gov_fees_usd : null),
+        valueKey: p => (p.route_status === 'open' ? String(p.finance.gov_fees_usd ?? '') : ''),
+        render: p =>
+          p.route_status === 'open' ? (
+            <CompareMoneyCell usd={p.finance.gov_fees_usd} />
+          ) : (
+            <span className="text-xs text-mp-ink-muted italic">not on file</span>
+          ),
+        renderText: p => formatMoneyText(p.finance.gov_fees_usd),
       },
       {
         label: t('compare.processing'),
@@ -174,23 +182,40 @@ export function FinanceComparePage() {
         best: null,
         numeric: () => null,
         valueKey: p => p.finance.processing_time_months ?? '',
-        render: p => `${p.finance.processing_time_months ?? '—'} ${t('compare.months')}`,
+        render: p =>
+          p.finance.processing_time_months
+            ? `${p.finance.processing_time_months} ${t('compare.months')}`
+            : t('compare.notOnFile'),
       },
       {
         label: t('compare.daysInCountry'),
         group: 'timeline',
         best: 'min',
-        numeric: p => compareFacts(p).days,
-        valueKey: p => compareFacts(p).daysLabel,
-        render: p => compareFacts(p).daysLabel,
+        // The 730d / 2y clocks are standard naturalisation, not the investor
+        // route: hidden unless the record's route is open.
+        numeric: p => (p.route_status === 'open' ? compareFacts(p).days : null),
+        valueKey: p => (p.route_status === 'open' ? compareFacts(p).daysLabel : ''),
+        bestLabel: 'shorter',
+        render: p =>
+          p.route_status === 'open' ? (
+            compareFacts(p).daysLabel
+          ) : (
+            <span className="text-xs text-mp-ink-muted italic">not on file</span>
+          ),
       },
       {
         label: t('compare.yearsToCitizenship'),
         group: 'timeline',
         best: 'min',
-        numeric: p => compareFacts(p).years,
-        valueKey: p => compareFacts(p).yearsLabel,
-        render: p => compareFacts(p).yearsLabel,
+        numeric: p => (p.route_status === 'open' ? compareFacts(p).years : null),
+        valueKey: p => (p.route_status === 'open' ? compareFacts(p).yearsLabel : ''),
+        bestLabel: 'shorter',
+        render: p =>
+          p.route_status === 'open' ? (
+            compareFacts(p).yearsLabel
+          ) : (
+            <span className="text-xs text-mp-ink-muted italic">not on file</span>
+          ),
       },
       {
         label: t('compare.feeBitcoin'),
@@ -205,24 +230,25 @@ export function FinanceComparePage() {
         group: 'stack',
         best: null,
         numeric: () => null,
-        valueKey: p => compareFacts(p).filing,
+        valueKey: p => (compareFacts(p).filing === 'unknown' ? '' : compareFacts(p).filing),
         render: p => t(filingLabelKey(compareFacts(p).filing)),
       },
       {
-        label: t('compare.btcScore'),
+        label: `${t('compare.btcScore')} · ${t('compare.ratingTag')}`,
         group: 'scores',
-        best: 'max',
+        // A rating is our judgement, not a reported fact: it never gets BEST.
+        best: null,
         numeric: p => p.finance.crypto_friendly_score,
         valueKey: p => String(p.finance.crypto_friendly_score ?? ''),
-        render: p => `${p.finance.crypto_friendly_score ?? '—'}/10`,
+        render: p => (p.finance.crypto_friendly_score == null ? t('compare.notOnFile') : `${p.finance.crypto_friendly_score}/10`),
       },
       {
-        label: t('compare.sovereignty'),
+        label: `${t('compare.sovereignty')} · ${t('compare.ratingTag')}`,
         group: 'scores',
-        best: 'max',
+        best: null,
         numeric: p => p.sovereignty_score ?? null,
         valueKey: p => String(p.sovereignty_score ?? ''),
-        render: p => `${p.sovereignty_score ?? '—'}/10`,
+        render: p => (p.sovereignty_score == null ? t('compare.notOnFile') : `${p.sovereignty_score}/10`),
       },
       {
         label: t('compare.synergy'),
@@ -339,6 +365,8 @@ export function FinanceComparePage() {
 
       <div className="fc-page__inner page-container px-4 sm:px-6 py-8 sm:py-12 max-w-7xl mx-auto min-w-0">
         <CompareHero slotCount={ids.length} />
+
+        <UnverifiedNote />
 
         <PageAnchorNav items={compareAnchors} />
 

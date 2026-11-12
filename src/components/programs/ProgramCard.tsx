@@ -16,6 +16,7 @@ import { DecisionClocks } from './DecisionClocks';
 import { gazetteHits, gazetteLine } from '../../lib/gazetteWatch';
 import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
+import { UnverifiedChip } from '../ui/UnverifiedNote';
 import { FactsBadge } from './FactsBadge';
 
 function GazetteCardLine({ program }: { program: Program }) {
@@ -267,9 +268,23 @@ function ProgramCardContent({
       <div className="mt-4 border-t border-mp-border-subtle pt-4">
         <dl className="grid grid-cols-2 gap-2">
           <div>
-            <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.minInvest')}</dt>
+            <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
+              {t('programs.minInvest')}
+              {program.routeStatus && program.routeStatus !== 'unknown' && (
+                <span className="ml-1.5 normal-case tracking-normal text-mp-ink-secondary">route {program.routeStatus}</span>
+              )}
+            </dt>
             <dd className="text-mp-ink">
-              <BtcDualPrice usd={program.minInvestment} size="xs" layout="stack" />
+              {program.minOnFile === false || !program.minInvestment ? (
+                <span className="text-xs text-mp-ink-muted italic">not on file</span>
+              ) : (
+                <BtcDualPrice usd={program.minInvestment} size="xs" layout="stack" />
+              )}
+              {(program.unverifiedFigures ?? 0) > 0 && (
+                <span className="mt-1 block">
+                  <UnverifiedChip />
+                </span>
+              )}
             </dd>
           </div>
           <div>

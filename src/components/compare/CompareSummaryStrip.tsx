@@ -1,8 +1,8 @@
-import { Crown, Shield, Zap } from 'lucide-react'
+import { Crown } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import type { Program } from '../../types/program'
 import type { CompareRow } from './types'
-import { bestIndex } from './compareUtils'
+import { bestIndex, isKnown } from './compareUtils'
 import { useI18n } from '../../i18n/I18nContext'
 import { InfoTip } from '../ui/InfoTip'
 import { CountryFlag, CountryTitle } from '../ui/CountryTitle'
@@ -13,9 +13,7 @@ interface CompareSummaryStripProps {
 }
 
 const HIGHLIGHT_MEANING: Record<string, string> = {
-  minInvestment: 'Lowest minimum investment among the compared programs — the cheapest entry point to begin.',
-  sovereignty: 'Highest sovereignty score (0–10) — the program that gives you the most control over your path.',
-  btcScore: 'Highest Bitcoin-friendliness score (0–10) — best fit for a Bitcoin-native stack.',
+  minInvestment: 'Lowest minimum investment among the compared programs that have one on file.',
 }
 
 export function CompareSummaryStrip({ programs, rows }: CompareSummaryStripProps) {
@@ -25,49 +23,32 @@ export function CompareSummaryStrip({ programs, rows }: CompareSummaryStripProps
   if (programs.length < 2) return null
 
   const minRow = rows.find(r => r.label === t('compare.minInvestment'))
-  const sovRow = rows.find(r => r.label === t('compare.sovereignty'))
-  const btcRow = rows.find(r => r.label === t('compare.btcScore'))
 
   const highlights: { icon: typeof Crown; label: string; meaning: string; program: Program | null }[] = []
 
+  // Only a figure that two or more programs actually have can produce a card.
+  // "not on file" never wins, and a single known value has nothing to beat.
   if (minRow) {
     const nums = programs.map(p => minRow.numeric(p))
-    const best = bestIndex(nums, 'min')
-    const idx = [...best][0]
-    highlights.push({
-      icon: Crown,
-      label: t('compare.minInvestment'),
-      meaning: HIGHLIGHT_MEANING.minInvestment,
-      program: idx !== undefined ? programs[idx] : null,
-    })
+    const known = nums.filter(isKnown)
+    const differing = new Set(known).size > 1
+    if (known.length >= 2 && differing) {
+      const idx = [...bestIndex(nums, 'min')][0]
+      if (idx !== undefined) {
+        highlights.push({
+          icon: Crown,
+          label: t('compare.minInvestment'),
+          meaning: HIGHLIGHT_MEANING.minInvestment,
+          program: programs[idx],
+        })
+      }
+    }
   }
 
-  if (sovRow) {
-    const nums = programs.map(p => sovRow.numeric(p))
-    const best = bestIndex(nums, 'max')
-    const idx = [...best][0]
-    highlights.push({
-      icon: Shield,
-      label: t('compare.sovereignty'),
-      meaning: HIGHLIGHT_MEANING.sovereignty,
-      program: idx !== undefined ? programs[idx] : null,
-    })
-  }
+  // Sovereignty and BTC score are MotoPass ratings, not reported facts, so they
+  // get a labelled metric row and no highlight card.
 
-  if (btcRow) {
-    const nums = programs.map(p => btcRow.numeric(p))
-    const best = bestIndex(nums, 'max')
-    const idx = [...best][0]
-    highlights.push({
-      icon: Zap,
-      label: t('compare.btcScore'),
-      meaning: HIGHLIGHT_MEANING.btcScore,
-      program: idx !== undefined ? programs[idx] : null,
-    })
-  }
-
-  const valid = highlights.filter(h => h.program)
-  if (!valid.length) return null
+  if (!highlights.length) return null
 
   return (
     <motion.div
@@ -76,7 +57,7 @@ export function CompareSummaryStrip({ programs, rows }: CompareSummaryStripProps
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, delay: 0.12 }}
     >
-      {valid.map(({ icon: Icon, label, meaning, program }) => (
+      {highlights.map(({ icon: Icon, label, meaning, program }) => (
         <InfoTip
           key={label}
           tip={

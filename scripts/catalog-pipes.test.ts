@@ -53,12 +53,14 @@ describe('catalog pipes', () => {
     expect(report.tooling).toEqual(tooling)
     const uruguay = catalog.programs.find((program: { name?: string }) => program.name === 'Uruguay')
     const interior = uruguay?.watch?.urls?.find(
-      (url: { url?: string }) => url.url === 'https://www.minterior.gub.uy',
+      (url: { url?: string }) => url.url === 'https://www.gub.uy/ministerio-interior',
     )
-    // The 9 Nov 2026 probe set this URL ok and cleared the latch. Intel follows the catalog.
-    expect(interior?.status).toBe('ok')
-    expect(uruguay?.watch?.changed).toBe(false)
-    expect(intel.programs.Uruguay.watch.changed).toBe(false)
+    // The interior ministry moved to gub.uy. Its 11 Nov 2026 probe came back
+    // "changed", so the latch is open on purpose — the census must follow the
+    // catalog, and the catalog now says a page moved.
+    expect(interior?.status).toBe('changed')
+    expect(uruguay?.watch?.changed).toBe(true)
+    expect(intel.programs.Uruguay.watch.changed).toBe(true)
   })
 
   it('names a program that drops off one pipe', () => {

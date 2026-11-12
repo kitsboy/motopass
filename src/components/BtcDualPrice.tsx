@@ -4,7 +4,7 @@ import { useI18n } from '../i18n/I18nContext'
 
 type BtcDualPriceProps = {
   /** Stored USD figure — anchored to sats via btc_price_at_capture, re-priced to the active display currency. */
-  usd: number
+  usd: number | null | undefined
   size?: 'xs' | 'sm' | 'md' | 'lg'
   layout?: 'stack' | 'inline'
   /** Show the secondary line (always muted, BTC/sats counterpart). */
@@ -28,6 +28,13 @@ export function BtcDualPrice({
 }: BtcDualPriceProps) {
   const { priceFor } = useDisplayCurrency()
   const { t } = useI18n()
+  // One backstop for every caller: a figure we do not have must never be
+  // rendered as 0 sats or ₿0.00000000. No programme in this corpus has a
+  // verified zero cost, so zero means "unknown" here, not "free".
+  const known = usd != null && usd > 0
+  if (!known) {
+    return <span className={`text-xs italic text-mp-ink-muted ${className}`}>not on file</span>
+  }
   const priced = priceFor(usd)
   const sizes = sizeClasses[size]
 

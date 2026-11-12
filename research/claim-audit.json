@@ -2,12 +2,12 @@
  "generated_by": "scripts/audit-claims.py",
  "corpus": "research/countries.json",
  "records": 21,
- "figures_shown": 299,
- "figures_traced": 1,
- "coverage_pct": 0.3,
+ "figures_shown": 298,
+ "figures_traced": 2,
+ "coverage_pct": 0.7,
  "money_and_time": {
-  "shown": 142,
-  "traced": 1
+  "shown": 141,
+  "traced": 2
  },
  "per_record": [
   {
@@ -147,9 +147,8 @@
   {
    "name": "Dominica",
    "figures_shown": 14,
-   "figures_traced": 0,
+   "figures_traced": 1,
    "unsourced_fields": [
-    "finance.min_investment_usd",
     "finance.typical_investment_usd",
     "finance.gov_fees_usd",
     "finance.processing_time_months",
@@ -164,7 +163,7 @@
     "pathways[1].min_investment_usd",
     "pathways[2].min_investment_usd"
    ],
-   "has_claim_sources_key": false
+   "has_claim_sources_key": true
   },
   {
    "name": "St. Lucia",
@@ -191,9 +190,8 @@
   {
    "name": "Grenada",
    "figures_shown": 14,
-   "figures_traced": 0,
+   "figures_traced": 1,
    "unsourced_fields": [
-    "finance.min_investment_usd",
     "finance.typical_investment_usd",
     "finance.gov_fees_usd",
     "finance.processing_time_months",
@@ -208,7 +206,7 @@
     "pathways[1].min_investment_usd",
     "pathways[2].min_investment_usd"
    ],
-   "has_claim_sources_key": false
+   "has_claim_sources_key": true
   },
   {
    "name": "Bahamas",
@@ -322,8 +320,8 @@
   },
   {
    "name": "Argentina",
-   "figures_shown": 16,
-   "figures_traced": 1,
+   "figures_shown": 15,
+   "figures_traced": 0,
    "unsourced_fields": [
     "finance.min_investment_usd",
     "finance.typical_investment_usd",
@@ -341,7 +339,7 @@
     "pathways[1].min_investment_usd",
     "pathways[3].min_investment_usd"
    ],
-   "has_claim_sources_key": true
+   "has_claim_sources_key": false
   },
   {
    "name": "Brazil",

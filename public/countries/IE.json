@@ -7,15 +7,15 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T14:12:20.328Z",
+  "generated_at": "2026-11-11T13:24:56.757Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 2,
+    "days_stale": 3,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 3,
+      "days_stale": 4,
       "last_checked": "2026-11-08"
     }
   },
@@ -148,54 +148,47 @@
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-11-10T13:57:56.770Z",
+    "changed": false,
+    "last_probe_at": "2026-11-11T13:10:00.149Z",
     "urls": [
       {
         "url": "https://www.irishimmigration.ie",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://enterprise.gov.ie",
-        "status": "changed",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "status": "ok",
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://www.centralbank.ie",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://www.dfa.ie/",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://www.revenue.ie/",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/press-releases/minister-harris-announces-closure-of-the-immigrant-investor-programme",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-11-05",
-      "field": "watch.https://www.revenue.ie/",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "47104f24fabe4d23"
-    },
     {
       "date": "2026-11-06",
       "field": "watch.https://enterprise.gov.ie",
@@ -243,6 +236,13 @@
       "field": "scorecard.banking",
       "from": "null",
       "to": "10 (Findex 98.3%, 2024)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-11",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
       "hash": null
     }
   ],

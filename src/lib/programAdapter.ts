@@ -1,6 +1,7 @@
 import type { Program as DataProgram } from '../types/program'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import { isAllowedSatohashUrl } from './timestampSecurity'
+import { proofVerified, untracedCount } from './claims'
 import { programCountryCode } from './countryCode'
 
 const STUB_PROOF_RE = /aaaa|placeholder|stub|demo|0000000/i
@@ -15,6 +16,17 @@ export function proofStatusFromUrl(url: string | undefined): 'pending' | 'demo' 
   if (!url) return 'pending'
   if (isStubProofUrl(url) || !isAllowedSatohashUrl(url)) return 'demo'
   return 'recorded'
+}
+
+/**
+ * The badge a record actually earns. "verified" is reserved for a hash that
+ * Satohash's API resolves — twenty pathway proofs on the site carried URLs for
+ * stamps that do not exist, so a URL alone can no longer earn a badge.
+ */
+export function proofStatusForRecord(p: DataProgram): 'verified' | 'pending' | 'demo' | 'recorded' {
+  const proof = p.satohash_proofs?.find(x => x.content_hash && proofVerified(p.name, x.content_hash))
+  if (proof) return 'verified'
+  return proofStatusFromUrl(p.satohash_proofs?.[0]?.proof_url)
 }
 
 /** User-added research placeholders — not valid registration targets. */
@@ -48,6 +60,9 @@ function proofRef(p: DataProgram): string | undefined {
 /** Map countries.json Program → Warm Sovereign Cinematic card/table shape */
 export function toCinematicProgram(p: DataProgram): CinematicProgram {
   const sovereigntyScore = Math.round((p.sovereignty_score ?? 6) * 10)
+  // Zero is not "free": it is "we do not have this figure". Callers must check
+  // minOnFile before printing a dollar amount.
+  const minOnFile = p.finance.min_investment_usd != null || p.finance.typical_investment_usd != null
   const minInvestment = p.finance.min_investment_usd ?? p.finance.typical_investment_usd ?? 0
 
   const proof = p.satohash_proofs?.[0]
@@ -59,9 +74,12 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     tier: mapTier(p.category),
     region: p.region,
     minInvestment,
+    minOnFile,
     timelineDays: parseMonthsToDays(p.finance.processing_time_months),
     sovereigntyScore,
-    proofStatus: proofStatusFromUrl(proof?.proof_url),
+    proofStatus: proofStatusForRecord(p),
+    unverifiedFigures: untracedCount(p),
+    routeStatus: p.route_status,
     proofRef: proofRef(p),
     summary: p.details,
     flag: p.flag,

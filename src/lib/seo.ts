@@ -7,7 +7,7 @@ export const TOP_SEO_LANGS: LangCode[] = ['en', 'es', 'fr', 'pt', 'zh', 'ar', 's
 export const SITE_URL = import.meta.env.VITE_SITE_URL || 'https://motopass.giveabit.io'
 export const SITE_NAME = 'MotoPass'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/images/hero.jpg`
-export const TITLE_SUFFIX = 'MotoPass • Truth You Can Verify'
+export const TITLE_SUFFIX = 'MotoPass'
 
 export type SeoMeta = {
   title: string

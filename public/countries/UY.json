@@ -7,15 +7,15 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-10T14:12:20.324Z",
+  "generated_at": "2026-11-11T13:24:56.755Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 2,
+    "days_stale": 3,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 3,
+      "days_stale": 4,
       "last_checked": "2026-11-08"
     }
   },
@@ -142,33 +142,33 @@
     ]
   },
   "watch": {
-    "changed": false,
-    "last_probe_at": "2026-11-10T13:57:56.770Z",
+    "changed": true,
+    "last_probe_at": "2026-11-11T13:10:00.149Z",
     "urls": [
       {
         "url": "https://www.gub.uy/tramites/residencia-legal",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://www.minterior.gub.uy",
-        "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "status": "changed",
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://embassyofuruguay.us/",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       },
       {
         "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
         "status": "ok",
-        "last_probed": "2026-11-10T13:57:56.770Z"
+        "last_probed": "2026-11-11T13:10:00.149Z"
       }
     ]
   },

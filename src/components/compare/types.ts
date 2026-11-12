@@ -5,6 +5,8 @@ export type CompareRow = {
   label: string
   group: 'finance' | 'timeline' | 'scores' | 'stack'
   best: 'min' | 'max' | null
+  /** Neutral marker text for a leading figure: "lower" for money, "shorter" for time. */
+  bestLabel?: 'lower' | 'shorter'
   numeric: (p: Program) => number | null
   valueKey: (p: Program) => string
   render: (p: Program) => ReactNode

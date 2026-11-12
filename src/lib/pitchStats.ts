@@ -1,4 +1,5 @@
 import type { Program } from '../types/program'
+import { isTraced } from './claims'
 
 function parseMonths(raw: string | null | undefined): number {
   if (!raw) return 12
@@ -36,9 +37,20 @@ export function computePitchStats(programs: Program[]): PitchStats {
   const flagshipCount = programs.filter(p => p.flagship_depth).length
   const deepCount = programs.filter(p => p.flagship_depth && p.flagship_tier !== 'template').length
   const avgSovereignty = programs.reduce((s, p) => s + (p.sovereignty_score ?? 6), 0) / n
-  const avgTypical = programs.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0) / n
-  const avgFees = programs.reduce((s, p) => s + (p.finance.gov_fees_usd ?? 0), 0) / n
-  const avgMonths = programs.reduce((s, p) => s + parseMonths(p.finance.processing_time_months), 0) / n
+  // Averages are taken over TRACED figures only. A figure with no official page
+  // behind it must not move a number a visitor can read.
+  const tracedVals = (path: string, pick: (p: Program) => number | null) => {
+    const vals = programs
+      .filter(p => isTraced(p, path))
+      .map(pick)
+      .filter((v): v is number => typeof v === 'number' && Number.isFinite(v))
+    return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null
+  }
+  const avgTypical =
+    tracedVals('finance.typical_investment_usd', p => p.finance.typical_investment_usd) ?? 0
+  const avgFees = tracedVals('finance.gov_fees_usd', p => p.finance.gov_fees_usd) ?? 0
+  const avgMonths =
+    tracedVals('finance.processing_time_months', p => parseMonths(p.finance.processing_time_months)) ?? 0
 
   return {
     programCount: programs.length,
@@ -73,12 +85,8 @@ export type PitchMetric = {
 export function pitchStatsToMetrics(stats: PitchStats): PitchMetric[] {
   const metrics: PitchMetric[] = [
     { label: 'Jurisdictions tracked', labelKey: 'pitch.metric.jurisdictions', value: stats.programCount },
-    {
-      label: 'Avg. days to residency',
-      labelKey: 'pitch.metric.daysToResidency',
-      value: Math.round(stats.avgProcessingMonths * 30),
-      suffix: 'd',
-    },
+    // "Avg. days to residency" was removed: it averaged processing times that
+    // no official page supports (0 of 141 money/time figures are traced).
   ]
   if (stats.flagshipCount > 0) {
     const depthValue = stats.deepCount > 0 ? stats.deepCount : stats.flagshipCount

@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext'
 import { PROOF_TABS, type ProofTab } from '../lib/navRoutes'
+import { claimCoverage } from '../lib/claims'
 
 const TrustPage = lazy(() => import('./TrustPage').then(m => ({ default: m.TrustPage })))
 const SourceMonitorPage = lazy(() => import('./SourceMonitorPage').then(m => ({ default: m.SourceMonitorPage })))
@@ -25,6 +26,7 @@ export function ProofPage() {
   const [params, setParams] = useSearchParams()
   const raw = params.get('tab')
   const tab: ProofTab = isProofTab(raw) ? raw : 'trust'
+  const coverage = claimCoverage()
 
   return (
     <div className="page-container px-4 sm:px-6 py-6 max-w-7xl mx-auto">
@@ -35,6 +37,34 @@ export function ProofPage() {
           {t('proof.sub')}
         </p>
       </header>
+
+      {/*
+        The page every "Unverified" label points at. It states the count, not a
+        promise: how many figures have an official page behind them, and what we
+        do with the rest.
+      */}
+      <section
+        id="unverified"
+        className="mb-7 scroll-mt-header rounded-xl border border-mp/60 bg-mp-section/40 px-4 py-4 sm:px-5"
+      >
+        <h2 className="font-display text-lg font-semibold text-ink">
+          What &ldquo;unverified&rdquo; means here
+        </h2>
+        <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+          A figure is <strong className="text-ink">traced</strong> when we can point at the official
+          page that states it, quote the words, and give the day we read them. Today{' '}
+          <strong className="text-ink">
+            {coverage.figures_traced} of {coverage.figures_shown} figures
+          </strong>{' '}
+          on this site are traced. Everything else is labelled unverified and stays out of our
+          averages, our rankings and our comparisons.
+        </p>
+        <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+          We show unverified figures because a labelled estimate is more use to you than a blank
+          page — and we would rather you know exactly which numbers are ours and which are the
+          government&rsquo;s.
+        </p>
+      </section>
 
       <nav aria-label={t('proof.tabsAria')} className="mb-6 border-b border-mp/60">
         <ul className="flex gap-1 overflow-x-auto">

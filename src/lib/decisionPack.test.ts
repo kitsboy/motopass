@@ -48,8 +48,11 @@ describe('decision pack', () => {
     expect(pack.announced).toBe(true)
     expect(pack.filing).toBe('in_country')
     expect(pack.feeInBitcoin).toBe('partial')
-    expect(cinematic.minInvestment).toBe(raw.finance.min_investment_usd)
-    expect(cinematic.minInvestment).toBe(50000)
+    expect(raw.finance.min_investment_usd).toBe(null)
+    // The $50,000 figure had no official source; the record carries none, and
+    // the flag says so rather than letting a $0 stand in for it.
+    expect(cinematic.minInvestment).toBe(0)
+    expect(cinematic.minOnFile).toBe(false)
   })
 
   it('treats El Salvador Bitcoin fees as partial and includes the Freedom Visa family', () => {

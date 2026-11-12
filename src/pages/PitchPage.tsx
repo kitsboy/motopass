@@ -110,8 +110,10 @@ export function PitchPage() {
               >
                 {i + 1}
               </span>
-              <h3 className="font-display font-semibold text-lg text-ink mb-3 relative">{t(`pitch.steps.${id}.title`)}</h3>
-              <p className="text-sm text-ink-secondary leading-relaxed relative">{t(`pitch.steps.${id}.body`)}</p>
+              <h3 className="font-display font-semibold text-lg text-ink mb-3 relative">{formatT(t, `pitch.steps.${id}.title`, { count })}</h3>
+              <p className="text-sm text-ink-secondary leading-relaxed relative">
+                {formatT(t, `pitch.steps.${id}.body`, { count })}
+              </p>
               <Link
                 to={id === 'compare' ? '/programs' : id === 'model' ? '/simulator' : '/apply'}
                 className="mt-4 inline-flex items-center gap-1 text-xs font-chrome text-mp-btc-text"

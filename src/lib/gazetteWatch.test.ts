@@ -32,9 +32,11 @@ describe('gazette watch', () => {
       })),
     }))
     const byLine = (line: string) => lines.filter(row => row.line === line).map(row => row.name).sort()
-    expect(byLine('watched')).toEqual(['Argentina', 'Mexico', 'Panama'])
+    // Mexico's DoF is watched but was flagged "changed" by the 11 Nov 2026
+    // probe, so it belongs on the changed line, not the watched one.
+    expect(byLine('watched')).toEqual(['Argentina', 'Panama'])
     expect(byLine('cited')).toEqual(['Grenada', 'St. Lucia'])
-    expect(byLine('changed')).toEqual([])
+    expect(byLine('changed')).toEqual(['Mexico'])
     expect(byLine('none')).toHaveLength(16)
   })
 })

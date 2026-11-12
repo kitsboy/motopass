@@ -158,7 +158,8 @@ export interface PaigeFields {
 export interface Program {
   /** Figure path -> the official page, quote and fetch date that support it. */
   claim_sources?: Record<string, ClaimSource>
-
+  /** open | closed | changed | unknown — traced, with a source, or "unknown". */
+  route_status?: 'open' | 'closed' | 'changed' | 'unknown'
   id: number
   name: string
   category: string

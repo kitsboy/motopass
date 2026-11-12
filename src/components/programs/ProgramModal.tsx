@@ -290,19 +290,27 @@ function ProgramModalBody({
 
       {tab === 'Finance' && (
         <dl className="text-sm space-y-3">
-          {[
-            [t('modal.minInvestment'), program.minInvestment ?? 0],
-            [t('modal.typical'), program.typicalInvestment ?? 0],
-            [t('modal.govFees'), program.govFees ?? 0],
-          ].map(([dt, usd]) => (
+          {([
+            [t('modal.minInvestment'), program.minInvestment],
+            [t('modal.typical'), program.typicalInvestment],
+            [t('modal.govFees'), program.govFees],
+          ] as [string, number | null | undefined][]).map(([dt, usd]) => (
             <div key={String(dt)} className="flex justify-between items-center border-b border-mp-border-subtle pb-2">
               <dt className="text-mp-ink-muted">{dt}</dt>
-              <dd><BtcDualPrice usd={usd as number} size="sm" layout="stack" className="items-end" /></dd>
+              <dd>
+                {usd == null || usd === 0 ? (
+                  <span className="text-sm text-mp-ink-muted italic">not on file</span>
+                ) : (
+                  <BtcDualPrice usd={usd} size="sm" layout="stack" className="items-end" />
+                )}
+              </dd>
             </div>
           ))}
           <div className="flex justify-between border-b border-mp-border-subtle pb-2">
             <dt className="text-mp-ink-muted">{t('modal.processing')}</dt>
-            <dd className="font-mono text-mp-ink font-medium">{program.processingTimeMonths ?? '—'} {t('modal.months')}</dd>
+            <dd className="font-mono text-mp-ink font-medium">
+              {program.processingTimeMonths ? `${program.processingTimeMonths} ${t('modal.months')}` : 'not on file'}
+            </dd>
           </div>
           {program.taxBenefits && (
             <div>

@@ -5,8 +5,18 @@
 
 const TOOLING_MODULE = /Cannot find module ['"]playwright['"]/
 
+/**
+ * A hostname that does not resolve is not a WAF and not a flaky read: the
+ * domain is gone. It must surface as a failure, never as a stale "ok".
+ */
+const DEAD_HOST = /NXDOMAIN|ENOTFOUND|ERR_NAME_NOT_RESOLVED|EAI_AGAIN|ECONNREFUSED|ERR_CONNECTION_REFUSED/i
+
 export function isProbeToolingFailure(error) {
   return typeof error === 'string' && TOOLING_MODULE.test(error)
+}
+
+export function isDeadHostFailure(error) {
+  return typeof error === 'string' && DEAD_HOST.test(error)
 }
 
 /**
@@ -19,14 +29,19 @@ export function applyProbeFailure(entry, result, nowIso) {
   if (isProbeToolingFailure(result?.error)) {
     return { kind: 'tooling', changed: false }
   }
-  const status = result?.cloudflare === true ? 'blocked' : 'unreachable'
+  // A dead domain outranks a "blocked" guess: if the name does not resolve,
+  // there is no page to be blocked by.
+  const dead = isDeadHostFailure(result?.error)
+  const status = dead ? 'unreachable' : result?.cloudflare === true ? 'blocked' : 'unreachable'
   const previous = entry.status
   entry.status_since = entry.status_since || nowIso
   if (entry.status === status) return { kind: status, changed: false, previous }
   entry.status = status
   entry.last_probed = nowIso
   entry.last_error = result?.error
-  return { kind: status, changed: true, previous }
+  if (dead) entry.dead_host = true
+  else delete entry.dead_host
+  return { kind: status, changed: true, previous, dead }
 }
 
 /**
