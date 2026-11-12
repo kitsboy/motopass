@@ -147,9 +147,10 @@ export function ProofPage() {
               12 Nov 2026
             </time>
             <br />
-            Replaced five official hosts that no longer resolve: St Lucia, Cayman Islands,
-            Vanuatu, Brazil&rsquo;s foreign ministry and Grenada. Grenada&rsquo;s programme site
-            moved to imagrenada.gd.
+            Replaced five hosts that no longer resolve. For Cayman Islands, Vanuatu, Brazil&rsquo;s
+            foreign ministry and Grenada the replacement is the government&rsquo;s own page; for
+            St Lucia the replacement host is a programme site we have not confirmed is
+            government-run, so it is labelled a replacement host, not an official one.
           </li>
         </ol>
       </section>
