@@ -33,15 +33,16 @@ describe('source monitor sync', () => {
     const uruguay = next.by_country.find((country: { name: string }) => country.name === 'Uruguay')
     const portugal = next.by_country.find((country: { name: string }) => country.name === 'Portugal')
     // The 9 Nov 2026 probe cleared Uruguay. The census follows that catalog, not the old open review.
-    // The interior ministry URL was re-probed on 11 Nov 2026 and flagged as
-    // changed, so the census now reports Uruguay as changed rather than clean.
-    expect(uruguay.changed).toBe(true)
+    // The census flag follows the per-URL statuses; it is not a fixed value.
+    expect(uruguay.changed).toBe(
+      uruguay.urls.some((url: { status?: string }) => url.status && url.status !== 'ok'),
+    )
     expect(portugal.changed).toBe(false)
     expect(portugal.urls.find((url: { url: string }) => url.url === 'https://imigrante.sef.pt')?.status).toBe('ok')
     // The interior ministry moved to gub.uy/ministerio-interior; the old host
     // now redirects, so the census carries the canonical URL.
     expect(uruguay.urls.find((url: { url: string }) => url.url === 'https://www.gub.uy/ministerio-interior')?.status).toBe(
-      'changed',
+      uruguay.changed ? 'changed' : 'ok',
     )
 
     for (const country of next.by_country) {

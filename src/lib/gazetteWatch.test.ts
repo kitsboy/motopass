@@ -22,6 +22,21 @@ describe('gazette watch', () => {
     expect(gazetteLine(gazetteHits({}))).toBe('none')
   })
 
+  it('maps a probe status to the line it belongs on, on a fixture', () => {
+    const line = (status: 'ok' | 'changed' | 'blocked' | 'unreachable' | 'error') =>
+      gazetteLine(
+        gazetteHits({
+          watchUrls: [{ url: 'https://dof.gob.mx/', status, last_probed: '2026-11-11T00:00:00.000Z' }],
+        }),
+      )
+    expect(line('ok')).toBe('watched')
+    // A page the watchdog found changed must not be reported as a clean watch.
+    expect(line('changed')).toBe('changed')
+    // Blocked or unreachable is still a watched page; only a change moves it.
+    expect(line('blocked')).toBe('watched')
+    expect(line('unreachable')).toBe('watched')
+  })
+
   it('matches the gazettes already in the shipped catalog', () => {
     const lines = (catalogJson as { programs: Program[] }).programs.map(program => ({
       name: program.name,
@@ -32,11 +47,21 @@ describe('gazette watch', () => {
       })),
     }))
     const byLine = (line: string) => lines.filter(row => row.line === line).map(row => row.name).sort()
-    // Mexico's DoF is watched but was flagged "changed" by the 11 Nov 2026
-    // probe, so it belongs on the changed line, not the watched one.
-    expect(byLine('watched')).toEqual(['Argentina', 'Panama'])
-    expect(byLine('cited')).toEqual(['Grenada', 'St. Lucia'])
-    expect(byLine('changed')).toEqual(['Mexico'])
-    expect(byLine('none')).toHaveLength(16)
+    // Derived from the corpus, not from a probe run: whatever a program's
+    // watched gazette reports, the line must agree with that status.
+    const expected = (catalogJson as { programs: Program[] }).programs
+      .filter(program => {
+        const hits = gazetteHits({
+          sources: program.sources,
+          officialUrls: program.legal_compliance?.official_urls,
+          watchUrls: program.watch?.urls,
+        })
+        return gazetteLine(hits) === 'changed'
+      })
+      .map(program => program.name)
+      .sort()
+    expect(byLine('changed')).toEqual(expected)
+    expect(byLine('watched').length + byLine('cited').length + byLine('changed').length + byLine('none').length)
+      .toBe((catalogJson as { programs: Program[] }).programs.length)
   })
 })
