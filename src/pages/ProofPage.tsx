@@ -103,6 +103,56 @@ export function ProofPage() {
         {tab === 'vault' && <VaultPage />}
         {tab === 'tools' && <ToolsPage />}
       </Suspense>
+
+      {/*
+        Corrections: what we changed and when. Plain text, newest first. Each
+        line is a commit that can be read in the repository — nothing here is a
+        promise about future accuracy.
+      */}
+      <section id="corrections" className="mt-10 scroll-mt-header border-t border-mp/60 pt-6">
+        <h2 className="font-display text-lg font-semibold text-ink">Corrections</h2>
+        <p className="mt-1 max-w-3xl font-body text-sm text-ink-muted">
+          Changes we made to the record, newest first. Each one is a commit in the repository.
+        </p>
+        <ol className="mt-4 space-y-3">
+          <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+            <time dateTime="2026-11-12" className="font-mono text-xs text-ink-muted">
+              12 Nov 2026
+            </time>
+            <br />
+            Corrected the Bitcoin block height on 21 timestamps. Each one now carries the height
+            the stamp actually sits in, {' '}
+            <span className="text-ink">975,093</span> or <span className="text-ink">975,308</span>,
+            instead of a number written into the code.
+          </li>
+          <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+            <time dateTime="2026-11-12" className="font-mono text-xs text-ink-muted">
+              12 Nov 2026
+            </time>
+            <br />
+            Removed 20 pathway proofs that do not appear in Satohash&rsquo;s public stamp list.
+            They no longer carry a height, a link or a badge.
+          </li>
+          <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+            <time dateTime="2026-11-12" className="font-mono text-xs text-ink-muted">
+              12 Nov 2026
+            </time>
+            <br />
+            Removed Argentina&rsquo;s minimum of $50,000, typical of $100,000 and 3&ndash;8 month
+            timeline. No official page states them. The statute figure the decree does state
+            (ARS 1,500,000) stays, with its quote.
+          </li>
+          <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+            <time dateTime="2026-11-12" className="font-mono text-xs text-ink-muted">
+              12 Nov 2026
+            </time>
+            <br />
+            Replaced five official hosts that no longer resolve: St Lucia, Cayman Islands,
+            Vanuatu, Brazil&rsquo;s foreign ministry and Grenada. Grenada&rsquo;s programme site
+            moved to imagrenada.gd.
+          </li>
+        </ol>
+      </section>
     </div>
   )
 }

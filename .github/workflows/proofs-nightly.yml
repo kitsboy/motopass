@@ -1,0 +1,38 @@
+name: Proofs nightly
+
+# check:proofs only compares the corpus against a committed snapshot. This job
+# asks the chain instead: it reads every stamp from the Satohash API and fails
+# if any recorded block height disagrees, so a stamp that was reorganised or
+# re-mined cannot sit quietly in the corpus.
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  proofs:
+    name: Proof heights match the chain
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Ask Satohash for every stamp
+        run: npm run verify:proofs
+      - name: Fail if the corpus and the chain disagree
+        run: npm run check:proofs
+      - name: Keep the snapshot for the run log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: proof-status
+          path: src/data/proofStatus.json
+          if-no-files-found: warn
