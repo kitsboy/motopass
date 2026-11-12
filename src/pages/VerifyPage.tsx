@@ -52,7 +52,7 @@ export function VerifyPage() {
     if (path && build) {
       return JSON.stringify(buildPageVerifyPayload(path, build), null, 2)
     }
-    return 'MotoPass — Truth You Can Verify'
+    return 'MotoPass — verification'
   })
   const [hash, setHash] = useState(() => searchParams.get('hash') ?? '')
   const [copied, setCopied] = useState(false)

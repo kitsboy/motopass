@@ -1,6 +1,7 @@
 import type { Program as DataProgram } from '../types/program'
 import type { Program as CinematicProgram } from '../components/programs/types'
 import { isAllowedSatohashUrl } from './timestampSecurity'
+import { proofVerified, untracedCount } from './claims'
 import { programCountryCode } from './countryCode'
 
 const STUB_PROOF_RE = /aaaa|placeholder|stub|demo|0000000/i
@@ -15,6 +16,17 @@ export function proofStatusFromUrl(url: string | undefined): 'pending' | 'demo' 
   if (!url) return 'pending'
   if (isStubProofUrl(url) || !isAllowedSatohashUrl(url)) return 'demo'
   return 'recorded'
+}
+
+/**
+ * The badge a record actually earns. "verified" is reserved for a hash that
+ * Satohash's API resolves — twenty pathway proofs on the site carried URLs for
+ * stamps that do not exist, so a URL alone can no longer earn a badge.
+ */
+export function proofStatusForRecord(p: DataProgram): 'verified' | 'pending' | 'demo' | 'recorded' {
+  const proof = p.satohash_proofs?.find(x => x.content_hash && proofVerified(p.name, x.content_hash))
+  if (proof) return 'verified'
+  return proofStatusFromUrl(p.satohash_proofs?.[0]?.proof_url)
 }
 
 /** User-added research placeholders — not valid registration targets. */
@@ -61,7 +73,9 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     minInvestment,
     timelineDays: parseMonthsToDays(p.finance.processing_time_months),
     sovereigntyScore,
-    proofStatus: proofStatusFromUrl(proof?.proof_url),
+    proofStatus: proofStatusForRecord(p),
+    unverifiedFigures: untracedCount(p),
+    routeStatus: p.route_status,
     proofRef: proofRef(p),
     summary: p.details,
     flag: p.flag,

@@ -29,8 +29,33 @@ describe('computePitchStats', () => {
     const stats = computePitchStats([base, { ...base, id: 2, lightning_ready: false, finance: { ...base.finance, processing_time_months: '12-18' } }])
     expect(stats.programCount).toBe(2)
     expect(stats.lightningCount).toBe(1)
-    expect(stats.avgProcessingMonths).toBeGreaterThan(0)
     expect(Object.keys(stats)).not.toContain('costSavingsUsd')
+  })
+
+  it('keeps untraced figures out of every average', () => {
+    // Nothing in this fixture carries a claim_sources entry, so no average may
+    // be computed from it: an unsourced number cannot move a published figure.
+    const stats = computePitchStats([base, { ...base, id: 2 }])
+    expect(stats.avgTypicalInvestment).toBe(0)
+    expect(stats.avgGovFees).toBe(0)
+    expect(stats.avgProcessingMonths).toBe(0)
+  })
+
+  it('averages only the figures that are traced', () => {
+    const traced: Program = {
+      ...base,
+      claim_sources: {
+        'finance.typical_investment_usd': { url: 'https://example.gov/x', quote: 'fees of 200,000 US dollars', fetched: '2026-11-11' },
+      },
+    }
+    // One traced record plus one untraced: the average is the traced figure only.
+    const stats = computePitchStats([traced, { ...base, id: 2, finance: { ...base.finance, typical_investment_usd: 900000 } }])
+    expect(stats.avgTypicalInvestment).toBe(200000)
+  })
+
+  it('no longer reports an average of processing times', () => {
+    const metrics = pitchStatsToMetrics(computePitchStats([base]))
+    expect(metrics.some(m => m.labelKey === 'pitch.metric.daysToResidency')).toBe(false)
   })
 
   it('counts flagship depth programs', () => {

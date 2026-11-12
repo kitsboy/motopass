@@ -10,7 +10,7 @@ export function organizationJsonLd() {
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
-    description: 'Bitcoin-native sovereign passport and residency intelligence — Truth You Can Verify.',
+    description: 'Sovereign residency and citizenship programs, with every figure marked as sourced or unverified.',
     sameAs: ['https://github.com/kitsboy/motopass'],
   }
 }

@@ -2070,7 +2070,7 @@
       "name": "Uruguay",
       "category": "rbi_cbi",
       "region": "South America",
-      "status": "Flagship - Verified Template",
+      "status": "Flagship - Deep Template",
       "bitcoin_integration": "Crypto legal to hold/trade, not legal tender (peso only). Virtual Assets Law 20.345 (2024) regulates VASPs under Central Bank (BCU); BCU approved VASP regs July 2025. No El-Salvador-style adoption.",
       "finance": {
         "min_investment_usd": 100000,
@@ -3562,7 +3562,7 @@
         "min_investment_usd": 200000,
         "typical_investment_usd": 250000,
         "gov_fees_usd": 15000,
-        "processing_time_months": "2-5",
+        "processing_time_months": "3-4",
         "tax_benefits": "No income or capital gains tax on foreign income for many applicants.\n\nCrypto/Bitcoin tax: CBIU states absence of capital-gains, wealth and inheritance taxes; crypto capital gains effectively untaxed in Dominica.",
         "crypto_friendly_score": 7,
         "bitcoin_specific": "No. EDF donation (US$200k single / US$250k family-4) and real-estate route payable in fiat USD; CBIU does not accept BTC."
@@ -4096,7 +4096,28 @@
         }
       ],
       "policy_mentions_btc": true,
-      "highlight_btc_friendly": false
+      "highlight_btc_friendly": false,
+      "claim_sources": {
+        "finance.min_investment_usd": {
+          "url": "https://www.cbiu.gov.dm/investment-options/",
+          "quote": "The Minimum investment for Dominican citizenship is US$200,000.",
+          "fetched": "2026-11-12",
+          "location": "FAQ: What is the minimum investment required?"
+        },
+        "finance.processing_time_months": {
+          "url": "https://www.cbiu.gov.dm/investment-options/",
+          "quote": "It typically takes 3 – 4 months to receive approval for citizenship.",
+          "fetched": "2026-11-12",
+          "location": "FAQ: how long the process takes"
+        },
+        "route_status": {
+          "url": "https://www.cbiu.gov.dm/investment-options/",
+          "quote": "The Dominica Citizenship by Investment Programme offers two pathways",
+          "fetched": "2026-11-12",
+          "location": "Programme overview"
+        }
+      },
+      "route_status": "open"
     },
     {
       "id": 8,
@@ -4900,7 +4921,23 @@
         }
       ],
       "policy_mentions_btc": true,
-      "highlight_btc_friendly": false
+      "highlight_btc_friendly": false,
+      "claim_sources": {
+        "finance.min_investment_usd": {
+          "url": "https://imagrenada.gd/becoming-a-citizen/",
+          "quote": "Required Contribution Amount USD 235,000",
+          "fetched": "2026-11-12",
+          "location": "National Transformation Fund table, single applicant"
+        },
+        "route_status": {
+          "url": "https://imagrenada.gd/becoming-a-citizen/",
+          "quote": "applicants may either immediately apply for citizenship",
+          "fetched": "2026-11-12",
+          "location": "NTF route paragraph"
+        }
+      },
+      "route_status": "open",
+      "source_host_note": "The old cbi.gov.gd host no longer resolves (NXDOMAIN, checked 2026-11-12)."
     },
     {
       "id": 10,
@@ -8508,10 +8545,10 @@
       "status": "Researching",
       "bitcoin_integration": "Pro-Bitcoin under Milei: Bitcoin contracts legalised 2023, free currency circulation championed; BTC still NOT legal tender (Constitution reserves currency issuance to central bank). VASP registration under CNV + AML (Law 27,739).",
       "finance": {
-        "min_investment_usd": 50000,
-        "typical_investment_usd": 100000,
+        "min_investment_usd": null,
+        "typical_investment_usd": null,
         "gov_fees_usd": 8000,
-        "processing_time_months": "3-8",
+        "processing_time_months": null,
         "tax_benefits": "Favorable territorial or low-rate treatment for foreign income in many structures.\n\nCrypto/Bitcoin tax: Crypto gains taxable: individual Argentine-source 5% (pesos) or 15% (foreign currency); foreign-source 15%; unrealized exchange gains NOT taxed; mining taxed. Annual declaration + blanqueo regime.",
         "crypto_friendly_score": 8,
         "bitcoin_specific": "Partially (city level): City of Buenos Aires (CABA) since Aug 2025 accepts crypto QR for certain municipal taxes (ABL, Patentes, Ingresos Brutos). Federal/immigration fees in pesos, not BTC."
@@ -8563,8 +8600,9 @@
         {
           "type": "investor",
           "label": "Investor residency (inversor)",
-          "min_investment_usd": 50000,
-          "notes": "Temporary residence for capital investment in productive Argentine economic activity under Ley 25.871 art. 23 — business formation, real estate development, or approved project. Must apply in-country via RaDEX; apostille and Spanish translation required."
+          "min_investment_usd": null,
+          "notes": "Temporary residence for capital investment in productive Argentine economic activity under Ley 25.871 art. 23 — business formation, real estate development, or approved project. Must apply in-country via RaDEX; apostille and Spanish translation required.",
+          "min_investment_ars": 1500000
         },
         {
           "type": "digital_nomad",
@@ -9389,7 +9427,20 @@
         }
       ],
       "policy_mentions_btc": true,
-      "highlight_btc_friendly": true
+      "highlight_btc_friendly": true,
+      "claim_sources": {
+        "pathways[1].min_investment_ars": {
+          "url": "https://www.argentina.gob.ar/normativa/nacional/decreto-616-2010-167004/texto",
+          "quote": "por un minimo de PESOS UN MILLON QUINIENTOS MIL",
+          "fetched": "2026-11-11",
+          "location": "Decreto 616/2010, art. 23 inc. d"
+        }
+      },
+      "open_questions": [
+        "The Migraciones temporary-residence index lists no investor track.",
+        "The investor service page returns HTTP 500 as of 2026-11-11.",
+        "Whether the route is open, and at what amount, is unconfirmed."
+      ]
     },
     {
       "id": 16,

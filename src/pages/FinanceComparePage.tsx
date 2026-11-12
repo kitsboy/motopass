@@ -19,6 +19,7 @@ import { CompareMoneyCell } from '../components/CompareMoneyCell'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { formatMoneyText, rowValuesDiffer } from '../components/compare/compareUtils'
 import type { CompareRow } from '../components/compare/types'
+import { UnverifiedNote } from '../components/ui/UnverifiedNote'
 import { CompareHero } from '../components/compare/CompareHero'
 import { ComparePicker } from '../components/compare/ComparePicker'
 import { CompareSummaryStrip } from '../components/compare/CompareSummaryStrip'
@@ -339,6 +340,8 @@ export function FinanceComparePage() {
 
       <div className="fc-page__inner page-container px-4 sm:px-6 py-8 sm:py-12 max-w-7xl mx-auto min-w-0">
         <CompareHero slotCount={ids.length} />
+
+        <UnverifiedNote />
 
         <PageAnchorNav items={compareAnchors} />
 

@@ -33,6 +33,10 @@ export interface Program {
   timelineDays: number;
   sovereigntyScore: number;
   proofStatus: 'verified' | 'recorded' | 'pending' | 'demo';
+  /** Money/time figures on this record with no official page behind them. */
+  unverifiedFigures?: number;
+  /** open | closed | changed | unknown — traced in the corpus, or not stated. */
+  routeStatus?: 'open' | 'closed' | 'changed' | 'unknown';
   proofRef?: string;
   summary: string;
   flag?: string;

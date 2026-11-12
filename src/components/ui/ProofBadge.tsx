@@ -24,7 +24,7 @@ export function ProofBadge({ status, compact = false, txHint }: ProofBadgeProps)
 
   const label =
     status === 'verified'
-      ? 'Bitcoin-verified'
+      ? 'Bitcoin timestamped'
       : status === 'recorded'
         ? 'Proof on file'
         : status === 'demo'

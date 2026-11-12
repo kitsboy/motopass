@@ -53,7 +53,7 @@ export const JOB_POSTINGS: JobPosting[] = [
     location: 'Remote · Global',
     type: 'Full-time',
     summary:
-      'Build the “Truth You Can Verify” pipeline — hash program snapshots, stamp via OpenTimestamps, surface proofs in MotoPass UI.',
+      'Build the proof pipeline — hash program snapshots, stamp via OpenTimestamps, surface the proofs in the MotoPass UI.',
     responsibilities: [
       'Integrate Satohash.io stamping into MotoPass data publish workflow',
       'Display block height, OTS receipts, and one-click verify flows',

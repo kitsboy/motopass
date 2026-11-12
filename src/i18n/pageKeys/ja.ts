@@ -474,7 +474,7 @@ export const pageKeysJa: Partial<Record<PageKey, string>> = {
   'pitch.guide.intro': 'MotoPassは主権的オペレーターのためのプライベートOS — 法域を調査し、Bitcoin上の主張を検証し、スタックを追跡し、Nostrで調整します。左から右への完全な旅はこちら。',
   'pitch.guide.step1.body': 'Programsから始めましょう: 21のプログラムを絞り込み、スタックシミュレーターを実行し、手数料を比較し、BTCマップの加盟店密度を確認。資本効率重視のルートを求めるなら、Distressedが証明ゲート付きの価値プレイを表示します。',
   'pitch.guide.step1.title': 'Forge — 発見とモデル化',
-  'pitch.guide.step2.body': 'すべての重要な主張はBitcoinブロックにアンカーされるべきです。Vaultではハッシュを貼り付け、.otsファイルをアップロードし、Satohash.io経由で証明を独立監査できます — Truth You Can Verify。',
+  'pitch.guide.step2.body': 'すべての重要な主張はBitcoinブロックにアンカーされるべきです。Vaultではハッシュを貼り付け、.otsファイルをアップロードし、Satohash.io経由で証明を独立監査できます。',
   'pitch.guide.step2.title': 'Seal — Bitcoinで検証',
   'pitch.guide.step3.body': '取得したプログラムをPortfolioに保存し、複数法域のスタックをモデル化し、ライブプログラムデータから主権性スコア・Lightning対応・更新期間を監視します。',
   'pitch.guide.step3.title': 'Ledger — スタックを追跡',

@@ -21,7 +21,7 @@ export const BLOG_POSTS: BlogPost[] = [
     labels: ['sovereignty', 'satohash', 'bitcoin'],
     langs: ['en', 'es', 'fr', 'pt', 'zh', 'ar', 'sw', 'de', 'hi', 'ja'],
     title: {
-      en: 'MotoPass launches Truth You Can Verify on Bitcoin',
+      en: 'MotoPass launches Bitcoin timestamp proofs',
       es: 'MotoPass lanza Verdad que Puedes Verificar en Bitcoin',
       fr: 'MotoPass lance La Vérité que Vous Pouvez Vérifier sur Bitcoin',
       pt: 'MotoPass lança Verdade que Você Pode Verificar no Bitcoin',
