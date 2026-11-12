@@ -72,7 +72,8 @@
     "deploy:all": "npm run validate:data && npm run validate:stamps && npm run validate:seal && LAUNCH_SKIP_OPS=1 LAUNCH_WRITE_ONLY=1 npm run launch:gate && npm run lint && npm run build:info && npm run sync:build && npm run build && npm run bundle:check && npm run check:build-salt && npm run predeploy:push && npm run deploy:safe && node scripts/wait-live-app.mjs",
     "check:security": "node scripts/check-secret-hygiene.mjs",
     "verify:proofs": "node scripts/verify-proofs.mjs",
-    "check:proofs": "node scripts/check-proof-fields.mjs"
+    "check:proofs": "node scripts/check-proof-fields.mjs",
+    "check:routes": "node scripts/check-routes.mjs"
   },
   "dependencies": {
     "@noble/curves": "^2.4.0",

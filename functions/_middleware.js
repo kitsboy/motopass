@@ -13,6 +13,9 @@ const KNOWN_ROUTES = [
   /^\/simulator\/?$/,
   /^\/compare\/?$/,
   /^\/trust\/?$/,
+  // /proof backs every "unverified" label and is in the sitemap. It was missing
+  // from this allowlist, so the middleware answered 404 for a real page.
+  /^\/proof\/?$/,
   /^\/btcmap\/?$/,
   /^\/vault\/?$/,
   /^\/distressed\/?$/,
