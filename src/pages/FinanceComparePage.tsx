@@ -164,9 +164,16 @@ export function FinanceComparePage() {
         label: t('compare.govFees'),
         group: 'finance',
         best: 'min',
-        numeric: p => p.finance.gov_fees_usd,
-        valueKey: p => String(p.finance.gov_fees_usd ?? ''),
-        render: p => <CompareMoneyCell usd={p.finance.gov_fees_usd} />,
+        // Program-level fees describe the standard route, so they are not
+        // shown against a route that is not open (Argentina: unconfirmed).
+        numeric: p => (p.route_status === 'open' ? p.finance.gov_fees_usd : null),
+        valueKey: p => (p.route_status === 'open' ? String(p.finance.gov_fees_usd ?? '') : ''),
+        render: p =>
+          p.route_status === 'open' ? (
+            <CompareMoneyCell usd={p.finance.gov_fees_usd} />
+          ) : (
+            <span className="text-xs text-mp-ink-muted italic">not on file</span>
+          ),
         renderText: p => formatMoneyText(p.finance.gov_fees_usd),
       },
       {
@@ -184,17 +191,31 @@ export function FinanceComparePage() {
         label: t('compare.daysInCountry'),
         group: 'timeline',
         best: 'min',
-        numeric: p => compareFacts(p).days,
-        valueKey: p => compareFacts(p).daysLabel,
-        render: p => compareFacts(p).daysLabel,
+        // The 730d / 2y clocks are standard naturalisation, not the investor
+        // route: hidden unless the record's route is open.
+        numeric: p => (p.route_status === 'open' ? compareFacts(p).days : null),
+        valueKey: p => (p.route_status === 'open' ? compareFacts(p).daysLabel : ''),
+        bestLabel: 'shorter',
+        render: p =>
+          p.route_status === 'open' ? (
+            compareFacts(p).daysLabel
+          ) : (
+            <span className="text-xs text-mp-ink-muted italic">not on file</span>
+          ),
       },
       {
         label: t('compare.yearsToCitizenship'),
         group: 'timeline',
         best: 'min',
-        numeric: p => compareFacts(p).years,
-        valueKey: p => compareFacts(p).yearsLabel,
-        render: p => compareFacts(p).yearsLabel,
+        numeric: p => (p.route_status === 'open' ? compareFacts(p).years : null),
+        valueKey: p => (p.route_status === 'open' ? compareFacts(p).yearsLabel : ''),
+        bestLabel: 'shorter',
+        render: p =>
+          p.route_status === 'open' ? (
+            compareFacts(p).yearsLabel
+          ) : (
+            <span className="text-xs text-mp-ink-muted italic">not on file</span>
+          ),
       },
       {
         label: t('compare.feeBitcoin'),
@@ -209,7 +230,7 @@ export function FinanceComparePage() {
         group: 'stack',
         best: null,
         numeric: () => null,
-        valueKey: p => compareFacts(p).filing,
+        valueKey: p => (compareFacts(p).filing === 'unknown' ? '' : compareFacts(p).filing),
         render: p => t(filingLabelKey(compareFacts(p).filing)),
       },
       {

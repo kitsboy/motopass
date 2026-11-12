@@ -2053,10 +2053,10 @@ html.mp-header-collapsed {
 }
 
 .fc-matrix__cell--best {
-  background: rgba(232, 121, 249, 0.12);
-  color: #f0abfc;
-  font-weight: 600;
-  box-shadow: inset 0 0 0 1px rgba(232, 121, 249, 0.24);
+  /* Neutral, not a prize: the marker says which figure is lower or shorter,
+     and no colour implies that it is better. */
+  background: transparent;
+  font-weight: 500;
 }
 
 .fc-matrix__best-badge {
