@@ -7,24 +7,24 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-11T13:24:56.758Z",
+  "generated_at": "2026-11-12T14:27:54.993Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 3,
+    "days_stale": 4,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 4,
+      "days_stale": 5,
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 958093,
-    "stamped_at": "2026-11-08T19:32:33.824Z",
-    "hash": "164d0a3b6eb57f5de5df783a040f6d640a882e8fc48b14e31045f9184737d7cb",
-    "proof_url": "https://satohash.io/verify/164d0a3b6eb57f5de5df783a040f6d640a882e8fc48b14e31045f9184737d7cb",
+    "block": 975093,
+    "stamped_at": "2026-11-12T14:27:51.501Z",
+    "hash": "07d50006e127bb7f7c45e9c8d94ef33fae5992db012bfa1077a7039faa0e14a3",
+    "proof_url": "https://satohash.io/verify/07d50006e127bb7f7c45e9c8d94ef33fae5992db012bfa1077a7039faa0e14a3",
     "ots_path": "/proofs/argentina-302a948d1da4.ots",
     "in_sync": true
   },
@@ -69,8 +69,8 @@
     "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions."
   },
   "threshold": {
-    "min_investment_usd": 50000,
-    "typical_investment_usd": 100000,
+    "min_investment_usd": null,
+    "typical_investment_usd": null,
     "history": [
       {
         "date": "2026-10-02",
@@ -88,7 +88,7 @@
       {
         "type": "investor",
         "label": "Investor residency (inversor)",
-        "min_investment_usd": 50000
+        "min_investment_usd": null
       },
       {
         "type": "digital_nomad",
@@ -158,53 +158,46 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-11T13:10:00.149Z",
+    "last_probe_at": "2026-11-12T14:12:49.040Z",
     "urls": [
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
-        "url": "https://www.migraciones.gob.ar",
+        "url": "https://www.argentina.gob.ar/migraciones",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.boletinoficial.gob.ar",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://eeeuu.cancilleria.gob.ar/",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.argentina.gob.ar/migraciones/residencias",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-10-02",
-      "field": "pathways.citizenship_by_investment",
-      "from": "(absent)",
-      "to": "added announced Citizenship-by-Investment pathway (US$350k contribution + US$800k bond main; dependents US$100k spouse/adult, US$25k minor; est. Q1 2027); marked UNVERIFIED — CitizenX announcement only, no official decree/gazette yet",
-      "hash": null
-    },
     {
       "date": "2026-10-02",
       "field": "proof",
@@ -253,6 +246,13 @@
       "from": "null",
       "to": "8 (Findex 81.7%, 2024)",
       "hash": null
+    },
+    {
+      "date": "2026-11-12",
+      "field": "proof",
+      "from": "164d0a3b6eb57f5d",
+      "to": "re-anchored 07d50006e127bb7f (stamp 4bab4292-e56)",
+      "hash": "07d50006e127bb7f7c45e9c8d94ef33fae5992db012bfa1077a7039faa0e14a3"
     }
   ],
   "sovereignty": {

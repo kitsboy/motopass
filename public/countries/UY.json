@@ -7,22 +7,22 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-11T13:24:56.755Z",
+  "generated_at": "2026-11-12T14:27:54.990Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 3,
+    "days_stale": 4,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 4,
+      "days_stale": 5,
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 969313,
-    "stamped_at": "2026-11-08T19:28:25.341Z",
+    "block": 975093,
+    "stamped_at": "2026-11-08T19:28:25Z",
     "hash": "03162f1e30588da2c1589d97943a41abb8a243e1b20e1912144e946045665802",
     "proof_url": "https://satohash.io/verify/03162f1e30588da2c1589d97943a41abb8a243e1b20e1912144e946045665802",
     "ots_path": "/proofs/uruguay-957aaee425cf.ots",
@@ -142,44 +142,37 @@
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-11-11T13:10:00.149Z",
+    "changed": false,
+    "last_probe_at": "2026-11-12T14:12:49.040Z",
     "urls": [
       {
         "url": "https://www.gub.uy/tramites/residencia-legal",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
-        "url": "https://www.minterior.gub.uy",
-        "status": "changed",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "url": "https://www.gub.uy/ministerio-interior",
+        "status": "ok",
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://embassyofuruguay.us/",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-10-31",
-      "field": "watch.https://www.minterior.gub.uy",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "b8e33dedac839084"
-    },
     {
       "date": "2026-11-06",
       "field": "watch.https://www.minterior.gub.uy",
@@ -227,6 +220,13 @@
       "field": "scorecard.banking",
       "from": "null",
       "to": "7 (Findex 73.7%, 2024)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-12",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
       "hash": null
     }
   ],

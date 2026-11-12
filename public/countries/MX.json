@@ -7,22 +7,22 @@
     "region": "North America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-11T13:24:56.759Z",
+  "generated_at": "2026-11-12T14:27:54.994Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 3,
+    "days_stale": 4,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 4,
+      "days_stale": 5,
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 958093,
-    "stamped_at": "2026-11-08T19:34:24.389Z",
+    "block": 975093,
+    "stamped_at": "2026-11-08T19:34:24Z",
     "hash": "d586109a0a432c45a3e9cc04bf3bbaeb3df1988b7c75a3b6c5b9eb8ef4c3289a",
     "proof_url": "https://satohash.io/verify/d586109a0a432c45a3e9cc04bf3bbaeb3df1988b7c75a3b6c5b9eb8ef4c3289a",
     "ots_path": "/proofs/mexico-67ea33c8e699.ots",
@@ -160,8 +160,8 @@
     ]
   },
   "watch": {
-    "changed": true,
-    "last_probe_at": "2026-11-11T13:10:00.149Z",
+    "changed": false,
+    "last_probe_at": "2026-11-12T14:12:49.040Z",
     "urls": [
       {
         "url": "https://www.inm.gob.mx",
@@ -171,22 +171,22 @@
       {
         "url": "https://www.gob.mx",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://dof.gob.mx",
-        "status": "changed",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "status": "ok",
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.gob.mx/sre",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://embamex.sre.gob.mx/eua/",
@@ -201,13 +201,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-11-03",
-      "field": "watch.https://dof.gob.mx",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "f6fabbd65e95eddd"
-    },
     {
       "date": "2026-11-04",
       "field": "watch.https://dof.gob.mx",
@@ -255,6 +248,13 @@
       "field": "scorecard.banking",
       "from": "null",
       "to": "5 (Findex 53%, 2024)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-12",
+      "field": "watch.changed",
+      "from": "true",
+      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
       "hash": null
     }
   ],

@@ -7,24 +7,24 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-11T13:24:56.756Z",
+  "generated_at": "2026-11-12T14:27:54.991Z",
   "freshness": {
     "status": "fresh",
-    "days_stale": 3,
+    "days_stale": 4,
     "verified_at": "2026-11-08",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 4,
+      "days_stale": 5,
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 958093,
-    "stamped_at": "2026-11-08T19:30:31.130Z",
-    "hash": "ef070d57a298ad241fb577aa4a65ff9f048dc14776b741b2a50a17e803a44d2e",
-    "proof_url": "https://satohash.io/verify/ef070d57a298ad241fb577aa4a65ff9f048dc14776b741b2a50a17e803a44d2e",
+    "block": 975093,
+    "stamped_at": "2026-11-12T14:27:47.500Z",
+    "hash": "ba487962ab56333da14a2c9da2f53884ef38b4f77c5b14f08cd9a58a559e952f",
+    "proof_url": "https://satohash.io/verify/ba487962ab56333da14a2c9da2f53884ef38b4f77c5b14f08cd9a58a559e952f",
     "ots_path": "/proofs/dominica-60018a33188a.ots",
     "in_sync": true
   },
@@ -134,38 +134,31 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-11T13:10:00.149Z",
+    "last_probe_at": "2026-11-12T14:12:49.040Z",
     "urls": [
       {
-        "url": "https://cbiu.gov.dm",
+        "url": "https://www.cbiu.gov.dm",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://dominica.gov.dm/",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.cbiu.gov.dm/",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.cbiu.gov.dm/investment-options/",
         "status": "ok",
-        "last_probed": "2026-11-11T13:10:00.149Z"
+        "last_probed": "2026-11-12T14:12:49.040Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-21",
-      "field": "watch.https://cbiu.gov.dm",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "b3d576701a6e6f67"
-    },
     {
       "date": "2026-09-30",
       "field": "proof",
@@ -214,6 +207,13 @@
       "from": "null",
       "to": "left null — no World Bank Findex observation",
       "hash": null
+    },
+    {
+      "date": "2026-11-12",
+      "field": "proof",
+      "from": "ef070d57a298ad24",
+      "to": "re-anchored ba487962ab56333d (stamp f2b2b8a2-4e4)",
+      "hash": "ba487962ab56333da14a2c9da2f53884ef38b4f77c5b14f08cd9a58a559e952f"
     }
   ],
   "sovereignty": {
