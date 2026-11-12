@@ -1,5 +1,5 @@
 <!-- live-deploy:start -->
-**Last live deploy:** BUILD `2026.11.12-5e21635` · commit `5e21635` · HTTP 200 · verified 2026-11-12T16:54:53.347Z
+**Last live deploy:** BUILD `2026.11.12-ffecc6b` · commit `8192bc8` · HTTP 200 · verified 2026-11-12T22:02:08.383Z
 <!-- live-deploy:end -->
 
 ## Latest Session Summary (from 2026-11-10 goodbye)
