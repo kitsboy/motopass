@@ -70,6 +70,8 @@ export const pageKeysZh: Partial<Record<PageKey, string>> = {
   'compare.yes': '是',
   'compare.no': '否',
   'compare.months': '月',
+  'compare.notOnFile': '未记录',
+  'compare.ratingTag': 'MotoPass 评分',
   'portfolio.eyebrow': '我的投资组合',
   'portfolio.title': '已获取的项目',
   'portfolio.subtitle': '你在浏览器中标记为已获取的项目。',

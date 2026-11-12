@@ -70,6 +70,8 @@ export const pageKeysSw: Partial<Record<PageKey, string>> = {
   'compare.yes': 'Ndiyo',
   'compare.no': 'Hapana',
   'compare.months': 'miezi',
+  'compare.notOnFile': 'haipo kwenye faili',
+  'compare.ratingTag': 'tathmini ya MotoPass',
   'portfolio.eyebrow': 'KWINGINEKO YANGU',
   'portfolio.title': 'Programu zilizopatikana',
   'portfolio.subtitle': 'Programu ulizoweka alama kama zilizopatikana kwenye kivinjari.',
