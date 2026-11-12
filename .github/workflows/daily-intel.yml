@@ -70,29 +70,22 @@ jobs:
 
       - name: Refresh travel advice
         run: npm run advisories:fetch
+      # A PR opened with GITHUB_TOKEN needs manual approval and never gets CI,
+      # so it cannot satisfy a required check. Publish the branch and name it;
+      # opening the PR stays a deliberate act until a bot token exists.
+      - name: Publish sweep branch
+        run: |
+          git config user.name "motopass-intel-bot"
+          git config user.email "intel-bot@motopass.local"
+          git add research/countries.json public/data public/proofs public/countries public/trust-state.json
+          if git diff --cached --quiet; then
+            echo "No corpus change; nothing to publish."
+            exit 0
+          fi
+          git commit -m "chore(intel): daily freshness sweep"
+          git push origin HEAD:refs/heads/bot/daily-intel --force-with-lease
+          echo "::notice::Sweep pushed to bot/daily-intel — open a PR to review it."
 
-      # 7) Auto-commit DETECTION + re-anchors + research changes (facts, never invented rules)
-      # Main is protected: the sweep opens a PR and CI decides. A re-stamp that
-      # moves a block height therefore meets check:proofs before it ships.
-      - name: Open PR for the intel sweep
-        uses: peter-evans/create-pull-request@v6
-        with:
-          branch: bot/daily-intel
-          delete-branch: true
-          title: 'chore(intel): daily freshness sweep'
-          commit-message: 'chore(intel): daily freshness sweep + source probe + satohash re-stamp'
-          add-paths: |
-            research/countries.json
-            public/data/intel.json
-            public/data/advisories.json
-            public/proofs/*
-            public/countries/*.json
-            public/trust-state.json
-          body: |
-            Automated sweep: source probes, freshness, advisories and any Satohash re-stamp.
-
-            Review the corpus diff. A height change here means the record was re-stamped
-            and `check:proofs` must pass before this merges.
 
       # 8) Summary for the morning review
       - name: Intel summary
