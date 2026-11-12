@@ -213,7 +213,7 @@ function ProgramModalBody({
       </div>
 
       <div className="mb-4 flex items-center gap-3 flex-wrap">
-        <ProofBadge status={program.proofStatus} txHint={program.proofRef} />
+        <ProofBadge status={program.proofStatus} txHint={program.proofRef} programName={program.country} />
         {onToggleWatch && (
           <button
             type="button"

@@ -129,6 +129,17 @@ export function ProofPage() {
               12 Nov 2026
             </time>
             <br />
+            Found two records whose timestamp covered older content than the page showed:
+            Dominica and Argentina carried a stamp for an earlier version while their entries had
+            already been edited. Both were re-stamped. From now on a record whose content has moved
+            since its stamp says &ldquo;changed since last timestamp&rdquo; instead of
+            &ldquo;Bitcoin timestamped&rdquo;.
+          </li>
+          <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+            <time dateTime="2026-11-12" className="font-mono text-xs text-ink-muted">
+              12 Nov 2026
+            </time>
+            <br />
             Removed 20 pathway proofs that do not appear in Satohash&rsquo;s public stamp list.
             They no longer carry a height, a link or a badge.
           </li>

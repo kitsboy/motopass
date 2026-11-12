@@ -1,18 +1,39 @@
-import { CheckCircle2, Clock, FlaskConical } from 'lucide-react';
+import { CheckCircle2, Clock, FlaskConical, FileWarning } from 'lucide-react';
+import sliceStatus from '../../data/sliceStatus.json';
 
-export type ProofStatus = 'verified' | 'recorded' | 'pending' | 'demo';
+export type ProofStatus = 'verified' | 'recorded' | 'pending' | 'demo' | 'stale';
+
+/**
+ * True when the record's content no longer matches the hash its stamp covers.
+ * Generated at build time by scripts/check-slice-hashes.mjs --write.
+ */
+export function sliceDrifted(name: string | undefined): boolean {
+  if (!name) return false;
+  const row = (sliceStatus as Record<string, { inSync: boolean }>)[name];
+  return Boolean(row) && row.inSync === false;
+}
 
 interface ProofBadgeProps {
   status: ProofStatus;
   compact?: boolean;
   txHint?: string;
+  /** When given, a record edited since its stamp downgrades to 'stale'. */
+  programName?: string;
 }
 
 /**
  * ProofBadge — Satohash/OpenTimestamps anchor state.
  * demo = placeholder hash in seed data (not yet stamped on Bitcoin).
  */
-export function ProofBadge({ status, compact = false, txHint }: ProofBadgeProps) {
+export function ProofBadge({
+  status: rawStatus,
+  compact = false,
+  txHint,
+  programName,
+}: ProofBadgeProps) {
+  // A stamp only vouches for the content it covered. If the record has moved
+  // since, the honest label is "changed since last timestamp".
+  const status: ProofStatus = programName && sliceDrifted(programName) ? 'stale' : rawStatus;
   const styles =
     status === 'verified'
       ? 'border-mp-proof/35 bg-mp-proof-soft text-mp-proof dark:border-mp-proof/45 dark:bg-mp-proof/15 dark:text-[#4ade80]'
@@ -29,9 +50,12 @@ export function ProofBadge({ status, compact = false, txHint }: ProofBadgeProps)
         ? 'Proof on file'
         : status === 'demo'
           ? 'Demo Anchor'
-          : 'Anchor Pending';
+          : status === 'stale'
+            ? 'Changed since last timestamp'
+            : 'Anchor Pending';
 
-  const Icon = status === 'verified' ? CheckCircle2 : status === 'demo' ? FlaskConical : Clock;
+  const Icon =
+    status === 'verified' ? CheckCircle2 : status === 'demo' ? FlaskConical : status === 'stale' ? FileWarning : Clock;
 
   return (
     <span

@@ -255,7 +255,7 @@ function ProgramCardContent({
           compact
           labels={freshnessLabels}
         />
-        <ProofBadge status={program.proofStatus} compact />
+        <ProofBadge status={program.proofStatus} compact programName={program.country} />
         <SourcesProbedNote iso={program.lastProbed} />
       </div>
 
