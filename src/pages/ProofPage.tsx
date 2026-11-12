@@ -131,9 +131,11 @@ export function ProofPage() {
             <br />
             Found two records whose timestamp covered older content than the page showed:
             Dominica and Argentina carried a stamp for an earlier version while their entries had
-            already been edited. Both were re-stamped. From now on a record whose content has moved
-            since its stamp says &ldquo;changed since last timestamp&rdquo; instead of
-            &ldquo;Bitcoin timestamped&rdquo;.
+            already been edited. The edited records reached production at 03:25 UTC on 12 Nov and
+            the re-stamp at 14:28 UTC, so for about eleven hours visitors saw
+            &ldquo;Bitcoin timestamped&rdquo; on content the stamp did not cover. Both records are
+            now stamped for what the page shows. A record whose content has moved since its stamp
+            now says &ldquo;changed since last timestamp&rdquo; instead.
           </li>
           <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
             <time dateTime="2026-11-12" className="font-mono text-xs text-ink-muted">
