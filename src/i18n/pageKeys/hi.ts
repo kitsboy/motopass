@@ -70,6 +70,8 @@ export const pageKeysHi: Partial<Record<PageKey, string>> = {
   'compare.yes': 'हाँ',
   'compare.no': 'नहीं',
   'compare.months': 'माह',
+  'compare.notOnFile': 'फ़ाइल में नहीं',
+  'compare.ratingTag': 'MotoPass रेटिंग',
   'portfolio.eyebrow': 'मेरा पोर्टफोलियो',
   'portfolio.title': 'अधिग्रहीत कार्यक्रम',
   'portfolio.subtitle': 'एक्सप्लोरर में आपने अधिग्रहीत के रूप में चिह्नित किए गए कार्यक्रम।',

@@ -229,6 +229,8 @@ export const pageKeysJa: Partial<Record<PageKey, string>> = {
   'compare.metric': '指標',
   'compare.minInvestment': '最低投資額',
   'compare.months': 'ヶ月',
+  'compare.notOnFile': '未確認',
+  'compare.ratingTag': 'MotoPass評価',
   'compare.no': 'いいえ',
   'compare.noMatch': '一致するプログラムがありません',
   'compare.openProgram': '{name}の詳細を開く',

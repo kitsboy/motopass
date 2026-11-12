@@ -70,6 +70,8 @@ export const pageKeysPt: Partial<Record<PageKey, string>> = {
   'compare.yes': 'Sim',
   'compare.no': 'Não',
   'compare.months': 'meses',
+  'compare.notOnFile': 'não consta',
+  'compare.ratingTag': 'avaliação MotoPass',
   'portfolio.eyebrow': 'MEU PORTFÓLIO',
   'portfolio.title': 'Programas adquiridos',
   'portfolio.subtitle': 'Programas que marcou como adquiridos no explorador.',

@@ -275,7 +275,11 @@ function ProgramCardContent({
               )}
             </dt>
             <dd className="text-mp-ink">
-              <BtcDualPrice usd={program.minInvestment} size="xs" layout="stack" />
+              {program.minOnFile === false || !program.minInvestment ? (
+                <span className="text-xs text-mp-ink-muted italic">not on file</span>
+              ) : (
+                <BtcDualPrice usd={program.minInvestment} size="xs" layout="stack" />
+              )}
               {(program.unverifiedFigures ?? 0) > 0 && (
                 <span className="mt-1 block">
                   <UnverifiedChip />

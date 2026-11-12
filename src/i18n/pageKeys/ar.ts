@@ -70,6 +70,8 @@ export const pageKeysAr: Partial<Record<PageKey, string>> = {
   'compare.yes': 'نعم',
   'compare.no': 'لا',
   'compare.months': 'شهور',
+  'compare.notOnFile': 'غير متوفر',
+  'compare.ratingTag': 'تقييم MotoPass',
   'portfolio.eyebrow': 'محفظتي',
   'portfolio.title': 'البرامج المكتسبة',
   'portfolio.subtitle': 'البرامج التي علّمتها كمكتسبة في المستكشف.',

@@ -70,6 +70,10 @@ export const pageKeysDe: Partial<Record<PageKey, string>> = {
   'compare.yes': 'Ja',
   'compare.no': 'Nein',
   'compare.months': 'Mo.',
+
+  'compare.notOnFile': 'nicht hinterlegt',
+
+  'compare.ratingTag': 'MotoPass-Bewertung',
   'portfolio.eyebrow': 'MEIN PORTFOLIO',
   'portfolio.title': 'Erworbene Programme',
   'portfolio.subtitle': 'Programme, die du im Explorer als erworben markiert hast.',

@@ -138,7 +138,9 @@ export function CompareMatrix({ programs, rows, onOpenProgram, toCinematic }: Co
                               title={`${r.label} — ${rowMeaning(r)}`}
                             >
                               {bests.has(i) && (
-                                <span className="fc-matrix__best-badge">{t('compare.best')}</span>
+                                <span className="fc-matrix__best-badge">
+                                  {(r as { bestLabel?: string }).bestLabel === 'shorter' ? 'shorter' : 'lower'}
+                                </span>
                               )}
                               {r.render(p)}
                             </td>
@@ -204,7 +206,11 @@ export function CompareMatrix({ programs, rows, onOpenProgram, toCinematic }: Co
                             className={`fc-scroll-matrix__value${isBest ? ' fc-scroll-matrix__value--best' : ''}`}
                             title={`${r.label} — ${rowMeaning(r)}`}
                           >
-                            {isBest && <span className="fc-scroll-matrix__best">{t('compare.best')}</span>}
+                            {isBest && (
+                              <span className="fc-scroll-matrix__best">
+                                {(r as { bestLabel?: string }).bestLabel === 'shorter' ? 'shorter' : 'lower'}
+                              </span>
+                            )}
                             {phoneCell(r.render(p))}
                           </div>
                         )
