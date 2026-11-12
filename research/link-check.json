@@ -1,14 +1,1072 @@
 {
- "checked_at": "2026-11-12T02:43:56.443Z",
- "total": 117,
+ "checked_at": "2026-11-12T02:59:54.680Z",
+ "total": 193,
  "counts": {
-  "ok": 87,
-  "blocked": 18,
-  "redirected": 6,
-  "error": 4,
-  "dead": 2
+  "ok": 146,
+  "redirected": 11,
+  "error": 7,
+  "blocked": 23,
+  "unreachable": 5,
+  "dead": 1
  },
  "results": [
+  {
+   "url": "https://www.finances.gouv.cf",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.finances.gouv.cf/"
+  },
+  {
+   "url": "https://www.gub.uy/tramites/residencia-legal",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.gub.uy/tramites/residencia-legal"
+  },
+  {
+   "url": "https://www.minterior.gub.uy",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "redirected",
+   "reason": "to www.gub.uy",
+   "status": 200,
+   "finalUrl": "https://www.gub.uy/ministerio-interior/"
+  },
+  {
+   "url": "https://www.ciu.gov.kn",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://ciu.gov.kn/"
+  },
+  {
+   "url": "https://www.cip.gov.ag",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://cip.gov.ag/"
+  },
+  {
+   "url": "https://cbiu.gov.dm",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "redirected",
+   "reason": "to www.cbiu.gov.dm",
+   "status": 200,
+   "finalUrl": "https://www.cbiu.gov.dm/"
+  },
+  {
+   "url": "https://www.vara.ae",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.vara.ae/en/"
+  },
+  {
+   "url": "https://residencymalta.gov.mt",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://residencymalta.gov.mt/"
+  },
+  {
+   "url": "https://www.identita.gov.mt",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://identita.gov.mt/"
+  },
+  {
+   "url": "https://www.migracion.gob.pa",
+   "countries": [
+    "watchdog",
+    "Panama"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.migracion.gob.pa/"
+  },
+  {
+   "url": "https://www.sfc.hk",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.sfc.hk/en/"
+  },
+  {
+   "url": "https://ltr.boi.go.th",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://ltr.boi.go.th/"
+  },
+  {
+   "url": "https://consular.mfa.go.th",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://consular.mfa.go.th/"
+  },
+  {
+   "url": "https://www.inm.gob.mx",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "error",
+   "reason": "200 but almost no content (JS shell or parked)",
+   "status": 200,
+   "finalUrl": "https://www.inm.gob.mx/"
+  },
+  {
+   "url": "https://immigration.gov.vu",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://immigration.gov.vu/"
+  },
+  {
+   "url": "https://www.invest.gov.tr",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.invest.gov.tr/en/pages/home-page.aspx"
+  },
+  {
+   "url": "https://www.edbmauritius.org",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://edbmauritius.org/"
+  },
+  {
+   "url": "https://www.ics.gov.sc",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.ics.gov.sc/"
+  },
+  {
+   "url": "https://www.investinseychelles.com",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.investinseychelles.com/"
+  },
+  {
+   "url": "https://www.src.gov.sc",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://src.gov.sc/"
+  },
+  {
+   "url": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.gov.br/mre/pt-br/assuntos/portal-consular/vistos"
+  },
+  {
+   "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista"
+  },
+  {
+   "url": "https://www.migraciones.gob.ar",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "redirected",
+   "reason": "to www.argentina.gob.ar",
+   "status": 200,
+   "finalUrl": "https://www.argentina.gob.ar/migraciones"
+  },
+  {
+   "url": "https://serviciomigraciones.cl",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://serviciomigraciones.cl/"
+  },
+  {
+   "url": "https://www.investchile.gob.cl",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.investchile.gob.cl/"
+  },
+  {
+   "url": "https://startupchile.org",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://startupchile.org/"
+  },
+  {
+   "url": "https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "blocked",
+   "reason": "HTTP 403",
+   "status": 403,
+   "finalUrl": "https://www.cancilleria.gov.co/atencion-y-servicio-al-ciudadano/tramites-y-servicios/visa/tipos-de-visa"
+  },
+  {
+   "url": "https://www.immigration.gov.bb",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://immigration.gov.bb/"
+  },
+  {
+   "url": "https://barbadoswelcomestamp.bb",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "redirected",
+   "reason": "to www.visitbarbados.org",
+   "status": 200,
+   "finalUrl": "https://www.visitbarbados.org/barbados-welcome-stamp"
+  },
+  {
+   "url": "https://www.bahamas.gov.bs",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "blocked",
+   "reason": "HTTP 403",
+   "status": 403,
+   "finalUrl": "https://www.bahamas.gov.bs/"
+  },
+  {
+   "url": "https://www.tourism.gov.bz",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://tourism.gov.bz/"
+  },
+  {
+   "url": "https://www.cdc.gov.kh",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://cdc.gov.kh/"
+  },
+  {
+   "url": "https://immigration.gov.ph",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "blocked",
+   "reason": "HTTP 503",
+   "status": 503,
+   "finalUrl": "https://immigration.gov.ph/"
+  },
+  {
+   "url": "https://www.mm2h.gov.my",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.mm2h.gov.my/"
+  },
+  {
+   "url": "https://www.imi.gov.my",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.imi.gov.my/"
+  },
+  {
+   "url": "https://www.moj.go.jp/isa",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.moj.go.jp/isa/"
+  },
+  {
+   "url": "https://www.fsa.go.jp",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.fsa.go.jp/"
+  },
+  {
+   "url": "https://www.immigration.govt.nz",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.immigration.govt.nz/"
+  },
+  {
+   "url": "https://www.mbie.govt.nz",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.mbie.govt.nz/"
+  },
+  {
+   "url": "https://enterprise.gov.ie",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://enterprise.gov.ie/en/"
+  },
+  {
+   "url": "https://www.cnmv.es",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "error",
+   "reason": "HTTP 500",
+   "status": 500,
+   "finalUrl": "https://www.cnmv.es/portal/Error?aspxerrorpath=/portal/home.aspx"
+  },
+  {
+   "url": "https://www.interno.gov.it",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.interno.gov.it/it"
+  },
+  {
+   "url": "https://investorvisa.mise.gov.it",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://investorvisa.mise.gov.it/"
+  },
+  {
+   "url": "https://www.agenziaentrate.gov.it",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.agenziaentrate.gov.it/portale/"
+  },
+  {
+   "url": "https://www.e-resident.gov.ee",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.e-resident.gov.ee/"
+  },
+  {
+   "url": "https://digitalnomadscroatia.mup.hr",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://digitalnomadscroatia.mup.hr/Pages/Zahtjev2"
+  },
+  {
+   "url": "https://www.gibraltar.gov.gi",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.gibraltar.gov.gi/"
+  },
+  {
+   "url": "https://icp.gov.ae/en/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://icp.gov.ae/en/"
+  },
+  {
+   "url": "https://www.ica.gov.sg",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.ica.gov.sg/"
+  },
+  {
+   "url": "https://migraciones.gov.py/residencia-temporal/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://migraciones.gov.py/residencia-temporal/"
+  },
+  {
+   "url": "https://migraciones.gov.py/aranceles-migratorios/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://migraciones.gov.py/aranceles-migratorios/"
+  },
+  {
+   "url": "https://www.mfa.go.th/en/page/issuance-of-visa",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.mfa.go.th/en/page/issuance-of-visa"
+  },
+  {
+   "url": "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html"
+  },
+  {
+   "url": "https://dof.gob.mx",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://dof.gob.mx/"
+  },
+  {
+   "url": "https://www.immigration.gov.bs",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.immigration.gov.bs/"
+  },
+  {
+   "url": "https://www.immd.gov.hk/eng/specifiedschemes.html",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.immd.gov.hk/eng/specifiedschemes.html"
+  },
+  {
+   "url": "https://www.immd.gov.hk/eng/services/fee-tables/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.immd.gov.hk/eng/services/fee-tables/"
+  },
+  {
+   "url": "https://www.centralbank.ie",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.centralbank.ie/"
+  },
+  {
+   "url": "https://residence-documents.service.gov.cy/ForeignInterestsCompanies/Start",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://residence-documents.service.gov.cy/ForeignInterestsCompanies/Start"
+  },
+  {
+   "url": "https://www.investcyprus.org.cy/relocate-your-business-to-cyprus/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.investcyprus.org.cy/relocate-your-business-to-cyprus/"
+  },
+  {
+   "url": "https://boi.gov.ph",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "blocked",
+   "reason": "HTTP 403",
+   "status": 403,
+   "finalUrl": "https://boi.gov.ph/"
+  },
+  {
+   "url": "https://www.thaievisa.go.th",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.thaievisa.go.th/"
+  },
+  {
+   "url": "https://www.gov.cy/mip-md/en/documents/companies-investors-permanent-residence-3/immigration-permits-for-investors/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "blocked",
+   "reason": "HTTP 403",
+   "status": 403,
+   "finalUrl": "https://www.gov.cy/mip-md/en/documents/companies-investors-permanent-residence-3/immigration-permits-for-investors/"
+  },
+  {
+   "url": "https://www.migracion.gob.bo",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "unreachable",
+   "reason": "fetch failed",
+   "status": null,
+   "finalUrl": null
+  },
+  {
+   "url": "https://pra.gov.ph",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "redirected",
+   "reason": "to www.pra.gov.ph",
+   "status": 200,
+   "finalUrl": "https://www.pra.gov.ph/"
+  },
+  {
+   "url": "https://www.migracioncolombia.gov.co",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.migracioncolombia.gov.co/"
+  },
+  {
+   "url": "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "unreachable",
+   "reason": "fetch failed",
+   "status": null,
+   "finalUrl": null
+  },
+  {
+   "url": "https://aima.gov.pt/pt/a-aima/perguntas-frequentes-faqs/autorizacao-de-residencia-para-investimento-ari/faq-residence-permit-for-investment-activity-ari",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "unreachable",
+   "reason": "fetch failed",
+   "status": null,
+   "finalUrl": null
+  },
+  {
+   "url": "https://www.agenziaentrate.gov.it/",
+   "countries": [
+    "watchdog",
+    "Italy"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.agenziaentrate.gov.it/portale/"
+  },
+  {
+   "url": "https://investorvisa.mise.gov.it/index.php/en",
+   "countries": [
+    "watchdog",
+    "Italy"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://investorvisa.mise.gov.it/index.php/en"
+  },
+  {
+   "url": "https://embassyofuruguay.us/",
+   "countries": [
+    "watchdog",
+    "Uruguay"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://embassyofuruguay.us/"
+  },
+  {
+   "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
+   "countries": [
+    "watchdog",
+    "Uruguay"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.gub.uy/tramites/residencia-legal-temporaria"
+  },
+  {
+   "url": "https://cip.gov.ag/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://cip.gov.ag/"
+  },
+  {
+   "url": "https://cip.gov.ag/citizenship/",
+   "countries": [
+    "watchdog",
+    "Antigua and Barbuda"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://cip.gov.ag/citizenship/"
+  },
+  {
+   "url": "https://cip.gov.ag/investment-options/ndf/",
+   "countries": [
+    "watchdog",
+    "Antigua and Barbuda"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://cip.gov.ag/investment-options/ndf/"
+  },
+  {
+   "url": "https://www.gov.kn/",
+   "countries": [
+    "watchdog",
+    "St. Kitts and Nevis"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.gov.kn/"
+  },
+  {
+   "url": "https://ciu.gov.kn/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://ciu.gov.kn/"
+  },
+  {
+   "url": "https://ciu.gov.kn/cbi-options/",
+   "countries": [
+    "watchdog",
+    "St. Kitts and Nevis"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://ciu.gov.kn/cbi-options/"
+  },
+  {
+   "url": "https://dominica.gov.dm/",
+   "countries": [
+    "watchdog",
+    "Dominica"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://dominica.gov.dm/"
+  },
+  {
+   "url": "https://www.cbiu.gov.dm/",
+   "countries": [
+    "watchdog",
+    "Dominica"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.cbiu.gov.dm/"
+  },
+  {
+   "url": "https://www.cbiu.gov.dm/investment-options/",
+   "countries": [
+    "watchdog",
+    "Dominica"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.cbiu.gov.dm/investment-options/"
+  },
+  {
+   "url": "https://www.govt.lc/",
+   "countries": [
+    "watchdog",
+    "St. Lucia"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.govt.lc/"
+  },
+  {
+   "url": "https://www.cipsaintlucia.com/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.cipsaintlucia.com/"
+  },
+  {
+   "url": "https://www.cipsaintlucia.com/citizenship-by-investment",
+   "countries": [
+    "watchdog",
+    "St. Lucia"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.cipsaintlucia.com/citizenship-by-investment"
+  },
+  {
+   "url": "https://www.gov.gd/",
+   "countries": [
+    "watchdog",
+    "Grenada"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.gov.gd/"
+  },
+  {
+   "url": "https://imagrenada.gd/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://imagrenada.gd/"
+  },
+  {
+   "url": "https://imagrenada.gd/citizenship-by-investment/",
+   "countries": [
+    "watchdog",
+    "Grenada"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://imagrenada.gd/gov-approved-projects/"
+  },
+  {
+   "url": "https://www.immigration.gov.bs/residence/permanent-residence/",
+   "countries": [
+    "watchdog",
+    "Bahamas"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.immigration.gov.bs/residence/permanent-residence/"
+  },
+  {
+   "url": "https://www.visitbarbados.org/",
+   "countries": [
+    "watchdog",
+    "Barbados"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.visitbarbados.org/"
+  },
+  {
+   "url": "https://barbadoswelcomestamp.bb/",
+   "countries": [
+    "watchdog",
+    "Barbados"
+   ],
+   "state": "redirected",
+   "reason": "to www.visitbarbados.org",
+   "status": 200,
+   "finalUrl": "https://www.visitbarbados.org/barbados-welcome-stamp"
+  },
+  {
+   "url": "https://www.immigration.gov.bb/",
+   "countries": [
+    "watchdog",
+    "Barbados"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://immigration.gov.bb/"
+  },
+  {
+   "url": "https://sede.agenciatributaria.gob.es/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://sede.agenciatributaria.gob.es/"
+  },
+  {
+   "url": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
+   "countries": [
+    "watchdog",
+    "Spain"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html"
+  },
+  {
+   "url": "https://www.revenue.ie/",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.revenue.ie/en/home.aspx"
+  },
+  {
+   "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "redirected",
+   "reason": "to www.irishimmigration.ie",
+   "status": 200,
+   "finalUrl": "https://www.irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip/"
+  },
+  {
+   "url": "https://eeeuu.cancilleria.gob.ar/",
+   "countries": [
+    "watchdog",
+    "Argentina"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://eeeuu.cancilleria.gob.ar/"
+  },
+  {
+   "url": "https://www.argentina.gob.ar/migraciones/residencias",
+   "countries": [
+    "watchdog",
+    "Argentina"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.argentina.gob.ar/migraciones/residencias"
+  },
+  {
+   "url": "https://www.gov.br/mj/en/",
+   "countries": [
+    "watchdog",
+    "Brazil"
+   ],
+   "state": "redirected",
+   "reason": "to www-gov-br.translate.goog",
+   "status": 200,
+   "finalUrl": "https://www-gov-br.translate.goog/mj/pt-br?_x_tr_sl=pt&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=sc"
+  },
+  {
+   "url": "https://www.gov.vu",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.gov.vu/"
+  },
+  {
+   "url": "https://vancitizenship.gov.vu/",
+   "countries": [
+    "watchdog",
+    "Vanuatu"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://vancitizenship.gov.vu/"
+  },
+  {
+   "url": "https://www.vfsc.vu/virtual-asset-service-provider/",
+   "countries": [
+    "watchdog",
+    "Vanuatu"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://www.vfsc.vu/virtual-asset-service-provider/"
+  },
+  {
+   "url": "https://cip.gov.st/",
+   "countries": [
+    "watchdog",
+    "São Tomé and Príncipe"
+   ],
+   "state": "ok",
+   "reason": "",
+   "status": 200,
+   "finalUrl": "https://cip.gov.st/"
+  },
+  {
+   "url": "https://www.gacetaoficial.gob.pa",
+   "countries": [
+    "watchdog"
+   ],
+   "state": "error",
+   "reason": "200 but almost no content (JS shell or parked)",
+   "status": 200,
+   "finalUrl": "https://www.gacetaoficial.gob.pa/"
+  },
   {
    "url": "https://news.bloombergtax.com/daily-tax-report-international/el-salvador-gazettes-decree-amending-bitcoin-law",
    "countries": [
@@ -159,16 +1217,6 @@
    "finalUrl": "https://portugal.gov.pt/pt/gc25"
   },
   {
-   "url": "https://investorvisa.mise.gov.it/index.php/en",
-   "countries": [
-    "Italy"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://investorvisa.mise.gov.it/index.php/en"
-  },
-  {
    "url": "https://plisio.net/tax/italy-crypto-tax",
    "countries": [
     "Italy"
@@ -209,16 +1257,6 @@
    "finalUrl": "https://www.esteri.it/it/"
   },
   {
-   "url": "https://www.agenziaentrate.gov.it/",
-   "countries": [
-    "Italy"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.agenziaentrate.gov.it/portale/"
-  },
-  {
    "url": "https://www.legalink.net/en/publications/newsletters/virtual-assets-law/4203/",
    "countries": [
     "Uruguay"
@@ -239,16 +1277,6 @@
    "finalUrl": "https://www.ecija.com/en/news-and-insights/uruguays-central-bank-approves-regulations-for-virtual-asset-service-providers-vasps/"
   },
   {
-   "url": "https://embassyofuruguay.us/",
-   "countries": [
-    "Uruguay"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://embassyofuruguay.us/"
-  },
-  {
    "url": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements",
    "countries": [
     "Uruguay"
@@ -259,31 +1287,11 @@
    "finalUrl": "https://www.uruguayxxi.gub.uy/en/invest/investors-guide/entry-requirements/"
   },
   {
-   "url": "https://www.gub.uy/tramites/residencia-legal-temporaria",
-   "countries": [
-    "Uruguay"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.gub.uy/tramites/residencia-legal-temporaria"
-  },
-  {
-   "url": "https://cip.gov.ag/citizenship/",
-   "countries": [
-    "Antigua and Barbuda"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://cip.gov.ag/citizenship/"
-  },
-  {
    "url": "https://www.fsrc.gov.ag/images/pdf/digital-assets/No.-16-of-2020-Digital-Assets-Business-Act-2020.pdf",
    "countries": [
     "Antigua and Barbuda"
    ],
-   "state": "dead",
+   "state": "unreachable",
    "reason": "fetch failed",
    "status": null,
    "finalUrl": null
@@ -313,26 +1321,6 @@
    "finalUrl": "https://ab.gov.ag/"
   },
   {
-   "url": "https://cip.gov.ag/investment-options/ndf/",
-   "countries": [
-    "Antigua and Barbuda"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://cip.gov.ag/investment-options/ndf/"
-  },
-  {
-   "url": "https://ciu.gov.kn/cbi-options/",
-   "countries": [
-    "St. Kitts and Nevis"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://ciu.gov.kn/cbi-options/"
-  },
-  {
    "url": "https://www.henleyglobal.com/citizenship-investment/st-kitts-nevis",
    "countries": [
     "St. Kitts and Nevis"
@@ -341,56 +1329,6 @@
    "reason": "",
    "status": 200,
    "finalUrl": "https://www.henleyglobal.com/citizenship-investment/st-kitts-nevis"
-  },
-  {
-   "url": "https://www.gov.kn/",
-   "countries": [
-    "St. Kitts and Nevis"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.gov.kn/"
-  },
-  {
-   "url": "https://www.cbiu.gov.dm/",
-   "countries": [
-    "Dominica"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.cbiu.gov.dm/"
-  },
-  {
-   "url": "https://dominica.gov.dm/",
-   "countries": [
-    "Dominica"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://dominica.gov.dm/"
-  },
-  {
-   "url": "https://www.cbiu.gov.dm/investment-options/",
-   "countries": [
-    "Dominica"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.cbiu.gov.dm/investment-options/"
-  },
-  {
-   "url": "https://www.cipsaintlucia.com/citizenship-by-investment",
-   "countries": [
-    "St. Lucia"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.cipsaintlucia.com/citizenship-by-investment"
   },
   {
    "url": "https://www.cipsaintlucia.com/s/gazettejuly92024.pdf",
@@ -403,26 +1341,6 @@
    "finalUrl": "https://static1.squarespace.com/static/5e70a15bb2e3335af0f036b3/t/668d89063ca512676a047a47/1720551784263/gazettejuly92024.pdf"
   },
   {
-   "url": "https://www.govt.lc/",
-   "countries": [
-    "St. Lucia"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.govt.lc/"
-  },
-  {
-   "url": "https://imagrenada.gd/citizenship-by-investment/",
-   "countries": [
-    "Grenada"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://imagrenada.gd/gov-approved-projects/"
-  },
-  {
    "url": "https://grenadaparliament.gd/wp-content/uploads/2024/06/S.R.O.-9-of-2024-Virtual-Asset-Business-Regulations-2024.pdf",
    "countries": [
     "Grenada"
@@ -431,26 +1349,6 @@
    "reason": "",
    "status": 200,
    "finalUrl": "https://grenadaparliament.gd/wp-content/uploads/2024/06/S.R.O.-9-of-2024-Virtual-Asset-Business-Regulations-2024.pdf"
-  },
-  {
-   "url": "https://www.gov.gd/",
-   "countries": [
-    "Grenada"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.gov.gd/"
-  },
-  {
-   "url": "https://www.immigration.gov.bs/residence/permanent-residence/",
-   "countries": [
-    "Bahamas"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.immigration.gov.bs/residence/permanent-residence/"
   },
   {
    "url": "https://www.bahamas.gov.bs/service/permanent-residence-applying-for",
@@ -513,16 +1411,6 @@
    "finalUrl": "https://higgsjohnson.com/living-in-paradise-permanent-residency-in-the-bahamas/"
   },
   {
-   "url": "https://barbadoswelcomestamp.bb/",
-   "countries": [
-    "Barbados"
-   ],
-   "state": "redirected",
-   "reason": "to www.visitbarbados.org",
-   "status": 200,
-   "finalUrl": "https://www.visitbarbados.org/barbados-welcome-stamp"
-  },
-  {
    "url": "https://www.pwc.com/bb/en/services/pdf/12-month-barbados-welcome-stamp.pdf",
    "countries": [
     "Barbados"
@@ -551,26 +1439,6 @@
    "reason": "",
    "status": 200,
    "finalUrl": "https://taxatlas.io/calculator/crypto-tax/barbados"
-  },
-  {
-   "url": "https://www.visitbarbados.org/",
-   "countries": [
-    "Barbados"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.visitbarbados.org/"
-  },
-  {
-   "url": "https://www.immigration.gov.bb/",
-   "countries": [
-    "Barbados"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://immigration.gov.bb/"
   },
   {
    "url": "https://immigration.gov.bb/pages/SpecialEntryPermit.aspx",
@@ -661,16 +1529,6 @@
    "reason": "HTTP 404",
    "status": 404,
    "finalUrl": "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+-+18JUNE2026.pdf"
-  },
-  {
-   "url": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html",
-   "countries": [
-    "Spain"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/declaraciones-informativas/modelo-721-decla-sobre-monedas-extranjero/preguntas-frecuentes-sobre-modelo-721/respecto-que-monedas-virtuales-no-informacion.html"
   },
   {
    "url": "https://spainexpat.com/information/golden-visa-spain-ended",
@@ -803,16 +1661,6 @@
    "finalUrl": "https://www.argentina.gob.ar/cnv"
   },
   {
-   "url": "https://eeeuu.cancilleria.gob.ar/",
-   "countries": [
-    "Argentina"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://eeeuu.cancilleria.gob.ar/"
-  },
-  {
    "url": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
    "countries": [
     "Argentina"
@@ -821,16 +1669,6 @@
    "reason": "",
    "status": 200,
    "finalUrl": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria"
-  },
-  {
-   "url": "https://www.argentina.gob.ar/migraciones/residencias",
-   "countries": [
-    "Argentina"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.argentina.gob.ar/migraciones/residencias"
   },
   {
    "url": "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
@@ -857,10 +1695,10 @@
    "countries": [
     "Brazil"
    ],
-   "state": "redirected",
-   "reason": "to www.gov.br",
-   "status": 200,
-   "finalUrl": "https://www.gov.br/receitafederal/pt-br"
+   "state": "unreachable",
+   "reason": "This operation was aborted",
+   "status": null,
+   "finalUrl": null
   },
   {
    "url": "https://banksforcrypto.com/crypto-taxes-brazil",
@@ -901,16 +1739,6 @@
    "reason": "DNS does not resolve (NXDOMAIN)",
    "status": null,
    "finalUrl": null
-  },
-  {
-   "url": "https://www.gov.br/mj/en/",
-   "countries": [
-    "Brazil"
-   ],
-   "state": "redirected",
-   "reason": "to www-gov-br.translate.goog",
-   "status": 200,
-   "finalUrl": "https://www-gov-br.translate.goog/mj/pt-br?_x_tr_sl=pt&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=sc"
   },
   {
    "url": "https://www.mfsa.mt/our-work/virtual-financial-assets/",
@@ -971,26 +1799,6 @@
    "reason": "",
    "status": 200,
    "finalUrl": "https://www.maltatoday.com.mt/sponsored/sponsored/130377/understanding_cryptocurrency_taxation_in_malta"
-  },
-  {
-   "url": "https://vancitizenship.gov.vu/",
-   "countries": [
-    "Vanuatu"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://vancitizenship.gov.vu/"
-  },
-  {
-   "url": "https://www.vfsc.vu/virtual-asset-service-provider/",
-   "countries": [
-    "Vanuatu"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.vfsc.vu/virtual-asset-service-provider/"
   },
   {
    "url": "https://fca.vu/vanuatu-passes-virtual-asset-service-providers-vasp-act/",
@@ -1093,16 +1901,6 @@
    "finalUrl": "https://mire.gob.pa/"
   },
   {
-   "url": "https://www.migracion.gob.pa",
-   "countries": [
-    "Panama"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://www.migracion.gob.pa/"
-  },
-  {
    "url": "https://www.globallegalinsights.com/practice-areas/blockchain-cryptocurrency-laws-and-regulations/mexico/",
    "countries": [
     "Mexico"
@@ -1161,16 +1959,6 @@
    "reason": "",
    "status": 200,
    "finalUrl": "https://www.gob.mx/sre"
-  },
-  {
-   "url": "https://cip.gov.st/",
-   "countries": [
-    "São Tomé and Príncipe"
-   ],
-   "state": "ok",
-   "reason": "",
-   "status": 200,
-   "finalUrl": "https://cip.gov.st/"
   },
   {
    "url": "https://ntltrust.com/citizenship-by-investment/sao-tome-and-principe/",

@@ -9,7 +9,8 @@
  *   ok        200 with content
  *   redirected  3xx to a different host (the citation is out of date)
  *   blocked   401/403/429/503 or a bot challenge
- *   dead      NXDOMAIN, connection refused, timeout
+ *   dead      NXDOMAIN — the domain is gone
+ *   unreachable  name resolves but the fetch fails from here (TLS, timeout, geo)
  *   error      anything else
  *
  * Writes research/link-check.json and prints counts by class.
@@ -25,7 +26,12 @@ const corpus = JSON.parse(fs.readFileSync(`${ROOT}research/countries.json`, 'utf
 const urls = new Map()
 try {
   const snap = JSON.parse(fs.readFileSync(`${ROOT}public/data/source-snapshots.json`, 'utf8'))
-  for (const u of Object.keys(snap)) urls.set(u, ['watchdog'])
+  for (const u of Object.keys(snap)) {
+    // The snapshot file also carries synthetic keys (industry_imidaily_…) for
+    // pages that were read but are not addresses. Only check real URLs.
+    if (!/^https?:\/\//.test(u)) continue
+    urls.set(u, ['watchdog'])
+  }
 } catch {
   /* snapshot file is generated; absence is not an error here */
 }
@@ -71,7 +77,14 @@ async function classify(url) {
     return { state: 'ok', reason: '', status: res.status, finalUrl: res.url }
   } catch (err) {
     clearTimeout(timer)
-    return { state: 'dead', reason: String(err.message || err).slice(0, 80), status: null, finalUrl: null }
+    // The name resolved, so the domain is alive: this machine or the site's
+    // edge refused us. That is not the same finding as a dead domain.
+    return {
+      state: 'unreachable',
+      reason: String(err.message || err).slice(0, 80),
+      status: null,
+      finalUrl: null,
+    }
   }
 }
 
