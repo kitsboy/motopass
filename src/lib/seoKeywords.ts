@@ -28,7 +28,7 @@ const en: RouteSeoKeywords = {
   '/': {
     title: 'MotoPass — Bitcoin Sovereign Passports & Residency Intelligence',
     description:
-      'Evaluate 21 Bitcoin visa and crypto golden visa programs with ₿-first pricing, Satohash proofs, and Nostr identity. Truth You Can Verify.',
+      'Compare 21 residency and citizenship programs with Bitcoin pricing, timestamp proofs and open sources.',
     keywords: [
       'bitcoin passport', 'sovereign passport', 'crypto golden visa',
       'residency by investment', 'bitcoin visa', 'sovereign mobility',

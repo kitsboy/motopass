@@ -107,6 +107,17 @@ export interface ProgramIntel {
   audit_trail?: AuditEntry[]
 }
 
+export interface ClaimSource {
+  /** The official page that carries the words. */
+  url: string
+  /** The exact words on that page, under fifteen words. */
+  quote: string
+  /** The day we read it (YYYY-MM-DD). */
+  fetched: string
+  /** Where on the page, e.g. "art. 23 inc. d". */
+  location?: string
+}
+
 export interface ProgramPathway {
   type: string
   label: string
@@ -142,6 +153,10 @@ export interface PaigeFields {
 }
 
 export interface Program {
+  /** Figure path -> the official page, quote and fetch date that support it. */
+  claim_sources?: Record<string, ClaimSource>
+  /** open | closed | changed | unknown — traced, with a source, or "unknown". */
+  route_status?: 'open' | 'closed' | 'changed' | 'unknown'
   id: number
   name: string
   category: string

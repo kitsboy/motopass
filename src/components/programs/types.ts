@@ -30,9 +30,15 @@ export interface Program {
   tier: 'Citizenship' | 'Residency' | 'Golden Visa';
   region: string;
   minInvestment: number;
+  /** False when the record carries no minimum: callers must print "not on file". */
+  minOnFile?: boolean;
   timelineDays: number;
   sovereigntyScore: number;
   proofStatus: 'verified' | 'recorded' | 'pending' | 'demo';
+  /** Money/time figures on this record with no official page behind them. */
+  unverifiedFigures?: number;
+  /** open | closed | changed | unknown — traced in the corpus, or not stated. */
+  routeStatus?: 'open' | 'closed' | 'changed' | 'unknown';
   proofRef?: string;
   summary: string;
   flag?: string;

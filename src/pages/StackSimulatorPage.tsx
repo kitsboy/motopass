@@ -14,6 +14,7 @@ import { formatT } from '../i18n/format'
 import { BtcDualPrice } from '../components/BtcDualPrice'
 import { SatsAnchorNote } from '../components/SatsAnchorNote'
 import { parseIdList, serializeIdList } from '../lib/urlState'
+import { UnverifiedNote } from '../components/ui/UnverifiedNote'
 import { PageAnchorNav } from '../components/nav/PageAnchorNav'
 import { ValueForksPanel } from '../components/simulator/ValueForksPanel'
 import { SimulatorPresets } from '../components/simulator/SimulatorPresets'
@@ -121,6 +122,8 @@ export function StackSimulatorPage() {
   return (
     <div className="page-container mx-auto w-full max-w-7xl min-w-0 px-4 sm:px-6 py-8 sm:py-12">
       <PageHeader eyebrow={t('simulator.eyebrow')} title={t('simulator.title')} subtitle={t('simulator.subtitle')} />
+
+      <UnverifiedNote />
 
       <PageAnchorNav items={simulatorAnchors} />
 

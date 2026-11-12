@@ -23,7 +23,7 @@
         "International Monetary Fund — https://www.imf.org/en/publications/cr/issues/2025/03/19/el-salvador-selected-issues-565394",
         "France24 / AFP — https://www.france24.com/en/live-news/20250130-el-salvador-merchants-no-longer-obliged-to-accept-bitcoin",
         "CryptoSlate — https://cryptoslate.com/crypto-laws/el-salvador-bitcoin-law/",
-        "APEX Capital Partners — https://apexcapital.partners/your-guide-to-el-salvador-citizenship-by-investment/",
+        "APEX Capital Partners — https://apexcapitaladvisory.com/your-guide-to-el-salvador-citizenship-by-investment/",
         "Official — https://www.rree.gob.sv/",
         "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
         "World Bank Global Findex — account ownership 43.4% of adults 15+ (2024), FX.OWN.TOTL.ZS"
@@ -2070,7 +2070,7 @@
       "name": "Uruguay",
       "category": "rbi_cbi",
       "region": "South America",
-      "status": "Flagship - Verified Template",
+      "status": "Flagship - Deep Template",
       "bitcoin_integration": "Crypto legal to hold/trade, not legal tender (peso only). Virtual Assets Law 20.345 (2024) regulates VASPs under Central Bank (BCU); BCU approved VASP regs July 2025. No El-Salvador-style adoption.",
       "finance": {
         "min_investment_usd": 100000,
@@ -2207,7 +2207,7 @@
             "last_layout_change": "2026-10-02T05:01:06.033Z"
           },
           {
-            "url": "https://www.minterior.gub.uy",
+            "url": "https://www.gub.uy/ministerio-interior",
             "status": "changed",
             "mode": "http",
             "last_probed": "2026-11-11T13:10:00.149Z",
@@ -3562,7 +3562,7 @@
         "min_investment_usd": 200000,
         "typical_investment_usd": 250000,
         "gov_fees_usd": 15000,
-        "processing_time_months": "2-5",
+        "processing_time_months": "3-4",
         "tax_benefits": "No income or capital gains tax on foreign income for many applicants.\n\nCrypto/Bitcoin tax: CBIU states absence of capital-gains, wealth and inheritance taxes; crypto capital gains effectively untaxed in Dominica.",
         "crypto_friendly_score": 7,
         "bitcoin_specific": "No. EDF donation (US$200k single / US$250k family-4) and real-estate route payable in fiat USD; CBIU does not accept BTC."
@@ -3669,7 +3669,7 @@
       "watch": {
         "urls": [
           {
-            "url": "https://cbiu.gov.dm",
+            "url": "https://www.cbiu.gov.dm",
             "status": "ok",
             "mode": "http",
             "last_probed": "2026-11-11T13:10:00.149Z",
@@ -4096,7 +4096,28 @@
         }
       ],
       "policy_mentions_btc": true,
-      "highlight_btc_friendly": false
+      "highlight_btc_friendly": false,
+      "claim_sources": {
+        "finance.min_investment_usd": {
+          "url": "https://www.cbiu.gov.dm/investment-options/",
+          "quote": "The Minimum investment for Dominican citizenship is US$200,000.",
+          "fetched": "2026-11-12",
+          "location": "FAQ: What is the minimum investment required?"
+        },
+        "finance.processing_time_months": {
+          "url": "https://www.cbiu.gov.dm/investment-options/",
+          "quote": "It typically takes 3 – 4 months to receive approval for citizenship.",
+          "fetched": "2026-11-12",
+          "location": "FAQ: how long the process takes"
+        },
+        "route_status": {
+          "url": "https://www.cbiu.gov.dm/investment-options/",
+          "quote": "The Dominica Citizenship by Investment Programme offers two pathways",
+          "fetched": "2026-11-12",
+          "location": "Programme overview"
+        }
+      },
+      "route_status": "open"
     },
     {
       "id": 8,
@@ -4217,7 +4238,7 @@
       "watch": {
         "urls": [
           {
-            "url": "https://www.ciu.gov.lc",
+            "url": "https://stlucia-citizenship-investment.com/",
             "status": "ok",
             "mode": "browser",
             "last_probed": "2026-11-11T13:10:00.149Z",
@@ -4488,7 +4509,8 @@
         }
       ],
       "policy_mentions_btc": true,
-      "highlight_btc_friendly": false
+      "highlight_btc_friendly": false,
+      "source_host_note": "Official host replaced on 2026-11-12 because the old domain no longer resolves."
     },
     {
       "id": 9,
@@ -4608,7 +4630,7 @@
       "watch": {
         "urls": [
           {
-            "url": "https://www.cbi.gov.gd",
+            "url": "https://imagrenada.gd/becoming-a-citizen/",
             "status": "ok",
             "mode": "http",
             "last_probed": "2026-11-11T13:10:00.149Z",
@@ -4900,7 +4922,23 @@
         }
       ],
       "policy_mentions_btc": true,
-      "highlight_btc_friendly": false
+      "highlight_btc_friendly": false,
+      "claim_sources": {
+        "finance.min_investment_usd": {
+          "url": "https://imagrenada.gd/becoming-a-citizen/",
+          "quote": "Required Contribution Amount USD 235,000",
+          "fetched": "2026-11-12",
+          "location": "National Transformation Fund table, single applicant"
+        },
+        "route_status": {
+          "url": "https://imagrenada.gd/becoming-a-citizen/",
+          "quote": "applicants may either immediately apply for citizenship",
+          "fetched": "2026-11-12",
+          "location": "NTF route paragraph"
+        }
+      },
+      "route_status": "open",
+      "source_host_note": "The old cbi.gov.gd host no longer resolves (NXDOMAIN, checked 2026-11-12)."
     },
     {
       "id": 10,
@@ -5394,7 +5432,7 @@
       "details": "Flagship-depth research entry for Barbados. Part of the MotoPass 21-program tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
       "last_checked": "2026-11-08",
       "sources": [
-        "Barbados Welcome Stamp (official government program) — https://barbadoswelcomestamp.bb/",
+        "Barbados Welcome Stamp (official government program) — https://www.visitbarbados.org/barbados-welcome-stamp/",
         "PwC Barbados — https://www.pwc.com/bb/en/services/pdf/12-month-barbados-welcome-stamp.pdf",
         "Central Bank of Barbados (official) — https://www.centralbank.org.bb/financial-stability-and-financial-regulation/cbob-regulatory-sandbox",
         "TaxAtlas — https://taxatlas.io/calculator/crypto-tax/barbados",
@@ -5521,7 +5559,7 @@
             "last_main_len": 0
           },
           {
-            "url": "https://barbadoswelcomestamp.bb",
+            "url": "https://www.visitbarbados.org/barbados-welcome-stamp",
             "status": "ok",
             "mode": "http",
             "last_probed": "2026-11-11T13:10:00.149Z",
@@ -5567,7 +5605,7 @@
             "last_layout_change": "2026-11-09T14:38:54.440Z"
           },
           {
-            "url": "https://barbadoswelcomestamp.bb/",
+            "url": "https://www.visitbarbados.org/barbados-welcome-stamp",
             "mode": "http",
             "last_probed": "2026-11-11T13:10:00.149Z",
             "last_text_len": 12323,
@@ -6394,7 +6432,7 @@
             "last_hash": "e1ede34d8f32e4581e23443b9e3f24ac1ff4d3e64788fe4e5757fab5eeae9235"
           },
           {
-            "url": "https://www.immigration.gov.ky/",
+            "url": "https://gov.ky/immigration",
             "mode": "http",
             "last_probed": "2026-11-11T13:10:00.149Z",
             "last_text_len": 113,
@@ -6696,7 +6734,8 @@
         }
       ],
       "policy_mentions_btc": true,
-      "highlight_btc_friendly": true
+      "highlight_btc_friendly": true,
+      "source_host_note": "Official host replaced on 2026-11-12 because the old domain no longer resolves."
     },
     {
       "id": 13,
@@ -7778,7 +7817,7 @@
             "layout_change_streak": 1
           },
           {
-            "url": "https://irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
+            "url": "https://www.irishimmigration.ie/faqs-closure-of-the-immigrant-investor-programme-iip",
             "mode": "http",
             "last_probed": "2026-11-11T13:10:00.149Z",
             "last_text_len": 14548,
@@ -8508,10 +8547,10 @@
       "status": "Researching",
       "bitcoin_integration": "Pro-Bitcoin under Milei: Bitcoin contracts legalised 2023, free currency circulation championed; BTC still NOT legal tender (Constitution reserves currency issuance to central bank). VASP registration under CNV + AML (Law 27,739).",
       "finance": {
-        "min_investment_usd": 50000,
-        "typical_investment_usd": 100000,
+        "min_investment_usd": null,
+        "typical_investment_usd": null,
         "gov_fees_usd": 8000,
-        "processing_time_months": "3-8",
+        "processing_time_months": null,
         "tax_benefits": "Favorable territorial or low-rate treatment for foreign income in many structures.\n\nCrypto/Bitcoin tax: Crypto gains taxable: individual Argentine-source 5% (pesos) or 15% (foreign currency); foreign-source 15%; unrealized exchange gains NOT taxed; mining taxed. Annual declaration + blanqueo regime.",
         "crypto_friendly_score": 8,
         "bitcoin_specific": "Partially (city level): City of Buenos Aires (CABA) since Aug 2025 accepts crypto QR for certain municipal taxes (ABL, Patentes, Ingresos Brutos). Federal/immigration fees in pesos, not BTC."
@@ -8563,8 +8602,9 @@
         {
           "type": "investor",
           "label": "Investor residency (inversor)",
-          "min_investment_usd": 50000,
-          "notes": "Temporary residence for capital investment in productive Argentine economic activity under Ley 25.871 art. 23 — business formation, real estate development, or approved project. Must apply in-country via RaDEX; apostille and Spanish translation required."
+          "min_investment_usd": null,
+          "notes": "Temporary residence for capital investment in productive Argentine economic activity under Ley 25.871 art. 23 — business formation, real estate development, or approved project. Must apply in-country via RaDEX; apostille and Spanish translation required.",
+          "min_investment_ars": 1500000
         },
         {
           "type": "digital_nomad",
@@ -8660,7 +8700,7 @@
             "last_main_len": 0
           },
           {
-            "url": "https://www.migraciones.gob.ar",
+            "url": "https://www.argentina.gob.ar/migraciones",
             "status": "ok",
             "mode": "http",
             "last_probed": "2026-11-11T13:10:00.149Z",
@@ -9389,7 +9429,20 @@
         }
       ],
       "policy_mentions_btc": true,
-      "highlight_btc_friendly": true
+      "highlight_btc_friendly": true,
+      "claim_sources": {
+        "pathways[1].min_investment_ars": {
+          "url": "https://www.argentina.gob.ar/normativa/nacional/decreto-616-2010-167004/texto",
+          "quote": "por un minimo de PESOS UN MILLON QUINIENTOS MIL",
+          "fetched": "2026-11-11",
+          "location": "Decreto 616/2010, art. 23 inc. d"
+        }
+      },
+      "open_questions": [
+        "The Migraciones temporary-residence index lists no investor track.",
+        "The investor service page returns HTTP 500 as of 2026-11-11.",
+        "Whether the route is open, and at what amount, is unconfirmed."
+      ]
     },
     {
       "id": 16,
@@ -9415,7 +9468,7 @@
         "Where Legal Crypto — https://wherelegalcrypto.com/brazil",
         "Official — https://www.gov.br/mre/en",
         "Official — https://brsb.itamaraty.gov.br/en-us/",
-        "Official — https://www.gov.br/mj/en/",
+        "Official — https://www.gov.br/mj/en",
         "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
         "World Bank Global Findex — account ownership 86.4% of adults 15+ (2024), FX.OWN.TOTL.ZS"
       ],
@@ -9612,7 +9665,7 @@
             "layout_change_streak": 4
           },
           {
-            "url": "https://brsb.itamaraty.gov.br/en-us/",
+            "url": "https://www.gov.br/mre/pt-br",
             "mode": "http",
             "last_probed": "2026-11-11T13:10:00.149Z",
             "last_text_len": 112,
@@ -9634,7 +9687,7 @@
             "last_hash": "959ee277979f8f5fbf9f62889db9cc14850c2347f5f62d4698ef0d32bd361bef"
           },
           {
-            "url": "https://www.gov.br/mj/en/",
+            "url": "https://www.gov.br/mj/en",
             "mode": "http",
             "last_probed": "2026-11-11T13:10:00.149Z",
             "last_text_len": 4510,
@@ -10016,7 +10069,8 @@
         }
       ],
       "policy_mentions_btc": true,
-      "highlight_btc_friendly": false
+      "highlight_btc_friendly": false,
+      "source_host_note": "Official host replaced on 2026-11-12 because the old domain no longer resolves."
     },
     {
       "id": 17,
@@ -10598,7 +10652,7 @@
       "watch": {
         "urls": [
           {
-            "url": "https://cilc.vu",
+            "url": "https://vancitizenship.gov.vu/",
             "status": "ok",
             "mode": "browser",
             "last_probed": "2026-11-11T13:10:00.149Z",
@@ -10948,7 +11002,8 @@
         }
       ],
       "policy_mentions_btc": true,
-      "highlight_btc_friendly": true
+      "highlight_btc_friendly": true,
+      "source_host_note": "Official host replaced on 2026-11-12 because the old domain no longer resolves."
     },
     {
       "id": 19,
@@ -10969,7 +11024,7 @@
       "details": "Territorial tax is the core draw; crypto is legal but unregulated (grey area) — the 2022 crypto law was vetoed and struck down, and a 2025 bill aims to formalize it. Modeled minimum investment $200,000 (typical $300,000). Primary routes on file: Friendly Nations Visa ($200k), Qualified Investor Visa ($300k+), Pensionado / fixed income. Tax notes: Territorial taxation — foreign income often not taxed. Verify every figure against primary sources and Satohash proofs before acting.",
       "last_checked": "2026-11-08",
       "sources": [
-        "Legal Nodes — https://legalnodes.com/article/panama-crypto-regulations-insights-for-web3-founders-in-2025",
+        "Legal Nodes — https://www.legalnodes.com/article/panama-crypto-regulations-insights-for-web3-founders-in-2025",
         "LawZana (migration law analysis) — https://lawzana.com/articles/panama/panama-friendly-nations-visa-2026-requirements-costs-routes-348",
         "Nomad Almanac — https://nomadalmanac.com/countries/panama/residency",
         "Legalys (Panamanian immigration law firm) — https://panama.legalys.com/en/blog/paises-amigos-7/how-to-get-the-panama-friendly-nations-visa-in-2026-updated-guide-21",

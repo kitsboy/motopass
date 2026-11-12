@@ -19,6 +19,7 @@ import {
 } from '../lib/portfolioStorage'
 import { useDebouncedValue } from '../hooks/useDebouncedValue'
 import { toCinematicPrograms, cinematicIdToNumber } from '../lib/programAdapter'
+import { UnverifiedNote } from '../components/ui/UnverifiedNote'
 import { PageHeader } from '../components/ui/PageHeader'
 import { ProgramsOnboarding } from '../components/programs/ProgramsOnboarding'
 import { GoalFinder } from '../components/programs/GoalFinder'
@@ -336,6 +337,7 @@ export function ProgramsPage() {
               <div className="hidden items-center gap-1 rounded-chip bg-mp-section p-1 sm:flex">
                 <button type="button" onClick={() => setViewMode('table')} className={iconBtn(view === 'table')} aria-label={t('programs.tableView')}>
                   <Table size={14} />
+
                 </button>
                 <button type="button" onClick={() => setViewMode('card')} className={iconBtn(view === 'card')} aria-label={t('programs.cardView')}>
                   <LayoutGrid size={14} />
@@ -383,6 +385,8 @@ export function ProgramsPage() {
             </>
           }
         />
+
+        <UnverifiedNote />
 
         <ProgramsOnboarding />
 

@@ -175,7 +175,10 @@ export function SourceMonitorPage() {
         <h1 style={s.h1}>Know the moment a country <span style={s.h1accent}>changes its rules.</span></h1>
         <p style={s.p}>Every official passport, citizenship and immigration source we rely on is watched on a schedule. When a rule moves, you see it here — with proof it's real, before it touches the live program data.</p>
       </div>
-      <div style={s.honesty}><span style={s.live}></span> Official sources re-checked every 24h · last verified {ago(manifest.generated_at)} · a flagged change goes through human review before it reaches the live rules — we never auto-publish.</div>
+      <div style={s.honesty}><span style={s.live}></span> Official source pages are fetched and compared with the previous snapshot every 24 hours · last fetch {ago(manifest.generated_at)} · this checks whether a page changed, not whether our figures are sourced · a flagged change goes through human review — we never auto-publish.
+        {(manifest as { dead_hosts?: number }).dead_hosts ? (
+          <><br /><strong>{(manifest as { dead_hosts?: number }).dead_hosts} official domains no longer resolve</strong> — a domain that has gone is a failure, not an old pass.</>
+        ) : null}</div>
 
       <div style={s.chips}>
         {([

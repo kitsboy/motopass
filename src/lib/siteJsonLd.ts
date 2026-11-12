@@ -10,7 +10,7 @@ export function organizationJsonLd() {
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
-    description: 'Bitcoin-native sovereign passport and residency intelligence — Truth You Can Verify.',
+    description: 'Sovereign residency and citizenship programs, with every figure marked as sourced or unverified.',
     sameAs: ['https://github.com/kitsboy/motopass'],
   }
 }
@@ -53,6 +53,7 @@ export function programDetailJsonLd(program: {
   region: string
   tier: string
   minInvestment: number
+  minOnFile?: boolean
   sovereigntyScore: number
   proofStatus: string
   proofUrl?: string
@@ -67,13 +68,22 @@ export function programDetailJsonLd(program: {
     serviceType: 'Sovereign residency and citizenship program',
     areaServed: { '@type': 'Place', name: program.region },
     url,
-    description: `Sovereignty score ${program.sovereigntyScore}/100 · min investment from $${program.minInvestment.toLocaleString()}.`,
-    offers: {
-      '@type': 'Offer',
-      price: program.minInvestment,
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/OnlineOnly',
-    },
+    description:
+      program.minOnFile === false
+        ? `Sovereignty score ${program.sovereigntyScore}/100 · minimum investment not on file.`
+        : `Sovereignty score ${program.sovereigntyScore}/100 · min investment from $${program.minInvestment.toLocaleString()}.`,
+    // Structured data is a public claim. With no traced minimum there is no
+    // price to advertise, so the offer is omitted rather than priced at zero.
+    ...(program.minOnFile === false
+      ? {}
+      : {
+          offers: {
+            '@type': 'Offer',
+            price: program.minInvestment,
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/OnlineOnly',
+          },
+        }),
     additionalProperty: [
       { '@type': 'PropertyValue', name: 'proofStatus', value: program.proofStatus },
       ...(program.proofUrl

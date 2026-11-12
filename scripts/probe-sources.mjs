@@ -1075,6 +1075,8 @@ async function main() {
     changed_countries: [],
     blocked_urls: [],
     unreachable_urls: [],
+    dead_hosts: 0,
+    dead_host_urls: [],
     tooling_failures: 0,
     tooling_failure_urls: [],
     by_country: [],
@@ -1141,6 +1143,11 @@ async function main() {
       if (stage.whole?.last_hash === EMPTY_SHA) { delete stage.whole; delete entry.last_hash }
       if (stage.rule?.last_hash === EMPTY_SHA) delete stage.rule
       const row = { program_id: p.id, name: p.name, url: entry.url, error: result.error }
+      if (applied.dead) {
+        // The domain does not resolve. This is a failure, not a stale "ok".
+        report.dead_hosts += 1
+        report.dead_host_urls.push(row)
+      }
       ;(isBlocked ? report.blocked_urls : report.unreachable_urls).push(row)
       continue
     }
