@@ -308,6 +308,13 @@ export type TranslationKey =
   | 'programs.minInvest'
   | 'programs.timeline'
   | 'programs.score'
+  | 'programs.ratingLabel'
+  | 'programs.figuresTracedLabel'
+  | 'programs.figuresTraced'
+  | 'programs.notOnFile'
+  | 'programs.sourceFetchedToday'
+  | 'programs.sourceFetchedOne'
+  | 'programs.sourceFetchedDays'
   | 'programs.tableSubtitle'
   | 'programs.tableAria'
   | 'programs.inPortfolio'
@@ -778,6 +785,13 @@ const en: Dict = {
   'pitch.faq.copyLink': 'Copy link to this question',
   'programs.minInvest': 'Min. invest',
   'programs.timeline': 'Timeline',
+  'programs.ratingLabel': 'MotoPass rating',
+  'programs.figuresTracedLabel': 'Figures traced',
+  'programs.figuresTraced': '{traced} of {total} figures traced',
+  'programs.notOnFile': 'not on file',
+  'programs.sourceFetchedToday': 'Source page last fetched today',
+  'programs.sourceFetchedOne': 'Source page last fetched 1 day ago',
+  'programs.sourceFetchedDays': 'Source page last fetched {days} days ago',
   'programs.score': 'Score',
   'programs.tableSubtitle': 'Residency and citizenship programs by jurisdiction',
   'programs.tableAria': 'Residency and citizenship programs',

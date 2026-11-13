@@ -544,7 +544,7 @@ export const pageKeysPt: Partial<Record<PageKey, string>> = {
   'apply.agentsMessagingBannerTitle': 'Mensagens de agentes ainda não ao vivo',
   'apply.agentsMessagingBannerBody': 'As candidaturas estão abertas, mas o roteamento de DM Nostr para agentes de ligação do país ainda está bloqueado. Carimbe o seu hash e volte quando o mensageiro Nexus abrir.',
   'programs.filterResults': '{count} programas correspondem aos seus filtros',
-  'programs.sourcesOnFile': '{count} fontes registadas',
+  'programs.sourcesOnFile': '{count} páginas de origem citadas',
   'programs.facts': 'Dados',
   'programs.factsHint': 'Ordenar por quantos dos 23 dados de investigação estão registados',
   'programs.factsOnFile': '{have} de {total} dados registados',
@@ -840,8 +840,7 @@ export const pageKeysPt: Partial<Record<PageKey, string>> = {
   'apply.flow.fee': 'Taxa (Lightning)',
   'apply.flow.aria': 'Fluxo da aplicação: conectar, dados, enviar e ancorar, taxa',
   'programs.ob.title': 'Lendo os selos',
-  'programs.ob.proof': 'Prova = estes dados estão ancorados por hash no Bitcoin',
-  'programs.ob.fresh': 'Frescor = quando foi verificado pela última vez contra as fontes',
+  'programs.ob.proof': 'Carimbo de tempo = este registro não mudou desde que foi selado na Bitcoin. Isso não significa que os números estejam corretos.',  'programs.ob.fresh': 'Frescor = quando foi verificado pela última vez contra as fontes',
   'programs.ob.watch': 'Observar = seja alertado aqui quando um país mudar',
   'programs.ob.dismiss': 'Entendi',
 }

@@ -77,3 +77,15 @@ export function proofBlockHeight(country: string, hash: string | undefined): num
   const hit = Object.values(proofs).find(p => p.hash === hash && p.resolves)
   return hit?.chain_block_height ?? null
 }
+
+/**
+ * Traced figures for one record, from the same audit that produces the
+ * site-wide count. One definition of "traced" for the hero, /proof and the
+ * cards: a figure with an official source, an exact quote and a fetch date.
+ */
+export function figuresTracedFor(name: string | undefined): { traced: number; shown: number } | null {
+  if (!name) return null
+  const perRecord = (coverage as { per_record?: Record<string, { traced: number; shown: number }> }).per_record
+  const row = perRecord?.[name]
+  return row ? { traced: row.traced, shown: row.shown } : null
+}

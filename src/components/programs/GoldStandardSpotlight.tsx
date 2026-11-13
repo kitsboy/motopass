@@ -57,7 +57,6 @@ export function GoldStandardSpotlight({ programs }: { programs: Program[] }) {
   return (
     <section className="mb-10" aria-labelledby="gold-standard-heading">
       <div className="mb-5 max-w-2xl">
-        <span className="club-eyebrow block mb-2">{t('programs.flagshipDepth')}</span>
         <h2 id="gold-standard-heading" className="font-display text-h3 font-semibold text-ink tracking-tight">
           {t('programs.goldStandardTitle')}
         </h2>
@@ -89,11 +88,6 @@ export function GoldStandardSpotlight({ programs }: { programs: Program[] }) {
                   <span className="rounded-chip border border-mp-proof/30 bg-mp-proof/10 px-2 py-0.5 text-mp-proof inline-flex items-center gap-1">
                     <ShieldCheck size={10} /> {formatT(t, 'programs.pathwaysCount', { count: pathwayCount })}
                   </span>
-                  {p.flagship_depth && (
-                    <span className="rounded-chip border border-btc-orange/30 bg-btc-orange-soft/50 px-2 py-0.5 text-mp-btc-text">
-                      {t('programs.flagshipDepth')}
-                    </span>
-                  )}
                   {p.sovereignty_score != null && (
                     <span className="rounded-chip border border-mp/60 px-2 py-0.5 text-ink-muted">
                       {formatT(t, 'trust.sovereignty', { score: p.sovereignty_score })}

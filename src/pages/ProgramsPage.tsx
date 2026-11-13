@@ -404,6 +404,7 @@ export function ProgramsPage() {
           <>
             <SelectionBoard
               shown={filtered}
+              all={programs}
               regionCounts={regionCounts}
               regionFilter={regionFilter}
               onRegion={(region) => patchFilters({ region })}

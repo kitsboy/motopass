@@ -125,6 +125,15 @@ def main():
                 'figures_shown': total_figs,
                 'figures_traced': total_traced,
                 'coverage_pct': report['coverage_pct'],
+                # Per record, so a card can say "N of M figures traced" without
+                # re-deriving it in the browser.
+                'per_record': {
+                    r['name']: {
+                        'traced': r['figures_traced'],
+                        'shown': r['figures_shown'],
+                    }
+                    for r in rows
+                },
                 'generated_by': 'scripts/audit-claims.py',
             },
             indent=1,
