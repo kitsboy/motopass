@@ -7,7 +7,8 @@
 /** FRESH <=30d · WATCH 31-45d · STALE >45d (spec scale). Green = verified recent, only. */
 export function freshnessFromDate(lastChecked, now = new Date()) {
   if (!lastChecked) return { status: 'stale', days_stale: null, verified_at: null }
-  const then = new Date(`${lastChecked}T12:00:00Z`)
+  // Accepts a date (2026-11-12) or a full probe timestamp (2026-11-12T14:12:49.040Z).
+  const then = new Date(String(lastChecked).includes('T') ? lastChecked : `${lastChecked}T12:00:00Z`)
   const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 12))
   const days = Math.floor((today.getTime() - then.getTime()) / 86_400_000)
   if (days <= 30)
