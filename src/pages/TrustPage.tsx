@@ -9,8 +9,7 @@ import { SeoHead } from '../components/SeoHead'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import { CountryTitle } from '../components/ui/CountryTitle'
-import { figuresTracedFor, quoteConfirmedOn } from '../lib/claims'
-import catalogJson from '../../research/countries.json'
+import { figuresTracedFor, confirmedOnFor } from '../lib/claims'
 
 // Drawer-only charts (radar, sparkline, source tiers, proof badge) are code-split
 // and loaded ONLY when a card is tapped or compare is opened — they never touch the
@@ -510,13 +509,10 @@ function ProofFigureCount({ name }: { name: string }) {
  */
 function ProofQuoteLine({ name }: { name: string }) {
   const { t } = useI18n()
-  const program = (catalogJson.programs as Array<{ name: string; claim_sources?: Record<string, unknown> }>).find((p) => p.name === name)
-  const paths = Object.keys(program?.claim_sources ?? {})
-  const dates = paths.map((path) => quoteConfirmedOn(name, path)).filter(Boolean) as string[]
-  if (dates.length === 0) {
+  const latest = confirmedOnFor(name)
+  if (!latest) {
     return <span className="italic text-mp-ink-muted">{t('programs.sourceNotReread')}</span>
   }
-  const latest = dates.sort()[dates.length - 1]
   const date = new Date(`${latest}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
   return <span>{t('programs.quoteConfirmedOn').replace('{date}', date)}</span>
 }

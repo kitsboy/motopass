@@ -109,6 +109,20 @@ def main():
             }
         )
 
+    # Latest date the quote checker read a page back for each record, so the
+    # Proof cards can date a claim without importing the whole corpus.
+    confirmed: dict[str, str] = {}
+    try:
+        status = json.loads((ROOT / 'src/data/quoteStatus.json').read_text())
+        for key, day in (status.get('_verifiedOn') or {}).items():
+            name = key.split('|')[0]
+            if name not in confirmed or day > confirmed[name]:
+                confirmed[name] = day
+    except Exception:
+        confirmed = {}
+    for row in rows:
+        row['confirmed_on'] = confirmed.get(row['name'])
+
     report = {
         'generated_by': 'scripts/audit-claims.py',
         'corpus': str(CORPUS.relative_to(ROOT)),
@@ -133,6 +147,8 @@ def main():
                     r['name']: {
                         'traced': r['figures_traced'],
                         'shown': r['figures_shown'],
+                        # Date the quote checker last read this record's page back.
+                        'confirmed_on': r.get('confirmed_on'),
                     }
                     for r in rows
                 },
