@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Bell, Check, Zap } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge'
@@ -302,13 +302,14 @@ function TracedFigures({ name }: { name: string }) {
  */
 function SourceFetchedLine({ name, paths }: { name: string; paths: string[] }) {
   const { t } = useI18n()
+  const [now] = useState(() => Date.now())
   // Only the quote checker's reads are dated. A probe timestamp says the page
   // was opened, not that the words on it were read back.
   const dates = paths.map((path) => quoteConfirmedOn(name, path)).filter(Boolean) as string[]
   if (dates.length === 0) return null
   const latest = dates.sort()[dates.length - 1]
   const at = Date.parse(`${latest}T00:00:00Z`)
-  const days = Math.max(0, Math.floor((Date.now() - at) / 86_400_000))
+  const days = Math.max(0, Math.floor((now - at) / 86_400_000))
   const date = new Date(at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
   const label =
     days === 0
