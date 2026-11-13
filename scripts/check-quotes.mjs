@@ -16,20 +16,14 @@
 import fs from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import { chromium } from 'playwright'
+// The matcher has its own tests (src/lib/quoteMatch.test.ts). The script must
+// use that one, not a second copy that can drift.
+import { normaliseText, quoteOnPage } from './lib/quote-match.mjs'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const corpus = JSON.parse(fs.readFileSync(`${ROOT}research/countries.json`, 'utf8'))
 
-const normalise = s =>
-  String(s ?? '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[\u2018\u2019\u201c\u201d]/g, "'")
-    .replace(/[\u2013\u2014]/g, '-')
-    .replace(/\u00a0/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
+const normalise = normaliseText
 
 const escapeRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 const flexible = quote =>
@@ -109,7 +103,7 @@ for (const [url, list] of byUrl) {
     }
   }
   for (const c of list) {
-    const ok = !err && flexible(c.quote).test(text)
+    const ok = !err && quoteOnPage(text, c.quote)
     if (ok) {
       pass += 1
       console.log(`ok    ${c.name} ${c.path}`)

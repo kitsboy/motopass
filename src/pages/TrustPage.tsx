@@ -281,8 +281,8 @@ export function TrustPage() {
 
                     <div className="mt-3 flex flex-wrap items-center gap-2">
                       {c.proof_status === 'confirmed' ? (
-                        <span className="inline-flex items-center gap-1 rounded-chip border border-mp-proof/35 bg-mp-proof-soft px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-mp-proof">
-                          <BadgeCheck className="h-2.5 w-2.5" aria-hidden="true" /> {t('trust.bitcoinAnchored')}
+                        <span className="inline-flex items-center gap-1 rounded-chip border border-mp-border bg-mp-section px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
+                          <BadgeCheck className="h-2.5 w-2.5" aria-hidden="true" /> {t('trust.timestampedNeutral')}
                         </span>
                       ) : (
                         <span className="inline-flex items-center gap-1 rounded-chip border border-mp-ochre/40 bg-mp-btc-soft px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-mp-btc-text">
@@ -296,7 +296,7 @@ export function TrustPage() {
                       )}
                     </div>
 
-                    <div className="mt-3 flex items-center justify-between gap-3 rounded-mp-lg border border-mp-border-subtle bg-mp-section/50 px-3 py-2">
+                    <div className="mt-3 rounded-mp-lg border border-mp-border-subtle bg-mp-section/50 px-3 py-2">
                       <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
                         {t('programs.figuresTracedLabel')}
                       </span>
@@ -496,8 +496,8 @@ function ProofFigureCount({ name }: { name: string }) {
   const row = figuresTracedFor(name)
   if (!row) return <span className="text-xs italic text-mp-ink-muted">{t('programs.notOnFile')}</span>
   return (
-    <span className="font-mono text-xs text-mp-ink">
-      {t('programs.figuresTraced').replace('{traced}', String(row.traced)).replace('{total}', String(row.shown))}
+    <span className="mt-0.5 block font-mono text-xl font-semibold leading-tight text-mp-ink">
+      {t('programs.figuresOfTotal').replace('{traced}', String(row.traced)).replace('{total}', String(row.shown))}
     </span>
   )
 }

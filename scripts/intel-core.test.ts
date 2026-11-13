@@ -162,12 +162,15 @@ describe('intel manifest', () => {
     const data = { programs: [baseProgram, { ...baseProgram, id: 2, name: 'Testland2' }] }
     const intel = buildIntel(data, { now: new Date('2026-08-20').getTime(), nowIso: '2026-08-20T00:00:00.000Z' })
     expect(intel.schema).toBe('motopass.country-intel.v1')
-    expect(intel.programs.Testland.freshness.status).toBe('fresh') // 19d is inside the 30d fresh window
+    // Freshness now comes from the machine probe, not the research date: a
+    // record with no probe has no fresh claim to make.
+    expect(intel.programs.Testland.freshness.status).toBe('stale')
+    expect(intel.programs.Testland.freshness.days_stale).toBeNull()
     expect(intel.programs.Testland.proof.hash).toMatch(/^[a-f0-9]{64}$/)
     expect(typeof intel.programs.Testland.proof.in_sync).toBe('boolean')
     expect(Array.isArray(intel.programs.Testland.recent_changes)).toBe(true)
     expect(intel.sweep.watch).toBe(0)
-    expect(intel.sweep.fresh).toBe(2)
-    expect(intel.sweep.stale).toBe(0)
+    expect(intel.sweep.fresh).toBe(0)
+    expect(intel.sweep.stale).toBe(2)
   })
 })
