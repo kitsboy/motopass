@@ -591,7 +591,7 @@ export const pageKeysJa: Partial<Record<PageKey, string>> = {
   'programs.filterPresets': 'クイックフィルター',
   'programs.btcTierNote': '調査フラグです。件数は他のフィルターを反映し、カテゴリは重複する場合があります。',
   'programs.filterResults': '{count}件のプログラムがフィルターに一致',
-  'programs.sourcesOnFile': '{count}件の出典を記録',
+  'programs.sourcesOnFile': '引用した出典ページ {count} 件',
   'programs.facts': '項目',
   'programs.factsHint': '23項目の調査事実のうち記録済みの数で並べ替え',
   'programs.factsOnFile': '{total}項目中{have}項目を記録',
@@ -840,8 +840,7 @@ export const pageKeysJa: Partial<Record<PageKey, string>> = {
   'apply.flow.fee': '手数料（ライトニング）',
   'apply.flow.aria': '申請の流れ：接続、詳細、申請とアンカー、手数料',
   'programs.ob.title': 'バッジの見方',
-  'programs.ob.proof': '証明 = このデータはBitcoinにハッシュアンカーされています',
-  'programs.ob.fresh': '鮮度 = ソースに対して最後に検証された日時',
+  'programs.ob.proof': 'タイムスタンプ＝この記録がビットコインに記録されてから変更されていないことを示します。数値が正しいという意味ではありません。',  'programs.ob.fresh': '鮮度 = ソースに対して最後に検証された日時',
   'programs.ob.watch': 'ウォッチ = 国の変更をここで通知します',
   'programs.ob.dismiss': '了解しました',
 }

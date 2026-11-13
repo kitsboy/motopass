@@ -7,6 +7,8 @@ import { feeStance } from '../../lib/decisionPack'
 interface SelectionBoardProps {
   /** Programs currently matching every filter except region. */
   shown: Program[]
+  /** The whole catalog, so the source count is a property of the site, not the filter. */
+  all: Program[]
   regionCounts: Record<string, number>
   regionFilter: string
   onRegion: (region: string) => void
@@ -18,15 +20,27 @@ interface SelectionBoardProps {
  * spread, and how many of the shown programs carry each key fact.
  * Every number is a count of fields already in the catalog — nothing is inferred.
  */
-export function SelectionBoard({ shown, regionCounts, regionFilter, onRegion }: SelectionBoardProps) {
+export function SelectionBoard({ shown, all, regionCounts, regionFilter, onRegion }: SelectionBoardProps) {
   const { t } = useI18n()
   const total = shown.length
   const regions = useMemo(
     () => ['All', ...Object.keys(regionCounts).filter(region => region !== 'All').sort()],
     [regionCounts],
   )
-  const flagshipRows = shown.filter(program => program.flagship_depth === true).length
-  const sourcesOnFile = shown.reduce((sum, program) => sum + (program.sources?.length ?? 0), 0)
+  // One definition, computed over the whole catalog: distinct source URLs cited by
+  // any record. Filtering the list does not change it, so the number cannot drift
+  // between 117, 151 and 193 depending on what is on screen.
+  const sourcePages = useMemo(() => {
+    const urls = new Set<string>()
+    for (const program of all) {
+      for (const source of program.sources ?? []) {
+        const raw = typeof source === 'string' ? source : (source as { url?: string } | null)?.url
+        const match = raw?.match(/https?:\/\/[^\s)]+/)?.[0]
+        if (match) urls.add(match.replace(/[.,;]+$/, ''))
+      }
+    }
+    return urls.size
+  }, [all])
   const coverage = useMemo(
     () => [
       {
@@ -94,10 +108,7 @@ export function SelectionBoard({ shown, regionCounts, regionFilter, onRegion }: 
           {formatT(t, 'pitch.hero.jurisdictionsChip', { count: total })}
         </span>
         <span className="inline-flex items-center rounded-chip border border-mp-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-mp-ink-secondary">
-          {formatT(t, 'pitch.hero.flagshipChip', { count: flagshipRows })}
-        </span>
-        <span className="inline-flex items-center rounded-chip border border-mp-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-mp-ink-secondary">
-          {formatT(t, 'programs.sourcesOnFile', { count: sourcesOnFile })}
+          {formatT(t, 'programs.sourcesOnFile', { count: sourcePages })}
         </span>
       </div>
 

@@ -817,7 +817,7 @@ export const pageKeysEn: Record<PageKey, string> = {
   'apply.agentsMessagingBannerTitle': 'Agent messaging not live yet',
   'apply.agentsMessagingBannerBody': 'Applications are open, but Nostr DM routing to country liaison agents is still gated. Stamp your hash and check back when Nexus messaging opens.',
   'programs.filterResults': '{count} programs match your filters',
-  'programs.sourcesOnFile': '{count} sources on file',
+  'programs.sourcesOnFile': '{count} source pages cited',
   'programs.facts': 'Facts',
   'programs.factsHint': 'Sort by how many of the 23 research facts are on file',
   'programs.factsOnFile': '{have} of {total} facts on file',
@@ -1100,8 +1100,7 @@ export const pageKeysEn: Record<PageKey, string> = {
   'apply.flow.fee': 'Fee (Lightning)',
   'apply.flow.aria': 'Application flow: connect, details, submit and anchor, fee',
   'programs.ob.title': 'Reading the badges',
-  'programs.ob.proof': 'Proof = this data is hash-anchored on Bitcoin',
-  'programs.ob.fresh': 'Freshness = when we last fetched the official page and compared it with the previous snapshot',
+  'programs.ob.proof': 'Timestamp = this record has not changed since it was stamped in Bitcoin. It does not mean the figures are right.',  'programs.ob.fresh': 'Freshness = when we last fetched the official page and compared it with the previous snapshot',
   'programs.ob.watch': 'Watch = get alerted here when a country changes',
   'programs.ob.dismiss': 'Got it',
 }

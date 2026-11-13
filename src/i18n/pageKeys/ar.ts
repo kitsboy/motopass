@@ -436,7 +436,7 @@ export const pageKeysAr: Partial<Record<PageKey, string>> = {
   'apply.agentsMessagingBannerTitle': 'مراسلة الوكلاء ليست مباشرة بعد',
   'apply.agentsMessagingBannerBody': 'الطلبات مفتوحة، لكن توجيه الرسائل المباشرة Nostr إلى وكلاء تواصل الدولة ما زال محكوماً. اختم هاشك وعُد عند فتح مراسلة Nexus.',
   'programs.filterResults': '{count} برامج تطابق عوامل التصفية الخاصة بك',
-  'programs.sourcesOnFile': '{count} مصدرًا مسجّلًا',
+  'programs.sourcesOnFile': 'عدد صفحات المصادر المُستشهد بها: {count}',
   'programs.facts': 'البيانات',
   'programs.factsHint': 'الترتيب حسب عدد الحقائق البحثية المسجّلة من أصل 23',
   'programs.factsOnFile': '{have} من {total} حقيقة مسجّلة',
@@ -841,8 +841,7 @@ export const pageKeysAr: Partial<Record<PageKey, string>> = {
   'apply.flow.fee': 'الرسوم (لايتنينغ)',
   'apply.flow.aria': 'مسار الطلب: اتصال، بيانات، إرسال وتثبيت، رسوم',
   'programs.ob.title': 'قراءة الشارات',
-  'programs.ob.proof': 'إثبات = هذه البيانات مثبّتة بالهاش على بيتكوين',
-  'programs.ob.fresh': 'الطزاجة = آخر مرة تم التحقق منها مقابل المصادر',
+  'programs.ob.proof': 'الطابع الزمني = هذا السجل لم يتغيّر منذ ختمه في بيتكوين. وهذا لا يعني أن الأرقام صحيحة.',  'programs.ob.fresh': 'الطزاجة = آخر مرة تم التحقق منها مقابل المصادر',
   'programs.ob.watch': 'مراقبة = احصل على تنبيه هنا عند تغيّر أي دولة',
   'programs.ob.dismiss': 'فهمت',
 }

@@ -436,7 +436,7 @@ export const pageKeysSw: Partial<Record<PageKey, string>> = {
   'apply.agentsMessagingBannerTitle': 'Ujumbe wa mawakala bado haujaanza',
   'apply.agentsMessagingBannerBody': 'Maombi yamefunguka, lakini njia ya DM ya Nostr kwa mawakala wa mawasiliano wa nchi bado imezuiwa. Funga hashi yako na urudi ujumbe wa Nexus unapofunguka.',
   'programs.filterResults': '{count} programu zinalingana na vichujio vyako',
-  'programs.sourcesOnFile': '{count} vyanzo vimeandikwa',
+  'programs.sourcesOnFile': 'Kurasa za vyanzo zilizotajwa: {count}',
   'programs.facts': 'Data',
   'programs.factsHint': 'Panga kwa idadi ya ukweli wa utafiti ulioandikwa kati ya 23',
   'programs.factsOnFile': '{have} kati ya {total} ukweli umeandikwa',
@@ -843,8 +843,7 @@ export const pageKeysSw: Partial<Record<PageKey, string>> = {
   'apply.flow.fee': 'Ada (Lightning)',
   'apply.flow.aria': 'Mtiririko wa maombi: unganisha, maelezo, tuma & fungamana, ada',
   'programs.ob.title': 'Kusoma beji',
-  'programs.ob.proof': 'Uthibitisho = data hii imefungwa kwa hash kwenye Bitcoin',
-  'programs.ob.fresh': 'Usafi = mara ya mwisho iliyothibitishwa dhidi ya vyanzo',
+  'programs.ob.proof': 'Muhuri wa muda = rekodi hii haijabadilika tangu iwekwe kwenye Bitcoin. Haimaanishi kwamba takwimu ni sahihi.',  'programs.ob.fresh': 'Usafi = mara ya mwisho iliyothibitishwa dhidi ya vyanzo',
   'programs.ob.watch': 'Fuatilia = pata tahadhari hapa nchi inapobadilika',
   'programs.ob.dismiss': 'Nimeelewa',
 }
