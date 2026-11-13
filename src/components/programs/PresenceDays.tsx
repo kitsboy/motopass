@@ -14,9 +14,17 @@ import { CountryFlag } from '../ui/CountryTitle'
  */
 export function PresenceDays({ programs }: { programs: Program[] }) {
   const { t } = useI18n()
-  const rows = useMemo(() => presenceRows(programs), [programs])
+  // Only rows whose day count is stated in the record's own notes are drawn.
+  // Without that sentence the number cannot be checked, and several records
+  // store years-to-citizenship × 365 in this field, which is not a stay requirement.
+  const rows = useMemo(
+    () => presenceRows(programs).filter(row => row.days == null || row.sentence != null),
+    [programs],
+  )
   const scale = presenceScale(rows)
-  const counted = rows.filter(row => row.days != null && row.days > 0).length
+  const evidenced = rows.filter(row => row.days != null && row.days > 0 && row.sentence != null)
+  if (evidenced.length === 0) return null
+  const counted = evidenced.length
   const none = rows.filter(row => row.days === 0)
   const missing = rows.filter(row => row.days == null)
   const marks = [1, 2, 5, 10].filter(year => year * 365 < scale)

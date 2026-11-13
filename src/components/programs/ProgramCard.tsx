@@ -14,7 +14,6 @@ import { gazetteHits, gazetteLine } from '../../lib/gazetteWatch';
 import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
 import { UnverifiedChip } from '../ui/UnverifiedNote';
-import { FactsBadge } from './FactsBadge';
 
 function GazetteCardLine({ program }: { program: Program }) {
   const { t } = useI18n();
@@ -60,7 +59,7 @@ export const ProgramCard = memo(function ProgramCard({
   onTogglePortfolio,
   watched = false,
   onToggleWatch,
-  onShowEvidence,
+  onShowEvidence: _onShowEvidence,
 }: ProgramCardProps) {
   const weight = scoreWeight(program.sovereigntyScore);
   const isFlagship = weight === 'flagship';
@@ -106,7 +105,7 @@ export const ProgramCard = memo(function ProgramCard({
           onTogglePortfolio={onTogglePortfolio ? handleToggle : undefined}
           watched={watched}
           onToggleWatch={onToggleWatch ? handleWatchToggle : undefined}
-          onShowEvidence={onShowEvidence}
+          onShowEvidence={_onShowEvidence}
         />
       </div>
     );
@@ -132,7 +131,7 @@ export const ProgramCard = memo(function ProgramCard({
         onTogglePortfolio={onTogglePortfolio ? handleToggle : undefined}
         watched={watched}
         onToggleWatch={onToggleWatch ? handleWatchToggle : undefined}
-        onShowEvidence={onShowEvidence}
+        onShowEvidence={_onShowEvidence}
       />
     </motion.div>
   );
@@ -145,7 +144,7 @@ function ProgramCardContent({
   onTogglePortfolio,
   watched,
   onToggleWatch,
-  onShowEvidence,
+  onShowEvidence: _onShowEvidence,
 }: {
   program: Program;
   isFlagship: boolean;
@@ -232,13 +231,14 @@ function ProgramCardContent({
             ₿ {t('programs.presetBitcoinPolicy')}
           </span>
         )}
-        <FactsBadge
-          program={program}
-          onOpenEvidence={onShowEvidence ? () => onShowEvidence(program) : undefined}
-        />
         <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />
         <IntelStatusBadge programName={program.country} compact />
-        <ProofBadge status={program.proofStatus} compact programName={program.country} />
+        <ProofBadge
+          status={program.proofStatus}
+          compact
+          programName={program.country}
+          stampedAt={program.proofStampedAt}
+        />
       </div>
       <SourceFetchedLine iso={program.lastProbed} />
 
@@ -306,12 +306,14 @@ function SourceFetchedLine({ iso }: { iso?: string | null }) {
   const at = Date.parse(iso)
   if (Number.isNaN(at)) return null
   const days = Math.max(0, Math.floor((now - at) / 86_400_000))
+  // A concrete date, not "today": a cached tab must not claim freshness it lost.
+  const date = new Date(at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
   const label =
     days === 0
-      ? t('programs.sourceFetchedToday')
+      ? t('programs.sourceFetchedToday').replace('{date}', date)
       : days === 1
-        ? t('programs.sourceFetchedOne')
-        : t('programs.sourceFetchedDays').replace('{days}', String(days))
+        ? t('programs.sourceFetchedOne').replace('{date}', date)
+        : t('programs.sourceFetchedDays').replace('{days}', String(days)).replace('{date}', date)
   return (
     <p data-testid="source-fetched" className="mt-2 font-mono text-[10px] leading-none text-mp-ink-secondary">
       {label}

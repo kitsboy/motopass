@@ -1,6 +1,8 @@
 import { RefreshCw, TriangleAlert } from 'lucide-react'
 import { useDisplayCurrency } from '../context/DisplayCurrencyContext'
 import { useI18n } from '../i18n/I18nContext'
+import { formatUsdCompact } from '../lib/btcPrice'
+import { BTC_PRICE_IS_LIVE } from '../data/btcPriceAtCapture'
 
 type BtcDualPriceProps = {
   /** Stored USD figure — anchored to sats via btc_price_at_capture, re-priced to the active display currency. */
@@ -37,6 +39,15 @@ export function BtcDualPrice({
   }
   const priced = priceFor(usd)
   const sizes = sizeClasses[size]
+  // USD is the figure the source states; sats are a conversion. Until a live
+  // BTC price is wired, show USD alone rather than sats at the August snapshot.
+  if (!BTC_PRICE_IS_LIVE) {
+    return (
+      <span className={`font-mono font-semibold tabular-nums text-mp-btc-text ${sizes.btc} ${className}`}>
+        {formatUsdCompact(usd)}
+      </span>
+    )
+  }
 
   const staleBadge = priced.stale && (
     <span

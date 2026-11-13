@@ -1,7 +1,7 @@
 import type { Program } from '../../types/program'
 import type { CompareRow } from './types'
 import { formatSats, formatUsdCompact, usdToSats } from '../../lib/btcPrice'
-import { BTC_USD_AT_CAPTURE } from '../../data/btcPriceAtCapture'
+import { BTC_PRICE_IS_LIVE, BTC_USD_AT_CAPTURE } from '../../data/btcPriceAtCapture'
 
 /**
  * A figure is "known" when it is a real number above zero. Zero is how this
@@ -30,7 +30,8 @@ export function formatMoneyText(usd: number | null | undefined): string {
   // A figure we do not have is not zero — never let a missing number become
   // "0 sats" in an export or a clipboard summary.
   if (usd == null) return 'not on file'
-  return `${formatSats(usdToSats(usd, BTC_USD_AT_CAPTURE))} (≈${formatUsdCompact(usd)})`
+  // USD is what the source states. Sats are only shown when the price is live.
+  return BTC_PRICE_IS_LIVE ? `${formatSats(usdToSats(usd, BTC_USD_AT_CAPTURE))} (≈${formatUsdCompact(usd)})` : formatUsdCompact(usd)
 }
 
 export function rowValuesDiffer(row: CompareRow, programs: Program[]): boolean {

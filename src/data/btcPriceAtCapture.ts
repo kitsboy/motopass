@@ -5,3 +5,10 @@
 export const BTC_USD_AT_CAPTURE = 77328
 export const CAPTURE_PRICE_SOURCE = 'coingecko' as const
 export const CAPTURED_AT = '2026-08-22T19:38:45.877Z'
+
+/**
+ * False until a live BTC/USD price is wired through the header. While false,
+ * every surface shows USD only: converting at the August snapshot would put a
+ * wrong number next to a sourced one.
+ */
+export const BTC_PRICE_IS_LIVE = false
