@@ -51,13 +51,22 @@ export function ProofPage() {
           What &ldquo;unverified&rdquo; means here
         </h2>
         <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
-          A figure is <strong className="text-ink">traced</strong> when we can point at the official
-          page that states it, quote the words, and give the day we read them. Today{' '}
+          A figure <strong className="text-ink">cites a source</strong> when we can point at the
+          official page that states it and quote its words. Today{' '}
           <strong className="text-ink">
             {coverage.figures_traced} of {coverage.figures_shown} figures
           </strong>{' '}
-          on this site are traced. Everything else is labelled unverified and stays out of our
-          averages, our rankings and our comparisons.
+          on this site cite a source, and{' '}
+          <strong className="text-ink">
+            {coverage.figures_reread_recent} of those {coverage.figures_traced}
+          </strong>{' '}
+          have had their quote read back from the live page in the last seven days. The rest are
+          labelled unverified and stay out of our averages, our rankings and our comparisons.
+        </p>
+        <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+          Quoting a page is not the same as the figure being right, and a page can change after we
+          read it. A quote confirmation means those words were on the page when the checker opened
+          it — nothing more.
         </p>
         <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
           We show unverified figures because a labelled estimate is more use to you than a blank

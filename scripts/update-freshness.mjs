@@ -27,8 +27,15 @@ export function buildIntel(data, opts = {}) {
   const programs = {}
 
   for (const p of data.programs) {
-    const days = daysSince(p.last_checked, now)
-    const status = freshnessStatus(days)
+    // Freshness measures one thing: when the probe last opened the page.
+    // `last_checked` is a hand-typed research date and cannot support a ring.
+    const probedAt = (p.watch?.urls ?? [])
+      .map((u) => u.last_probed)
+      .filter(Boolean)
+      .sort()
+      .at(-1) ?? null
+    const days = probedAt ? daysSince(probedAt, now) : null
+    const status = days == null ? 'stale' : freshnessStatus(days)
     counts[status]++
     const proof = p.satohash_proofs?.[0]
     const recentChanges = (p.audit_trail ?? []).slice(-5).reverse().map(e => ({
@@ -41,7 +48,7 @@ export function buildIntel(data, opts = {}) {
     const proofHash = proof?.content_hash ?? proof?.proof_url?.split('/').pop() ?? null
     programs[p.name] = {
       id: p.id,
-      freshness: { status, days_stale: days ?? 0, last_checked: p.last_checked },
+      freshness: { status, days_stale: days, probed_at: probedAt, last_checked: p.last_checked },
       watch: {
         changed: p.watch?.changed === true,
         probed: (p.watch?.urls ?? []).filter(u => u.status !== 'unprobed').length,

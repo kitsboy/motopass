@@ -314,6 +314,8 @@ export type TranslationKey =
   | 'programs.sourceNotReread'
   | 'programs.noSource'
   | 'trust.cardFreshRecord'
+  | 'programs.figuresOfTotal'
+  | 'trust.timestampedNeutral'
   | 'programs.sourceLink'
   | 'programs.figuresTracedLabel'
   | 'programs.figuresTraced'
@@ -798,6 +800,9 @@ const en: Dict = {
   'programs.noSource': 'no source',
   // A record that has not changed says only that: it is not a check of the figures.
   'trust.cardFreshRecord': 'Source page opened recently; figures not re-checked',
+  // The value repeats nothing: the label above it already said what is counted.
+  'programs.figuresOfTotal': '{traced} of {total}',
+  'trust.timestampedNeutral': 'Timestamped record',
   'programs.sourceLink': 'source page',
   'programs.figuresTracedLabel': 'Figures with a source',
   'programs.figuresTraced': '{traced} of {total} figures with a source',
@@ -1162,10 +1167,10 @@ const en: Dict = {
   'trust.eyebrow': 'Trust',
   'trust.title': 'Live Trust Cards',
   'trust.sub':
-    'We would rather show an old answer than a confident wrong one. Every figure says whether it has been traced to an official page, and every record says when we last looked.', 
+    'Each card counts how many of that record\u2019s figures cite a source, and says when those quotes were last read back from the page. Per-figure detail lives on Programs.', 
   'trust.promise': 'What the rings mean:',
   'trust.promiseBody':
-    'a red ring means “we haven’t reopened the source in over 45 days” — it does not mean the figure is wrong. Every timestamp badge opens the Satohash verification for that country’s record, which shows the record has not changed since it was stamped.',
+    'the ring counts days since the source probe last opened the page — 30 or fewer is green, 31–45 amber, more than 45 red. It says the page was opened, not that its figures were re-checked. The timestamp badge shows the record has not changed since it was stamped in Bitcoin; it says nothing about whether a figure is right.',
   'trust.sweepFresh': '{fresh} pages fetched this week · {stale} overdue',
   'trust.compare': 'Compare',
   'trust.compareTitle': 'Compare trust',
@@ -1184,7 +1189,7 @@ const en: Dict = {
   'trust.riskSuffix': '{level} risk',
   'trust.freshnessLabel': '{name} freshness',
   'trust.sovScoreTitle': 'Sovereignty score {score}/10',
-  'trust.sovereignty': 'sovereignty {score}/10',
+  'trust.sovereignty': 'MotoPass rating {score}/10',
   'trust.cardFresh': 'Re-checked recently. Timestamped into Bitcoin.',
   'trust.cardWatch': 'Getting old — flagged before it goes stale.',
   'trust.cardStale': 'Over 45 days unconfirmed — shown honestly, never hidden.',

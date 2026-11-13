@@ -18,6 +18,7 @@ the corpus totals, and writes research/claim-audit.json + .md.
 
 Exit code 0 always for ad-hoc runs; pass --fail-under N to make it a gate.
 """
+import datetime
 import json
 import sys
 from pathlib import Path
@@ -104,6 +105,7 @@ def main():
                 'name': rec.get('name'),
                 'figures_shown': len(figs),
                 'figures_traced': len(ok),
+                'traced_paths': ok,
                 'unsourced_fields': bad,
                 'has_claim_sources_key': 'claim_sources' in rec,
             }
@@ -123,6 +125,18 @@ def main():
     for row in rows:
         row['confirmed_on'] = confirmed.get(row['name'])
 
+    # How many sourced figures have been re-read from the live page recently.
+    # Two numbers on the site: figures that cite a source, and how many of those
+    # the checker has actually opened in the last seven days.
+    verified = status.get('_verifiedOn') or {} if isinstance(status, dict) else {}
+    cutoff = (datetime.date.today() - datetime.timedelta(days=7)).isoformat()
+    reread = 0
+    for row in rows:
+        for path in row.get('traced_paths') or []:
+            day = verified.get(f"{row['name']}|{path}")
+            if day and day >= cutoff:
+                reread += 1
+
     report = {
         'generated_by': 'scripts/audit-claims.py',
         'corpus': str(CORPUS.relative_to(ROOT)),
@@ -131,6 +145,7 @@ def main():
         'figures_traced': total_traced,
         'coverage_pct': round(100 * total_traced / total_figs, 1) if total_figs else 0,
         'money_and_time': money_time,
+        'figures_reread_recent': reread,
         'per_record': rows,
     }
     OUT_JSON.write_text(json.dumps(report, indent=1))
@@ -141,6 +156,7 @@ def main():
                 'figures_shown': total_figs,
                 'figures_traced': total_traced,
                 'coverage_pct': report['coverage_pct'],
+                'figures_reread_recent': report['figures_reread_recent'],
                 # Per record, so a card can say "N of M figures traced" without
                 # re-deriving it in the browser.
                 'per_record': {

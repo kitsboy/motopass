@@ -46,6 +46,7 @@ export function claimCoverage() {
     records: number
     figures_shown: number
     figures_traced: number
+    figures_reread_recent: number
     coverage_pct: number
   }
 }
