@@ -31,6 +31,8 @@ export interface Program {
   region: string;
   minInvestment: number;
   /** False when the record carries no minimum: callers must print "not on file". */
+  /** Claim records copied from the corpus: which figures have a page behind them. */
+  claimSources?: Record<string, { url?: string; quote?: string; fetched?: string }>
   minClaim?: { url?: string; quote?: string; fetched?: string } | null
   minOnFile?: boolean;
   timelineDays: number;

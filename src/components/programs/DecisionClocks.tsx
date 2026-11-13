@@ -18,6 +18,8 @@ import type { Program } from './types'
 interface DecisionClocksProps {
   program: Program
   variant: 'strip' | 'cell' | 'pack' | 'pill'
+  /** Mark each clock whose figure has no page behind it in the record. */
+  showEvidence?: boolean
 }
 
 function statusKey(status: RouteStatus): TranslationKey {
@@ -193,7 +195,7 @@ function DecisionPackPanel({
  * Three research clocks — processing, days in country, years to citizenship —
  * shared by the card, the table, and the program modal.
  */
-export function DecisionClocks({ program, variant }: DecisionClocksProps) {
+export function DecisionClocks({ program, variant, showEvidence = false }: DecisionClocksProps) {
   const { t } = useI18n()
   const pack = useMemo(() => buildDecisionPack(program), [program])
   const clocks = useMemo(
@@ -238,16 +240,23 @@ export function DecisionClocks({ program, variant }: DecisionClocksProps) {
 
   if (variant === 'strip') {
     const items = [
-      [t('pack.process'), clocks.process],
-      [t('pack.inCountry'), clocks.days],
-      [t('pack.citizenship'), clocks.years],
+      [t('pack.process'), clocks.process, program.claimSources?.['finance.processing_time_months']?.url],
+      [t('pack.inCountry'), clocks.days, program.claimSources?.['compliance_clock.residency_day_count_target']?.url],
+      [t('pack.citizenship'), clocks.years, program.claimSources?.['compliance_clock.citizenship_eligibility_years']?.url],
     ] as const
     return (
       <dl className="mt-3 grid grid-cols-3 gap-2" aria-label={aria} data-decision-clocks="strip">
-        {items.map(([label, value]) => (
+        {items.map(([label, value, source]) => (
           <div key={label} className="min-w-0">
             <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{label}</dt>
-            <dd className="font-mono text-sm leading-tight text-mp-ink">{value}</dd>
+            <dd className="font-mono text-sm leading-tight text-mp-ink">
+              {value}
+              {showEvidence && !source && (
+                <span className="ml-1 align-middle text-[10px] font-normal italic text-mp-ink-muted">
+                  ({t('programs.notOnFile')})
+                </span>
+              )}
+            </dd>
           </div>
         ))}
       </dl>
