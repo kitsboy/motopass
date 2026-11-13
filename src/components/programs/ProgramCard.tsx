@@ -1,15 +1,12 @@
 import { memo } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Bell, Check, Zap } from 'lucide-react';
-import { ProofBadge } from '../ui/ProofBadge';
+import { ProofBadge } from '../ui/ProofBadge'
+import { figuresTracedFor } from '../../lib/claims';
 import { CountryFlag } from '../ui/CountryTitle';
-import { FreshnessBadge } from '../ui/FreshnessBadge';
-import { SourcesProbedNote } from './SourcesProbedNote';
 import { IntelStatusBadge } from '../intel/IntelStatusBadge';
-import { SourceStatusBadge } from './SourceStatusBadge';
 import { useI18n } from '../../i18n/I18nContext';
 import { MerchantDensityBadge } from '../btcmap/MerchantDensityBadge';
-import { BtcDualPrice } from '../BtcDualPrice';
 import { cinematicIdToNumber } from '../../lib/programAdapter';
 import { SovereigntyScoreTooltip } from './SovereigntyScoreTooltip';
 import { DecisionClocks } from './DecisionClocks';
@@ -159,13 +156,6 @@ function ProgramCardContent({
   onShowEvidence?: (program: Program) => void;
 }) {
   const { t } = useI18n();
-  const freshnessLabels = {
-    fresh: t('programs.freshnessFresh'),
-    recent: t('programs.freshnessRecent'),
-    stale: t('programs.freshnessStale'),
-    proof: t('programs.freshnessProof'),
-    checked: t('programs.freshnessChecked'),
-  };
 
   return (
     <>
@@ -248,16 +238,9 @@ function ProgramCardContent({
         />
         <MerchantDensityBadge programName={program.country} programId={cinematicIdToNumber(program.id)} />
         <IntelStatusBadge programName={program.country} compact />
-        <SourceStatusBadge programName={program.country} />
-        <FreshnessBadge
-          lastChecked={program.lastChecked}
-          proofStampedAt={program.proofStampedAt}
-          compact
-          labels={freshnessLabels}
-        />
         <ProofBadge status={program.proofStatus} compact programName={program.country} />
-        <SourcesProbedNote iso={program.lastProbed} />
       </div>
+      <SourceFetchedLine iso={program.lastProbed} />
 
       <p className="mt-3 line-clamp-2 font-body text-sm text-mp-ink-secondary">{program.summary}</p>
       {program.watchChanged && (
@@ -269,17 +252,10 @@ function ProgramCardContent({
         <dl className="grid grid-cols-2 gap-2">
           <div>
             <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
-              {t('programs.minInvest')}
-              {program.routeStatus && program.routeStatus !== 'unknown' && (
-                <span className="ml-1.5 normal-case tracking-normal text-mp-ink-secondary">route {program.routeStatus}</span>
-              )}
+              {t('programs.figuresTracedLabel')}
             </dt>
             <dd className="text-mp-ink">
-              {program.minOnFile === false || !program.minInvestment ? (
-                <span className="text-xs text-mp-ink-muted italic">not on file</span>
-              ) : (
-                <BtcDualPrice usd={program.minInvestment} size="xs" layout="stack" />
-              )}
+              <TracedFigures name={program.country} />
               {(program.unverifiedFigures ?? 0) > 0 && (
                 <span className="mt-1 block">
                   <UnverifiedChip />
@@ -288,7 +264,7 @@ function ProgramCardContent({
             </dd>
           </div>
           <div>
-            <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.score')}</dt>
+            <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.ratingLabel')}</dt>
             <dd>
               <SovereigntyScoreTooltip program={program} score={program.sovereigntyScore} isFlagship={isFlagship} />
             </dd>
@@ -298,4 +274,44 @@ function ProgramCardContent({
       </div>
     </>
   );
+}
+
+/**
+ * "2 of 14 figures traced" — the same audit that feeds the hero and /proof.
+ * When a record has no coverage row the line says so rather than implying zero.
+ */
+function TracedFigures({ name }: { name: string }) {
+  const { t } = useI18n()
+  const row = figuresTracedFor(name)
+  if (!row) return <span className="text-xs text-mp-ink-muted italic">{t('programs.notOnFile')}</span>
+  return (
+    <span className="font-mono text-xs text-mp-ink">
+      {t('programs.figuresTraced')
+        .replace('{traced}', String(row.traced))
+        .replace('{total}', String(row.shown))}
+    </span>
+  )
+}
+
+/**
+ * One date line per card: when the source page was last actually fetched by the
+ * probe. Replaces the previous three competing dates and the green "fresh" pill.
+ */
+function SourceFetchedLine({ iso }: { iso?: string | null }) {
+  const { t } = useI18n()
+  if (!iso) return null
+  const at = Date.parse(iso)
+  if (Number.isNaN(at)) return null
+  const days = Math.max(0, Math.floor((Date.now() - at) / 86_400_000))
+  const label =
+    days === 0
+      ? t('programs.sourceFetchedToday')
+      : days === 1
+        ? t('programs.sourceFetchedOne')
+        : t('programs.sourceFetchedDays').replace('{days}', String(days))
+  return (
+    <p data-testid="source-fetched" className="mt-2 font-mono text-[10px] leading-none text-mp-ink-secondary">
+      {label}
+    </p>
+  )
 }
