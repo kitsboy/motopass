@@ -240,7 +240,7 @@ function ProgramCardContent({
           stampedAt={program.proofStampedAt}
         />
       </div>
-      <SourceFetchedLine iso={program.lastProbed} />
+      <SourceFetchedLine name={program.country} paths={Object.keys(program.claimSources ?? {})} />
 
       <p className="mt-3 font-body text-sm leading-relaxed text-mp-ink-secondary">{program.summary}</p>
       {program.watchChanged && (
@@ -300,16 +300,16 @@ function TracedFigures({ name }: { name: string }) {
  * One date line per card: when the source page was last actually fetched by the
  * probe. Replaces the previous three competing dates and the green "fresh" pill.
  */
-function SourceFetchedLine({ iso }: { iso?: string | null }) {
+function SourceFetchedLine({ name, paths }: { name: string; paths: string[] }) {
   const { t } = useI18n()
-  // Read the clock once, lazily: Date.now() during render is impure and the
-  // React compiler rejects it.
   const [now] = useState(() => Date.now())
-  if (!iso) return null
-  const at = Date.parse(iso)
-  if (Number.isNaN(at)) return null
+  // Only the quote checker's reads are dated. A probe timestamp says the page
+  // was opened, not that the words on it were read back.
+  const dates = paths.map((path) => quoteConfirmedOn(name, path)).filter(Boolean) as string[]
+  if (dates.length === 0) return null
+  const latest = dates.sort()[dates.length - 1]
+  const at = Date.parse(`${latest}T00:00:00Z`)
   const days = Math.max(0, Math.floor((now - at) / 86_400_000))
-  // A concrete date, not "today": a cached tab must not claim freshness it lost.
   const date = new Date(at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
   const label =
     days === 0
@@ -318,9 +318,7 @@ function SourceFetchedLine({ iso }: { iso?: string | null }) {
         ? t('programs.sourceFetchedOne').replace('{date}', date)
         : t('programs.sourceFetchedDays').replace('{days}', String(days)).replace('{date}', date)
   return (
-    <p data-testid="source-fetched" className="mt-2 font-mono text-[10px] leading-none text-mp-ink-secondary">
-      {label}
-    </p>
+    <p className="mt-2 font-mono text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{label}</p>
   )
 }
 
@@ -337,8 +335,9 @@ function MinimumLine({ program }: { program: Program }) {
   const claim = (program as { minClaim?: { url?: string; quote?: string; fetched?: string } | null }).minClaim
   const evidence = claim?.url ? { source: claim.url, date: claim.fetched ?? null } : evidenceFor(program, 'min_investment')
   // A date appears only when the quote checker read the page back.
-  const confirmedOn = claim?.url
-    ? quoteConfirmedOn(program.country, 'finance.min_investment_usd')
+  const confirmedAt = claim?.url ? quoteConfirmedOn(program.country, 'finance.min_investment_usd') : null
+  const confirmedOn = confirmedAt
+    ? new Date(`${confirmedAt}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
     : null
   return (
     <span className="block">
