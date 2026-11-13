@@ -95,15 +95,12 @@ const ISO_BY_NAME = {
 function buildEnvelope(p, intelProgram) {
   const iso = ISO_BY_NAME[p.name] ?? p.name.slice(0, 2).toUpperCase()
   const now = new Date()
-  const lastChecked = p.last_checked ?? null
-  const freshness = freshnessFromDate(lastChecked, now)
-  // Cross-check against the live pipeline sweep: if the intel manifest marks it
-  // fresh, prefer that (it is the daily ground truth); never downgrade a verified-fresh
-  // country to stale on a seed artifact.
-  if (intelProgram?.freshness?.status === 'fresh' && freshness.status !== 'fresh') {
-    freshness.status = 'fresh'
-    freshness.days_stale = intelProgram.freshness.days_stale ?? 0
-  }
+  // The ring counts from the machine probe, never from the hand-typed research
+  // date: opening a page is a fact, typing a date in a spreadsheet is not.
+  const probedAt = intelProgram?.freshness?.probed_at ?? null
+  const freshness = probedAt
+    ? { ...freshnessFromDate(probedAt, now), verified_at: probedAt }
+    : { status: 'stale', days_stale: null, verified_at: null }
 
   const proof = p.satohash_proofs?.[0] ?? null
   const scorecard = p.scorecard ?? {}
