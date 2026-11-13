@@ -6,14 +6,13 @@
  "Antigua and Barbuda": {},
  "St. Kitts and Nevis": {},
  "Dominica": {
-  "finance.min_investment_usd": false,
-  "finance.processing_time_months": false,
-  "route_status": false
+  "finance.min_investment_usd": true,
+  "finance.processing_time_months": true
  },
  "St. Lucia": {},
  "Grenada": {
-  "finance.min_investment_usd": false,
-  "route_status": false
+  "finance.min_investment_usd": true,
+  "route_status": true
  },
  "Bahamas": {},
  "Barbados": {},
@@ -28,5 +27,12 @@
  "Vanuatu": {},
  "Panama": {},
  "Mexico": {},
- "São Tomé and Príncipe": {}
+ "São Tomé and Príncipe": {},
+ "_verifiedOn": {
+  "Dominica|finance.min_investment_usd": "2026-11-13",
+  "Dominica|finance.processing_time_months": "2026-11-13",
+  "Grenada|finance.min_investment_usd": "2026-11-13",
+  "Grenada|route_status": "2026-11-13",
+  "Argentina|pathways[1].min_investment_ars": "2026-11-13"
+ }
 }

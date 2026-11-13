@@ -1,48 +1,7 @@
 {
- "checked_at": "2026-11-12T03:08:26.058Z",
- "total": 6,
- "pass": 1,
+ "checked_at": "2026-11-13T06:08:43.945Z",
+ "total": 5,
+ "pass": 5,
  "fails": [],
- "unreachable": [
-  {
-   "name": "Dominica",
-   "path": "finance.min_investment_usd",
-   "url": "https://www.cbiu.gov.dm/investment-options/",
-   "quote": "The Minimum investment for Dominican citizenship is US$200,000.",
-   "fetched": "2026-11-12",
-   "err": "page.goto: net::ERR_EMPTY_RESPONSE at https://www.cbiu.gov.dm/investment-options/\nCall log"
-  },
-  {
-   "name": "Dominica",
-   "path": "finance.processing_time_months",
-   "url": "https://www.cbiu.gov.dm/investment-options/",
-   "quote": "It typically takes 3 – 4 months to receive approval for citizenship.",
-   "fetched": "2026-11-12",
-   "err": "page.goto: net::ERR_EMPTY_RESPONSE at https://www.cbiu.gov.dm/investment-options/\nCall log"
-  },
-  {
-   "name": "Dominica",
-   "path": "route_status",
-   "url": "https://www.cbiu.gov.dm/investment-options/",
-   "quote": "The Dominica Citizenship by Investment Programme offers two pathways",
-   "fetched": "2026-11-12",
-   "err": "page.goto: net::ERR_EMPTY_RESPONSE at https://www.cbiu.gov.dm/investment-options/\nCall log"
-  },
-  {
-   "name": "Grenada",
-   "path": "finance.min_investment_usd",
-   "url": "https://imagrenada.gd/becoming-a-citizen/",
-   "quote": "Required Contribution Amount USD 235,000",
-   "fetched": "2026-11-12",
-   "err": "page.goto: net::ERR_EMPTY_RESPONSE at https://imagrenada.gd/becoming-a-citizen/\nCall log:\n"
-  },
-  {
-   "name": "Grenada",
-   "path": "route_status",
-   "url": "https://imagrenada.gd/becoming-a-citizen/",
-   "quote": "applicants may either immediately apply for citizenship",
-   "fetched": "2026-11-12",
-   "err": "page.goto: net::ERR_EMPTY_RESPONSE at https://imagrenada.gd/becoming-a-citizen/\nCall log:\n"
-  }
- ]
+ "unreachable": []
 }
