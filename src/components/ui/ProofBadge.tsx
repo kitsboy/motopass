@@ -19,6 +19,8 @@ interface ProofBadgeProps {
   txHint?: string;
   /** When given, a record edited since its stamp downgrades to 'stale'. */
   programName?: string;
+  /** ISO stamp time, so the badge can say when instead of "verified". */
+  stampedAt?: string | null;
 }
 
 /**
@@ -30,13 +32,14 @@ export function ProofBadge({
   compact = false,
   txHint,
   programName,
+  stampedAt,
 }: ProofBadgeProps) {
   // A stamp only vouches for the content it covered. If the record has moved
   // since, the honest label is "changed since last timestamp".
   const status: ProofStatus = programName && sliceDrifted(programName) ? 'stale' : rawStatus;
   const styles =
     status === 'verified'
-      ? 'border-mp-proof/35 bg-mp-proof-soft text-mp-proof dark:border-mp-proof/45 dark:bg-mp-proof/15 dark:text-[#4ade80]'
+      ? 'border-mp-border bg-mp-section text-mp-ink-secondary'
       : status === 'recorded'
         ? 'border-btc-orange/35 bg-btc-orange-soft/50 text-mp-btc-text'
         : status === 'demo'
@@ -45,7 +48,11 @@ export function ProofBadge({
 
   const label =
     status === 'verified'
-      ? 'Bitcoin timestamped'
+      ? stampedAt
+        ? `Timestamped ${new Date(stampedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })}`
+        : 'Timestamped'
+      : status === 'pending' && !stampedAt
+        ? 'Stamp pending'
       : status === 'recorded'
         ? 'Proof on file'
         : status === 'demo'

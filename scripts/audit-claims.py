@@ -58,7 +58,9 @@ def dig(rec, path):
 def figures_for(rec):
     """(field path, value) for every figure this record shows."""
     out = []
-    for path in MONEY_TIME_FIELDS + SCORE_FIELDS:
+    # MotoPass's own scores are opinions: they can never be traced to a
+    # government page, so they are not figures and do not sit in the denominator.
+    for path in MONEY_TIME_FIELDS:
         val = dig(rec, path)
         if val in (None, '', [], {}):
             continue

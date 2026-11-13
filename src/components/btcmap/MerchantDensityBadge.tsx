@@ -23,6 +23,9 @@ export function MerchantDensityBadge({
   const { density, loading } = useBtcMapDensity(programName)
 
   if (loading || !density) return null
+  // Zero venues is not a fact about the program: on a citizenship-by-investment
+  // record it reads as a verdict. Show it only when there is something on file.
+  if (density.count <= 0) return null
 
   const className = `inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[10px] ${TIER_CLASS[density.tier]}`
   const title = formatT(t, 'btcmap.densityTooltip', { count: density.count, score: density.score })
