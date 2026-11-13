@@ -100,6 +100,7 @@ const zh: Partial<Dict> = {
   'programs.lightningOnly': '仅限Lightning就绪',
   'programs.minInvestment': '最低投资',
   'programs.ratingLabel': 'MotoPass 评分',
+  'programs.sourceLink': '来源页面',
   'programs.figuresTracedLabel': '已溯源数字',
   'programs.figuresTraced': '{total} 个数字中有 {traced} 个已溯源',
   'programs.notOnFile': '暂无记录',

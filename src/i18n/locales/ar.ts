@@ -98,6 +98,7 @@ const ar: Partial<Dict> = {
   'programs.lightningOnly': 'جاهز لـ Lightning فقط',
   'programs.minInvestment': 'الحد الأدنى للاستثمار',
   'programs.ratingLabel': 'تقييم MotoPass',
+  'programs.sourceLink': 'صفحة المصدر',
   'programs.figuresTracedLabel': 'الأرقام الموثقة',
   'programs.figuresTraced': '{traced} من {total} رقم موثق',
   'programs.notOnFile': 'غير متوفر',
