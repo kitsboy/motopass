@@ -153,6 +153,8 @@ export interface PaigeFields {
 }
 
 export interface Program {
+  /** Claim records copied from the corpus, used to mark which figures have a page. */
+  claimSources?: Record<string, { url?: string; quote?: string; fetched?: string }>
   /** Figure path -> the official page, quote and fetch date that support it. */
   claim_sources?: Record<string, ClaimSource>
   /** open | closed | changed | unknown — traced, with a source, or "unknown". */

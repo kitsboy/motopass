@@ -243,36 +243,38 @@ function ProgramCardContent({
       </div>
       <SourceFetchedLine iso={program.lastProbed} />
 
-      <p className="mt-3 line-clamp-2 font-body text-sm text-mp-ink-secondary">{program.summary}</p>
+      <p className="mt-3 font-body text-sm leading-relaxed text-mp-ink-secondary">{program.summary}</p>
       {program.watchChanged && (
         <p className="mt-2 font-mono text-[11px] uppercase tracking-wide text-mp-wax">{t('bell.cardLine')}</p>
       )}
       <GazetteCardLine program={program} />
 
       <div className="mt-4 border-t border-mp-border-subtle pt-4">
-        <dl className="grid grid-cols-2 gap-2">
+        <dl className="space-y-2">
           <div>
             <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
-              {t('programs.minInvest')} · {t('programs.figuresTracedLabel')}
+              {t('programs.minInvestMainApplicant')}
             </dt>
-            <dd className="text-mp-ink">
+            <dd className="mt-0.5">
               <MinimumLine program={program} />
+            </dd>
+          </div>
+          <div>
+            <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
+              {t('programs.figuresTracedLabel')}
+            </dt>
+            <dd className="mt-0.5">
               <TracedFigures name={program.country} />
-              {(program.unverifiedFigures ?? 0) > 0 && (
-                <span className="mt-1 block">
-                  <UnverifiedChip />
-                </span>
-              )}
             </dd>
           </div>
           <div>
             <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">{t('programs.ratingLabel')}</dt>
-            <dd>
+            <dd className="mt-0.5">
               <SovereigntyScoreTooltip program={program} score={program.sovereigntyScore} isFlagship={isFlagship} />
             </dd>
           </div>
         </dl>
-        <DecisionClocks program={program} variant="strip" />
+        <DecisionClocks program={program} variant="strip" showEvidence />
       </div>
     </>
   );
@@ -347,6 +349,7 @@ function MinimumLine({ program }: { program: Program }) {
           onClick={(event) => event.stopPropagation()}
         >
           {t('programs.sourceLink')}
+          {evidence.date ? ` · ${new Date(evidence.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })}` : ''}
         </a>
       ) : (
         <span className="ml-1.5 align-middle">

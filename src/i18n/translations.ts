@@ -309,6 +309,7 @@ export type TranslationKey =
   | 'programs.timeline'
   | 'programs.score'
   | 'programs.ratingLabel'
+  | 'programs.minInvestMainApplicant'
   | 'programs.sourceLink'
   | 'programs.figuresTracedLabel'
   | 'programs.figuresTraced'
@@ -787,6 +788,7 @@ const en: Dict = {
   'programs.minInvest': 'Min. invest',
   'programs.timeline': 'Timeline',
   'programs.ratingLabel': 'MotoPass rating',
+  'programs.minInvestMainApplicant': 'Minimum investment (main applicant)',
   'programs.sourceLink': 'source page',
   'programs.figuresTracedLabel': 'Figures with a source',
   'programs.figuresTraced': '{traced} of {total} figures with a source',
