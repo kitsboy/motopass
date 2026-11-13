@@ -75,6 +75,9 @@ export function toCinematicProgram(p: DataProgram): CinematicProgram {
     region: p.region,
     minInvestment,
     minOnFile,
+    // The claim record behind the minimum, when the corpus has one. The card
+    // uses it to link the page instead of calling a sourced figure unverified.
+    minClaim: p.claim_sources?.['finance.min_investment_usd'] ?? null,
     timelineDays: parseMonthsToDays(p.finance.processing_time_months),
     sovereigntyScore,
     proofStatus: proofStatusForRecord(p),

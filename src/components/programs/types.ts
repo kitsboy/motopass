@@ -31,6 +31,7 @@ export interface Program {
   region: string;
   minInvestment: number;
   /** False when the record carries no minimum: callers must print "not on file". */
+  minClaim?: { url?: string; quote?: string; fetched?: string } | null
   minOnFile?: boolean;
   timelineDays: number;
   sovereigntyScore: number;
