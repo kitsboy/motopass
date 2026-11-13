@@ -4,12 +4,12 @@ import { ArrowLeftRight, ShieldCheck, BadgeCheck, RotateCcw } from 'lucide-react
 import { useTrustIndex, fetchCountryTrust } from '../lib/countryTrust'
 import type { CountryTrustEnvelope } from '../types/countryTrust'
 import { FreshnessRing } from '../components/trust/FreshnessRing'
-import { BtcDualPrice } from '../components/BtcDualPrice'
 import { PageHeader } from '../components/ui/PageHeader'
 import { SeoHead } from '../components/SeoHead'
 import { useI18n } from '../i18n/I18nContext'
 import { formatT } from '../i18n/format'
 import { CountryTitle } from '../components/ui/CountryTitle'
+import { figuresTracedFor, confirmedOnFor } from '../lib/claims'
 
 // Drawer-only charts (radar, sparkline, source tiers, proof badge) are code-split
 // and loaded ONLY when a card is tapped or compare is opened — they never touch the
@@ -258,7 +258,7 @@ export function TrustPage() {
                     style={{
                       animationDelay: `${Math.min(i, 6) * 50}ms`,
                     }}
-                    title={`${c.name} — ${c.freshness_status === 'fresh' ? t('trust.cardFresh') : c.freshness_status === 'watch' ? t('trust.cardWatch') : t('trust.cardStale')}${c.sovereignty_score != null ? ` · ${formatT(t, 'trust.sovereignty', { score: c.sovereignty_score })}` : ''}`}
+                    title={`${c.name} — ${c.freshness_status === 'fresh' ? t('trust.cardFreshRecord') : c.freshness_status === 'watch' ? t('trust.cardWatch') : t('trust.cardStale')}${c.sovereignty_score != null ? ` · ${formatT(t, 'trust.sovereignty', { score: c.sovereignty_score })}` : ''}`}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex min-w-0 items-center gap-3">
@@ -296,21 +296,15 @@ export function TrustPage() {
                       )}
                     </div>
 
-                    {c.min_investment_usd != null && (
-                      <div className="mt-3 flex items-center justify-between gap-3 rounded-mp-lg border border-mp-border-subtle bg-mp-section/50 px-3 py-2">
-                        <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
-                          {t('trust.minInvest')}
-                        </span>
-                        <BtcDualPrice usd={c.min_investment_usd} size="sm" layout="stack" className="items-end" />
-                      </div>
-                    )}
+                    <div className="mt-3 flex items-center justify-between gap-3 rounded-mp-lg border border-mp-border-subtle bg-mp-section/50 px-3 py-2">
+                      <span className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
+                        {t('programs.figuresTracedLabel')}
+                      </span>
+                      <ProofFigureCount name={c.name} />
+                    </div>
 
                     <div className="mt-auto flex items-center gap-1.5 border-t border-mp-border-subtle pt-3 font-body text-[11px] text-mp-ink-tertiary">
-                      {c.freshness_status === 'fresh'
-                        ? t('trust.cardFresh')
-                        : c.freshness_status === 'watch'
-                          ? t('trust.cardWatch')
-                          : t('trust.cardStale')}
+                      <ProofQuoteLine name={c.name} />
                       <span className="ml-auto font-mono text-[10px] uppercase tracking-wide text-mp-btc-text opacity-0 transition-opacity group-hover:opacity-100">
                         {t('trust.details')} →
                       </span>
@@ -493,4 +487,32 @@ export function TrustPage() {
       </div>
     </>
   )
+}
+
+
+/** Figures with a source, the same audit that feeds the hero and /proof. */
+function ProofFigureCount({ name }: { name: string }) {
+  const { t } = useI18n()
+  const row = figuresTracedFor(name)
+  if (!row) return <span className="text-xs italic text-mp-ink-muted">{t('programs.notOnFile')}</span>
+  return (
+    <span className="font-mono text-xs text-mp-ink">
+      {t('programs.figuresTraced').replace('{traced}', String(row.traced)).replace('{total}', String(row.shown))}
+    </span>
+  )
+}
+
+/**
+ * When the quote checker last read this record's pages back. A hand-typed date
+ * never appears here; neither does "re-checked recently", which claimed a check
+ * the page never recorded.
+ */
+function ProofQuoteLine({ name }: { name: string }) {
+  const { t } = useI18n()
+  const latest = confirmedOnFor(name)
+  if (!latest) {
+    return <span className="italic text-mp-ink-muted">{t('programs.sourceNotReread')}</span>
+  }
+  const date = new Date(`${latest}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })
+  return <span>{t('programs.quoteConfirmedOn').replace('{date}', date)}</span>
 }

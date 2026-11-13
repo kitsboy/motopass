@@ -99,3 +99,16 @@ export function quoteConfirmedOn(name: string, path: string): string | null {
   const table = quoteStatus as unknown as { _verifiedOn?: Record<string, string> }
   return table._verifiedOn?.[`${name}|${path}`] ?? null
 }
+
+
+/**
+ * The date the quote checker last read a page back for this record, or null.
+ * Comes from the audit output, so the Proof page never imports the corpus.
+ */
+export function confirmedOnFor(name: string | undefined): string | null {
+  if (!name) return null
+  const table = claimCoverage as unknown as {
+    per_record?: Record<string, { confirmed_on?: string | null }>
+  }
+  return table.per_record?.[name]?.confirmed_on ?? null
+}

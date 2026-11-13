@@ -86,7 +86,7 @@ export function TrustCard({
         <Activity className="h-3 w-3 shrink-0" aria-hidden="true" />
         <span>
           {freshness.status === 'fresh'
-            ? t('trust.cardFresh')
+            ? t('trust.cardFreshRecord')
             : freshness.status === 'watch'
               ? t('trust.cardWatch')
               : t('trust.cardStale')}

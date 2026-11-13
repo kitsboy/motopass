@@ -313,6 +313,7 @@ export type TranslationKey =
   | 'programs.quoteConfirmedOn'
   | 'programs.sourceNotReread'
   | 'programs.noSource'
+  | 'trust.cardFreshRecord'
   | 'programs.sourceLink'
   | 'programs.figuresTracedLabel'
   | 'programs.figuresTraced'
@@ -795,6 +796,8 @@ const en: Dict = {
   'programs.quoteConfirmedOn': 'quote confirmed on the page {date}',
   'programs.sourceNotReread': 'source cited, not re-read',
   'programs.noSource': 'no source',
+  // A record that has not changed says only that: it is not a check of the figures.
+  'trust.cardFreshRecord': 'Source page opened recently; figures not re-checked',
   'programs.sourceLink': 'source page',
   'programs.figuresTracedLabel': 'Figures with a source',
   'programs.figuresTraced': '{traced} of {total} figures with a source',
