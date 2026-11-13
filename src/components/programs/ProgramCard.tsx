@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Bell, Check, Zap } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge'
@@ -299,10 +299,13 @@ function TracedFigures({ name }: { name: string }) {
  */
 function SourceFetchedLine({ iso }: { iso?: string | null }) {
   const { t } = useI18n()
+  // Read the clock once, lazily: Date.now() during render is impure and the
+  // React compiler rejects it.
+  const [now] = useState(() => Date.now())
   if (!iso) return null
   const at = Date.parse(iso)
   if (Number.isNaN(at)) return null
-  const days = Math.max(0, Math.floor((Date.now() - at) / 86_400_000))
+  const days = Math.max(0, Math.floor((now - at) / 86_400_000))
   const label =
     days === 0
       ? t('programs.sourceFetchedToday')
