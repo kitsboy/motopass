@@ -4,7 +4,6 @@ import { Bell, Check, Zap } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge'
 import { figuresTracedFor } from '../../lib/claims';
 import { evidenceFor } from '../../lib/factEvidence';
-import { BtcDualPrice } from '../BtcDualPrice';
 import { CountryFlag } from '../ui/CountryTitle';
 import { IntelStatusBadge } from '../intel/IntelStatusBadge';
 import { useI18n } from '../../i18n/I18nContext';
@@ -334,10 +333,11 @@ function MinimumLine({ program }: { program: Program }) {
   if (program.minOnFile === false || !program.minInvestment) {
     return <span className="block text-xs italic text-mp-ink-muted">{t('programs.notOnFile')}</span>
   }
-  const evidence = evidenceFor(program, 'min_investment')
+  const claim = (program as { minClaim?: { url?: string; quote?: string; fetched?: string } | null }).minClaim
+  const evidence = claim?.url ? { source: claim.url, date: claim.fetched ?? null } : evidenceFor(program, 'min_investment')
   return (
     <span className="block">
-      <BtcDualPrice usd={program.minInvestment} size="xs" layout="inline" />
+      <span className="font-mono text-xs font-semibold text-mp-ink">US${program.minInvestment.toLocaleString('en-US')}</span>
       {evidence?.source ? (
         <a
           href={evidence.source}
