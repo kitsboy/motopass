@@ -98,6 +98,7 @@ const sw: Partial<Dict> = {
   'programs.lightningOnly': 'Lightning tayari pekee',
   'programs.minInvestment': 'Uwekezaji wa chini',
   'programs.ratingLabel': 'Kadirio la MotoPass',
+  'programs.sourceLink': 'ukurasa wa chanzo',
   'programs.figuresTracedLabel': 'Takwimu zilizofuatiliwa',
   'programs.figuresTraced': '{traced} kati ya {total} takwimu zilizofuatiliwa',
   'programs.notOnFile': 'haipatikani',

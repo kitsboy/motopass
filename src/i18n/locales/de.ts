@@ -100,6 +100,7 @@ const de: Partial<Dict> = {
   'programs.lightningOnly': 'Nur Lightning-bereit',
   'programs.minInvestment': 'Min. Investition',
   'programs.ratingLabel': 'MotoPass-Bewertung',
+  'programs.sourceLink': 'Quellseite',
   'programs.figuresTracedLabel': 'Belegte Zahlen',
   'programs.figuresTraced': '{traced} von {total} Zahlen belegt',
   'programs.notOnFile': 'nicht hinterlegt',

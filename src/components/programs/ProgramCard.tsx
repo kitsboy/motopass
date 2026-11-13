@@ -3,6 +3,8 @@ import { motion, useReducedMotion } from 'motion/react';
 import { Bell, Check, Zap } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge'
 import { figuresTracedFor } from '../../lib/claims';
+import { evidenceFor } from '../../lib/factEvidence';
+import { BtcDualPrice } from '../BtcDualPrice';
 import { CountryFlag } from '../ui/CountryTitle';
 import { IntelStatusBadge } from '../intel/IntelStatusBadge';
 import { useI18n } from '../../i18n/I18nContext';
@@ -252,9 +254,10 @@ function ProgramCardContent({
         <dl className="grid grid-cols-2 gap-2">
           <div>
             <dt className="font-chrome text-[10px] uppercase tracking-wide text-mp-ink-tertiary">
-              {t('programs.figuresTracedLabel')}
+              {t('programs.minInvest')} · {t('programs.figuresTracedLabel')}
             </dt>
             <dd className="text-mp-ink">
+              <MinimumLine program={program} />
               <TracedFigures name={program.country} />
               {(program.unverifiedFigures ?? 0) > 0 && (
                 <span className="mt-1 block">
@@ -318,5 +321,38 @@ function SourceFetchedLine({ iso }: { iso?: string | null }) {
     <p data-testid="source-fetched" className="mt-2 font-mono text-[10px] leading-none text-mp-ink-secondary">
       {label}
     </p>
+  )
+}
+
+
+/**
+ * The minimum in the currency the government states, plus the page it came from
+ * when the record carries one. Sats are not shown: no live price is wired yet.
+ */
+function MinimumLine({ program }: { program: Program }) {
+  const { t } = useI18n()
+  if (program.minOnFile === false || !program.minInvestment) {
+    return <span className="block text-xs italic text-mp-ink-muted">{t('programs.notOnFile')}</span>
+  }
+  const evidence = evidenceFor(program, 'min_investment')
+  return (
+    <span className="block">
+      <BtcDualPrice usd={program.minInvestment} size="xs" layout="inline" />
+      {evidence?.source ? (
+        <a
+          href={evidence.source}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="ml-1.5 underline decoration-dotted text-[10px] text-mp-ink-secondary"
+          onClick={(event) => event.stopPropagation()}
+        >
+          {t('programs.sourceLink')}
+        </a>
+      ) : (
+        <span className="ml-1.5 align-middle">
+          <UnverifiedChip />
+        </span>
+      )}
+    </span>
   )
 }

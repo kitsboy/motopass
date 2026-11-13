@@ -100,6 +100,7 @@ const hi: Partial<Dict> = {
   'programs.lightningOnly': 'केवल Lightning तैयार',
   'programs.minInvestment': 'न्यूनतम निवेश',
   'programs.ratingLabel': 'MotoPass रेटिंग',
+  'programs.sourceLink': 'स्रोत पृष्ठ',
   'programs.figuresTracedLabel': 'ट्रेस किए गए आंकड़े',
   'programs.figuresTraced': '{total} में से {traced} आंकड़े ट्रेस किए गए',
   'programs.notOnFile': 'उपलब्ध नहीं',

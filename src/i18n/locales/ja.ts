@@ -125,6 +125,7 @@ const ja: Partial<Dict> = {
   'programs.minCryptoScore': '最低暗号資産スコア',
   'programs.minInvestment': '最低投資額',
   'programs.ratingLabel': 'MotoPass評価',
+  'programs.sourceLink': '出典ページ',
   'programs.figuresTracedLabel': '出典確認済みの数値',
   'programs.figuresTraced': '{total}件中{traced}件が出典確認済み',
   'programs.notOnFile': '記録なし',
