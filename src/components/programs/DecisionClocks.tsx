@@ -253,7 +253,7 @@ export function DecisionClocks({ program, variant, showEvidence = false }: Decis
               {value}
               {showEvidence && !source && (
                 <span className="ml-1 align-middle text-[10px] font-normal italic text-mp-ink-muted">
-                  ({t('programs.notOnFile')})
+                  ({t('programs.noSource')})
                 </span>
               )}
             </dd>

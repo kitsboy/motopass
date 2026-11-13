@@ -19,7 +19,7 @@ export function isTraced(program: Program, path: string): boolean {
   if (!src?.url || !src?.quote || !src?.fetched) return false
   // A quote that only exists in our file is a claim, not evidence. Until CI has
   // read the words back off the live page, the figure is unchecked.
-  const table = quoteStatus as Record<string, Record<string, boolean>>
+  const table = quoteStatus as unknown as Record<string, Record<string, boolean>>
   return table[program.name]?.[path] === true
 }
 
@@ -88,4 +88,14 @@ export function figuresTracedFor(name: string | undefined): { traced: number; sh
   const perRecord = (coverage as { per_record?: Record<string, { traced: number; shown: number }> }).per_record
   const row = perRecord?.[name]
   return row ? { traced: row.traced, shown: row.shown } : null
+}
+
+
+/**
+ * The date the quote checker read this claim's page back, or null.
+ * Only a machine read produces a date; a hand-typed one never does.
+ */
+export function quoteConfirmedOn(name: string, path: string): string | null {
+  const table = quoteStatus as unknown as { _verifiedOn?: Record<string, string> }
+  return table._verifiedOn?.[`${name}|${path}`] ?? null
 }

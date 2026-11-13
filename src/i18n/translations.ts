@@ -310,6 +310,9 @@ export type TranslationKey =
   | 'programs.score'
   | 'programs.ratingLabel'
   | 'programs.minInvestMainApplicant'
+  | 'programs.quoteConfirmedOn'
+  | 'programs.sourceNotReread'
+  | 'programs.noSource'
   | 'programs.sourceLink'
   | 'programs.figuresTracedLabel'
   | 'programs.figuresTraced'
@@ -789,6 +792,9 @@ const en: Dict = {
   'programs.timeline': 'Timeline',
   'programs.ratingLabel': 'MotoPass rating',
   'programs.minInvestMainApplicant': 'Minimum investment (main applicant)',
+  'programs.quoteConfirmedOn': 'quote confirmed on the page {date}',
+  'programs.sourceNotReread': 'source cited, not re-read',
+  'programs.noSource': 'no source',
   'programs.sourceLink': 'source page',
   'programs.figuresTracedLabel': 'Figures with a source',
   'programs.figuresTraced': '{traced} of {total} figures with a source',

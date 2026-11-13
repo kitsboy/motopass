@@ -2,7 +2,7 @@ import { memo, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Bell, Check, Zap } from 'lucide-react';
 import { ProofBadge } from '../ui/ProofBadge'
-import { figuresTracedFor } from '../../lib/claims';
+import { figuresTracedFor, quoteConfirmedOn } from '../../lib/claims';
 import { evidenceFor } from '../../lib/factEvidence';
 import { CountryFlag } from '../ui/CountryTitle';
 import { IntelStatusBadge } from '../intel/IntelStatusBadge';
@@ -14,7 +14,6 @@ import { DecisionClocks } from './DecisionClocks';
 import { gazetteHits, gazetteLine } from '../../lib/gazetteWatch';
 import { tierTooltipKey } from '../../lib/programTier';
 import { Program, scoreWeight } from './types';
-import { UnverifiedChip } from '../ui/UnverifiedNote';
 
 function GazetteCardLine({ program }: { program: Program }) {
   const { t } = useI18n();
@@ -337,23 +336,33 @@ function MinimumLine({ program }: { program: Program }) {
   }
   const claim = (program as { minClaim?: { url?: string; quote?: string; fetched?: string } | null }).minClaim
   const evidence = claim?.url ? { source: claim.url, date: claim.fetched ?? null } : evidenceFor(program, 'min_investment')
+  // A date appears only when the quote checker read the page back.
+  const confirmedOn = claim?.url
+    ? quoteConfirmedOn(program.country, 'finance.min_investment_usd')
+    : null
   return (
     <span className="block">
       <span className="font-mono text-xs font-semibold text-mp-ink">US${program.minInvestment.toLocaleString('en-US')}</span>
       {evidence?.source ? (
-        <a
-          href={evidence.source}
-          target="_blank"
-          rel="noreferrer noopener"
-          className="ml-1.5 underline decoration-dotted text-[10px] text-mp-ink-secondary"
-          onClick={(event) => event.stopPropagation()}
-        >
-          {t('programs.sourceLink')}
-          {evidence.date ? ` · ${new Date(evidence.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })}` : ''}
-        </a>
+        <>
+          <a
+            href={evidence.source}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="ml-1.5 underline decoration-dotted text-[10px] text-mp-ink-secondary"
+            onClick={(event) => event.stopPropagation()}
+          >
+            {t('programs.sourceLink')}
+          </a>
+          <span className="ml-1.5 text-[10px] text-mp-ink-muted">
+            {confirmedOn
+              ? t('programs.quoteConfirmedOn').replace('{date}', confirmedOn)
+              : t('programs.sourceNotReread')}
+          </span>
+        </>
       ) : (
         <span className="ml-1.5 align-middle">
-          <UnverifiedChip />
+          <span className="text-[10px] italic text-mp-ink-muted">{t('programs.noSource')}</span>
         </span>
       )}
     </span>
