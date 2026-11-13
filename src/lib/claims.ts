@@ -107,8 +107,15 @@ export function quoteConfirmedOn(name: string, path: string): string | null {
  */
 export function confirmedOnFor(name: string | undefined): string | null {
   if (!name) return null
-  const table = claimCoverage as unknown as {
-    per_record?: Record<string, { confirmed_on?: string | null }>
+  // Read the checker's own file: it is the only place a date means a machine
+  // read the page. The audit copy passes through a build step that can run
+  // before the checker, which silently produced nulls on a deployed build.
+  const table = quoteStatus as unknown as { _verifiedOn?: Record<string, string> }
+  const prefix = `${name}|`
+  let latest: string | null = null
+  for (const [key, day] of Object.entries(table._verifiedOn ?? {})) {
+    if (!key.startsWith(prefix)) continue
+    if (!latest || day > latest) latest = day
   }
-  return table.per_record?.[name]?.confirmed_on ?? null
+  return latest
 }
