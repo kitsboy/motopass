@@ -46,3 +46,17 @@ artifacts/
 
 # Local perf-measurement harness (Nova) — not a deployable
 .perfmeasure/
+
+# Private agent-op docs — the repo is PUBLIC. Handoffs, session debriefs, and
+# .ai_docs expose machine names, internal paths and env mechanics. These must
+# NOT be committed (history keeps older copies; see archive/ retention branch).
+.ai_docs/
+docs/.ai_docs/
+docs/KIMI-HANDOFF*
+docs/archive/KIMI-HANDOFF*
+/KIMI-HANDOFF-motopass-2026-08-06.md
+docs/SEO-FIXES*
+docs/NEXT-PROMPT.md
+docs/SESSION-SUMMARY-*
+docs/DEPLOYMENT.md
+docs/debriefs/
