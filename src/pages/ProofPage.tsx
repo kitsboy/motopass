@@ -18,6 +18,21 @@ function deadHosts(): Array<{ program: string; what: string; url: string; status
   return d.deadHosts
 }
 
+/** Scope-limited snapshot summary: only the claim, official and proof URLs the site
+ *  actually links to are counted (not the wider watched-source set). Absent until
+ *  the weekly link-check (1e) has written a valid snapshot. */
+function linkSummary(): { checkedAt: string; live: number; total: number; dead: number } | null {
+  const d = linkCheck as {
+    schema?: string
+    checkedAt?: string
+    live?: number
+    dead?: number
+    total?: number
+  }
+  if (!d || d.schema !== 'linkCheck/1' || !d.checkedAt) return null
+  return { checkedAt: d.checkedAt.slice(0, 10), live: d.live ?? 0, dead: d.dead ?? 0, total: d.total ?? 0 }
+}
+
 const TrustPage = lazy(() => import('./TrustPage').then(m => ({ default: m.TrustPage })))
 const SourceMonitorPage = lazy(() => import('./SourceMonitorPage').then(m => ({ default: m.SourceMonitorPage })))
 const VaultPage = lazy(() => import('./VaultPage').then(m => ({ default: m.VaultPage })))
@@ -53,8 +68,9 @@ export function ProofPage() {
       </header>
 
       {(() => {
+        const summary = linkSummary()
         const dead = deadHosts()
-        if (!dead.length) return null
+        if (!summary && dead.length === 0) return null
         const shown = dead.slice(0, 6)
         return (
           <section
@@ -62,24 +78,34 @@ export function ProofPage() {
             aria-label="Source link health"
             className="mb-6 scroll-mt-header rounded-xl border border-mp/60 bg-mp-section/40 px-4 py-4 sm:px-5"
           >
-            <h2 className="font-display text-lg font-semibold text-ink">Source links we could not reach</h2>
-            <p className="mt-1 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
-              {dead.length === 1
-                ? 'One source link did not load when we last checked it.'
-                : `${dead.length} source links did not load when we last checked them.`}{' '}
-              A source that cannot be reached is a figure whose page may have moved — treat it as
-              unverified until its host resolves again.
-            </p>
-            <ul className="mt-3 space-y-2">
-              {shown.map((x, i) => (
-                <li key={i} className="max-w-3xl font-mono text-xs text-ink-secondary leading-relaxed">
-                  {x.program} ({x.what}): <span className="text-ink-muted">{x.status}</span>{' '}
-                  <a href={x.url} target="_blank" rel="noopener noreferrer" className="underline">
-                    {x.url}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h2 className="font-display text-lg font-semibold text-ink">Source link health</h2>
+            {summary && (
+              <p className="mt-1 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+                Last checked {summary.checkedAt}: {summary.live} of {summary.total} claim, official
+                and proof URLs live · {summary.dead} not reachable.
+              </p>
+            )}
+            {dead.length > 0 && (
+              <>
+                <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+                  {dead.length === 1
+                    ? 'One source link did not load when we last checked it.'
+                    : `${dead.length} source links did not load when we last checked them.`}{' '}
+                  A source that cannot be reached is a figure whose page may have moved — treat it as
+                  unverified until its host resolves again.
+                </p>
+                <ul className="mt-3 space-y-2">
+                  {shown.map((x, i) => (
+                    <li key={i} className="max-w-3xl font-mono text-xs text-ink-secondary leading-relaxed">
+                      {x.program} ({x.what}): <span className="text-ink-muted">{x.status}</span>{' '}
+                      <a href={x.url} target="_blank" rel="noopener noreferrer" className="underline">
+                        {x.url}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </section>
         )
       })()}
