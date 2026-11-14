@@ -101,6 +101,41 @@ export function quoteConfirmedOn(name: string, path: string): string | null {
   return table._verifiedOn?.[`${name}|${path}`] ?? null
 }
 
+/**
+ * How many traced figures had their quote read back from the live page in the
+ * last `days`. Computed NOW in the browser from the checker's own verified-on
+ * dates, so a deployed build that sits unchanged keeps the recency claim true
+ * instead of freezing a count baked at build time.
+ *
+ * Counts only FIGURE paths (money/time + pathway minima), mirroring
+ * scripts/audit-claims.py figures_for — never the non-figure claims the checker
+ * also records (e.g. route_status), so this can drift from figures_traced.
+ */
+const FIGURE_FIELDS = new Set([
+  'finance.min_investment_usd',
+  'finance.typical_investment_usd',
+  'finance.gov_fees_usd',
+  'finance.processing_time_months',
+])
+const PATHWAY_MONEY = /^pathways\[\d+\]\.min_investment_(usd|ars|local)$/
+
+function isFigurePath(path: string): boolean {
+  return FIGURE_FIELDS.has(path) || PATHWAY_MONEY.test(path)
+}
+
+export function quotedInLastDays(days: number, now: number): number {
+  const table = quoteStatus as unknown as { _verifiedOn?: Record<string, string> }
+  const cutoff = now - days * 86_400_000
+  let n = 0
+  for (const [key, day] of Object.entries(table._verifiedOn ?? {})) {
+    const path = key.split('|').slice(1).join('|')
+    if (!isFigurePath(path)) continue
+    const t = new Date(`${day}T12:00:00Z`).getTime()
+    if (!Number.isNaN(t) && t >= cutoff) n += 1
+  }
+  return n
+}
+
 
 /**
  * The date the quote checker last read a page back for this record, or null.

@@ -37,7 +37,10 @@ export function applyProbeFailure(entry, result, nowIso) {
   entry.status_since = entry.status_since || nowIso
   if (entry.status === status) return { kind: status, changed: false, previous }
   entry.status = status
-  entry.last_probed = nowIso
+  // Deliberately do NOT advance last_probed on failure: the ring and freshness
+  // labels mean "how long since this page was actually read back". A blocked or
+  // unreachable page was NOT read, so its last good read stays the timestamp the
+  // ring shows. status_since (above) still records when the failure began.
   entry.last_error = result?.error
   if (dead) entry.dead_host = true
   else delete entry.dead_host
