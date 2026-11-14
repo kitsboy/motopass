@@ -27,8 +27,10 @@ permissions:
 on:
   push:
     branches: [main]
+  # No branch filter on pull_request: stacked PRs (base = a feature branch, not
+  # main) must still get build-test CI, so a stacked PR can never slip through
+  # unreviewed greens.
   pull_request:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
