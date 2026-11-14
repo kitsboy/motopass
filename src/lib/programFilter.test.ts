@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { filterPrograms, DEFAULT_FILTERS } from './programFilter'
+import { filterPrograms, sortPrograms, DEFAULT_FILTERS } from './programFilter'
 import type { Program } from '../types/program'
 import catalogJson from '../../research/countries.json'
 
@@ -75,6 +75,19 @@ describe('programFilter', () => {
     const r = filterPrograms(sample, { ...DEFAULT_FILTERS, minSovereignty: 9, maxSovereignty: 10 })
     expect(r).toHaveLength(1)
     expect(r[0].name).toBe('El Salvador')
+  })
+})
+
+describe('sortPrograms by investment — missing is never cheap', () => {
+  it('ranks present minimums ascending', () => {
+    const sorted = sortPrograms(sample, 'investment')
+    expect(sorted.map(p => p.name)).toEqual(['El Salvador', 'Uruguay'])
+  })
+
+  it('sorts a missing minimum LAST, never as the cheapest', () => {
+    const missing = { ...sample[1], id: 9, name: 'Missing', finance: { ...sample[1].finance, min_investment_usd: null } }
+    const sorted = sortPrograms([sample[0], missing, { ...sample[1] }], 'investment')
+    expect(sorted[sorted.length - 1].name).toBe('Missing')
   })
 })
 

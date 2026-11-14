@@ -60,9 +60,11 @@ export function StackSimulatorPage() {
   const costKnown = stack.filter(p => p.finance.typical_investment_usd != null)
   const totalCost = costKnown.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
   const sovereignty = stack.length ? Math.round(stack.reduce((s, p) => s + (p.sovereignty_score ?? 5), 0) / stack.length) : 0
-  const months = stack.length
-    ? Math.max(...stack.map(p => Math.ceil(parseMonthsToDays(p.finance.processing_time_months) / 30)))
-    : 0
+  // A missing processing time is not "fast" — it is excluded from the timeline.
+  const timed = stack.filter(p => p.finance.processing_time_months)
+  const months = timed.length
+    ? Math.max(...timed.map(p => Math.ceil(parseMonthsToDays(p.finance.processing_time_months) / 30)))
+    : null
 
   const synergyCounts = (() => {
     const c = { high: 0, medium: 0, low: 0 }
@@ -197,7 +199,10 @@ export function StackSimulatorPage() {
                 <InfoTip tip={t('simulator.tip.timeline')}>
                   <div>
                     <span className="text-ink-muted text-xs">{t('simulator.stat.timeline')}</span>
-                    <div className="text-2xl font-display font-semibold text-ink">{months}mo</div>
+                  <div className="text-2xl font-display font-semibold text-ink">
+                    {months === null ? '—' : `${months}mo`}
+                    {months !== null && timed.length < stack.length ? <span className="text-xs text-ink-muted"> ({timed.length}/{stack.length} on file)</span> : null}
+                  </div>
                   </div>
                 </InfoTip>
               </div>

@@ -42,4 +42,13 @@ describe('formatStackSummary', () => {
     expect(text).not.toContain('sats')
     expect(text).toContain('Avg sovereignty: 8/10')
   })
+
+  it('excludes programs with a missing processing time from the timeline (never 12 months)', () => {
+    const withoutTime = { ...base, id: 3, name: 'Paraguay', finance: { ...base.finance, processing_time_months: null } }
+    // All programs lack a processing time -> no fabricated 12-month timeline.
+    expect(formatStackSummary([withoutTime])).toContain('Longest timeline: not on file')
+    // Mixed: the on-file program sets the timeline, and the count is explicit.
+    const text = formatStackSummary([base, withoutTime])
+    expect(text).toContain('Longest timeline: 6mo (1 of 2 on file)')
+  })
 })

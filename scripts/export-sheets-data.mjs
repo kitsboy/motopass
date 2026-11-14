@@ -31,13 +31,13 @@ function tsvEscape(val) {
   return s
 }
 
-function writeTsv(filename, headers, rows) {
+function writeTsv(filename, headers, rows, note) {
   mkdirSync(OUT_DIR, { recursive: true })
   const path = join(OUT_DIR, filename)
-  const lines = [
-    headers.join('\t'),
-    ...rows.map(r => r.map(tsvEscape).join('\t')),
-  ]
+  const lines = []
+  if (note) lines.push(tsvEscape(note))
+  lines.push(headers.join('\t'))
+  lines.push(...rows.map(r => r.map(tsvEscape).join('\t')))
   writeFileSync(path, lines.join('\n') + '\n')
   console.log(`✅ ${filename} — ${rows.length} rows → ${path}`)
 }
@@ -57,7 +57,12 @@ function exportPrograms() {
     'Min Investment', 'Typical Investment', 'Gov Fees',
     'Processing Months', 'Tax Benefits', 'Bitcoin Integration',
     'Stacking Synergy', 'Risk Level', 'Last Checked', 'Freshness',
+    'Min Investment Has Source', 'Typical Has Source', 'Gov Fees Has Source', 'Processing Has Source',
   ]
+
+  // A figure "has a source" only when its claim record carries a URL back to
+  // the page that states it. FALSE means the figure is an estimate.
+  const has = (p, path) => !!(p.claim_sources?.[path]?.url)
 
   const rows = data.programs.map(p => [
     p.id,
@@ -83,9 +88,18 @@ function exportPrograms() {
     p.last_checked
       ? `=IF(TODAY()-DATEVALUE("${p.last_checked}")<=14,"🟢 Fresh",IF(TODAY()-DATEVALUE("${p.last_checked}")<=45,"🟡 Watch","🔴 Stale"))`
       : '',
+    has(p, 'finance.min_investment_usd') ? 'TRUE' : 'FALSE',
+    has(p, 'finance.typical_investment_usd') ? 'TRUE' : 'FALSE',
+    has(p, 'finance.gov_fees_usd') ? 'TRUE' : 'FALSE',
+    has(p, 'finance.processing_time_months') ? 'TRUE' : 'FALSE',
   ])
 
-  writeTsv('programs.tsv', headers, rows)
+  writeTsv(
+    'programs.tsv',
+    headers,
+    rows,
+    'MotoPass program data export — figures marked "* Has Source" FALSE are estimates (not sourced). Treat as reference data, not verified facts.',
+  )
 }
 
 // ── Tab 2: Transactions (empty template) ─────────────────────────────────────
