@@ -23,14 +23,17 @@ describe('applyProbeFailure', () => {
     expect(isProbeToolingFailure(MODULE_ERROR)).toBe(true)
   })
 
-  it('still records a real fetch failure as unreachable', () => {
+  it('records a real fetch failure without advancing the last-successful-read clock', () => {
     const entry = { url: 'https://example.test', status: 'ok', last_probed: '2026-11-08T06:01:10.159Z' }
     const applied = applyProbeFailure(entry, { ok: false, error: 'connect ECONNREFUSED' }, '2026-11-08T12:24:29.059Z')
     expect(applied.kind).toBe('unreachable')
     expect(applied.changed).toBe(true)
     expect(entry.status).toBe('unreachable')
     expect(entry.last_error).toBe('connect ECONNREFUSED')
-    expect(entry.last_probed).toBe('2026-11-08T12:24:29.059Z')
+    // The ring is "how long since the page was actually read" — a failed fetch
+    // was not a read, so last_probed keeps the last successful read.
+    expect(entry.last_probed).toBe('2026-11-08T06:01:10.159Z')
+    expect(entry.status_since).toBe('2026-11-08T12:24:29.059Z')
   })
 
   it('names a catalog URL left unreachable by a Playwright load failure', () => {

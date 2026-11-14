@@ -54,12 +54,18 @@ export function programDetailJsonLd(program: {
   tier: string
   minInvestment: number
   minOnFile?: boolean
+  /** True when working the traced minimum is backed by a source. */
+  minSourced?: boolean
   sovereigntyScore: number
   proofStatus: string
   proofUrl?: string
   id: string
 }) {
   const url = `${SITE_URL}/programs#program-${program.id}`
+  // The offer is a structured public claim search engines read as fact. It is
+  // omitted unless the minimum is both on file AND sourced — an unsourced or
+  // absent minimum has no price to advertise.
+  const priceConfirmed = program.minOnFile !== false && program.minSourced === true
   return {
     '@context': 'https://schema.org',
     '@type': 'GovernmentService',
@@ -68,22 +74,19 @@ export function programDetailJsonLd(program: {
     serviceType: 'Sovereign residency and citizenship program',
     areaServed: { '@type': 'Place', name: program.region },
     url,
-    description:
-      program.minOnFile === false
-        ? `Sovereignty score ${program.sovereigntyScore}/100 · minimum investment not on file.`
-        : `Sovereignty score ${program.sovereigntyScore}/100 · min investment from $${program.minInvestment.toLocaleString()}.`,
-    // Structured data is a public claim. With no traced minimum there is no
-    // price to advertise, so the offer is omitted rather than priced at zero.
-    ...(program.minOnFile === false
-      ? {}
-      : {
+    description: !priceConfirmed
+      ? `Sovereignty score ${program.sovereigntyScore}/100 · minimum investment not confirmed.`
+      : `Sovereignty score ${program.sovereigntyScore}/100 · min investment from $${program.minInvestment.toLocaleString()}.`,
+    ...(priceConfirmed
+      ? {
           offers: {
             '@type': 'Offer',
             price: program.minInvestment,
             priceCurrency: 'USD',
             availability: 'https://schema.org/OnlineOnly',
           },
-        }),
+        }
+      : {}),
     additionalProperty: [
       { '@type': 'PropertyValue', name: 'proofStatus', value: program.proofStatus },
       ...(program.proofUrl

@@ -73,6 +73,12 @@ export function sortPrograms(programs: Program[], key: 'name' | 'score' | 'inves
   return [...programs].sort((a, b) => {
     if (key === 'name') return a.name.localeCompare(b.name)
     if (key === 'score') return (b.finance.crypto_friendly_score ?? 0) - (a.finance.crypto_friendly_score ?? 0)
-    return (a.finance.min_investment_usd ?? 0) - (b.finance.min_investment_usd ?? 0)
+    // investment: a missing minimum is NOT "free" — it sorts last, never cheapest.
+    const am = a.finance.min_investment_usd
+    const bm = b.finance.min_investment_usd
+    if (am == null && bm == null) return 0
+    if (am == null) return 1
+    if (bm == null) return -1
+    return am - bm
   })
 }

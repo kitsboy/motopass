@@ -188,7 +188,7 @@ function ProgramModalBody({
     },
   });
 
-  const programJsonLd = useMemo(() => programDetailJsonLd(program), [program])
+  const programJsonLd = useMemo(() => programDetailJsonLd({ ...program, minSourced: !!program.minClaim?.url }), [program])
 
   return (
     <>

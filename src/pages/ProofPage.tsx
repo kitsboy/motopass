@@ -1,8 +1,8 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext'
 import { PROOF_TABS, type ProofTab } from '../lib/navRoutes'
-import { claimCoverage } from '../lib/claims'
+import { claimCoverage, quotedInLastDays } from '../lib/claims'
 
 const TrustPage = lazy(() => import('./TrustPage').then(m => ({ default: m.TrustPage })))
 const SourceMonitorPage = lazy(() => import('./SourceMonitorPage').then(m => ({ default: m.SourceMonitorPage })))
@@ -27,6 +27,10 @@ export function ProofPage() {
   const raw = params.get('tab')
   const tab: ProofTab = isProofTab(raw) ? raw : 'trust'
   const coverage = claimCoverage()
+  // Read the clock once at mount, not during every render, so the recency window
+  // is stable and the compiler never sees Date.now() inside JSX.
+  const [now] = useState(() => Date.now())
+  const rereadRecent = quotedInLastDays(7, now)
 
   return (
     <div className="page-container px-4 sm:px-6 py-6 max-w-7xl mx-auto">
@@ -52,16 +56,18 @@ export function ProofPage() {
         </h2>
         <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
           A figure <strong className="text-ink">cites a source</strong> when we can point at the
-          official page that states it and quote its words. Today{' '}
+          page that states it and quote its words. Today{' '}
           <strong className="text-ink">
             {coverage.figures_traced} of {coverage.figures_shown} figures
           </strong>{' '}
           on this site cite a source, and{' '}
           <strong className="text-ink">
-            {coverage.figures_reread_recent} of those {coverage.figures_traced}
+            {rereadRecent} of those {coverage.figures_traced}
           </strong>{' '}
           have had their quote read back from the live page in the last seven days. The rest are
-          labelled unverified and stay out of our averages, our rankings and our comparisons.
+          labelled <strong className="text-ink">unverified</strong>: they show what the record has
+          on file, and only figures that cite a source count toward the coverage numbers on this
+          page.
         </p>
         <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
           Quoting a page is not the same as the figure being right, and a page can change after we
