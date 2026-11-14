@@ -141,7 +141,27 @@ export function movePortfolioItem(id: number, direction: 'up' | 'down'): number[
 }
 
 export function exportProgramsJson(programs: Program[], meta?: Record<string, unknown>): string {
-  return JSON.stringify({ exported_at: new Date().toISOString(), ...meta, programs }, null, 2)
+  const hasSource = (p: Program, path: string) => !!(p.claim_sources?.[path]?.url)
+  const flagged = programs.map(p => ({
+    ...p,
+    figure_sources: {
+      min_investment_usd: hasSource(p, 'finance.min_investment_usd'),
+      typical_investment_usd: hasSource(p, 'finance.typical_investment_usd'),
+      gov_fees_usd: hasSource(p, 'finance.gov_fees_usd'),
+      processing_time_months: hasSource(p, 'finance.processing_time_months'),
+    },
+  }))
+  return JSON.stringify(
+    {
+      exported_at: new Date().toISOString(),
+      ...meta,
+      programs: flagged,
+      _note:
+        'MotoPass program export — a figure with figure_sources.* = false is an estimate (no source traced). Unsourced figures are not verified facts.',
+    },
+    null,
+    2,
+  )
 }
 
 export function importProgramsJson(raw: string): { programs: Program[]; error?: string; errorCode?: ImportErrorCode } {
