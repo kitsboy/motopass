@@ -11,6 +11,9 @@
 
 # Generated data that the site renders
 /src/data/**                 @kitsboy
+# /src/data/quoteStatus.json is INTENTIONALLY unowned (1b nightly): the bot both
+# opens and auto-merges the quote snapshot PR, so it must never require code-owner
+# approval. Left out of the rule above by being the sole opt-out file.
 
 # The definition of "traced"
 /src/lib/claims.ts           @kitsboy
