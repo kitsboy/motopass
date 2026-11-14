@@ -150,6 +150,7 @@ export function FinanceComparePage() {
         valueKey: p => String(p.finance.min_investment_usd ?? ''),
         render: p => <CompareMoneyCell usd={p.finance.min_investment_usd} />,
         renderText: p => formatMoneyText(p.finance.min_investment_usd),
+        figurePath: () => 'finance.min_investment_usd',
       },
       {
         label: t('compare.typical'),
@@ -159,6 +160,7 @@ export function FinanceComparePage() {
         valueKey: p => String(p.finance.typical_investment_usd ?? ''),
         render: p => <CompareMoneyCell usd={p.finance.typical_investment_usd} />,
         renderText: p => formatMoneyText(p.finance.typical_investment_usd),
+        figurePath: () => 'finance.typical_investment_usd',
       },
       {
         label: t('compare.govFees'),
@@ -175,6 +177,7 @@ export function FinanceComparePage() {
             <span className="text-xs text-mp-ink-muted italic">not on file</span>
           ),
         renderText: p => formatMoneyText(p.finance.gov_fees_usd),
+        figurePath: () => 'finance.gov_fees_usd',
       },
       {
         label: t('compare.processing'),
@@ -186,6 +189,7 @@ export function FinanceComparePage() {
           p.finance.processing_time_months
             ? `${p.finance.processing_time_months} ${t('compare.months')}`
             : t('compare.notOnFile'),
+        figurePath: () => 'finance.processing_time_months',
       },
       {
         label: t('compare.daysInCountry'),
@@ -342,6 +346,7 @@ export function FinanceComparePage() {
         if (typeof rendered === 'string' || typeof rendered === 'number') return String(rendered)
         return r.renderText ? r.renderText(p) : r.valueKey(p)
       },
+      figurePath: r.figurePath,
     }))
     const md = compareDiffMarkdown(
       compare,

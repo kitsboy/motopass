@@ -1,8 +1,8 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext'
 import { PROOF_TABS, type ProofTab } from '../lib/navRoutes'
-import { claimCoverage } from '../lib/claims'
+import { claimCoverage, quotedInLastDays } from '../lib/claims'
 import linkCheck from '../data/linkCheck.json'
 
 /** A source host that the site linked to no longer resolves. Shown on /proof so a
@@ -16,6 +16,21 @@ function deadHosts(): Array<{ program: string; what: string; url: string; status
   }
   if (!d || d.schema !== 'linkCheck/1' || !Array.isArray(d.deadHosts)) return []
   return d.deadHosts
+}
+
+/** Scope-limited snapshot summary: only the claim, official and proof URLs the site
+ *  actually links to are counted (not the wider watched-source set). Absent until
+ *  the weekly link-check (1e) has written a valid snapshot. */
+function linkSummary(): { checkedAt: string; live: number; total: number; dead: number } | null {
+  const d = linkCheck as {
+    schema?: string
+    checkedAt?: string
+    live?: number
+    dead?: number
+    total?: number
+  }
+  if (!d || d.schema !== 'linkCheck/1' || !d.checkedAt) return null
+  return { checkedAt: d.checkedAt.slice(0, 10), live: d.live ?? 0, dead: d.dead ?? 0, total: d.total ?? 0 }
 }
 
 const TrustPage = lazy(() => import('./TrustPage').then(m => ({ default: m.TrustPage })))
@@ -41,6 +56,10 @@ export function ProofPage() {
   const raw = params.get('tab')
   const tab: ProofTab = isProofTab(raw) ? raw : 'trust'
   const coverage = claimCoverage()
+  // Read the clock once at mount, not during every render, so the recency window
+  // is stable and the compiler never sees Date.now() inside JSX.
+  const [now] = useState(() => Date.now())
+  const rereadRecent = quotedInLastDays(7, now)
 
   return (
     <div className="page-container px-4 sm:px-6 py-6 max-w-7xl mx-auto">
@@ -53,8 +72,9 @@ export function ProofPage() {
       </header>
 
       {(() => {
+        const summary = linkSummary()
         const dead = deadHosts()
-        if (!dead.length) return null
+        if (!summary && dead.length === 0) return null
         const shown = dead.slice(0, 6)
         return (
           <section
@@ -62,24 +82,34 @@ export function ProofPage() {
             aria-label="Source link health"
             className="mb-6 scroll-mt-header rounded-xl border border-mp/60 bg-mp-section/40 px-4 py-4 sm:px-5"
           >
-            <h2 className="font-display text-lg font-semibold text-ink">Source links we could not reach</h2>
-            <p className="mt-1 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
-              {dead.length === 1
-                ? 'One source link did not load when we last checked it.'
-                : `${dead.length} source links did not load when we last checked them.`}{' '}
-              A source that cannot be reached is a figure whose page may have moved — treat it as
-              unverified until its host resolves again.
-            </p>
-            <ul className="mt-3 space-y-2">
-              {shown.map((x, i) => (
-                <li key={i} className="max-w-3xl font-mono text-xs text-ink-secondary leading-relaxed">
-                  {x.program} ({x.what}): <span className="text-ink-muted">{x.status}</span>{' '}
-                  <a href={x.url} target="_blank" rel="noopener noreferrer" className="underline">
-                    {x.url}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h2 className="font-display text-lg font-semibold text-ink">Source link health</h2>
+            {summary && (
+              <p className="mt-1 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+                Last checked {summary.checkedAt}: {summary.live} of {summary.total} claim, official
+                and proof URLs live · {summary.dead} not reachable.
+              </p>
+            )}
+            {dead.length > 0 && (
+              <>
+                <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+                  {dead.length === 1
+                    ? 'One source link did not load when we last checked it.'
+                    : `${dead.length} source links did not load when we last checked them.`}{' '}
+                  A source that cannot be reached is a figure whose page may have moved — treat it as
+                  unverified until its host resolves again.
+                </p>
+                <ul className="mt-3 space-y-2">
+                  {shown.map((x, i) => (
+                    <li key={i} className="max-w-3xl font-mono text-xs text-ink-secondary leading-relaxed">
+                      {x.program} ({x.what}): <span className="text-ink-muted">{x.status}</span>{' '}
+                      <a href={x.url} target="_blank" rel="noopener noreferrer" className="underline">
+                        {x.url}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </section>
         )
       })()}
@@ -98,16 +128,18 @@ export function ProofPage() {
         </h2>
         <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
           A figure <strong className="text-ink">cites a source</strong> when we can point at the
-          official page that states it and quote its words. Today{' '}
+          page that states it and quote its words. Today{' '}
           <strong className="text-ink">
             {coverage.figures_traced} of {coverage.figures_shown} figures
           </strong>{' '}
           on this site cite a source, and{' '}
           <strong className="text-ink">
-            {coverage.figures_reread_recent} of those {coverage.figures_traced}
+            {rereadRecent} of those {coverage.figures_traced}
           </strong>{' '}
           have had their quote read back from the live page in the last seven days. The rest are
-          labelled unverified and stay out of our averages, our rankings and our comparisons.
+          labelled <strong className="text-ink">unverified</strong>: they show what the record has
+          on file, and only figures that cite a source count toward the coverage numbers on this
+          page.
         </p>
         <p className="mt-2 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
           Quoting a page is not the same as the figure being right, and a page can change after we

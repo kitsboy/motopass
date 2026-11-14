@@ -31,12 +31,24 @@ describe('formatStackSummary', () => {
     expect(formatStackSummary([])).toContain('empty')
   })
 
-  it('includes program names and metrics (sats-first cost)', () => {
+  it('formats USD-only while the BTC price is not live (no stale sats)', () => {
     const text = formatStackSummary([base, { ...base, id: 2, name: 'Bolivia', sovereignty_score: 7 }])
     expect(text).toContain('Uruguay')
     expect(text).toContain('Bolivia')
-    expect(text).toContain('sats')
-    expect(text).toContain('≈$300k')
+    expect(text).toContain('$300k')
+    // BTC_PRICE_IS_LIVE is false in src/data/btcPriceAtCapture.ts, so a stack
+    // summary must never emit sats at the stale August capture. The sats branch
+    // returns when the price flag flips true.
+    expect(text).not.toContain('sats')
     expect(text).toContain('Avg sovereignty: 8/10')
+  })
+
+  it('excludes programs with a missing processing time from the timeline (never 12 months)', () => {
+    const withoutTime = { ...base, id: 3, name: 'Paraguay', finance: { ...base.finance, processing_time_months: null } }
+    // All programs lack a processing time -> no fabricated 12-month timeline.
+    expect(formatStackSummary([withoutTime])).toContain('Longest timeline: not on file')
+    // Mixed: the on-file program sets the timeline, and the count is explicit.
+    const text = formatStackSummary([base, withoutTime])
+    expect(text).toContain('Longest timeline: 6mo (1 of 2 on file)')
   })
 })
