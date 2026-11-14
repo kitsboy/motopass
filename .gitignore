@@ -50,6 +50,8 @@ artifacts/
 # Private agent-op docs — the repo is PUBLIC. Handoffs, session debriefs, and
 # .ai_docs expose machine names, internal paths and env mechanics. These must
 # NOT be committed (history keeps older copies; see archive/ retention branch).
+# archive/vault-mirror-2026-08 is kept on disk as a reference snapshot and
+# retained in git under the annotated tag `archive/vault-mirror-2026-08`.
 .ai_docs/
 docs/.ai_docs/
 docs/KIMI-HANDOFF*
@@ -60,3 +62,4 @@ docs/NEXT-PROMPT.md
 docs/SESSION-SUMMARY-*
 docs/DEPLOYMENT.md
 docs/debriefs/
+archive/vault-mirror-2026-08/
