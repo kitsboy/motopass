@@ -203,13 +203,28 @@ export function ProofPage() {
         </p>
         <ol className="mt-4 space-y-3">
           <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+            <time dateTime="2026-11-14" className="font-mono text-xs text-ink-muted">
+              14 Nov 2026
+            </time>
+            <br />
+            Corrected the record against official pages. Argentina&rsquo;s citizenship-by-investment
+            is announced by the Ministry of Economy (US$350,000 contribution or US$800,000 government
+            security; applications targeted Q4 2026), not by a competitor firm. El Salvador&rsquo;s 2025
+            reform narrowed compulsory legal-tender acceptance to voluntary, so the record now says
+            &ldquo;narrowed&rdquo;, not &ldquo;revoked&rdquo;. Removed two unsourced floors that matched no live route
+            (Portugal&rsquo;s $250,000 and Barbados&rsquo;s $200,000) so they render &ldquo;not on file&rdquo; until a source
+            backs them. Fixed Mexico&rsquo;s $40k/$74k mismatch and stripped marketing language from
+            thirteen records.
+          </li>
+          <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
             <time dateTime="2026-11-12" className="font-mono text-xs text-ink-muted">
               12 Nov 2026
             </time>
             <br />
-            Corrected the Bitcoin block height on every timestamp. Each record now carries the
-            height its stamp actually sits in, read from the chain when the site is built, instead
-            of a number written into the code.
+            Corrected the Bitcoin block height on every timestamp. Each record keeps the
+            height its stamp actually sits in: it is stored in the record and checked against
+            the chain by the proof verifier. (A planned change will consolidate this to a
+            single proof snapshot read at build; until that lands, the record is the source.)
           </li>
           <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
             <time dateTime="2026-11-12" className="font-mono text-xs text-ink-muted">

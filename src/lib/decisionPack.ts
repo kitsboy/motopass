@@ -110,7 +110,7 @@ function routeStatus(pathway: ProgramPathway): RouteStatus {
 
 function refundableOf(notes: string): Refundable | null {
   const nonRefundable = /non-refundable/i.test(notes)
-  const bondPurchase = /\bbond\b/i.test(notes)
+  const bondPurchase = /\bbond\b/i.test(notes) || /government security/i.test(notes)
   if (nonRefundable && bondPurchase) return 'partial'
   if (nonRefundable) return 'no'
   if (/\brefundable\b/i.test(notes)) return 'yes'
@@ -120,7 +120,7 @@ function refundableOf(notes: string): Refundable | null {
 function holdingOf(notes: string): string | null {
   const hold = notes.match(HOLD_RE)
   if (hold) return clean(hold[0])
-  if (/non-refundable/i.test(notes) && /\bbond\b/i.test(notes)) {
+  if (/non-refundable/i.test(notes) && (/\bbond\b/i.test(notes) || /government security/i.test(notes))) {
     return 'Contribution described as non-refundable. Bond is a purchase. Holding period is not on file.'
   }
   return null
