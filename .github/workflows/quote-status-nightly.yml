@@ -1,0 +1,83 @@
+name: Quotes nightly
+
+# 1b — Nightly quote-status snapshot.
+# Re-probes every claim URL (scripts/check-quotes.mjs) and opens a PR with the
+# refreshed src/data/quoteStatus.json. Guarded so the diff can only be that one
+# file; auto-merged once build-test is green (requires allow_auto_merge AND a
+# machine-account BOT_TOKEN so the PR actually runs CI — a GITHUB_TOKEN PR never
+# sees build-test on a protected main, so it could never auto-merge).
+#
+# Correct then exit:
+#   - the diff touches ONLY src/data/quoteStatus.json
+#   - the refreshed file is valid JSON and carries no future `_verifiedOn`
+# If those hold it opens/updates a PR; if build-test is green it auto-merges.
+
+on:
+  schedule:
+    - cron: '37 4 * * *'   # well after proofs-nightly (03:17) and daily-intel (06:00)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  quote-snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+
+      - name: Re-read every claim quote
+        run: node scripts/check-quotes.mjs
+
+      - name: Guard — diff touches only quoteStatus.json, and schema holds
+        run: node scripts/guard-quote-status-pr.mjs
+
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: quote-status-diff
+          path: src/data/quoteStatus.json
+          retention-days: 7
+
+      - name: Exit early when nothing drifted
+        if: success()
+        run: |
+          if git diff --quiet -- src/data/quoteStatus.json; then
+            echo "quoteStatus.json unchanged — no PR"
+            exit 0
+          fi
+          echo "quoteStatus.json changed — opening snapshot PR"
+
+      # Only reach here when a change exists.
+      - name: Open / update snapshot PR
+        if: success()
+        env:
+          # Machine account PAT (this repo, contents+pull-requests write, 90-day).
+          # Required so the PR is CI-visible and can auto-merge; GITHUB_TOKEN cannot.
+          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config user.name "motopass-quotes-bot"
+          git config user.email "quotes-bot@motopass.local"
+          git fetch origin quote-status-snapshot:quote-status-snapshot 2>/dev/null || git branch quote-status-snapshot
+          git checkout quote-status-snapshot
+          git checkout "${{ github.event.repository.default_branch }}" -- src/data/quoteStatus.json 2>/dev/null || true
+          git add src/data/quoteStatus.json
+          git diff --cached --quiet && { echo "no net change on branch"; exit 0; }
+          git commit -m "Quotes: nightly re-read snapshot $(date -u +%Y%m%d)" --no-verify
+          git push -u origin quote-status-snapshot --force-with-lease
+          gh pr create --repo "${{ github.repository }}" --base main --head quote-status-snapshot \
+            --title "Quotes: nightly re-read snapshot $(date -u +%Y%m%d)" \
+            --body "Automated nightly re-read of every claim quote (1b). Diff limited to src/data/quoteStatus.json by the guard step. Auto-merges once build-test is green." 2>/dev/null \
+            || gh pr edit --repo "${{ github.repository }}" --body "Nightly re-read snapshot — updated $(date -u +%Y%m%d)." 2>/dev/null \
+            || true
+          # Auto-merge (no-ops if allow_auto_merge is not enabled yet).
+          gh pr merge "$(gh pr list --repo "${{ github.repository }}" --head quote-status-snapshot --json number -q '.[0].number')" \
+            --repo "${{ github.repository }}" --auto --squash --delete-branch 2>/dev/null || true

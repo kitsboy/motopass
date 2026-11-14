@@ -54,6 +54,7 @@
     "tools:check": "node scripts/check-tools-regression.mjs",
     "handoff:deploy": "node scripts/update-handoff-deploy.mjs",
     "links:check": "node scripts/check-external-links.mjs",
+    "links:live": "node scripts/check-live-urls.mjs",
     "a11y:check": "node scripts/check-a11y-budget.mjs",
     "health-check": "bash scripts/health-check.sh",
     "verify:goal": "bash scripts/verify-goal.sh",

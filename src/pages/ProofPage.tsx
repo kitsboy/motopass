@@ -3,6 +3,20 @@ import { useSearchParams } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext'
 import { PROOF_TABS, type ProofTab } from '../lib/navRoutes'
 import { claimCoverage } from '../lib/claims'
+import linkCheck from '../data/linkCheck.json'
+
+/** A source host that the site linked to no longer resolves. Shown on /proof so a
+ *  rotted figure's source is visible, not suppressed. Empty when the weekly
+ *  link-check snapshot (1e) reports none. */
+function deadHosts(): Array<{ program: string; what: string; url: string; status: string }> {
+  const d = linkCheck as {
+    schema?: string
+    checkedAt?: string
+    deadHosts?: Array<{ program: string; what: string; url: string; status: string; code?: number }>
+  }
+  if (!d || d.schema !== 'linkCheck/1' || !Array.isArray(d.deadHosts)) return []
+  return d.deadHosts
+}
 
 const TrustPage = lazy(() => import('./TrustPage').then(m => ({ default: m.TrustPage })))
 const SourceMonitorPage = lazy(() => import('./SourceMonitorPage').then(m => ({ default: m.SourceMonitorPage })))
@@ -37,6 +51,38 @@ export function ProofPage() {
           {t('proof.sub')}
         </p>
       </header>
+
+      {(() => {
+        const dead = deadHosts()
+        if (!dead.length) return null
+        const shown = dead.slice(0, 6)
+        return (
+          <section
+            id="source-health"
+            aria-label="Source link health"
+            className="mb-6 scroll-mt-header rounded-xl border border-mp/60 bg-mp-section/40 px-4 py-4 sm:px-5"
+          >
+            <h2 className="font-display text-lg font-semibold text-ink">Source links we could not reach</h2>
+            <p className="mt-1 max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
+              {dead.length === 1
+                ? 'One source link did not load when we last checked it.'
+                : `${dead.length} source links did not load when we last checked them.`}{' '}
+              A source that cannot be reached is a figure whose page may have moved — treat it as
+              unverified until its host resolves again.
+            </p>
+            <ul className="mt-3 space-y-2">
+              {shown.map((x, i) => (
+                <li key={i} className="max-w-3xl font-mono text-xs text-ink-secondary leading-relaxed">
+                  {x.program} ({x.what}): <span className="text-ink-muted">{x.status}</span>{' '}
+                  <a href={x.url} target="_blank" rel="noopener noreferrer" className="underline">
+                    {x.url}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      })()}
 
       {/*
         The page every "Unverified" label points at. It states the count, not a

@@ -1,0 +1,72 @@
+name: Link integrity weekly
+
+# 1e — every source URL the site links to must still resolve. A dead host means a
+# figure's source has rotted; the job fails so it can't pass quietly, and writes
+# src/data/linkCheck.json (dead hosts) that /proof renders. Merges the snapshot
+# back via the same guarded pattern as the quotes nightly (diff limited to
+# linkCheck.json), gated on BOT_TOKEN being present; without it the job still
+# runs and reports in the summary but cannot merge the snapshot.
+
+on:
+  schedule:
+    - cron: '11 6 * * 1'   # Monday, after daily-intel
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Probe every source / official / proof URL
+        run: node scripts/check-live-urls.mjs || true
+        env:
+          LINKCHECK_ALLOW_DEAD: 1   # collect the snapshot even when hosts are rotted; the gate below decides
+
+      - name: Gate — no rotted host may pass
+        run: |
+          node -e '
+            const d = require("./src/data/linkCheck.json")
+            const dead = d.deadHosts || []
+            console.log(`linkcheck: ${d.live}/${d.total} live, ${dead.length} rotted`)
+            for (const x of dead) console.log(`  ✗ ${x.status} ${x.code} ${x.what} ${x.program} ${x.url}`)
+            if (dead.length) { console.error(`FAIL: ${dead.length} rotted source host(s)`); process.exit(1) }
+          '
+
+      - name: Guard — diff touches only linkCheck.json
+        run: node -e '
+            const cp = require("child_process"); const out = cp.execSync("git status --porcelain").toString()
+            const changed = out.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>l.replace(/^.../,"")).filter(p=>p!=="src/data/linkCheck.json")
+            if (changed.length) { console.error("diff must touch only linkCheck.json; got "+changed.join(",")); process.exit(1) }
+            console.log("diff limited to src/data/linkCheck.json")
+          '
+
+      - name: Snap back when BOT_TOKEN is set
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          if [ -z "${GH_TOKEN:-}" ]; then echo "BOT_TOKEN not set — snapshot stays in the artifact; no PR"; exit 0; fi
+          set -euo pipefail
+          git config user.name "motopass-links-bot"
+          git config user.email "links-bot@motopass.local"
+          git fetch origin linkcheck-snapshot:linkcheck-snapshot 2>/dev/null || git branch linkcheck-snapshot
+          git checkout linkcheck-snapshot
+          git checkout "${{ github.event.repository.default_branch }}" -- src/data/linkCheck.json 2>/dev/null || true
+          git add src/data/linkCheck.json
+          git diff --cached --quiet && { echo "no net change"; exit 0; }
+          git commit -m "Links: weekly snapshot $(date -u +%Y%m%d)" --no-verify
+          git push -u origin linkcheck-snapshot --force-with-lease
+          gh pr create --repo "${{ github.repository }}" --base main --head linkcheck-snapshot \
+            --title "Links: weekly snapshot $(date -u +%Y%m%d)" \
+            --body "Automated weekly link-integrity snapshot (1e). Diff limited to src/data/linkCheck.json." 2>/dev/null || true
+          gh pr merge "$(gh pr list --repo "${{ github.repository }}" --head linkcheck-snapshot --json number -q '.[0].number')" \
+            --repo "${{ github.repository }}" --auto --squash --delete-branch 2>/dev/null || true
