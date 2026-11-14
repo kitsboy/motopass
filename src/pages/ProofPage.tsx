@@ -189,9 +189,10 @@ export function ProofPage() {
               12 Nov 2026
             </time>
             <br />
-            Corrected the Bitcoin block height on every timestamp. Each record now carries the
-            height its stamp actually sits in, read from the chain when the site is built, instead
-            of a number written into the code.
+            Corrected the Bitcoin block height on every timestamp. Each record keeps the
+            height its stamp actually sits in: it is stored in the record and checked against
+            the chain by the proof verifier. (A planned change will consolidate this to a
+            single proof snapshot read at build; until that lands, the record is the source.)
           </li>
           <li className="max-w-3xl font-body text-sm text-ink-secondary leading-relaxed">
             <time dateTime="2026-11-12" className="font-mono text-xs text-ink-muted">
