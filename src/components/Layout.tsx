@@ -15,7 +15,6 @@ import { Breadcrumbs } from './nav/Breadcrumbs'
 import { PageTransition } from './nav/PageTransition'
 import { NavShortcutsModal } from './nav/NavShortcutsModal'
 import { useI18n } from '../i18n/I18nContext'
-import { FOOTER_VERSION } from '../lib/buildInfo'
 import { useScrollToTop } from '../hooks/useScrollToTop'
 import { useHeaderCollapse } from '../hooks/useHeaderCollapse'
 import { useLanguageShortcut } from '../hooks/useLanguageShortcut'
@@ -59,7 +58,7 @@ export function Layout() {
       </a>
 
       <Header collapsed={headerCollapsed}>
-        <div className="relative z-30 max-w-7xl mx-auto px-3 sm:px-5 club-header-top-row">
+        <div className="relative z-30 w-full max-w-[1240px] mx-auto px-5 sm:px-8 club-header-top-row">
           <div className="club-header-top-inner flex items-center justify-between gap-2">
             <NavLink
               to="/"
@@ -67,16 +66,16 @@ export function Layout() {
               onClick={() => setMenuOpen(false)}
             >
               <Logo size="sm" />
-              <div className="min-w-0 hidden sm:block leading-tight">
+              <div className="min-w-0 leading-tight">
                 <div className="font-display font-semibold tracking-tight text-[13px] sm:text-sm truncate text-ink group-hover:text-mp-btc-text transition-colors duration-fast">
                   MOTOPASS
                 </div>
-                <div className="club-header-tagline hidden md:block text-[10px] text-ink-muted truncate font-mono max-w-[14rem] opacity-80">
-                  {FOOTER_VERSION} · {t('tagline')}
-                </div>
-                <div className="club-header-tagline club-header-build-tag hidden text-[10px] text-ink-muted truncate font-mono opacity-80">{FOOTER_VERSION}</div>
+                {/* Stage 2: no slogan in the header, and no build id.
+                    Version + date live in the footer only, small. */}
               </div>
             </NavLink>
+
+            <DesktopNav />
 
             <HeaderToolbar collapsed={headerCollapsed} />
 
@@ -93,12 +92,11 @@ export function Layout() {
         </div>
 
         <MobileMenuSheet open={menuOpen} onClose={() => setMenuOpen(false)} />
-        <DesktopNav />
       </Header>
 
       <main
         id="main-content"
-        className="layout-main relative z-[1] w-full min-w-0 max-w-full overflow-x-clip"
+        className="layout-main relative z-[1] w-full min-w-0 max-w-full overflow-x-clip pb-[calc(var(--mp-mobile-tab-bar-height,3.75rem)+1.5rem)] lg:pb-0"
       >
         <div className="px-4 sm:px-6 max-w-7xl mx-auto pt-3 w-full min-w-0">
           <Breadcrumbs />

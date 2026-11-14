@@ -63,6 +63,10 @@ jobs:
           else
             echo "prettier: clean"
           fi
+      - name: Proof fields are never hardcoded
+        run: npm run check:proofs
+      - name: Claim audit (report; non-blocking while coverage is being built)
+        run: npm run audit:claims
       - run: npm run validate:data
       - run: npm run validate:stamps
       # Every proof height must match the chain, and a proof that does not

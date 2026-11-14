@@ -5,6 +5,7 @@ import { useI18n } from '../../i18n/I18nContext'
 import { FOOTER_VERSION } from '../../lib/buildInfo'
 import { MORE_ROUTES } from '../../lib/navRoutes'
 import { PrefetchNavLink } from './PrefetchNavLink'
+import { SettingsMenu } from './SettingsMenu'
 import { useFocusTrap } from '../../hooks/useFocusTrap'
 import { navTileClass } from '../../lib/navRoutes'
 
@@ -80,6 +81,14 @@ export function MoreNavSheet({ open, onClose }: { open: boolean; onClose: () => 
               <button type="button" onClick={onClose} className="nav-btn nav-btn-icon !h-8 !w-8" aria-label={t('nav.close')}>
                 <X size={18} />
               </button>
+            </div>
+            {/* Settings pill is gone on mobile: theme, currency, language and
+                the account all live here, inside "More". */}
+            <div className="flex items-center justify-between gap-3 px-3 pt-3">
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-muted">
+                {t('nav.settings')}
+              </span>
+              <SettingsMenu />
             </div>
             <nav className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 p-3 pb-5 overflow-y-auto overscroll-contain min-h-0" aria-label={t('nav.moreNavigation')}>
               {MORE_ROUTES.map((n, i) => (

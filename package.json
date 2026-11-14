@@ -74,7 +74,8 @@
     "verify:proofs": "node scripts/verify-proofs.mjs",
     "check:proofs": "node scripts/check-proof-fields.mjs",
     "check:routes": "node scripts/check-routes.mjs",
-    "check:slices": "node scripts/check-slice-hashes.mjs"
+    "check:slices": "node scripts/check-slice-hashes.mjs",
+    "audit:claims": "python3 scripts/audit-claims.py"
   },
   "dependencies": {
     "@noble/curves": "^2.4.0",
