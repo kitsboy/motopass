@@ -238,23 +238,6 @@ export function FinanceComparePage() {
         render: p => t(filingLabelKey(compareFacts(p).filing)),
       },
       {
-        label: `${t('compare.btcScore')} · ${t('compare.ratingTag')}`,
-        group: 'scores',
-        // A rating is our judgement, not a reported fact: it never gets BEST.
-        best: null,
-        numeric: p => p.finance.crypto_friendly_score,
-        valueKey: p => String(p.finance.crypto_friendly_score ?? ''),
-        render: p => (p.finance.crypto_friendly_score == null ? t('compare.notOnFile') : `${p.finance.crypto_friendly_score}/10`),
-      },
-      {
-        label: `${t('compare.sovereignty')} · ${t('compare.ratingTag')}`,
-        group: 'scores',
-        best: null,
-        numeric: p => p.sovereignty_score ?? null,
-        valueKey: p => String(p.sovereignty_score ?? ''),
-        render: p => (p.sovereignty_score == null ? t('compare.notOnFile') : `${p.sovereignty_score}/10`),
-      },
-      {
         label: t('compare.synergy'),
         group: 'stack',
         best: null,

@@ -40,7 +40,9 @@ describe('formatStackSummary', () => {
     // summary must never emit sats at the stale August capture. The sats branch
     // returns when the price flag flips true.
     expect(text).not.toContain('sats')
-    expect(text).toContain('Avg sovereignty: 8/10')
+    // Ratings are our judgement, not reported fact — they don't belong in a
+    // summary a visitor might act on.
+    expect(text).not.toContain('sovereignty')
   })
 
   it('excludes programs with a missing processing time from the timeline (never 12 months)', () => {
