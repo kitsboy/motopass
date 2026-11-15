@@ -4,19 +4,19 @@
 
 | Field | Value |
 |-------|-------|
-| Generated | 2026-11-14T21:58:33.252Z |
+| Generated | 2026-11-15T00:53:28.574Z |
 | BUILD | 2026.11.12-d205d35 |
 | BTC spot | ₿1.00 · $64k (mempool.space) |
 | Programs | 21 |
-| Avg stack savings | ₿1.14 · $74k (95%) |
-| Traditional advisory (modeled) | ₿1.21 · $78k |
-| MotoPass advisory (modeled) | ₿0.0635 · $4.1k |
-| Avg typical investment | ₿5.97 · $384k |
+| Avg stack savings | ₿1.15 · $73k (95%) |
+| Traditional advisory (modeled) | ₿1.22 · $78k |
+| MotoPass advisory (modeled) | ₿0.0643 · $4.1k |
+| Avg typical investment | ₿6.02 · $383k |
 
 ## Uruguay 🇺🇾
-- RE min: ₿1.55 · $100k
-- Rentista ~₿0.0233/mo · $1.5k/mo
-- Gov fees: ₿0.2329 · $15k
+- RE min: ₿1.57 · $100k
+- Rentista ~₿0.0236/mo · $1.5k/mo
+- Gov fees: ₿0.2359 · $15k
 
 ## Bolivia 🇧🇴
 - (not in dataset)
