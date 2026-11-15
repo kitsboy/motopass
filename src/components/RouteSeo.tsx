@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import { SeoHead } from './SeoHead'
-import { ROUTE_SEO, resolveSeoForPath, TOP_SEO_LANGS } from '../lib/seo'
+import { ROUTE_SEO, resolveSeoForPath } from '../lib/seo'
 import { organizationJsonLd, websiteJsonLd, breadcrumbJsonLd, pitchFaqJsonLd } from '../lib/siteJsonLd'
 import { resolvePitchFaqCopy } from '../lib/pitchFaq'
 import { useI18n } from '../i18n/I18nContext'
@@ -57,7 +57,6 @@ export function RouteSeo() {
       path={seo.path}
       noIndex={seo.title === 'Post Not Found'}
       jsonLd={jsonLd ?? undefined}
-      hrefLangs={TOP_SEO_LANGS}
     />
   )
 }
