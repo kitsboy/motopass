@@ -8,8 +8,8 @@
       "status": "Acquired - Pioneer",
       "bitcoin_integration": "El Salvador was the first country to make Bitcoin legal tender (Sept 7, 2021). Under a $1.4bn / 40-month IMF program (Dec 2024), Legislative Decree No. 199 was gazetted Jan 30 2025 and took effect ~May 1 2025, dismantling the compulsory framework: merchant acceptance of Bitcoin is now voluntary (not mandatory), the government's Chivo wallet participation is being phased out (by end-July 2025 per IMF terms), and the state does not voluntarily accumulate more Bitcoin. As of 2026 Bitcoin is effectively voluntary tender — the compulsory-acceptance features were removed (acceptance is now voluntary) — IMF EFF arrangement: \"making acceptance of Bitcoin by the private sector voluntary\" (IMF CR 25/58) while the USD remains the dominant currency for wages, prices and taxes; the state retains its existing Bitcoin holdings. The country remains strongly crypto-promotional at the government level despite the legal rollback.",
       "finance": {
-        "min_investment_usd": 0,
-        "typical_investment_usd": 30000,
+        "min_investment_usd": null,
+        "typical_investment_usd": null,
         "gov_fees_usd": 5000,
         "processing_time_months": "1-4",
         "tax_benefits": "Favorable crypto tax treatment; legal-tender acceptance narrowed to voluntary in Feb 2025 (IMF-programme reform) — sovereign-signal framing is now historical, but no capital gains tax on Bitcoin in many cases remains.\n\nCrypto/Bitcoin tax: No capital gains tax on Bitcoin exchanges — the 2025 Decree No. 199 reform explicitly retains/exempts Bitcoin exchanges from capital gains tax (Bloomberg Tax). Since the reform, taxes and government monetary obligations must be paid in US dollars (Bitcoin is no longer accepted for taxes, and the state's automatic USD conversion obligation was removed); the country is dollarized. El Salvador uses a territorial tax system focused on domestic-source income.",
@@ -33,16 +33,16 @@
       "sovereignty_score": 9,
       "stacking_synergy": "high",
       "risk_level": "low",
-      "last_verified_block": 975844,
+      "last_verified_block": 975860,
       "satohash_proofs": [
         {
           "field": "program_snapshot",
-          "block_height": 975844,
-          "proof_url": "https://satohash.io/verify/8b20e128308a8bea590b6c699c360925d97d4ec61cc03b8c0e4b77278ef81355",
-          "content_hash": "8b20e128308a8bea590b6c699c360925d97d4ec61cc03b8c0e4b77278ef81355",
+          "block_height": 975860,
+          "proof_url": "https://satohash.io/verify/d002b6e17003eee6729142e3a569b4ec7deb004f79d7aa8d10e22795cf8fd56c",
+          "content_hash": "d002b6e17003eee6729142e3a569b4ec7deb004f79d7aa8d10e22795cf8fd56c",
           "ots_path": "/proofs/el-salvador-547b1d2e2bd9.ots",
-          "stamped_at": "2026-11-14T20:34:12.893Z",
-          "stamp_id": "f420a4da-c231-4e22-9ab4-f29f41234f3f"
+          "stamped_at": "2026-11-14T23:11:22.743Z",
+          "stamp_id": "9bb0d8bf-e43e-4c1c-aba8-c04588ca920f"
         },
         {
           "field": "pathways",
@@ -421,6 +421,14 @@
           "to": "re-anchored 8b20e128308a8bea (stamp f420a4da-c23)",
           "source": "satohash-api",
           "hash": "8b20e128308a8bea590b6c699c360925d97d4ec61cc03b8c0e4b77278ef81355"
+        },
+        {
+          "date": "2026-11-14",
+          "field": "proof",
+          "from": "8b20e128308a8bea",
+          "to": "re-anchored d002b6e17003eee6 (stamp 9bb0d8bf-e43)",
+          "source": "satohash-api",
+          "hash": "d002b6e17003eee6729142e3a569b4ec7deb004f79d7aa8d10e22795cf8fd56c"
         }
       ],
       "policy_mentions_btc": true,
@@ -428,7 +436,7 @@
       "route_status": "changed",
       "status_checked_at": "2026-11-14",
       "status_source": "https://www.imf.org/-/media/files/publications/cr/2025/english/1slvea2025001-print-pdf.pdf",
-      "status_note": "Bitcoin acceptance by the private sector made voluntary by the 2025 IMF-programme reform (Legislative Decree No. 199); the 'Freedom Visa' figure is unsourced."
+      "status_note": "Bitcoin acceptance by the private sector made voluntary by the 2025 IMF-programme reform (Legislative Decree No. 199); the 'Freedom Visa' figure is unsourced, so minimums show 'not on file'."
     },
     {
       "id": 2,
@@ -6348,7 +6356,7 @@
       "status": "Researching",
       "bitcoin_integration": "Crypto is legal and actively regulated by the Cayman Islands Monetary Authority (CIMA) under the Virtual Asset (Service Providers) Act (2020, revised to 2024 Revision). Registration for VASPs began 31 October 2020; from 1 April 2025 virtual-asset custody and virtual-asset trading-platform operators must obtain a full CIMA VASP licence, with AML/Travel Rule (FATF Rec. 16) compliance. This is one of the pioneering, well-developed crypto-regulatory regimes in the Caribbean/offshore space.",
       "finance": {
-        "min_investment_usd": 1000000,
+        "min_investment_usd": 1200000,
         "typical_investment_usd": 2000000,
         "gov_fees_usd": 50000,
         "processing_time_months": "4-10",
@@ -6372,16 +6380,16 @@
       "sovereignty_score": 6,
       "stacking_synergy": "low",
       "risk_level": "low",
-      "last_verified_block": 975308,
+      "last_verified_block": 975860,
       "satohash_proofs": [
         {
           "field": "program_snapshot",
-          "block_height": 975308,
-          "proof_url": "https://satohash.io/verify/8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883",
-          "content_hash": "8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883",
+          "block_height": 975860,
+          "proof_url": "https://satohash.io/verify/bef9386951cf6e0faf6ed2126738f699a85bdfdf833abac344c3c546af0918c2",
+          "content_hash": "bef9386951cf6e0faf6ed2126738f699a85bdfdf833abac344c3c546af0918c2",
           "ots_path": "/proofs/cayman-islands-1842cdd9cd07.ots",
-          "stamped_at": "2026-11-10T14:12:16Z",
-          "stamp_id": "342aeef1-8d15-4778-897e-4be2b993e5c2"
+          "stamped_at": "2026-11-14T23:11:25.733Z",
+          "stamp_id": "ac0f597a-6a56-4264-9e1f-7229e7ad50f7"
         },
         {
           "field": "pathways",
@@ -6851,6 +6859,14 @@
           "to": "re-anchored 8a478f2a2745a847 (stamp 342aeef1-8d1)",
           "source": "satohash-api",
           "hash": "8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883"
+        },
+        {
+          "date": "2026-11-14",
+          "field": "proof",
+          "from": "8a478f2a2745a847",
+          "to": "re-anchored bef9386951cf6e0f (stamp ac0f597a-6a5)",
+          "source": "satohash-api",
+          "hash": "bef9386951cf6e0faf6ed2126738f699a85bdfdf833abac344c3c546af0918c2"
         }
       ],
       "policy_mentions_btc": true,
@@ -6859,7 +6875,7 @@
       "route_status": "changed",
       "status_checked_at": "2026-11-14",
       "status_source": "https://www.gov.ky",
-      "status_note": "Residency-by-investment only (no citizenship); official minimum ~CI$1M (~US$1.2M) - corpus figure US$1M under review."
+      "status_note": "Residency-by-investment only (no citizenship); minimum CI$1M (≈US$1.2M)."
     },
     {
       "id": 13,
@@ -11838,7 +11854,7 @@
       "status": "Researching",
       "bitcoin_integration": "Mexico regulates crypto under the 2018 Law to Regulate Financial Technology Institutions ('Fintech Law' / LRITF) which defines 'virtual assets', elaborated by Banxico Circular 4/2019. Virtual assets are NOT legal tender (Article 30 LRITF explicitly states they are neither legal tender nor foreign currency, reaffirmed by Banxico/SHCP/CNBV 2021 warning). Financial entities may only engage in virtual-asset operations for internal purposes with prior Banxico authorization and are prohibited from offering exchange/custody/transfer services to customers. Non-financial individuals and companies may legally own, hold, trade and exchange crypto and operate exchanges/custodians without a specific license (subject to AML obligations; a July 16 2025 AML-law reform classifies VASPs as Designated Non-Financial Businesses with travel-rule, KYC and transaction-reporting duties). Stance is widely described as 'permissive yet conservative,' the central bank keeping a 'healthy distance' between crypto and the financial system. No CBDC launched.",
       "finance": {
-        "min_investment_usd": 74000,
+        "min_investment_usd": 78025,
         "typical_investment_usd": 120000,
         "gov_fees_usd": 3000,
         "processing_time_months": "1-3",
@@ -11864,16 +11880,16 @@
       "sovereignty_score": 6,
       "stacking_synergy": "medium",
       "risk_level": "medium",
-      "last_verified_block": 975093,
+      "last_verified_block": 975860,
       "satohash_proofs": [
         {
           "field": "program_snapshot",
-          "block_height": 975093,
-          "proof_url": "https://satohash.io/verify/d586109a0a432c45a3e9cc04bf3bbaeb3df1988b7c75a3b6c5b9eb8ef4c3289a",
-          "content_hash": "d586109a0a432c45a3e9cc04bf3bbaeb3df1988b7c75a3b6c5b9eb8ef4c3289a",
+          "block_height": 975860,
+          "proof_url": "https://satohash.io/verify/d323678811aa6a72cac3cf14fc0d280749f35ea016a8e6fb142fe86246bd0574",
+          "content_hash": "d323678811aa6a72cac3cf14fc0d280749f35ea016a8e6fb142fe86246bd0574",
           "ots_path": "/proofs/mexico-67ea33c8e699.ots",
-          "stamped_at": "2026-11-08T19:34:24Z",
-          "stamp_id": "794e19dc-ed14-4d0a-97b7-16fe8e38afdc"
+          "stamped_at": "2026-11-14T23:11:28.804Z",
+          "stamp_id": "c02de5c7-dc7c-486c-8f90-6a77eca5b5fe"
         },
         {
           "field": "pathways",
@@ -12587,6 +12603,14 @@
           "from": "true",
           "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
           "source": "source-probe-v2"
+        },
+        {
+          "date": "2026-11-14",
+          "field": "proof",
+          "from": "d586109a0a432c45",
+          "to": "re-anchored d323678811aa6a72 (stamp c02de5c7-dc7)",
+          "source": "satohash-api",
+          "hash": "d323678811aa6a72cac3cf14fc0d280749f35ea016a8e6fb142fe86246bd0574"
         }
       ],
       "policy_mentions_btc": false,
@@ -12594,7 +12618,7 @@
       "route_status": "open",
       "status_checked_at": "2026-11-14",
       "status_source": "https://consulmex.sre.gob.mx/",
-      "status_note": "Temporary-residence economic-solvency route open; 2026 official savings threshold ~US$78,025 (SRE) - corpus figure US$74k under review."
+      "status_note": "Temporary-residence economic-solvency route open; 2026 official savings threshold ~US$78,025 (SRE)."
     },
     {
       "id": 21,
