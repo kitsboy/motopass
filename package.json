@@ -78,6 +78,9 @@
     "check:slices": "node scripts/check-slice-hashes.mjs",
     "check:displayed": "node scripts/check-displayed-values.mjs"
   },
+  "overrides": {
+    "bn.js": "^4.12.3"
+  },
   "dependencies": {
     "@noble/curves": "^2.4.0",
     "@noble/hashes": "^2.4.0",
