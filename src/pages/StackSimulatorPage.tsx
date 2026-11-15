@@ -59,7 +59,6 @@ export function StackSimulatorPage() {
   // much of the stack that covers.
   const costKnown = stack.filter(p => p.finance.typical_investment_usd != null)
   const totalCost = costKnown.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
-  const sovereignty = stack.length ? Math.round(stack.reduce((s, p) => s + (p.sovereignty_score ?? 5), 0) / stack.length) : 0
   // A missing processing time is not "fast" — it is excluded from the timeline.
   const timed = stack.filter(p => p.finance.processing_time_months)
   const months = timed.length
@@ -188,12 +187,6 @@ export function StackSimulatorPage() {
                         {costKnown.length} of {stack.length} programs have a cost on file
                       </div>
                     </div>
-                  </div>
-                </InfoTip>
-                <InfoTip tip={t('simulator.tip.sovereignty')}>
-                  <div>
-                    <span className="text-ink-muted text-xs">{t('simulator.stat.sovereignty')}</span>
-                    <div className="text-2xl font-display font-semibold text-ink">{sovereignty}/10</div>
                   </div>
                 </InfoTip>
                 <InfoTip tip={t('simulator.tip.timeline')}>

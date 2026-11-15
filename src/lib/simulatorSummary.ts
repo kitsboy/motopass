@@ -7,7 +7,6 @@ export function formatStackSummary(stack: Program[]): string {
   if (!stack.length) return 'MotoPass stack: (empty)'
   const costKnown = stack.filter(p => p.finance.typical_investment_usd != null)
   const totalCost = costKnown.reduce((s, p) => s + (p.finance.typical_investment_usd ?? 0), 0)
-  const sovereignty = Math.round(stack.reduce((s, p) => s + (p.sovereignty_score ?? 5), 0) / stack.length)
   // A missing processing time is not "fast" — it is excluded from the timeline.
   const timed = stack.filter(p => p.finance.processing_time_months)
   const months = timed.length ? Math.max(...timed.map(p => Math.ceil(parseMonthsToDays(p.finance.processing_time_months) / 30))) : null
@@ -16,11 +15,10 @@ export function formatStackSummary(stack: Program[]): string {
     `MotoPass stack (${stack.length} programs)`,
     `Programs: ${names}`,
     costKnown.length
-      ? `Typical cost: ${formatUsdCompact(totalCost)}${
+      ?    `Typical cost: ${formatUsdCompact(totalCost)}${
           BTC_PRICE_IS_LIVE ? ` (${formatSats(usdToSats(totalCost, BTC_USD_AT_CAPTURE))})` : ''
         } — ${costKnown.length} of ${stack.length} programs on file`
       : `Typical cost: not on file (0 of ${stack.length} programs)`,
-    `Avg sovereignty: ${sovereignty}/10`,
     months === null
       ? 'Longest timeline: not on file'
       : `Longest timeline: ${months}mo${timed.length < stack.length ? ` (${timed.length} of ${stack.length} on file)` : ''}`,
