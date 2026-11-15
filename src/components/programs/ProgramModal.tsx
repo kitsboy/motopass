@@ -18,6 +18,7 @@ import { btcMapPageUrl } from '../../lib/btcmap';
 import { Program, ProgramModalTab, scoreWeight, hasFlagshipDepth } from './types';
 import { DecisionClocks } from './DecisionClocks';
 import { SeoHead } from '../SeoHead';
+import { RouteStatusBanner } from './RouteStatusBanner';
 import { programDetailJsonLd } from '../../lib/siteJsonLd';
 import { safeSatohashHref } from '../../lib/satohash';
 import { ScorecardBars } from '../intel/ScorecardBars';
@@ -252,6 +253,7 @@ function ProgramModalBody({
       <div key={tabExists ? tab : 'reset'} className="tab-panel-in" {...swipe}>
       {tab === 'Overview' && (
         <div className="space-y-4 text-sm text-mp-ink-secondary">
+          {program.routeStatus && program.routeStatus !== 'open' && <RouteStatusBanner program={program} />}
           <p className="leading-relaxed">{program.summary}</p>
           <DecisionClocks program={program} variant="pack" />
           <div className="grid grid-cols-2 gap-2 text-xs">
