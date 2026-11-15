@@ -8,7 +8,7 @@
       "status": "Acquired - Pioneer",
       "bitcoin_integration": "El Salvador was the first country to make Bitcoin legal tender (Sept 7, 2021). Under a $1.4bn / 40-month IMF program (Dec 2024), Legislative Decree No. 199 was gazetted Jan 30 2025 and took effect ~May 1 2025, dismantling the compulsory framework: merchant acceptance of Bitcoin is now voluntary (not mandatory), the government's Chivo wallet participation is being phased out (by end-July 2025 per IMF terms), and the state does not voluntarily accumulate more Bitcoin. As of 2026 Bitcoin is effectively voluntary tender — the compulsory-acceptance features were removed (acceptance is now voluntary) — IMF EFF arrangement: \"making acceptance of Bitcoin by the private sector voluntary\" (IMF CR 25/58) while the USD remains the dominant currency for wages, prices and taxes; the state retains its existing Bitcoin holdings. The country remains strongly crypto-promotional at the government level despite the legal rollback.",
       "finance": {
-        "min_investment_usd": null,
+        "min_investment_usd": 1000000,
         "typical_investment_usd": null,
         "gov_fees_usd": 5000,
         "processing_time_months": "1-4",
@@ -17,7 +17,7 @@
         "bitcoin_specific": "Yes — but only for the government's Freedom Visa citizenship-by-investment contribution: the ~USD 1 million development-fund contribution can be paid in Bitcoin or USDT. Since the 2025 reform, taxes and general government fees/obligations are payable in US dollars only, not Bitcoin. General visa/immigration fees are in USD."
       },
       "details": "First country to make Bitcoin legal tender (Ley Bitcoin passed 8 Jun 2021, effective 7 Sep 2021). Compulsory legal-tender acceptance narrowed in Feb 2025 under the $1.4B IMF program: merchants are no longer obligated to accept BTC and taxes are paid in US dollars only, but BTC remains legal for voluntary use and the government continues holding. Still a strong fit for MotoPass Bitcoin identity experiments.",
-      "last_checked": "2026-11-08",
+      "last_checked": "2026-11-15",
       "sources": [
         "Bloomberg Tax (Daily Tax Report International) — https://news.bloombergtax.com/daily-tax-report-international/el-salvador-gazettes-decree-amending-bitcoin-law",
         "International Monetary Fund — https://www.imf.org/en/publications/cr/issues/2025/03/19/el-salvador-selected-issues-565394",
@@ -26,7 +26,8 @@
         "APEX Capital Partners — https://apexcapitaladvisory.com/your-guide-to-el-salvador-citizenship-by-investment/",
         "Official — https://www.rree.gob.sv/",
         "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
-        "World Bank Global Findex — account ownership 43.4% of adults 15+ (2024), FX.OWN.TOTL.ZS"
+        "World Bank Global Findex — account ownership 43.4% of adults 15+ (2024), FX.OWN.TOTL.ZS",
+        "Official (Adopting El Salvador Freedom Visa programme) — https://world.adoptingelsalvador.gob.sv/welcome — accessed 2026-11-15 — quote: \"The Adopting El Salvador Program is a fast track to the Salvadoran passport for you, your spouse and children under the age of 18, at the cost of 1,000,000 USD in BTC or USDt.\""
       ],
       "flag": "🇸🇻",
       "lightning_ready": true,
@@ -429,6 +430,14 @@
           "to": "re-anchored d002b6e17003eee6 (stamp 9bb0d8bf-e43)",
           "source": "satohash-api",
           "hash": "d002b6e17003eee6729142e3a569b4ec7deb004f79d7aa8d10e22795cf8fd56c"
+        },
+        {
+          "date": "2026-11-15",
+          "field": "finance.min_investment_usd",
+          "from": "null",
+          "to": "1000000 (Freedom Visa / Adopting El Salvador: USD 1,000,000 in BTC or USDt)",
+          "source": "Official (Adopting El Salvador Freedom Visa programme) — https://world.adoptingelsalvador.gob.sv/welcome — accessed 2026-11-15 — quote: \"The Adopting El Salvador Program is a fast track to the Salvadoran passport for you, your spouse and children under the age of 18, at the cost of 1,000,000 USD in BTC or USDt.\"",
+          "hash": null
         }
       ],
       "policy_mentions_btc": true,
@@ -436,7 +445,15 @@
       "route_status": "changed",
       "status_checked_at": "2026-11-14",
       "status_source": "https://www.imf.org/-/media/files/publications/cr/2025/english/1slvea2025001-print-pdf.pdf",
-      "status_note": "Bitcoin acceptance by the private sector made voluntary by the 2025 IMF-programme reform (Legislative Decree No. 199); the 'Freedom Visa' figure is unsourced, so minimums show 'not on file'."
+      "status_note": "Bitcoin acceptance by the private sector made voluntary by the 2025 IMF-programme reform (Legislative Decree No. 199); the 'Freedom Visa' figure is unsourced, so minimums show 'not on file'.",
+      "claim_sources": {
+        "finance.min_investment_usd": {
+          "url": "https://world.adoptingelsalvador.gob.sv/welcome",
+          "quote": "The Adopting El Salvador Program is a fast track to the Salvadoran passport for you, your spouse and children under the age of 18, at the cost of 1,000,000 USD in BTC or USDt.",
+          "fetched": "2026-11-15",
+          "location": "Freedom Passport / Family-friendly section (USD 1,000,000 in BTC or USDt; 999 + 999,001 USD fees)"
+        }
+      }
     },
     {
       "id": 2,
@@ -446,7 +463,7 @@
       "status": "Researching - Policy Shift",
       "bitcoin_integration": "Bitcoin is legal and unregulated as a currency in Portugal. Portugal was historically one of the most crypto-friendly jurisdictions in the EU (tax-free crypto until 2023). Since 1 January 2023 (State Budget Law 24-D/2022) a crypto-asset tax regime applies: capital gains on crypto held for less than 365 days are taxed as Category G gains at a flat 28% (or included in aggregated income), while gains on crypto held for 365 days or more are excluded from tax for most residents. The Portuguese Tax Authority (Autoridade Tributária) issued official guidance and binding rulings (e.g. Processo 29052) confirming this.",
       "finance": {
-        "min_investment_usd": null,
+        "min_investment_usd": 550000,
         "typical_investment_usd": null,
         "gov_fees_usd": 20000,
         "processing_time_months": "6-12",
@@ -455,7 +472,7 @@
         "bitcoin_specific": "No official acceptance of BTC for golden-visa or government/immigration fees; all AIMA application and visa fees are payable in EUR (standard and 25%-reduced digital rates). Qualifying golden-visa investments (funds, research, company capital, cultural donation) must be in EUR. A privately proposed crypto-backed fund route (e.g. Unbound Fund marketing 'bitcoin-backed golden visa') has not been approved or confirmed by Portuguese authorities."
       },
       "details": "Requires fresh research for MotoPass; no investment floor is published here without a source (the historical US$250,000 floor is not a live route). Primary routes on file: Golden Visa fund route (€500k), D7 passive income.",
-      "last_checked": "2026-11-08",
+      "last_checked": "2026-11-15",
       "sources": [
         "Autoridade Tributária e Aduaneira (AT) - Portugal Tax Authority — https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Criptoativos.pdf",
         "Autoridade Tributária e Aduaneira (AT) — https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/informacoes_vinculativas/rendimento/cirs/Documents/PIV_29052.pdf",
@@ -464,7 +481,8 @@
         "Official — https://www.portaldasfinancas.gov.pt/",
         "Official — https://www.portugal.gov.pt/",
         "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
-        "World Bank Global Findex — account ownership 91.4% of adults 15+ (2024), FX.OWN.TOTL.ZS"
+        "World Bank Global Findex — account ownership 91.4% of adults 15+ (2024), FX.OWN.TOTL.ZS",
+        "Official (AIMA — Agência para a Integração, Migrações e Asilo) — https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a — accessed 2026-11-15 — quote: \"Transferência de capitais no montante igual ou superior a 500 mil euros\" (EUR 500,000 ≈ USD 550,000 @ ~1.10) for the qualifying golden-visa fund / capital-transfer routes."
       ],
       "flag": "🇵🇹",
       "lightning_ready": false,
@@ -1057,6 +1075,14 @@
           "to": "re-anchored b73bcd7c77b62d03 (stamp 30d9dcc4-bb7)",
           "source": "satohash-api",
           "hash": "b73bcd7c77b62d036572d10d2e61303dcefda809edbaac1c091ded11e960be9f"
+        },
+        {
+          "date": "2026-11-15",
+          "field": "finance.min_investment_usd",
+          "from": "null",
+          "to": "550000 (≈ EUR 500,000 official AIMA fund-route minimum)",
+          "source": "Official (AIMA — Agência para a Integração, Migrações e Asilo) — https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a — accessed 2026-11-15 — quote: \"Transferência de capitais no montante igual ou superior a 500 mil euros\" (EUR 500,000 ≈ USD 550,000 @ ~1.10) for the qualifying golden-visa fund / capital-transfer routes.",
+          "hash": null
         }
       ],
       "policy_mentions_btc": true,
@@ -1064,7 +1090,15 @@
       "route_status": "open",
       "status_checked_at": "2026-11-14",
       "status_source": "https://aima.gov.pt",
-      "status_note": "Golden Visa open via fund and other routes (real-estate route closed Oct 2023); fund minimum 500k EUR."
+      "status_note": "Golden Visa open via fund and other routes (real-estate route closed Oct 2023); fund minimum 500k EUR.",
+      "claim_sources": {
+        "finance.min_investment_usd": {
+          "url": "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a",
+          "quote": "Transferência de capitais no montante igual ou superior a 500 mil euros",
+          "fetched": "2026-11-15",
+          "location": "ARI (golden visa) possible investment routes — capital-transfer / fund subalíneas (v, vii, viii): EUR 500,000"
+        }
+      }
     },
     {
       "id": 3,
@@ -5537,7 +5571,7 @@
       "status": "Researching",
       "bitcoin_integration": "Neutral-to-permissive but no bespoke crypto law. Barbados has no specific Bitcoin/crypto licensing statute; crypto is not banned and operates in a guidance/sandbox environment. The Central Bank of Barbados and Financial Services Commission ran a Regulatory Sandbox (Bitt was the first entrant to exit) and Barbados piloted a central-bank digital currency (DCash). No official statement designates Bitcoin as legal tender, and there is no dedicated crypto-asset regulatory framework equivalent to the Bahamas' DARE Act or Cayman's VASP Act.",
       "finance": {
-        "min_investment_usd": null,
+        "min_investment_usd": 2000000,
         "typical_investment_usd": null,
         "gov_fees_usd": 35000,
         "processing_time_months": "6-12",
@@ -5546,7 +5580,7 @@
         "bitcoin_specific": "No. The Welcome Stamp application fee (US$2,000/US$3,000) is paid by card online through the official portal; fees are payable in USD to the Chief Immigration Officer. No source indicates government visa/residency fees can be paid in Bitcoin or crypto."
       },
       "details": "Flagship-depth research entry for Barbados. Part of the MotoPass 21-program tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools.",
-      "last_checked": "2026-11-08",
+      "last_checked": "2026-11-15",
       "sources": [
         "Barbados Welcome Stamp (official government program) — https://www.visitbarbados.org/barbados-welcome-stamp/",
         "PwC Barbados — https://www.pwc.com/bb/en/services/pdf/12-month-barbados-welcome-stamp.pdf",
@@ -5556,7 +5590,8 @@
         "Official — https://www.immigration.gov.bb/",
         "Barbados Immigration Department — Special Entry Permit requirements — https://immigration.gov.bb/pages/SpecialEntryPermit.aspx",
         "Barbados Citizenship Act, Cap. 186 (naturalisation: 12 months + 5 of 7 years) — https://www.refworld.org/legal/legislation/natlegbod/1966/en/20336",
-        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf"
+        "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
+        "Official (Invest Barbados — High Net Worth Individuals programme) — https://www.investbarbados.org/high-net-worth-individuals/ — accessed 2026-11-15 — quote: \"Invest US$2 million or more in property or other qualifying investment in Barbados\" (also: assets of US$5 million or more; SEP issued by the Barbados Immigration Department)."
       ],
       "flag": "🇧🇧",
       "lightning_ready": false,
@@ -6339,6 +6374,14 @@
           "to": "re-anchored 5f004b902d63423f (stamp 8510ec23-c46)",
           "source": "satohash-api",
           "hash": "5f004b902d63423f2e6054198c74ad3deee042dff3166ab4252622b64691737b"
+        },
+        {
+          "date": "2026-11-15",
+          "field": "finance.min_investment_usd",
+          "from": "null",
+          "to": "2000000 (Special Entry Permit HNWI: invest US$2,000,000)",
+          "source": "Official (Invest Barbados — High Net Worth Individuals programme) — https://www.investbarbados.org/high-net-worth-individuals/ — accessed 2026-11-15 — quote: \"Invest US$2 million or more in property or other qualifying investment in Barbados\" (also: assets of US$5 million or more; SEP issued by the Barbados Immigration Department).",
+          "hash": null
         }
       ],
       "policy_mentions_btc": false,
@@ -6346,7 +6389,15 @@
       "route_status": "changed",
       "status_checked_at": "2026-11-14",
       "status_source": "https://www.barbadoswelcomestamp.bb/applynow/",
-      "status_note": "No citizenship-by-investment; Welcome Stamp (12-month remote-work residency) open - income US$50,000."
+      "status_note": "No citizenship-by-investment; Welcome Stamp (12-month remote-work residency) open - income US$50,000.",
+      "claim_sources": {
+        "finance.min_investment_usd": {
+          "url": "https://www.investbarbados.org/high-net-worth-individuals/",
+          "quote": "Invest US$2 million or more in property or other qualifying investment in Barbados",
+          "fetched": "2026-11-15",
+          "location": "High Net Worth Individuals special entry permit (SEP) requirements list"
+        }
+      }
     },
     {
       "id": 12,
@@ -8702,7 +8753,7 @@
         "bitcoin_specific": "Partially (city level): City of Buenos Aires (CABA) since Aug 2025 accepts crypto QR for certain municipal taxes (ABL, Patentes, Ingresos Brutos). Federal/immigration fees in pesos, not BTC."
       },
       "details": "Flagship-depth research entry for Argentina. Part of the MotoPass 21-program tracker — compare finance, sovereignty score, and stacking synergy with portfolio tools. Oct 2026: Argentina's Ministry of Economy (Luis Caputo) officially announced the Programme for Citizenship by Investment — the largest country by land area and economy to launch a CBI. Main applicant: US$350,000 non-refundable Treasury contribution OR a US$800,000 government security created for the programme; spouse/children 18–25 US$100,000; under-18 US$25,000. Applications are targeted to open in Q4 2026 (not yet accepting). Existing routes today remain residency-based (rentista, investor, digital nomad).",
-      "last_checked": "2026-11-08",
+      "last_checked": "2026-11-15",
       "sources": [
         "AFIP/ARCA (official tax authority) — https://www.afip.gob.ar/economia-digital/criptoactivos/impuesto-a-las-ganancias.asp",
         "CNV (official securities regulator) — https://www.argentina.gob.ar/cnv",
@@ -8712,7 +8763,8 @@
         "Official — https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
         "Official (Ministry of Economy CBI announcement, 2 Oct 2026) — https://x.com/PlanBpassport/status/2106022914143269177",
         "Henley Passport Index 2026 (September global ranking) — https://cdn.henleyglobal.com/storage/app/media/HPI/Henley%20Passport%20Index%202026%20September%20Global%20Ranking.pdf",
-        "World Bank Global Findex — account ownership 81.7% of adults 15+ (2024), FX.OWN.TOTL.ZS"
+        "World Bank Global Findex — account ownership 81.7% of adults 15+ (2024), FX.OWN.TOTL.ZS",
+        "Official (Presidencia de la Nación / Ministerio de Economía CBI announcement) — https://www.argentina.gob.ar/noticias/luis-caputo-anuncio-la-puesta-en-marcha-del-programa-de-ciudadania-por-inversion-de — accessed 2026-11-15 — quote: \"realizar un aporte directo y no reembolsable al Tesoro Nacional por USD 350.000\" (Programa de Ciudadanía por Inversión announced 2 Oct 2026, operational Q4 2026; USD 350,000 contribution or USD 800,000 bond)."
       ],
       "flag": "🇦🇷",
       "lightning_ready": true,
@@ -9588,6 +9640,14 @@
           "to": "re-anchored 5683b8569712817f (stamp 14ce9aea-64b)",
           "source": "satohash-api",
           "hash": "5683b8569712817f3c9ba1790968ed1b1220959a6492023d33ba650e690c3a7e"
+        },
+        {
+          "date": "2026-11-15",
+          "field": "finance.min_investment_usd",
+          "from": "null",
+          "to": "(kept null per product gate) Official CBI announcement (2 Oct 2026) states USD 350,000 contribution or USD 800,000 bond, but the program is not yet operational as of 2026-11-15, so finance.min_investment_usd stays not on file",
+          "source": "Official (Presidencia de la Nación / Ministerio de Economía CBI announcement) — https://www.argentina.gob.ar/noticias/luis-caputo-anuncio-la-puesta-en-marcha-del-programa-de-ciudadania-por-inversion-de — accessed 2026-11-15 — quote: \"realizar un aporte directo y no reembolsable al Tesoro Nacional por USD 350.000\" (Programa de Ciudadanía por Inversión announced 2 Oct 2026, operational Q4 2026; USD 350,000 contribution or USD 800,000 bond).",
+          "hash": null
         }
       ],
       "policy_mentions_btc": true,
