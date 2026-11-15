@@ -28,6 +28,12 @@ const RegisterPage = lazy(() =>
 const ProfilePage = lazy(() =>
   import('./pages/ProfilePage').then((m) => ({ default: m.ProfilePage })),
 )
+const PrivacyPage = lazy(() =>
+  import('./pages/LegalPages').then((m) => ({ default: m.PrivacyPage })),
+)
+const TermsPage = lazy(() =>
+  import('./pages/LegalPages').then((m) => ({ default: m.TermsPage })),
+)
 const NotFoundPage = lazy(() =>
   import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })),
 )
@@ -216,6 +222,8 @@ export default function App() {
                                     </RouteSuspense>
                                   }
                                 />
+                                <Route path="privacy" element={<PrivacyPage />} />
+                                <Route path="terms" element={<TermsPage />} />
                                 <Route
                                   path="*"
                                   element={
