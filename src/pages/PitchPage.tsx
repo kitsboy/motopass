@@ -172,7 +172,7 @@ export function PitchPage() {
           <div className="grid gap-4 md:grid-cols-3">
             <Link to="/proof?tab=sources" className="block">
               <Card variant="interactive" className="h-full !p-6">
-                <Radar size={20} className="text-btc-orange mb-4" aria-hidden />
+                <Radar size={20} className="text-mp-fuchsia-text mb-4" aria-hidden />
                 <h3 className="font-display font-semibold text-ink mb-2">{t('pitch.trust.sources.title')}</h3>
                 <p className="text-sm text-ink-secondary leading-relaxed">{t('pitch.trust.sources.body')}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-xs font-chrome text-mp-btc-text">
@@ -192,7 +192,7 @@ export function PitchPage() {
             </Link>
             <Link to="/proof?tab=trust" className="block">
               <Card variant="interactive" className="h-full !p-6">
-                <FileCheck2 size={20} className="text-electric mb-4" aria-hidden />
+                <FileCheck2 size={20} className="text-mp-fuchsia-text mb-4" aria-hidden />
                 <h3 className="font-display font-semibold text-ink mb-2">{t('pitch.trust.stale.title')}</h3>
                 <p className="text-sm text-ink-secondary leading-relaxed">{t('pitch.trust.stale.body')}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-xs font-chrome text-mp-btc-text">

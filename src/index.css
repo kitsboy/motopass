@@ -60,6 +60,48 @@
   --mp-proof-green: #4ade80;
 }
 
+/* Cinematic dark surfaces (.fc-page = Finance Compare) are intentionally theme-
+   INDEPENDENT: a fixed near-black stage rendered the same in light AND dark mode
+   so the finance/compare surfaces read as one continuous premium band no matter
+   which theme a visitor toggled. Their child components inherit the shared
+   semantic tokens (text-ink, text-ink-secondary, border-mp-border-subtle,
+   text-mp-btc-text, text-mp-fuchsia-text) which otherwise flip to the LIGHT
+   values when html isn't .dark — dark-ink copy on the near-black stage fails
+   WCAG AA. Snapshot the dark-theme token values at this scope so the stage and
+   its token-backed text stay high-contrast in both themes. */
+.fc-page {
+  --mp-canvas-rgb: 18 18 28;
+  --mp-section-rgb: 26 26 40;
+  --mp-card-rgb: 34 34 52;
+  --mp-card-muted-rgb: 30 30 44;
+  --mp-ink-rgb: 246 246 250;
+  --mp-ink-secondary-rgb: 196 196 212;
+  --mp-ink-muted-rgb: 148 148 168;
+  --mp-ink-inverse-rgb: 22 22 31;
+  --mp-btc-soft-rgb: 42 28 12;
+  --mp-nostr-soft-rgb: 32 24 52;
+  --mp-electric-soft-rgb: 24 36 56;
+  --mp-border-rgb: 66 66 90;
+  --mp-border-strong-rgb: 86 86 110;
+  --mp-ink-primary: #f6f6fa;
+  --mp-ink-secondary: #c4c4d4;
+  --mp-ink-tertiary: #9494a8;
+  --mp-ink-on-accent: #0a0804;
+  --mp-border-subtle: #2a2a3a;
+  --mp-border-default: #363648;
+  --mp-border-strong: #4a4a5e;
+  --mp-accent-btc: #ff9500;
+  --mp-accent-btc-text: #ffc870;
+  --mp-accent-btc-soft: #2a1c0c;
+  --mp-accent-fuchsia: #e879f9;
+  --mp-accent-fuchsia-text: #f0abfc;
+  --mp-proof-green: #4ade80;
+  --mp-proof-green-soft: #142820;
+  --mp-glass-bg: rgba(34, 34, 52, 0.58);
+  --mp-glass-border: rgba(255, 149, 0, 0.26);
+  --mp-glass-highlight: rgba(255, 255, 255, 0.09);
+}
+
 body {
   font-family: var(--mp-font-body), -apple-system, sans-serif;
   background-color: var(--mp-surface-canvas, rgb(var(--mp-canvas-rgb)));
