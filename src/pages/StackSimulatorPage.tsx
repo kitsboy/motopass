@@ -131,6 +131,14 @@ export function StackSimulatorPage() {
 
       <PageAnchorNav items={simulatorAnchors} />
 
+      {/* Honesty note: figures are dated + sourced where shown, 'not on file' otherwise. */}
+      <p className="mb-6 max-w-3xl text-xs leading-relaxed text-ink-muted">
+        Information only — not financial, legal or immigration advice. Programs change: every figure is dated and
+        sourced where shown, and honestly listed as &apos;not on file&apos; when we have no official source. Confirm current
+        rules with the government or a licensed professional before acting.
+      </p>
+
+
       {error && <ProgramsLoadError message={error} />}
       {loading && !error && <CardSkeleton />}
       {!loading && !error && (
