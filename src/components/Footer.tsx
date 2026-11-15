@@ -3,8 +3,6 @@ import { Logo } from './Logo'
 import { AgentCardKimi } from './AgentCardKimi'
 import { useI18n } from '../i18n/I18nContext'
 import { GiveABitLogoLink } from './footer/GiveABitLogoLink'
-import { FooterVerifyLink } from './footer/FooterVerifyLink'
-import { FooterActionBar } from './footer/FooterActionBar'
 import { FooterApplyLink } from './footer/FooterApplyLink'
 import { SatohashStampWidget } from './SatohashStampWidget'
 import { BUILD_ID, BUILD_DATE, FOOTER_VERSION } from '../lib/buildInfo'
@@ -127,8 +125,6 @@ export function Footer() {
           </div>
         </div>
 
-        <FooterActionBar />
-
         <div className="club-divider mb-6" aria-hidden />
 
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-[10px] text-ink-muted font-mono">
@@ -156,7 +152,6 @@ export function Footer() {
               )}
               {FOOTER_VERSION}
             </span>
-            <FooterVerifyLink />
             <a
               href="/feed.xml"
               className="inline-flex items-center gap-1 rounded-full border border-orange-400/40 bg-orange-400/10 px-2 py-0.5 text-[10px] font-semibold text-orange-300 hover:bg-orange-400/20"
