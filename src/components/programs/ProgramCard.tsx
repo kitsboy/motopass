@@ -13,6 +13,7 @@ import { SovereigntyScoreTooltip } from './SovereigntyScoreTooltip';
 import { DecisionClocks } from './DecisionClocks';
 import { gazetteHits, gazetteLine } from '../../lib/gazetteWatch';
 import { tierTooltipKey } from '../../lib/programTier';
+import { RouteStatusBanner } from './RouteStatusBanner';
 import { Program, scoreWeight } from './types';
 
 function GazetteCardLine({ program }: { program: Program }) {
@@ -163,6 +164,10 @@ function ProgramCardContent({
           className="absolute -right-8 -top-8 h-16 w-16 rotate-45 bg-gradient-seal opacity-90"
           aria-hidden="true"
         />
+      )}
+
+      {program.routeStatus && program.routeStatus !== 'open' && (
+        <RouteStatusBanner program={program} />
       )}
 
       <div className="flex items-start justify-between gap-3">

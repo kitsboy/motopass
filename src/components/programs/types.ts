@@ -42,6 +42,12 @@ export interface Program {
   unverifiedFigures?: number;
   /** open | closed | changed | unknown — traced in the corpus, or not stated. */
   routeStatus?: 'open' | 'closed' | 'changed' | 'unknown';
+  /** The date the route_status was checked (ISO date), e.g. "2026-11-14". */
+  statusCheckedAt?: string;
+  /** Primary source (gov/regulator page) that the status is based on. */
+  statusSource?: string;
+  /** Human note explaining the status (what changed / why it ended). */
+  statusNote?: string;
   proofRef?: string;
   summary: string;
   flag?: string;

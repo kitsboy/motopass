@@ -213,6 +213,19 @@ export function ProgramsTable({
                       <span className="block font-mono text-[9px] uppercase tracking-wide text-mp-wax">{t('bell.cardLine')}</span>
                     )}
                     <GazetteTableLine program={p} />
+                    {p.routeStatus && p.routeStatus !== 'open' && (
+                      <span
+                        className={`block font-mono text-[9px] uppercase tracking-wide ${
+                          p.routeStatus === 'closed' ? 'text-mp-wax' : p.routeStatus === 'changed' ? 'text-mp-copper' : 'text-mp-ink-muted'
+                        }`}
+                      >
+                        {p.routeStatus === 'closed'
+                          ? 'closed'
+                          : p.routeStatus === 'changed'
+                            ? 'changed'
+                            : 'status unconfirmed'}
+                      </span>
+                    )}
                   </span>
                   {p.highlightBtcFriendly && (
                     <span className="inline-flex items-center rounded-chip border border-mp-btc/50 bg-mp-btc-soft px-1 py-px font-mono text-[8px] uppercase tracking-wide text-mp-btc-text" title={t('programs.presetBitcoinFriendly')}>₿</span>
