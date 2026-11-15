@@ -1,5 +1,16 @@
 import type { Program } from './types';
 
+/** A status older than this many days may have changed — prompt re-verification. */
+export const STATUS_MAX_AGE_DAYS = 30;
+
+/** Full days between the status-check date and `now`, or null when no/uncertain date. */
+export function statusAgeDays(iso: string | undefined, now: number = Date.now()): number | null {
+  if (!iso) return null;
+  const t = Date.parse(`${iso}T00:00:00Z`);
+  if (Number.isNaN(t)) return null;
+  return Math.max(0, Math.floor((now - t) / 86_400_000));
+}
+
 /**
  * RouteStatusBanner
  * Honest program-state surface: a bold strip on the card that tells a visitor
@@ -31,7 +42,14 @@ export function RouteStatusBanner({ program }: { program: Program }) {
             dot: 'bg-mp-accent-ochre',
           };
 
+  const days = statusAgeDays(program.statusCheckedAt);
+  const stale = days !== null && days > STATUS_MAX_AGE_DAYS;
   const dateLabel = formatStatusDate(program.statusCheckedAt);
+  const dateText = dateLabel
+    ? stale
+      ? `Status as of ${dateLabel} — verify, may have changed`
+      : `as of ${dateLabel}`
+    : 'Status not independently re-checked';
 
   return (
     <div role="status" className={`mb-3 rounded-card border-l-2 px-3 py-2 ${cfg.ring}`}>
@@ -40,7 +58,7 @@ export function RouteStatusBanner({ program }: { program: Program }) {
           <span className={`h-1.5 w-1.5 rounded-full ${cfg.dot}`} aria-hidden="true" />
           {cfg.label}
         </span>
-        {dateLabel && <span className="text-[10px] text-mp-ink-muted">as of {dateLabel}</span>}
+        <span className={`text-[10px] ${stale ? 'font-semibold text-mp-wax' : 'text-mp-ink-muted'}`}>{dateText}</span>
       </div>
       {program.statusNote && <p className="mt-1 text-xs leading-relaxed text-mp-ink-secondary">{program.statusNote}</p>}
       {program.statusSource && (

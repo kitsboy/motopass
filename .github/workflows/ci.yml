@@ -77,6 +77,9 @@ jobs:
       # since, the badge must say "changed since last timestamp".
       - run: npm run check:slices
       - run: npm run check:proofs
+      # A4 — the number a visitor reads must be the number a proof backs. No
+      # flagship extension may override `finance` (the displayed minimum).
+      - run: npm run check:displayed
       - run: npm run trust:check
       - run: npm run tools:check
       # A quote that has drifted off its page is worse than no source at all: it
