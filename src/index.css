@@ -2691,11 +2691,13 @@ body::before {
   display: flex;
   flex-direction: column;
   max-height: calc(100dvh - env(safe-area-inset-top, 0px) - 0.5rem);
-  /* Jewel-tone identity on the More sheet — fuchsia radial + warm orange, GPU-friendly. */
+  /* Jewel-tone identity on the More sheet — fuchsia radial + warm orange over an
+     OPAQUE theme surface (not glass): a translucent panel can't be read over the
+     page content behind it. --mp-surface-modal stays solid in both themes. */
   background:
-    radial-gradient(ellipse 90% 40% at 12% 0%, rgba(232, 121, 249, 0.1) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 46% at 96% 6%, rgba(255, 149, 0, 0.08) 0%, transparent 50%),
-    var(--mp-glass-bg);
+    radial-gradient(ellipse 90% 40% at 12% 0%, rgba(232, 121, 249, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 46% at 96% 6%, rgba(255, 149, 0, 0.1) 0%, transparent 50%),
+    var(--mp-surface-modal);
   will-change: transform;
   transform: translateZ(0);
 }

@@ -10,7 +10,12 @@ const FEATURED_COUNT = 5
 
 /**
  * MenuDiscover — featured countries + honest trust summary at the bottom of
- * the mobile drawer. Function/content owned by Nova; look/motion by Mimi.
+ * the More sheet (single mobile nav). Function/content owned by Nova; look by
+ * Mimi.
+ *
+ * Uses THEME tokens (card/ink/muted/accent) so it stays readable in both light
+ * and dark — it now sits on the opaque More sheet, not the old dark drawer.
+ * That means no hardcoded white-on-slight-white text (invisible on a light card).
  *
  * Featured = top-FEATURED_COUNT programs by sovereignty_score (real data,
  * null last) — a deterministic "best of" jump list, never a fake editorial pick.
@@ -40,31 +45,31 @@ export function MenuDiscover({ onClose }: { onClose: () => void }) {
       {/* ── Featured countries ───────────────────────────────────────── */}
       {featured.length > 0 && (
         <section aria-label={t('menu.featured')}>
-          <span className="block px-1 pb-1.5 text-[9px] font-mono uppercase tracking-[0.18em] text-white/40">
+          <span className="block px-1 pb-1.5 text-[9px] font-mono uppercase tracking-[0.18em] text-ink-muted">
             {t('menu.featured')}
           </span>
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+          <div className="overflow-hidden rounded-2xl border border-mp/50 bg-card-muted">
             <ul>
               {featured.map((p, i) => (
                 <li key={p.id}>
                   <button
                     type="button"
                     onClick={() => goProgram(p.id)}
-                    className={`flex w-full items-center gap-2.5 px-3 py-2.5 text-left transition-colors hover:bg-white/[0.06] active:bg-white/[0.08] ${
-                      i > 0 ? 'border-t border-white/[0.05]' : ''
+                    className={`flex w-full items-center gap-2.5 px-3 py-2.5 text-left transition-colors hover:bg-card active:bg-card ${
+                      i > 0 ? 'border-t border-mp/40' : ''
                     }`}
                   >
                     <CountryFlag name={p.name} emoji={p.flag} size="sm" />
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate text-[13px] text-white/90">{p.name}</span>
-                      <span className="block truncate text-[10px] text-white/40">{p.region}</span>
+                      <span className="block truncate text-[13px] text-ink">{p.name}</span>
+                      <span className="block truncate text-[10px] text-ink-muted">{p.region}</span>
                     </span>
                     {p.sovereignty_score != null && (
-                      <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px] text-white/55">
+                      <span className="shrink-0 rounded-full border border-mp/40 bg-card px-1.5 py-0.5 font-mono text-[10px] text-ink-muted">
                         {p.sovereignty_score}/10
                       </span>
                     )}
-                    <ChevronRight size={14} aria-hidden="true" className="shrink-0 text-white/30" />
+                    <ChevronRight size={14} aria-hidden="true" className="shrink-0 text-ink-muted" />
                   </button>
                 </li>
               ))}
@@ -78,24 +83,24 @@ export function MenuDiscover({ onClose }: { onClose: () => void }) {
         <Link
           to="/trust"
           onClick={onClose}
-          className="flex items-center justify-between gap-2 rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-2.5 transition-colors hover:bg-white/[0.05]"
+          className="flex items-center justify-between gap-2 rounded-2xl border border-mp/50 bg-card-muted px-3 py-2.5 transition-colors hover:bg-card"
         >
           <span className="flex items-center gap-2">
             <ShieldCheck size={15} aria-hidden="true" className="shrink-0 text-[#22c55e]" />
             {sweep ? (
-              <span className="text-[12px] text-white/85 tabular-nums">
+              <span className="text-[12px] text-ink tabular-nums">
                 <span className="font-semibold text-[#4ade80]">{sweep.fresh}</span>
-                <span className="text-white/40"> {t('trust.fresh')} · </span>
+                <span className="text-ink-muted"> {t('trust.fresh')} · </span>
                 <span className="font-semibold text-[#fbbf24]">{sweep.watch}</span>
-                <span className="text-white/40"> {t('trust.watch')} · </span>
+                <span className="text-ink-muted"> {t('trust.watch')} · </span>
                 <span className="font-semibold text-[#f87171]">{sweep.stale}</span>
-                <span className="text-white/40"> {t('trust.stale')}</span>
+                <span className="text-ink-muted"> {t('trust.stale')}</span>
               </span>
             ) : (
-              <span className="text-[12px] text-white/50">{t('menu.trustPending')}</span>
+              <span className="text-[12px] text-ink-muted">{t('menu.trustPending')}</span>
             )}
           </span>
-          <span className="flex items-center gap-0.5 text-[11px] font-medium text-[#ffc46e]">
+          <span className="flex items-center gap-0.5 text-[11px] font-medium text-mp-accent">
             {t('menu.viewTrust')}
             <ChevronRight size={12} aria-hidden="true" />
           </span>
