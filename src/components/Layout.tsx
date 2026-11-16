@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { Logo } from './Logo'
@@ -8,7 +7,6 @@ import { Header } from './Header'
 import { RouteSeo } from './RouteSeo'
 import { HeaderToolbar } from './nav/HeaderToolbar'
 import { DesktopNav } from './nav/DesktopNav'
-import { MobileMenuSheet } from './nav/MobileMenuSheet'
 import { MobileBottomNav } from './nav/MobileBottomNav'
 import { MoreNavSheet } from './nav/MoreNavSheet'
 import { Breadcrumbs } from './nav/Breadcrumbs'
@@ -32,7 +30,6 @@ export function Layout() {
   const { shortcutsOpen, setShortcutsOpen } = useNavShortcuts()
   const { t } = useI18n()
   const headerCollapsed = useHeaderCollapse()
-  const [menuOpen, setMenuOpen] = useState(false)
   const [moreOpen, setMoreOpen] = useState(false)
 
   useEffect(() => {
@@ -64,7 +61,6 @@ export function Layout() {
             <NavLink
               to="/"
               className="flex items-center gap-2.5 min-w-0 group shrink-0"
-              onClick={() => setMenuOpen(false)}
             >
               <Logo size="sm" />
               <div className="min-w-0 hidden sm:block leading-tight">
@@ -79,20 +75,9 @@ export function Layout() {
             </NavLink>
 
             <HeaderToolbar collapsed={headerCollapsed} />
-
-            <button
-              type="button"
-              className={`elite-hamburger lg:hidden shrink-0${menuOpen ? ' elite-hamburger--open' : ''}`}
-              onClick={() => setMenuOpen(v => !v)}
-              aria-expanded={menuOpen}
-              aria-label={menuOpen ? t('nav.close') : t('nav.menu')}
-            >
-              {menuOpen ? <X size={20} strokeWidth={2.25} /> : <Menu size={20} strokeWidth={2.25} />}
-            </button>
           </div>
         </div>
 
-        <MobileMenuSheet open={menuOpen} onClose={() => setMenuOpen(false)} />
         <DesktopNav />
       </Header>
 
