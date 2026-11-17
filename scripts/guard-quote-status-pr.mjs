@@ -17,19 +17,36 @@ import { fileURLToPath } from 'node:url'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const QUOTE = 'src/data/quoteStatus.json'
 
+// Porcelain v1 is two status columns, a space, then the path.
+// A leading space means "not staged". Trimming first eats that space, and the
+// old 3-character strip then ate the first letter of the path — so a clean
+// quoteStatus.json diff was reported as "rc/data/quoteStatus.json" and the
+// nightly blocked itself. Never trim before reading the status columns.
+export function porcelainPath(line) {
+  if (!line || line.startsWith('??') || line.length < 4) return ''
+  const raw = line.slice(3)
+  const arrow = raw.lastIndexOf(' -> ')
+  return (arrow === -1 ? raw : raw.slice(arrow + 4)).trim()
+}
+
+export function foreignChanges(stdout, allowed = QUOTE) {
+  return (stdout || '')
+    .split('\n')
+    .filter((l) => l && !l.startsWith('??'))
+    .map(porcelainPath)
+    .filter((p) => p && p !== allowed)
+}
+
 const fail = (msg) => {
   console.error(`✗ guard: ${msg}`)
   process.exitCode = 1
 }
 const ok = (msg) => console.log(`✓ ${msg}`)
 
+function main() {
 // --- 1. the diff can only be quoteStatus.json ------------------------------
 const st = spawnSync('git', ['status', '--porcelain'], { cwd: root, encoding: 'utf8' })
-const lines = (st.stdout || '').split('\n').map((l) => l.trim()).filter(Boolean)
-const changed = lines
-  .filter((l) => !/^\?\?/.test(l)) // ignore untracked artifacts; we seal tracked
-  .map((l) => l.replace(/^.../, ''))
-  .filter((p) => p !== QUOTE)
+const changed = foreignChanges(st.stdout, QUOTE)
 if (changed.length) {
   fail(`diff must touch only ${QUOTE}; got: ${changed.slice(0, 20).join(', ')}`)
 } else {
@@ -74,3 +91,8 @@ for (const [k, d] of Object.entries(v)) {
 if (!bad) ok(`_verifiedOn: ${Object.keys(v).length} verification dates, none in the future`)
 
 console.log(bad || changed.length ? '\ncommit: BLOCKED' : '\ncommit: allowed')
+}
+
+const invokedDirectly =
+  process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)
+if (invokedDirectly) main()

@@ -36,6 +36,12 @@ jobs:
       - name: Re-read every claim quote
         run: node scripts/check-quotes.mjs
 
+      # The probe always rewrites research/quote-check.json (it stamps checked_at).
+      # That file is a local research log, not the snapshot. The contract below is
+      # that the only tracked change left is src/data/quoteStatus.json.
+      - name: Drop the probe's research log from the snapshot
+        run: git checkout -- research/quote-check.json
+
       - name: Guard — diff touches only quoteStatus.json, and schema holds
         run: node scripts/guard-quote-status-pr.mjs
 

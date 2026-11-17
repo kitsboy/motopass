@@ -32,5 +32,11 @@ jobs:
             exit 0
           fi
           git commit -m "chore: weekly btcmap density + cache sync"
-          git push origin HEAD:refs/heads/bot/btcmap-sync --force-with-lease
+          # A fresh checkout has not fetched bot/btcmap-sync. --force-with-lease
+          # then refuses with "stale info" even when we are the only writer.
+          if git fetch origin bot/btcmap-sync; then
+            git push origin HEAD:refs/heads/bot/btcmap-sync --force-with-lease=refs/heads/bot/btcmap-sync:refs/remotes/origin/bot/btcmap-sync
+          else
+            git push origin HEAD:refs/heads/bot/btcmap-sync
+          fi
           echo "::notice::Density refresh pushed to bot/btcmap-sync — open a PR to review it."
