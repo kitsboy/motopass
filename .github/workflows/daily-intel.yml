@@ -83,7 +83,12 @@ jobs:
             exit 0
           fi
           git commit -m "chore(intel): daily freshness sweep"
-          git push origin HEAD:refs/heads/bot/daily-intel --force-with-lease
+          # Same lease bug as the btcmap bot: fetch the branch before leasing it.
+          if git fetch origin bot/daily-intel; then
+            git push origin HEAD:refs/heads/bot/daily-intel --force-with-lease=refs/heads/bot/daily-intel:refs/remotes/origin/bot/daily-intel
+          else
+            git push origin HEAD:refs/heads/bot/daily-intel
+          fi
           echo "::notice::Sweep pushed to bot/daily-intel — open a PR to review it."
 
 

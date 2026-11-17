@@ -42,12 +42,7 @@ jobs:
           '
 
       - name: Guard — diff touches only linkCheck.json
-        run: node -e '
-            const cp = require("child_process"); const out = cp.execSync("git status --porcelain").toString()
-            const changed = out.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>l.replace(/^.../,"")).filter(p=>p!=="src/data/linkCheck.json")
-            if (changed.length) { console.error("diff must touch only linkCheck.json; got "+changed.join(",")); process.exit(1) }
-            console.log("diff limited to src/data/linkCheck.json")
-          '
+        run: node scripts/guard-tracked-file.mjs src/data/linkCheck.json
 
       - name: Snap back when BOT_TOKEN is set
         if: success()
