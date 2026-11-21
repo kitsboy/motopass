@@ -7,25 +7,25 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-13T20:34:27.320Z",
+  "generated_at": "2026-11-21T14:04:04.554Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
-    "verified_at": "2026-11-12T14:12:49.040Z",
+    "verified_at": "2026-11-21T13:53:03.575Z",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "probed_at": "2026-11-12T14:12:49.040Z",
+      "days_stale": 0,
+      "probed_at": "2026-11-21T13:53:03.575Z",
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 975093,
-    "stamped_at": "2026-11-08T19:30:26Z",
-    "hash": "7615122f5a697da63dab3da3aaa4ed86aa6a0febf0d7605007acba764d889f1c",
-    "proof_url": "https://satohash.io/verify/7615122f5a697da63dab3da3aaa4ed86aa6a0febf0d7605007acba764d889f1c",
+    "block": 975844,
+    "stamped_at": "2026-11-14T20:34:21Z",
+    "hash": "63c5d12abbb8e908ae1dcebca63a8349eab760958ff90ac0f8eca0eb2c319644",
+    "proof_url": "https://satohash.io/verify/63c5d12abbb8e908ae1dcebca63a8349eab760958ff90ac0f8eca0eb2c319644",
     "ots_path": "/proofs/st-kitts-and-nevis-645d4060bb4f.ots",
     "in_sync": true
   },
@@ -135,38 +135,31 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-12T14:12:49.040Z",
+    "last_probe_at": "2026-11-21T13:53:03.575Z",
     "urls": [
       {
         "url": "https://www.ciu.gov.kn",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://www.gov.kn/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://ciu.gov.kn/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://ciu.gov.kn/cbi-options/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://www.ciu.gov.kn",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "ffa632fcb9b8145e"
-    },
     {
       "date": "2026-09-26",
       "field": "watch.https://www.ciu.gov.kn",
@@ -215,6 +208,13 @@
       "from": "null",
       "to": "left null — no World Bank Findex observation",
       "hash": null
+    },
+    {
+      "date": "2026-11-14",
+      "field": "proof",
+      "from": "7615122f5a697da6",
+      "to": "re-anchored 63c5d12abbb8e908 (stamp 6c819164-637)",
+      "hash": "63c5d12abbb8e908ae1dcebca63a8349eab760958ff90ac0f8eca0eb2c319644"
     }
   ],
   "sovereignty": {

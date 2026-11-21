@@ -7,25 +7,25 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-13T20:34:27.320Z",
+  "generated_at": "2026-11-21T14:04:04.555Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
-    "verified_at": "2026-11-12T14:12:49.040Z",
+    "verified_at": "2026-11-21T13:53:03.575Z",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "probed_at": "2026-11-12T14:12:49.040Z",
+      "days_stale": 0,
+      "probed_at": "2026-11-21T13:53:03.575Z",
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 975566,
-    "stamped_at": "2026-11-12T14:27:47Z",
-    "hash": "ba487962ab56333da14a2c9da2f53884ef38b4f77c5b14f08cd9a58a559e952f",
-    "proof_url": "https://satohash.io/verify/ba487962ab56333da14a2c9da2f53884ef38b4f77c5b14f08cd9a58a559e952f",
+    "block": 975844,
+    "stamped_at": "2026-11-14T20:34:24Z",
+    "hash": "457429e5f893cba867a53214f9695d7eb862db16624891084457120b2f5581f6",
+    "proof_url": "https://satohash.io/verify/457429e5f893cba867a53214f9695d7eb862db16624891084457120b2f5581f6",
     "ots_path": "/proofs/dominica-60018a33188a.ots",
     "in_sync": true
   },
@@ -135,38 +135,31 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-12T14:12:49.040Z",
+    "last_probe_at": "2026-11-21T13:53:03.575Z",
     "urls": [
       {
         "url": "https://www.cbiu.gov.dm",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://dominica.gov.dm/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://www.cbiu.gov.dm/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://www.cbiu.gov.dm/investment-options/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-30",
-      "field": "proof",
-      "from": "6a0a046d6ec355ac",
-      "to": "re-anchored 60018a33188a009b (stamp 650ed349-1b7)",
-      "hash": "60018a33188a009b108496e8fd3fd5f957c2577408f3f44b6acc28c6fe5681db"
-    },
     {
       "date": "2026-11-03",
       "field": "watch.https://dominica.gov.dm/",
@@ -215,6 +208,13 @@
       "from": "ef070d57a298ad24",
       "to": "re-anchored ba487962ab56333d (stamp f2b2b8a2-4e4)",
       "hash": "ba487962ab56333da14a2c9da2f53884ef38b4f77c5b14f08cd9a58a559e952f"
+    },
+    {
+      "date": "2026-11-14",
+      "field": "proof",
+      "from": "ba487962ab56333d",
+      "to": "re-anchored 457429e5f893cba8 (stamp 650bc426-00a)",
+      "hash": "457429e5f893cba867a53214f9695d7eb862db16624891084457120b2f5581f6"
     }
   ],
   "sovereignty": {

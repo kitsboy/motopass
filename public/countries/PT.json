@@ -7,25 +7,25 @@
     "region": "Europe",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-13T20:34:27.318Z",
+  "generated_at": "2026-11-21T14:04:04.552Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
-    "verified_at": "2026-11-12T14:12:49.040Z",
+    "verified_at": "2026-11-21T13:53:03.575Z",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "probed_at": "2026-11-12T14:12:49.040Z",
-      "last_checked": "2026-11-08"
+      "days_stale": 0,
+      "probed_at": "2026-11-21T13:53:03.575Z",
+      "last_checked": "2026-11-15"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 975093,
-    "stamped_at": "2026-11-08T19:28:19Z",
-    "hash": "02de3da00ca582dfca54f0085cc7d8da72c6a658506e1508b6e3de083cb8cf8b",
-    "proof_url": "https://satohash.io/verify/02de3da00ca582dfca54f0085cc7d8da72c6a658506e1508b6e3de083cb8cf8b",
+    "block": 975987,
+    "stamped_at": "2026-11-15T16:26:07Z",
+    "hash": "7f3d7f7bc1f3df6211dff1765993f552b737c9f81ef29c4f634a131c0c532c84",
+    "proof_url": "https://satohash.io/verify/7f3d7f7bc1f3df6211dff1765993f552b737c9f81ef29c4f634a131c0c532c84",
     "ots_path": "/proofs/portugal-ae7e6b71f116.ots",
     "in_sync": true
   },
@@ -70,14 +70,14 @@
     "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions."
   },
   "threshold": {
-    "min_investment_usd": 250000,
-    "typical_investment_usd": 400000,
+    "min_investment_usd": 550000,
+    "typical_investment_usd": null,
     "history": [
       {
-        "date": null,
-        "field": "current",
-        "usd": 250000,
-        "note": "Current published minimum — no tracked change history yet."
+        "date": "2026-11-15",
+        "field": "finance.min_investment_usd",
+        "usd": 550000,
+        "note": "550000 (≈ EUR 500,000 official AIMA fund-route minimum)"
       }
     ],
     "pathways": [
@@ -95,7 +95,7 @@
   },
   "sources": {
     "tiers": {
-      "official": 3,
+      "official": 4,
       "legal": 0,
       "secondary": 5
     },
@@ -131,6 +131,10 @@
       {
         "name": "World Bank Global Findex — account ownership 91.4% of adults 15+ (2024), FX.OWN.TOTL.ZS",
         "tier": "secondary"
+      },
+      {
+        "name": "Official (AIMA — Agência para a Integração, Migrações e Asilo) — https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a — accessed 2026-11-15 — quote: \"Transferência de capitais no montante igual ou superior a 500 mil euros\" (EUR 500,000 ≈ USD 550,000 @ ~1.10) for the qualifying golden-visa fund / capital-transfer routes.",
+        "tier": "official"
       }
     ],
     "official_urls": [
@@ -145,62 +149,41 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-12T14:12:49.040Z",
+    "last_probe_at": "2026-11-21T13:53:03.575Z",
     "urls": [
       {
         "url": "https://imigrante.sef.pt",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://www.portugal.gov.pt",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://www.portaldasfinancas.gov.pt/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://www.portugal.gov.pt/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-para-investimento-art-90-o-a",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       },
       {
         "url": "https://aima.gov.pt/pt/a-aima/perguntas-frequentes-faqs/autorizacao-de-residencia-para-investimento-ari/faq-residence-permit-for-investment-activity-ari",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-21T13:53:03.575Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-11-01",
-      "field": "watch.https://www.portugal.gov.pt/",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "e047a6d54e90d888"
-    },
-    {
-      "date": "2026-11-04",
-      "field": "watch.https://www.portugal.gov.pt",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "eaa5b56aa7796fc7"
-    },
-    {
-      "date": "2026-11-04",
-      "field": "watch.https://www.portugal.gov.pt/",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Full page · Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "eaa5b56aa7796fc7"
-    },
     {
       "date": "2026-11-08",
       "field": "watch.changed",
@@ -235,6 +218,27 @@
       "from": "null",
       "to": "9 (Findex 91.4%, 2024)",
       "hash": null
+    },
+    {
+      "date": "2026-11-14",
+      "field": "proof",
+      "from": "02de3da00ca582df",
+      "to": "re-anchored b73bcd7c77b62d03 (stamp 30d9dcc4-bb7)",
+      "hash": "b73bcd7c77b62d036572d10d2e61303dcefda809edbaac1c091ded11e960be9f"
+    },
+    {
+      "date": "2026-11-15",
+      "field": "finance.min_investment_usd",
+      "from": "null",
+      "to": "550000 (≈ EUR 500,000 official AIMA fund-route minimum)",
+      "hash": null
+    },
+    {
+      "date": "2026-11-15",
+      "field": "proof",
+      "from": "b73bcd7c77b62d03",
+      "to": "re-anchored 7f3d7f7bc1f3df62 (stamp 6466d23f-01e)",
+      "hash": "7f3d7f7bc1f3df6211dff1765993f552b737c9f81ef29c4f634a131c0c532c84"
     }
   ],
   "sovereignty": {
