@@ -7,25 +7,25 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-13T20:34:27.322Z",
+  "generated_at": "2026-11-27T16:02:29.636Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
-    "verified_at": "2026-11-12T14:12:49.040Z",
+    "verified_at": "2026-11-27T15:48:19.919Z",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "probed_at": "2026-11-12T14:12:49.040Z",
+      "days_stale": 0,
+      "probed_at": "2026-11-27T15:48:19.919Z",
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 975308,
-    "stamped_at": "2026-11-10T14:12:16Z",
-    "hash": "8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883",
-    "proof_url": "https://satohash.io/verify/8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883",
+    "block": 975860,
+    "stamped_at": "2026-11-14T23:11:25Z",
+    "hash": "bef9386951cf6e0faf6ed2126738f699a85bdfdf833abac344c3c546af0918c2",
+    "proof_url": "https://satohash.io/verify/bef9386951cf6e0faf6ed2126738f699a85bdfdf833abac344c3c546af0918c2",
     "ots_path": "/proofs/cayman-islands-1842cdd9cd07.ots",
     "in_sync": true
   },
@@ -70,13 +70,13 @@
     "note": "Derived from vetted corpus fields (BUILD 72) — tax/stability keyword heuristics; mobility & banking pending research."
   },
   "threshold": {
-    "min_investment_usd": 1000000,
+    "min_investment_usd": 1200000,
     "typical_investment_usd": 2000000,
     "history": [
       {
         "date": null,
         "field": "current",
-        "usd": 1000000,
+        "usd": 1200000,
         "note": "Current published minimum — no tracked change history yet."
       }
     ],
@@ -144,43 +144,36 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-12T14:12:49.040Z",
+    "last_probe_at": "2026-11-27T15:48:19.919Z",
     "urls": [
       {
         "url": "https://www.gov.ky",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://www.ciregistry.gov.ky",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://www.gov.ky/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://gov.ky/documents/35692/0/MCEI+Immigration+Reform+Guide+Book+-+19MAY2026.pdf",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://gov.ky/immigration",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-15",
-      "field": "watch.https://www.gov.ky",
-      "from": null,
-      "to": "Two duplicate `rule scope added` coverage events REMOVED (t_54b89ced, harness owner). Both carried the same rotating news headline as their \"rule text\" (\"André Ebanks and his fellow Caribbean Overseas Territories Leaders have concluded their 2026 Caucus meeting in Hamilton, Bermuda … in preparation for this year's United Kingdom (UK) Joint Mini…\"), 16 minutes apart — the url alternates an http path whose rule scope is a news headline with a browser path that has no rule scope, so every probe-path flip re-announced the same non-rule text. Neither could alert (a rule scope needs two identical probes). The harness no longer emits this event on a probe-path flip or an EXTRACT_V re-baseline (v8, shouldEmitRuleScopeAdded); these two were pre-fix noise the feed should not have to explain. The `after` texts are preserved here rather than deleted silently. Whether to keep watching www.gov.ky at all (a headline-bearing rule scope) stays a curation decision — see t_239f6996 and t_50cbc2d3.",
-      "hash": null
-    },
     {
       "date": "2026-09-30",
       "field": "proof",
@@ -229,6 +222,13 @@
       "from": "83c5ad64fcb92a9f",
       "to": "re-anchored 8a478f2a2745a847 (stamp 342aeef1-8d1)",
       "hash": "8a478f2a2745a8471648794f6d96a302cff87f26b3aab2042374b86ca074a883"
+    },
+    {
+      "date": "2026-11-14",
+      "field": "proof",
+      "from": "8a478f2a2745a847",
+      "to": "re-anchored bef9386951cf6e0f (stamp ac0f597a-6a5)",
+      "hash": "bef9386951cf6e0faf6ed2126738f699a85bdfdf833abac344c3c546af0918c2"
     }
   ],
   "sovereignty": {

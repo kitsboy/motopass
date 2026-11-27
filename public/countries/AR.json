@@ -7,25 +7,25 @@
     "region": "South America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-13T20:34:27.323Z",
+  "generated_at": "2026-11-27T16:02:29.637Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
-    "verified_at": "2026-11-12T14:12:49.040Z",
+    "verified_at": "2026-11-27T15:48:19.919Z",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "probed_at": "2026-11-12T14:12:49.040Z",
-      "last_checked": "2026-11-08"
+      "days_stale": 0,
+      "probed_at": "2026-11-27T15:48:19.919Z",
+      "last_checked": "2026-11-15"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 975566,
-    "stamped_at": "2026-11-12T14:27:51Z",
-    "hash": "07d50006e127bb7f7c45e9c8d94ef33fae5992db012bfa1077a7039faa0e14a3",
-    "proof_url": "https://satohash.io/verify/07d50006e127bb7f7c45e9c8d94ef33fae5992db012bfa1077a7039faa0e14a3",
+    "block": 975987,
+    "stamped_at": "2026-11-15T16:26:13Z",
+    "hash": "d2be60233892cd6fdb275e5f2c3efe86a55946756f592828f4cb137e84c6c208",
+    "proof_url": "https://satohash.io/verify/d2be60233892cd6fdb275e5f2c3efe86a55946756f592828f4cb137e84c6c208",
     "ots_path": "/proofs/argentina-302a948d1da4.ots",
     "in_sync": true
   },
@@ -78,6 +78,12 @@
         "field": "pathways.citizenship_by_investment",
         "usd": 2027,
         "note": "added announced Citizenship-by-Investment pathway (US$350k contribution + US$800k bond main; dependents US$100k spouse/a"
+      },
+      {
+        "date": "2026-11-15",
+        "field": "finance.min_investment_usd",
+        "usd": 2026,
+        "note": "(kept null per product gate) Official CBI announcement (2 Oct 2026) states USD 350,000 contribution or USD 800,000 bond,"
       }
     ],
     "pathways": [
@@ -105,7 +111,7 @@
   },
   "sources": {
     "tiers": {
-      "official": 7,
+      "official": 8,
       "legal": 0,
       "secondary": 2
     },
@@ -135,7 +141,7 @@
         "tier": "official"
       },
       {
-        "name": "CitizenX (announced CBI, @PlanBpassport X thread 2026-10-02) — https://x.com/PlanBpassport/status/2106022914143269177",
+        "name": "Official (Ministry of Economy CBI announcement, 2 Oct 2026) — https://x.com/PlanBpassport/status/2106022914143269177",
         "tier": "official"
       },
       {
@@ -145,6 +151,10 @@
       {
         "name": "World Bank Global Findex — account ownership 81.7% of adults 15+ (2024), FX.OWN.TOTL.ZS",
         "tier": "secondary"
+      },
+      {
+        "name": "Official (Presidencia de la Nación / Ministerio de Economía CBI announcement) — https://www.argentina.gob.ar/noticias/luis-caputo-anuncio-la-puesta-en-marcha-del-programa-de-ciudadania-por-inversion-de — accessed 2026-11-15 — quote: \"realizar un aporte directo y no reembolsable al Tesoro Nacional por USD 350.000\" (Programa de Ciudadanía por Inversión announced 2 Oct 2026, operational Q4 2026; USD 350,000 contribution or USD 800,000 bond).",
+        "tier": "official"
       }
     ],
     "official_urls": [
@@ -159,67 +169,46 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-12T14:12:49.040Z",
+    "last_probe_at": "2026-11-27T15:48:19.919Z",
     "urls": [
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-una-residencia-temporaria-como-rentista",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://www.argentina.gob.ar/migraciones",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://www.boletinoficial.gob.ar",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://eeeuu.cancilleria.gob.ar/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://www.argentina.gob.ar/migraciones/radicaciones-residencia-temporaria",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://www.argentina.gob.ar/migraciones/residencias",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://www.argentina.gob.ar/servicio/obtener-un-permiso-de-ingreso-temporario-como-inversionista",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-10-02",
-      "field": "proof",
-      "from": "302a948d1da4a1c8",
-      "to": "re-anchored 515b2a393bbffcfe (stamp 74397a78-340)",
-      "hash": "515b2a393bbffcfe9c3511d04a4349e199dbff1959cc0ac1f76817cd92f53abd"
-    },
-    {
-      "date": "2026-10-30",
-      "field": "watch.https://www.migraciones.gob.ar",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "c41add7cb751f107"
-    },
-    {
-      "date": "2026-11-08",
-      "field": "watch.changed",
-      "from": "true",
-      "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
-      "hash": null
-    },
     {
       "date": "2026-11-08",
       "field": "last_checked",
@@ -254,6 +243,27 @@
       "from": "164d0a3b6eb57f5d",
       "to": "re-anchored 07d50006e127bb7f (stamp 4bab4292-e56)",
       "hash": "07d50006e127bb7f7c45e9c8d94ef33fae5992db012bfa1077a7039faa0e14a3"
+    },
+    {
+      "date": "2026-11-14",
+      "field": "proof",
+      "from": "07d50006e127bb7f",
+      "to": "re-anchored 5683b8569712817f (stamp 14ce9aea-64b)",
+      "hash": "5683b8569712817f3c9ba1790968ed1b1220959a6492023d33ba650e690c3a7e"
+    },
+    {
+      "date": "2026-11-15",
+      "field": "finance.min_investment_usd",
+      "from": "null",
+      "to": "(kept null per product gate) Official CBI announcement (2 Oct 2026) states USD 350,000 contribution or USD 800,000 bond, but the program is not yet operational as of 2026-11-15, so finance.min_investment_usd stays not on file",
+      "hash": null
+    },
+    {
+      "date": "2026-11-15",
+      "field": "proof",
+      "from": "5683b8569712817f",
+      "to": "re-anchored d2be60233892cd6f (stamp 8c572c1c-727)",
+      "hash": "d2be60233892cd6fdb275e5f2c3efe86a55946756f592828f4cb137e84c6c208"
     }
   ],
   "sovereignty": {

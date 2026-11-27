@@ -7,25 +7,25 @@
     "region": "Central America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-13T20:34:27.328Z",
+  "generated_at": "2026-11-27T16:02:29.637Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
-    "verified_at": "2026-11-12T14:12:49.040Z",
+    "verified_at": "2026-11-27T15:48:19.919Z",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "probed_at": "2026-11-12T14:12:49.040Z",
+      "days_stale": 0,
+      "probed_at": "2026-11-27T15:48:19.919Z",
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 975093,
-    "stamped_at": "2026-11-08T19:34:20Z",
-    "hash": "71085b61c92479d16f231bbdee613c88945b4d37e580e6e894c3318873491587",
-    "proof_url": "https://satohash.io/verify/71085b61c92479d16f231bbdee613c88945b4d37e580e6e894c3318873491587",
+    "block": 975844,
+    "stamped_at": "2026-11-14T20:36:04Z",
+    "hash": "4f3cd9ccb9b1ecda5389e4d701e6a215961d8b82feb95c02882ea43c85bd4c2c",
+    "proof_url": "https://satohash.io/verify/4f3cd9ccb9b1ecda5389e4d701e6a215961d8b82feb95c02882ea43c85bd4c2c",
     "ots_path": "/proofs/panama-c0f4352fe65c.ots",
     "in_sync": true
   },
@@ -146,33 +146,26 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-12T14:12:49.040Z",
+    "last_probe_at": "2026-11-27T15:48:19.919Z",
     "urls": [
       {
         "url": "https://www.migracion.gob.pa",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://www.gacetaoficial.gob.pa",
-        "status": "ok",
+        "status": "unreachable",
         "last_probed": "2026-11-12T14:12:49.040Z"
       },
       {
         "url": "https://www.mire.gob.pa/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-10-30",
-      "field": "watch.https://www.migracion.gob.pa",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "a38b8bad41d01cb0"
-    },
     {
       "date": "2026-11-03",
       "field": "watch.https://www.migracion.gob.pa",
@@ -221,6 +214,13 @@
       "from": "null",
       "to": "6 (Findex 64.1%, 2024)",
       "hash": null
+    },
+    {
+      "date": "2026-11-14",
+      "field": "proof",
+      "from": "71085b61c92479d1",
+      "to": "re-anchored 4f3cd9ccb9b1ecda (stamp 28b9e41b-2c4)",
+      "hash": "4f3cd9ccb9b1ecda5389e4d701e6a215961d8b82feb95c02882ea43c85bd4c2c"
     }
   ],
   "sovereignty": {

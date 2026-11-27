@@ -7,25 +7,25 @@
     "region": "Caribbean",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-13T20:34:27.320Z",
+  "generated_at": "2026-11-27T16:02:29.635Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
-    "verified_at": "2026-11-12T14:12:49.040Z",
+    "verified_at": "2026-11-27T15:48:19.919Z",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "probed_at": "2026-11-12T14:12:49.040Z",
+      "days_stale": 0,
+      "probed_at": "2026-11-27T15:48:19.919Z",
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 975093,
-    "stamped_at": "2026-11-08T19:28:28Z",
-    "hash": "dc61bf2381915a48c0a32ecfbea1bb1f62a8d8506aba60583d0b4393a81fffa7",
-    "proof_url": "https://satohash.io/verify/dc61bf2381915a48c0a32ecfbea1bb1f62a8d8506aba60583d0b4393a81fffa7",
+    "block": 975844,
+    "stamped_at": "2026-11-14T20:34:18Z",
+    "hash": "136823ff0bcbaff77ed1aa6712990189dfd0321bb7c0d042280654d3b9119609",
+    "proof_url": "https://satohash.io/verify/136823ff0bcbaff77ed1aa6712990189dfd0321bb7c0d042280654d3b9119609",
     "ots_path": "/proofs/antigua-and-barbuda-b537457d6fe6.ots",
     "in_sync": true
   },
@@ -140,43 +140,36 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-12T14:12:49.040Z",
+    "last_probe_at": "2026-11-27T15:48:19.919Z",
     "urls": [
       {
         "url": "https://www.cip.gov.ag",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://ab.gov.ag/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://cip.gov.ag/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://cip.gov.ag/citizenship/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://cip.gov.ag/investment-options/ndf/",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       }
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-09-10",
-      "field": "critical_tests.notes",
-      "from": "Strong passport mobility (150+ visa-free incl. Schengen); 5-day physical presence in first 5 years required; mandatory virtual interview for applicants 16+; no capital gains tax.",
-      "to": "Strong passport mobility (150+ visa-free incl. Schengen); 5-day physical presence in first 5 years required; mandatory virtual interview for applicants 16+; no capital gains tax. US Proclamation 10998 (eff. 1 Jan 2026): partial restriction implemented as a B-1/B-2 visa-validity cut for Antiguan and Barbudan nationals (10-year visas reduced) — entry not banned.",
-      "hash": null
-    },
     {
       "date": "2026-09-12",
       "field": "proof",
@@ -225,6 +218,13 @@
       "from": "null",
       "to": "left null — no World Bank Findex observation",
       "hash": null
+    },
+    {
+      "date": "2026-11-14",
+      "field": "proof",
+      "from": "dc61bf2381915a48",
+      "to": "re-anchored 136823ff0bcbaff7 (stamp eae3bb33-53c)",
+      "hash": "136823ff0bcbaff77ed1aa6712990189dfd0321bb7c0d042280654d3b9119609"
     }
   ],
   "sovereignty": {

@@ -7,25 +7,25 @@
     "region": "North America",
     "category": "rbi_cbi"
   },
-  "generated_at": "2026-11-13T20:34:27.328Z",
+  "generated_at": "2026-11-27T16:02:29.637Z",
   "freshness": {
     "status": "fresh",
     "days_stale": 0,
-    "verified_at": "2026-11-12T14:12:49.040Z",
+    "verified_at": "2026-11-27T15:48:19.919Z",
     "scale": "FRESH<=30d · WATCH 31-45d · STALE>45d",
     "pipeline_sweep": {
       "status": "fresh",
-      "days_stale": 1,
-      "probed_at": "2026-11-12T14:12:49.040Z",
+      "days_stale": 0,
+      "probed_at": "2026-11-27T15:48:19.919Z",
       "last_checked": "2026-11-08"
     }
   },
   "proof": {
     "status": "confirmed",
-    "block": 975093,
-    "stamped_at": "2026-11-08T19:34:24Z",
-    "hash": "d586109a0a432c45a3e9cc04bf3bbaeb3df1988b7c75a3b6c5b9eb8ef4c3289a",
-    "proof_url": "https://satohash.io/verify/d586109a0a432c45a3e9cc04bf3bbaeb3df1988b7c75a3b6c5b9eb8ef4c3289a",
+    "block": 975860,
+    "stamped_at": "2026-11-14T23:11:28Z",
+    "hash": "d323678811aa6a72cac3cf14fc0d280749f35ea016a8e6fb142fe86246bd0574",
+    "proof_url": "https://satohash.io/verify/d323678811aa6a72cac3cf14fc0d280749f35ea016a8e6fb142fe86246bd0574",
     "ots_path": "/proofs/mexico-67ea33c8e699.ots",
     "in_sync": true
   },
@@ -70,7 +70,7 @@
     "note": "Mobility: Henley Sept 2026 visa-free count ÷ 20. Banking: World Bank Findex account ownership ÷ 10. Tax: headline-tax rubric. All three are published methods, not opinions."
   },
   "threshold": {
-    "min_investment_usd": 74000,
+    "min_investment_usd": 78025,
     "typical_investment_usd": 120000,
     "history": [
       {
@@ -162,7 +162,7 @@
   },
   "watch": {
     "changed": false,
-    "last_probe_at": "2026-11-12T14:12:49.040Z",
+    "last_probe_at": "2026-11-27T15:48:19.919Z",
     "urls": [
       {
         "url": "https://www.inm.gob.mx",
@@ -172,22 +172,22 @@
       {
         "url": "https://www.gob.mx",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://www.inm.gob.mx/tramites/publico/solicitud_estancia.html",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://dof.gob.mx",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://www.gob.mx/sre",
         "status": "ok",
-        "last_probed": "2026-11-12T14:12:49.040Z"
+        "last_probed": "2026-11-27T15:48:19.919Z"
       },
       {
         "url": "https://embamex.sre.gob.mx/eua/",
@@ -202,13 +202,6 @@
     ]
   },
   "audit_trail": [
-    {
-      "date": "2026-11-04",
-      "field": "watch.https://dof.gob.mx",
-      "from": null,
-      "to": "Rule-bearing content confirmed changed on official source: Rule terms (fees · thresholds · requirements) — review required",
-      "hash": "476a8ed06456475a"
-    },
     {
       "date": "2026-11-06",
       "field": "watch.https://dof.gob.mx",
@@ -257,6 +250,13 @@
       "from": "true",
       "to": "Latch cleared — no watched URL is in status changed. Earlier review-required rows stay as history.",
       "hash": null
+    },
+    {
+      "date": "2026-11-14",
+      "field": "proof",
+      "from": "d586109a0a432c45",
+      "to": "re-anchored d323678811aa6a72 (stamp c02de5c7-dc7)",
+      "hash": "d323678811aa6a72cac3cf14fc0d280749f35ea016a8e6fb142fe86246bd0574"
     }
   ],
   "sovereignty": {
